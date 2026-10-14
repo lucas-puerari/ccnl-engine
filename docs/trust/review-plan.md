@@ -15,7 +15,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | artigianato | 8 | 1 244 505 | 94 | 311 | 32 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 20 | 277 | 3 | 5 | `operai-agricoli-florovivaisti` |
 | edilizia | 4 | 710 000 | 4 | 140 | 55 | 0 | `edilizia-ance` |
-| credito | 3 | 348 000 | 4 | 79 | 37 | 0 | `bancari-abi` |
+| credito | 3 | 348 000 | 3 | 45 | 72 | 0 | `bancari-abi` |
 
 ## pubblica-amministrazione
 
@@ -187,4 +187,4 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---|---:|---:|---:|---|---|---|
 | [`bancari-abi`](../contracts/bancari-abi.md) (anchor) | 270 000 | exploratory | 0 | 8 | 37 | party or official | maintainer | 2026-12-31 |
 | [`assicurazioni-ania`](../contracts/assicurazioni-ania.md) | 45 000 | exploratory | 2 | 30 | 0 | party or official | none | none |
-| [`bcc-credito-cooperativo`](../contracts/bcc-credito-cooperativo.md) | 33 000 | exploratory | 2 | 41 | 0 | party or official | none | none |
+| [`bcc-credito-cooperativo`](../contracts/bcc-credito-cooperativo.md) | 33 000 | exploratory | 1 | 7 | 35 | party or official | maintainer | 2027-06-30 |

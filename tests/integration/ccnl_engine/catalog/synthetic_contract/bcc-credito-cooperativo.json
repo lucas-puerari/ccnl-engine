@@ -40,12 +40,12 @@
     {
       "level_code": "3AP1",
       "as_of": "2026-01-01",
-      "expected_monthly": "2742.35"
+      "expected_monthly": "2742.34"
     },
     {
       "level_code": "2AP2",
       "as_of": "2026-01-01",
-      "expected_monthly": "2572.10"
+      "expected_monthly": "2572.11"
     },
     {
       "level_code": "2AP1",

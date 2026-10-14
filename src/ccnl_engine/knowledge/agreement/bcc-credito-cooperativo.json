@@ -16,6 +16,11 @@
     ],
     "sources": [
       {
+        "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+        "type": "ccnl_text",
+        "agreement_date": "2024-07-09"
+      },
+      {
         "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
         "type": "ccnl_text",
         "agreement_date": "2024-07-09"
@@ -104,6 +109,10 @@
           },
           "remediation": "Source the credito rates of 2026 on an INPS or association table, mark the inps block of contribution/2026/credito.json derived, then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "SCATTI: at most 8 for the 1st and 2nd level of the quadri direttivi and for the aree professionali, 7 for the 3rd and 4th level of the quadri (Art. 101, Art. 113). Staff in service on 31 December 1997 keep 12 scatti (9 for the 3rd and 4th level of the quadri) plus a further periodic increase: the engine applies the limits of later hires, so a run for that cohort past the 8th (7th) scatto needs the extra amounts as a fixed input."
       }
     ]
   },
@@ -124,9 +133,30 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "bcc-testo-coordinato-2024-12-19",
+                "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
+                "kind": "associazione",
+                "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                "published_on": "2024-12-19",
+                "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
+              },
+              "page": "63",
+              "section": "Art. 46, Tredicesima mensilità",
+              "quote": "Al personale compete, annualmente, la gratificazione di Natale, che deve essere corrisposta nel mese di dicembre"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-14T15:35:12Z",
+              "verification_status": "verified",
+              "effective_from": "2024-09-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-14T15:35:12Z",
+              "review_id": "2026-10-14-ai-bcc"
+            }
           }
         }
       ]
@@ -237,27 +267,33 @@
       },
       "first_cadence_months": 48,
       "maximum_count_by_level": {
-        "QD1": 12,
-        "QD2": 12,
-        "QD3": 12,
-        "QD4": 12
+        "QD3": 7,
+        "QD4": 7
       },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-            "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "document_id": "bcc-testo-coordinato-2024-12-19",
+            "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
             "kind": "associazione",
-            "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+            "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+            "published_on": "2024-12-19",
+            "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
           },
-          "section": "Scatti di anzianità"
+          "page": "117",
+          "section": "Art. 101 (quadri direttivi) and Art. 113 (aree professionali, p. 128), Scatti di anzianità",
+          "quote": "gli scatti di anzianità vengono riconosciuti con cadenza triennale [...] 4 anni per il 1° scatto in tutti i casi di assunzione"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-14T15:35:12Z",
+          "verification_status": "verified",
+          "effective_from": "2024-09-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-14T15:35:12Z",
+          "review_id": "2026-10-14-ai-bcc"
         }
       }
     },
@@ -295,21 +331,29 @@
             "valid_until": "2025-01-01",
             "value": "4978.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.09.2024",
+                "quote": "Quadri direttivi, 4° livello 4.978,66"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -318,21 +362,29 @@
             "valid_until": "2026-01-01",
             "value": "5059.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2025",
+                "quote": "Quadri direttivi, 4° livello 5.059,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -341,21 +393,29 @@
             "valid_until": null,
             "value": "5160.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2026",
+                "quote": "Quadri direttivi, 4° livello 5.160,06"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           }
@@ -393,21 +453,29 @@
             "valid_until": "2025-01-01",
             "value": "4239.27",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.09.2024",
+                "quote": "Quadri direttivi, 3° livello 4.239,27"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -416,21 +484,29 @@
             "valid_until": "2026-01-01",
             "value": "4309.32",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2025",
+                "quote": "Quadri direttivi, 3° livello 4.309,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -439,21 +515,29 @@
             "valid_until": null,
             "value": "4396.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2026",
+                "quote": "Quadri direttivi, 3° livello 4.396,88"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           }
@@ -491,21 +575,29 @@
             "valid_until": "2025-01-01",
             "value": "3815.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.09.2024",
+                "quote": "Quadri direttivi, 2° livello 3.815,86"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -514,21 +606,29 @@
             "valid_until": "2026-01-01",
             "value": "3882.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2025",
+                "quote": "Quadri direttivi, 2° livello 3.882,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -537,21 +637,29 @@
             "valid_until": null,
             "value": "3965.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2026",
+                "quote": "Quadri direttivi, 2° livello 3.965,48"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           }
@@ -589,21 +697,29 @@
             "valid_until": "2025-01-01",
             "value": "3600.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.09.2024",
+                "quote": "Quadri direttivi, 1° livello 3.600,61"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -612,21 +728,29 @@
             "valid_until": "2026-01-01",
             "value": "3663.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2025",
+                "quote": "Quadri direttivi, 1° livello 3.663,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -635,21 +759,29 @@
             "valid_until": null,
             "value": "3743.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2026",
+                "quote": "Quadri direttivi, 1° livello 3.743,21"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           }
@@ -687,21 +819,29 @@
             "valid_until": "2025-01-01",
             "value": "3206.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.09.2024",
+                "quote": "3ª Area Professionale, 4° livello 3.206,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -710,21 +850,29 @@
             "valid_until": "2026-01-01",
             "value": "3266.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2025",
+                "quote": "3ª Area Professionale, 4° livello 3.266,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -733,21 +881,29 @@
             "valid_until": null,
             "value": "3341.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2026",
+                "quote": "3ª Area Professionale, 4° livello 3.341,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           }
@@ -785,21 +941,29 @@
             "valid_until": "2025-01-01",
             "value": "2943.02",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.09.2024",
+                "quote": "3ª Area Professionale, 3° livello 2.943,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -808,21 +972,29 @@
             "valid_until": "2026-01-01",
             "value": "2994.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2025",
+                "quote": "3ª Area Professionale, 3° livello 2.994,78"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -831,21 +1003,29 @@
             "valid_until": null,
             "value": "3059.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2026",
+                "quote": "3ª Area Professionale, 3° livello 3.059,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           }
@@ -883,21 +1063,29 @@
             "valid_until": "2025-01-01",
             "value": "2780.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.09.2024",
+                "quote": "3ª Area Professionale, 2° livello 2.780,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -906,21 +1094,29 @@
             "valid_until": "2026-01-01",
             "value": "2829.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2025",
+                "quote": "3ª Area Professionale, 2° livello 2.829,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -929,21 +1125,29 @@
             "valid_until": null,
             "value": "2890.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2026",
+                "quote": "3ª Area Professionale, 2° livello 2.890,41"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           }
@@ -981,21 +1185,29 @@
             "valid_until": "2025-01-01",
             "value": "2637.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.09.2024",
+                "quote": "3ª Area Professionale, 1° livello 2.637,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -1004,44 +1216,60 @@
             "valid_until": "2026-01-01",
             "value": "2684.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2025",
+                "quote": "3ª Area Professionale, 1° livello 2.684,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
             "valid_until": null,
-            "value": "2742.35",
+            "value": "2742.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2026",
+                "quote": "3ª Area Professionale, 1° livello 2.742,34"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           }
@@ -1079,21 +1307,29 @@
             "valid_until": "2025-01-01",
             "value": "2474.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.09.2024",
+                "quote": "2ª Area Professionale, 2° livello 2.474,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -1102,44 +1338,60 @@
             "valid_until": "2026-01-01",
             "value": "2517.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2025",
+                "quote": "2ª Area Professionale, 2° livello 2.517,71"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
             "valid_until": null,
-            "value": "2572.10",
+            "value": "2572.11",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2026",
+                "quote": "2ª Area Professionale, 2° livello 2.572,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           }
@@ -1177,21 +1429,29 @@
             "valid_until": "2025-01-01",
             "value": "2315.18",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.09.2024",
+                "quote": "2ª Area Professionale, 1° livello 2.315,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -1200,21 +1460,29 @@
             "valid_until": "2026-01-01",
             "value": "2355.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2025",
+                "quote": "2ª Area Professionale, 1° livello 2.355,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -1223,21 +1491,29 @@
             "valid_until": null,
             "value": "2406.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2026",
+                "quote": "2ª Area Professionale, 1° livello 2.406,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           }
@@ -1275,21 +1551,29 @@
             "valid_until": "2025-01-01",
             "value": "2156.20",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.09.2024",
+                "quote": "1ª Area Professionale, livello unico 2.156,20"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -1298,21 +1582,29 @@
             "valid_until": "2026-01-01",
             "value": "2194.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2025",
+                "quote": "1ª Area Professionale, livello unico 2.194,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           },
@@ -1321,21 +1613,29 @@
             "valid_until": null,
             "value": "2241.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
-                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "document_id": "bcc-testo-coordinato-2024-12-19",
+                  "title": "Testo coordinato del CCNL per i quadri direttivi e le aree professionali delle BCC del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (Eutekne)",
                   "kind": "associazione",
-                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                  "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+                  "published_on": "2024-12-19",
+                  "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
                 },
-                "section": "Tabella retributiva"
+                "page": "149",
+                "section": "Allegato A, Tabella trattamento economico, 1) Stipendio, importi mensili, dal 01.01.2026",
+                "quote": "1ª Area Professionale, livello unico 2.241,53"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:35:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:35:12Z",
+                "review_id": "2026-10-14-ai-bcc"
               }
             }
           }
@@ -1394,7 +1694,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "73513b11a648eabd30a9b8980845d6deac595267685fcaaaf5b6b5050d034904",
+    "source_hash": "f84c8fd5a6df3fed015d2a29aedf2b134ec1983073acb0e9eb35d8a7094ae58f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1620,5 +1920,35 @@
         }
       }
     }
+  },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "owner": "maintainer",
+    "reviews": [
+      {
+        "id": "2026-10-14-ai-bcc",
+        "date": "2026-10-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Second review of the credito group: stipendio of the eleven levels in the three tranches, scatti, number of monthly payments, against the testo coordinato signed on 19 December 2024.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+            "sha256": "57296bd057cdff080b59e7d771d5c42e4a8da2c2032e5f26a8657a597fc5c622"
+          }
+        ],
+        "findings": [
+          "The 33 stipendi match Allegato A (p. 149) except two 2026 values, one cent off: 3ª Area 1° livello 2742.35 corrected to 2742.34, 2ª Area 2° livello 2572.10 corrected to 2572.11.",
+          "13 monthly payments: verified (Art. 46, tredicesima; no further monthly payment in the text).",
+          "Scatti: amounts match Allegato A; at most 8 for the 1st and 2nd level of the quadri, not 12: the 12 apply only to staff in service on 31 December 1997 (Art. 101). Corrected; the 1997 cohort is noted.",
+          "The FABI URL of the text no longer serves the PDF; the same signed text is cited from its Eutekne reproduction.",
+          "Not reviewed here: the hourly pay of Art. 114 (90.66% of one twelfth of the annual pay, divided by 160) and the overtime rates, which stay derived."
+        ]
+      }
+    ],
+    "review_due": "2027-06-30"
   }
 }
