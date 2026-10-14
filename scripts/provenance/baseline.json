@@ -1451,6 +1451,7 @@
       "lavanderie-industriali-assosistema/apprentice_seniority"
     ],
     "agreement/lavoro-domestico-convivente-orario-ridotto.json": [
+      "lavoro-domestico-convivente-orario-ridotto/annual_minimi_not_updated",
       "lavoro-domestico-convivente-orario-ridotto/board_lodging_substitute",
       "lavoro-domestico-convivente-orario-ridotto/extra_month_hours",
       "lavoro-domestico-convivente-orario-ridotto/hourly_inps_bracket_unvalidated",
@@ -1459,6 +1460,7 @@
       "lavoro-domestico-convivente-orario-ridotto/sick_board_lodging"
     ],
     "agreement/lavoro-domestico-convivente.json": [
+      "lavoro-domestico-convivente/annual_minimi_not_updated",
       "lavoro-domestico-convivente/board_lodging_substitute",
       "lavoro-domestico-convivente/extra_month_hours",
       "lavoro-domestico-convivente/hourly_inps_bracket_unvalidated",
@@ -1469,6 +1471,7 @@
       "lavoro-domestico-convivente/tranches_from_2027"
     ],
     "agreement/lavoro-domestico-non-convivente.json": [
+      "lavoro-domestico-non-convivente/annual_minimi_not_updated",
       "lavoro-domestico-non-convivente/extra_month_hours",
       "lavoro-domestico-non-convivente/meal_indennity",
       "lavoro-domestico-non-convivente/oncological_comporto",

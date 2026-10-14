@@ -157,6 +157,20 @@
       {
         "kind": "info",
         "text": "NIGHT WORK (Art. 14 c. 6): ordinary work between 22.00 and 6.00 is paid with a 20% supplement of the hourly retribuzione globale di fatto; the engine takes its amount as a NightShiftEvent stated by the caller. The overtime bands are those of Art. 15 c. 3 (25% by day, 50% by night, 60% on a holiday or Sunday); night overtime on a holiday has no band of its own and a run that states it is rejected."
+      },
+      {
+        "kind": "simplification",
+        "text": "ANNUAL MINIMI: the minimi of the CCNL are updated every year from 1 January by the Commissione nazionale (Art. 38, ISTAT variation of the consumer prices); the bundle holds the table of 2026. From 1 January 2027 the amounts are those of 2026 until the 2027 table is published and added, so a 2027 run is not payable.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "annual_minimi_not_updated",
+          "applies_when": {
+            "trigger": "run",
+            "effective_from": "2027-01-01"
+          },
+          "remediation": "Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note."
+        }
       }
     ]
   },
@@ -955,7 +969,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "4fb26cc4d70ed71c0865311a243568c5bfff4d1cdf294ede63f91b0d69b6a1f4",
+    "source_hash": "7828dc9c74446b6edf53d414f07e2b36f5392feefd2f19c88e5621bf3317dd86",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
@@ -1295,7 +1309,26 @@
           "Citations moved from the DOMINA table and section labels without page to the signed text with page and quote.",
           "Overtime of non conviventi: hours 41 to 44 by day at 10% (Art. 15 c. 4), beyond the 44th at 25% (hour_threshold_per_week 4)."
         ]
+      },
+      {
+        "id": "2026-10-14-ai-p1",
+        "date": "2026-10-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "P1 audit: Tabella C of the 2026 minimi (values from 1 January 2026) for the eight levels; the annual update of the minimi.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
+            "sha256": "bf881702d838dc9c721f07140f17ee6f7cc8b7eb920b4e7647bfa2176ee3d387"
+          }
+        ],
+        "findings": [
+          "The eight hourly minimi of Tabella C (6,51 to 9,97) times 40 x 52 / 12 are the monthly amounts of the bundle.",
+          "The minimi are reset every 1 January (Art. 38): from 2027 the 2026 table would be paid as final. Declared as annual_minimi_not_updated on the three domestic CCNLs, review_due 2027-01-31."
+        ]
       }
-    ]
+    ],
+    "review_due": "2027-01-31"
   }
 }
