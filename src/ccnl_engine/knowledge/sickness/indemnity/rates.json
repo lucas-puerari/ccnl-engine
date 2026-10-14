@@ -28,7 +28,7 @@
       "section": "Lavoratori dipendenti: quanto spetta",
       "quote": "In linea generale, l'indennità è corrisposta ai lavoratori dipendenti nella misura del: 50% della retribuzione media giornaliera, dal quarto al ventesimo giorno; 66,66% dal ventunesimo al centottantesimo giorno."
     },
-    "note": "Primary administrative source (INPS). No statute states the percentages: L. 138/1943 art. 6 c. 4 leaves the measure of the indemnity to collective agreements, and the INAM deliberation of 10 April 1963 the INPS page cites is not published online."
+    "note": "Primary administrative source (INPS). No statute states the percentages: L. 138/1943 art. 6 c. 4 leaves the measure of the indemnity to collective agreements, and the INAM deliberation of 10 April 1963 the INPS page cites is not published online. Not modelled, from the same INPS page (re-read on 2026-10-14, same sha256): the indemnity 'ai 2/5 durante tutto il periodo di degenza ospedaliera [...] per i ricoverati senza familiari a carico' and 'ai 2/3 della misura normalmente prevista [...] per i disoccupati e sospesi dal lavoro'. Every run that pays an INPS share of a sick day already traverses the open engine limitation sickness_inps_daily_base and is not payable."
   },
   "ruleset": {
     "id": "inps/sick-pay-rates",
@@ -38,7 +38,7 @@
     "published_at": "2026-10-04",
     "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33) for the waiting period and the indemnity; rates, 180-day annual maximum and cover as summarised by Assolombarda, Lavoro a tempo indeterminato - Tutele previdenziali (secondary, read 2026-10-04); not checked against an INPS circular",
     "verification_status": "unverified",
-    "source_hash": "b0630175e3381a7151af51f20f3c17ff9fee4ec5c62a9b1776382e36f92e8ae4",
+    "source_hash": "b50064ab06af34936cd400c051674f0e5b2b8f15b9b4aadd131b80a685ea8ca1",
     "source_type": "contracting_party"
   },
   "annual_max_days": 180,
@@ -99,14 +99,23 @@
     },
     {
       "sectors": [
-        "edilizia",
+        "edilizia"
+      ],
+      "categories": [
+        "operaio"
+      ],
+      "covered": true,
+      "source": "INPS, Indennità di malattia/degenza ospedaliera e visite mediche di controllo (https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.indennit--di-malattia-e-visite-mediche-di-controllo.html, page sha256 6309395f9adc0866931062a5e934d943a44e68cb64d7ae5403ed2f735d9c039a, read 2026-10-14): the indemnity 'spetta [...] a: operai del settore industria'; the building operai are within it and their employer pays the sickness contribution: Assimpredil ANCE, Aliquote contributive INPS dal 1 gennaio 2026, tabella 1/2026 (sha256 83508e4e61d305be578ecb224a00bdf4f7628214578999a02d4763d93f58756f), row OPERAI, column malattia 2,22, which the impiegati row does not carry."
+    },
+    {
+      "sectors": [
         "artigianato"
       ],
       "categories": [
         "operaio"
       ],
       "covered": true,
-      "source": "Unverified: by analogy with operai of industry; the secondary source read does not name building or artisan operai"
+      "source": "Unverified: by analogy with the operai of industry; the INPS page does not name the artisan operai, and the artigianato rate takes its malattia 2.22 from the building table (contribution/2026/artigianato.json)."
     },
     {
       "sectors": [
