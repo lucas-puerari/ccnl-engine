@@ -1519,7 +1519,8 @@
     ],
     "agreement/metalmeccanico-federmeccanica.json": [
       "metalmeccanico-federmeccanica/apprentice_seniority",
-      "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement"
+      "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement",
+      "metalmeccanico-federmeccanica/shift_and_multiweek_premiums"
     ],
     "agreement/multiservizi-anip.json": [
       "multiservizi-anip/anip_unsigned_renewal",
