@@ -130,8 +130,11 @@ def run_contributions(inp: _AmountsInput) -> tuple[ContributionBreakdown, Decima
     if inp.rules.inps is not None:
         base = _raised(inp, inp.monthly_gross + inp.event_inps_base)
         breakdown = with_end_of_service(inp, _ordinary_breakdown(inp, base))
-        breakdown, credit = with_public_credit(inp, breakdown, base)
-        breakdown, life = with_life_insurance(inp, breakdown, base)
+        # The pension base of the credit and ASV contributions stops at the
+        # IVS massimale, like the IVS share itself.
+        pension_base = _ivs_employer_base(breakdown)
+        breakdown, credit = with_public_credit(inp, breakdown, pension_base)
+        breakdown, life = with_life_insurance(inp, breakdown, pension_base)
         breakdown, enam = with_enam(inp, breakdown)
         breakdown, fund = with_solidarity_fund(inp, breakdown)
         breakdown = with_sick_pay_supplement(inp, breakdown, base)
