@@ -166,11 +166,11 @@
     "id": "tax/2026/family-deductions",
     "version": "2026.2",
     "effective_from": "2026-01-01",
-    "effective_until": null,
+    "effective_until": "2026-12-31",
     "published_at": "2026-10-03",
     "source": "D.P.R. 22 dicembre 1986 n. 917 (TUIR), art. 12",
     "source_type": "official_primary",
     "verification_status": "unverified",
-    "source_hash": "b5e503dcb9586b464c1857d7277dacb1731ea76ff639d82b6d7d48b1c5e8bc20"
+    "source_hash": "6e1ce2eea25ec43022b52f0a358b38a1b29f4b3c20090b951c7417b515d49392"
   }
 }
