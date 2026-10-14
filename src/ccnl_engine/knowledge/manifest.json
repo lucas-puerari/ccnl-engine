@@ -727,7 +727,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-ance",
       "ruleset_version": "2026.2",
-      "source_hash": "1ffd056aec5dd240dcbdec191fee5a56a1a369a9c531c7bab23f6f4768b62621",
+      "source_hash": "4e4a5410573b64adec6aca4293cd5c29b900165446cc584526e39171e473d6da",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/edilizia-ance.json.gz"
