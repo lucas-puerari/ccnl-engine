@@ -101,6 +101,19 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "SIXTH DAY: Art. 13 c. 6 (p. 39) pays 50% for the overtime of the sixth day of a non-travelling worker whose normal week is spread over five days; the overtime bands have no such kind, so that overtime takes the 30% of the weekday band.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sixth_day_overtime",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add a sixth-day kind to the overtime event and a 50% band, then remove this note."
+        }
       }
     ]
   },
@@ -2396,7 +2409,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "c3068a4449f73d22bcb2cfb4aaf495eea5af5b93d5aa019ef659341291545630",
+    "source_hash": "e91043789393e8e3ea8c68e58e3957849ca4a109cc6fb20921827aede8b678fe",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2411,7 +2424,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2023-05-01",
+                "valid_from": "2025-01-01",
                 "value": 0.3,
                 "provenance": null,
                 "valid_until": null
@@ -2422,22 +2435,31 @@
             "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-logistica-trasporto-confetra-2023",
-                "title": "CCNL Logistica, Trasporto Merci e Spedizione (Confetra) 2023-2026",
-                "kind": "tabella_retributiva",
-                "url": "https://www.confetra.com/wp-content/uploads/2025/09/testo-unico-ccnl-logistica-2025.pdf"
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
               },
-              "section": "Art. straordinario — maggiorazione 30%"
+              "page": "38-39",
+              "section": "Art. 13 c. 6, Lavoro straordinario",
+              "quote": "lavoro straordinario feriale diurno: maggiorazione 30%"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2023-05-01"
-            }
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-14T14:04:57Z",
+              "verification_status": "verified",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-14T14:04:57Z",
+              "review_id": "2026-10-14-ai-p1"
+            },
+            "note": "From 1 January 2025, the start of the salary series of the bundle: the testo unico of the renewal of 6 December 2024 is in force on that date; the earlier start of 2023-05-01 was not stated by any source."
           }
         },
         {
@@ -2447,7 +2469,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2023-05-01",
+                "valid_from": "2025-01-01",
                 "value": 0.5,
                 "provenance": null,
                 "valid_until": null
@@ -2458,22 +2480,31 @@
             "night"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-logistica-trasporto-confetra-2023",
-                "title": "CCNL Logistica, Trasporto Merci e Spedizione (Confetra) 2023-2026",
-                "kind": "tabella_retributiva",
-                "url": "https://www.confetra.com/wp-content/uploads/2025/09/testo-unico-ccnl-logistica-2025.pdf"
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
               },
-              "section": "Art. straordinario — maggiorazione notturno 50%"
+              "page": "38-39",
+              "section": "Art. 13 c. 6, Lavoro straordinario",
+              "quote": "lavoro straordinario feriale notturno: maggiorazione 50%"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2023-05-01"
-            }
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-14T14:04:57Z",
+              "verification_status": "verified",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-14T14:04:57Z",
+              "review_id": "2026-10-14-ai-p1"
+            },
+            "note": "From 1 January 2025, the start of the salary series of the bundle: the testo unico of the renewal of 6 December 2024 is in force on that date; the earlier start of 2023-05-01 was not stated by any source."
           }
         },
         {
@@ -2483,7 +2514,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2023-05-01",
+                "valid_from": "2025-01-01",
                 "value": 0.65,
                 "provenance": null,
                 "valid_until": null
@@ -2494,22 +2525,31 @@
             "holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-logistica-trasporto-confetra-2023",
-                "title": "CCNL Logistica, Trasporto Merci e Spedizione (Confetra) 2023-2026",
-                "kind": "tabella_retributiva",
-                "url": "https://www.confetra.com/wp-content/uploads/2025/09/testo-unico-ccnl-logistica-2025.pdf"
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
               },
-              "section": "Art. straordinario — maggiorazione festivo 65%"
+              "page": "38-39",
+              "section": "Art. 13 c. 6, Lavoro straordinario",
+              "quote": "lavoro straordinario festivo diurno: maggiorazione 65%"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2023-05-01"
-            }
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-14T14:04:57Z",
+              "verification_status": "verified",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-14T14:04:57Z",
+              "review_id": "2026-10-14-ai-p1"
+            },
+            "note": "From 1 January 2025, the start of the salary series of the bundle: the testo unico of the renewal of 6 December 2024 is in force on that date; the earlier start of 2023-05-01 was not stated by any source."
           }
         },
         {
@@ -2519,7 +2559,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2023-05-01",
+                "valid_from": "2025-01-01",
                 "value": 0.75,
                 "provenance": null,
                 "valid_until": null
@@ -2530,22 +2570,31 @@
             "night_holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-logistica-trasporto-confetra-2023",
-                "title": "CCNL Logistica, Trasporto Merci e Spedizione (Confetra) 2023-2026",
-                "kind": "tabella_retributiva",
-                "url": "https://www.confetra.com/wp-content/uploads/2025/09/testo-unico-ccnl-logistica-2025.pdf"
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
               },
-              "section": "Art. straordinario — notturno festivo 75%"
+              "page": "38-39",
+              "section": "Art. 13 c. 6, Lavoro straordinario",
+              "quote": "lavoro straordinario festivo notturno: maggiorazione 75%"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2023-05-01"
-            }
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-14T14:04:57Z",
+              "verification_status": "verified",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-14T14:04:57Z",
+              "review_id": "2026-10-14-ai-p1"
+            },
+            "note": "From 1 January 2025, the start of the salary series of the bundle: the testo unico of the renewal of 6 December 2024 is in force on that date; the earlier start of 2023-05-01 was not stated by any source."
           }
         }
       ]
@@ -2755,6 +2804,26 @@
         ],
         "findings": [
           "The serious illnesses of INPS circ. 95/2016 were a limitation (grave_illness): now paid in full for 18 months and left out of the comporto when SicknessEpisode.serious_illness says so."
+        ]
+      },
+      {
+        "id": "2026-10-14-ai-p1",
+        "date": "2026-10-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "P1 audit: the salary tables of pp. 80-81 for every tranche, the overtime rates of Art. 13 c. 6 and the remaining derived records.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "The minimo plus EPA of every level at 1.1.2025, 1.1.2026, 1.1.2027 and 1.6.2027 match the bundle.",
+          "Overtime 30/50/65/75%: verified from 1 January 2025 (the start of the salary series); the unsourced start of 2023-05-01 is dropped.",
+          "The 50% of the sixth day of a five-day week is not modelled: declared.",
+          "The EDR of 2011 (re-parametrisation by level not stated) and of 2021 (TFR treatment contradictory, pp. 54 and 83) stay derived."
         ]
       }
     ]

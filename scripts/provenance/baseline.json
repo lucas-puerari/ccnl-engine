@@ -1493,7 +1493,8 @@
       "logistica-trasporto-confetra-viaggiante/travelling_allowances"
     ],
     "agreement/logistica-trasporto-confetra.json": [
-      "logistica-trasporto-confetra/apprentice_seniority"
+      "logistica-trasporto-confetra/apprentice_seniority",
+      "logistica-trasporto-confetra/sixth_day_overtime"
     ],
     "agreement/marittimi-industria-armatoriale.json": [
       "marittimi-industria-armatoriale/apprentice_seniority"
