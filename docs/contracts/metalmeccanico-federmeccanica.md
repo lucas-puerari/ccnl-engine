@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | overtime, seniority |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 81 verified / 4 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 85 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | 2026-10-12 |
+| **Last review** | 2026-10-14 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | Cometa contribution dates, leave citation, travel and on-call allowances: follow-ups of the review of 2026-10-11. | corrected | Cometa: rates confirmed (art. 15 not amended in 2025); the periods started on 2026-01-01, now 1 June 2017 (2% and 1.2%) and, for young members, 2% from 6 February 2021 and 2.2% from 1 June 2022.<br>Leave: the clause is on p. 165, not p. 158; the norme transitorie on p. 167.<br>Trasferta and reperibilità (June 2026 amounts) are per event: documented, not paid, as the engine takes no such event. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Standby (reperibilità): art. 6 Sez. Quarta Titolo III and the IPCA verbali of June 2025 and June 2026. | corrected | Standby was documented and not paid: the engine now takes a StandbyEvent and the rates of the three bands from 1 June 2025 and 1 June 2026, read on the page images of the two signed verbali.<br>Art. 6 excludes the standby pay from the TFR base and pays 5.00 euro for each call with an intervention. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Hospital stays in the sickness treatment (Sez. Quarta Titolo VI art. 2). | corrected | Hospital stays of more than 10 consecutive days are paid in full instead of 80%, up to 61 days: modelled with SicknessEpisode.hospital_stays (hospital_stay of the cumulation). |
+| 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: minimi of every level for June 2026, 2027 and 2028; Cometa rates (art. 15); overtime percentages (art. 7) against the renewal of 22 November 2025. | corrected | The 27 minimi of the table (9 levels from 1 June 2026, 2027 and 2028, p. 2 of the signed scan) match the bundle to the cent.<br>Cometa: 2% of the employer and 1.2% of the worker from 1 June 2017, 2.2% from 1 June 2022 for members joining after 5 February 2021 under 35: verified.<br>Overtime: the note cited Art. 14 and 15/20/30% and expected the renewal to change them; the bands follow Art. 7 (25/30/50/55/75%) and the renewal leaves them. Note corrected.<br>Shift column of Art. 7 and multi-week premiums of Art. 5: not modelled, now declared (shift_and_multiweek_premiums). |
 
 ## Salary table
 
@@ -128,6 +129,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Count the overtime hours of the year and add 8% past the exempt quota, or pass the multiplier on the overtime event.
 
+!!! warning "metalmeccanico-federmeccanica/shift_and_multiweek_premiums · overtime · impact yes · open"
+    SHIFT WORK AND MULTI-WEEK SCHEDULE: the shift column of Art. 7 (night overtime 40% for the first two hours and 45% after, night holiday overtime 65%; night shift work 20%, 60% and 35% from 1 June 2013, 25%, 65% and 40% from 22 to 6) and the premiums of the orario plurisettimanale of Art. 5 as renewed on 22 November 2025 (15% Monday to Friday and 25% on Saturday, 20% and 30% for sudden needs, raised by 8% from the 81st hour, p. 32 of the signed scan) are not modelled: an overtime event of a shift worker or of a multi-week schedule takes the non-shift bands.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the shift column of Art. 7 and the multi-week premiums of Art. 5 with a fact naming the schedule of the worker, then remove this note.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -190,7 +198,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     JUN 2021, JUN 2022, JUN 2023 TRANCHES: read in the CCNL of 5 February 2021 and the signed minutes of 16 June 2023; four annual tranches (June 2021-2024) under the IPCA mechanism of the 2021 CCNL.
     
-    OVERTIME/NIGHT/HOLIDAY (L3): percentages modelled per Art. 14 CCNL Federmeccanica 2021 (straordinario diurno 15%, lavoro notturno 20%, lavoro festivo 30%). Source: testo contrattuale Art. 14. NOTE: the 2025-11-22 renewal (CCNL 2025-2028) is expected to update these percentages; a dedicated data correction PR will add time-versioned 2025 rates once the official text is available in machine-readable form.
+    OVERTIME/NIGHT/HOLIDAY: Art. 7 Sez. Quarta Titolo III of the CCNL of 5 February 2021 (physical pp. 160-161): for work not in shifts, overtime 25% for the first two hours and 30% after, night overtime 50%, holiday overtime 55%, night holiday overtime 75%, as the overtime bands model. The renewal of 22 November 2025 leaves the percentages of art. 7 ("Omissis", p. 35 of the signed scan) and adds only the 8% of the quote esenti (note below).
     
     SICKNESS (Sez. Quarta Titolo VI Art. 2): full pay for the first 122/153/214 days of the treatment chain and 80% after, by seniority band (up to 3 years, 3 to 6, over 6); comporto breve of 183/274/365 days over the sickness of the three years that end on the day; the chain restarts after 61 days of work; the first 3 days of the fourth short absence (at most 5 days) of a calendar year are paid 66%, of the fifth and later 50%. The history before the imported episodes, the seniority and the exemption of a short absence are facts: when they could change a sick day the run has a missing_fact blocker.
     

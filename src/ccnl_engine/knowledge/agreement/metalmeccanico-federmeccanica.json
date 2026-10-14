@@ -78,7 +78,7 @@
       },
       {
         "kind": "info",
-        "text": "OVERTIME/NIGHT/HOLIDAY (L3): percentages modelled per Art. 14 CCNL Federmeccanica 2021 (straordinario diurno 15%, lavoro notturno 20%, lavoro festivo 30%). Source: testo contrattuale Art. 14. NOTE: the 2025-11-22 renewal (CCNL 2025-2028) is expected to update these percentages; a dedicated data correction PR will add time-versioned 2025 rates once the official text is available in machine-readable form."
+        "text": "OVERTIME/NIGHT/HOLIDAY: Art. 7 Sez. Quarta Titolo III of the CCNL of 5 February 2021 (physical pp. 160-161): for work not in shifts, overtime 25% for the first two hours and 30% after, night overtime 50%, holiday overtime 55%, night holiday overtime 75%, as the overtime bands model. The renewal of 22 November 2025 leaves the percentages of art. 7 (\"Omissis\", p. 35 of the signed scan) and adds only the 8% of the quote esenti (note below)."
       },
       {
         "kind": "info",
@@ -113,6 +113,19 @@
       {
         "kind": "info",
         "text": "TRAVEL AND ON-CALL ALLOWANCES (Art. 7 Trasferta p. 61, Art. 6 Reperibilità p. 158 of the CCNL 2021; adjusted each June by IPCA per the renewal of 22 November 2025, p. 2): event-driven, not modelled. From 1 June 2026 (minutes of 16 June 2026): trasferta intera 51.29, pasto 13.13, pernottamento 25.03; reperibilità by level group D1-D2-C1 / C2-C3 / B1+ per 16h worked day, 24h rest day, 24h holiday and per week. The engine takes no travel or on-call event, so these amounts are not paid."
+      },
+      {
+        "kind": "simplification",
+        "text": "SHIFT WORK AND MULTI-WEEK SCHEDULE: the shift column of Art. 7 (night overtime 40% for the first two hours and 45% after, night holiday overtime 65%; night shift work 20%, 60% and 35% from 1 June 2013, 25%, 65% and 40% from 22 to 6) and the premiums of the orario plurisettimanale of Art. 5 as renewed on 22 November 2025 (15% Monday to Friday and 25% on Saturday, 20% and 30% for sudden needs, raised by 8% from the 81st hour, p. 32 of the signed scan) are not modelled: an overtime event of a shift worker or of a multi-week schedule takes the non-shift bands.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "shift_and_multiweek_premiums",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the shift column of Art. 7 and the multi-week premiums of Art. 5 with a fact naming the schedule of the worker, then remove this note."
+        }
       }
     ]
   },
@@ -369,7 +382,7 @@
         "contribution_base": "contractual_minimum",
         "employee_base_above_minimum": "tfr_base",
         "provenance": {
-          "status": "derived",
+          "status": "verified",
           "location": {
             "source_document": {
               "document_id": "fiom-ccnl-2021",
@@ -387,11 +400,14 @@
             "method": "ai",
             "model": "claude-opus-5-5",
             "extraction_timestamp": "2026-10-12T09:55:08Z",
-            "verification_status": "unverified",
-            "effective_from": "2017-06-01"
+            "verification_status": "verified",
+            "effective_from": "2017-06-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-14T12:21:37Z",
+            "review_id": "2026-10-14-ai-p1"
           },
           "transformation": "Employer 2% (2.2% for a young member) and worker minimum 1.2% of the minimi contrattuali, the base salary of the level, which in the bundle is the consolidated minimum with contingenza and EDR; a worker rate above 1.2% on the TFR base. The 40% TFR quota of a worker employed before 28.04.1993 is not modelled (PensionFundEnrolment.tfr_to_fund is all or nothing).",
-          "note": "Art. 15 is not amended by the ipotesi of 22 November 2025 (sha256 37152685..., which changes art. 17 Welfare only). The Cometa nota informativa in force from 31/07/2026 (https://www.cometafondo.it/parte-i-scheda-iii-i-destinatari-e-i-contributi) gives the same rates and the bases: Lavoratori occupati dopo il 28.04.1993 100% 1,2% 2%; (1) Il contributo a carico datore di lavoro è calcolato percentualmente sul valore dei minimi contrattuali del livello di inquadramento del lavoratore aderente. [...] per i lavoratori di nuova adesione dopo il 5 febbraio 2021 e con età inferiore ai 35 anni compiuti, prevede che la contribuzione a carico del datore di lavoro, a decorrere dal 1° g"
+          "note": "Art. 15 is not amended by the ipotesi of 22 November 2025 (sha256 37152685..., which changes art. 17 Welfare only). The Cometa nota informativa in force from 31/07/2026 (https://www.cometafondo.it/parte-i-scheda-iii-i-destinatari-e-i-contributi) gives the same rates and the bases: Lavoratori occupati dopo il 28.04.1993 100% 1,2% 2%; (1) Il contributo a carico datore di lavoro è calcolato percentualmente sul valore dei minimi contrattuali del livello di inquadramento del lavoratore aderente. [...] per i lavoratori di nuova adesione dopo il 5 febbraio 2021 e con età inferiore ai 35 anni compiuti, prevede che la contribuzione a carico del datore di lavoro, a decorrere dal 1° g Verified on 2026-10-14: art. 15 re-read in the CCNL of 5 February 2021 (sha256 ff182dd8..., physical pp. 182-183): 'A decorrere dal 1° giugno 2017 [...] un'aliquota pari al 2% dei minimi contrattuali', the worker 'almeno pari all'1,2% del minimo contrattuale', and 2,2% from 1 June 2022 for members joining after 5 February 2021 under 35."
         }
       }
     ]
@@ -3080,7 +3096,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "07f0d5775ff88b8474bbc26aab25963c12bd4d601f012afc662944d3e7cb4de0",
+    "source_hash": "12d1d3de90949a2531960227ba29d9895789252186126f75938d27b8c481ec68",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -4871,6 +4887,30 @@
         ],
         "findings": [
           "Hospital stays of more than 10 consecutive days are paid in full instead of 80%, up to 61 days: modelled with SicknessEpisode.hospital_stays (hospital_stay of the cumulation)."
+        ]
+      },
+      {
+        "id": "2026-10-14-ai-p1",
+        "date": "2026-10-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "P1 audit: minimi of every level for June 2026, 2027 and 2028; Cometa rates (art. 15); overtime percentages (art. 7) against the renewal of 22 November 2025.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+            "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+          },
+          {
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          }
+        ],
+        "findings": [
+          "The 27 minimi of the table (9 levels from 1 June 2026, 2027 and 2028, p. 2 of the signed scan) match the bundle to the cent.",
+          "Cometa: 2% of the employer and 1.2% of the worker from 1 June 2017, 2.2% from 1 June 2022 for members joining after 5 February 2021 under 35: verified.",
+          "Overtime: the note cited Art. 14 and 15/20/30% and expected the renewal to change them; the bands follow Art. 7 (25/30/50/55/75%) and the renewal leaves them. Note corrected.",
+          "Shift column of Art. 7 and multi-week premiums of Art. 5: not modelled, now declared (shift_and_multiweek_premiums)."
         ]
       }
     ],
