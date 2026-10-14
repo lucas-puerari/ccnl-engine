@@ -1178,7 +1178,8 @@
       "agenzie-marittime-i481/level_1_seniority_zero"
     ],
     "agreement/agenzie-viaggio-fiavet.json": [
-      "agenzie-viaggio-fiavet/apprentice_seniority"
+      "agenzie-viaggio-fiavet/apprentice_seniority",
+      "agenzie-viaggio-fiavet/tourism_special_supplement"
     ],
     "agreement/alimentari-federalimentare.json": [
       "alimentari-federalimentare/alimentari_unmodelled_elements",
@@ -1226,7 +1227,8 @@
       "aziende-termali-federterme/apprentice_seniority",
       "aziende-termali-federterme/ebiterme_fontur_funds",
       "aziende-termali-federterme/edr_rounding_discrepancy",
-      "aziende-termali-federterme/terziario_inps_rates_unverified"
+      "aziende-termali-federterme/terziario_inps_rates_unverified",
+      "aziende-termali-federterme/tourism_special_supplement"
     ],
     "agreement/bancari-abi.json": [
       "bancari-abi/apprentice_seniority",
@@ -1421,7 +1423,8 @@
     ],
     "agreement/industria-turistica-federturismo.json": [
       "industria-turistica-federturismo/apprentice_seniority",
-      "industria-turistica-federturismo/seniority_cadence_unconfirmed"
+      "industria-turistica-federturismo/seniority_cadence_unconfirmed",
+      "industria-turistica-federturismo/tourism_special_supplement"
     ],
     "agreement/informatica-pmi-unimatica.json": [
       "informatica-pmi-unimatica/apprentice_seniority",
@@ -1587,7 +1590,8 @@
       "pubblici-esercizi-fipe-angem-ristorazione-collettiva/apprentice_seniority",
       "pubblici-esercizi-fipe-angem-ristorazione-collettiva/apprenticeship_long_profiles",
       "pubblici-esercizi-fipe-angem-ristorazione-collettiva/fipe_unmodelled_elements",
-      "pubblici-esercizi-fipe-angem-ristorazione-collettiva/holiday_overtime_cumulation"
+      "pubblici-esercizi-fipe-angem-ristorazione-collettiva/holiday_overtime_cumulation",
+      "pubblici-esercizi-fipe-angem-ristorazione-collettiva/tourism_special_supplement"
     ],
     "agreement/pubblici-esercizi-fipe-angem.json": [
       "pubblici-esercizi-fipe-angem/apprentice_seniority",
@@ -1596,7 +1600,8 @@
       "pubblici-esercizi-fipe-angem/contract_catering_tranche_dates",
       "pubblici-esercizi-fipe-angem/fipe_unmodelled_elements",
       "pubblici-esercizi-fipe-angem/holiday_overtime_cumulation",
-      "pubblici-esercizi-fipe-angem/small_company_pay_reduction"
+      "pubblici-esercizi-fipe-angem/small_company_pay_reduction",
+      "pubblici-esercizi-fipe-angem/tourism_special_supplement"
     ],
     "agreement/pulizia-artigianato-confartigianato.json": [
       "pulizia-artigianato-confartigianato/apprentice_inps_rates_unsourced",
@@ -1689,12 +1694,14 @@
       "trasporto-ferroviario-agens/seniority_amounts_before_june_2026"
     ],
     "agreement/turismo-confesercenti.json": [
-      "turismo-confesercenti/apprentice_seniority"
+      "turismo-confesercenti/apprentice_seniority",
+      "turismo-confesercenti/tourism_special_supplement"
     ],
     "agreement/turismo-federalberghi.json": [
       "turismo-federalberghi/apprentice_seniority",
       "turismo-federalberghi/apprenticeship_durations_unsourced",
       "turismo-federalberghi/sickness_net_basis",
+      "turismo-federalberghi/tourism_special_supplement",
       "turismo-federalberghi/turismo_unmodelled_elements"
     ],
     "agreement/uneba-uneba.json": [

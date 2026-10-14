@@ -81,7 +81,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/agenzie-viaggio-fiavet",
       "ruleset_version": "2026.2",
-      "source_hash": "9ed1a1d6a564b8aa46f432d03c3d71256f5f196acbe2ea252ea7cd3a884c4f61",
+      "source_hash": "680009b3ddff8217660e907c65aa29a30c9cd61da72525e5832642911078e7b5",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/agenzie-viaggio-fiavet.json.gz"
@@ -268,7 +268,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/aziende-termali-federterme",
       "ruleset_version": "2024.1",
-      "source_hash": "eb2b995630c7ea309434eb7f6327f3efd5f1941fdfab4c7fc66ac57f2eb75f0d",
+      "source_hash": "5b8519deced0b6c539c310750e69a52444ba84e10c0315a9e122a562ba5bb1c1",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/aziende-termali-federterme.json.gz"
@@ -1118,7 +1118,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/industria-turistica-federturismo",
       "ruleset_version": "2026.2",
-      "source_hash": "dd7100486bdd48224c84ca2dc09f1d500f7186f7c07e3eece108cba53d51ffb0",
+      "source_hash": "d6a9034e0a60336fa1feb04c64ee70c2359be9c01f5908205101ee1a0cec3fda",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/industria-turistica-federturismo.json.gz"
@@ -1696,7 +1696,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem-ristorazione-collettiva",
       "ruleset_version": "2026.2",
-      "source_hash": "87a4c7c03ab7249d1c86eff88a3628b67d92b3970e429795c4526cab77446284",
+      "source_hash": "cadf469a29b109b1815880acd90710688066f46dc07c64c02d73e5a8a953fa85",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva.json.gz"
@@ -1713,7 +1713,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem",
       "ruleset_version": "2026.2",
-      "source_hash": "711dc9507e902b1ece30cf10afe02c2dfe366a430c4393aaa9219eccb1cc8e60",
+      "source_hash": "88c933dd569ce54bbf3ae791e57ec5d46d1981688a2045d610963a98fe1307f9",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem.json.gz"
@@ -2104,7 +2104,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "601a51ce26b97bacf4505b675247a29eae2f712135c2e0fc9a3bd6400a5907e2",
+      "source_hash": "84e06493677bcb776fa8d6e99ee720c716c0111825a93eea49605768e43d87e7",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/turismo-confesercenti.json.gz"
@@ -2121,7 +2121,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi",
       "ruleset_version": "2026.2",
-      "source_hash": "5fd3da6d800baa7f0600711714399609f1bf18da6f2e986428346f7b44bcbc48",
+      "source_hash": "30026ada3b612b701783bcbe7595ebb52ba65f2f8a640f28047787639d4ddea2",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/turismo-federalberghi.json.gz"
