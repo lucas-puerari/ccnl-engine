@@ -60,10 +60,12 @@ def _without(feature: str) -> CapabilityCatalog:
     )
 
 
-def test_bundled_registry_holds() -> None:
-    """Every rule holds for the 2026 registry."""
-    assert registry_errors(_BUNDLED) == []
-    validate_registry(_BUNDLED)
+@pytest.mark.parametrize("year", [2026, 2027])
+def test_bundled_registry_holds(year: int) -> None:
+    """Every rule holds for each bundled registry."""
+    catalog = load_capability_catalog(year)
+    assert registry_errors(catalog) == []
+    validate_registry(catalog)
 
 
 def test_every_implemented_capability_is_traced() -> None:

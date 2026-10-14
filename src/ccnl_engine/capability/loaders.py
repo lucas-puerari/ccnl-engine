@@ -82,6 +82,12 @@ def parse_capability_catalog(year: int, data: object) -> CapabilityCatalog:
             f"{_SCHEMA_VERSION}, got {data.get('schema_version')!r}"
         )
         raise DataIntegrityError(msg)
+    if data.get("year") != year:
+        msg = (
+            f"Capability catalog for {year}: year must be {year}, "
+            f"got {data.get('year')!r}"
+        )
+        raise DataIntegrityError(msg)
     raw_caps = data.get("capabilities")
     if not isinstance(raw_caps, list):
         msg = f"Capability catalog for {year}: 'capabilities' must be a list"

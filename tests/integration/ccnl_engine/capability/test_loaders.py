@@ -93,7 +93,7 @@ class TestBundledRegistry:
         assert load_capability_catalog(2026) is load_capability_catalog(2026)
 
 
-def _call_uncached(raw: str, year: int = 9999) -> CapabilityCatalog:
+def _call_uncached(raw: str, year: int = 2026) -> CapabilityCatalog:
     with patch.object(_catalog_mod, "read_resource", return_value=raw):
         return _catalog_mod._load_cached.__wrapped__(year)
 
@@ -117,7 +117,7 @@ class TestReadErrors:
     def test_valid_document_loads(self) -> None:
         """A valid document read from the bundle becomes a catalog."""
         catalog = _call_uncached(json.dumps(_doc(_IRPEF)))
-        assert catalog.year == 9999
+        assert catalog.year == 2026
         assert not catalog.capabilities[0].description
 
 
@@ -129,7 +129,12 @@ class TestRejectedDocuments:
         [
             ([1, 2], "expected object"),
             (_doc(schema_version=1), "schema_version must be 2"),
-            ({"schema_version": 2, "capabilities": "oops"}, "must be a list"),
+            ({"schema_version": 2, "capabilities": []}, "year must be 2026"),
+            ({**_doc(_IRPEF), "year": 2027}, "year must be 2026"),
+            (
+                {"year": 2026, "schema_version": 2, "capabilities": "oops"},
+                "must be a list",
+            ),
             (_doc("not-a-dict"), "not an object"),
             (_doc({"layer": "net"}), "missing 'feature'"),
             (_doc({**_IRPEF, "feature": ""}), "missing 'feature'"),
