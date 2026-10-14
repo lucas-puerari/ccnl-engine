@@ -1039,7 +1039,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "9751fbe8337ec2744845e0cb15675541867a081a8af0b51934c86f50f8fbff93",
+    "source_hash": "68e5cf719175b1491449646c2a06d179f0f12a83e285f1a03fb2e20ec04106b8",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1384,9 +1384,29 @@
           "Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 24), not 270 days at 100%.",
           "Leave: 26 days for the first three years of a first public employment until 31 December 2026 (art. 21 CCNL 2022-2024)."
         ]
+      },
+      {
+        "id": "2026-10-14-ai-p1",
+        "date": "2026-10-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "P1 audit: Tabella 3 of the CCNL of 6 August 2026 for the four areas and the three years; the remaining derived records; the next review date.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+            "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+          }
+        ],
+        "findings": [
+          "The twelve monthly amounts (four areas from 1 January 2025, 2026 and 2027) are the annual tabellare of Tabella 3 over 12, to the cent.",
+          "Perseo Sirio stays derived: the 1% of the employer and of the worker are read in the fund's information sheet, which states the rates in force, not since when; the CCNL does not print them.",
+          "review_due set to 2027-12-31, the expiry of the 2025-2027 agreement."
+        ]
       }
     ],
     "confidence": "verified",
-    "readiness": "reviewed"
+    "readiness": "reviewed",
+    "review_due": "2027-12-31"
   }
 }
