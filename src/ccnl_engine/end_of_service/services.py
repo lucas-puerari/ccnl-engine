@@ -203,7 +203,10 @@ def with_public_credit(
     """Return ``breakdown`` with the credit contribution of a public employee.
 
     L. 662/1996 art. 1 c. 242: 0.35% of the "retribuzione contributiva e
-    pensionabile", the pension base of the run, whatever the regime.
+    pensionabile", the pension base of the run, whatever the regime, and
+    within the IVS massimale of the worker when it applies (INPS, "I
+    contributi dei dipendenti pubblici": "nei limiti del massimale
+    contributivo eventualmente applicabile al lavoratore").
 
     Returns:
         The breakdown with the ``credit_employee`` component, and its rate;
@@ -235,7 +238,8 @@ def with_life_insurance(
     """Return ``breakdown`` with the ASV contributions of a public employee.
 
     INPS circ. 104/2014 par. 3.1: 0.027% of the worker and 0.093% of the
-    employer on the pension base.
+    employer on the pension base, "coincidente con quella assoggettata alla
+    contribuzione ai fini pensionistici": within the IVS massimale.
 
     Returns:
         The breakdown with the ``life_insurance_*`` components and the
