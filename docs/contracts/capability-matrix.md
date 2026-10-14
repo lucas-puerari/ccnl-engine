@@ -61,7 +61,7 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 1218 / 4284 / 667 / 59 |
+| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 1255 / 4248 / 666 / 59 |
 | `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 20 / 99 / 13 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 21 / 24 / 48 / 0 |
@@ -257,7 +257,7 @@ never grow.
 | 125 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | ⚠️ | seniority | 0 / 47 / 1 / 1 |
 | 126 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | ⚠️ | base_salary, inps_employer, seniority | 0 / 41 / 1 / 1 |
 | 127 | [CCNL per i lavoratori delle imprese produttrici, distributrici di energia elettrica (Elettricita Futura)](elettrico-elettricita-futura.md) | ⚠️ | seniority | 0 / 77 / 1 / 1 |
-| 128 | [CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)](bancari-abi.md) | ⚠️ | base_salary, inps_employer, seniority | 0 / 44 / 1 / 0 |
+| 128 | [CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)](bancari-abi.md) | ⚠️ | base_salary, inps_employer, seniority | 37 / 8 / 0 / 0 |
 | 129 | [CCNL per i lavoratori dipendenti delle aziende termali](aziende-termali-federterme.md) | ⚠️ | base_salary, bilateral_funds, inps_employer, seniority, trattamento_integrativo | 0 / 64 / 1 / 1 |
 | 130 | [CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)](assicurazioni-ania.md) | ⚠️ | base_salary, inps_employer, seniority | 0 / 30 / 1 / 1 |
 | 131 | [DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)](forze-polizia-ordinamento-civile.md) | ⚠️ | inps_employer | 0 / 70 / 1 / 1 |

@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer, seniority |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 44 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 37 verified / 8 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,12 +51,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | — |
+| **Last review** | 2026-10-14 |
 | **Latest salary tranche** | 2026-03-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: stipendio of the nine levels in the four tranches, scatti, number of monthly payments and term, against the renewal of 23 November 2023. | corrected | The 36 stipendi match the tables to the cent; they were cited to a union news page and are now verified against the tables of the renewal (pp. 35-38).<br>The first tranche runs from 1 July 2023 (the tables), not from the signing date 23 November 2023: corrected.<br>13 monthly payments: verified ('Importi mensili per 13 mensilità').<br>Scatti amounts match; cadence and maximum counts not in the tables: derived.<br>Importo ex ristrutturazione not modelled: declared. The agreement expired on 31 March 2026 (Art. 1). |
 
 ## Salary table
 
@@ -127,6 +129,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies.
 
     **Remediation:** Source the credito rates of 2026 on an INPS or association table, mark the inps block of contribution/2026/credito.json derived, then remove this note.
+
+!!! warning "bancari-abi/ex_ristrutturazione_amount · seniority · impact yes · open"
+    IMPORTO EX RISTRUTTURAZIONE: the tables of the renewal print, next to the scatto, an 'importo ex ristrutturazione' (14,30 for QD3 and QD4, 7,99 for QD1, QD2 and the 3a Area, 5,59 for the Area Unificata); the bundle does not pay it. TERM: the renewal of 23 November 2023 expires on 31 March 2026 (Art. 1); the tables stay those of March 2026 until a renewal is read.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Source who receives the importo ex ristrutturazione and model it with the scatti, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

@@ -281,13 +281,13 @@
       "scope": "bancari-abi",
       "model": "CCNL",
       "schema_version": "0.5",
-      "valid_from": "2023-11-23",
+      "valid_from": "2023-07-01",
       "valid_to": null,
       "ruleset_id": "ccnl/bancari-abi",
       "ruleset_version": "2026.2",
-      "source_hash": "e9d3017ff1f35de58dcbe83a13be8adfe716596d94c2cc10f13dec8aa083b429",
+      "source_hash": "f9922195696407e1b57b007f5b3c2523e04f2bc725590e78efbc7ae8be642050",
       "source_type": "contracting_party",
-      "owner": "ccnl-engine maintainers",
+      "owner": "maintainer",
       "wheel_resource": "agreement/bancari-abi.json.gz"
     },
     {
