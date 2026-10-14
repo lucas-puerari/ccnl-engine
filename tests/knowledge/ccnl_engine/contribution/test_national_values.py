@@ -128,3 +128,39 @@ def test_provisional_year_is_never_verified() -> None:
         assert data["ruleset"]["source_type"] == "estimated", path.name
         statuses = {record["status"] for record in _records(data)}
         assert statuses <= {"assumed", "missing"}, path.name
+
+
+def _values(node: object) -> object:
+    """Return ``node`` without its provenance records.
+
+    Returns:
+        The values alone.
+    """
+    if isinstance(node, dict):
+        return {
+            key: _values(value)
+            for key, value in node.items()
+            if not key.endswith("provenance")
+        }
+    if isinstance(node, list):
+        return [_values(item) for item in node]
+    return node
+
+
+@pytest.mark.parametrize(
+    "sector", sorted({p.stem for p in _FILES}), ids=lambda sector: sector
+)
+def test_provisional_year_repeats_the_published_rates(sector: str) -> None:
+    """2027 carries every INPS value of 2026 until its circulars are out.
+
+    The 2027 file claims to be a copy of 2026: a value left from an older
+    copy (an earlier rate table, a missing apprentice share) would make the
+    provisional year compute other contributions than the year it repeats.
+    """
+    published = _load(_CONTRIBUTION / "2026" / f"{sector}.json")
+    provisional = _load(_CONTRIBUTION / "2027" / f"{sector}.json")
+
+    def payload(data: dict[str, Any]) -> object:
+        return _values({k: v for k, v in data.items() if k not in {"year", "ruleset"}})
+
+    assert payload(provisional) == payload(published)

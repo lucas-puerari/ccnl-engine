@@ -365,10 +365,10 @@
     "version": "2026.1",
     "effective_from": "2027-01-01",
     "effective_until": "2027-12-31",
-    "published_at": "2026-10-09",
+    "published_at": "2026-10-14",
     "source": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html",
     "verification_status": "unverified",
-    "source_hash": "a9d9a8024cc18a07a99cf55cabb7a8ebb86c7bfa961bbd343b010723684db039",
+    "source_hash": "f25bb6c578a823280e9e17e9747baf22f7f5efdb07a3a26d7a2a2353c1f24be3",
     "source_type": "estimated",
     "provisional": true
   }
