@@ -56,7 +56,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-01-27 |
-| **Last review** | 2026-10-12 |
+| **Last review** | 2026-10-14 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-12 | claude-opus-5-5 (ai) | Salary tables, additional months, hourly and daily divisors, overtime, leave, sickness and seniority, against the CCNLs of 12 February 2018, 9 May 2022, 27 January 2025 and 6 August 2026. | corrected | Salary amounts confirmed (annual table over 12; elevate professionalità 2022: 35,000 / 13).<br>The first period started on 2022-05-09, the signing date; the new classification applies from 1 November 2022 (art. 18 c. 1).<br>The 2025-2027 values cited a union page; they are now cited to the ARAN text of 6 August 2026 (Tabella 3).<br>Daily quota: art. 29 c. 4 divides by 30, not 26.<br>Overtime is in art. 25 c. 5 of the CCNL 12.2.2018, kept in force by the CCNL 2025-2027.<br>Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 24), not 270 days at 100%.<br>Leave: 26 days for the first three years of a first public employment until 31 December 2026 (art. 21 CCNL 2022-2024). |
+| 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: Tabella 3 of the CCNL of 6 August 2026 for the four areas and the three years; the remaining derived records; the next review date. | confirmed | The twelve monthly amounts (four areas from 1 January 2025, 2026 and 2027) are the annual tabellare of Tabella 3 over 12, to the cent.<br>Perseo Sirio stays derived: the 1% of the employer and of the worker are read in the fund's information sheet, which states the rates in force, not since when; the CCNL does not print them.<br>review_due set to 2027-12-31, the expiry of the 2025-2027 agreement. |
 
 ## Salary table
 
