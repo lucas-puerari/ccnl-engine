@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, pension_fund_contribution, seniority |
+| **Limits of this contract** | base_salary, bilateral_funds, pension_fund_contribution, seniority |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🟢 Verified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 44 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 14 verified / 30 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -49,12 +49,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-04-15 |
-| **Last review** | — |
+| **Last review** | 2026-10-14 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-14 | claude-opus-5-5 (ai) | Second review of the edilizia group: minimi of the seven levels in the two tranches and the monthly payments, against the testo armonizzato of the renewal of 15 April 2025. | corrected | The 14 minimi match Allegato A (operai, p. 187) and Allegato B (impiegati, p. 188) from 1 April 2025 and 1 March 2027: verified.<br>Monthly payments: the single file pays 13 to all levels, but the impiegati are owed 14 (Art. 63-64) and the operai a 18.5% to the Edilcassa instead of a tredicesima (Art. 16, 18). Both gaps were info notes; they are now limitations that block the runs they concern. The 13 stays assumed. |
 
 ## Salary table
 
@@ -106,6 +108,20 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "edilizia-pmi-confapi-aniem/cassa_edile_accruals_missing · bilateral_funds · impact yes · open"
+    CASSA EDILE: the operai are owed the gratifica natalizia and the ferie as a 18.5% of the pay paid to the Edilcassa (Art. 16 and 18), not a tredicesima from the employer; the file pays them a direct 13th month, so the net, the employer cost and the Edilcassa contribution are all off.
+
+    **Applies when:** `bilateral_funds` applies; category in operaio.
+
+    **Remediation:** Model the operai in a file of their own with 12 monthly payments and the 18.5% Edilcassa accrual, as edilizia-ance does.
+
+!!! warning "edilizia-pmi-confapi-aniem/impiegati_premio_annuo_missing · base_salary · impact yes · open"
+    ADDITIONAL_MONTHS: the file pays 13 monthly payments to every level. The impiegati are owed a tredicesima (Art. 63) and a premio annuo of one monthly payment on 30 June (Art. 64), 14 in all, and after twenty years with the employer a premio di fedeltà (Art. 65); the premio annuo is not paid and the TFR and accruals read 13.
+
+    **Applies when:** `base_salary` applies; category in impiegato, quadro.
+
+    **Remediation:** Model the impiegati in a file of their own with 14 monthly payments (Art. 63-64), as edilizia-ance-impiegati does.
 
 !!! warning "edilizia-pmi-confapi-aniem/operai_gruppo_3_track_merged · base_salary · impact unknown · open"
     SIMPLIFICATION: Apprenticeship destination conflicts. Art. G defines 4 operai groups and 3 impiegati bands. Engine tracks use disjoint destination_levels: level '2' -> gruppo_4 (36m); level '3' -> gruppo_3 (48m, ref=L2); levels '4'/'5' -> gruppo_2 (51m, ref=L3); levels '6'/'7' -> gruppo_1 (60m, ref=L3). Level '1' has no apprenticeship track (manual labor). Operai gruppo_3 (also exits at level '2', 48m) not modelled separately.
@@ -198,10 +214,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     HOURLY DIVISOR: 173, from Art. 25 CCNL: 'dividendo per 173 i valori minimi mensili'. Confirmed by official hourly rate column in FILLEA CGIL salary table.
     
     ITS (Indennita' Territoriale di Settore) not modelled: varies by province/region. National table footnote: 'A questa Tabella occorre aggiungere l'ITS che varia da territorio a territorio'. The national tabular minimum does not include ITS.
-    
-    CASSA EDILE: for blue-collar workers (levels 1-4), holidays (8.5%) and Christmas bonus (10%) accrue through the Edilcassa system rather than direct employer payment. The engine models the Christmas bonus as a direct 13th month. Consequences: (1) employer_cost_annual underestimates by ~18.5% of gross for blue-collar workers; (2) net_monthly is correct.
-    
-    ADDITIONAL_MONTHS: 13 monthly payments (gratifica natalizia). Impiegati (Art. 64) additionally receive a premio annuo equal to one monthly salary (14th month). Engine models 13 for all levels as an approximation; the 14th month for impiegati is not modelled.
     
     SENIORITY: Art. 49 lists impiegati scatti biennali by category. Level 1 has no explicit Art. 49 amount; engine uses 8.22 (Impiegati 4a category, same as level 2) as an approximation. For operai (levels 1-4), seniority is governed by the Cassa Edile anzianita' professionale edile (APE) system; engine uses the Art. 49 impiegati amounts as an approximation.
     
