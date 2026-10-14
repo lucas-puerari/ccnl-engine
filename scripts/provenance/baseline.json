@@ -125,9 +125,6 @@
       "accrual_rule": "missing",
       "additional_months[2024-10-01]": "assumed"
     },
-    "agreement/bancari-abi.json": {
-      "additional_months[2023-11-23]": "assumed"
-    },
     "agreement/bcc-credito-cooperativo.json": {
       "accrual_rule": "missing",
       "additional_months[2024-09-01]": "assumed"
@@ -1233,6 +1230,7 @@
     "agreement/bancari-abi.json": [
       "bancari-abi/apprentice_seniority",
       "bancari-abi/apprenticeship_destination_levels",
+      "bancari-abi/ex_ristrutturazione_amount",
       "bancari-abi/inps_credit_rate_unverified",
       "bancari-abi/inps_sector_rates_unsourced"
     ],

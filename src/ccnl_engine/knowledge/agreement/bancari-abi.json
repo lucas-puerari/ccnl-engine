@@ -106,6 +106,19 @@
           },
           "remediation": "Source the credito rates of 2026 on an INPS or association table, mark the inps block of contribution/2026/credito.json derived, then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "IMPORTO EX RISTRUTTURAZIONE: the tables of the renewal print, next to the scatto, an 'importo ex ristrutturazione' (14,30 for QD3 and QD4, 7,99 for QD1, QD2 and the 3a Area, 5,59 for the Area Unificata); the bundle does not pay it. TERM: the renewal of 23 November 2023 expires on 31 March 2026 (Art. 1); the tables stay those of March 2026 until a renewal is read.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ex_ristrutturazione_amount",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Source who receives the importo ex ristrutturazione and model it with the scatti, then remove this note."
+        }
       }
     ]
   },
@@ -127,13 +140,34 @@
     "additional_months": {
       "periods": [
         {
-          "valid_from": "2023-11-23",
+          "valid_from": "2023-07-01",
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "abi-ipotesi-2023-norme",
+                "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
+                "kind": "associazione",
+                "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                "published_on": "2023-11-23",
+                "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
+              },
+              "page": "35",
+              "section": "Tabelle economiche",
+              "quote": "Importi mensili per 13 mensilità"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-14T13:49:12Z",
+              "verification_status": "verified",
+              "effective_from": "2023-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-14T13:49:12Z",
+              "review_id": "2026-10-14-ai-p1"
+            }
           }
         }
       ]
@@ -145,7 +179,7 @@
         "QD4": {
           "periods": [
             {
-              "valid_from": "2023-11-23",
+              "valid_from": "2023-07-01",
               "valid_until": null,
               "value": "95.31"
             }
@@ -154,7 +188,7 @@
         "QD3": {
           "periods": [
             {
-              "valid_from": "2023-11-23",
+              "valid_from": "2023-07-01",
               "valid_until": null,
               "value": "95.31"
             }
@@ -163,7 +197,7 @@
         "QD2": {
           "periods": [
             {
-              "valid_from": "2023-11-23",
+              "valid_from": "2023-07-01",
               "valid_until": null,
               "value": "41.55"
             }
@@ -172,7 +206,7 @@
         "QD1": {
           "periods": [
             {
-              "valid_from": "2023-11-23",
+              "valid_from": "2023-07-01",
               "valid_until": null,
               "value": "41.55"
             }
@@ -181,7 +215,7 @@
         "3A4": {
           "periods": [
             {
-              "valid_from": "2023-11-23",
+              "valid_from": "2023-07-01",
               "valid_until": null,
               "value": "41.55"
             }
@@ -190,7 +224,7 @@
         "3A3": {
           "periods": [
             {
-              "valid_from": "2023-11-23",
+              "valid_from": "2023-07-01",
               "valid_until": null,
               "value": "41.55"
             }
@@ -199,7 +233,7 @@
         "3A2": {
           "periods": [
             {
-              "valid_from": "2023-11-23",
+              "valid_from": "2023-07-01",
               "valid_until": null,
               "value": "41.55"
             }
@@ -208,7 +242,7 @@
         "3A1": {
           "periods": [
             {
-              "valid_from": "2023-11-23",
+              "valid_from": "2023-07-01",
               "valid_until": null,
               "value": "41.55"
             }
@@ -217,7 +251,7 @@
         "1e2A": {
           "periods": [
             {
-              "valid_from": "2023-11-23",
+              "valid_from": "2023-07-01",
               "valid_until": null,
               "value": "29.07"
             }
@@ -233,19 +267,18 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "bancari-abi",
-            "title": "bancari-abi",
+            "document_id": "abi-ipotesi-2023-norme",
+            "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
             "kind": "associazione",
-            "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+            "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+            "published_on": "2023-11-23",
+            "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
           },
-          "section": "Scatti di anzianità"
+          "page": "35-38",
+          "section": "Tabelle economiche, Scatti di anzianità",
+          "quote": "QD 4° Livello 4.911,48 95,31 [...] 3ª Area 4° Livello 3.156,90 41,55 [...] Area Unificata (ex 1ª e 2ª Area Professionale) 2.350,10 29,07"
         },
-        "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
-        }
+        "note": "The amounts are those of the tables, the same in every tranche; the cadence (first step after 48 months, then 36) and the maximum counts (8, 7 for QD3 and QD4) are not in the tables read, so the record stays derived."
       }
     },
     "solidarity_fund": {
@@ -307,26 +340,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2023-11-23",
+            "valid_from": "2023-07-01",
             "valid_until": "2024-09-01",
             "value": "4911.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "35",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° luglio 2023', Stipendio",
+                "quote": "QD 4° Livello 4.911,48"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2023-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
+              },
+              "note": "The increase runs from 1 July 2023; the employers paid it from December 2023 with an una tantum for July to November (FISAC table 'Aumenti stipendio e importo una tantum')."
             }
           },
           {
@@ -334,21 +376,29 @@
             "valid_until": "2025-06-01",
             "value": "5045.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° settembre 2024', Stipendio",
+                "quote": "QD 4° Livello 5.045,85"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -357,21 +407,29 @@
             "valid_until": "2026-03-01",
             "value": "5113.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° giugno 2025', Stipendio",
+                "quote": "QD 4° Livello 5.113,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -380,21 +438,29 @@
             "valid_until": null,
             "value": "5160.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° marzo 2026', Stipendio",
+                "quote": "QD 4° Livello 5.160,06"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -428,26 +494,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2023-11-23",
+            "valid_from": "2023-07-01",
             "valid_until": "2024-09-01",
             "value": "4180.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "35",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° luglio 2023', Stipendio",
+                "quote": "QD 3° Livello 4.180,89"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2023-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
+              },
+              "note": "The increase runs from 1 July 2023; the employers paid it from December 2023 with an una tantum for July to November (FISAC table 'Aumenti stipendio e importo una tantum')."
             }
           },
           {
@@ -455,21 +530,29 @@
             "valid_until": "2025-06-01",
             "value": "4297.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° settembre 2024', Stipendio",
+                "quote": "QD 3° Livello 4.297,64"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -478,21 +561,29 @@
             "valid_until": "2026-03-01",
             "value": "4356.02",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° giugno 2025', Stipendio",
+                "quote": "QD 3° Livello 4.356,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -501,21 +592,29 @@
             "valid_until": null,
             "value": "4396.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° marzo 2026', Stipendio",
+                "quote": "QD 3° Livello 4.396,88"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -549,26 +648,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2023-11-23",
+            "valid_from": "2023-07-01",
             "valid_until": "2024-09-01",
             "value": "3760.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "35",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° luglio 2023', Stipendio",
+                "quote": "QD 2° Livello 3.760,45"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2023-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
+              },
+              "note": "The increase runs from 1 July 2023; the employers paid it from December 2023 with an una tantum for July to November (FISAC table 'Aumenti stipendio e importo una tantum')."
             }
           },
           {
@@ -576,21 +684,29 @@
             "valid_until": "2025-06-01",
             "value": "3871.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° settembre 2024', Stipendio",
+                "quote": "QD 2° Livello 3.871,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -599,21 +715,29 @@
             "valid_until": "2026-03-01",
             "value": "3926.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° giugno 2025', Stipendio",
+                "quote": "QD 2° Livello 3.926,69"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -622,21 +746,29 @@
             "valid_until": null,
             "value": "3965.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° marzo 2026', Stipendio",
+                "quote": "QD 2° Livello 3.965,48"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -670,26 +802,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2023-11-23",
+            "valid_from": "2023-07-01",
             "valid_until": "2024-09-01",
             "value": "3547.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "35",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° luglio 2023', Stipendio",
+                "quote": "QD 1° Livello 3.547,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2023-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
+              },
+              "note": "The increase runs from 1 July 2023; the employers paid it from December 2023 with an una tantum for July to November (FISAC table 'Aumenti stipendio e importo una tantum')."
             }
           },
           {
@@ -697,21 +838,29 @@
             "valid_until": "2025-06-01",
             "value": "3653.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° settembre 2024', Stipendio",
+                "quote": "QD 1° Livello 3.653,43"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -720,21 +869,29 @@
             "valid_until": "2026-03-01",
             "value": "3706.24",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° giugno 2025', Stipendio",
+                "quote": "QD 1° Livello 3.706,24"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -743,21 +900,29 @@
             "valid_until": null,
             "value": "3743.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° marzo 2026', Stipendio",
+                "quote": "QD 1° Livello 3.743,21"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -791,26 +956,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2023-11-23",
+            "valid_from": "2023-07-01",
             "valid_until": "2024-09-01",
             "value": "3156.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "35",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° luglio 2023', Stipendio",
+                "quote": "3ª Area 4° Livello 3.156,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2023-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
+              },
+              "note": "The increase runs from 1 July 2023; the employers paid it from December 2023 with an una tantum for July to November (FISAC table 'Aumenti stipendio e importo una tantum')."
             }
           },
           {
@@ -818,21 +992,29 @@
             "valid_until": "2025-06-01",
             "value": "3256.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° settembre 2024', Stipendio",
+                "quote": "3ª Area 4° Livello 3.256,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -841,21 +1023,29 @@
             "valid_until": "2026-03-01",
             "value": "3306.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° giugno 2025', Stipendio",
+                "quote": "3ª Area 4° Livello 3.306,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -864,21 +1054,29 @@
             "valid_until": null,
             "value": "3341.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° marzo 2026', Stipendio",
+                "quote": "3ª Area 4° Livello 3.341,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -912,26 +1110,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2023-11-23",
+            "valid_from": "2023-07-01",
             "valid_until": "2024-09-01",
             "value": "2899.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "35",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° luglio 2023', Stipendio",
+                "quote": "3ª Area 3° Livello 2.899,88"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2023-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
+              },
+              "note": "The increase runs from 1 July 2023; the employers paid it from December 2023 with an una tantum for July to November (FISAC table 'Aumenti stipendio e importo una tantum')."
             }
           },
           {
@@ -939,21 +1146,29 @@
             "valid_until": "2025-06-01",
             "value": "2986.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° settembre 2024', Stipendio",
+                "quote": "3ª Area 3° Livello 2.986,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -962,21 +1177,29 @@
             "valid_until": "2026-03-01",
             "value": "3029.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° giugno 2025', Stipendio",
+                "quote": "3ª Area 3° Livello 3.029,29"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -985,21 +1208,29 @@
             "valid_until": null,
             "value": "3059.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° marzo 2026', Stipendio",
+                "quote": "3ª Area 3° Livello 3.059,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1033,26 +1264,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2023-11-23",
+            "valid_from": "2023-07-01",
             "valid_until": "2024-09-01",
             "value": "2739.63",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "35",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° luglio 2023', Stipendio",
+                "quote": "3ª Area 2° Livello 2.739,63"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2023-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
+              },
+              "note": "The increase runs from 1 July 2023; the employers paid it from December 2023 with an una tantum for July to November (FISAC table 'Aumenti stipendio e importo una tantum')."
             }
           },
           {
@@ -1060,21 +1300,29 @@
             "valid_until": "2025-06-01",
             "value": "2821.13",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° settembre 2024', Stipendio",
+                "quote": "3ª Area 2° Livello 2.821,13"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -1083,21 +1331,29 @@
             "valid_until": "2026-03-01",
             "value": "2861.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° giugno 2025', Stipendio",
+                "quote": "3ª Area 2° Livello 2.861,88"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -1106,21 +1362,29 @@
             "valid_until": null,
             "value": "2890.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° marzo 2026', Stipendio",
+                "quote": "3ª Area 2° Livello 2.890,41"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1154,26 +1418,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2023-11-23",
+            "valid_from": "2023-07-01",
             "valid_until": "2024-09-01",
             "value": "2599.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "35",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° luglio 2023', Stipendio",
+                "quote": "3ª Area 1° Livello 2.599,29"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2023-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
+              },
+              "note": "The increase runs from 1 July 2023; the employers paid it from December 2023 with an una tantum for July to November (FISAC table 'Aumenti stipendio e importo una tantum')."
             }
           },
           {
@@ -1181,21 +1454,29 @@
             "valid_until": "2025-06-01",
             "value": "2676.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° settembre 2024', Stipendio",
+                "quote": "3ª Area 1° Livello 2.676,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -1204,21 +1485,29 @@
             "valid_until": "2026-03-01",
             "value": "2715.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° giugno 2025', Stipendio",
+                "quote": "3ª Area 1° Livello 2.715,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -1227,21 +1516,29 @@
             "valid_until": null,
             "value": "2742.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° marzo 2026', Stipendio",
+                "quote": "3ª Area 1° Livello 2.742,34"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1275,26 +1572,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2023-11-23",
+            "valid_from": "2023-07-01",
             "valid_until": "2024-09-01",
             "value": "2350.10",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "35",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° luglio 2023', Stipendio",
+                "quote": "Area Unificata (ex 1ª e 2ª Area Professionale) 2.350,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2023-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
+              },
+              "note": "The increase runs from 1 July 2023; the employers paid it from December 2023 with an una tantum for July to November (FISAC table 'Aumenti stipendio e importo una tantum')."
             }
           },
           {
@@ -1302,21 +1608,29 @@
             "valid_until": "2025-06-01",
             "value": "2420.02",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° settembre 2024', Stipendio",
+                "quote": "Area Unificata (ex 1ª e 2ª Area Professionale) 2.420,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -1325,21 +1639,29 @@
             "valid_until": "2026-03-01",
             "value": "2454.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° giugno 2025', Stipendio",
+                "quote": "Area Unificata (ex 1ª e 2ª Area Professionale) 2.454,98"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -1348,21 +1670,29 @@
             "valid_until": null,
             "value": "2479.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "bancari-abi",
-                  "title": "bancari-abi",
+                  "document_id": "abi-ipotesi-2023-norme",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                  "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+                  "published_on": "2023-11-23",
+                  "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Tabelle economiche, importi mensili per 13 mensilità, 'Dal 1° marzo 2026', Stipendio",
+                "quote": "Area Unificata (ex 1ª e 2ª Area Professionale) 2.479,45"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T13:49:12Z",
+                "verification_status": "verified",
+                "effective_from": "2026-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T13:49:12Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1416,11 +1746,11 @@
   "ruleset": {
     "id": "ccnl/bancari-abi",
     "version": "2026.2",
-    "effective_from": "2023-11-23",
+    "effective_from": "2023-07-01",
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "e9d3017ff1f35de58dcbe83a13be8adfe716596d94c2cc10f13dec8aa083b429",
+    "source_hash": "f9922195696407e1b57b007f5b3c2523e04f2bc725590e78efbc7ae8be642050",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1618,5 +1948,39 @@
         }
       }
     }
+  },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "owner": "maintainer",
+    "review_due": "2026-12-31",
+    "reviews": [
+      {
+        "id": "2026-10-14-ai-p1",
+        "date": "2026-10-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "P1 audit: stipendio of the nine levels in the four tranches, scatti, number of monthly payments and term, against the renewal of 23 November 2023.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+            "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
+          },
+          {
+            "url": "https://www.fisac-cgil.it/wp-content/uploads/TABELLE-AUMENTI-STIPENDIO-UNA-TANTUM-SCALA-PARAMETRALE_2.pdf",
+            "sha256": "1f2260dfeb404131c90cadb5c55b3798100234926c6e8f1f5dfead388b24476a"
+          }
+        ],
+        "findings": [
+          "The 36 stipendi match the tables to the cent; they were cited to a union news page and are now verified against the tables of the renewal (pp. 35-38).",
+          "The first tranche runs from 1 July 2023 (the tables), not from the signing date 23 November 2023: corrected.",
+          "13 monthly payments: verified ('Importi mensili per 13 mensilità').",
+          "Scatti amounts match; cadence and maximum counts not in the tables: derived.",
+          "Importo ex ristrutturazione not modelled: declared. The agreement expired on 31 March 2026 (Art. 1)."
+        ]
+      }
+    ]
   }
 }
