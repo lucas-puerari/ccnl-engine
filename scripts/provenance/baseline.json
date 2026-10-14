@@ -1018,6 +1018,7 @@
     "contribution/2027/pubblica-amministrazione.json": {
       "apprentice": "assumed",
       "inps": "assumed",
+      "inps.employee_additional": "assumed",
       "inps.end_of_service": "assumed",
       "inps.minimum_base": "assumed",
       "inps.public_credit": "assumed",

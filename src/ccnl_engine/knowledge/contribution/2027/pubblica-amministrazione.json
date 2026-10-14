@@ -16,7 +16,43 @@
         "ivs_rate": "0.2420"
       }
     ],
-    "ceiling": null,
+    "ceiling": "122295.00",
+    "ceiling_provenance": {
+      "status": "assumed",
+      "location": {
+        "source_document": {
+          "document_id": "inps-circolare-6-2026",
+          "title": "INPS Circolare n. 6 del 30 gennaio 2026",
+          "kind": "inps_circolare",
+          "url": "https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.circolari-e-messaggi.2026.01.circolare-numero-6-del-30-01-2026_15151.html",
+          "sha256": "ec8fce75b98095d5b7de3d7ba725a403e1c487e1c75512567066650b88118992"
+        },
+        "section": "Massimale annuo della base contributiva e pensionabile",
+        "quote": "Il massimale annuo della base contributiva e pensionabile previsto dall'art. 2, comma 18, secondo periodo, della L. n. 335/1995, per i lavoratori iscritti successivamente al 31 dicembre 1995 a forme pensionistiche obbligatorie e per coloro che optano per la pensione con il sistema contributivo, sulla base dell'indice dei prezzi al consumo per le famiglie di operai e impiegati calcolato dall'ISTAT, è pari, per l'anno 2026, a 122.295,40 euro, che arrotondato all'unità di euro è pari a 122.295,00 euro."
+      },
+      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: They apply to the Gestione Dipendenti Pubblici as to the private schemes: NoiPA, the payroll of the State administrations, 'applica mensilmente l' aliquota aggiuntiva dell' 1% sulla quota di retribuzione eccedente il limite della prima fascia di retribuzione pensionabile' (ISPRA, 'Info su voci cedolino NoiPA', https://development.isprambiente.gov.it/files/trasparenza/servizi-erogati/info_su_voci_cedolino_NOIPA.pdf, sha256 384fec9b31c0900da166ea26b24e949c7c24efe991d5fbb562c5c5ad0c6b29b0, p. 1, read on 2026-10-14), and its year-end settlement lists '389 Conguaglio addizionale 1% ex ART. 3 TER della L.438/92' and '381 Conguaglio fondo pensione per superamento del massimale contributivo (art. 2, comma 18, secondo periodo, della L. n. 335/1995)' (MEF DAG, 'Modello Certificazione Unica 2024 - Conguaglio contributivo e fiscale relativo ai redditi 2023', https://www.difesa.it/assets/allegati/47076/messaggio_26_amministrati_cu_2024.pdf, sha256 ef6e67add0e694c3f1b88a36c1a71e8a0981ec4b7abcf3efe62cc9e0abc83579, p. 2, read on 2026-10-14). The amounts are those of circ. INPS 6/2026, which the NoiPA page cites as the limit 'per il personale iscritto all'INPS'. Not modelled: the 18% increase of the pension base of the Gestione (L. 335/1995 art. 2 c. 10, NoiPA codes 390 and 394)."
+    },
+    "employee_additional": {
+      "rate": "0.01",
+      "annual_threshold": "56224.00",
+      "monthly_threshold": "4685.00",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-6-2026",
+            "title": "INPS Circolare n. 6 del 30 gennaio 2026",
+            "kind": "inps_circolare",
+            "url": "https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.circolari-e-messaggi.2026.01.circolare-numero-6-del-30-01-2026_15151.html",
+            "sha256": "ec8fce75b98095d5b7de3d7ba725a403e1c487e1c75512567066650b88118992"
+          },
+          "section": "par. 5, Quota di retribuzione soggetta all'aliquota aggiuntiva dell'1%",
+          "quote": "Posto che la prima fascia di retribuzione pensionabile è stata determinata, per l'anno 2026, in 56.224,00 euro, l'aliquota aggiuntiva dell'1% deve essere applicata sulla quota di retribuzione eccedente il predetto tetto retributivo che, rapportato a dodici mesi, è pari a 4.685,00 euro. Si rammenta, infatti, che ai fini del versamento del contributo aggiuntivo in questione deve essere osservato il criterio della mensilizzazione."
+        },
+        "transformation": "rate: the 1% of art. 3-ter D.L. 384/1992; annual_threshold: the 'Prima fascia di retribuzione pensionabile annua' of the par. 5 table; monthly_threshold: its 'Importo mensilizzato', 4,685.00 as published (56,224 / 12 = 4,685.33 is not used).",
+        "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: They apply to the Gestione Dipendenti Pubblici as to the private schemes: NoiPA, the payroll of the State administrations, 'applica mensilmente l' aliquota aggiuntiva dell' 1% sulla quota di retribuzione eccedente il limite della prima fascia di retribuzione pensionabile' (ISPRA, 'Info su voci cedolino NoiPA', https://development.isprambiente.gov.it/files/trasparenza/servizi-erogati/info_su_voci_cedolino_NOIPA.pdf, sha256 384fec9b31c0900da166ea26b24e949c7c24efe991d5fbb562c5c5ad0c6b29b0, p. 1, read on 2026-10-14), and its year-end settlement lists '389 Conguaglio addizionale 1% ex ART. 3 TER della L.438/92' and '381 Conguaglio fondo pensione per superamento del massimale contributivo (art. 2, comma 18, secondo periodo, della L. n. 335/1995)' (MEF DAG, 'Modello Certificazione Unica 2024 - Conguaglio contributivo e fiscale relativo ai redditi 2023', https://www.difesa.it/assets/allegati/47076/messaggio_26_amministrati_cu_2024.pdf, sha256 ef6e67add0e694c3f1b88a36c1a71e8a0981ec4b7abcf3efe62cc9e0abc83579, p. 2, read on 2026-10-14). The amounts are those of circ. INPS 6/2026, which the NoiPA page cites as the limit 'per il personale iscritto all'INPS'. Not modelled: the 18% increase of the pension base of the Gestione (L. 335/1995 art. 2 c. 10, NoiPA codes 390 and 394)."
+      }
+    },
     "minimum_base": {
       "daily": "58.13",
       "daily_by_category": {
@@ -332,7 +368,7 @@
     "published_at": "2026-10-09",
     "source": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html",
     "verification_status": "unverified",
-    "source_hash": "00ebab6a4d73c5d060363a9d51129bb6505dabcb4837a51caf2d03b570dadb45",
+    "source_hash": "a9d9a8024cc18a07a99cf55cabb7a8ebb86c7bfa961bbd343b010723684db039",
     "source_type": "estimated",
     "provisional": true
   }
