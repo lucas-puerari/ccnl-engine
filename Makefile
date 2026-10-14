@@ -41,6 +41,7 @@ generate:
 	uv run python scripts/documentation/trust_count/generate.py
 	uv run python scripts/documentation/coverage_matrix/generate.py
 	uv run python scripts/documentation/capability_matrix/generate.py
+	uv run python scripts/documentation/review_plan/generate.py
 
 rehash:
 	uv run python scripts/knowledge/update.py

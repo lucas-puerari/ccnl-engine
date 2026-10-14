@@ -41,6 +41,7 @@ nav = [
     { "Decisions"         = "trust/decisions.md" },
     { "Assurance"         = "trust/confidence.md" },
     { "Data operations"   = "trust/data-operations.md" },
+    { "Review plan"       = "trust/review-plan.md" },
   ]},
   { "Examples"   = "examples.md" },
   { "Contracts"  = [
