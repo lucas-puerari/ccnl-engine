@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer, seniority |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 40 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 32 verified / 9 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,12 +51,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-19 |
-| **Last review** | — |
+| **Last review** | 2026-10-14 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-14 | claude-opus-5-5 (ai) | Second review of the agricoltura group: minimi conglobati of the eight levels in the four tranches, monthly payments, fixed-term operai and scatti, against the signed verbale of 19 July 2024. | corrected | The 32 minimi match the signed All. n. 1 (p. 19, a scanned page read from the image; each tranche equals the one before plus the printed aumento): verified.<br>14 monthly payments: the verbale names the 13ma and 14ma for the operai a tempo indeterminato (p. 14) but restates no clause for the impiegati: derived, no longer assumed.<br>Fixed-term operai are owed a terzo elemento of 30.44% instead of the monthly payments (p. 14): not modelled and not declared; now a limitation.<br>Scatti are not in the verbale: derived. The file applies the impiegati maximum of 12 to the operai, whose maximum is 5; the note said so but did not block: now a limitation from the 6th biennale. |
 
 ## Salary table
 
@@ -99,6 +101,13 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "cooperative-consorzi-agricoli/operai_seniority_over_five · seniority · impact yes · open"
+    SENIORITY: operai Art. 61 (max 5 biennali) e impiegati Art. 49 (max 12 biennali) hanno importi differenti per livelli 3-7. Operai amounts confirmed from rinnovo 2024 (lavoro-economia.it, businessonline.it): L7=9.44, L6=10.85, L5=11.39, L4=11.93, L3=12.20, L2=29.44, L1=33.05 EUR/biennio. Modelled with operai amounts (dominant workforce in cooperatives) and maximum_count=12 (impiegati cap). Queries for operai with seniority_count>5 will overstate by at most 1-5 scatti; this is a structural engine limitation (single seniority table per level).
+
+    **Applies when:** `seniority` applies; category in operaio; seniority of at least 144 months.
+
+    **Remediation:** Model the operai scatti (Art. 61, at most 5 biennali) apart from the impiegati scatti (Art. 49).
+
 !!! warning "cooperative-consorzi-agricoli/apprenticeship_passthrough · base_salary · impact unknown · open"
     Apprendistato: regola non reperita nel PDF 2024. Modellato come 100% passthrough.
 
@@ -119,6 +128,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies; contract type in apprentice.
 
     **Remediation:** Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/agricoltura.json derived, then remove this note.
+
+!!! warning "cooperative-consorzi-agricoli/otd_terzo_elemento_missing · base_salary · impact yes · open"
+    OTD: a fixed-term operaio is paid the minimo conglobato giornaliero or orario plus a terzo elemento of 30.44% (festività 5.45%, ferie 8.33%, 13ma 8.33%, 14ma 8.33%) on 312 working days instead of the monthly payments (Art. 60, verbale 19 July 2024, p. 14); the engine pays the monthly structure.
+
+    **Applies when:** `base_salary` applies; contract type in fixed_term; category in operaio.
+
+    **Remediation:** Model the daily pay and the terzo elemento of the fixed-term operai, as the operai agricoli CCNL requires.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -179,8 +195,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     CCNL A016 — Cooperative e Consorzi Agricoli. Conglobated model. 8 livelli: np-7-6-5-4-3-2-1. Divisore 169, 14 mesi. 4 tranches: apr-2024, mag-2025, mag-2026, feb-2027.
     
     Quadri: i livelli 1Q e 2Q del precedente impianto corrispondono a livello 1° e 2° con aggiunta dell'indennità di funzione quadri (Art. 45): 1Q +EUR 180→230/mese, 2Q +EUR 125→160/mese dal 01/08/2024. Modellata come fixed_allowance a 14 mensilità su ciascun livello.
-    
-    SENIORITY: operai Art. 61 (max 5 biennali) e impiegati Art. 49 (max 12 biennali) hanno importi differenti per livelli 3-7. Operai amounts confirmed from rinnovo 2024 (lavoro-economia.it, businessonline.it): L7=9.44, L6=10.85, L5=11.39, L4=11.93, L3=12.20, L2=29.44, L1=33.05 EUR/biennio. Modelled with operai amounts (dominant workforce in cooperatives) and maximum_count=12 (impiegati cap). Queries for operai with seniority_count>5 will overstate by at most 1-5 scatti; this is a structural engine limitation (single seniority table per level).
     
 
 ## Raw data

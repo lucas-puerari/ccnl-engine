@@ -557,9 +557,9 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cooperative-consorzi-agricoli",
       "ruleset_version": "2026.2",
-      "source_hash": "901aad18e6e0e8a19b3d26f24004c2e39a7316ae9d6edc181f01b98b570b4eb5",
+      "source_hash": "4b372456f2b76f968aeb688602d3bbb462c4d8d605aa507e9928083bc27786ee",
       "source_type": "contracting_party",
-      "owner": "ccnl-engine maintainers",
+      "owner": "maintainer",
       "wheel_resource": "agreement/cooperative-consorzi-agricoli.json.gz"
     },
     {

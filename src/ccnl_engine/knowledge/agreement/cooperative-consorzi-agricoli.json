@@ -42,8 +42,20 @@
         "text": "Quadri: i livelli 1Q e 2Q del precedente impianto corrispondono a livello 1° e 2° con aggiunta dell'indennità di funzione quadri (Art. 45): 1Q +EUR 180→230/mese, 2Q +EUR 125→160/mese dal 01/08/2024. Modellata come fixed_allowance a 14 mensilità su ciascun livello."
       },
       {
-        "kind": "info",
-        "text": "SENIORITY: operai Art. 61 (max 5 biennali) e impiegati Art. 49 (max 12 biennali) hanno importi differenti per livelli 3-7. Operai amounts confirmed from rinnovo 2024 (lavoro-economia.it, businessonline.it): L7=9.44, L6=10.85, L5=11.39, L4=11.93, L3=12.20, L2=29.44, L1=33.05 EUR/biennio. Modelled with operai amounts (dominant workforce in cooperatives) and maximum_count=12 (impiegati cap). Queries for operai with seniority_count>5 will overstate by at most 1-5 scatti; this is a structural engine limitation (single seniority table per level)."
+        "kind": "simplification",
+        "text": "SENIORITY: operai Art. 61 (max 5 biennali) e impiegati Art. 49 (max 12 biennali) hanno importi differenti per livelli 3-7. Operai amounts confirmed from rinnovo 2024 (lavoro-economia.it, businessonline.it): L7=9.44, L6=10.85, L5=11.39, L4=11.93, L3=12.20, L2=29.44, L1=33.05 EUR/biennio. Modelled with operai amounts (dominant workforce in cooperatives) and maximum_count=12 (impiegati cap). Queries for operai with seniority_count>5 will overstate by at most 1-5 scatti; this is a structural engine limitation (single seniority table per level).",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "operai_seniority_over_five",
+          "applies_when": {
+            "worker_categories": [
+              "operaio"
+            ],
+            "seniority_months_from": 144
+          },
+          "remediation": "Model the operai scatti (Art. 61, at most 5 biennali) apart from the impiegati scatti (Art. 49)."
+        }
       },
       {
         "kind": "simplification",
@@ -91,6 +103,24 @@
           },
           "remediation": "Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/agricoltura.json derived, then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "OTD: a fixed-term operaio is paid the minimo conglobato giornaliero or orario plus a terzo elemento of 30.44% (festività 5.45%, ferie 8.33%, 13ma 8.33%, 14ma 8.33%) on 312 working days instead of the monthly payments (Art. 60, verbale 19 July 2024, p. 14); the engine pays the monthly structure.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "otd_terzo_elemento_missing",
+          "applies_when": {
+            "contract_types": [
+              "fixed_term"
+            ],
+            "worker_categories": [
+              "operaio"
+            ]
+          },
+          "remediation": "Model the daily pay and the terzo elemento of the fixed-term operai, as the operai agricoli CCNL requires."
+        }
       }
     ]
   },
@@ -106,21 +136,29 @@
             "valid_until": "2025-05-01",
             "value": "1223.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/4/24",
+                "quote": "area np 1.223,82"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -129,21 +167,29 @@
             "valid_until": "2026-05-01",
             "value": "1242.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/5/25",
+                "quote": "area np 1.242,82"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -152,21 +198,29 @@
             "valid_until": "2027-02-01",
             "value": "1261.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/5/26",
+                "quote": "area np 1.261,82"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2026-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -175,21 +229,29 @@
             "valid_until": null,
             "value": "1280.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/2/27",
+                "quote": "area np 1.280,82"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           }
@@ -226,21 +288,29 @@
             "valid_until": "2025-05-01",
             "value": "1450.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/4/24",
+                "quote": "Livello 7 1.450,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -249,21 +319,29 @@
             "valid_until": "2026-05-01",
             "value": "1473.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/5/25",
+                "quote": "Livello 7 1.473,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -272,21 +350,29 @@
             "valid_until": "2027-02-01",
             "value": "1495.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/5/26",
+                "quote": "Livello 7 1.495,88"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2026-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -295,21 +381,29 @@
             "valid_until": null,
             "value": "1518.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/2/27",
+                "quote": "Livello 7 1.518,40"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           }
@@ -346,21 +440,29 @@
             "valid_until": "2025-05-01",
             "value": "1563.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/4/24",
+                "quote": "Livello 6 1.563,74"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -369,21 +471,29 @@
             "valid_until": "2026-05-01",
             "value": "1588.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/5/25",
+                "quote": "Livello 6 1.588,01"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -392,21 +502,29 @@
             "valid_until": "2027-02-01",
             "value": "1612.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/5/26",
+                "quote": "Livello 6 1.612,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2026-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -415,21 +533,29 @@
             "valid_until": null,
             "value": "1636.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/2/27",
+                "quote": "Livello 6 1.636,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           }
@@ -466,21 +592,29 @@
             "valid_until": "2025-05-01",
             "value": "1610.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/4/24",
+                "quote": "Livello 5 1.610,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -489,21 +623,29 @@
             "valid_until": "2026-05-01",
             "value": "1635.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/5/25",
+                "quote": "Livello 5 1.635,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -512,21 +654,29 @@
             "valid_until": "2027-02-01",
             "value": "1660.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/5/26",
+                "quote": "Livello 5 1.660,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2026-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -535,21 +685,29 @@
             "valid_until": null,
             "value": "1685.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/2/27",
+                "quote": "Livello 5 1.685,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           }
@@ -586,21 +744,29 @@
             "valid_until": "2025-05-01",
             "value": "1693.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/4/24",
+                "quote": "Livello 4 1.693,44"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -609,21 +775,29 @@
             "valid_until": "2026-05-01",
             "value": "1719.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/5/25",
+                "quote": "Livello 4 1.719,73"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -632,21 +806,29 @@
             "valid_until": "2027-02-01",
             "value": "1746.02",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/5/26",
+                "quote": "Livello 4 1.746,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2026-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -655,21 +837,29 @@
             "valid_until": null,
             "value": "1772.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/2/27",
+                "quote": "Livello 4 1.772,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           }
@@ -706,21 +896,29 @@
             "valid_until": "2025-05-01",
             "value": "1821.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/4/24",
+                "quote": "Livello 3 1.821,25"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -729,21 +927,29 @@
             "valid_until": "2026-05-01",
             "value": "1849.52",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/5/25",
+                "quote": "Livello 3 1.849,52"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -752,21 +958,29 @@
             "valid_until": "2027-02-01",
             "value": "1877.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/5/26",
+                "quote": "Livello 3 1.877,79"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2026-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -775,21 +989,29 @@
             "valid_until": null,
             "value": "1906.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/2/27",
+                "quote": "Livello 3 1.906,06"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           }
@@ -826,21 +1048,29 @@
             "valid_until": "2025-05-01",
             "value": "1978.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/4/24",
+                "quote": "Livello 2 1.978,64"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -849,21 +1079,29 @@
             "valid_until": "2026-05-01",
             "value": "2009.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/5/25",
+                "quote": "Livello 2 2.009,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -872,21 +1110,29 @@
             "valid_until": "2027-02-01",
             "value": "2040.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/5/26",
+                "quote": "Livello 2 2.040,06"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2026-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -895,21 +1141,29 @@
             "valid_until": null,
             "value": "2070.77",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/2/27",
+                "quote": "Livello 2 2.070,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           }
@@ -984,21 +1238,29 @@
             "valid_until": "2025-05-01",
             "value": "2200.92",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/4/24",
+                "quote": "Livello 1 2.200,92"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -1007,21 +1269,29 @@
             "valid_until": "2026-05-01",
             "value": "2235.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/5/25",
+                "quote": "Livello 1 2.235,08"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -1030,21 +1300,29 @@
             "valid_until": "2027-02-01",
             "value": "2269.24",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/5/26",
+                "quote": "Livello 1 2.269,24"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2026-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           },
@@ -1053,21 +1331,29 @@
             "valid_until": null,
             "value": "2303.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-                  "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "All. n. 1, Tabella minimi retributivi nazionali conglobati mensili, minimi 1/2/27",
+                "quote": "Livello 1 2.303,40"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T16:04:13Z",
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T16:04:13Z",
+                "review_id": "2026-10-14-ai-coop-agricole"
               }
             }
           }
@@ -1140,9 +1426,27 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                "published_on": "2024-07-19",
+                "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
+              },
+              "page": "14",
+              "section": "Art. 60 (Retribuzione, pp. 13-14), operai agricoli e florovivaisti a tempo indeterminato",
+              "quote": "Tale valore deve essere computato ai fini del calcolo della tredicesima e quattordicesima mensilità"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-14T16:04:13Z",
+              "verification_status": "unverified",
+              "effective_from": "2024-04-01"
+            }
           }
         }
       ]
@@ -1310,7 +1614,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "901aad18e6e0e8a19b3d26f24004c2e39a7316ae9d6edc181f01b98b570b4eb5",
+    "source_hash": "4b372456f2b76f968aeb688602d3bbb462c4d8d605aa507e9928083bc27786ee",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1500,5 +1804,34 @@
         }
       }
     }
+  },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "owner": "maintainer",
+    "reviews": [
+      {
+        "id": "2026-10-14-ai-coop-agricole",
+        "date": "2026-10-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Second review of the agricoltura group: minimi conglobati of the eight levels in the four tranches, monthly payments, fixed-term operai and scatti, against the signed verbale of 19 July 2024.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+            "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
+          }
+        ],
+        "findings": [
+          "The 32 minimi match the signed All. n. 1 (p. 19, a scanned page read from the image; each tranche equals the one before plus the printed aumento): verified.",
+          "14 monthly payments: the verbale names the 13ma and 14ma for the operai a tempo indeterminato (p. 14) but restates no clause for the impiegati: derived, no longer assumed.",
+          "Fixed-term operai are owed a terzo elemento of 30.44% instead of the monthly payments (p. 14): not modelled and not declared; now a limitation.",
+          "Scatti are not in the verbale: derived. The file applies the impiegati maximum of 12 to the operai, whose maximum is 5; the note said so but did not block: now a limitation from the 6th biennale."
+        ]
+      }
+    ],
+    "review_due": "2027-02-01"
   }
 }
