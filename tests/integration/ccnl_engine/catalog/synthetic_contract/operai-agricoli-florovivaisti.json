@@ -5,17 +5,17 @@
     {
       "level_code": "Area3",
       "as_of": "2027-01-01",
-      "expected_monthly": "1043.00"
+      "expected_monthly": "1042.43"
     },
     {
       "level_code": "Area2",
       "as_of": "2027-01-01",
-      "expected_monthly": "1398.86"
+      "expected_monthly": "1398.09"
     },
     {
       "level_code": "Area1",
       "as_of": "2027-01-01",
-      "expected_monthly": "1533.84"
+      "expected_monthly": "1533.00"
     }
   ],
   "seniority_checks": [
