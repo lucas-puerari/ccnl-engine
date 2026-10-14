@@ -62,17 +62,49 @@ def _ruleset(path: Path) -> dict[str, Any] | None:
     return ruleset
 
 
-@pytest.mark.parametrize(
-    "path", _YEAR_FILES, ids=lambda p: str(p.relative_to(KNOWLEDGE_DIR))
-)
-def test_a_year_is_provisional_in_every_file_or_in_none(path: Path) -> None:
-    """Every ruleset of a provisional year says so, and no other one does."""
+def _provisional(path: Path) -> bool:
     ruleset = _ruleset(path)
     assert ruleset is not None
-    provisional = _year_of(path) in _PROVISIONAL_YEARS
+    provisional: bool = bool(ruleset.get("provisional"))
+    estimated: bool = ruleset["source_type"] == "estimated"
+    assert estimated == provisional, path.name
+    return provisional
 
-    assert bool(ruleset.get("provisional")) is provisional
-    assert (ruleset["source_type"] == "estimated") is provisional
+
+def _dataset(path: Path) -> str:
+    return path.relative_to(KNOWLEDGE_DIR).parts[0]
+
+
+#: Datasets whose provisional state the tax ruleset of the year stands for.
+_TAX_COMPANIONS = {"family", "surtax", "tax_credit", "variable_pay"}
+
+
+@pytest.mark.parametrize("year", sorted({_year_of(p) for p in _YEAR_FILES}))
+def test_the_tax_ruleset_stands_for_its_companions(year: str) -> None:
+    """A provisional companion file is never left without its tax ruleset.
+
+    A family, surtax, somma esente or variable pay file blocks no run by
+    itself: the provisional tax ruleset of the year does.  The sector files
+    of a year are provisional together, and so are its INPS files; the INPS
+    circulars come out weeks after the budget law, so the INPS files may
+    stay provisional once the sector files are not.
+    """
+    files = [p for p in _YEAR_FILES if _year_of(p) == year]
+    sector = {_provisional(p) for p in files if _dataset(p) == "sector"}
+    inps = {_provisional(p) for p in files if _dataset(p) == "contribution"}
+    companions = [p for p in files if _dataset(p) in _TAX_COMPANIONS]
+
+    assert len(sector) == 1
+    assert len(inps) == 1
+    if any(_provisional(p) for p in companions):
+        assert sector == {True}
+
+
+def test_the_published_year_is_not_provisional() -> None:
+    """No file of a year whose sources are published is provisional."""
+    for path in _YEAR_FILES:
+        if _year_of(path) not in _PROVISIONAL_YEARS:
+            assert not _provisional(path), path.name
 
 
 @pytest.mark.parametrize(("ccnl", "level"), _SECTOR_RUNS)
