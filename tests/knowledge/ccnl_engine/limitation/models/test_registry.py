@@ -80,9 +80,12 @@ def test_every_monetary_simplification_is_mapped(ccnls: tuple[CCNL, ...]) -> Non
     assert sum(len(ccnl.limitations) for ccnl in ccnls) == len(monetary)
 
 
-def test_limitations_name_registry_capabilities(ccnls: tuple[CCNL, ...]) -> None:
-    """A limitation limits a capability the registry of the year holds."""
-    features = {e.feature for e in load_capability_catalog(2026).capabilities}
+@pytest.mark.parametrize("year", [2026, 2027])
+def test_limitations_name_registry_capabilities(
+    ccnls: tuple[CCNL, ...], year: int
+) -> None:
+    """A limitation limits a capability every bundled registry holds."""
+    features = {e.feature for e in load_capability_catalog(year).capabilities}
     limitations = [
         *load_engine_limitations(),
         *(lim for ccnl in ccnls for lim in ccnl.limitations),
