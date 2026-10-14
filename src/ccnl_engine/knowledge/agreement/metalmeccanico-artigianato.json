@@ -131,6 +131,10 @@
           },
           "remediation": "Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "TERM: the renewal of 19 November 2024 runs from 1 January 2023 to 31 December 2026 (Art. 2, signed scan) and keeps applying until the next renewal takes effect; the tabellare of 1 November 2026 stays in force after 2026 until a renewal is read."
       }
     ]
   },
@@ -410,21 +414,29 @@
             "valid_until": "2025-07-01",
             "value": "1475.92",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° dicembre 2024'",
+                "quote": "6 1475,92"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -433,21 +445,29 @@
             "valid_until": "2026-03-01",
             "value": "1498.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° luglio 2025'",
+                "quote": "6 1498,88"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -456,21 +476,29 @@
             "valid_until": "2026-11-01",
             "value": "1521.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° marzo 2026'",
+                "quote": "6 1521,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -479,21 +507,29 @@
             "valid_until": null,
             "value": "1540.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° novembre 2026'",
+                "quote": "6 1540,21"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -645,21 +681,29 @@
             "valid_until": "2025-07-01",
             "value": "1547.75",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° dicembre 2024'",
+                "quote": "5 1547,75"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -668,21 +712,29 @@
             "valid_until": "2026-03-01",
             "value": "1571.83",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° luglio 2025'",
+                "quote": "5 1571,83"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -691,21 +743,29 @@
             "valid_until": "2026-11-01",
             "value": "1595.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° marzo 2026'",
+                "quote": "5 1595,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -714,21 +774,29 @@
             "valid_until": null,
             "value": "1615.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° novembre 2026'",
+                "quote": "5 1615,17"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -880,21 +948,29 @@
             "valid_until": "2025-07-01",
             "value": "1606.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° dicembre 2024'",
+                "quote": "4 1606,98"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -903,21 +979,29 @@
             "valid_until": "2026-03-01",
             "value": "1631.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° luglio 2025'",
+                "quote": "4 1631,98"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -926,21 +1010,29 @@
             "valid_until": "2026-11-01",
             "value": "1656.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° marzo 2026'",
+                "quote": "4 1656,98"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -949,21 +1041,29 @@
             "valid_until": null,
             "value": "1676.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° novembre 2026'",
+                "quote": "4 1676,98"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1115,21 +1215,29 @@
             "valid_until": "2025-07-01",
             "value": "1704.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° dicembre 2024'",
+                "quote": "3 1704,96"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -1138,21 +1246,29 @@
             "valid_until": "2026-03-01",
             "value": "1731.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° luglio 2025'",
+                "quote": "3 1731,48"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -1161,21 +1277,29 @@
             "valid_until": "2026-11-01",
             "value": "1758.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° marzo 2026'",
+                "quote": "3 1758,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -1184,21 +1308,29 @@
             "valid_until": null,
             "value": "1779.22",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° novembre 2026'",
+                "quote": "3 1779,22"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1350,21 +1482,29 @@
             "valid_until": "2025-07-01",
             "value": "1773.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° dicembre 2024'",
+                "quote": "2 bis 1773,08"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -1373,21 +1513,29 @@
             "valid_until": "2026-03-01",
             "value": "1800.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° luglio 2025'",
+                "quote": "2 bis 1800,66"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -1396,21 +1544,29 @@
             "valid_until": "2026-11-01",
             "value": "1828.24",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° marzo 2026'",
+                "quote": "2 bis 1828,24"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -1419,21 +1575,29 @@
             "valid_until": null,
             "value": "1850.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° novembre 2026'",
+                "quote": "2 bis 1850,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1585,21 +1749,29 @@
             "valid_until": "2025-07-01",
             "value": "1877.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° dicembre 2024'",
+                "quote": "2 1877,78"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -1608,21 +1780,29 @@
             "valid_until": "2026-03-01",
             "value": "1906.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° luglio 2025'",
+                "quote": "2 1906,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -1631,21 +1811,29 @@
             "valid_until": "2026-11-01",
             "value": "1936.20",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° marzo 2026'",
+                "quote": "2 1936,20"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -1654,21 +1842,29 @@
             "valid_until": null,
             "value": "1959.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° novembre 2026'",
+                "quote": "2 1959,57"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1820,21 +2016,29 @@
             "valid_until": "2025-07-01",
             "value": "2018.11",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° dicembre 2024'",
+                "quote": "1 2018,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -1843,21 +2047,29 @@
             "valid_until": "2026-03-01",
             "value": "2049.51",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° luglio 2025'",
+                "quote": "1 2049,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -1866,21 +2078,29 @@
             "valid_until": "2026-11-01",
             "value": "2080.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° marzo 2026'",
+                "quote": "1 2080,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -1889,21 +2109,29 @@
             "valid_until": null,
             "value": "2106.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° novembre 2026'",
+                "quote": "1 2106,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -2056,21 +2284,29 @@
             "valid_until": "2025-07-01",
             "value": "2018.11",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° dicembre 2024'",
+                "quote": "1Q 2018,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -2079,21 +2315,29 @@
             "valid_until": "2026-03-01",
             "value": "2049.51",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° luglio 2025'",
+                "quote": "1Q 2049,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -2102,21 +2346,29 @@
             "valid_until": "2026-11-01",
             "value": "2080.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° marzo 2026'",
+                "quote": "1Q 2080,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           },
@@ -2125,21 +2377,29 @@
             "valid_until": null,
             "value": "2106.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "ccnl-area-meccanica-artigianato-2024",
+                  "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "published_on": "2024-11-25",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti, Retribuzione tabellare, 'Retribuzione tabellare dal 1° novembre 2026'",
+                "quote": "1Q 2106,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:35:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:35:00Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -2258,7 +2518,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "f79df0c142724cbcf4c0776f89ac08431e30687cefd5e14cc30eed4414f675b4",
+    "source_hash": "adcf4e0493af2fb84d188594e34be84c2cdda9c9dc4e7bb499c806ca09eefd29",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2500,7 +2760,29 @@
         "findings": [
           "The review recorded no list of the documents it read."
         ]
+      },
+      {
+        "id": "2026-10-14-ai-p1",
+        "date": "2026-10-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "P1 audit: the tabellare of the Metalmeccanica ed Installazione di Impianti sector for the four tranches of the renewal of 19 November 2024 (verbale integrativo of 25 November 2024), and the term; comparison with the industrial CCNL.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+            "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
+          }
+        ],
+        "findings": [
+          "The 32 tabellari of the four tranches (1 December 2024 to 1 November 2026, eight levels) match the signed table of p. 27: verified.",
+          "The tabellare 'fino al 30 novembre 2024' (with the AFAC of 21 December 2023) matches the period from 1 April 2024; its start date is not in this scan and stays derived.",
+          "Term: 1 January 2023 to 31 December 2026, then until the next renewal (Art. 2). review_due 2027-01-31.",
+          "The number of monthly payments is not stated in the scan: stays assumed."
+        ]
       }
-    ]
+    ],
+    "owner": "maintainer",
+    "review_due": "2027-01-31"
   }
 }
