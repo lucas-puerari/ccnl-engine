@@ -14,6 +14,9 @@ The resources are ordered as `domain/dataset/year/scope.json` under
 once: identity (`dataset_id`), path, dataset, year and scope, model, schema
 version, validity (or the reason it has none), ruleset id, version and hash,
 owner and the name of its compressed copy in the wheel.
+Every resource has a content hash. Engine-maintained registries that have no
+enclosing ruleset identity, and legacy resource formats that have no explicit
+schema version, carry an explanatory note in place of the absent metadata.
 
 | Dataset | Contents |
 |---|---|

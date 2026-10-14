@@ -2257,10 +2257,12 @@
       "valid_to": "2026-12-31",
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": null,
+      "source_hash": "6ed168e6de2e20eabb035ab292518118c1a6827c8eadba31ce923d2b8320271b",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "capability/registry/2026.json.gz"
+      "wheel_resource": "capability/registry/2026.json.gz",
+      "ruleset_note": "the registry describes engine capabilities for its year; each capability declares its own evidence",
+      "source_note": "the registry describes engine capabilities for its year; each capability declares its own evidence"
     },
     {
       "dataset_id": "capability/registry/2027",
@@ -2274,10 +2276,12 @@
       "valid_to": "2027-12-31",
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": null,
+      "source_hash": "95c21334036835a3e5571cd3c3618b53549b08d9e7fc9f8201164fa1bbccab4d",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "capability/registry/2027.json.gz"
+      "wheel_resource": "capability/registry/2027.json.gz",
+      "ruleset_note": "the registry describes engine capabilities for its year; each capability declares its own evidence",
+      "source_note": "the registry describes engine capabilities for its year; each capability declares its own evidence"
     },
     {
       "dataset_id": "contribution/2026/agricoltura",
@@ -2294,7 +2298,8 @@
       "source_hash": "b6d544f73610e5bab959328153f228b21dce9580cf53912d308b6314262944bd",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "contribution/2026/agricoltura.json.gz"
+      "wheel_resource": "contribution/2026/agricoltura.json.gz",
+      "schema_note": "validated by InpsRates; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "contribution/2026/artigianato",
@@ -2311,7 +2316,8 @@
       "source_hash": "015f3d38286a0afd08515e6d5f2b7e122eb61fcdca310b9b7bea25130680c5e7",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "contribution/2026/artigianato.json.gz"
+      "wheel_resource": "contribution/2026/artigianato.json.gz",
+      "schema_note": "validated by InpsRates; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "contribution/2026/credito",
@@ -2328,7 +2334,8 @@
       "source_hash": "b52d9f4727b17f22991706098a818148eb8670c38af1220fc1bc474e70760e6e",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "contribution/2026/credito.json.gz"
+      "wheel_resource": "contribution/2026/credito.json.gz",
+      "schema_note": "validated by InpsRates; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "contribution/2026/edilizia",
@@ -2345,7 +2352,8 @@
       "source_hash": "011a9ca2e939d46ebab923c3ee6639fc20503c98c562b6ade6f1d9ee9bb9fdda",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "contribution/2026/edilizia.json.gz"
+      "wheel_resource": "contribution/2026/edilizia.json.gz",
+      "schema_note": "validated by InpsRates; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "contribution/2026/industria",
@@ -2362,7 +2370,8 @@
       "source_hash": "7aa2df4fbabcbe1b08a977efc88f6effefb1e5ae853271c9c4051869f88919a8",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "contribution/2026/industria.json.gz"
+      "wheel_resource": "contribution/2026/industria.json.gz",
+      "schema_note": "validated by InpsRates; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "contribution/2026/lavoro-domestico",
@@ -2379,7 +2388,8 @@
       "source_hash": "5483b56a2581b9656f8ca8a7648c0189b53fe63c59092066952c6bad89a0db85",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "contribution/2026/lavoro-domestico.json.gz"
+      "wheel_resource": "contribution/2026/lavoro-domestico.json.gz",
+      "schema_note": "validated by InpsRates; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "contribution/2026/pubblica-amministrazione",
@@ -2396,7 +2406,8 @@
       "source_hash": "68a1400f90aca9da2dfa380a059e1e7406b7b3f049ba87f20f9f6ff6c9e2fd3a",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "contribution/2026/pubblica-amministrazione.json.gz"
+      "wheel_resource": "contribution/2026/pubblica-amministrazione.json.gz",
+      "schema_note": "validated by InpsRates; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "contribution/2026/terziario",
@@ -2413,7 +2424,8 @@
       "source_hash": "6a7f547a0731724d83adb46dff4c5ac08fb8ab0e0b0b0afe77bbc5f6a4b3f20a",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "contribution/2026/terziario.json.gz"
+      "wheel_resource": "contribution/2026/terziario.json.gz",
+      "schema_note": "validated by InpsRates; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "contribution/2027/agricoltura",
@@ -2430,7 +2442,8 @@
       "source_hash": "e5e037e3279fc3358a390ff3c2951ac853e9505453f6a5259d689deb33158824",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "contribution/2027/agricoltura.json.gz"
+      "wheel_resource": "contribution/2027/agricoltura.json.gz",
+      "schema_note": "validated by InpsRates; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "contribution/2027/artigianato",
@@ -2447,7 +2460,8 @@
       "source_hash": "a3ce69d11524b2a665ab12293baf0aa44ee521089ae9e2cd262d024c6edee5ce",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "contribution/2027/artigianato.json.gz"
+      "wheel_resource": "contribution/2027/artigianato.json.gz",
+      "schema_note": "validated by InpsRates; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "contribution/2027/credito",
@@ -2464,7 +2478,8 @@
       "source_hash": "2bc6a9c0797891e33124d20455ad73f4b3a4a791b051f8aaab47c885e6edd901",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "contribution/2027/credito.json.gz"
+      "wheel_resource": "contribution/2027/credito.json.gz",
+      "schema_note": "validated by InpsRates; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "contribution/2027/edilizia",
@@ -2481,7 +2496,8 @@
       "source_hash": "fa0918d7febe03df76634678aec73527873be778164cb7b4ddfa6ccb74f15831",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "contribution/2027/edilizia.json.gz"
+      "wheel_resource": "contribution/2027/edilizia.json.gz",
+      "schema_note": "validated by InpsRates; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "contribution/2027/industria",
@@ -2498,7 +2514,8 @@
       "source_hash": "047ec12bce5c869920794eb66bf7a789c952340d6cd5d018e93f78314cc32880",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "contribution/2027/industria.json.gz"
+      "wheel_resource": "contribution/2027/industria.json.gz",
+      "schema_note": "validated by InpsRates; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "contribution/2027/lavoro-domestico",
@@ -2515,7 +2532,8 @@
       "source_hash": "233a9e8427483136b9595df86f7ba4d6fd3011c248a94c6e77dcb0bd59adf695",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "contribution/2027/lavoro-domestico.json.gz"
+      "wheel_resource": "contribution/2027/lavoro-domestico.json.gz",
+      "schema_note": "validated by InpsRates; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "contribution/2027/pubblica-amministrazione",
@@ -2532,7 +2550,8 @@
       "source_hash": "00ebab6a4d73c5d060363a9d51129bb6505dabcb4837a51caf2d03b570dadb45",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "contribution/2027/pubblica-amministrazione.json.gz"
+      "wheel_resource": "contribution/2027/pubblica-amministrazione.json.gz",
+      "schema_note": "validated by InpsRates; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "contribution/2027/terziario",
@@ -2549,7 +2568,8 @@
       "source_hash": "2e15010277883dc0c53273b3ef193ea13ff6950a2bdaf026b9c65c06582f64ed",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "contribution/2027/terziario.json.gz"
+      "wheel_resource": "contribution/2027/terziario.json.gz",
+      "schema_note": "validated by InpsRates; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "family/2026",
@@ -2566,7 +2586,8 @@
       "source_hash": "b5e503dcb9586b464c1857d7277dacb1731ea76ff639d82b6d7d48b1c5e8bc20",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "family/2026.json.gz"
+      "wheel_resource": "family/2026.json.gz",
+      "schema_note": "validated by FamilyDeductionRules; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "family/2027",
@@ -2583,7 +2604,8 @@
       "source_hash": "10854a23ece71ff6e8ffc0bd00ce1dd26f8dcfd1f63338f17393547c0cd08a81",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "family/2027.json.gz"
+      "wheel_resource": "family/2027.json.gz",
+      "schema_note": "validated by FamilyDeductionRules; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "limitation/engine",
@@ -2597,11 +2619,13 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": null,
+      "source_hash": "4c5c85d64d18278984bd2a9c658223eae228c94840920606c2517546624e4b19",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "limitation/engine.json.gz",
-      "validity_note": "engine limitations follow the engine, not a period"
+      "validity_note": "engine limitations follow the engine, not a period",
+      "ruleset_note": "engine limitations follow the engine and carry status, scope and remediation individually",
+      "source_note": "engine limitations follow the engine and carry status, scope and remediation individually"
     },
     {
       "dataset_id": "pay_item/italy",
@@ -2615,11 +2639,14 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": null,
+      "source_hash": "0da1bf494ce04087973f1aa7652ecccb33dfd1569e71260bb7bfda9f8ddec919",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "pay_item/italy.json.gz",
-      "validity_note": "the pay item policy applies to every year the bundle holds"
+      "validity_note": "the pay item policy applies to every year the bundle holds",
+      "schema_note": "validated by PolicyRuleset; the resource format does not declare an explicit schema version",
+      "ruleset_note": "the resource is a collection of policies with individual policy ids, versions, validity and legal bases",
+      "source_note": "the resource is a collection of policies with individual policy ids, versions, validity and legal bases"
     },
     {
       "dataset_id": "sector/2026/agricoltura",
@@ -2636,7 +2663,8 @@
       "source_hash": "26743b77caf5feac75870aa696203d31dc48abb48dddb8502cb053777ae15f89",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "sector/2026/agricoltura.json.gz"
+      "wheel_resource": "sector/2026/agricoltura.json.gz",
+      "schema_note": "validated by YearRulesRaw; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "sector/2026/artigianato",
@@ -2653,7 +2681,8 @@
       "source_hash": "8f1c9cddcf7bc3defb603109c96f623c4a86aaa7f6046be053df42cca9b90eba",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "sector/2026/artigianato.json.gz"
+      "wheel_resource": "sector/2026/artigianato.json.gz",
+      "schema_note": "validated by YearRulesRaw; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "sector/2026/credito",
@@ -2670,7 +2699,8 @@
       "source_hash": "de69a0dc50f313110719b9613a5ad9080c3db48842c1646f313d76943a492030",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "sector/2026/credito.json.gz"
+      "wheel_resource": "sector/2026/credito.json.gz",
+      "schema_note": "validated by YearRulesRaw; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "sector/2026/edilizia",
@@ -2687,7 +2717,8 @@
       "source_hash": "423e0ed00d70b16e79a9823694e5d94c74507eafe794b44674c6b5fb94707651",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "sector/2026/edilizia.json.gz"
+      "wheel_resource": "sector/2026/edilizia.json.gz",
+      "schema_note": "validated by YearRulesRaw; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "sector/2026/industria",
@@ -2704,7 +2735,8 @@
       "source_hash": "82af205c9b9e7468239fd69096877177897b3126367b8bcbf2954d8d91891d07",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "sector/2026/industria.json.gz"
+      "wheel_resource": "sector/2026/industria.json.gz",
+      "schema_note": "validated by YearRulesRaw; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "sector/2026/lavoro-domestico",
@@ -2721,7 +2753,8 @@
       "source_hash": "6173f123e51288b3e6db505929a3f02cf56d0e7db2b88d8cd27a1ac76b216524",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "sector/2026/lavoro-domestico.json.gz"
+      "wheel_resource": "sector/2026/lavoro-domestico.json.gz",
+      "schema_note": "validated by YearRulesRaw; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "sector/2026/pubblica-amministrazione",
@@ -2738,7 +2771,8 @@
       "source_hash": "8e08b7679b07bf0f3bccb85fd45982ef1e8c30dc8166f3643d8a6d6e579a959b",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "sector/2026/pubblica-amministrazione.json.gz"
+      "wheel_resource": "sector/2026/pubblica-amministrazione.json.gz",
+      "schema_note": "validated by YearRulesRaw; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "sector/2026/terziario",
@@ -2755,7 +2789,8 @@
       "source_hash": "104520587cb8c8867413ac1dc9593ecc5478e415187fa0f789307887ef5ede95",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "sector/2026/terziario.json.gz"
+      "wheel_resource": "sector/2026/terziario.json.gz",
+      "schema_note": "validated by YearRulesRaw; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "sector/2027/agricoltura",
@@ -2772,7 +2807,8 @@
       "source_hash": "03a15c613ec7aa813b8e0a6baac11cc3375a65658b3a6935e1d3a4486ec8bf92",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "sector/2027/agricoltura.json.gz"
+      "wheel_resource": "sector/2027/agricoltura.json.gz",
+      "schema_note": "validated by YearRulesRaw; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "sector/2027/artigianato",
@@ -2789,7 +2825,8 @@
       "source_hash": "f357a60a63ede3254da8b570408a527f4e206abbb274e0cc783f8a9c4a65a0e3",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "sector/2027/artigianato.json.gz"
+      "wheel_resource": "sector/2027/artigianato.json.gz",
+      "schema_note": "validated by YearRulesRaw; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "sector/2027/credito",
@@ -2806,7 +2843,8 @@
       "source_hash": "52ecb9f0196ed74545e33acc7b4e1fad18fb3d4c9d65adbed970d6a73ec0d1e8",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "sector/2027/credito.json.gz"
+      "wheel_resource": "sector/2027/credito.json.gz",
+      "schema_note": "validated by YearRulesRaw; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "sector/2027/edilizia",
@@ -2823,7 +2861,8 @@
       "source_hash": "742f7517f713be5a8e5c9b1d7903a94fc96ab2d0bfe4a43e66d259cb76b68b6f",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "sector/2027/edilizia.json.gz"
+      "wheel_resource": "sector/2027/edilizia.json.gz",
+      "schema_note": "validated by YearRulesRaw; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "sector/2027/industria",
@@ -2840,7 +2879,8 @@
       "source_hash": "190e1db569b2d252b5bcae3456fa1fa6c62abbcca9258496af417e1c9f30ac97",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "sector/2027/industria.json.gz"
+      "wheel_resource": "sector/2027/industria.json.gz",
+      "schema_note": "validated by YearRulesRaw; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "sector/2027/lavoro-domestico",
@@ -2857,7 +2897,8 @@
       "source_hash": "cc3a03b2afc151d3d2de55c074ffb78ec8c436b9f97174f7e0a70045c6faf023",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "sector/2027/lavoro-domestico.json.gz"
+      "wheel_resource": "sector/2027/lavoro-domestico.json.gz",
+      "schema_note": "validated by YearRulesRaw; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "sector/2027/pubblica-amministrazione",
@@ -2874,7 +2915,8 @@
       "source_hash": "568551c705aa2e74c9d101b557f79d6bcbb1a59d4fb1c638cc2c5a137ca837ec",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "sector/2027/pubblica-amministrazione.json.gz"
+      "wheel_resource": "sector/2027/pubblica-amministrazione.json.gz",
+      "schema_note": "validated by YearRulesRaw; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "sector/2027/terziario",
@@ -2891,7 +2933,8 @@
       "source_hash": "aafb2b260191011dfdf8795b711ff6df607f5543a5124e4e31ac944964ac2a47",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "sector/2027/terziario.json.gz"
+      "wheel_resource": "sector/2027/terziario.json.gz",
+      "schema_note": "validated by YearRulesRaw; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "severance/revaluation/2026",
@@ -2908,7 +2951,8 @@
       "source_hash": "740f9193751b301c9efdf5d3d97a27f918c4cbd221c466c33f9105a1de0e9d2e",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "severance/revaluation/2026.json.gz"
+      "wheel_resource": "severance/revaluation/2026.json.gz",
+      "schema_note": "validated by TfrRevaluationRules; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "sickness/indemnity/rates",
@@ -2925,7 +2969,8 @@
       "source_hash": "b0630175e3381a7151af51f20f3c17ff9fee4ec5c62a9b1776382e36f92e8ae4",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "sickness/indemnity/rates.json.gz"
+      "wheel_resource": "sickness/indemnity/rates.json.gz",
+      "schema_note": "validated by InpsSickPayRates; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "surtax/municipal/2026",
@@ -2942,7 +2987,8 @@
       "source_hash": "d5444f6470d2c3d40da3cd474a27fe2d550f8e314803225868957a44d0328748",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "surtax/municipal/2026.json.gz"
+      "wheel_resource": "surtax/municipal/2026.json.gz",
+      "schema_note": "validated by MunicipalSurtaxTable; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "surtax/municipal/2027",
@@ -2959,7 +3005,8 @@
       "source_hash": "1f2bb977b92cc4a349ee85c70b236ecb2b1c2b8beb39981e63a456959272a618",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "surtax/municipal/2027.json.gz"
+      "wheel_resource": "surtax/municipal/2027.json.gz",
+      "schema_note": "validated by MunicipalSurtaxTable; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "surtax/regional/2026",
@@ -2976,7 +3023,8 @@
       "source_hash": "3fbfa0ab4701ea355acb79a1ea43210764c9a1a36997dc93e20b68b830907b09",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "surtax/regional/2026.json.gz"
+      "wheel_resource": "surtax/regional/2026.json.gz",
+      "schema_note": "validated by RegionalSurtaxTable; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "surtax/regional/2027",
@@ -2993,7 +3041,8 @@
       "source_hash": "96a1bf22e6f7adc3980b2b627ff840f096f492b846f067b239933c2efce6011a",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "surtax/regional/2027.json.gz"
+      "wheel_resource": "surtax/regional/2027.json.gz",
+      "schema_note": "validated by RegionalSurtaxTable; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "tax_credit/somma_esente/2026",
@@ -3010,7 +3059,8 @@
       "source_hash": "ae90b2bf39b1366b344802586b5da918f0d4147dd78e476cbc8e6f8fef7e6d20",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "tax_credit/somma_esente/2026.json.gz"
+      "wheel_resource": "tax_credit/somma_esente/2026.json.gz",
+      "schema_note": "validated by SommaEsenteRules; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "tax_credit/somma_esente/2027",
@@ -3027,7 +3077,8 @@
       "source_hash": "b2447e99ed58f35c912d7066aa747773b5a6efabef0b1994664650ca7de933b9",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "tax_credit/somma_esente/2027.json.gz"
+      "wheel_resource": "tax_credit/somma_esente/2027.json.gz",
+      "schema_note": "validated by SommaEsenteRules; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "variable_pay/2026",
@@ -3044,7 +3095,8 @@
       "source_hash": "eb13cb287e0943107facc01966155b04130684d50cac0387ed6f6350026b5999",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "variable_pay/2026.json.gz"
+      "wheel_resource": "variable_pay/2026.json.gz",
+      "schema_note": "validated by VariablePayRules; the resource format does not declare an explicit schema version"
     },
     {
       "dataset_id": "variable_pay/2027",
@@ -3061,7 +3113,8 @@
       "source_hash": "e76dc8ed793e0af077330121203e1fa3247235d732b501b90c8e9364b0286680",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
-      "wheel_resource": "variable_pay/2027.json.gz"
+      "wheel_resource": "variable_pay/2027.json.gz",
+      "schema_note": "validated by VariablePayRules; the resource format does not declare an explicit schema version"
     }
   ]
 }

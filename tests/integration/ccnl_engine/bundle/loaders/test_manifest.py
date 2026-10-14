@@ -34,6 +34,21 @@ def test_every_json_file_is_listed_once_and_exists() -> None:
 
 
 @pytest.mark.parametrize("entry", _ENTRIES, ids=operator.itemgetter("path"))
+def test_every_entry_has_integrity_and_explains_optional_metadata(
+    entry: dict[str, object],
+) -> None:
+    """Every resource has a hash; absent metadata is explicitly explained."""
+    assert len(str(entry["source_hash"])) == 64
+    assert entry["schema_version"] is not None or entry.get("schema_note")
+    has_ruleset = all(
+        entry[field] is not None
+        for field in ("ruleset_id", "ruleset_version", "source_type")
+    )
+    assert has_ruleset or entry.get("ruleset_note")
+    assert entry["source_type"] is not None or entry.get("source_note")
+
+
+@pytest.mark.parametrize("entry", _ENTRIES, ids=operator.itemgetter("path"))
 def test_the_path_states_the_dataset_year_and_scope(entry: dict[str, object]) -> None:
     """``domain/dataset/year/scope.json``: no dimension repeated or hidden."""
     path = str(entry["path"])

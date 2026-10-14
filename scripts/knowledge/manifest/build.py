@@ -20,6 +20,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from ccnl_engine.provenance.ruleset.models import source_hash
+
 KNOWLEDGE_DIR = Path("src/ccnl_engine/knowledge")
 MANIFEST_NAME = "manifest.json"
 SCHEMA_VERSION = 1
@@ -49,6 +51,21 @@ NO_VALIDITY = {
     "sickness/indemnity": (
         "statutory rates change only by primary legislation; the ruleset "
         "block carries the source"
+    ),
+}
+#: Why an engine-maintained resource carries no enclosing ruleset identity.
+NO_RULESET = {
+    "capability/registry": (
+        "the registry describes engine capabilities for its year; each capability "
+        "declares its own evidence"
+    ),
+    "limitation": (
+        "engine limitations follow the engine and carry status, scope and "
+        "remediation individually"
+    ),
+    "pay_item": (
+        "the resource is a collection of policies with individual policy ids, "
+        "versions, validity and legal bases"
     ),
 }
 
@@ -100,10 +117,18 @@ def _entry(rel: Path, data: object) -> dict[str, Any]:
 
     Returns:
         The entry, its keys in a fixed order.
+
+    Raises:
+        ValueError: When a recorded ruleset hash does not match the resource.
     """
     dataset, year, scope = _dataset(rel)
     document = _object(data)
     ruleset = _object(document.get("ruleset"))
+    computed_hash = source_hash(data)
+    recorded_hash = ruleset.get("source_hash")
+    if isinstance(recorded_hash, str) and recorded_hash != computed_hash:
+        msg = f"{rel}: ruleset source_hash does not match the resource"
+        raise ValueError(msg)
     owner = _object(document.get("verification")).get("owner") or DEFAULT_OWNER
     valid_from = ruleset.get("effective_from") or (
         f"{year}-01-01" if year is not None else None
@@ -123,7 +148,7 @@ def _entry(rel: Path, data: object) -> dict[str, Any]:
         "valid_to": valid_to,
         "ruleset_id": ruleset.get("id"),
         "ruleset_version": ruleset.get("version"),
-        "source_hash": ruleset.get("source_hash"),
+        "source_hash": computed_hash,
         "source_type": ruleset.get("source_type"),
         "owner": owner,
         "wheel_resource": rel.as_posix() + ".gz",
@@ -131,6 +156,19 @@ def _entry(rel: Path, data: object) -> dict[str, Any]:
     if valid_from is None:
         entry["validity_note"] = NO_VALIDITY.get(
             dataset, "the resource states no validity"
+        )
+    if entry["schema_version"] is None:
+        entry["schema_note"] = (
+            f"validated by {entry['model']}; the resource format does not declare "
+            "an explicit schema version"
+        )
+    if not ruleset:
+        entry["ruleset_note"] = NO_RULESET.get(
+            dataset, "the resource carries no enclosing ruleset identity"
+        )
+    if entry["source_type"] is None:
+        entry["source_note"] = NO_RULESET.get(
+            dataset, "the resource states no source type"
         )
     return entry
 
