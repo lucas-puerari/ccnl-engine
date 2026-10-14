@@ -241,8 +241,8 @@ human task: no script raises a status. The schema gate requires:
 | Claim | Fields |
 |---|---|
 | Rule `verified` | A citation, `extraction.verified_by`, `extraction.verified_at`, an exact location (`location.page` or `location.section`), and `location.source_document.sha256`, the sha256 of the document file the value was read from; in a CCNL file, an `extraction.review_id` that names an entry of `verification.reviews` |
-| CCNL readiness `reviewed` | `confidence` `verified`, an entry in `verification.reviews` and no `assumed` or `missing` payable rule in the CCNL file |
-| CCNL readiness `production` | The `reviewed` evidence, `verification.owner` and `verification.review_due` after the last review |
+| CCNL readiness `reviewed` | `confidence` `verified`, an entry in `verification.reviews`, no `assumed` or `missing` payable rule in the CCNL file, `verification.owner` and `verification.review_due` after the last review |
+| CCNL readiness `production` | The `reviewed` evidence |
 
 ## Updating the evidence baseline
 

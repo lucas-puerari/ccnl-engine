@@ -728,7 +728,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "da543ab4d78b73f123785a3cd2583dd95200cf4a900ee4e487430c7369662a9f",
+    "source_hash": "88b082bcc00183937088167a37e48e6080a4a48ef7b52904f7b6c6f9ddf16f8d",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1039,6 +1039,7 @@
   "verification": {
     "confidence": "verified",
     "readiness": "reviewed",
+    "owner": "maintainer",
     "verified_cases": 0,
     "reviews": [
       {
@@ -1080,6 +1081,7 @@
           "The 2025-2027 renewal is an ipotesi of 29 July 2026, not in force."
         ]
       }
-    ]
+    ],
+    "review_due": "2026-12-31"
   }
 }

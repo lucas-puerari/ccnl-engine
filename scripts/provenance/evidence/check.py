@@ -9,9 +9,10 @@ Two checks back the two gates of :mod:`scripts.provenance.check`:
   the cited document (``location.source_document.sha256``); in a CCNL file
   it also names the entry of the review log that records the check
   (``extraction.review_id`` in ``verification.reviews``).  A
-  ``production`` CCNL names its owner, holds at least one review and the
-  date the next one is due, after the last review, with ``confidence``
-  ``verified``.  A CCNL ruleset id is ``ccnl/<ccnl_id>``.
+  ``reviewed`` or ``production`` CCNL, a candidate for production or
+  one in it, names its owner and the date its next review is due, after
+  the last review; a ``production`` CCNL also holds at least one review,
+  with ``confidence`` ``verified``.  A CCNL ruleset id is ``ccnl/<ccnl_id>``.
   Labels that outrun their evidence, an estimated or uncited rule labelled
   ``derived`` and a ``reviewed`` CCNL with weak rules, are checked by
   :mod:`scripts.provenance.label.check` and have no baseline.
@@ -48,7 +49,6 @@ WEAK: Final = ("assumed", "missing")
 ENGINE_LIMITATIONS: Final = "limitation/engine.json"
 _RANK: Final = {status: rank for rank, status in enumerate(payable_rules.STATUSES)}
 _SHA256: Final = re.compile(r"^[0-9a-f]{64}$")
-_PRODUCTION_FIELDS: Final = ("owner", "reviews")
 
 type Json = dict[str, object]
 
@@ -380,23 +380,32 @@ def _review_ids(data: Json) -> frozenset[str]:
     return frozenset(str(_as_dict(entry).get("id")) for entry in entries)
 
 
-def _production_errors(verification: Json) -> Iterator[str]:
-    """Yield the evidence a ``production`` CCNL lacks.
+def _owner_errors(tier: str, verification: Json) -> Iterator[str]:
+    """Yield the owner and next review a ``reviewed`` or ``production`` CCNL lacks.
 
     Yields:
         One reason per missing or inconsistent field.
     """
-    for key in _PRODUCTION_FIELDS:
-        if not verification.get(key):
-            yield f"production without verification.{key}"
-    if verification.get("confidence") != "verified":
-        yield "production without confidence 'verified'"
+    if not verification.get("owner"):
+        yield f"{tier} without verification.owner"
     last = _last_review(verification)
     due = _date(verification.get("review_due"))
     if due is None:
-        yield "production without a valid verification.review_due"
+        yield f"{tier} without a valid verification.review_due"
     elif last is not None and due <= last:
         yield "verification.review_due is not after the last review"
+
+
+def _production_errors(verification: Json) -> Iterator[str]:
+    """Yield the evidence a ``production`` CCNL lacks beyond its owner.
+
+    Yields:
+        One reason per missing or inconsistent field.
+    """
+    if not verification.get("reviews"):
+        yield "production without verification.reviews"
+    if verification.get("confidence") != "verified":
+        yield "production without confidence 'verified'"
 
 
 def _ccnl_errors(file: str, data: Json) -> Iterator[str]:
@@ -405,8 +414,12 @@ def _ccnl_errors(file: str, data: Json) -> Iterator[str]:
     if ruleset_id is not None and ruleset_id != expected:
         yield f"{file}: ruleset.id {ruleset_id!r} is not {expected!r}"
     verification = _as_dict(data.get("verification"))
-    if verification.get("readiness") == "production":
-        yield from (f"{file}: {e}" for e in _production_errors(verification))
+    tier = verification.get("readiness")
+    if tier in {"reviewed", "production"}:
+        errors = list(_owner_errors(str(tier), verification))
+        if tier == "production":
+            errors += _production_errors(verification)
+        yield from (f"{file}: {e}" for e in errors)
 
 
 def schema_errors(

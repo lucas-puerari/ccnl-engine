@@ -1039,7 +1039,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "68e5cf719175b1491449646c2a06d179f0f12a83e285f1a03fb2e20ec04106b8",
+    "source_hash": "ea23c3812cf4cce6d175207c2f9c35b7fee5eb07a1e1a236deb0f40629ff006f",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1407,6 +1407,7 @@
     ],
     "confidence": "verified",
     "readiness": "reviewed",
+    "owner": "maintainer",
     "review_due": "2027-12-31"
   }
 }

@@ -35,15 +35,16 @@ When a renewal is in progress but not yet modelled, the active ruleset's
 `effective_until` is left open and a `needs_review` flag is set on the
 affected salary table values.
 
-### Production rulesets
+### Owners and next reviews
 
-Each `production` CCNL has an owner who monitors its renewals and the INPS
-and tax rules of its sector, within the windows above, and a next review
-date (`verification.review_due`).
-
-| CCNL | Owner | Monitors | Next review |
-|---|---|---|---|
-| Metalmeccanico Federmeccanica | maintainer | renewals and the June IPCA check of the minimi (agreement of 22/11/2025); the INPS circular of the minimali and the rates of the industria | 2027-06-01 |
+Each `reviewed` or `production` CCNL names an owner (`verification.owner`),
+who monitors its renewals and the INPS and tax rules of its sector within
+the windows above, and the date of its next review
+(`verification.review_due`), after its last review: the evidence gate of
+`scripts/provenance/check.py` fails without them. The date falls on the
+next tranche or check the agreement schedules, or, for an expired or
+pending renewal, on the date by which its status is checked again. The
+[Review plan](review-plan.md) lists both for every CCNL.
 
 ---
 

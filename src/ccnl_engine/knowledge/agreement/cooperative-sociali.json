@@ -2927,7 +2927,7 @@
     "effective_until": null,
     "source": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
     "verification_status": "unverified",
-    "source_hash": "a07454efa623bc9681ca5cc14f6140344b6133fa27cfe8a74a9a0e861b92c95b",
+    "source_hash": "2f28adcd5e344c58971416401d0a735150edc4729d543b0921297b8dba29776c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3217,6 +3217,7 @@
   "verification": {
     "confidence": "verified",
     "readiness": "reviewed",
+    "owner": "maintainer",
     "verified_cases": 0,
     "reviews": [
       {
@@ -3268,6 +3269,7 @@
           "The CCNL expired on 31 December 2025; no renewal found through October 2026."
         ]
       }
-    ]
+    ],
+    "review_due": "2027-01-31"
   }
 }

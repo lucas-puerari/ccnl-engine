@@ -2409,7 +2409,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "e91043789393e8e3ea8c68e58e3957849ca4a109cc6fb20921827aede8b678fe",
+    "source_hash": "98456798072c5c79f6955f0ae293782f3c7ffa9f6a30374c203f8ad99eb2e714",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2731,6 +2731,7 @@
   "verification": {
     "confidence": "verified",
     "readiness": "reviewed",
+    "owner": "maintainer",
     "verified_cases": 0,
     "reviews": [
       {
@@ -2826,6 +2827,7 @@
           "The EDR of 2011 (re-parametrisation by level not stated) and of 2021 (TFR treatment contradictory, pp. 54 and 83) stay derived."
         ]
       }
-    ]
+    ],
+    "review_due": "2027-06-01"
   }
 }

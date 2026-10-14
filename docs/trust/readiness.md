@@ -67,7 +67,11 @@ A reviewer, a person or an AI model, must:
 6. Source every `assumed` or `missing` payable rule of the CCNL file: each
    must be `derived` or `verified` (see
    [Provenance](provenance.md#a-label-never-outruns-its-evidence)).
-7. Set `verification.readiness = "reviewed"` in the CCNL JSON.
+7. Record the owner in `verification.owner` and the date the next review is
+   due in `verification.review_due`, after the date of the last entry of the
+   review log: a `reviewed` CCNL is a candidate for `production`, so it is
+   monitored from the start (see the [Review plan](review-plan.md)).
+8. Set `verification.readiness = "reviewed"` in the CCNL JSON.
 
 ### `reviewed` → `production`
 

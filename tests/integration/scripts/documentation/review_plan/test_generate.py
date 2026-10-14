@@ -25,7 +25,9 @@ def test_workers_reads_the_estimate(text: object, expected: int) -> None:
 
 
 def _agreement(slug: str, sector: str, workers_: int, weak: int) -> Agreement:
-    return Agreement(slug, sector, workers_, "exploratory", None, False, weak, 0, 0)
+    return Agreement(
+        slug, sector, workers_, "exploratory", None, None, False, weak, 0, 0
+    )
 
 
 def test_groups_follow_workers_then_weak_rules() -> None:
