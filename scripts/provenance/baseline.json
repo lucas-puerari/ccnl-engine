@@ -1339,6 +1339,7 @@
       "edilizia-artigianato-cna/apprentice_inps_rates_unsourced",
       "edilizia-artigianato-cna/apprentice_seniority",
       "edilizia-artigianato-cna/cassa_edile_accruals_missing",
+      "edilizia-artigianato-cna/cigo_rate_by_activity",
       "edilizia-artigianato-cna/contractual_fund_uncovered",
       "edilizia-artigianato-cna/inps_sector_rates_unsourced",
       "edilizia-artigianato-cna/seniority_cadence_unconfirmed"
@@ -1435,7 +1436,8 @@
     ],
     "agreement/lapidei-industria.json": [
       "lapidei-industria/apprentice_seniority",
-      "lapidei-industria/apprenticeship_passthrough"
+      "lapidei-industria/apprenticeship_passthrough",
+      "lapidei-industria/cigo_rate_by_activity"
     ],
     "agreement/laterizi-industria-f021.json": [
       "laterizi-industria-f021/apprentice_seniority",
@@ -1476,6 +1478,7 @@
     ],
     "agreement/legno-lapidei-artigianato-confartigianato.json": [
       "legno-lapidei-artigianato-confartigianato/apprentice_inps_rates_unsourced",
+      "legno-lapidei-artigianato-confartigianato/cigo_rate_by_activity",
       "legno-lapidei-artigianato-confartigianato/impiegati_apprenticeship_duration",
       "legno-lapidei-artigianato-confartigianato/inps_sector_rates_unsourced",
       "legno-lapidei-artigianato-confartigianato/lapidei_tables_not_modelled",
@@ -1492,6 +1495,7 @@
       "marittimi-industria-armatoriale/apprentice_seniority"
     ],
     "agreement/materiali-costruzione-lapidei-confapi.json": [
+      "materiali-costruzione-lapidei-confapi/cigo_rate_by_activity",
       "materiali-costruzione-lapidei-confapi/contractual_fund_partial"
     ],
     "agreement/metalmeccanica-cooperative.json": [
@@ -1595,11 +1599,12 @@
       "pubblici-esercizi-fipe-angem/small_company_pay_reduction"
     ],
     "agreement/pulizia-artigianato-confartigianato.json": [
+      "pulizia-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "pulizia-artigianato-confartigianato/apprentice_seniority",
       "pulizia-artigianato-confartigianato/apprenticeship_percentages_2022",
-      "pulizia-artigianato-confartigianato/artisan_inps_rates_unverified",
       "pulizia-artigianato-confartigianato/health_and_bilateral_funds",
       "pulizia-artigianato-confartigianato/ind_fun_months_per_year",
+      "pulizia-artigianato-confartigianato/inps_sector_rates_unsourced",
       "pulizia-artigianato-confartigianato/level_2_seniority_amount",
       "pulizia-artigianato-confartigianato/overtime_weekly_threshold"
     ],

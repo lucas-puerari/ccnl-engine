@@ -169,7 +169,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 65 | T241 | [CCNL Istituzioni Formative Private (Scuole Private Religiose) — AGIDAE](scuole-private-agidae.md) | istruzione privata | ~50k | — | ✅ | — | 0 / 43 / 1 / 1 | 🧪 | 🤖 |
 | 66 | T141 | [CCNL Istituzioni Socio-Assistenziali — UNEBA](uneba-uneba.md) | servizi socio-assistenziali | ~130k | — | ⚠️ | base_salary, seniority | 0 / 41 / 2 / 0 | 🧪 | 🤖 |
 | 67 | T131 | [CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE)](istituzioni-servizi-socio-assistenziali-anaste.md) | servizi socio-assistenziali | ~120k | — | ⚠️ | seniority | 0 / 31 / 2 / 0 | 🧪 | 🤖 |
-| 68 | F041 | [CCNL Lapidei — Industria (Confindustria Marmomacchine/ANEPLA)](lapidei-industria.md) | industria lapidea e delle cave | ~18k | — | ⚠️ | base_salary, seniority | 0 / 79 / 1 / 1 | 🧪 | 🤖 |
+| 68 | F041 | [CCNL Lapidei — Industria (Confindustria Marmomacchine/ANEPLA)](lapidei-industria.md) | industria lapidea e delle cave | ~18k | — | ⚠️ | base_salary, inps_employer, seniority | 0 / 79 / 1 / 1 | 🧪 | 🤖 |
 | 69 | F021 | [CCNL Laterizi e Manufatti Cementizi - Industria](laterizi-industria-f021.md) | industria | ~17k | — | ⚠️ | base_salary, seniority | 0 / 98 / 2 / 0 | 🧪 | 🤖 |
 | 70 | D0L1 | [CCNL Lavanderie Industriali (Assosistema Confindustria)](lavanderie-industriali-assosistema.md) | lavanderie-industriali | ~17k | — | ⚠️ | seniority | 0 / 37 / 1 / 1 | 🧪 | 🤖 |
 | 71 | V925 | [CCNL Lavoratori Dipendenti Organizzazioni Sindacali (UNSIC/CONFSAL)](ooss-unsic-confsal.md) | Organizzazioni sindacali nazionali e territoriali | ~7k | 2023 | ⚠️ | base_salary, seniority | 0 / 19 / 2 / 0 | 🧪 | 🤖 |
@@ -179,7 +179,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 75 | I100 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | logistica | ~430k | 2024 | ⚠️ | seniority | 41 / 22 / 0 / 0 | 👁 | 🧑 |
 | 76 | I100 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra) - Personale viaggiante](logistica-trasporto-confetra-viaggiante.md) | logistica | ~430k | 2024 | ⚠️ | base_salary, seniority | 53 / 30 / 0 / 0 | 👁 | 🧑 |
 | 77 | I391 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | navigazione marittima — personale di terra | ~15k | — | ⚠️ | seniority | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
-| 78 | F020 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | Industria materiali da costruzione — Lapidei piccola industria | ~5000 | 2025 | ✅ | pension_fund_contribution | 0 / 0 / 70 / 0 | 🧪 | 🤖 |
+| 78 | F020 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | Industria materiali da costruzione — Lapidei piccola industria | ~5000 | 2025 | ⚠️ | inps_employer, pension_fund_contribution | 0 / 0 / 70 / 0 | 🧪 | 🤖 |
 | 79 | C016 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | metalmeccanico cooperativo | ~28k | — | ⚠️ | base_salary, seniority | 0 / 45 / 1 / 1 | 🧪 | 🤖 |
 | 80 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | — | ⚠️ | inps_employer, seniority | 0 / 80 / 1 / 0 | 🧪 | 🤖 |
 | 81 | C01A | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | metalmeccanico | ~100k | — | ✅ | overtime | 0 / 44 / 0 / 1 | 🧪 | 🤖 |

@@ -29,10 +29,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ✅ |
-| **Limits of this contract** | pension_fund_contribution |
+| **Core payroll path** | ⚠️ |
+| **Limits of this contract** | inps_employer, pension_fund_contribution |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -97,6 +97,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `pension_fund_contribution` applies; the run takes the engine code path.
 
     **Remediation:** Source the rule of the accordo of 10 November 2020 for a partial month and part time and model it, then remove this note.
+
+!!! warning "materiali-costruzione-lapidei-confapi/cigo_rate_by_activity · inps_employer · impact yes · open"
+    CIGO: the operai of the stone-working firms owe 3.30% ('operai delle imprese dell'industria e artigianato lapidei', D.Lgs. 148/2015 art. 13 c. 1 (Normattiva, text in force on 2026-10-14, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art13!vig=2026-10-14, snapshot sha256 3f7019a244e01d36ac8e7c9e25bcf058c777c8ed758418ba261d83867672c46a), lett. d); the industria table charges the 1.70% / 2.00% of lett. a-b, so the employer contributions of an operaio are understated by 1.60 or 1.30 points. Impiegati and quadri owe the 1.70% / 2.00% of lett. e-f the table already charges.
+
+    **Applies when:** `inps_employer` applies; category in operaio.
+
+    **Remediation:** Model the CIGO of D.Lgs. 148/2015 art. 13 c. 1 by activity (edile, lapidei) apart from the tax sector, then remove this note.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.

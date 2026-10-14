@@ -4,7 +4,7 @@
 |---|---|
 | **CNEL code** | `K521` |
 | **Sector** | pulizia artigianato |
-| **Tax sector** | `terziario` |
+| **Tax sector** | `artigianato` |
 | **Last renewal** | 2025-12-17 |
 | **Workers (est.)** | ~84505 |
 | **Ruleset version** | `2025.1` |
@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, holiday_work, inps_employer, leave, night_work, overtime, seniority |
 
-8 documented simplification(s) and 3 missing feature(s): see [Known simplifications](#known-simplifications).
+9 documented simplification(s) and 3 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -131,12 +131,19 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Confirm the level 2 seniority amount (26.85 or 26.86 EUR) against the signed table.
 
-!!! warning "pulizia-artigianato-confartigianato/artisan_inps_rates_unverified · inps_employer · impact unknown · open"
-    SIMPLIFICATION: tax_sector='terziario'. Aliquote INPS artigiane (datoriali) non verificate per 2026. Impatto su employer_cost_annual.
+!!! warning "pulizia-artigianato-confartigianato/inps_sector_rates_unsourced · inps_employer · impact unknown · open"
+    INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.
 
     **Applies when:** `inps_employer` applies.
 
-    **Remediation:** Verify the 2026 employer INPS rates for artisan cleaning firms against the INPS circular.
+    **Remediation:** Source the artigianato rates of 2026 on an INPS or association table, mark the inps block of contribution/2026/artigianato.json derived, then remove this note.
+
+!!! warning "pulizia-artigianato-confartigianato/apprentice_inps_rates_unsourced · inps_employer · impact unknown · open"
+    APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.
+
+    **Applies when:** `inps_employer` applies; contract type in apprentice.
+
+    **Remediation:** Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note.
 
 !!! warning "pulizia-artigianato-confartigianato/health_and_bilateral_funds · bilateral_funds · impact yes · open"
     SIMPLIFICATION: Fondi bilaterali non modellati (Fondo sanitario EUR 10.42*12 + bilateralità EUR 11.65*12). employer_cost_annual sottostimato di ~EUR 267/anno.

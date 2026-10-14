@@ -5,7 +5,7 @@
     "name": "CCNL per i dipendenti delle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione",
     "cnel_code": "K521",
     "sector": "pulizia artigianato",
-    "tax_sector": "terziario",
+    "tax_sector": "artigianato",
     "signatories": [
       "Confartigianato Imprese di Pulizia",
       "CNA Costruzioni — CNA Imprese di Pulizia",
@@ -124,12 +124,31 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: tax_sector='terziario'. Aliquote INPS artigiane (datoriali) non verificate per 2026. Impatto su employer_cost_annual.",
+        "text": "INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.",
         "capability": "inps_employer",
         "monetary_impact": "unknown",
         "limitation": {
-          "variant": "artisan_inps_rates_unverified",
-          "remediation": "Verify the 2026 employer INPS rates for artisan cleaning firms against the INPS circular."
+          "variant": "inps_sector_rates_unsourced",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the artigianato rates of 2026 on an INPS or association table, mark the inps block of contribution/2026/artigianato.json derived, then remove this note."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_inps_rates_unsourced",
+          "applies_when": {
+            "trigger": "run",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note."
         }
       },
       {
@@ -3587,7 +3606,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "f53367a2d48d6148042f0c177dd8ac03cf53dd7e2fb5bdc9b59a002cf6f1658e",
+    "source_hash": "5e938817a092ba6218839cb8a4c8e7e401843b1b415fd51cf05298bdff8f2984",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

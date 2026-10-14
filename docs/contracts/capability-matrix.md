@@ -197,7 +197,7 @@ never grow.
 | 65 | [CCNL Istituzioni Formative Private (Scuole Private Religiose) — AGIDAE](scuole-private-agidae.md) | ✅ | — | 0 / 43 / 1 / 1 |
 | 66 | [CCNL Istituzioni Socio-Assistenziali — UNEBA](uneba-uneba.md) | ⚠️ | base_salary, seniority | 0 / 41 / 2 / 0 |
 | 67 | [CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE)](istituzioni-servizi-socio-assistenziali-anaste.md) | ⚠️ | seniority | 0 / 31 / 2 / 0 |
-| 68 | [CCNL Lapidei — Industria (Confindustria Marmomacchine/ANEPLA)](lapidei-industria.md) | ⚠️ | base_salary, seniority | 0 / 79 / 1 / 1 |
+| 68 | [CCNL Lapidei — Industria (Confindustria Marmomacchine/ANEPLA)](lapidei-industria.md) | ⚠️ | base_salary, inps_employer, seniority | 0 / 79 / 1 / 1 |
 | 69 | [CCNL Laterizi e Manufatti Cementizi - Industria](laterizi-industria-f021.md) | ⚠️ | base_salary, seniority | 0 / 98 / 2 / 0 |
 | 70 | [CCNL Lavanderie Industriali (Assosistema Confindustria)](lavanderie-industriali-assosistema.md) | ⚠️ | seniority | 0 / 37 / 1 / 1 |
 | 71 | [CCNL Lavoratori Dipendenti Organizzazioni Sindacali (UNSIC/CONFSAL)](ooss-unsic-confsal.md) | ⚠️ | base_salary, seniority | 0 / 19 / 2 / 0 |
@@ -207,7 +207,7 @@ never grow.
 | 75 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | ⚠️ | seniority | 41 / 22 / 0 / 0 |
 | 76 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra) - Personale viaggiante](logistica-trasporto-confetra-viaggiante.md) | ⚠️ | base_salary, seniority | 53 / 30 / 0 / 0 |
 | 77 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | ⚠️ | seniority | 0 / 40 / 2 / 0 |
-| 78 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | ✅ | pension_fund_contribution | 0 / 0 / 70 / 0 |
+| 78 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | ⚠️ | inps_employer, pension_fund_contribution | 0 / 0 / 70 / 0 |
 | 79 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | ⚠️ | base_salary, seniority | 0 / 45 / 1 / 1 |
 | 80 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | ⚠️ | inps_employer, seniority | 0 / 80 / 1 / 0 |
 | 81 | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | ✅ | overtime | 0 / 44 / 0 / 1 |

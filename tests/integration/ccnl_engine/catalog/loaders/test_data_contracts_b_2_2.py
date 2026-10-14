@@ -70,9 +70,9 @@ class TestLoadLateriziIndustriaF021:
         assert codes == {"CONTINGENZA", "EDR", "IND_FUNZIONE_QUADRI"}
 
     def test_laterizi_industria_f021_tax_sector(self) -> None:
-        """Contract uses edilizia tax sector (CNEL macrosector F)."""
+        """INPS classes brick makers in the industria (CSC 11108), not edilizia."""
         ccnl = load_ccnl("laterizi-industria-f021.json")
-        assert ccnl.meta.tax_sector == TaxSector.EDILIZIA
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
 
     def test_laterizi_industria_f021_seniority_cadence(self) -> None:
         """5 scatti biennali (cadence 24 months, max 5; thaler.it scatti)."""

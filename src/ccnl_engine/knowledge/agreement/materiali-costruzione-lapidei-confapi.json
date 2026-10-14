@@ -82,6 +82,22 @@
           },
           "remediation": "Source the rule of the accordo of 10 November 2020 for a partial month and part time and model it, then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "CIGO: the operai of the stone-working firms owe 3.30% ('operai delle imprese dell'industria e artigianato lapidei', D.Lgs. 148/2015 art. 13 c. 1 (Normattiva, text in force on 2026-10-14, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art13!vig=2026-10-14, snapshot sha256 3f7019a244e01d36ac8e7c9e25bcf058c777c8ed758418ba261d83867672c46a), lett. d); the industria table charges the 1.70% / 2.00% of lett. a-b, so the employer contributions of an operaio are understated by 1.60 or 1.30 points. Impiegati and quadri owe the 1.70% / 2.00% of lett. e-f the table already charges.",
+        "capability": "inps_employer",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "cigo_rate_by_activity",
+          "applies_when": {
+            "trigger": "run",
+            "worker_categories": [
+              "operaio"
+            ]
+          },
+          "remediation": "Model the CIGO of D.Lgs. 148/2015 art. 13 c. 1 by activity (edile, lapidei) apart from the tax sector, then remove this note."
+        }
       }
     ]
   },
@@ -2068,6 +2084,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "7480cd62e09f9daa3c116b062191d8741afbcbe691769aa10c3e1234022def7a"
+    "source_hash": "0b822635798a66421d8998df919565ba4287a86b90c7e1f49f51eff3c55b25ca"
   }
 }

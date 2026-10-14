@@ -80,9 +80,9 @@ class TestLoadPuliziaArtigianatoConfartigianato:
                 assert lv.fixed_allowances == ()
 
     def test_pulizia_artigianato_confartigianato_tax_sector(self) -> None:
-        """Tax sector is terziario."""
+        """Artisan cleaning firms take the artigianato table."""
         ccnl = load_ccnl("pulizia-artigianato-confartigianato.json")
-        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+        assert ccnl.meta.tax_sector == TaxSector.ARTIGIANATO
 
     def test_pulizia_artigianato_confartigianato_seniority_cadence(
         self,
