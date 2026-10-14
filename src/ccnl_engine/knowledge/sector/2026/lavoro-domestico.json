@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "D.P.R. 917/1986 (TUIR) artt. 11 and 13; D.L. 3/2020 art. 1; L. 207/2024 art. 1 c. 6; L. 199/2025 art. 1; c.c. art. 2120",
     "verification_status": "unverified",
-    "source_hash": "6173f123e51288b3e6db505929a3f02cf56d0e7db2b88d8cd27a1ac76b216524",
+    "source_hash": "7170d01f43f9fad1fe7dbe1e2f0137bb009d4b827dbe9c9f0f26f693bed5e802",
     "source_type": "official_primary"
   },
   "irpef_brackets": [
@@ -220,10 +220,7 @@
     }
   },
   "notes": [
-    "SOURCE: INPS Circolare n. 9 del 3 febbraio 2026 — contributi lavoro domestico 2026.",
-    "INFO: Domestic sector uses flat per-hour contributions (domestic_contributions); the standard 'inps' and 'apprentice' blocks are absent.",
     "INFO: fixed_term_additional_rate retained for informational purposes; the addizionale NASpI is pre-baked into employer_per_hour_fixed_term in domestic_contributions.",
-    "SIMPLIFICATION: CUAF variant (senza CUAF) not modelled; 'con CUAF' amounts used throughout.",
     "INFO: household employers are not sostituti d'imposta (art. 23 c. 1 D.P.R. 600/1973; art. 33 c. 1 D.Lgs. 33/2025 from 2027): the engine withholds no IRPEF or surtax for this sector and ignores the IRPEF rules below.",
     "Art. 16-ter c. 5-bis TUIR (inserted by L. 199/2025 art. 1 c. 4): for a reddito complessivo > EUR 200 000 the deduction for the 19% oneri (spese sanitarie excluded), the donations to political parties and the catastrophe insurance premiums is reduced by EUR 440. The art. 12 and art. 13 TUIR deductions and the ulteriore detrazione are outside its scope; the payroll computes none of the oneri in scope and does not apply the reduction."
   ],
