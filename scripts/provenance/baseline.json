@@ -126,8 +126,7 @@
       "additional_months[2024-10-01]": "assumed"
     },
     "agreement/bcc-credito-cooperativo.json": {
-      "accrual_rule": "missing",
-      "additional_months[2024-09-01]": "assumed"
+      "accrual_rule": "missing"
     },
     "agreement/calzaturiero-assocalzaturifici.json": {
       "accrual_rule": "missing",

@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 41 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 35 verified / 7 derived / 0 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,12 +51,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | — |
+| **Last review** | 2026-10-14 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-14 | claude-opus-5-5 (ai) | Second review of the credito group: stipendio of the eleven levels in the three tranches, scatti, number of monthly payments, against the testo coordinato signed on 19 December 2024. | corrected | The 33 stipendi match Allegato A (p. 149) except two 2026 values, one cent off: 3ª Area 1° livello 2742.35 corrected to 2742.34, 2ª Area 2° livello 2572.10 corrected to 2572.11.<br>13 monthly payments: verified (Art. 46, tredicesima; no further monthly payment in the text).<br>Scatti: amounts match Allegato A; at most 8 for the 1st and 2nd level of the quadri, not 12: the 12 apply only to staff in service on 31 December 1997 (Art. 101). Corrected; the 1997 cohort is noted.<br>The FABI URL of the text no longer serves the PDF; the same signed text is cited from its Eutekne reproduction.<br>Not reviewed here: the hourly pay of Art. 114 (90.66% of one twelfth of the annual pay, divided by 160) and the overtime rates, which stay derived. |
 
 ## Salary table
 
@@ -71,8 +73,8 @@ Latest effective values per level (monthly gross, EUR).
 | `3AP4` | 3rd Professional Area - 4th pay level | € 3,341.90 | 2026-01-01 |
 | `3AP3` | 3rd Professional Area - 3rd pay level | € 3,059.49 | 2026-01-01 |
 | `3AP2` | 3rd Professional Area - 2nd pay level | € 2,890.41 | 2026-01-01 |
-| `3AP1` | 3rd Professional Area - 1st pay level | € 2,742.35 | 2026-01-01 |
-| `2AP2` | 2nd Professional Area - 2nd pay level | € 2,572.10 | 2026-01-01 |
+| `3AP1` | 3rd Professional Area - 1st pay level | € 2,742.34 | 2026-01-01 |
+| `2AP2` | 2nd Professional Area - 2nd pay level | € 2,572.11 | 2026-01-01 |
 | `2AP1` | 2nd Professional Area - 1st pay level | € 2,406.80 | 2026-01-01 |
 | `1AP` | 1st Professional Area - single level | € 2,241.53 | 2026-01-01 |
 
@@ -171,6 +173,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
+| — | — | 2024-07-09 | [↗](https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download) |
 | — | — | 2024-07-09 | [↗](https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf) |
 | — | — | 2024-07-09 | [↗](https://www.kitech.it/tabelle-retributive/banche-credito-cooperativo/) |
 
@@ -186,6 +189,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Workers covered: approximately 36,000 (Federcasse / Banche di Credito Cooperativo, Casse Rurali ed Artigiane). Agreement signed 2024-07-09; valid until 2025-12-31 per Art. 9.
     
     INPS rates from 2026-credito.json (same sector as bancari-abi). IRPEF 2026 brackets applied (L. 199/2025).
+    
+    SCATTI: at most 8 for the 1st and 2nd level of the quadri direttivi and for the aree professionali, 7 for the 3rd and 4th level of the quadri (Art. 101, Art. 113). Staff in service on 31 December 1997 keep 12 scatti (9 for the 3rd and 4th level of the quadri) plus a further periodic increase: the engine applies the limits of later hires, so a run for that cohort past the 8th (7th) scatto needs the extra amounts as a fixed input.
     
 
 ## Raw data
