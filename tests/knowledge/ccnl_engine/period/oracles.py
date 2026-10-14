@@ -11,8 +11,17 @@ from tests.knowledge.ccnl_engine.surtax.oracles import (
     municipal_alghero,
     regional_sardegna,
 )
+from tests.knowledge.ccnl_engine.tax_credit.oracles import (
+    somma_esente,
+    trattamento_integrativo,
+)
 
-__all__ = ["CONCIA_D2_2026", "ConciaYear"]
+__all__ = [
+    "CONCIA_D2_2026",
+    "CONCIA_D2_JULY_HIRE_2026",
+    "ConciaMidYear",
+    "ConciaYear",
+]
 
 _CENT = Decimal("0.01")
 
@@ -124,6 +133,99 @@ def _year() -> ConciaYear:
 
 #: The oracle of the scenario described in the module docstring.
 CONCIA_D2_2026 = _year()
+
+#: Months of a hire on 1 July: July to December.
+_JULY_HIRE_MONTHS = 6
+#: Days of employment from 1 July to 31 December 2026.
+_JULY_HIRE_DAYS = 184
+
+
+def _inps(base: Decimal) -> Decimal:
+    return _cents(base * _EMPLOYEE_IVS_RATE) + _cents(base * _EMPLOYEE_CIGS_RATE)
+
+
+@dataclass(frozen=True)
+class ConciaMidYear:
+    """The oracle figures of a Concia D2 hired on 1 July 2026, in EUR.
+
+    Six regular months and a tredicesima of six twelfths, each item of the
+    payslip (minimo, EDR) taken to cents on its own, as the payslip shows
+    them.  The only income of the year is the employment, so the reddito
+    complessivo is its taxable income: below 15,000 EUR, it takes the
+    trattamento integrativo and the somma esente, both settled by the
+    conguaglio.
+
+    Attributes:
+        monthly_gross: Gross of each regular month.
+        monthly_inps: Employee INPS of each regular month.
+        thirteenth_gross: Gross of the tredicesima.
+        thirteenth_inps: Employee INPS of the tredicesima.
+        payments: Number of payments of the tax year.
+        days: Days of employment in the tax year.
+        gross: Gross of the year.
+        inps: Employee INPS of the year.
+        taxable: IRPEF taxable income of the year.
+        irpef: Net IRPEF of the year, withheld by the conguaglio.
+        trattamento: Trattamento integrativo of the year.
+        somma_esente: Somma esente of the year.
+        net: Net pay of the year, credits included.
+        regional: Regional surtax of 2026, withheld in 2027.
+        municipal: Municipal surtax of 2026, withheld in 2027.
+    """
+
+    monthly_gross: Decimal
+    monthly_inps: Decimal
+    thirteenth_gross: Decimal
+    thirteenth_inps: Decimal
+    payments: int
+    days: int
+    gross: Decimal
+    inps: Decimal
+    taxable: Decimal
+    irpef: Decimal
+    trattamento: Decimal
+    somma_esente: Decimal
+    net: Decimal
+    regional: Decimal
+    municipal: Decimal
+
+
+def _whole_euro(amount: Decimal) -> Decimal:
+    return amount.quantize(Decimal(1), rounding=ROUND_HALF_UP)
+
+
+def _july_hire() -> ConciaMidYear:
+    full = CONCIA_D2_2026
+    share = Decimal(_JULY_HIRE_MONTHS) / 12
+    thirteenth = _cents(full.minimum * share) + _cents(full.edr * share)
+    thirteenth_inps = _inps(_whole_euro(thirteenth))
+    gross = full.monthly_gross * _JULY_HIRE_MONTHS + thirteenth
+    inps = full.monthly_inps * _JULY_HIRE_MONTHS + thirteenth_inps
+    taxable = gross - inps
+    irpef = net_irpef(taxable, _JULY_HIRE_DAYS)
+    trattamento = trattamento_integrativo(taxable, _JULY_HIRE_DAYS)
+    exempt = somma_esente(taxable, _JULY_HIRE_DAYS)
+    return ConciaMidYear(
+        monthly_gross=full.monthly_gross,
+        monthly_inps=full.monthly_inps,
+        thirteenth_gross=thirteenth,
+        thirteenth_inps=thirteenth_inps,
+        payments=_JULY_HIRE_MONTHS + 1,
+        days=_JULY_HIRE_DAYS,
+        gross=gross,
+        inps=inps,
+        taxable=taxable,
+        irpef=irpef,
+        trattamento=trattamento,
+        somma_esente=exempt,
+        net=gross - inps - irpef + trattamento + exempt,
+        regional=regional_sardegna(taxable, irpef),
+        municipal=municipal_alghero(taxable, irpef),
+    )
+
+
+#: The oracle of a Concia D2 hired on 1 July 2026.
+CONCIA_D2_JULY_HIRE_2026 = _july_hire()
 
 
 __all__ = ["C3_MINIMUM_FROM_JUNE_2026", "employee_taxable"]
