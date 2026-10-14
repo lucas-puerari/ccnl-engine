@@ -2639,7 +2639,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "0da1bf494ce04087973f1aa7652ecccb33dfd1569e71260bb7bfda9f8ddec919",
+      "source_hash": "159288a4f4cb3defc2b6e09afa7df497dc75ea8318853d1f0926670ca1c4cbe0",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "pay_item/italy.json.gz",
