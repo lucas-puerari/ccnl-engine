@@ -1435,7 +1435,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "1ffd056aec5dd240dcbdec191fee5a56a1a369a9c531c7bab23f6f4768b62621",
+    "source_hash": "4e4a5410573b64adec6aca4293cd5c29b900165446cc584526e39171e473d6da",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1836,6 +1836,29 @@
           "The ANCE Sassari table of 1 February 2025 computes the 18.5% and the 4.95% on a sub-total with the hourly EDR (0,06); the CCNL base of Art. 24 does not list the EDR and the data follow the CCNL.",
           "cassa_edile_riposi_missing closed; the festività of Art. 17, the capisquadra maggiorazione, the Allegato D sickness and injury percentages and its point 4 exception declared.",
           "Promoted to production."
+        ]
+      },
+      {
+        "id": "2026-10-14-ai-p1",
+        "date": "2026-10-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "P1 audit: the minimi of the operai for the tranches of 1 February 2025, 1 March 2026 and 1 March 2027 against the ANCE national table; the remaining derived records.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
+            "sha256": "d01c1635bf8f5185043f6c5509f0c829fb58bdb1d9ef2943f554d825f60d1710"
+          },
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "The 12 monthly minimi of the four operai levels match the impiegati column of the national table, and each over 173 is the hourly minimo the table prints for the operai.",
+          "Contingenza and EDR stay derived: Art. 11 of the CCNL of 19 April 2010 refers to the interconfederal agreements and no national signed table prints the amounts; the ANCE provincial tables do.",
+          "Prevedi stays derived (fund information sheet); the accrual rule is a placeholder the operai do not read (no extra month paid by the employer)."
         ]
       }
     ],
