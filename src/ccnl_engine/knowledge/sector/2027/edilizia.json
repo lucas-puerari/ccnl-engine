@@ -9,7 +9,7 @@
     "published_at": "2026-10-09",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "742f7517f713be5a8e5c9b1d7903a94fc96ab2d0bfe4a43e66d259cb76b68b6f",
+    "source_hash": "9ca42864d365ee990bfb19d6fa579c544dcb59bc9854bc04511038086ae83dc6",
     "source_type": "estimated",
     "provisional": true
   },
@@ -190,12 +190,7 @@
   "notes": [
     "PROVISIONAL 2027: the values are those of the 2026 ruleset, carried over until the 2027 sources are published (ruleset.provisional); a run that reads this ruleset traverses the open engine limitation provisional_ruleset and is not payable.",
     "IRPEF brackets: statutory 2026 (L. 199/2025, Art. 1 c. 3). Art. 13 constants versioned in YearRules.work_deduction.",
-    "SIMPLIFICATION: Cassa Edile contributions (~18.5% of gross for operai — ferie 8.5%, gratifica natalizia 10%) are NOT included in employer_tiers. The employer_cost_annual computed by the engine understates the real cost for operai. Impiegati are less affected as Cassa Edile covers mainly operai items.",
-    "INPS employer — rates from kitech.it (p=5_152, p=5_154, data 1998 structure). Proxy values: ≤15 employees 28.46%; 16-50 employees 29.06%; >50 employees 29.50% (estimated). Verify against INPS annual circular for 2026 exact values.",
     "fixed_term_additional_rate, fixed_term_renewal_increment: NASpI surcharge of fixed-term contracts, L. 92/2012 art. 2 c. 28-29; see fixed_term_additional_rate_provenance.",
-    "INPS employee — employee_tiers: 9.19% (IVS + NASpI) up to 15 employees; 9.49% above 15 (0.30% CIGS employee share, D.Lgs. 148/2015 art. 23).",
-    "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
-    "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026; L. 335/1995 art. 2 c. 18). Applies to workers without contributions before 1 Jan 1996 and to those who opted for the contributory system (art. 1 c. 23); the engine derives it from the contribution history.",
     "Art. 16-ter c. 5-bis TUIR (inserted by L. 199/2025 art. 1 c. 4): for a reddito complessivo > EUR 200 000 the deduction for the 19% oneri (spese sanitarie excluded), the donations to political parties and the catastrophe insurance premiums is reduced by EUR 440. The art. 12 and art. 13 TUIR deductions and the ulteriore detrazione are outside its scope; the payroll computes none of the oneri in scope and does not apply the reduction."
   ],
   "irpef_brackets_provenance": {

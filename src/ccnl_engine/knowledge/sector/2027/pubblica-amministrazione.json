@@ -9,7 +9,7 @@
     "published_at": "2026-10-09",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "568551c705aa2e74c9d101b557f79d6bcbb1a59d4fb1c638cc2c5a137ca837ec",
+    "source_hash": "f1912a46287eff4de87a2c3b3b0592a45dcc3081a614be43817b8666f7153817",
     "source_type": "estimated",
     "provisional": true
   },
@@ -149,9 +149,7 @@
     "PROVISIONAL 2027: the values are those of the 2026 ruleset, carried over until the 2027 sources are published (ruleset.provisional); a run that reads this ruleset traverses the open engine limitation provisional_ruleset and is not payable.",
     "IRPEF brackets: three-bracket structure of art. 11 c. 1 TUIR; second bracket rate reduced from 35% to 33% from 2026-01-01 by L. 199/2025 art. 1 c. 3.",
     "Art. 13 co. 1 TUIR work-income deduction: statutory piecewise schedule per D.Lgs. 216/2023 and L. 207/2024. Constants versioned in YearRules.work_deduction.",
-    "INPS rates for pubblici dipendenti (CTPS — Cassa Trattamenti Pensionistici dei dipendenti dello Stato): employee 8.80%, employer 24.20%, total 33.00%. Confirmed from kitech.it (https://www.kitech.it/Contributi-previdenziali.aspx?p=17_210) and corroborated by INPS sources (33% total = 8.80% employee + 24.20% employer for CTPS, per INPS Gestione Dipendenti Pubblici). NOTE: other ex-INPDAP sub-funds differ — CPDEL/CPS/CPI total 32.65% (employee 8.85%, employer 23.80%); military, healthcare, and school sub-funds may vary. PA contracts mapped in this engine target CTPS-insured employees (civil servants); other sub-funds would require separate data.",
     "fixed_term_additional_rate, fixed_term_renewal_increment: NASpI surcharge of fixed-term contracts, L. 92/2012 art. 2 c. 28-29; see fixed_term_additional_rate_provenance.",
-    "SIMPLIFICATION: apprentice block is a schema-required placeholder (same rates as employee/employer); apprendistato is not applicable to PA contracts under D.Lgs. 165/2001 and no CCNL track will reference these values.",
     "Art. 16-ter c. 5-bis TUIR (inserted by L. 199/2025 art. 1 c. 4): for a reddito complessivo > EUR 200 000 the deduction for the 19% oneri (spese sanitarie excluded), the donations to political parties and the catastrophe insurance premiums is reduced by EUR 440. The art. 12 and art. 13 TUIR deductions and the ulteriore detrazione are outside its scope; the payroll computes none of the oneri in scope and does not apply the reduction."
   ],
   "irpef_brackets_provenance": {

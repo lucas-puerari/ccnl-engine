@@ -9,7 +9,7 @@
     "published_at": "2026-10-09",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "52ecb9f0196ed74545e33acc7b4e1fad18fb3d4c9d65adbed970d6a73ec0d1e8",
+    "source_hash": "d978b7af2d2da3fd83f320563e008ed3d1dab9b3b9446274c97f4d51d78714eb",
     "source_type": "estimated",
     "provisional": true
   },
@@ -188,11 +188,7 @@
     "PROVISIONAL 2027: the values are those of the 2026 ruleset, carried over until the 2027 sources are published (ruleset.provisional); a run that reads this ruleset traverses the open engine limitation provisional_ruleset and is not payable.",
     "IRPEF brackets: three-bracket structure of art. 11 c. 1 TUIR; second bracket rate reduced from 35% to 33% from 2026-01-01 by L. 199/2025 art. 1 c. 3.",
     "Art. 13 co. 1 TUIR work-income deduction: statutory piecewise schedule per D.Lgs. 216/2023 and L. 207/2024. Constants versioned in YearRules.work_deduction.",
-    "INPS rates: credito sector (Credito e Assicurazioni). Rates confirmed from kitech.it 2026 Table 6.1 (https://www.kitech.it/Contributi-previdenziali.aspx?p=9_165): dirigenti and operai/impiegati 35.95% total = 9.19% employee + 26.76% employer. No size tiers (flat structure corroborated by absence of size-tier pages for credito on kitech.it). NOTE: kitech.it shows 'salariati' at 38.50% total (29.31% employer); this category (hourly auxiliary workers) is not present in standard credito CCNLs and is not modelled. SIMPLIFICATION: Fondo di solidarietà del credito (D.Lgs. 148/2015, bilateral fund substituting CIG/CIGS; ordinary rate 0.50% total: ~0.33% employer + ~0.17% employee) is presumed aggregated into the 26.76%/9.19% kitech.it totals. If the fund is reported separately by the employer, actual INPS rates would be 26.43% employer and 9.02% employee (IVS+NASpI only), and the 0.33%/0.17% must be remitted on top — verify against INPS circular for Fondo credito.",
     "fixed_term_additional_rate, fixed_term_renewal_increment: NASpI surcharge of fixed-term contracts, L. 92/2012 art. 2 c. 28-29; see fixed_term_additional_rate_provenance.",
-    "INPS dipendente — employee_rate 9.19% flat confirmed (kitech.it 2026); includes IVS employee share + NASpI employee share. Fondo di solidarietà employee share (if not included in 9.19%) would be an additional ~0.17% — see SIMPLIFICATION note above.",
-    "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
-    "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026; L. 335/1995 art. 2 c. 18). Applies to workers without contributions before 1 Jan 1996 and to those who opted for the contributory system (art. 1 c. 23); the engine derives it from the contribution history.",
     "Art. 16-ter c. 5-bis TUIR (inserted by L. 199/2025 art. 1 c. 4): for a reddito complessivo > EUR 200 000 the deduction for the 19% oneri (spese sanitarie excluded), the donations to political parties and the catastrophe insurance premiums is reduced by EUR 440. The art. 12 and art. 13 TUIR deductions and the ulteriore detrazione are outside its scope; the payroll computes none of the oneri in scope and does not apply the reduction."
   ],
   "irpef_brackets_provenance": {

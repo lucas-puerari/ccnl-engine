@@ -9,7 +9,7 @@
     "published_at": "2026-10-09",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "aafb2b260191011dfdf8795b711ff6df607f5543a5124e4e31ac944964ac2a47",
+    "source_hash": "33aaafa2fe0168b27794755481ef2e7d8a34abea0b659a34d55532164de57c79",
     "source_type": "estimated",
     "provisional": true
   },
@@ -188,11 +188,7 @@
     "PROVISIONAL 2027: the values are those of the 2026 ruleset, carried over until the 2027 sources are published (ruleset.provisional); a run that reads this ruleset traverses the open engine limitation provisional_ruleset and is not payable.",
     "IRPEF brackets: three-bracket structure of art. 11 c. 1 TUIR; second bracket rate reduced from 35% to 33% from 2026-01-01 by L. 199/2025 art. 1 c. 3.",
     "Art. 13 co. 1 TUIR work-income deduction: statutory piecewise schedule (circolare AdE 4/E/2025, p. 6). Constants versioned in YearRules.work_deduction.",
-    "INPS rates: terziario sector (commercio ingrosso e dettaglio, CUAF intera). employer_tiers sourced from kitech.it 2026 (https://www.kitech.it/Contributi-previdenziali.aspx?p=4_138 for <=50; p=4_136 for 51-200; p=4_134 for >200). <=50 employees 28.98% (Table 7.1); >50 employees 29.58% — kitech.it shows identical rate for 51-200 and >200, so a single tier suffices. The +0.60pp employer delta (28.98% to 29.58%) reflects the switch from FIS (Fondo di Integrazione Salariale, applied for firms up to 50 employees) to CIGS ordinaria (Cassa Integrazione Guadagni Straordinaria, applied for firms above 50 employees); the CIGS employer share is 0.60% while the FIS employer share at that headcount is lower. Symmetrically, for >50 the employee rate rises from 9.19% to 9.49% (+0.30% CIGS employee share), see employee_tiers. SIMPLIFICATION: ivs_rate 23.81% at tier level is uniform across categories (no rate_by_category in terziario).",
     "fixed_term_additional_rate, fixed_term_renewal_increment: NASpI surcharge of fixed-term contracts, L. 92/2012 art. 2 c. 28-29; see fixed_term_additional_rate_provenance.",
-    "INPS dipendente — employee_tiers: 9.19% up to 50 employees; 9.49% above 50 (0.30% CIGS employee share, consistent with the employer tier that adds CIGS above 50).",
-    "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
-    "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026; L. 335/1995 art. 2 c. 18). Applies to workers without contributions before 1 Jan 1996 and to those who opted for the contributory system (art. 1 c. 23); the engine derives it from the contribution history.",
     "Art. 16-ter c. 5-bis TUIR (inserted by L. 199/2025 art. 1 c. 4): for a reddito complessivo > EUR 200 000 the deduction for the 19% oneri (spese sanitarie excluded), the donations to political parties and the catastrophe insurance premiums is reduced by EUR 440. The art. 12 and art. 13 TUIR deductions and the ulteriore detrazione are outside its scope; the payroll computes none of the oneri in scope and does not apply the reduction."
   ],
   "irpef_brackets_provenance": {

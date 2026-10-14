@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "D.P.R. 917/1986 (TUIR) artt. 11 and 13; D.L. 3/2020 art. 1; L. 207/2024 art. 1 c. 6; L. 199/2025 art. 1; c.c. art. 2120",
     "verification_status": "unverified",
-    "source_hash": "82af205c9b9e7468239fd69096877177897b3126367b8bcbf2954d8d91891d07",
+    "source_hash": "05660d5725f43bf8d50d011859e1060a9354f63506f96d514aeacf7a62872032",
     "source_type": "official_primary"
   },
   "irpef_brackets": [
@@ -285,11 +285,7 @@
   },
   "notes": [
     "IRPEF brackets: statutory 2026 (L. 199/2025, Art. 1 c. 3). Art. 13 constants versioned in YearRules.work_deduction.",
-    "INPS employer — components verified for manufacturing/metalworking industry 2026: IVS 23.81% (Circ. INPS 6/2026) + DS/NASpI 1.61% + CUAF 2.48% + CIGO 1.70% (≤50 employees) or 2.00% (>50 employees, D.Lgs. 148/2015 art. 5, Circ. INPS 1/2026) + FIS 0.533% employer (6-15 employees, 2/3 of 0.80%, Circ. INPS 5/2025) or CIGS 0.60% employer (>15 employees, 2/3 of 0.90%). Total by tier: ≤15 employees = 30.13%; 16-50 employees = 30.20%; >50 employees = 30.50%. Does not include INAIL (sector-variable, not modelled).",
     "fixed_term_additional_rate, fixed_term_renewal_increment: NASpI surcharge of fixed-term contracts, L. 92/2012 art. 2 c. 28-29; see fixed_term_additional_rate_provenance.",
-    "INPS dipendente — employee_tiers: 9.19% (IVS) up to 15 employees; 9.49% above 15 (adds the 0.30% CIGS employee share, D.Lgs. 148/2015 art. 23).",
-    "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
-    "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026; L. 335/1995 art. 2 c. 18). Applies to workers without contributions before 1 Jan 1996 and to those who opted for the contributory system (art. 1 c. 23); the engine derives it from the contribution history.",
     "Art. 16-ter c. 5-bis TUIR (inserted by L. 199/2025 art. 1 c. 4): for a reddito complessivo > EUR 200 000 the deduction for the 19% oneri (spese sanitarie excluded), the donations to political parties and the catastrophe insurance premiums is reduced by EUR 440. The art. 12 and art. 13 TUIR deductions and the ulteriore detrazione are outside its scope; the payroll computes none of the oneri in scope and does not apply the reduction."
   ],
   "irpef_brackets_provenance": {
