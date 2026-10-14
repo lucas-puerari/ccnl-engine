@@ -157,6 +157,20 @@
           },
           "remediation": "Add a fact for the extra hours within the agreed time arrangement and pay them without a supplement."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "ANNUAL MINIMI: the minimi of the CCNL are updated every year from 1 January by the Commissione nazionale (Art. 38, ISTAT variation of the consumer prices); the bundle holds the table of 2026. From 1 January 2027 the amounts are those of 2026 until the 2027 table is published and added, so a 2027 run is not payable.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "annual_minimi_not_updated",
+          "applies_when": {
+            "trigger": "run",
+            "effective_from": "2027-01-01"
+          },
+          "remediation": "Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note."
+        }
       }
     ]
   },
@@ -747,7 +761,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "ef7d5e4bb9d6e1a3a520ce7f567ad11d01bb2cdfb9c744bcc071817b0094494d",
+    "source_hash": "66c14dee7e9e738a82aea9e33dbde6f29aa4313087ed7825206491c72b354d7e",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },
@@ -1044,6 +1058,7 @@
           "Tabella B, level B: the file held 702,35 as printed in the signed text; the DOMINA table of 2026 and the table of the Commissione of 11 February 2026 print 702,25. Corrected to 702,25 and left derived; the seniority step (4%) is 28,09 either way."
         ]
       }
-    ]
+    ],
+    "review_due": "2027-01-31"
   }
 }

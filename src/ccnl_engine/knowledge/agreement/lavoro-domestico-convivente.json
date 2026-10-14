@@ -192,6 +192,20 @@
       {
         "kind": "info",
         "text": "NIGHT WORK (Art. 14 c. 6): ordinary work between 22.00 and 6.00 is paid with a 20% supplement of the hourly retribuzione globale di fatto; the engine takes its amount as a NightShiftEvent stated by the caller. The overtime bands are those of Art. 15 c. 3 (25% by day, 50% by night, 60% on a holiday or Sunday); night overtime on a holiday has no band of its own and a run that states it is rejected."
+      },
+      {
+        "kind": "simplification",
+        "text": "ANNUAL MINIMI: the minimi of the CCNL are updated every year from 1 January by the Commissione nazionale (Art. 38, ISTAT variation of the consumer prices); the bundle holds the table of 2026. From 1 January 2027 the amounts are those of 2026 until the 2027 table is published and added, so a 2027 run is not payable.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "annual_minimi_not_updated",
+          "applies_when": {
+            "trigger": "run",
+            "effective_from": "2027-01-01"
+          },
+          "remediation": "Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note."
+        }
       }
     ]
   },
@@ -1394,7 +1408,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "8c5bf394f43d663cd90ace9c7f2c3a42bdb7ed45799050205c554ffeedd35fae",
+    "source_hash": "cbc1559566249ced487ea893c0e5c53272f499198808e2ef64bc2c657b6230b7",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
@@ -1692,6 +1706,7 @@
           "Tabella A, the indennità di funzione and Tabella F match the signed table (p. 59) and the DOMINA table of 2026."
         ]
       }
-    ]
+    ],
+    "review_due": "2027-01-31"
   }
 }

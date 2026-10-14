@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | assistance_contribution, base_salary, seniority, sickness |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | 2026-10-12 |
+| **Last review** | 2026-10-14 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Every payable rule of the file: minimums, hourly divisor, additional months, seniority, Cas.Sa.Colf, overtime, absences, leave and the accrual of the tredicesima, read in the signed text of 28 October 2025 and its 2026 table (p. 59); the sickness rule of Art. 27 stays derived (readings in its transformation). | corrected | Overtime: the file held 10% and 20%; Art. 15 c. 3 sets 25% by day, 50% by night and 60% on a holiday or Sunday. The 20% of Art. 14 c. 6 is the supplement of ordinary night work, not of overtime.<br>accrual_rule was missing: chiarimento a verbale 4 counts a fraction of a month of at least 15 calendar days as a whole month.<br>Citations moved from the DOMINA table and section labels without page to the signed text with page and quote.<br>Overtime of non conviventi: hours 41 to 44 by day at 10% (Art. 15 c. 4), beyond the 44th at 25% (hour_threshold_per_week 4). |
+| 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: Tabella C of the 2026 minimi (values from 1 January 2026) for the eight levels; the annual update of the minimi. | corrected | The eight hourly minimi of Tabella C (6,51 to 9,97) times 40 x 52 / 12 are the monthly amounts of the bundle.<br>The minimi are reset every 1 January (Art. 38): from 2027 the 2026 table would be paid as final. Declared as annual_minimi_not_updated on the three domestic CCNLs, review_due 2027-01-31. |
 
 ## Salary table
 
@@ -131,6 +132,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Add a fact for an oncological sickness episode and lengthen its comporto by 50%.
+
+!!! warning "lavoro-domestico-non-convivente/annual_minimi_not_updated · base_salary · impact yes · open"
+    ANNUAL MINIMI: the minimi of the CCNL are updated every year from 1 January by the Commissione nazionale (Art. 38, ISTAT variation of the consumer prices); the bundle holds the table of 2026. From 1 January 2027 the amounts are those of 2026 until the 2027 table is published and added, so a 2027 run is not payable.
+
+    **Applies when:** `base_salary` applies; from 2027-01-01.
+
+    **Remediation:** Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
