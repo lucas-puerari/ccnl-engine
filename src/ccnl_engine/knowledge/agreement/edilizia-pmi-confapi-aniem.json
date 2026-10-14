@@ -47,12 +47,35 @@
         "text": "ITS (Indennita' Territoriale di Settore) not modelled: varies by province/region. National table footnote: 'A questa Tabella occorre aggiungere l'ITS che varia da territorio a territorio'. The national tabular minimum does not include ITS."
       },
       {
-        "kind": "info",
-        "text": "CASSA EDILE: for blue-collar workers (levels 1-4), holidays (8.5%) and Christmas bonus (10%) accrue through the Edilcassa system rather than direct employer payment. The engine models the Christmas bonus as a direct 13th month. Consequences: (1) employer_cost_annual underestimates by ~18.5% of gross for blue-collar workers; (2) net_monthly is correct."
+        "kind": "simplification",
+        "text": "CASSA EDILE: the operai are owed the gratifica natalizia and the ferie as a 18.5% of the pay paid to the Edilcassa (Art. 16 and 18), not a tredicesima from the employer; the file pays them a direct 13th month, so the net, the employer cost and the Edilcassa contribution are all off.",
+        "capability": "bilateral_funds",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "cassa_edile_accruals_missing",
+          "applies_when": {
+            "worker_categories": [
+              "operaio"
+            ]
+          },
+          "remediation": "Model the operai in a file of their own with 12 monthly payments and the 18.5% Edilcassa accrual, as edilizia-ance does."
+        }
       },
       {
-        "kind": "info",
-        "text": "ADDITIONAL_MONTHS: 13 monthly payments (gratifica natalizia). Impiegati (Art. 64) additionally receive a premio annuo equal to one monthly salary (14th month). Engine models 13 for all levels as an approximation; the 14th month for impiegati is not modelled."
+        "kind": "simplification",
+        "text": "ADDITIONAL_MONTHS: the file pays 13 monthly payments to every level. The impiegati are owed a tredicesima (Art. 63) and a premio annuo of one monthly payment on 30 June (Art. 64), 14 in all, and after twenty years with the employer a premio di fedeltà (Art. 65); the premio annuo is not paid and the TFR and accruals read 13.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "impiegati_premio_annuo_missing",
+          "applies_when": {
+            "worker_categories": [
+              "impiegato",
+              "quadro"
+            ]
+          },
+          "remediation": "Model the impiegati in a file of their own with 14 monthly payments (Art. 63-64), as edilizia-ance-impiegati does."
+        }
       },
       {
         "kind": "info",
@@ -634,21 +657,29 @@
             "valid_until": "2027-03-01",
             "value": "1087.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aniem-armonizzato-15042025",
-                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                  "document_id": "ccnl-edilizia-confapi-aniem-2025-fillea",
+                  "title": "CCNL Edilizia CONFAPI ANIEM, testo armonizzato del rinnovo 15 aprile 2025 (FILLEA CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+                  "published_on": "2025-04-15",
+                  "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
                 },
-                "section": "Allegato tabella retributiva — 01/04/2025"
+                "page": "187",
+                "section": "Allegato A, Aumenti retributivi e minimi di paga base degli operai, Nuovi minimi 01/04/2025 (Allegato B, p. 188, same for the impiegati)",
+                "quote": "I 1087,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:50:02Z",
                 "verification_status": "verified",
-                "effective_from": "2025-04-15"
+                "effective_from": "2025-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:50:02Z",
+                "review_id": "2026-10-14-ai-aniem"
               }
             }
           },
@@ -657,21 +688,29 @@
             "valid_until": null,
             "value": "1162.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aniem-armonizzato-15042025",
-                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                  "document_id": "ccnl-edilizia-confapi-aniem-2025-fillea",
+                  "title": "CCNL Edilizia CONFAPI ANIEM, testo armonizzato del rinnovo 15 aprile 2025 (FILLEA CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+                  "published_on": "2025-04-15",
+                  "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
                 },
-                "section": "Allegato tabella retributiva — 01/03/2027"
+                "page": "187",
+                "section": "Allegato A, Aumenti retributivi e minimi di paga base degli operai, Nuovi minimi 01/03/2027 (Allegato B, p. 188, same for the impiegati)",
+                "quote": "I 1162,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:50:02Z",
                 "verification_status": "verified",
-                "effective_from": "2025-04-15"
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:50:02Z",
+                "review_id": "2026-10-14-ai-aniem"
               }
             }
           }
@@ -771,21 +810,29 @@
             "valid_until": "2027-03-01",
             "value": "1272.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aniem-armonizzato-15042025",
-                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                  "document_id": "ccnl-edilizia-confapi-aniem-2025-fillea",
+                  "title": "CCNL Edilizia CONFAPI ANIEM, testo armonizzato del rinnovo 15 aprile 2025 (FILLEA CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+                  "published_on": "2025-04-15",
+                  "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
                 },
-                "section": "Allegato tabella retributiva — 01/04/2025"
+                "page": "187",
+                "section": "Allegato A, Aumenti retributivi e minimi di paga base degli operai, Nuovi minimi 01/04/2025 (Allegato B, p. 188, same for the impiegati)",
+                "quote": "II 1272,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:50:02Z",
                 "verification_status": "verified",
-                "effective_from": "2025-04-15"
+                "effective_from": "2025-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:50:02Z",
+                "review_id": "2026-10-14-ai-aniem"
               }
             }
           },
@@ -794,21 +841,29 @@
             "valid_until": null,
             "value": "1360.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aniem-armonizzato-15042025",
-                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                  "document_id": "ccnl-edilizia-confapi-aniem-2025-fillea",
+                  "title": "CCNL Edilizia CONFAPI ANIEM, testo armonizzato del rinnovo 15 aprile 2025 (FILLEA CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+                  "published_on": "2025-04-15",
+                  "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
                 },
-                "section": "Allegato tabella retributiva — 01/03/2027"
+                "page": "187",
+                "section": "Allegato A, Aumenti retributivi e minimi di paga base degli operai, Nuovi minimi 01/03/2027 (Allegato B, p. 188, same for the impiegati)",
+                "quote": "II 1360,69"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:50:02Z",
                 "verification_status": "verified",
-                "effective_from": "2025-04-15"
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:50:02Z",
+                "review_id": "2026-10-14-ai-aniem"
               }
             }
           }
@@ -908,21 +963,29 @@
             "valid_until": "2027-03-01",
             "value": "1414.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aniem-armonizzato-15042025",
-                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                  "document_id": "ccnl-edilizia-confapi-aniem-2025-fillea",
+                  "title": "CCNL Edilizia CONFAPI ANIEM, testo armonizzato del rinnovo 15 aprile 2025 (FILLEA CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+                  "published_on": "2025-04-15",
+                  "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
                 },
-                "section": "Allegato tabella retributiva — 01/04/2025"
+                "page": "187",
+                "section": "Allegato A, Aumenti retributivi e minimi di paga base degli operai, Nuovi minimi 01/04/2025 (Allegato B, p. 188, same for the impiegati)",
+                "quote": "III 1414,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:50:02Z",
                 "verification_status": "verified",
-                "effective_from": "2025-04-15"
+                "effective_from": "2025-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:50:02Z",
+                "review_id": "2026-10-14-ai-aniem"
               }
             }
           },
@@ -931,21 +994,29 @@
             "valid_until": null,
             "value": "1511.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aniem-armonizzato-15042025",
-                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                  "document_id": "ccnl-edilizia-confapi-aniem-2025-fillea",
+                  "title": "CCNL Edilizia CONFAPI ANIEM, testo armonizzato del rinnovo 15 aprile 2025 (FILLEA CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+                  "published_on": "2025-04-15",
+                  "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
                 },
-                "section": "Allegato tabella retributiva — 01/03/2027"
+                "page": "187",
+                "section": "Allegato A, Aumenti retributivi e minimi di paga base degli operai, Nuovi minimi 01/03/2027 (Allegato B, p. 188, same for the impiegati)",
+                "quote": "III 1511,88"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:50:02Z",
                 "verification_status": "verified",
-                "effective_from": "2025-04-15"
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:50:02Z",
+                "review_id": "2026-10-14-ai-aniem"
               }
             }
           }
@@ -1045,21 +1116,29 @@
             "valid_until": "2027-03-01",
             "value": "1523.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aniem-armonizzato-15042025",
-                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                  "document_id": "ccnl-edilizia-confapi-aniem-2025-fillea",
+                  "title": "CCNL Edilizia CONFAPI ANIEM, testo armonizzato del rinnovo 15 aprile 2025 (FILLEA CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+                  "published_on": "2025-04-15",
+                  "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
                 },
-                "section": "Allegato tabella retributiva — 01/04/2025"
+                "page": "187",
+                "section": "Allegato A, Aumenti retributivi e minimi di paga base degli operai, Nuovi minimi 01/04/2025 (Allegato B, p. 188, same for the impiegati)",
+                "quote": "IV 1523,17"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:50:02Z",
                 "verification_status": "verified",
-                "effective_from": "2025-04-15"
+                "effective_from": "2025-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:50:02Z",
+                "review_id": "2026-10-14-ai-aniem"
               }
             }
           },
@@ -1068,21 +1147,29 @@
             "valid_until": null,
             "value": "1628.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aniem-armonizzato-15042025",
-                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                  "document_id": "ccnl-edilizia-confapi-aniem-2025-fillea",
+                  "title": "CCNL Edilizia CONFAPI ANIEM, testo armonizzato del rinnovo 15 aprile 2025 (FILLEA CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+                  "published_on": "2025-04-15",
+                  "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
                 },
-                "section": "Allegato tabella retributiva — 01/03/2027"
+                "page": "187",
+                "section": "Allegato A, Aumenti retributivi e minimi di paga base degli operai, Nuovi minimi 01/03/2027 (Allegato B, p. 188, same for the impiegati)",
+                "quote": "IV 1628,17"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:50:02Z",
                 "verification_status": "verified",
-                "effective_from": "2025-04-15"
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:50:02Z",
+                "review_id": "2026-10-14-ai-aniem"
               }
             }
           }
@@ -1182,21 +1269,29 @@
             "valid_until": "2027-03-01",
             "value": "1631.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aniem-armonizzato-15042025",
-                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                  "document_id": "ccnl-edilizia-confapi-aniem-2025-fillea",
+                  "title": "CCNL Edilizia CONFAPI ANIEM, testo armonizzato del rinnovo 15 aprile 2025 (FILLEA CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+                  "published_on": "2025-04-15",
+                  "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
                 },
-                "section": "Allegato tabella retributiva — 01/04/2025"
+                "page": "188",
+                "section": "Allegato B, Aumenti retributivi e minimi di paga base e di stipendio per gli impiegati, Nuovi minimi 01/04/2025",
+                "quote": "Impiegati di 2° 1631,98"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:50:02Z",
                 "verification_status": "verified",
-                "effective_from": "2025-04-15"
+                "effective_from": "2025-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:50:02Z",
+                "review_id": "2026-10-14-ai-aniem"
               }
             }
           },
@@ -1205,21 +1300,29 @@
             "valid_until": null,
             "value": "1744.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aniem-armonizzato-15042025",
-                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                  "document_id": "ccnl-edilizia-confapi-aniem-2025-fillea",
+                  "title": "CCNL Edilizia CONFAPI ANIEM, testo armonizzato del rinnovo 15 aprile 2025 (FILLEA CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+                  "published_on": "2025-04-15",
+                  "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
                 },
-                "section": "Allegato tabella retributiva — 01/03/2027"
+                "page": "188",
+                "section": "Allegato B, Aumenti retributivi e minimi di paga base e di stipendio per gli impiegati, Nuovi minimi 01/03/2027",
+                "quote": "Impiegati di 2° 1744,48"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:50:02Z",
                 "verification_status": "verified",
-                "effective_from": "2025-04-15"
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:50:02Z",
+                "review_id": "2026-10-14-ai-aniem"
               }
             }
           }
@@ -1319,21 +1422,29 @@
             "valid_until": "2027-03-01",
             "value": "1958.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aniem-armonizzato-15042025",
-                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                  "document_id": "ccnl-edilizia-confapi-aniem-2025-fillea",
+                  "title": "CCNL Edilizia CONFAPI ANIEM, testo armonizzato del rinnovo 15 aprile 2025 (FILLEA CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+                  "published_on": "2025-04-15",
+                  "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
                 },
-                "section": "Allegato tabella retributiva — 01/04/2025"
+                "page": "188",
+                "section": "Allegato B, Aumenti retributivi e minimi di paga base e di stipendio per gli impiegati, Nuovi minimi 01/04/2025",
+                "quote": "Impiegati di 1° 1958,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:50:02Z",
                 "verification_status": "verified",
-                "effective_from": "2025-04-15"
+                "effective_from": "2025-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:50:02Z",
+                "review_id": "2026-10-14-ai-aniem"
               }
             }
           },
@@ -1342,21 +1453,29 @@
             "valid_until": null,
             "value": "2093.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aniem-armonizzato-15042025",
-                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                  "document_id": "ccnl-edilizia-confapi-aniem-2025-fillea",
+                  "title": "CCNL Edilizia CONFAPI ANIEM, testo armonizzato del rinnovo 15 aprile 2025 (FILLEA CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+                  "published_on": "2025-04-15",
+                  "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
                 },
-                "section": "Allegato tabella retributiva — 01/03/2027"
+                "page": "188",
+                "section": "Allegato B, Aumenti retributivi e minimi di paga base e di stipendio per gli impiegati, Nuovi minimi 01/03/2027",
+                "quote": "Impiegati di 1° 2093,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:50:02Z",
                 "verification_status": "verified",
-                "effective_from": "2025-04-15"
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:50:02Z",
+                "review_id": "2026-10-14-ai-aniem"
               }
             }
           }
@@ -1456,21 +1575,29 @@
             "valid_until": "2027-03-01",
             "value": "2175.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aniem-armonizzato-15042025",
-                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                  "document_id": "ccnl-edilizia-confapi-aniem-2025-fillea",
+                  "title": "CCNL Edilizia CONFAPI ANIEM, testo armonizzato del rinnovo 15 aprile 2025 (FILLEA CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+                  "published_on": "2025-04-15",
+                  "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
                 },
-                "section": "Allegato tabella retributiva — 01/04/2025"
+                "page": "188",
+                "section": "Allegato B, Aumenti retributivi e minimi di paga base e di stipendio per gli impiegati, Nuovi minimi 01/04/2025",
+                "quote": "Quadri impiegati di 1° super 2175,96"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:50:02Z",
                 "verification_status": "verified",
-                "effective_from": "2025-04-15"
+                "effective_from": "2025-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:50:02Z",
+                "review_id": "2026-10-14-ai-aniem"
               }
             }
           },
@@ -1479,21 +1606,29 @@
             "valid_until": null,
             "value": "2325.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aniem-armonizzato-15042025",
-                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                  "document_id": "ccnl-edilizia-confapi-aniem-2025-fillea",
+                  "title": "CCNL Edilizia CONFAPI ANIEM, testo armonizzato del rinnovo 15 aprile 2025 (FILLEA CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+                  "published_on": "2025-04-15",
+                  "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
                 },
-                "section": "Allegato tabella retributiva — 01/03/2027"
+                "page": "188",
+                "section": "Allegato B, Aumenti retributivi e minimi di paga base e di stipendio per gli impiegati, Nuovi minimi 01/03/2027",
+                "quote": "Quadri impiegati di 1° super 2325,96"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T15:50:02Z",
                 "verification_status": "verified",
-                "effective_from": "2025-04-15"
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T15:50:02Z",
+                "review_id": "2026-10-14-ai-aniem"
               }
             }
           }
@@ -1590,7 +1725,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "7a889cd2037d5ef7a09e4cc0d7cfea4611886a162f050930a8769fadac8a8c53",
+    "source_hash": "60bc99e9334c23f68c89e7a0e2df785a14fd5d12f9b53e7c3a451a4dc1bffdcc",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
@@ -1929,5 +2064,32 @@
         }
       }
     }
+  },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "owner": "maintainer",
+    "reviews": [
+      {
+        "id": "2026-10-14-ai-aniem",
+        "date": "2026-10-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Second review of the edilizia group: minimi of the seven levels in the two tranches and the monthly payments, against the testo armonizzato of the renewal of 15 April 2025.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+            "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
+          }
+        ],
+        "findings": [
+          "The 14 minimi match Allegato A (operai, p. 187) and Allegato B (impiegati, p. 188) from 1 April 2025 and 1 March 2027: verified.",
+          "Monthly payments: the single file pays 13 to all levels, but the impiegati are owed 14 (Art. 63-64) and the operai a 18.5% to the Edilcassa instead of a tredicesima (Art. 16, 18). Both gaps were info notes; they are now limitations that block the runs they concern. The 13 stays assumed."
+        ]
+      }
+    ],
+    "review_due": "2027-03-01"
   }
 }

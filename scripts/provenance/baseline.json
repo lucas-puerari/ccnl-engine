@@ -1345,7 +1345,9 @@
     "agreement/edilizia-pmi-confapi-aniem.json": [
       "edilizia-pmi-confapi-aniem/apprentice_its_evr_missing",
       "edilizia-pmi-confapi-aniem/apprentice_seniority",
+      "edilizia-pmi-confapi-aniem/cassa_edile_accruals_missing",
       "edilizia-pmi-confapi-aniem/contractual_fund_partial",
+      "edilizia-pmi-confapi-aniem/impiegati_premio_annuo_missing",
       "edilizia-pmi-confapi-aniem/operai_gruppo_3_track_merged"
     ],
     "agreement/elettrico-elettricita-futura.json": [

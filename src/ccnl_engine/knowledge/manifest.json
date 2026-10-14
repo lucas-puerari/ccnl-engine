@@ -778,9 +778,9 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-pmi-confapi-aniem",
       "ruleset_version": "2025.1",
-      "source_hash": "7a889cd2037d5ef7a09e4cc0d7cfea4611886a162f050930a8769fadac8a8c53",
+      "source_hash": "60bc99e9334c23f68c89e7a0e2df785a14fd5d12f9b53e7c3a451a4dc1bffdcc",
       "source_type": "contracting_party",
-      "owner": "ccnl-engine maintainers",
+      "owner": "maintainer",
       "wheel_resource": "agreement/edilizia-pmi-confapi-aniem.json.gz"
     },
     {
