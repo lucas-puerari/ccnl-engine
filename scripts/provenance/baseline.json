@@ -747,8 +747,7 @@
       "additional_months[2012-04-01]": "assumed"
     },
     "agreement/sanita-privata-aiop-aris.json": {
-      "accrual_rule": "assumed",
-      "additional_months[2020-07-01]": "assumed"
+      "accrual_rule": "assumed"
     },
     "agreement/scuole-materne-fism.json": {
       "accrual_rule": "assumed",

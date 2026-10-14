@@ -46,7 +46,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 35 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 29 verified / 7 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -55,12 +55,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2020-10-08 |
-| **Last review** | — |
+| **Last review** | 2026-10-14 |
 | **Latest salary tranche** | 2020-07-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: Tabella 1 of the CCNL of 8 October 2020 for the 28 positions, the number of monthly payments and the term. | corrected | The 28 monthly tabellari match column D of Tabella 1 (p. 104) to the cent: verified.<br>13 monthly payments: verified ('x 13 mensilità', column C).<br>No renewal after the CCNL of 8 October 2020 was found; the table stays in force (ultrattività). Seniority, overtime, absence and sickness rules are not re-read in this pass. |
 
 ## Salary table
 
@@ -172,6 +174,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     INPS: terziario sector confirmed. Kitech.it (table "TERZIARIO attività VARIE", kitech.it/Contributi-previdenziali.aspx?p=4_143) lists operai/impiegati at 9.19% employee contribution and 28.98% employer (≤50 dipendenti) / 29.58% (>50) — matching 2026-terziario.json exactly. Private healthcare (AIOP/ARIS) is classified under terziario standard rates; no healthcare-specific INPS regime applies. INPS Circolare n. 6/2026 confirms 9.19% employee rate for private sector workers.
     
     CCNL applied in ultrattività; Decreto Lavoro 2026 introduced a statutory 30% IPCA auto-adjustment if no renewal within 12 months of expiry. If triggered, legally applicable 2026 minimums may exceed the 2020 Tabella 1 values modelled here. Engine models contractual tables only.
+    
+    TERM: the CCNL of 8 October 2020 renews the economic part 2016-2018 and its table applies from 1 July 2020; no later renewal signed by AIOP and ARIS was found on 14 October 2026 (the unions were still asking to open the table), so the 2020 tabellari stay in force under ultrattività.
     
     CNEL code T011 verified at https://www.contratticcnl.it/ccnl/t011/ (146585 employees, ARIS/AIOP, ATECO 86).
     
