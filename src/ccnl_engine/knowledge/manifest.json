@@ -2421,7 +2421,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "inps/2026/terziario",
       "ruleset_version": "2026.1",
-      "source_hash": "6a7f547a0731724d83adb46dff4c5ac08fb8ab0e0b0b0afe77bbc5f6a4b3f20a",
+      "source_hash": "f8e6fb625abf9337d7f66a73a90943a381db93d1cda6d7cbe4a5f310b2d69c3f",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contribution/2026/terziario.json.gz",

@@ -179,12 +179,12 @@ def test_family_deductions_increase_net() -> None:
 
     Single, January (art. 23 c. 2 lett. a) DPR 600/1973): gross 1,783.75;
     with 50 employees, on the 1,784 of base (INPS circ. 208/2001), INPS
-    9.19% = 163.95 plus FIS and CIGS 0.57% = 10.17, taxable 1,609.63 taxed
-    23% = 370.21.  The year projects 13 more slots net of 9.76% INPS:
-    1,609.63 + 23,188.75 x 0.9024 = 22,535.16.  Art. 13: 1,910 + 1,190 *
-    0.4203 = 2,410.16, times 31/365 = 204.70; ulteriore detrazione 84.93;
-    IRPEF 370.21 - 204.70 - 84.93 = 80.58, net 1,783.75 - 174.12 - 80.58 =
-    1,529.05.
+    9.19% = 163.95 plus FIS and CIGS 0.56667% = 10.11, taxable 1,609.69
+    taxed 23% = 370.23.  The year projects 13 more slots net of 9.75667%
+    INPS: 1,609.69 + 23,188.75 x 0.9024333 = 22,535.99.  Art. 13: 1,910 +
+    1,190 * 0.4203 = 2,410.16, times 31/365 = 204.70; ulteriore detrazione
+    84.93; IRPEF 370.23 - 204.70 - 84.93 = 80.60, net 1,783.75 - 174.06 -
+    80.60 = 1,529.09.
     """
     result_single = engine.calculate_period(
         PeriodInput(
@@ -233,7 +233,7 @@ def test_family_deductions_increase_net() -> None:
     # The 2026 regional surtax is determined at the conguaglio and withheld
     # in 2027 (D.Lgs. 446/1997 art. 50 c. 4); with no 2025 surtax to carry,
     # January withholds none: the net is the one without surtax, 1,529.05.
-    assert result_single.period_net == Decimal("1529.05")
+    assert result_single.period_net == Decimal("1529.09")
     assert result_family.period_net > result_single.period_net
 
 

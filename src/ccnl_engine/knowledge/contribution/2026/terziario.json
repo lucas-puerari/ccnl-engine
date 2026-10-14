@@ -5,34 +5,34 @@
     "employee_tiers": [
       {
         "max_employees": 5,
-        "rate": "0.0936",
+        "rate": "0.0935667",
         "ivs_rate": "0.0919"
       },
       {
         "max_employees": 15,
-        "rate": "0.0946",
+        "rate": "0.0945667",
         "ivs_rate": "0.0919"
       },
       {
         "max_employees": null,
-        "rate": "0.0976",
+        "rate": "0.0975667",
         "ivs_rate": "0.0919"
       }
     ],
     "employer_tiers": [
       {
         "max_employees": 5,
-        "rate": "0.2931",
+        "rate": "0.2931333",
         "ivs_rate": "0.2381"
       },
       {
         "max_employees": 15,
-        "rate": "0.2951",
+        "rate": "0.2951333",
         "ivs_rate": "0.2381"
       },
       {
         "max_employees": null,
-        "rate": "0.3011",
+        "rate": "0.3011333",
         "ivs_rate": "0.2381"
       }
     ],
@@ -122,14 +122,14 @@
         "quote": "I.V.S. datore di lavoro 33,00 % (di cui 9,19 % a carico del lavoratore) NASpI (contr. ord.) 1,31 % NaSpI (contr. art. 25, l.845/1978) 0,30 % Fondo Garanzia TFR 0,20 % Cuaf* 0,68 % Maternità 0,24 % Malattia 2,44 % FIS ** – Datori di lavoro fino a 5 dipendenti 0,50 % (di cui 0,17 % a carico del dipendente) FIS ** - oltre 5 dipendenti 0,80 % (di cui 0,27 % a carico del dipendente) CIGS ** 0,90% (di cui 0,30 % a carico del dipendente)",
         "page": "1-2"
       },
-      "transformation": "Employer = 23.81 IVS + 1.31 + 0.30 NASpI + 0.20 Fondo Garanzia TFR + 0.68 CUAF + 0.24 maternita + 2.44 malattia = 28.98, plus the employer FIS share (0.33 up to 5 employees, 0.53 above) and, above 15 employees, the employer CIGS share 0.60: 29.31 up to 5, 29.51 from 6 to 15, 30.11 above 15. Employee = 9.19 IVS plus the FIS share (0.17 up to 5, 0.27 above) and, above 15 employees, the CIGS share 0.30: 9.36, 9.46, 9.76. Bands: FIS 0.50% up to five employees and 0.80% above (D.Lgs. 148/2015 art. 29 c. 8), one third to the worker (art. 33 c. 1); CIGS 0.90% for employers with on average more than fifteen employees not covered by a bilateral fund, 0.30% to the worker (art. 20 c. 3-bis, art. 23 c. 1-bis). The terziario has no CIGO (art. 10) nor a bilateral fund, so it pays the FIS (art. 29 c. 2-bis) at every size and the CIGS above 15.",
-      "note": "Quote checked on 2026-10-10 against the PDF at the url of the record; D.Lgs. 148/2015 artt. 20, 23, 29 and 33 checked on Normattiva (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148) the same day. The table is the INPS rate table of a non-CIGO employer with the commerce malattia rate; the observed payslip p04 (up to five employees, 9.19% IVS plus a separate 0.10% fund line) matches the reduced FIS of art. 29 c. 8-bis, p06 (9.49%) charges no worker FIS share and does not match. Verified on 2026-10-13 by claude-opus-5-5. No 2026 rate table of the terziario was found, from INPS or an association (URLs tried in the review notes of the PR). Every component is read in the allegato of circ. 117/2022, still in force: the owner accepted on 2026-10-13 this allegato as the source of the terziario rates, as the industria reconstruction of 2026-10-10. The allegato names no sector: its malattia 2.44% and maternità 0.24% are the rates of the commercio. FIS (D.Lgs. 148/2015 art. 29 c. 8) and CIGS (art. 23 c. 1-bis) checked on Normattiva, text in force on 2026-10-13; no change for 2026 found. The dirigenti, outside the FIS and the CIGS, are not modelled by these tiers.",
+      "transformation": "Employer = 23.81 IVS + 1.31 + 0.30 NASpI + 0.20 Fondo Garanzia TFR + 0.68 CUAF + 0.24 maternita + 2.44 malattia = 28.98, plus the employer FIS share (0.33333 up to 5 employees, 0.53333 above) and, above 15 employees, the employer CIGS share 0.60: 29.31333 up to 5, 29.51333 from 6 to 15, 30.11333 above 15. Employee = 9.19 IVS plus the FIS share (0.16667 up to 5, 0.26667 above) and, above 15 employees, the CIGS share 0.30: 9.35667, 9.45667, 9.75667. Bands: FIS 0.50% up to five employees and 0.80% above (D.Lgs. 148/2015 art. 29 c. 8), one third to the worker (art. 33 c. 1); CIGS 0.90% for employers with on average more than fifteen employees not covered by a bilateral fund, 0.30% to the worker (art. 20 c. 3-bis, art. 23 c. 1-bis). The terziario has no CIGO (art. 10) nor a bilateral fund, so it pays the FIS (art. 29 c. 2-bis) at every size and the CIGS above 15.",
+      "note": "Quote checked on 2026-10-10 against the PDF at the url of the record; D.Lgs. 148/2015 artt. 20, 23, 29 and 33 checked on Normattiva (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148) the same day. The table is the INPS rate table of a non-CIGO employer with the commerce malattia rate; the observed payslip p04 (up to five employees, 9.19% IVS plus a separate 0.10% fund line) matches the reduced FIS of art. 29 c. 8-bis, p06 (9.49%) charges no worker FIS share and does not match. Verified on 2026-10-13 by claude-opus-5-5. No 2026 rate table of the terziario was found, from INPS or an association (URLs tried in the review notes of the PR). Every component is read in the allegato of circ. 117/2022, still in force: the owner accepted on 2026-10-13 this allegato as the source of the terziario rates, as the industria reconstruction of 2026-10-10. The allegato names no sector: its malattia 2.44% and maternità 0.24% are the rates of the commercio. FIS (D.Lgs. 148/2015 art. 29 c. 8) and CIGS (art. 23 c. 1-bis) checked on Normattiva, text in force on 2026-10-13; no change for 2026 found. The dirigenti, outside the FIS and the CIGS, are not modelled by these tiers. The FIS shares keep the thirds of art. 33 c. 1 to five decimals of a percentage point, as payroll software prints them: observed payslips p09 (2026), p10 and p15 of tests/knowledge/ccnl_engine/period/observed_payslip charge the worker 'FIS ... 0,26667' (2.71 on 1,016; 4.53 on 1,698; 6.37 on 2,387). Until 2026-10-14 the shares were rounded to 0.17 / 0.27 and 0.33 / 0.53. Re-verified on 2026-10-14 by an AI review (claude-opus-5-5) against art. 33 c. 1 D.Lgs. 148/2015 on Normattiva.",
       "extraction": {
         "method": "ai",
         "model": "claude-opus-5-5",
         "extraction_timestamp": "2026-10-13T05:50:36Z",
         "verified_by": "claude-opus-5-5",
-        "verified_at": "2026-10-13T05:50:36Z",
+        "verified_at": "2026-10-14T11:42:26Z",
         "verification_status": "verified",
         "effective_from": "2026-01-01",
         "effective_until": "2026-12-31"
@@ -137,8 +137,8 @@
     },
     "fis_reduction": {
       "max_employees": 5,
-      "employer_rate": "0.0013",
-      "employee_rate": "0.0007",
+      "employer_rate": "0.0013333",
+      "employee_rate": "0.0006667",
       "provenance": {
         "status": "verified",
         "location": {
@@ -152,7 +152,7 @@
           "section": "art. 29 c. 8-bis",
           "quote": "a favore dei datori di lavoro che, nel semestre precedente la data di presentazione della domanda, abbiano occupato mediamente fino a cinque dipendenti e che non abbiano presentato domanda di assegno di integrazione salariale ai sensi del presente articolo per almeno ventiquattro mesi, a far data dal termine del periodo di fruizione del trattamento, l'aliquota di cui al comma 8 si riduce in misura pari al 40 per cento."
         },
-        "transformation": "0.50% x (1 - 40%) = 0.30%, two thirds to the employer and one third to the worker (art. 33 c. 1): 0.20% and 0.10%. Against the shares of the full rate in the INPS table (0.33% and 0.17%) the cut is 0.13% and 0.07%.",
+        "transformation": "0.50% x (1 - 40%) = 0.30%, two thirds to the employer and one third to the worker (art. 33 c. 1): 0.20% and 0.10%. Against the thirds of the full rate (0.33333% and 0.16667%) the cut is 0.13333% and 0.06667%, which leaves the 0.20% and the 0.10% exactly (observed payslip p04: 0.10% of the base).",
         "note": "Quote checked on 2026-10-10 on Normattiva, text in force. The observed payslip p04 charges a 0.10% worker line on top of the 9.19% IVS. Verified on 2026-10-13 by claude-opus-5-5 on Normattiva, text in force. Also INPS circ. 5/2025 p. 3 (https://ance.it/wp-content/uploads/allegati/INPS_Circolare-numero-5-del-20-01-2025.pdf, sha256 01d8fd32bc94bbcc676911786a222e50a89b73b4b1086641f559d0086a2b8237): 'contributo ordinario dello 0,50%, attestandosi così allo 0,30%'. The 0.20/0.10 split of the reduced 0.30 is computed (two thirds, one third, art. 33 c. 1).",
         "extraction": {
           "method": "ai",
@@ -245,14 +245,14 @@
         "section": "art. 1 c. 773",
         "quote": "la contribuzione dovuta dai datori di lavoro per gli apprendisti artigiani e non artigiani è complessivamente rideterminata nel 10 per cento [...] Per i datori di lavoro che occupano alle dipendenze un numero di addetti pari o inferiore a nove la predetta complessiva aliquota del 10 per cento [...] è ridotta [...] di 8,5 punti percentuali per i periodi contributivi maturati nel primo anno di contratto e di 7 punti percentuali per i periodi contributivi maturati nel secondo anno"
       },
-      "transformation": "Employer 10% (1.5% in the first and 3% in the second year up to nine employees) + NASpI 1.61% = 11.61% (3.11%, 4.61%); worker 5.84%. headcount_shares add the wage-integration shares of the terziario: FIS 0.50% up to 5 employees (0.33% employer, 0.17% worker) and 0.80% above (0.53%, 0.27%), CIGS 0.90% above 15 (0.60%, 0.30%). Result: up to 5 employees 11.94% / worker 6.01%, 6-15 12.14% / 6.11%, above 15 12.74% / 6.41%; up to 9 employees in the first two years 3.44% / 4.94% (up to 5) and 3.64% / 5.14% (6-9).",
-      "note": "No published terziario apprentice table found; the rates are the sum of the cited addends. FIS and CIGS shares: INPS circ. 117/2022 all. 1 (https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2022/10/Circolare_13970/Allegati/13873_Circolare-numero-117-del-20-10-2022_Allegato-n-1.pdf, sha256 28e59dd5733b1ea15bdea8225c85412ca9913a3c39279e5ec59d1fc5b1d156da, p. 1-2): 'FIS ** – Datori di lavoro fino a 5 dipendenti 0,50 % (di cui 0,17 % a carico del dipendente) FIS ** - oltre 5 dipendenti 0,80 % (di cui 0,27 % a carico del dipendente) CIGS ** 0,90% (di cui 0,30 % a carico del dipendente)'. L. 92/2012 art. 2 c. 36 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2012-06-28;92~art2!vig=2026-10-10): 'è dovuta dai datori di lavoro per gli apprendisti artigiani e non artigiani una contribuzione pari all'1,31 per cento della retribuzione imponibile ai fini previdenziali'; with the 0.30% of art. 25 L. 845/1978 the NASpI share is 1.61%: Assimpredil ANCE table 1/2026 note (5) (https://portale.assimpredilance.it/uploads/allegati/misug20260219_106_019_minimali_di_retribuzione_inps_2026_allegato_1_6997426c09ebe.pdf, sha256 83508e4e61d305be578ecb224a00bdf4f7628214578999a02d4763d93f58756f): 'per i contratti di apprendistato [...] l'aliquota a carico del datore di lavoro è aumentata dell'1,61% quale contributo per il finanziamento della NASpI'. Circ. INPS 22/2007 par. 1 (https://servizi2.inps.it/CircolariZIP/Circolare%20numero%2022%20del%2023-1-2007.pdf, sha256 45fb77d63387fe8030698f0c7e34e832e436292c13b4eedca1b4c0e6b3f680ae, p. 2): 'va ad aggiungersi la quota dovuta dall'apprendista che [...] si attesterà nella misura del 5,84%'. Circ. INPS 76/2022 par. 1 (https://www.fiscoetasse.com/files/17306/circolare-76-del-30-06-2022.pdf, sha256 f181597163ae73a9918929b40186c69dffb92da5aebfe9653c41b5c1828bb952, p. 4): 'a decorrere dal 1° gennaio 2022, tutti i datori di lavoro [...] sono tenuti al versamento della contribuzione di finanziamento dei trattamenti di integrazione salariale di cui al Titolo I e/o al Titolo II del D.lgs n.148/2015, di cui sono destinatari i lavoratori assunti con contratto di apprendistato, di qualsiasi tipologia'. CIGS: Assimpredil ANCE table 2/2026 note (6), same file: 'Dal 1° gennaio 2022 è altresì dovuta l'aliquota dello 0,90% (0,60% a carico del datore di lavoro e 0,30% a carico del lavoratore) quale contributo per la Cassa Integrazione Straordinaria'. The IVS portions (10%, 1.5% and 3% of the employer, 5.84% of the worker) treat the whole statutory rate as IVS: the split of the 10% among the funds (D.M. 28 March 2007) is not sourced; it only bears on pay above the massimale. The year after qualification keeps the rate of the apprenticeship (circ. 76/2022 par. 1.1, D.Lgs. 81/2015 art. 47 c. 7); the engine charges the full rate of the tier after month 24, as before. Not modelled: the FIS cut of art. 29 c. 8-bis D.Lgs. 148/2015 (inps.fis_reduction) lowers the rates of the other workers only; an apprentice of an employer with the cut is charged 0.13% (employer) and 0.07% (worker) too much. Quotes checked on 2026-10-10 against the files. Verified on 2026-10-13 by claude-opus-5-5: the 10% and the 8.5 and 7 point cuts also in INPS circ. 22/2007 par. 1 (https://servizi2.inps.it/CircolariZIP/Circolare%20numero%2022%20del%2023-1-2007.pdf, sha256 45fb77d63387fe8030698f0c7e34e832e436292c13b4eedca1b4c0e6b3f680ae, p. 2), the worker 5.84% there too. The split of the 10% among the funds is set by ministerial decree (circ. 22/2007): the whole 10% is booked as IVS, as in the industria table.",
+      "transformation": "Employer 10% (1.5% in the first and 3% in the second year up to nine employees) + NASpI 1.61% = 11.61% (3.11%, 4.61%); worker 5.84%. headcount_shares add the wage-integration shares of the terziario: FIS 0.50% up to 5 employees (0.33333% employer, 0.16667% worker) and 0.80% above (0.53333%, 0.26667%), CIGS 0.90% above 15 (0.60%, 0.30%). Result: up to 5 employees 11.94333% / worker 6.00667%, 6-15 12.14333% / 6.10667%, above 15 12.74333% / 6.40667%; up to 9 employees in the first two years 3.44333% / 4.94333% (up to 5) and 3.64333% / 5.14333% (6-9).",
+      "note": "No published terziario apprentice table found; the rates are the sum of the cited addends. FIS and CIGS shares: INPS circ. 117/2022 all. 1 (https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2022/10/Circolare_13970/Allegati/13873_Circolare-numero-117-del-20-10-2022_Allegato-n-1.pdf, sha256 28e59dd5733b1ea15bdea8225c85412ca9913a3c39279e5ec59d1fc5b1d156da, p. 1-2): 'FIS ** – Datori di lavoro fino a 5 dipendenti 0,50 % (di cui 0,17 % a carico del dipendente) FIS ** - oltre 5 dipendenti 0,80 % (di cui 0,27 % a carico del dipendente) CIGS ** 0,90% (di cui 0,30 % a carico del dipendente)'. L. 92/2012 art. 2 c. 36 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2012-06-28;92~art2!vig=2026-10-10): 'è dovuta dai datori di lavoro per gli apprendisti artigiani e non artigiani una contribuzione pari all'1,31 per cento della retribuzione imponibile ai fini previdenziali'; with the 0.30% of art. 25 L. 845/1978 the NASpI share is 1.61%: Assimpredil ANCE table 1/2026 note (5) (https://portale.assimpredilance.it/uploads/allegati/misug20260219_106_019_minimali_di_retribuzione_inps_2026_allegato_1_6997426c09ebe.pdf, sha256 83508e4e61d305be578ecb224a00bdf4f7628214578999a02d4763d93f58756f): 'per i contratti di apprendistato [...] l'aliquota a carico del datore di lavoro è aumentata dell'1,61% quale contributo per il finanziamento della NASpI'. Circ. INPS 22/2007 par. 1 (https://servizi2.inps.it/CircolariZIP/Circolare%20numero%2022%20del%2023-1-2007.pdf, sha256 45fb77d63387fe8030698f0c7e34e832e436292c13b4eedca1b4c0e6b3f680ae, p. 2): 'va ad aggiungersi la quota dovuta dall'apprendista che [...] si attesterà nella misura del 5,84%'. Circ. INPS 76/2022 par. 1 (https://www.fiscoetasse.com/files/17306/circolare-76-del-30-06-2022.pdf, sha256 f181597163ae73a9918929b40186c69dffb92da5aebfe9653c41b5c1828bb952, p. 4): 'a decorrere dal 1° gennaio 2022, tutti i datori di lavoro [...] sono tenuti al versamento della contribuzione di finanziamento dei trattamenti di integrazione salariale di cui al Titolo I e/o al Titolo II del D.lgs n.148/2015, di cui sono destinatari i lavoratori assunti con contratto di apprendistato, di qualsiasi tipologia'. CIGS: Assimpredil ANCE table 2/2026 note (6), same file: 'Dal 1° gennaio 2022 è altresì dovuta l'aliquota dello 0,90% (0,60% a carico del datore di lavoro e 0,30% a carico del lavoratore) quale contributo per la Cassa Integrazione Straordinaria'. The IVS portions (10%, 1.5% and 3% of the employer, 5.84% of the worker) treat the whole statutory rate as IVS: the split of the 10% among the funds (D.M. 28 March 2007) is not sourced; it only bears on pay above the massimale. The year after qualification keeps the rate of the apprenticeship (circ. 76/2022 par. 1.1, D.Lgs. 81/2015 art. 47 c. 7); the engine charges the full rate of the tier after month 24, as before. Not modelled: the FIS cut of art. 29 c. 8-bis D.Lgs. 148/2015 (inps.fis_reduction) lowers the rates of the other workers only; an apprentice of an employer with the cut is charged 0.13% (employer) and 0.07% (worker) too much. Quotes checked on 2026-10-10 against the files. Verified on 2026-10-13 by claude-opus-5-5: the 10% and the 8.5 and 7 point cuts also in INPS circ. 22/2007 par. 1 (https://servizi2.inps.it/CircolariZIP/Circolare%20numero%2022%20del%2023-1-2007.pdf, sha256 45fb77d63387fe8030698f0c7e34e832e436292c13b4eedca1b4c0e6b3f680ae, p. 2), the worker 5.84% there too. The split of the 10% among the funds is set by ministerial decree (circ. 22/2007): the whole 10% is booked as IVS, as in the industria table. The FIS shares keep the thirds of art. 33 c. 1 to five decimals of a percentage point, as payroll software prints them: observed payslips p09 (2026), p10 and p15 of tests/knowledge/ccnl_engine/period/observed_payslip charge the worker 'FIS ... 0,26667' (2.71 on 1,016; 4.53 on 1,698; 6.37 on 2,387). Until 2026-10-14 the shares were rounded to 0.17 / 0.27 and 0.33 / 0.53. Re-verified on 2026-10-14 by an AI review (claude-opus-5-5) against art. 33 c. 1 D.Lgs. 148/2015 on Normattiva.",
       "extraction": {
         "method": "ai",
         "model": "claude-opus-5-5",
         "extraction_timestamp": "2026-10-13T05:50:36Z",
         "verified_by": "claude-opus-5-5",
-        "verified_at": "2026-10-13T05:50:36Z",
+        "verified_at": "2026-10-14T11:42:26Z",
         "verification_status": "verified",
         "effective_from": "2026-01-01",
         "effective_until": "2026-12-31"
@@ -261,18 +261,18 @@
     "headcount_shares": [
       {
         "max_employees": 5,
-        "employer_rate": "0.0033",
-        "employee_rate": "0.0017"
+        "employer_rate": "0.0033333",
+        "employee_rate": "0.0016667"
       },
       {
         "max_employees": 15,
-        "employer_rate": "0.0053",
-        "employee_rate": "0.0027"
+        "employer_rate": "0.0053333",
+        "employee_rate": "0.0026667"
       },
       {
         "max_employees": null,
-        "employer_rate": "0.0113",
-        "employee_rate": "0.0057"
+        "employer_rate": "0.0113333",
+        "employee_rate": "0.0056667"
       }
     ]
   },
@@ -284,7 +284,7 @@
     "published_at": "2026-09-07",
     "source": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2022/10/Circolare_13970/Allegati/13873_Circolare-numero-117-del-20-10-2022_Allegato-n-1.pdf",
     "verification_status": "unverified",
-    "source_hash": "6a7f547a0731724d83adb46dff4c5ac08fb8ab0e0b0b0afe77bbc5f6a4b3f20a",
+    "source_hash": "f8e6fb625abf9337d7f66a73a90943a381db93d1cda6d7cbe4a5f310b2d69c3f",
     "source_type": "institutional_secondary"
   }
 }

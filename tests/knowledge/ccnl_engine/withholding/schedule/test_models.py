@@ -118,8 +118,8 @@ def test_fractional_extra_months_settle_trattamento_integrativo() -> None:
 @pytest.mark.parametrize(
     ("level_code", "expected"),
     [
-        pytest.param("Q", Decimal("4461.19"), id="second-bracket"),
-        pytest.param("3", Decimal("2264.44"), id="first-bracket"),
+        pytest.param("Q", Decimal("4461.55"), id="second-bracket"),
+        pytest.param("3", Decimal("2264.70"), id="first-bracket"),
     ],
 )
 def test_part_year_employment_withholds_the_tax_on_its_days(
@@ -132,21 +132,21 @@ def test_part_year_employment_withholds_the_tax_on_its_days(
 
     March pays 14 of 26 daily quotas (16-21, 23-28, 30, 31 March are the
     Mondays to Saturdays employed), each pay component rounded on its own.
-    The employer has 50 employees: the worker pays 9.19% IVS and 0.57% of
-    FIS (0.27%) and CIGS (0.30%) on the pay of each run to the whole euro,
+    The employer has 50 employees: the worker pays 9.19% IVS and 0.56667% of
+    FIS (0.26667%) and CIGS (0.30%) on the pay of each run to the whole euro,
     each share rounded on its own (INPS circ. 117/2022 all. 1 and 208/2001;
     D.Lgs. 148/2015 artt. 23 c. 1-bis, 29 c. 8):
 
     - Level Q: runs of 1,608.00, 2,986.29 seven times, 995.43 (June
       fourteenth), 3,047.05 twice and 2,539.22 (thirteenth): 32,140.78 of
-      gross, 3,136.65 of INPS, final taxable 29,004.13.  Gross tax 6,440.00
-      + 1,004.13 * 33% = 6,771.36; deduction (1,910 * 0.9543 + 65) * 0.8 =
-      1,510.17; further deduction 800.00; net 4,461.19.
+      gross, 3,135.58 of INPS, final taxable 29,005.20.  Gross tax 6,440.00
+      + 1,005.20 * 33% = 6,771.72; deduction (1,910 * 0.9543 + 65) * 0.8 =
+      1,510.17; further deduction 800.00; net 4,461.55.
     - Level 3: runs of 1,068.25, 1,983.91 seven times, 661.31, 2,024.38
-      twice and 1,686.99: 21,352.68 of gross, 2,084.00 of INPS, final
-      taxable 19,268.68.  Gross tax 4,431.80; ratio 8,731.32 / 13,000
-      truncated 0.6716; deduction (1,910 + 1,190 * 0.6716) * 0.8 =
-      2,167.36; no further deduction below 20,000; net 2,264.44.
+      twice and 1,686.99: 21,352.68 of gross, 2,083.25 of INPS, final
+      taxable 19,269.43.  Gross tax 4,431.97; ratio 8,730.57 / 13,000
+      truncated 0.6715; deduction (1,910 + 1,190 * 0.6715) * 0.8 =
+      2,167.27; no further deduction below 20,000; net 2,264.70.
 
     Observed on 26 September 2026 before the days reached the tax
     computation: full-year deductions on a 292-day employment.
@@ -227,13 +227,14 @@ def test_fourteenth_withholds_on_monthly_brackets() -> None:
     The fourteenth pays 6/12 of the month (January to June of the July-June
     window): 1,783.75 / 2 = 891.88, INPS base 892 (whole euro, INPS circ.
     208/2001).  The employer has 50 employees: INPS 9.19% = 81.97 plus FIS
-    and CIGS 0.57% = 5.08, taxable 804.83.  It is under 28,000 / 12 =
-    2,333.33, so lett. b) withholds 23% of it with no deduction: 185.11.
-    The June regular run pays 1,783.75 less 163.95 and 10.17 of INPS on
-    1,784, 1,609.63 of taxable (23% = 370.21), and takes the deductions of
-    its 30 days on the projected 9,657.78 + 13,378.13 x 0.9024 = 21,730.20:
+    and CIGS 0.56667% = 5.05, taxable 804.86.  It is under 28,000 / 12 =
+    2,333.33, so lett. b) withholds 23% of it with no deduction: 185.12.
+    The June regular run pays 1,783.75 less 163.95 and 10.11 of INPS on
+    1,784, 1,609.69 of taxable (23% = 370.23), and takes the deductions of
+    its 30 days on the projected 9,658.14 + 13,378.13 x 0.9024333 =
+    21,731.01:
     art. 13 1,910 + 1,190 x 0.4822 = 2,483.82, times 30/365 = 204.15, and
-    the ulteriore detrazione 1,000 x 30/365 = 82.19 (lett. a): 83.87.
+    the ulteriore detrazione 1,000 x 30/365 = 82.19 (lett. a): 83.89.
     Observed on 6 October 2026 before this rule: 129.91 on the fourteenth,
     the share of a regular month.
     """
@@ -252,12 +253,12 @@ def test_fourteenth_withholds_on_monthly_brackets() -> None:
     )
     withheld = fourteenth.tax_computation.ordinary_tax
 
-    assert taxable == Decimal("804.83")
-    assert withheld == extra_month_withholding(taxable) == Decimal("185.11")
+    assert taxable == Decimal("804.86")
+    assert withheld == extra_month_withholding(taxable) == Decimal("185.12")
     assert regular.tax_computation.ordinary_tax == regular_month_withholding(
-        Decimal("1609.63"), Decimal("21730.20"), 30
+        Decimal("1609.69"), Decimal("21731.01"), 30
     )
-    assert regular.tax_computation.ordinary_tax == Decimal("83.87")
+    assert regular.tax_computation.ordinary_tax == Decimal("83.89")
 
 
 def _concia_d2_with(family: FamilyComposition) -> dict[PayrollRun, Decimal]:
