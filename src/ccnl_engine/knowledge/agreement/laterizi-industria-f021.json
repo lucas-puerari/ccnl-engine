@@ -5,7 +5,7 @@
     "name": "CCNL Laterizi e Manufatti Cementizi - Industria",
     "cnel_code": "F021",
     "sector": "industria",
-    "tax_sector": "edilizia",
+    "tax_sector": "industria",
     "signatories": [
       "Confindustria Ceramica Raggruppamento Laterizi",
       "Assobeton",
@@ -126,6 +126,10 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "TAX SECTOR: industria. Brick and tile makers are classified in the industria, class 11 'Lavorazione dei minerali non metalliferi' (category 08 'Produzione di materiali da costruzione in laterizio'; ATECO 23.32.00 'Fabbricazione di mattoni, tegole ed altri prodotti per l'edilizia in terracotta' takes CSC 11108), and concrete products in category 11, not in the class 13 of the edilizia: INPS, Manuale di classificazione dei datori di lavoro ai fini previdenziali e assistenziali, maggio 2021 (https://www.inps.it/content/dam/inps-site/pdf/allegati/3212KEY-manuale_di_classificazione_dei_datori_di_lavoro_maggio_2021.pdf, sha256 ad8704fbb47ccf22b7f3728a2537351294a12b2aa031a7bb2cce88121d884678), pp. 29 and 96. Their CIGO is the 1.70% / 2.00% of the industrial firms (D.Lgs. 148/2015 art. 13 c. 1 (Normattiva, text in force on 2026-10-14, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art13!vig=2026-10-14, snapshot sha256 3f7019a244e01d36ac8e7c9e25bcf058c777c8ed758418ba261d83867672c46a), lett. a-b), not the 4.70% of the 'operai delle imprese dell'industria e artigianato edile' (lett. c) the edilizia table carries."
       }
     ]
   },
@@ -2898,7 +2902,7 @@
     "effective_until": null,
     "source": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "faeb7e1173b0f5a83e939fe539aa3153c1372e699e9719ee5547b5020c431996",
+    "source_hash": "544f86113e9dc61abe097f5779372c965117201020b67bf4dd5bf09346b8a861",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

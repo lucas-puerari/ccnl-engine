@@ -169,6 +169,19 @@
           },
           "remediation": "Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "CIGO: artisan builders are within the CIGO (D.Lgs. 148/2015 art. 13 c. 1 (Normattiva, text in force on 2026-10-14, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art13!vig=2026-10-14, snapshot sha256 3f7019a244e01d36ac8e7c9e25bcf058c777c8ed758418ba261d83867672c46a)): 4.70% for the 'operai delle imprese dell'industria e artigianato edile' (lett. c) and 1.70% / 2.00% for their impiegati and quadri (lett. e-f). The artigianato table charges no CIGO, so the employer contributions of every worker are understated.",
+        "capability": "inps_employer",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "cigo_rate_by_activity",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Model the CIGO of D.Lgs. 148/2015 art. 13 c. 1 by activity (edile, lapidei) apart from the tax sector, then remove this note."
+        }
       }
     ]
   },
@@ -2253,7 +2266,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "51a4dd07b9e22e34b0373acf1e90a52a5a99d46bb84db6f7a690a8f384b8e671",
+    "source_hash": "83f28204371c4743f32456eeca46a2fe25e4e271f890b025a3c1b316121291a0",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

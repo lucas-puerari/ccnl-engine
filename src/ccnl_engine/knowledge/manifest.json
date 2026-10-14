@@ -744,7 +744,7 @@
       "valid_to": "2028-09-30",
       "ruleset_id": "ccnl/edilizia-artigianato-cna",
       "ruleset_version": "2026.2",
-      "source_hash": "51a4dd07b9e22e34b0373acf1e90a52a5a99d46bb84db6f7a690a8f384b8e671",
+      "source_hash": "83f28204371c4743f32456eeca46a2fe25e4e271f890b025a3c1b316121291a0",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/edilizia-artigianato-cna.json.gz"
@@ -1186,7 +1186,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lapidei-industria",
       "ruleset_version": "2026.2",
-      "source_hash": "aded1da1c91e220efd80a66e8cb08fb31e1a2df7ddc7778d3b7f3c00393667e5",
+      "source_hash": "ea2b019d3f76ef49b76fdd7cbfbcf2b901498be1329c51ebbe2e53c0a6f09e6c",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/lapidei-industria.json.gz"
@@ -1203,7 +1203,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/laterizi-industria-f021",
       "ruleset_version": "2026.2",
-      "source_hash": "faeb7e1173b0f5a83e939fe539aa3153c1372e699e9719ee5547b5020c431996",
+      "source_hash": "544f86113e9dc61abe097f5779372c965117201020b67bf4dd5bf09346b8a861",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/laterizi-industria-f021.json.gz"
@@ -1305,7 +1305,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/legno-lapidei-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "ccbb16d07f2ed9fa50717ce232721376a2df695c1f1d8708f20942a4347a96aa",
+      "source_hash": "bb859034962493c4dfeb55d512f99a144e85b5856eaedfb978f8b1c1b163431c",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/legno-lapidei-artigianato-confartigianato.json.gz"
@@ -1373,7 +1373,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/materiali-costruzione-lapidei-confapi",
       "ruleset_version": "2026.2",
-      "source_hash": "7480cd62e09f9daa3c116b062191d8741afbcbe691769aa10c3e1234022def7a",
+      "source_hash": "0b822635798a66421d8998df919565ba4287a86b90c7e1f49f51eff3c55b25ca",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/materiali-costruzione-lapidei-confapi.json.gz"
@@ -1730,7 +1730,7 @@
       "valid_to": "2029-12-31",
       "ruleset_id": "ccnl/pulizia-artigianato-confartigianato",
       "ruleset_version": "2025.1",
-      "source_hash": "f53367a2d48d6148042f0c177dd8ac03cf53dd7e2fb5bdc9b59a002cf6f1658e",
+      "source_hash": "5e938817a092ba6218839cb8a4c8e7e401843b1b415fd51cf05298bdff8f2984",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/pulizia-artigianato-confartigianato.json.gz"
