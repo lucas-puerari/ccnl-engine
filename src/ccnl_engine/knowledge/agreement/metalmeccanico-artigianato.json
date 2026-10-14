@@ -155,9 +155,21 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-area-meccanica-artigianato-2024",
+                "title": "Accordo di rinnovo del CCNL Area Meccanica artigianato 19 novembre 2024 e verbale integrativo 25 novembre 2024 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                "published_on": "2024-11-25",
+                "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
+              },
+              "page": "16",
+              "section": "Nuovo articolo Tredicesima mensilità (da inserire nella Parte Generale)",
+              "quote": "L'impresa è tenuta a corrispondere per ciascun anno all'impiegato in occasione della ricorrenza natalizia una tredicesima mensilità"
+            },
+            "note": "The renewal states a tredicesima and no quattordicesima; it applies from 1 January 2023, while the period starts in 2022 with the salary series, so the record is derived, not verified."
           }
         }
       ]
@@ -2518,7 +2530,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "adcf4e0493af2fb84d188594e34be84c2cdda9c9dc4e7bb499c806ca09eefd29",
+    "source_hash": "0a8d7ef9d7f5c3f0366fd9269592e1edfcb0bc2f6ae458a64694f4ff40e844c3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2778,7 +2790,7 @@
           "The 32 tabellari of the four tranches (1 December 2024 to 1 November 2026, eight levels) match the signed table of p. 27: verified.",
           "The tabellare 'fino al 30 novembre 2024' (with the AFAC of 21 December 2023) matches the period from 1 April 2024; its start date is not in this scan and stays derived.",
           "Term: 1 January 2023 to 31 December 2026, then until the next renewal (Art. 2). review_due 2027-01-31.",
-          "The number of monthly payments is not stated in the scan: stays assumed."
+          "The tredicesima is stated in the new unified article of the renewal (p. 16) and no quattordicesima appears: the number of monthly payments, 13, moves from assumed to derived (the period starts in 2022, before the renewal)."
         ]
       }
     ],

@@ -105,7 +105,7 @@ residence and empty family are stated, is not payable:
   destination of a company under the Tesoreria rule;
 - a rule the run executes is `assumed`: the municipal surtax of a comune with
   no delibera for the year and, for most CCNLs, the base salary, since
-  <!-- trust:extra-months-assumed -->96 of 132<!-- /trust:extra-months-assumed -->
+  <!-- trust:extra-months-assumed -->95 of 132<!-- /trust:extra-months-assumed -->
   CCNLs cite no clause for their number of monthly payments;
 - for some CCNLs, an `open_limitation` that concerns every ordinary month (an
   INPS rate reused from another sector, a salary table read from a proxy

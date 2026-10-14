@@ -1407,7 +1407,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-artigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "adcf4e0493af2fb84d188594e34be84c2cdda9c9dc4e7bb499c806ca09eefd29",
+      "source_hash": "0a8d7ef9d7f5c3f0366fd9269592e1edfcb0bc2f6ae458a64694f4ff40e844c3",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-artigianato.json.gz"

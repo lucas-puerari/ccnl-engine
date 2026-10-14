@@ -411,9 +411,6 @@
       "accrual_rule": "missing",
       "additional_months[2025-06-01]": "assumed"
     },
-    "agreement/metalmeccanico-artigianato.json": {
-      "additional_months[2022-01-01]": "assumed"
-    },
     "agreement/metalmeccanico-confimi-pmi.json": {
       "accrual_rule": "missing"
     },
