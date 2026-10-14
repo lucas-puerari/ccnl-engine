@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from datetime import date
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 import pytest
 
@@ -15,10 +16,15 @@ from ccnl_engine.balance.competence.models import EmploymentAccrualState
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
+from ccnl_engine.period.repositories import BundledKnowledgeRepository
 from ccnl_engine.period.services import calculate_period
 from tests.integration.ccnl_engine.period.builders import (
     period_request,
 )
+
+if TYPE_CHECKING:
+    from ccnl_engine.agreement.facade import TaxSector
+    from ccnl_engine.sector.models import YearRules
 
 _CODE = "other_employment_inps_base_unknown"
 #: Enrolled in 1990: the massimale does not apply, the 1% threshold does.
@@ -75,3 +81,38 @@ def test_a_domestic_run_reads_no_base_of_other_employments() -> None:
     )
 
     assert _CODE not in {issue.code for issue in result.issues}
+
+
+class _NoBandRepository(BundledKnowledgeRepository):
+    """Bundled rules of a year without massimale and without the 1% band."""
+
+    def load_year_rules(
+        self, year: int, sector: TaxSector, num_employees: int
+    ) -> YearRules:
+        """Return the bundled year rules without massimale and 1% rule.
+
+        Returns:
+            The year rules.
+        """
+        rules = super().load_year_rules(year, sector, num_employees)
+        assert rules.inps is not None
+        inps = rules.inps.model_copy(
+            update={"ceiling": None, "employee_additional": None}
+        )
+        return rules.model_copy(update={"inps": inps})
+
+
+def test_rules_without_massimale_or_band_read_no_other_base() -> None:
+    """Without a massimale or a 1% band, other employments change nothing."""
+    result = calculate_period(
+        period_request(1, contribution_history=_AFTER_1996),
+        repo=_NoBandRepository(),
+    )
+    states = {
+        d.inputs.get("ivs_ceiling")
+        for d in result.decisions
+        if "ivs_ceiling" in d.inputs
+    }
+
+    assert _CODE not in {issue.code for issue in result.issues}
+    assert states == {"not_applied"}

@@ -172,18 +172,28 @@ _SECTOR_REVIEWED = {
 }
 
 
+#: Blocks read from INPS circ. 6/2026 and its allegato 1, re-read in sectors
+#: whose rates are still derived.
+_CIRCULAR_6_REVIEWED = frozenset({"inps.employee_additional", "inps.minimum_base"})
+
+
 def _reviewed(file: str, path: str) -> bool:
     """Return whether a non-CCNL rule belongs to a reviewed table.
 
     Returns:
         True for the reviewed L2 rules of the production CCNL, the edilizia
-        and terziario INPS tables, the domestic INPS table and the shared
-        2026 tax tables.
+        and terziario INPS tables, the domestic INPS table, the blocks of
+        INPS circ. 6/2026 of the other sectors and the shared 2026 tax
+        tables.
     """
     if file == "sector/2026/industria.json" and path.startswith("tfr"):
         return True
     if file == "contribution/2026/artigianato.json":
-        return path == "inps.cigs_indotto"
+        return path in {"inps.cigs_indotto", *_CIRCULAR_6_REVIEWED}
+    if file == "contribution/2026/credito.json":
+        return path in _CIRCULAR_6_REVIEWED
+    if file == "contribution/2026/agricoltura.json":
+        return path == "inps.employee_additional"
     if file.startswith("sector/2026/"):
         return path in _SECTOR_REVIEWED
     return file in {
