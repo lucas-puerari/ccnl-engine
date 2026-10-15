@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, inail, inps_employee, inps_employer, seniority, territorial_supplement |
+| **Limits of this contract** | base_salary, bilateral_funds, inail, inps_employee, inps_employer, seniority, sickness, territorial_supplement |
 
-13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+14 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 3 verified / 15 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 5 verified / 13 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: the salary tranches of the renewal of 28 May 2026 against the signed verbale (Art. 50, Art. 54-bis, Allegato n. 1). | corrected | Allegato n. 1 prints the minimi of area 1532,999 / 1398,093 / 1042,434: the January 2027 salaries, compounded in the bundle (1533.84 / 1398.86 / 1043.00), are corrected to the printed minimi taken to the cent (1533.00 / 1398.09 / 1042.43) and verified.<br>June 2026: +3.4% of the 28 May 2026 salary (Art. 50): derived, the verbale prints no amount.<br>Art. 54-bis (0.4% for fixed-term workers with three years of 150 days) is new and not modelled: declared.<br>Art. 54 (seniority) is not amended by the verbale; the amounts stay aggregator-sourced (seniority_amounts_unconfirmed). |
 | 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | confirmed | CNEL A011 matches; the verbale of 28 May 2026 is signed by Confagricoltura, Coldiretti and CIA with FLAI, FAI and UILA. The report also lists Assoverde, API, the family-farm federations and UGL Agroalimentare as parties of the earlier text.<br>Term: the verbale renews the CCNL 'scaduto il 31 dicembre 2025' and is titled 2026-2029 (quadriennale): 1/1/2026 to 31/12/2029. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'straordinario, notturno, festivo, turni e maggiorazioni cumulabili': the overtime bands and the night, holiday and shift premiums of the file against the text read in the P1 review. | flagged | The overtime bands (20% weekday, 40% night, 50% holiday) stay derived: the CCNL of 23 May 2022 is not published by a party, and the verbale of 28 May 2026 does not amend the overtime article. Provincial contracts may set higher rates. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'ferie, permessi, festività, assenze, malattia e comporto': the leave, accrual, absence and sickness rules of the file against the text read in the P1 review. | corrected | Ferie 26 working days (Art. 36, p. 22), comporto 180 days (Art. 61, p. 37) and daily divisor 26 (Art. 50, p. 29): match and verified, cited to the verbale of 28 May 2026 instead of an aggregator.<br>Art. 62 (p. 38) gives the florovivaisti an employer integration of 25% of the daily wage for 90 days a year that the single file cannot pay: declared as an outside-input limitation. |
 
 ## Salary table
 
@@ -170,6 +171,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Add the consecutive years of at least 150 days with the employer to the request and pay 0.4% of the salary, then remove this note.
+
+!!! warning "operai-agricoli-florovivaisti/florovivaisti_sickness_integration · sickness · impact yes · open"
+    FLOROVIVAISTI SICKNESS: the operaio florovivaista a tempo indeterminato receives from the employer, on top of the INPS indemnity, 25% of the contractual daily wage for at most 90 days a year, from the first day when the sickness lasts more than three days (Art. 62, verbale of 28 May 2026, p. 38); the file pays the operai agricoli rule, with no employer integration, and the request does not say whether the operaio is a florovivaista.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Split the florovivaisti into their own levels or file, with a sickness rule paying 25% of the daily wage for 90 days a year past the third day.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
