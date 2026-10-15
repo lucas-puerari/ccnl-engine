@@ -285,7 +285,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/bancari-abi",
       "ruleset_version": "2026.2",
-      "source_hash": "f9922195696407e1b57b007f5b3c2523e04f2bc725590e78efbc7ae8be642050",
+      "source_hash": "a80711b0442eaf8fe1a5e35f2b344d0f5c03bf490caa06b58de6dae77cb95997",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/bancari-abi.json.gz"
@@ -455,7 +455,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "37f1abec359d9dad05ed3e61a5b8315f1aa99743e3ed6be711f2e870da32dcb2",
+      "source_hash": "d31b1cd66bbae22a20a2157a8a39bf98ef3706447da7f96250f10c91372117ae",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/commercio-confcommercio.json.gz"
@@ -727,7 +727,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-ance",
       "ruleset_version": "2026.2",
-      "source_hash": "4e4a5410573b64adec6aca4293cd5c29b900165446cc584526e39171e473d6da",
+      "source_hash": "fadff436431aa04ae8e4559c12311682cfdb4afcd542bf0c8a20713ed4065af9",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/edilizia-ance.json.gz"
@@ -982,7 +982,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/funzioni-centrali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "ea23c3812cf4cce6d175207c2f9c35b7fee5eb07a1e1a236deb0f40629ff006f",
+      "source_hash": "cc07a9599374a8a33043f45d69667e6ee77e102ec4e06e58c5c3112a0f046fe7",
       "source_type": "institutional_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/funzioni-centrali-aran.json.gz"
@@ -1271,7 +1271,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-non-convivente",
       "ruleset_version": "2026.3",
-      "source_hash": "8be192f99fb8298b924d55e7648c94ef144a7ee5a3e32ff524cc6ab113d7e026",
+      "source_hash": "c8dadb5ccf8d20891aad58dcce9ba94d81cb014a101113de5aa8c5b6efb0ec53",
       "source_type": "commercial_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/lavoro-domestico-non-convivente.json.gz"
@@ -1339,7 +1339,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra",
       "ruleset_version": "2026.2",
-      "source_hash": "98456798072c5c79f6955f0ae293782f3c7ffa9f6a30374c203f8ad99eb2e714",
+      "source_hash": "131fa240bf487232e841ed6f2a3c877e2ca26a258b5a041498e61d5a0bc13f06",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/logistica-trasporto-confetra.json.gz"
@@ -1407,7 +1407,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-artigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "0a8d7ef9d7f5c3f0366fd9269592e1edfcb0bc2f6ae458a64694f4ff40e844c3",
+      "source_hash": "6f687fbe08cd1cded1b73e5f1f28e036fef6e58e9cde84b6b98bad519830671c",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-artigianato.json.gz"
@@ -1458,7 +1458,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-federmeccanica",
       "ruleset_version": "2026.3",
-      "source_hash": "12d1d3de90949a2531960227ba29d9895789252186126f75938d27b8c481ec68",
+      "source_hash": "a91ab220b11eb1111b60269e26e724d03011912490e698a24d1120a6ecdb9726",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-federmeccanica.json.gz"
@@ -1543,7 +1543,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/operai-agricoli-florovivaisti",
       "ruleset_version": "2026.2",
-      "source_hash": "abad2d88fcd90427845b1df7a0f3c90c1e3c58a2040e96ba27f8dc734a211b51",
+      "source_hash": "3c160adc43e46d21d54277c58feda6dda557506300e9a9a8f9eac2feef625114",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/operai-agricoli-florovivaisti.json.gz"
@@ -1832,7 +1832,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/sanita-privata-aiop-aris",
       "ruleset_version": "2026.2",
-      "source_hash": "c3a93a4e35de321730a34522ec440325bf67830cb09e10210a9031e5350a045a",
+      "source_hash": "88711cd2a22e1c48b29f5fb84c014b2739beb6b8823d70510cd255e214f46d62",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/sanita-privata-aiop-aris.json.gz"

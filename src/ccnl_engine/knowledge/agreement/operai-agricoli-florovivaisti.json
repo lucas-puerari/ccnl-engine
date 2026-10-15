@@ -45,7 +45,12 @@
       "timestamp": "2026-09-04T00:00:00",
       "human_reviewed": false
     },
-    "workers_estimate": "~600k"
+    "workers_estimate": "~600k",
+    "agreement_date": "2026-05-28",
+    "validity": {
+      "valid_from": "2026-01-01",
+      "valid_until": "2029-12-31"
+    }
   },
   "coverage": {
     "notes": [
@@ -756,7 +761,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "abad2d88fcd90427845b1df7a0f3c90c1e3c58a2040e96ba27f8dc734a211b51",
+    "source_hash": "3c160adc43e46d21d54277c58feda6dda557506300e9a9a8f9eac2feef625114",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -981,6 +986,24 @@
           "June 2026: +3.4% of the 28 May 2026 salary (Art. 50): derived, the verbale prints no amount.",
           "Art. 54-bis (0.4% for fixed-term workers with three years of 150 days) is new and not modelled: declared.",
           "Art. 54 (seniority) is not amended by the verbale; the amounts stay aggregator-sourced (seniority_amounts_unconfirmed)."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-registry",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.cnel.it/media/docs/default-source/report-ccnl-vigenti/21-report-ccnl-vigenti_30-06-2025.pdf",
+            "sha256": "9b8e03b292ad71b6fcbc993eea8e070364423ee4e4dd4a495df7236112ae25c3"
+          }
+        ],
+        "findings": [
+          "CNEL A011 matches; the verbale of 28 May 2026 is signed by Confagricoltura, Coldiretti and CIA with FLAI, FAI and UILA. The report also lists Assoverde, API, the family-farm federations and UGL Agroalimentare as parties of the earlier text.",
+          "Term: the verbale renews the CCNL 'scaduto il 31 dicembre 2025' and is titled 2026-2029 (quadriennale): 1/1/2026 to 31/12/2029."
         ]
       }
     ]

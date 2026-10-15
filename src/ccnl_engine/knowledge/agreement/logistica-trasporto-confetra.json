@@ -34,7 +34,11 @@
       "timestamp": "2026-09-01T00:00:00",
       "human_reviewed": false
     },
-    "workers_estimate": "~430k"
+    "workers_estimate": "~430k",
+    "validity": {
+      "valid_from": "2025-01-01",
+      "valid_until": "2027-12-31"
+    }
   },
   "coverage": {
     "notes": [
@@ -2409,7 +2413,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "98456798072c5c79f6955f0ae293782f3c7ffa9f6a30374c203f8ad99eb2e714",
+    "source_hash": "131fa240bf487232e841ed6f2a3c877e2ca26a258b5a041498e61d5a0bc13f06",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2825,6 +2829,24 @@
           "Overtime 30/50/65/75%: verified from 1 January 2025 (the start of the salary series); the unsourced start of 2023-05-01 is dropped.",
           "The 50% of the sixth day of a five-day week is not modelled: declared.",
           "The EDR of 2011 (re-parametrisation by level not stated) and of 2021 (TFR treatment contradictory, pp. 54 and 83) stay derived."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-registry",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.cnel.it/media/docs/default-source/report-ccnl-vigenti/21-report-ccnl-vigenti_30-06-2025.pdf",
+            "sha256": "9b8e03b292ad71b6fcbc993eea8e070364423ee4e4dd4a495df7236112ae25c3"
+          }
+        ],
+        "findings": [
+          "CNEL I100 matches; the report lists the same associations and FILT, FIT, UILTRASPORTI.",
+          "Term: 'Il presente contratto scadrà il 31 dicembre 2027' (testo unico), the same in the report."
         ]
       }
     ],

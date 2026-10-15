@@ -36,7 +36,12 @@
       "timestamp": "2026-08-30T00:00:00",
       "human_reviewed": false
     },
-    "workers_estimate": "~1,7M"
+    "workers_estimate": "~1,7M",
+    "agreement_date": "2025-11-22",
+    "validity": {
+      "valid_from": "2025-11-22",
+      "valid_until": "2028-06-30"
+    }
   },
   "coverage": {
     "notes": [
@@ -3096,7 +3101,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "12d1d3de90949a2531960227ba29d9895789252186126f75938d27b8c481ec68",
+    "source_hash": "a91ab220b11eb1111b60269e26e724d03011912490e698a24d1120a6ecdb9726",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -4911,6 +4916,24 @@
           "Cometa: 2% of the employer and 1.2% of the worker from 1 June 2017, 2.2% from 1 June 2022 for members joining after 5 February 2021 under 35: verified.",
           "Overtime: the note cited Art. 14 and 15/20/30% and expected the renewal to change them; the bands follow Art. 7 (25/30/50/55/75%) and the renewal leaves them. Note corrected.",
           "Shift column of Art. 7 and multi-week premiums of Art. 5: not modelled, now declared (shift_and_multiweek_premiums)."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-registry",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.cnel.it/media/docs/default-source/report-ccnl-vigenti/21-report-ccnl-vigenti_30-06-2025.pdf",
+            "sha256": "9b8e03b292ad71b6fcbc993eea8e070364423ee4e4dd4a495df7236112ae25c3"
+          }
+        ],
+        "findings": [
+          "CNEL C011 matches (Federmeccanica, Assistal with FIM, FIOM, UILM; the report also lists the confederations and CISAL Metalmeccanici as depositors).",
+          "Term: the renewal 'decorre dal 22 novembre 2025 ed avrà vigore fino a tutto il 30 giugno 2028' (renewal text, p. 4); the report, older, still shows 30/06/2024."
         ]
       }
     ],

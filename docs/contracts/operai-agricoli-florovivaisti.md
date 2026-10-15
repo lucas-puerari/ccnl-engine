@@ -5,7 +5,7 @@
 | **CNEL code** | `A011` |
 | **Sector** | agricoltura |
 | **Tax sector** | `agricoltura` |
-| **Last renewal** | — |
+| **Last renewal** | 2026-05-28 |
 | **Workers (est.)** | ~600k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -51,8 +51,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
-| **Last review** | 2026-10-14 |
+| **Last renewal** | 2026-05-28 |
+| **Last review** | 2026-10-15 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: the salary tranches of the renewal of 28 May 2026 against the signed verbale (Art. 50, Art. 54-bis, Allegato n. 1). | corrected | Allegato n. 1 prints the minimi of area 1532,999 / 1398,093 / 1042,434: the January 2027 salaries, compounded in the bundle (1533.84 / 1398.86 / 1043.00), are corrected to the printed minimi taken to the cent (1533.00 / 1398.09 / 1042.43) and verified.<br>June 2026: +3.4% of the 28 May 2026 salary (Art. 50): derived, the verbale prints no amount.<br>Art. 54-bis (0.4% for fixed-term workers with three years of 150 days) is new and not modelled: declared.<br>Art. 54 (seniority) is not amended by the verbale; the amounts stay aggregator-sourced (seniority_amounts_unconfirmed). |
+| 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | confirmed | CNEL A011 matches; the verbale of 28 May 2026 is signed by Confagricoltura, Coldiretti and CIA with FLAI, FAI and UILA. The report also lists Assoverde, API, the family-farm federations and UGL Agroalimentare as parties of the earlier text.<br>Term: the verbale renews the CCNL 'scaduto il 31 dicembre 2025' and is titled 2026-2029 (quadriennale): 1/1/2026 to 31/12/2029. |
 
 ## Salary table
 

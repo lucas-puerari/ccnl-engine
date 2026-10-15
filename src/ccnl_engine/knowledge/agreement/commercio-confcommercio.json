@@ -49,7 +49,12 @@
       "effective_until": null,
       "back_calculation": null
     },
-    "workers_estimate": "~800k"
+    "workers_estimate": "~800k",
+    "agreement_date": "2024-03-22",
+    "validity": {
+      "valid_from": "2023-04-01",
+      "valid_until": "2027-03-31"
+    }
   },
   "coverage": {
     "notes": [
@@ -2760,7 +2765,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "37f1abec359d9dad05ed3e61a5b8315f1aa99743e3ed6be711f2e870da32dcb2",
+    "source_hash": "d31b1cd66bbae22a20a2157a8a39bf98ef3706447da7f96250f10c91372117ae",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3132,6 +3137,24 @@
           "The six tranche tables (1/4/2023 to 1/2/2027) print the paga base, 'Altri el.' and 'Contingenza + EDR' of the bundle for every level, with the same dates.",
           "Contingenza + EDR and terzo elemento: the amounts were already right; their start moves from the unsourced 1993-11-01 to 2023-04-01, the first date a bundled source states them, and they are verified.",
           "The renewal of 22 March 2024 (pp. 1-62 read by OCR) does not cite Art. 215."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-registry",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.cnel.it/media/docs/default-source/report-ccnl-vigenti/21-report-ccnl-vigenti_30-06-2025.pdf",
+            "sha256": "9b8e03b292ad71b6fcbc993eea8e070364423ee4e4dd4a495df7236112ae25c3"
+          }
+        ],
+        "findings": [
+          "CNEL H011 matches (Confcommercio with Filcams, Fisascat, Uiltucs); the report also lists UGL Terziario as a depositor, not a signatory of the renewal of 22 March 2024.",
+          "Term: 31/03/2027 from the report; the first tranche of the renewal is 1 April 2023. The first paragraph of Art. 259 is unreadable in the scan, so the dates rest on the report and the tranche table."
         ]
       }
     ],

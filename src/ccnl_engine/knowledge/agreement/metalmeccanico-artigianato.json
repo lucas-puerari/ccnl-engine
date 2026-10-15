@@ -43,7 +43,12 @@
       "timestamp": "2026-09-01T00:00:00",
       "human_reviewed": false
     },
-    "workers_estimate": "~350k"
+    "workers_estimate": "~350k",
+    "agreement_date": "2024-11-19",
+    "validity": {
+      "valid_from": "2023-01-01",
+      "valid_until": "2026-12-31"
+    }
   },
   "coverage": {
     "notes": [
@@ -2530,7 +2535,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "0a8d7ef9d7f5c3f0366fd9269592e1edfcb0bc2f6ae458a64694f4ff40e844c3",
+    "source_hash": "6f687fbe08cd1cded1b73e5f1f28e036fef6e58e9cde84b6b98bad519830671c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2791,6 +2796,24 @@
           "The tabellare 'fino al 30 novembre 2024' (with the AFAC of 21 December 2023) matches the period from 1 April 2024; its start date is not in this scan and stays derived.",
           "Term: 1 January 2023 to 31 December 2026, then until the next renewal (Art. 2). review_due 2027-01-31.",
           "The tredicesima is stated in the new unified article of the renewal (p. 16) and no quattordicesima appears: the number of monthly payments, 13, moves from assumed to derived (the period starts in 2022, before the renewal)."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-registry",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.cnel.it/media/docs/default-source/report-ccnl-vigenti/21-report-ccnl-vigenti_30-06-2025.pdf",
+            "sha256": "9b8e03b292ad71b6fcbc993eea8e070364423ee4e4dd4a495df7236112ae25c3"
+          }
+        ],
+        "findings": [
+          "CNEL C030 matches (the Confartigianato and CNA categories, Casartigiani, CLAAI with FIM, FIOM, UILM).",
+          "Term: 'Il presente CCNL decorre dal 1° gennaio 2023 e avrà validità fino al 31 dicembre 2026' (Art. 2), the same in the report."
         ]
       }
     ],

@@ -9,14 +9,9 @@
     "signatories": [
       "AIOP",
       "ARIS",
-      "FILCAMS CGIL",
-      "FP CGIL",
-      "FISASCAT CISL",
-      "CISL FP",
-      "UILTuCS",
-      "UILFPL",
-      "FIALS",
-      "CISAL SANITÀ"
+      "FP-CGIL",
+      "CISL-FPS",
+      "UIL-FPL"
     ],
     "sources": [
       {
@@ -40,8 +35,8 @@
     },
     "agreement_date": "2020-10-08",
     "validity": {
-      "valid_from": "2020-07-01",
-      "valid_until": null
+      "valid_from": "2016-01-01",
+      "valid_until": "2018-12-31"
     },
     "workers_estimate": "~150k"
   },
@@ -1874,7 +1869,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "c3a93a4e35de321730a34522ec440325bf67830cb09e10210a9031e5350a045a",
+    "source_hash": "88711cd2a22e1c48b29f5fb84c014b2739beb6b8823d70510cd255e214f46d62",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2125,6 +2120,24 @@
           "The 28 monthly tabellari match column D of Tabella 1 (p. 104) to the cent: verified.",
           "13 monthly payments: verified ('x 13 mensilità', column C).",
           "No renewal after the CCNL of 8 October 2020 was found; the table stays in force (ultrattività). Seniority, overtime, absence and sickness rules are not re-read in this pass."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-registry",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.cnel.it/media/docs/default-source/report-ccnl-vigenti/21-report-ccnl-vigenti_30-06-2025.pdf",
+            "sha256": "9b8e03b292ad71b6fcbc993eea8e070364423ee4e4dd4a495df7236112ae25c3"
+          }
+        ],
+        "findings": [
+          "CNEL T011 matches. Signatories corrected: the text of 8 October 2020 is signed by AIOP and ARIS with FP-CGIL, CISL-FPS and UIL-FPL only (the report adds UGL Sanità); FILCAMS, FISASCAT, UILTuCS, FIALS and CISAL Sanità were listed by mistake.",
+          "Term: 'Decorrenza: 1° gennaio 2016 - Scadenza: 31 dicembre 2018' (Art. 4), the same in the report; the CCNL applies in ultrattività."
         ]
       }
     ]

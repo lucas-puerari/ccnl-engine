@@ -5,7 +5,7 @@
 | **CNEL code** | `C030` |
 | **Sector** | metalmeccanico |
 | **Tax sector** | `artigianato` |
-| **Last renewal** | — |
+| **Last renewal** | 2024-11-19 |
 | **Workers (est.)** | ~350k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -51,8 +51,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
-| **Last review** | 2026-10-14 |
+| **Last renewal** | 2024-11-19 |
+| **Last review** | 2026-10-15 |
 | **Latest salary tranche** | 2026-11-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: the tabellare of the Metalmeccanica ed Installazione di Impianti sector for the four tranches of the renewal of 19 November 2024 (verbale integrativo of 25 November 2024), and the term; comparison with the industrial CCNL. | corrected | The 32 tabellari of the four tranches (1 December 2024 to 1 November 2026, eight levels) match the signed table of p. 27: verified.<br>The tabellare 'fino al 30 novembre 2024' (with the AFAC of 21 December 2023) matches the period from 1 April 2024; its start date is not in this scan and stays derived.<br>Term: 1 January 2023 to 31 December 2026, then until the next renewal (Art. 2). review_due 2027-01-31.<br>The tredicesima is stated in the new unified article of the renewal (p. 16) and no quattordicesima appears: the number of monthly payments, 13, moves from assumed to derived (the period starts in 2022, before the renewal). |
+| 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | confirmed | CNEL C030 matches (the Confartigianato and CNA categories, Casartigiani, CLAAI with FIM, FIOM, UILM).<br>Term: 'Il presente CCNL decorre dal 1° gennaio 2023 e avrà validità fino al 31 dicembre 2026' (Art. 2), the same in the report. |
 
 ## Salary table
 
