@@ -143,5 +143,9 @@
     "Check: 2392.01 - 493.33 = 1898.68, + rounding 0.32 = 1899.00, matches the net. Deductions 0.89 + 219.83 + 218.98 + 6.13 + 29.30 + 11.88 + 6.32 = 493.33.",
     "IRPEF check: 471.41 - 167.50 - 84.93 = 218.98.",
     "Comune name dropped; only the region (Lombardia) is kept."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The period is not printed in full."
+  }
 }

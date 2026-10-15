@@ -133,5 +133,34 @@
     "IRPEF check: 573.72 - 237.61 = 336.11. No ulteriore detrazione line; the L. 207/24 indemnity (117.39) is paid instead.",
     "Region from the province code (BO) in the employer address; address itself omitted. Date 08-09-2026 printed in the INAIL box is the processing date, not necessarily the payment date.",
     "Ferie balance is negative (-24 hours): more leave taken than accrued since hiring in June 2026."
-  ]
+  ],
+  "replay": {
+    "replayability": "partial",
+    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
+    "inputs": {
+      "ccnl_slug": "metalmeccanico-federmeccanica.json",
+      "level_code": "C3",
+      "year": 2026,
+      "month": 8,
+      "headcount": 50,
+      "contract_type": "permanent"
+    },
+    "unknown_inputs": [
+      "superminimo, premio di produzione and mensa",
+      "category"
+    ],
+    "expected": {
+      "base_salary": {
+        "value": "2211.43",
+        "tolerance": "0.00",
+        "printed": "pay_elements.minimo"
+      },
+      "employee_inps_rate": {
+        "value": "0.0949",
+        "tolerance": "0.00001",
+        "printed": "inps.ivs_rate + inps.cigs_rate"
+      }
+    },
+    "known_differences": []
+  }
 }

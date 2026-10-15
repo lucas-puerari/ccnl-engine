@@ -214,5 +214,9 @@
     "Progressive contributions 51.45 = 49.31 + FIS 2.14.",
     "INPS employee rate 46.90 / 803.00 = 5.84% (apprentice); the 'leave' rows are liquidated (non goduti) amounts.",
     "Comune code and mansione omitted per anonymization. Seniority field (anzianita 1 month, scatti) partially legible and not recorded."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The CCNL of the payslip is not identified."
+  }
 }

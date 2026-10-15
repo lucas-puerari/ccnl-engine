@@ -128,5 +128,9 @@
     "Check: 7006.44 - 5686.23 = 1320.21, matches the net exactly (no rounding shown). Only one deduction line (4681.77) is visible; the remaining 1004.46 of deductions are not on the visible part.",
     "Surtax year 2025 assumed from the LdB2025 reference. 'Comp.' and 'Agg.' labels transcribed as printed; their exact meaning (component vs additional/regional surcharge) is not stated on the slip.",
     "Region not inferable from the visible part."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The period is not printed in full."
+  }
 }

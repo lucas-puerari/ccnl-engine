@@ -171,5 +171,9 @@
     "Check: competenze lines sum to 776.95, not the printed Totale lordo 904.93 (gap 127.98, unexplained). Trattenute: 78.66 + 573.80 + 123.89 + 0.58 = 776.93 = printed total. Netto busta box is empty; 904.93 - 776.93 = 128.00 would be the implied net, not printed, so net is null.",
     "Possibly a termination (conguaglio box filled, residual leave and ex festivita hours settled), but the cessation date is redacted; kind left as regular.",
     "Region from the regional surtax line; comune name dropped."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The period is not printed in full."
+  }
 }

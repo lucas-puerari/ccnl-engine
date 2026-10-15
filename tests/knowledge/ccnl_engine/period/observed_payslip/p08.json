@@ -144,5 +144,9 @@
     "Total deductions 509.59 = social 102.11 + trattenute corpo 239.88 + conguaglio IRPEF 167.35 + previous rounding 0.25.",
     "The second leave column header reads 'FERIE COD.'/'PERMESSI GOD.' (likely 'goduti' printed while the same hours are paid as non goduti); recorded as printed under neutral keys.",
     "Hire and conventional hire dates 2024-11; payslip is the final one at termination, with year-end style IRPEF conguaglio."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The period is before the tax years of the bundle (2026 and 2027)."
+  }
 }

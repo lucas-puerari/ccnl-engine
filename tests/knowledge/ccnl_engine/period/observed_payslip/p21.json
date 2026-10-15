@@ -95,5 +95,9 @@
     "Check: 1732.54 - 105.54 - 127.49 = 1499.51, + rounding 0.49 = 1500.00, matches the net.",
     "IRPEF check: 374.21 - 246.72 = 127.49; taxable 1732.54 - 105.54 = 1627.00.",
     "Apprentice FPLD contribution labelled 'F.P.L.D. appsti (10% az)'; the 'integrazione retrib. ordinaria' line has no base or rate printed."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The period is before the tax years of the bundle (2026 and 2027)."
+  }
 }

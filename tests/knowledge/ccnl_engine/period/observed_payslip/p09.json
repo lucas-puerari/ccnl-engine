@@ -181,5 +181,9 @@
     "Level and contract type are redacted in the image.",
     "IRPEF net 120.29 = lorda 173.22 - detrazioni 52.93.",
     "Leave 'Goduto' equals 'Maturato' while the same hours are paid as non goduti (ferie/ROL paid out monthly)."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The level is not printed."
+  }
 }

@@ -65,5 +65,9 @@
   "notes": [
     "No art. 13 deduction applied (no detrazione field filled): IRPEF netta = 23% of the taxable.",
     "The TFR reduction (-2.50% of 80% of the base) is booked as a negative earning and lowers the taxable."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The period is before the tax years of the bundle (2026 and 2027)."
+  }
 }

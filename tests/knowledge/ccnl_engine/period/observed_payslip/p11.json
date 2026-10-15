@@ -150,5 +150,9 @@
     "Total earnings 4273.53 = 4238.47 + 35.06; the 36.48 IVS aggiuntivo conguaglio sits in the competenze column but is apparently netted in the deductions total.",
     "Only part of the payslip is visible: the header and the IRPEF detail (detrazioni, net IRPEF, surtax installments, fund contributions) are cut, so the 1994.31 deductions cannot be fully itemised from the image.",
     "Comune name dropped; region kept. IBAN visible in the image, not recorded."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The period is before the tax years of the bundle (2026 and 2027)."
+  }
 }

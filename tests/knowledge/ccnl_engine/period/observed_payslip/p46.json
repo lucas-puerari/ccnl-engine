@@ -87,5 +87,9 @@
     "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row.",
     "Printed totals do not reconcile: earnings - deductions - net = 358.05."
   ],
-  "totals_reconcile": false
+  "totals_reconcile": false,
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The period is not printed in full."
+  }
 }

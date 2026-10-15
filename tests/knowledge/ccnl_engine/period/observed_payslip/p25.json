@@ -285,5 +285,41 @@
     "Check: sum of competenze lines 17963.40, sum of trattenute lines incl. INPS 1481.02 and IRPEF 1127.28 is 6858.04. Printed totals exclude the C72+C70 pair (578.96 + 544.46 = 1123.42) shown on both sides: 17963.40 - 1123.42 + 0.32 previous rounding = 16840.30 and 6858.04 - 1123.42 = 5734.62. 16840.30 - 5734.62 = 11105.68 = net. Reconciles exactly.",
     "Lines 220 and 240 are statistic rows marked with '*', no amount.",
     "131.50 printed between the ORE RETR. and ORE LAV. boxes; assigned to ore_lavorate."
-  ]
+  ],
+  "replay": {
+    "replayability": "partial",
+    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
+    "inputs": {
+      "ccnl_slug": "commercio-confcommercio.json",
+      "level_code": "3",
+      "year": 2026,
+      "month": 8,
+      "headcount": 50,
+      "contract_type": "permanent",
+      "category": "operaio"
+    },
+    "unknown_inputs": [
+      "the termination facts (notice, untaken leave, TFR)",
+      "ad personam and seniority",
+      "headcount above 15, from the 9.757% withheld"
+    ],
+    "expected": {
+      "base_salary": {
+        "value": "1453.94",
+        "tolerance": "0.00",
+        "printed": "pay_elements.paga_base"
+      },
+      "fixed_allowances": {
+        "value": "527.90",
+        "tolerance": "0.00",
+        "printed": "pay_elements.contingenza"
+      },
+      "employee_inps_rate": {
+        "value": "0.0975667",
+        "tolerance": "0.00001",
+        "printed": "inps.employee / inps.base (1481.02 / 15179.00, per-component rounding)"
+      }
+    },
+    "known_differences": []
+  }
 }

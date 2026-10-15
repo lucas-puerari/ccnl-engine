@@ -142,5 +142,9 @@
     "Check: 3528.62 - 1541.62 = 1987.00, matches the net. Deductions itemised sum to 1541.62 (including previous rounding 0.54).",
     "Earnings total 3528.62 = stipendio 3528.57 + current rounding 0.05.",
     "Header fields (month, dates) are blank or erased, and several rows above 'TOTALE RETRIBUZIONE' are blanked out; IRPEF taxable and gross are not shown."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The period is not printed in full."
+  }
 }

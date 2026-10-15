@@ -78,5 +78,9 @@
     "current": "0.65"
   },
   "net": null,
-  "legibility": "partial: body only, no header, no fiscal box, no net"
+  "legibility": "partial: body only, no header, no fiscal box, no net",
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The period is not printed in full."
+  }
 }
