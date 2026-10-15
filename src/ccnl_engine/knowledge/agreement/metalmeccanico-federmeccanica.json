@@ -144,6 +144,19 @@
           },
           "remediation": "Add a supplementary-hours kind to the overtime event and a supplementare band with the CCNL rate."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "HEALTH FUND: mètaSalute, the health fund of the CCNL, is paid by the employer for every worker: 171,60 euro a year with the 10% INPS solidarity contribution, so 156 euro to the fund, in the cost table of the Ministry of Labour of June 2026 (DD 82 of 5 October 2026). Not modelled.",
+        "capability": "bilateral_funds",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "health_and_bilateral_funds",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pass the contributions as bilateral fund events, or model them per worker."
+        }
       }
     ]
   },
@@ -3114,7 +3127,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "79c2d9c665a256e75165366282a578977fd80897da99b9939c6143e5fff0d77a",
+    "source_hash": "4f76c18a1273f5cd0927a5db24edadab36f0496a7edbfe3626e4633545654a70",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -4964,6 +4977,23 @@
         ],
         "findings": [
           "Part-time supplementary hours at an all-inclusive 10% (p. 58): declared. The apprenticeship tracks of the accordo of 20 April 2021 were not re-read."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-funds",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the pension, health and bilateral contributions of the file against the text read in the P1 review.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          }
+        ],
+        "findings": [
+          "Cometa verified in P1. mètaSalute (156 euro a year plus the 10% solidarity contribution, Ministry of Labour DD 82/2026) is not modelled: declared."
         ]
       }
     ],

@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority, sickness |
+| **Limits of this contract** | bilateral_funds, seniority, sickness |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-11 | claude-opus-5-5 (ai) | Every payable rule of the file (80 records) read again in the signed texts: the Testo Unico of 30 July 2019 and the renewal of 22 March 2024 with the accordo integrativo of 28 March 2024. | confirmed | 64 records match their source and are verified; no amount differs. Pages are PDF page indexes (the printed page of the 2019 text is one higher).<br>Wrong page citations corrected: Artt. 210-211 on p. 197, Art. 159 on p. 157, Artt. 186-187 on pp. 178-180.<br>The 16 contingenza and terzo elemento records match in amount, but no source states their valid_from 1993-11-01: they stay derived. No effect on periods from 2024-04-01.<br>The Fon.Te. rates are read in Art. 107 (and Art. 57 for apprentices) of the 2019 text instead of the fund's information sheet.<br>Not modelled: the two one-off payments of the 2024 renewal (level IV 175 EUR on 1 July 2024 and on 1 July 2025, 2024 text p. 50).<br>Pages 1-62 of the 2024 text are image-only and were read by OCR; the expiry clause of Art. 259 is illegible. |
 | 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: the 16 contingenza and terzo elemento records left derived on 2026-10-11, and the tranche tables of pp. 64-65 of the 2024 renewal. | corrected | The six tranche tables (1/4/2023 to 1/2/2027) print the paga base, 'Altri el.' and 'Contingenza + EDR' of the bundle for every level, with the same dates.<br>Contingenza + EDR and terzo elemento: the amounts were already right; their start moves from the unsourced 1993-11-01 to 2023-04-01, the first date a bundled source states them, and they are verified.<br>The renewal of 22 March 2024 (pp. 1-62 read by OCR) does not cite Art. 215. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | confirmed | CNEL H011 matches (Confcommercio with Filcams, Fisascat, Uiltucs); the report also lists UGL Terziario as a depositor, not a signatory of the renewal of 22 March 2024.<br>Term: 31/03/2027 from the report; the first tranche of the renewal is 1 April 2023. The first paragraph of Art. 259 is unreadable in the scan, so the dates rest on the report and the tranche table. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the pension, health and bilateral contributions of the file against the text read in the P1 review. | flagged | Fon.Te. verified in P1. The EBT (0,10% + 0,05%), Quadrifor (50 + 25 euro a year for the quadri), Fondo Est and Qu.A.S. contributions are not modelled: declared. |
 
 ## Salary table
 
@@ -117,6 +118,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies.
 
     **Remediation:** Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 187, align the computation, then resolve this limitation.
+
+!!! warning "commercio-confcommercio/health_and_bilateral_funds · bilateral_funds · impact yes · open"
+    HEALTH AND BILATERAL FUNDS: Ente Bilaterale Territoriale 0,10% of the employer and 0,05% of the worker on paga base and contingenza (testo 2019, p. 48); Quadrifor 75 euro a year for each quadro, 50 from the employer and 25 from the worker (p. 108); Fondo Est (Art. 104) and Qu.A.S. for the quadri (Art. 105), whose amounts were not read. Not modelled: the worker's 0,05% lowers the net pay.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pass the contributions as bilateral fund events, or model them per worker.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

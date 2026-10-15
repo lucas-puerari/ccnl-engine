@@ -1259,6 +1259,7 @@
     ],
     "agreement/commercio-confcommercio.json": [
       "commercio-confcommercio/apprentice_seniority",
+      "commercio-confcommercio/health_and_bilateral_funds",
       "commercio-confcommercio/sickness_net_basis"
     ],
     "agreement/comunicazione-artigianato-confartigianato.json": [
@@ -1487,6 +1488,7 @@
     ],
     "agreement/logistica-trasporto-confetra.json": [
       "logistica-trasporto-confetra/apprentice_seniority",
+      "logistica-trasporto-confetra/health_and_bilateral_funds",
       "logistica-trasporto-confetra/part_time_supplementary_rate",
       "logistica-trasporto-confetra/sixth_day_overtime"
     ],
@@ -1503,6 +1505,7 @@
     ],
     "agreement/metalmeccanico-artigianato.json": [
       "metalmeccanico-artigianato/apprentice_inps_rates_unsourced",
+      "metalmeccanico-artigianato/health_and_bilateral_funds",
       "metalmeccanico-artigianato/inps_sector_rates_unsourced",
       "metalmeccanico-artigianato/overtime_rates_unconfirmed"
     ],
@@ -1515,6 +1518,7 @@
     ],
     "agreement/metalmeccanico-federmeccanica.json": [
       "metalmeccanico-federmeccanica/apprentice_seniority",
+      "metalmeccanico-federmeccanica/health_and_bilateral_funds",
       "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement",
       "metalmeccanico-federmeccanica/part_time_supplementary_rate",
       "metalmeccanico-federmeccanica/shift_and_multiweek_premiums"

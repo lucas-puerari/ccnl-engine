@@ -1946,7 +1946,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "e3f7231db5fe5832d2a2ebd17ac02917293180c98279c419cfc1e6b077f6e0b2",
+    "source_hash": "3eb1f48a5a7d8377982a378478a99b8e1586d864d46fadc864003b4f6b1b42d2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2340,6 +2340,23 @@
           "Apprenticeship (p. 31): only the 36-month track (85% then 90%) was modelled; the 18-month and 24-month tracks are added. An apprentice now names the track.",
           "Part-time supplementary hours are paid at 15% (Art. 22, p. 25): declared, the request cannot state them.",
           "Probation and fixed-term rules carry no amount the engine computes."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-funds",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the pension, health and bilateral contributions of the file against the text read in the P1 review.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+            "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
+          }
+        ],
+        "findings": [
+          "The CCNL of 8 October 2020 sets no contractual pension, health or bilateral contribution: Art. 74 only confirms the will to institute a supplementary pension. None is modelled."
         ]
       }
     ]

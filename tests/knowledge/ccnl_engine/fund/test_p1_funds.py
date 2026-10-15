@@ -1,0 +1,44 @@
+"""Pension, health and bilateral contributions of the first-round CCNLs.
+
+Logistica (testo unico, sha256
+99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24): Priamo is
+paid 1% by the employer and 1% by the worker (Art. 50, pp. 63-64); Sanilog
+and Ebilog (Art. 51-52) are declared, with the health and bilateral
+contributions of commercio, metalmeccanico federmeccanica and artigianato.
+"""
+
+from __future__ import annotations
+
+from datetime import date
+from decimal import Decimal
+
+import pytest
+
+from ccnl_engine.catalog.loaders import load_ccnl
+
+
+def test_logistica_priamo() -> None:
+    """1% of the employer, at least 1% of the worker."""
+    funds = load_ccnl("logistica-trasporto-confetra.json").parameters.employer_funds
+    (priamo,) = [f for f in funds if f.code == "PRIAMO"]
+
+    assert priamo.rate.value_at(date(2026, 1, 1)) == Decimal("0.0100")
+    assert priamo.employee_min_rate is not None
+    assert priamo.employee_min_rate.value_at(date(2026, 1, 1)) == Decimal("0.0100")
+
+
+@pytest.mark.parametrize(
+    "slug",
+    [
+        "logistica-trasporto-confetra",
+        "commercio-confcommercio",
+        "metalmeccanico-federmeccanica",
+        "metalmeccanico-artigianato",
+    ],
+)
+def test_health_and_bilateral_funds_are_declared(slug: str) -> None:
+    """The contributions the engine does not compute are open limitations."""
+    ccnl = load_ccnl(f"{slug}.json")
+    variants = {n.limitation.variant for n in ccnl.coverage.notes if n.limitation}
+
+    assert "health_and_bilateral_funds" in variants
