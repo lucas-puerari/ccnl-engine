@@ -738,9 +738,6 @@
       "accrual_rule": "assumed",
       "additional_months[2012-04-01]": "assumed"
     },
-    "agreement/sanita-privata-aiop-aris.json": {
-      "accrual_rule": "assumed"
-    },
     "agreement/scuole-materne-fism.json": {
       "accrual_rule": "assumed",
       "additional_months[2023-09-01]": "assumed"
@@ -1544,6 +1541,7 @@
       "operai-agricoli-florovivaisti/apprentice_seniority",
       "operai-agricoli-florovivaisti/eban_fisa_agrifondo",
       "operai-agricoli-florovivaisti/fixed_term_seniority_element",
+      "operai-agricoli-florovivaisti/florovivaisti_sickness_integration",
       "operai-agricoli-florovivaisti/florovivaisti_tables",
       "operai-agricoli-florovivaisti/inail_agricultural_premium",
       "operai-agricoli-florovivaisti/inps_on_actual_not_conventional_pay",

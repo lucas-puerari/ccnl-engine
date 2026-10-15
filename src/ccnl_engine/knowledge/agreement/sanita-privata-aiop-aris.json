@@ -112,27 +112,30 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "aiop-aris-non-medico-2020",
-            "title": "CCNL AIOP-ARIS personale non medico 8 ottobre 2020",
-            "kind": "altro",
+            "document_id": "ccnl-case-di-cura-private-2020-10-08",
+            "title": "CCNL personale non medico IRCCS e strutture sanitarie ospedaliere AIOP-ARIS, 8 ottobre 2020",
+            "kind": "associazione",
             "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
-            "published_on": "2020-10-08"
+            "published_on": "2020-10-08",
+            "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
           },
           "page": "96",
-          "section": "Art. 66, Tredicesima mensilità",
-          "quote": "La frazione di mese superiore a 15 giorni va considerata, a questi effetti, come mese intero."
+          "section": "Art. 66 (Tredicesima mensilità)",
+          "quote": "La frazione di mese superiore a 15 giorni va considerata, a questi effetti, come mese intero"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2020-07-01"
-        },
-        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-15T09:23:49Z",
+          "verification_status": "verified",
+          "effective_from": "2020-07-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-15T09:23:49Z",
+          "review_id": "2026-10-15-ai-leave-sickness"
+        }
       }
     }
   },
@@ -1882,7 +1885,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "8f72c3d6e2553531b17477a30bce488e143d31eb8feab6f5fd8fb02c52e37d85",
+    "source_hash": "7fab89fedc00806e4763aa30496c5802a6b347e978ec713b3bcce3fc0a2c9c36",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2072,72 +2075,109 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-sanita-privata-aiop-aris-2020",
-            "title": "CCNL Case di Cura Private – Personale Non Medico (AIOP-ARIS) 2020",
-            "kind": "tabella_retributiva",
-            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+            "document_id": "ccnl-case-di-cura-private-2020-10-08",
+            "title": "CCNL personale non medico IRCCS e strutture sanitarie ospedaliere AIOP-ARIS, 8 ottobre 2020",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+            "published_on": "2020-10-08",
+            "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
           },
-          "section": "Art. orario di lavoro"
+          "page": "88",
+          "section": "Art. 58 (Paga giornaliera e oraria)",
+          "quote": "La paga di una giornata lavorativa è determinata sulla base di 1/26"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2020-10-08"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-15T09:23:49Z",
+          "verification_status": "verified",
+          "effective_from": "2020-07-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-15T09:23:49Z",
+          "review_id": "2026-10-15-ai-leave-sickness"
         }
       }
     },
     "leave_rules": {
-      "default_annual_days": "30",
+      "default_annual_days": "34",
       "entitlement_tiers": [
         {
           "service_months_min": 0,
-          "annual_days": "30"
+          "annual_days": "34"
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-sanita-privata-aiop-aris-2020",
-            "title": "CCNL Case di Cura Private – Personale Non Medico (AIOP-ARIS) 2020",
-            "kind": "tabella_retributiva",
-            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+            "document_id": "ccnl-case-di-cura-private-2020-10-08",
+            "title": "CCNL personale non medico IRCCS e strutture sanitarie ospedaliere AIOP-ARIS, 8 ottobre 2020",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+            "published_on": "2020-10-08",
+            "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
           },
-          "section": "Art. ferie"
+          "page": "42",
+          "section": "Art. 32 (Ferie)",
+          "quote": "Tutti i lavoratori hanno diritto ad un periodo di ferie di trenta giorni lavorativi per anno solare"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2020-10-08"
-        }
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-15T09:23:49Z",
+          "verification_status": "verified",
+          "effective_from": "2020-07-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-15T09:23:49Z",
+          "review_id": "2026-10-15-ai-leave-sickness"
+        },
+        "transformation": "30 working days on a six-day count plus 'quattro giornate di ferie' in place of the festività soppresse: 34 days a year."
       }
     },
     "sickness_rules": {
-      "carenza_integration_rate": "0.5",
-      "full_pay_integration_rate": "0.75",
-      "max_duration_days": 180,
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "net_basis": true,
+      "cumulation": {
+        "window_years": 4,
+        "reduced_integration_rate": "0",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 365,
+            "comporto_days": 540
+          }
+        ]
+      },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-sanita-privata-aiop-aris-2020",
-            "title": "CCNL Case di Cura Private – Personale Non Medico (AIOP-ARIS) 2020",
-            "kind": "tabella_retributiva",
-            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+            "document_id": "ccnl-case-di-cura-private-2020-10-08",
+            "title": "CCNL personale non medico IRCCS e strutture sanitarie ospedaliere AIOP-ARIS, 8 ottobre 2020",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+            "published_on": "2020-10-08",
+            "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
           },
-          "section": "Art. malattia"
+          "page": "58-60",
+          "section": "Art. 43 (Malattia e infortuni), comporto and Trattamento economico",
+          "quote": "il datore di lavoro è tenuto ad integrare le prestazioni economiche assicurative sino a raggiungere: a) In caso di malattia Il 100% della retribuzione globale sino al 365° giorno di assenza nell'arco di quattro anni precedenti ad ogni inizio di malattia"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2020-10-08"
-        }
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-15T09:23:49Z",
+          "verification_status": "verified",
+          "effective_from": "2020-07-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-15T09:23:49Z",
+          "review_id": "2026-10-15-ai-leave-sickness"
+        },
+        "transformation": "From the first day the employer advances the INPS indemnity and tops it up to 100% of the retribuzione globale up to the 365th day of absence in the four years before the start of each sickness; the job is kept for 540 days in a rolling four years ('oltre il limite di 540 giorni complessivi nell'arco di un quadriennio mobile'). The treatment 'non deve essere comunque superiore a quello che il lavoratore avrebbe percepito al netto se avesse lavorato': net_basis. Not modelled: the extension to 600 and 690 days for a relapse during a long hospital stay, and the life-saving therapies left out of the comporto."
       }
     }
   },
@@ -2201,6 +2241,25 @@
         "findings": [
           "Art. 59 (p. 89): daytime overtime is paid at 20%, not 15%: corrected. Night or holiday overtime 30% and night-holiday overtime 50% match. All four bands verified; the hourly quota is the monthly pay over 26 and 6 (Art. 58), the divisor 156 of the file.",
           "Art. 60-61: the night and holiday shift indemnities, the on-call indemnity and the radiation risk indemnity were neither modelled nor declared: declared as an outside-input limitation."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-leave-sickness",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'ferie, permessi, festività, assenze, malattia e comporto': the leave, accrual, absence and sickness rules of the file against the text read in the P1 review.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+            "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
+          }
+        ],
+        "findings": [
+          "Sickness (Art. 43, pp. 58-60): the employer tops up to 100% of the retribuzione globale from the first day up to the 365th day of absence in four years, within a comporto of 540 days in a rolling four years, net of what the worker would have received working. The file paid 50% in the waiting days and 75% after, up to 180 days: corrected and verified.",
+          "Ferie (Art. 32, p. 42): 30 working days plus 4 days for the festività soppresse, 34 in all (was 30): corrected and verified.",
+          "Absence divisor 26 (Art. 58, p. 88) and the tredicesima accrual of more than 15 days (Art. 66, p. 96, was assumed): verified."
         ]
       }
     ]

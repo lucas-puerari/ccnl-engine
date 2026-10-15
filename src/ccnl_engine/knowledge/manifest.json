@@ -1543,7 +1543,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/operai-agricoli-florovivaisti",
       "ruleset_version": "2026.2",
-      "source_hash": "a7b012e136524a4d6e0ae521e67e710c8e4cd9df8a22d6786f66c2d0cb01865c",
+      "source_hash": "6f4c0702d7fd37b45aaa0cb611ad106af19d94a38ab602f140c92497c4c2ef9f",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/operai-agricoli-florovivaisti.json.gz"
@@ -1832,7 +1832,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/sanita-privata-aiop-aris",
       "ruleset_version": "2026.2",
-      "source_hash": "8f72c3d6e2553531b17477a30bce488e143d31eb8feab6f5fd8fb02c52e37d85",
+      "source_hash": "7fab89fedc00806e4763aa30496c5802a6b347e978ec713b3bcce3fc0a2c9c36",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/sanita-privata-aiop-aris.json.gz"

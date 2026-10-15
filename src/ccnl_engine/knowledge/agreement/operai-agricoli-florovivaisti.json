@@ -257,6 +257,19 @@
           },
           "remediation": "Add the consecutive years of at least 150 days with the employer to the request and pay 0.4% of the salary, then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "FLOROVIVAISTI SICKNESS: the operaio florovivaista a tempo indeterminato receives from the employer, on top of the INPS indemnity, 25% of the contractual daily wage for at most 90 days a year, from the first day when the sickness lasts more than three days (Art. 62, verbale of 28 May 2026, p. 38); the file pays the operai agricoli rule, with no employer integration, and the request does not say whether the operaio is a florovivaista.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "florovivaisti_sickness_integration",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Split the florovivaisti into their own levels or file, with a sickness rule paying 25% of the daily wage for 90 days a year past the third day."
+        }
       }
     ]
   },
@@ -761,7 +774,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "a7b012e136524a4d6e0ae521e67e710c8e4cd9df8a22d6786f66c2d0cb01865c",
+    "source_hash": "6f4c0702d7fd37b45aaa0cb611ad106af19d94a38ab602f140c92497c4c2ef9f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -883,21 +896,29 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-operai-agricoli-florovivaisti-2022",
-            "title": "CCNL Operai Agricoli e Florovivaisti (Confagricoltura / Coldiretti / CIA) 2022-2025",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/"
+            "document_id": "verbale-ccnl-operai-agricoli-2026-05-28",
+            "title": "Verbale di accordo di rinnovo del CCNL operai agricoli e florovivaisti 2026-2029, 28 maggio 2026",
+            "kind": "associazione",
+            "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
+            "published_on": "2026-05-28",
+            "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
           },
-          "section": "Art. orario — divisore giornaliero per retribuzione operai"
+          "page": "29",
+          "section": "Art. 50 (Retribuzione)",
+          "quote": "la paga giornaliera si ottiene dividendo quella mensile per 26"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2022-05-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-15T09:23:49Z",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-15T09:23:49Z",
+          "review_id": "2026-10-15-ai-leave-sickness"
         }
       }
     },
@@ -910,21 +931,29 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-operai-agricoli-florovivaisti-2022",
-            "title": "CCNL Operai Agricoli e Florovivaisti (Confagricoltura / Coldiretti / CIA) 2022-2025",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/"
+            "document_id": "verbale-ccnl-operai-agricoli-2026-05-28",
+            "title": "Verbale di accordo di rinnovo del CCNL operai agricoli e florovivaisti 2026-2029, 28 maggio 2026",
+            "kind": "associazione",
+            "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
+            "published_on": "2026-05-28",
+            "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
           },
-          "section": "Art. ferie — 26 giornate lavorative per OTI (tempo indeterminato)"
+          "page": "22",
+          "section": "Art. 36 (Ferie)",
+          "quote": "un periodo di ferie retribuito pari a 26 giornate lavorative"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2022-05-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-15T09:23:49Z",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-15T09:23:49Z",
+          "review_id": "2026-10-15-ai-leave-sickness"
         }
       }
     },
@@ -933,22 +962,31 @@
       "full_pay_integration_rate": "0",
       "max_duration_days": 180,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-operai-agricoli-florovivaisti-2022",
-            "title": "CCNL Operai Agricoli e Florovivaisti (Confagricoltura / Coldiretti / CIA) 2022-2025",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/"
+            "document_id": "verbale-ccnl-operai-agricoli-2026-05-28",
+            "title": "Verbale di accordo di rinnovo del CCNL operai agricoli e florovivaisti 2026-2029, 28 maggio 2026",
+            "kind": "associazione",
+            "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
+            "published_on": "2026-05-28",
+            "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
           },
-          "section": "Art. malattia — trattamento INPS; nessuna integrazione datoriale a livello nazionale"
+          "page": "37",
+          "section": "Art. 61 (Malattia ed infortunio operai agricoli)",
+          "quote": "ha diritto alla conservazione del posto per un periodo di 180 giorni"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2022-05-01"
-        }
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-15T09:23:49Z",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-15T09:23:49Z",
+          "review_id": "2026-10-15-ai-leave-sickness"
+        },
+        "transformation": "The operaio agricolo keeps the job for 180 days and has no employer integration in the CCNL: the integrations are paid by the provincial Casse extra legem (Art. 8 and 63), outside the payroll. The florovivaisti integration of Art. 62 is declared as a limitation."
       }
     }
   },
@@ -1016,6 +1054,24 @@
         "sources": [],
         "findings": [
           "The overtime bands (20% weekday, 40% night, 50% holiday) stay derived: the CCNL of 23 May 2022 is not published by a party, and the verbale of 28 May 2026 does not amend the overtime article. Provincial contracts may set higher rates."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-leave-sickness",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'ferie, permessi, festività, assenze, malattia e comporto': the leave, accrual, absence and sickness rules of the file against the text read in the P1 review.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
+            "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
+          }
+        ],
+        "findings": [
+          "Ferie 26 working days (Art. 36, p. 22), comporto 180 days (Art. 61, p. 37) and daily divisor 26 (Art. 50, p. 29): match and verified, cited to the verbale of 28 May 2026 instead of an aggregator.",
+          "Art. 62 (p. 38) gives the florovivaisti an employer integration of 25% of the daily wage for 90 days a year that the single file cannot pay: declared as an outside-input limitation."
         ]
       }
     ]
