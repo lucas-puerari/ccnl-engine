@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | bilateral_funds, overtime, seniority |
+| **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | confirmed | CNEL C011 matches (Federmeccanica, Assistal with FIM, FIOM, UILM; the report also lists the confederations and CISAL Metalmeccanici as depositors).<br>Term: the renewal 'decorre dal 22 novembre 2025 ed avrà vigore fino a tutto il 30 giugno 2028' (renewal text, p. 4); the report, older, still shows 30/06/2024. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova': the apprenticeship tracks and the part-time supplementary hours of the file against the text read in the P1 review. | flagged | Part-time supplementary hours at an all-inclusive 10% (p. 58): declared. The apprenticeship tracks of the accordo of 20 April 2021 were not re-read. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the pension, health and bilateral contributions of the file against the text read in the P1 review. | flagged | Cometa verified in P1. mètaSalute (156 euro a year plus the 10% solidarity contribution, Ministry of Labour DD 82/2026) is not modelled: declared. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'confrontare lordo, netto e costo azienda con esempi indipendenti': a run of the engine against the cost table of the Ministry of Labour for the CCNL (D.Lgs. 36/2023 art. 41 c. 13). | corrected | Impiegato C3 with 3 scatti, June 2026, 51 employees: tabellare 2211.43 and scatti 88.92 a month equal the table (26.537,16 and 1.067,04 a year over 12); the employer INPS rate 29.36% and the tredicesima on tabellare and scatti match; the TFR of the month 158.90 is the table's (tabellare + scatti) / 13.5 less the 0.5% IVS contribution the employer offsets (art. 3 L. 297/1982), which the table does not deduct. Match.<br>Deviations, with cause and decision: INAIL 4.417% and the health fund (171,60 a year) are capabilities the engine does not compute (documented); Cometa at a 40% enrolment is the table's average, the engine pays it on enrolment; the elemento perequativo (485 euro) and the flexible benefits (250 euro) were neither modelled nor declared: declared. The stale INPS note (30.13/30.20/30.50%) is corrected. No independent net pay example: not compared. |
 
 ## Salary table
 
@@ -153,6 +154,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Pass the contributions as bilateral fund events, or model them per worker.
 
+!!! warning "metalmeccanico-federmeccanica/perequativo_and_flexible_benefits · base_salary · impact yes · open"
+    ELEMENTO PEREQUATIVO AND FLEXIBLE BENEFITS: the worker of a company without second-level bargaining is owed the elemento perequativo of 485 euro a year, paid with the June pay, and every worker flexible benefits of 250 euro a year (Ministry of Labour cost table of June 2026, DD 82/2026, row A and D). The engine pays neither: whether the company has second-level bargaining is not in the request.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pass the elemento perequativo and the flexible benefits as variable pay items, or add a fact for the second-level bargaining.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -211,7 +219,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     MONTHLY PAYMENTS: 13 (thirteenth month). The fourteenth month is not provided for in the Federmeccanica CCNL. The performance bonus/variable company element is not modelled (layer 3).
     
-    INPS: the employer rates in 2026-industria.json are calculated for verified components (IVS 23.81% + DS 1.61% + CUAF 2.48% + CIGO D.Lgs.148/2015 + FIS/CIGS Circ.INPS 5/2025). Resulting totals: ≤15 employees = 30.13%, 16-50 employees = 30.20%, >50 employees = 30.50%. Does not include INAIL. The CIGS employee share (0.30% for >15 employees) is not yet modelled in employee_rate.
+    INPS: the employer rates of 2026-industria.json for an impiegato are IVS 23.81% plus 5.25% up to 50 employees (29.06%) and plus 5.55% from 51 (29.36%); the cost table of the Ministry of Labour of June 2026 (DD 82 of 5 October 2026) applies 29.36%. INAIL (4.417% in that table) is not computed by the engine.
     
     JUN 2021, JUN 2022, JUN 2023 TRANCHES: read in the CCNL of 5 February 2021 and the signed minutes of 16 June 2023; four annual tranches (June 2021-2024) under the IPCA mechanism of the 2021 CCNL.
     

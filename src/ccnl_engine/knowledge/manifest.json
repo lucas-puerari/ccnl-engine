@@ -727,7 +727,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-ance",
       "ruleset_version": "2026.2",
-      "source_hash": "4da063002914cbad9a1a69146168333fc10cbf273075f7dab2be3077c43c0fa1",
+      "source_hash": "35a50efbb51b33204ee40b93881b70f77caf5cd5e80a18e1b1f8e7c27509e7fd",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/edilizia-ance.json.gz"
@@ -1458,7 +1458,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-federmeccanica",
       "ruleset_version": "2026.3",
-      "source_hash": "4f76c18a1273f5cd0927a5db24edadab36f0496a7edbfe3626e4633545654a70",
+      "source_hash": "e8297137653655d006bf378a9cfe86f0f6fe331c27c0697585c6d82f42ed4a2b",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-federmeccanica.json.gz"

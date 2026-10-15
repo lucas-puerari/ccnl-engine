@@ -1323,6 +1323,7 @@
       "edilizia-ance-impiegati/edilizia_impiegati_unmodelled"
     ],
     "agreement/edilizia-ance.json": [
+      "edilizia-ance/cassa_edile_contribution",
       "edilizia-ance/edilizia_operai_sickness",
       "edilizia-ance/edilizia_operai_unmodelled",
       "edilizia-ance/part_time_supplementary_rate"
@@ -1521,6 +1522,7 @@
       "metalmeccanico-federmeccanica/health_and_bilateral_funds",
       "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement",
       "metalmeccanico-federmeccanica/part_time_supplementary_rate",
+      "metalmeccanico-federmeccanica/perequativo_and_flexible_benefits",
       "metalmeccanico-federmeccanica/shift_and_multiweek_premiums"
     ],
     "agreement/multiservizi-anip.json": [
