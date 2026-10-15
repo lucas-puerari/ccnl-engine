@@ -24,7 +24,7 @@ cost), or list what it still misses in
 | `concia-unic` | reviewed | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary | match | 2026-10-12 | 2027-01-31 |
 | `cooperative-sociali` | reviewed | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary | match | 2026-10-13 | 2027-01-31 |
 | `dmo-federdistribuzione` | production | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | match | 2026-10-13 | 2027-04-01 |
-| `edilizia-ance-impiegati` | production | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | match | 2026-10-13 | 2027-02-28 |
+| `edilizia-ance-impiegati` | production | payslip or official example, primary | provider output, source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | match | 2026-10-13 | 2027-02-28 |
 | `edilizia-ance` | production | primary | hand oracle, source-linked | conguaglio, ordinary month, termination | permanent, full time, permanent, paid by the hour | pension fund | headcount 16-50, minimo tranche of March, trattamento integrativo and somma esente bands | base_salary, contributions, employer_cost, gross, net, tax, tfr | match | 2026-10-15 | 2027-02-28 |
 | `edilizia-cooperative-ancpl` | exploratory | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | match | — | — |
 | `edilizia-pmi-confapi-aniem` | exploratory | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | match | 2026-10-14 | 2027-03-01 |
