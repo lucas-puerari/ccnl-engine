@@ -101,7 +101,7 @@ formulas or caller-declared amounts.
 | `standby` | Reperibilità (importi del CCNL per livello) | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
 | `absence` | Assenze ingiustificate | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `leave` | Ferie e permessi ROL | outside_input | work_rules | unsupported | outside_input | — | `facts.events[leave]` | — | unavailable | none bundled |
-| `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | scenario | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | simplified | 36 / 198 / 9 / 0 |
+| `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | scenario | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | simplified | 37 / 197 / 9 / 0 |
 | `fringe_benefit` | Fringe benefit (informativo) | scenario | work_rules | native | event | event | — | — | simplified | 0 / 1 / 1 / 0 |
 | `travel_allowance` | Indennità di trasferta (importo giornaliero dal chiamante, quota esente art. 51 c. 5 TUIR) | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `welfare` | Welfare aziendale (informativo) | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
@@ -203,7 +203,7 @@ never grow.
 | 71 | [CCNL Lavoratori Dipendenti Organizzazioni Sindacali (UNSIC/CONFSAL)](ooss-unsic-confsal.md) | ⚠️ | base_salary, seniority | 0 / 19 / 2 / 0 |
 | 72 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi a orario ridotto, art. 14 c. 2)](lavoro-domestico-convivente-orario-ridotto.md) | ⚠️ | assistance_contribution, base_salary, inps_employer, overtime, sickness | 13 / 2 / 0 / 0 |
 | 73 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)](lavoro-domestico-convivente.md) | ⚠️ | assistance_contribution, base_salary, inps_employer, seniority, sickness | 26 / 1 / 0 / 0 |
-| 74 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)](lavoro-domestico-non-convivente.md) | ⚠️ | assistance_contribution, base_salary, seniority, sickness | 16 / 1 / 0 / 0 |
+| 74 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)](lavoro-domestico-non-convivente.md) | ⚠️ | assistance_contribution, base_salary, seniority, sickness | 17 / 0 / 0 / 0 |
 | 75 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | ⚠️ | bilateral_funds, overtime, seniority | 62 / 3 / 0 / 0 |
 | 76 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra) - Personale viaggiante](logistica-trasporto-confetra-viaggiante.md) | ⚠️ | base_salary, seniority | 53 / 30 / 0 / 0 |
 | 77 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | ⚠️ | seniority | 0 / 40 / 2 / 0 |

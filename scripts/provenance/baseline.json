@@ -1467,6 +1467,7 @@
     ],
     "agreement/lavoro-domestico-non-convivente.json": [
       "lavoro-domestico-non-convivente/annual_minimi_not_updated",
+      "lavoro-domestico-non-convivente/domestic_oncological_comporto",
       "lavoro-domestico-non-convivente/extra_month_hours",
       "lavoro-domestico-non-convivente/meal_indennity",
       "lavoro-domestico-non-convivente/oncological_comporto",
