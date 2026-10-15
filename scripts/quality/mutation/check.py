@@ -1,15 +1,19 @@
-"""Verify the mutation score of a campaign and record what it measured.
+"""Verify the mutation scores of a campaign and record what they measured.
 
-Two campaigns use it:
+Two campaigns use it, both reading the per-mutant exit codes mutmut keeps in
+``mutants/<path>.meta``:
 
 - the weekly campaign mutates every module of ``[tool.mutmut]
-  source_paths`` and reads ``mutants/mutmut-cicd-stats.json`` (written by
-  ``mutmut export-cicd-stats``);
+  source_paths``;
 - the pull request campaign mutates only the money-moving modules the pull
   request changed.  ``--changed-since REF --print-globs`` prints the mutmut
   name patterns of those modules (nothing when none changed), and
-  ``--changed-since REF`` then scores the mutants of those modules alone,
-  from the per-mutant exit codes mutmut keeps in ``mutants/<path>.meta``.
+  ``--changed-since REF`` then scores those modules alone.
+
+The core modules must reach ``--min-score`` together.  A module listed in
+``baseline.json`` (the event handlers that move money) entered the
+perimeter below that minimum: it must keep its own floor, so its score
+cannot fall, and the floor is raised as tests kill its survivors.
 
 A score without its perimeter and its date misleads: every check writes
 ``mutants/mutation-score.json`` with the commit, the UTC date, the modules
@@ -24,9 +28,9 @@ Usage::
         [--min-score FLOAT]
 
 Exit codes:
-    0   Score meets or exceeds the minimum, or no module of the perimeter
+    0   Every score meets its minimum, or no module of the perimeter
         changed.
-    1   Score is below the minimum, or the results are missing/malformed.
+    1   A score is below its minimum, or the results are missing/malformed.
 """
 
 from __future__ import annotations
@@ -41,8 +45,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 _MUTANTS = Path("mutants")
-_STATS_PATH = _MUTANTS / "mutmut-cicd-stats.json"
 _RECORD_PATH = _MUTANTS / "mutation-score.json"
+#: Modules that entered the perimeter below the minimum, with their floor.
+BASELINE = Path(__file__).with_name("baseline.json")
 _DEFAULT_MIN_SCORE = 90.0
 #: Exit codes of a mutant run that kill it (mutmut ``status_by_exit_code``).
 _KILLED = frozenset({1, 3})
@@ -124,9 +129,9 @@ def module_stats(modules: tuple[str, ...], mutants: Path = _MUTANTS) -> dict[str
 
 
 def record(
-    stats: dict[str, int], perimeter: tuple[str, ...], score: float
+    scores: dict[str, dict[str, float]], perimeter: tuple[str, ...]
 ) -> dict[str, object]:
-    """Write and return what the score measured, when and where.
+    """Write and return what the scores measured, when and where.
 
     Returns:
         The record written to ``mutants/mutation-score.json``.
@@ -138,12 +143,11 @@ def record(
         check=False,
         cwd=ROOT,
     ).stdout.strip()
-    entry = {
+    entry: dict[str, object] = {
         "commit": commit,
         "date": datetime.now(tz=UTC).date().isoformat(),
         "perimeter": list(perimeter),
-        "score": round(score, 1),
-        **stats,
+        "scores": scores,
     }
     _RECORD_PATH.parent.mkdir(exist_ok=True)
     _RECORD_PATH.write_text(json.dumps(entry, indent=2) + "\n", encoding="utf-8")
@@ -172,30 +176,29 @@ def _parser() -> argparse.ArgumentParser:
     return parser
 
 
-def _campaign(args: argparse.Namespace) -> tuple[dict[str, int], tuple[str, ...]]:
-    """Return the counts and perimeter of the campaign the arguments name.
+def load_floors(path: Path = BASELINE) -> dict[str, float]:
+    """Return the minimum score of each module below the general minimum.
 
     Returns:
-        The counts by outcome and the modules scored.
+        The floor of each module listed in ``baseline.json``.
+    """
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return {module: float(floor) for module, floor in data["floors"].items()}
+
+
+def _perimeter(args: argparse.Namespace) -> tuple[str, ...]:
+    """Return the modules the arguments ask to score.
+
+    Returns:
+        Every module of ``source_paths``, or those changed since the ref.
 
     Raises:
-        SystemExit: When the results are missing or malformed, or when no
-            module of the perimeter changed (with status 0).
+        SystemExit: After printing the mutmut patterns with
+            ``--print-globs``, or when no module of the perimeter changed
+            (with status 0).
     """
     if args.changed_since is None:
-        if not _STATS_PATH.exists():
-            print(
-                f"ERROR: {_STATS_PATH} not found. "
-                "Run 'uv run mutmut run && uv run mutmut export-cicd-stats' first.",
-                file=sys.stderr,
-            )
-            raise SystemExit(1)
-        try:
-            stats: dict[str, int] = json.loads(_STATS_PATH.read_text(encoding="utf-8"))
-        except json.JSONDecodeError as exc:
-            print(f"ERROR: cannot parse {_STATS_PATH}: {exc}", file=sys.stderr)
-            raise SystemExit(1) from exc
-        return stats, source_paths()
+        return source_paths()
     modules = changed_modules(args.changed_since, source_paths())
     if args.print_globs:
         print(" ".join(mutant_glob(m) for m in modules))
@@ -203,35 +206,64 @@ def _campaign(args: argparse.Namespace) -> tuple[dict[str, int], tuple[str, ...]
     if not modules:
         print(f"No mutated module changed since {args.changed_since}.")
         raise SystemExit(0)
-    try:
-        return module_stats(modules), modules
-    except (FileNotFoundError, json.JSONDecodeError, KeyError) as exc:
-        print(f"ERROR: cannot read the mutmut results: {exc}", file=sys.stderr)
-        raise SystemExit(1) from exc
+    return modules
+
+
+def evaluate(
+    perimeter: tuple[str, ...],
+    floors: dict[str, float],
+    min_score: float,
+    mutants: Path = _MUTANTS,
+) -> tuple[dict[str, dict[str, float]], list[str]]:
+    """Score the perimeter: the core together, each floored module alone.
+
+    The modules without a floor must reach ``min_score`` together, as the
+    campaign always measured them.  A module listed in ``baseline.json``
+    entered the perimeter below that minimum: it must keep its floor, so
+    its score never falls; raise the floor as tests kill its survivors.
+
+    Returns:
+        The counts and score of the core and of each floored module, and
+        one message per failure.
+    """
+    scores: dict[str, dict[str, float]] = {}
+    failures: list[str] = []
+    core = tuple(m for m in perimeter if m not in floors)
+    groups = [("core", core, min_score)] if core else []
+    groups += [(m, (m,), floors[m]) for m in perimeter if m in floors]
+    for name, modules, minimum in groups:
+        stats = module_stats(modules, mutants)
+        score = compute_score(stats)
+        scores[name] = {**stats, "score": round(score, 1), "minimum": minimum}
+        if score < minimum:
+            failures.append(f"{name}: {score:.1f}% is below {minimum:.1f}%")
+    return scores, failures
 
 
 def main() -> None:
     """Entry point.
 
-    Exits with code 1 when the mutation score is below the minimum.
+    Exits with code 1 when a score is below its minimum.
     """
     args = _parser().parse_args()
-    stats, perimeter = _campaign(args)
-    score = compute_score(stats)
-    entry = record(stats, perimeter, score)
-    print(
-        f"Mutation score: {score:.1f}%  "
-        f"({stats.get('killed', 0)} killed / {stats.get('survived', 0)} survived / "
-        f"{stats.get('total', 0)} total) on {len(perimeter)} module(s), "
-        f"commit {str(entry['commit'])[:12]}, {entry['date']}"
-    )
-    if score < args.min_score:
-        print(
-            f"FAIL: score {score:.1f}% is below the minimum {args.min_score:.1f}%.",
-            file=sys.stderr,
-        )
+    perimeter = _perimeter(args)
+    try:
+        scores, failures = evaluate(perimeter, load_floors(), args.min_score)
+    except (FileNotFoundError, json.JSONDecodeError, KeyError) as exc:
+        print(f"ERROR: cannot read the mutmut results: {exc}", file=sys.stderr)
         sys.exit(1)
-    print(f"OK: score {score:.1f}% >= minimum {args.min_score:.1f}%.")
+    entry = record(scores, perimeter)
+    for name, result in scores.items():
+        print(
+            f"{name}: {result['score']:.1f}% ({int(result['killed'])} killed / "
+            f"{int(result['survived'])} survived / {int(result['total'])} total), "
+            f"minimum {result['minimum']:.1f}%"
+        )
+    print(f"Commit {str(entry['commit'])[:12]}, {entry['date']}.")
+    if failures:
+        print("FAIL:\n  " + "\n  ".join(failures), file=sys.stderr)
+        sys.exit(1)
+    print("OK: every score meets its minimum.")
 
 
 if __name__ == "__main__":

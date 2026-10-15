@@ -27,7 +27,9 @@ case also names the independent output it was checked against (see
 :mod:`scripts.provenance.reference_case.check`). Expected values produced
 by the engine itself are not a status: they detect no systematic error, so
 such cases are rejected.  The schema gate also fails a ``production`` CCNL
-that no valid reference case runs.
+that no valid reference case runs, and one whose evidence in the validation
+matrix misses an output its readiness baseline does not list (see
+:mod:`scripts.provenance.readiness.check`).
 
 Modes:
 
@@ -82,6 +84,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from scripts.provenance import rules as payable_rules
 from scripts.provenance.evidence import check as provenance_evidence
 from scripts.provenance.label import check as provenance_labels
+from scripts.provenance.readiness import check as readiness_matrix
 from scripts.provenance.reference_case import check as reference_cases
 from scripts.provenance.reference_case.check import (
     CASES_DIR,
@@ -194,6 +197,11 @@ def check_rules(root: Path = payable_rules.KNOWLEDGE_DIR) -> bool:
         *provenance_labels.label_errors(root),
         *provenance_labels.readiness_errors(rules, root),
         *reference_cases.production_errors(root),
+        *(
+            readiness_matrix.readiness_errors()
+            if root == payable_rules.KNOWLEDGE_DIR
+            else ()
+        ),
     ]
     if evidence:
         print(

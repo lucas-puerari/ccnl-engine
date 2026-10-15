@@ -29,9 +29,14 @@ Evidence:
   run: 218 of 227 (96.0%) on the deduction and assessment rules changed on
   15 October 2026.  Every campaign records its commit, date and modules in
   `mutants/mutation-score.json`, kept as a workflow artifact: a score
-  without its perimeter and its date is not quoted.  The perimeter stays
-  the twelve modules of `[tool.mutmut] source_paths`; the event handlers
-  that move money are not mutated yet.
+  without its perimeter and its date is not quoted.  The perimeter also
+  holds the five event handlers that move money (overtime and work-time
+  supplements, sick pay, travel allowances, arrears, termination funds and
+  TFR).  They entered below 93%, so each keeps its own floor in
+  `scripts/quality/mutation/baseline.json`, its score on 15 October 2026
+  (travel 67.8%, termination 86.2%, overtime 86.8%, arrears 87.8%, sick
+  pay 90.6%): a score can rise, never fall.  The core twelve scored 859 of
+  917 (93.7%) that day.
 - Validation matrix: [Validation matrix](validation-matrix.md), generated
   in CI from the reference cases, the observed payslip replay, the sector
   oracles and the review log, crosses for each CCNL the source,

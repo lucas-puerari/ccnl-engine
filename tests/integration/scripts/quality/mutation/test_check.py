@@ -10,6 +10,8 @@ import pytest
 from scripts.quality.mutation.check import (
     changed_modules,
     compute_score,
+    evaluate,
+    load_floors,
     module_stats,
     mutant_glob,
     source_paths,
@@ -69,3 +71,39 @@ def test_a_module_without_results_is_an_error(tmp_path: Path) -> None:
 def test_no_mutant_scores_zero() -> None:
     """A campaign with no mutants does not pass by accident."""
     assert not compute_score({"killed": 0, "total": 0})
+
+
+def test_the_core_scores_together_and_each_floored_module_alone(
+    tmp_path: Path,
+) -> None:
+    """The core must reach the minimum; a floored module only its floor."""
+    _meta(tmp_path, "src/core.py", {"c__1": 1, "c__2": 1, "c__3": 1, "c__4": 0})
+    _meta(tmp_path, "src/handler.py", {"h__1": 1, "h__2": 0})
+
+    scores, failures = evaluate(
+        ("src/core.py", "src/handler.py"), {"src/handler.py": 50.0}, 80.0, tmp_path
+    )
+
+    assert scores["core"]["score"] == pytest.approx(75.0)
+    assert scores["src/handler.py"]["score"] == pytest.approx(50.0)
+    assert failures == ["core: 75.0% is below 80.0%"]
+
+
+def test_a_floored_module_cannot_fall(tmp_path: Path) -> None:
+    """A floored module changed alone is checked against its floor only."""
+    _meta(tmp_path, "src/handler.py", {"h__1": 1, "h__2": 0, "h__3": 0})
+
+    scores, failures = evaluate(
+        ("src/handler.py",), {"src/handler.py": 50.0}, 93.0, tmp_path
+    )
+
+    assert "core" not in scores
+    assert failures == ["src/handler.py: 33.3% is below 50.0%"]
+
+
+def test_every_floor_is_a_module_of_the_perimeter_below_the_minimum() -> None:
+    """A floor names a mutated module and stays below the general 93%."""
+    floors = load_floors()
+
+    assert set(floors) <= set(source_paths())
+    assert all(floor < 93.0 for floor in floors.values())

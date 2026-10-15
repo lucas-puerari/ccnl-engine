@@ -15,8 +15,9 @@ any evidence runs, the evidence the repository holds:
 
 The columns follow the dimensions of the validation review: source,
 independence, cycle, relationship, variables, thresholds, outputs, outcome
-and freshness.  The page is informational: readiness stays bound to the
-gates of ``scripts/provenance/check.py``.
+and freshness.  Readiness depends on it: a ``production`` CCNL must cover
+every output of the definition of done, or list what it misses in the
+shrink-only baseline of :mod:`scripts.provenance.readiness.check`.
 
 Run with::
 
@@ -190,8 +191,11 @@ def build_page(rows: dict[str, Row]) -> str:
         "divergences of the review log. `primary` evidence checks the",
         "transcription of a signed source; a `hand oracle` recomputes the",
         "pipeline from the same sources; only a `provider output` (a real",
-        "payslip, an official worked example) is independent of them. The page",
-        "is informational: readiness is bound to the provenance gates.",
+        "payslip, an official worked example) is independent of them.",
+        "Readiness depends on the page: a `production` CCNL must cover every",
+        "output (base salary, gross, contributions, tax, net, TFR, employer",
+        "cost), or list what it still misses in",
+        "`scripts/provenance/readiness/baseline.json`, a list that only shrinks.",
         "",
         header,
         "|---|---|---|---|---|---|---|---|---|---|---|---|",

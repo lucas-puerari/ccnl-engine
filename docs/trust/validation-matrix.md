@@ -8,8 +8,11 @@ engine, the hand oracles of each contribution sector, and the
 divergences of the review log. `primary` evidence checks the
 transcription of a signed source; a `hand oracle` recomputes the
 pipeline from the same sources; only a `provider output` (a real
-payslip, an official worked example) is independent of them. The page
-is informational: readiness is bound to the provenance gates.
+payslip, an official worked example) is independent of them.
+Readiness depends on the page: a `production` CCNL must cover every
+output (base salary, gross, contributions, tax, net, TFR, employer
+cost), or list what it still misses in
+`scripts/provenance/readiness/baseline.json`, a list that only shrinks.
 
 | CCNL | Readiness | Source | Independence | Cycle | Relationship | Variables | Thresholds | Output | Outcome | Last review | Review due |
 |---|---|---|---|---|---|---|---|---|---|---|---|
