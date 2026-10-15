@@ -1217,6 +1217,7 @@
     ],
     "agreement/bancari-abi.json": [
       "bancari-abi/abi_saturday_overtime_and_hourly_base",
+      "bancari-abi/abi_sickness_counting",
       "bancari-abi/apprentice_seniority",
       "bancari-abi/apprenticeship_destination_levels",
       "bancari-abi/ex_ristrutturazione_amount",
@@ -1508,6 +1509,7 @@
     ],
     "agreement/metalmeccanico-artigianato.json": [
       "metalmeccanico-artigianato/apprentice_inps_rates_unsourced",
+      "metalmeccanico-artigianato/artisan_impiegati_sickness",
       "metalmeccanico-artigianato/artisan_saturday_overtime",
       "metalmeccanico-artigianato/health_and_bilateral_funds",
       "metalmeccanico-artigianato/inps_sector_rates_unsourced"
