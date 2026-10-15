@@ -170,7 +170,7 @@ def _year(name: str) -> CompetenceYearResult:
     )
     periods = {}
     if s.overtime:
-        #: Ten weekday hours at the hourly minimo the bundle also states:
+        #: Two weekday hours at the hourly minimo the bundle also states:
         #: the request has no overtime event without a rate.
         rate = (Decimal("2158.26") / 173).quantize(Decimal("0.00001"))
         event = OvertimeEvent(

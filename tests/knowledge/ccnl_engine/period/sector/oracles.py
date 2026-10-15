@@ -4,7 +4,7 @@ Each scenario is a worker hired on 1 January 2026 by an employer in
 Sardegna (Alghero), with no pension fund of their own, no family deduction
 and a 2025 income of 40,000 EUR (no renewal substitute tax):
 
-- industria: Metalmeccanico Federmeccanica C3 impiegato, 50 employees, ten
+- industria: Metalmeccanico Federmeccanica C3 impiegato, 50 employees, two
   hours of weekday overtime on 10 March;
 - terziario: Terziario Confesercenti IV, 50 employees, fourteen payments;
 - edilizia: ANCE operaio of the 1st level, 30 employees, 173 hours a month.
@@ -254,11 +254,10 @@ _C3_FROM_JUNE = Decimal("2211.43")
 #: Hourly divisor 173 and the first two hours of weekday overtime at 25%:
 #: CCNL 5 February 2021, Sez. Quarta, Titolo III, Art. 7, p. 161 (sha256
 #: ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151):
-#: "a) lavoro straordinario: prime due ore ... 25%".  Ten hours on one day:
-#: the engine pays the first band only (the overtime tier is a recorded
-#: issue of the run), and so does the oracle.
+#: "a) lavoro straordinario: prime due ore ... 25%"; the hours after are paid
+#: 30%.  Two hours on one day stay within the first band under any reading.
 _C3_HOURLY = (_C3_UNTIL_MAY / 173).quantize(Decimal("0.00001"), ROUND_HALF_UP)
-OVERTIME_HOURS = Decimal(10)
+OVERTIME_HOURS = Decimal(2)
 _OVERTIME = _cents(OVERTIME_HOURS * _C3_HOURLY * Decimal("1.25"))
 #: Industria impiegato, 16 to 50 employees: employer IVS 23.81 and CUAF
 #: 0.68, NASpI 1.61, Fondo garanzia TFR 0.20, maternità 0.46, CIGO 1.70
@@ -372,8 +371,11 @@ _EDR = Decimal("10.33")
 #: Riposi annui 4.95% (CCNL 19 April 2010, p. 27) and the Cassa Edile
 #: accrual for ferie and gratifica natalizia 18.5% (p. 37), on minimo and
 #: contingenza (sha256
-#: ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b);
-#: the Cassa pays the accrual at 14.20%, net of its withholding.
+#: ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b); the
+#: accrual is "accantonat[o] al netto delle ritenute di legge secondo il
+#: criterio" of Allegato D (p. 38), the net rate of Allegato D point 2 (p.
+#: 172), which the ANCE Ragusa table of 1 March 2026 prints as "pari al
+#: 14,20%".
 _RIPOSI = Decimal("0.0495")
 _CASSA = Decimal("0.185")
 _CASSA_NET = Decimal("0.142")
