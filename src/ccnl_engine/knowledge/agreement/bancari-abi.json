@@ -124,6 +124,19 @@
           },
           "remediation": "Source who receives the importo ex ristrutturazione and model it with the scatti, then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "SCATTI FREEZE 2013-2014: no seniority for the scatti and the importo ex ristrutturazione accrues from 1 January 2013 to 31 July 2014 (Art. 103 c. 3, testo coordinato p. 142); staff in service on 19 December 1994 keep 12 scatti (Art. 94 c. 2, Art. 103 c. 2). The engine counts the seniority of the request without the freeze.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "scatti_freeze_2013_2014",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "State the seniority of a worker in service in 2013-2014 net of the 19 months of the freeze."
+        }
       }
     ]
   },
@@ -269,21 +282,31 @@
         "QD4": 7
       },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "abi-ipotesi-2023-norme",
-            "title": "Ipotesi di accordo di rinnovo del CCNL ABI, 23 novembre 2023, testo delle norme e tabelle economiche (FISAC CGIL)",
+            "document_id": "ccnl-abi-2023-11-23-testo-coordinato-fabi",
+            "title": "CCNL ABI 23 novembre 2023, testo coordinato (FABI, 2025)",
             "kind": "associazione",
-            "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
-            "published_on": "2023-11-23",
-            "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
+            "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+            "published_on": "2025-07-01",
+            "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
           },
-          "page": "35-38",
-          "section": "Tabelle economiche, Scatti di anzianità",
-          "quote": "QD 4° Livello 4.911,48 95,31 [...] 3ª Area 4° Livello 3.156,90 41,55 [...] Area Unificata (ex 1ª e 2ª Area Professionale) 2.350,10 29,07"
+          "page": "131, 142",
+          "section": "Art. 94 (quadri direttivi) and Art. 103 (aree professionali), Scatti di anzianità",
+          "quote": "gli scatti di anzianità vengono riconosciuti con cadenza triennale [...] 4 anni per il primo scatto in tutti i casi di assunzione"
         },
-        "note": "The amounts are those of the tables, the same in every tranche; the cadence (first step after 48 months, then 36) and the maximum counts (8, 7 for QD3 and QD4) are not in the tables read, so the record stays derived."
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-15T10:58:37Z",
+          "verification_status": "verified",
+          "effective_from": "2023-07-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-15T10:58:37Z",
+          "review_id": "2026-10-15-ai-texts"
+        },
+        "transformation": "Every 36 months, the first after 48; at most 8 for the 1st and 2nd level of the quadri and for the aree, 7 for the 3rd and 4th level of the quadri; the amounts are those of the tables of the renewal (Allegato 2)."
       }
     },
     "solidarity_fund": {
@@ -1755,7 +1778,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "3c20ccffb1378f708a4034664cdb5a3bf02c16c6122acce5ba5853d78e00a71c",
+    "source_hash": "7e358b3ce5e0efa04a3680a08715dfac4ad80cd04ad82585516d3950f47da4c7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2014,6 +2037,23 @@
         "sources": [],
         "findings": [
           "The overtime bands (25%, 55% night, 65% holiday) stay derived: the CCNL of 19 December 2019 that sets them is not published by a party in full, and the renewal of 23 November 2023 does not amend them. The hourly base of the ABI CCNL was not read: the BCC CCNL computes it on 90.66% of one twelfth of the annual pay, which the engine does not apply."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-texts",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'scatti di anzianità, indennità e altri elementi fissi', re-read on the full text published by a party, found on 15 October 2026.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+            "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
+          }
+        ],
+        "findings": [
+          "Scatti: the 48-month first scatto, the 36-month cadence and the maxima (8; 7 for QD3 and QD4) match Art. 94 and 103: verified. The freeze of 1 January 2013 - 31 July 2014 (Art. 103 c. 3) is declared."
         ]
       }
     ]

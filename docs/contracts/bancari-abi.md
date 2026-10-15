@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer, seniority |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 37 verified / 8 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 38 verified / 7 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: stipendio of the nine levels in the four tranches, scatti, number of monthly payments and term, against the renewal of 23 November 2023. | corrected | The 36 stipendi match the tables to the cent; they were cited to a union news page and are now verified against the tables of the renewal (pp. 35-38).<br>The first tranche runs from 1 July 2023 (the tables), not from the signing date 23 November 2023: corrected.<br>13 monthly payments: verified ('Importi mensili per 13 mensilità').<br>Scatti amounts match; cadence and maximum counts not in the tables: derived.<br>Importo ex ristrutturazione not modelled: declared. The agreement expired on 31 March 2026 (Art. 1). |
 | 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | confirmed | CNEL J241 matches (ABI with FABI, FIRST CISL, FISAC CGIL, UILCA, UNISIN; the report adds Intesa Sanpaolo as a depositor).<br>Term: Art. 1 of the renewal 'scadrà [...] il 31 marzo 2026'. The report shows 31/12/2028, which no text or party source supports; the parties suspended the deadlines to 31 July 2026 and the renewal is still open. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'straordinario, notturno, festivo, turni e maggiorazioni cumulabili': the overtime bands and the night, holiday and shift premiums of the file against the text read in the P1 review. | flagged | The overtime bands (25%, 55% night, 65% holiday) stay derived: the CCNL of 19 December 2019 that sets them is not published by a party in full, and the renewal of 23 November 2023 does not amend them. The hourly base of the ABI CCNL was not read: the BCC CCNL computes it on 90.66% of one twelfth of the annual pay, which the engine does not apply. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'scatti di anzianità, indennità e altri elementi fissi', re-read on the full text published by a party, found on 15 October 2026. | corrected | Scatti: the 48-month first scatto, the 36-month cadence and the maxima (8; 7 for QD3 and QD4) match Art. 94 and 103: verified. The freeze of 1 January 2013 - 31 July 2014 (Art. 103 c. 3) is declared. |
 
 ## Salary table
 
@@ -138,6 +139,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Source who receives the importo ex ristrutturazione and model it with the scatti, then remove this note.
+
+!!! warning "bancari-abi/scatti_freeze_2013_2014 · seniority · impact yes · open"
+    SCATTI FREEZE 2013-2014: no seniority for the scatti and the importo ex ristrutturazione accrues from 1 January 2013 to 31 July 2014 (Art. 103 c. 3, testo coordinato p. 142); staff in service on 19 December 1994 keep 12 scatti (Art. 94 c. 2, Art. 103 c. 2). The engine counts the seniority of the request without the freeze.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** State the seniority of a worker in service in 2013-2014 net of the 19 months of the freeze.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

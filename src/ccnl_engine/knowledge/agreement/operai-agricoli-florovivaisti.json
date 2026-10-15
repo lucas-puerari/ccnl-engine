@@ -76,10 +76,6 @@
       },
       {
         "kind": "info",
-        "text": "SENIORITY: triennale (36 months), maximum 5 scatti. Euro amounts from Art. 54 CCNL 2022-2025 (aggregator-sourced: contratticcnl.it): Area1 EUR 11.36, Area2 EUR 10.33, Area3 EUR 8.99 per triennio. Amounts frazionabili at daily (÷26) and hourly (÷169) divisors."
-      },
-      {
-        "kind": "info",
         "text": "TAX SECTOR: AGRICOLTURA (new TaxSector). INPS rates: Gestione Previdenziale Speciale Agricola, OTI standard agriculture: employee 8.84%, employer 21.66%, total 30.50% (2026). Source: ciatreviso.it citing INPS 2026 rates."
       },
       {
@@ -161,12 +157,15 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY AMOUNTS. Art. 54 scatti di anzianità amounts (Area1=11.36, Area2=10.33, Area3=8.99) sourced from 2022-2025 CCNL via aggregators (contratticcnl.it). The 2026 renewal text has not been confirmed to have changed these amounts; INPS Circ. 94/2024 reports a different 5-level structure (L1=9.89, L2=11.36, L3=11.93, L4=12.50, L5=12.78) which may reflect a different classification schema. Update if the renewed Art. 54 specifies different area-based values.",
+        "text": "SENIORITY OF THE SUPER PROFILES: Art. 54 (p. 55) pays 10,85 a month to the operai qualificati super and 11,62 to the specializzati super; the three areas of the file pay the amount of the qualificati (10,33) and of the specializzati (11,36), and the request does not say whether the operaio is a super profile.",
         "capability": "seniority",
-        "monetary_impact": "unknown",
+        "monetary_impact": "yes",
         "limitation": {
-          "variant": "seniority_amounts_unconfirmed",
-          "remediation": "Confirm the Art. 54 seniority amounts against the 2026 renewal text."
+          "variant": "super_profile_scatti",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the super profiles as levels with their scatto amounts."
         }
       },
       {
@@ -298,7 +297,7 @@
       ]
     },
     "seniority_increments": {
-      "cadence_months": 36,
+      "cadence_months": 24,
       "maximum_count": 5,
       "amount_by_level": {
         "Area1": {
@@ -330,22 +329,31 @@
         }
       },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "operai-agricoli-florovivaisti",
-            "title": "operai-agricoli-florovivaisti",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/"
+            "document_id": "ccnl-operai-agricoli-2022-2025-flai",
+            "title": "CCNL operai agricoli e florovivaisti 23 maggio 2022 (FLAI CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+            "published_on": "2022-05-23",
+            "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
           },
-          "section": "Scatti di anzianità"
+          "page": "55",
+          "section": "Art. 54 (Scatti di anzianità)",
+          "quote": "per ciascun biennio di anzianità di servizio presso la stessa azienda, hanno diritto [...] € 8,99 mensili se operai comuni, ad € 10,33 mensili se operai qualificati [...] ad € 11,36 mensili se operai specializzati"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
-        }
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-15T10:58:37Z",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-15T10:58:37Z",
+          "review_id": "2026-10-15-ai-texts"
+        },
+        "transformation": "Every 24 months, at most 5; Area3 (comuni) 8,99, Area2 (qualificati) 10,33, Area1 (specializzati) 11,36. Art. 54 is not among the articles the verbale of 28 May 2026 amends."
       }
     }
   },
@@ -774,7 +782,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "6f4c0702d7fd37b45aaa0cb611ad106af19d94a38ab602f140c92497c4c2ef9f",
+    "source_hash": "344548ae8f64f0a24b75e38277f70dc7e80ac59b822f9c0308f98c80ad3db817",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1072,6 +1080,23 @@
         "findings": [
           "Ferie 26 working days (Art. 36, p. 22), comporto 180 days (Art. 61, p. 37) and daily divisor 26 (Art. 50, p. 29): match and verified, cited to the verbale of 28 May 2026 instead of an aggregator.",
           "Art. 62 (p. 38) gives the florovivaisti an employer integration of 25% of the daily wage for 90 days a year that the single file cannot pay: declared as an outside-input limitation."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-texts",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'scatti di anzianità, indennità e altri elementi fissi', re-read on the full text published by a party, found on 15 October 2026.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+            "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+          }
+        ],
+        "findings": [
+          "Art. 54 (p. 55): the scatti are biennial, not triennial: cadence corrected from 36 to 24 months; amounts 8,99 / 10,33 / 11,36 and the maximum of 5 match: verified. The super profiles (10,85 and 11,62) are declared."
         ]
       }
     ]

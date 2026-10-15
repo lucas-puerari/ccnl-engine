@@ -1220,7 +1220,8 @@
       "bancari-abi/apprenticeship_destination_levels",
       "bancari-abi/ex_ristrutturazione_amount",
       "bancari-abi/inps_credit_rate_unverified",
-      "bancari-abi/inps_sector_rates_unsourced"
+      "bancari-abi/inps_sector_rates_unsourced",
+      "bancari-abi/scatti_freeze_2013_2014"
     ],
     "agreement/bcc-credito-cooperativo.json": [
       "bcc-credito-cooperativo/apprentice_seniority",
@@ -1557,7 +1558,7 @@
       "operai-agricoli-florovivaisti/mountain_zone_reductions",
       "operai-agricoli-florovivaisti/otd_terzo_elemento",
       "operai-agricoli-florovivaisti/provincial_supplement",
-      "operai-agricoli-florovivaisti/seniority_amounts_unconfirmed"
+      "operai-agricoli-florovivaisti/super_profile_scatti"
     ],
     "agreement/orafi-argentieri-industria-federorafi.json": [
       "orafi-argentieri-industria-federorafi/apprentice_seniority"

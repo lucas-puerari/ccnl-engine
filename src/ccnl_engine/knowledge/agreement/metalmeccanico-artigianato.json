@@ -74,7 +74,7 @@
       },
       {
         "kind": "info",
-        "text": "SENIORITY INCREMENTS: biennial (24 months), maximum 5 increments. Per-level amounts from EBLART/Direzionelavoro.it table (tab. 7.1). The effective date of the amounts (01.01.2022) is assumed to coincide with the first salary tranche; the primary source does not report a separate effective date for seniority increments."
+        "text": "SENIORITY INCREMENTS: biennial, at most 5, fixed amounts of Art. 60 and 71 for the workers without a scatto on 27 November 1997 (EBNA text pp. 135-136, 143-145). Workers with earlier scatti keep the 5% mechanism and the maxima at 30 June 2000 (181,79 for the Primo livello to 101,22 for the Sesto), not modelled."
       },
       {
         "kind": "info",
@@ -272,22 +272,31 @@
         }
       },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-            "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+            "document_id": "ccnl-area-meccanica-artigianato-ebna",
+            "title": "CCNL Area Meccanica artigianato, testo EBNA del CCNL 17 dicembre 2021 (EBAT Trentino)",
             "kind": "associazione",
-            "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+            "url": "https://www.ebat.tn.it/wp-content/uploads/2024/02/EBNA-Contratto-CCNL-Area-Meccanica_web_LR_compressed-1.pdf",
+            "published_on": "2024-02-01",
+            "sha256": "f8cd3c42582324aa4484bb2bb9465a5a0a442467aae64e3ea3a1c57e089f3151"
           },
-          "section": "Scatti di anzianità"
+          "page": "135-136, 143-145",
+          "section": "Art. 60 (ex operai) and Art. 71 (ex impiegati), Aumenti periodici di anzianità, Settore Metalmeccanica ed Installazione di Impianti",
+          "quote": "I lavoratori che non hanno ancora maturato alla data del 27 novembre 1997 il primo scatto di anzianità, percepiranno per ogni scatto di anzianità i seguenti importi in cifra fissa: [...] Primo 32,94 Secondo 29,08 Secondo B 26,13 Terzo 24,29 Quarto 21,72 Quinto 20,24 Sesto 18,40"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
-        }
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-15T10:58:37Z",
+          "verification_status": "verified",
+          "effective_from": "2022-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-15T10:58:37Z",
+          "review_id": "2026-10-15-ai-texts"
+        },
+        "transformation": "Every two years of service with the same employer, at most five; fixed amounts for the workers without a scatto on 27 November 1997, the same for ex operai and ex impiegati; 1Q takes the amount of the Primo livello."
       },
       "apprentice_amount": {
         "periods": [
@@ -2574,7 +2583,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "908868180d2c2c9daf4a222ebfd26394e257455308be9811573c5688132fb5c7",
+    "source_hash": "26f2945fb6ef419535902e2c0eb018edcc1be6171a1732406c7b4a5144a64c2a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2923,6 +2932,23 @@
         ],
         "findings": [
           "No pension, health or bilateral contribution is modelled; EBNA, FSBA, San.Arti and the pension fund are declared."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-texts",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'scatti di anzianità, indennità e altri elementi fissi', re-read on the full text published by a party, found on 15 October 2026.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.ebat.tn.it/wp-content/uploads/2024/02/EBNA-Contratto-CCNL-Area-Meccanica_web_LR_compressed-1.pdf",
+            "sha256": "f8cd3c42582324aa4484bb2bb9465a5a0a442467aae64e3ea3a1c57e089f3151"
+          }
+        ],
+        "findings": [
+          "Scatti: the eight amounts, the 24-month cadence and the maximum of 5 match Art. 60 and 71 for the workers hired after 27 November 1997: verified. The pre-1998 mechanism is noted."
         ]
       }
     ],
