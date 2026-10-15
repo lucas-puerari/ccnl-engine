@@ -1543,7 +1543,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/operai-agricoli-florovivaisti",
       "ruleset_version": "2026.2",
-      "source_hash": "f2f44357e877932b3b20f64a651b4064c6c56f08f83057d4f66c5fcecf24ac6b",
+      "source_hash": "dfdb36f9d3fc4191ef311504fea48be3e392715630cba73369ff3a6554488846",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/operai-agricoli-florovivaisti.json.gz"
