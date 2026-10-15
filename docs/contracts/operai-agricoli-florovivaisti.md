@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, inail, inps_employee, inps_employer, seniority, sickness, territorial_supplement |
+| **Limits of this contract** | base_salary, bilateral_funds, inail, inps_employee, inps_employer, overtime, seniority, sickness, territorial_supplement |
 
-14 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+15 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 6 verified / 12 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 10 verified / 9 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'straordinario, notturno, festivo, turni e maggiorazioni cumulabili': the overtime bands and the night, holiday and shift premiums of the file against the text read in the P1 review. | flagged | The overtime bands (20% weekday, 40% night, 50% holiday) stay derived: the CCNL of 23 May 2022 is not published by a party, and the verbale of 28 May 2026 does not amend the overtime article. Provincial contracts may set higher rates. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'ferie, permessi, festività, assenze, malattia e comporto': the leave, accrual, absence and sickness rules of the file against the text read in the P1 review. | corrected | Ferie 26 working days (Art. 36, p. 22), comporto 180 days (Art. 61, p. 37) and daily divisor 26 (Art. 50, p. 29): match and verified, cited to the verbale of 28 May 2026 instead of an aggregator.<br>Art. 62 (p. 38) gives the florovivaisti an employer integration of 25% of the daily wage for 90 days a year that the single file cannot pay: declared as an outside-input limitation. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'scatti di anzianità, indennità e altri elementi fissi', re-read on the full text published by a party, found on 15 October 2026. | corrected | Art. 54 (p. 55): the scatti are biennial, not triennial: cadence corrected from 36 to 24 months; amounts 8,99 / 10,33 / 11,36 and the maximum of 5 match: verified. The super profiles (10,85 and 11,62) are declared. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'straordinario, notturno, festivo, turni e maggiorazioni cumulabili', re-read on the full text published by a party, found on 15 October 2026. | corrected | Art. 43 (p. 48): straordinario 25% (was 20%), straordinario festivo 40% (was 50%), notturno 40%, festivo notturno 45% (added): corrected and verified. The florovivaisti rates of Art. 44 (p. 49) are declared. |
 
 ## Salary table
 
@@ -179,6 +180,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Split the florovivaisti into their own levels or file, with a sickness rule paying 25% of the daily wage for 90 days a year past the third day.
+
+!!! warning "operai-agricoli-florovivaisti/florovivaisti_overtime_rates · overtime · impact yes · open"
+    FLOROVIVAISTI OVERTIME AND HOLIDAY WORK: the operai florovivaisti are paid 29% overtime, 40% holiday work, 48% night work, 50% holiday overtime and 55% night holiday work (Art. 44, p. 49), against the 25, 35, 40, 40 and 45% of the operai agricoli (Art. 43) the file pays; ordinary holiday work (35% and 40%) has no band. The request does not say whether the operaio is a florovivaista. The rates apply to the provincial salario contrattuale.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Split the florovivaisti into their own levels or file with the Art. 44 rates.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

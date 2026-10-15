@@ -44,4 +44,4 @@ def test_sanita_privata_overtime_bands(code: str, rate: str) -> None:
 def test_declared_overtime_gaps() -> None:
     """Shift indemnities and unconfirmed artisan rates are open limitations."""
     assert "shift_on_call_allowances" in _variants("sanita-privata-aiop-aris")
-    assert "overtime_rates_unconfirmed" in _variants("metalmeccanico-artigianato")
+    assert "artisan_saturday_overtime" in _variants("metalmeccanico-artigianato")
