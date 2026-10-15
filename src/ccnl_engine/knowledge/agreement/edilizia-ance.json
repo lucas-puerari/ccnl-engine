@@ -8,9 +8,9 @@
     "tax_sector": "edilizia",
     "signatories": [
       "ANCE",
-      "Legacoop Costruzioni",
+      "Legacoop Produzione e Servizi",
       "Confcooperative Lavoro e Servizi",
-      "AGCI",
+      "AGCI Produzione e Lavoro",
       "Fillea-CGIL",
       "Filca-Cisl",
       "Feneal-Uil"
@@ -43,7 +43,12 @@
       "timestamp": "2026-09-01T00:00:00",
       "human_reviewed": false
     },
-    "workers_estimate": "~550k"
+    "workers_estimate": "~550k",
+    "agreement_date": "2025-02-21",
+    "validity": {
+      "valid_from": "2025-02-01",
+      "valid_until": "2028-06-30"
+    }
   },
   "coverage": {
     "notes": [
@@ -1435,7 +1440,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "4e4a5410573b64adec6aca4293cd5c29b900165446cc584526e39171e473d6da",
+    "source_hash": "fadff436431aa04ae8e4559c12311682cfdb4afcd542bf0c8a20713ed4065af9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1859,6 +1864,24 @@
           "The 12 monthly minimi of the four operai levels match the impiegati column of the national table, and each over 173 is the hourly minimo the table prints for the operai.",
           "Contingenza and EDR stay derived: Art. 11 of the CCNL of 19 April 2010 refers to the interconfederal agreements and no national signed table prints the amounts; the ANCE provincial tables do.",
           "Prevedi stays derived (fund information sheet); the accrual rule is a placeholder the operai do not read (no extra month paid by the employer)."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-registry",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.cnel.it/media/docs/default-source/report-ccnl-vigenti/21-report-ccnl-vigenti_30-06-2025.pdf",
+            "sha256": "9b8e03b292ad71b6fcbc993eea8e070364423ee4e4dd4a495df7236112ae25c3"
+          }
+        ],
+        "findings": [
+          "CNEL F012 matches. Signatory names corrected to the report: Legacoop Produzione e Servizi (was Legacoop Costruzioni) and AGCI Produzione e Lavoro.",
+          "Term: expiry 30/06/2028 from the report; valid_from is the first tranche of the renewal of 21 February 2025, the start of its term was not read."
         ]
       }
     ],

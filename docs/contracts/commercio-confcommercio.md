@@ -5,7 +5,7 @@
 | **CNEL code** | `H011` |
 | **Sector** | terziario |
 | **Tax sector** | `terziario` |
-| **Last renewal** | 2024-03-28 |
+| **Last renewal** | 2024-03-22 |
 | **Workers (est.)** | ~800k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 👁 Reviewed |
@@ -48,8 +48,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | 2024-03-28 |
-| **Last review** | 2026-10-14 |
+| **Last renewal** | 2024-03-22 |
+| **Last review** | 2026-10-15 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-10 | claude-opus-5-5 (ai) | Whole file. The values checked were not recorded; no value was marked verified. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-11 | claude-opus-5-5 (ai) | Every payable rule of the file (80 records) read again in the signed texts: the Testo Unico of 30 July 2019 and the renewal of 22 March 2024 with the accordo integrativo of 28 March 2024. | confirmed | 64 records match their source and are verified; no amount differs. Pages are PDF page indexes (the printed page of the 2019 text is one higher).<br>Wrong page citations corrected: Artt. 210-211 on p. 197, Art. 159 on p. 157, Artt. 186-187 on pp. 178-180.<br>The 16 contingenza and terzo elemento records match in amount, but no source states their valid_from 1993-11-01: they stay derived. No effect on periods from 2024-04-01.<br>The Fon.Te. rates are read in Art. 107 (and Art. 57 for apprentices) of the 2019 text instead of the fund's information sheet.<br>Not modelled: the two one-off payments of the 2024 renewal (level IV 175 EUR on 1 July 2024 and on 1 July 2025, 2024 text p. 50).<br>Pages 1-62 of the 2024 text are image-only and were read by OCR; the expiry clause of Art. 259 is illegible. |
 | 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: the 16 contingenza and terzo elemento records left derived on 2026-10-11, and the tranche tables of pp. 64-65 of the 2024 renewal. | corrected | The six tranche tables (1/4/2023 to 1/2/2027) print the paga base, 'Altri el.' and 'Contingenza + EDR' of the bundle for every level, with the same dates.<br>Contingenza + EDR and terzo elemento: the amounts were already right; their start moves from the unsourced 1993-11-01 to 2023-04-01, the first date a bundled source states them, and they are verified.<br>The renewal of 22 March 2024 (pp. 1-62 read by OCR) does not cite Art. 215. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | confirmed | CNEL H011 matches (Confcommercio with Filcams, Fisascat, Uiltucs); the report also lists UGL Terziario as a depositor, not a signatory of the renewal of 22 March 2024.<br>Term: 31/03/2027 from the report; the first tranche of the renewal is 1 April 2023. The first paragraph of Art. 259 is unreadable in the scan, so the dates rest on the report and the tranche table. |
 
 ## Salary table
 

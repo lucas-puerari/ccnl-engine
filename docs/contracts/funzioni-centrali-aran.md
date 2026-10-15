@@ -5,7 +5,7 @@
 | **CNEL code** | `S005` |
 | **Sector** | Pubblica Amministrazione — Comparto Funzioni Centrali |
 | **Tax sector** | `pubblica-amministrazione` |
-| **Last renewal** | 2025-01-27 |
+| **Last renewal** | 2026-08-06 |
 | **Workers (est.)** | ~250k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 👁 Reviewed |
@@ -55,8 +55,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | 2025-01-27 |
-| **Last review** | 2026-10-14 |
+| **Last renewal** | 2026-08-06 |
+| **Last review** | 2026-10-15 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-12 | claude-opus-5-5 (ai) | Salary tables, additional months, hourly and daily divisors, overtime, leave, sickness and seniority, against the CCNLs of 12 February 2018, 9 May 2022, 27 January 2025 and 6 August 2026. | corrected | Salary amounts confirmed (annual table over 12; elevate professionalità 2022: 35,000 / 13).<br>The first period started on 2022-05-09, the signing date; the new classification applies from 1 November 2022 (art. 18 c. 1).<br>The 2025-2027 values cited a union page; they are now cited to the ARAN text of 6 August 2026 (Tabella 3).<br>Daily quota: art. 29 c. 4 divides by 30, not 26.<br>Overtime is in art. 25 c. 5 of the CCNL 12.2.2018, kept in force by the CCNL 2025-2027.<br>Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 24), not 270 days at 100%.<br>Leave: 26 days for the first three years of a first public employment until 31 December 2026 (art. 21 CCNL 2022-2024). |
 | 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: Tabella 3 of the CCNL of 6 August 2026 for the four areas and the three years; the remaining derived records; the next review date. | confirmed | The twelve monthly amounts (four areas from 1 January 2025, 2026 and 2027) are the annual tabellare of Tabella 3 over 12, to the cent.<br>Perseo Sirio stays derived: the 1% of the employer and of the worker are read in the fund's information sheet, which states the rates in force, not since when; the CCNL does not print them.<br>review_due set to 2027-12-31, the expiry of the 2025-2027 agreement. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | corrected | CNEL S005 matches (ARAN with CISL FP, CONFSAL UNSA, FLP, CGS, CONFINTESA FP, UIL PA).<br>Term: the CCNL of 6 August 2026 covers the triennio 2025-2027; meta.validity still held the CCNL of 9 May 2022 and is updated. |
 
 ## Salary table
 

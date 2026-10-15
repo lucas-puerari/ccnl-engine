@@ -5,7 +5,7 @@
 | **CNEL code** | `F012` |
 | **Sector** | edilizia |
 | **Tax sector** | `edilizia` |
-| **Last renewal** | — |
+| **Last renewal** | 2025-02-21 |
 | **Workers (est.)** | ~550k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🏭 Production |
@@ -14,9 +14,9 @@
 
 ??? note "Signatories"
     - ANCE
-    - Legacoop Costruzioni
+    - Legacoop Produzione e Servizi
     - Confcooperative Lavoro e Servizi
-    - AGCI
+    - AGCI Produzione e Lavoro
     - Fillea-CGIL
     - Filca-Cisl
     - Feneal-Uil
@@ -51,8 +51,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
-| **Last review** | 2026-10-14 |
+| **Last renewal** | 2025-02-21 |
+| **Last review** | 2026-10-15 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-13 | claude-opus-5-5 (ai) | Scope of the declared limitations and readiness. | demoted | The 18.5% Cassa Edile accrual and the 4.95% riposi annui are missing from every operaio payslip: declared as cassa_edile_riposi_missing on every run, so the file goes back to reviewed.<br>edilizia_operai_sickness is recorded on every run with a sickness event. |
 | 2026-10-13 | claude-opus-5-5 (ai) | The hourly pay of the operai (Allegato A), the riposi annui of Art. 5 B, the Cassa Edile percentage of Art. 18 with the conventional net of Allegato D and the TFR base of Art. 33, read in the CCNL of 19 April 2010 (FILLEA text), for the production tier. | corrected | hourly_pay added: the operai are paid the monthly elements over 173 times the ordinary hours worked (Allegato A, p. 164); without the hours the run has a missing_fact ordinary_hours_worked blocker.<br>RIPOSI_ANNUI 4.95% (Art. 5 B, p. 27) paid with the pay and CASSA_EDILE 18.5% (Art. 18, pp. 37-38) accrued net of the withholdings: 14.2% withheld from the net pay (Allegato D, p. 172); both on the paga base and the ex contingenza (Art. 24 point 3-4, p. 49), in the INPS, IRPEF and TFR bases (Art. 33, p. 56).<br>No renewal changes the rates: the OCR of the verbali of 1 July 2014, 18 July 2018, 3 March 2022 and 21 February 2025 has no hit for 4,95, 18,5 or 14,2; the ANCE Ragusa table of 1 March 2026 prints 4,95%, 18,50% and 14,20%.<br>The ANCE Sassari table of 1 February 2025 computes the 18.5% and the 4.95% on a sub-total with the hourly EDR (0,06); the CCNL base of Art. 24 does not list the EDR and the data follow the CCNL.<br>cassa_edile_riposi_missing closed; the festività of Art. 17, the capisquadra maggiorazione, the Allegato D sickness and injury percentages and its point 4 exception declared.<br>Promoted to production. |
 | 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: the minimi of the operai for the tranches of 1 February 2025, 1 March 2026 and 1 March 2027 against the ANCE national table; the remaining derived records. | confirmed | The 12 monthly minimi of the four operai levels match the impiegati column of the national table, and each over 173 is the hourly minimo the table prints for the operai.<br>Contingenza and EDR stay derived: Art. 11 of the CCNL of 19 April 2010 refers to the interconfederal agreements and no national signed table prints the amounts; the ANCE provincial tables do.<br>Prevedi stays derived (fund information sheet); the accrual rule is a placeholder the operai do not read (no extra month paid by the employer). |
+| 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | corrected | CNEL F012 matches. Signatory names corrected to the report: Legacoop Produzione e Servizi (was Legacoop Costruzioni) and AGCI Produzione e Lavoro.<br>Term: expiry 30/06/2028 from the report; valid_from is the first tranche of the renewal of 21 February 2025, the start of its term was not read. |
 
 ## Salary table
 

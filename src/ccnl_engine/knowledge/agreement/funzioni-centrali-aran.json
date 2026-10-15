@@ -6,10 +6,10 @@
     "cnel_code": "S005",
     "sector": "Pubblica Amministrazione — Comparto Funzioni Centrali",
     "tax_sector": "pubblica-amministrazione",
-    "agreement_date": "2025-01-27",
+    "agreement_date": "2026-08-06",
     "validity": {
-      "valid_from": "2022-05-09",
-      "valid_until": null
+      "valid_from": "2025-01-01",
+      "valid_until": "2027-12-31"
     },
     "signatories": [
       "ARAN",
@@ -1039,7 +1039,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "ea23c3812cf4cce6d175207c2f9c35b7fee5eb07a1e1a236deb0f40629ff006f",
+    "source_hash": "cc07a9599374a8a33043f45d69667e6ee77e102ec4e06e58c5c3112a0f046fe7",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1402,6 +1402,24 @@
           "The twelve monthly amounts (four areas from 1 January 2025, 2026 and 2027) are the annual tabellare of Tabella 3 over 12, to the cent.",
           "Perseo Sirio stays derived: the 1% of the employer and of the worker are read in the fund's information sheet, which states the rates in force, not since when; the CCNL does not print them.",
           "review_due set to 2027-12-31, the expiry of the 2025-2027 agreement."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-registry",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.cnel.it/media/docs/default-source/report-ccnl-vigenti/21-report-ccnl-vigenti_30-06-2025.pdf",
+            "sha256": "9b8e03b292ad71b6fcbc993eea8e070364423ee4e4dd4a495df7236112ae25c3"
+          }
+        ],
+        "findings": [
+          "CNEL S005 matches (ARAN with CISL FP, CONFSAL UNSA, FLP, CGS, CONFINTESA FP, UIL PA).",
+          "Term: the CCNL of 6 August 2026 covers the triennio 2025-2027; meta.validity still held the CCNL of 9 May 2022 and is updated."
         ]
       }
     ],

@@ -15,14 +15,9 @@
 ??? note "Signatories"
     - AIOP
     - ARIS
-    - FILCAMS CGIL
-    - FP CGIL
-    - FISASCAT CISL
-    - CISL FP
-    - UILTuCS
-    - UILFPL
-    - FIALS
-    - CISAL SANITÀ
+    - FP-CGIL
+    - CISL-FPS
+    - UIL-FPL
 
 ## Coverage
 
@@ -55,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2020-10-08 |
-| **Last review** | 2026-10-14 |
+| **Last review** | 2026-10-15 |
 | **Latest salary tranche** | 2020-07-01 |
 
 ## Review history
@@ -63,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: Tabella 1 of the CCNL of 8 October 2020 for the 28 positions, the number of monthly payments and the term. | corrected | The 28 monthly tabellari match column D of Tabella 1 (p. 104) to the cent: verified.<br>13 monthly payments: verified ('x 13 mensilità', column C).<br>No renewal after the CCNL of 8 October 2020 was found; the table stays in force (ultrattività). Seniority, overtime, absence and sickness rules are not re-read in this pass. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | corrected | CNEL T011 matches. Signatories corrected: the text of 8 October 2020 is signed by AIOP and ARIS with FP-CGIL, CISL-FPS and UIL-FPL only (the report adds UGL Sanità); FILCAMS, FISASCAT, UILTuCS, FIALS and CISAL Sanità were listed by mistake.<br>Term: 'Decorrenza: 1° gennaio 2016 - Scadenza: 31 dicembre 2018' (Art. 4), the same in the report; the CCNL applies in ultrattività. |
 
 ## Salary table
 

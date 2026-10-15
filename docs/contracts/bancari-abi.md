@@ -5,7 +5,7 @@
 | **CNEL code** | `J241` |
 | **Sector** | credito |
 | **Tax sector** | `credito` |
-| **Last renewal** | — |
+| **Last renewal** | 2023-11-23 |
 | **Workers (est.)** | ~270k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -50,8 +50,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
-| **Last review** | 2026-10-14 |
+| **Last renewal** | 2023-11-23 |
+| **Last review** | 2026-10-15 |
 | **Latest salary tranche** | 2026-03-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: stipendio of the nine levels in the four tranches, scatti, number of monthly payments and term, against the renewal of 23 November 2023. | corrected | The 36 stipendi match the tables to the cent; they were cited to a union news page and are now verified against the tables of the renewal (pp. 35-38).<br>The first tranche runs from 1 July 2023 (the tables), not from the signing date 23 November 2023: corrected.<br>13 monthly payments: verified ('Importi mensili per 13 mensilità').<br>Scatti amounts match; cadence and maximum counts not in the tables: derived.<br>Importo ex ristrutturazione not modelled: declared. The agreement expired on 31 March 2026 (Art. 1). |
+| 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | confirmed | CNEL J241 matches (ABI with FABI, FIRST CISL, FISAC CGIL, UILCA, UNISIN; the report adds Intesa Sanpaolo as a depositor).<br>Term: Art. 1 of the renewal 'scadrà [...] il 31 marzo 2026'. The report shows 31/12/2028, which no text or party source supports; the parties suspended the deadlines to 31 July 2026 and the renewal is still open. |
 
 ## Salary table
 

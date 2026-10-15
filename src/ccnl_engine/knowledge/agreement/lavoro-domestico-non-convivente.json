@@ -28,7 +28,12 @@
       "timestamp": "2026-09-04T00:00:00",
       "human_reviewed": false
     },
-    "workers_estimate": "~900k"
+    "workers_estimate": "~900k",
+    "agreement_date": "2025-10-28",
+    "validity": {
+      "valid_from": "2025-11-01",
+      "valid_until": null
+    }
   },
   "coverage": {
     "notes": [
@@ -969,7 +974,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "8be192f99fb8298b924d55e7648c94ef144a7ee5a3e32ff524cc6ab113d7e026",
+    "source_hash": "c8dadb5ccf8d20891aad58dcce9ba94d81cb014a101113de5aa8c5b6efb0ec53",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
@@ -1327,6 +1332,24 @@
         "findings": [
           "The eight hourly minimi of Tabella C (6,51 to 9,97) times 40 x 52 / 12 are the monthly amounts of the bundle.",
           "The minimi are reset every 1 January (Art. 38): from 2027 the 2026 table would be paid as final. Declared as annual_minimi_not_updated on the three domestic CCNLs, review_due 2027-01-31."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-registry",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.cnel.it/media/docs/default-source/report-ccnl-vigenti/21-report-ccnl-vigenti_30-06-2025.pdf",
+            "sha256": "9b8e03b292ad71b6fcbc993eea8e070364423ee4e4dd4a495df7236112ae25c3"
+          }
+        ],
+        "findings": [
+          "CNEL H501 matches (FIDALDO, which groups ASSINDATCOLF, and DOMINA with FILCAMS, FISASCAT, UILTUCS, FEDERCOLF).",
+          "Term: the ipotesi of 28 October 2025 applies from 1 November 2025; its expiry is reported as 31 October 2028 (CNEL filing) or 31 December 2028 (press); not read in the text, left open."
         ]
       }
     ],
