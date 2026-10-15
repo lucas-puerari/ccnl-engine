@@ -115,6 +115,19 @@
           "variant": "sickness_net_basis",
           "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 187, align the computation, then resolve this limitation."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "HEALTH AND BILATERAL FUNDS: Ente Bilaterale Territoriale 0,10% of the employer and 0,05% of the worker on paga base and contingenza (testo 2019, p. 48); Quadrifor 75 euro a year for each quadro, 50 from the employer and 25 from the worker (p. 108); Fondo Est (Art. 104) and Qu.A.S. for the quadri (Art. 105), whose amounts were not read. Not modelled: the worker's 0,05% lowers the net pay.",
+        "capability": "bilateral_funds",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "health_and_bilateral_funds",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pass the contributions as bilateral fund events, or model them per worker."
+        }
       }
     ]
   },
@@ -2765,7 +2778,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "d31b1cd66bbae22a20a2157a8a39bf98ef3706447da7f96250f10c91372117ae",
+    "source_hash": "aa2e8c60c72d376bbd23c698af1a08583f09f43fdd628a2fa3416ffe6c045e28",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3155,6 +3168,23 @@
         "findings": [
           "CNEL H011 matches (Confcommercio with Filcams, Fisascat, Uiltucs); the report also lists UGL Terziario as a depositor, not a signatory of the renewal of 22 March 2024.",
           "Term: 31/03/2027 from the report; the first tranche of the renewal is 1 April 2023. The first paragraph of Art. 259 is unreadable in the scan, so the dates rest on the report and the tranche table."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-funds",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the pension, health and bilateral contributions of the file against the text read in the P1 review.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+          }
+        ],
+        "findings": [
+          "Fon.Te. verified in P1. The EBT (0,10% + 0,05%), Quadrifor (50 + 25 euro a year for the quadri), Fondo Est and Qu.A.S. contributions are not modelled: declared."
         ]
       }
     ],

@@ -135,6 +135,19 @@
           },
           "remediation": "Add a supplementary-hours kind to the overtime event and a supplementare band with the CCNL rate."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "HEALTH AND BILATERAL FUNDS: Sanilog (Art. 51, p. 64): 150 euro a year for each worker not in probation with a permanent contract or an apprenticeship, from the employer only, plus the 10% INPS solidarity contribution; Ebilog (Art. 52, p. 65): 3,50 euro a month from the employer and 0,50 euro from the worker, for 12 months, or an EAR of 8 euro a month paid to the worker by an employer outside the bilateral system. Not modelled.",
+        "capability": "bilateral_funds",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "health_and_bilateral_funds",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pass the contributions as bilateral fund events, or model them per worker."
+        }
       }
     ]
   },
@@ -325,7 +338,56 @@
         },
         "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
       }
-    }
+    },
+    "employer_funds": [
+      {
+        "code": "PRIAMO",
+        "description": "Priamo - Fondo pensione complementare per i lavoratori addetti ai servizi di trasporto pubblico e dei settori affini",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-logistica-testo-unico-2025",
+              "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+              "kind": "associazione",
+              "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+              "published_on": "2025-09-25",
+              "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+            },
+            "page": "63-64",
+            "section": "Art. 50 (Previdenza complementare)",
+            "quote": "1% a carico dell'azienda, calcolato sugli elementi della retribuzione mensile composta da minimo tabellare conglobato, EPA, scatti di anzianità, superminimi"
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-15T10:01:33Z",
+            "verification_status": "unverified",
+            "effective_from": "2025-01-01"
+          },
+          "transformation": "1% of the employer and 1% of the worker on the monthly pay of minimo conglobato, EPA, scatti, superminimi, terzo elemento, indennità di mensa and indennità di funzione, for the workers not paying the FASC. The engine computes it on the TFR base, which also holds the extra months: the text names the 'retribuzione mensile' and does not say whether the extra months count, hence derived. The TFR shares (1% of the TFR base for the workers employed by 28 April 1993, the legal share after) follow the enrolment."
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -2512,7 +2574,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "c973a68073833190a4d421cca9082afc9e1faeae954365865d8bbebe13edb419",
+    "source_hash": "3fad9a821352ea3861c1678edf07c5a73eb3917c4b7eb681c08bdc4d5eb43571",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2983,6 +3045,24 @@
         "findings": [
           "Tabella A (p. 75) matches the standard track. Tabella B, 90, 95 and 100% for the profili artigiani, was not modelled: added as a track; an apprentice now names it.",
           "Part-time supplementary hours at 18% (40% past the annual limit, Art. 56, p. 71): declared."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-funds",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the pension, health and bilateral contributions of the file against the text read in the P1 review.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "Priamo (Art. 50, pp. 63-64): 1% of the employer and 1% of the worker; no pension fund was modelled: added as an employer fund on the TFR base, derived because the text names the monthly pay.",
+          "Sanilog (150 euro a year, employer) and Ebilog (3,50 euro a month employer, 0,50 worker, or an EAR of 8 euro): declared."
         ]
       }
     ],

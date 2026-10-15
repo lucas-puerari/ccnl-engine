@@ -142,6 +142,19 @@
       {
         "kind": "info",
         "text": "APPRENTICESHIP (Art. 27 as renewed on 19 November 2024, signed scan p. 6, by semester on the retribuzione tabellare of the destination level): operai of the 1st and 2nd group 70, 70, 75, 78, 80, 85, 88, 92, 100, 100%; impiegati amministrativi 70, 70, 75, 80, 85, 90%; impiegati centralinisti 70, 70, 75, 80%, not modelled apart (their destination level is not distinguished)."
+      },
+      {
+        "kind": "simplification",
+        "text": "BILATERAL FUNDS: the artisan bilateral system (EBNA and the regional bodies, the FSBA wage-integration fund, the San.Arti health fund) and the Fondartigianato pension fund are paid under the interconfederal agreements of the artisan sector; the renewal of 19 November 2024 does not restate the amounts. Not modelled.",
+        "capability": "bilateral_funds",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "health_and_bilateral_funds",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pass the contributions as bilateral fund events, or model them per worker."
+        }
       }
     ]
   },
@@ -2561,7 +2574,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "610994b3e5eff15782b7d86f077ab79a15a69e08e3fafcfe3f5f6fc372953b11",
+    "source_hash": "908868180d2c2c9daf4a222ebfd26394e257455308be9811573c5688132fb5c7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2893,6 +2906,23 @@
         "findings": [
           "The operai track matches the ten semesters of Art. 27 (p. 6). The impiegati track paid yearly averages (77% for months 13-24, 87% for months 25-36): the text pays 75, 80, 85 and 90% by semester. Corrected.",
           "The 24-month track of the centralinisti (70, 70, 75, 80%) is not modelled apart: noted."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-funds",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the pension, health and bilateral contributions of the file against the text read in the P1 review.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+            "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
+          }
+        ],
+        "findings": [
+          "No pension, health or bilateral contribution is modelled; EBNA, FSBA, San.Arti and the pension fund are declared."
         ]
       }
     ],
