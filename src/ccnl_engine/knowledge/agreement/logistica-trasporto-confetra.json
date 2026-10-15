@@ -118,6 +118,23 @@
           },
           "remediation": "Add a sixth-day kind to the overtime event and a 50% band, then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP TABELLA B (testo unico p. 75): the profili artigiani and equivalent profiles (addetti al magazzinaggio, alla manutenzione veicoli, alla movimentazione) are paid 90% in the first year, 95% in the second and 100% after, not the 75 and 85% of Tabella A. The profile, not the level, selects the table: track 'profili_artigiani' beside 'standard'; set Apprentice.track."
+      },
+      {
+        "kind": "simplification",
+        "text": "PART-TIME SUPPLEMENTARY HOURS: supplementary hours are paid with 18% of the hourly quota of the retribuzione globale, 40% past the annual limit (Art. 56, testo unico p. 71). The request has no kind for supplementary hours: an overtime event of a part-time worker takes the overtime bands unless the caller passes the multiplier.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "part_time_supplementary_rate",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add a supplementary-hours kind to the overtime event and a supplementare band with the CCNL rate."
+        }
       }
     ]
   },
@@ -2455,6 +2472,37 @@
           "percentage": "1.00"
         }
       ]
+    },
+    {
+      "type": "percentage",
+      "name": "profili_artigiani",
+      "destination_levels": [
+        "1",
+        "2",
+        "3",
+        "3S",
+        "4",
+        "4J",
+        "5",
+        "6"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
     }
   ],
   "ruleset": {
@@ -2464,7 +2512,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "c782966e60151d112529d13abf391f5f8dc60ec22138d4d08b076c4f8e687579",
+    "source_hash": "c973a68073833190a4d421cca9082afc9e1faeae954365865d8bbebe13edb419",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2917,6 +2965,24 @@
           "EDR ex accordo 18 maggio 2021 (p. 82, personale non viaggiante): the nine amounts match (Quadri 12,80 to 6° 8,26); 13 mensilità, no effect on other institutes (p. 83). Verified.",
           "EDR of Art. 60 c. 8 (p. 85, 10 euro at 3° Super, staff in service on 26 January 2011): the eight amounts match (Quadro 12,89 to 6° 8,26) and the file gates it with in_service_on 2011-01-26. Verified. The 5-euro table of p. 93 belongs to another article and is not modelled here.",
           "Scatti (Art. 17) were verified in the P1 review; IND_FUN verified."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-contracts",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova': the apprenticeship tracks and the part-time supplementary hours of the file against the text read in the P1 review.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "Tabella A (p. 75) matches the standard track. Tabella B, 90, 95 and 100% for the profili artigiani, was not modelled: added as a track; an apprentice now names it.",
+          "Part-time supplementary hours at 18% (40% past the annual limit, Art. 56, p. 71): declared."
         ]
       }
     ],

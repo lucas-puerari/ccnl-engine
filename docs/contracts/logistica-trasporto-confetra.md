@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | overtime, seniority |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -71,6 +71,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: the salary tables of pp. 80-81 for every tranche, the overtime rates of Art. 13 c. 6 and the remaining derived records. | corrected | The minimo plus EPA of every level at 1.1.2025, 1.1.2026, 1.1.2027 and 1.6.2027 match the bundle.<br>Overtime 30/50/65/75%: verified from 1 January 2025 (the start of the salary series); the unsourced start of 2023-05-01 is dropped.<br>The 50% of the sixth day of a five-day week is not modelled: declared.<br>The EDR of 2011 (re-parametrisation by level not stated) and of 2021 (TFR treatment contradictory, pp. 54 and 83) stay derived. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | confirmed | CNEL I100 matches; the report lists the same associations and FILT, FIT, UILTRASPORTI.<br>Term: 'Il presente contratto scadrà il 31 dicembre 2027' (testo unico), the same in the report. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'scatti di anzianità, indennità e altri elementi fissi': the scatti and fixed allowances of the file against the text read in the P1 review. | confirmed | EDR ex accordo 18 maggio 2021 (p. 82, personale non viaggiante): the nine amounts match (Quadri 12,80 to 6° 8,26); 13 mensilità, no effect on other institutes (p. 83). Verified.<br>EDR of Art. 60 c. 8 (p. 85, 10 euro at 3° Super, staff in service on 26 January 2011): the eight amounts match (Quadro 12,89 to 6° 8,26) and the file gates it with in_service_on 2011-01-26. Verified. The 5-euro table of p. 93 belongs to another article and is not modelled here.<br>Scatti (Art. 17) were verified in the P1 review; IND_FUN verified. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova': the apprenticeship tracks and the part-time supplementary hours of the file against the text read in the P1 review. | corrected | Tabella A (p. 75) matches the standard track. Tabella B, 90, 95 and 100% for the profili artigiani, was not modelled: added as a track; an apprentice now names it.<br>Part-time supplementary hours at 18% (40% past the annual limit, Art. 56, p. 71): declared. |
 
 ## Salary table
 
@@ -111,6 +112,10 @@ Latest effective values per level (monthly gross, EUR).
 Destination levels: `1`, `2`, `3`, `3S`, `4`, `4J`, `5`, `6`  
 percentage: 1.00
 
+**profili_artigiani** (type: `percentage`)  
+Destination levels: `1`, `2`, `3`, `3S`, `4`, `4J`, `5`, `6`  
+percentage: 1.00
+
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
@@ -128,6 +133,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Add a sixth-day kind to the overtime event and a 50% band, then remove this note.
+
+!!! warning "logistica-trasporto-confetra/part_time_supplementary_rate · overtime · impact yes · open"
+    PART-TIME SUPPLEMENTARY HOURS: supplementary hours are paid with 18% of the hourly quota of the retribuzione globale, 40% past the annual limit (Art. 56, testo unico p. 71). The request has no kind for supplementary hours: an overtime event of a part-time worker takes the overtime bands unless the caller passes the multiplier.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add a supplementary-hours kind to the overtime event and a supplementare band with the CCNL rate.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -208,6 +220,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     INPS: uses 2026-industria.json (TaxSector.INDUSTRIA). File already present — no changes to the tax file.
     
     APPRENTICESHIP: percentage type from TABELLA A consolidated text September 2025. 75% year 1 (m1-12), 85% year 2 (m13-24), 100% from m25. Eligible levels: 1, 2, 3, 3S, 4, 4J, 5, 6 (level Q excluded). Maximum duration 36 months. Source: Art. 106 + TABELLA A consolidated text 09/2025 (contrattotrasporti.it).
+    
+    APPRENTICESHIP TABELLA B (testo unico p. 75): the profili artigiani and equivalent profiles (addetti al magazzinaggio, alla manutenzione veicoli, alla movimentazione) are paid 90% in the first year, 95% in the second and 100% after, not the 75 and 85% of Tabella A. The profile, not the level, selects the table: track 'profili_artigiani' beside 'standard'; set Apprentice.track.
     
 
 ## Raw data

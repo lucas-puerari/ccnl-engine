@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | overtime, seniority |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | Hospital stays in the sickness treatment (Sez. Quarta Titolo VI art. 2). | corrected | Hospital stays of more than 10 consecutive days are paid in full instead of 80%, up to 61 days: modelled with SicknessEpisode.hospital_stays (hospital_stay of the cumulation). |
 | 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: minimi of every level for June 2026, 2027 and 2028; Cometa rates (art. 15); overtime percentages (art. 7) against the renewal of 22 November 2025. | corrected | The 27 minimi of the table (9 levels from 1 June 2026, 2027 and 2028, p. 2 of the signed scan) match the bundle to the cent.<br>Cometa: 2% of the employer and 1.2% of the worker from 1 June 2017, 2.2% from 1 June 2022 for members joining after 5 February 2021 under 35: verified.<br>Overtime: the note cited Art. 14 and 15/20/30% and expected the renewal to change them; the bands follow Art. 7 (25/30/50/55/75%) and the renewal leaves them. Note corrected.<br>Shift column of Art. 7 and multi-week premiums of Art. 5: not modelled, now declared (shift_and_multiweek_premiums). |
 | 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | confirmed | CNEL C011 matches (Federmeccanica, Assistal with FIM, FIOM, UILM; the report also lists the confederations and CISAL Metalmeccanici as depositors).<br>Term: the renewal 'decorre dal 22 novembre 2025 ed avrà vigore fino a tutto il 30 giugno 2028' (renewal text, p. 4); the report, older, still shows 30/06/2024. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova': the apprenticeship tracks and the part-time supplementary hours of the file against the text read in the P1 review. | flagged | Part-time supplementary hours at an all-inclusive 10% (p. 58): declared. The apprenticeship tracks of the accordo of 20 April 2021 were not re-read. |
 
 ## Salary table
 
@@ -136,6 +137,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the shift column of Art. 7 and the multi-week premiums of Art. 5 with a fact naming the schedule of the worker, then remove this note.
+
+!!! warning "metalmeccanico-federmeccanica/part_time_supplementary_rate · overtime · impact yes · open"
+    PART-TIME SUPPLEMENTARY HOURS: supplementary work up to 40 hours a week is paid with an all-inclusive 10% (CCNL 5 February 2021, p. 58). The request has no kind for supplementary hours: an overtime event of a part-time worker takes the overtime bands unless the caller passes the multiplier.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add a supplementary-hours kind to the overtime event and a supplementare band with the CCNL rate.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

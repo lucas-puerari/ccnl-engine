@@ -1323,7 +1323,8 @@
     ],
     "agreement/edilizia-ance.json": [
       "edilizia-ance/edilizia_operai_sickness",
-      "edilizia-ance/edilizia_operai_unmodelled"
+      "edilizia-ance/edilizia_operai_unmodelled",
+      "edilizia-ance/part_time_supplementary_rate"
     ],
     "agreement/edilizia-artigianato-cna.json": [
       "edilizia-artigianato-cna/apprentice_inps_rates_unsourced",
@@ -1486,6 +1487,7 @@
     ],
     "agreement/logistica-trasporto-confetra.json": [
       "logistica-trasporto-confetra/apprentice_seniority",
+      "logistica-trasporto-confetra/part_time_supplementary_rate",
       "logistica-trasporto-confetra/sixth_day_overtime"
     ],
     "agreement/marittimi-industria-armatoriale.json": [
@@ -1514,6 +1516,7 @@
     "agreement/metalmeccanico-federmeccanica.json": [
       "metalmeccanico-federmeccanica/apprentice_seniority",
       "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement",
+      "metalmeccanico-federmeccanica/part_time_supplementary_rate",
       "metalmeccanico-federmeccanica/shift_and_multiweek_premiums"
     ],
     "agreement/multiservizi-anip.json": [
@@ -1623,6 +1626,7 @@
       "sanita-aran/renewal_2025_2027_not_modelled"
     ],
     "agreement/sanita-privata-aiop-aris.json": [
+      "sanita-privata-aiop-aris/part_time_supplementary_rate",
       "sanita-privata-aiop-aris/shift_on_call_allowances"
     ],
     "agreement/scuole-materne-fism.json": [

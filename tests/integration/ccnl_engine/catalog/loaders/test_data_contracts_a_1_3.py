@@ -83,9 +83,10 @@ class TestLoadLogisticaTrasportoConfetra:
         assert si.maximum_count == 5
 
     def test_logistica_trasporto_confetra_apprenticeship_all_levels(self) -> None:
-        """Single track covers levels 1-6, 3S, 4J at 75/85/100%."""
+        """Tabella A covers levels 1-6, 3S, 4J at 75/85/100%; Tabella B beside it."""
         ccnl = load_ccnl("logistica-trasporto-confetra.json")
-        assert len(ccnl.apprenticeship) == 1
+        names = [t.name for t in ccnl.apprenticeship]
+        assert names == ["standard", "profili_artigiani"]
         track = ccnl.apprenticeship[0]
         assert track.name == "standard"
         assert set(track.destination_levels) == {
