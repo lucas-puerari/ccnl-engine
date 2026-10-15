@@ -6,7 +6,9 @@
 pip install ccnl-engine
 ```
 
-Requires Python 3.12+.
+Requires Python 3.12+. Every pull request and every release run the API and
+knowledge tests on Python 3.12, 3.13 and 3.14, and smoke-test the built
+wheel on each.
 
 ## Find a CCNL and its level
 

@@ -1,0 +1,284 @@
+name: Quality gates
+
+# The gates that protect main, called by the pull requests (ci.yml) and by
+# the release (release.yml): a release runs exactly what a pull request runs,
+# and publishes the distribution these gates built and smoke-tested.
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  lint-test:
+    name: Lint, typecheck, test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d  # v10.0.1
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7
+        with:
+          python-version-file: .python-version
+
+      - name: Install dependencies
+        run: uv sync --group dev
+
+      - name: Install package (editable)
+        run: uv pip install -e .
+
+      - name: Lint (ruff check)
+        run: uv run ruff check src/ tests/ scripts/
+
+      - name: Format (ruff format --check)
+        run: uv run ruff format --check src/ tests/ scripts/
+
+      - name: Typecheck (mypy)
+        run: uv run mypy src/ tests/
+
+      - name: Typecheck scripts (mypy)
+        run: uv run mypy scripts/ --explicit-package-bases
+
+      - name: Cognitive complexity
+        run: uv run complexipy src tests scripts
+
+      - name: Knowledge manifest is up to date
+        run: uv run python scripts/knowledge/manifest/build.py --check
+
+      - name: Contract pages drift (check only)
+        run: uv run python scripts/documentation/contract_page/generate.py --check
+
+      - name: Contract examples drift (check only)
+        run: uv run python scripts/documentation/contract_example/generate.py --check
+
+      - name: Trust counts drift (check only)
+        run: uv run python scripts/documentation/trust_count/generate.py --check
+
+      - name: Test (pytest, coverage 100%)
+        run: uv run pytest
+
+      - name: Upload coverage report (artifact)
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7
+        if: always()
+        with:
+          name: coverage-xml
+          path: coverage.xml
+          retention-days: 14
+
+  compatibility:
+    name: Python ${{ matrix.python }} compatibility
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # 3.12 runs the whole suite with coverage in lint-test.
+        python: ["3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d  # v10.0.1
+        with:
+          enable-cache: true
+
+      - name: Install dependencies on Python ${{ matrix.python }}
+        run: uv sync --python ${{ matrix.python }} --group dev
+
+      - name: Import the public API
+        run: uv run --python ${{ matrix.python }} python -c "import ccnl_engine, ccnl_engine.inputs, ccnl_engine.results, ccnl_engine.events"
+
+      - name: API and knowledge tests
+        run: >-
+          uv run --python ${{ matrix.python }} pytest --no-cov -q
+          tests/integration/ccnl_engine/api tests/knowledge
+
+  docs-build:
+    name: Docs build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d  # v10.0.1
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7
+        with:
+          python-version-file: .python-version
+
+      - name: Install dependencies
+        run: uv sync --frozen --group docs
+
+      - name: Generate coverage matrix
+        run: uv run python scripts/documentation/coverage_matrix/generate.py
+
+      - name: Generate capability matrix
+        run: uv run python scripts/documentation/capability_matrix/generate.py
+
+      - name: Build docs (zensical)
+        run: uv run zensical build
+
+  security:
+    name: Security scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d  # v10.0.1
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7
+        with:
+          python-version-file: .python-version
+
+      - name: Install dependencies
+        run: uv sync --group dev
+
+      - name: Dependency vulnerability scan (pip-audit)
+        run: uv run pip-audit --skip-editable
+
+      - name: SAST (bandit)
+        run: uv run bandit -r src/ scripts/ -lll -iii -f json -o bandit-report.json || (cat bandit-report.json; exit 1)
+
+      - name: Upload bandit report
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7
+        if: always()
+        with:
+          name: bandit-report
+          path: bandit-report.json
+          retention-days: 14
+
+  check-provenance:
+    name: Check payable rule and reference case provenance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+        with:
+          fetch-depth: 2
+
+      - name: Schema gate (records, the evidence they claim, production cases)
+        run: python scripts/provenance/check.py --schema
+
+      - name: Evidence gate (no new assumed or missing rule, shrink-only baseline)
+        run: python scripts/provenance/check.py --evidence
+
+      - name: Validate all reference cases
+        run: python scripts/provenance/check.py tests/knowledge/ccnl_engine/period/reference_case/*.json
+
+      - name: Reject new reference cases without source
+        run: |
+          ADDED=$(git diff --name-only --diff-filter=A HEAD~1 HEAD \
+            -- tests/ 2>/dev/null \
+            | grep -E '^tests/knowledge/ccnl_engine/period/reference_case/[^/]+\.json$' || true)
+          if [ -z "$ADDED" ]; then
+            echo "No new reference cases added."
+          else
+            echo "New reference cases found:"
+            echo "$ADDED"
+            python scripts/provenance/check.py $ADDED
+          fi
+
+      - name: Reject modified reference cases that lost their source
+        run: |
+          MODIFIED=$(git diff --name-only --diff-filter=M HEAD~1 HEAD \
+            -- tests/ 2>/dev/null \
+            | grep -E '^tests/knowledge/ccnl_engine/period/reference_case/[^/]+\.json$' || true)
+          if [ -z "$MODIFIED" ]; then
+            echo "No reference cases modified."
+            exit 0
+          fi
+          echo "Modified reference cases found:"
+          echo "$MODIFIED"
+          python scripts/provenance/check.py --modified $MODIFIED
+
+  build:
+    name: Build distribution
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d  # v10.0.1
+        with:
+          enable-cache: true
+
+      - name: Build wheel and sdist
+        run: uv build
+
+      - name: Upload the distribution the smoke tests install
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7
+
+  wheel-smoke:
+    name: Wheel smoke test (Python ${{ matrix.python }})
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.12", "3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Download the built distribution
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131  # v7
+        with:
+          name: dist
+          path: dist/
+
+      - name: Install wheel in a clean venv
+        run: |
+          python -m venv .smokeenv
+          .smokeenv/bin/pip install --quiet dist/*.whl
+
+      - name: Smoke test, end-to-end scenario
+        run: .smokeenv/bin/python scripts/quality/smoke/test.py
+
+  public-snippets:
+    name: Public snippets smoke test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d  # v10.0.1
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7
+        with:
+          python-version-file: .python-version
+
+      - name: Install dependencies
+        run: uv sync --group dev
+
+      - name: Install package (editable)
+        run: uv pip install -e .
+
+      - name: Run docs/examples snippets
+        run: |
+          find docs/examples \
+            -name '*.py' ! -name '__init__.py' \
+            -print0 \
+          | sort -z \
+          | xargs -0 -I{} uv run python {}

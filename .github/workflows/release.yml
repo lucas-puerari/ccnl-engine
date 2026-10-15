@@ -13,9 +13,9 @@ permissions:
   contents: read
 
 jobs:
-  # ── 1. Validate ─────────────────────────────────────────────────────────────
+  # ── 1. Validate the tag ─────────────────────────────────────────────────────
   validate:
-    name: Lint, typecheck, test
+    name: Validate the tag
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
@@ -30,50 +30,6 @@ jobs:
             exit 1
           fi
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d  # v10.0.1
-        with:
-          enable-cache: true
-
-      - name: Set up Python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7
-        with:
-          python-version-file: pyproject.toml
-
-      - name: Install dependencies
-        run: uv sync --group dev
-
-      - name: Install package (editable)
-        run: uv pip install -e .
-
-      - name: Lint
-        run: uv run ruff check src/ tests/
-
-      - name: Format
-        run: uv run ruff format --check src/ tests/
-
-      - name: Typecheck
-        run: uv run mypy src/ tests/
-
-      - name: Test (coverage 100%)
-        run: uv run pytest
-
-  # ── 2. Build ─────────────────────────────────────────────────────────────────
-  build:
-    name: Build distribution
-    needs: validate
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d  # v10.0.1
-        with:
-          enable-cache: true
-
-      - name: Build wheel and sdist
-        run: uv build
-
       - name: Verify tag matches package version
         run: |
           TAG="${GITHUB_REF_NAME#v}"
@@ -83,17 +39,27 @@ jobs:
             exit 1
           fi
 
-      - name: Upload dist artifacts
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7
-        with:
-          name: dist
-          path: dist/
-          retention-days: 7
+  # ── 2. The gates of main, on the tagged commit ──────────────────────────────
+  # Every gate a pull request runs, and the build of the distribution that
+  # is smoke-tested on each supported Python and then published unchanged.
+  gates:
+    needs: validate
+    uses: ./.github/workflows/quality-gates.yml
+
+  deadlines:
+    name: No overdue review, variance or unowned divergence
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+
+      - name: Check the deadlines of the bundle
+        run: python scripts/provenance/check.py --deadlines
 
   # ── 3. Publish to PyPI ───────────────────────────────────────────────────────
   publish-pypi:
     name: Publish to PyPI
-    needs: build
+    needs: [gates, deadlines]
     runs-on: ubuntu-latest
     permissions:
       contents: read

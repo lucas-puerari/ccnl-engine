@@ -42,6 +42,9 @@ Modes:
   a baseline that grows unless ``--allow-growth`` is given.
 - ``--index``: print the reference cases of each CCNL as JSON, with the
   readiness of the CCNL, its verification status and axes.
+- ``--deadlines``: fail when a CCNL is past its ``review_due``, an accepted
+  variance past its ``review_by``, or a file with divergences has no
+  owner.  The release workflow runs it.
 
 Every case mode prints the number of checked cases per verification status.
 The script uses the standard library only, so CI can run it without
@@ -57,6 +60,7 @@ Usage::
     python scripts/provenance/check.py --all
     python scripts/provenance/check.py --update-baseline [--allow-growth]
     python scripts/provenance/check.py --index
+    python scripts/provenance/check.py --deadlines
 
 Exit codes:
     0   All checks pass.
@@ -70,6 +74,7 @@ import json
 import subprocess  # noqa: S404
 import sys
 from collections import Counter
+from datetime import UTC, date, datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
@@ -291,6 +296,22 @@ def update_baseline(
     return True
 
 
+def check_deadlines(
+    root: Path = payable_rules.KNOWLEDGE_DIR, today: date | None = None
+) -> bool:
+    """Print the overdue deadlines of the bundle.
+
+    Returns:
+        ``True`` when nothing is overdue.
+    """
+    day = today or datetime.now(tz=UTC).date()
+    errors = provenance_evidence.deadline_errors(root, day)
+    for error in errors:
+        print(f"  {error}", file=sys.stderr)
+    print(f"Deadlines checked on {day}: {len(errors)} overdue.")
+    return not errors
+
+
 def print_index(root: Path = payable_rules.KNOWLEDGE_DIR) -> None:
     """Print each CCNL with its readiness and reference cases, as JSON."""
     cases = reference_cases.index()
@@ -344,6 +365,12 @@ def _parser() -> argparse.ArgumentParser:
         "--evidence",
         action="store_true",
         help="Run the evidence gate: the shrink-only weak evidence ratchet.",
+    )
+    group.add_argument(
+        "--deadlines",
+        action="store_true",
+        help="Fail on an overdue review, an overdue accepted variance or an "
+        "unowned divergence.",
     )
     group.add_argument(
         "--index",
@@ -417,6 +444,33 @@ def _report_failures(failures: list[tuple[Path, str]], mode: str) -> None:
     )
 
 
+def _report(args: argparse.Namespace) -> None:
+    """Run a report mode, ``--index`` or ``--deadlines``, and exit.
+
+    Raises:
+        SystemExit: Always, with status 1 when a deadline is overdue.
+    """
+    if args.index:
+        print_index()
+        raise SystemExit(0)
+    raise SystemExit(0 if check_deadlines() else 1)
+
+
+def _case_paths(
+    args: argparse.Namespace, parser: argparse.ArgumentParser
+) -> tuple[list[Path], str]:
+    """Return the reference cases the arguments select and their mode.
+
+    Returns:
+        Every case under ``--all``, else the files given, new or modified.
+    """
+    if args.all:
+        return sorted(CASES_DIR.glob("*.json")), "all"
+    if not args.files:
+        parser.error("case_file arguments are required without a gate mode")
+    return list(args.files), "modified" if args.modified else "new"
+
+
 def main() -> None:
     """Entry point."""
     parser = _parser()
@@ -424,21 +478,12 @@ def main() -> None:
     if args.allow_growth and not args.update_baseline:
         parser.error("--allow-growth requires --update-baseline")
 
-    if args.index:
-        print_index()
-        return
+    if args.index or args.deadlines:
+        _report(args)
     gates = _gates(args)
     if gates is not None and not args.all:
         sys.exit(0 if gates else 1)
-    if args.all:
-        paths = sorted(CASES_DIR.glob("*.json"))
-        mode = "all"
-    elif args.files:
-        paths = args.files
-        mode = "modified" if args.modified else "new"
-    else:
-        parser.error("case_file arguments are required without a gate mode")
-
+    paths, mode = _case_paths(args, parser)
     failures, counts = check(paths, mode=mode, base=args.base)
     _print_counts(counts)
     if failures:

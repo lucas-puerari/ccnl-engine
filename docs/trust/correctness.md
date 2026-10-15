@@ -33,6 +33,16 @@ Evidence:
   are `source_linked` (they cite the table they model) and
   <!-- trust:reference-cases-verified -->1<!-- /trust:reference-cases-verified -->
   are `verified` against an independent payslip or official worked example.
+- Release parity: `.github/workflows/quality-gates.yml` holds every gate
+  of `main` (lint, types, complexity, the generated-document drift checks,
+  the full suite with 100% coverage, the API and knowledge tests on Python
+  3.13 and 3.14, docs build, security scan, provenance gates, public
+  snippets, and the build of the wheel and sdist smoke-tested on Python
+  3.12, 3.13 and 3.14). Pull requests and the release call the same
+  workflow; the release publishes the distribution it built and tested,
+  and is blocked while `scripts/provenance/check.py --deadlines` finds a
+  CCNL past its `review_due`, an accepted variance past its `review_by`
+  or a divergence without an owner.
 - Sector oracles: a year and a termination on 30 June of each contribution
   sector of the `production` CCNLs (industria: Metalmeccanico C3 with a
   weekday overtime; terziario: Terziario Confesercenti IV, fourteen
