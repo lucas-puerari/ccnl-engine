@@ -458,7 +458,7 @@
           },
           "months_per_year": 13,
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-testo-unico-2025",
@@ -476,8 +476,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-12T10:21:27Z",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
+              "verification_status": "verified",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
           }
@@ -496,7 +499,7 @@
           },
           "in_service_on": "2011-01-26",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-testo-unico-2025",
@@ -514,8 +517,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-12T10:21:27Z",
-              "verification_status": "unverified",
-              "effective_from": "2011-01-01"
+              "verification_status": "verified",
+              "effective_from": "2011-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
           }
@@ -687,7 +693,7 @@
           },
           "months_per_year": 13,
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-testo-unico-2025",
@@ -705,8 +711,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-12T10:21:27Z",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
+              "verification_status": "verified",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
           }
@@ -725,7 +734,7 @@
           },
           "in_service_on": "2011-01-26",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-testo-unico-2025",
@@ -743,8 +752,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-12T10:21:27Z",
-              "verification_status": "unverified",
-              "effective_from": "2011-01-01"
+              "verification_status": "verified",
+              "effective_from": "2011-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
           }
@@ -916,7 +928,7 @@
           },
           "months_per_year": 13,
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-testo-unico-2025",
@@ -934,8 +946,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-12T10:21:27Z",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
+              "verification_status": "verified",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
           }
@@ -1107,7 +1122,7 @@
           },
           "months_per_year": 13,
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-testo-unico-2025",
@@ -1125,8 +1140,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-12T10:21:27Z",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
+              "verification_status": "verified",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
           }
@@ -1145,7 +1163,7 @@
           },
           "in_service_on": "2011-01-26",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-testo-unico-2025",
@@ -1163,8 +1181,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-12T10:21:27Z",
-              "verification_status": "unverified",
-              "effective_from": "2011-01-01"
+              "verification_status": "verified",
+              "effective_from": "2011-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
           }
@@ -1336,7 +1357,7 @@
           },
           "months_per_year": 13,
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-testo-unico-2025",
@@ -1354,8 +1375,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-12T10:21:27Z",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
+              "verification_status": "verified",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
           }
@@ -1374,7 +1398,7 @@
           },
           "in_service_on": "2011-01-26",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-testo-unico-2025",
@@ -1392,8 +1416,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-12T10:21:27Z",
-              "verification_status": "unverified",
-              "effective_from": "2011-01-01"
+              "verification_status": "verified",
+              "effective_from": "2011-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
           }
@@ -1565,7 +1592,7 @@
           },
           "months_per_year": 13,
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-testo-unico-2025",
@@ -1583,8 +1610,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-12T10:21:27Z",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
+              "verification_status": "verified",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
           }
@@ -1603,7 +1633,7 @@
           },
           "in_service_on": "2011-01-26",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-testo-unico-2025",
@@ -1621,8 +1651,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-12T10:21:27Z",
-              "verification_status": "unverified",
-              "effective_from": "2011-01-01"
+              "verification_status": "verified",
+              "effective_from": "2011-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
           }
@@ -1794,7 +1827,7 @@
           },
           "months_per_year": 13,
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-testo-unico-2025",
@@ -1812,8 +1845,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-12T10:21:27Z",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
+              "verification_status": "verified",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
           }
@@ -1832,7 +1868,7 @@
           },
           "in_service_on": "2011-01-26",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-testo-unico-2025",
@@ -1850,8 +1886,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-12T10:21:27Z",
-              "verification_status": "unverified",
-              "effective_from": "2011-01-01"
+              "verification_status": "verified",
+              "effective_from": "2011-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
           }
@@ -2023,7 +2062,7 @@
           },
           "months_per_year": 13,
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-testo-unico-2025",
@@ -2041,8 +2080,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-12T10:21:27Z",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
+              "verification_status": "verified",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
           }
@@ -2061,7 +2103,7 @@
           },
           "in_service_on": "2011-01-26",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-testo-unico-2025",
@@ -2079,8 +2121,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-12T10:21:27Z",
-              "verification_status": "unverified",
-              "effective_from": "2011-01-01"
+              "verification_status": "verified",
+              "effective_from": "2011-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
           }
@@ -2290,7 +2335,7 @@
           },
           "months_per_year": 13,
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-testo-unico-2025",
@@ -2308,8 +2353,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-12T10:21:27Z",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
+              "verification_status": "verified",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
           }
@@ -2328,7 +2376,7 @@
           },
           "in_service_on": "2011-01-26",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-testo-unico-2025",
@@ -2346,8 +2394,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-12T10:21:27Z",
-              "verification_status": "unverified",
-              "effective_from": "2011-01-01"
+              "verification_status": "verified",
+              "effective_from": "2011-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
           }
@@ -2413,7 +2464,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "131fa240bf487232e841ed6f2a3c877e2ca26a258b5a041498e61d5a0bc13f06",
+    "source_hash": "c782966e60151d112529d13abf391f5f8dc60ec22138d4d08b076c4f8e687579",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2847,6 +2898,25 @@
         "findings": [
           "CNEL I100 matches; the report lists the same associations and FILT, FIT, UILTRASPORTI.",
           "Term: 'Il presente contratto scadrà il 31 dicembre 2027' (testo unico), the same in the report."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-elements",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'scatti di anzianità, indennità e altri elementi fissi': the scatti and fixed allowances of the file against the text read in the P1 review.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "EDR ex accordo 18 maggio 2021 (p. 82, personale non viaggiante): the nine amounts match (Quadri 12,80 to 6° 8,26); 13 mensilità, no effect on other institutes (p. 83). Verified.",
+          "EDR of Art. 60 c. 8 (p. 85, 10 euro at 3° Super, staff in service on 26 January 2011): the eight amounts match (Quadro 12,89 to 6° 8,26) and the file gates it with in_service_on 2011-01-26. Verified. The 5-euro table of p. 93 belongs to another article and is not modelled here.",
+          "Scatti (Art. 17) were verified in the P1 review; IND_FUN verified."
         ]
       }
     ],

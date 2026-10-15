@@ -150,7 +150,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 46 | F015 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | edilizia | ~350k | — | ⚠️ | bilateral_funds, inps_employer, pension_fund_contribution, seniority | 0 / 72 / 1 / 0 | 🧪 | 🤖 |
 | 47 | F016 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | Edilizia | ~90000 | 2025 | ⚠️ | seniority | 0 / 57 / 1 / 1 | 🧪 | 🤖 |
 | 48 | F012 | [CCNL Edilizia — Industria (ANCE), impiegati e quadri](edilizia-ance-impiegati.md) | edilizia | — | — | ⚠️ | base_salary, seniority, sickness | 32 / 23 / 0 / 0 | 🏭 | 🧑 |
-| 49 | F012 | [CCNL Edilizia — Industria (ANCE), operai](edilizia-ance.md) | edilizia | ~550k | 2025 | ⚠️ | base_salary, sickness | 23 / 16 / 0 / 0 | 🏭 | 🧑 |
+| 49 | F012 | [CCNL Edilizia — Industria (ANCE), operai](edilizia-ance.md) | edilizia | ~550k | 2025 | ⚠️ | base_salary, sickness | 31 / 8 / 0 / 0 | 🏭 | 🧑 |
 | 50 | B254 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | energia | ~38k | — | ✅ | — | 0 / 170 / 1 / 1 | 🧪 | 🤖 |
 | 51 | G211 | [CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)](esercizi-cinematografici-anec.md) | cinema | ~6k | — | ⚠️ | inps_employer, seniority | 0 / 54 / 2 / 0 | 🧪 | 🤖 |
 | 52 | H201 | [CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)](fiori-recisi-ancef.md) | Fiori recisi, verde e piante ornamentali (import-export) | ~1.3k | 2023 | ⚠️ | seniority | 0 / 38 / 1 / 1 | 🧪 | 🤖 |
@@ -176,12 +176,12 @@ on unverified sources, or be well sourced and not cleared for production.
 | 72 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi a orario ridotto, art. 14 c. 2)](lavoro-domestico-convivente-orario-ridotto.md) | lavoro domestico | — | — | ⚠️ | assistance_contribution, base_salary, inps_employer, overtime, sickness | 13 / 2 / 0 / 0 | 👁 | 🧑✓ |
 | 73 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)](lavoro-domestico-convivente.md) | lavoro domestico | ~900k | — | ⚠️ | assistance_contribution, base_salary, inps_employer, seniority, sickness | 26 / 1 / 0 / 0 | 👁 | 🧑 |
 | 74 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)](lavoro-domestico-non-convivente.md) | lavoro domestico | ~900k | 2025 | ⚠️ | assistance_contribution, base_salary, seniority, sickness | 16 / 1 / 0 / 0 | 👁 | 🧑 |
-| 75 | I100 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | logistica | ~430k | 2024 | ⚠️ | overtime, seniority | 45 / 18 / 0 / 0 | 👁 | 🧑 |
+| 75 | I100 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | logistica | ~430k | 2024 | ⚠️ | overtime, seniority | 62 / 1 / 0 / 0 | 👁 | 🧑 |
 | 76 | I100 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra) - Personale viaggiante](logistica-trasporto-confetra-viaggiante.md) | logistica | ~430k | 2024 | ⚠️ | base_salary, seniority | 53 / 30 / 0 / 0 | 👁 | 🧑 |
 | 77 | I391 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | navigazione marittima — personale di terra | ~15k | — | ⚠️ | seniority | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
 | 78 | F020 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | Industria materiali da costruzione — Lapidei piccola industria | ~5000 | 2025 | ⚠️ | inps_employer, pension_fund_contribution | 0 / 0 / 70 / 0 | 🧪 | 🤖 |
 | 79 | C016 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | metalmeccanico cooperativo | ~28k | — | ⚠️ | base_salary, seniority | 0 / 45 / 1 / 1 | 🧪 | 🤖 |
-| 80 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | 2024 | ⚠️ | inps_employer, seniority | 32 / 49 / 0 / 0 | 🧪 | 🤖 |
+| 80 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | 2024 | ⚠️ | inps_employer | 32 / 49 / 0 / 0 | 🧪 | 🤖 |
 | 81 | C01A | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | metalmeccanico | ~100k | — | ✅ | overtime | 0 / 44 / 0 / 1 | 🧪 | 🤖 |
 | 82 | C018 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | metalmeccanico | ~350k | — | ⚠️ | base_salary, pension_fund_contribution | 58 / 7 / 0 / 0 | 🏭 | 🧑 |
 | 83 | C011 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | metalmeccanico | ~1,7M | 2025 | ⚠️ | overtime, seniority | 85 / 0 / 0 / 0 | 🏭 | 🧑 |
