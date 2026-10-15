@@ -69,13 +69,13 @@
       },
       {
         "kind": "simplification",
-        "text": "ERR: Elemento Retributivo Residuo (0.44 EUR/month) is a national fixed element, identical for all levels. Folded into TOTALE; the rounding impact on any level is less than 0.01 EUR/month.",
+        "text": "ERR: an Elemento Retributivo Residuo of 0.44 EUR a month is folded into every base_salary. The signed text of 6 June 2024 (Art. 32-33, pp. 45-48) states the tabellare and the indennità speciale but no ERR, and no party source was found for it: the base_salary records stay derived until the 0.44 is sourced or dropped.",
         "capability": "base_salary",
         "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "IND.FUNZIONE A1S: Indennita di Funzione 36.15 EUR/month for level A1S introduced from April 2026 (Art. 33 quater, CCNL 2024). Included in the Apr 2026 TOTALE value (2248.73) as confirmed by lavoro-economia.it. Not modeled as a separate fixed_allowance.",
+        "text": "IND.FUNZIONE: the indennità di funzione of 36.15 EUR a month is owed from 1 April 1994 to the quadri of the settore alimentare (Art. 65, p. 79 of the signed text of 6 June 2024), not to a panificazione level: it is not in the base_salary of A1S. It was added from April 2026 only, citing an Art. 33-quater the text does not have; removed on 15 October 2026.",
         "capability": "base_salary",
         "monetary_impact": "no"
       },
@@ -153,9 +153,30 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                "published_on": "2024-06-06",
+                "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
+              },
+              "page": "50",
+              "section": "Art. 36, Gratifica natalizia; the ex 14a mensilità ceased from August 1995 (Art. 33, p. 48)",
+              "quote": "l'azienda corrisponderà ai lavoratori, non in prova, una tredicesima mensilità di importo pari alla retribuzione mensile di fatto"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-15T07:37:44Z",
+              "verification_status": "verified",
+              "effective_from": "2024-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T07:37:44Z",
+              "review_id": "2026-10-15-ai-panificazione"
+            }
           }
         }
       ]
@@ -273,12 +294,16 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-            "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+            "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+            "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
             "kind": "associazione",
-            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+            "published_on": "2024-06-06",
+            "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
           },
-          "section": "Scatti di anzianità"
+          "page": "49",
+          "section": "Art. 34-bis, Aumenti periodici di anzianità per il settore della panificazione (amounts and the 5 bienni); the apprentice amount is not in this article",
+          "quote": "fino ad un massimo di 5 bienni"
         },
         "extraction": {
           "method": "manual",
@@ -332,18 +357,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "45",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2024; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B4 1.406,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-04-01"
               }
             }
           },
@@ -355,18 +385,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° gennaio 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B4 1.439,83"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-01-01"
               }
             }
           },
@@ -378,18 +413,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° novembre 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B4 1.485,20"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-11-01"
               }
             }
           },
@@ -401,18 +441,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2026; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B4 1.520,67"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-04-01"
               }
             }
           }
@@ -452,18 +497,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "45",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2024; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A4 1.479,65"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-04-01"
               }
             }
           },
@@ -475,18 +525,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° gennaio 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A4 1.514,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-01-01"
               }
             }
           },
@@ -498,18 +553,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° novembre 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A4 1.562,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-11-01"
               }
             }
           },
@@ -521,18 +581,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2026; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A4 1.599,37"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-04-01"
               }
             }
           }
@@ -572,18 +637,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "45",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2024; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B3 1.483,40"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-04-01"
               }
             }
           },
@@ -595,18 +665,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° gennaio 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B3 1.518,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-01-01"
               }
             }
           },
@@ -618,18 +693,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° novembre 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B3 1.566,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-11-01"
               }
             }
           },
@@ -641,18 +721,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2026; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B3 1.603,43"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-04-01"
               }
             }
           }
@@ -692,18 +777,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "45",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2024; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B3s 1.533,41"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-04-01"
               }
             }
           },
@@ -715,18 +805,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° gennaio 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B3s 1.569,37"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-01-01"
               }
             }
           },
@@ -738,18 +833,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° novembre 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B3s 1.618,82"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-11-01"
               }
             }
           },
@@ -761,18 +861,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2026; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B3s 1.657,48"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-04-01"
               }
             }
           }
@@ -812,18 +917,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "45",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2024; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A3 1.561,73"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-04-01"
               }
             }
           },
@@ -835,18 +945,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° gennaio 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A3 1.598,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-01-01"
               }
             }
           },
@@ -858,18 +973,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° novembre 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A3 1.648,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-11-01"
               }
             }
           },
@@ -881,18 +1001,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2026; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A3 1.688,09"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-04-01"
               }
             }
           }
@@ -932,18 +1057,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "45",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2024; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B2 1.575,60"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-04-01"
               }
             }
           },
@@ -955,18 +1085,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° gennaio 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B2 1.612,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-01-01"
               }
             }
           },
@@ -978,18 +1113,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° novembre 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B2 1.663,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-11-01"
               }
             }
           },
@@ -1001,18 +1141,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2026; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B2 1.703,08"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-04-01"
               }
             }
           }
@@ -1052,18 +1197,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "45",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2024; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A2 1.705,54"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-04-01"
               }
             }
           },
@@ -1075,18 +1225,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° gennaio 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A2 1.745,54"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-01-01"
               }
             }
           },
@@ -1098,18 +1253,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° novembre 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A2 1.800,54"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-11-01"
               }
             }
           },
@@ -1121,18 +1281,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2026; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A2 1.843,54"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-04-01"
               }
             }
           }
@@ -1172,18 +1337,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "45",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2024; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A1 1.821,08"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-04-01"
               }
             }
           },
@@ -1195,18 +1365,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° gennaio 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A1 1.863,79"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-01-01"
               }
             }
           },
@@ -1218,18 +1393,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° novembre 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A1 1.922,52"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-11-01"
               }
             }
           },
@@ -1241,18 +1421,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2026; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A1 1.968,43"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-04-01"
               }
             }
           }
@@ -1292,18 +1477,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "45",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2024; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B1 1.917,86"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-04-01"
               }
             }
           },
@@ -1315,18 +1505,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° gennaio 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B1 1.962,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-01-01"
               }
             }
           },
@@ -1338,18 +1533,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° novembre 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B1 2.024,69"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-11-01"
               }
             }
           },
@@ -1361,18 +1561,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2026; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "B1 2.073,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-04-01"
               }
             }
           }
@@ -1412,18 +1617,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "45",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2024; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A1s 1.958,87"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-04-01"
               }
             }
           },
@@ -1435,18 +1645,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° gennaio 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A1s 2.004,81"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-01-01"
               }
             }
           },
@@ -1458,41 +1673,51 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° novembre 2025; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A1s 2.067,98"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-11-01"
               }
             }
           },
           {
             "valid_from": "2026-04-01",
             "valid_until": null,
-            "value": "2248.73",
+            "value": "2212.58",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
-                  "title": "2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                  "document_id": "ccnl-alimentazione-panificazione-artigianato-2024-06-06",
+                  "title": "CCNL Area Alimentazione-Panificazione artigianato del 6 giugno 2024, testo firmato (UILA UIL)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                  "published_on": "2024-06-06",
+                  "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 32, Tabelle retributive del settore Panificazione, Minimi dal 1° aprile 2026; plus the indennità speciale of Art. 33 (p. 48) and the ERR of 0.44, which the text does not state",
+                "quote": "A1s 2.117,37"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-15T07:37:44Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-04-01"
               }
             }
           }
@@ -1772,7 +1997,7 @@
     "effective_until": null,
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "9e0cf7e7091c183774f80f325cd2f7bb1ae55eb131126d63b2e02df4b22f4636",
+    "source_hash": "dda4a5e37516dab593e31ed8fdfcc6fc11b88207535e16ed180e041d183934c3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1962,5 +2187,34 @@
         }
       }
     }
+  },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "owner": "maintainer",
+    "reviews": [
+      {
+        "id": "2026-10-15-ai-panificazione",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Second review of the artigianato group: retribuzione tabellare and indennità speciale of the ten panificazione levels in the four tranches, monthly payments and scatti, against the signed CCNL of 6 June 2024.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+            "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
+          }
+        ],
+        "findings": [
+          "39 of the 40 base_salary values equal the tabellare of Art. 32 (pp. 45-47, a scan read from the images) plus the indennità speciale of Art. 33 (p. 48) plus 0.44. A1s from 1 April 2026 was 2248.73: it added the indennità di funzione of 36.15, which Art. 65 (p. 79) grants from 1994 to the quadri of the settore alimentare, not to a panificazione level from 2026. Corrected to 2212.58.",
+          "The ERR of 0.44 is not in the signed text and no party source states it: the base_salary records stay derived.",
+          "13 monthly payments: verified (Art. 36, tredicesima; Art. 33, the ex 14a ceased from August 1995).",
+          "Scatti of Art. 34-bis (p. 49): the ten amounts and the 5 bienni match; the record stays derived because it also holds the apprentice amount, not checked here."
+        ]
+      }
+    ],
+    "review_due": "2027-01-31"
   }
 }
