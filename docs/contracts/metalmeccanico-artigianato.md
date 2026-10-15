@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer, seniority |
+| **Limits of this contract** | inps_employer |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: the tabellare of the Metalmeccanica ed Installazione di Impianti sector for the four tranches of the renewal of 19 November 2024 (verbale integrativo of 25 November 2024), and the term; comparison with the industrial CCNL. | corrected | The 32 tabellari of the four tranches (1 December 2024 to 1 November 2026, eight levels) match the signed table of p. 27: verified.<br>The tabellare 'fino al 30 novembre 2024' (with the AFAC of 21 December 2023) matches the period from 1 April 2024; its start date is not in this scan and stays derived.<br>Term: 1 January 2023 to 31 December 2026, then until the next renewal (Art. 2). review_due 2027-01-31.<br>The tredicesima is stated in the new unified article of the renewal (p. 16) and no quattordicesima appears: the number of monthly payments, 13, moves from assumed to derived (the period starts in 2022, before the renewal). |
 | 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | confirmed | CNEL C030 matches (the Confartigianato and CNA categories, Casartigiani, CLAAI with FIM, FIOM, UILM).<br>Term: 'Il presente CCNL decorre dal 1° gennaio 2023 e avrà validità fino al 31 dicembre 2026' (Art. 2), the same in the report. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'scatti di anzianità, indennità e altri elementi fissi': the scatti and fixed allowances of the file against the text read in the P1 review. | corrected | The renewal of 19 November 2024 (Art. 27, p. 6) gives apprentices scatti of 10 euro from 1 January 2025, accrued from that date also by apprentices already in service, so none before: the apprentice_seniority limitation is resolved with seniority_increments.apprentice_amount 0.00 until 2024 and 10.00 from 2025.<br>The per-level scatti amounts (1Q 32,94 to 6 18,40), the 24-month cadence and the 5-scatti maximum are not restated in the renewal: they stay derived from the 2021 text. |
 
 ## Salary table
 
@@ -107,13 +108,6 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "metalmeccanico-artigianato/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "metalmeccanico-artigianato/inps_sector_rates_unsourced · inps_employer · impact unknown · open"
     INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.
@@ -200,6 +194,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     ADDITIONAL MONTHS: 13 (tredicesima). A quattordicesima is not provided for by the CCNL Artigianato Metalmeccanico.
     
     APPRENTICESHIP administrative impiegati (destination levels 2, 1): 3 years, percentages 70% (year 1), 77% (year 2), 87% (year 3), 100% thereafter. Track 'impiegati'. Level 1Q (quadro) excluded. Source: CCNL metalmeccanico artigianato renewal 17.12.2021 (EBLART summary); formazione-apprendistato.com; conflavoro.it 2021 summary.
+    
+    APPRENTICE SENIORITY: apprentices accrue no scatti before 1 January 2025; from that date they accrue scatti of 10 euro each, not scaled by the apprentice percentage, on the cadence of the other workers, and those in service on that date accrue from it ('la maturazione dell'anzianità di servizio ai fini del riconoscimento degli scatti decorre da pari data', Art. 27 as renewed on 19 November 2024, signed scan p. 6). At the end of the apprenticeship the matured scatti are revalued to the amount of the final level.
     
     TERM: the renewal of 19 November 2024 runs from 1 January 2023 to 31 December 2026 (Art. 2, signed scan) and keeps applying until the next renewal takes effect; the tabellare of 1 November 2026 stays in force after 2026 until a renewal is read.
     

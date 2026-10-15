@@ -727,7 +727,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-ance",
       "ruleset_version": "2026.2",
-      "source_hash": "fadff436431aa04ae8e4559c12311682cfdb4afcd542bf0c8a20713ed4065af9",
+      "source_hash": "e578388710dfbdfd7c3389791a9214e5a69303fd5ad8becf791bd64405fc42c9",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/edilizia-ance.json.gz"
@@ -1339,7 +1339,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra",
       "ruleset_version": "2026.2",
-      "source_hash": "131fa240bf487232e841ed6f2a3c877e2ca26a258b5a041498e61d5a0bc13f06",
+      "source_hash": "c782966e60151d112529d13abf391f5f8dc60ec22138d4d08b076c4f8e687579",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/logistica-trasporto-confetra.json.gz"
@@ -1407,7 +1407,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-artigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "6f687fbe08cd1cded1b73e5f1f28e036fef6e58e9cde84b6b98bad519830671c",
+      "source_hash": "5b84c0735854aa3807900c2c348d2b460fadf2bb00e0a2dba450b8c41d6ae5df",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-artigianato.json.gz"

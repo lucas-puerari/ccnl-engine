@@ -1504,7 +1504,6 @@
     ],
     "agreement/metalmeccanico-artigianato.json": [
       "metalmeccanico-artigianato/apprentice_inps_rates_unsourced",
-      "metalmeccanico-artigianato/apprentice_seniority",
       "metalmeccanico-artigianato/inps_sector_rates_unsourced"
     ],
     "agreement/metalmeccanico-confapi.json": [

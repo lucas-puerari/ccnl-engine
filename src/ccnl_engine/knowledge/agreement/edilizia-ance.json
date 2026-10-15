@@ -629,7 +629,7 @@
           "tfr_relevant": true,
           "apprenticeship_pct_relevant": true,
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ance-sassari-tabella-2025-02",
@@ -649,7 +649,10 @@
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-13T07:47:58Z",
               "effective_from": "2025-02-01",
-              "verification_status": "unverified"
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             }
           }
         },
@@ -668,7 +671,7 @@
           "tfr_relevant": false,
           "apprenticeship_pct_relevant": true,
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ance-sassari-tabella-2025-02",
@@ -688,7 +691,10 @@
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-13T07:47:58Z",
               "effective_from": "2025-02-01",
-              "verification_status": "unverified"
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             }
           }
         }
@@ -841,7 +847,7 @@
           "tfr_relevant": true,
           "apprenticeship_pct_relevant": true,
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ance-sassari-tabella-2025-02",
@@ -861,7 +867,10 @@
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-13T07:47:58Z",
               "effective_from": "2025-02-01",
-              "verification_status": "unverified"
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             }
           }
         },
@@ -880,7 +889,7 @@
           "tfr_relevant": false,
           "apprenticeship_pct_relevant": true,
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ance-sassari-tabella-2025-02",
@@ -900,7 +909,10 @@
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-13T07:47:58Z",
               "effective_from": "2025-02-01",
-              "verification_status": "unverified"
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             }
           }
         }
@@ -1053,7 +1065,7 @@
           "tfr_relevant": true,
           "apprenticeship_pct_relevant": true,
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ance-sassari-tabella-2025-02",
@@ -1073,7 +1085,10 @@
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-13T07:47:58Z",
               "effective_from": "2025-02-01",
-              "verification_status": "unverified"
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             }
           }
         },
@@ -1092,7 +1107,7 @@
           "tfr_relevant": false,
           "apprenticeship_pct_relevant": true,
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ance-sassari-tabella-2025-02",
@@ -1112,7 +1127,10 @@
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-13T07:47:58Z",
               "effective_from": "2025-02-01",
-              "verification_status": "unverified"
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             }
           }
         }
@@ -1265,7 +1283,7 @@
           "tfr_relevant": true,
           "apprenticeship_pct_relevant": true,
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ance-sassari-tabella-2025-02",
@@ -1285,7 +1303,10 @@
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-13T07:47:58Z",
               "effective_from": "2025-02-01",
-              "verification_status": "unverified"
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             }
           }
         },
@@ -1304,7 +1325,7 @@
           "tfr_relevant": false,
           "apprenticeship_pct_relevant": true,
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ance-sassari-tabella-2025-02",
@@ -1324,7 +1345,10 @@
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-13T07:47:58Z",
               "effective_from": "2025-02-01",
-              "verification_status": "unverified"
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T08:50:45Z",
+              "review_id": "2026-10-15-ai-elements"
             }
           }
         }
@@ -1440,7 +1464,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "fadff436431aa04ae8e4559c12311682cfdb4afcd542bf0c8a20713ed4065af9",
+    "source_hash": "e578388710dfbdfd7c3389791a9214e5a69303fd5ad8becf791bd64405fc42c9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1882,6 +1906,24 @@
         "findings": [
           "CNEL F012 matches. Signatory names corrected to the report: Legacoop Produzione e Servizi (was Legacoop Costruzioni) and AGCI Produzione e Lavoro.",
           "Term: expiry 30/06/2028 from the report; valid_from is the first tranche of the renewal of 21 February 2025, the start of its term was not read."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-elements",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'scatti di anzianità, indennità e altri elementi fissi': the scatti and fixed allowances of the file against the text read in the P1 review.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://ance.it/wp-content/uploads/allegati/Tabella_retribuzioni_Edili_SS_-_OT_-_Decorrenza_1_febbraio_2025.pdf",
+            "sha256": "b681a3f867cd31d4cef09e5234d85a2b6f183a72c66054ed6ff8bd326d88f715"
+          }
+        ],
+        "findings": [
+          "Ex contingenza 512,87 / 516,43 / 519,16 / 521,25 and EDR 10,33 of levels I-IV match the ANCE table of 1 February 2025 (ANCE is a signatory). The same table prints the operai hourly amounts 2,96 / 2,99 / 3,00 / 3,01 and 0,06, which are the monthly amounts divided by the hourly divisor 173: the monthly records are consistent with the hourly pay. Verified.",
+          "No scatti for the operai: the anzianità professionale edile is paid by the Cassa Edile (Art. 29), as the file states."
         ]
       }
     ],
