@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | — |
+| **Limits of this contract** | overtime |
 
-0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 29 verified / 7 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 33 verified / 3 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: Tabella 1 of the CCNL of 8 October 2020 for the 28 positions, the number of monthly payments and the term. | corrected | The 28 monthly tabellari match column D of Tabella 1 (p. 104) to the cent: verified.<br>13 monthly payments: verified ('x 13 mensilità', column C).<br>No renewal after the CCNL of 8 October 2020 was found; the table stays in force (ultrattività). Seniority, overtime, absence and sickness rules are not re-read in this pass. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | corrected | CNEL T011 matches. Signatories corrected: the text of 8 October 2020 is signed by AIOP and ARIS with FP-CGIL, CISL-FPS and UIL-FPL only (the report adds UGL Sanità); FILCAMS, FISASCAT, UILTuCS, FIALS and CISAL Sanità were listed by mistake.<br>Term: 'Decorrenza: 1° gennaio 2016 - Scadenza: 31 dicembre 2018' (Art. 4), the same in the report; the CCNL applies in ultrattività. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'straordinario, notturno, festivo, turni e maggiorazioni cumulabili': the overtime bands and the night, holiday and shift premiums of the file against the text read in the P1 review. | corrected | Art. 59 (p. 89): daytime overtime is paid at 20%, not 15%: corrected. Night or holiday overtime 30% and night-holiday overtime 50% match. All four bands verified; the hourly quota is the monthly pay over 26 and 6 (Art. 58), the divisor 156 of the file.<br>Art. 60-61: the night and holiday shift indemnities, the on-call indemnity and the radiation risk indemnity were neither modelled nor declared: declared as an outside-input limitation. |
 
 ## Salary table
 
@@ -109,6 +110,13 @@ percentage: 0.90
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "sanita-privata-aiop-aris/shift_on_call_allowances · overtime · impact yes · open"
+    SHIFT, ON-CALL AND RISK ALLOWANCES (Art. 60-61, pp. 89-90): the indennità notturna of 2,74 euro an hour of shift between 22 and 6, the holiday shift indemnity of 17,82 euro (8,91 for half a shift or less), the pronta disponibilità of 21,69 euro per 12 hours and the radiation risk indemnity of 1.239,50 euro a year are not modelled: no field of the request states the shifts or the on-call duty of the worker.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the Art. 60-61 indemnities with facts naming the night and holiday shift hours and the on-call turns of the worker.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.

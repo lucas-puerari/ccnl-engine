@@ -1504,7 +1504,8 @@
     ],
     "agreement/metalmeccanico-artigianato.json": [
       "metalmeccanico-artigianato/apprentice_inps_rates_unsourced",
-      "metalmeccanico-artigianato/inps_sector_rates_unsourced"
+      "metalmeccanico-artigianato/inps_sector_rates_unsourced",
+      "metalmeccanico-artigianato/overtime_rates_unconfirmed"
     ],
     "agreement/metalmeccanico-confapi.json": [
       "metalmeccanico-confapi/confapi_unmodelled_pay_elements",
@@ -1622,6 +1623,9 @@
     ],
     "agreement/sanita-aran.json": [
       "sanita-aran/renewal_2025_2027_not_modelled"
+    ],
+    "agreement/sanita-privata-aiop-aris.json": [
+      "sanita-privata-aiop-aris/shift_on_call_allowances"
     ],
     "agreement/scuole-materne-fism.json": [
       "scuole-materne-fism/apprentice_seniority",

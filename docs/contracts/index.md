@@ -123,7 +123,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 19 | I192 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | autostrade e trafori — addetti alle concessionarie autostradali | ~15k | 2023 | ⚠️ | seniority | 0 / 140 / 1 / 1 | 🧪 | 🤖 |
 | 20 | H601 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | Terziario | ~22k | 2025 | ⚠️ | base_salary, inps_employer | 0 / 44 / 1 / 1 | 🧪 | 🤖 |
 | 21 | G022 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | carta-cartone | ~35k | 2026 | ⚠️ | seniority | 0 / 74 / 2 / 0 | 🧪 | 🤖 |
-| 22 | T011 | [CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)](sanita-privata-aiop-aris.md) | Sanità privata | ~150k | 2020 | ✅ | — | 29 / 7 / 1 / 0 | 🧪 | 🤖 |
+| 22 | T011 | [CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)](sanita-privata-aiop-aris.md) | Sanità privata | ~150k | 2020 | ✅ | overtime | 33 / 3 / 1 / 0 | 🧪 | 🤖 |
 | 23 | F032 | [CCNL Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | industria del cemento calce e gesso | ~25k | — | ⚠️ | base_salary, seniority | 0 / 80 / 2 / 0 | 🧪 | 🤖 |
 | 24 | B122 | [CCNL Ceramica Industria (Confindustria-Assopiastrelle)](ceramica-industria-confindustria.md) | ceramica | ~23k | — | ⚠️ | seniority | 0 / 60 / 1 / 1 | 🧪 | 🤖 |
 | 25 | B018 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | chimica | ~56k | 2026 | ⚠️ | base_salary, seniority | 0 / 21 / 1 / 1 | 🧪 | 🤖 |
@@ -181,7 +181,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 77 | I391 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | navigazione marittima — personale di terra | ~15k | — | ⚠️ | seniority | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
 | 78 | F020 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | Industria materiali da costruzione — Lapidei piccola industria | ~5000 | 2025 | ⚠️ | inps_employer, pension_fund_contribution | 0 / 0 / 70 / 0 | 🧪 | 🤖 |
 | 79 | C016 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | metalmeccanico cooperativo | ~28k | — | ⚠️ | base_salary, seniority | 0 / 45 / 1 / 1 | 🧪 | 🤖 |
-| 80 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | 2024 | ⚠️ | inps_employer | 32 / 49 / 0 / 0 | 🧪 | 🤖 |
+| 80 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | 2024 | ⚠️ | inps_employer, overtime | 32 / 49 / 0 / 0 | 🧪 | 🤖 |
 | 81 | C01A | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | metalmeccanico | ~100k | — | ✅ | overtime | 0 / 44 / 0 / 1 | 🧪 | 🤖 |
 | 82 | C018 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | metalmeccanico | ~350k | — | ⚠️ | base_salary, pension_fund_contribution | 58 / 7 / 0 / 0 | 🏭 | 🧑 |
 | 83 | C011 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | metalmeccanico | ~1,7M | 2025 | ⚠️ | overtime, seniority | 85 / 0 / 0 / 0 | 🏭 | 🧑 |

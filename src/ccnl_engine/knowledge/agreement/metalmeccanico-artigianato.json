@@ -128,6 +128,16 @@
       {
         "kind": "info",
         "text": "TERM: the renewal of 19 November 2024 runs from 1 January 2023 to 31 December 2026 (Art. 2, signed scan) and keeps applying until the next renewal takes effect; the tabellare of 1 November 2026 stays in force after 2026 until a renewal is read."
+      },
+      {
+        "kind": "simplification",
+        "text": "OVERTIME RATES UNCONFIRMED: the overtime bands (25% weekday, 45% night, 45% holiday, 55% night holiday) come from the CCNL of 17 December 2021, whose published copy (EBNA) is no longer reachable, and the renewal of 19 November 2024 does not restate them. Summaries give night overtime at 55%, and Saturday overtime past the first 3 hours at 50% (25% for the first 3), which the bands do not model.",
+        "capability": "overtime",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "overtime_rates_unconfirmed",
+          "remediation": "Read the overtime article of the CCNL text from a party source, verify the bands and model the Saturday rule, then remove this note."
+        }
       }
     ]
   },
@@ -2537,7 +2547,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "5b84c0735854aa3807900c2c348d2b460fadf2bb00e0a2dba450b8c41d6ae5df",
+    "source_hash": "48f00ac5761a4477a6485c95c108f8d37085378c6a87516abcfa3c5833c97f36",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2834,6 +2844,23 @@
         "findings": [
           "The renewal of 19 November 2024 (Art. 27, p. 6) gives apprentices scatti of 10 euro from 1 January 2025, accrued from that date also by apprentices already in service, so none before: the apprentice_seniority limitation is resolved with seniority_increments.apprentice_amount 0.00 until 2024 and 10.00 from 2025.",
           "The per-level scatti amounts (1Q 32,94 to 6 18,40), the 24-month cadence and the 5-scatti maximum are not restated in the renewal: they stay derived from the 2021 text."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-overtime",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'straordinario, notturno, festivo, turni e maggiorazioni cumulabili': the overtime bands and the night, holiday and shift premiums of the file against the text read in the P1 review.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/10/Metalmeccanici-artigianato-CNEL-C030.pdf",
+            "sha256": "01e8ec96ef255f5c389903a4e7b6c89ee88039be9de09f50de5825a378a338cb"
+          }
+        ],
+        "findings": [
+          "The overtime rates could not be read from a party text: the EBNA copy of the 2021 CCNL returns an HTML page and the 2024 renewal does not restate them. A summary (direzionelavoro, p. 3) adds Saturday overtime at 25% for the first 3 hours and 50% after, not modelled, and other summaries give night overtime at 55% against the 45% of the file. Runs with overtime are blocked until the article is read."
         ]
       }
     ],
