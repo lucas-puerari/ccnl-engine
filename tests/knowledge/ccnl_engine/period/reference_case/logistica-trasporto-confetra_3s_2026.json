@@ -1,5 +1,9 @@
 {
   "verification": "source_linked",
+  "axes": [
+    "base_salary",
+    "gross"
+  ],
   "_description": "CCNL Logistica, Trasporto Merci e Spedizione level 3S, January 2026 regular run, permanent, full time, non-travelling staff: the first month of a tranche.",
   "_notes": [
     "Base salary = 1.970,37 + EPA 30,00 from 1 January 2026 (testo unico, p. 80): 2000.37.",

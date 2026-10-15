@@ -1,5 +1,8 @@
 {
   "verification": "source_linked",
+  "axes": [
+    "base_salary"
+  ],
   "_description": "Studi e attività professionali (Confprofessioni, CNEL H442) level 3, October 2026 regular run, permanent, full time: the minimo of the third tranche (1 October 2025).",
   "_notes": [
     "Minimo level 3: 1,661.37 from 1 October 2024, 1,706.37 from 1 October 2025 (+45.00), 1,726.37 from 1 December 2026 (CCNL 16 February 2024, Art. 140, third and fourth tranche).",

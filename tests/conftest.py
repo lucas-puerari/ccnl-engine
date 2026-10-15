@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING
 
 from hypothesis import HealthCheck, settings
 
-from tests.knowledge.ccnl_engine.period.support import (
+from scripts.provenance.reference_case.check import (
     CASES_DIR,
     count_by_status,
     load_case,

@@ -1,5 +1,8 @@
 {
   "verification": "source_linked",
+  "axes": [
+    "base_salary"
+  ],
   "_description": "Terziario level 5, February 2026: minimo 1.136,07 printed among the elementi della retribuzione.",
   "_notes": [
     "Base salary only: the payslip's allowances and gross include provincial and individual items (elemento provinciale, superminimo) outside the national table."

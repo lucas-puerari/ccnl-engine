@@ -9,7 +9,8 @@ declare a known
 ``verification`` status consistent with their ``source`` block, and carry the
 inputs and expected values that
 ``tests/integration/ccnl_engine/test_reference_cases.py`` executes. The rules
-live in :mod:`tests.knowledge.ccnl_engine.period.support`.
+live in :mod:`scripts.provenance.reference_case.check`, shared with the
+provenance gate.
 """
 
 from __future__ import annotations
@@ -18,6 +19,15 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from scripts.provenance.reference_case.check import (
+    AXIS_OF,
+    CASES_DIR,
+    load_case,
+    verification_errors,
+)
+from scripts.provenance.reference_case.check import (
+    count_by_status as count_cases,
+)
 from scripts.provenance.rules import (
     STATUSES,
     ccnl_rules,
@@ -25,14 +35,6 @@ from scripts.provenance.rules import (
     fiscal_rules,
     inventory,
     rule_errors,
-)
-from tests.knowledge.ccnl_engine.period.support import (
-    CASES_DIR,
-    load_case,
-    verification_errors,
-)
-from tests.knowledge.ccnl_engine.period.support import (
-    count_by_status as count_cases,
 )
 
 if TYPE_CHECKING:
@@ -48,12 +50,7 @@ _OPTIONAL_INPUT_KEYS = frozenset({
     "ordinary_hours_worked",
     "provincial_pay_element",
 })
-_EXPECTED_KEYS = frozenset({
-    "base_salary",
-    "fixed_allowances",
-    "hourly_percentages",
-    "period_gross",
-})
+_EXPECTED_KEYS = frozenset(AXIS_OF)
 _SOURCE: dict[str, object] = {"document": "CCNL", "section": "Art. 1"}
 
 
@@ -74,16 +71,37 @@ def test_status_counts_cover_every_case() -> None:
     assert sum(count_cases(cases).values()) == len(cases)
 
 
-@pytest.mark.parametrize(
-    "case",
-    [
-        {"verification": "source_linked", "source": _SOURCE},
-        {"verification": "verified", "source": _SOURCE},
-    ],
-)
+_LINKED: dict[str, object] = {
+    "verification": "source_linked",
+    "axes": ["base_salary"],
+    "source": _SOURCE,
+    "expected": {"base_salary": "1000.00"},
+}
+_PAYSLIP: dict[str, object] = {
+    "kind": "observed_payslip",
+    "document": "Observed payslip p23",
+    "path": "tests/knowledge/ccnl_engine/period/observed_payslip/p23.json",
+    "verified_by": "claude-opus-5-5",
+    "verified_at": "2026-10-10",
+    "independence": "issued by the payroll of the employer",
+}
+_VERIFIED: dict[str, object] = _LINKED | {
+    "verification": "verified",
+    "source": _PAYSLIP,
+    "tolerance": "0.00",
+}
+
+
+@pytest.mark.parametrize("case", [_LINKED, _VERIFIED])
 def test_valid_cases_are_accepted(case: dict[str, object]) -> None:
-    """Consistent status and source pass validation."""
+    """Consistent status, source and axes pass validation."""
     assert verification_errors(case) == []
+
+
+def test_a_document_hash_is_an_immutable_reference() -> None:
+    """A verified source may cite the sha256 of its document instead of a path."""
+    source = {k: v for k, v in _PAYSLIP.items() if k != "path"} | {"sha256": "a" * 64}
+    assert verification_errors(_VERIFIED | {"source": source}) == []
 
 
 @pytest.mark.parametrize(
@@ -103,13 +121,46 @@ def test_valid_cases_are_accepted(case: dict[str, object]) -> None:
             {"verification": "source_linked", "source": "CCNL Art. 1"},
             "'source' must be an object",
         ),
+        (_LINKED | {"axes": []}, "'axes' must be a non-empty list"),
+        (_LINKED | {"axes": ["base_salary", "payslip"]}, "unknown axis 'payslip'"),
+        (_LINKED | {"expected": {"bonus": "1"}}, "'bonus' belongs to no axis"),
+        (
+            _LINKED | {"expected": {"period_gross": "1"}},
+            "needs the axis 'gross'",
+        ),
     ],
 )
 def test_invalid_cases_are_rejected(case: dict[str, object], fragment: str) -> None:
-    """Missing, unknown, or unsupported statuses are rejected."""
+    """Missing, unknown, or unsupported statuses and axes are rejected."""
     errors = verification_errors(case)
     assert len(errors) == 1
     assert fragment in errors[0]
+
+
+@pytest.mark.parametrize(
+    ("change", "fragment"),
+    [
+        ({"source": _SOURCE}, "source.kind"),
+        ({"source": _PAYSLIP | {"kind": "signed_table"}}, "source.kind"),
+        ({"source": _PAYSLIP | {"path": "missing.json"}}, "source.sha256 or"),
+        (
+            {"source": _PAYSLIP | {"sha256": "not-a-digest", "path": None}},
+            "source.sha256",
+        ),
+        ({"source": _PAYSLIP | {"verified_by": ""}}, "source.verified_by"),
+        ({"source": _PAYSLIP | {"independence": None}}, "source.independence"),
+        ({"source": _PAYSLIP | {"verified_at": "10/10/2026"}}, "verified_at"),
+        ({"source": _PAYSLIP | {"verified_at": None}}, "verified_at"),
+        ({"tolerance": None}, "'tolerance'"),
+        ({"tolerance": "-1"}, "'tolerance'"),
+    ],
+)
+def test_a_verified_case_names_its_independent_output(
+    change: dict[str, object], fragment: str
+) -> None:
+    """A verified case cites an output the engine did not produce, checked."""
+    errors = verification_errors(_VERIFIED | change)
+    assert any(fragment in error for error in errors), errors
 
 
 def test_load_case_rejects_non_object(tmp_path: Path) -> None:

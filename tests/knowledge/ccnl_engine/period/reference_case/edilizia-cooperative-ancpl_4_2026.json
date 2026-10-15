@@ -1,5 +1,9 @@
 {
   "verification": "source_linked",
+  "axes": [
+    "base_salary",
+    "gross"
+  ],
   "_description": "CCNL Edilizia Cooperative ANCPL (F016), level 4, April 2026 regular run, permanent, full time.",
   "_notes": [
     "March 2026 tranche: paga base L4 1553.74.",

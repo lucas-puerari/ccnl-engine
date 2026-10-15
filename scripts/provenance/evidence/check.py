@@ -408,6 +408,20 @@ def _production_errors(verification: Json) -> Iterator[str]:
         yield "production without confidence 'verified'"
 
 
+def readiness_by_ccnl(root: Path = payable_rules.KNOWLEDGE_DIR) -> dict[str, str]:
+    """Return the readiness tier of each CCNL file that declares one.
+
+    Returns:
+        The tier keyed by CCNL id (the file stem).
+    """
+    found: dict[str, str] = {}
+    for file, data in _ccnl_files(root):
+        tier = _as_dict(data.get("verification")).get("readiness")
+        if isinstance(tier, str):
+            found[Path(file).stem] = tier
+    return found
+
+
 def _ccnl_errors(file: str, data: Json) -> Iterator[str]:
     ruleset_id = _as_dict(data.get("ruleset")).get("id")
     expected = f"ccnl/{_as_dict(data.get('meta')).get('ccnl_id')}"

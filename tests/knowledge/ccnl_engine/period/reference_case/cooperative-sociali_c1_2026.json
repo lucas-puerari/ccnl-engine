@@ -1,5 +1,8 @@
 {
   "verification": "source_linked",
+  "axes": [
+    "base_salary"
+  ],
   "_description": "Cooperative sociali (CNEL T151) level C1, January 2026 regular run, permanent, full time: the minimo of the third tranche of the 26 January 2024 renewal (from October 2025).",
   "_notes": [
     "Minimo C1 1,545.21 from October 2025 (Art. 76, third tranche 'con la mensilità di ottobre 2025'); no later tranche signed through October 2026.",

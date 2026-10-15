@@ -1,5 +1,8 @@
 {
   "verification": "source_linked",
+  "axes": [
+    "base_salary"
+  ],
   "_description": "Metalmeccanica Industria (CNEL C011) level D1, June 2026 regular run, permanent, full time: the first month of the tranche of 1 June 2026.",
   "_notes": [
     "Minimo D1 1,742.03 from 1 June 2025 (minutes of 12 June 2025) and 1,784.94 from 1 June 2026 (renewal of 22 November 2025, page 2, ratified by the referendum of 18-20 February 2026).",

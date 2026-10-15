@@ -1,5 +1,8 @@
 {
   "verification": "source_linked",
+  "axes": [
+    "base_salary"
+  ],
   "_description": "Industria alimentare (CNEL E012) level 4, June 2026 regular run, permanent, full time: the tranche of 1 January 2026.",
   "_notes": [
     "Minimo tabellare level 4 (parameter 120): 1,393.10 from 1 January 2025 and 1,445.65 from 1 January 2026 (CCNL 1 March 2024, Art. 51 lett. A, column 'Nuovi minimi dal 1/01/2026').",
