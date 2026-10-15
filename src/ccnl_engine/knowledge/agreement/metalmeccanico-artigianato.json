@@ -135,7 +135,7 @@
       },
       {
         "kind": "simplification",
-        "text": "BILATERAL FUNDS: the artisan bilateral system (EBNA and the regional bodies, the FSBA wage-integration fund, the San.Arti health fund) and the Fondartigianato pension fund are paid under the interconfederal agreements of the artisan sector; the renewal of 19 November 2024 does not restate the amounts. Not modelled.",
+        "text": "HEALTH AND BILATERAL FUNDS (EBNA text, Art. 11-12, pp. 30-32): bilateralità artigiana 11,65 euro a month for 12 months from the employer, also for part-time and apprentices, plus FSBA 0,45% from the employer and 0,15% from the worker of the INPS base (from 1 January 2022), or 30 euro a month for 13 months paid to the worker by a firm outside the bilateral system; San.Arti 10,42 euro a month for 12 months from the employer, or an E.a.r. of 25 euro a month for 13 months when the firm does not enrol. Not modelled: the worker's 0,15% lowers the net pay.",
         "capability": "bilateral_funds",
         "monetary_impact": "yes",
         "limitation": {
@@ -2602,7 +2602,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "b48630ca2f93129792825ed31f6c13860dba48ced7250f24dee02663b9d49a8f",
+    "source_hash": "34536ea81a1fef1b68a628123edd6391bc21fbe7a621753d44f019eecc25e8fa",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3051,6 +3051,23 @@
         "findings": [
           "Sickness of the operai (Art. 61, pp. 137-138): top-up to 100% of the net pay from the fourth day (from the first past 7 days), for at most 150 days; the file paid 100% from the first day for 180 days: corrected. The impiegati rule of Art. 73 (p. 147) is declared by category.",
           "Ferie 160 hours, 20 days (Art. 58, p. 133): verified."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-texts-funds",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the amounts of the declared contributions, read on the full text published by a party.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.ebat.tn.it/wp-content/uploads/2024/02/EBNA-Contratto-CCNL-Area-Meccanica_web_LR_compressed-1.pdf",
+            "sha256": "f8cd3c42582324aa4484bb2bb9465a5a0a442467aae64e3ea3a1c57e089f3151"
+          }
+        ],
+        "findings": [
+          "Bilateralità 11,65 euro a month, FSBA 0,45% + 0,15%, San.Arti 10,42 euro a month and the E.a.r. of 30 and 25 euro read on pp. 30-32: the declared limitation now states every amount."
         ]
       }
     ],

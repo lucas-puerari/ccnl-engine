@@ -118,7 +118,7 @@
       },
       {
         "kind": "simplification",
-        "text": "HEALTH AND BILATERAL FUNDS: Ente Bilaterale Territoriale 0,10% of the employer and 0,05% of the worker on paga base and contingenza (testo 2019, p. 48); Quadrifor 75 euro a year for each quadro, 50 from the employer and 25 from the worker (p. 108); Fondo Est (Art. 104) and Qu.A.S. for the quadri (Art. 105), whose amounts were not read. Not modelled: the worker's 0,05% lowers the net pay.",
+        "text": "HEALTH AND BILATERAL FUNDS (testo unico 2019): Fondo Est (Art. 104, p. 101), for the permanent workers other than the quadri, 10 euro a month from the employer and 2 euro from the worker, or an elemento distinto of 16 euro for 14 months when the employer does not enrol them; Qu.A.S. (Art. 105, p. 103), for the quadri, 350 euro a year from the employer and 56 euro from the worker from June 2011, plus an enrolment fee; Quadrifor (p. 108), 50 euro a year from the employer and 25 from the quadro; Ente Bilaterale Territoriale (p. 48), 0,10% from the employer and 0,05% from the worker on paga base and contingenza. Not modelled: the worker's shares lower the net pay.",
         "capability": "bilateral_funds",
         "monetary_impact": "yes",
         "limitation": {
@@ -2778,7 +2778,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "aa2e8c60c72d376bbd23c698af1a08583f09f43fdd628a2fa3416ffe6c045e28",
+    "source_hash": "af90e2eeb9306a21c6ed08873d144b56f2ebfa3e010c676cd287744fa1018846",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3185,6 +3185,23 @@
         ],
         "findings": [
           "Fon.Te. verified in P1. The EBT (0,10% + 0,05%), Quadrifor (50 + 25 euro a year for the quadri), Fondo Est and Qu.A.S. contributions are not modelled: declared."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-texts-funds",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the amounts of the declared contributions, read on the full text published by a party.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          }
+        ],
+        "findings": [
+          "Fondo Est 10 + 2 euro a month (Art. 104, p. 101) and Qu.A.S. 350 + 56 euro a year (Art. 105, p. 103) read: the declared limitation now states every amount."
         ]
       }
     ],
