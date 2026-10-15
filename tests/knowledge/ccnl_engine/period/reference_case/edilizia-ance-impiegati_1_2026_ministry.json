@@ -1,0 +1,35 @@
+{
+  "verification": "verified",
+  "axes": [
+    "base_salary",
+    "gross"
+  ],
+  "_description": "CCNL Edilizia Industria ANCE, impiegato of the 1st level, January 2026 regular run, permanent, full time, against the labour cost table of the Ministry of Labour (DD 40 of 13 May 2026, tables of May 2025).",
+  "_notes": [
+    "Page 1 (Agrigento, impiegati, maggio 2025), section 'A-Elementi retributivi mensili', column '1° liv.': Minimo 1.067,36; Ind. contingenza 512,87; E.D.R. - ex prot.23/7/1993 10,33. Those amounts are national: the May 2025 minima stay in force until the tranche of 1 March 2026, so they are the amounts of a January 2026 run.",
+    "Fixed allowances: contingenza 512,87 + EDR 10,33 = 523,20. The provincial EVR (32,61) and premio di produzione (158,52) of the table are not compared: the bundle reads no provincial agreement (limitation provincial_production_premium)."
+  ],
+  "source": {
+    "kind": "official_worked_example",
+    "document": "Ministero del Lavoro, D.D. n. 40 del 13 maggio 2026, costo medio orario per i dipendenti delle imprese edili ed affini, tabelle impiegati (maggio 2025)",
+    "url": "https://www.lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/tabelle-impiegati-0",
+    "sha256": "d861cfa9443ed4bb6e5f6a5fbd5f908b469421ed77c4508096911ae65240ca0b",
+    "page": "1",
+    "section": "AGRIGENTO IMPIEGATI MAGGIO 2025, A-Elementi retributivi mensili, 1° liv.",
+    "verified_by": "claude-opus-5-5",
+    "verified_at": "2026-10-15",
+    "independence": "The cost table is computed and published by the Ministry of Labour under D.Lgs. 36/2023 art. 41 c. 13 from the CCNL, after hearing the signatories; this engine did not produce it."
+  },
+  "tolerance": "0.00",
+  "inputs": {
+    "ccnl_slug": "edilizia-ance-impiegati.json",
+    "level_code": "1",
+    "year": 2026,
+    "month": 1,
+    "headcount": 30
+  },
+  "expected": {
+    "base_salary": "1067.36",
+    "fixed_allowances": "523.20"
+  }
+}
