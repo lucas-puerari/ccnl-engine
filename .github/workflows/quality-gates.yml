@@ -60,6 +60,9 @@ jobs:
       - name: Trust counts drift (check only)
         run: uv run python scripts/documentation/trust_count/generate.py --check
 
+      - name: Validation matrix drift (check only)
+        run: uv run python scripts/documentation/validation_matrix/generate.py --check
+
       - name: Test (pytest, coverage 100%)
         run: uv run pytest
 

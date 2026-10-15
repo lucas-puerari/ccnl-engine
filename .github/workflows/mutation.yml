@@ -1,32 +1,47 @@
 name: Mutation Testing
 
+# The weekly campaign mutates every money-moving module of
+# [tool.mutmut] source_paths; a pull request mutates only those it changes,
+# so a regression in them cannot merge before the next weekly campaign.
+# Every campaign records the commit, the date and the modules its score
+# covers (mutants/mutation-score.json).
+
 on:
   schedule:
     # Every Monday at 03:00 UTC.
     - cron: "0 3 * * 1"
   workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - "src/ccnl_engine/**"
+      - "pyproject.toml"
 
 concurrency:
-  group: mutation-${{ github.ref_name }}
+  group: mutation-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
   mutation:
     name: Mutation campaign (core modules)
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v10.0.1
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d  # v10.0.1
         with:
           enable-cache: true
 
       - name: Set up Python
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7
         with:
-          python-version-file: pyproject.toml
+          python-version-file: .python-version
 
       - name: Install dependencies
         run: uv sync --group dev
@@ -44,9 +59,68 @@ jobs:
         run: uv run python scripts/quality/mutation/check.py --min-score 93.0
 
       - name: Upload mutation results
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7
         if: always()
         with:
           name: mutation-results
-          path: mutants/mutmut-cicd-stats.json
+          path: |
+            mutants/mutmut-cicd-stats.json
+            mutants/mutation-score.json
+          retention-days: 90
+
+  mutation-diff:
+    name: Mutation campaign (changed modules)
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+        with:
+          fetch-depth: 0
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d  # v10.0.1
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7
+        with:
+          python-version-file: .python-version
+
+      - name: Install dependencies
+        run: uv sync --group dev
+
+      - name: Install package (editable)
+        run: uv pip install -e .
+
+      - name: Select the mutants of the changed modules
+        id: select
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          GLOBS=$(uv run python scripts/quality/mutation/check.py \
+            --changed-since "origin/$BASE_REF" --print-globs)
+          echo "globs=$GLOBS" >> "$GITHUB_OUTPUT"
+
+      - name: Run the mutation campaign on them
+        if: steps.select.outputs.globs != ''
+        env:
+          GLOBS: ${{ steps.select.outputs.globs }}
+        run: uv run mutmut run $GLOBS
+
+      - name: Check their mutation score (minimum 93%)
+        if: steps.select.outputs.globs != ''
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: >-
+          uv run python scripts/quality/mutation/check.py
+          --changed-since "origin/$BASE_REF" --min-score 93.0
+
+      - name: Upload the score record
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7
+        if: always() && steps.select.outputs.globs != ''
+        with:
+          name: mutation-diff-score
+          path: mutants/mutation-score.json
           retention-days: 30

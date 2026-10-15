@@ -12,10 +12,12 @@ employer cost short, and the net pay too when they reach the worker.
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass, replace
 from datetime import date
 from decimal import Decimal
 from functools import cache
+from pathlib import Path
 
 import pytest
 
@@ -305,3 +307,16 @@ def test_only_the_stated_gaps_block_the_net_pay(name: str) -> None:
         assert not any(r.is_net_pay_payable for r in year.period_results)
         return
     assert {r.is_net_pay_payable for r in owed_only} == {s.net_pay_reliable}
+
+
+def test_the_scenarios_are_described_for_the_validation_matrix() -> None:
+    """``scenarios.json`` describes exactly the scenarios run here."""
+    path = Path(__file__).with_name("scenarios.json")
+    described = json.loads(path.read_text(encoding="utf-8"))
+
+    assert {name: d["ccnl"] for name, d in described.items()} == {
+        name: s.ccnl for name, s in SCENARIOS.items()
+    }
+    for name, d in described.items():
+        assert ("termination" in d["cycles"]) == SCENARIOS[name].terminated
+        assert ("overtime" in d["variables"]) == SCENARIOS[name].overtime
