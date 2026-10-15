@@ -455,7 +455,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "aa2e8c60c72d376bbd23c698af1a08583f09f43fdd628a2fa3416ffe6c045e28",
+      "source_hash": "af90e2eeb9306a21c6ed08873d144b56f2ebfa3e010c676cd287744fa1018846",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/commercio-confcommercio.json.gz"
@@ -1407,7 +1407,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-artigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "b48630ca2f93129792825ed31f6c13860dba48ced7250f24dee02663b9d49a8f",
+      "source_hash": "34536ea81a1fef1b68a628123edd6391bc21fbe7a621753d44f019eecc25e8fa",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-artigianato.json.gz"
