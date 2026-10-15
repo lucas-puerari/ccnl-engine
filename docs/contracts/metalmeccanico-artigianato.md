@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 32 verified / 49 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 33 verified / 48 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'straordinario, notturno, festivo, turni e maggiorazioni cumulabili': the overtime bands and the night, holiday and shift premiums of the file against the text read in the P1 review. | flagged | The overtime rates could not be read from a party text: the EBNA copy of the 2021 CCNL returns an HTML page and the 2024 renewal does not restate them. A summary (direzionelavoro, p. 3) adds Saturday overtime at 25% for the first 3 hours and 50% after, not modelled, and other summaries give night overtime at 55% against the 45% of the file. Runs with overtime are blocked until the article is read. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova': the apprenticeship tracks and the part-time supplementary hours of the file against the text read in the P1 review. | corrected | The operai track matches the ten semesters of Art. 27 (p. 6). The impiegati track paid yearly averages (77% for months 13-24, 87% for months 25-36): the text pays 75, 80, 85 and 90% by semester. Corrected.<br>The 24-month track of the centralinisti (70, 70, 75, 80%) is not modelled apart: noted. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the pension, health and bilateral contributions of the file against the text read in the P1 review. | flagged | No pension, health or bilateral contribution is modelled; EBNA, FSBA, San.Arti and the pension fund are declared. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'scatti di anzianità, indennità e altri elementi fissi', re-read on the full text published by a party, found on 15 October 2026. | confirmed | Scatti: the eight amounts, the 24-month cadence and the maximum of 5 match Art. 60 and 71 for the workers hired after 27 November 1997: verified. The pre-1998 mechanism is noted. |
 
 ## Salary table
 
@@ -202,7 +203,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     HOURLY DIVISOR: 173 hours/month (40h/week, Art. 28 CCNL 17.12.2021). Arithmetic monthly/hourly verification did not yield clean integer results on the available values; confirmation is based on the primary CCNL text.
     
-    SENIORITY INCREMENTS: biennial (24 months), maximum 5 increments. Per-level amounts from EBLART/Direzionelavoro.it table (tab. 7.1). The effective date of the amounts (01.01.2022) is assumed to coincide with the first salary tranche; the primary source does not report a separate effective date for seniority increments.
+    SENIORITY INCREMENTS: biennial, at most 5, fixed amounts of Art. 60 and 71 for the workers without a scatto on 27 November 1997 (EBNA text pp. 135-136, 143-145). Workers with earlier scatti keep the 5% mechanism and the maxima at 30 June 2000 (181,79 for the Primo livello to 101,22 for the Sesto), not modelled.
     
     APPRENTICESHIP percentage, 10 semesters (60 months max), operai progression (source EBLART, apprenticeship professionalizzante article): 70% (sem. I-II), 75% (III), 78% (IV), 80% (V), 85% (VI), 88% (VII), 92% (VIII), 100% (IX-X); track 'operai' for destinations 5, 4, 3, 2bis. Since the 2015 reform level 6° cannot be used as a destination.
     

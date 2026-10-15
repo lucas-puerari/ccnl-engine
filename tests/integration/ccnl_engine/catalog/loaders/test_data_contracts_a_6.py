@@ -69,10 +69,10 @@ class TestLoadOperaiAgricoli:
         assert ccnl.meta.tax_sector == TaxSector.AGRICOLTURA
 
     def test_operai_agricoli_seniority_cadence(self) -> None:
-        """Seniority: triennale (36 months), maximum 5 scatti."""
+        """Seniority: biennale (24 months, Art. 54), maximum 5 scatti."""
         ccnl = load_ccnl("operai-agricoli-florovivaisti.json")
         si = ccnl.parameters.seniority_increments
-        assert si.cadence_months == 36
+        assert si.cadence_months == 24
         assert si.maximum_count == 5
 
 

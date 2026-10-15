@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 5 verified / 13 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 6 verified / 12 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | confirmed | CNEL A011 matches; the verbale of 28 May 2026 is signed by Confagricoltura, Coldiretti and CIA with FLAI, FAI and UILA. The report also lists Assoverde, API, the family-farm federations and UGL Agroalimentare as parties of the earlier text.<br>Term: the verbale renews the CCNL 'scaduto il 31 dicembre 2025' and is titled 2026-2029 (quadriennale): 1/1/2026 to 31/12/2029. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'straordinario, notturno, festivo, turni e maggiorazioni cumulabili': the overtime bands and the night, holiday and shift premiums of the file against the text read in the P1 review. | flagged | The overtime bands (20% weekday, 40% night, 50% holiday) stay derived: the CCNL of 23 May 2022 is not published by a party, and the verbale of 28 May 2026 does not amend the overtime article. Provincial contracts may set higher rates. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'ferie, permessi, festività, assenze, malattia e comporto': the leave, accrual, absence and sickness rules of the file against the text read in the P1 review. | corrected | Ferie 26 working days (Art. 36, p. 22), comporto 180 days (Art. 61, p. 37) and daily divisor 26 (Art. 50, p. 29): match and verified, cited to the verbale of 28 May 2026 instead of an aggregator.<br>Art. 62 (p. 38) gives the florovivaisti an employer integration of 25% of the daily wage for 90 days a year that the single file cannot pay: declared as an outside-input limitation. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'scatti di anzianità, indennità e altri elementi fissi', re-read on the full text published by a party, found on 15 October 2026. | corrected | Art. 54 (p. 55): the scatti are biennial, not triennial: cadence corrected from 36 to 24 months; amounts 8,99 / 10,33 / 11,36 and the maximum of 5 match: verified. The super profiles (10,85 and 11,62) are declared. |
 
 ## Salary table
 
@@ -77,7 +78,7 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Seniority increments
 
-**Cadence:** every 36 months  
+**Cadence:** every 24 months  
 **Maximum:** 5 increments
 
 | Level | Increment (monthly) |
@@ -130,12 +131,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the INAIL agricultural premium.
 
-!!! warning "operai-agricoli-florovivaisti/seniority_amounts_unconfirmed · seniority · impact unknown · open"
-    SENIORITY AMOUNTS. Art. 54 scatti di anzianità amounts (Area1=11.36, Area2=10.33, Area3=8.99) sourced from 2022-2025 CCNL via aggregators (contratticcnl.it). The 2026 renewal text has not been confirmed to have changed these amounts; INPS Circ. 94/2024 reports a different 5-level structure (L1=9.89, L2=11.36, L3=11.93, L4=12.50, L5=12.78) which may reflect a different classification schema. Update if the renewed Art. 54 specifies different area-based values.
+!!! warning "operai-agricoli-florovivaisti/super_profile_scatti · seniority · impact yes · open"
+    SENIORITY OF THE SUPER PROFILES: Art. 54 (p. 55) pays 10,85 a month to the operai qualificati super and 11,62 to the specializzati super; the three areas of the file pay the amount of the qualificati (10,33) and of the specializzati (11,36), and the request does not say whether the operaio is a super profile.
 
-    **Applies when:** `seniority` applies.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Confirm the Art. 54 seniority amounts against the 2026 renewal text.
+    **Remediation:** Add the super profiles as levels with their scatto amounts.
 
 !!! warning "operai-agricoli-florovivaisti/eban_fisa_agrifondo · bilateral_funds · impact yes · open"
     BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and FISA (Fondo Integrativo di Settore Agricolo) bilateral fund contributions are set at provincial level and not modelled. Agrifondo (supplementary pension) contributions also omitted.
@@ -248,8 +249,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     HOURLY DIVISOR: 169 hours/month. Formula: 39 h/week × 52 weeks / 12 = 169.00 exactly. Confirmed by ilccnl.it divisore orario field (169) and daily divisor 26 (169 / 6.5).
     
     ADDITIONAL MONTHS: 14 (tredicesima Art. 52 + quattordicesima Art. 53 CCNL). Tredicesima paid at year-end; quattordicesima paid 30 April. Both equal one full monthly retribuzione globale.
-    
-    SENIORITY: triennale (36 months), maximum 5 scatti. Euro amounts from Art. 54 CCNL 2022-2025 (aggregator-sourced: contratticcnl.it): Area1 EUR 11.36, Area2 EUR 10.33, Area3 EUR 8.99 per triennio. Amounts frazionabili at daily (÷26) and hourly (÷169) divisors.
     
     TAX SECTOR: AGRICOLTURA (new TaxSector). INPS rates: Gestione Previdenziale Speciale Agricola, OTI standard agriculture: employee 8.84%, employer 21.66%, total 30.50% (2026). Source: ciatreviso.it citing INPS 2026 rates.
     
