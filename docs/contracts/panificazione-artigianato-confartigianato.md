@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 47 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 1 verified / 47 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -52,12 +52,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | — |
+| **Last review** | 2026-10-15 |
 | **Latest salary tranche** | 2026-04-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-15 | claude-opus-5-5 (ai) | Second review of the artigianato group: retribuzione tabellare and indennità speciale of the ten panificazione levels in the four tranches, monthly payments and scatti, against the signed CCNL of 6 June 2024. | corrected | 39 of the 40 base_salary values equal the tabellare of Art. 32 (pp. 45-47, a scan read from the images) plus the indennità speciale of Art. 33 (p. 48) plus 0.44. A1s from 1 April 2026 was 2248.73: it added the indennità di funzione of 36.15, which Art. 65 (p. 79) grants from 1994 to the quadri of the settore alimentare, not to a panificazione level from 2026. Corrected to 2212.58.<br>The ERR of 0.44 is not in the signed text and no party source states it: the base_salary records stay derived.<br>13 monthly payments: verified (Art. 36, tredicesima; Art. 33, the ex 14a ceased from August 1995).<br>Scatti of Art. 34-bis (p. 49): the ten amounts and the 5 bienni match; the record stays derived because it also holds the apprentice amount, not checked here. |
 
 ## Salary table
 
@@ -65,7 +67,7 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `A1S` | Level A1 Super — senior executive quadro / top-level manager | € 2,248.73 | 2026-04-01 |
+| `A1S` | Level A1 Super — senior executive quadro / top-level manager | € 2,212.58 | 2026-04-01 |
 | `B1` | Level B1 — senior operations manager | € 2,165.67 | 2026-04-01 |
 | `A1` | Level A1 — production technical manager | € 2,056.93 | 2026-04-01 |
 | `A2` | Level A2 — specialist technician / department head | € 1,926.61 | 2026-04-01 |
@@ -197,10 +199,10 @@ Each simplification below is a model limitation of the registry. An open limitat
     IND.SPECIALE: Indennita Speciale art.33 ter is fixed per level and does not change across tranches (confirmed: same amounts from 1995 to date, not subject to renewal increases). Folded into TOTALE base_salary for simplicity; the engine has no per-level fixed-allowance that is non-absorbable and constant — modeling as part of base_salary is the cleanest approach and does not affect any computation.
 
 !!! note ""
-    ERR: Elemento Retributivo Residuo (0.44 EUR/month) is a national fixed element, identical for all levels. Folded into TOTALE; the rounding impact on any level is less than 0.01 EUR/month.
+    ERR: an Elemento Retributivo Residuo of 0.44 EUR a month is folded into every base_salary. The signed text of 6 June 2024 (Art. 32-33, pp. 45-48) states the tabellare and the indennità speciale but no ERR, and no party source was found for it: the base_salary records stay derived until the 0.44 is sourced or dropped.
 
 !!! note ""
-    IND.FUNZIONE A1S: Indennita di Funzione 36.15 EUR/month for level A1S introduced from April 2026 (Art. 33 quater, CCNL 2024). Included in the Apr 2026 TOTALE value (2248.73) as confirmed by lavoro-economia.it. Not modeled as a separate fixed_allowance.
+    IND.FUNZIONE: the indennità di funzione of 36.15 EUR a month is owed from 1 April 1994 to the quadri of the settore alimentare (Art. 65, p. 79 of the signed text of 6 June 2024), not to a panificazione level: it is not in the base_salary of A1S. It was added from April 2026 only, citing an Art. 33-quater the text does not have; removed on 15 October 2026.
 
 ## Sources
 

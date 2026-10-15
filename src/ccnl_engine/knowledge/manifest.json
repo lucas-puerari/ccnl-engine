@@ -1611,9 +1611,9 @@
       "valid_to": null,
       "ruleset_id": "ccnl/panificazione-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "9e0cf7e7091c183774f80f325cd2f7bb1ae55eb131126d63b2e02df4b22f4636",
+      "source_hash": "dda4a5e37516dab593e31ed8fdfcc6fc11b88207535e16ed180e041d183934c3",
       "source_type": "contracting_party",
-      "owner": "ccnl-engine maintainers",
+      "owner": "maintainer",
       "wheel_resource": "agreement/panificazione-artigianato-confartigianato.json.gz"
     },
     {

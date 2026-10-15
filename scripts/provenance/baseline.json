@@ -561,9 +561,6 @@
       "work_rules.absence_rules": "assumed",
       "work_rules.sickness_rules": "assumed"
     },
-    "agreement/panificazione-artigianato-confartigianato.json": {
-      "additional_months[2024-04-01]": "assumed"
-    },
     "agreement/panificazione-assipan.json": {
       "accrual_rule": "missing",
       "additional_months[2023-01-01]": "assumed"

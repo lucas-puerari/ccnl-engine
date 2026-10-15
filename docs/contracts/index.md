@@ -1,5 +1,5 @@
 <!-- auto-generated -- run: uv run python scripts/documentation/coverage_matrix/generate.py -->
-<!-- generated: 2026-10-14 -->
+<!-- generated: 2026-10-15 -->
 
 # CCNL Coverage
 
@@ -106,7 +106,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 2 | I481 | [CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi](agenzie-marittime-i481.md) | Agenzie marittime e aeree | ~5k | 2024 | ⚠️ | base_salary, seniority | 0 / 36 / 2 / 0 | 🧪 | 🤖 |
 | 3 | H052 | [CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio](agenzie-viaggio-fiavet.md) | Turismo (agenzie di viaggio) | ~25k | 2024 | ⚠️ | seniority, trattamento_integrativo | 0 / 68 / 1 / 1 | 🧪 | 🤖 |
 | 4 | E016 | [CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)](alimentaristi-cooperative-e016.md) | industria alimentare — cooperative di produzione e lavoro | ~15k | 2024 | ⚠️ | base_salary, seniority | 0 / 70 / 1 / 1 | 🧪 | 🤖 |
-| 5 | E015 | [CCNL Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA)](panificazione-artigianato-confartigianato.md) | panificazione e alimentazione artigianato | ~90k | — | ⚠️ | inps_employer, territorial_supplement | 0 / 47 / 1 / 0 | 🧪 | 🤖 |
+| 5 | E015 | [CCNL Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA)](panificazione-artigianato-confartigianato.md) | panificazione e alimentazione artigianato | ~90k | — | ⚠️ | inps_employer, territorial_supplement | 1 / 47 / 0 / 0 | 🧪 | 🤖 |
 | 6 | G016 | [CCNL Area Comunicazione — Artigianato](comunicazione-artigianato-confartigianato.md) | comunicazione grafica editoria stampa artigianato | ~60k | 2024 | ⚠️ | base_salary, inps_employer, worker_category | 0 / 40 / 1 / 0 | 🧪 | 🤖 |
 | 7 | S025 | [CCNL Area Dirigenza Funzioni Centrali 2022-2024 — ARAN](dirigenza-funzioni-centrali-aran.md) | Pubblica Amministrazione | ~30k | 2025 | ✅ | — | 0 / 13 / 0 / 0 | 🧪 | 🤖 |
 | 8 | S125 | [CCNL Area Dirigenza Funzioni Locali 2022-2024 — ARAN](dirigenza-funzioni-locali-aran.md) | Pubblica Amministrazione | ~13k | 2026 | ✅ | — | 0 / 9 / 0 / 0 | 🧪 | 🤖 |

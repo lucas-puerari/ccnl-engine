@@ -12,7 +12,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | terziario | 43 | 4 977 055 | 216 | 1541 | 608 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 48 | 4 946 900 | 375 | 2292 | 484 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 4 | 55 | 0 | `lavoro-domestico-non-convivente` |
-| artigianato | 8 | 1 244 505 | 94 | 311 | 32 | 2 | `metalmeccanico-artigianato` |
+| artigianato | 8 | 1 244 505 | 93 | 311 | 33 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 19 | 246 | 35 | 5 | `operai-agricoli-florovivaisti` |
 | edilizia | 4 | 710 000 | 4 | 126 | 69 | 0 | `edilizia-ance` |
 | credito | 3 | 348 000 | 3 | 45 | 72 | 0 | `bancari-abi` |
@@ -154,7 +154,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`tessile-moda-artigianato-confartigianato`](../contracts/tessile-moda-artigianato-confartigianato.md) | 120 000 | exploratory | 1 | 36 | 0 | aggregator | none | none |
 | [`legno-lapidei-artigianato-confartigianato`](../contracts/legno-lapidei-artigianato-confartigianato.md) | 95 000 | exploratory | 2 | 38 | 0 | aggregator | none | none |
 | [`acconciatura-estetica-confartigianato`](../contracts/acconciatura-estetica-confartigianato.md) | 95 000 | exploratory | 1 | 29 | 0 | party or official | none | none |
-| [`panificazione-artigianato-confartigianato`](../contracts/panificazione-artigianato-confartigianato.md) | 90 000 | exploratory | 1 | 47 | 0 | party or official | none | none |
+| [`panificazione-artigianato-confartigianato`](../contracts/panificazione-artigianato-confartigianato.md) | 90 000 | exploratory | 0 | 47 | 1 | party or official | maintainer | 2027-01-31 |
 | [`pulizia-artigianato-confartigianato`](../contracts/pulizia-artigianato-confartigianato.md) | 84 505 | exploratory | 87 | 0 | 0 | party or official | none | none |
 | [`comunicazione-artigianato-confartigianato`](../contracts/comunicazione-artigianato-confartigianato.md) | 60 000 | exploratory | 1 | 40 | 0 | party or official | none | none |
 
