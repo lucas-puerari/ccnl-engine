@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer, overtime, seniority |
+| **Limits of this contract** | base_salary, inps_employer, overtime, seniority, sickness |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 41 verified / 4 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 43 verified / 2 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'straordinario, notturno, festivo, turni e maggiorazioni cumulabili': the overtime bands and the night, holiday and shift premiums of the file against the text read in the P1 review. | flagged | The overtime bands (25%, 55% night, 65% holiday) stay derived: the CCNL of 19 December 2019 that sets them is not published by a party in full, and the renewal of 23 November 2023 does not amend them. The hourly base of the ABI CCNL was not read: the BCC CCNL computes it on 90.66% of one twelfth of the annual pay, which the engine does not apply. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'scatti di anzianità, indennità e altri elementi fissi', re-read on the full text published by a party, found on 15 October 2026. | corrected | Scatti: the 48-month first scatto, the 36-month cadence and the maxima (8; 7 for QD3 and QD4) match Art. 94 and 103: verified. The freeze of 1 January 2013 - 31 July 2014 (Art. 103 c. 3) is declared. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'straordinario, notturno, festivo, turni e maggiorazioni cumulabili', re-read on the full text published by a party, found on 15 October 2026. | corrected | Art. 114 c. 15 (p. 152): 25% weekday and 55% night match; 65% is the night overtime of the rest days and festività, not the daytime holiday overtime: moved to night_holiday. Art. 115 (p. 153): holiday work 30% and rest-day work 25%: added; the daytime holiday band was 65%, corrected. Saturday 30% and the 1/360 / 7,4 hourly base are declared. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'ferie, permessi, festività, assenze, malattia e comporto', re-read on the full text published by a party, found on 15 October 2026. | corrected | Sickness (Art. 66, p. 101): full pay for 6 to 24 months by seniority, not a flat 180 days: modelled on the 48-month count of c. 2 with six seniority bands; the c. 1 count and the extended periods are declared.<br>Ferie (Art. 60, p. 89): 20/22/25 days of the aree match; the quadri have 26 (noted). Tredicesima accrual: a fraction of month counts (Art. 51, p. 77): verified. |
 
 ## Salary table
 
@@ -154,6 +155,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Add a Saturday kind and derive the overtime hourly rate as the annual pay over 360 and 7,4.
+
+!!! warning "bancari-abi/abi_sickness_counting · sickness · impact yes · open"
+    SICKNESS COUNTING: Art. 66 c. 1 keeps the job and the whole pay for 6, 8, 12, 15, 18 or 22 months by seniority; c. 2 lets the employer count instead the 48 months before the last day of absence, with 8, 10, 14, 18, 22 or 24 months. The file applies c. 2; an employer counting by c. 1 pays fewer months. The periods rise by 50% for tbc, AIDS and disabilità grave and double for oncological illness (cc. 4-5), not modelled.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add a fact for the counting the employer adopts and the extended periods of Art. 66 cc. 4-5.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

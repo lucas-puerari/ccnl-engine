@@ -12,10 +12,10 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | terziario | 43 | 4 977 055 | 215 | 1535 | 615 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 48 | 4 946 900 | 375 | 2277 | 501 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 4 | 55 | 0 | `lavoro-domestico-non-convivente` |
-| artigianato | 8 | 1 244 505 | 93 | 306 | 38 | 2 | `metalmeccanico-artigianato` |
+| artigianato | 8 | 1 244 505 | 93 | 305 | 39 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 19 | 240 | 42 | 5 | `operai-agricoli-florovivaisti` |
 | edilizia | 4 | 710 000 | 4 | 118 | 77 | 0 | `edilizia-ance` |
-| credito | 3 | 348 000 | 3 | 41 | 76 | 0 | `bancari-abi` |
+| credito | 3 | 348 000 | 3 | 39 | 78 | 0 | `bancari-abi` |
 
 ## pubblica-amministrazione
 
@@ -150,7 +150,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Owner | Next review |
 |---|---:|---|---:|---:|---:|---|---|---|
 | [`edilizia-artigianato-cna`](../contracts/edilizia-artigianato-cna.md) | 350 000 | exploratory | 1 | 72 | 0 | party or official | none | none |
-| [`metalmeccanico-artigianato`](../contracts/metalmeccanico-artigianato.md) (anchor) | 350 000 | exploratory | 0 | 44 | 37 | party or official | maintainer | 2027-01-31 |
+| [`metalmeccanico-artigianato`](../contracts/metalmeccanico-artigianato.md) (anchor) | 350 000 | exploratory | 0 | 43 | 38 | party or official | maintainer | 2027-01-31 |
 | [`tessile-moda-artigianato-confartigianato`](../contracts/tessile-moda-artigianato-confartigianato.md) | 120 000 | exploratory | 1 | 36 | 0 | aggregator | none | none |
 | [`legno-lapidei-artigianato-confartigianato`](../contracts/legno-lapidei-artigianato-confartigianato.md) | 95 000 | exploratory | 2 | 38 | 0 | aggregator | none | none |
 | [`acconciatura-estetica-confartigianato`](../contracts/acconciatura-estetica-confartigianato.md) | 95 000 | exploratory | 1 | 29 | 0 | party or official | none | none |
@@ -185,6 +185,6 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 
 | CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Owner | Next review |
 |---|---:|---|---:|---:|---:|---|---|---|
-| [`bancari-abi`](../contracts/bancari-abi.md) (anchor) | 270 000 | exploratory | 0 | 4 | 41 | party or official | maintainer | 2026-12-31 |
+| [`bancari-abi`](../contracts/bancari-abi.md) (anchor) | 270 000 | exploratory | 0 | 2 | 43 | party or official | maintainer | 2026-12-31 |
 | [`assicurazioni-ania`](../contracts/assicurazioni-ania.md) | 45 000 | exploratory | 2 | 30 | 0 | party or official | none | none |
 | [`bcc-credito-cooperativo`](../contracts/bcc-credito-cooperativo.md) | 33 000 | exploratory | 1 | 7 | 35 | party or official | maintainer | 2027-06-30 |

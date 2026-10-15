@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | bilateral_funds, inps_employer, overtime |
+| **Limits of this contract** | bilateral_funds, inps_employer, overtime, sickness |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 37 verified / 44 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 38 verified / 43 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the pension, health and bilateral contributions of the file against the text read in the P1 review. | flagged | No pension, health or bilateral contribution is modelled; EBNA, FSBA, San.Arti and the pension fund are declared. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'scatti di anzianità, indennità e altri elementi fissi', re-read on the full text published by a party, found on 15 October 2026. | confirmed | Scatti: the eight amounts, the 24-month cadence and the maximum of 5 match Art. 60 and 71 for the workers hired after 27 November 1997: verified. The pre-1998 mechanism is noted. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'straordinario, notturno, festivo, turni e maggiorazioni cumulabili', re-read on the full text published by a party, found on 15 October 2026. | corrected | Art. 22 (p. 84): straordinario 25% and straordinario festivo 45% match; straordinario notturno is 55%, not 45%: corrected; the rates apply to the retribuzione di fatto (hourly base gross_incl_allowances) and do not cumulate (night holiday 55%). The unconfirmed-rates limitation is resolved; the Saturday rule and the ordinary night and holiday work are declared. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'ferie, permessi, festività, assenze, malattia e comporto', re-read on the full text published by a party, found on 15 October 2026. | corrected | Sickness of the operai (Art. 61, pp. 137-138): top-up to 100% of the net pay from the fourth day (from the first past 7 days), for at most 150 days; the file paid 100% from the first day for 180 days: corrected. The impiegati rule of Art. 73 (p. 147) is declared by category.<br>Ferie 160 hours, 20 days (Art. 58, p. 133): verified. |
 
 ## Salary table
 
@@ -141,6 +142,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Add a Saturday kind with the 3-hour threshold, and bands for ordinary night and holiday work.
+
+!!! warning "metalmeccanico-artigianato/artisan_impiegati_sickness · sickness · impact yes · open"
+    SICKNESS OF THE IMPIEGATI: Art. 73 (p. 147) pays the impiegati the whole pay for 2 months and half for the next 4 up to 5 years of service, the whole for 3 months and half for the next 5 above; the file applies the operai rule of Art. 61.
+
+    **Applies when:** `sickness` applies; category in impiegato, quadro.
+
+    **Remediation:** Model the Art. 73 bands for the impiegati by category.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
