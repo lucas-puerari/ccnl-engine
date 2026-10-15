@@ -17,3 +17,20 @@ jobs:
   # The same gates the release runs before it publishes.
   gates:
     uses: ./.github/workflows/quality-gates.yml
+
+  # The check main requires: it passes only when every gate passed, so the
+  # branch protection keeps its name while it covers all of them.
+  required:
+    name: Lint, typecheck, test
+    needs: gates
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Every gate passed
+        env:
+          RESULT: ${{ needs.gates.result }}
+        run: |
+          if [ "$RESULT" != "success" ]; then
+            echo "The quality gates ended with: $RESULT"
+            exit 1
+          fi
