@@ -1216,6 +1216,7 @@
       "aziende-termali-federterme/tourism_special_supplement"
     ],
     "agreement/bancari-abi.json": [
+      "bancari-abi/abi_saturday_overtime_and_hourly_base",
       "bancari-abi/apprentice_seniority",
       "bancari-abi/apprenticeship_destination_levels",
       "bancari-abi/ex_ristrutturazione_amount",
@@ -1507,9 +1508,9 @@
     ],
     "agreement/metalmeccanico-artigianato.json": [
       "metalmeccanico-artigianato/apprentice_inps_rates_unsourced",
+      "metalmeccanico-artigianato/artisan_saturday_overtime",
       "metalmeccanico-artigianato/health_and_bilateral_funds",
-      "metalmeccanico-artigianato/inps_sector_rates_unsourced",
-      "metalmeccanico-artigianato/overtime_rates_unconfirmed"
+      "metalmeccanico-artigianato/inps_sector_rates_unsourced"
     ],
     "agreement/metalmeccanico-confapi.json": [
       "metalmeccanico-confapi/confapi_unmodelled_pay_elements",
@@ -1551,6 +1552,7 @@
       "operai-agricoli-florovivaisti/apprentice_seniority",
       "operai-agricoli-florovivaisti/eban_fisa_agrifondo",
       "operai-agricoli-florovivaisti/fixed_term_seniority_element",
+      "operai-agricoli-florovivaisti/florovivaisti_overtime_rates",
       "operai-agricoli-florovivaisti/florovivaisti_sickness_integration",
       "operai-agricoli-florovivaisti/florovivaisti_tables",
       "operai-agricoli-florovivaisti/inail_agricultural_premium",

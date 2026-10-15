@@ -285,7 +285,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/bancari-abi",
       "ruleset_version": "2026.2",
-      "source_hash": "7e358b3ce5e0efa04a3680a08715dfac4ad80cd04ad82585516d3950f47da4c7",
+      "source_hash": "88f83148230220f658619ee60f153fbccbae02633adbe206fe7abc07cbbb0c35",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/bancari-abi.json.gz"
@@ -1407,7 +1407,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-artigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "26f2945fb6ef419535902e2c0eb018edcc1be6171a1732406c7b4a5144a64c2a",
+      "source_hash": "d12b25b7cfac40502383e5ac0815c07a0a935c62a8991c2fafc035037b6e5c2e",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-artigianato.json.gz"
@@ -1543,7 +1543,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/operai-agricoli-florovivaisti",
       "ruleset_version": "2026.2",
-      "source_hash": "344548ae8f64f0a24b75e38277f70dc7e80ac59b822f9c0308f98c80ad3db817",
+      "source_hash": "6314e82775422ae7804b2349c0eade448e360273c9f3e8367c9e22b4d11b7760",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/operai-agricoli-florovivaisti.json.gz"

@@ -137,6 +137,19 @@
           },
           "remediation": "State the seniority of a worker in service in 2013-2014 net of the 19 months of the freeze."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "OVERTIME, SATURDAY AND HOURLY BASE: Saturday overtime is paid 30% (Art. 114 c. 15), and the request has no Saturday kind; the hourly pay of overtime and of holiday work is 1/360 of the annual pay for each day divided by 7,4 (Art. 114 c. 15), that is the monthly pay times 13 over 2.664, not the monthly pay over the hourly divisor of 160: the caller passes that hourly rate on the overtime event.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "abi_saturday_overtime_and_hourly_base",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add a Saturday kind and derive the overtime hourly rate as the annual pay over 360 and 7,4."
+        }
       }
     ]
   },
@@ -1778,7 +1791,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "7e358b3ce5e0efa04a3680a08715dfac4ad80cd04ad82585516d3950f47da4c7",
+    "source_hash": "88f83148230220f658619ee60f153fbccbae02633adbe206fe7abc07cbbb0c35",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1788,15 +1801,14 @@
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
-          "description": "Straordinario diurno feriale",
+          "description": "Straordinario feriale",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
-                "valid_from": "2023-11-23",
-                "value": "0.25",
-                "provenance": null,
-                "valid_until": null
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "0.25"
               }
             ]
           },
@@ -1804,35 +1816,42 @@
             "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "bancari-abi",
-                "title": "CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)",
-                "kind": "tabella_retributiva",
-                "url": "https://ilccnl.it/contratto/ccnl/credito---abi-dal-011099"
+                "document_id": "ccnl-abi-2023-11-23-testo-coordinato-fabi",
+                "title": "CCNL ABI 23 novembre 2023, testo coordinato (FABI, 2025)",
+                "kind": "associazione",
+                "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+                "published_on": "2025-07-01",
+                "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
               },
-              "section": "Straordinario — 25% diurno feriale"
+              "page": "152",
+              "section": "Art. 114 c. 15 (Banca delle ore - Lavoro straordinario)",
+              "quote": "25% nei giorni feriali"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2023-11-23"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-15T11:24:45Z",
+              "verification_status": "verified",
+              "effective_from": "2023-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T11:24:45Z",
+              "review_id": "2026-10-15-ai-texts-overtime"
             }
           }
         },
         {
           "code": "OT_NOTTURNO",
-          "description": "Straordinario notturno",
+          "description": "Straordinario notturno (22-6)",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
-                "valid_from": "2023-11-23",
-                "value": "0.55",
-                "provenance": null,
-                "valid_until": null
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "0.55"
               }
             ]
           },
@@ -1840,35 +1859,85 @@
             "night"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "bancari-abi",
-                "title": "CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)",
-                "kind": "tabella_retributiva",
-                "url": "https://ilccnl.it/contratto/ccnl/credito---abi-dal-011099"
+                "document_id": "ccnl-abi-2023-11-23-testo-coordinato-fabi",
+                "title": "CCNL ABI 23 novembre 2023, testo coordinato (FABI, 2025)",
+                "kind": "associazione",
+                "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+                "published_on": "2025-07-01",
+                "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
               },
-              "section": "Straordinario — 55% notturno"
+              "page": "152",
+              "section": "Art. 114 c. 15 (Banca delle ore - Lavoro straordinario)",
+              "quote": "55% di notte (fra le 22 e le ore 6)"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2023-11-23"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-15T11:24:45Z",
+              "verification_status": "verified",
+              "effective_from": "2023-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T11:24:45Z",
+              "review_id": "2026-10-15-ai-texts-overtime"
             }
           }
         },
         {
-          "code": "OT_FESTIVO",
-          "description": "Straordinario festivo",
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno nei giorni di riposo e nelle festività",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
-                "valid_from": "2023-11-23",
-                "value": "0.65",
-                "provenance": null,
-                "valid_until": null
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "0.65"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-abi-2023-11-23-testo-coordinato-fabi",
+                "title": "CCNL ABI 23 novembre 2023, testo coordinato (FABI, 2025)",
+                "kind": "associazione",
+                "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+                "published_on": "2025-07-01",
+                "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
+              },
+              "page": "152",
+              "section": "Art. 114 c. 15 (Banca delle ore - Lavoro straordinario)",
+              "quote": "65% di notte nei giorni destinati a riposo settimanale e nelle festività infrasettimanali"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-15T11:24:45Z",
+              "verification_status": "verified",
+              "effective_from": "2023-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T11:24:45Z",
+              "review_id": "2026-10-15-ai-texts-overtime"
+            }
+          }
+        },
+        {
+          "code": "FESTIVO",
+          "description": "Prestazione in giorni festivi infrasettimanali",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "0.30"
               }
             ]
           },
@@ -1876,21 +1945,72 @@
             "holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "bancari-abi",
-                "title": "CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)",
-                "kind": "tabella_retributiva",
-                "url": "https://ilccnl.it/contratto/ccnl/credito---abi-dal-011099"
+                "document_id": "ccnl-abi-2023-11-23-testo-coordinato-fabi",
+                "title": "CCNL ABI 23 novembre 2023, testo coordinato (FABI, 2025)",
+                "kind": "associazione",
+                "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+                "published_on": "2025-07-01",
+                "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
               },
-              "section": "Straordinario — 65% festivo"
+              "page": "153",
+              "section": "Art. 115 c. 5",
+              "quote": "compenso pari alla paga oraria, calcolato come all'art. 114, maggiorata del 30%"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2023-11-23"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-15T11:24:45Z",
+              "verification_status": "verified",
+              "effective_from": "2023-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T11:24:45Z",
+              "review_id": "2026-10-15-ai-texts-overtime"
+            }
+          }
+        },
+        {
+          "code": "RIPOSO",
+          "description": "Lavoro nel giorno di riposo settimanale, con riposo compensativo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "0.25"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "rest_day"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-abi-2023-11-23-testo-coordinato-fabi",
+                "title": "CCNL ABI 23 novembre 2023, testo coordinato (FABI, 2025)",
+                "kind": "associazione",
+                "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+                "published_on": "2025-07-01",
+                "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
+              },
+              "page": "153",
+              "section": "Art. 115 c. 3",
+              "quote": "compenso pari alla paga oraria calcolata come all'art. 114, maggiorata del 25%"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-15T11:24:45Z",
+              "verification_status": "verified",
+              "effective_from": "2023-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-15T11:24:45Z",
+              "review_id": "2026-10-15-ai-texts-overtime"
             }
           }
         }
@@ -2054,6 +2174,23 @@
         ],
         "findings": [
           "Scatti: the 48-month first scatto, the 36-month cadence and the maxima (8; 7 for QD3 and QD4) match Art. 94 and 103: verified. The freeze of 1 January 2013 - 31 July 2014 (Art. 103 c. 3) is declared."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-texts-overtime",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'straordinario, notturno, festivo, turni e maggiorazioni cumulabili', re-read on the full text published by a party, found on 15 October 2026.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+            "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
+          }
+        ],
+        "findings": [
+          "Art. 114 c. 15 (p. 152): 25% weekday and 55% night match; 65% is the night overtime of the rest days and festività, not the daytime holiday overtime: moved to night_holiday. Art. 115 (p. 153): holiday work 30% and rest-day work 25%: added; the daytime holiday band was 65%, corrected. Saturday 30% and the 1/360 / 7,4 hourly base are declared."
         ]
       }
     ]
