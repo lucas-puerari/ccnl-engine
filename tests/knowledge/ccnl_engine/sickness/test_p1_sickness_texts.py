@@ -48,3 +48,19 @@ def test_artisan_operai_sickness() -> None:
     assert sickness.net_basis is True
     assert sickness.carenza_min_days == 7
     assert sickness.max_duration_days == 150
+
+
+def test_domestic_sickness_bands() -> None:
+    """Art. 27 of the CCNL of 28 October 2025: 8/10, 10/45, 15/180 days."""
+    rules = load_ccnl("lavoro-domestico-non-convivente.json").work_rules
+    assert rules is not None
+    sickness = rules.sickness_rules
+    assert sickness is not None
+    assert sickness.cumulation is not None
+
+    assert sickness.carenza_integration_rate == Decimal("0.5")
+    assert [(b.full_pay_days, b.comporto_days) for b in sickness.cumulation.bands] == [
+        (8, 10),
+        (10, 45),
+        (15, 180),
+    ]

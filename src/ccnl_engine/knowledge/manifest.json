@@ -1271,7 +1271,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-non-convivente",
       "ruleset_version": "2026.3",
-      "source_hash": "0b88075544a7e195123ada3cb23dd19bab352f5118fec0735019c0aba80629f3",
+      "source_hash": "743bdd52f180128f0e8c8bda3281462eab5d5d66d71a71c205afcdecb5d2f4b1",
       "source_type": "commercial_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/lavoro-domestico-non-convivente.json.gz"

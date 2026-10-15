@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | assistance_contribution, base_salary, seniority, sickness |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 16 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 17 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: Tabella C of the 2026 minimi (values from 1 January 2026) for the eight levels; the annual update of the minimi. | corrected | The eight hourly minimi of Tabella C (6,51 to 9,97) times 40 x 52 / 12 are the monthly amounts of the bundle.<br>The minimi are reset every 1 January (Art. 38): from 2027 the 2026 table would be paid as final. Declared as annual_minimi_not_updated on the three domestic CCNLs, review_due 2027-01-31. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | confirmed | CNEL H501 matches (FIDALDO, which groups ASSINDATCOLF, and DOMINA with FILCAMS, FISASCAT, UILTUCS, FEDERCOLF).<br>Term: the ipotesi of 28 October 2025 applies from 1 November 2025; its expiry is reported as 31 October 2028 (CNEL filing) or 31 December 2028 (press); not read in the text, left open. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'confrontare lordo, netto e costo azienda con esempi indipendenti': a run of the engine against the worked examples of a third-party guide (money.it, Costo colf e badanti 2026). | confirmed | Level CS, 2026: the hourly minimum 8,30 matches. 20 hours a week (effective hourly pay up to 9,61): 0,43 euro an hour of the worker and 1,27 of the employer; 30 hours a week (over 24 hours): 0,31 and 0,93. The engine applies the same bands. Match.<br>Deviation: the monthly pay of 20 hours is 719.34, half the rounded full-time 1438.67, against 8,30 x 20 x 52 / 12 = 719.33: one cent of rounding; decision: accepted and noted. The guide is a third-party page (hash of the copy read on 15 October 2026); Cas.Sa.Colf, tredicesima and TFR are not quantified there. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'ferie, permessi, festività, assenze, malattia e comporto': the sickness rule against the signed text of 28 October 2025. | confirmed | Art. 27 (p. 37): the three seniority bands, the 365-day count and the 50% / 100% pay match the file: verified. The +50% for oncological illness (c. 6) is declared. |
 
 ## Salary table
 
@@ -141,6 +142,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; from 2027-01-01.
 
     **Remediation:** Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note.
+
+!!! warning "lavoro-domestico-non-convivente/domestic_oncological_comporto · sickness · impact yes · open"
+    ONCOLOGICAL ILLNESS: the periods of Art. 27 c. 4 rise by 50% for an oncological illness documented by the ASL (c. 6, p. 37); the file applies the ordinary periods and the request does not state the illness.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add a fact for an oncological illness and raise the periods by 50%.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
