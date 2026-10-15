@@ -2574,7 +2574,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "3fad9a821352ea3861c1678edf07c5a73eb3917c4b7eb681c08bdc4d5eb43571",
+    "source_hash": "2624e86015b4929f36313ee2d7e68aa66b0c39b2110c5dbdbd3fb733874f20b3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3063,6 +3063,24 @@
         "findings": [
           "Priamo (Art. 50, pp. 63-64): 1% of the employer and 1% of the worker; no pension fund was modelled: added as an employer fund on the TFR base, derived because the text names the monthly pay.",
           "Sanilog (150 euro a year, employer) and Ebilog (3,50 euro a month employer, 0,50 worker, or an EAR of 8 euro): declared."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-cost-check",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'confrontare lordo, netto e costo azienda con esempi indipendenti': a run of the engine against the cost table of the Ministry of Labour (DD 135 of 19 December 2025, impiegati non viaggianti, January 2026).",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-135-del-19",
+            "sha256": "91858281e9567597b56506c663222e985f2387b607e7e257e5cf23dc60b3b9b5"
+          }
+        ],
+        "findings": [
+          "Impiegato 3S with 3 scatti, January 2026: minimo plus EPA 2000.37 ((23.644,44 + 360) / 12), scatti 74.37 and EDR 10.00 a month match the table (p. 9); the TFR of the month is the table's TFR base over 13.5 less the 0.5% IVS offset. Match.",
+          "Deviation: the table applies an employer INPS rate of 29.44%; the engine applies 29.06% from 16 to 50 employees and 29.36% from 51. Cause not established (the table does not state the class of employer and size); decision: flagged for the INPS review of the logistica contribution class. Sanilog (165 euro) and Ebilog (46,20 euro) of the table equal the declared 150 and 42 euro plus the 10% solidarity contribution. INAIL 0.404%: not computed by the engine. No independent net pay example."
         ]
       }
     ],
