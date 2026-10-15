@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, overtime, sickness |
+| **Limits of this contract** | base_salary, bilateral_funds, overtime, sickness |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -123,11 +123,18 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the 50% band over 5 years and the 17 and 24 month comporto windows of Art. 47.
 
 !!! warning "alimentari-federalimentare/alimentari_unmodelled_elements · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the trattamento economico per mancata contrattazione di secondo livello of Art. 51 bis (EUR 21.90 at level 6 to 50.37 at 1S a month for 12 months from 1 January 2023, 32.85 to 75.55 from 1 January 2027, outside the TFR), owed by firms without a premio per obiettivi; the EDR of EUR 20 x 12 of Art. 74 bis owed by firms outside the bilateral funds; the premio di campagna of the conserve vegetali (Art. 51 ter); the employer contributions to FASA (EUR 16 a month), the Cassa maternità, the bilateralità and the Cassa rischio vita (Art. 74 ter-quinquies); the premiums of Art. 31 on ordinary night, shift night, holiday and Sunday work; the EDR enters the TFR base only from 1 March 2024 (Art. 73); the pay of first-level and alta formazione apprentices (Art. 21 B-C).
+    NOT MODELLED AMOUNTS: the trattamento economico per mancata contrattazione di secondo livello of Art. 51 bis (EUR 21.90 at level 6 to 50.37 at 1S a month for 12 months from 1 January 2023, 32.85 to 75.55 from 1 January 2027, outside the TFR), owed by firms without a premio per obiettivi; the premio di campagna of the conserve vegetali (Art. 51 ter); the premiums of Art. 31 on ordinary night, shift night, holiday and Sunday work; the EDR enters the TFR base only from 1 March 2024 (Art. 73); the pay of first-level and alta formazione apprentices (Art. 21 B-C).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model Art. 51 bis, Art. 74 bis, Art. 51 ter and the Art. 31 premiums on ordinary hours.
+
+!!! warning "alimentari-federalimentare/health_and_bilateral_funds · bilateral_funds · impact yes · open"
+    HEALTH AND BILATERAL FUNDS: the employer contributions to FASA (EUR 16 a month), the Cassa maternità, the bilateralità and the Cassa rischio vita (Art. 74 ter-quinquies) are owed for every worker; a firm outside the bilateral funds owes instead the EDR of EUR 20 x 12 of Art. 74 bis. Neither is modelled: the employer cost, and with the EDR the net pay, are short of them.
+
+    **Applies when:** `bilateral_funds` applies.
+
+    **Remediation:** Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

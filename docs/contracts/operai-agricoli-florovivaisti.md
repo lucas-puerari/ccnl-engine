@@ -102,7 +102,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 !!! warning "operai-agricoli-florovivaisti/provincial_supplement · territorial_supplement · impact yes · open"
     NATIONAL MINIMUMS ONLY. Provincial contracts (contratti provinciali di lavoro, 20 provinces) pay substantially more than national floor. The national tabella retributiva is the legal minimum. Actual employer cost in any province requires adding the CPL supplement.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `territorial_supplement` applies.
 
     **Remediation:** Add the provincial (CPL) supplement outside the engine.
 
@@ -144,7 +144,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 !!! warning "operai-agricoli-florovivaisti/eban_fisa_agrifondo · bilateral_funds · impact yes · open"
     BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and FISA (Fondo Integrativo di Settore Agricolo) bilateral fund contributions are set at provincial level and not modelled. Agrifondo (supplementary pension) contributions also omitted.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `bilateral_funds` applies.
 
     **Remediation:** Pass the provincial EBAN, FISA and Agrifondo contributions as bilateral fund events.
 

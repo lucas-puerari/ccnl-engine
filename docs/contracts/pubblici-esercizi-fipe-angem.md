@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, overtime, seniority, sickness, trattamento_integrativo |
+| **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority, sickness, trattamento_integrativo |
 
-10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+11 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -156,11 +156,18 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the special parts of the stabilimenti balneari and alberghi diurni in a sibling file.
 
 !!! warning "pubblici-esercizi-fipe-angem/fipe_unmodelled_elements · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the elemento distinto of EUR 16.00 for 14 months owed when the employer does not pay Fondo Est (CCNL 2018 art. 186 c. 12), and the guarantee premium of the renewal of 5 June 2024 (art. 13 c. 10) paid with the November 2027 pay to workers without second-level bargaining. The caller pays them as variable items.
+    NOT MODELLED AMOUNTS: the guarantee premium of the renewal of 5 June 2024 (art. 13 c. 10) paid with the November 2027 pay to workers without second-level bargaining. The caller pays it as a variable item.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the Fondo Est elemento distinto and the 2027 guarantee premium as conditional allowances.
+
+!!! warning "pubblici-esercizi-fipe-angem/health_and_bilateral_funds · bilateral_funds · impact yes · open"
+    HEALTH FUND: the Fondo Est is owed for every worker (CCNL 2018 art. 186); an employer that does not pay it owes the worker instead the elemento distinto of EUR 16.00 for 14 months (c. 12). Neither is modelled: the employer cost, and with the elemento the net pay, are short of it.
+
+    **Applies when:** `bilateral_funds` applies.
+
+    **Remediation:** Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note.
 
 !!! warning "pubblici-esercizi-fipe-angem/tourism_special_supplement · trattamento_integrativo · impact yes · open"
     TRATTAMENTO INTEGRATIVO SPECIALE (L. 199/2025 art. 1 cc. 18-20, Gazzetta Ufficiale text, https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1, page sha256 e05f6f864509f87e7488cdae075fe3a1f2632f6f4577b87ee05479a1ed193c1d): from 1 January to 30 September 2026 the workers of the esercizi di somministrazione di alimenti e bevande (L. 287/1991 art. 5) and of the 'comparto del turismo, ivi inclusi gli stabilimenti termali', with employment income of 2025 not above 40,000 EUR, receive 'un trattamento integrativo speciale, che non concorre alla formazione del reddito, pari al 15 per cento delle retribuzioni lorde corrisposte in relazione al lavoro notturno e alle prestazioni di lavoro straordinario [...] effettuate nei giorni festivi'. The employer pays it 'su richiesta del lavoratore' (c. 20), a fact the request has no field for: the engine does not pay it, so the net pay of a worker who asked for it is understated.

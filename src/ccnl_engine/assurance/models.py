@@ -12,10 +12,14 @@ already records, never stored beside it:
 - ``rulesets``: the identity, readiness and confidence of each ruleset
   those rules came from;
 - ``mode``: the payability policy of the engine that produced the result;
-- ``blockers``: every reason the amounts cannot be paid;
+- ``blockers``: every reason the amounts cannot be paid, each with the
+  totals it leaves unreliable (the net pay, the employer cost or both);
 - ``limitations``: the known model limitations that concern the run.
 
-The result is payable only when nothing blocks it.  How a run is assessed is
+The result is payable only when nothing blocks it.  The net pay alone is
+payable when no blocker touches it: an amount owed by the employer only,
+such as a health fund, leaves the employer cost incomplete and the net pay
+payable.  How a run is assessed is
 in :mod:`~ccnl_engine.assurance.rules`.
 """
 
@@ -41,6 +45,7 @@ __all__ = [
     "Payability",
     "ResultAssurance",
     "ResultBlocker",
+    "ResultTotal",
     "decide_payability",
 ]
 
@@ -101,6 +106,22 @@ class EvidenceStatus(StrEnum):
         """
         order = list(cls)
         return max(map(cls, statuses), key=order.index, default=cls.MISSING)
+
+
+class ResultTotal(StrEnum):
+    """A total of a result that a blocker leaves unreliable.
+
+    Attributes:
+        NET_PAY: The net pay of the worker.
+        EMPLOYER_COST: The employer cost of the result.
+    """
+
+    NET_PAY = "net_pay"
+    EMPLOYER_COST = "employer_cost"
+
+
+#: Both totals: what a blocker leaves unreliable unless it states otherwise.
+ALL_TOTALS: frozenset[ResultTotal] = frozenset(ResultTotal)
 
 
 class Payability(StrEnum):
@@ -175,12 +196,16 @@ class ResultBlocker:
             the id of the ruleset short of ``production``, the id of the
             open limitation, or the id of the run not computed.
         remediation: What removes the blocker, for a human reader.
+        totals: The totals the blocker leaves unreliable; both unless it
+            concerns an amount that only one of them holds (an open
+            limitation on an employer-only fund leaves the net pay alone).
     """
 
     code: BlockerCode
     feature: str | None
     detail: str
     remediation: str
+    totals: frozenset[ResultTotal] = ALL_TOTALS
 
 
 @dataclass(frozen=True, slots=True)
@@ -215,8 +240,21 @@ class ResultAssurance:
 
     @property
     def is_payable(self) -> bool:
-        """Whether nothing blocks the amounts."""
+        """Whether nothing blocks the amounts: every total is reliable."""
         return self.payability is Payability.PAYABLE
+
+    @property
+    def is_net_pay_payable(self) -> bool:
+        """Whether no blocker leaves the net pay unreliable."""
+        return self._reliable(ResultTotal.NET_PAY)
+
+    @property
+    def is_employer_cost_complete(self) -> bool:
+        """Whether no blocker leaves the employer cost unreliable."""
+        return self._reliable(ResultTotal.EMPLOYER_COST)
+
+    def _reliable(self, total: ResultTotal) -> bool:
+        return not any(total in blocker.totals for blocker in self.blockers)
 
     def with_blockers(self, blockers: Iterable[ResultBlocker]) -> ResultAssurance:
         """Return the assurance with ``blockers`` added after its own.

@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority, sickness, trattamento_integrativo |
+| **Limits of this contract** | base_salary, bilateral_funds, seniority, sickness, trattamento_integrativo |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -120,11 +120,18 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the net daily pay of art. 228, the unpaid first day of a short illness and the end of a fixed-term contract.
 
 !!! warning "turismo-federalberghi/turismo_unmodelled_elements · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the lower paga base of 1-2 star hotels and campsites up to 1200 presenze (art. 152 c.2 as replaced in 2024, p. 43; level 4 1,688.98 instead of 1,695.69 from May 2026); the elemento economico di garanzia paid with the November 2027 pay without an integrative agreement by 31 October 2026 (art. 13 c.10, pp. 11-12: A and B 186, 1-3 158, 4-5 140, 6s-7 112); the EDR of 0.60% of the paga base x 14 owed when the employer omits the EBNT/EBT quota (art. 23, p. 13) and the EUR 14 x 14 owed without Fondo FAST (art. 163, pp. 47-48); the hourly table of the extra workers (art. 155 c.3, p. 44); the absorption of the Quadri allowance into individual treatments (art. 145); the first scatto counted from age 18 and from the month after the triennium (art. 158 c.2-3); the net cap of the apprentice pay (art. 58 c.3); the ratei of the tredicesima and quattordicesima during maternity, paternity and parental leave (artt. 160 c.4 and 161 c.6); the lower ramp of the hires of 14 November 2016 (verbale 30 November 2016). The caller pays them as variable items.
+    NOT MODELLED AMOUNTS: the lower paga base of 1-2 star hotels and campsites up to 1200 presenze (art. 152 c.2 as replaced in 2024, p. 43; level 4 1,688.98 instead of 1,695.69 from May 2026); the elemento economico di garanzia paid with the November 2027 pay without an integrative agreement by 31 October 2026 (art. 13 c.10, pp. 11-12: A and B 186, 1-3 158, 4-5 140, 6s-7 112); the hourly table of the extra workers (art. 155 c.3, p. 44); the absorption of the Quadri allowance into individual treatments (art. 145); the first scatto counted from age 18 and from the month after the triennium (art. 158 c.2-3); the net cap of the apprentice pay (art. 58 c.3); the ratei of the tredicesima and quattordicesima during maternity, paternity and parental leave (artt. 160 c.4 and 161 c.6); the lower ramp of the hires of 14 November 2016 (verbale 30 November 2016). The caller pays them as variable items.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the small-hotel table, the 2027 guarantee element, the fund omission EDRs and the extras table.
+
+!!! warning "turismo-federalberghi/health_and_bilateral_funds · bilateral_funds · impact yes · open"
+    HEALTH AND BILATERAL FUNDS: the EBNT/EBT quota (art. 23, p. 13) and the Fondo FAST (art. 163, pp. 47-48) are owed for every worker; an employer that omits them owes the worker instead the EDR of 0.60% of the paga base x 14 and EUR 14 x 14. Neither is modelled: the employer cost, and with the EDR the net pay, are short of them.
+
+    **Applies when:** `bilateral_funds` applies.
+
+    **Remediation:** Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note.
 
 !!! warning "turismo-federalberghi/apprenticeship_durations_unsourced · base_salary · impact yes · open"
     APPRENTICESHIP DURATIONS: the durations of the professionalizzante come from the accord of 17 April 2012 as amended in 2014, of which no signed or CNEL copy was found (only aggregator copies); the percentages of art. 58 are verified. Every apprentice run carries this limitation.

@@ -63,10 +63,15 @@ order.
 
 ### 1. Payability
 
-`result.is_payable` is the only answer to "can this amount be paid?". A result
-is payable only when nothing blocks it; each `ResultBlocker` has a stable
-`code`, the `feature` it concerns, a machine-readable `detail` and a
-`remediation`.
+`result.is_payable` answers "can these amounts be relied upon as they are?".
+A result is payable only when nothing blocks it; each `ResultBlocker` has a
+stable `code`, the `feature` it concerns, a machine-readable `detail`, a
+`remediation` and the `totals` it leaves unreliable. Each total has its own
+answer: `result.is_net_pay_payable` for the net pay of the worker and
+`result.is_employer_cost_complete` for `period_employer_cost`. An amount the
+CCNL owes for every worker and the engine does not compute (the mètaSalute
+health fund of the Metalmeccanico CCNL) leaves the employer cost short: the
+net pay can be paid, the cost cannot be reported as complete.
 
 ```python
 if not result.is_payable:

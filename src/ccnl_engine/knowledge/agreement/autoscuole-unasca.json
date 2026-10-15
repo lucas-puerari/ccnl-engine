@@ -97,8 +97,11 @@
         "limitation": {
           "variant": "ente_bilaterale_contribution",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "owed"
           },
+          "totals": [
+            "employer_cost"
+          ],
           "remediation": "Pass the 2 EUR monthly employer contribution as a bilateral fund event."
         }
       },
@@ -1363,7 +1366,7 @@
     "effective_until": null,
     "source": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
     "verification_status": "unverified",
-    "source_hash": "b434976abfcb762dd4b562cbd42b0352a496f2b69aae01d98c2ab12dd9bf2ad2",
+    "source_hash": "bf0b9aa6df3cc9c20240eebdf68ef2eb8f16d8dd61feb8e45a4a5770b1826e24",
     "published_at": "2026-09-12",
     "source_type": "contracting_party"
   },

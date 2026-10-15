@@ -90,7 +90,7 @@
         "limitation": {
           "variant": "provincial_supplement",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "owed"
           },
           "remediation": "Add the provincial (CPL) supplement outside the engine."
         }
@@ -180,7 +180,7 @@
         "limitation": {
           "variant": "eban_fisa_agrifondo",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "owed"
           },
           "remediation": "Pass the provincial EBAN, FISA and Agrifondo contributions as bilateral fund events."
         }
@@ -800,7 +800,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "dfdb36f9d3fc4191ef311504fea48be3e392715630cba73369ff3a6554488846",
+    "source_hash": "003f02a316fce214ff52a49f8ffe88f69dc821f9b02345afb1ddc0cbb629fed6",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

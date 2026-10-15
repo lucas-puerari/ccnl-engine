@@ -17,7 +17,13 @@ Limitations come from two places, both in the knowledge bundle:
 
 :meth:`ModelLimitation.applies_to` decides from :class:`LimitationFacts`
 whether a limitation concerns a run; an applicable limitation that
-:attr:`~ModelLimitation.blocks` makes the result not payable.
+:attr:`~ModelLimitation.blocks` makes the totals it names
+(:attr:`~ModelLimitation.totals`) unreliable, so the result is not payable.
+
+The trigger classifies a limitation by obligation: an amount the contract
+owes in every run it scopes is ``owed`` and always concerns those runs; an
+amount owed only on a fact the request has no field for is
+``outside_input`` and is documented without concerning any run.
 """
 
 from __future__ import annotations
@@ -28,6 +34,8 @@ from enum import StrEnum
 from typing import Literal, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
+
+from ccnl_engine.assurance.models import ALL_TOTALS, ResultTotal
 
 __all__ = [
     "LimitationFacts",
@@ -85,12 +93,18 @@ class LimitationTrigger(StrEnum):
         RUN: A run of an affected ruleset whose facts match the scope.
         PATH: A run that traverses the code path of the limitation; the
             engine reports the traversal.
+        OWED: An amount the contract owes in every run of an affected
+            ruleset that the scope matches, which the engine does not
+            compute: it concerns the run whether or not its capability
+            applies (a health fund paid for every worker).
         OUTSIDE_INPUT: The fact that triggers it has no field in the
             request, so no run can be told apart: it is documented only.
+            It is never an amount owed in every run (that one is ``owed``).
     """
 
     RUN = "run"
     PATH = "path"
+    OWED = "owed"
     OUTSIDE_INPUT = "outside_input"
 
 
@@ -207,6 +221,7 @@ class NoteLimitation(BaseModel):
     Attributes:
         variant: Lower snake case name, unique within the CCNL.
         applies_when: The runs of the CCNL it concerns.
+        totals: The totals of a run it can make wrong.
         status: Whether it still holds.
         remediation: What closes it, for a human reader.
     """
@@ -215,6 +230,7 @@ class NoteLimitation(BaseModel):
 
     variant: str = Field(pattern=_VARIANT, max_length=48)
     applies_when: LimitationScope = LimitationScope()
+    totals: frozenset[ResultTotal] = Field(ALL_TOTALS, min_length=1)
     status: LimitationStatus = LimitationStatus.OPEN
     remediation: str = Field(min_length=1)
 
@@ -232,6 +248,8 @@ class ModelLimitation(BaseModel):
         status: Whether it still holds.
         rulesets: Ids of the CCNLs it affects.
         applies_when: The runs it concerns.
+        totals: The totals of a run it can make wrong: both by default,
+            the employer cost alone for an amount only the employer pays.
         source: Where it is declared: the CCNL file or the engine module.
         remediation: What closes it.
     """
@@ -246,6 +264,7 @@ class ModelLimitation(BaseModel):
     status: LimitationStatus = LimitationStatus.OPEN
     rulesets: tuple[str, ...] = Field(min_length=1)
     applies_when: LimitationScope = LimitationScope()
+    totals: frozenset[ResultTotal] = Field(ALL_TOTALS, min_length=1)
     source: str = Field(min_length=1)
     remediation: str = Field(min_length=1)
 
@@ -265,10 +284,11 @@ class ModelLimitation(BaseModel):
     def applies_to(self, facts: LimitationFacts) -> bool:
         """Return whether the limitation concerns the run of *facts*.
 
-        The capability must concern the run.  A ``path`` limitation
-        concerns it when the run traversed its path, whatever the CCNL; a
-        ``run`` limitation when the CCNL is affected; an ``outside_input``
-        one never.  The scope must match in every case.
+        An ``owed`` limitation concerns every run of an affected CCNL.
+        Otherwise the capability must concern the run: a ``path``
+        limitation concerns it when the run traversed its path, whatever
+        the CCNL; a ``run`` limitation when the CCNL is affected; an
+        ``outside_input`` one never.  The scope must match in every case.
 
         Returns:
             ``True`` when the limitation concerns the run.
@@ -276,6 +296,8 @@ class ModelLimitation(BaseModel):
         trigger = self.applies_when.trigger
         if trigger is LimitationTrigger.OUTSIDE_INPUT:
             return False
+        if trigger is LimitationTrigger.OWED:
+            return facts.ccnl_id in self.rulesets and self.applies_when.matches(facts)
         if self.capability not in facts.applicable:
             return False
         concerned = (

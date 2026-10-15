@@ -153,22 +153,41 @@
         "limitation": {
           "variant": "health_and_bilateral_funds",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "owed"
           },
+          "totals": [
+            "employer_cost"
+          ],
           "remediation": "Pass the contributions as bilateral fund events, or model them per worker."
         }
       },
       {
         "kind": "simplification",
-        "text": "ELEMENTO PEREQUATIVO AND FLEXIBLE BENEFITS: the worker of a company without second-level bargaining is owed the elemento perequativo of 485 euro a year, paid with the June pay, and every worker flexible benefits of 250 euro a year (Ministry of Labour cost table of June 2026, DD 82/2026, row A and D). The engine pays neither: whether the company has second-level bargaining is not in the request.",
+        "text": "ELEMENTO PEREQUATIVO: the worker of a company without second-level bargaining is owed the elemento perequativo of 485 euro a year, paid with the June pay (Ministry of Labour cost table of June 2026, DD 82/2026, row A). The engine does not pay it: whether the company has second-level bargaining is not in the request.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "perequativo_and_flexible_benefits",
+          "variant": "elemento_perequativo",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Pass the elemento perequativo and the flexible benefits as variable pay items, or add a fact for the second-level bargaining."
+          "remediation": "Pass the elemento perequativo as a variable pay item, or add a fact for the second-level bargaining."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "FLEXIBLE BENEFITS: every worker is owed flexible benefits of 250 euro a year (Ministry of Labour cost table of June 2026, DD 82/2026, row D), paid by the employer outside the net pay. Not modelled: the employer cost is short of them.",
+        "capability": "welfare",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "flexible_benefits",
+          "applies_when": {
+            "trigger": "owed"
+          },
+          "totals": [
+            "employer_cost"
+          ],
+          "remediation": "Model the yearly flexible benefits per worker, then remove this note."
         }
       },
       {
@@ -3144,7 +3163,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "e524f047448bdf6c746ae65e860e2b37db0390071493abe02f7c81d5b2085cfa",
+    "source_hash": "36742ce8ccc6751d2eca5f6d6f45a2fa0445aa5665e2a42dcf38b3c6505fd19f",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },

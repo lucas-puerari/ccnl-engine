@@ -197,7 +197,7 @@ is `False` on its closing state). See
 ## Model limitations
 
 A known simplification of the model is data, not a comment. The registry has
-<!-- trust:limitations-total -->368<!-- /trust:limitations-total --> `ModelLimitation`
+<!-- trust:limitations-total -->381<!-- /trust:limitations-total --> `ModelLimitation`
 entries: one per `simplification` note of a CCNL file that can move an
 amount, and <!-- trust:limitations-engine -->9<!-- /trust:limitations-engine -->
 engine limitations of code paths several CCNLs share
@@ -214,34 +214,45 @@ limits, the `rulesets` and dates it affects, a `monetary_impact` (`yes`,
 `no`, `unknown`), a `status` (`open`, `resolved`), its `source` and a
 `remediation`.
 
-The <!-- trust:simplification-notes -->425<!-- /trust:simplification-notes -->
+The <!-- trust:simplification-notes -->438<!-- /trust:simplification-notes -->
 simplification notes of the bundle each state their impact on what the engine
 computes from the bundle:
-<!-- trust:simplification-yes -->153<!-- /trust:simplification-yes --> `yes`,
+<!-- trust:simplification-yes -->166<!-- /trust:simplification-yes --> `yes`,
 <!-- trust:simplification-unknown -->206<!-- /trust:simplification-unknown --> `unknown`
 and <!-- trust:simplification-no -->66<!-- /trust:simplification-no --> `no` (the
 engine refuses the case, or takes the value from the caller). A file whose
 note can move an amount without declaring a limitation does not load, so the
 bundle build fails on an unmapped note.
 
-A limitation applies to a run only when its predicate holds, never because
-the run uses its CCNL:
+A limitation applies to a run only when its predicate holds. Its trigger
+classifies it by obligation:
 
-- the capability it limits applies to the run (an overtime limitation needs an
-  overtime event);
+- <!-- trust:limitations-owed -->31<!-- /trust:limitations-owed -->
+  limitations are `owed`: an amount the CCNL owes for every worker it scopes
+  that the engine does not compute (a health or bilateral fund, a provincial
+  element owed in every province). They apply to every run of the CCNL
+  within their scope, whatever capability the run applies;
+- otherwise the capability it limits applies to the run (an overtime
+  limitation needs an overtime event);
 - the run date, contract type, level, worker category, run kind and seniority
   fall within its `applies_when` scope (an unknown category or seniority does
   not rule a run out);
 - an engine limitation applies only when the run takes its code path, and the
   run records the traversal (an apprentice in a midpoint period of a CCNL
   whose midpoint components are unsourced);
-- <!-- trust:limitations-outside-input -->106<!-- /trust:limitations-outside-input -->
+- <!-- trust:limitations-outside-input -->85<!-- /trust:limitations-outside-input -->
   limitations depend on a fact the request cannot express (a hire date before
   a transitional regime, a fund the worker joins, a sector section): they are
-  documented on the contract page and never recorded on a run.
+  documented on the contract page and never recorded on a run. An amount
+  owed for every worker is never `outside_input`, even when the request has
+  no field for it: it is `owed`.
 
 Every applicable limitation is listed in `result.assurance.limitations`; an
 open one with impact `yes` or `unknown` adds an `open_limitation` blocker.
+The limitation names the `totals` it can make wrong (`net_pay`,
+`employer_cost`, both by default) and its blocker carries them: a fund only
+the employer pays leaves `is_employer_cost_complete` false and
+`is_net_pay_payable` true, and `is_payable` false.
 Open limitations with an impact also lower the capability they limit to
 `partial` in the [capability matrix](../contracts/capability-matrix.md), and
 each contract page lists its limitations under "Known simplifications".
@@ -255,7 +266,7 @@ each contract page lists its limitations under "Known simplifications".
 | `evidence` | `EvidenceStatus` | Weakest provenance of the payable rules the run read (`verified`, `derived`, `assumed`, `missing`); `missing` when none carries a record |
 | `rulesets` | `tuple[RulesetAssurance, ...]` | Identity, version, hash, kind, readiness and confidence of the CCNL ruleset and of each ruleset a payable rule was read from |
 | `mode` | `EngineMode` | `simulation` (default) or `operational`, from the engine |
-| `payability` | `Payability` | `payable` exactly when `blockers` is empty |
+| `payability` | `Payability` | `payable` exactly when `blockers` is empty; `is_net_pay_payable` and `is_employer_cost_complete` read the `totals` of each blocker |
 | `limitations` | `tuple[ModelLimitation, ...]` | The model limitations that apply to the run, open or resolved, whatever their impact |
 
 ### Calculation

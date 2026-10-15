@@ -109,7 +109,7 @@
         "limitation": {
           "variant": "eban_agrifondo_missing",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "owed"
           },
           "remediation": "Pass the EBAN and Agrifondo contributions as bilateral fund events, or model them."
         }
@@ -650,7 +650,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.contratticcnl.it/ccnl/a021/",
     "verification_status": "unverified",
-    "source_hash": "55bb621d5b087488e85fa16ad6241671cd06e7369be6f82c8792d67f9057582d",
+    "source_hash": "67a9b1f701e95274c77f7628023e886ae85cb39c74c533e9019840b355496f6b",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

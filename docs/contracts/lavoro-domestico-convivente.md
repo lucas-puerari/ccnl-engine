@@ -121,7 +121,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 !!! warning "lavoro-domestico-convivente/hourly_inps_bracket_unvalidated · inps_employer · impact unknown · open"
     INPS BAND: the band of up to 24 weekly hours is chosen on the paga oraria effettiva of INPS (circ. 9/2026; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico): the monthly pay with board and lodging over the hours of the employment (weekly hours x 52 / 12), raised by the tredicesima (x 13 / 12).
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `inps_employer` applies.
 
     **Remediation:** Validate the hourly INPS bracket lookup for weekly hours up to 24 against the INPS domestic table.
 

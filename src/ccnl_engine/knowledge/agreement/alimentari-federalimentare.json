@@ -85,7 +85,7 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED AMOUNTS: the trattamento economico per mancata contrattazione di secondo livello of Art. 51 bis (EUR 21.90 at level 6 to 50.37 at 1S a month for 12 months from 1 January 2023, 32.85 to 75.55 from 1 January 2027, outside the TFR), owed by firms without a premio per obiettivi; the EDR of EUR 20 x 12 of Art. 74 bis owed by firms outside the bilateral funds; the premio di campagna of the conserve vegetali (Art. 51 ter); the employer contributions to FASA (EUR 16 a month), the Cassa maternità, the bilateralità and the Cassa rischio vita (Art. 74 ter-quinquies); the premiums of Art. 31 on ordinary night, shift night, holiday and Sunday work; the EDR enters the TFR base only from 1 March 2024 (Art. 73); the pay of first-level and alta formazione apprentices (Art. 21 B-C).",
+        "text": "NOT MODELLED AMOUNTS: the trattamento economico per mancata contrattazione di secondo livello of Art. 51 bis (EUR 21.90 at level 6 to 50.37 at 1S a month for 12 months from 1 January 2023, 32.85 to 75.55 from 1 January 2027, outside the TFR), owed by firms without a premio per obiettivi; the premio di campagna of the conserve vegetali (Art. 51 ter); the premiums of Art. 31 on ordinary night, shift night, holiday and Sunday work; the EDR enters the TFR base only from 1 March 2024 (Art. 73); the pay of first-level and alta formazione apprentices (Art. 21 B-C).",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -94,6 +94,19 @@
             "trigger": "outside_input"
           },
           "remediation": "Model Art. 51 bis, Art. 74 bis, Art. 51 ter and the Art. 31 premiums on ordinary hours."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "HEALTH AND BILATERAL FUNDS: the employer contributions to FASA (EUR 16 a month), the Cassa maternità, the bilateralità and the Cassa rischio vita (Art. 74 ter-quinquies) are owed for every worker; a firm outside the bilateral funds owes instead the EDR of EUR 20 x 12 of Art. 74 bis. Neither is modelled: the employer cost, and with the EDR the net pay, are short of them.",
+        "capability": "bilateral_funds",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "health_and_bilateral_funds",
+          "applies_when": {
+            "trigger": "owed"
+          },
+          "remediation": "Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note."
         }
       }
     ]
@@ -3189,7 +3202,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "ec7e8b22b795d340c75d99f36c9f861124566e585236906b60c09c87a6366974",
+    "source_hash": "ea2eeed7a1b2a6bb7a939404543d0f0038c6d8f0b12a102248bcc11f06b9e03c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

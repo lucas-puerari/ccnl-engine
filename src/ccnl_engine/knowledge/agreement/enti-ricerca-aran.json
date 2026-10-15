@@ -3673,7 +3673,7 @@
         "limitation": {
           "variant": "research_allowances_missing",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "owed"
           },
           "remediation": "Read the indennità di Ente and di valorizzazione professionale of the earlier CCNL and add them with the 2027 increments."
         }
@@ -3686,7 +3686,7 @@
         "limitation": {
           "variant": "shared_rules_unchecked",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "owed"
           },
           "remediation": "Read the research sections of the CCNL 2019-2021 (18/1/2024) for leave, absence, sickness and overtime."
         }
@@ -3713,7 +3713,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "7a51df50643220e479099e4d886f3dbb033f62cc130145a9ea044b6b4bb1b9d8",
+    "source_hash": "db463b6be0c72a2f8fa0150b08d1cf4b4670b70adc9e781ed85655cfc7a51ad1",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

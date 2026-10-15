@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority, sickness, territorial_supplement |
+| **Limits of this contract** | base_salary, bilateral_funds, seniority, sickness, territorial_supplement |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -125,11 +125,18 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the net daily pay of Art. 170 and the exempt events of c. 3.
 
 !!! warning "dmo-federdistribuzione/dmo_unmodelled_elements · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the EDR of 0.30% of paga base and contingenza (14 months) owed when the employer does not pay E.Bi.Di.M. (Art. 18), the EUR 16.00 x 14 owed without Fondo EST (Art. 19) and the EUR 37.00 x 14 owed to quadri without Cassa QuAS (Art. 20); the worker shares of these funds; the indennità di cassa of 5% (Art. 202); the premiums on ordinary night (15%, Art. 134), Sunday (30%, Art. 136) and weekly rest day (30%, Art. 139) work; the pay rows of the operatori di vendita; the sostegno all'occupazione contract of Art. 70; the guarantee of the commission-paid staff (Art. 201). The una tantum of Art. 197 (July 2024 and 2025) is historic and outside the TFR base (c. 6).
+    NOT MODELLED AMOUNTS: the indennità di cassa of 5% (Art. 202); the premiums on ordinary night (15%, Art. 134), Sunday (30%, Art. 136) and weekly rest day (30%, Art. 139) work; the pay rows of the operatori di vendita; the sostegno all'occupazione contract of Art. 70; the guarantee of the commission-paid staff (Art. 201). The una tantum of Art. 197 (July 2024 and 2025) is historic and outside the TFR base (c. 6).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the fund omission EDRs, the cashier allowance and the premiums on ordinary hours.
+
+!!! warning "dmo-federdistribuzione/health_and_bilateral_funds · bilateral_funds · impact yes · open"
+    HEALTH AND BILATERAL FUNDS: E.Bi.Di.M. (Art. 18), Fondo EST (Art. 19) and, for the quadri, Cassa QuAS (Art. 20) are owed for every worker, with their worker shares; an employer that does not pay them owes the worker instead the EDR of 0.30% of paga base and contingenza (14 months), EUR 16.00 x 14 and EUR 37.00 x 14. Neither is modelled: the net pay and the employer cost are short of them.
+
+    **Applies when:** `bilateral_funds` applies.
+
+    **Remediation:** Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

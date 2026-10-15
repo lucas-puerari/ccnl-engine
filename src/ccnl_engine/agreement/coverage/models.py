@@ -112,6 +112,7 @@ class CoverageNote(BaseModel):
             status=spec.status,
             rulesets=(ccnl_id,),
             applies_when=spec.applies_when,
+            totals=spec.totals,
             source=source,
             remediation=spec.remediation,
         )

@@ -115,7 +115,7 @@
         "limitation": {
           "variant": "hourly_inps_bracket_unvalidated",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "run"
           },
           "remediation": "Validate the hourly INPS bracket lookup for weekly hours up to 24 against the INPS domestic table."
         }
@@ -1408,7 +1408,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "3aea45df24241c3e3b36a9ce3a049df091c7f68892f663dd2a519a95696a0e92",
+    "source_hash": "49713e355013a8c9b7343226eed526cb0531a7fe0afcb2d63c60b44d12b7b397",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },

@@ -9,6 +9,7 @@ from typing import Any
 import pytest
 from pydantic import ValidationError
 
+from ccnl_engine.assurance.models import ResultTotal
 from ccnl_engine.limitation.models import (
     LimitationFacts,
     LimitationScope,
@@ -114,6 +115,36 @@ def test_path_limitation_applies_when_traversed() -> None:
     )
     assert not limitation.applies_to(_FACTS)
     assert limitation.applies_to(replace(_FACTS, traversed=frozenset({"engine_path"})))
+
+
+def test_owed_limitation_applies_whatever_the_capability() -> None:
+    """An amount owed in every run concerns the CCNL even off its capability."""
+    limitation = _limitation(
+        capability="bilateral_funds", applies_when={"trigger": "owed"}
+    )
+    assert limitation.applies_to(_FACTS)
+    assert not limitation.applies_to(replace(_FACTS, ccnl_id="ccnl-b"))
+
+
+def test_owed_limitation_keeps_its_scope() -> None:
+    """An owed amount of the operai only does not concern an impiegato."""
+    limitation = _limitation(
+        applies_when={"trigger": "owed", "worker_categories": ["operaio"]}
+    )
+    assert not limitation.applies_to(_FACTS)
+
+
+def test_limitation_totals_default_to_both() -> None:
+    """A limitation touches both totals unless it names one."""
+    assert _limitation().totals == frozenset(ResultTotal)
+    employer = _limitation(totals=["employer_cost"])
+    assert employer.totals == frozenset({ResultTotal.EMPLOYER_COST})
+
+
+def test_limitation_names_at_least_one_total() -> None:
+    """A limitation that touches no total is not a limitation."""
+    with pytest.raises(ValidationError, match="at least 1"):
+        _limitation(totals=[])
 
 
 def test_outside_input_limitation_never_applies() -> None:

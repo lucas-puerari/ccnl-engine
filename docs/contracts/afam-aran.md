@@ -87,7 +87,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 !!! warning "afam-aran/shared_rules_unchecked · sickness · impact unknown · open"
     SHARED RULES: the hourly divisor, the tredicesima, the leave, absence, sickness and accrual rules are those of the scuola file of the same comparto (istruzione-ricerca-aran), not read again for the AFAM staff. No overtime table is modelled.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `sickness` applies.
 
     **Remediation:** Read the AFAM sections of the CCNL 2019-2021 (18/1/2024) for leave, absence, sickness and overtime.
 

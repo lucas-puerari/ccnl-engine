@@ -172,9 +172,7 @@ def _limitation_counts(ccnls: list[CCNL]) -> dict[str, str]:
         *load_engine_limitations(),
         *(lim for ccnl in ccnls for lim in ccnl.limitations),
     ]
-    documented = sum(
-        lim.applies_when.trigger is LimitationTrigger.OUTSIDE_INPUT for lim in registry
-    )
+    triggers = Counter(lim.applies_when.trigger for lim in registry)
     return {
         "simplification-notes": str(len(notes)),
         "simplification-yes": str(impact["yes"]),
@@ -182,7 +180,8 @@ def _limitation_counts(ccnls: list[CCNL]) -> dict[str, str]:
         "simplification-no": str(impact["no"]),
         "limitations-total": str(len(registry)),
         "limitations-engine": str(len(load_engine_limitations())),
-        "limitations-outside-input": str(documented),
+        "limitations-outside-input": str(triggers[LimitationTrigger.OUTSIDE_INPUT]),
+        "limitations-owed": str(triggers[LimitationTrigger.OWED]),
     }
 
 

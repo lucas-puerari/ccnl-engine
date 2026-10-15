@@ -133,7 +133,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 !!! warning "metalmeccanico-artigianato/health_and_bilateral_funds · bilateral_funds · impact yes · open"
     HEALTH AND BILATERAL FUNDS (EBNA text, Art. 11-12, pp. 30-32): bilateralità artigiana 11,65 euro a month for 12 months from the employer, also for part-time and apprentices, plus FSBA 0,45% from the employer and 0,15% from the worker of the INPS base (from 1 January 2022), or 30 euro a month for 13 months paid to the worker by a firm outside the bilateral system; San.Arti 10,42 euro a month for 12 months from the employer, or an E.a.r. of 25 euro a month for 13 months when the firm does not enrol. Not modelled: the worker's 0,15% lowers the net pay.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `bilateral_funds` applies.
 
     **Remediation:** Pass the contributions as bilateral fund events, or model them per worker.
 

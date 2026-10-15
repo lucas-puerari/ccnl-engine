@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer, seniority |
+| **Limits of this contract** | base_salary, bilateral_funds, inps_employer, seniority |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -127,11 +127,18 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Let seniority_increments pay the level amount to apprentices (a flag such as apprentices_accrue_level_amount), then remove this note.
 
 !!! warning "studi-professionali-confprofessioni/studi_unmodelled_elements · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS (CCNL 16/02/2024): the elemento retributivo of EUR 43 x 14 owed when the employer does not pay the bilateral contribution, in every institute including TFR (Art. 13); the lavoro supplementare of part-time at 40% of the quota oraria of the retribuzione di fatto, outside the deferred institutes and the TFR (Art. 42: no request kind carries it); the comporto counted over the episodes of the 365 days before the last one, and the +90 days for serious illnesses paid 100% in months 7-8 and 70% in month 9 (Artt. 120-121); the 100% of festività during sickness (Art. 124); the infortunio integration (100% on the day of the event, 60% days 1-3, 75% after, Art. 123); the employer top-up to 100% of the holidays during compulsory maternity or paternity leave (Art. 110 c. 8); the ROL (40 or 66 hours) and the 32 hours of ex festività paid when not taken, the festività falling on Sunday and the flexibility hours not recovered (Artt. 91, 92, 97 C, 98); the salario d'ingresso of the reimpiego, up to two levels below for 9 months and one for 6 (Art. 56); the indennità di disponibilità of the lavoro intermittente, 30% (Art. 58); the diaria of the trasferte, EUR 15 or 30 a day (Art. 115); the exclusion of the quattordicesima for workers already paid extra months (Art. 143). The una tantum of EUR 400 (EUR 200 in May 2024 and May 2025, p. 73) is historic and outside the TFR base.
+    NOT MODELLED AMOUNTS (CCNL 16/02/2024): the lavoro supplementare of part-time at 40% of the quota oraria of the retribuzione di fatto, outside the deferred institutes and the TFR (Art. 42: no request kind carries it); the comporto counted over the episodes of the 365 days before the last one, and the +90 days for serious illnesses paid 100% in months 7-8 and 70% in month 9 (Artt. 120-121); the 100% of festività during sickness (Art. 124); the infortunio integration (100% on the day of the event, 60% days 1-3, 75% after, Art. 123); the employer top-up to 100% of the holidays during compulsory maternity or paternity leave (Art. 110 c. 8); the ROL (40 or 66 hours) and the 32 hours of ex festività paid when not taken, the festività falling on Sunday and the flexibility hours not recovered (Artt. 91, 92, 97 C, 98); the salario d'ingresso of the reimpiego, up to two levels below for 9 months and one for 6 (Art. 56); the indennità di disponibilità of the lavoro intermittente, 30% (Art. 58); the diaria of the trasferte, EUR 15 or 30 a day (Art. 115); the exclusion of the quattordicesima for workers already paid extra months (Art. 143). The una tantum of EUR 400 (EUR 200 in May 2024 and May 2025, p. 73) is historic and outside the TFR base.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the bilateral omission element, the part-time supplementare, the rolling comporto and the allowances of Artt. 56, 58 and 115.
+
+!!! warning "studi-professionali-confprofessioni/bilateral_contribution_or_element · bilateral_funds · impact yes · open"
+    BILATERAL CONTRIBUTION: the employer pays the bilateral contribution of Art. 13 for every worker, or instead the elemento retributivo of EUR 43 x 14, in every institute including TFR. Neither is modelled: the employer cost, and with the elemento the net pay, are short of it.
+
+    **Applies when:** `bilateral_funds` applies.
+
+    **Remediation:** Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

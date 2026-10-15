@@ -159,8 +159,11 @@
         "limitation": {
           "variant": "health_and_bilateral_funds",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "owed"
           },
+          "totals": [
+            "employer_cost"
+          ],
           "remediation": "Pass the health-fund and bilateral contributions as a bilateral fund event, or model the funds."
         }
       },
@@ -3606,7 +3609,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "5e938817a092ba6218839cb8a4c8e7e401843b1b415fd51cf05298bdff8f2984",
+    "source_hash": "174eb3a436d2a6436a29745a96b4143da9c9c9b26c9aacf1e5b697a2199f4b69",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

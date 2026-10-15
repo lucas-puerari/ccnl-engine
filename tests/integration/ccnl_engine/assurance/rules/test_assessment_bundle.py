@@ -236,13 +236,13 @@ def test_no_bundled_result_is_payable_today(
 def test_open_limitations_block_where_they_apply(
     results: dict[str, PeriodResult],
 ) -> None:
-    """Each blocking limitation of a run is one blocker; most runs have none.
+    """Each blocking limitation of a run is one blocker, with its totals.
 
     An ordinary month executes no work-rule capability and no apprenticeship
-    path, so only the limitations of every run of a CCNL (an unverified
-    INPS rate, a salary table from a proxy) are recorded: a minority, under
-    half of the bundle (the credito and artigianato CCNLs declare their
-    unsourced INPS sector rates).
+    path, so only the limitations of every run of a CCNL are recorded: an
+    unverified INPS rate, a salary table from a proxy, and the amounts the
+    CCNL owes for every worker that the engine does not compute (``owed``:
+    health and bilateral funds, provincial elements).  Some CCNLs have none.
     """
     limited = 0
     for result in results.values():
@@ -251,5 +251,11 @@ def test_open_limitations_block_where_they_apply(
             b.detail for b in result.blockers if b.code is BlockerCode.OPEN_LIMITATION
         ]
         assert blocked == blocking
+        totals = [
+            b.totals for b in result.blockers if b.code is BlockerCode.OPEN_LIMITATION
+        ]
+        assert totals == [
+            lim.totals for lim in result.assurance.limitations if lim.blocks
+        ]
         limited += bool(blocking)
-    assert 0 < limited < len(results) // 2
+    assert 0 < limited < len(results)
