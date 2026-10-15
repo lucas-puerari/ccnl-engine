@@ -170,6 +170,10 @@
           },
           "remediation": "Pass the elemento perequativo and the flexible benefits as variable pay items, or add a fact for the second-level bargaining."
         }
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP TRACKS (CCNL 5 February 2021, accordo sull'apprendistato, pp. 267-271): 36 months, reduced by 6 months for a diploma of level 4 QEQ or above (30), 24 for the D2 figures on assembly lines; each third at 85, 90 and 95% of the destination level."
       }
     ]
   },
@@ -3140,7 +3144,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "e8297137653655d006bf378a9cfe86f0f6fe331c27c0697585c6d82f42ed4a2b",
+    "source_hash": "e524f047448bdf6c746ae65e860e2b37db0390071493abe02f7c81d5b2085cfa",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -5029,6 +5033,23 @@
         "findings": [
           "Impiegato C3 with 3 scatti, June 2026, 51 employees: tabellare 2211.43 and scatti 88.92 a month equal the table (26.537,16 and 1.067,04 a year over 12); the employer INPS rate 29.36% and the tredicesima on tabellare and scatti match; the TFR of the month 158.90 is the table's (tabellare + scatti) / 13.5 less the 0.5% IVS contribution the employer offsets (art. 3 L. 297/1982), which the table does not deduct. Match.",
           "Deviations, with cause and decision: INAIL 4.417% and the health fund (171,60 a year) are capabilities the engine does not compute (documented); Cometa at a 40% enrolment is the table's average, the engine pays it on enrolment; the elemento perequativo (485 euro) and the flexible benefits (250 euro) were neither modelled nor declared: declared. The stale INPS note (30.13/30.20/30.50%) is corrected. No independent net pay example: not compared."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-texts-apprenticeship",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova', re-read on the full text published by a party.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          }
+        ],
+        "findings": [
+          "Apprenticeship tracks 36, 30 and 24 months at 85/90/95% (p. 271) and their durations (pp. 267-268) match the three tracks of the file."
         ]
       }
     ],

@@ -83,10 +83,6 @@
         "text": "CNEL CODE: A011. Confirmed from ilccnl.it page header and contratticcnl.it/ccnl/a011/. CNEL archive (cnel.it) returned 404 at time of extraction."
       },
       {
-        "kind": "info",
-        "text": "APPRENTICESHIP: sotto-inquadramento (under_classification) per Allegato n. 10 CCNL (23/02/2017 apprenticeship agreement, updated to D.Lgs. 81/2015). Area1 destination only — see SIMPLIFICATION note. Duration 36 months for Area1."
-      },
-      {
         "kind": "simplification",
         "text": "NATIONAL MINIMUMS ONLY. Provincial contracts (contratti provinciali di lavoro, 20 provinces) pay substantially more than national floor. The national tabella retributiva is the legal minimum. Actual employer cost in any province requires adding the CPL supplement.",
         "capability": "territorial_supplement",
@@ -175,12 +171,6 @@
       {
         "kind": "info",
         "text": "JANUARY 2027 TRANCHE: the minimi of area of Allegato n. 1 of the verbale of 28 May 2026, printed Area 1 1532,999, Area 2 1398,093, Area 3 1042,434 (the 28 May 2026 salary x 1.051) and paid to the cent: 1533.00 / 1398.09 / 1042.43. Until 14 October 2026 the bundle compounded the tranches (June 2026 x 1.017: 1533.84 / 1398.86 / 1043.00), 0.57 to 0.84 a month too much."
-      },
-      {
-        "kind": "simplification",
-        "text": "APPRENTICESHIP — AREA1 DESTINATION ONLY. Area2 destination under-classification would require 2 levels below Area2, which is below the national floor (Area3), and cannot be modelled in a 3-level system. Area3 destination apprenticeship has no lower level to start from. Only Area1 destination (0-12m at Area3, 12-24m at Area2, 24-36m at Area1) is modelled.",
-        "capability": "base_salary",
-        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
@@ -281,6 +271,21 @@
             "trigger": "outside_input"
           },
           "remediation": "Split the florovivaisti into their own levels or file with the Art. 44 rates."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICESHIP (Allegato n. 10, CCNL 23 May 2022, pp. 122-123): two levels below the destination in the first 12 months, one level below in the next 12, the destination in the last 12 (Area 1 and 2: 36 months; Area 3: 24 months, from one level below, only for the highest provincial level of the area). The levels are the provincial professional levels inside each area, not the three national areas the file holds: the file places an Area1 apprentice at the Area3 and then the Area2 minimum, a reading the text does not support. A fixed-term apprentice operaio is never paid below the lowest level of the destination area (p. 125).",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "agricoli_apprentice_provincial_levels",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Model the provincial levels of each area, or pass the apprentice classification of the provincial contract."
         }
       }
     ]
@@ -795,7 +800,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "6314e82775422ae7804b2349c0eade448e360273c9f3e8367c9e22b4d11b7760",
+    "source_hash": "f2f44357e877932b3b20f64a651b4064c6c56f08f83057d4f66c5fcecf24ac6b",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1191,6 +1196,23 @@
         ],
         "findings": [
           "Art. 43 (p. 48): straordinario 25% (was 20%), straordinario festivo 40% (was 50%), notturno 40%, festivo notturno 45% (added): corrected and verified. The florovivaisti rates of Art. 44 (p. 49) are declared."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-texts-apprenticeship",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova', re-read on the full text published by a party.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+            "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+          }
+        ],
+        "findings": [
+          "Allegato n. 10 (pp. 122-125): the under-classification counts provincial levels inside the areas, not the national areas the file uses: apprentice runs are now blocked by a limitation instead of paying the Area3 and Area2 minima."
         ]
       }
     ]

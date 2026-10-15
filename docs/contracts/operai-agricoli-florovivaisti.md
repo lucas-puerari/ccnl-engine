@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'ferie, permessi, festività, assenze, malattia e comporto': the leave, accrual, absence and sickness rules of the file against the text read in the P1 review. | corrected | Ferie 26 working days (Art. 36, p. 22), comporto 180 days (Art. 61, p. 37) and daily divisor 26 (Art. 50, p. 29): match and verified, cited to the verbale of 28 May 2026 instead of an aggregator.<br>Art. 62 (p. 38) gives the florovivaisti an employer integration of 25% of the daily wage for 90 days a year that the single file cannot pay: declared as an outside-input limitation. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'scatti di anzianità, indennità e altri elementi fissi', re-read on the full text published by a party, found on 15 October 2026. | corrected | Art. 54 (p. 55): the scatti are biennial, not triennial: cadence corrected from 36 to 24 months; amounts 8,99 / 10,33 / 11,36 and the maximum of 5 match: verified. The super profiles (10,85 and 11,62) are declared. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'straordinario, notturno, festivo, turni e maggiorazioni cumulabili', re-read on the full text published by a party, found on 15 October 2026. | corrected | Art. 43 (p. 48): straordinario 25% (was 20%), straordinario festivo 40% (was 50%), notturno 40%, festivo notturno 45% (added): corrected and verified. The florovivaisti rates of Art. 44 (p. 49) are declared. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova', re-read on the full text published by a party. | flagged | Allegato n. 10 (pp. 122-125): the under-classification counts provincial levels inside the areas, not the national areas the file uses: apprentice runs are now blocked by a limitation instead of paying the Area3 and Area2 minima. |
 
 ## Salary table
 
@@ -188,6 +189,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Split the florovivaisti into their own levels or file with the Art. 44 rates.
 
+!!! warning "operai-agricoli-florovivaisti/agricoli_apprentice_provincial_levels · base_salary · impact unknown · open"
+    APPRENTICESHIP (Allegato n. 10, CCNL 23 May 2022, pp. 122-123): two levels below the destination in the first 12 months, one level below in the next 12, the destination in the last 12 (Area 1 and 2: 36 months; Area 3: 24 months, from one level below, only for the highest provincial level of the area). The levels are the provincial professional levels inside each area, not the three national areas the file holds: the file places an Area1 apprentice at the Area3 and then the Area2 minimum, a reading the text does not support. A fixed-term apprentice operaio is never paid below the lowest level of the destination area (p. 125).
+
+    **Applies when:** `base_salary` applies; contract type in apprentice.
+
+    **Remediation:** Model the provincial levels of each area, or pass the apprentice classification of the provincial contract.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -235,9 +243,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 !!! note ""
     CNEL CODE A011 sourced from ilccnl.it and contratticcnl.it; unverified against CNEL archive (archive returned 404 at time of extraction). Code A014 belongs to a separate expired minority CCNL (ASNALI/FAGRI) — do not confuse.
 
-!!! note ""
-    APPRENTICESHIP — AREA1 DESTINATION ONLY. Area2 destination under-classification would require 2 levels below Area2, which is below the national floor (Area3), and cannot be modelled in a 3-level system. Area3 destination apprenticeship has no lower level to start from. Only Area1 destination (0-12m at Area3, 12-24m at Area2, 24-36m at Area1) is modelled.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -261,8 +266,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     TAX SECTOR: AGRICOLTURA (new TaxSector). INPS rates: Gestione Previdenziale Speciale Agricola, OTI standard agriculture: employee 8.84%, employer 21.66%, total 30.50% (2026). Source: ciatreviso.it citing INPS 2026 rates.
     
     CNEL CODE: A011. Confirmed from ilccnl.it page header and contratticcnl.it/ccnl/a011/. CNEL archive (cnel.it) returned 404 at time of extraction.
-    
-    APPRENTICESHIP: sotto-inquadramento (under_classification) per Allegato n. 10 CCNL (23/02/2017 apprenticeship agreement, updated to D.Lgs. 81/2015). Area1 destination only — see SIMPLIFICATION note. Duration 36 months for Area1.
     
     HISTORICAL PERIODS ADDED (2026-09-09). Three salary periods now modelled per area: (1) 2023-01-01: INPS Circ. n.94/2024 Allegato 1 (primary source, Area1=1389.15, Area2=1266.90, Area3=944.62). (2) 2025-01-01: Dottrinalavoro Jan 2025 PDF (Area1=1458.61, Area2=1330.25, Area3=991.85). Cross-check: 2025 values / 2023 values = 1.050 (approx. +5% tranche per 2022-2025 CCNL). (3) 2026-06-01: first tranche of 2026-2029 renewal (+3.4%). 2023-01-01 is the earliest verified period; pre-2023 values not modelled.
     
