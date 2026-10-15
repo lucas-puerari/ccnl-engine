@@ -1219,7 +1219,6 @@
       "bancari-abi/abi_saturday_overtime_and_hourly_base",
       "bancari-abi/abi_sickness_counting",
       "bancari-abi/apprentice_seniority",
-      "bancari-abi/apprenticeship_destination_levels",
       "bancari-abi/ex_ristrutturazione_amount",
       "bancari-abi/inps_credit_rate_unverified",
       "bancari-abi/inps_sector_rates_unsourced",
@@ -1550,6 +1549,7 @@
       "ooss-unsic-confsal/salary_2026_from_proxy"
     ],
     "agreement/operai-agricoli-florovivaisti.json": [
+      "operai-agricoli-florovivaisti/agricoli_apprentice_provincial_levels",
       "operai-agricoli-florovivaisti/apprentice_inps_rates_unsourced",
       "operai-agricoli-florovivaisti/apprentice_seniority",
       "operai-agricoli-florovivaisti/eban_fisa_agrifondo",

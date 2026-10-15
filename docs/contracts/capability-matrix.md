@@ -257,7 +257,7 @@ never grow.
 | 125 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | ⚠️ | seniority | 0 / 47 / 1 / 1 |
 | 126 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | ⚠️ | base_salary, inps_employer, seniority | 35 / 7 / 0 / 1 |
 | 127 | [CCNL per i lavoratori delle imprese produttrici, distributrici di energia elettrica (Elettricita Futura)](elettrico-elettricita-futura.md) | ⚠️ | seniority | 0 / 77 / 1 / 1 |
-| 128 | [CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)](bancari-abi.md) | ⚠️ | base_salary, inps_employer, overtime, seniority, sickness | 43 / 2 / 0 / 0 |
+| 128 | [CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)](bancari-abi.md) | ⚠️ | inps_employer, overtime, seniority, sickness | 43 / 2 / 0 / 0 |
 | 129 | [CCNL per i lavoratori dipendenti delle aziende termali](aziende-termali-federterme.md) | ⚠️ | base_salary, bilateral_funds, inps_employer, seniority, trattamento_integrativo | 0 / 64 / 1 / 1 |
 | 130 | [CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)](assicurazioni-ania.md) | ⚠️ | base_salary, inps_employer, seniority | 0 / 30 / 1 / 1 |
 | 131 | [DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)](forze-polizia-ordinamento-civile.md) | ⚠️ | inps_employer | 0 / 70 / 1 / 1 |
