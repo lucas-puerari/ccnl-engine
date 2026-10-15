@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, overtime, sickness |
+| **Limits of this contract** | base_salary, bilateral_funds, overtime, sickness |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | corrected | CNEL F012 matches. Signatory names corrected to the report: Legacoop Produzione e Servizi (was Legacoop Costruzioni) and AGCI Produzione e Lavoro.<br>Term: expiry 30/06/2028 from the report; valid_from is the first tranche of the renewal of 21 February 2025, the start of its term was not read. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'scatti di anzianità, indennità e altri elementi fissi': the scatti and fixed allowances of the file against the text read in the P1 review. | confirmed | Ex contingenza 512,87 / 516,43 / 519,16 / 521,25 and EDR 10,33 of levels I-IV match the ANCE table of 1 February 2025 (ANCE is a signatory). The same table prints the operai hourly amounts 2,96 / 2,99 / 3,00 / 3,01 and 0,06, which are the monthly amounts divided by the hourly divisor 173: the monthly records are consistent with the hourly pay. Verified.<br>No scatti for the operai: the anzianità professionale edile is paid by the Cassa Edile (Art. 29), as the file states. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova': the apprenticeship tracks and the part-time supplementary hours of the file against the text read in the P1 review. | flagged | Part-time supplementary hours at 20% and the 10% of the flexible clauses (pp. 105-106): declared. The apprenticeship track was verified in P1. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'confrontare lordo, netto e costo azienda con esempi indipendenti': a run of the engine against the cost table of the Ministry of Labour for the CCNL (D.Lgs. 36/2023 art. 41 c. 13). | flagged | Operaio di 1° livello, January 2026 (the tranche of the table of May 2025), 30 employees, 173 hours: minimo 6,17, ex contingenza 2,96 and EDR 0,06 an hour equal the monthly amounts over 173; riposi annui 4,95% and the Cassa Edile accrual 18,50% are the table's rates on minimo and contingenza; the employer INPS rate 34.28% (15-50 employees) matches. Match.<br>Deviations, with cause and decision: the EVR, the indennità territoriale di settore and the transport and meal indemnities are provincial and declared (NOT MODELLED AMOUNTS); the Cassa Edile contribution (5,47% in the table) was not declared: declared; INAIL 11% is not computed by the engine (documented). No independent net pay example: not compared. |
 
 ## Salary table
 
@@ -114,6 +115,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Add a supplementary-hours kind to the overtime event and a supplementare band with the CCNL rate.
+
+!!! warning "edilizia-ance/cassa_edile_contribution · bilateral_funds · impact yes · open"
+    CASSA EDILE CONTRIBUTION: the contribution to the Cassa Edile, set by the provincial agreements and shared by employer and worker (5,47% on the hourly elements in the Agrigento table of the Ministry of Labour of May 2025), is not modelled; only the 18.5% accrual for ferie and gratifica is. The worker's share lowers the net pay.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pass the provincial Cassa Edile contribution as a bilateral fund event, or model the provincial rates.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.

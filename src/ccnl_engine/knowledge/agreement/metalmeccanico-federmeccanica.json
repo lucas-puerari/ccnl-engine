@@ -75,7 +75,7 @@
       },
       {
         "kind": "info",
-        "text": "INPS: the employer rates in 2026-industria.json are calculated for verified components (IVS 23.81% + DS 1.61% + CUAF 2.48% + CIGO D.Lgs.148/2015 + FIS/CIGS Circ.INPS 5/2025). Resulting totals: ≤15 employees = 30.13%, 16-50 employees = 30.20%, >50 employees = 30.50%. Does not include INAIL. The CIGS employee share (0.30% for >15 employees) is not yet modelled in employee_rate."
+        "text": "INPS: the employer rates of 2026-industria.json for an impiegato are IVS 23.81% plus 5.25% up to 50 employees (29.06%) and plus 5.55% from 51 (29.36%); the cost table of the Ministry of Labour of June 2026 (DD 82 of 5 October 2026) applies 29.36%. INAIL (4.417% in that table) is not computed by the engine."
       },
       {
         "kind": "info",
@@ -156,6 +156,19 @@
             "trigger": "outside_input"
           },
           "remediation": "Pass the contributions as bilateral fund events, or model them per worker."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "ELEMENTO PEREQUATIVO AND FLEXIBLE BENEFITS: the worker of a company without second-level bargaining is owed the elemento perequativo of 485 euro a year, paid with the June pay, and every worker flexible benefits of 250 euro a year (Ministry of Labour cost table of June 2026, DD 82/2026, row A and D). The engine pays neither: whether the company has second-level bargaining is not in the request.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "perequativo_and_flexible_benefits",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pass the elemento perequativo and the flexible benefits as variable pay items, or add a fact for the second-level bargaining."
         }
       }
     ]
@@ -3127,7 +3140,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "4f76c18a1273f5cd0927a5db24edadab36f0496a7edbfe3626e4633545654a70",
+    "source_hash": "e8297137653655d006bf378a9cfe86f0f6fe331c27c0697585c6d82f42ed4a2b",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -4994,6 +5007,28 @@
         ],
         "findings": [
           "Cometa verified in P1. mètaSalute (156 euro a year plus the 10% solidarity contribution, Ministry of Labour DD 82/2026) is not modelled: declared."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-cost-check",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'confrontare lordo, netto e costo azienda con esempi indipendenti': a run of the engine against the cost table of the Ministry of Labour for the CCNL (D.Lgs. 36/2023 art. 41 c. 13).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/tabelle-impiegati-all-DD-82-del-05102026",
+            "sha256": "4fc6ef9789a1708128cfddfcfa9860d9321a81997a3ba1fd425d50eeb33eae6b"
+          },
+          {
+            "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/DD-82-del-05102026",
+            "sha256": "2ccc16042e1414cb342591b3eee399a38072aa30e1316e5d579acc0a48a3061c"
+          }
+        ],
+        "findings": [
+          "Impiegato C3 with 3 scatti, June 2026, 51 employees: tabellare 2211.43 and scatti 88.92 a month equal the table (26.537,16 and 1.067,04 a year over 12); the employer INPS rate 29.36% and the tredicesima on tabellare and scatti match; the TFR of the month 158.90 is the table's (tabellare + scatti) / 13.5 less the 0.5% IVS contribution the employer offsets (art. 3 L. 297/1982), which the table does not deduct. Match.",
+          "Deviations, with cause and decision: INAIL 4.417% and the health fund (171,60 a year) are capabilities the engine does not compute (documented); Cometa at a 40% enrolment is the table's average, the engine pays it on enrolment; the elemento perequativo (485 euro) and the flexible benefits (250 euro) were neither modelled nor declared: declared. The stale INPS note (30.13/30.20/30.50%) is corrected. No independent net pay example: not compared."
         ]
       }
     ],
