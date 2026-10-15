@@ -800,7 +800,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "f2f44357e877932b3b20f64a651b4064c6c56f08f83057d4f66c5fcecf24ac6b",
+    "source_hash": "dfdb36f9d3fc4191ef311504fea48be3e392715630cba73369ff3a6554488846",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1213,6 +1213,24 @@
         ],
         "findings": [
           "Allegato n. 10 (pp. 122-125): the under-classification counts provincial levels inside the areas, not the national areas the file uses: apprentice runs are now blocked by a limitation instead of paying the Area3 and Area2 minima."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-cost-check",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'confrontare lordo, netto e costo azienda con esempi indipendenti': a run of the engine against the labour cost table of the Regione Toscana price list (Allegato 3, section 4, operai agricoli e florovivaisti, CCNL 2022-2025).",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://dati.toscana.it/dataset/7d0fd279-fbae-44a8-8f71-6986514acf0c/resource/9159dd0c-c69d-4b84-890f-aa950ea433ef/download/allegato3ilcostomedioorariodellamanodopera.pdf",
+            "sha256": "2c3f7282c29ef6725dfbd85b0f0f6abca147016cf8d21f6f3dd1421c7aa18b23"
+          }
+        ],
+        "findings": [
+          "The table prices the provincial wages of Firenze, Arezzo and the other provinces, not the national area minima of the file: only its structure compares. TFR: 1.312,85 on 17.723,44 a year is 1/13.5, as the engine accrues (991.85 / 13.5 = 73.47 for Area3). Match.",
+          "Deviation: the table's employer contributions in zona normale are 35.37% of the pay including INAIL; the engine applies 33.953% including the 8.50% INAIL of INPS circ. 43/2026 (25.453% without it). Cause not established (the table states neither its year nor its composition beyond the INAIL share of 13.24%); decision: flagged, the engine keeps the rates of circ. 43/2026. No independent net pay example."
         ]
       }
     ]
