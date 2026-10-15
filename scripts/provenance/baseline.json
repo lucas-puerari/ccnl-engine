@@ -172,8 +172,7 @@
       "additional_months[2024-06-01]": "assumed"
     },
     "agreement/cooperative-consorzi-agricoli.json": {
-      "accrual_rule": "assumed",
-      "additional_months[2024-04-01]": "assumed"
+      "accrual_rule": "assumed"
     },
     "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json": {
       "accrual_rule": "missing",
@@ -1297,7 +1296,9 @@
     "agreement/cooperative-consorzi-agricoli.json": [
       "cooperative-consorzi-agricoli/apprentice_inps_rates_unsourced",
       "cooperative-consorzi-agricoli/apprentice_seniority",
-      "cooperative-consorzi-agricoli/apprenticeship_passthrough"
+      "cooperative-consorzi-agricoli/apprenticeship_passthrough",
+      "cooperative-consorzi-agricoli/operai_seniority_over_five",
+      "cooperative-consorzi-agricoli/otd_terzo_elemento_missing"
     ],
     "agreement/cooperative-sociali.json": [
       "cooperative-sociali/coop_sociali_unmodelled_elements",

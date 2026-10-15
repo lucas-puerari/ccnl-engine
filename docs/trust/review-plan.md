@@ -13,7 +13,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | industria | 48 | 4 946 900 | 375 | 2292 | 484 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 4 | 55 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 94 | 311 | 32 | 2 | `metalmeccanico-artigianato` |
-| agricoltura | 9 | 752 860 | 20 | 277 | 3 | 5 | `operai-agricoli-florovivaisti` |
+| agricoltura | 9 | 752 860 | 19 | 246 | 35 | 5 | `operai-agricoli-florovivaisti` |
 | edilizia | 4 | 710 000 | 4 | 126 | 69 | 0 | `edilizia-ance` |
 | credito | 3 | 348 000 | 3 | 45 | 72 | 0 | `bancari-abi` |
 
@@ -164,7 +164,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---|---:|---:|---:|---|---|---|
 | [`operai-agricoli-florovivaisti`](../contracts/operai-agricoli-florovivaisti.md) (anchor) | 600 000 | exploratory | 2 | 15 | 3 | aggregator | none | none |
 | [`impiegati-tecnici-agricoli`](../contracts/impiegati-tecnici-agricoli.md) | 80 000 | exploratory | 2 | 15 | 0 | aggregator | none | none |
-| [`cooperative-consorzi-agricoli`](../contracts/cooperative-consorzi-agricoli.md) | 60 000 | exploratory | 2 | 40 | 0 | party or official | none | none |
+| [`cooperative-consorzi-agricoli`](../contracts/cooperative-consorzi-agricoli.md) | 60 000 | exploratory | 1 | 9 | 32 | party or official | maintainer | 2027-02-01 |
 | [`consorzi-di-bonifica-snebi`](../contracts/consorzi-di-bonifica-snebi.md) | 4 000 | exploratory | 2 | 56 | 0 | party or official | none | none |
 | [`contoterzismo-caiagromec`](../contracts/contoterzismo-caiagromec.md) | 4 000 | exploratory | 2 | 48 | 0 | party or official | none | none |
 | [`consorzi-agrari-assocap`](../contracts/consorzi-agrari-assocap.md) | 2 000 | exploratory | 2 | 36 | 0 | aggregator | none | none |
