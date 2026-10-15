@@ -178,7 +178,7 @@ never grow.
 | 46 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | ⚠️ | bilateral_funds, inps_employer, pension_fund_contribution, seniority | 0 / 72 / 1 / 0 |
 | 47 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | ⚠️ | seniority | 0 / 57 / 1 / 1 |
 | 48 | [CCNL Edilizia — Industria (ANCE), impiegati e quadri](edilizia-ance-impiegati.md) | ⚠️ | base_salary, seniority, sickness | 32 / 23 / 0 / 0 |
-| 49 | [CCNL Edilizia — Industria (ANCE), operai](edilizia-ance.md) | ⚠️ | base_salary, sickness | 31 / 8 / 0 / 0 |
+| 49 | [CCNL Edilizia — Industria (ANCE), operai](edilizia-ance.md) | ⚠️ | base_salary, overtime, sickness | 31 / 8 / 0 / 0 |
 | 50 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | ✅ | — | 0 / 170 / 1 / 1 |
 | 51 | [CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)](esercizi-cinematografici-anec.md) | ⚠️ | inps_employer, seniority | 0 / 54 / 2 / 0 |
 | 52 | [CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)](fiori-recisi-ancef.md) | ⚠️ | seniority | 0 / 38 / 1 / 1 |

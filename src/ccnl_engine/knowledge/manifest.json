@@ -727,7 +727,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-ance",
       "ruleset_version": "2026.2",
-      "source_hash": "e578388710dfbdfd7c3389791a9214e5a69303fd5ad8becf791bd64405fc42c9",
+      "source_hash": "4da063002914cbad9a1a69146168333fc10cbf273075f7dab2be3077c43c0fa1",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/edilizia-ance.json.gz"
@@ -1339,7 +1339,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra",
       "ruleset_version": "2026.2",
-      "source_hash": "c782966e60151d112529d13abf391f5f8dc60ec22138d4d08b076c4f8e687579",
+      "source_hash": "c973a68073833190a4d421cca9082afc9e1faeae954365865d8bbebe13edb419",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/logistica-trasporto-confetra.json.gz"
@@ -1407,7 +1407,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-artigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "48f00ac5761a4477a6485c95c108f8d37085378c6a87516abcfa3c5833c97f36",
+      "source_hash": "610994b3e5eff15782b7d86f077ab79a15a69e08e3fafcfe3f5f6fc372953b11",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-artigianato.json.gz"
@@ -1458,7 +1458,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-federmeccanica",
       "ruleset_version": "2026.3",
-      "source_hash": "a91ab220b11eb1111b60269e26e724d03011912490e698a24d1120a6ecdb9726",
+      "source_hash": "79c2d9c665a256e75165366282a578977fd80897da99b9939c6143e5fff0d77a",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-federmeccanica.json.gz"
@@ -1832,7 +1832,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/sanita-privata-aiop-aris",
       "ruleset_version": "2026.2",
-      "source_hash": "7fab89fedc00806e4763aa30496c5802a6b347e978ec713b3bcce3fc0a2c9c36",
+      "source_hash": "e3f7231db5fe5832d2a2ebd17ac02917293180c98279c419cfc1e6b077f6e0b2",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/sanita-privata-aiop-aris.json.gz"

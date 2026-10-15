@@ -138,6 +138,10 @@
           "variant": "overtime_rates_unconfirmed",
           "remediation": "Read the overtime article of the CCNL text from a party source, verify the bands and model the Saturday rule, then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP (Art. 27 as renewed on 19 November 2024, signed scan p. 6, by semester on the retribuzione tabellare of the destination level): operai of the 1st and 2nd group 70, 70, 75, 78, 80, 85, 88, 92, 100, 100%; impiegati amministrativi 70, 70, 75, 80, 85, 90%; impiegati centralinisti 70, 70, 75, 80%, not modelled apart (their destination level is not distinguished)."
       }
     ]
   },
@@ -2524,13 +2528,23 @@
         },
         {
           "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 18,
           "months_until": 24,
-          "percentage": "0.77"
+          "percentage": "0.80"
         },
         {
           "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 30,
           "months_until": 36,
-          "percentage": "0.87"
+          "percentage": "0.90"
         },
         {
           "months_from": 36,
@@ -2547,7 +2561,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "48f00ac5761a4477a6485c95c108f8d37085378c6a87516abcfa3c5833c97f36",
+    "source_hash": "610994b3e5eff15782b7d86f077ab79a15a69e08e3fafcfe3f5f6fc372953b11",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2861,6 +2875,24 @@
         ],
         "findings": [
           "The overtime rates could not be read from a party text: the EBNA copy of the 2021 CCNL returns an HTML page and the 2024 renewal does not restate them. A summary (direzionelavoro, p. 3) adds Saturday overtime at 25% for the first 3 hours and 50% after, not modelled, and other summaries give night overtime at 55% against the 45% of the file. Runs with overtime are blocked until the article is read."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-contracts",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova': the apprenticeship tracks and the part-time supplementary hours of the file against the text read in the P1 review.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+            "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
+          }
+        ],
+        "findings": [
+          "The operai track matches the ten semesters of Art. 27 (p. 6). The impiegati track paid yearly averages (77% for months 13-24, 87% for months 25-36): the text pays 75, 80, 85 and 90% by semester. Corrected.",
+          "The 24-month track of the centralinisti (70, 70, 75, 80%) is not modelled apart: noted."
         ]
       }
     ],

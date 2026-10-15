@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ✅ |
 | **Limits of this contract** | overtime |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | corrected | CNEL T011 matches. Signatories corrected: the text of 8 October 2020 is signed by AIOP and ARIS with FP-CGIL, CISL-FPS and UIL-FPL only (the report adds UGL Sanità); FILCAMS, FISASCAT, UILTuCS, FIALS and CISAL Sanità were listed by mistake.<br>Term: 'Decorrenza: 1° gennaio 2016 - Scadenza: 31 dicembre 2018' (Art. 4), the same in the report; the CCNL applies in ultrattività. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'straordinario, notturno, festivo, turni e maggiorazioni cumulabili': the overtime bands and the night, holiday and shift premiums of the file against the text read in the P1 review. | corrected | Art. 59 (p. 89): daytime overtime is paid at 20%, not 15%: corrected. Night or holiday overtime 30% and night-holiday overtime 50% match. All four bands verified; the hourly quota is the monthly pay over 26 and 6 (Art. 58), the divisor 156 of the file.<br>Art. 60-61: the night and holiday shift indemnities, the on-call indemnity and the radiation risk indemnity were neither modelled nor declared: declared as an outside-input limitation. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'ferie, permessi, festività, assenze, malattia e comporto': the leave, accrual, absence and sickness rules of the file against the text read in the P1 review. | corrected | Sickness (Art. 43, pp. 58-60): the employer tops up to 100% of the retribuzione globale from the first day up to the 365th day of absence in four years, within a comporto of 540 days in a rolling four years, net of what the worker would have received working. The file paid 50% in the waiting days and 75% after, up to 180 days: corrected and verified.<br>Ferie (Art. 32, p. 42): 30 working days plus 4 days for the festività soppresse, 34 in all (was 30): corrected and verified.<br>Absence divisor 26 (Art. 58, p. 88) and the tredicesima accrual of more than 15 days (Art. 66, p. 96, was assumed): verified. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova': the apprenticeship tracks and the part-time supplementary hours of the file against the text read in the P1 review. | corrected | Apprenticeship (p. 31): only the 36-month track (85% then 90%) was modelled; the 18-month and 24-month tracks are added. An apprentice now names the track.<br>Part-time supplementary hours are paid at 15% (Art. 22, p. 25): declared, the request cannot state them.<br>Probation and fixed-term rules carry no amount the engine computes. |
 
 ## Salary table
 
@@ -104,6 +105,14 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Apprenticeship
 
+**Apprendistato professionalizzante 18 mesi** (type: `percentage`)  
+Destination levels: `A`, `B`, `C`, `D`  
+percentage: 0.90
+
+**Apprendistato professionalizzante 24 mesi** (type: `percentage`)  
+Destination levels: `A`, `B`, `C`, `D`  
+percentage: 0.90
+
 **Apprendistato professionalizzante 36 mesi** (type: `percentage`)  
 Destination levels: `A`, `B`, `C`, `D`  
 percentage: 0.90
@@ -118,6 +127,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the Art. 60-61 indemnities with facts naming the night and holiday shift hours and the on-call turns of the worker.
+
+!!! warning "sanita-privata-aiop-aris/part_time_supplementary_rate · overtime · impact yes · open"
+    PART-TIME SUPPLEMENTARY HOURS: the ore supplementari of a part-time worker are paid with 15% of the retribuzione oraria globale (Art. 22, CCNL 8 October 2020, p. 25). The request has no kind for supplementary hours: an overtime event of a part-time worker takes the overtime bands unless the caller passes the multiplier.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add a supplementary-hours kind to the overtime event and a supplementare band with the CCNL rate.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
@@ -181,6 +197,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     CCNL applied in ultrattività; Decreto Lavoro 2026 introduced a statutory 30% IPCA auto-adjustment if no renewal within 12 months of expiry. If triggered, legally applicable 2026 minimums may exceed the 2020 Tabella 1 values modelled here. Engine models contractual tables only.
     
     TERM: the CCNL of 8 October 2020 renews the economic part 2016-2018 and its table applies from 1 July 2020; no later renewal signed by AIOP and ARIS was found on 14 October 2026 (the unions were still asking to open the table), so the 2020 tabellari stay in force under ultrattività.
+    
+    APPRENTICESHIP (CCNL 8 October 2020, apprendistato professionalizzante, point 14, p. 31): 85% of the pay of the qualifica da conseguire, then 90%, by the length of the contract: months 1-9 and 10-12 for up to 18 months (the text does not state months 13-18, which keep 90%), 1-12 and 13-24 for up to 24 months, 1-18 and 19-36 for up to 36 months. Three tracks: set Apprentice.track. Apprentices accrue no seniority 'a nessun fine'.
     
     CNEL code T011 verified at https://www.contratticcnl.it/ccnl/t011/ (146585 employees, ARIS/AIOP, ATECO 86).
     

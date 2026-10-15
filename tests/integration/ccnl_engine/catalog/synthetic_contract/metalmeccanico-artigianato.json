@@ -144,13 +144,25 @@
       "level_code": "2",
       "track_name": "impiegati",
       "months_elapsed": 13,
-      "expected_pct": "0.77"
+      "expected_pct": "0.75"
+    },
+    {
+      "level_code": "2",
+      "track_name": "impiegati",
+      "months_elapsed": 19,
+      "expected_pct": "0.80"
     },
     {
       "level_code": "2",
       "track_name": "impiegati",
       "months_elapsed": 25,
-      "expected_pct": "0.87"
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "2",
+      "track_name": "impiegati",
+      "months_elapsed": 31,
+      "expected_pct": "0.90"
     },
     {
       "level_code": "2",

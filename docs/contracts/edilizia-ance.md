@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, sickness |
+| **Limits of this contract** | base_salary, overtime, sickness |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: the minimi of the operai for the tranches of 1 February 2025, 1 March 2026 and 1 March 2027 against the ANCE national table; the remaining derived records. | confirmed | The 12 monthly minimi of the four operai levels match the impiegati column of the national table, and each over 173 is the hourly minimo the table prints for the operai.<br>Contingenza and EDR stay derived: Art. 11 of the CCNL of 19 April 2010 refers to the interconfederal agreements and no national signed table prints the amounts; the ANCE provincial tables do.<br>Prevedi stays derived (fund information sheet); the accrual rule is a placeholder the operai do not read (no extra month paid by the employer). |
 | 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | corrected | CNEL F012 matches. Signatory names corrected to the report: Legacoop Produzione e Servizi (was Legacoop Costruzioni) and AGCI Produzione e Lavoro.<br>Term: expiry 30/06/2028 from the report; valid_from is the first tranche of the renewal of 21 February 2025, the start of its term was not read. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'scatti di anzianità, indennità e altri elementi fissi': the scatti and fixed allowances of the file against the text read in the P1 review. | confirmed | Ex contingenza 512,87 / 516,43 / 519,16 / 521,25 and EDR 10,33 of levels I-IV match the ANCE table of 1 February 2025 (ANCE is a signatory). The same table prints the operai hourly amounts 2,96 / 2,99 / 3,00 / 3,01 and 0,06, which are the monthly amounts divided by the hourly divisor 173: the monthly records are consistent with the hourly pay. Verified.<br>No scatti for the operai: the anzianità professionale edile is paid by the Cassa Edile (Art. 29), as the file states. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova': the apprenticeship tracks and the part-time supplementary hours of the file against the text read in the P1 review. | flagged | Part-time supplementary hours at 20% and the 10% of the flexible clauses (pp. 105-106): declared. The apprenticeship track was verified in P1. |
 
 ## Salary table
 
@@ -106,6 +107,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the provincial elements and the festività hours as inputs.
+
+!!! warning "edilizia-ance/part_time_supplementary_rate · overtime · impact yes · open"
+    PART-TIME SUPPLEMENTARY HOURS: supplementary hours of the operai are paid with 20% of the hourly quota, and a flexible clause adds 10% (CCNL 19 April 2010, Art. 78, pp. 105-106). The request has no kind for supplementary hours: an overtime event of a part-time worker takes the overtime bands unless the caller passes the multiplier.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add a supplementary-hours kind to the overtime event and a supplementare band with the CCNL rate.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
