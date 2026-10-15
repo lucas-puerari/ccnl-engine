@@ -974,7 +974,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "c8dadb5ccf8d20891aad58dcce9ba94d81cb014a101113de5aa8c5b6efb0ec53",
+    "source_hash": "0b88075544a7e195123ada3cb23dd19bab352f5118fec0735019c0aba80629f3",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
@@ -1350,6 +1350,24 @@
         "findings": [
           "CNEL H501 matches (FIDALDO, which groups ASSINDATCOLF, and DOMINA with FILCAMS, FISASCAT, UILTUCS, FEDERCOLF).",
           "Term: the ipotesi of 28 October 2025 applies from 1 November 2025; its expiry is reported as 31 October 2028 (CNEL filing) or 31 December 2028 (press); not read in the text, left open."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-cost-check",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'confrontare lordo, netto e costo azienda con esempi indipendenti': a run of the engine against the worked examples of a third-party guide (money.it, Costo colf e badanti 2026).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.money.it/costo-colf-badanti-2026-tabelle-nuovi-importi-stipendio-contributi",
+            "sha256": "d0273281a532a089647d38f454f67442e86a670e51792426195da2650b2e7b3f"
+          }
+        ],
+        "findings": [
+          "Level CS, 2026: the hourly minimum 8,30 matches. 20 hours a week (effective hourly pay up to 9,61): 0,43 euro an hour of the worker and 1,27 of the employer; 30 hours a week (over 24 hours): 0,31 and 0,93. The engine applies the same bands. Match.",
+          "Deviation: the monthly pay of 20 hours is 719.34, half the rounded full-time 1438.67, against 8,30 x 20 x 52 / 12 = 719.33: one cent of rounding; decision: accepted and noted. The guide is a third-party page (hash of the copy read on 15 October 2026); Cas.Sa.Colf, tredicesima and TFR are not quantified there."
         ]
       }
     ],

@@ -1271,7 +1271,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-non-convivente",
       "ruleset_version": "2026.3",
-      "source_hash": "c8dadb5ccf8d20891aad58dcce9ba94d81cb014a101113de5aa8c5b6efb0ec53",
+      "source_hash": "0b88075544a7e195123ada3cb23dd19bab352f5118fec0735019c0aba80629f3",
       "source_type": "commercial_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/lavoro-domestico-non-convivente.json.gz"
@@ -1339,7 +1339,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra",
       "ruleset_version": "2026.2",
-      "source_hash": "3fad9a821352ea3861c1678edf07c5a73eb3917c4b7eb681c08bdc4d5eb43571",
+      "source_hash": "2624e86015b4929f36313ee2d7e68aa66b0c39b2110c5dbdbd3fb733874f20b3",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/logistica-trasporto-confetra.json.gz"
