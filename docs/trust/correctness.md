@@ -33,6 +33,20 @@ Evidence:
   are `source_linked` (they cite the table they model) and
   <!-- trust:reference-cases-verified -->1<!-- /trust:reference-cases-verified -->
   are `verified` against an independent payslip or official worked example.
+- Sector oracles: a year and a termination on 30 June of each contribution
+  sector of the `production` CCNLs (industria: Metalmeccanico C3 with a
+  weekday overtime; terziario: Terziario Confesercenti IV, fourteen
+  payments; edilizia: ANCE operaio of the 1st level with the 4.95%, the
+  Cassa Edile accrual and Prevedi), in
+  `tests/knowledge/ccnl_engine/period/sector/`. Every payment (gross,
+  worker INPS, TFR accrued net of the 0.50%, employer cost) and the year
+  (taxable, IRPEF, credits, surtax withheld at the termination, net cash,
+  TFR, employer cost) are compared to the cent with hand oracles written
+  from the cited tables and statutes, and so is the assurance: the amounts
+  each CCNL owes and the engine does not compute leave the employer cost
+  short, and the net pay too where they reach the worker. These oracles
+  read the same primary sources as the bundle: they check the pipeline,
+  not the sources, and are no independent output.
 - Observed payslip replay: each of the 64 transcribed payslips in
   `tests/knowledge/ccnl_engine/period/observed_payslip/` states in `replay`
   whether it is `full`, `partial` or `not_replayable`, and why. A
