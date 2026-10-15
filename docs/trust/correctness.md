@@ -23,7 +23,25 @@ Evidence:
   the ledger, rounding and the payability assessment) are mutated and the
   tests of those modules must kill at least 93% of the mutants; 805 of 855
   (94.2%) on 8 October 2026.  The survivors are mostly the trace text of
-  decisions (source labels, input names).
+  decisions (source labels, input names).  A pull request that changes one
+  of those modules runs the same campaign on the modules it changes, with
+  the same minimum, so a regression cannot merge before the next weekly
+  run: 218 of 227 (96.0%) on the deduction and assessment rules changed on
+  15 October 2026.  Every campaign records its commit, date and modules in
+  `mutants/mutation-score.json`, kept as a workflow artifact: a score
+  without its perimeter and its date is not quoted.  The perimeter also
+  holds the five event handlers that move money (overtime and work-time
+  supplements, sick pay, travel allowances, arrears, termination funds and
+  TFR).  They entered below 93%, so each keeps its own floor in
+  `scripts/quality/mutation/baseline.json`, its score on 15 October 2026
+  (travel 67.8%, termination 86.2%, overtime 86.8%, arrears 87.8%, sick
+  pay 90.6%): a score can rise, never fall.  The core twelve scored 859 of
+  917 (93.7%) that day.
+- Validation matrix: [Validation matrix](validation-matrix.md), generated
+  in CI from the reference cases, the observed payslip replay, the sector
+  oracles and the review log, crosses for each CCNL the source,
+  independence, cycle, relationship, variables, thresholds, outputs,
+  outcome and freshness of its evidence.
 - Reference table cases: <!-- trust:reference-cases -->29<!-- /trust:reference-cases -->
   cases in `tests/knowledge/ccnl_engine/period/reference_case/`, each running one regular period through
   `PayrollEngine` and asserting, to the cent, the three values its cited

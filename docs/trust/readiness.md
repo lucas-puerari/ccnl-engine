@@ -91,13 +91,20 @@ In addition to the `reviewed` criteria:
    shrinks, so no new promotion goes without an independent output.
    `python scripts/provenance/check.py --index` prints the cases of each CCNL
    with its readiness, status and axes.
-3. An owner must be recorded in `verification.owner`, and the review in the
+3. Its evidence must cover every output of the definition of done for
+   operational use (base salary, gross, contributions, tax, net pay, TFR,
+   employer cost) in the [Validation matrix](validation-matrix.md). The
+   schema gate fails a `production` CCNL that misses an output
+   `scripts/provenance/readiness/baseline.json` does not list for it; that
+   list holds what the CCNLs promoted before 15 October 2026 still miss, and
+   only shrinks.
+4. An owner must be recorded in `verification.owner`, and the review in the
    [review log](#review-log).
-4. An update-policy entry must exist: who monitors CCNL renewals, and within
+5. An update-policy entry must exist: who monitors CCNL renewals, and within
    what target window the ruleset is updated after a renewal. Record the
    date the next review is due in `verification.review_due`, after the date
    of the last entry of the review log.
-5. Set `verification.readiness = "production"` in the CCNL JSON.
+6. Set `verification.readiness = "production"` in the CCNL JSON.
 
 ### Review log
 

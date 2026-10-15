@@ -251,6 +251,13 @@ source_paths = [
     "src/ccnl_engine/contribution/additional_ivs/rules.py",
     "src/ccnl_engine/contribution/minimum_base/rules.py",
     "src/ccnl_engine/withholding/rules.py",
+    # Event handlers that move money: overtime, night and holiday work,
+    # sick pay, travel allowances, arrears and termination funds and TFR.
+    "src/ccnl_engine/working_time/handlers.py",
+    "src/ccnl_engine/sickness/pay/handlers.py",
+    "src/ccnl_engine/variable_pay/travel/handlers.py",
+    "src/ccnl_engine/variable_pay/arrears/handlers.py",
+    "src/ccnl_engine/termination/handlers.py",
 ]
 # Limit collection to the tests of the mutated payroll modules; copy full src
 # so imports resolve. Hypothesis tests are left out: they use multiple
@@ -296,6 +303,17 @@ pytest_add_cli_args_test_selection = [
     "tests/integration/ccnl_engine/withholding/plan/test_services.py",
     "tests/integration/ccnl_engine/tax_credit/somma_esente/services/test_somma_esente.py",
     "tests/integration/ccnl_engine/tax_credit/somma_esente/services/test_somma_esente_year.py",
+    "tests/integration/ccnl_engine/working_time/test_handlers.py",
+    "tests/integration/ccnl_engine/working_time/overtime/test_hourly_bands.py",
+    "tests/integration/ccnl_engine/working_time/overtime/test_policies.py",
+    "tests/unit/ccnl_engine/sickness/pay/test_handlers.py",
+    "tests/integration/ccnl_engine/sickness/test_handlers.py",
+    "tests/integration/ccnl_engine/variable_pay/travel/test_handlers.py",
+    "tests/integration/ccnl_engine/period/services/test_variable_events.py",
+    "tests/integration/ccnl_engine/period/services/test_variable_events_financial.py",
+    "tests/integration/ccnl_engine/period/services/test_variable_events_treatment.py",
+    "tests/integration/ccnl_engine/period/services/test_exact_assertions.py",
+    "tests/integration/ccnl_engine/period/decision/override/test_services.py",
 ]
 pytest_add_cli_args = ["--no-cov"]
 mutate_only_covered_lines = true

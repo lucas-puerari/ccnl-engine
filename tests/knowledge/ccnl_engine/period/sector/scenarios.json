@@ -1,0 +1,50 @@
+{
+  "industria-year": {
+    "ccnl": "metalmeccanico-federmeccanica",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, full time",
+    "variables": ["overtime"],
+    "thresholds": ["headcount 16-50", "minimo tranche of June"],
+    "outputs": ["gross", "contributions", "tax", "net", "tfr", "employer_cost"]
+  },
+  "industria-june": {
+    "ccnl": "metalmeccanico-federmeccanica",
+    "cycles": ["ordinary month", "termination"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "trattamento integrativo and somma esente bands"],
+    "outputs": ["gross", "contributions", "tax", "net", "tfr", "employer_cost"]
+  },
+  "terziario-year": {
+    "ccnl": "terziario-confesercenti",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount above 15", "tranche of November"],
+    "outputs": ["gross", "contributions", "tax", "net", "tfr", "employer_cost"]
+  },
+  "terziario-june": {
+    "ccnl": "terziario-confesercenti",
+    "cycles": ["ordinary month", "extra month", "termination"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount above 15", "trattamento integrativo and somma esente bands"],
+    "outputs": ["gross", "contributions", "tax", "net", "tfr", "employer_cost"]
+  },
+  "edilizia-year": {
+    "ccnl": "edilizia-ance",
+    "cycles": ["ordinary month", "conguaglio"],
+    "relationship": "permanent, paid by the hour",
+    "variables": ["pension fund"],
+    "thresholds": ["headcount 16-50", "minimo tranche of March"],
+    "outputs": ["gross", "contributions", "tax", "net", "tfr", "employer_cost"]
+  },
+  "edilizia-june": {
+    "ccnl": "edilizia-ance",
+    "cycles": ["ordinary month", "termination"],
+    "relationship": "permanent, paid by the hour",
+    "variables": ["pension fund"],
+    "thresholds": ["headcount 16-50", "trattamento integrativo and somma esente bands"],
+    "outputs": ["gross", "contributions", "tax", "net", "tfr", "employer_cost"]
+  }
+}

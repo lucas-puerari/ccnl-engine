@@ -1,0 +1,71 @@
+{
+  "missing_outputs": {
+    "alimentari-federalimentare": [
+      "contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "chimica-farmaceutica-federchimica": [
+      "contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "dmo-federdistribuzione": [
+      "contributions",
+      "employer_cost",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "edilizia-ance-impiegati": [
+      "contributions",
+      "employer_cost",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "metalmeccanico-confapi": [
+      "contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "pubblici-esercizi-fipe-angem": [
+      "contributions",
+      "employer_cost",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "pubblici-esercizi-fipe-angem-ristorazione-collettiva": [
+      "contributions",
+      "employer_cost",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "studi-professionali-confprofessioni": [
+      "contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "turismo-federalberghi": [
+      "contributions",
+      "employer_cost",
+      "net",
+      "tax",
+      "tfr"
+    ]
+  }
+}
