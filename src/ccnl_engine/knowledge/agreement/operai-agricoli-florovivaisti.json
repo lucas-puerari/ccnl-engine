@@ -761,7 +761,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "3c160adc43e46d21d54277c58feda6dda557506300e9a9a8f9eac2feef625114",
+    "source_hash": "a7b012e136524a4d6e0ae521e67e710c8e4cd9df8a22d6786f66c2d0cb01865c",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1004,6 +1004,18 @@
         "findings": [
           "CNEL A011 matches; the verbale of 28 May 2026 is signed by Confagricoltura, Coldiretti and CIA with FLAI, FAI and UILA. The report also lists Assoverde, API, the family-farm federations and UGL Agroalimentare as parties of the earlier text.",
           "Term: the verbale renews the CCNL 'scaduto il 31 dicembre 2025' and is titled 2026-2029 (quadriennale): 1/1/2026 to 31/12/2029."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-overtime",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'straordinario, notturno, festivo, turni e maggiorazioni cumulabili': the overtime bands and the night, holiday and shift premiums of the file against the text read in the P1 review.",
+        "outcome": "flagged",
+        "sources": [],
+        "findings": [
+          "The overtime bands (20% weekday, 40% night, 50% holiday) stay derived: the CCNL of 23 May 2022 is not published by a party, and the verbale of 28 May 2026 does not amend the overtime article. Provincial contracts may set higher rates."
         ]
       }
     ]

@@ -9,7 +9,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 49 | 173 | 186 | 0 | `funzioni-centrali-aran` |
-| terziario | 43 | 4 977 055 | 216 | 1541 | 608 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| terziario | 43 | 4 977 055 | 216 | 1537 | 612 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 48 | 4 946 900 | 375 | 2275 | 501 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 4 | 55 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 93 | 311 | 33 | 2 | `metalmeccanico-artigianato` |
@@ -49,7 +49,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`studi-professionali-confprofessioni`](../contracts/studi-professionali-confprofessioni.md) | 350 000 | production | 0 | 0 | 46 | party or official | maintainer | 2026-12-01 |
 | [`terziario-confesercenti`](../contracts/terziario-confesercenti.md) | 230 000 | production | 0 | 0 | 75 | party or official | maintainer | 2027-03-31 |
 | [`turismo-federalberghi`](../contracts/turismo-federalberghi.md) | 220 000 | production | 0 | 1 | 71 | party or official | maintainer | 2026-12-01 |
-| [`sanita-privata-aiop-aris`](../contracts/sanita-privata-aiop-aris.md) (anchor) | 150 000 | exploratory | 1 | 7 | 29 | party or official | maintainer | 2026-12-31 |
+| [`sanita-privata-aiop-aris`](../contracts/sanita-privata-aiop-aris.md) (anchor) | 150 000 | exploratory | 1 | 3 | 33 | party or official | maintainer | 2026-12-31 |
 | [`uneba-uneba`](../contracts/uneba-uneba.md) | 130 000 | exploratory | 2 | 41 | 0 | party or official | none | none |
 | [`autoferrotranvieri-internavigatori`](../contracts/autoferrotranvieri-internavigatori.md) | 120 000 | exploratory | 2 | 138 | 0 | party or official | none | none |
 | [`istituzioni-servizi-socio-assistenziali-anaste`](../contracts/istituzioni-servizi-socio-assistenziali-anaste.md) | 120 000 | exploratory | 2 | 31 | 0 | party or official | none | none |

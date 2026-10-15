@@ -1755,7 +1755,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "a80711b0442eaf8fe1a5e35f2b344d0f5c03bf490caa06b58de6dae77cb95997",
+    "source_hash": "3c20ccffb1378f708a4034664cdb5a3bf02c16c6122acce5ba5853d78e00a71c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2002,6 +2002,18 @@
         "findings": [
           "CNEL J241 matches (ABI with FABI, FIRST CISL, FISAC CGIL, UILCA, UNISIN; the report adds Intesa Sanpaolo as a depositor).",
           "Term: Art. 1 of the renewal 'scadrà [...] il 31 marzo 2026'. The report shows 31/12/2028, which no text or party source supports; the parties suspended the deadlines to 31 July 2026 and the renewal is still open."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-overtime",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist item 'straordinario, notturno, festivo, turni e maggiorazioni cumulabili': the overtime bands and the night, holiday and shift premiums of the file against the text read in the P1 review.",
+        "outcome": "flagged",
+        "sources": [],
+        "findings": [
+          "The overtime bands (25%, 55% night, 65% holiday) stay derived: the CCNL of 19 December 2019 that sets them is not published by a party in full, and the renewal of 23 November 2023 does not amend them. The hourly base of the ABI CCNL was not read: the BCC CCNL computes it on 90.66% of one twelfth of the annual pay, which the engine does not apply."
         ]
       }
     ]

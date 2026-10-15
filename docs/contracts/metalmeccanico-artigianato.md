@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer |
+| **Limits of this contract** | inps_employer, overtime |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: the tabellare of the Metalmeccanica ed Installazione di Impianti sector for the four tranches of the renewal of 19 November 2024 (verbale integrativo of 25 November 2024), and the term; comparison with the industrial CCNL. | corrected | The 32 tabellari of the four tranches (1 December 2024 to 1 November 2026, eight levels) match the signed table of p. 27: verified.<br>The tabellare 'fino al 30 novembre 2024' (with the AFAC of 21 December 2023) matches the period from 1 April 2024; its start date is not in this scan and stays derived.<br>Term: 1 January 2023 to 31 December 2026, then until the next renewal (Art. 2). review_due 2027-01-31.<br>The tredicesima is stated in the new unified article of the renewal (p. 16) and no quattordicesima appears: the number of monthly payments, 13, moves from assumed to derived (the period starts in 2022, before the renewal). |
 | 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | confirmed | CNEL C030 matches (the Confartigianato and CNA categories, Casartigiani, CLAAI with FIM, FIOM, UILM).<br>Term: 'Il presente CCNL decorre dal 1° gennaio 2023 e avrà validità fino al 31 dicembre 2026' (Art. 2), the same in the report. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'scatti di anzianità, indennità e altri elementi fissi': the scatti and fixed allowances of the file against the text read in the P1 review. | corrected | The renewal of 19 November 2024 (Art. 27, p. 6) gives apprentices scatti of 10 euro from 1 January 2025, accrued from that date also by apprentices already in service, so none before: the apprentice_seniority limitation is resolved with seniority_increments.apprentice_amount 0.00 until 2024 and 10.00 from 2025.<br>The per-level scatti amounts (1Q 32,94 to 6 18,40), the 24-month cadence and the 5-scatti maximum are not restated in the renewal: they stay derived from the 2021 text. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'straordinario, notturno, festivo, turni e maggiorazioni cumulabili': the overtime bands and the night, holiday and shift premiums of the file against the text read in the P1 review. | flagged | The overtime rates could not be read from a party text: the EBNA copy of the 2021 CCNL returns an HTML page and the 2024 renewal does not restate them. A summary (direzionelavoro, p. 3) adds Saturday overtime at 25% for the first 3 hours and 50% after, not modelled, and other summaries give night overtime at 55% against the 45% of the file. Runs with overtime are blocked until the article is read. |
 
 ## Salary table
 
@@ -122,6 +123,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies; contract type in apprentice.
 
     **Remediation:** Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note.
+
+!!! warning "metalmeccanico-artigianato/overtime_rates_unconfirmed · overtime · impact unknown · open"
+    OVERTIME RATES UNCONFIRMED: the overtime bands (25% weekday, 45% night, 45% holiday, 55% night holiday) come from the CCNL of 17 December 2021, whose published copy (EBNA) is no longer reachable, and the renewal of 19 November 2024 does not restate them. Summaries give night overtime at 55%, and Saturday overtime past the first 3 hours at 50% (25% for the first 3), which the bands do not model.
+
+    **Applies when:** `overtime` applies.
+
+    **Remediation:** Read the overtime article of the CCNL text from a party source, verify the bands and model the Saturday rule, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
