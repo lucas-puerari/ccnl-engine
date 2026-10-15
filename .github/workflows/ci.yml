@@ -10,224 +10,27 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
-  lint-test:
+  # The same gates the release runs before it publishes.
+  gates:
+    uses: ./.github/workflows/quality-gates.yml
+
+  # The check main requires: it passes only when every gate passed, so the
+  # branch protection keeps its name while it covers all of them.
+  required:
     name: Lint, typecheck, test
+    needs: gates
+    if: always()
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v7
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v10.0.1
-        with:
-          enable-cache: true
-
-      - name: Set up Python
-        uses: actions/setup-python@v7
-        with:
-          python-version-file: pyproject.toml
-
-      - name: Install dependencies
-        run: uv sync --group dev
-
-      - name: Install package (editable)
-        run: uv pip install -e .
-
-      - name: Lint (ruff check)
-        run: uv run ruff check src/ tests/ scripts/
-
-      - name: Format (ruff format --check)
-        run: uv run ruff format --check src/ tests/ scripts/
-
-      - name: Typecheck (mypy)
-        run: uv run mypy src/ tests/
-
-      - name: Typecheck scripts (mypy)
-        run: uv run mypy scripts/ --explicit-package-bases
-
-      - name: Knowledge manifest is up to date
-        run: uv run python scripts/knowledge/manifest/build.py --check
-
-      - name: Contract pages drift (check only)
-        run: uv run python scripts/documentation/contract_page/generate.py --check
-
-      - name: Trust counts drift (check only)
-        run: uv run python scripts/documentation/trust_count/generate.py --check
-
-      - name: Test (pytest, coverage 100%)
-        run: uv run pytest
-
-      - name: Upload coverage report (artifact)
-        uses: actions/upload-artifact@v7
-        if: always()
-        with:
-          name: coverage-xml
-          path: coverage.xml
-          retention-days: 14
-
-  docs-build:
-    name: Docs build
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v7
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v10.0.1
-        with:
-          enable-cache: true
-
-      - name: Set up Python
-        uses: actions/setup-python@v7
-        with:
-          python-version-file: pyproject.toml
-
-      - name: Install dependencies
-        run: uv sync --frozen --group docs
-
-      - name: Generate coverage matrix
-        run: uv run python scripts/documentation/coverage_matrix/generate.py
-
-      - name: Generate capability matrix
-        run: uv run python scripts/documentation/capability_matrix/generate.py
-
-      - name: Build docs (zensical)
-        run: uv run zensical build
-
-  security:
-    name: Security scan
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v7
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v10.0.1
-        with:
-          enable-cache: true
-
-      - name: Set up Python
-        uses: actions/setup-python@v7
-        with:
-          python-version-file: pyproject.toml
-
-      - name: Install dependencies
-        run: uv sync --group dev
-
-      - name: Dependency vulnerability scan (pip-audit)
-        run: uv run pip-audit --skip-editable
-
-      - name: SAST (bandit)
-        run: uv run bandit -r src/ scripts/ -lll -iii -f json -o bandit-report.json || (cat bandit-report.json; exit 1)
-
-      - name: Upload bandit report
-        uses: actions/upload-artifact@v7
-        if: always()
-        with:
-          name: bandit-report
-          path: bandit-report.json
-          retention-days: 14
-
-  check-provenance:
-    name: Check payable rule and reference case provenance
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          fetch-depth: 2
-
-      - name: Schema gate (payable rule records and the evidence they claim)
-        run: python scripts/provenance/check.py --schema
-
-      - name: Evidence gate (no new assumed or missing rule, shrink-only baseline)
-        run: python scripts/provenance/check.py --evidence
-
-      - name: Validate all reference cases
-        run: python scripts/provenance/check.py tests/knowledge/ccnl_engine/period/reference_case/*.json
-
-      - name: Reject new reference cases without source
+      - name: Every gate passed
+        env:
+          RESULT: ${{ needs.gates.result }}
         run: |
-          ADDED=$(git diff --name-only --diff-filter=A HEAD~1 HEAD \
-            -- tests/ 2>/dev/null \
-            | grep -E '^tests/knowledge/ccnl_engine/period/reference_case/[^/]+\.json$' || true)
-          if [ -z "$ADDED" ]; then
-            echo "No new reference cases added."
-          else
-            echo "New reference cases found:"
-            echo "$ADDED"
-            python scripts/provenance/check.py $ADDED
+          if [ "$RESULT" != "success" ]; then
+            echo "The quality gates ended with: $RESULT"
+            exit 1
           fi
-
-      - name: Reject modified reference cases that lost their source
-        run: |
-          MODIFIED=$(git diff --name-only --diff-filter=M HEAD~1 HEAD \
-            -- tests/ 2>/dev/null \
-            | grep -E '^tests/knowledge/ccnl_engine/period/reference_case/[^/]+\.json$' || true)
-          if [ -z "$MODIFIED" ]; then
-            echo "No reference cases modified."
-            exit 0
-          fi
-          echo "Modified reference cases found:"
-          echo "$MODIFIED"
-          python scripts/provenance/check.py --modified $MODIFIED
-
-  wheel-smoke:
-    name: Wheel smoke test
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v7
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v10.0.1
-        with:
-          enable-cache: true
-
-      - name: Set up Python
-        uses: actions/setup-python@v7
-        with:
-          python-version-file: pyproject.toml
-
-      - name: Build wheel
-        run: uv build --wheel
-
-      - name: Install wheel in a clean venv
-        run: |
-          python -m venv .smokeenv
-          .smokeenv/bin/pip install --quiet dist/*.whl
-
-      - name: Smoke test — end-to-end scenario
-        run: .smokeenv/bin/python scripts/quality/smoke/test.py
-
-  public-snippets:
-    name: Public snippets smoke test
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v7
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v10.0.1
-        with:
-          enable-cache: true
-
-      - name: Set up Python
-        uses: actions/setup-python@v7
-        with:
-          python-version-file: pyproject.toml
-
-      - name: Install dependencies
-        run: uv sync --group dev
-
-      - name: Install package (editable)
-        run: uv pip install -e .
-
-      - name: Run docs/examples snippets
-        run: |
-          find docs/examples \
-            -name '*.py' ! -name '__init__.py' \
-            -print0 \
-          | sort -z \
-          | xargs -0 -I{} uv run python {}

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from datetime import date
 from typing import TYPE_CHECKING
 
 import pytest
@@ -16,6 +17,7 @@ from scripts.provenance.evidence.check import (
     ENGINE_LIMITATIONS,
     Snapshot,
     compare,
+    deadline_errors,
     load_baseline,
     open_limitations,
     report_lines,
@@ -23,7 +25,7 @@ from scripts.provenance.evidence.check import (
     snapshot,
     write_baseline,
 )
-from scripts.provenance.rules import PayableRule, inventory
+from scripts.provenance.rules import KNOWLEDGE_DIR, PayableRule, inventory
 
 if TYPE_CHECKING:
     from pathlib import Path
@@ -391,3 +393,56 @@ def test_stdlib_reading_matches_the_engine_models() -> None:
     }
     found = snapshot()
     assert {i for ids in found.open_limitations.values() for i in ids} == engine_open
+
+
+def _verification_file(root: Path, verification: dict[str, object]) -> Path:
+    folder = root / "agreement"
+    folder.mkdir(parents=True)
+    payload = {"verification": verification}
+    (folder / "x.json").write_text(json.dumps(payload), encoding="utf-8")
+    return root
+
+
+def _variance(review_by: str) -> dict[str, object]:
+    return {
+        "reviews": [
+            {
+                "id": "r1",
+                "divergences": [
+                    {"decision": "accepted_external_variance", "review_by": review_by}
+                ],
+            }
+        ]
+    }
+
+
+@pytest.mark.parametrize(
+    ("verification", "expected"),
+    [
+        ({"owner": "maintainer", "review_due": "2026-10-15"}, []),
+        (
+            {"owner": "maintainer", "review_due": "2026-10-14"},
+            ["agreement/x.json: review overdue since 2026-10-14"],
+        ),
+        ({"owner": "maintainer"} | _variance("2026-10-15"), []),
+        (
+            {"owner": "maintainer"} | _variance("2026-10-14"),
+            ["agreement/x.json: accepted variance overdue since 2026-10-14"],
+        ),
+        (
+            _variance("2026-12-31"),
+            ["agreement/x.json: divergence without verification.owner"],
+        ),
+    ],
+)
+def test_a_release_waits_for_overdue_deadlines(
+    tmp_path: Path, verification: dict[str, object], expected: list[str]
+) -> None:
+    """A passed review_due or review_by, or an unowned divergence, blocks."""
+    root = _verification_file(tmp_path, verification)
+    assert deadline_errors(root, date(2026, 10, 15)) == expected
+
+
+def test_the_bundle_has_no_overdue_deadline_today() -> None:
+    """Every deadline of the bundle is still ahead on 15 October 2026."""
+    assert deadline_errors(KNOWLEDGE_DIR, date(2026, 10, 15)) == []

@@ -800,7 +800,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "526911f4bc4b60f75866c0d0f970573c0d3c0f0e087c50cb0c868d536722a460",
+    "source_hash": "d5ca79c00076a7d1e4ae92ef88310a786a9b38f901a896d6c9a231bf598b6cca",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1259,6 +1259,7 @@
           }
         ]
       }
-    ]
+    ],
+    "owner": "maintainer"
   }
 }

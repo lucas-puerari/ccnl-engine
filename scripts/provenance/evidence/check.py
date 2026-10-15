@@ -436,6 +436,50 @@ def _ccnl_errors(file: str, data: Json) -> Iterator[str]:
         yield from (f"{file}: {e}" for e in errors)
 
 
+def deadline_errors(root: Path, today: date) -> list[str]:
+    """Return the deadlines of the bundle that ``today`` has passed.
+
+    A release is blocked while a CCNL file is past its ``review_due``,
+    while an ``accepted_external_variance`` divergence is past its
+    ``review_by``, or while a file that records divergences names no owner
+    to answer for them.  Run in the release workflow, not on every pull
+    request: a date passes without any change to the repository.
+
+    Returns:
+        ``"<file>: <reason>"`` messages; empty when nothing is overdue.
+    """
+    return [
+        f"{file}: {reason}"
+        for file, data in _ccnl_files(root)
+        for reason in _overdue(_as_dict(data.get("verification")), today)
+    ]
+
+
+def _divergences(verification: Json) -> Iterator[Json]:
+    reviews = verification.get("reviews")
+    for review in reviews if isinstance(reviews, list) else []:
+        found = _as_dict(review).get("divergences")
+        yield from (_as_dict(d) for d in (found if isinstance(found, list) else []))
+
+
+def _overdue(verification: Json, today: date) -> Iterator[str]:
+    """Yield the deadlines of one CCNL file that ``today`` has passed.
+
+    Yields:
+        One reason per overdue review, overdue variance or unowned
+        divergence.
+    """
+    due = _date(verification.get("review_due"))
+    if due is not None and due < today:
+        yield f"review overdue since {due}"
+    for divergence in _divergences(verification):
+        by = _date(divergence.get("review_by"))
+        if by is not None and by < today:
+            yield f"accepted variance overdue since {by}"
+        if not verification.get("owner"):
+            yield "divergence without verification.owner"
+
+
 def schema_errors(
     rules: tuple[PayableRule, ...], root: Path = payable_rules.KNOWLEDGE_DIR
 ) -> list[str]:
