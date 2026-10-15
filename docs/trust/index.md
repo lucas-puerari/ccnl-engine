@@ -189,9 +189,9 @@ asserts only the values its source states (base salary, fixed allowances and
 period gross from the cited table), to the cent, and never net pay,
 contributions, taxes or employer cost. Of the
 <!-- trust:reference-cases -->29<!-- /trust:reference-cases --> cases,
-<!-- trust:reference-cases-verified -->2<!-- /trust:reference-cases-verified -->
+<!-- trust:reference-cases-verified -->1<!-- /trust:reference-cases-verified -->
 are `verified` and
-<!-- trust:reference-cases-source-linked -->27<!-- /trust:reference-cases-source-linked -->
+<!-- trust:reference-cases-source-linked -->28<!-- /trust:reference-cases-source-linked -->
 are `source_linked`. Full-payslip oracles, computed by hand from primary
 sources for the whole payslip, are separate fixtures; see
 [Correctness](correctness.md).
@@ -203,8 +203,19 @@ top-level `verification` field:
 
 | Value | Meaning | `source` |
 |---|---|---|
-| `verified` | Expected values checked against an independent source (a real payslip or an official worked example) | Required |
+| `verified` | Expected values checked against an independent source (a real payslip or an official worked example) | Required, with `kind`, an immutable reference, `verified_by`, `verified_at` and `independence` |
 | `source_linked` | The case cites the primary source it models; expected values are not checked against a payslip | Required |
+
+Every case lists the `axes` it validates (`base_salary`, `gross`,
+`contributions`, `employer_cost`, `tax`, `net`, `tfr`), and each expected
+value belongs to a declared axis. A `verified` case names in `source` the
+`kind` of output (`observed_payslip` or `official_worked_example`), an
+immutable reference to it (the `sha256` of the document or the `path` of a
+file versioned in the repository), who checked it and when (`verified_by`,
+`verified_at`), how its expected values were produced without the engine
+(`independence`), and the `tolerance` its amounts are compared with. A case
+read from the signed table the bundle models is `source_linked`, never
+`verified`: it checks the transcription, not the engine.
 
 `tests/knowledge/ccnl_engine/bundle/validators/test_data_quality.py` rejects a missing or unknown
 value, a case without a `source` object, and a case whose inputs or expected

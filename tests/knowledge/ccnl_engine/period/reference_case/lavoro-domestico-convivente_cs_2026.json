@@ -1,5 +1,9 @@
 {
   "verification": "source_linked",
+  "axes": [
+    "base_salary",
+    "gross"
+  ],
   "_description": "CCNL lavoro domestico, convivente level CS (Tabella A), March 2026 regular run, permanent, 54 weekly hours.",
   "_notes": [
     "Tabella A, livello CS, valori mensili decorrenti dal 01/01/2026: 1.193,84.",

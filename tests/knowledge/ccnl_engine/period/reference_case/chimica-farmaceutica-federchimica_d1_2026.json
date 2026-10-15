@@ -1,5 +1,8 @@
 {
   "verification": "source_linked",
+  "axes": [
+    "base_salary"
+  ],
   "_description": "Chimica e chimico-farmaceutica industria (CNEL B011) level D1, July 2026 regular run, permanent, full time: the first month of the tranche of 1 July 2026.",
   "_notes": [
     "TEM D1 = minimo 2,053.03 + IPO 367.23 = 2,420.26 from 1 July 2026 (ipotesi di rinnovo 15 April 2025, page 48, table 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/07/2026, row D1).",

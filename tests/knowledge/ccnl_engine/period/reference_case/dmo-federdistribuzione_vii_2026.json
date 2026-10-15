@@ -1,5 +1,9 @@
 {
   "verification": "source_linked",
+  "axes": [
+    "base_salary",
+    "gross"
+  ],
   "_description": "CCNL Distribuzione Moderna Organizzata (Federdistribuzione, CNEL H008), level VII, October 2026 regular run, permanent, full time.",
   "_notes": [
     "November 2025 tranche: paga base VII 873,22 (Allegato 11, 'Paga base dal 01/11/2025'); the 1 November 2026 tranche is not yet in effect in October.",

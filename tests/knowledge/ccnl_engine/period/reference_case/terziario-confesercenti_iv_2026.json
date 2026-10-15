@@ -1,5 +1,9 @@
 {
   "verification": "source_linked",
+  "axes": [
+    "base_salary",
+    "gross"
+  ],
   "_description": "CCNL Terziario Confesercenti, level IV, October 2026 regular run, permanent, full time.",
   "_notes": [
     "November 2025 tranche in force: totale mensile 1781.68 = paga base 1257.46 + contingenza/EDR 524.22 (the file stores the total as base_salary).",

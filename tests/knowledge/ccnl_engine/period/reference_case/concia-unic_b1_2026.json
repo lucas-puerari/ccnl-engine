@@ -1,5 +1,8 @@
 {
   "verification": "source_linked",
+  "axes": [
+    "base_salary"
+  ],
   "_description": "CCNL Concia UNIC (B101) level B1, January 2026 regular run, permanent, full time: the first month of the tranche of 1 January 2026.",
   "_notes": [
     "Minimo B1 2,441.73 from 1 January 2025 and 2,494.04 from 1 January 2026 (Allegato n. 1, page 14): January 2026 carries the new tranche.",

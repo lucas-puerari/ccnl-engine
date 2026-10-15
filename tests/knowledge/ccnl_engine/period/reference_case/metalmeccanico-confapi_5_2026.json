@@ -1,5 +1,8 @@
 {
   "verification": "source_linked",
+  "axes": [
+    "base_salary"
+  ],
   "_description": "Metalmeccanica PMI Unionmeccanica-Confapi (CNEL C018) level 5, June 2026 regular run, permanent, full time: the first month of the tranche of 1 June 2026.",
   "_notes": [
     "Minimo 5th level 2,195.87 from 1 September 2025 and 2,245.87 from 1 June 2026 (accordo 24 July 2025, ratified 25 September 2025; table reprinted in the renewal of 4 June 2026, p.5, ratified 23 July 2026).",

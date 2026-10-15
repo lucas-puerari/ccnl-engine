@@ -81,7 +81,16 @@ In addition to the `reviewed` criteria:
    against primary sources.
 2. At least one reference case must exist in `tests/knowledge/ccnl_engine/period/reference_case/`
    sourced from a real payslip (anonymised) or an official regulatory example,
-   not a synthetic scenario.
+   not a synthetic scenario: a `verified` case (see
+   [Reference case verification status](index.md#reference-case-verification-status)).
+   The schema gate of `scripts/provenance/check.py` enforces it: a
+   `production` CCNL without a valid reference case fails, and one without a
+   `verified` case fails unless `scripts/provenance/reference_case/baseline.json`
+   lists it. That list holds the CCNLs promoted before the rule was
+   enforced (15 October 2026), whose cases are `source_linked`; it only
+   shrinks, so no new promotion goes without an independent output.
+   `python scripts/provenance/check.py --index` prints the cases of each CCNL
+   with its readiness, status and axes.
 3. An owner must be recorded in `verification.owner`, and the review in the
    [review log](#review-log).
 4. An update-policy entry must exist: who monitors CCNL renewals, and within

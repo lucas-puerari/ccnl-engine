@@ -1,5 +1,9 @@
 {
   "verification": "source_linked",
+  "axes": [
+    "base_salary",
+    "gross"
+  ],
   "_description": "CCNL Commercio Confcommercio, level 4, September 2026 regular run, permanent, full time.",
   "_notes": [
     "November 2025 tranche: minimo 1257.46.",

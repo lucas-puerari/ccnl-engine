@@ -21,10 +21,13 @@ Two gates judge the payable rules of the bundled knowledge data (see
 
 Reference cases: every case in
 ``tests/knowledge/ccnl_engine/period/reference_case/`` declares a
-top-level ``verification`` field, ``verified`` or ``source_linked``, and
-carries a non-empty ``source`` object. Expected values produced by the
-engine itself are not a status: they detect no systematic error, so such
-cases are rejected.
+top-level ``verification`` field, ``verified`` or ``source_linked``, a
+non-empty ``source`` object and the ``axes`` it validates; a ``verified``
+case also names the independent output it was checked against (see
+:mod:`scripts.provenance.reference_case.check`). Expected values produced
+by the engine itself are not a status: they detect no systematic error, so
+such cases are rejected.  The schema gate also fails a ``production`` CCNL
+that no valid reference case runs.
 
 Modes:
 
@@ -37,6 +40,8 @@ Modes:
 - ``--all``: both gates and every case in the fixture directory.
 - ``--update-baseline``: rewrite the baseline from the bundle.  It refuses
   a baseline that grows unless ``--allow-growth`` is given.
+- ``--index``: print the reference cases of each CCNL as JSON, with the
+  readiness of the CCNL, its verification status and axes.
 
 Every case mode prints the number of checked cases per verification status.
 The script uses the standard library only, so CI can run it without
@@ -51,6 +56,7 @@ Usage::
     python scripts/provenance/check.py --rules
     python scripts/provenance/check.py --all
     python scripts/provenance/check.py --update-baseline [--allow-growth]
+    python scripts/provenance/check.py --index
 
 Exit codes:
     0   All checks pass.
@@ -71,16 +77,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from scripts.provenance import rules as payable_rules
 from scripts.provenance.evidence import check as provenance_evidence
 from scripts.provenance.label import check as provenance_labels
-
-CASES_DIR = (
-    Path(__file__).resolve().parents[2]
-    / "tests"
-    / "knowledge"
-    / "ccnl_engine"
-    / "period"
-    / "reference_case"
+from scripts.provenance.reference_case import check as reference_cases
+from scripts.provenance.reference_case.check import (
+    CASES_DIR,
+    STATUSES,
+    verification_errors,
 )
-STATUSES = ("verified", "source_linked")
 
 
 def _parse(text: str) -> dict[str, object] | None:
@@ -116,25 +118,6 @@ def _load_at(ref: str, path: Path) -> dict[str, object] | None:
         return None
 
 
-def verification_error(case: dict[str, object]) -> str | None:
-    """Check the verification status against the ``source`` block.
-
-    Returns:
-        The first violated rule, or ``None`` when the case is valid.
-    """
-    status = case.get("verification")
-    if status is None:
-        return "missing 'verification' field"
-    if status not in STATUSES:
-        return f"unknown verification {status!r}; allowed: {list(STATUSES)}"
-    source = case.get("source")
-    if source is not None and not isinstance(source, dict):
-        return "'source' must be a JSON object"
-    if not source:
-        return f"verification {status!r} requires a non-empty 'source' object"
-    return None
-
-
 def check(
     paths: list[Path], *, mode: str, base: str
 ) -> tuple[list[tuple[Path, str]], Counter[str]]:
@@ -152,7 +135,7 @@ def check(
             failures.append((path, "unreadable or not a JSON object"))
             continue
         counts[str(case.get("verification"))] += 1
-        reason = verification_error(case)
+        reason = "; ".join(verification_errors(case)) or None
         if reason is None and mode == "modified":
             previous = _load_at(base, path)
             if previous and previous.get("source") and not case.get("source"):
@@ -205,6 +188,7 @@ def check_rules(root: Path = payable_rules.KNOWLEDGE_DIR) -> bool:
         *provenance_evidence.schema_errors(rules, root),
         *provenance_labels.label_errors(root),
         *provenance_labels.readiness_errors(rules, root),
+        *reference_cases.production_errors(root),
     ]
     if evidence:
         print(
@@ -307,6 +291,25 @@ def update_baseline(
     return True
 
 
+def print_index(root: Path = payable_rules.KNOWLEDGE_DIR) -> None:
+    """Print each CCNL with its readiness and reference cases, as JSON."""
+    cases = reference_cases.index()
+    readiness = provenance_evidence.readiness_by_ccnl(root)
+    ids = sorted(set(cases) | set(readiness))
+    print(
+        json.dumps(
+            {
+                ccnl: {
+                    "readiness": readiness.get(ccnl),
+                    "reference_cases": [c.to_json() for c in cases.get(ccnl, ())],
+                }
+                for ccnl in ids
+            },
+            indent=2,
+        )
+    )
+
+
 def _parser() -> argparse.ArgumentParser:
     """Return the command-line parser.
 
@@ -341,6 +344,11 @@ def _parser() -> argparse.ArgumentParser:
         "--evidence",
         action="store_true",
         help="Run the evidence gate: the shrink-only weak evidence ratchet.",
+    )
+    group.add_argument(
+        "--index",
+        action="store_true",
+        help="Print the reference cases of each CCNL as JSON.",
     )
     group.add_argument(
         "--update-baseline",
@@ -416,6 +424,9 @@ def main() -> None:
     if args.allow_growth and not args.update_baseline:
         parser.error("--allow-growth requires --update-baseline")
 
+    if args.index:
+        print_index()
+        return
     gates = _gates(args)
     if gates is not None and not args.all:
         sys.exit(0 if gates else 1)

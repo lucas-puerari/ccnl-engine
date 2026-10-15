@@ -1,14 +1,22 @@
 {
   "verification": "verified",
+  "axes": [
+    "base_salary"
+  ],
   "_description": "Metalmeccanica Industria (CNEL C011) level C3, August 2026: minimo 2.211,43 printed among the elementi della retribuzione.",
   "_notes": [
     "Base salary only: the payslip's allowances and gross include provincial and individual items (elemento provinciale, superminimo) outside the national table.",
     "Checked on 10 October 2026 by an AI review authorised by the owner of the ruleset: the observed payslip p23 prints 'minimo' 2211.43 for level C3 in August 2026, the base salary the engine computes."
   ],
   "source": {
+    "kind": "observed_payslip",
     "document": "Observed payslip p23",
     "path": "tests/knowledge/ccnl_engine/period/observed_payslip/p23.json",
-    "section": "pay_elements"
+    "sha256": "d11ae82a05a3e1be1dcef7b3d80ab06eec7f00cda0ebb35e82cde8c3fe9f4d8d",
+    "section": "pay_elements",
+    "verified_by": "claude-opus-5-5",
+    "verified_at": "2026-10-10",
+    "independence": "The payslip was issued by the payroll of the employer, anonymised and stored before the engine computed the run: its minimo is not an output of this engine."
   },
   "inputs": {
     "ccnl_slug": "metalmeccanico-federmeccanica.json",
@@ -19,5 +27,6 @@
   },
   "expected": {
     "base_salary": "2211.43"
-  }
+  },
+  "tolerance": "0.00"
 }

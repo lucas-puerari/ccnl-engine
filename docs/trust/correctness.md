@@ -29,9 +29,9 @@ Evidence:
   `PayrollEngine` and asserting, to the cent, the three values its cited
   salary table states: base salary, fixed allowances and period gross. They
   do not check net pay, contributions, taxes or employer cost.
-  <!-- trust:reference-cases-source-linked -->27<!-- /trust:reference-cases-source-linked -->
+  <!-- trust:reference-cases-source-linked -->28<!-- /trust:reference-cases-source-linked -->
   are `source_linked` (they cite the table they model) and
-  <!-- trust:reference-cases-verified -->2<!-- /trust:reference-cases-verified -->
+  <!-- trust:reference-cases-verified -->1<!-- /trust:reference-cases-verified -->
   are `verified` against an independent payslip or official worked example.
 - Legal scenario tests: selected rules (IRPEF, regional and municipal
   surtaxes, substitute-tax regimes, apprenticeship scaling, the withholding

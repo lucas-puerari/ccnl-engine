@@ -1,5 +1,9 @@
 {
   "verification": "source_linked",
+  "axes": [
+    "base_salary",
+    "gross"
+  ],
   "_description": "CCNL Logistica, Trasporto Merci e Spedizione level 4, June 2027 regular run, permanent, full time, non-travelling staff: the first month of a tranche.",
   "_notes": [
     "Base salary = minimo plus EPA from 1 June 2027 (testo unico, p. 81): 1912.80.",

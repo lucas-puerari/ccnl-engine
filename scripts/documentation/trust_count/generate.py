@@ -38,8 +38,8 @@ from ccnl_engine.provenance.ruleset.models import (
     RulesetReadiness,
     VerificationStatus,
 )
-from scripts.provenance import check as check_provenance
 from scripts.provenance import rules as payable_rules
+from scripts.provenance.reference_case import check as reference_cases
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -146,8 +146,10 @@ def _reference_case_counts() -> dict[str, str]:
     Returns:
         Snippets keyed by marker name.
     """
-    paths = sorted(check_provenance.CASES_DIR.glob("*.json"))
-    _, counts = check_provenance.check(paths, mode="all", base="HEAD")
+    paths = sorted(reference_cases.CASES_DIR.glob("*.json"))
+    counts = reference_cases.count_by_status([
+        reference_cases.load_case(path) for path in paths
+    ])
     return {
         "reference-cases": str(sum(counts.values())),
         "reference-cases-source-linked": str(counts["source_linked"]),

@@ -1,5 +1,9 @@
 {
   "verification": "source_linked",
+  "axes": [
+    "base_salary",
+    "gross"
+  ],
   "_description": "CCNL Edilizia Industria ANCE (CNEL F012), operaio comune at level 1, April 2026 regular run, permanent, full time, 173 ordinary hours worked: the tranche of 1 March 2026.",
   "_notes": [
     "Row 'Operaio Comune liv. 1' of the ANCE Ragusa table of 1 March 2026: retribuzione base mensile 1.117,36, indennità di contingenza 512,87, E.D.R. 10,33; its hourly column is the monthly total over 173.",

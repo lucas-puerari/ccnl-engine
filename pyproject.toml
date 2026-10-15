@@ -299,8 +299,9 @@ pytest_add_cli_args_test_selection = [
 ]
 pytest_add_cli_args = ["--no-cov"]
 mutate_only_covered_lines = true
-# Copy the full source tree so all test imports resolve inside mutants/.
-also_copy = ["src"]
+# Copy the full source tree, and the provenance scripts the test conftest
+# reads the reference cases with, so all test imports resolve inside mutants/.
+also_copy = ["src", "scripts"]
 # Run in fork mode for speed (Python is imported once; workers are forked).
 process_isolation = "fork"
 
