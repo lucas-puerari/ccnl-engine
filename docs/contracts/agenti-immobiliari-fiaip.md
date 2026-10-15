@@ -113,7 +113,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 !!! warning "agenti-immobiliari-fiaip/ebnaip_qsc_and_flat_quota · bilateral_funds · impact yes · open"
     SIMPLIFICATION: QSC and Quota Forfettaria (Art. 11) not modelled. QSC: 1.90% of monthly retribuzione × 14 mensilità (0.30% employee + 1.60% employer), paid to EBNAIP. Quota Forfettaria: 12 EUR/month × 12 mensilità, employer only. Both go to the bilateral entity; the QSC constitutes retribuzione ordinaria for TFR purposes (Art. 11). Modelling would require percentage-based bilateral fund logic not yet implemented. employer_cost_annual understated by (QSC employer portion + 144 EUR/year).
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `bilateral_funds` applies.
 
     **Remediation:** Pass the QSC and the quota forfettaria as a bilateral fund event, or model percentage-based bilateral contributions.
 

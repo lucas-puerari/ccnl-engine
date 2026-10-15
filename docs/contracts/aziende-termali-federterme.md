@@ -124,7 +124,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 !!! warning "aziende-termali-federterme/ebiterme_fontur_funds · bilateral_funds · impact yes · open"
     SIMPLIFICATION: Fondi bilaterali non modellati (EBITERME, FONTUR assistenza sanitaria). Contributi datoriali non quantificati. employer_cost_annual sottostimato.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `bilateral_funds` applies.
 
     **Remediation:** Pass the EBITERME and FONTUR contributions as a bilateral fund event, or source and model them.
 

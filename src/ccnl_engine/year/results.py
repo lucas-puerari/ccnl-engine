@@ -107,6 +107,16 @@ class PaymentsResult:
         return self.assurance.is_payable
 
     @property
+    def is_net_pay_payable(self) -> bool:
+        """Whether no blocker leaves the net pay of a payment unreliable."""
+        return self.assurance.is_net_pay_payable
+
+    @property
+    def is_employer_cost_complete(self) -> bool:
+        """Whether no blocker leaves the employer cost of a payment short."""
+        return self.assurance.is_employer_cost_complete
+
+    @property
     def blockers(self) -> tuple[ResultBlocker, ...]:
         """Blockers of the payments computed by this call, each listed once."""
         return self.assurance.blockers

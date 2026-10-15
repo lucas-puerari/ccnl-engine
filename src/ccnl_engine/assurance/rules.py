@@ -18,7 +18,8 @@ is one :class:`~ccnl_engine.assurance.models.ResultBlocker`:
   a run whose rules carry no provenance record;
 - a capability that took a caller value in place of a rule;
 - an open model limitation with a monetary impact (``yes`` or
-  ``unknown``) that concerns the run;
+  ``unknown``) that concerns the run; it leaves unreliable only the totals
+  the limitation names;
 - in ``operational`` mode only, a ruleset that tracks a readiness tier and
   is not ``production``, or a run where no ruleset tracks one (the CCNL
   identity is missing): the run fails closed.
@@ -36,11 +37,13 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.assurance.models import (
+    ALL_TOTALS,
     BlockerCode,
     CoverageStatus,
     EvidenceStatus,
     ResultAssurance,
     ResultBlocker,
+    ResultTotal,
     decide_payability,
 )
 from ccnl_engine.assurance.policies import EngineMode
@@ -94,7 +97,7 @@ def assess(
         ),
         *_readiness_blockers(rulesets, mode),
         *(
-            _blocker(BlockerCode.OPEN_LIMITATION, lim.capability, lim.id)
+            _blocker(BlockerCode.OPEN_LIMITATION, lim.capability, lim.id, lim.totals)
             for lim in limitations
             if lim.blocks
         ),
@@ -223,6 +226,11 @@ _REMEDIATION: dict[BlockerCode, str] = {
 }
 
 
-def _blocker(code: BlockerCode, feature: str | None, detail: str) -> ResultBlocker:
+def _blocker(
+    code: BlockerCode,
+    feature: str | None,
+    detail: str,
+    totals: frozenset[ResultTotal] = ALL_TOTALS,
+) -> ResultBlocker:
     remediation = _REMEDIATION[code].format(feature=feature or "the run", detail=detail)
-    return ResultBlocker(code, feature, str(detail), remediation)
+    return ResultBlocker(code, feature, str(detail), remediation, totals)

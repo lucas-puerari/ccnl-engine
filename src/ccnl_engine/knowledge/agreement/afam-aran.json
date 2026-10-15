@@ -6004,7 +6004,7 @@
         "limitation": {
           "variant": "shared_rules_unchecked",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "owed"
           },
           "remediation": "Read the AFAM sections of the CCNL 2019-2021 (18/1/2024) for leave, absence, sickness and overtime."
         }
@@ -6035,7 +6035,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "81969fd1ddf4288253e8b0375431c2b5a9f793105ab6a3f7ea3b8df216947527",
+    "source_hash": "b3315d1a9dabaaeba3a6c0cd296376793b2e8540dcfd35555cea0b752aa149b9",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

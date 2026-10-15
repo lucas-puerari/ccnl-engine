@@ -127,7 +127,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 !!! warning "edilizia-artigianato-cna/cassa_edile_accruals_missing · bilateral_funds · impact yes · open"
     For blue-collar workers in construction the Cassa Edile / EPR bilateral system provides additional accrual benefits (annual leave, Christmas bonus, seniority) that are separate from INPS seniority increments. These are not modelled; only the tabular seniority increments are implemented.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `bilateral_funds` applies; category in operaio.
 
     **Remediation:** Pass the Cassa Edile contributions as a bilateral fund event, or model the Cassa Edile system.
 

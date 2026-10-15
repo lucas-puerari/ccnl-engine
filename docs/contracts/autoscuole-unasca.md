@@ -115,7 +115,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 !!! warning "autoscuole-unasca/ente_bilaterale_contribution · bilateral_funds · impact yes · open"
     SIMPLIFICATION: Ente Bilaterale di settore (Art. 7, from 01/09/2021: 2 EUR/month employer) not modelled. employer_cost_annual understated by 24 EUR/year.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `bilateral_funds` applies.
 
     **Remediation:** Pass the 2 EUR monthly employer contribution as a bilateral fund event.
 

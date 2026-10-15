@@ -89,7 +89,7 @@
         "limitation": {
           "variant": "ebnaip_qsc_and_flat_quota",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "owed"
           },
           "remediation": "Pass the QSC and the quota forfettaria as a bilateral fund event, or model percentage-based bilateral contributions."
         }
@@ -1268,6 +1268,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "d6325aedbe42a24797d2ca78a53992deeea8b366b386061b022f4360cde74218"
+    "source_hash": "c0b7263c0b0c78685093fb459933d19d24ef917e4d23c7053c0c78f083fc0779"
   }
 }

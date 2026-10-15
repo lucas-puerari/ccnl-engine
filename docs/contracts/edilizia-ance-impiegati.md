@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority, sickness |
+| **Limits of this contract** | base_salary, seniority, sickness, territorial_supplement |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -116,11 +116,18 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the seniority bands of Art. 66 with equal full-pay days and the cumulated comporto in 30 months.
 
 !!! warning "edilizia-ance-impiegati/edilizia_impiegati_unmodelled · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the premio di produzione and the EVR set by the provincial agreements (Art. 44 n. 5 and 46); the premio di fedeltà of one month a year after 20 years of service (Art. 65); the premiums on ordinary hours of Art. 54 (lavoro festivo 45%, notturno 34% or 10% in shifts, festivo notturno 50%); the indennità speciale (Art. 47), di cassa (Art. 50) and for alta montagna, cassoni and galleria (Art. 52); mensa, trasporto and trasferta (provincial; verbale 2025); the 1/25 for the festività of 4 November (Art. 43); the absorption of a superminimo into the quadri function allowance (Art. 76). The una tantum premio di ingresso of the verbale of 3 March 2022 and the riduzione contributiva edile concern the operai only.
+    NOT MODELLED AMOUNTS: the EVR set by the provincial agreements (Art. 46); the premio di fedeltà of one month a year after 20 years of service (Art. 65); the premiums on ordinary hours of Art. 54 (lavoro festivo 45%, notturno 34% or 10% in shifts, festivo notturno 50%); the indennità speciale (Art. 47), di cassa (Art. 50) and for alta montagna, cassoni and galleria (Art. 52); mensa, trasporto and trasferta (provincial; verbale 2025); the 1/25 for the festività of 4 November (Art. 43); the absorption of a superminimo into the quadri function allowance (Art. 76). The una tantum premio di ingresso of the verbale of 3 March 2022 and the riduzione contributiva edile concern the operai only.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the provincial elements as inputs and the percentage accruals of the CCNL.
+
+!!! warning "edilizia-ance-impiegati/provincial_production_premium · territorial_supplement · impact yes · open"
+    PREMIO DI PRODUZIONE: the premio di produzione set by the provincial agreements (Art. 44 n. 5) is owed to every impiegato; the engine reads no provincial agreement. Not modelled: the net pay and the employer cost are short of it.
+
+    **Applies when:** `territorial_supplement` applies.
+
+    **Remediation:** Model the provincial premio di produzione with a fact naming the province, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

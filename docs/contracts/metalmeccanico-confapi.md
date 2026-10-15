@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, pension_fund_contribution |
+| **Limits of this contract** | base_salary, bilateral_funds, pension_fund_contribution |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -114,11 +114,18 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the quadri of the 8th and 9th categories with the indennità di funzione of Art. 98 and add it to the Fondapi base, then remove this note.
 
 !!! warning "metalmeccanico-confapi/confapi_unmodelled_pay_elements · base_salary · impact yes · open"
-    NOT MODELLED PAY CLAUSES (CCNL of 3 July 2017 and renewal of 4 June 2026): elemento perequativo of 485 EUR a year with June pay in firms without second-level bargaining (Art. 48); E.A.R. of 25 EUR x 13 when the firm does not adhere to the bilateral system (Art. 53); indennità di funzione of the quadri (Art. 98); reperibilità (Art. 28, amounts by group of levels adjusted each June) and trasferta; ordinary night, holiday and compensatory-rest premiums (Art. 29 rows b, d, h, i, f, m); the shift-worker column of Art. 29 (night overtime 40%/45%, night holiday overtime 65%) and night holiday work within 8 hours (60%); flessibilità beyond 40 hours (15%/20%, Art. 23) and banca ore (50% of the overtime premium); festività on a Sunday (1/26) and the 1 h 20' of the ex operai; the superminimo ex Parte prima of 11 h 10' a year (Art. 38); leave on a 6-day week and the transitional extra day (Art. 33); sickness: comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27), the net-pay gross-up; child sickness indemnity from 2027 (Art. 58 bis) and oncological permits (Art. 55 bis); the 65% credit of the apprenticeship for the seniority increments of the worker kept on (Art. 10 p. 49); the IPCA top-up of June 2027 and 2028 above 2.653% and 2.729%.
+    NOT MODELLED PAY CLAUSES (CCNL of 3 July 2017 and renewal of 4 June 2026): elemento perequativo of 485 EUR a year with June pay in firms without second-level bargaining (Art. 48); indennità di funzione of the quadri (Art. 98); reperibilità (Art. 28, amounts by group of levels adjusted each June) and trasferta; ordinary night, holiday and compensatory-rest premiums (Art. 29 rows b, d, h, i, f, m); the shift-worker column of Art. 29 (night overtime 40%/45%, night holiday overtime 65%) and night holiday work within 8 hours (60%); flessibilità beyond 40 hours (15%/20%, Art. 23) and banca ore (50% of the overtime premium); festività on a Sunday (1/26) and the 1 h 20' of the ex operai; the superminimo ex Parte prima of 11 h 10' a year (Art. 38); leave on a 6-day week and the transitional extra day (Art. 33); sickness: comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27), the net-pay gross-up; child sickness indemnity from 2027 (Art. 58 bis) and oncological permits (Art. 55 bis); the 65% credit of the apprenticeship for the seniority increments of the worker kept on (Art. 10 p. 49); the IPCA top-up of June 2027 and 2028 above 2.653% and 2.729%.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the perequativo, E.A.R., quadri allowance, standby, ordinary-hour premiums, shift-worker rates and the residual sickness rules of Art. 55.
+
+!!! warning "metalmeccanico-confapi/bilateral_system_or_ear · bilateral_funds · impact yes · open"
+    BILATERAL SYSTEM: a firm that adheres to the bilateral system pays its contributions for every worker, a firm that does not pays the worker an E.A.R. of 25 EUR x 13 (Art. 53). Neither is modelled: the employer cost, and with the E.A.R. the net pay, are short of it.
+
+    **Applies when:** `bilateral_funds` applies.
+
+    **Remediation:** Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

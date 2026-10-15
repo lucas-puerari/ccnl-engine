@@ -144,7 +144,7 @@
         "limitation": {
           "variant": "health_and_bilateral_funds",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "owed"
           },
           "remediation": "Pass the contributions as bilateral fund events, or model them per worker."
         }
@@ -2574,7 +2574,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "2624e86015b4929f36313ee2d7e68aa66b0c39b2110c5dbdbd3fb733874f20b3",
+    "source_hash": "d7acb9c3d50504312355c6abbd3caede7e734424fecf2a3621bc7df23eefc960",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, overtime, sickness |
+| **Limits of this contract** | base_salary, bilateral_funds, overtime, sickness, territorial_supplement |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -103,11 +103,18 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the coefficients of Art. 26 on their own base and the comporto by seniority.
 
 !!! warning "edilizia-ance/edilizia_operai_unmodelled · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the indennità territoriale di settore (also in the base of the 4.95% and 18.5% and in the TFR base of Art. 33) and the EVR set by the provincial agreements (Art. 12 and 46); the special maggiorazione of the capisquadra in the base of Art. 17 and 18 (Art. 24 point 4); the festività of Art. 17 point 3 (8 hours of the point 4 elements, with the 4.95% and the 18.5% on them), which PeriodFacts.ordinary_hours_worked leaves out; the una tantum premio di ingresso of EUR 100 to operai under 29 of the verbale of 3 March 2022 (Allegato 5); the APE paid by the Cassa Edile (Art. 29); the premiums on ordinary hours of Art. 19 (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week (Art. 5); the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario (Art. 20-21); mensa, trasporto and trasferta (provincial; verbale 2025); the riduzione contributiva edile on the employer INPS contributions of full-time operai (art. 29 L. 341/1995).
+    NOT MODELLED AMOUNTS: the EVR set by the provincial agreements (Art. 46); the special maggiorazione of the capisquadra in the base of Art. 17 and 18 (Art. 24 point 4); the festività of Art. 17 point 3 (8 hours of the point 4 elements, with the 4.95% and the 18.5% on them), which PeriodFacts.ordinary_hours_worked leaves out; the una tantum premio di ingresso of EUR 100 to operai under 29 of the verbale of 3 March 2022 (Allegato 5); the APE paid by the Cassa Edile (Art. 29); the premiums on ordinary hours of Art. 19 (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week (Art. 5); the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario (Art. 20-21); mensa, trasporto and trasferta (provincial; verbale 2025); the riduzione contributiva edile on the employer INPS contributions of full-time operai (art. 29 L. 341/1995).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the provincial elements and the festività hours as inputs.
+
+!!! warning "edilizia-ance/territorial_sector_allowance · territorial_supplement · impact yes · open"
+    INDENNITÀ TERRITORIALE DI SETTORE: set by the provincial agreements (Art. 12) and owed to every operaio, also in the base of the 4.95% and 18.5% and in the TFR base of Art. 33. Not modelled: the net pay and the employer cost are short of it.
+
+    **Applies when:** `territorial_supplement` applies.
+
+    **Remediation:** Model the indennità territoriale di settore with a fact naming the province, then remove this note.
 
 !!! warning "edilizia-ance/part_time_supplementary_rate · overtime · impact yes · open"
     PART-TIME SUPPLEMENTARY HOURS: supplementary hours of the operai are paid with 20% of the hourly quota, and a flexible clause adds 10% (CCNL 19 April 2010, Art. 78, pp. 105-106). The request has no kind for supplementary hours: an overtime event of a part-time worker takes the overtime bands unless the caller passes the multiplier.
@@ -119,7 +126,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 !!! warning "edilizia-ance/cassa_edile_contribution · bilateral_funds · impact yes · open"
     CASSA EDILE CONTRIBUTION: the contribution to the Cassa Edile, set by the provincial agreements and shared by employer and worker (5,47% on the hourly elements in the Agrigento table of the Ministry of Labour of May 2025), is not modelled; only the 18.5% accrual for ferie and gratifica is. The worker's share lowers the net pay.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `bilateral_funds` applies.
 
     **Remediation:** Pass the provincial Cassa Edile contribution as a bilateral fund event, or model the provincial rates.
 

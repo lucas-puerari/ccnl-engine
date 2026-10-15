@@ -612,7 +612,7 @@
         "limitation": {
           "variant": "shared_rules_unchecked",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "owed"
           },
           "remediation": "Read the university sections of the CCNL 2019-2021 (18/1/2024) for leave, absence and sickness."
         }
@@ -639,7 +639,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "6dfbbc9165c3874f1b688b799a3883de4efb7b0c6bbd62f3ae07cb7600b70388",
+    "source_hash": "b4599d7deba3078441d4cdcfb3b054fffa642ae702e1c979a37c6b5ec4937eb7",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

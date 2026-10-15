@@ -88,7 +88,7 @@
         "limitation": {
           "variant": "cassa_edile_accruals_missing",
           "applies_when": {
-            "trigger": "outside_input",
+            "trigger": "owed",
             "worker_categories": [
               "operaio"
             ]
@@ -2266,7 +2266,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "83f28204371c4743f32456eeca46a2fe25e4e271f890b025a3c1b316121291a0",
+    "source_hash": "9d401dc96f99bdc3f0a4126974b2ad93ddf53d39b92365bf1ce3b5a2c3dde433",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

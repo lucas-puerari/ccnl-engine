@@ -132,7 +132,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 !!! warning "bancari-abi/ex_ristrutturazione_amount · seniority · impact yes · open"
     IMPORTO EX RISTRUTTURAZIONE: the tables of the renewal print, next to the scatto, an 'importo ex ristrutturazione' (14,30 for QD3 and QD4, 7,99 for QD1, QD2 and the 3a Area, 5,59 for the Area Unificata); the bundle does not pay it. TERM: the renewal of 23 November 2023 expires on 31 March 2026 (Art. 1); the tables stay those of March 2026 until a renewal is read.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `seniority` applies.
 
     **Remediation:** Source who receives the importo ex ristrutturazione and model it with the scatti, then remove this note.
 

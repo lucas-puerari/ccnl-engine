@@ -141,7 +141,7 @@
         "limitation": {
           "variant": "health_and_bilateral_funds",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "owed"
           },
           "remediation": "Pass the contributions as bilateral fund events, or model them per worker."
         }
@@ -2602,7 +2602,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "34536ea81a1fef1b68a628123edd6391bc21fbe7a621753d44f019eecc25e8fa",
+    "source_hash": "d9766865ac8cc247d306d1c9f79291b26b9ccb447cc5332fd40e4e565683dab8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

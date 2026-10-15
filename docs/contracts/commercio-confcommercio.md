@@ -123,7 +123,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 !!! warning "commercio-confcommercio/health_and_bilateral_funds · bilateral_funds · impact yes · open"
     HEALTH AND BILATERAL FUNDS (testo unico 2019): Fondo Est (Art. 104, p. 101), for the permanent workers other than the quadri, 10 euro a month from the employer and 2 euro from the worker, or an elemento distinto of 16 euro for 14 months when the employer does not enrol them; Qu.A.S. (Art. 105, p. 103), for the quadri, 350 euro a year from the employer and 56 euro from the worker from June 2011, plus an enrolment fee; Quadrifor (p. 108), 50 euro a year from the employer and 25 from the quadro; Ente Bilaterale Territoriale (p. 48), 0,10% from the employer and 0,05% from the worker on paga base and contingenza. Not modelled: the worker's shares lower the net pay.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `bilateral_funds` applies.
 
     **Remediation:** Pass the contributions as bilateral fund events, or model them per worker.
 

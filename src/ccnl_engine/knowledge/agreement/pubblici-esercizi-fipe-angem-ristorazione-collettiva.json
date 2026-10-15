@@ -125,7 +125,7 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED AMOUNTS: the elemento distinto of EUR 16.00 for 14 months owed when the employer does not pay Fondo Est (CCNL 2018 art. 186 c. 12), and the guarantee premium of the renewal of 5 June 2024 (art. 13 c. 10) paid with the November 2027 pay to workers without second-level bargaining. The caller pays them as variable items.",
+        "text": "NOT MODELLED AMOUNTS: the guarantee premium of the renewal of 5 June 2024 (art. 13 c. 10) paid with the November 2027 pay to workers without second-level bargaining. The caller pays it as a variable item.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -134,6 +134,19 @@
             "trigger": "outside_input"
           },
           "remediation": "Model the Fondo Est elemento distinto and the 2027 guarantee premium as conditional allowances."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "HEALTH FUND: the Fondo Est is owed for every worker (CCNL 2018 art. 186); an employer that does not pay it owes the worker instead the elemento distinto of EUR 16.00 for 14 months (c. 12). Neither is modelled: the employer cost, and with the elemento the net pay, are short of it.",
+        "capability": "bilateral_funds",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "health_and_bilateral_funds",
+          "applies_when": {
+            "trigger": "owed"
+          },
+          "remediation": "Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note."
         }
       },
       {
@@ -2469,7 +2482,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "cadf469a29b109b1815880acd90710688066f46dc07c64c02d73e5a8a953fa85",
+    "source_hash": "8a6187c6b5bb972cc0477751bc87477c3fc9587cb9d1f30447a41f5d3a80cb25",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

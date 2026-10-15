@@ -9,8 +9,19 @@ out, the ledger account kinds and the remittance lines.
 Every result answers "can these amounts be paid as they are?" with
 `is_payable`, and says why not with `blockers`, one `ResultBlocker` per
 reason, each with a stable `BlockerCode`, the `feature` it concerns, a
-machine-readable `detail` and a `remediation`. Both come from `assurance`, a
-`ResultAssurance` derived from the run:
+machine-readable `detail`, a `remediation` and the `totals` it leaves
+unreliable (`ResultTotal`: `net_pay`, `employer_cost`, or both). Both come
+from `assurance`, a `ResultAssurance` derived from the run.
+
+`is_payable` holds when both totals are reliable. Each total also has its
+own answer: `is_net_pay_payable` (no blocker touches the net pay) and
+`is_employer_cost_complete` (no blocker touches the employer cost). An open
+limitation on an amount only the employer owes, such as the mètaSalute
+health fund of the Metalmeccanico CCNL, leaves the employer cost short and
+the net pay payable. `period_employer_cost` never includes the INAIL premium,
+which rests on the tariff rate of the employer, nor IRAP.
+
+The assurance axes:
 
 | Axis | Type | Derived from |
 |---|---|---|
@@ -135,6 +146,8 @@ unresolved requirement, otherwise `partial` when every gap is partial and
 ::: ccnl_engine.results.ResultAssurance
 
 ::: ccnl_engine.results.ResultBlocker
+
+::: ccnl_engine.results.ResultTotal
 
 ::: ccnl_engine.results.UncoveredRun
 

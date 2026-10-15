@@ -105,7 +105,7 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED AMOUNTS: the EDR of 0.30% of paga base and contingenza (14 months) owed when the employer does not pay E.Bi.Di.M. (Art. 18), the EUR 16.00 x 14 owed without Fondo EST (Art. 19) and the EUR 37.00 x 14 owed to quadri without Cassa QuAS (Art. 20); the worker shares of these funds; the indennità di cassa of 5% (Art. 202); the premiums on ordinary night (15%, Art. 134), Sunday (30%, Art. 136) and weekly rest day (30%, Art. 139) work; the pay rows of the operatori di vendita; the sostegno all'occupazione contract of Art. 70; the guarantee of the commission-paid staff (Art. 201). The una tantum of Art. 197 (July 2024 and 2025) is historic and outside the TFR base (c. 6).",
+        "text": "NOT MODELLED AMOUNTS: the indennità di cassa of 5% (Art. 202); the premiums on ordinary night (15%, Art. 134), Sunday (30%, Art. 136) and weekly rest day (30%, Art. 139) work; the pay rows of the operatori di vendita; the sostegno all'occupazione contract of Art. 70; the guarantee of the commission-paid staff (Art. 201). The una tantum of Art. 197 (July 2024 and 2025) is historic and outside the TFR base (c. 6).",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -114,6 +114,19 @@
             "trigger": "outside_input"
           },
           "remediation": "Model the fund omission EDRs, the cashier allowance and the premiums on ordinary hours."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "HEALTH AND BILATERAL FUNDS: E.Bi.Di.M. (Art. 18), Fondo EST (Art. 19) and, for the quadri, Cassa QuAS (Art. 20) are owed for every worker, with their worker shares; an employer that does not pay them owes the worker instead the EDR of 0.30% of paga base and contingenza (14 months), EUR 16.00 x 14 and EUR 37.00 x 14. Neither is modelled: the net pay and the employer cost are short of them.",
+        "capability": "bilateral_funds",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "health_and_bilateral_funds",
+          "applies_when": {
+            "trigger": "owed"
+          },
+          "remediation": "Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note."
         }
       }
     ]
@@ -3009,7 +3022,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "7ce84ab87ab758f6bfb505c04dfab0354fd26a8b22bc0d8f369f666cc54579f4",
+    "source_hash": "673ae09ee94b497bf426839bcffbc65b6321ab4579ca4822bd8fb22b835d6eda",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

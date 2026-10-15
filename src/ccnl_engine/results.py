@@ -13,6 +13,7 @@ from ccnl_engine.assurance.models import (
     Payability,
     ResultAssurance,
     ResultBlocker,
+    ResultTotal,
 )
 from ccnl_engine.capability.requirement.rules import UnresolvedRequirement
 from ccnl_engine.capability.results import CapabilityGap, CapabilityScope
@@ -53,6 +54,7 @@ __all__ = [
     "RemittanceLine",
     "ResultAssurance",
     "ResultBlocker",
+    "ResultTotal",
     "UncoveredRun",
     "UnresolvedRequirement",
 ]

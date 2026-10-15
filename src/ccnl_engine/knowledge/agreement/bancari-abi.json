@@ -100,7 +100,7 @@
         "limitation": {
           "variant": "ex_ristrutturazione_amount",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "run"
           },
           "remediation": "Source who receives the importo ex ristrutturazione and model it with the scatti, then remove this note."
         }
@@ -1791,7 +1791,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "ab11d37967c49624e792d69face51dc9717988c9f1f36c9d29e88708b4459002",
+    "source_hash": "521bb4783ce90da4dd4095b8a1e0663695906cf4644a2da8d65497e6fc7c077f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

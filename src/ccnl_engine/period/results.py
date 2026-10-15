@@ -42,11 +42,16 @@ class PeriodResult:
             (sum of CASH_EARNINGS ledger entries). This is the theoretical
             wage the worker is entitled to before absence deductions.
         period_net: Net pay for this period only.
-        period_employer_cost: Total employer cost net of unpaid absences:
+        period_employer_cost: Employer cost net of unpaid absences:
             ``period_gross - unpaid_absence_deduction + employer_contributions
             + bilateral_fund_employer + tfr_accrual + non_cash_benefits
             + pension_fund_employer + pension_fund_tfr
-            + tfr_treasury_fund``.
+            + tfr_treasury_fund``.  It leaves out the INAIL premium, which
+            rests on the tariff rate of the employer, and IRAP.  It is
+            complete within that perimeter only when
+            :attr:`is_employer_cost_complete`: an amount the CCNL owes for
+            every worker that the engine does not compute (a health fund)
+            leaves it short.
         unpaid_absence_deduction: Sum of EMPLOYEE_DEDUCTIONS ledger entries.
             Represents wages not paid due to unpaid absences or sickness.
             Zero when no absences are present.
@@ -80,8 +85,10 @@ class PeriodResult:
             :class:`~ccnl_engine.limitation.models.ModelLimitation`);
             an open one with a monetary impact blocks the amounts.
 
-    Whether the amounts can be paid is :attr:`is_payable`; why not is
-    :attr:`blockers`; both come from :attr:`assurance`.
+    Whether the amounts can be paid is :attr:`is_payable`: the net pay
+    (:attr:`is_net_pay_payable`) and the employer cost
+    (:attr:`is_employer_cost_complete`) both reliable.  Why not is
+    :attr:`blockers`; all come from :attr:`assurance`.
     """
 
     period_id: PeriodId
@@ -135,6 +142,16 @@ class PeriodResult:
     def is_payable(self) -> bool:
         """Whether nothing blocks the amounts of this result."""
         return self.assurance.is_payable
+
+    @property
+    def is_net_pay_payable(self) -> bool:
+        """Whether no blocker leaves the net pay of this result unreliable."""
+        return self.assurance.is_net_pay_payable
+
+    @property
+    def is_employer_cost_complete(self) -> bool:
+        """Whether no blocker leaves the employer cost of this result short."""
+        return self.assurance.is_employer_cost_complete
 
     @property
     def blockers(self) -> tuple[ResultBlocker, ...]:

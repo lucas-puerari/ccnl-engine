@@ -88,14 +88,14 @@ Each simplification below is a model limitation of the registry. An open limitat
 !!! warning "enti-ricerca-aran/research_allowances_missing · base_salary · impact yes · open"
     ALLOWANCES: the indennità di Ente of levels IV-VIII (Tabella C5) and the indennità di valorizzazione professionale of levels I-III (Tabella C6) are stated by the CCNL only as increments from 1.1.2027, their earlier amounts set by older contracts not read: not modelled, the caller pays them.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `base_salary` applies.
 
     **Remediation:** Read the indennità di Ente and di valorizzazione professionale of the earlier CCNL and add them with the 2027 increments.
 
 !!! warning "enti-ricerca-aran/shared_rules_unchecked · sickness · impact unknown · open"
     SHARED RULES: the hourly divisor, the tredicesima, the leave, absence, sickness and accrual rules are those of the scuola file of the same comparto (istruzione-ricerca-aran), not read again for the research bodies. No overtime table is modelled.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `sickness` applies.
 
     **Remediation:** Read the research sections of the CCNL 2019-2021 (18/1/2024) for leave, absence, sickness and overtime.
 

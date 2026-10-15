@@ -94,8 +94,11 @@
         "limitation": {
           "variant": "ebiterme_fontur_funds",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "owed"
           },
+          "totals": [
+            "employer_cost"
+          ],
           "remediation": "Pass the EBITERME and FONTUR contributions as a bilateral fund event, or source and model them."
         }
       },
@@ -2227,7 +2230,7 @@
     "effective_until": null,
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
     "verification_status": "unverified",
-    "source_hash": "5b8519deced0b6c539c310750e69a52444ba84e10c0315a9e122a562ba5bb1c1",
+    "source_hash": "06a60356a53dcb7d652ec0eed94d3bafc8d861429c04c0883cdcd624f2f1fc5a",
     "published_at": "2026-09-12",
     "source_type": "commercial_secondary"
   },

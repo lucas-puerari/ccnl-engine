@@ -124,7 +124,7 @@
         "limitation": {
           "variant": "health_and_bilateral_funds",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "owed"
           },
           "remediation": "Pass the contributions as bilateral fund events, or model them per worker."
         }
@@ -2778,7 +2778,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "af90e2eeb9306a21c6ed08873d144b56f2ebfa3e010c676cd287744fa1018846",
+    "source_hash": "582b5faf0d719b3a0b34fba566db3af7b1132f2c82e8872e8467ba8a5851ca85",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

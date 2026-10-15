@@ -8,6 +8,7 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.agreement.facade import CCNL, CoverageNote
+from ccnl_engine.assurance.models import ResultTotal
 from ccnl_engine.limitation.models import MonetaryImpact
 from tests.unit.ccnl_engine.builders import make_ccnl_dict
 
@@ -41,6 +42,16 @@ def test_note_limitation_becomes_a_model_limitation() -> None:
     assert limitation.rulesets == ("test",)
     assert limitation.summary == "a band is missing"
     assert limitation.source == "ccnl/test:coverage.notes"
+
+
+def test_note_limitation_keeps_the_totals_it_names() -> None:
+    """An employer-only fund touches the employer cost alone."""
+    spec = _SPEC | {"applies_when": {"trigger": "owed"}, "totals": ["employer_cost"]}
+    ccnl = _ccnl(
+        _note(capability="bilateral_funds", monetary_impact="yes", limitation=spec)
+    )
+    (limitation,) = ccnl.limitations
+    assert limitation.totals == frozenset({ResultTotal.EMPLOYER_COST})
 
 
 @pytest.mark.parametrize(

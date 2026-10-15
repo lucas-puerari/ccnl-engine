@@ -145,6 +145,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "RemittanceLine",
         "ResultAssurance",
         "ResultBlocker",
+        "ResultTotal",
         "UncoveredRun",
         "UnresolvedRequirement",
     }),

@@ -14,6 +14,7 @@ from ccnl_engine.assurance.models import (
     Payability,
     ResultAssurance,
     ResultBlocker,
+    ResultTotal,
     decide_payability,
 )
 from ccnl_engine.assurance.policies import EngineMode
@@ -169,3 +170,40 @@ def test_blocker_is_hashable_and_comparable() -> None:
 
     assert copy == _FACT
     assert len({copy, _FACT}) == 1
+
+
+@pytest.mark.parametrize(
+    ("totals", "net_pay", "employer_cost"),
+    [
+        (frozenset(ResultTotal), False, False),
+        (frozenset({ResultTotal.EMPLOYER_COST}), True, False),
+        (frozenset({ResultTotal.NET_PAY}), False, True),
+    ],
+)
+def test_a_blocker_leaves_only_its_totals_unreliable(
+    totals: frozenset[ResultTotal], net_pay: bool, employer_cost: bool
+) -> None:
+    """Each total is reliable unless a blocker names it; any blocker blocks."""
+    fund = ResultBlocker(
+        BlockerCode.OPEN_LIMITATION, "bilateral_funds", "ccnl/fund", "model it", totals
+    )
+    assurance = _assurance(fund)
+
+    assert assurance.is_net_pay_payable is net_pay
+    assert assurance.is_employer_cost_complete is employer_cost
+    assert not assurance.is_payable
+
+
+def test_a_blocker_touches_both_totals_by_default() -> None:
+    """Without totals stated, a blocker leaves both unreliable."""
+    assert _FACT.totals == frozenset(ResultTotal)
+    assert not _assurance(_FACT).is_net_pay_payable
+    assert not _assurance(_FACT).is_employer_cost_complete
+
+
+def test_nothing_blocked_is_reliable_on_both_totals() -> None:
+    """With no blocker, both totals are reliable and the result payable."""
+    assurance = _assurance()
+    assert assurance.is_net_pay_payable
+    assert assurance.is_employer_cost_complete
+    assert assurance.is_payable

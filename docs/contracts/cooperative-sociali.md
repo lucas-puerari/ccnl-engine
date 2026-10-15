@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer |
+| **Limits of this contract** | base_salary, bilateral_funds, inps_employer |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -141,11 +141,18 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add a disadvantaged-worker input and zero the contributions of L. 381/1991 art. 4.
 
 !!! warning "cooperative-sociali/coop_sociali_unmodelled_elements · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the ETDR of the educatori (EUR 41, then 82 a month in 2025, Art. 47 and verbale 17 September 2025; the educatori socio-pedagogici move to D2 from 1 January 2026); the night allowance of EUR 12.39 / 6.20 per night and the 10% of night-only custody staff (Art. 54); 15% on Sunday and holiday ordinary hours (Art. 55); the 10% shift allowance (Art. 56); reperibilità in struttura EUR 77.47 a month plus EUR 20 a night (Art. 57); pronta disponibilità EUR 1.55 an hour (Art. 58); the indennità professionali (Art. 78) and the EUR 50 affiancamento allowance; the indennità di cassa EUR 30.99 (Art. 81); the extra 1/26 of a holiday on the rest day (Art. 59) and the 4 days of ex festività (Art. 60); the 26 hours of night workers' permessi (Art. 54); the PTR (Art. 10, outside every institute); the salari di primo ingresso of type B (Art. 2 B.4); the territorial gradualità agreements (Art. 77); the maternity integration (Art. 63); the 100% integration of work injury to day 180 (Art. 72); the ASI contribution of EUR 5, then 10 a month (Art. 87); the EUR 10 quota d'iscrizione of Previdenza Cooperativa (Art. 86). Sickness: no integration during the prova (Art. 71, Art. 28 M) and the comporto of 12 months in three years are not inputs. Apprenticeship: the 24-month track of the educatore professionale with title (Art. 28 N.2) is not expressible by level.
+    NOT MODELLED AMOUNTS: the ETDR of the educatori (EUR 41, then 82 a month in 2025, Art. 47 and verbale 17 September 2025; the educatori socio-pedagogici move to D2 from 1 January 2026); the night allowance of EUR 12.39 / 6.20 per night and the 10% of night-only custody staff (Art. 54); 15% on Sunday and holiday ordinary hours (Art. 55); the 10% shift allowance (Art. 56); reperibilità in struttura EUR 77.47 a month plus EUR 20 a night (Art. 57); pronta disponibilità EUR 1.55 an hour (Art. 58); the indennità professionali (Art. 78) and the EUR 50 affiancamento allowance; the indennità di cassa EUR 30.99 (Art. 81); the extra 1/26 of a holiday on the rest day (Art. 59) and the 4 days of ex festività (Art. 60); the 26 hours of night workers' permessi (Art. 54); the PTR (Art. 10, outside every institute); the salari di primo ingresso of type B (Art. 2 B.4); the territorial gradualità agreements (Art. 77); the maternity integration (Art. 63); the 100% integration of work injury to day 180 (Art. 72); the EUR 10 quota d'iscrizione of Previdenza Cooperativa (Art. 86). Sickness: no integration during the prova (Art. 71, Art. 28 M) and the comporto of 12 months in three years are not inputs. Apprenticeship: the 24-month track of the educatore professionale with title (Art. 28 N.2) is not expressible by level.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the ETDR, the night, shift and availability allowances, the professional allowances and the prova exclusion of sickness.
+
+!!! warning "cooperative-sociali/asi_health_contribution · bilateral_funds · impact yes · open"
+    HEALTH CONTRIBUTION: the ASI contribution of EUR 5, then 10 a month (Art. 87), is owed for every worker. Not modelled: the totals of every run are short of it.
+
+    **Applies when:** `bilateral_funds` applies.
+
+    **Remediation:** Model the ASI contribution per worker, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

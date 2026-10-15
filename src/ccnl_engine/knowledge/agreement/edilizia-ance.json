@@ -91,7 +91,7 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED AMOUNTS: the indennità territoriale di settore (also in the base of the 4.95% and 18.5% and in the TFR base of Art. 33) and the EVR set by the provincial agreements (Art. 12 and 46); the special maggiorazione of the capisquadra in the base of Art. 17 and 18 (Art. 24 point 4); the festività of Art. 17 point 3 (8 hours of the point 4 elements, with the 4.95% and the 18.5% on them), which PeriodFacts.ordinary_hours_worked leaves out; the una tantum premio di ingresso of EUR 100 to operai under 29 of the verbale of 3 March 2022 (Allegato 5); the APE paid by the Cassa Edile (Art. 29); the premiums on ordinary hours of Art. 19 (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week (Art. 5); the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario (Art. 20-21); mensa, trasporto and trasferta (provincial; verbale 2025); the riduzione contributiva edile on the employer INPS contributions of full-time operai (art. 29 L. 341/1995).",
+        "text": "NOT MODELLED AMOUNTS: the EVR set by the provincial agreements (Art. 46); the special maggiorazione of the capisquadra in the base of Art. 17 and 18 (Art. 24 point 4); the festività of Art. 17 point 3 (8 hours of the point 4 elements, with the 4.95% and the 18.5% on them), which PeriodFacts.ordinary_hours_worked leaves out; the una tantum premio di ingresso of EUR 100 to operai under 29 of the verbale of 3 March 2022 (Allegato 5); the APE paid by the Cassa Edile (Art. 29); the premiums on ordinary hours of Art. 19 (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week (Art. 5); the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario (Art. 20-21); mensa, trasporto and trasferta (provincial; verbale 2025); the riduzione contributiva edile on the employer INPS contributions of full-time operai (art. 29 L. 341/1995).",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -100,6 +100,19 @@
             "trigger": "outside_input"
           },
           "remediation": "Model the provincial elements and the festività hours as inputs."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "INDENNITÀ TERRITORIALE DI SETTORE: set by the provincial agreements (Art. 12) and owed to every operaio, also in the base of the 4.95% and 18.5% and in the TFR base of Art. 33. Not modelled: the net pay and the employer cost are short of it.",
+        "capability": "territorial_supplement",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "territorial_sector_allowance",
+          "applies_when": {
+            "trigger": "owed"
+          },
+          "remediation": "Model the indennità territoriale di settore with a fact naming the province, then remove this note."
         }
       },
       {
@@ -123,7 +136,7 @@
         "limitation": {
           "variant": "cassa_edile_contribution",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "owed"
           },
           "remediation": "Pass the provincial Cassa Edile contribution as a bilateral fund event, or model the provincial rates."
         }
@@ -1490,7 +1503,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "35a50efbb51b33204ee40b93881b70f77caf5cd5e80a18e1b1f8e7c27509e7fd",
+    "source_hash": "44b24f62f066364b4475c241a6056c6b604a3b5260f2133ecd32ade828724450",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
