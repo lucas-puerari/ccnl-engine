@@ -92,5 +92,36 @@
     "fiscal": "171.01"
   },
   "net": "1647.00",
-  "legibility": "full"
+  "legibility": "full",
+  "replay": {
+    "replayability": "partial",
+    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
+    "inputs": {
+      "ccnl_slug": "commercio-confcommercio.json",
+      "level_code": "5",
+      "year": 2026,
+      "month": 2,
+      "headcount": 10,
+      "contract_type": "permanent",
+      "category": "impiegato"
+    },
+    "unknown_inputs": [
+      "headcount",
+      "superminimo and provincial elements",
+      "the wage-integration fund of the employer (the payslip withholds IVS only, no FIS share)"
+    ],
+    "expected": {
+      "base_salary": {
+        "value": "1136.07",
+        "tolerance": "0.00",
+        "printed": "pay_elements.minimo"
+      },
+      "fixed_allowances": {
+        "value": "521.94",
+        "tolerance": "0.00",
+        "printed": "pay_elements.contingenza"
+      }
+    },
+    "known_differences": []
+  }
 }

@@ -144,5 +144,9 @@
     "IVS exemption (L. 197/2022, 7% on 1450.00) is paid as an earning of 101.50.",
     "IRPEF net 259.76 = lorda 376.97 - detrazioni 117.21.",
     "CCNL not printed: contingenza 519.76 matches the Terziario level 6 value; the hint is inferred."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The period is before the tax years of the bundle (2026 and 2027)."
+  }
 }

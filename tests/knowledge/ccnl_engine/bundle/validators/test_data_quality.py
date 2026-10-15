@@ -147,6 +147,10 @@ def test_invalid_cases_are_rejected(case: dict[str, object], fragment: str) -> N
             {"source": _PAYSLIP | {"sha256": "not-a-digest", "path": None}},
             "source.sha256",
         ),
+        (
+            {"source": _PAYSLIP | {"sha256": "a" * 64}},
+            "source.sha256 or",
+        ),
         ({"source": _PAYSLIP | {"verified_by": ""}}, "source.verified_by"),
         ({"source": _PAYSLIP | {"independence": None}}, "source.independence"),
         ({"source": _PAYSLIP | {"verified_at": "10/10/2026"}}, "verified_at"),

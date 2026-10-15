@@ -113,5 +113,9 @@
   "legibility": "full",
   "notes": [
     "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The period is not printed in full."
+  }
 }

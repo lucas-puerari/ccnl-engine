@@ -111,5 +111,30 @@
     "rounding": "0.51"
   },
   "net": "1430.00",
-  "legibility": "full"
+  "legibility": "full",
+  "replay": {
+    "replayability": "partial",
+    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
+    "inputs": {
+      "ccnl_slug": "metalmeccanico-federmeccanica.json",
+      "level_code": "D2",
+      "year": 2026,
+      "month": 8,
+      "headcount": 50,
+      "contract_type": "permanent",
+      "category": "impiegato"
+    },
+    "unknown_inputs": [
+      "weekly hours (the printed minimo 1509.07 is 76.24% of the D2 table: a part-time ratio or another level, not printed)",
+      "superminimo"
+    ],
+    "expected": {
+      "employee_inps_rate": {
+        "value": "0.0949",
+        "tolerance": "0.00001",
+        "printed": "inps.ivs_rate + inps.cigs_rate"
+      }
+    },
+    "known_differences": []
+  }
 }

@@ -183,5 +183,40 @@
     "IRPEF ritenuta equals IRPEF lorda: no work deduction applied in the month (none printed).",
     "Hours: 138 + 16 + 14 = 168 for the month.",
     "Comune name omitted; only region kept."
-  ]
+  ],
+  "replay": {
+    "replayability": "partial",
+    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
+    "inputs": {
+      "ccnl_slug": "commercio-confcommercio.json",
+      "level_code": "3",
+      "year": 2026,
+      "month": 1,
+      "headcount": 10,
+      "contract_type": "permanent",
+      "category": "impiegato"
+    },
+    "unknown_inputs": [
+      "superminimo",
+      "the provincial terzo elemento of Bologna"
+    ],
+    "expected": {
+      "base_salary": {
+        "value": "1453.94",
+        "tolerance": "0.00",
+        "printed": "pay_elements.paga_base"
+      },
+      "fixed_allowances": {
+        "value": "527.90",
+        "tolerance": "0.00",
+        "printed": "pay_elements.contingenza"
+      },
+      "employee_inps_rate": {
+        "value": "0.0945667",
+        "tolerance": "0.00001",
+        "printed": "inps.ivs_rate + inps.fis_rate (fondo bilaterale < 15)"
+      }
+    },
+    "known_differences": []
+  }
 }

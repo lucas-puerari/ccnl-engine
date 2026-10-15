@@ -228,5 +228,9 @@
     "Region inferred from regional surtax code 21 (Veneto); no address recorded.",
     "Check: competenze lines sum to 13660.47; printed total 13659.77 excludes the 0.70 fringe benefit. Trattenute 1444.76 + 1361.55 + 13.78 + 134.24 + 565.32 - 97.28 (IRPEF credit) = 3422.37 = printed total. 13659.77 - 3422.37 - 0.14 previous rounding = 10237.26 = net. Reconciles exactly.",
     "Retribuzione ordinaria rate column is blank; qty 25.00 read as days."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The period is before the tax years of the bundle (2026 and 2027)."
+  }
 }

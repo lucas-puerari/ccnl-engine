@@ -111,5 +111,9 @@
     "Not a payslip: an annual employer cost summary ('Costo dipendente', period 'Intero anno'). Transcribed for reference only; worker and company boxes are blank apart from a company code and a date in January 2024 (possibly a hire date, kept at month precision).",
     "Check: competenze 30314.82 - contributi 2583.68 - IRPEF netta 4173.13 - altre trattenute 6.94 = 23551.07, vs printed netto 23559.00 (gap 7.93, consistent with monthly net rounding). The twelve monthly nets sum to 23559.00 = printed netto. Cost components sum to 31549.07 = printed total importo.",
     "Quattordicesima 131.27 is far below one monthly rate; likely a partial or residual accrual. Copied as printed."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "Not a payslip: an employer cost simulation."
+  }
 }

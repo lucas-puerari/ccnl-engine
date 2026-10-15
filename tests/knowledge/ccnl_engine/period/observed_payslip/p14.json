@@ -156,5 +156,9 @@
     "IRPEF check: 669.98 - 96.52 - 32.81 = 540.65.",
     "INPS base 2912 = 2750.00 + fringe benefit soggetto 161.85 (2911.85, rounded); fringe 161.85 = benefit assicurazioni 1.32 + benefit auto 160.53.",
     "Comune name omitted per anonymization; Sanimpresa is the Lazio Confcommercio health fund."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The level is not printed."
+  }
 }

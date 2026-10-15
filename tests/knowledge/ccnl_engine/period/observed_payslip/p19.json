@@ -79,5 +79,9 @@
     "Net check not possible: no earnings, deductions or net visible.",
     "17015.00 sits in the 'unita o pr. previd.' column, so it is probably a year-to-date base rather than the month base; uncertain.",
     "INAIL 6.108 is printed in the rate column; meaning (rate per mille or other) unclear."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The period is not printed in full."
+  }
 }

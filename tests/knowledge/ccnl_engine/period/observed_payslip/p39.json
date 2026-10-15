@@ -74,5 +74,9 @@
   "legibility": "full",
   "notes": [
     "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The period is before the tax years of the bundle (2026 and 2027)."
+  }
 }

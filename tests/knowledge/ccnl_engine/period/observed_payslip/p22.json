@@ -128,5 +128,9 @@
     "Surtax year 2024 assumed from 'Add. Reg. A.P.' on a 2025 payslip.",
     "Calendar: two days of absence (7 h each) marked as ferie on 1-2 October; part-time vertical pattern of 4 and 7 hour days.",
     "INAIL position number and names redacted/omitted."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The period is before the tax years of the bundle (2026 and 2027)."
+  }
 }

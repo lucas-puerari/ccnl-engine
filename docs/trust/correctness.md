@@ -33,6 +33,19 @@ Evidence:
   are `source_linked` (they cite the table they model) and
   <!-- trust:reference-cases-verified -->1<!-- /trust:reference-cases-verified -->
   are `verified` against an independent payslip or official worked example.
+- Observed payslip replay: each of the 64 transcribed payslips in
+  `tests/knowledge/ccnl_engine/period/observed_payslip/` states in `replay`
+  whether it is `full`, `partial` or `not_replayable`, and why. A
+  replayable record builds its request from the observed facts alone,
+  names the facts the request cannot state (`unknown_inputs`) and pins the
+  values it compares with the field they were read from and a tolerance;
+  `test_observed_replay.py` runs each through `PayrollEngine` and fails on
+  any difference that `known_differences` does not list with its reason,
+  owner and `accepted_until` date. Seven payslips of 2026 (terziario and
+  industria) replay in part: the base salary, the contingenza and, where
+  the payslip prints its composition, the worker's INPS rate. None replays
+  in full: superminimi, provincial elements and flat overtime have no field
+  in the request. 39 are of years before the bundle's tax years.
 - Legal scenario tests: selected rules (IRPEF, regional and municipal
   surtaxes, substitute-tax regimes, apprenticeship scaling, the withholding
   schedule and others) checked against hand-derived values, in the

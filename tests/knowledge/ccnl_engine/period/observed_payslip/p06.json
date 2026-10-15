@@ -142,5 +142,35 @@
   "legibility": "full",
   "notes": [
     "IRPEF netta = lorda - detrazione lavoro: the 54.50 ulteriore detrazione is shown as a statistic line, not in the IRPEF box."
-  ]
+  ],
+  "replay": {
+    "replayability": "partial",
+    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
+    "inputs": {
+      "ccnl_slug": "commercio-confcommercio.json",
+      "level_code": "3",
+      "year": 2026,
+      "month": 4,
+      "headcount": 50,
+      "contract_type": "permanent"
+    },
+    "unknown_inputs": [
+      "headcount",
+      "the wage-integration fund of the employer (the payslip withholds 9.49%: IVS and CIGS, no FIS share)",
+      "superminimo"
+    ],
+    "expected": {
+      "base_salary": {
+        "value": "1453.94",
+        "tolerance": "0.00",
+        "printed": "pay_elements.paga_base"
+      },
+      "fixed_allowances": {
+        "value": "527.90",
+        "tolerance": "0.00",
+        "printed": "pay_elements.contingenza"
+      }
+    },
+    "known_differences": []
+  }
 }

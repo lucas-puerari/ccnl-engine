@@ -213,5 +213,9 @@
     "The fiscal amounts (423.80, 553.91, 187.58, 11.32, 69.75, 66.79, 30.89) are printed in the rightmost column, whose header reads 'Competenze'; by meaning they look like deductions (IRPEF balance due, recovery of the L. 207/2024 bonus with 0.00 due, surtax balances at termination). Recorded with 'column' instead of a sign.",
     "Comune name and cadastral code omitted; region from the 'Abruzzo' surtax line.",
     "Mansione omitted. Level 6J and divisors 26/168 suggest CCNL Logistica Trasporto Merci e Spedizione; not confirmed by the image."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The period is before the tax years of the bundle (2026 and 2027)."
+  }
 }

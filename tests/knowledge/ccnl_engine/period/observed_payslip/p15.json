@@ -210,5 +210,9 @@
     "Labels of header fields 160.00 / 20.00 / 26.00 partly unreadable: interpreted as hours, worked days and paid days.",
     "Pay element 'Mancato LimiteOr' transcribed as printed; meaning unclear.",
     "Surtax qty column (2.0000, 1.0000, 1.1000) interpreted as installment number; uncertain. Leave units not printed."
-  ]
+  ],
+  "replay": {
+    "replayability": "not_replayable",
+    "reason": "The period is before the tax years of the bundle (2026 and 2027)."
+  }
 }

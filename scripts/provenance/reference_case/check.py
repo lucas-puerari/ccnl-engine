@@ -11,10 +11,10 @@ expected values can be trusted in a top-level ``verification`` field:
   produce, an observed payslip or an official worked example.  The case
   names it in ``source``: its ``kind`` (:data:`SOURCE_KINDS`), an immutable
   reference (a ``sha256`` of the document or the ``path`` of a file
-  versioned in the repository), who checked it (``verified_by``) and when
-  (``verified_at``), and how the expected values were produced without the
-  engine (``independence``).  It also states the ``tolerance`` its amounts
-  are compared with.
+  versioned in the repository; both, when stated, must agree), who checked
+  it (``verified_by``) and when (``verified_at``), and how the expected
+  values were produced without the engine (``independence``).  It also
+  states the ``tolerance`` its amounts are compared with.
 
 Every case names the ``axes`` it validates (:data:`AXES`); each expected
 value belongs to one of them (:data:`AXIS_OF`).  :func:`index` maps each
@@ -34,6 +34,7 @@ The module reads raw JSON with the standard library only.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 from collections import Counter
@@ -209,10 +210,20 @@ def _verified_errors(source: Mapping[str, object], tolerance: object) -> Iterato
 
 
 def _immutable(source: Mapping[str, object]) -> bool:
+    """Return whether the source is pinned: by its digest, its file, or both.
+
+    A versioned file and a digest stated together must agree.
+
+    Returns:
+        ``True`` for a valid digest, an existing file, and no mismatch.
+    """
     digest, path = source.get("sha256"), source.get("path")
-    if isinstance(digest, str) and _SHA256.match(digest):
-        return True
-    return isinstance(path, str) and (REPO_ROOT / path).is_file()
+    pinned = isinstance(digest, str) and bool(_SHA256.match(digest))
+    file = REPO_ROOT / path if isinstance(path, str) else None
+    if file is None or not file.is_file():
+        return pinned
+    actual = hashlib.sha256(file.read_bytes()).hexdigest()
+    return digest is None or actual == digest
 
 
 def _iso_date(value: object) -> bool:
