@@ -10,6 +10,8 @@ from ccnl_engine.assurance.models import (
     EvidenceStatus,
     Payability,
     ResultAssurance,
+    ResultBlocker,
+    ResultTotal,
 )
 from ccnl_engine.assurance.policies import EngineMode
 from ccnl_engine.assurance.rules import (
@@ -29,6 +31,7 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
     DecisionOrigin,
 )
+from ccnl_engine.limitation.models import ModelLimitation, MonetaryImpact
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 from tests.unit.ccnl_engine.provenance.ruleset.builders import tax_ruleset
 
@@ -240,3 +243,59 @@ def test_nothing_computed_is_never_payable() -> None:
     ]
     assert not simulation.is_payable
     assert operational.mode is EngineMode.OPERATIONAL
+
+
+def _fund(**overrides: object) -> ModelLimitation:
+    fields: dict[str, object] = {
+        "id": "ccnl-a/health_fund",
+        "capability": "bilateral_funds",
+        "variant": "health_fund",
+        "summary": "the employer owes a health fund",
+        "monetary_impact": MonetaryImpact.YES,
+        "rulesets": ("ccnl-a",),
+        "applies_when": {"trigger": "owed"},
+        "totals": ["employer_cost"],
+        "source": "ccnl/ccnl-a:coverage.notes",
+        "remediation": "model it",
+    }
+    return ModelLimitation.model_validate(fields | overrides)
+
+
+def test_an_open_limitation_blocks_only_the_totals_it_names() -> None:
+    """An employer-only fund leaves the employer cost short, the net payable."""
+    fund = _fund()
+
+    assurance = assess((), (), _report(), (), _SIMULATION, (fund,))
+
+    (blocker,) = assurance.blockers
+    assert blocker == ResultBlocker(
+        BlockerCode.OPEN_LIMITATION,
+        "bilateral_funds",
+        "ccnl-a/health_fund",
+        "bilateral_funds is computed under the open limitation ccnl-a/health_fund: "
+        "check the amount outside the engine or resolve the limitation",
+        frozenset({ResultTotal.EMPLOYER_COST}),
+    )
+    assert assurance.limitations == (fund,)
+    assert assurance.is_net_pay_payable
+    assert not assurance.is_employer_cost_complete
+
+
+def test_a_resolved_limitation_is_listed_without_blocking() -> None:
+    """A limitation that no longer holds is reported, never a blocker."""
+    fund = _fund(status="resolved")
+
+    assurance = assess((), (), _report(), (), _SIMULATION, (fund,))
+
+    assert assurance.limitations == (fund,)
+    assert assurance.blockers == ()
+    assert assurance.is_payable
+
+
+def test_other_blockers_touch_both_totals() -> None:
+    """A blocker that names no total leaves both unreliable."""
+    report = _report(caller_supplied={"overtime": ("hourly_rate",)})
+
+    (blocker,) = assess((), (), report, (), _SIMULATION).blockers
+
+    assert blocker.totals == frozenset(ResultTotal)
