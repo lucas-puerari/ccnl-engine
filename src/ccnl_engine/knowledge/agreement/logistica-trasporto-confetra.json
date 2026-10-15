@@ -148,6 +148,16 @@
           },
           "remediation": "Pass the contributions as bilateral fund events, or model them per worker."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS CONTRIBUTION CLASS: the file applies the rates of the industria (impiegati 29.06% from 16 to 50 employees and 29.36% from 51, operai 31.28% and 31.58% with the 2.22% malattia). The cost table of the Ministry of Labour for this CCNL (DD 135 of 19 December 2025) applies 29.44% to operai and impiegati alike, and states neither the INPS class of the employer nor the composition of the rate: the class of a logistica employer is not confirmed, and the employer and worker contributions may differ.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "inps_employer_class_unconfirmed",
+          "remediation": "Read the INPS classification (codice statistico contributivo) of the logistica, trasporto merci e spedizione employers and the composition of the 29.44% of DD 135/2025, then set the class of the file and remove this note."
+        }
       }
     ]
   },
@@ -2574,7 +2584,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "d7acb9c3d50504312355c6abbd3caede7e734424fecf2a3621bc7df23eefc960",
+    "source_hash": "c6a0fcb943b3d8328a271da294a9c756e7d2532bb0fbfec1980d7494038cc151",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3081,6 +3091,32 @@
         "findings": [
           "Impiegato 3S with 3 scatti, January 2026: minimo plus EPA 2000.37 ((23.644,44 + 360) / 12), scatti 74.37 and EDR 10.00 a month match the table (p. 9); the TFR of the month is the table's TFR base over 13.5 less the 0.5% IVS offset. Match.",
           "Deviation: the table applies an employer INPS rate of 29.44%; the engine applies 29.06% from 16 to 50 employees and 29.36% from 51. Cause not established (the table does not state the class of employer and size); decision: flagged for the INPS review of the logistica contribution class. Sanilog (165 euro) and Ebilog (46,20 euro) of the table equal the declared 150 and 42 euro plus the 10% solidarity contribution. INAIL 0.404%: not computed by the engine. No independent net pay example."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-divergences",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Closure of the divergence left open by the review 2026-10-15-ai-cost-check: the employer INPS rate against the cost table of the Ministry of Labour (DD 135/2025).",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-135-del-19",
+            "sha256": "91858281e9567597b56506c663222e985f2387b607e7e257e5cf23dc60b3b9b5"
+          }
+        ],
+        "findings": [
+          "The table prints 'Inps (29,44%)' on every row, operai and impiegati non viaggianti alike (30,68% for the personale viaggiante), with no composition and no class of employer. The 0.08 points above the 29.36% of the engine fit more than one composition (the whole 0.90% CIGS and a 0.24% maternità, for one), and a single rate for operai and impiegati does not fit the industria class of the file, where the operai pay the 2.22% malattia. The class is not established."
+        ],
+        "divergences": [
+          {
+            "subject": "Employer INPS rate of an impiegato non viaggiante, January 2026: 29.44% in DD 135/2025 against 29.06% (16-50 employees) or 29.36% (51 and more) in the engine.",
+            "decision": "source_context_missing",
+            "cause": "The table does not state the INPS class of the employer nor the composition of its rate; the class of the file (industria) is not confirmed.",
+            "evidence": "DD 135/2025, tables of the personale non viaggiante; the limitation blocks every run of the CCNL.",
+            "limitation": "inps_employer_class_unconfirmed"
+          }
         ]
       }
     ],

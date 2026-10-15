@@ -118,7 +118,7 @@ def test_fractional_extra_months_settle_trattamento_integrativo() -> None:
 @pytest.mark.parametrize(
     ("level_code", "expected"),
     [
-        pytest.param("Q", Decimal("4461.55"), id="second-bracket"),
+        pytest.param("Q", Decimal("4448.55"), id="second-bracket"),
         pytest.param("3", Decimal("2264.70"), id="first-bracket"),
     ],
 )
@@ -128,7 +128,8 @@ def test_part_year_employment_withholds_the_tax_on_its_days(
     """Commercio hired 15 March 2026, open-ended: 292 days of employment.
 
     The deductions proportioned to the days (art. 13 c. 1 TUIR, L. 207/2024
-    art. 1 c. 6) must reach the conguaglio.  292 / 365 is exactly 0.8.
+    art. 1 c. 6) must reach the conguaglio; the 65 EUR of art. 13 c. 1.1
+    is not proportioned.  292 / 365 is exactly 0.8.
 
     March pays 14 of 26 daily quotas (16-21, 23-28, 30, 31 March are the
     Mondays to Saturdays employed), each pay component rounded on its own.
@@ -140,8 +141,9 @@ def test_part_year_employment_withholds_the_tax_on_its_days(
     - Level Q: runs of 1,608.00, 2,986.29 seven times, 995.43 (June
       fourteenth), 3,047.05 twice and 2,539.22 (thirteenth): 32,140.78 of
       gross, 3,135.58 of INPS, final taxable 29,005.20.  Gross tax 6,440.00
-      + 1,005.20 * 33% = 6,771.72; deduction (1,910 * 0.9543 + 65) * 0.8 =
-      1,510.17; further deduction 800.00; net 4,461.55.
+      + 1,005.20 * 33% = 6,771.72; deduction 1,910 * 0.9543 * 0.8 + 65 =
+      1,523.17, the 65 of art. 13 c. 1.1 whole (circolare AdE 4/E/2022);
+      further deduction 800.00; net 4,448.55.
     - Level 3: runs of 1,068.25, 1,983.91 seven times, 661.31, 2,024.38
       twice and 1,686.99: 21,352.68 of gross, 2,083.25 of INPS, final
       taxable 19,269.43.  Gross tax 4,431.97; ratio 8,730.57 / 13,000

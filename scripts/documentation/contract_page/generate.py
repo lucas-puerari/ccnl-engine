@@ -441,6 +441,19 @@ def _freshness_lines(
     ]
 
 
+def _findings(review: dict[str, Any]) -> list[str]:
+    """Return the findings of a review followed by its closed divergences.
+
+    Returns:
+        One entry per finding, then one per divergence with its decision.
+    """
+    divergences = [
+        f"Divergence ({d['decision']}): {d['subject']} Cause: {d['cause']}"
+        for d in review.get("divergences") or ()
+    ]
+    return [*(review.get("findings") or ()), *divergences]
+
+
 def _review_lines(verification: dict[str, Any]) -> list[str]:
     """Build the review history table from the review log, oldest first.
 
@@ -452,7 +465,7 @@ def _review_lines(verification: dict[str, Any]) -> list[str]:
         return ["## Review history", "", "No review is recorded.", ""]
     rows = [
         f"| {r['date']} | {r['reviewer']} ({r['reviewer_kind']}) | {r['scope']}"
-        f" | {r['outcome']} | {'<br>'.join(r.get('findings') or ()) or '—'} |"
+        f" | {r['outcome']} | {'<br>'.join(_findings(r)) or '—'} |"
         for r in reviews
     ]
     return [

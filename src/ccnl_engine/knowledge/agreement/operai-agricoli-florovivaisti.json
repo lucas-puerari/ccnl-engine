@@ -800,7 +800,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "003f02a316fce214ff52a49f8ffe88f69dc821f9b02345afb1ddc0cbb629fed6",
+    "source_hash": "526911f4bc4b60f75866c0d0f970573c0d3c0f0e087c50cb0c868d536722a460",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1231,6 +1231,32 @@
         "findings": [
           "The table prices the provincial wages of Firenze, Arezzo and the other provinces, not the national area minima of the file: only its structure compares. TFR: 1.312,85 on 17.723,44 a year is 1/13.5, as the engine accrues (991.85 / 13.5 = 73.47 for Area3). Match.",
           "Deviation: the table's employer contributions in zona normale are 35.37% of the pay including INAIL; the engine applies 33.953% including the 8.50% INAIL of INPS circ. 43/2026 (25.453% without it). Cause not established (the table states neither its year nor its composition beyond the INAIL share of 13.24%); decision: flagged, the engine keeps the rates of circ. 43/2026. No independent net pay example."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-divergences",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Closure of the divergence left open by the review 2026-10-15-ai-cost-check: the employer contributions against the labour cost table of the Regione Toscana price list.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://dati.toscana.it/dataset/7d0fd279-fbae-44a8-8f71-6986514acf0c/resource/9159dd0c-c69d-4b84-890f-aa950ea433ef/download/allegato3ilcostomedioorariodellamanodopera.pdf",
+            "sha256": "2c3f7282c29ef6725dfbd85b0f0f6abca147016cf8d21f6f3dd1421c7aa18b23"
+          }
+        ],
+        "findings": [
+          "Year: the price list is the edition of December 2025 (file metadata 2 December 2025; the idraulico-forestale tables are dated 2025 and 2026), but its agricultural section (pp. 29-37) is headed 'CCNL operai agricoli e flovivaistici 2022-2025', prices the provincial wages of that contract and states 'in agricoltura i contributi inail sono compresi nell'inps e sono il 13,24% del totale'. The 2026 rates replace the INAIL share with the unified 8.50% of INPS circ. 43/2026, which the engine applies. The table's 35.37% (6.268,78 on 17.723,44, Firenze e Prato, comune) is built on rates before 2026 and does not split them further.",
+          "The engine keeps the 2026 rates of circ. 43/2026; the table compares for the TFR structure only."
+        ],
+        "divergences": [
+          {
+            "subject": "Employer contributions of an operaio comune in zona normale: 35.37% of the pay with INAIL in the Regione Toscana table against 33.953% with the 8.50% INAIL in the engine for 2026.",
+            "decision": "external_artifact_error",
+            "cause": "The table applies the agricultural rates of the CCNL 2022-2025 years, INAIL included as 13.24% of the total, not the 2026 rates with the unified INAIL of INPS circ. 43/2026: it is no evidence for 2026 contributions.",
+            "evidence": "Regione Toscana price list, Allegato 3, section 4, pp. 29-37 (sha256 2c3f7282...); the comparison test keeps the TFR structure only."
+          }
         ]
       }
     ]

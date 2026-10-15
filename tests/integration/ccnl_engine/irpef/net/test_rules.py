@@ -85,15 +85,16 @@ def test_part_year_deductions_follow_the_days() -> None:
 
     - gross: 6,440 + 2,438.68 * 33% = 7,244.76;
     - ratio 19,561.32 / 22,000 = 0.88915..., truncated 0.8891;
-    - full-year employment deduction: 1,910 * 0.8891 + 65 = 1,763.18;
-    - 292 / 365 = 0.8 exactly: employment deduction 1,410.54, further
-      deduction 1,000 * 0.8 = 800.00;
-    - net: 7,244.76 - 1,410.54 - 800.00 = 5,034.22.
+    - full-year employment deduction: 1,910 * 0.8891 = 1,698.18;
+    - 292 / 365 = 0.8 exactly: 1,358.54, plus the 65 of art. 13 c. 1.1
+      whole (circolare AdE 4/E/2022): 1,423.54; further deduction
+      1,000 * 0.8 = 800.00;
+    - net: 7,244.76 - 1,423.54 - 800.00 = 5,021.22.
     """
     income = Decimal("30438.68")
-    assert employment_deduction(income, 292) == Decimal("1410.54")
+    assert employment_deduction(income, 292) == Decimal("1423.54")
     assert further_deduction(income, 292) == Decimal("800.00")
-    assert net_irpef(income, 292) == Decimal("5034.22")
+    assert net_irpef(income, 292) == Decimal("5021.22")
 
 
 @pytest.mark.parametrize("days", [0, 366])

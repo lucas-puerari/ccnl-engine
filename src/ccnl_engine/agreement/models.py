@@ -82,6 +82,7 @@ class CCNL(BaseModel):
         self._assert_apprenticeship_tracks()
         self._assert_provenance_complete()
         self._assert_limitation_levels()
+        self._assert_divergence_limitations()
         self._assert_hourly_allowances()
         assert_series_coverage(self.levels, self.parameters)
         return self
@@ -228,6 +229,18 @@ class CCNL(BaseModel):
             if unknown:
                 msg = f"limitation {spec.variant!r} names unknown levels {unknown}"
                 raise ValueError(msg)
+
+    def _assert_divergence_limitations(self) -> None:
+        declared = {n.limitation.variant for n in self.coverage.notes if n.limitation}
+        for review in self.verification.reviews:
+            for divergence in review.divergences:
+                variant = divergence.limitation
+                if variant is not None and variant not in declared:
+                    msg = (
+                        f"divergence of review {review.id!r} names the "
+                        f"undeclared limitation {variant!r}"
+                    )
+                    raise ValueError(msg)
 
     def _assert_hourly_allowances(self) -> None:
         hourly = self.parameters.hourly_pay

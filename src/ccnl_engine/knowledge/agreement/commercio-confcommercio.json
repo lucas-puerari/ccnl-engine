@@ -2778,7 +2778,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "582b5faf0d719b3a0b34fba566db3af7b1132f2c82e8872e8467ba8a5851ca85",
+    "source_hash": "630113cc7a44992b4862ce9a632b8301ca5a2ab8c0ff61c7bf018dff4e58d4c5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3202,6 +3202,38 @@
         ],
         "findings": [
           "Fondo Est 10 + 2 euro a month (Art. 104, p. 101) and Qu.A.S. 350 + 56 euro a year (Art. 105, p. 103) read: the declared limitation now states every amount."
+        ]
+      },
+      {
+        "id": "2026-10-15-ai-divergences",
+        "date": "2026-10-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Closure of the difference on the annual deductions of the observed termination payslip p25 (Terziario level 3, August 2026), shared with every CCNL of the terziario tax sector.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.agenziaentrate.gov.it/portale/documents/20143/4169770/Circolare+n.+4+del+18+febbraio+2022.pdf/a83fd984-2bc3-39a9-1e09-79e9a870d401",
+            "sha256": "86178812120ac6a6ae2c47f278b8b38d7b6ad28da36e9eccbef23e6223160796"
+          }
+        ],
+        "findings": [
+          "p25 prints 1.621,58 of annual deductions, other_deductions 1.042,62 and 242 days (gg_detrazioni). The art. 13 deduction proportioned to 242 days is 977.62 or 977.63 (1.474,52 x 242 / 365 = 977.6267), the ulteriore detrazione 578.96, and the payroll adds the 65 euro of art. 13 c. 1.1 whole: circolare 4/E/2022, par. 1.2.1, p. 7, 'deve essere corrisposto [...] per intero nel corso dell'anno [...] senza effettuare alcun ragguaglio al periodo di lavoro nell'anno'. The engine proportioned the 65 euro to the days: corrected in irpef.deduction.rules.work_income_deduction."
+        ],
+        "divergences": [
+          {
+            "subject": "Annual deductions of p25: 1.621,58 printed against 1.606,30 computed by the engine before the fix (243 days, 65 euro proportioned).",
+            "decision": "engine_bug",
+            "cause": "The engine proportioned the 65 euro of art. 13 c. 1.1 TUIR to the days of work; circolare AdE 4/E/2022 grants it whole.",
+            "evidence": "tests/knowledge/ccnl_engine/period/services/test_observed_comparison.py::test_annual_deductions_match_the_conguaglio_of_p25"
+          },
+          {
+            "subject": "Art. 13 deduction of p25 for 242 days: 977.62 printed against 977.63 computed (1.474,52 x 242 / 365 = 977.6267).",
+            "decision": "accepted_external_variance",
+            "cause": "No source states how the proportioned deduction is rounded: the payroll truncates, the engine rounds half-up. One cent.",
+            "evidence": "tests/knowledge/ccnl_engine/period/services/test_observed_comparison.py::test_annual_deductions_match_the_conguaglio_of_p25 (tolerance 0.01)",
+            "review_by": "2027-03-31"
+          }
         ]
       }
     ],

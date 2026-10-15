@@ -127,12 +127,17 @@ def work_income_deduction(
     - 28 000 < RC <= 50 000: 1910 * trunc4((50000-RC)/22000).
     - RC > 50 000: zero.
 
-    An additional EUR 65 increment applies when 25 000 < RC ≤ 35 000,
-    overlapping both middle and upper bands.
+    The full-year amount is proportioned to the days by :func:`for_days`,
+    without truncating ``eligible_work_days / 365``.  Pass
+    ``eligible_work_days=365`` (the default) for a full year.
 
-    The full-year amount is then proportioned to the days by
-    :func:`for_days`, without truncating ``eligible_work_days / 365``.
-    Pass ``eligible_work_days=365`` (the default) for a full year.
+    The EUR 65 increment of co. 1.1, when 25 000 < RC ≤ 35 000, is then
+    added whole: "deve essere corrisposto [...] per intero nel corso
+    dell'anno [...] senza effettuare alcun ragguaglio al periodo di lavoro
+    nell'anno" (circolare AdE 4/E del 18 febbraio 2022, par. 1.2.1, p. 7,
+    sha256 86178812120ac6a6ae2c47f278b8b38d7b6ad28da36e9eccbef23e6223160796,
+    after circolare 15/E/2007 par. 1.5.1).  The payroll of the observed
+    termination p25 applies it so, to the cent.
 
     Up to 15 000 the deduction is at least the minimum of lett. a), 690 EUR
     or 1 380 EUR for a fixed-term employment, proportioned to the days as
@@ -173,11 +178,11 @@ def work_income_deduction(
     # Equivalent as `<`: the schedule is continuous at detr_mid (detr_a).
     if gross_income <= c.detr_mid:  # pragma: no mutate
         ratio = _trunc4((c.detr_mid - gross_income) / c.detr_b_span)
-        full_year = c.detr_a + c.detr_b_coeff * ratio + increment
+        full_year = c.detr_a + c.detr_b_coeff * ratio
     # Equivalent as `<`: the schedule is zero at detr_high.
     elif gross_income <= c.detr_high:  # pragma: no mutate
         ratio = _trunc4((c.detr_high - gross_income) / c.detr_c_span)
-        full_year = c.detr_a * ratio + increment
+        full_year = c.detr_a * ratio
     else:
         return _ZERO
-    return for_days(full_year, eligible_work_days)
+    return for_days(full_year, eligible_work_days) + increment

@@ -116,6 +116,22 @@ fields:
 | `outcome` | `confirmed`, `corrected`, `flagged` (values left to re-check) or `demoted` |
 | `sources` | URL and sha256 of each document the review read |
 | `findings` | The differences the review found, or notes on its scope |
+| `divergences` | Each difference from an independent output (a payslip, an official cost table), closed by a decision |
+
+A divergence never stays open. Its `decision` is one of:
+
+| Decision | Meaning | Required |
+|---|---|---|
+| `engine_bug` | The engine was wrong and is fixed | `evidence` names the regression test |
+| `source_context_missing` | The output omits a fact the comparison needs | `limitation` names a limitation of the file that blocks the runs concerned |
+| `accepted_external_variance` | The difference is explained and kept | `review_by`, the date it is looked at again |
+| `external_artifact_error` | The output is incoherent for the case compared (another year, another scope) and is no evidence | `evidence` names the document read |
+
+Each divergence also states its `subject` (both values) and `cause`. The
+owner of the ruleset answers for it. A file whose divergence names a
+limitation it does not declare does not load. An unexplained difference is
+never evidence of correctness: until it is closed it is a finding of a
+`flagged` review, not a match.
 
 Each value the review checked is `verified` and points to the entry with
 `extraction.review_id`. An AI review is cleared by the owner when the pull

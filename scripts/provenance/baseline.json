@@ -1498,6 +1498,7 @@
     "agreement/logistica-trasporto-confetra.json": [
       "logistica-trasporto-confetra/apprentice_seniority",
       "logistica-trasporto-confetra/health_and_bilateral_funds",
+      "logistica-trasporto-confetra/inps_employer_class_unconfirmed",
       "logistica-trasporto-confetra/part_time_supplementary_rate",
       "logistica-trasporto-confetra/sixth_day_overtime"
     ],
