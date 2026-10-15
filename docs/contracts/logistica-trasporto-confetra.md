@@ -38,9 +38,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | bilateral_funds, overtime, seniority |
+| **Limits of this contract** | bilateral_funds, inps_employer, overtime, seniority |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -74,6 +74,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova': the apprenticeship tracks and the part-time supplementary hours of the file against the text read in the P1 review. | corrected | Tabella A (p. 75) matches the standard track. Tabella B, 90, 95 and 100% for the profili artigiani, was not modelled: added as a track; an apprentice now names it.<br>Part-time supplementary hours at 18% (40% past the annual limit, Art. 56, p. 71): declared. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the pension, health and bilateral contributions of the file against the text read in the P1 review. | corrected | Priamo (Art. 50, pp. 63-64): 1% of the employer and 1% of the worker; no pension fund was modelled: added as an employer fund on the TFR base, derived because the text names the monthly pay.<br>Sanilog (150 euro a year, employer) and Ebilog (3,50 euro a month employer, 0,50 worker, or an EAR of 8 euro): declared. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'confrontare lordo, netto e costo azienda con esempi indipendenti': a run of the engine against the cost table of the Ministry of Labour (DD 135 of 19 December 2025, impiegati non viaggianti, January 2026). | flagged | Impiegato 3S with 3 scatti, January 2026: minimo plus EPA 2000.37 ((23.644,44 + 360) / 12), scatti 74.37 and EDR 10.00 a month match the table (p. 9); the TFR of the month is the table's TFR base over 13.5 less the 0.5% IVS offset. Match.<br>Deviation: the table applies an employer INPS rate of 29.44%; the engine applies 29.06% from 16 to 50 employees and 29.36% from 51. Cause not established (the table does not state the class of employer and size); decision: flagged for the INPS review of the logistica contribution class. Sanilog (165 euro) and Ebilog (46,20 euro) of the table equal the declared 150 and 42 euro plus the 10% solidarity contribution. INAIL 0.404%: not computed by the engine. No independent net pay example. |
+| 2026-10-15 | claude-opus-5-5 (ai) | Closure of the divergence left open by the review 2026-10-15-ai-cost-check: the employer INPS rate against the cost table of the Ministry of Labour (DD 135/2025). | flagged | The table prints 'Inps (29,44%)' on every row, operai and impiegati non viaggianti alike (30,68% for the personale viaggiante), with no composition and no class of employer. The 0.08 points above the 29.36% of the engine fit more than one composition (the whole 0.90% CIGS and a 0.24% maternità, for one), and a single rate for operai and impiegati does not fit the industria class of the file, where the operai pay the 2.22% malattia. The class is not established.<br>Divergence (source_context_missing): Employer INPS rate of an impiegato non viaggiante, January 2026: 29.44% in DD 135/2025 against 29.06% (16-50 employees) or 29.36% (51 and more) in the engine. Cause: The table does not state the INPS class of the employer nor the composition of its rate; the class of the file (industria) is not confirmed. |
 
 ## Salary table
 
@@ -149,6 +150,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `bilateral_funds` applies.
 
     **Remediation:** Pass the contributions as bilateral fund events, or model them per worker.
+
+!!! warning "logistica-trasporto-confetra/inps_employer_class_unconfirmed · inps_employer · impact unknown · open"
+    INPS CONTRIBUTION CLASS: the file applies the rates of the industria (impiegati 29.06% from 16 to 50 employees and 29.36% from 51, operai 31.28% and 31.58% with the 2.22% malattia). The cost table of the Ministry of Labour for this CCNL (DD 135 of 19 December 2025) applies 29.44% to operai and impiegati alike, and states neither the INPS class of the employer nor the composition of the rate: the class of a logistica employer is not confirmed, and the employer and worker contributions may differ.
+
+    **Applies when:** `inps_employer` applies.
+
+    **Remediation:** Read the INPS classification (codice statistico contributivo) of the logistica, trasporto merci e spedizione employers and the composition of the 29.44% of DD 135/2025, then set the class of the file and remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

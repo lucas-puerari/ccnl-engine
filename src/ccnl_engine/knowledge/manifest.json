@@ -455,7 +455,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "582b5faf0d719b3a0b34fba566db3af7b1132f2c82e8872e8467ba8a5851ca85",
+      "source_hash": "630113cc7a44992b4862ce9a632b8301ca5a2ab8c0ff61c7bf018dff4e58d4c5",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/commercio-confcommercio.json.gz"
@@ -1339,7 +1339,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra",
       "ruleset_version": "2026.2",
-      "source_hash": "d7acb9c3d50504312355c6abbd3caede7e734424fecf2a3621bc7df23eefc960",
+      "source_hash": "c6a0fcb943b3d8328a271da294a9c756e7d2532bb0fbfec1980d7494038cc151",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/logistica-trasporto-confetra.json.gz"
@@ -1543,7 +1543,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/operai-agricoli-florovivaisti",
       "ruleset_version": "2026.2",
-      "source_hash": "003f02a316fce214ff52a49f8ffe88f69dc821f9b02345afb1ddc0cbb629fed6",
+      "source_hash": "526911f4bc4b60f75866c0d0f970573c0d3c0f0e087c50cb0c868d536722a460",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/operai-agricoli-florovivaisti.json.gz"

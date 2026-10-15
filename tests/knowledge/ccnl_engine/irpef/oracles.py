@@ -166,8 +166,9 @@ def employment_deduction(
     - 15,000 < income <= 28,000: 1,910 + 1,190 * (28,000 - income) / 13,000;
     - 28,000 < income <= 50,000: 1,910 * (50,000 - income) / 22,000;
     - above 50,000: 0;
-    - plus 65 when 25,000 < income <= 35,000 (art. 13 c. 1.1);
-    - the full-year amount, rounded to cents, times ``days / 365``.
+    - the full-year amount, rounded to cents, times ``days / 365``;
+    - plus 65 when 25,000 < income <= 35,000 (art. 13 c. 1.1), whole
+      whatever the days (circolare AdE 4/E/2022, par. 1.2.1).
 
     Returns:
         Deduction in EUR, rounded to cents.
@@ -189,7 +190,7 @@ def employment_deduction(
     else:
         base = _ZERO
     bonus = Decimal(65) if Decimal(25_000) < income <= Decimal(35_000) else _ZERO
-    return _for_days(_cents(base + bonus), days)
+    return _for_days(_cents(base), days) + bonus
 
 
 def further_deduction(income: Decimal, days: int = _DAYS_IN_YEAR) -> Decimal:

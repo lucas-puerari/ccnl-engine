@@ -16,13 +16,19 @@ D.Lgs. 148/2015 art. 33 c. 1, as the payrolls do).
 
 Annual: the conguaglio of a termination in August 2026 (p25, Terziario
 level 3).  The gross IRPEF of the printed annual taxable, 8,094.66 EUR,
-matches to the cent.  The deductions differ: the payroll prints 1,621.58
-EUR, the engine gives 1,606.30 for the 243 days from 1 January to 31
-August (the art. 13 deduction and the ulteriore detrazione, each
-proportioned to the days).  No whole number of days gives the printed
-figure (245 days give 1,619.52, 246 give 1,626.12) and the payslip prints
-neither the days nor the split, so the cause is not known; decision: keep
-the statutory computation and record the 15.28 EUR as unexplained.
+matches to the cent.  The deductions, 1,621.58 EUR, are explained: the
+payroll counts the 242 days it prints (gg_detrazioni), proportions the art.
+13 deduction and the ulteriore detrazione (578.96) to them, and adds the 65
+EUR of art. 13 c. 1.1 whole (circolare AdE 4/E/2022, par. 1.2.1: "senza
+effettuare alcun ragguaglio al periodo di lavoro nell'anno").  The printed
+split confirms it: other_deductions 1,042.62 = 977.62 + 65.
+
+Decision ``engine_bug``: the engine proportioned the 65 EUR too, 15.28 EUR
+less on this payslip; fixed, with this test as regression.  One cent stays,
+decision ``accepted_external_variance``: 1,474.52 * 242 / 365 is 977.6267,
+the engine rounds it to 977.63 and the payroll prints 977.62.  No source
+states how the proportioned deduction is rounded; the engine keeps
+half-up, and the comparison tolerance is one cent.
 """
 
 from __future__ import annotations
@@ -74,14 +80,14 @@ def test_annual_gross_irpef_matches_the_conguaglio_of_p25() -> None:
     assert irpef_gross(Decimal("33014.13"), rules) == Decimal("8094.66")
 
 
-def test_annual_deductions_of_p25_differ_by_an_unexplained_amount() -> None:
-    """243 days: 1,606.30 against the 1,621.58 the payroll prints."""
+def test_annual_deductions_match_the_conguaglio_of_p25() -> None:
+    """242 days: 977.63 + 65 + 578.96 = 1,621.59, the printed 1,621.58 to a cent."""
     rules = load_year_rules(2026, TaxSector.TERZIARIO, 10)
     taxable = Decimal("33014.13")
     assert rules.ulteriore_detrazione is not None
-    deductions = work_income_deduction(
-        taxable, 243, rules.work_deduction
-    ) + ulteriore_detrazione_lavoro(taxable, rules.ulteriore_detrazione, 243)
+    work = work_income_deduction(taxable, 242, rules.work_deduction)
+    ulteriore = ulteriore_detrazione_lavoro(taxable, rules.ulteriore_detrazione, 242)
 
-    assert deductions == Decimal("1606.30")
-    assert Decimal("1621.58") - deductions == Decimal("15.28")
+    assert work == Decimal("1042.63")
+    assert ulteriore == Decimal("578.96")
+    assert abs(work + ulteriore - Decimal("1621.58")) <= Decimal("0.01")

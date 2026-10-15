@@ -186,3 +186,25 @@ def test_a_production_ccnl_pays_the_net_but_not_a_complete_employer_cost() -> No
         )
         for variant in ("health_and_bilateral_funds", "flexible_benefits")
     }
+
+
+def test_an_unconfirmed_inps_class_blocks_a_logistica_run() -> None:
+    """DD 135/2025 prints 29.44% for every non-travelling worker: class unknown."""
+    employment = Employment(
+        ccnl_slug="logistica-trasporto-confetra.json",
+        level_code="3S",
+        contract_type=Permanent(),
+    )
+    result = _SIMULATION.calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(2026, 1),
+            payment_date=date(2026, 1, 27),
+            employment=employment,
+            employer=_EMPLOYER,
+        )
+    )
+
+    assert (
+        BlockerCode.OPEN_LIMITATION,
+        "logistica-trasporto-confetra/inps_employer_class_unconfirmed",
+    ) in {(b.code, b.detail) for b in result.blockers}
