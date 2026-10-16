@@ -91,6 +91,7 @@ from scripts.provenance.reference_case.check import (
     STATUSES,
     verification_errors,
 )
+from scripts.provenance.replay import check as replays
 
 
 def _parse(text: str) -> dict[str, object] | None:
@@ -198,7 +199,10 @@ def check_rules(root: Path = payable_rules.KNOWLEDGE_DIR) -> bool:
         *provenance_labels.readiness_errors(rules, root),
         *reference_cases.production_errors(root),
         *(
-            readiness_matrix.readiness_errors()
+            [
+                *readiness_matrix.readiness_errors(),
+                *replays.record_errors(datetime.now(tz=UTC).date()),
+            ]
             if root == payable_rules.KNOWLEDGE_DIR
             else ()
         ),

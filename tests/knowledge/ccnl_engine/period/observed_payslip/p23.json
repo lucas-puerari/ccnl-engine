@@ -146,8 +146,32 @@
       "contract_type": "permanent"
     },
     "unknown_inputs": [
-      "superminimo, premio di produzione and mensa",
-      "category"
+      {
+        "input": "superminimo, premio di produzione and mensa",
+        "affects": [
+          "gross",
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "tfr",
+          "employer_cost",
+          "contribution_base",
+          "taxable_income",
+          "gross_irpef",
+          "tax_deductions",
+          "tax_credits",
+          "tax_surcharges"
+        ]
+      },
+      {
+        "input": "category",
+        "affects": [
+          "employer_contributions",
+          "employer_cost",
+          "employer_inps_rate"
+        ]
+      }
     ],
     "expected": {
       "base_salary": {

@@ -63,39 +63,7 @@
     "First month after a hire on 15 June 2026: the pay elements are the monthly amounts, the earnings 14 of 26 days."
   ],
   "replay": {
-    "replayability": "partial",
-    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
-    "inputs": {
-      "ccnl_slug": "commercio-confcommercio.json",
-      "level_code": "3",
-      "year": 2026,
-      "month": 6,
-      "headcount": 50,
-      "category": "impiegato",
-      "contract_type": "permanent"
-    },
-    "unknown_inputs": [
-      "superminimo and provincial element",
-      "the hire on 15 June (partial month)",
-      "headcount above 15, from the CIGS withheld"
-    ],
-    "expected": {
-      "base_salary": {
-        "value": "1453.94",
-        "tolerance": "0.00",
-        "printed": "elementi della retribuzione, 01 Minimo Contr."
-      },
-      "fixed_allowances": {
-        "value": "527.90",
-        "tolerance": "0.00",
-        "printed": "02 Contingenza"
-      },
-      "employee_inps_rate": {
-        "value": "0.0975667",
-        "tolerance": "0.00005",
-        "printed": "F.P.L.D. 209,26 + C.I.G.S. 6,83 + F.do INT 6,08 on 2.277,00"
-      }
-    },
-    "known_differences": []
+    "replayability": "not_replayable",
+    "reason": "A hire on 15 June paid for 14 days: the minimo and contingenza printed are full-month rates, not the amounts paid; the headcount above 15 was inferred from the CIGS withheld, so the INPS rate cannot be compared either."
   }
 }

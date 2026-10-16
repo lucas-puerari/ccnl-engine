@@ -58,6 +58,7 @@ __all__ = [
     "AXIS_OF",
     "BASELINE",
     "CASES_DIR",
+    "CASE_KEYS",
     "COMPONENTS",
     "ELEMENTS",
     "RULES",
@@ -99,19 +100,46 @@ COMPONENTS: Final = (
     "tax_deductions",
     "tax_credits",
     "tax_surcharges",
+    "employee_funds",
+    "employer_funds",
 )
 #: Rates and rules: they fix how a total is computed, not its amount.
 RULES: Final = ("hourly_percentages", "employee_inps_rate", "employer_inps_rate")
 #: Everything a case can pin besides a complete output.
 ELEMENTS: Final = COMPONENTS + RULES
 #: Axis or element of each expected value a case or a replay can pin.
+#: Keys named ``annual_`` or ``ytd_`` read an amount of the year, as a
+#: conguaglio or a termination prints it; the others read the run alone.
 AXIS_OF: Final[Mapping[str, str]] = {
     "base_salary": "base_salary",
     "period_gross": "gross",
+    "employee_contributions": "employee_contributions",
+    "employer_contributions": "employer_contributions",
+    "period_tax": "tax",
+    "period_net": "net",
+    "tfr_accrual": "tfr",
+    "employer_cost": "employer_cost",
     "fixed_allowances": "fixed_allowances",
+    "inps_base": "contribution_base",
+    "ytd_taxable_income": "taxable_income",
+    "annual_gross_irpef": "gross_irpef",
+    "annual_tax_deductions": "tax_deductions",
+    "period_tax_credits": "tax_credits",
+    "period_surtax": "tax_surcharges",
+    "employee_funds": "employee_funds",
+    "employer_funds": "employer_funds",
     "hourly_percentages": "hourly_percentages",
     "employee_inps_rate": "employee_inps_rate",
+    "employer_inps_rate": "employer_inps_rate",
 }
+#: Expected values a reference case can pin: the values a salary table
+#: states, read by ``tests/integration/ccnl_engine/api/test_reference_cases.py``.
+CASE_KEYS: Final = frozenset({
+    "base_salary",
+    "period_gross",
+    "fixed_allowances",
+    "hourly_percentages",
+})
 _SHA256: Final = re.compile(r"^[0-9a-f]{64}$")
 _AMOUNT: Final = re.compile(r"^\d+(\.\d+)?$")
 #: Fields a ``verified`` source states, besides its kind and reference.
@@ -225,6 +253,8 @@ def _axes_errors(case: Mapping[str, object]) -> Iterator[str]:
         backed.add(label)
         if label is None:
             yield f"expected value {key!r} belongs to no axis or element"
+        elif key not in CASE_KEYS:
+            yield f"expected value {key!r} is not read by the reference case runner"
         elif label in AXES and label not in axes:
             yield f"expected value {key!r} needs the axis {label!r} in 'axes'"
         elif label in ELEMENTS and label not in elements:

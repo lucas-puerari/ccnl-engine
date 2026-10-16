@@ -61,33 +61,7 @@
     "CNEL H052 is shared by Federalberghi and Fiavet; the paga base 1.590,27 is the Federalberghi level 5 amount."
   ],
   "replay": {
-    "replayability": "partial",
-    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
-    "inputs": {
-      "ccnl_slug": "turismo-federalberghi.json",
-      "level_code": "5",
-      "year": 2026,
-      "month": 8,
-      "headcount": 30,
-      "category": "impiegato",
-      "contract_type": "permanent"
-    },
-    "unknown_inputs": [
-      "the 60% part-time and the fixed term",
-      "headcount between 16 and 50, from the FIS line printed"
-    ],
-    "expected": {
-      "base_salary": {
-        "value": "1590.27",
-        "tolerance": "0.00",
-        "printed": "Paga base (full-time amount)"
-      },
-      "employee_inps_rate": {
-        "value": "0.0975667",
-        "tolerance": "0.00001",
-        "printed": "IVS 9,19000 + CIGS 0,30000 + FIS >15 <50 dip 0,26667"
-      }
-    },
-    "known_differences": []
+    "replayability": "not_replayable",
+    "reason": "A 60% part-time fixed-term worker: the paga base printed is the full-time monthly rate, not the amount paid; the headcount between 16 and 50 was inferred from the FIS line printed, so the INPS rate cannot be compared either."
   }
 }

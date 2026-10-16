@@ -197,19 +197,49 @@
       "category": "impiegato"
     },
     "unknown_inputs": [
-      "superminimo",
-      "the provincial terzo elemento of Bologna"
+      {
+        "input": "superminimo",
+        "affects": [
+          "gross",
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "tfr",
+          "employer_cost",
+          "contribution_base",
+          "taxable_income",
+          "gross_irpef",
+          "tax_deductions",
+          "tax_credits",
+          "tax_surcharges"
+        ]
+      },
+      {
+        "input": "the provincial terzo elemento of Bologna",
+        "affects": [
+          "gross",
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "tfr",
+          "employer_cost",
+          "fixed_allowances",
+          "contribution_base",
+          "taxable_income",
+          "gross_irpef",
+          "tax_deductions",
+          "tax_credits",
+          "tax_surcharges"
+        ]
+      }
     ],
     "expected": {
       "base_salary": {
         "value": "1453.94",
         "tolerance": "0.00",
         "printed": "pay_elements.paga_base"
-      },
-      "fixed_allowances": {
-        "value": "527.90",
-        "tolerance": "0.00",
-        "printed": "pay_elements.contingenza"
       },
       "employee_inps_rate": {
         "value": "0.0945667",

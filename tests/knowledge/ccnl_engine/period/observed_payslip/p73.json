@@ -59,34 +59,7 @@
     "CNEL H05Y is shared by the FIPE files; the file of the pubblici esercizi is used."
   ],
   "replay": {
-    "replayability": "partial",
-    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
-    "inputs": {
-      "ccnl_slug": "pubblici-esercizi-fipe-angem.json",
-      "level_code": "4",
-      "year": 2026,
-      "month": 7,
-      "headcount": 50,
-      "category": "operaio",
-      "contract_type": "permanent"
-    },
-    "unknown_inputs": [
-      "the hire on 20 July (partial month) and the unpaid leave",
-      "the provincial terzo elemento",
-      "headcount above 15, inferred from the amount withheld"
-    ],
-    "expected": {
-      "base_salary": {
-        "value": "1692.69",
-        "tolerance": "0.00",
-        "printed": "Stipendio base 1.167,75 + Contingenza 524,94 (the file conglobates them)"
-      },
-      "employee_inps_rate": {
-        "value": "0.0975667",
-        "tolerance": "0.00005",
-        "printed": "Trattenuta contributi 56,68 on Imp. Contr. 581,00"
-      }
-    },
-    "known_differences": []
+    "replayability": "not_replayable",
+    "reason": "A hire on 20 July paid for 11 days with unpaid leave: the stipendio base and contingenza printed are full-month rates, not the amounts paid; the headcount above 15 was inferred from the amount withheld, so the INPS rate cannot be compared either."
   }
 }

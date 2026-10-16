@@ -157,33 +157,7 @@
     "Mansione omitted per anonymization."
   ],
   "replay": {
-    "replayability": "partial",
-    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
-    "inputs": {
-      "ccnl_slug": "commercio-confcommercio.json",
-      "level_code": "5",
-      "year": 2026,
-      "month": 5,
-      "headcount": 10,
-      "contract_type": "permanent"
-    },
-    "unknown_inputs": [
-      "weekly hours (90% part-time printed unlabelled)",
-      "headcount",
-      "the wage-integration fund of the employer (the payslip withholds 9.29%)"
-    ],
-    "expected": {
-      "base_salary": {
-        "value": "1136.07",
-        "tolerance": "0.00",
-        "printed": "pay_elements.paga_base"
-      },
-      "fixed_allowances": {
-        "value": "521.94",
-        "tolerance": "0.00",
-        "printed": "pay_elements.contingenza"
-      }
-    },
-    "known_differences": []
+    "replayability": "not_replayable",
+    "reason": "The worker is 90% part-time and the request cannot state it: the paga base and contingenza printed are full-time monthly rates, while the engine reads the amounts paid in the run, so comparing them would rest on leaving the hours out."
   }
 }

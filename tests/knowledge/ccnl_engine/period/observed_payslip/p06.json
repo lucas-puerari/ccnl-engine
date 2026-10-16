@@ -155,9 +155,52 @@
       "contract_type": "permanent"
     },
     "unknown_inputs": [
-      "headcount",
-      "the wage-integration fund of the employer (the payslip withholds 9.49%: IVS and CIGS, no FIS share)",
-      "superminimo"
+      {
+        "input": "headcount",
+        "affects": [
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "employer_cost",
+          "taxable_income",
+          "gross_irpef",
+          "employee_inps_rate",
+          "employer_inps_rate"
+        ]
+      },
+      {
+        "input": "the wage-integration fund of the employer (the payslip withholds 9.49%: IVS and CIGS, no FIS share)",
+        "affects": [
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "employer_cost",
+          "taxable_income",
+          "gross_irpef",
+          "employee_inps_rate",
+          "employer_inps_rate"
+        ]
+      },
+      {
+        "input": "superminimo",
+        "affects": [
+          "gross",
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "tfr",
+          "employer_cost",
+          "contribution_base",
+          "taxable_income",
+          "gross_irpef",
+          "tax_deductions",
+          "tax_credits",
+          "tax_surcharges"
+        ]
+      }
     ],
     "expected": {
       "base_salary": {

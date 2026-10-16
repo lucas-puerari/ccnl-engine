@@ -125,8 +125,44 @@
       "category": "impiegato"
     },
     "unknown_inputs": [
-      "weekly hours (the printed minimo 1509.07 is 76.24% of the D2 table: a part-time ratio or another level, not printed)",
-      "superminimo"
+      {
+        "input": "weekly hours (the printed minimo 1509.07 is 76.24% of the D2 table: a part-time ratio or another level, not printed)",
+        "affects": [
+          "base_salary",
+          "gross",
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "tfr",
+          "employer_cost",
+          "fixed_allowances",
+          "contribution_base",
+          "taxable_income",
+          "gross_irpef",
+          "tax_deductions",
+          "tax_credits",
+          "tax_surcharges"
+        ]
+      },
+      {
+        "input": "superminimo",
+        "affects": [
+          "gross",
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "tfr",
+          "employer_cost",
+          "contribution_base",
+          "taxable_income",
+          "gross_irpef",
+          "tax_deductions",
+          "tax_credits",
+          "tax_surcharges"
+        ]
+      }
     ],
     "expected": {
       "employee_inps_rate": {

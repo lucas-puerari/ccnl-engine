@@ -75,9 +75,57 @@
       "category": "operaio"
     },
     "unknown_inputs": [
-      "the provincial indennità territoriale di settore of Vicenza (limitation territorial_sector_allowance)",
-      "hours paid by the hour: the example rounds the hourly minimo to the cent",
-      "the Cassa Edile contributions of the worker (limitation cassa_edile_contribution)"
+      {
+        "input": "the provincial indennità territoriale di settore of Vicenza (limitation territorial_sector_allowance)",
+        "affects": [
+          "gross",
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "tfr",
+          "employer_cost",
+          "fixed_allowances",
+          "contribution_base",
+          "taxable_income",
+          "gross_irpef",
+          "tax_deductions",
+          "tax_credits",
+          "tax_surcharges"
+        ]
+      },
+      {
+        "input": "hours paid by the hour: the example rounds the hourly minimo to the cent",
+        "affects": [
+          "base_salary",
+          "gross",
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "tfr",
+          "employer_cost",
+          "fixed_allowances",
+          "contribution_base",
+          "taxable_income",
+          "gross_irpef",
+          "tax_deductions",
+          "tax_credits",
+          "tax_surcharges"
+        ]
+      },
+      {
+        "input": "the Cassa Edile contributions of the worker (limitation cassa_edile_contribution)",
+        "affects": [
+          "tax",
+          "net",
+          "employer_cost",
+          "taxable_income",
+          "gross_irpef",
+          "employee_funds",
+          "employer_funds"
+        ]
+      }
     ],
     "expected": {
       "employee_inps_rate": {

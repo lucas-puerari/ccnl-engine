@@ -8,7 +8,8 @@ any evidence runs, the evidence the repository holds:
   the primary source they cite, or the independent output they were
   checked against, and the totals, components and rates they pin;
 - observed payslips replayed through the engine
-  (``tests/knowledge/ccnl_engine/period/observed_payslip/``, ``replay``);
+  (``tests/knowledge/ccnl_engine/period/observed_payslip/``, ``replay``),
+  only those valid under :mod:`scripts.provenance.replay.check`;
 - the hand oracles of a year and a termination per contribution sector
   (``tests/knowledge/ccnl_engine/period/sector/scenarios.json``);
 - the divergences of the review log, by decision, and the review dates.
@@ -37,6 +38,7 @@ from __future__ import annotations
 import json
 import sys
 from dataclasses import dataclass, field
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
@@ -52,12 +54,12 @@ from scripts.provenance.reference_case.check import (
     RULES,
     index,
 )
+from scripts.provenance.replay.check import credited_records
 from scripts.provenance.rules import KNOWLEDGE_DIR
 
 ROOT = Path(__file__).resolve().parents[3]
 PAGE = ROOT / "docs" / "trust" / "validation-matrix.md"
 _PERIOD = ROOT / "tests" / "knowledge" / "ccnl_engine" / "period"
-PAYSLIPS = _PERIOD / "observed_payslip"
 SCENARIOS = _PERIOD / "sector" / "scenarios.json"
 #: Outcome each divergence decision stands for.
 _OUTCOMES = {
@@ -141,11 +143,8 @@ def _add_reference_cases(rows: dict[str, Row]) -> None:
 
 
 def _add_payslips(rows: dict[str, Row]) -> None:
-    for path in sorted(PAYSLIPS.glob("*.json")):
-        record: dict[str, Any] = json.loads(path.read_text(encoding="utf-8"))
-        replay = record.get("replay") or {}
-        if replay.get("replayability") in {None, "not_replayable"}:
-            continue
+    today = datetime.now(tz=UTC).date()
+    for replay in credited_records(today).values():
         row = rows[replay["inputs"]["ccnl_slug"].removesuffix(".json")]
         row.sources.add("real payslip")
         row.independence.add("provider output")
