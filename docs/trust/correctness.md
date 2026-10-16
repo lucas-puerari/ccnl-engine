@@ -55,7 +55,13 @@ Evidence:
   164, from 87.8%): tests now trace arrears of the year (ordinary IRPEF,
   INPS), of an earlier year (separate tax) and of an unknown one (separate
   tax as a simulation, with its missing fact) to their decision, item and
-  policy, and the error of a year not yet begun.  The core twelve scored 859 of
+  policy, and the error of a year not yet begun. Sick pay reached 100%
+  (159 of 159, from 90.6%): tests now cover the seniority in the daily
+  quota, the units of each class of days, the INPS share INPS pays directly
+  (not advanced), the carenza paid by the employer alone, a worker paid by
+  the hour (no sick hours deducted) and a carenza left on a Sunday at the
+  start of a month. The baseline is empty: the five handlers count in the
+  93% minimum of the core.  The core twelve scored 859 of
   917 (93.7%) that day.
 - Validation matrix: [Validation matrix](validation-matrix.md), generated
   in CI from the reference cases, the observed payslip replay, the sector

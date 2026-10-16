@@ -84,7 +84,9 @@ class EpisodePay:
         Returns:
             Their sum, zero without such a segment.
         """
-        pairs = zip(self.segments, self.units, strict=True)
+        # One unit count per segment: the ``strict`` of the ``zip`` never
+        # matters.
+        pairs = zip(self.segments, self.units, strict=True)  # pragma: no mutate
         return sum((u for s, u in pairs if s.kind is kind), _ZERO)
 
 
@@ -115,12 +117,16 @@ def _within_month(
     Returns:
         One unit count per segment, in segment order.
     """
+    # Segments and units are built together, one count per segment, so the
+    # ``strict`` of their ``zip`` never matters; the days past the comporto
+    # close an episode, so no segment follows them.  The mutants of both are
+    # equivalent and not generated.
     left = divisor - counted
     clipped: list[Decimal] = []
-    for segment, unit in zip(segments, units, strict=True):
+    for segment, unit in zip(segments, units, strict=True):  # pragma: no mutate
         if segment.kind is SickDayKind.BEYOND_COMPORTO:
             clipped.append(unit)
-            continue
+            continue  # pragma: no mutate
         kept = min(unit, left)
         left -= kept
         clipped.append(kept)
@@ -203,7 +209,7 @@ def episode_pay(
     excluded = rules.ccnl.apprentices_excluded and terms.apprentice
     counted = terms.counted
     before = _quota(chain, counted, quota.divisor)
-    for segment, unit in zip(segments, units, strict=True):
+    for segment, unit in zip(segments, units, strict=True):  # pragma: no mutate
         if segment.kind is SickDayKind.BEYOND_COMPORTO or unit == _ZERO:
             continue
         counted += unit
