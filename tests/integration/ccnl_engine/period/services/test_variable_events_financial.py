@@ -91,6 +91,33 @@ def _surtax(result: PeriodResult) -> Decimal:
     )
 
 
+def _event_trail(
+    result: PeriodResult, accounts: set[AccountKind]
+) -> list[tuple[AccountKind, str, str, str | None, Decimal]]:
+    """Return how each entry of ``accounts`` traces to its pay item and policy.
+
+    Returns:
+        For each entry: its account, the kind of the item it was posted for
+        (checked against the item itself), that item's quantity, the policy
+        that governed it and the amount.
+    """
+    items = {item.item_id: item for item in result.pay_items}
+    trail: list[tuple[AccountKind, str, str, str | None, Decimal]] = []
+    for entry in result.ledger_entries:
+        if entry.account not in accounts:
+            continue
+        item = items[entry.pay_item_id]
+        assert entry.pay_item_kind == item.kind
+        trail.append((
+            entry.account,
+            item.kind,
+            str(item.quantity),
+            entry.policy_decision_id,
+            entry.amount,
+        ))
+    return trail
+
+
 def _tfr_settle(result: PeriodResult) -> Decimal:
     return sum(
         (
@@ -244,6 +271,30 @@ class TestBilateralFundEventAccounting:
             "50.00"
         )
 
+    def test_each_entry_traces_to_one_unit_of_its_item_and_its_policy(self) -> None:
+        """The worker share is a withholding, the employer share a contribution."""
+        result = calculate_period(_req(self._bilateral()))
+
+        assert _event_trail(
+            result,
+            {AccountKind.BILATERAL_FUND_EMPLOYEE, AccountKind.BILATERAL_FUND_EMPLOYER},
+        ) == [
+            (
+                AccountKind.BILATERAL_FUND_EMPLOYEE,
+                "employee_withholding_item",
+                "1",
+                "it/contribution/employee",
+                Decimal("30.00"),
+            ),
+            (
+                AccountKind.BILATERAL_FUND_EMPLOYER,
+                "employer_contribution_item",
+                "1",
+                "it/contribution/employer",
+                Decimal("50.00"),
+            ),
+        ]
+
     def test_two_pay_items_produced(self) -> None:
         """BilateralFundEvent produces two pay items (employee + employer)."""
         base_result = calculate_period(_base())
@@ -302,6 +353,29 @@ class TestTerminationTFREventAccounting:
         result = calculate_period(_req(self._termination()))
         sep = (Decimal("5000.00") * Decimal("0.20")).quantize(Decimal("0.01"))
         assert result.period_net == base.period_net + Decimal("5000.00") - sep
+
+    def test_payout_and_tax_trace_to_one_settlement_under_its_policy(self) -> None:
+        """The payout and its separate tax both trace to the one settlement."""
+        result = calculate_period(_req(self._termination()))
+
+        assert _event_trail(
+            result, {AccountKind.TFR_SETTLEMENT, AccountKind.SEPARATE_TAX}
+        ) == [
+            (
+                AccountKind.TFR_SETTLEMENT,
+                "tfr_settlement_item",
+                "1",
+                "it/tfr/settlement",
+                Decimal("5000.00"),
+            ),
+            (
+                AccountKind.SEPARATE_TAX,
+                "tfr_settlement_item",
+                "1",
+                "it/tfr/settlement",
+                Decimal("1000.00"),
+            ),
+        ]
 
     def test_pay_item_present(self) -> None:
         """A tfr_settlement_item pay item is present."""
