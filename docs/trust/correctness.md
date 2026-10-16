@@ -51,7 +51,11 @@ Evidence:
   increment and a night supplement taxed with the period, and the policy
   and band decision traced. The two survivors are equivalent: they send a
   contract renewal through the PdR ceiling, where its own regime (33,000
-  EUR) already taxes it as ordinary income.  The core twelve scored 859 of
+  EUR) already taxes it as ordinary income. Arrears reached 100% (164 of
+  164, from 87.8%): tests now trace arrears of the year (ordinary IRPEF,
+  INPS), of an earlier year (separate tax) and of an unknown one (separate
+  tax as a simulation, with its missing fact) to their decision, item and
+  policy, and the error of a year not yet begun.  The core twelve scored 859 of
   917 (93.7%) that day.
 - Validation matrix: [Validation matrix](validation-matrix.md), generated
   in CI from the reference cases, the observed payslip replay, the sector
