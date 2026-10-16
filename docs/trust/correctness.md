@@ -71,12 +71,12 @@ Evidence:
   totals, components of a total and rates: only a compared total counts
   for readiness, so fixed allowances never stand for the gross and an
   INPS rate never for the amount of the contributions.
-- Reference table cases: <!-- trust:reference-cases -->33<!-- /trust:reference-cases -->
+- Reference table cases: <!-- trust:reference-cases -->34<!-- /trust:reference-cases -->
   cases in `tests/knowledge/ccnl_engine/period/reference_case/`, each running one regular period through
   `PayrollEngine` and asserting, to the cent, the three values its cited
   salary table states: base salary, fixed allowances and period gross. They
   do not check net pay, contributions, taxes or employer cost.
-  <!-- trust:reference-cases-source-linked -->31<!-- /trust:reference-cases-source-linked -->
+  <!-- trust:reference-cases-source-linked -->32<!-- /trust:reference-cases-source-linked -->
   are `source_linked` (they cite the table they model) and
   <!-- trust:reference-cases-verified -->2<!-- /trust:reference-cases-verified -->
   are `verified` against an independent payslip or official worked example.
