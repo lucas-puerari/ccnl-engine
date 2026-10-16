@@ -1,0 +1,96 @@
+{
+  "id": "p65",
+  "period": "2026-01",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Edilizia Industria ANCE (worked example of the Cassa Edile di Vicenza, operaio edile 2° livello, azienda con più di 15 dipendenti)",
+  "level": "2",
+  "contract": {
+    "type": "permanent",
+    "category": "operaio",
+    "ordinary_hours": "160"
+  },
+  "region": "Veneto",
+  "source": {
+    "publisher": "Cassa Edile di Vicenza",
+    "url": "https://cevi.it/wp-content/uploads/2026/01/Esempio-di-busta-paga-operaio-dal-01.01.2026.pdf",
+    "sha256": "ae40dbd1f768797a93046a4cfde4026db8db3f3c78e756e148902196ca655304"
+  },
+  "pay_elements": {
+    "minimo": "7.22",
+    "contingenza": "2.99",
+    "indennita_territoriale": "1.35",
+    "edr": "0.06",
+    "total": "11.62",
+    "unit": "hourly"
+  },
+  "lines": [
+    {
+      "desc": "lavoro ordinario 11,62 x 160",
+      "earning": "1859.20"
+    },
+    {
+      "desc": "festivita 1/1 e 6/1 11,62 x 16",
+      "earning": "185.92"
+    },
+    {
+      "desc": "riposi annui 11,62 x 176 x 4,95%",
+      "earning": "101.23"
+    },
+    {
+      "desc": "accantonamento Cassa Edile 11,62 x 176 x 18,50%",
+      "earning": "378.35"
+    }
+  ],
+  "inps": {
+    "base": "2536.31",
+    "employee": "240.70",
+    "employee_rate": "0.0949"
+  },
+  "irpef_month": {
+    "taxable": "2284.00",
+    "gross": "525.32",
+    "work_deduction": "163.68",
+    "net": "361.64"
+  },
+  "cassa_edile": {
+    "accantonamento_netto": "290.41"
+  },
+  "totals": {
+    "earnings": "2524.70"
+  },
+  "net": "1607.11",
+  "legibility": "full",
+  "notes": [
+    "Worked example published by the Cassa Edile di Vicenza, a bilateral body of the ANCE CCNL, not a payslip of a real worker: an output this engine did not produce.",
+    "CCNL inferred as Edilizia Industria ANCE: the footnote cites 'accordi nazionali stipulati tra ANCE e OO.SS. Edili' and the minimo matches the national table.",
+    "The formula line of the imponibile previdenziale prints '+ 19,18' while the item is 19,28: only 19,28 gives 2.536,31.",
+    "The detrazione 163,68 is 1/12 of the art. 13 deduction without the 65 EUR of c. 1.1 although the annualised income (27.408) is in the 25.000-35.000 band; no ulteriore detrazione of L. 207/2024 is applied. IRPEF is not compared."
+  ],
+  "replay": {
+    "replayability": "partial",
+    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
+    "inputs": {
+      "ccnl_slug": "edilizia-ance.json",
+      "level_code": "2",
+      "year": 2026,
+      "month": 1,
+      "headcount": 50,
+      "contract_type": "permanent",
+      "category": "operaio"
+    },
+    "unknown_inputs": [
+      "the provincial indennità territoriale di settore of Vicenza (limitation territorial_sector_allowance)",
+      "hours paid by the hour: the example rounds the hourly minimo to the cent",
+      "the Cassa Edile contributions of the worker (limitation cassa_edile_contribution)"
+    ],
+    "expected": {
+      "employee_inps_rate": {
+        "value": "0.0949",
+        "tolerance": "0.00001",
+        "printed": "B) ritenute previdenziali a carico dipendente, 9,49%"
+      }
+    },
+    "known_differences": []
+  }
+}

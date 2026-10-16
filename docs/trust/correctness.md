@@ -75,7 +75,7 @@ Evidence:
   short, and the net pay too where they reach the worker. These oracles
   read the same primary sources as the bundle: they check the pipeline,
   not the sources, and are no independent output.
-- Observed payslip replay: each of the 64 transcribed payslips in
+- Observed payslip replay: each of the 66 records (64 transcribed payslips and two worked examples) in
   `tests/knowledge/ccnl_engine/period/observed_payslip/` states in `replay`
   whether it is `full`, `partial` or `not_replayable`, and why. A
   replayable record builds its request from the observed facts alone,
@@ -83,9 +83,11 @@ Evidence:
   values it compares with the field they were read from and a tolerance;
   `test_observed_replay.py` runs each through `PayrollEngine` and fails on
   any difference that `known_differences` does not list with its reason,
-  owner and `accepted_until` date. Seven payslips of 2026 (terziario and
-  industria) replay in part: the base salary, the contingenza and, where
-  the payslip prints its composition, the worker's INPS rate. None replays
+  owner and `accepted_until` date. Nine payslips of 2026 replay in part:
+  seven of terziario and industria (the base salary, the contingenza and,
+  where the payslip prints its composition, the worker's INPS rate) and the
+  two worked examples of an operaio edile the Cassa Edile di Vicenza
+  published for January and March 2026 (the worker's INPS rate). None replays
   in full: superminimi, provincial elements and flat overtime have no field
   in the request. 39 are of years before the bundle's tax years.
 - Legal scenario tests: selected rules (IRPEF, regional and municipal

@@ -1,10 +1,11 @@
 """Observed payslips: well formed and internally consistent.
 
-``tests/knowledge/ccnl_engine/period/observed_payslip/`` holds transcriptions of
-payslips that
-workers published online.  They are evidence of how real payrolls apply
-the rules, never a signed source: no record identifies a person, an
-employer or a bank account, and every amount is copied as printed.
+``tests/knowledge/ccnl_engine/period/observed_payslip/`` holds transcriptions
+of payslips that workers published online, and two worked examples the Cassa
+Edile di Vicenza published (p65, p66, with their ``source``).  They are
+evidence of how real payrolls apply the rules, never a signed source: no
+record identifies a person, an employer or a bank account, and every amount
+is copied as printed.
 """
 
 from __future__ import annotations
