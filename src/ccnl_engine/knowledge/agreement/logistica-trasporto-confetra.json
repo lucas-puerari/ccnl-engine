@@ -2584,7 +2584,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "c6a0fcb943b3d8328a271da294a9c756e7d2532bb0fbfec1980d7494038cc151",
+    "source_hash": "f2cd497cfb0d6b0da942ca636a73faa7f1e5ade9ed0e43f362f858f8ac2d8f4d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3117,6 +3117,28 @@
             "evidence": "DD 135/2025, tables of the personale non viaggiante; the limitation blocks every run of the CCNL.",
             "limitation": "inps_employer_class_unconfirmed"
           }
+        ]
+      },
+      {
+        "id": "2026-10-16-ai-inps-composition",
+        "date": "2026-10-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Follow-up of the source_context_missing divergence of 2026-10-15-ai-divergences: the composition of the 29.44% of DD 135/2025 for the personale non viaggiante.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-135-del-19",
+            "sha256": "91858281e9567597b56506c663222e985f2387b607e7e257e5cf23dc60b3b9b5"
+          },
+          {
+            "url": "https://www.gia.pr.it/download/29078/2023/02/All-2-INPS-TABELLE-CONTRIBUTI-OPERAI-E-IMPIEGATI-OP_IMP_CTB_23.pdf",
+            "sha256": "3cad3626a3bdbea84dbcde42143ad8170ccdc29407261befa809b9eeec5c373e"
+          }
+        ],
+        "findings": [
+          "The INPS rate tables of January 2023 (reproduced by GIA Parma) have no row of 29.44%: impiegati of class industria pay 29.06% from 16 to 50 employees and 29.36% above. The 30.68% of the personale viaggiante of the same decree is the class industria rate of operai up to 15 employees (review 2026-10-16-ai-inps-composition of logistica-trasporto-confetra-viaggiante).",
+          "The composition of 29.44% and the class of the employer remain unknown; the divergence stays open and its limitation keeps blocking the runs."
         ]
       }
     ],

@@ -3344,7 +3344,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "1c5d81a8078e5c131b073d829165cc687953c3ece6f5e749a6096131b97e6acf",
+    "source_hash": "d07fbe0ec6d775eeff9890b3b4cf98203714fe91cb427e4c992a95455f025610",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3910,6 +3910,29 @@
         ],
         "findings": [
           "The allowance amounts of art. 62 c. 3 from 1.1.2025 and the TFR rule of c. 7 are now CCNL data: a TravelAllowanceEvent without daily_amount takes the amount of its hours away."
+        ]
+      },
+      {
+        "id": "2026-10-16-ai-inps-composition",
+        "date": "2026-10-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The employer INPS rate of the personale viaggiante in the cost table of the Ministry of Labour (DD 135 of 19 December 2025) against the INPS rate tables and the classes of the bundle.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-135-del-19",
+            "sha256": "91858281e9567597b56506c663222e985f2387b607e7e257e5cf23dc60b3b9b5"
+          },
+          {
+            "url": "https://www.gia.pr.it/download/29078/2023/02/All-2-INPS-TABELLE-CONTRIBUTI-OPERAI-E-IMPIEGATI-OP_IMP_CTB_23.pdf",
+            "sha256": "3cad3626a3bdbea84dbcde42143ad8170ccdc29407261befa809b9eeec5c373e"
+          }
+        ],
+        "findings": [
+          "DD 135/2025 prints 'Inps (30,68%)' on every table of the personale viaggiante, with no composition, no class of employer and no number of employees.",
+          "30.68% is, to the cent, the employer rate of an INPS class industria employer up to 15 employees for operai and intermedi: IVS 23.81 + NASpI 1.61 + CUAF 0.68 + CIG ordinaria 1.70 + Fondo garanzia TFR 0.20 + malattia 2.22 + maternità 0.46 (INPS tables of January 2023 reproduced by GIA Parma, row 'Industria, aziende fino a 15 dipendenti, Operai - Intermedi'). The engine applies the same 30.68% to an operaio viaggiante of an employer up to 15 employees, and 31.28% from 16 to 50 and 31.58% above (CIG straordinaria 0.90 and the higher CIG ordinaria): match for the smallest band, no evidence for the others.",
+          "Not established: whether the Ministry assumes an employer up to 15 employees or a class other than industria. A press article (Euroconference, 24 November 2021) classifies a road haulage employer in the INPS sector terziario, CSC 7.04.01, which would give other rates; the class is a fact of the employer, so it is not decided here."
         ]
       }
     ],
