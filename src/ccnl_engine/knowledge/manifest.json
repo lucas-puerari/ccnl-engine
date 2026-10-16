@@ -455,7 +455,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "630113cc7a44992b4862ce9a632b8301ca5a2ab8c0ff61c7bf018dff4e58d4c5",
+      "source_hash": "7635ded49c1d61a0e09a0f4e565adc6a17b90d0a5624e8b97097765aff185322",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/commercio-confcommercio.json.gz"

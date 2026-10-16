@@ -2778,7 +2778,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "630113cc7a44992b4862ce9a632b8301ca5a2ab8c0ff61c7bf018dff4e58d4c5",
+    "source_hash": "7635ded49c1d61a0e09a0f4e565adc6a17b90d0a5624e8b97097765aff185322",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3230,8 +3230,8 @@
           {
             "subject": "Art. 13 deduction of p25 for 242 days: 977.62 printed against 977.63 computed (1.474,52 x 242 / 365 = 977.6267).",
             "decision": "accepted_external_variance",
-            "cause": "No source states how the proportioned deduction is rounded: the payroll truncates, the engine rounds half-up. One cent.",
-            "evidence": "tests/knowledge/ccnl_engine/period/services/test_observed_comparison.py::test_annual_deductions_match_the_conguaglio_of_p25 (tolerance 0.01)",
+            "cause": "No source states how the proportioned deduction is rounded: the payroll of p25 truncates, the engine rounds half-up. One cent. Two payslips printed by other payroll packages, p26 (969.4658 printed 969.47) and p27 (74.9863 printed 74.99), round half-up as the engine does: the rounding varies by package.",
+            "evidence": "tests/knowledge/ccnl_engine/period/services/test_observed_comparison.py::test_annual_deductions_match_the_conguaglio_of_p25 (tolerance 0.01) and ::test_other_payrolls_round_the_proportioned_deduction_half_up",
             "review_by": "2027-03-31"
           }
         ]

@@ -91,3 +91,32 @@ def test_annual_deductions_match_the_conguaglio_of_p25() -> None:
     assert work == Decimal("1042.63")
     assert ulteriore == Decimal("578.96")
     assert abs(work + ulteriore - Decimal("1621.58")) <= Decimal("0.01")
+
+
+@pytest.mark.parametrize(
+    ("payslip", "taxable", "days", "printed"),
+    [
+        # p27, 2025 termination, fully legible: 1,955 x 14 / 365 = 74.9863.
+        ("p27", "10913.72", 14, "74.99"),
+        # p26, 2025 termination on 30 June: 1,955 x 181 / 365 = 969.4658.
+        ("p26", "10842.92", 181, "969.47"),
+    ],
+)
+def test_other_payrolls_round_the_proportioned_deduction_half_up(
+    payslip: str, taxable: str, days: int, printed: str
+) -> None:
+    """Two payroll packages other than p25's round the art. 13 deduction half up.
+
+    p25 truncates 977.6267 to 977.62 (accepted_external_variance of the
+    commercio review log); p26 and p27, printed by other packages, round
+    74.9863 and 969.4658 half up, as the engine does.  The rounding of the
+    proportioned deduction varies by package; none of the sources states it.
+    Both are of 2025, whose tables the bundle does not hold: the 1,955 EUR of
+    art. 13 c. 1 lett. a) TUIR, for an income up to 15,000 EUR, is the same
+    in 2025 and 2026, so the rules of 2026 compute it.
+    """
+    rules = load_year_rules(2026, TaxSector.INDUSTRIA, 10)
+
+    assert work_income_deduction(Decimal(taxable), days, rules.work_deduction) == (
+        Decimal(printed)
+    ), payslip
