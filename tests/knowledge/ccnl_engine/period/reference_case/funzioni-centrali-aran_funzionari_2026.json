@@ -1,0 +1,29 @@
+{
+  "verification": "source_linked",
+  "axes": [
+    "base_salary"
+  ],
+  "_description": "CCNL Comparto Funzioni Centrali ARAN 2025-2027, area dei funzionari, October 2026 regular run, permanent, full time.",
+  "_notes": [
+    "Tabella 3, retribuzione tabellare annua 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027': 'FUNZIONARI 26.049,53 26.735,93 27.304,73'; 13 mensilità, the tredicesima paid apart.",
+    "Monthly tabellare of 2026: 26,735.93 / 12 = 2,227.994..., 2,227.99 rounded half up.",
+    "Base salary only: the indennità di amministrazione and the differenziali stipendiali are not in Tabella 3 and are not pinned here."
+  ],
+  "source": {
+    "document": "CCNL Comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+    "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+    "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e",
+    "page": "66",
+    "section": "Tabella 3, retribuzione tabellare annua dal 1.1.2026, area dei funzionari"
+  },
+  "inputs": {
+    "ccnl_slug": "funzioni-centrali-aran.json",
+    "level_code": "FUNZIONARI",
+    "year": 2026,
+    "month": 10,
+    "headcount": 50
+  },
+  "expected": {
+    "base_salary": "2227.99"
+  }
+}
