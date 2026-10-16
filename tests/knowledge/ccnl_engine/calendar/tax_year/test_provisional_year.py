@@ -125,3 +125,46 @@ def test_a_run_of_the_published_year_is_not_blocked_as_provisional() -> None:
     blockers = {(b.code, b.detail) for b in result.blockers}
 
     assert not {_TAX, _INPS} & blockers
+
+
+def _assumed_tranches() -> list[tuple[str, str, int, int]]:
+    """Return the first assumed tranche of a provisional year of each CCNL.
+
+    Returns:
+        ``(slug, level, year, month)`` of the first level whose base salary
+        takes an ``assumed`` value in a provisional year.
+    """
+    found: dict[str, tuple[str, str, int, int]] = {}
+    for path in sorted((KNOWLEDGE_DIR / "agreement").glob("*.json")):
+        data: dict[str, Any] = json.loads(path.read_text(encoding="utf-8"))
+        for level in data.get("levels", []):
+            for period in level.get("base_salary", {}).get("periods", []):
+                start = str(period.get("valid_from", ""))
+                status = period.get("provenance", {}).get("status")
+                if start[:4] in _PROVISIONAL_YEARS and status == "assumed":
+                    found.setdefault(
+                        path.name,
+                        (path.name, level["code"], int(start[:4]), int(start[5:7])),
+                    )
+    return sorted(found.values())
+
+
+@pytest.mark.parametrize(("slug", "level", "year", "month"), _assumed_tranches())
+def test_an_assumed_tranche_of_the_provisional_year_is_a_visible_blocker(
+    slug: str, level: str, year: int, month: int
+) -> None:
+    """A pay tranche no signed text backs yet blocks the run that pays it."""
+    result = regular_period(ccnl_slug=slug, level_code=level, year=year, month=month)
+    weak = {
+        (b.feature, b.detail)
+        for b in result.blockers
+        if b.code is BlockerCode.RULE_SOURCE_WEAK
+    }
+
+    assert ("base_salary", "assumed") in weak
+    assert not result.is_payable
+
+
+def test_the_provisional_year_has_assumed_tranches_to_check() -> None:
+    """The scan above is not vacuous: seven CCNLs assume a 2027 tranche today."""
+    assert len(_assumed_tranches()) >= 7
