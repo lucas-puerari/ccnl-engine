@@ -287,39 +287,7 @@
     "131.50 printed between the ORE RETR. and ORE LAV. boxes; assigned to ore_lavorate."
   ],
   "replay": {
-    "replayability": "partial",
-    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
-    "inputs": {
-      "ccnl_slug": "commercio-confcommercio.json",
-      "level_code": "3",
-      "year": 2026,
-      "month": 8,
-      "headcount": 50,
-      "contract_type": "permanent",
-      "category": "operaio"
-    },
-    "unknown_inputs": [
-      "the termination facts (notice, untaken leave, TFR)",
-      "ad personam and seniority",
-      "headcount above 15, from the 9.757% withheld"
-    ],
-    "expected": {
-      "base_salary": {
-        "value": "1453.94",
-        "tolerance": "0.00",
-        "printed": "pay_elements.paga_base"
-      },
-      "fixed_allowances": {
-        "value": "527.90",
-        "tolerance": "0.00",
-        "printed": "pay_elements.contingenza"
-      },
-      "employee_inps_rate": {
-        "value": "0.0975667",
-        "tolerance": "0.00001",
-        "printed": "inps.employee / inps.base (1481.02 / 15179.00, per-component rounding)"
-      }
-    },
-    "known_differences": []
+    "replayability": "not_replayable",
+    "reason": "A termination paid on 25 days of 26: the paga base and contingenza printed are full-month rates, not the amounts paid, and the termination facts have no field in the request; the headcount above 15 was inferred from the INPS rate withheld, so the rate cannot be compared either."
   }
 }

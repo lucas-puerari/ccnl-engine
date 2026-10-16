@@ -74,25 +74,58 @@
       "contract_type": "permanent"
     },
     "unknown_inputs": [
-      "ad personam and provincial element",
-      "the Fon.Te. pension fund enrolment",
-      "headcount above 15, from the CIGS withheld"
+      {
+        "input": "ad personam and provincial element",
+        "affects": [
+          "gross",
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "tfr",
+          "employer_cost",
+          "fixed_allowances",
+          "contribution_base",
+          "taxable_income",
+          "gross_irpef",
+          "tax_deductions",
+          "tax_credits",
+          "tax_surcharges"
+        ]
+      },
+      {
+        "input": "the Fon.Te. pension fund enrolment",
+        "affects": [
+          "tax",
+          "net",
+          "tfr",
+          "employer_cost",
+          "taxable_income",
+          "gross_irpef",
+          "employee_funds",
+          "employer_funds"
+        ]
+      },
+      {
+        "input": "headcount above 15, from the CIGS withheld",
+        "affects": [
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "employer_cost",
+          "taxable_income",
+          "gross_irpef",
+          "employee_inps_rate",
+          "employer_inps_rate"
+        ]
+      }
     ],
     "expected": {
       "base_salary": {
         "value": "1453.94",
         "tolerance": "0.00",
         "printed": "Stipendio base"
-      },
-      "fixed_allowances": {
-        "value": "527.90",
-        "tolerance": "0.00",
-        "printed": "Contingenza"
-      },
-      "employee_inps_rate": {
-        "value": "0.0975667",
-        "tolerance": "0.00005",
-        "printed": "IVS 9,190 + CIGS 0,300 + FIS 0,267"
       }
     },
     "known_differences": []

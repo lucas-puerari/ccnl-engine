@@ -106,20 +106,59 @@
       "category": "impiegato"
     },
     "unknown_inputs": [
-      "headcount",
-      "superminimo and provincial elements",
-      "the wage-integration fund of the employer (the payslip withholds IVS only, no FIS share)"
+      {
+        "input": "headcount",
+        "affects": [
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "employer_cost",
+          "taxable_income",
+          "gross_irpef",
+          "employee_inps_rate",
+          "employer_inps_rate"
+        ]
+      },
+      {
+        "input": "superminimo and provincial elements",
+        "affects": [
+          "gross",
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "tfr",
+          "employer_cost",
+          "fixed_allowances",
+          "contribution_base",
+          "taxable_income",
+          "gross_irpef",
+          "tax_deductions",
+          "tax_credits",
+          "tax_surcharges"
+        ]
+      },
+      {
+        "input": "the wage-integration fund of the employer (the payslip withholds IVS only, no FIS share)",
+        "affects": [
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "employer_cost",
+          "taxable_income",
+          "gross_irpef",
+          "employee_inps_rate",
+          "employer_inps_rate"
+        ]
+      }
     ],
     "expected": {
       "base_salary": {
         "value": "1136.07",
         "tolerance": "0.00",
         "printed": "pay_elements.minimo"
-      },
-      "fixed_allowances": {
-        "value": "521.94",
-        "tolerance": "0.00",
-        "printed": "pay_elements.contingenza"
       }
     },
     "known_differences": []

@@ -63,39 +63,7 @@
     "The right edge is cropped: competenze and trattenute totals are cut; the pay elements are the full-time amounts."
   ],
   "replay": {
-    "replayability": "partial",
-    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
-    "inputs": {
-      "ccnl_slug": "commercio-confcommercio.json",
-      "level_code": "6",
-      "year": 2026,
-      "month": 7,
-      "headcount": 10,
-      "category": "operaio",
-      "contract_type": "permanent"
-    },
-    "unknown_inputs": [
-      "the 50% part-time and the fixed term",
-      "EDR in place of the bilateral and Fondo Est contributions",
-      "headcount up to 15, from the FIS rate printed"
-    ],
-    "expected": {
-      "base_salary": {
-        "value": "1019.94",
-        "tolerance": "0.00",
-        "printed": "PAGA BASE (full-time amount)"
-      },
-      "fixed_allowances": {
-        "value": "519.76",
-        "tolerance": "0.00",
-        "printed": "CONTING."
-      },
-      "employee_inps_rate": {
-        "value": "0.0945667",
-        "tolerance": "0.00001",
-        "printed": "IVS 9,19000 + FIS fino 15 dip 0,26667"
-      }
-    },
-    "known_differences": []
+    "replayability": "not_replayable",
+    "reason": "A 50% part-time fixed-term worker: the paga base and contingenza printed are full-time monthly rates, not the amounts paid; the headcount up to 15 was inferred from the FIS rate printed, so the INPS rate cannot be compared either."
   }
 }

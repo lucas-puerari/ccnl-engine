@@ -55,8 +55,43 @@
       "contract_type": "permanent"
     },
     "unknown_inputs": [
-      "seniority (3 scatti) and ad personam",
-      "the variable items and the INPS lines (page missing)"
+      {
+        "input": "seniority (3 scatti) and ad personam",
+        "affects": [
+          "gross",
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "tfr",
+          "employer_cost",
+          "fixed_allowances",
+          "contribution_base",
+          "taxable_income",
+          "gross_irpef",
+          "tax_deductions",
+          "tax_credits",
+          "tax_surcharges"
+        ]
+      },
+      {
+        "input": "the variable items and the INPS lines (page missing)",
+        "affects": [
+          "gross",
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "tfr",
+          "employer_cost",
+          "contribution_base",
+          "taxable_income",
+          "gross_irpef",
+          "tax_deductions",
+          "tax_credits",
+          "tax_surcharges"
+        ]
+      }
     ],
     "expected": {
       "base_salary": {

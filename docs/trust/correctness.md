@@ -84,23 +84,34 @@ Evidence:
   `tests/knowledge/ccnl_engine/period/observed_payslip/` states in `replay`
   whether it is `full`, `partial` or `not_replayable`, and why. A
   replayable record builds its request from the observed facts alone,
-  names the facts the request cannot state (`unknown_inputs`) and pins the
-  values it compares with the field they were read from and a tolerance;
+  only through the fields of the public API that
+  `scripts/provenance/replay/check.py` lists (no generic override can force
+  an output), and pins each value it compares with the field it was read
+  from, a tolerance and, for the employer cost and the TFR, the perimeter
+  of the total. A `partial` record names each fact the request cannot state
+  in `unknown_inputs`, with the totals, components and rates that fact
+  `affects`, and compares none of them; a `full` record has no unknown fact
+  and compares every complete output, or states why one is outside its
+  perimeter. The schema gate applies those rules, and the validation
+  matrix credits only the records that pass them.
   `test_observed_replay.py` runs each through `PayrollEngine` and fails on
   any difference that `known_differences` does not list with its reason,
-  owner and `accepted_until` date. Seventeen payslips of 2026 replay in part:
-  seven of terziario and industria (the base salary, the contingenza and,
-  where the payslip prints its composition, the worker's INPS rate) and the
-  two worked examples of an operaio edile the Cassa Edile di Vicenza
-  published for January and March 2026 (the worker's INPS rate), and two
-  May 2026 payslips of a Funzioni Locali employer printed by a payroll
-  package (tabellare, indennità di comparto and the CPDEL, Fondo credito and
-  ENPDEP rates of the worker), and six payslip images of 2026 posted on
-  Reddit (commercio, turismo Federalberghi, pubblici esercizi, industria
-  turistica: the pay table and, where printed or derivable, the worker's
-  INPS rate). None replays
-  in full: superminimi, provincial elements and flat overtime have no field
-  in the request. 39 are of years before the bundle's tax years.
+  owner and `accepted_until` date. Eleven payslips of 2026 replay in part:
+  four of commercio and two of metalmeccanico (the base salary, the
+  contingenza and, where the payslip prints its composition and the
+  headcount is stated, the worker's INPS rate), one of industria turistica
+  (the pay table), the two worked examples of an operaio edile the Cassa
+  Edile di Vicenza published for January and March 2026 (the worker's INPS
+  rate), and two May 2026 payslips of a Funzioni Locali employer printed
+  by a payroll package (the tabellare: the individual elements and the
+  TFS or TFR regime are unknown, so the indennità di comparto and the
+  INPS rate are not compared). Six payslips of 2026 are `not_replayable`
+  because their part-time, partial month or termination moves every
+  printed value; for five of them the headcount was also inferred from the
+  rate compared.
+  None replays in full: superminimi, provincial elements and flat overtime
+  have no field in the request. 39 are of years before the bundle's tax
+  years.
 - Legal scenario tests: selected rules (IRPEF, regional and municipal
   surtaxes, substitute-tax regimes, apprenticeship scaling, the withholding
   schedule and others) checked against hand-derived values, in the

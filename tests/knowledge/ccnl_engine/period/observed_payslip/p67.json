@@ -73,25 +73,54 @@
       "public_life_insurance": true
     },
     "unknown_inputs": [
-      "the indennita vacanza contrattuale and the individual elements (posizione, ad personam, specifiche responsabilita)",
-      "the regional and municipal surtax installments of 2025",
-      "the TFR or TFS regime of the worker"
+      {
+        "input": "the indennita vacanza contrattuale and the individual elements (posizione, ad personam, specifiche responsabilita)",
+        "affects": [
+          "gross",
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "tfr",
+          "employer_cost",
+          "fixed_allowances",
+          "contribution_base",
+          "taxable_income",
+          "gross_irpef",
+          "tax_deductions",
+          "tax_credits",
+          "tax_surcharges"
+        ]
+      },
+      {
+        "input": "the regional and municipal surtax installments of 2025",
+        "affects": [
+          "tax",
+          "net",
+          "tax_surcharges"
+        ]
+      },
+      {
+        "input": "the TFR or TFS regime of the worker",
+        "affects": [
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "tfr",
+          "employer_cost",
+          "contribution_base",
+          "taxable_income",
+          "gross_irpef",
+          "employee_inps_rate"
+        ]
+      }
     ],
     "expected": {
       "base_salary": {
         "value": "2092.84",
         "tolerance": "0.00",
         "printed": "voce 2 retribuzione tabellare"
-      },
-      "fixed_allowances": {
-        "value": "36.33",
-        "tolerance": "0.00",
-        "printed": "voce 92 indennita di comparto fondo"
-      },
-      "employee_inps_rate": {
-        "value": "0.09227",
-        "tolerance": "0.00001",
-        "printed": "fondo credito 0,35% + CPDEL 8,85% + ENPDEP 0,027%"
       }
     },
     "known_differences": []
