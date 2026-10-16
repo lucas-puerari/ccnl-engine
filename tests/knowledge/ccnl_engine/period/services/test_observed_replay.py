@@ -17,6 +17,7 @@ result of :meth:`~ccnl_engine.PayrollEngine.calculate_period`.
 
 from __future__ import annotations
 
+import dataclasses
 from datetime import UTC, date, datetime
 from decimal import Decimal
 from typing import TYPE_CHECKING, Any
@@ -32,6 +33,8 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
 )
+from ccnl_engine.event import facade as event_facade
+from ccnl_engine.event.facade import OvertimeKind, StandbyKind
 from ccnl_engine.inputs import (
     CurrentYearTaxFacts,
     EmploymentPeriod,
@@ -47,7 +50,9 @@ from ccnl_engine.inputs import (
     WorkerCategory,
 )
 from ccnl_engine.ledger.models import AccountKind
+from ccnl_engine.run.types import PeriodId
 from scripts.provenance.replay.check import (
+    EVENT_TYPES,
     INPUT_KEYS,
     REPLAY_KEYS,
     load_records,
@@ -213,6 +218,54 @@ def _employment(inputs: dict[str, Any]) -> Employment:
     )
 
 
+def _field(annotation: str, value: object) -> object:
+    """Return ``value`` as the type its event field declares.
+
+    Returns:
+        The converted value, ``None`` for an unstated optional field.
+
+    Raises:
+        TypeError: For a field type the replay does not state.
+    """
+    kind = annotation.removesuffix(" | None")
+    if value is None:
+        return None
+    converters: dict[str, Callable[[Any], object]] = {
+        "date": date.fromisoformat,
+        "Decimal": lambda v: Decimal(str(v)),
+        "int": int,
+        "bool": bool,
+        "OvertimeKind": OvertimeKind,
+        "StandbyKind": StandbyKind,
+        "PeriodId": lambda v: PeriodId(year=int(v[:4]), month=int(v[5:7])),
+    }
+    if kind.startswith("Literal["):
+        return str(value)
+    if kind not in converters:
+        msg = f"event field type {annotation!r} has no replay converter"
+        raise TypeError(msg)
+    return converters[kind](value)
+
+
+def _event(spec: dict[str, Any]) -> object:
+    """Build one event of a record from its stated fields alone.
+
+    Returns:
+        The event.
+
+    Raises:
+        TypeError: For a field the event does not have.
+    """
+    cls = getattr(event_facade, spec["type"])
+    declared = {f.name: f.type for f in dataclasses.fields(cls) if f.init}
+    stated = {k: v for k, v in spec.items() if k != "type"}
+    unknown = set(stated) - set(declared)
+    if unknown:
+        msg = f"{spec['type']} has no field {sorted(unknown)}"
+        raise TypeError(msg)
+    return cls(**{k: _field(str(declared[k]), v) for k, v in stated.items()})
+
+
 _RUNS = {
     "regular": PayrollRun.regular,
     "thirteenth": PayrollRun.thirteenth,
@@ -240,6 +293,7 @@ def _request(inputs: dict[str, Any]) -> PeriodInput:
         facts=PeriodFacts(
             regione=inputs.get("regione"),
             comune_belfiore=inputs.get("comune_belfiore"),
+            events=tuple(_event(e) for e in inputs.get("events", [])),  # type: ignore[misc]
         ),
         prior_year=PriorYearTaxFacts(
             employment_income=None if income is None else Decimal(income)
@@ -281,7 +335,120 @@ _EVERY_INPUT: dict[str, Any] = {
         "tfr_to_fund": False,
     },
     "current_year_employment_only_on": "2026-12-01",
+    "events": [
+        {
+            "type": "OvertimeEvent",
+            "event_date": "2026-12-10",
+            "hours": "4",
+            "hourly_rate": "15.00",
+            "multiplier": "1.25",
+            "kind": "weekday",
+        }
+    ],
 }
+#: One event of each type a record may state, with every field it accepts.
+_EVENTS: list[dict[str, Any]] = [
+    {
+        "type": "AbsenceEvent",
+        "event_date": "2026-03-02",
+        "hours": "8",
+        "hourly_rate": "12.50",
+        "end_date": "2026-03-02",
+        "suspends_accrual": False,
+        "no_pay_due": None,
+    },
+    {
+        "type": "OvertimeEvent",
+        "event_date": "2026-03-03",
+        "hours": "2",
+        "hourly_rate": "15.00",
+        "multiplier": None,
+        "kind": "weekday",
+    },
+    {
+        "type": "NightShiftEvent",
+        "event_date": "2026-03-04",
+        "supplement_amount": "40.00",
+    },
+    {
+        "type": "HolidayWorkEvent",
+        "event_date": "2026-03-05",
+        "supplement_amount": "30.00",
+    },
+    {
+        "type": "ShiftWorkEvent",
+        "event_date": "2026-03-06",
+        "supplement_amount": "20.00",
+    },
+    {
+        "type": "StandbyEvent",
+        "event_date": "2026-03-07",
+        "kind": "worked_day",
+        "quantity": "1",
+        "calls": 0,
+    },
+    {
+        "type": "BonusEvent",
+        "event_date": "2026-03-08",
+        "amount": "500.00",
+        "kind": "contract_renewal",
+        "agreement_signed_on": "2025-06-01",
+    },
+    {"type": "FringeEvent", "event_date": "2026-03-09", "amount": "100.00"},
+    {"type": "WelfareEvent", "event_date": "2026-03-10", "amount": "200.00"},
+    {
+        "type": "ArrearsEvent",
+        "event_date": "2026-03-11",
+        "amount": "300.00",
+        "separate_tax_rate": "0.23",
+        "reference_period": "2025-06",
+    },
+    {
+        "type": "BilateralFundEvent",
+        "event_date": "2026-03-12",
+        "employee_amount": "5.00",
+        "employer_amount": "10.00",
+    },
+    {
+        "type": "TravelAllowanceEvent",
+        "event_date": "2026-03-13",
+        "days": 2,
+        "outside_municipality": True,
+        "meals_lodging": "none",
+        "daily_amount": "50.00",
+        "hours_away": "10",
+        "tfr_base": "none",
+        "abroad": False,
+        "trasfertista": False,
+    },
+]
+
+
+def test_every_event_type_of_the_checker_is_built_with_its_fields() -> None:
+    """Each event a record may state reaches the request with its stated fields."""
+    built = [_event(spec) for spec in _EVENTS]
+
+    assert {spec["type"] for spec in _EVENTS} == EVENT_TYPES
+    for spec, event in zip(_EVENTS, built, strict=True):
+        assert type(event).__name__ == spec["type"]
+        assert dataclasses.asdict(event)["event_date"] == date.fromisoformat(  # type: ignore[call-overload]
+            spec["event_date"]
+        )
+    arrears = built[9]
+    assert isinstance(arrears, event_facade.ArrearsEvent)
+    assert arrears.reference_period == PeriodId(year=2025, month=6)
+    assert arrears.separate_tax_rate == Decimal("0.23")
+
+
+def test_an_event_field_the_engine_lacks_is_rejected() -> None:
+    """A record cannot slip an override into an event."""
+    with pytest.raises(TypeError, match="has no field"):
+        _event({
+            "type": "BonusEvent",
+            "event_date": "2026-03-08",
+            "amount": "1",
+            "period_net": "9",
+        })
 
 
 def test_every_input_of_the_checker_reaches_the_request() -> None:
@@ -318,6 +485,14 @@ def test_every_input_of_the_checker_reaches_the_request() -> None:
     assert request.prior_year.employment_income == Decimal("28000.00")
     assert request.current_year == CurrentYearTaxFacts.employment_only(
         2026, date(2026, 12, 1)
+    )
+    (overtime,) = request.facts.events
+    assert overtime == event_facade.OvertimeEvent(
+        date(2026, 12, 10),
+        Decimal(4),
+        Decimal("15.00"),
+        Decimal("1.25"),
+        OvertimeKind.WEEKDAY,
     )
     assert record_errors_of(_EVERY_INPUT) == []
 

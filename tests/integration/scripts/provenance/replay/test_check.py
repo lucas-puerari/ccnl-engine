@@ -230,3 +230,23 @@ def test_a_complete_set_of_typed_inputs_passes() -> None:
         replay_errors(_PARTIAL | {"inputs": _INPUTS | {"pension_fund": "none"}}, _TODAY)
         == []
     )
+
+
+@pytest.mark.parametrize(
+    ("events", "error"),
+    [
+        ({"type": "BonusEvent"}, "a list"),
+        ([{"type": "SickLeaveEvent", "event_date": "2026-03-02"}], "has no type of"),
+        (
+            [{"type": "TerminationTFREvent", "event_date": "2026-03-02"}],
+            "has no type of",
+        ),
+        ([{"type": "BonusEvent", "event_date": "March"}], "needs an ISO 'event_date'"),
+    ],
+)
+def test_only_payslip_lines_are_events_of_a_replay(events: object, error: str) -> None:
+    """A sick pay override or a TFR payout would state an output: rejected."""
+    errors = replay_errors(_PARTIAL | {"inputs": _INPUTS | {"events": events}}, _TODAY)
+
+    assert len(errors) == 1
+    assert error in errors[0]
