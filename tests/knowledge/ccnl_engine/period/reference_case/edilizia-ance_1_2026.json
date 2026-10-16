@@ -1,8 +1,11 @@
 {
   "verification": "source_linked",
   "axes": [
-    "base_salary",
-    "gross"
+    "base_salary"
+  ],
+  "elements": [
+    "fixed_allowances",
+    "hourly_percentages"
   ],
   "_description": "CCNL Edilizia Industria ANCE (CNEL F012), operaio comune at level 1, April 2026 regular run, permanent, full time, 173 ordinary hours worked: the tranche of 1 March 2026.",
   "_notes": [

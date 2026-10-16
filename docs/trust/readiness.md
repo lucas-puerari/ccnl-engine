@@ -91,10 +91,15 @@ In addition to the `reviewed` criteria:
    shrinks, so no new promotion goes without an independent output.
    `python scripts/provenance/check.py --index` prints the cases of each CCNL
    with its readiness, status and axes.
-3. Its evidence must cover every output of the definition of done for
-   operational use (base salary, gross, contributions, tax, net pay, TFR,
-   employer cost) in the [Validation matrix](validation-matrix.md). The
-   schema gate fails a `production` CCNL that misses an output
+3. Its evidence must cover every complete output of the definition of done
+   for operational use (base salary, gross, employee contributions,
+   employer contributions, tax, net pay, TFR, employer cost) in the
+   `Totals` column of the [Validation matrix](validation-matrix.md).
+   Contributions are two outputs, not one: their bases and roundings can
+   diverge on the two sides. A component (fixed allowances, a taxable
+   base, a tax credit) or a rate (an INPS rate, the hourly percentages)
+   is listed in its own column and never covers the total it belongs to.
+   The schema gate fails a `production` CCNL that misses an output
    `scripts/provenance/readiness/baseline.json` does not list for it; that
    list holds what the CCNLs promoted before 15 October 2026 still miss, and
    only shrinks.

@@ -4,6 +4,9 @@
     "base_salary",
     "gross"
   ],
+  "elements": [
+    "fixed_allowances"
+  ],
   "_description": "CCNL Pubblici Esercizi FIPE, ristorazione collettiva, level 4, August 2026 regular run, permanent, full time: the last month of the September 2025 tranche of the collective catering companies.",
   "_notes": [
     "Accordo integrativo of 26 June 2024, table of the ristorazione collettiva 'Totale set-25' (p. 3): level 4 1652,69 from 1 September 2025; the next tranche, 1692,69, starts on 1 September 2026.",

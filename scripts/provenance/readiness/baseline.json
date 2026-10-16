@@ -1,7 +1,8 @@
 {
   "missing_outputs": {
     "alimentari-federalimentare": [
-      "contributions",
+      "employee_contributions",
+      "employer_contributions",
       "employer_cost",
       "gross",
       "net",
@@ -9,7 +10,8 @@
       "tfr"
     ],
     "chimica-farmaceutica-federchimica": [
-      "contributions",
+      "employee_contributions",
+      "employer_contributions",
       "employer_cost",
       "gross",
       "net",
@@ -17,21 +19,25 @@
       "tfr"
     ],
     "dmo-federdistribuzione": [
-      "contributions",
+      "employee_contributions",
+      "employer_contributions",
       "employer_cost",
       "net",
       "tax",
       "tfr"
     ],
     "edilizia-ance-impiegati": [
-      "contributions",
+      "employee_contributions",
+      "employer_contributions",
       "employer_cost",
+      "gross",
       "net",
       "tax",
       "tfr"
     ],
     "metalmeccanico-confapi": [
-      "contributions",
+      "employee_contributions",
+      "employer_contributions",
       "employer_cost",
       "gross",
       "net",
@@ -39,20 +45,24 @@
       "tfr"
     ],
     "pubblici-esercizi-fipe-angem": [
+      "employee_contributions",
+      "employer_contributions",
       "employer_cost",
       "net",
       "tax",
       "tfr"
     ],
     "pubblici-esercizi-fipe-angem-ristorazione-collettiva": [
-      "contributions",
+      "employee_contributions",
+      "employer_contributions",
       "employer_cost",
       "net",
       "tax",
       "tfr"
     ],
     "studi-professionali-confprofessioni": [
-      "contributions",
+      "employee_contributions",
+      "employer_contributions",
       "employer_cost",
       "gross",
       "net",
@@ -60,6 +70,8 @@
       "tfr"
     ],
     "turismo-federalberghi": [
+      "employee_contributions",
+      "employer_contributions",
       "employer_cost",
       "net",
       "tax",

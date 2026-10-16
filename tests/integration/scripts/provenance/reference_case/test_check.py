@@ -60,11 +60,21 @@ def test_the_index_maps_each_ccnl_to_its_valid_cases(tmp_path: Path) -> None:
         b=_CASE | {"axes": []},
         c=_CASE | {"inputs": {}},
         d=_CASE | {"inputs": {"ccnl_slug": "y.json"}},
+        e=_CASE
+        | {
+            "inputs": {"ccnl_slug": "y.json"},
+            "axes": [],
+            "elements": ["fixed_allowances"],
+            "expected": {"fixed_allowances": "200.00"},
+        },
     )
 
     assert index(folder) == {
         "x": (CaseEvidence("a.json", "source_linked", ("base_salary",)),),
-        "y": (CaseEvidence("d.json", "source_linked", ("base_salary",)),),
+        "y": (
+            CaseEvidence("d.json", "source_linked", ("base_salary",)),
+            CaseEvidence("e.json", "source_linked", (), ("fixed_allowances",)),
+        ),
     }
 
 
@@ -142,4 +152,5 @@ def test_the_index_is_printed_from_the_command_line() -> None:
         "file": "metalmeccanico-federmeccanica_c3_2026_observed.json",
         "verification": "verified",
         "axes": ["base_salary"],
+        "elements": [],
     } in entry["reference_cases"]

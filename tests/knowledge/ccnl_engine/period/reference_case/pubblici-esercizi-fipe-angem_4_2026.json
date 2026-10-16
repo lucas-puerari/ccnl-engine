@@ -4,6 +4,9 @@
     "base_salary",
     "gross"
   ],
+  "elements": [
+    "fixed_allowances"
+  ],
   "_description": "CCNL Pubblici Esercizi FIPE level 4, June 2026 regular run, permanent, full time: the first month of the tranche of 1 June 2026.",
   "_notes": [
     "Accordo integrativo of 26 June 2024, table 'Totale giu-26' (p. 2): level 4 1692,69 from 1 June 2026, contingenza plus paga base.",

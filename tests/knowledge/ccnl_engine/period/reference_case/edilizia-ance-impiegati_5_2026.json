@@ -1,8 +1,10 @@
 {
   "verification": "source_linked",
   "axes": [
-    "base_salary",
-    "gross"
+    "base_salary"
+  ],
+  "elements": [
+    "fixed_allowances"
   ],
   "_description": "CCNL Edilizia Industria ANCE (CNEL F012), impiegato di 2a categoria at level 5, April 2026 regular run, permanent, full time: the tranche of 1 March 2026.",
   "_notes": [

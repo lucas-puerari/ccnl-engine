@@ -5,7 +5,15 @@
     "relationship": "permanent, full time",
     "variables": ["overtime"],
     "thresholds": ["headcount 16-50", "minimo tranche of June"],
-    "outputs": ["gross", "contributions", "tax", "net", "tfr", "employer_cost"]
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
   },
   "industria-june": {
     "ccnl": "metalmeccanico-federmeccanica",
@@ -13,7 +21,15 @@
     "relationship": "permanent, full time",
     "variables": [],
     "thresholds": ["headcount 16-50", "trattamento integrativo and somma esente bands"],
-    "outputs": ["gross", "contributions", "tax", "net", "tfr", "employer_cost"]
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
   },
   "terziario-year": {
     "ccnl": "terziario-confesercenti",
@@ -21,7 +37,15 @@
     "relationship": "permanent, full time",
     "variables": [],
     "thresholds": ["headcount above 15", "tranche of November"],
-    "outputs": ["gross", "contributions", "tax", "net", "tfr", "employer_cost"]
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
   },
   "terziario-june": {
     "ccnl": "terziario-confesercenti",
@@ -29,7 +53,15 @@
     "relationship": "permanent, full time",
     "variables": [],
     "thresholds": ["headcount above 15", "trattamento integrativo and somma esente bands"],
-    "outputs": ["gross", "contributions", "tax", "net", "tfr", "employer_cost"]
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
   },
   "edilizia-year": {
     "ccnl": "edilizia-ance",
@@ -37,7 +69,15 @@
     "relationship": "permanent, paid by the hour",
     "variables": ["pension fund"],
     "thresholds": ["headcount 16-50", "minimo tranche of March"],
-    "outputs": ["gross", "contributions", "tax", "net", "tfr", "employer_cost"]
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
   },
   "edilizia-june": {
     "ccnl": "edilizia-ance",
@@ -45,6 +85,14 @@
     "relationship": "permanent, paid by the hour",
     "variables": ["pension fund"],
     "thresholds": ["headcount 16-50", "trattamento integrativo and somma esente bands"],
-    "outputs": ["gross", "contributions", "tax", "net", "tfr", "employer_cost"]
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
   }
 }

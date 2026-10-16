@@ -121,12 +121,31 @@ def test_a_document_hash_is_an_immutable_reference() -> None:
             {"verification": "source_linked", "source": "CCNL Art. 1"},
             "'source' must be an object",
         ),
-        (_LINKED | {"axes": []}, "'axes' must be a non-empty list"),
-        (_LINKED | {"axes": ["base_salary", "payslip"]}, "unknown axis 'payslip'"),
-        (_LINKED | {"expected": {"bonus": "1"}}, "'bonus' belongs to no axis"),
+        (_LINKED | {"axes": []}, "not both empty"),
+        (_LINKED | {"elements": "fixed_allowances"}, "must be lists"),
         (
-            _LINKED | {"expected": {"period_gross": "1"}},
+            _LINKED | {"axes": ["base_salary", "payslip"]},
+            "unknown axis 'payslip'",
+        ),
+        (
+            _LINKED | {"elements": ["bonus_rate"]},
+            "unknown element 'bonus_rate'",
+        ),
+        (
+            _LINKED | {"expected": {"base_salary": "1", "bonus": "1"}},
+            "'bonus' belongs to no axis",
+        ),
+        (
+            _LINKED | {"expected": {"base_salary": "1", "period_gross": "1"}},
             "needs the axis 'gross'",
+        ),
+        (
+            _LINKED | {"expected": {"base_salary": "1", "fixed_allowances": "1"}},
+            "needs the element 'fixed_allowances'",
+        ),
+        (
+            _LINKED | {"axes": ["base_salary", "employee_contributions"]},
+            "'employee_contributions' is declared but no expected value backs it",
         ),
     ],
 )
@@ -135,6 +154,42 @@ def test_invalid_cases_are_rejected(case: dict[str, object], fragment: str) -> N
     errors = verification_errors(case)
     assert len(errors) == 1
     assert fragment in errors[0]
+
+
+def test_fixed_allowances_do_not_cover_the_gross() -> None:
+    """A case pinning only the allowances cannot claim the gross of the period."""
+    case = _LINKED | {
+        "axes": ["base_salary", "gross"],
+        "elements": ["fixed_allowances"],
+        "expected": {"base_salary": "1000.00", "fixed_allowances": "200.00"},
+    }
+
+    assert verification_errors(case) == [
+        "'gross' is declared but no expected value backs it"
+    ]
+    assert verification_errors(case | {"axes": ["base_salary"]}) == []
+
+
+@pytest.mark.parametrize(
+    ("key", "axis"),
+    [("base_salary", "base_salary"), ("period_gross", "gross")],
+)
+def test_each_complete_total_backs_its_axis(key: str, axis: str) -> None:
+    """The expected value of a whole total covers its output axis."""
+    case = _LINKED | {"axes": [axis], "expected": {key: "1000.00"}}
+
+    assert verification_errors(case) == []
+
+
+def test_a_components_only_case_is_valid_with_no_axis() -> None:
+    """A case may pin components alone; it then validates no output."""
+    case = _LINKED | {
+        "axes": [],
+        "elements": ["fixed_allowances"],
+        "expected": {"fixed_allowances": "200.00"},
+    }
+
+    assert verification_errors(case) == []
 
 
 @pytest.mark.parametrize(

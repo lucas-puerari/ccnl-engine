@@ -41,7 +41,10 @@ Evidence:
   in CI from the reference cases, the observed payslip replay, the sector
   oracles and the review log, crosses for each CCNL the source,
   independence, cycle, relationship, variables, thresholds, outputs,
-  outcome and freshness of its evidence.
+  outcome and freshness of its evidence. Outputs are split into complete
+  totals, components of a total and rates: only a compared total counts
+  for readiness, so fixed allowances never stand for the gross and an
+  INPS rate never for the amount of the contributions.
 - Reference table cases: <!-- trust:reference-cases -->30<!-- /trust:reference-cases -->
   cases in `tests/knowledge/ccnl_engine/period/reference_case/`, each running one regular period through
   `PayrollEngine` and asserting, to the cent, the three values its cited
@@ -67,7 +70,8 @@ Evidence:
   payments; edilizia: ANCE operaio of the 1st level with the 4.95%, the
   Cassa Edile accrual and Prevedi), in
   `tests/knowledge/ccnl_engine/period/sector/`. Every payment (gross,
-  worker INPS, TFR accrued net of the 0.50%, employer cost) and the year
+  worker INPS, employer contributions with the solidarity contribution on
+  the pension fund, TFR accrued net of the 0.50%, employer cost) and the year
   (taxable, IRPEF, credits, surtax withheld at the termination, net cash,
   TFR, employer cost) are compared to the cent with hand oracles written
   from the cited tables and statutes, and so is the assurance: the amounts

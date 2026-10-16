@@ -219,7 +219,7 @@ _NAMES = sorted(SCENARIOS)
 
 @pytest.mark.parametrize("name", _NAMES)
 def test_every_payment_matches_the_oracle(name: str) -> None:
-    """Gross, worker INPS, TFR accrued and employer cost of each payment."""
+    """Gross, worker and employer INPS, TFR accrued and employer cost."""
     runs = _year(name).period_results
     oracle = SCENARIOS[name].oracle.payments
 
@@ -227,6 +227,8 @@ def test_every_payment_matches_the_oracle(name: str) -> None:
     for result, payment in zip(runs, oracle, strict=True):
         assert result.period_gross == payment.gross, payment.run_id
         assert _posted(result, "employee_contributions") == payment.employee_inps
+        employer = _posted(result, "employer_contributions")
+        assert employer == payment.employer_contributions, payment.run_id
         assert _posted(result, "tfr_accrual") == payment.tfr_accrual, payment.run_id
         assert result.period_employer_cost == payment.employer_cost, payment.run_id
 

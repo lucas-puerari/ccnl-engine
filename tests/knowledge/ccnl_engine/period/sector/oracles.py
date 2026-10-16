@@ -96,8 +96,9 @@ class Pay:
         run_id: Run of the engine the payment is.
         gross: Gross of the payment.
         tfr_base: Part of the gross in the TFR base.
-        fund: Employer pension contribution with its solidarity
-            contribution, part of the employer cost.
+        fund: Employer pension contribution, part of the employer cost.
+        solidarity: The 10% solidarity contribution the employer pays to
+            INPS on ``fund``: an employer contribution.
         cassa_net: Accrual paid through the Cassa Edile, net of the
             withholding the Cassa makes: in the gross, not in the cash.
     """
@@ -106,6 +107,7 @@ class Pay:
     gross: Decimal
     tfr_base: Decimal
     fund: Decimal = _ZERO
+    solidarity: Decimal = _ZERO
     cassa_net: Decimal = _ZERO
 
 
@@ -118,6 +120,7 @@ class Payment:
     inps_base: Decimal
     employee_inps: Decimal
     employer_inps: Decimal
+    employer_contributions: Decimal
     tfr_quota: Decimal
     tfr_deduction: Decimal
     tfr_accrual: Decimal
@@ -171,10 +174,11 @@ def _payment(pay: Pay, rates: Rates) -> Payment:
         inps_base=base,
         employee_inps=employee,
         employer_inps=employer,
+        employer_contributions=employer + pay.solidarity,
         tfr_quota=quota,
         tfr_deduction=deduction,
         tfr_accrual=accrual,
-        employer_cost=pay.gross + employer + accrual + pay.fund,
+        employer_cost=pay.gross + employer + pay.solidarity + accrual + pay.fund,
     )
 
 
@@ -385,7 +389,7 @@ _CASSA_NET = Decimal("0.142")
 #: 10% solidarity contribution of the employer (L. 166/1991 art. 9-bis).
 _HOURS = Decimal(173)
 _PREVEDI = _whole_euro(_HOURS * Decimal("0.0685"))
-_FUND = _PREVEDI + _cents(_PREVEDI / 10)
+_SOLIDARITY = _cents(_PREVEDI / 10)
 #: Edilizia operaio, 16 to 50 employees: Assimpredil ANCE table 1/2026
 #: (sha256 83508e4e61d305be578ecb224a00bdf4f7628214578999a02d4763d93f58756f):
 #: employer 34.28, of which IVS 23.81; worker IVS 9.19 and CIGS 0.30.
@@ -407,7 +411,8 @@ def _operaio(month: int) -> Pay:
         _run(month),
         gross,
         gross - _EDR,
-        fund=_FUND,
+        fund=_PREVEDI,
+        solidarity=_SOLIDARITY,
         cassa_net=_cents(base * _CASSA_NET),
     )
 

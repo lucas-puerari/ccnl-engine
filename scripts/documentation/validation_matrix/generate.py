@@ -6,7 +6,7 @@ any evidence runs, the evidence the repository holds:
 
 - reference cases (``tests/knowledge/ccnl_engine/period/reference_case/``):
   the primary source they cite, or the independent output they were
-  checked against, and the axes they pin;
+  checked against, and the totals, components and rates they pin;
 - observed payslips replayed through the engine
   (``tests/knowledge/ccnl_engine/period/observed_payslip/``, ``replay``);
 - the hand oracles of a year and a termination per contribution sector
@@ -15,9 +15,13 @@ any evidence runs, the evidence the repository holds:
 
 The columns follow the dimensions of the validation review: source,
 independence, cycle, relationship, variables, thresholds, outputs, outcome
-and freshness.  Readiness depends on it: a ``production`` CCNL must cover
-every output of the definition of done, or list what it misses in the
-shrink-only baseline of :mod:`scripts.provenance.readiness.check`.
+and freshness.  Outputs split in three columns: complete totals
+(:data:`~scripts.provenance.reference_case.check.AXES`), components of a
+total and rates or rules.  Only a total covers an output: fixed allowances
+never stand for the gross, an INPS rate never for the contributions.
+Readiness depends on it: a ``production`` CCNL must cover every total of
+the definition of done, or list what it misses in the shrink-only baseline
+of :mod:`scripts.provenance.readiness.check`.
 
 Run with::
 
@@ -34,11 +38,20 @@ import json
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from collections.abc import Iterable
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
-from scripts.provenance.reference_case.check import index
+from scripts.provenance.reference_case.check import (
+    AXES,
+    AXIS_OF,
+    COMPONENTS,
+    RULES,
+    index,
+)
 from scripts.provenance.rules import KNOWLEDGE_DIR
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -46,12 +59,6 @@ PAGE = ROOT / "docs" / "trust" / "validation-matrix.md"
 _PERIOD = ROOT / "tests" / "knowledge" / "ccnl_engine" / "period"
 PAYSLIPS = _PERIOD / "observed_payslip"
 SCENARIOS = _PERIOD / "sector" / "scenarios.json"
-#: Axis of each value an observed payslip replay compares.
-_REPLAY_AXES = {
-    "base_salary": "base_salary",
-    "fixed_allowances": "gross",
-    "employee_inps_rate": "contributions",
-}
 #: Outcome each divergence decision stands for.
 _OUTCOMES = {
     "engine_bug": "engine bug fixed",
@@ -75,7 +82,26 @@ class Row:
     variables: set[str] = field(default_factory=set)
     thresholds: set[str] = field(default_factory=set)
     outputs: set[str] = field(default_factory=set)
+    components: set[str] = field(default_factory=set)
+    rules: set[str] = field(default_factory=set)
     outcomes: set[str] = field(default_factory=set)
+
+    def pin(self, labels: Iterable[str]) -> None:
+        """Add each label to the totals, the components or the rules.
+
+        Raises:
+            ValueError: If a label is no total, component or rule.
+        """
+        for label in labels:
+            if label in AXES:
+                self.outputs.add(label)
+            elif label in COMPONENTS:
+                self.components.add(label)
+            elif label in RULES:
+                self.rules.add(label)
+            else:
+                msg = f"unknown output, component or rule {label!r}"
+                raise ValueError(msg)
 
     @property
     def has_evidence(self) -> bool:
@@ -110,7 +136,7 @@ def _add_reference_cases(rows: dict[str, Row]) -> None:
             row.independence.add("provider output" if verified else "source-linked")
             row.cycles.add("ordinary month")
             row.relationships.add("permanent, full time")
-            row.outputs.update(case.axes)
+            row.pin(case.axes + case.elements)
             row.outcomes.add("match")
 
 
@@ -126,7 +152,7 @@ def _add_payslips(rows: dict[str, Row]) -> None:
         row.cycles.add("ordinary month")
         row.relationships.add(f"{replay['inputs']['contract_type']}, hours not stated")
         row.thresholds.add(f"headcount {replay['inputs']['headcount']}")
-        row.outputs.update(_REPLAY_AXES[key] for key in replay["expected"])
+        row.pin(AXIS_OF[key] for key in replay["expected"])
         known = replay.get("known_differences") or []
         row.outcomes.add("explained variance" if known else "match")
 
@@ -141,7 +167,7 @@ def _add_oracles(rows: dict[str, Row]) -> None:
         row.relationships.add(scenario["relationship"])
         row.variables.update(scenario["variables"])
         row.thresholds.update(scenario["thresholds"])
-        row.outputs.update(scenario["outputs"])
+        row.pin(scenario["outputs"])
         row.outcomes.add("match")
 
 
@@ -175,7 +201,8 @@ def build_page(rows: dict[str, Row]) -> str:
     """
     header = (
         "| CCNL | Readiness | Source | Independence | Cycle | Relationship "
-        "| Variables | Thresholds | Output | Outcome | Last review | Review due |"
+        "| Variables | Thresholds | Totals | Components | Rates and rules "
+        "| Outcome | Last review | Review due |"
     )
     lines = [
         "# Validation matrix",
@@ -192,19 +219,23 @@ def build_page(rows: dict[str, Row]) -> str:
         "transcription of a signed source; a `hand oracle` recomputes the",
         "pipeline from the same sources; only a `provider output` (a real",
         "payslip, an official worked example) is independent of them.",
+        "`Totals` lists the complete outputs compared; `Components` the parts",
+        "of a total (fixed allowances, bases, tax components) and `Rates and",
+        "rules` the rates compared: neither covers the total it belongs to.",
         "Readiness depends on the page: a `production` CCNL must cover every",
-        "output (base salary, gross, contributions, tax, net, TFR, employer",
-        "cost), or list what it still misses in",
+        "total (base salary, gross, employee and employer contributions, tax,",
+        "net, TFR, employer cost), or list what it still misses in",
         "`scripts/provenance/readiness/baseline.json`, a list that only shrinks.",
         "",
         header,
-        "|---|---|---|---|---|---|---|---|---|---|---|---|",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
     ]
     lines.extend(
         f"| `{ccnl}` | {row.readiness} | {_cell(row.sources)} "
         f"| {_cell(row.independence)} | {_cell(row.cycles)} "
         f"| {_cell(row.relationships)} | {_cell(row.variables)} "
         f"| {_cell(row.thresholds)} | {_cell(row.outputs)} "
+        f"| {_cell(row.components)} | {_cell(row.rules)} "
         f"| {_cell(row.outcomes)} | {row.last_review} | {row.review_due} |"
         for ccnl, row in rows.items()
     )
