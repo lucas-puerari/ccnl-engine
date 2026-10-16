@@ -75,9 +75,17 @@ INPUT_KEYS: Final = frozenset({
     "prior_year_employment_income",
     "tfr_treasury_fund",
     "public_end_of_service",
+    "run_kind",
+    "seniority_months",
+    "seniority_as_of",
+    "pension_fund",
+    "current_year_employment_only_on",
 })
 _REQUIRED_INPUTS: Final = ("ccnl_slug", "level_code", "year", "month", "headcount")
 _CONTRACT_TYPES: Final = ("permanent", "fixed_term")
+_RUN_KINDS: Final = ("regular", "thirteenth", "fourteenth")
+#: Fields of a pension fund enrolment a record states.
+_FUND_FIELDS: Final = frozenset({"fund_code", "employee_rate", "tfr_to_fund"})
 _SPEC_FIELDS: Final = ("printed", "value", "tolerance")
 _LABELS: Final = frozenset(AXES + ELEMENTS)
 
@@ -97,6 +105,24 @@ def _inputs_errors(inputs: object) -> Iterator[str]:
     yield from (f"missing input {k!r}" for k in _REQUIRED_INPUTS if k not in inputs)
     if inputs.get("contract_type") not in _CONTRACT_TYPES:
         yield f"'contract_type' must be one of {list(_CONTRACT_TYPES)}"
+    yield from _typed_inputs_errors(inputs)
+
+
+def _typed_inputs_errors(inputs: Mapping[str, object]) -> Iterator[str]:
+    if inputs.get("run_kind", "regular") not in _RUN_KINDS:
+        yield f"'run_kind' must be one of {list(_RUN_KINDS)}"
+    if ("seniority_months" in inputs) != ("seniority_as_of" in inputs):
+        yield "'seniority_months' and 'seniority_as_of' are stated together"
+    for key in ("hired_on", "terminated_on", "seniority_as_of"):
+        if key in inputs and _iso_date(inputs[key]) is None:
+            yield f"{key!r} must be an ISO date"
+    if "current_year_employment_only_on" in inputs and (
+        _iso_date(inputs["current_year_employment_only_on"]) is None
+    ):
+        yield "'current_year_employment_only_on' must be an ISO date"
+    fund = inputs.get("pension_fund", "none")
+    if fund != "none" and not (isinstance(fund, dict) and set(fund) == _FUND_FIELDS):
+        yield "'pension_fund' is \"none\" or states " + ", ".join(sorted(_FUND_FIELDS))
 
 
 def _spec_errors(key: str, spec: object) -> Iterator[str]:

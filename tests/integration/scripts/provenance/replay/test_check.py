@@ -188,3 +188,45 @@ def test_only_valid_replayable_records_are_credited(tmp_path: Path) -> None:
 
     assert list(credited_records(_TODAY, tmp_path)) == ["a"]
     assert len(AXES) == len(_KEY_OF)
+
+
+@pytest.mark.parametrize(
+    ("changes", "error"),
+    [
+        ({"run_kind": "adjustment"}, "'run_kind' must be one of"),
+        ({"seniority_months": 12}, "'seniority_months' and 'seniority_as_of'"),
+        ({"hired_on": "March 2024"}, "'hired_on' must be an ISO date"),
+        (
+            {"current_year_employment_only_on": "2026"},
+            "'current_year_employment_only_on' must be an ISO date",
+        ),
+        ({"pension_fund": {"fund_code": "cometa"}}, "'pension_fund' is \"none\""),
+    ],
+)
+def test_typed_inputs_are_checked(changes: dict[str, object], error: str) -> None:
+    """Run kind, seniority, dates and the pension fund are stated in shape."""
+    errors = replay_errors(_PARTIAL | {"inputs": _INPUTS | changes}, _TODAY)
+
+    assert len(errors) == 1
+    assert error in errors[0]
+
+
+def test_a_complete_set_of_typed_inputs_passes() -> None:
+    """Seniority with its date, a pension fund and the year facts are valid."""
+    inputs = _INPUTS | {
+        "run_kind": "thirteenth",
+        "seniority_months": 33,
+        "seniority_as_of": "2026-12-01",
+        "pension_fund": {
+            "fund_code": "cometa",
+            "employee_rate": "0.012",
+            "tfr_to_fund": False,
+        },
+        "current_year_employment_only_on": "2026-12-01",
+    }
+
+    assert replay_errors(_PARTIAL | {"inputs": inputs}, _TODAY) == []
+    assert (
+        replay_errors(_PARTIAL | {"inputs": _INPUTS | {"pension_fund": "none"}}, _TODAY)
+        == []
+    )

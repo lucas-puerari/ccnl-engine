@@ -33,19 +33,26 @@ from ccnl_engine import (
     PeriodInput,
 )
 from ccnl_engine.inputs import (
+    CurrentYearTaxFacts,
     EmploymentPeriod,
     FixedTerm,
+    NoPensionFund,
+    PensionFundEnrolment,
     Permanent,
     PriorYearTaxFacts,
     PublicEndOfService,
+    SeniorityFact,
+    SenioritySource,
     WeeklyHours,
     WorkerCategory,
 )
 from ccnl_engine.ledger.models import AccountKind
 from scripts.provenance.replay.check import (
+    INPUT_KEYS,
     REPLAY_KEYS,
     load_records,
     record_errors,
+    replay_errors,
 )
 from tests.knowledge.ccnl_engine.period.sector.test_services import _year
 
@@ -156,6 +163,30 @@ def _replayable() -> list[str]:
     ]
 
 
+def _seniority(inputs: dict[str, Any]) -> SeniorityFact | None:
+    months, as_of = inputs.get("seniority_months"), inputs.get("seniority_as_of")
+    if months is None or as_of is None:
+        return None
+    return SeniorityFact(
+        int(months), date.fromisoformat(as_of), SenioritySource.PAYSLIP
+    )
+
+
+def _pension_fund(
+    inputs: dict[str, Any],
+) -> PensionFundEnrolment | NoPensionFund | None:
+    fund = inputs.get("pension_fund")
+    if fund is None:
+        return None
+    if fund == "none":
+        return NoPensionFund()
+    return PensionFundEnrolment(
+        fund_code=fund["fund_code"],
+        employee_rate=Decimal(fund["employee_rate"]),
+        tfr_to_fund=bool(fund["tfr_to_fund"]),
+    )
+
+
 def _employment(inputs: dict[str, Any]) -> Employment:
     hired, ended = inputs.get("hired_on"), inputs.get("terminated_on")
     hours, full_time = inputs.get("weekly_hours"), inputs.get("full_time_weekly_hours")
@@ -175,32 +206,144 @@ def _employment(inputs: dict[str, Any]) -> Employment:
         ),
         weekly_hours=None if hours is None else WeeklyHours(hours),
         full_time_weekly_hours=None if full_time is None else WeeklyHours(full_time),
+        seniority=_seniority(inputs),
+        pension_fund=_pension_fund(inputs),
         tfr_treasury_fund=inputs.get("tfr_treasury_fund"),
         public_end_of_service=None if regime is None else PublicEndOfService(regime),
     )
 
 
-def _run(inputs: dict[str, Any]) -> PeriodResult:
+_RUNS = {
+    "regular": PayrollRun.regular,
+    "thirteenth": PayrollRun.thirteenth,
+    "fourteenth": PayrollRun.fourteenth,
+}
+
+
+def _request(inputs: dict[str, Any]) -> PeriodInput:
+    """Build the request of a record from its observed facts alone.
+
+    Returns:
+        The request; a fact the record does not state keeps its default.
+    """
     year, month = int(inputs["year"]), int(inputs["month"])
     income = inputs.get("prior_year_employment_income")
-    return _ENGINE.calculate_period(
-        PeriodInput(
-            run=PayrollRun.regular(year, month),
-            payment_date=date(year, month, 27),
-            employment=_employment(inputs),
-            employer=EmployerProfile(
-                headcount=Headcount(int(inputs["headcount"])),
-                public_life_insurance=inputs.get("public_life_insurance"),
-            ),
-            facts=PeriodFacts(
-                regione=inputs.get("regione"),
-                comune_belfiore=inputs.get("comune_belfiore"),
-            ),
-            prior_year=PriorYearTaxFacts(
-                employment_income=None if income is None else Decimal(income)
-            ),
-        )
+    estimated = inputs.get("current_year_employment_only_on")
+    return PeriodInput(
+        run=_RUNS[inputs.get("run_kind", "regular")](year, month),
+        payment_date=date(year, month, 27),
+        employment=_employment(inputs),
+        employer=EmployerProfile(
+            headcount=Headcount(int(inputs["headcount"])),
+            public_life_insurance=inputs.get("public_life_insurance"),
+        ),
+        facts=PeriodFacts(
+            regione=inputs.get("regione"),
+            comune_belfiore=inputs.get("comune_belfiore"),
+        ),
+        prior_year=PriorYearTaxFacts(
+            employment_income=None if income is None else Decimal(income)
+        ),
+        current_year=None
+        if estimated is None
+        else CurrentYearTaxFacts.employment_only(year, date.fromisoformat(estimated)),
     )
+
+
+def _run(inputs: dict[str, Any]) -> PeriodResult:
+    return _ENGINE.calculate_period(_request(inputs))
+
+
+_EVERY_INPUT: dict[str, Any] = {
+    "ccnl_slug": "metalmeccanico-federmeccanica.json",
+    "level_code": "C3",
+    "year": 2026,
+    "month": 12,
+    "headcount": 20,
+    "contract_type": "fixed_term",
+    "category": "impiegato",
+    "public_life_insurance": False,
+    "hired_on": "2024-03-01",
+    "terminated_on": "2026-12-31",
+    "weekly_hours": 30,
+    "full_time_weekly_hours": 40,
+    "regione": "IT-34",
+    "comune_belfiore": "L736",
+    "prior_year_employment_income": "28000.00",
+    "tfr_treasury_fund": True,
+    "public_end_of_service": "tfr_employer",
+    "run_kind": "thirteenth",
+    "seniority_months": 33,
+    "seniority_as_of": "2026-12-01",
+    "pension_fund": {
+        "fund_code": "cometa",
+        "employee_rate": "0.012",
+        "tfr_to_fund": False,
+    },
+    "current_year_employment_only_on": "2026-12-01",
+}
+
+
+def test_every_input_of_the_checker_reaches_the_request() -> None:
+    """Each fact a record may state is carried into the request as stated."""
+    request = _request(_EVERY_INPUT)
+    employment = request.employment
+
+    assert set(_EVERY_INPUT) == INPUT_KEYS
+    assert (request.run.run_kind.value, request.run.year, request.run.month) == (
+        "thirteenth",
+        2026,
+        12,
+    )
+    assert isinstance(employment.contract_type, FixedTerm)
+    assert employment.category is WorkerCategory.IMPIEGATO
+    assert employment.employment_period == EmploymentPeriod(
+        date(2024, 3, 1), date(2026, 12, 31)
+    )
+    assert (employment.weekly_hours, employment.full_time_weekly_hours) == (
+        WeeklyHours(30),
+        WeeklyHours(40),
+    )
+    assert employment.seniority == SeniorityFact(
+        33, date(2026, 12, 1), SenioritySource.PAYSLIP
+    )
+    assert employment.pension_fund == PensionFundEnrolment(
+        fund_code="cometa", employee_rate=Decimal("0.012"), tfr_to_fund=False
+    )
+    assert employment.tfr_treasury_fund is True
+    assert employment.public_end_of_service is PublicEndOfService.TFR_EMPLOYER
+    assert request.employer.headcount == Headcount(20)
+    assert request.employer.public_life_insurance is False
+    assert (request.facts.regione, request.facts.comune_belfiore) == ("IT-34", "L736")
+    assert request.prior_year.employment_income == Decimal("28000.00")
+    assert request.current_year == CurrentYearTaxFacts.employment_only(
+        2026, date(2026, 12, 1)
+    )
+    assert record_errors_of(_EVERY_INPUT) == []
+
+
+def record_errors_of(inputs: dict[str, Any]) -> list[str]:
+    """Return the checker errors of a partial replay built on ``inputs``.
+
+    Returns:
+        The messages of :func:`~scripts.provenance.replay.check.replay_errors`.
+    """
+    replay = {
+        "replayability": "partial",
+        "reason": "synthetic",
+        "inputs": inputs,
+        "unknown_inputs": [{"input": "superminimo", "affects": ["gross"]}],
+        "expected": {"base_salary": {"printed": "x", "value": "1", "tolerance": "0"}},
+        "known_differences": [],
+    }
+    return replay_errors(replay, _TODAY)
+
+
+def test_a_record_without_a_pension_fund_states_none() -> None:
+    """``"none"`` is the worker without a complementary fund."""
+    assert _request(
+        _EVERY_INPUT | {"pension_fund": "none"}
+    ).employment.pension_fund == (NoPensionFund())
 
 
 def test_every_record_follows_the_replay_rules() -> None:
