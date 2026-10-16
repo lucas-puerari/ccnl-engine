@@ -1,7 +1,8 @@
 {
   "verification": "source_linked",
-  "axes": [
-    "gross"
+  "axes": [],
+  "elements": [
+    "fixed_allowances"
   ],
   "_description": "Multiservizi ANIP (CNEL K511) level 2, March 2026 regular run, permanent, full time: the frozen contingenza and the EDR of the renewal of 8 June 2021, signed by ANIP.",
   "_notes": [

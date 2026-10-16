@@ -1,9 +1,11 @@
 """Readiness bound to the validation matrix: what a production CCNL covers.
 
 A ``production`` CCNL must hold evidence, in the validation matrix
-(:mod:`scripts.documentation.validation_matrix.generate`), for every output
-of the definition of done for operational use: base salary, gross,
-contributions, tax, net pay, TFR and employer cost (:data:`AXES`).  The
+(:mod:`scripts.documentation.validation_matrix.generate`), for every
+complete output of the definition of done for operational use: base
+salary, gross, employee and employer contributions, tax, net pay, TFR and
+employer cost (:data:`AXES`).  Only the totals of a row count: a component
+or a rate the row pins covers no output.  The
 CCNLs promoted before the rule miss some of them; ``baseline.json`` lists
 what each still misses.  The list only shrinks: a CCNL that misses an
 output its entry does not list fails, and an entry that names an output now

@@ -206,9 +206,15 @@ top-level `verification` field:
 | `verified` | Expected values checked against an independent source (a real payslip or an official worked example) | Required, with `kind`, an immutable reference, `verified_by`, `verified_at` and `independence` |
 | `source_linked` | The case cites the primary source it models; expected values are not checked against a payslip | Required |
 
-Every case lists the `axes` it validates (`base_salary`, `gross`,
-`contributions`, `employer_cost`, `tax`, `net`, `tfr`), and each expected
-value belongs to a declared axis. A `verified` case names in `source` the
+Every case lists in `axes` the complete outputs it validates
+(`base_salary`, `gross`, `employee_contributions`, `employer_contributions`,
+`tax`, `net`, `tfr`, `employer_cost`) and in `elements` the components of a
+total (`fixed_allowances`, `contribution_base`, `taxable_income`,
+`gross_irpef`, `tax_deductions`, `tax_credits`, `tax_surcharges`) or the
+rates (`hourly_percentages`, `employee_inps_rate`, `employer_inps_rate`) it
+pins. Each expected value belongs to a declared axis or element, and each
+declared one is backed by an expected value: fixed allowances alone never
+claim the `gross` axis, an INPS rate never the contributions. A `verified` case names in `source` the
 `kind` of output (`observed_payslip` or `official_worked_example`), an
 immutable reference to it (the `sha256` of the document or the `path` of a
 file versioned in the repository), who checked it and when (`verified_by`,

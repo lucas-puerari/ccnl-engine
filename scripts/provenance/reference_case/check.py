@@ -16,8 +16,13 @@ expected values can be trusted in a top-level ``verification`` field:
   values were produced without the engine (``independence``).  It also
   states the ``tolerance`` its amounts are compared with.
 
-Every case names the ``axes`` it validates (:data:`AXES`); each expected
-value belongs to one of them (:data:`AXIS_OF`).  :func:`index` maps each
+Every case names the complete outputs it validates in ``axes``
+(:data:`AXES`) and the parts of a total or rates it pins in ``elements``
+(:data:`ELEMENTS`); each expected value belongs to one of them
+(:data:`AXIS_OF`), and each declared axis or element is backed by an
+expected value.  A component or a rate never stands for a total: fixed
+allowances do not validate the gross, an INPS rate does not validate the
+amount of the contributions.  :func:`index` maps each
 CCNL to its cases, and :func:`production_errors` binds the readiness tier
 to its evidence in the gate, not by convention:
 
@@ -53,6 +58,9 @@ __all__ = [
     "AXIS_OF",
     "BASELINE",
     "CASES_DIR",
+    "COMPONENTS",
+    "ELEMENTS",
+    "RULES",
     "SOURCE_KINDS",
     "STATUSES",
     "CaseEvidence",
@@ -71,22 +79,38 @@ BASELINE: Final = Path(__file__).with_name("baseline.json")
 STATUSES: Final = ("verified", "source_linked")
 #: Outputs the engine did not produce, the only sources of a ``verified`` case.
 SOURCE_KINDS: Final = ("observed_payslip", "official_worked_example")
-#: Outputs of a run a case can validate.
+#: Complete outputs of a run: the only axes readiness counts.
 AXES: Final = (
     "base_salary",
     "gross",
-    "contributions",
-    "employer_cost",
+    "employee_contributions",
+    "employer_contributions",
     "tax",
     "net",
     "tfr",
+    "employer_cost",
 )
-#: Axis of each expected value a case can pin.
+#: Parts of a total: compared on their own, never as the total.
+COMPONENTS: Final = (
+    "fixed_allowances",
+    "contribution_base",
+    "taxable_income",
+    "gross_irpef",
+    "tax_deductions",
+    "tax_credits",
+    "tax_surcharges",
+)
+#: Rates and rules: they fix how a total is computed, not its amount.
+RULES: Final = ("hourly_percentages", "employee_inps_rate", "employer_inps_rate")
+#: Everything a case can pin besides a complete output.
+ELEMENTS: Final = COMPONENTS + RULES
+#: Axis or element of each expected value a case or a replay can pin.
 AXIS_OF: Final[Mapping[str, str]] = {
     "base_salary": "base_salary",
-    "hourly_percentages": "base_salary",
-    "fixed_allowances": "gross",
     "period_gross": "gross",
+    "fixed_allowances": "fixed_allowances",
+    "hourly_percentages": "hourly_percentages",
+    "employee_inps_rate": "employee_inps_rate",
 }
 _SHA256: Final = re.compile(r"^[0-9a-f]{64}$")
 _AMOUNT: Final = re.compile(r"^\d+(\.\d+)?$")
@@ -101,12 +125,14 @@ class CaseEvidence:
     Attributes:
         file: File name of the case.
         verification: Its verification status.
-        axes: The outputs it validates.
+        axes: The complete outputs it validates.
+        elements: The components and rates it pins.
     """
 
     file: str
     verification: str
     axes: tuple[str, ...]
+    elements: tuple[str, ...] = ()
 
     def to_json(self) -> dict[str, object]:
         """Return the evidence as a JSON object.
@@ -118,6 +144,7 @@ class CaseEvidence:
             "file": self.file,
             "verification": self.verification,
             "axes": list(self.axes),
+            "elements": list(self.elements),
         }
 
 
@@ -169,25 +196,44 @@ def count_by_status(cases: list[dict[str, object]]) -> dict[str, int]:
     return {status: counts[status] for status in STATUSES}
 
 
+def _labels(case: Mapping[str, object], key: str) -> list[object] | None:
+    value = case.get(key, [])
+    return value if isinstance(value, list) else None
+
+
 def _axes_errors(case: Mapping[str, object]) -> Iterator[str]:
-    """Yield what is wrong with the axes a case declares.
+    """Yield what is wrong with the axes and elements a case declares.
 
     Yields:
-        One reason per unknown axis, per expected value of no axis or of an
-        axis the case does not declare.
+        One reason per unknown axis or element, per expected value of none
+        or of one the case does not declare, and per declared axis or
+        element no expected value backs.
     """
-    axes = case.get("axes")
-    if not isinstance(axes, list) or not axes:
-        yield "'axes' must be a non-empty list of " + ", ".join(AXES)
+    axes, elements = _labels(case, "axes"), _labels(case, "elements")
+    if axes is None or elements is None or not (axes or elements):
+        yield (
+            "'axes' and 'elements' must be lists, not both empty, of "
+            + ", ".join(AXES + ELEMENTS)
+        )
         return
     yield from (f"unknown axis {axis!r}" for axis in axes if axis not in AXES)
+    yield from (f"unknown element {e!r}" for e in elements if e not in ELEMENTS)
     expected = case.get("expected")
+    backed = set()
     for key in expected if isinstance(expected, dict) else {}:
-        axis = AXIS_OF.get(key)
-        if axis is None:
-            yield f"expected value {key!r} belongs to no axis"
-        elif axis not in axes:
-            yield f"expected value {key!r} needs the axis {axis!r} in 'axes'"
+        label = AXIS_OF.get(key)
+        backed.add(label)
+        if label is None:
+            yield f"expected value {key!r} belongs to no axis or element"
+        elif label in AXES and label not in axes:
+            yield f"expected value {key!r} needs the axis {label!r} in 'axes'"
+        elif label in ELEMENTS and label not in elements:
+            yield f"expected value {key!r} needs the element {label!r} in 'elements'"
+    yield from (
+        f"{label!r} is declared but no expected value backs it"
+        for label in [*axes, *elements]
+        if label in AXES + ELEMENTS and label not in backed
+    )
 
 
 def _verified_errors(source: Mapping[str, object], tolerance: object) -> Iterator[str]:
@@ -254,11 +300,11 @@ def index(cases_dir: Path = CASES_DIR) -> dict[str, tuple[CaseEvidence, ...]]:
         ccnl_id = _ccnl_id(case)
         if ccnl_id is None or verification_errors(case):
             continue
-        axes = case["axes"]
         evidence = CaseEvidence(
             path.name,
             str(case["verification"]),
-            tuple(str(a) for a in axes) if isinstance(axes, list) else (),
+            tuple(str(a) for a in _labels(case, "axes") or ()),
+            tuple(str(e) for e in _labels(case, "elements") or ()),
         )
         found.setdefault(ccnl_id, []).append(evidence)
     return {ccnl: tuple(found[ccnl]) for ccnl in sorted(found)}

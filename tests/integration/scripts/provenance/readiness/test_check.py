@@ -28,6 +28,16 @@ def test_only_production_ccnls_must_cover_every_output() -> None:
     assert missing_outputs(rows) == {"half": frozenset(_ALL - {"base_salary", "gross"})}
 
 
+def test_components_and_rates_cover_no_output() -> None:
+    """A row pinning every component and rate still misses every total."""
+    row = _row("production", _ALL - {"gross", "employee_contributions"})
+    row.pin(["fixed_allowances", "employee_inps_rate", "contribution_base"])
+
+    assert missing_outputs({"x": row}) == {
+        "x": frozenset({"gross", "employee_contributions"})
+    }
+
+
 def test_a_gap_the_baseline_does_not_list_fails() -> None:
     """A new production CCNL, or a lost output, fails the gate."""
     rows = {"x": _row("production", _ALL - {"net", "tax"})}

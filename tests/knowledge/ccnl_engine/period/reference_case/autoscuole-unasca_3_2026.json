@@ -4,6 +4,9 @@
     "base_salary",
     "gross"
   ],
+  "elements": [
+    "fixed_allowances"
+  ],
   "_description": "CCNL Autoscuole UNASCA/CONFARCA (IC91), level 3, June 2026 regular run, permanent, full time.",
   "_notes": [
     "Paga base 987.04, in force since 1 February 2022.",

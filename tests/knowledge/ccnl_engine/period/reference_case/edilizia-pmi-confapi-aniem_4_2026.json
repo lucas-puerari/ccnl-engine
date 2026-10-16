@@ -4,6 +4,9 @@
     "base_salary",
     "gross"
   ],
+  "elements": [
+    "fixed_allowances"
+  ],
   "_description": "CCNL Edilizia PMI CONFAPI ANIEM (F018), level 4, January 2026 regular run, permanent, full time.",
   "_notes": [
     "April 2025 tranche: paga base L4 1523.17.",

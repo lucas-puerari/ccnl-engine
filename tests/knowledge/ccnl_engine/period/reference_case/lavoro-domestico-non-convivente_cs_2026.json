@@ -4,6 +4,9 @@
     "base_salary",
     "gross"
   ],
+  "elements": [
+    "fixed_allowances"
+  ],
   "_description": "CCNL lavoro domestico, non convivente level CS (Tabella C), January 2026 regular run, permanent, 40 weekly hours.",
   "_notes": [
     "Tabella C, livello CS, valori orari decorrenti dal 01/01/2026: 8,30.",

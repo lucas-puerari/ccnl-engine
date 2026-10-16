@@ -37,7 +37,7 @@ from ccnl_engine import (
     PeriodInput,
 )
 from ccnl_engine.inputs import Permanent, WorkerCategory
-from scripts.provenance.reference_case.check import AXES
+from scripts.provenance.reference_case.check import AXES, AXIS_OF, ELEMENTS
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -67,11 +67,12 @@ def _employee_inps_rate(result: PeriodResult) -> Decimal:
     return sum((c.rate for c in components if c.name.endswith("_employee")), Decimal(0))
 
 
-#: Each value a record can compare, its axis and how the result gives it.
-_READERS: dict[str, tuple[str, Callable[[PeriodResult], Decimal]]] = {
-    "base_salary": ("base_salary", _items("base_salary_earning")),
-    "fixed_allowances": ("gross", _items("fixed_allowance_earning")),
-    "employee_inps_rate": ("contributions", _employee_inps_rate),
+#: How the result gives each value a record can compare; its axis, a total,
+#: a component or a rate, is :data:`AXIS_OF`.
+_READERS: dict[str, Callable[[PeriodResult], Decimal]] = {
+    "base_salary": _items("base_salary_earning"),
+    "fixed_allowances": _items("fixed_allowance_earning"),
+    "employee_inps_rate": _employee_inps_rate,
 }
 
 
@@ -120,7 +121,7 @@ def test_every_record_states_its_replayability(pid: str) -> None:
     assert replay["expected"]
     for key, value in replay["expected"].items():
         assert key in _READERS, key
-        assert _READERS[key][0] in AXES
+        assert AXIS_OF[key] in AXES + ELEMENTS
         assert {"value", "tolerance", "printed"} <= set(value)
     for known in replay["known_differences"]:
         assert known["key"] in replay["expected"]
@@ -137,9 +138,9 @@ def test_the_engine_reproduces_the_observed_values(pid: str) -> None:
     known = {d["key"] for d in replay["known_differences"]}
 
     diff = {
-        key: (_READERS[key][1](result), Decimal(spec["value"]))
+        key: (_READERS[key](result), Decimal(spec["value"]))
         for key, spec in replay["expected"].items()
-        if abs(_READERS[key][1](result) - Decimal(spec["value"]))
+        if abs(_READERS[key](result) - Decimal(spec["value"]))
         > Decimal(spec["tolerance"])
     }
 

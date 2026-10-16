@@ -1,8 +1,10 @@
 {
   "verification": "verified",
   "axes": [
-    "base_salary",
-    "gross"
+    "base_salary"
+  ],
+  "elements": [
+    "fixed_allowances"
   ],
   "_description": "CCNL Edilizia Industria ANCE, impiegato of the 1st level, January 2026 regular run, permanent, full time, against the labour cost table of the Ministry of Labour (DD 40 of 13 May 2026, tables of May 2025).",
   "_notes": [

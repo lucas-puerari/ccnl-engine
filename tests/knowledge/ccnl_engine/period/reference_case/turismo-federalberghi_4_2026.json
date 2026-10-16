@@ -4,6 +4,9 @@
     "base_salary",
     "gross"
   ],
+  "elements": [
+    "fixed_allowances"
+  ],
   "_description": "CCNL Turismo Federalberghi-Faita (CNEL H052) level 4, May 2026 regular run, permanent, full time: the first month of the tranche of May 2026.",
   "_notes": [
     "Ipotesi di accordo 5 luglio 2024, art. 152 c.1 (p. 42 of the signed scan): level 4 1.695,69 from mag 2026, paga base nazionale conglobata.",
