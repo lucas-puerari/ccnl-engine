@@ -532,3 +532,28 @@ class TestCommercioNetBasis:
         """
         result = self._run(contract_type=Apprentice(months_elapsed=6))
         assert set(_sick(result)) == {"abs", "inps"}
+
+
+def test_a_carenza_left_on_a_sunday_does_not_stop_the_month() -> None:
+    """Fri 30 Jan to Fri 6 Feb 2026: February keeps only Sunday 1 of the carenza.
+
+    That day has no payable unit by 26; the five days of 2-6 February are
+    still paid: 2158.26 * 5 / 26 = 415.05 deducted, INPS 50% 207.53 and the
+    employer 207.52.
+    """
+    episode = sickness_episode("2026-01-30", date(2026, 1, 30), date(2026, 2, 6))
+
+    assert _sick(calculate_period(_req(2, episode))) == {
+        "abs": Decimal("415.05"),
+        "inps": Decimal("207.53"),
+        "intg": Decimal("207.52"),
+    }
+
+
+def test_a_worker_paid_by_the_hour_has_no_sick_hours_deducted() -> None:
+    """An operaio edile is paid the hours worked: the sick ones are not deducted."""
+    result = calculate_period(_req(3, _MARCH, slug="edilizia-ance.json", level="1"))
+    sick = _sick(result)
+
+    assert "abs" not in sick
+    assert sick["inps"] > Decimal(0)

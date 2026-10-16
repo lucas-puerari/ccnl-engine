@@ -9,6 +9,7 @@ worth 2211.43 - 765.50 = 1445.93.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 from types import SimpleNamespace
@@ -17,8 +18,10 @@ from typing import TYPE_CHECKING, cast
 from ccnl_engine.compensation.element.types import MonthlyPayChain
 from ccnl_engine.sickness.day.rules import SickDayKind, SickDaySegment
 from ccnl_engine.sickness.pay.handlers import (
+    EpisodePay,
     _grossed,
     _quota,
+    _segment_pay,
     _within_month,
 )
 from ccnl_engine.sickness.term.rules import SicknessTerms
@@ -95,3 +98,58 @@ def test_net_basis_grosses_up_the_inps_share() -> None:
     share = Decimal("274.11")
     assert _grossed(share, _rules(net_basis=True), terms) == Decimal("303.76")
     assert _grossed(share, _rules(net_basis=False), terms) == share
+
+
+def test_the_quota_adds_the_seniority_to_the_base() -> None:
+    """13 of 26 days of 2000.00 base and 100.00 seniority: 1000.00 + 50.00."""
+    chain = MonthlyPayChain(
+        base=Decimal("2000.00"), seniority=Decimal("100.00"), allowances=()
+    )
+    assert _quota(chain, Decimal(13), _DIVISOR) == Decimal("1050.00")
+
+
+def test_the_units_of_a_kind_sum_its_segments_only() -> None:
+    """Carenza and the two indemnified segments are counted apart."""
+    pay = EpisodePay(
+        segments=(
+            _segment(1, 3, SickDayKind.CARENZA),
+            _segment(4, 20, SickDayKind.INDEMNIFIED),
+            _segment(21, 25, SickDayKind.INDEMNIFIED),
+        ),
+        units=(Decimal(3), Decimal(14), Decimal(5)),
+    )
+    assert pay.units_of(SickDayKind.CARENZA) == Decimal(3)
+    assert pay.units_of(SickDayKind.INDEMNIFIED) == Decimal(19)
+    none = pay.units_of(SickDayKind.BEYOND_COMPORTO)
+    assert (none, type(none)) == (Decimal(0), Decimal)
+
+
+def _paid(
+    kind: SickDayKind, *, inps_direct: bool = False
+) -> tuple[Decimal, Decimal, Decimal]:
+    segment = replace(
+        _segment(4, 10, kind),
+        inps_rate=Decimal("0.5"),
+        inps_direct=inps_direct,
+    )
+    rules = (_rules(net_basis=False), SicknessTerms())
+    return _segment_pay(segment, Decimal("300.00"), rules, excluded=False)
+
+
+def test_the_employer_advances_the_inps_share_unless_inps_pays_it() -> None:
+    """INPS 50% of 300.00: advanced, or paid by INPS directly; the top-up stays."""
+    assert _paid(SickDayKind.INDEMNIFIED) == (
+        Decimal("150.00"),
+        Decimal("150.00"),
+        Decimal(0),
+    )
+    assert _paid(SickDayKind.INDEMNIFIED, inps_direct=True) == (
+        Decimal(0),
+        Decimal("150.00"),
+        Decimal(0),
+    )
+
+
+def test_the_carenza_is_paid_by_the_employer_alone() -> None:
+    """No INPS share is advanced on the waiting days, whatever their rate."""
+    assert _paid(SickDayKind.CARENZA) == (Decimal(0), Decimal(0), Decimal("300.00"))
