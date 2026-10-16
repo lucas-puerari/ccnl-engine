@@ -1,0 +1,33 @@
+{
+  "verification": "verified",
+  "axes": [
+    "base_salary"
+  ],
+  "_description": "CCNL Pubblici Esercizi FIPE, comparto ristorazione collettiva, level 4, January 2026 regular run, permanent, full time, against the labour cost table of the Ministry of Labour (DD 63 of 10 July 2025, national table of January 2026).",
+  "_notes": [
+    "National table 'GENNAIO 2026', column 4, section 'A - Elementi della Retribuzione': 'Paga base conglobata 19.832,28' a year, over 12 = 1,652.69, the monthly tranche in force from 1 September 2025; the quattordicesima of the same column, 1.652,69, is that month.",
+    "Base salary only: row A of the table assumes three seniority increments ('Anzianità (tre scatti)'), an average the Ministry states for its cost, not a fact of one worker, so the gross is not compared.",
+    "Not compared either: the employer INPS 29.75%, FIS 0.53% and CIGS 0.60% of section C, since the table states no headcount band, and the INAIL, EBT, health fund and complementary pension (30% enrolment) of sections C and D, averages of the Ministry's own perimeter."
+  ],
+  "source": {
+    "kind": "official_worked_example",
+    "document": "Ministero del Lavoro, D.D. n. 63 del 10 luglio 2025, costo orario del lavoro per i dipendenti da aziende del settore Turismo, comparto pubblici esercizi Ristorazione collettiva, tabella nazionale gennaio 2026",
+    "url": "https://www.lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-63-del-10072025",
+    "sha256": "57b5d6d44b66ccfd5f5d638ff92982bf93183d3f505636a8f31fbfcf15920432",
+    "section": "Nazionale GENNAIO 2026, A - Elementi della Retribuzione, Paga base conglobata, livello 4",
+    "verified_by": "claude-opus-5-5",
+    "verified_at": "2026-10-16",
+    "independence": "The cost table is computed and published by the Ministry of Labour under D.Lgs. 36/2023 art. 41 c. 13 from the CCNL, shared with its signatories (communication of 1 July 2025); this engine did not produce it."
+  },
+  "tolerance": "0.00",
+  "inputs": {
+    "ccnl_slug": "pubblici-esercizi-fipe-angem-ristorazione-collettiva.json",
+    "level_code": "4",
+    "year": 2026,
+    "month": 1,
+    "headcount": 50
+  },
+  "expected": {
+    "base_salary": "1652.69"
+  }
+}
