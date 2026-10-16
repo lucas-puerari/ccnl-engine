@@ -1,0 +1,99 @@
+{
+  "id": "p67",
+  "period": "2026-05",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Funzioni Locali ARAN (340 Area FUNZ./QUAL; CPDEL, Fondo credito and ENPDEP contributions)",
+  "level": "FUNZIONARI_EQ",
+  "contract": {
+    "type": "permanent",
+    "worked_days": "26",
+    "deduction_days": "31",
+    "hours": "156"
+  },
+  "source": {
+    "publisher": "TINN s.r.l., PAGHE Rel. 5.1.2.9, Guida Implementazioni",
+    "url": "http://update.tinnservice.com/update/Retribuzioni/5.1.2.9/Guida_Release_5129.pdf",
+    "sha256": "25a529c72874c452337408f04d266a676b5e6f8efb9bc6a38cd883b1906fec20",
+    "page": "6"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione tabellare",
+      "earning": "2092.84"
+    },
+    {
+      "desc": "indennita vacanza contrattuale",
+      "earning": "19.34"
+    },
+    {
+      "desc": "retribuzione di posizione art. 11 cat. D",
+      "earning": "1215.38"
+    },
+    {
+      "desc": "indennita di comparto fondo",
+      "earning": "36.33"
+    }
+  ],
+  "inps": {
+    "base": "3363.89",
+    "fondo_credito_0.35%": "11.77",
+    "cpdel_8.85%": "297.70",
+    "enpdep_0.027%": "0.91",
+    "employee_rate": "0.09227"
+  },
+  "irpef_month": {
+    "taxable": "3011.27",
+    "gross": "760.39",
+    "work_deduction": "80.02",
+    "ulteriore_detrazione": "17.31",
+    "net": "663.06"
+  },
+  "totals": {
+    "earnings": "3321.65",
+    "deductions": "1174.82"
+  },
+  "net": "2146.00",
+  "legibility": "full",
+  "notes": [
+    "Example payslip printed by a commercial payroll package (TINN, PAGHE release 5.1.2.9, guide of June 2026) for the 15% substitute tax on accessory pay of 2026: an output this engine did not produce. The employee name is a placeholder of the vendor and is not transcribed.",
+    "The 'SENZA applicazione' version of the example is transcribed: no accessory pay under the substitute tax.",
+    "Earnings include the arrears and union lines of the example; the printed totals reconcile with the net within the rounding carried (ARR.)."
+  ],
+  "replay": {
+    "replayability": "partial",
+    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
+    "inputs": {
+      "ccnl_slug": "funzioni-locali-aran.json",
+      "level_code": "FUNZIONARI_EQ",
+      "year": 2026,
+      "month": 5,
+      "headcount": 50,
+      "contract_type": "permanent",
+      "public_life_insurance": true
+    },
+    "unknown_inputs": [
+      "the indennita vacanza contrattuale and the individual elements (posizione, ad personam, specifiche responsabilita)",
+      "the regional and municipal surtax installments of 2025",
+      "the TFR or TFS regime of the worker"
+    ],
+    "expected": {
+      "base_salary": {
+        "value": "2092.84",
+        "tolerance": "0.00",
+        "printed": "voce 2 retribuzione tabellare"
+      },
+      "fixed_allowances": {
+        "value": "36.33",
+        "tolerance": "0.00",
+        "printed": "voce 92 indennita di comparto fondo"
+      },
+      "employee_inps_rate": {
+        "value": "0.09227",
+        "tolerance": "0.00001",
+        "printed": "fondo credito 0,35% + CPDEL 8,85% + ENPDEP 0,027%"
+      }
+    },
+    "known_differences": []
+  }
+}

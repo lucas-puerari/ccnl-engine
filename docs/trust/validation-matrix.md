@@ -29,7 +29,7 @@ cost), or list what it still misses in
 | `edilizia-cooperative-ancpl` | exploratory | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | match | — | — |
 | `edilizia-pmi-confapi-aniem` | exploratory | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | match | 2026-10-14 | 2027-03-01 |
 | `funzioni-centrali-aran` | reviewed | — | — | — | — | — | — | — | — | 2026-10-15 | 2027-12-31 |
-| `funzioni-locali-aran` | reviewed | — | — | — | — | — | — | — | — | 2026-10-12 | 2026-12-31 |
+| `funzioni-locali-aran` | reviewed | real payslip | provider output | ordinary month | permanent, hours not stated | — | headcount 50 | base_salary, contributions, gross | match | 2026-10-12 | 2026-12-31 |
 | `lavoro-domestico-convivente-orario-ridotto` | reviewed | — | — | — | — | — | — | — | — | 2026-10-12 | 2027-01-31 |
 | `lavoro-domestico-convivente` | reviewed | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | match | 2026-10-12 | 2027-01-31 |
 | `lavoro-domestico-non-convivente` | reviewed | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | match | 2026-10-15 | 2027-01-31 |
@@ -45,4 +45,4 @@ cost), or list what it still misses in
 | `terziario-confesercenti` | production | primary | hand oracle, source-linked | conguaglio, extra month, ordinary month, termination | permanent, full time | — | headcount above 15, tranche of November, trattamento integrativo and somma esente bands | base_salary, contributions, employer_cost, gross, net, tax, tfr | match | 2026-10-13 | 2027-03-31 |
 | `turismo-federalberghi` | production | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | match | 2026-10-13 | 2026-12-01 |
 
-28 CCNLs listed; 5 without any evidence: `funzioni-centrali-aran`, `funzioni-locali-aran`, `lavoro-domestico-convivente-orario-ridotto`, `logistica-trasporto-confetra-viaggiante`, `sanita-aran`.
+28 CCNLs listed; 4 without any evidence: `funzioni-centrali-aran`, `lavoro-domestico-convivente-orario-ridotto`, `logistica-trasporto-confetra-viaggiante`, `sanita-aran`.

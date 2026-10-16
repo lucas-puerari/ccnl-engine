@@ -96,7 +96,10 @@ def _run(inputs: dict[str, Any]) -> PeriodResult:
                 contract_type=Permanent(),
                 category=None if category is None else WorkerCategory(category),
             ),
-            employer=EmployerProfile(headcount=Headcount(int(inputs["headcount"]))),
+            employer=EmployerProfile(
+                headcount=Headcount(int(inputs["headcount"])),
+                public_life_insurance=inputs.get("public_life_insurance"),
+            ),
         )
     )
 
@@ -144,12 +147,13 @@ def test_the_engine_reproduces_the_observed_values(pid: str) -> None:
 
 
 def test_the_replayable_records_cover_the_sectors_of_the_production_ccnls() -> None:
-    """Terziario, industria and edilizia payslips of 2026 are replayed."""
+    """Terziario, industria, edilizia and public payslips of 2026 are replayed."""
     ccnls = {_RECORDS[pid]["replay"]["inputs"]["ccnl_slug"] for pid in _replayable()}
 
-    assert len(_replayable()) >= 9
+    assert len(_replayable()) >= 11
     assert ccnls == {
         "commercio-confcommercio.json",
         "edilizia-ance.json",
+        "funzioni-locali-aran.json",
         "metalmeccanico-federmeccanica.json",
     }
