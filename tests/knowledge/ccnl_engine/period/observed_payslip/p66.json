@@ -1,0 +1,91 @@
+{
+  "id": "p66",
+  "period": "2026-03",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Edilizia Industria ANCE (worked example of the Cassa Edile di Vicenza, operaio edile 2° livello, azienda con più di 15 dipendenti)",
+  "level": "2",
+  "contract": {
+    "type": "permanent",
+    "category": "operaio",
+    "ordinary_hours": "176"
+  },
+  "region": "Veneto",
+  "source": {
+    "publisher": "Cassa Edile di Vicenza",
+    "url": "https://cevi.it/wp-content/uploads/2026/03/Esempio-di-busta-paga-operaio-dal-01.03.2026.pdf",
+    "sha256": "848bc922b438de3d122d0a476077672a2309c19b4868fda203209a509d75975f"
+  },
+  "pay_elements": {
+    "minimo": "7.56",
+    "contingenza": "2.99",
+    "indennita_territoriale": "1.35",
+    "edr": "0.06",
+    "total": "11.96",
+    "unit": "hourly"
+  },
+  "lines": [
+    {
+      "desc": "lavoro ordinario 11,96 x 176",
+      "earning": "2104.96"
+    },
+    {
+      "desc": "riposi annui 11,96 x 176 x 4,95%",
+      "earning": "104.20"
+    },
+    {
+      "desc": "accantonamento Cassa Edile 11,96 x 176 x 18,50%",
+      "earning": "389.42"
+    }
+  ],
+  "inps": {
+    "base": "2610.53",
+    "employee": "247.74",
+    "employee_rate": "0.0949"
+  },
+  "irpef_month": {
+    "taxable": "2350.84",
+    "gross": "542.44",
+    "work_deduction": "163.06",
+    "net": "379.38"
+  },
+  "cassa_edile": {
+    "accantonamento_netto": "298.90"
+  },
+  "totals": {
+    "earnings": "2598.58"
+  },
+  "net": "1646.99",
+  "legibility": "full",
+  "notes": [
+    "Worked example published by the Cassa Edile di Vicenza, a bilateral body of the ANCE CCNL, not a payslip of a real worker: an output this engine did not produce.",
+    "CCNL inferred as Edilizia Industria ANCE: the footnote cites 'accordi nazionali stipulati tra ANCE e OO.SS. Edili' and the minimo matches the national table.",
+    "No ulteriore detrazione of L. 207/2024 is applied. IRPEF is not compared."
+  ],
+  "replay": {
+    "replayability": "partial",
+    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
+    "inputs": {
+      "ccnl_slug": "edilizia-ance.json",
+      "level_code": "2",
+      "year": 2026,
+      "month": 3,
+      "headcount": 50,
+      "contract_type": "permanent",
+      "category": "operaio"
+    },
+    "unknown_inputs": [
+      "the provincial indennità territoriale di settore of Vicenza (limitation territorial_sector_allowance)",
+      "hours paid by the hour: the example rounds the hourly minimo to the cent",
+      "the Cassa Edile contributions of the worker (limitation cassa_edile_contribution)"
+    ],
+    "expected": {
+      "employee_inps_rate": {
+        "value": "0.0949",
+        "tolerance": "0.00001",
+        "printed": "B) ritenute previdenziali a carico dipendente, 9,49%"
+      }
+    },
+    "known_differences": []
+  }
+}
