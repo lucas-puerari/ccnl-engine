@@ -35,7 +35,11 @@ Evidence:
   TFR).  They entered below 93%, so each keeps its own floor in
   `scripts/quality/mutation/baseline.json`, its score on 15 October 2026
   (travel 67.8%, termination 86.2%, overtime 86.8%, arrears 87.8%, sick
-  pay 90.6%): a score can rise, never fall.  The core twelve scored 859 of
+  pay 90.6%): a score can rise, never fall, and the floor follows it.
+  Termination reached 100% on 16 October 2026 (138 of 138 mutants killed),
+  once tests traced each bilateral fund and TFR settlement entry to its
+  pay item and its policy; it left the baseline and now counts in the
+  93% minimum of the core.  The core twelve scored 859 of
   917 (93.7%) that day.
 - Validation matrix: [Validation matrix](validation-matrix.md), generated
   in CI from the reference cases, the observed payslip replay, the sector

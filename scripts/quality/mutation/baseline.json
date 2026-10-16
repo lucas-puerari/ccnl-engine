@@ -3,7 +3,6 @@
     "src/ccnl_engine/working_time/handlers.py": 86.8,
     "src/ccnl_engine/sickness/pay/handlers.py": 90.6,
     "src/ccnl_engine/variable_pay/travel/handlers.py": 67.8,
-    "src/ccnl_engine/variable_pay/arrears/handlers.py": 87.8,
-    "src/ccnl_engine/termination/handlers.py": 86.2
+    "src/ccnl_engine/variable_pay/arrears/handlers.py": 87.8
   }
 }
