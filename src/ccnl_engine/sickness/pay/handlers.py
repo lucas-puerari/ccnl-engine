@@ -118,15 +118,14 @@ def _within_month(
         One unit count per segment, in segment order.
     """
     # Segments and units are built together, one count per segment, so the
-    # ``strict`` of their ``zip`` never matters; the days past the comporto
-    # close an episode, so no segment follows them.  The mutants of both are
-    # equivalent and not generated.
+    # ``strict`` of their ``zip`` never matters: its mutants are equivalent
+    # and not generated.
     left = divisor - counted
     clipped: list[Decimal] = []
     for segment, unit in zip(segments, units, strict=True):  # pragma: no mutate
         if segment.kind is SickDayKind.BEYOND_COMPORTO:
             clipped.append(unit)
-            continue  # pragma: no mutate
+            continue
         kept = min(unit, left)
         left -= kept
         clipped.append(kept)

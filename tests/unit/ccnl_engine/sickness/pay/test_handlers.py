@@ -153,3 +153,22 @@ def test_the_employer_advances_the_inps_share_unless_inps_pays_it() -> None:
 def test_the_carenza_is_paid_by_the_employer_alone() -> None:
     """No INPS share is advanced on the waiting days, whatever their rate."""
     assert _paid(SickDayKind.CARENZA) == (Decimal(0), Decimal(0), Decimal("300.00"))
+
+
+def test_days_back_within_a_rolling_comporto_are_still_clipped() -> None:
+    """Days within the comporto again after days past it still spend the month.
+
+    A rolling comporto window can drop the sick days of old episodes, so a
+    day past the comporto may be followed by days within it.
+    """
+    segments = (
+        _segment(1, 5, SickDayKind.INDEMNIFIED),
+        _segment(6, 10, SickDayKind.BEYOND_COMPORTO),
+        _segment(11, 31, SickDayKind.INDEMNIFIED),
+    )
+    units = (Decimal(5), Decimal(4), Decimal(18))
+    assert _within_month(segments, units, Decimal(10), _DIVISOR) == (
+        Decimal(5),
+        Decimal(4),
+        Decimal(11),
+    )
