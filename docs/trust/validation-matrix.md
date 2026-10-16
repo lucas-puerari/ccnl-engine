@@ -34,7 +34,7 @@ net, TFR, employer cost), or list what it still misses in
 | `funzioni-centrali-aran` | reviewed | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary | — | — | match | 2026-10-15 | 2027-12-31 |
 | `funzioni-locali-aran` | reviewed | real payslip | provider output | ordinary month | permanent, hours not stated | — | headcount 50 | base_salary | — | — | match | 2026-10-12 | 2026-12-31 |
 | `industria-turistica-federturismo` | exploratory | real payslip | provider output | ordinary month | permanent, hours not stated | — | headcount 50 | base_salary | — | — | match | — | — |
-| `lavoro-domestico-convivente-orario-ridotto` | reviewed | — | — | — | — | — | — | — | — | — | — | 2026-10-12 | 2027-01-31 |
+| `lavoro-domestico-convivente-orario-ridotto` | reviewed | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | fixed_allowances | — | match | 2026-10-12 | 2027-01-31 |
 | `lavoro-domestico-convivente` | reviewed | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | fixed_allowances | — | match | 2026-10-12 | 2027-01-31 |
 | `lavoro-domestico-non-convivente` | reviewed | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | fixed_allowances | — | match | 2026-10-15 | 2027-01-31 |
 | `logistica-trasporto-confetra-viaggiante` | reviewed | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | fixed_allowances | — | match | 2026-10-12 | 2027-06-01 |
@@ -49,4 +49,4 @@ net, TFR, employer cost), or list what it still misses in
 | `terziario-confesercenti` | production | primary | hand oracle, source-linked | conguaglio, extra month, ordinary month, termination | permanent, full time | — | headcount above 15, tranche of November, trattamento integrativo and somma esente bands | base_salary, employee_contributions, employer_contributions, employer_cost, gross, net, tax, tfr | fixed_allowances | — | match | 2026-10-13 | 2027-03-31 |
 | `turismo-federalberghi` | production | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | fixed_allowances | — | match | 2026-10-13 | 2026-12-01 |
 
-29 CCNLs listed; 1 without any evidence: `lavoro-domestico-convivente-orario-ridotto`.
+29 CCNLs listed; 0 without any evidence.

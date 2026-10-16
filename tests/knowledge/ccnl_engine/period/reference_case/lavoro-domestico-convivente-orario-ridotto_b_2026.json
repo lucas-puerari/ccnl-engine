@@ -1,0 +1,36 @@
+{
+  "verification": "source_linked",
+  "axes": [
+    "base_salary",
+    "gross"
+  ],
+  "elements": [
+    "fixed_allowances"
+  ],
+  "_description": "CCNL lavoro domestico, convivente a orario ridotto level B (Tabella B), March 2026 regular run, permanent, 30 weekly hours.",
+  "_notes": [
+    "Tabella B, lavoratori conviventi art. 14 c. 2, valori mensili decorrenti dal 01/01/2026, livello B: 702,25.",
+    "Board and lodging are provided in kind (art. 36; Tabella F, x 30 = 199,80): not paid in cash on a regular run, so no fixed allowance is paid.",
+    "Period gross = 702.25.",
+    "Hours: 30 weekly hours, the most art. 14 c. 2 allows the convivente a orario ridotto, 120 contributable hours (30 x 4 weeks)."
+  ],
+  "source": {
+    "document": "Tabella minimi retributivi 2026, valori decorrenti dal 01/01/2026 (DOMINA, firmataria del CCNL lavoro domestico)",
+    "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
+    "section": "Tabella B, lavoratori conviventi art. 14 c. 2, livello B"
+  },
+  "inputs": {
+    "ccnl_slug": "lavoro-domestico-convivente-orario-ridotto.json",
+    "level_code": "B",
+    "year": 2026,
+    "month": 3,
+    "headcount": 1,
+    "weekly_hours": 30,
+    "contributable_hours": "120"
+  },
+  "expected": {
+    "base_salary": "702.25",
+    "fixed_allowances": "0",
+    "period_gross": "702.25"
+  }
+}
