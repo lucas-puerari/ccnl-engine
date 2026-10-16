@@ -137,9 +137,7 @@ def _daily_amount(event: TravelAllowanceEvent, terms: TravelTerms | None) -> Dec
     rules = None if terms is None else terms.rules
     if terms is None or rules is None:
         msg = "the CCNL of the run has no travel allowance amounts: state daily_amount"
-        raise MissingRuleError(
-            msg, as_of=event.event_date, feature=_FEATURE, ruleset=None
-        )
+        raise MissingRuleError(msg, as_of=event.event_date, feature=_FEATURE)
     band = rules.band_of(event.hours_away or _ZERO)
     if band is None:
         return _ZERO
@@ -155,12 +153,11 @@ def _night(event: TravelAllowanceEvent, terms: TravelTerms | None) -> Decimal:
         The amount for each day of the hours the CCNL requires, zero
         without the allowance or the hours.
     """
-    rules = None if terms is None else terms.rules
-    night = None if rules is None else rules.night_allowance
-    hours = event.hours_away
-    if terms is None or rules is None or night is None or hours is None:
+    if terms is None or terms.rules is None:
         return _ZERO
-    if hours < rules.night_from_hours:
+    rules, hours = terms.rules, event.hours_away
+    night = rules.night_allowance
+    if night is None or hours is None or hours < rules.night_from_hours:
         return _ZERO
     with rule_scope(ruleset=terms.ruleset, feature=_FEATURE):
         return money(night.value_at(event.event_date) * event.days)
