@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
+
 from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
@@ -54,6 +56,10 @@ def _pdr_ceiling_exceeded(
         ``True`` when the event is ineligible — either because prior income is
         unknown or because it exceeds ``ctx.pdr_income_ceiling``.
     """
+    # Turning an "and" of the guard into "or" also sends a contract renewal
+    # through the PdR ceiling; its own regime, with a lower ceiling (33,000
+    # EUR in 2026) and the same fail-closed rule, already taxes it as
+    # ordinary income there: those two mutants are equivalent.
     if not (
         isinstance(event, BonusEvent)
         and event.kind == "productivity_bonus"
@@ -119,9 +125,11 @@ def _handle_standard(
     resolution = _require_resolution(ctx.resolver, kind, ctx.context)
     treatment = _treatment_from_resolution(resolution)
     if _pdr_ceiling_exceeded(event, treatment, ctx):
-        treatment = EventTreatment(
-            inps=treatment.inps, tfr=treatment.tfr, irpef=True, substitute=False
-        )
+        # Only the tax changes: the INPS and TFR bases of the bonus stay.
+        # ``substitute=None`` would be as falsy as False: not generated.
+        treatment = replace(
+            treatment, irpef=True, substitute=False
+        )  # pragma: no mutate
     di, dt, dirpef = _treatment_deltas(treatment, gross)
     intents: list[PostingIntent] = [
         _make_standard_event_intent(event, gross, ctx.evt_id, kind, resolution)

@@ -44,7 +44,14 @@ Evidence:
   and in the TFR base, the exempt and taxable parts of the item, the
   decision trace, and the errors of an amount not in force or not stated;
   two equivalent mutants were removed by dropping a default argument and a
-  redundant guard.  The core twelve scored 859 of
+  redundant guard. Overtime and supplements reached 98.5% (134 of 136, from
+  86.8%): tests now cover the PdR income ceiling at 80,000 EUR included,
+  the INPS and TFR bases a PdR above it keeps, the premium a bonus is
+  withheld apart as (art. 23 c. 2 lett. b) DPR 600/1973) against a renewal
+  increment and a night supplement taxed with the period, and the policy
+  and band decision traced. The two survivors are equivalent: they send a
+  contract renewal through the PdR ceiling, where its own regime (33,000
+  EUR) already taxes it as ordinary income.  The core twelve scored 859 of
   917 (93.7%) that day.
 - Validation matrix: [Validation matrix](validation-matrix.md), generated
   in CI from the reference cases, the observed payslip replay, the sector
