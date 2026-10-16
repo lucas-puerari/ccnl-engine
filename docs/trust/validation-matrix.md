@@ -44,9 +44,9 @@ net, TFR, employer cost), or list what it still misses in
 | `multiservizi-anip` | exploratory | primary | source-linked | ordinary month | permanent, full time | — | — | — | fixed_allowances | — | match | 2026-10-13 | — |
 | `pubblici-esercizi-fipe-angem-ristorazione-collettiva` | production | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | fixed_allowances | — | match | 2026-10-13 | 2027-06-01 |
 | `pubblici-esercizi-fipe-angem` | production | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | fixed_allowances | — | match | 2026-10-13 | 2027-06-01 |
-| `sanita-aran` | reviewed | — | — | — | — | — | — | — | — | — | — | 2026-10-12 | 2026-12-31 |
+| `sanita-aran` | reviewed | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary | — | — | match | 2026-10-12 | 2026-12-31 |
 | `studi-professionali-confprofessioni` | production | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary | — | — | match | 2026-10-13 | 2026-12-01 |
 | `terziario-confesercenti` | production | primary | hand oracle, source-linked | conguaglio, extra month, ordinary month, termination | permanent, full time | — | headcount above 15, tranche of November, trattamento integrativo and somma esente bands | base_salary, employee_contributions, employer_contributions, employer_cost, gross, net, tax, tfr | fixed_allowances | — | match | 2026-10-13 | 2027-03-31 |
 | `turismo-federalberghi` | production | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | fixed_allowances | — | match | 2026-10-13 | 2026-12-01 |
 
-29 CCNLs listed; 4 without any evidence: `funzioni-centrali-aran`, `lavoro-domestico-convivente-orario-ridotto`, `logistica-trasporto-confetra-viaggiante`, `sanita-aran`.
+29 CCNLs listed; 3 without any evidence: `funzioni-centrali-aran`, `lavoro-domestico-convivente-orario-ridotto`, `logistica-trasporto-confetra-viaggiante`.
