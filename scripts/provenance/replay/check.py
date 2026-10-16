@@ -38,6 +38,7 @@ if TYPE_CHECKING:
     from collections.abc import Iterator, Mapping
 
 __all__ = [
+    "EVENT_TYPES",
     "INPUT_KEYS",
     "PAYSLIPS_DIR",
     "PERIMETER_KEYS",
@@ -80,6 +81,25 @@ INPUT_KEYS: Final = frozenset({
     "seniority_as_of",
     "pension_fund",
     "current_year_employment_only_on",
+    "events",
+})
+#: Events a record may state, each a line the payslip prints.  A sick pay
+#: override (``SickLeaveEvent``) and a TFR payout (``TerminationTFREvent``)
+#: are amounts the engine would otherwise compute: stating them would make
+#: the replay circular, so a record lists them in ``unknown_inputs``.
+EVENT_TYPES: Final = frozenset({
+    "AbsenceEvent",
+    "OvertimeEvent",
+    "NightShiftEvent",
+    "HolidayWorkEvent",
+    "ShiftWorkEvent",
+    "StandbyEvent",
+    "BonusEvent",
+    "FringeEvent",
+    "WelfareEvent",
+    "ArrearsEvent",
+    "BilateralFundEvent",
+    "TravelAllowanceEvent",
 })
 _REQUIRED_INPUTS: Final = ("ccnl_slug", "level_code", "year", "month", "headcount")
 _CONTRACT_TYPES: Final = ("permanent", "fixed_term")
@@ -120,9 +140,22 @@ def _typed_inputs_errors(inputs: Mapping[str, object]) -> Iterator[str]:
         _iso_date(inputs["current_year_employment_only_on"]) is None
     ):
         yield "'current_year_employment_only_on' must be an ISO date"
+    yield from _events_errors(inputs.get("events", []))
     fund = inputs.get("pension_fund", "none")
     if fund != "none" and not (isinstance(fund, dict) and set(fund) == _FUND_FIELDS):
         yield "'pension_fund' is \"none\" or states " + ", ".join(sorted(_FUND_FIELDS))
+
+
+def _events_errors(events: object) -> Iterator[str]:
+    if not isinstance(events, list):
+        yield "'events' must be a list"
+        return
+    for position, event in enumerate(events):
+        kind = event.get("type") if isinstance(event, dict) else None
+        if kind not in EVENT_TYPES:
+            yield f"event {position} has no type of {sorted(EVENT_TYPES)}"
+        elif _iso_date(event.get("event_date")) is None:
+            yield f"event {position} ({kind}) needs an ISO 'event_date'"
 
 
 def _spec_errors(key: str, spec: object) -> Iterator[str]:
