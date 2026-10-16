@@ -30,6 +30,7 @@ cost), or list what it still misses in
 | `edilizia-pmi-confapi-aniem` | exploratory | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | match | 2026-10-14 | 2027-03-01 |
 | `funzioni-centrali-aran` | reviewed | — | — | — | — | — | — | — | — | 2026-10-15 | 2027-12-31 |
 | `funzioni-locali-aran` | reviewed | real payslip | provider output | ordinary month | permanent, hours not stated | — | headcount 50 | base_salary, contributions, gross | match | 2026-10-12 | 2026-12-31 |
+| `industria-turistica-federturismo` | exploratory | real payslip | provider output | ordinary month | permanent, hours not stated | — | headcount 50 | base_salary | match | — | — |
 | `lavoro-domestico-convivente-orario-ridotto` | reviewed | — | — | — | — | — | — | — | — | 2026-10-12 | 2027-01-31 |
 | `lavoro-domestico-convivente` | reviewed | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | match | 2026-10-12 | 2027-01-31 |
 | `lavoro-domestico-non-convivente` | reviewed | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | match | 2026-10-15 | 2027-01-31 |
@@ -39,10 +40,10 @@ cost), or list what it still misses in
 | `metalmeccanico-federmeccanica` | production | payslip or official example, primary, real payslip | hand oracle, provider output, source-linked | conguaglio, extra month, ordinary month, termination | permanent, full time, permanent, hours not stated | overtime | headcount 16-50, headcount 50, minimo tranche of June, trattamento integrativo and somma esente bands | base_salary, contributions, employer_cost, gross, net, tax, tfr | match | 2026-10-15 | 2027-06-01 |
 | `multiservizi-anip` | exploratory | primary | source-linked | ordinary month | permanent, full time | — | — | gross | match | 2026-10-13 | — |
 | `pubblici-esercizi-fipe-angem-ristorazione-collettiva` | production | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | match | 2026-10-13 | 2027-06-01 |
-| `pubblici-esercizi-fipe-angem` | production | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | match | 2026-10-13 | 2027-06-01 |
+| `pubblici-esercizi-fipe-angem` | production | primary, real payslip | provider output, source-linked | ordinary month | permanent, full time, permanent, hours not stated | — | headcount 50 | base_salary, contributions, gross | match | 2026-10-13 | 2027-06-01 |
 | `sanita-aran` | reviewed | — | — | — | — | — | — | — | — | 2026-10-12 | 2026-12-31 |
 | `studi-professionali-confprofessioni` | production | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary | match | 2026-10-13 | 2026-12-01 |
 | `terziario-confesercenti` | production | primary | hand oracle, source-linked | conguaglio, extra month, ordinary month, termination | permanent, full time | — | headcount above 15, tranche of November, trattamento integrativo and somma esente bands | base_salary, contributions, employer_cost, gross, net, tax, tfr | match | 2026-10-13 | 2027-03-31 |
-| `turismo-federalberghi` | production | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | match | 2026-10-13 | 2026-12-01 |
+| `turismo-federalberghi` | production | primary, real payslip | provider output, source-linked | ordinary month | permanent, full time, permanent, hours not stated | — | headcount 30 | base_salary, contributions, gross | match | 2026-10-13 | 2026-12-01 |
 
-28 CCNLs listed; 4 without any evidence: `funzioni-centrali-aran`, `lavoro-domestico-convivente-orario-ridotto`, `logistica-trasporto-confetra-viaggiante`, `sanita-aran`.
+29 CCNLs listed; 4 without any evidence: `funzioni-centrali-aran`, `lavoro-domestico-convivente-orario-ridotto`, `logistica-trasporto-confetra-viaggiante`, `sanita-aran`.

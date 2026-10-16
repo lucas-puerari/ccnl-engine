@@ -147,13 +147,16 @@ def test_the_engine_reproduces_the_observed_values(pid: str) -> None:
 
 
 def test_the_replayable_records_cover_the_sectors_of_the_production_ccnls() -> None:
-    """Terziario, industria, edilizia and public payslips of 2026 are replayed."""
+    """Payslips of 2026 of seven CCNLs, private and public, are replayed."""
     ccnls = {_RECORDS[pid]["replay"]["inputs"]["ccnl_slug"] for pid in _replayable()}
 
-    assert len(_replayable()) >= 11
+    assert len(_replayable()) >= 17
     assert ccnls == {
         "commercio-confcommercio.json",
         "edilizia-ance.json",
         "funzioni-locali-aran.json",
+        "industria-turistica-federturismo.json",
         "metalmeccanico-federmeccanica.json",
+        "pubblici-esercizi-fipe-angem.json",
+        "turismo-federalberghi.json",
     }

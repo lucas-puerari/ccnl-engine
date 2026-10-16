@@ -1,0 +1,93 @@
+{
+  "id": "p72",
+  "period": "2026-08",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Turismo Federalberghi (CNEL H052)",
+  "level": "5",
+  "contract": {
+    "type": "fixed_term",
+    "category": "impiegato",
+    "part_time": "60.00%",
+    "hired": "2026-06-12"
+  },
+  "source": {
+    "publisher": "Reddit",
+    "title": "Chiarimento buste paga luglio agosto",
+    "file": "chiarimento-buste-paga-luglio-agosto-v0-vb4orr8x8rph1.webp",
+    "sha256": "c2d5c7b62f7c0cf8f1843c27f4693093d0218c47d0301e8dfb0bcd635f31c7fa"
+  },
+  "pay_elements": {
+    "paga_base": "1590.27",
+    "total": "1590.27"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione 26 gg",
+      "earning": "954.16"
+    },
+    {
+      "desc": "lavoro festivo 20% 8 ore",
+      "earning": "88.76"
+    },
+    {
+      "desc": "lavoro domenicale 10% 24 ore",
+      "earning": "22.19"
+    }
+  ],
+  "inps": {
+    "base": "1160.00",
+    "ivs_rate": "0.0919",
+    "ivs": "106.60",
+    "cigs_rate": "0.0030",
+    "cigs": "3.48",
+    "fis_rate": "0.0026667",
+    "fis": "3.09"
+  },
+  "irpef_month": {
+    "taxable": "951.94",
+    "gross": "218.95",
+    "work_deduction": "117.21",
+    "net": "101.74"
+  },
+  "totals": {
+    "earnings": "1217.47",
+    "deductions": "214.91"
+  },
+  "net": "1002.56",
+  "legibility": "full",
+  "notes": [
+    "Image of a payslip a worker posted on Reddit, collected by the maintainer; transcribed as printed. Name, tax code, employer and any bank or registration number are not transcribed.",
+    "CNEL H052 is shared by Federalberghi and Fiavet; the paga base 1.590,27 is the Federalberghi level 5 amount."
+  ],
+  "replay": {
+    "replayability": "partial",
+    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
+    "inputs": {
+      "ccnl_slug": "turismo-federalberghi.json",
+      "level_code": "5",
+      "year": 2026,
+      "month": 8,
+      "headcount": 30,
+      "category": "impiegato",
+      "contract_type": "permanent"
+    },
+    "unknown_inputs": [
+      "the 60% part-time and the fixed term",
+      "headcount between 16 and 50, from the FIS line printed"
+    ],
+    "expected": {
+      "base_salary": {
+        "value": "1590.27",
+        "tolerance": "0.00",
+        "printed": "Paga base (full-time amount)"
+      },
+      "employee_inps_rate": {
+        "value": "0.0975667",
+        "tolerance": "0.00001",
+        "printed": "IVS 9,19000 + CIGS 0,30000 + FIS >15 <50 dip 0,26667"
+      }
+    },
+    "known_differences": []
+  }
+}

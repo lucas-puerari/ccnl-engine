@@ -1,0 +1,92 @@
+{
+  "id": "p73",
+  "period": "2026-07",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Pubblici Esercizi FIPE (CNEL H05Y)",
+  "level": "4",
+  "contract": {
+    "type": "permanent",
+    "category": "operaio",
+    "hired": "2026-07-20"
+  },
+  "source": {
+    "publisher": "Reddit",
+    "title": "Dubbio RAL netto",
+    "file": "dubbio-ral-netto-v0-hpwfqlwakoih1.webp",
+    "sha256": "8cfcbdff6b2fb3164fdd5bd994c5632d9cd3ec886bb33e2ab01696daa161acd0"
+  },
+  "pay_elements": {
+    "stipendio_base": "1167.75",
+    "contingenza": "524.94",
+    "terzo_elemento_provinciale": "12.32",
+    "total": "1705.01"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione 11 gg",
+      "earning": "721.35"
+    },
+    {
+      "desc": "credito trattamento integrativo L. 21/2020",
+      "earning": "39.45"
+    },
+    {
+      "desc": "indennita L. 207/2024",
+      "earning": "12.94"
+    }
+  ],
+  "inps": {
+    "base": "581.00",
+    "employee": "56.68",
+    "ente_bilaterale": "1.43"
+  },
+  "irpef_month": {
+    "taxable": "269.59",
+    "gross": "62.01",
+    "work_deduction": "62.01",
+    "net": "0.00"
+  },
+  "totals": {
+    "earnings": "774.62",
+    "deductions": "454.62"
+  },
+  "net": "320.00",
+  "legibility": "full",
+  "notes": [
+    "Image of a payslip a worker posted on Reddit, collected by the maintainer; transcribed as printed. Name, tax code, employer and any bank or registration number are not transcribed.",
+    "Hired on 20 July 2026: 11 days paid and 40 hours of unpaid leave withheld (396,51). The INPS rate is not printed; 56,68 on 581,00 is the rate compared.",
+    "CNEL H05Y is shared by the FIPE files; the file of the pubblici esercizi is used."
+  ],
+  "replay": {
+    "replayability": "partial",
+    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
+    "inputs": {
+      "ccnl_slug": "pubblici-esercizi-fipe-angem.json",
+      "level_code": "4",
+      "year": 2026,
+      "month": 7,
+      "headcount": 50,
+      "category": "operaio",
+      "contract_type": "permanent"
+    },
+    "unknown_inputs": [
+      "the hire on 20 July (partial month) and the unpaid leave",
+      "the provincial terzo elemento",
+      "headcount above 15, inferred from the amount withheld"
+    ],
+    "expected": {
+      "base_salary": {
+        "value": "1692.69",
+        "tolerance": "0.00",
+        "printed": "Stipendio base 1.167,75 + Contingenza 524,94 (the file conglobates them)"
+      },
+      "employee_inps_rate": {
+        "value": "0.0975667",
+        "tolerance": "0.00005",
+        "printed": "Trattenuta contributi 56,68 on Imp. Contr. 581,00"
+      }
+    },
+    "known_differences": []
+  }
+}

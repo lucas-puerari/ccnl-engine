@@ -1,0 +1,100 @@
+{
+  "id": "p70",
+  "period": "2026-09",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Terziario Confcommercio (CNEL H011)",
+  "level": "3",
+  "contract": {
+    "type": "permanent",
+    "category": "impiegato",
+    "hired": "2025-04-01"
+  },
+  "source": {
+    "publisher": "Reddit",
+    "title": "Aumento della RAL corrispondente ad un netto uguale a prima",
+    "file": "aumento-della-ral-corrispondente-ad-un-netto-uguale-a-prima-v0-preq2qlm8hvh1.webp",
+    "sha256": "7d24c3d07e39c402c0e33a8b22aabc467fe26f4b8ffe39dbd5c9bbb2ca563306"
+  },
+  "pay_elements": {
+    "stipendio_base": "1453.94",
+    "contingenza": "527.90",
+    "elemento_provinciale": "2.07",
+    "ad_personam_assorbibile": "159.00",
+    "total": "2142.91"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione 26 gg",
+      "earning": "2142.91"
+    },
+    {
+      "desc": "straordinario 15%",
+      "earning": "0.44"
+    }
+  ],
+  "inps": {
+    "base": "2143.00",
+    "ivs_rate": "0.0919",
+    "ivs": "196.94",
+    "cigs_rate": "0.0030",
+    "cigs": "6.43",
+    "fis_rate": "0.00267",
+    "fis": "5.71",
+    "fon_te_employee": "64.30",
+    "fondo_est": "2.00"
+  },
+  "irpef_month": {
+    "taxable": "1867.97",
+    "gross": "429.63",
+    "work_deduction": "171.95",
+    "ulteriore_detrazione": "82.19",
+    "net": "175.49"
+  },
+  "totals": {
+    "earnings": "2143.53",
+    "deductions": "497.53"
+  },
+  "net": "1646.00",
+  "legibility": "full",
+  "notes": [
+    "Image of a payslip a worker posted on Reddit, collected by the maintainer; transcribed as printed. Name, tax code, employer and any bank or registration number are not transcribed.",
+    "The post this image comes from asks why a raise of the RAL kept the net unchanged; the same worker's October 2025 payslip at level 4 is in the same post and is not transcribed (2025)."
+  ],
+  "replay": {
+    "replayability": "partial",
+    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
+    "inputs": {
+      "ccnl_slug": "commercio-confcommercio.json",
+      "level_code": "3",
+      "year": 2026,
+      "month": 9,
+      "headcount": 50,
+      "category": "impiegato",
+      "contract_type": "permanent"
+    },
+    "unknown_inputs": [
+      "ad personam and provincial element",
+      "the Fon.Te. pension fund enrolment",
+      "headcount above 15, from the CIGS withheld"
+    ],
+    "expected": {
+      "base_salary": {
+        "value": "1453.94",
+        "tolerance": "0.00",
+        "printed": "Stipendio base"
+      },
+      "fixed_allowances": {
+        "value": "527.90",
+        "tolerance": "0.00",
+        "printed": "Contingenza"
+      },
+      "employee_inps_rate": {
+        "value": "0.0975667",
+        "tolerance": "0.00005",
+        "printed": "IVS 9,190 + CIGS 0,300 + FIS 0,267"
+      }
+    },
+    "known_differences": []
+  }
+}

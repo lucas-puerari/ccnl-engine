@@ -1,0 +1,101 @@
+{
+  "id": "p71",
+  "period": "2026-07",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Terziario Confcommercio (CNEL H011)",
+  "level": "6",
+  "contract": {
+    "type": "fixed_term",
+    "category": "operaio",
+    "part_time": "50.00%",
+    "hired": "2024-11-11"
+  },
+  "source": {
+    "publisher": "Reddit",
+    "title": "Che senso ha questa busta paga",
+    "file": "che-senso-ha-questa-busta-paga-v0-dsfp86hyhsih1.webp",
+    "sha256": "bdcfa5e45d6b5cefd8dfa3b09ddec20232fa3c8a14553be337d906cf870fdd3d"
+  },
+  "pay_elements": {
+    "paga_base": "1019.94",
+    "contingenza": "519.76",
+    "terzo_elemento": "2.07",
+    "edr_e_bil": "4.62",
+    "edr_f_est": "16.00",
+    "total": "1562.39"
+  },
+  "lines": [
+    {
+      "desc": "magg. lavoro festivo 30% 22,5 ore",
+      "earning": "62.77"
+    },
+    {
+      "desc": "retribuzione 84 ore",
+      "earning": "781.19"
+    },
+    {
+      "desc": "supplementare 35% 14,5 ore",
+      "earning": "182.05"
+    }
+  ],
+  "inps": {
+    "base": "1413.00",
+    "ivs_rate": "0.0919",
+    "ivs": "129.85",
+    "fis_rate": "0.0026667",
+    "fis": "3.77"
+  },
+  "irpef_month": {
+    "taxable": "837.47",
+    "gross": "192.62",
+    "work_deduction": "166.04",
+    "net": "26.58"
+  },
+  "totals": {
+    "earnings": null,
+    "deductions": null
+  },
+  "net": "873.25",
+  "legibility": "full",
+  "notes": [
+    "Image of a payslip a worker posted on Reddit, collected by the maintainer; transcribed as printed. Name, tax code, employer and any bank or registration number are not transcribed.",
+    "The right edge is cropped: competenze and trattenute totals are cut; the pay elements are the full-time amounts."
+  ],
+  "replay": {
+    "replayability": "partial",
+    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
+    "inputs": {
+      "ccnl_slug": "commercio-confcommercio.json",
+      "level_code": "6",
+      "year": 2026,
+      "month": 7,
+      "headcount": 10,
+      "category": "operaio",
+      "contract_type": "permanent"
+    },
+    "unknown_inputs": [
+      "the 50% part-time and the fixed term",
+      "EDR in place of the bilateral and Fondo Est contributions",
+      "headcount up to 15, from the FIS rate printed"
+    ],
+    "expected": {
+      "base_salary": {
+        "value": "1019.94",
+        "tolerance": "0.00",
+        "printed": "PAGA BASE (full-time amount)"
+      },
+      "fixed_allowances": {
+        "value": "519.76",
+        "tolerance": "0.00",
+        "printed": "CONTING."
+      },
+      "employee_inps_rate": {
+        "value": "0.0945667",
+        "tolerance": "0.00001",
+        "printed": "IVS 9,19000 + FIS fino 15 dip 0,26667"
+      }
+    },
+    "known_differences": []
+  }
+}
