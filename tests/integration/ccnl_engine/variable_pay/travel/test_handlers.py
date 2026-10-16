@@ -10,6 +10,7 @@ base follows the same rule (art. 12 c. 2 L. 153/1969).
 
 from __future__ import annotations
 
+import json
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -32,10 +33,17 @@ from ccnl_engine.reconciliation.validators import reconcile
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.variable_pay.benefit.handlers import fringe_threshold_of
 from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
-from ccnl_engine.variable_pay.travel.handlers import TravelAllowanceAssessment
+from ccnl_engine.variable_pay.travel.handlers import (
+    TravelAllowanceAssessment,
+    TravelTerms,
+)
+from ccnl_engine.working_time.models import CcnlTravelAllowance
+from scripts.provenance.rules import KNOWLEDGE_DIR
 
 if TYPE_CHECKING:
+    from ccnl_engine.decision.models import CalculationDecision
     from ccnl_engine.period.results import PeriodResult
+    from ccnl_engine.variable_pay.models import TravelAllowanceRules
 
 _DAY = date(2026, 3, 10)
 _RULES = load_variable_pay_rules(2026).travel_allowance
@@ -194,7 +202,9 @@ def test_events_without_the_rules_of_the_year_fail() -> None:
     """The event processor must be given the caps of the tax year."""
     year = 2026
     payment = date(year, 3, 28)
-    with pytest.raises(ValueError, match="travel allowance rules"):
+    with pytest.raises(
+        ValueError, match=r"^the travel allowance rules of the tax year are not loaded$"
+    ):
         _process_events(
             (_trip(),),
             CompetencePeriod(year=year, month=3),
@@ -302,3 +312,196 @@ def test_logistica_night_allowance_from_18_hours() -> None:
 
     assert night(long_days) == Decimal("1.86")  # 2 x 0.93
     assert night(short_days) == Decimal("0.00")
+
+
+def test_the_decision_records_every_fact_of_the_block() -> None:
+    """The decision states the days, amounts, place, cap and hours away."""
+    for hours, shown in ((Decimal(9), Decimal(9)), (None, "none")):
+        assessment = TravelAllowanceAssessment(_trip(hours_away=hours), _RULES, 2026)
+        decision = assessment.decision()
+
+        assert _RULES.ruleset is not None
+        assert _RULES.provenance is not None
+        assert decision.rule == _RULES.ruleset.id
+        assert decision.rule_version == _RULES.ruleset.version
+        assert decision.source == _RULES.provenance.location
+        assert decision.amount == Decimal("40.56")
+        assert decision.inputs == {
+            "days": "3",
+            "daily_amount": Decimal("60.00"),
+            "outside_municipality": "true",
+            "abroad": "false",
+            "meals_lodging": "none",
+            "daily_cap": Decimal("46.48"),
+            "exempt_amount": Decimal("139.44"),
+            "hours_away": shown,
+        }
+
+
+def test_caps_without_a_ruleset_are_versioned_by_the_tax_year() -> None:
+    """Caps given without a ruleset cite the feature and the tax year."""
+    rules = _RULES.model_copy(update={"ruleset": None, "provenance": None})
+    decision = TravelAllowanceAssessment(_trip(abroad=True), rules, 2026).decision()
+
+    assert (decision.rule, decision.rule_version) == ("travel_allowance", "2026")
+    assert decision.source is None
+    assert decision.inputs["abroad"] == "true"
+
+
+def test_the_item_splits_the_exempt_and_the_taxable_part() -> None:
+    """The item pays the whole allowance and states both parts."""
+    result = _run(_trip())
+    (item,) = (i for i in result.pay_items if i.kind == "travel_allowance_item")
+    (entry,) = (e for e in result.ledger_entries if e.pay_item_id == item.item_id)
+
+    assert (item.amount, item.quantity) == (Decimal("180.00"), Decimal(3))
+    assert item.exempt_amount == Decimal("139.44")
+    assert item.taxable_amount == Decimal("40.56")
+    assert entry.account is AccountKind.CASH_EARNINGS
+    assert entry.policy_decision_id == "it/earning/travel_allowance"
+
+
+def _night_of(result: PeriodResult) -> Decimal:
+    (decision,) = (
+        d
+        for d in result.decisions
+        if d.capability == "travel_allowance" and "night_allowance" in d.inputs
+    )
+    value = decision.inputs["night_allowance"]
+    assert isinstance(value, Decimal)
+    return value
+
+
+def test_the_night_allowance_starts_at_18_hours_included() -> None:
+    """Art. 16: a day of exactly 18 hours away earns the night allowance."""
+    assert _night_of(_driver(_ccnl_trip(hours_away=Decimal(18)))) == Decimal("1.86")
+    assert _night_of(_driver(_ccnl_trip(hours_away=Decimal("17.5")))) == Decimal(0)
+
+
+def test_the_night_allowance_enters_the_tfr_base() -> None:
+    """With the allowance out of the TFR base, the night part still enters it."""
+    base = _account(_driver(), AccountKind.TFR_ACCRUAL)
+    night = _driver(_ccnl_trip(tfr_base="none"))
+    day = _driver(_ccnl_trip(tfr_base="none", hours_away=Decimal(13)))
+
+    assert _account(night, AccountKind.TFR_ACCRUAL) > base
+    assert _account(day, AccountKind.TFR_ACCRUAL) == base
+
+
+def test_a_stated_amount_without_hours_earns_no_night_allowance() -> None:
+    """The night allowance needs the hours away; a stated amount does not."""
+    result = _driver(_ccnl_trip(hours_away=None, daily_amount=Decimal("40.00")))
+
+    assert _night_of(result) == Decimal(0)
+
+
+_CCNL_TRAVEL = json.loads(
+    (KNOWLEDGE_DIR / "agreement" / _DRIVER).read_text(encoding="utf-8")
+)["work_rules"]["travel_allowance"]
+
+
+def _terms(**changes: object) -> TravelTerms:
+    rules = CcnlTravelAllowance.model_validate(_CCNL_TRAVEL).model_copy(update=changes)
+    return TravelTerms(rules, "ccnl/logistica/2026")
+
+
+def _processed(
+    event: TravelAllowanceEvent,
+    terms: TravelTerms | None,
+    rules: TravelAllowanceRules = _RULES,
+) -> tuple[Decimal, tuple[CalculationDecision, ...]]:
+    payment = date(2026, 3, 28)
+    totals, items, _ = _process_events(
+        (event,),
+        CompetencePeriod(year=2026, month=3),
+        payment,
+        "t",
+        EffectiveDateContext.from_period(2026, 3, payment),
+        load_policy_resolver(),
+        PolicyContext(year=2026, as_of=date(2026, 3, 1)),
+        fringe_threshold_of(
+            load_variable_pay_rules(2026).fringe_benefit, 2026, with_children=False
+        ),
+        travel_allowance=rules,
+        ccnl_travel=terms,
+    )
+    return sum((i.amount for i in items), Decimal(0)), totals.decisions
+
+
+def _process(event: TravelAllowanceEvent, terms: TravelTerms | None) -> Decimal:
+    return _processed(event, terms)[0]
+
+
+def test_caps_without_a_ruleset_cite_the_tax_year_of_the_run() -> None:
+    """The run versions caps given without a ruleset by its own tax year."""
+    rules = _RULES.model_copy(update={"ruleset": None})
+    _, decisions = _processed(_trip(), None, rules)
+    (decision,) = (d for d in decisions if d.reason_code == "above_cap")
+
+    assert (decision.rule, decision.rule_version) == ("travel_allowance", "2026")
+
+
+def test_a_ccnl_without_night_allowance_pays_the_day_amount_only() -> None:
+    """A CCNL with day amounts but no night allowance pays the span alone."""
+    assert _process(_ccnl_trip(), _terms(night_allowance=None)) == Decimal("86.32")
+
+
+def test_without_ccnl_terms_the_event_states_amount_and_tfr_base() -> None:
+    """With no CCNL terms the event's amount and TFR base are used as given."""
+    trip = _trip(hours_away=Decimal(20), tfr_base="whole")
+
+    assert _process(trip, None) == Decimal("180.00")
+    with pytest.raises(MissingRuleError, match="state daily_amount"):
+        _process(_ccnl_trip(tfr_base="whole"), None)
+    with pytest.raises(InvalidInputError, match="tfr_base"):
+        _process(_trip(tfr_base=None), None)
+
+
+def _gap(series: dict[str, object]) -> dict[str, object]:
+    return {"periods": [{**series["periods"][0], "valid_from": "2026-06-01"}]}  # type: ignore[index]
+
+
+def test_a_ccnl_amount_not_yet_in_force_names_its_ruleset() -> None:
+    """A day or night amount missing on the event date fails with its ruleset."""
+    bands = [
+        {**band, "italy": _gap(band["italy"]), "abroad": _gap(band["abroad"])}
+        for band in _CCNL_TRAVEL["bands"]
+    ]
+    later_days = TravelTerms(
+        CcnlTravelAllowance.model_validate({**_CCNL_TRAVEL, "bands": bands}),
+        "ccnl/logistica/2026",
+    )
+    later_night = TravelTerms(
+        CcnlTravelAllowance.model_validate({
+            **_CCNL_TRAVEL,
+            "night_allowance": _gap(_CCNL_TRAVEL["night_allowance"]),
+        }),
+        "ccnl/logistica/2026",
+    )
+    for terms in (later_days, later_night):
+        with pytest.raises(MissingRuleError) as raised:
+            _process(_ccnl_trip(), terms)
+        assert raised.value.ruleset == "ccnl/logistica/2026"
+        assert raised.value.feature == "travel_allowance"
+        assert raised.value.as_of == _DAY
+
+
+def test_the_errors_name_the_feature_the_field_and_the_day() -> None:
+    """A missing amount or TFR rule names what to state, for which feature."""
+    with pytest.raises(MissingRuleError) as missing:
+        _run(_ccnl_trip(tfr_base="none"))
+    with pytest.raises(InvalidInputError) as invalid:
+        _run(_trip(tfr_base=None))
+
+    assert missing.value.as_of == _DAY
+    assert missing.value.feature == "travel_allowance"
+    assert missing.value.ruleset is None
+    assert missing.value.detail == (
+        "the CCNL of the run has no travel allowance amounts: state daily_amount"
+    )
+    assert invalid.value.field == "TravelAllowanceEvent.tfr_base"
+    assert invalid.value.feature == "travel_allowance"
+    assert str(invalid.value).startswith(
+        "TravelAllowanceEvent.tfr_base: the CCNL states no TFR rule for the "
+        "allowance (art. 2120 c.c. leaves it to the CCNL): state it"
+    )

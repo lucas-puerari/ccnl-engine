@@ -39,7 +39,12 @@ Evidence:
   Termination reached 100% on 16 October 2026 (138 of 138 mutants killed),
   once tests traced each bilateral fund and TFR settlement entry to its
   pay item and its policy; it left the baseline and now counts in the
-  93% minimum of the core.  The core twelve scored 859 of
+  93% minimum of the core. Travel followed on the same day (219 of 219,
+  from 67.8%): tests now cover the night allowance from 18 hours included
+  and in the TFR base, the exempt and taxable parts of the item, the
+  decision trace, and the errors of an amount not in force or not stated;
+  two equivalent mutants were removed by dropping a default argument and a
+  redundant guard.  The core twelve scored 859 of
   917 (93.7%) that day.
 - Validation matrix: [Validation matrix](validation-matrix.md), generated
   in CI from the reference cases, the observed payslip replay, the sector
