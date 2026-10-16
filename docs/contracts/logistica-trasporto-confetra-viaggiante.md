@@ -57,7 +57,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-06 |
-| **Last review** | 2026-10-12 |
+| **Last review** | 2026-10-16 |
 | **Latest salary tranche** | 2027-06-01 |
 
 ## Review history
@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | Weekend overtime and working time of the travelling staff (artt. 11, 11 bis, 13). | corrected | Sunday overtime of the travelling staff is 30% (art. 13 c. 6), not the 65% of the holiday band: new band OT_RIPOSO on the rest_day overtime kind.<br>The 47-hour regime of art. 11 bis changes the overtime threshold, not the pay: the hourly divisor is 168 under every regime (art. 13 c. 8); the limitation travelling_working_time is closed. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Malattie particolarmente gravi (art. 63 cc. 8 and 12). | corrected | The serious illnesses of INPS circ. 95/2016 were a limitation (grave_illness): now paid in full for 18 months and left out of the comporto when SicknessEpisode.serious_illness says so. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Indennità di trasferta of the travelling staff (art. 62). | corrected | The allowance amounts of art. 62 c. 3 from 1.1.2025 and the TFR rule of c. 7 are now CCNL data: a TravelAllowanceEvent without daily_amount takes the amount of its hours away. |
+| 2026-10-16 | claude-opus-5-5 (ai) | The employer INPS rate of the personale viaggiante in the cost table of the Ministry of Labour (DD 135 of 19 December 2025) against the INPS rate tables and the classes of the bundle. | flagged | DD 135/2025 prints 'Inps (30,68%)' on every table of the personale viaggiante, with no composition, no class of employer and no number of employees.<br>30.68% is, to the cent, the employer rate of an INPS class industria employer up to 15 employees for operai and intermedi: IVS 23.81 + NASpI 1.61 + CUAF 0.68 + CIG ordinaria 1.70 + Fondo garanzia TFR 0.20 + malattia 2.22 + maternità 0.46 (INPS tables of January 2023 reproduced by GIA Parma, row 'Industria, aziende fino a 15 dipendenti, Operai - Intermedi'). The engine applies the same 30.68% to an operaio viaggiante of an employer up to 15 employees, and 31.28% from 16 to 50 and 31.58% above (CIG straordinaria 0.90 and the higher CIG ordinaria): match for the smallest band, no evidence for the others.<br>Not established: whether the Ministry assumes an employer up to 15 employees or a class other than industria. A press article (Euroconference, 24 November 2021) classifies a road haulage employer in the INPS sector terziario, CSC 7.04.01, which would give other rates; the class is a fact of the employer, so it is not decided here. |
 
 ## Salary table
 
