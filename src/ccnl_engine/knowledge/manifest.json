@@ -1237,7 +1237,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-convivente-orario-ridotto",
       "ruleset_version": "2026.3",
-      "source_hash": "80844fe140d5093724a5f52bc94c7634ed3fc8aa6ddb40fba28b73209bdcba84",
+      "source_hash": "3907978ce2a1cf85154b67cc98acf6524dd78905fdb63a759c7250884857f79a",
       "source_type": "commercial_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/lavoro-domestico-convivente-orario-ridotto.json.gz"
@@ -1254,7 +1254,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-convivente",
       "ruleset_version": "2026.3",
-      "source_hash": "49713e355013a8c9b7343226eed526cb0531a7fe0afcb2d63c60b44d12b7b397",
+      "source_hash": "cb98133c0c562a6cc7b298fcef932f4a9cd4fffdfe2ad721e132dbc03889d541",
       "source_type": "commercial_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/lavoro-domestico-convivente.json.gz"

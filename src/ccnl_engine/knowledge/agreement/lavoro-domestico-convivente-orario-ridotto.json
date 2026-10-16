@@ -761,7 +761,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "80844fe140d5093724a5f52bc94c7634ed3fc8aa6ddb40fba28b73209bdcba84",
+    "source_hash": "3907978ce2a1cf85154b67cc98acf6524dd78905fdb63a759c7250884857f79a",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },
@@ -1057,6 +1057,29 @@
           "accrual_rule was missing: chiarimento a verbale 4 counts a fraction of a month of at least 15 calendar days as a whole month.",
           "Citations moved from the DOMINA table and section labels without page to the signed text with page and quote.",
           "Tabella B, level B: the file held 702,35 as printed in the signed text; the DOMINA table of 2026 and the table of the Commissione of 11 February 2026 print 702,25. Corrected to 702,25 and left derived; the seniority step (4%) is 28,09 either way."
+        ]
+      },
+      {
+        "id": "2026-10-16-ai-inps-band",
+        "date": "2026-10-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Limitation hourly_inps_bracket_unvalidated: the band of the hourly INPS contribution up to 24 weekly hours against the worked quarters of a signatory of the CCNL (DOMINA) and INPS circ. 9/2026.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://associazionedomina.it/contributi-inps/",
+            "sha256": "0df958782e915bf7d997ea78d2ec8432536024436e434ef2b76264b356fe4ad9"
+          },
+          {
+            "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2026/02/Circolare_15154/Allegati/16551_Circolare-numero-9-del-03-02-2026.pdf",
+            "sha256": "69025160fd599ca2c5ebde1c6c5643923157102a0c83c045ebf9d00ed5ccbfb3"
+          }
+        ],
+        "findings": [
+          "INPS circ. 9/2026 downloaded again on 2026-10-16: same sha256 as the bundle, no rectification in the text; the 2026 amounts of the file stand.",
+          "DOMINA states that the paga oraria effettiva includes the hourly share of the tredicesima and prints four quarters of 2026 (13 weeks): colf 10 h at 8.00 an hour, 1.70, 221.00 (worker 55.90); colf 10 h at 9.00, 1.92 because 9 x 13 / 12 = 9.75 is above 9.61, 249.60 (62.40); colf 25 h, 1.24, 403.00 (100.75); badante convivente 54 h, 1.24, 870.48 (217.62). The engine's effective pay and band match all four (tests/knowledge/ccnl_engine/contribution/domestic/services/test_effective_hourly_pay.py::test_the_band_of_the_published_quarters_of_a_signatory): the raise by 13/12 is validated.",
+          "Still unvalidated, so the limitation stays: the share of board and lodging in the effective pay of a convivente up to 24 weekly hours. DOMINA states it ('per chi ha vitto e alloggio, il loro valore convenzionale'), as the engine computes it, but prints no worked case with board and lodging, and no worked example of a convivente up to 24 hours was found."
         ]
       }
     ],
