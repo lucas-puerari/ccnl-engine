@@ -304,6 +304,7 @@ pytest_add_cli_args_test_selection = [
     "tests/integration/ccnl_engine/tax_credit/somma_esente/services/test_somma_esente.py",
     "tests/integration/ccnl_engine/tax_credit/somma_esente/services/test_somma_esente_year.py",
     "tests/integration/ccnl_engine/working_time/test_handlers.py",
+    "tests/integration/ccnl_engine/period/services/test_regime_2026.py",
     "tests/integration/ccnl_engine/working_time/overtime/test_hourly_bands.py",
     "tests/integration/ccnl_engine/working_time/overtime/test_policies.py",
     "tests/unit/ccnl_engine/sickness/pay/test_handlers.py",

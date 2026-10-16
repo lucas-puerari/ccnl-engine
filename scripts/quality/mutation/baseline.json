@@ -1,6 +1,5 @@
 {
   "floors": {
-    "src/ccnl_engine/working_time/handlers.py": 86.8,
     "src/ccnl_engine/sickness/pay/handlers.py": 90.6,
     "src/ccnl_engine/variable_pay/arrears/handlers.py": 87.8
   }

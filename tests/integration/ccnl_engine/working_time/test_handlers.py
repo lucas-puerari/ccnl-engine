@@ -17,8 +17,9 @@ from ccnl_engine.employer.inputs import (
     EmployerProfile,
     Headcount,
 )
-from ccnl_engine.event.facade import NightShiftEvent
+from ccnl_engine.event.facade import BonusEvent, NightShiftEvent, OvertimeEvent
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
+from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.services import calculate_period
 from ccnl_engine.reconciliation.decision.validators import (
@@ -129,3 +130,112 @@ class TestPlafondInvariant:
         violations = check_substitute_tax_plafond(bad, opening, RunFacts())
         above = [v for v in violations if "exceeds the annual cap" in v.message]
         assert [(v.expected, v.actual) for v in above] == [(_CAP, Decimal(1_600))]
+
+
+_METAL = "metalmeccanico-federmeccanica.json"
+_PDR_CEILING = Decimal("80000.00")
+
+
+def _bonus_run(*events: object, income: Decimal = Decimal(25_000)) -> PeriodResult:
+    return calculate_period(
+        PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
+            prior_year=PriorYearTaxFacts(employment_income=income),
+            period_id=PeriodId(year=_YEAR, month=3),
+            payment_date=date(_YEAR, 3, 27),
+            ccnl_slug=_METAL,
+            level_code="C3",
+            opening_state=PeriodState.zero(),
+            events=events,  # type: ignore[arg-type]
+        )
+    )
+
+
+def _posted(result: PeriodResult, account: AccountKind) -> Decimal:
+    return sum(
+        (e.amount for e in result.ledger_entries if e.account == account), Decimal(0)
+    )
+
+
+def _bonus(kind: str, amount: str = "1000.00") -> BonusEvent:
+    return BonusEvent(date(_YEAR, 3, 10), Decimal(amount), kind=kind)  # type: ignore[arg-type]
+
+
+def test_a_premium_is_withheld_apart_from_the_pay_of_the_period() -> None:
+    """Art. 23 c. 2 lett. b): a bonus is taxed apart, a renewal increment is not.
+
+    Above the income ceilings of the substitute regimes, a bonus, a renewal
+    increment and a night supplement of 1,000 EUR are taxable income of the
+    run alike (INPS in, TFR out); only the bonus, a premium, is withheld at
+    the rates of the mensilità aggiuntive.
+    """
+    high = Decimal(90_000)
+    night = NightShiftEvent(
+        event_date=date(_YEAR, 3, 10), supplement_amount=Decimal(1000)
+    )
+    runs = {
+        "bonus": _bonus_run(_bonus("bonus"), income=high),
+        "renewal": _bonus_run(_bonus("contract_renewal"), income=high),
+        "night": _bonus_run(night, income=high),
+    }
+    taxable = {k: r.closing_state.cash.earnings.taxable for k, r in runs.items()}
+    tax = {k: _posted(r, AccountKind.ORDINARY_TAX) for k, r in runs.items()}
+
+    assert taxable["bonus"] == taxable["renewal"] == taxable["night"]
+    assert tax["renewal"] == tax["night"] != tax["bonus"]
+
+
+@pytest.mark.parametrize(
+    ("income", "substitute"),
+    [(_PDR_CEILING, Decimal("10.00")), (_PDR_CEILING + Decimal("0.01"), Decimal(0))],
+    ids=["at_the_ceiling", "above_it"],
+)
+def test_the_pdr_rate_needs_an_income_not_above_80000(
+    income: Decimal, substitute: Decimal
+) -> None:
+    """Art. 1 c. 186 L. 208/2015: "reddito ... non superiore" to 80,000 EUR."""
+    result = _bonus_run(_bonus("productivity_bonus"), income=income)
+
+    assert _posted(result, AccountKind.SUBSTITUTE_TAX) == substitute
+
+
+def test_a_pdr_above_the_ceiling_keeps_its_contributions_and_tfr() -> None:
+    """Above the ceiling only the tax changes: INPS and TFR bases stay."""
+    eligible = _bonus_run(_bonus("productivity_bonus"))
+    above = _bonus_run(_bonus("productivity_bonus"), income=Decimal(90_000))
+    ordinary = _bonus_run(_bonus("bonus"), income=Decimal(90_000))
+
+    for account in (AccountKind.EMPLOYEE_CONTRIBUTIONS, AccountKind.TFR_ACCRUAL):
+        assert _posted(above, account) == _posted(eligible, account)
+    assert above.closing_state.cash.earnings.taxable == (
+        ordinary.closing_state.cash.earnings.taxable
+    )
+    assert _posted(above, AccountKind.ORDINARY_TAX) == _posted(
+        ordinary, AccountKind.ORDINARY_TAX
+    )
+
+
+def test_the_regime_substitute_tax_traces_to_the_policy_of_the_supplement() -> None:
+    """The 15% tax on a night supplement names the policy that governed it."""
+    result = _night_run(Decimal("100.00"), PeriodState.zero())
+    entries = {
+        e.account: (e.amount, e.policy_decision_id)
+        for e in result.ledger_entries
+        if e.pay_item_id.endswith("_evt0")
+    }
+
+    assert entries == {
+        AccountKind.CASH_EARNINGS: (Decimal("100.00"), "it/earning/supplement"),
+        AccountKind.SUBSTITUTE_TAX: (Decimal("15.00"), "it/earning/supplement"),
+    }
+
+
+def test_the_overtime_band_decision_states_the_amount_paid() -> None:
+    """Without a multiplier the CCNL band pays the hours; the decision says how much."""
+    result = _bonus_run(OvertimeEvent(date(_YEAR, 3, 10), Decimal(3), Decimal("15.00")))
+    (item,) = (i for i in result.pay_items if i.kind == "overtime_earning")
+    (decision,) = (
+        d for d in result.decisions if d.reason_code == "ccnl_overtime_band_applied"
+    )
+
+    assert decision.amount == item.amount > Decimal(0)
