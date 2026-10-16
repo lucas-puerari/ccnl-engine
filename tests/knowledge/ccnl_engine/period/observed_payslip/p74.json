@@ -1,0 +1,70 @@
+{
+  "id": "p74",
+  "period": "2026-07",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Industria Turistica, catene alberghiere (CNEL H05B)",
+  "level": "B2",
+  "contract": {
+    "type": "permanent",
+    "category": "operaio",
+    "hired": "2016-11-01"
+  },
+  "source": {
+    "publisher": "Reddit",
+    "title": "Pareri busta paga",
+    "file": "pareri-busta-paga-v0-eh3cdny01kih1.webp",
+    "sha256": "68aca46b1019d30dbbdf942183b526fa9c80a1a095d5f2e1b5ee63d0f1d68176"
+  },
+  "pay_elements": {
+    "paga_base": "1916.96",
+    "scatti_3": "108.45",
+    "ad_personam_assorbibile": "439.31142",
+    "total": "2464.72142"
+  },
+  "lines": [],
+  "inps": {
+    "inail_base": "5079.00"
+  },
+  "irpef_month": {
+    "taxable": null,
+    "gross": null,
+    "work_deduction": null,
+    "net": null
+  },
+  "totals": {
+    "earnings": "6523.44",
+    "deductions": "1487.98"
+  },
+  "net": "5036.00",
+  "legibility": "full",
+  "notes": [
+    "Image of a payslip a worker posted on Reddit, collected by the maintainer; transcribed as printed. Name, tax code, employer and any bank or registration number are not transcribed.",
+    "Phone screenshot: the page with the variable items and the INPS lines is missing, so only the pay elements and totals are visible; July 2026 pays separately taxed items."
+  ],
+  "replay": {
+    "replayability": "partial",
+    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
+    "inputs": {
+      "ccnl_slug": "industria-turistica-federturismo.json",
+      "level_code": "B2",
+      "year": 2026,
+      "month": 7,
+      "headcount": 50,
+      "category": "operaio",
+      "contract_type": "permanent"
+    },
+    "unknown_inputs": [
+      "seniority (3 scatti) and ad personam",
+      "the variable items and the INPS lines (page missing)"
+    ],
+    "expected": {
+      "base_salary": {
+        "value": "1916.96",
+        "tolerance": "0.00",
+        "printed": "PAGA BASE"
+      }
+    },
+    "known_differences": []
+  }
+}

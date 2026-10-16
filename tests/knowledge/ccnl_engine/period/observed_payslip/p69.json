@@ -1,0 +1,101 @@
+{
+  "id": "p69",
+  "period": "2026-06",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Terziario Confcommercio (CNEL H011)",
+  "level": "3",
+  "contract": {
+    "type": "permanent",
+    "category": "impiegato",
+    "hired": "2026-06-15",
+    "divisors": "26/168"
+  },
+  "source": {
+    "publisher": "Reddit",
+    "title": "Aiuto check busta paga",
+    "file": "aiuto-check-busta-paga-v0-7aqqzvc3efeh1.webp",
+    "sha256": "f0efd898990b9917f71b030e0ce431219b496b552312554ba190e60fed890909"
+  },
+  "pay_elements": {
+    "minimo": "1453.94",
+    "contingenza": "527.90",
+    "elemento_provinciale": "13.43",
+    "superminimo_assorbibile": "861.87",
+    "total": "2857.14"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione ordinaria 14 gg",
+      "earning": "1538.46"
+    },
+    {
+      "desc": "quattordicesima mensilita",
+      "earning": "238.09"
+    },
+    {
+      "desc": "patto di non concorrenza",
+      "earning": "500.00"
+    }
+  ],
+  "inps": {
+    "base": "2277.00",
+    "fpld": "209.26",
+    "cigs": "6.83",
+    "fis": "6.08",
+    "fondo_est": "2.00",
+    "ente_bilaterale": "2.31"
+  },
+  "irpef_month": {
+    "taxable": "1837.51",
+    "gross": "422.63",
+    "work_deduction": "107.55",
+    "net": "364.50"
+  },
+  "totals": {
+    "earnings": "2276.55",
+    "deductions": "590.98"
+  },
+  "net": "1686.00",
+  "legibility": "full",
+  "notes": [
+    "Image of a payslip a worker posted on Reddit, collected by the maintainer; transcribed as printed. Name, tax code, employer and any bank or registration number are not transcribed.",
+    "First month after a hire on 15 June 2026: the pay elements are the monthly amounts, the earnings 14 of 26 days."
+  ],
+  "replay": {
+    "replayability": "partial",
+    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
+    "inputs": {
+      "ccnl_slug": "commercio-confcommercio.json",
+      "level_code": "3",
+      "year": 2026,
+      "month": 6,
+      "headcount": 50,
+      "category": "impiegato",
+      "contract_type": "permanent"
+    },
+    "unknown_inputs": [
+      "superminimo and provincial element",
+      "the hire on 15 June (partial month)",
+      "headcount above 15, from the CIGS withheld"
+    ],
+    "expected": {
+      "base_salary": {
+        "value": "1453.94",
+        "tolerance": "0.00",
+        "printed": "elementi della retribuzione, 01 Minimo Contr."
+      },
+      "fixed_allowances": {
+        "value": "527.90",
+        "tolerance": "0.00",
+        "printed": "02 Contingenza"
+      },
+      "employee_inps_rate": {
+        "value": "0.0975667",
+        "tolerance": "0.00005",
+        "printed": "F.P.L.D. 209,26 + C.I.G.S. 6,83 + F.do INT 6,08 on 2.277,00"
+      }
+    },
+    "known_differences": []
+  }
+}

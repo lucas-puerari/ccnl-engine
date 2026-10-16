@@ -3,7 +3,8 @@
 ``tests/knowledge/ccnl_engine/period/observed_payslip/`` holds transcriptions
 of payslips that workers published online, two worked examples the Cassa
 Edile di Vicenza published (p65, p66) and two example payslips of a payroll
-package (p67, p68), each with its ``source``.  They are
+package (p67, p68), each with its ``source``; p69 to p74 are payslip images
+posted on Reddit that the maintainer collected.  They are
 evidence of how real payrolls apply the rules, never a signed source: no
 record identifies a person, an employer or a bank account, and every amount
 is copied as printed.
