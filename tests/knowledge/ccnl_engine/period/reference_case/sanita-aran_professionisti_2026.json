@@ -1,0 +1,29 @@
+{
+  "verification": "source_linked",
+  "axes": [
+    "base_salary"
+  ],
+  "_description": "CCNL Comparto Sanità ARAN 2022-2024, area dei professionisti della salute e dei funzionari, March 2026 regular run, permanent, full time.",
+  "_notes": [
+    "Tabella 2a, retribuzione tabellare annua dal 1.1.2024: 'PROFESSIONISTI DELLA SALUTE E DEI FUNZIONARI 24.918,93', 'per 12 mensilità a cui aggiungere la 13^ mensilità'.",
+    "Monthly tabellare: 24,918.93 / 12 = 2,076.5775, 2,076.58 rounded half up. No later tranche is signed for 2026, so the 2024 table is the one of a March 2026 run.",
+    "Base salary only: the indennità di comparto, the differenziali economici and the indennità of the role are not in Tabella 2a and are not pinned here."
+  ],
+  "source": {
+    "document": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025 (ARAN)",
+    "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+    "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d",
+    "page": "107",
+    "section": "Tabella 2a, retribuzione tabellare annua dal 1.1.2024, area dei professionisti della salute e dei funzionari"
+  },
+  "inputs": {
+    "ccnl_slug": "sanita-aran.json",
+    "level_code": "PROFESSIONISTI",
+    "year": 2026,
+    "month": 3,
+    "headcount": 50
+  },
+  "expected": {
+    "base_salary": "2076.58"
+  }
+}
