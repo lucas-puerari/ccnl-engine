@@ -8,8 +8,11 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
+import pytest
+
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import (
     ArrearsEvent,
     BilateralFundEvent,
@@ -467,3 +470,143 @@ class TestFamilyDeductionsAccounting:
         result = calculate_period(_req_family())
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations
+
+
+def _arrears_of(reference: PeriodId | None) -> PeriodResult:
+    return calculate_period(
+        _req(
+            ArrearsEvent(
+                event_date=date(_YEAR, _MONTH, 28),
+                amount=Decimal("2000.00"),
+                separate_tax_rate=Decimal("0.23"),
+                reference_period=reference,
+            )
+        )
+    )
+
+
+def _arrears_trail(
+    result: PeriodResult,
+) -> tuple[object, ...]:
+    (decision,) = (
+        d
+        for d in result.decisions
+        if d.capability == "contract_renewal_arrears"
+        and d.reason_code != "caller_supplied_rate"
+    )
+    (item,) = (i for i in result.pay_items if i.kind == "contract_renewal_arrears")
+    entries = {
+        e.account: (e.amount, e.policy_decision_id)
+        for e in result.ledger_entries
+        if e.pay_item_id == item.item_id
+    }
+    return (
+        decision.reason_code,
+        decision.status.value,
+        decision.rule_version,
+        dict(decision.inputs),
+        decision.amount,
+        item.quantity,
+        entries,
+    )
+
+
+_ARREARS = "it/earning/arrears"
+
+
+@pytest.mark.parametrize(
+    ("reference", "reason", "status", "shown", "amount", "taxed"),
+    [
+        (
+            PeriodId(year=_YEAR, month=1),
+            "ordinary_taxation",
+            "final",
+            "2026-01",
+            "2000.00",
+            False,
+        ),
+        (
+            PeriodId(year=_YEAR - 1, month=6),
+            "separate_taxation",
+            "final",
+            "2025-06",
+            "460.00",
+            True,
+        ),
+        (None, "reference_period_unknown", "incomplete", "unknown", "460.00", True),
+    ],
+    ids=["this_year", "earlier_year", "unknown_year"],
+)
+def test_arrears_trace_their_year_tax_and_policy(
+    reference: PeriodId | None,
+    reason: str,
+    status: str,
+    shown: str,
+    amount: str,
+    taxed: bool,
+) -> None:
+    """Art. 17 c. 1 lett. b TUIR: only arrears of earlier years are taxed apart."""
+    entries = {AccountKind.CASH_EARNINGS: (Decimal("2000.00"), _ARREARS)}
+    if taxed:
+        entries[AccountKind.SEPARATE_TAX] = (Decimal("460.00"), _ARREARS)
+
+    assert _arrears_trail(_arrears_of(reference)) == (
+        reason,
+        status,
+        str(_YEAR),
+        {
+            "tax_year": str(_YEAR),
+            "reference_period": shown,
+            "amount": Decimal("2000.00"),
+        },
+        Decimal(amount),
+        Decimal(1),
+        entries,
+    )
+
+
+def test_arrears_of_the_year_are_ordinary_income_with_their_contributions() -> None:
+    """All arrears bear INPS; only those of the year enter the IRPEF base."""
+    base = calculate_period(_base())
+    this_year = _arrears_of(PeriodId(year=_YEAR, month=1))
+    earlier = _arrears_of(PeriodId(year=_YEAR - 1, month=6))
+
+    def contributions(result: PeriodResult) -> Decimal:
+        return sum(
+            (
+                e.amount
+                for e in result.ledger_entries
+                if e.account == AccountKind.EMPLOYEE_CONTRIBUTIONS
+            ),
+            Decimal(0),
+        )
+
+    assert contributions(this_year) == contributions(earlier) > contributions(base)
+    taxable = this_year.closing_state.cash.earnings.taxable
+    assert taxable - earlier.closing_state.cash.earnings.taxable == Decimal("2000.00")
+
+
+def test_arrears_of_an_unknown_year_name_the_event_in_their_issue() -> None:
+    """The missing fact names the event and the law of the separate tax."""
+    result = _arrears_of(None)
+    (issue,) = (
+        i for i in result.issues if i.code == "arrears_reference_period_unknown"
+    )
+
+    assert issue.message.startswith(
+        "ArrearsEvent 2026-03-regular_evt0 states no reference_period: arrears "
+        "of an earlier year are taxed separately (art. 17 c. 1 lett. b TUIR)"
+    )
+
+
+def test_arrears_of_a_year_not_begun_name_the_event_and_field() -> None:
+    """A reference period after the tax year of the run is rejected."""
+    with pytest.raises(InvalidInputError) as raised:
+        _arrears_of(PeriodId(year=_YEAR + 1, month=2))
+
+    assert raised.value.field == "ArrearsEvent.reference_period"
+    assert raised.value.feature == "contract_renewal_arrears"
+    assert str(raised.value).startswith(
+        "ArrearsEvent 2026-03-regular_evt0 refers to 2027-02, after the tax "
+        "year 2026 of the run"
+    )
