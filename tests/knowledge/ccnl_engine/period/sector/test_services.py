@@ -52,6 +52,8 @@ from tests.knowledge.ccnl_engine.period.sector.oracles import (
     CONFAPI_YEAR,
     DMO_JUNE,
     DMO_YEAR,
+    EDILIZIA_IMPIEGATI_JUNE,
+    EDILIZIA_IMPIEGATI_YEAR,
     EDILIZIA_JUNE,
     EDILIZIA_YEAR,
     FIPE_JUNE,
@@ -103,6 +105,7 @@ class Scenario:
 _METAL = "metalmeccanico-federmeccanica"
 _TERZ = "terziario-confesercenti"
 _EDIL = "edilizia-ance"
+_EDILIZIA_IMPIEGATI = "edilizia-ance-impiegati"
 _CONFAPI = "metalmeccanico-confapi"
 _RISTORAZIONE = "pubblici-esercizi-fipe-angem-ristorazione-collettiva"
 _FIPE = "pubblici-esercizi-fipe-angem"
@@ -124,6 +127,9 @@ _DMO_OWED = frozenset({f"{_DMO}/health_and_bilateral_funds"})
 _FIPE_OWED = frozenset({f"{_FIPE}/health_and_bilateral_funds"})
 _RISTORAZIONE_OWED = frozenset({f"{_RISTORAZIONE}/health_and_bilateral_funds"})
 _CONFAPI_OWED = frozenset({f"{_CONFAPI}/bilateral_system_or_ear"})
+_EDILIZIA_IMPIEGATI_OWED = frozenset({
+    f"{_EDILIZIA_IMPIEGATI}/provincial_production_premium"
+})
 _EDIL_OWED = frozenset({
     f"{_EDIL}/cassa_edile_contribution",
     f"{_EDIL}/territorial_sector_allowance",
@@ -346,6 +352,25 @@ SCENARIOS = {
         net_pay_reliable=False,
         terminated=True,
     ),
+    "edilizia-impiegati-year": Scenario(
+        _EDILIZIA_IMPIEGATI,
+        "3",
+        WorkerCategory.IMPIEGATO,
+        30,
+        EDILIZIA_IMPIEGATI_YEAR,
+        _EDILIZIA_IMPIEGATI_OWED,
+        net_pay_reliable=False,
+    ),
+    "edilizia-impiegati-june": Scenario(
+        _EDILIZIA_IMPIEGATI,
+        "3",
+        WorkerCategory.IMPIEGATO,
+        30,
+        EDILIZIA_IMPIEGATI_JUNE,
+        _EDILIZIA_IMPIEGATI_OWED,
+        net_pay_reliable=False,
+        terminated=True,
+    ),
 }
 
 
@@ -490,7 +515,7 @@ def test_only_the_stated_gaps_block_the_net_pay(name: str) -> None:
             "termination_residual_leave",
             "unsupported",
         ))
-    if s.ccnl == _EDIL:
+    if s.ccnl in {_EDIL, _EDILIZIA_IMPIEGATI}:
         expected.add((
             BlockerCode.CAPABILITY_NOT_COMPUTED,
             "pension_fund_contribution",

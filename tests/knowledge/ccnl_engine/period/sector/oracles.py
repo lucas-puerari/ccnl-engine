@@ -23,7 +23,10 @@ and a 2025 income of 40,000 EUR (no renewal substitute tax):
 - ristorazione: Ristorazione Collettiva 4th level, 10 employees, the
   tranche of September;
 - confapi: Metalmeccanico Unionmeccanica Confapi 5th level impiegato, 50
-  employees, the tranche of June.
+  employees, the tranche of June;
+- edilizia-impiegati: ANCE impiegato of the 3rd level, 30 employees,
+  fourteen payments, the EDR outside the TFR and the Prevedi contributo
+  contrattuale.
 
 Each runs for the whole year and, apart, until a termination on 30 June.
 
@@ -74,6 +77,8 @@ __all__ = [
     "CONFAPI_YEAR",
     "DMO_JUNE",
     "DMO_YEAR",
+    "EDILIZIA_IMPIEGATI_JUNE",
+    "EDILIZIA_IMPIEGATI_YEAR",
     "EDILIZIA_JUNE",
     "EDILIZIA_YEAR",
     "FIPE_JUNE",
@@ -749,6 +754,86 @@ def _confapi_june() -> tuple[Pay, ...]:
 
 CONFAPI_YEAR = sector_year(_confapi_year(), _INDUSTRIA, _FULL_YEAR, terminated=False)
 CONFAPI_JUNE = sector_year(_confapi_june(), _INDUSTRIA, _HALF_YEAR, terminated=True)
+
+
+# Edilizia impiegati: ANCE impiegato of the 3rd level, 30 employees.
+
+#: Minimo di stipendio of the 3rd level: ANCE, nuovi minimi of the CCNL 21
+#: February 2025, p. 1 (sha256
+#: d01c1635bf8f5185043f6c5509f0c829fb58bdb1d9ef2943f554d825f60d1710): "III
+#: 1.387,56 1.452,56 1.517,56" from 1 February 2025, 1 March 2026 and 1
+#: March 2027.  Contingenza 519,16 and EDR 10,33 of the impiegati of the
+#: 3rd level: ANCE Centro Nord Sardegna, tabella n. 2/2025 impiegati,
+#: provincia di Sassari, p. 1 (sha256
+#: b681a3f867cd31d4cef09e5234d85a2b6f183a72c66054ed6ff8bd326d88f715).  The
+#: EDR bears on no other institute: outside the TFR base, in the extra
+#: months too.
+_IMP_ITEMS = {"minimo": Decimal("1387.56"), "contingenza": Decimal("519.16")}
+_IMP_FROM_MARCH = Decimal("1452.56")
+_IMP_EDR = Decimal("10.33")
+#: Prevedi contributo contrattuale of an impiegato of the 3rd level, 13,00
+#: EUR a month, "applicato anche per 13° e 14° mensilità" in proportion to
+#: their ratei (Prevedi nota informativa, sha256
+#: 195f6e83abef137bc3ad9ad832af61b633e1c923f202623d6bc16fdef2900de6; CNCE
+#: vademecum, Comunicazione 559), with the 10% solidarity contribution of
+#: the employer (L. 166/1991 art. 9-bis).
+_IMP_PREVEDI = Decimal("13.00")
+
+
+def _imp_items(month: int) -> tuple[Decimal, ...]:
+    minimo = _IMP_ITEMS["minimo"] if month < 3 else _IMP_FROM_MARCH
+    return (minimo, _IMP_ITEMS["contingenza"])
+
+
+def _imp_pay(run_id: str, months: int, month: int, *, extra: bool = False) -> Pay:
+    """Return twelfths of the pay of ``month``, each item to cents.
+
+    Returns:
+        ``months`` twelfths of the pay, with the EDR outside the TFR base
+        and the Prevedi amount of the same twelfths.
+    """
+    items = _imp_items(month)
+    pay = sum((_cents(i * months / 12) for i in items), _ZERO)
+    edr = _cents(_IMP_EDR * months / 12)
+    fund = _cents(_IMP_PREVEDI * months / 12) if extra else _IMP_PREVEDI
+    return Pay(run_id, pay + edr, pay, fund=fund, solidarity=_cents(fund / 10))
+
+
+def _imp_year() -> tuple[Pay, ...]:
+    pays = [_imp_pay(_run(m), 12, m) for m in range(1, 13)]
+    #: Premio annuo (quattordicesima) of the service from 1 July to 30
+    #: June, paid at the end of June: six twelfths for a hire on 1 January
+    #: (CCNL 19 April 2010, art. 64); tredicesima of one monthly pay at
+    #: Christmas (art. 63), paid before the December pay.
+    pays.insert(6, _imp_pay(_run(6, "fourteenth"), 6, 6, extra=True))
+    pays.insert(12, _imp_pay(_run(12, "thirteenth"), 12, 12, extra=True))
+    return tuple(pays)
+
+
+def _imp_june() -> tuple[Pay, ...]:
+    pays = [_imp_pay(_run(m), 12, m) for m in range(1, 6)]
+    month = _imp_pay(_run(6), 12, 6)
+    #: Six twelfths of the tredicesima are paid with the last month, with
+    #: their Prevedi amount.
+    ratei = _imp_pay(_run(6), 6, 6, extra=True)
+    june = Pay(
+        month.run_id,
+        month.gross + ratei.gross,
+        month.tfr_base + ratei.tfr_base,
+        fund=month.fund + ratei.fund,
+        solidarity=_cents((month.fund + ratei.fund) / 10),
+    )
+    return (*pays, june, _imp_pay(_run(6, "fourteenth"), 6, 6, extra=True))
+
+
+#: Edilizia impiegato from 16 to 50 employees: the shares of the industria
+#: impiegato above, read on the same Assimpredil ANCE table 2/2026.
+EDILIZIA_IMPIEGATI_YEAR = sector_year(
+    _imp_year(), _INDUSTRIA, _FULL_YEAR, terminated=False
+)
+EDILIZIA_IMPIEGATI_JUNE = sector_year(
+    _imp_june(), _INDUSTRIA, _HALF_YEAR, terminated=True
+)
 
 
 # Edilizia: ANCE operaio of the 1st level, 173 hours.
