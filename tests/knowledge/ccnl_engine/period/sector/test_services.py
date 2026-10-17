@@ -68,6 +68,9 @@ from tests.knowledge.ccnl_engine.period.sector.oracles import (
     FIXED_TERM_YEAR,
     INDUSTRIA_JUNE,
     INDUSTRIA_YEAR,
+    MID_MONTH_FROM,
+    MID_MONTH_UNTIL,
+    MID_MONTH_YEAR,
     OVERTIME_HOURS,
     PART_TIME_JUNE,
     PART_TIME_YEAR,
@@ -119,6 +122,7 @@ class Scenario:
     ends_on: date | None = None
     fixed_term: bool = False
     sickness: bool = False
+    starts_on: date = date(2026, 1, 1)
 
 
 _METAL = "metalmeccanico-federmeccanica"
@@ -465,6 +469,18 @@ SCENARIOS = {
         net_pay_reliable=True,
         sickness=True,
     ),
+    "mid-month-year": Scenario(
+        _METAL,
+        "C3",
+        WorkerCategory.IMPIEGATO,
+        50,
+        MID_MONTH_YEAR,
+        _METAL_OWED,
+        net_pay_reliable=True,
+        terminated=True,
+        starts_on=MID_MONTH_FROM,
+        ends_on=MID_MONTH_UNTIL,
+    ),
 }
 
 
@@ -507,7 +523,7 @@ def _year(name: str) -> CompetenceYearResult:
                 category=s.category,
                 seniority=new_hire(),
                 employment_period=EmploymentPeriod(
-                    date(2026, 1, 1), s.ends_on or (_JUNE_END if s.terminated else None)
+                    s.starts_on, s.ends_on or (_JUNE_END if s.terminated else None)
                 ),
                 tfr_treasury_fund=False,
                 pension_fund=NoPensionFund(),
@@ -522,7 +538,7 @@ def _year(name: str) -> CompetenceYearResult:
             default_facts=facts,
             periods=periods,
             prior_year=PriorYearTaxFacts(employment_income=Decimal(40_000)),
-            current_year=CurrentYearTaxFacts.employment_only(2026, date(2026, 1, 1)),
+            current_year=CurrentYearTaxFacts.employment_only(2026, s.starts_on),
         )
     )
 
