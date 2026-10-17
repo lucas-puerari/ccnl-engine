@@ -90,6 +90,9 @@ __all__ = [
     "FIXED_TERM_YEAR",
     "INDUSTRIA_JUNE",
     "INDUSTRIA_YEAR",
+    "MID_MONTH_FROM",
+    "MID_MONTH_UNTIL",
+    "MID_MONTH_YEAR",
     "PART_TIME_JUNE",
     "PART_TIME_YEAR",
     "RISTORAZIONE_JUNE",
@@ -520,6 +523,33 @@ def _sickness_year() -> tuple[Pay, ...]:
 
 
 SICKNESS_YEAR = sector_year(_sickness_year(), _INDUSTRIA, _FULL_YEAR, terminated=False)
+
+
+# Mid-month: the C3 impiegato hired on 10 March and leaving on 20 October.
+
+#: A month employed in part pays 1/26 of the monthly pay for each working
+#: day, Monday to Saturday (CCNL 5 February 2021, Sez. Quarta, Titolo III,
+#: Art. 9, p. 164: "una quota giornaliera della retribuzione di fatto, pari
+#: a 1/26 della retribuzione mensile fissa"): 19 days from 10 to 31 March,
+#: 17 from 1 to 20 October.  The ratei of the tredicesima count a fraction
+#: above 15 days as a month (Titolo IV, Art. 7 c. 3, p. 178): March to
+#: October, eight twelfths, paid with the last month.
+MID_MONTH_FROM = date(2026, 3, 10)
+MID_MONTH_UNTIL = date(2026, 10, 20)
+_MID_MONTH_DAYS = (MID_MONTH_UNTIL - MID_MONTH_FROM).days + 1
+
+
+def _mid_month() -> tuple[Pay, ...]:
+    march = _cents(_C3_UNTIL_MAY * 19 / 26)
+    months = [Pay(_run(3), march, march)]
+    for m in range(4, 10):
+        pay = _C3_UNTIL_MAY if m < 6 else _C3_FROM_JUNE
+        months.append(Pay(_run(m), pay, pay))
+    october = _cents(_C3_FROM_JUNE * 17 / 26) + _cents(_C3_FROM_JUNE * 8 / 12)
+    return (*months, Pay(_run(10), october, october))
+
+
+MID_MONTH_YEAR = sector_year(_mid_month(), _INDUSTRIA, _MID_MONTH_DAYS, terminated=True)
 
 
 def _iv(month: int) -> Decimal:

@@ -494,5 +494,21 @@
       "tfr",
       "employer_cost"
     ]
+  },
+  "mid-month-year": {
+    "ccnl": "metalmeccanico-federmeccanica",
+    "cycles": ["ordinary month", "partial month", "termination"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "minimo tranche of June", "extra-month ratei above 15 days"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
   }
 }

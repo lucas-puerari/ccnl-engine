@@ -108,7 +108,8 @@ Evidence:
   contributo contrattuale on the ratei; and the Metalmeccanico C3 on 20 of
   40 weekly hours, for part time, and as a professionalizzante apprentice at
   85%, and on a fixed term of the year with the 1.40% NASpI addition, and
-  with nine days of sickness in March), in
+  with nine days of sickness in March, and hired on 10 March and leaving on
+  20 October, with the partial months at 1/26 a day), in
   `tests/knowledge/ccnl_engine/period/sector/`. Every payment (gross, worker
   INPS, employer contributions with the solidarity contribution on the
   pension fund, TFR accrued net of the 0.50%, employer cost) and the year
