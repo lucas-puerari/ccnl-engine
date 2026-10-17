@@ -1,13 +1,5 @@
 {
   "missing_outputs": {
-    "dmo-federdistribuzione": [
-      "employee_contributions",
-      "employer_contributions",
-      "employer_cost",
-      "net",
-      "tax",
-      "tfr"
-    ],
     "edilizia-ance-impiegati": [
       "employee_contributions",
       "employer_contributions",

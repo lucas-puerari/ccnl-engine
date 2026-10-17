@@ -48,6 +48,8 @@ from tests.knowledge.ccnl_engine.period.sector.oracles import (
     ALIMENTARI_YEAR,
     CHIMICA_JUNE,
     CHIMICA_YEAR,
+    DMO_JUNE,
+    DMO_YEAR,
     EDILIZIA_JUNE,
     EDILIZIA_YEAR,
     INDUSTRIA_JUNE,
@@ -95,6 +97,7 @@ class Scenario:
 _METAL = "metalmeccanico-federmeccanica"
 _TERZ = "terziario-confesercenti"
 _EDIL = "edilizia-ance"
+_DMO = "dmo-federdistribuzione"
 _ALIMENTARI = "alimentari-federalimentare"
 _CHIMICA = "chimica-farmaceutica-federchimica"
 _TURISMO = "turismo-federalberghi"
@@ -108,6 +111,7 @@ _STUDI_OWED = frozenset({f"{_STUDI}/bilateral_contribution_or_element"})
 _TURISMO_OWED = frozenset({f"{_TURISMO}/health_and_bilateral_funds"})
 _CHIMICA_OWED: frozenset[str] = frozenset()
 _ALIMENTARI_OWED = frozenset({f"{_ALIMENTARI}/health_and_bilateral_funds"})
+_DMO_OWED = frozenset({f"{_DMO}/health_and_bilateral_funds"})
 _EDIL_OWED = frozenset({
     f"{_EDIL}/cassa_edile_contribution",
     f"{_EDIL}/territorial_sector_allowance",
@@ -251,6 +255,27 @@ SCENARIOS = {
         _ALIMENTARI_OWED,
         net_pay_reliable=False,
         terminated=True,
+    ),
+    "dmo-year": Scenario(
+        _DMO,
+        "IV",
+        WorkerCategory.IMPIEGATO,
+        50,
+        DMO_YEAR,
+        _DMO_OWED,
+        net_pay_reliable=False,
+        provincial_pay_element=True,
+    ),
+    "dmo-june": Scenario(
+        _DMO,
+        "IV",
+        WorkerCategory.IMPIEGATO,
+        50,
+        DMO_JUNE,
+        _DMO_OWED,
+        net_pay_reliable=False,
+        terminated=True,
+        provincial_pay_element=True,
     ),
 }
 
