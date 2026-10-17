@@ -205,7 +205,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 101 | K411 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | telecomunicazioni | ~110k | 2025 | ⚠️ | inps_employer, seniority | 0 / 45 / 2 / 0 | 🧪 | 🤖 |
 | 102 | H012 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | Terziario distribuzione e servizi | ~230k | 2024 | ⚠️ | base_salary, bilateral_funds, seniority, sickness, una_tantum | 75 / 0 / 0 / 0 | 🏭 | 🧑 |
 | 103 | H011 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | terziario | ~800k | 2024 | ⚠️ | bilateral_funds, seniority, sickness | 69 / 0 / 0 / 0 | 👁 | 🧑 |
-| 104 | D018 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | tessile abbigliamento moda PMI | ~48k | 2025 | ⚠️ | base_salary, pension_fund_contribution | 0 / 0 / 43 / 1 | 🧪 | 🔍 |
+| 104 | D018 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | tessile abbigliamento moda PMI | ~48k | 2025 | ⚠️ | base_salary, pension_fund_contribution | 38 / 0 / 5 / 1 | 🧪 | 🔍 |
 | 105 | I810 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | trasporto aereo | ~40k | 2025 | ⚠️ | base_salary, seniority | 0 / 72 / 2 / 0 | 🧪 | 🤖 |
 | 106 | I911 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | Trasporto a fune | ~15k | 2025 | ⚠️ | seniority | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
 | 107 | H058 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | turismo — alberghi, campeggi, pubblici esercizi, agenzie di viaggi | — | 2024 | ⚠️ | seniority, trattamento_integrativo | 0 / 57 / 1 / 0 | 🧪 | 🤖 |
