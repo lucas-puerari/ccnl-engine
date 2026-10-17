@@ -71,6 +71,8 @@ from tests.knowledge.ccnl_engine.tax_credit.oracles import (
 __all__ = [
     "ALIMENTARI_JUNE",
     "ALIMENTARI_YEAR",
+    "APPRENTICE_JUNE",
+    "APPRENTICE_YEAR",
     "CHIMICA_JUNE",
     "CHIMICA_YEAR",
     "CONFAPI_JUNE",
@@ -123,7 +125,8 @@ class Rates:
 
     ``employer_supplement`` is an employer contribution INPS charges apart,
     taken to cents on its own (the 0.77% sickness supplement of the
-    pubblici esercizi).
+    pubblici esercizi).  ``tfr_offset`` is the additional IVS the employer
+    deducts from the TFR quota: none for an apprentice.
     """
 
     employee_ivs: Decimal
@@ -131,6 +134,7 @@ class Rates:
     employer_ivs: Decimal
     employer_other: Decimal
     employer_supplement: Decimal = _ZERO
+    tfr_offset: Decimal = _TFR_EXTRA_IVS
 
 
 @dataclass(frozen=True)
@@ -215,7 +219,7 @@ def _payment(pay: Pay, rates: Rates) -> Payment:
         + _cents(base * rates.employer_supplement)
     )
     quota = _cents(pay.tfr_base / _TFR_DIVISOR)
-    deduction = _cents(base * _TFR_EXTRA_IVS)
+    deduction = _cents(base * rates.tfr_offset)
     accrual = quota - deduction
     return Payment(
         run_id=pay.run_id,
@@ -412,6 +416,55 @@ _TERZIARIO = Rates(
     employee_other=Decimal("0.0056667"),
     employer_ivs=Decimal("0.2381"),
     employer_other=Decimal("0.0630333"),
+)
+
+
+# Apprentice: a professionalizzante apprentice of destination C3.
+
+#: Professionalizzante of 36 months, 85% of the minimo of the destination
+#: level in the first 12 months: CCNL 5 February 2021, Disciplina
+#: dell'apprendistato professionalizzante, Art. 8, p. 267 ("36 12 85% 12
+#: 90% 12 95%"), each pay taken to cents.
+_APPRENTICE_PCT = Decimal("0.85")
+#: Apprentice of an industria employer from 16 to 50 employees: employer
+#: 10% (L. 296/2006 art. 1 c. 773) + NASpI 1.61% (L. 92/2012 art. 2 c. 36
+#: and art. 25 L. 845/1978) + CIGO 1.70% and CIGS 0.60% (D.Lgs. 148/2015
+#: artt. 13, 23, extended to apprentices by L. 234/2021), worker 5.84% +
+#: CIGS 0.30%.  No additional 0.50% IVS is deducted from the TFR of an
+#: apprentice (INPS circ. 70/2007, note 5).
+_APPRENTICE = Rates(
+    employee_ivs=Decimal("0.0584"),
+    employee_other=Decimal("0.0030"),
+    employer_ivs=Decimal("0.1000"),
+    employer_other=Decimal("0.0391"),
+    tfr_offset=_ZERO,
+)
+
+
+def _apprentice(pays: tuple[Pay, ...]) -> tuple[Pay, ...]:
+    pct = _APPRENTICE_PCT
+    return tuple(
+        Pay(p.run_id, _cents(p.gross * pct), _cents(p.tfr_base * pct)) for p in pays
+    )
+
+
+def _apprentice_june() -> tuple[Pay, ...]:
+    month = _cents(_C3_UNTIL_MAY * _APPRENTICE_PCT)
+    pays = [Pay(_run(m), month, month) for m in range(1, 6)]
+    last = _cents(_C3_FROM_JUNE * _APPRENTICE_PCT)
+    #: Six twelfths of the apprentice tredicesima, with the last month.
+    june = last + _cents(last * 6 / 12)
+    return (*pays, Pay(_run(6), june, june))
+
+
+APPRENTICE_YEAR = sector_year(
+    _apprentice(_industria_year_without_overtime()),
+    _APPRENTICE,
+    _FULL_YEAR,
+    terminated=False,
+)
+APPRENTICE_JUNE = sector_year(
+    _apprentice_june(), _APPRENTICE, _HALF_YEAR, terminated=True
 )
 
 

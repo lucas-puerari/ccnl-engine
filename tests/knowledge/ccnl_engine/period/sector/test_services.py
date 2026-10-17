@@ -33,6 +33,7 @@ from ccnl_engine import (
 )
 from ccnl_engine.events import OvertimeEvent
 from ccnl_engine.inputs import (
+    Apprentice,
     ContributableHours,
     CurrentYearTaxFacts,
     EmploymentPeriod,
@@ -47,6 +48,8 @@ from ccnl_engine.results import BlockerCode
 from tests.knowledge.ccnl_engine.period.sector.oracles import (
     ALIMENTARI_JUNE,
     ALIMENTARI_YEAR,
+    APPRENTICE_JUNE,
+    APPRENTICE_YEAR,
     CHIMICA_JUNE,
     CHIMICA_YEAR,
     CONFAPI_JUNE,
@@ -105,6 +108,7 @@ class Scenario:
     overtime: bool = False
     provincial_pay_element: bool | None = None
     weekly_hours: int | None = None
+    apprentice_track: str | None = None
 
 
 _METAL = "metalmeccanico-federmeccanica"
@@ -397,6 +401,27 @@ SCENARIOS = {
         terminated=True,
         weekly_hours=20,
     ),
+    "apprentice-year": Scenario(
+        _METAL,
+        "C3",
+        WorkerCategory.IMPIEGATO,
+        50,
+        APPRENTICE_YEAR,
+        _METAL_OWED,
+        net_pay_reliable=True,
+        apprentice_track="professionalizzante_36",
+    ),
+    "apprentice-june": Scenario(
+        _METAL,
+        "C3",
+        WorkerCategory.IMPIEGATO,
+        50,
+        APPRENTICE_JUNE,
+        _METAL_OWED,
+        net_pay_reliable=True,
+        terminated=True,
+        apprentice_track="professionalizzante_36",
+    ),
 }
 
 
@@ -430,7 +455,9 @@ def _year(name: str) -> CompetenceYearResult:
                 ),
                 tfr_treasury_fund=False,
                 pension_fund=NoPensionFund(),
-                contract_type=Permanent(),
+                contract_type=Permanent()
+                if s.apprentice_track is None
+                else Apprentice(months_elapsed=0, track=s.apprentice_track),
                 weekly_hours=hours,
                 full_time_weekly_hours=None if hours is None else _FULL_TIME,
             ),
