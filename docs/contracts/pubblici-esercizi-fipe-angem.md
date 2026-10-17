@@ -155,12 +155,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the special parts of the stabilimenti balneari and alberghi diurni in a sibling file.
 
-!!! warning "pubblici-esercizi-fipe-angem/fipe_unmodelled_elements · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the guarantee premium of the renewal of 5 June 2024 (art. 13 c. 10) paid with the November 2027 pay to workers without second-level bargaining. The caller pays it as a variable item.
+!!! warning "pubblici-esercizi-fipe-angem/guarantee_premium_2027 · base_salary · impact yes · open"
+    Art. 13 c. 10 of the renewal of 5 June 2024: the guarantee premium paid with the November 2027 pay to workers without second-level bargaining. The caller pays it as a variable item.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the Fondo Est elemento distinto and the 2027 guarantee premium as conditional allowances.
+    **Remediation:** Model the 2027 guarantee premium as a conditional allowance.
 
 !!! warning "pubblici-esercizi-fipe-angem/health_and_bilateral_funds · bilateral_funds · impact yes · open"
     HEALTH FUND: the Fondo Est is owed for every worker (CCNL 2018 art. 186); an employer that does not pay it owes the worker instead the elemento distinto of EUR 16.00 for 14 months (c. 12). Neither is modelled: the employer cost, and with the elemento the net pay, are short of it.

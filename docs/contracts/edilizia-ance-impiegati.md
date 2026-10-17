@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority, sickness, territorial_supplement |
+| **Limits of this contract** | base_salary, overtime, seniority, sickness, territorial_supplement |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -115,12 +115,54 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the seniority bands of Art. 66 with equal full-pay days and the cumulated comporto in 30 months.
 
-!!! warning "edilizia-ance-impiegati/edilizia_impiegati_unmodelled · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the EVR set by the provincial agreements (Art. 46); the premio di fedeltà of one month a year after 20 years of service (Art. 65); the premiums on ordinary hours of Art. 54 (lavoro festivo 45%, notturno 34% or 10% in shifts, festivo notturno 50%); the indennità speciale (Art. 47), di cassa (Art. 50) and for alta montagna, cassoni and galleria (Art. 52); mensa, trasporto and trasferta (provincial; verbale 2025); the 1/25 for the festività of 4 November (Art. 43); the absorption of a superminimo into the quadri function allowance (Art. 76). The una tantum premio di ingresso of the verbale of 3 March 2022 and the riduzione contributiva edile concern the operai only.
+!!! warning "edilizia-ance-impiegati/provincial_evr · territorial_supplement · impact yes · open"
+    Art. 46: the EVR set by the provincial agreements.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the provincial elements as inputs and the percentage accruals of the CCNL.
+    **Remediation:** Add the provincial EVR as an input.
+
+!!! warning "edilizia-ance-impiegati/loyalty_premium · base_salary · impact yes · open"
+    Art. 65: the premio di fedeltà of one month a year after 20 years of service.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the premio di fedeltà on seniority.
+
+!!! warning "edilizia-ance-impiegati/ordinary_hours_premiums · overtime · impact yes · open"
+    Art. 54: the premiums on ordinary hours (lavoro festivo 45%, notturno 34% or 10% in shifts, festivo notturno 50%).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the Art. 54 premiums on ordinary hours.
+
+!!! warning "edilizia-ance-impiegati/special_allowances · base_salary · impact yes · open"
+    Art. 47, 50 and 52: the indennità speciale, di cassa and for alta montagna, cassoni and galleria.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the allowances of Artt. 47, 50 and 52.
+
+!!! warning "edilizia-ance-impiegati/provincial_meals_transport_travel · territorial_supplement · impact yes · open"
+    Mensa, trasporto and trasferta, set by the provincial agreements (verbale 2025).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the provincial mensa, trasporto and trasferta as inputs.
+
+!!! warning "edilizia-ance-impiegati/november_4_holiday · base_salary · impact yes · open"
+    Art. 43: the 1/25 for the festività of 4 November.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pay the 1/25 of 4 November.
+
+!!! warning "edilizia-ance-impiegati/quadri_absorption · base_salary · impact yes · open"
+    Art. 76: the absorption of a superminimo into the quadri function allowance. The una tantum premio di ingresso of the verbale of 3 March 2022 and the riduzione contributiva edile concern the operai only.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the absorption of Art. 76.
 
 !!! warning "edilizia-ance-impiegati/provincial_production_premium · territorial_supplement · impact yes · open"
     PREMIO DI PRODUZIONE: the premio di produzione set by the provincial agreements (Art. 44 n. 5) is owed to every impiegato; the engine reads no provincial agreement. Not modelled: the net pay and the employer cost are short of it.

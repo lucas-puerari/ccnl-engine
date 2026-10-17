@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, pension_fund_contribution |
+| **Limits of this contract** | base_salary, bilateral_funds, overtime, pension_fund_contribution, sickness |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -113,12 +113,82 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the quadri of the 8th and 9th categories with the indennità di funzione of Art. 98 and add it to the Fondapi base, then remove this note.
 
-!!! warning "metalmeccanico-confapi/confapi_unmodelled_pay_elements · base_salary · impact yes · open"
-    NOT MODELLED PAY CLAUSES (CCNL of 3 July 2017 and renewal of 4 June 2026): elemento perequativo of 485 EUR a year with June pay in firms without second-level bargaining (Art. 48); indennità di funzione of the quadri (Art. 98); reperibilità (Art. 28, amounts by group of levels adjusted each June) and trasferta; ordinary night, holiday and compensatory-rest premiums (Art. 29 rows b, d, h, i, f, m); the shift-worker column of Art. 29 (night overtime 40%/45%, night holiday overtime 65%) and night holiday work within 8 hours (60%); flessibilità beyond 40 hours (15%/20%, Art. 23) and banca ore (50% of the overtime premium); festività on a Sunday (1/26) and the 1 h 20' of the ex operai; the superminimo ex Parte prima of 11 h 10' a year (Art. 38); leave on a 6-day week and the transitional extra day (Art. 33); sickness: comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27), the net-pay gross-up; child sickness indemnity from 2027 (Art. 58 bis) and oncological permits (Art. 55 bis); the 65% credit of the apprenticeship for the seniority increments of the worker kept on (Art. 10 p. 49); the IPCA top-up of June 2027 and 2028 above 2.653% and 2.729%.
+!!! warning "metalmeccanico-confapi/elemento_perequativo · base_salary · impact yes · open"
+    Art. 48: the elemento perequativo of 485 EUR a year with the June pay in firms without second-level bargaining.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the perequativo, E.A.R., quadri allowance, standby, ordinary-hour premiums, shift-worker rates and the residual sickness rules of Art. 55.
+    **Remediation:** Add an employer fact for the second-level bargaining and pay the element.
+
+!!! warning "metalmeccanico-confapi/quadri_allowance · base_salary · impact yes · open"
+    Art. 98: the indennità di funzione of the quadri.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the quadri allowance with a role.
+
+!!! warning "metalmeccanico-confapi/standby_and_travel · base_salary · impact yes · open"
+    Art. 28: reperibilità (amounts by group of levels adjusted each June) and trasferta.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model standby and travel.
+
+!!! warning "metalmeccanico-confapi/ordinary_hours_premiums · overtime · impact yes · open"
+    Art. 29 rows b, d, h, i, f, m: the ordinary night, holiday and compensatory-rest premiums; the shift-worker column (night overtime 40%/45%, night holiday overtime 65%) and night holiday work within 8 hours (60%).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the Art. 29 premiums and the shift-worker column.
+
+!!! warning "metalmeccanico-confapi/flexibility_and_hours_bank · overtime · impact yes · open"
+    Art. 23: flessibilità beyond 40 hours (15%/20%) and banca ore (50% of the overtime premium).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the flexibility and hours-bank premiums.
+
+!!! warning "metalmeccanico-confapi/sunday_holiday_and_ex_operai · base_salary · impact yes · open"
+    The festività on a Sunday (1/26) and the 1 h 20' of the ex operai; the superminimo ex Parte prima of 11 h 10' a year (Art. 38).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pay the Sunday holiday, the 1 h 20' and the Art. 38 superminimo.
+
+!!! warning "metalmeccanico-confapi/six_day_leave · base_salary · impact yes · open"
+    Art. 33: leave on a 6-day week and the transitional extra day.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the leave of a 6-day week.
+
+!!! warning "metalmeccanico-confapi/sickness_rules · sickness · impact yes · open"
+    Sickness: comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27), the net-pay gross-up.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the residual sickness rules of Art. 55.
+
+!!! warning "metalmeccanico-confapi/child_sickness_and_oncological_permits · sickness · impact yes · open"
+    Art. 58 bis and Art. 55 bis: the child sickness indemnity from 2027 and the oncological permits.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the indemnity of Art. 58 bis and the permits of Art. 55 bis.
+
+!!! warning "metalmeccanico-confapi/apprentice_seniority_credit · base_salary · impact yes · open"
+    Art. 10 p. 49: the 65% credit of the apprenticeship for the seniority increments of the worker kept on.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Credit 65% of the apprenticeship to the seniority.
+
+!!! warning "metalmeccanico-confapi/ipca_top_up · base_salary · impact yes · open"
+    Renewal of 4 June 2026: the IPCA top-up of June 2027 and 2028 above 2.653% and 2.729%.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the IPCA top-up when the index is published.
 
 !!! warning "metalmeccanico-confapi/bilateral_system_or_ear · bilateral_funds · impact yes · open"
     BILATERAL SYSTEM: a firm that adheres to the bilateral system pays its contributions for every worker, a firm that does not pays the worker an E.A.R. of 25 EUR x 13 (Art. 53). Neither is modelled: the employer cost, and with the E.A.R. the net pay, are short of it.

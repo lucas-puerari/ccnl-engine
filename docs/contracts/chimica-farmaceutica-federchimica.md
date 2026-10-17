@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary |
+| **Limits of this contract** | base_salary, overtime, sickness |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -98,12 +98,82 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model an under-classification by category paid at the minimo without IPO, with periods of half the contract duration.
 
-!!! warning "chimica-farmaceutica-federchimica/chimica_unmodelled_elements · base_salary · impact yes · open"
-    NOT MODELLED (they change the gross pay): the lavoro eccedente from 37h45 to 40 weekly hours at 5% (art. 9 punto 1); the premiums on ordinary hours: Sunday or holiday work with compensatory rest 50%, night work outside shifts 50%, shifts 4% (day), 34% (night), 46% (night 3x7), Sunday 3x7 33%, pluriperiodale and Saturday 10%, the first 120 hours past 2,024 a year 30% (art. 9 punti 3-6, 9-11); the night-shift indemnity in cifra, outside the TFR base (EUR 13.50 per 8 hours, EUR 15.50 from 1/7/2027, 2025 renewal p. 47); the Easter payment of 1/25 (art. 12) and the holiday falling on a Sunday at 1/25 (art. 20); the premio di partecipazione, the premio variabile and the elemento perequativo (artt. 48-50); the una tantum contribution of EUR 25 withheld in July 2025 from non-member workers (2025 renewal p. 45). Overtime: the CCNL applies the premiums to the art. 15 punto 1 elements, superminimi included; categories A and B get none. The hourly quota of art. 20 excludes the EAR, which base_salary holds for A and B. The EDR is paid whatever the absences of the month and has no effect on other institutes, while the engine reduces it with the month and counts it in the sickness quota. Absences: deducted at 1/175 an hour, a day taken as 8 hours whatever the company schedule. Sickness: the scales of fixed-term contracts and apprentices (75/60/45/30 days in full, as many at half), the comporto 30% longer for disabled workers (L. 68/1999), the therapies of oncological and degenerative illnesses outside the comporto, the restart of an exhausted treatment on a hospital stay of more than 10 days; hospital stays are left out of the comporto over the whole window, the CCNL does it within one continuous event. Scope: the tables of the Fibre, Abrasivi, Lubrificanti e GPL and Ceramica sectors differ and are not modelled.
+!!! warning "chimica-farmaceutica-federchimica/excess_hours · overtime · impact yes · open"
+    Art. 9 punto 1: the lavoro eccedente from 37h45 to 40 weekly hours at 5%.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the art. 9 premiums on ordinary hours, the night-shift indemnity, the Easter payment, the fixed-term sickness scales and the sector tables.
+    **Remediation:** Add a band for the lavoro eccedente at 5%.
+
+!!! warning "chimica-farmaceutica-federchimica/ordinary_hours_premiums · overtime · impact yes · open"
+    Art. 9 punti 3-6, 9-11: the premiums on ordinary hours (Sunday or holiday work with compensatory rest 50%, night work outside shifts 50%, shifts 4% day, 34% night, 46% night 3x7, Sunday 3x7 33%, pluriperiodale and Saturday 10%, the first 120 hours past 2,024 a year 30%).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the Art. 9 premiums on ordinary hours.
+
+!!! warning "chimica-farmaceutica-federchimica/night_shift_indemnity · base_salary · impact yes · open"
+    Renewal of 2025, p. 47: the night-shift indemnity in cifra, outside the TFR base (EUR 13.50 per 8 hours, EUR 15.50 from 1/7/2027).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the night-shift indemnity per shift.
+
+!!! warning "chimica-farmaceutica-federchimica/easter_and_sunday_holiday · base_salary · impact yes · open"
+    Art. 12 and Art. 20: the Easter payment of 1/25 and the holiday falling on a Sunday at 1/25.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pay the Easter 1/25 and the Sunday holiday at 1/25.
+
+!!! warning "chimica-farmaceutica-federchimica/participation_premiums · base_salary · impact yes · open"
+    Artt. 48-50: the premio di partecipazione, the premio variabile and the elemento perequativo.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the premi of Artt. 48-50 with the employer facts they need.
+
+!!! warning "chimica-farmaceutica-federchimica/una_tantum_withholding_2025 · base_salary · impact yes · open"
+    Renewal of 2025, p. 45: the una tantum contribution of EUR 25 withheld in July 2025 from non-member workers.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the withholding of July 2025 for non-member workers.
+
+!!! warning "chimica-farmaceutica-federchimica/overtime_base_and_categories · overtime · impact yes · open"
+    The CCNL applies the overtime premiums to the art. 15 punto 1 elements, superminimi included, categories A and B get none, and the hourly quota of art. 20 excludes the EAR, which base_salary holds for A and B.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Compute the overtime base on the art. 15 elements and exclude categories A and B.
+
+!!! warning "chimica-farmaceutica-federchimica/edr_absences · base_salary · impact yes · open"
+    The EDR is paid whatever the absences of the month and has no effect on other institutes, while the engine reduces it with the month and counts it in the sickness quota.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Keep the EDR whole in partial months and out of the sickness quota.
+
+!!! warning "chimica-farmaceutica-federchimica/absence_hours · base_salary · impact yes · open"
+    Absences are deducted at 1/175 an hour, a day taken as 8 hours whatever the company schedule.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Take the company daily schedule for the hours of an absent day.
+
+!!! warning "chimica-farmaceutica-federchimica/sickness_scales_and_comporto · sickness · impact yes · open"
+    Sickness: the scales of fixed-term contracts and apprentices (75/60/45/30 days in full, as many at half), the comporto 30% longer for disabled workers (L. 68/1999), the therapies of oncological and degenerative illnesses outside the comporto, the restart of an exhausted treatment on a hospital stay of more than 10 days; hospital stays are left out of the comporto over the whole window, the CCNL does it within one continuous event.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the fixed-term and apprentice scales and the comporto rules of the sickness article.
+
+!!! warning "chimica-farmaceutica-federchimica/other_sector_tables · base_salary · impact yes · open"
+    Scope: the tables of the Fibre, Abrasivi, Lubrificanti e GPL and Ceramica sectors differ and are not modelled.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the tables of the other sectors.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.

@@ -1167,9 +1167,13 @@
       "agenzie-viaggio-fiavet/tourism_special_supplement"
     ],
     "agreement/alimentari-federalimentare.json": [
-      "alimentari-federalimentare/alimentari_unmodelled_elements",
+      "alimentari-federalimentare/campaign_premium",
+      "alimentari-federalimentare/edr_tfr_from_march_2024",
+      "alimentari-federalimentare/first_level_apprentice_pay",
       "alimentari-federalimentare/health_and_bilateral_funds",
+      "alimentari-federalimentare/ordinary_hours_premiums",
       "alimentari-federalimentare/overtime_subsector_tables",
+      "alimentari-federalimentare/second_level_omission_element",
       "alimentari-federalimentare/sickness_half_pay_and_comporto"
     ],
     "agreement/alimentari-pmi-unionalimentari.json": [
@@ -1253,8 +1257,18 @@
       "chimica-affini-pmi-unionchimica/tranches_2027_2028"
     ],
     "agreement/chimica-farmaceutica-federchimica.json": [
+      "chimica-farmaceutica-federchimica/absence_hours",
       "chimica-farmaceutica-federchimica/apprenticeship_minimo_without_ipo",
-      "chimica-farmaceutica-federchimica/chimica_unmodelled_elements"
+      "chimica-farmaceutica-federchimica/easter_and_sunday_holiday",
+      "chimica-farmaceutica-federchimica/edr_absences",
+      "chimica-farmaceutica-federchimica/excess_hours",
+      "chimica-farmaceutica-federchimica/night_shift_indemnity",
+      "chimica-farmaceutica-federchimica/ordinary_hours_premiums",
+      "chimica-farmaceutica-federchimica/other_sector_tables",
+      "chimica-farmaceutica-federchimica/overtime_base_and_categories",
+      "chimica-farmaceutica-federchimica/participation_premiums",
+      "chimica-farmaceutica-federchimica/sickness_scales_and_comporto",
+      "chimica-farmaceutica-federchimica/una_tantum_withholding_2025"
     ],
     "agreement/cinema-audiovisivi-industria.json": [
       "cinema-audiovisivi-industria/bilateral_funds_not_modelled",
@@ -1317,22 +1331,40 @@
     ],
     "agreement/dmo-federdistribuzione.json": [
       "dmo-federdistribuzione/apprentice_seniority",
-      "dmo-federdistribuzione/dmo_unmodelled_elements",
+      "dmo-federdistribuzione/cashier_allowance",
+      "dmo-federdistribuzione/commission_guarantee",
+      "dmo-federdistribuzione/employment_support_contract",
       "dmo-federdistribuzione/health_and_bilateral_funds",
+      "dmo-federdistribuzione/ordinary_hours_premiums",
       "dmo-federdistribuzione/provincial_elements_missing",
+      "dmo-federdistribuzione/sales_operators",
       "dmo-federdistribuzione/sickness_net_basis"
     ],
     "agreement/edilizia-ance-impiegati.json": [
       "edilizia-ance-impiegati/apprentice_seniority",
       "edilizia-ance-impiegati/edilizia_impiegati_sickness",
-      "edilizia-ance-impiegati/edilizia_impiegati_unmodelled",
-      "edilizia-ance-impiegati/provincial_production_premium"
+      "edilizia-ance-impiegati/loyalty_premium",
+      "edilizia-ance-impiegati/november_4_holiday",
+      "edilizia-ance-impiegati/ordinary_hours_premiums",
+      "edilizia-ance-impiegati/provincial_evr",
+      "edilizia-ance-impiegati/provincial_meals_transport_travel",
+      "edilizia-ance-impiegati/provincial_production_premium",
+      "edilizia-ance-impiegati/quadri_absorption",
+      "edilizia-ance-impiegati/special_allowances"
     ],
     "agreement/edilizia-ance.json": [
+      "edilizia-ance/ape_cassa_edile",
+      "edilizia-ance/capisquadra_supplement",
       "edilizia-ance/cassa_edile_contribution",
+      "edilizia-ance/contribution_reduction",
       "edilizia-ance/edilizia_operai_sickness",
-      "edilizia-ance/edilizia_operai_unmodelled",
+      "edilizia-ance/entry_premium_2022",
+      "edilizia-ance/hardship_allowances",
+      "edilizia-ance/holiday_hours",
+      "edilizia-ance/ordinary_hours_premiums",
       "edilizia-ance/part_time_supplementary_rate",
+      "edilizia-ance/provincial_evr",
+      "edilizia-ance/provincial_meals_transport_travel",
       "edilizia-ance/territorial_sector_allowance"
     ],
     "agreement/edilizia-artigianato-cna.json": [
@@ -1521,9 +1553,19 @@
       "metalmeccanico-artigianato/inps_sector_rates_unsourced"
     ],
     "agreement/metalmeccanico-confapi.json": [
+      "metalmeccanico-confapi/apprentice_seniority_credit",
       "metalmeccanico-confapi/bilateral_system_or_ear",
-      "metalmeccanico-confapi/confapi_unmodelled_pay_elements",
-      "metalmeccanico-confapi/fondapi_base_elements"
+      "metalmeccanico-confapi/child_sickness_and_oncological_permits",
+      "metalmeccanico-confapi/elemento_perequativo",
+      "metalmeccanico-confapi/flexibility_and_hours_bank",
+      "metalmeccanico-confapi/fondapi_base_elements",
+      "metalmeccanico-confapi/ipca_top_up",
+      "metalmeccanico-confapi/ordinary_hours_premiums",
+      "metalmeccanico-confapi/quadri_allowance",
+      "metalmeccanico-confapi/sickness_rules",
+      "metalmeccanico-confapi/six_day_leave",
+      "metalmeccanico-confapi/standby_and_travel",
+      "metalmeccanico-confapi/sunday_holiday_and_ex_operai"
     ],
     "agreement/metalmeccanico-confimi-pmi.json": [
       "metalmeccanico-confimi-pmi/overtime_bands_from_confapi"
@@ -1610,7 +1652,7 @@
     "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva.json": [
       "pubblici-esercizi-fipe-angem-ristorazione-collettiva/apprentice_seniority",
       "pubblici-esercizi-fipe-angem-ristorazione-collettiva/apprenticeship_long_profiles",
-      "pubblici-esercizi-fipe-angem-ristorazione-collettiva/fipe_unmodelled_elements",
+      "pubblici-esercizi-fipe-angem-ristorazione-collettiva/guarantee_premium_2027",
       "pubblici-esercizi-fipe-angem-ristorazione-collettiva/health_and_bilateral_funds",
       "pubblici-esercizi-fipe-angem-ristorazione-collettiva/holiday_overtime_cumulation",
       "pubblici-esercizi-fipe-angem-ristorazione-collettiva/tourism_special_supplement"
@@ -1620,7 +1662,7 @@
       "pubblici-esercizi-fipe-angem/apprenticeship_long_profiles",
       "pubblici-esercizi-fipe-angem/balneari_diurni_rules",
       "pubblici-esercizi-fipe-angem/contract_catering_tranche_dates",
-      "pubblici-esercizi-fipe-angem/fipe_unmodelled_elements",
+      "pubblici-esercizi-fipe-angem/guarantee_premium_2027",
       "pubblici-esercizi-fipe-angem/health_and_bilateral_funds",
       "pubblici-esercizi-fipe-angem/holiday_overtime_cumulation",
       "pubblici-esercizi-fipe-angem/small_company_pay_reduction",
@@ -1680,8 +1722,17 @@
     "agreement/studi-professionali-confprofessioni.json": [
       "studi-professionali-confprofessioni/apprentice_seniority",
       "studi-professionali-confprofessioni/bilateral_contribution_or_element",
+      "studi-professionali-confprofessioni/fourteenth_exclusion",
       "studi-professionali-confprofessioni/fsbap_rates_above_15",
-      "studi-professionali-confprofessioni/studi_unmodelled_elements"
+      "studi-professionali-confprofessioni/holiday_during_sickness",
+      "studi-professionali-confprofessioni/injury_integration",
+      "studi-professionali-confprofessioni/intermittent_availability",
+      "studi-professionali-confprofessioni/maternity_holiday_top_up",
+      "studi-professionali-confprofessioni/part_time_supplementary",
+      "studi-professionali-confprofessioni/reemployment_entry_pay",
+      "studi-professionali-confprofessioni/rolling_comporto_and_serious_illness",
+      "studi-professionali-confprofessioni/travel_diaria",
+      "studi-professionali-confprofessioni/unused_leave_hours"
     ],
     "agreement/tabacco-apti.json": [
       "tabacco-apti/alifond_before_july_2025",
@@ -1693,10 +1744,16 @@
     ],
     "agreement/terziario-confesercenti.json": [
       "terziario-confesercenti/apprentice_seniority",
+      "terziario-confesercenti/apprentice_sickness",
+      "terziario-confesercenti/cashier_allowance",
       "terziario-confesercenti/health_and_bilateral_funds",
+      "terziario-confesercenti/long_apprenticeship_profiles",
+      "terziario-confesercenti/long_week_divisors",
       "terziario-confesercenti/lump_sum_2024_2025",
+      "terziario-confesercenti/provincial_third_elements",
+      "terziario-confesercenti/sales_operators",
       "terziario-confesercenti/sickness_net_basis",
-      "terziario-confesercenti/terziario_confesercenti_unmodelled"
+      "terziario-confesercenti/sunday_overtime"
     ],
     "agreement/tessile-moda-artigianato-confartigianato.json": [
       "tessile-moda-artigianato-confartigianato/apprentice_inps_rates_unsourced",
@@ -1727,12 +1784,19 @@
       "turismo-confesercenti/tourism_special_supplement"
     ],
     "agreement/turismo-federalberghi.json": [
+      "turismo-federalberghi/apprentice_net_cap",
       "turismo-federalberghi/apprentice_seniority",
       "turismo-federalberghi/apprenticeship_durations_unsourced",
+      "turismo-federalberghi/extra_months_during_leave",
+      "turismo-federalberghi/extras_hourly_table",
+      "turismo-federalberghi/first_scatto_from_18",
+      "turismo-federalberghi/guarantee_element_2027",
       "turismo-federalberghi/health_and_bilateral_funds",
+      "turismo-federalberghi/hires_2016_ramp",
+      "turismo-federalberghi/quadri_absorption",
       "turismo-federalberghi/sickness_net_basis",
-      "turismo-federalberghi/tourism_special_supplement",
-      "turismo-federalberghi/turismo_unmodelled_elements"
+      "turismo-federalberghi/small_hotel_table",
+      "turismo-federalberghi/tourism_special_supplement"
     ],
     "agreement/uneba-uneba.json": [
       "uneba-uneba/apprentice_seniority",
