@@ -94,5 +94,421 @@
       "tfr",
       "employer_cost"
     ]
+  },
+  "studi-year": {
+    "ccnl": "studi-professionali-confprofessioni",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 6-15", "minimo tranche of December"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "studi-june": {
+    "ccnl": "studi-professionali-confprofessioni",
+    "cycles": ["ordinary month", "extra month", "termination"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 6-15", "trattamento integrativo and somma esente bands"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "turismo-year": {
+    "ccnl": "turismo-federalberghi",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 6-15", "minimo tranche of May"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "turismo-june": {
+    "ccnl": "turismo-federalberghi",
+    "cycles": ["ordinary month", "extra month", "termination"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 6-15", "trattamento integrativo and somma esente bands"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "chimica-year": {
+    "ccnl": "chimica-farmaceutica-federchimica",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "minimo tranche of July"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "chimica-june": {
+    "ccnl": "chimica-farmaceutica-federchimica",
+    "cycles": ["ordinary month", "termination"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "trattamento integrativo and somma esente bands"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "alimentari-year": {
+    "ccnl": "alimentari-federalimentare",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "alimentari-june": {
+    "ccnl": "alimentari-federalimentare",
+    "cycles": ["ordinary month", "extra month", "termination"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "trattamento integrativo and somma esente bands"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "dmo-year": {
+    "ccnl": "dmo-federdistribuzione",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount above 15", "tranche of November"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "dmo-june": {
+    "ccnl": "dmo-federdistribuzione",
+    "cycles": ["ordinary month", "extra month", "termination"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount above 15", "trattamento integrativo and somma esente bands"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "fipe-year": {
+    "ccnl": "pubblici-esercizi-fipe-angem",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 6-15", "minimo tranche of June"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "fipe-june": {
+    "ccnl": "pubblici-esercizi-fipe-angem",
+    "cycles": ["ordinary month", "extra month", "termination"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 6-15", "trattamento integrativo and somma esente bands"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "ristorazione-year": {
+    "ccnl": "pubblici-esercizi-fipe-angem-ristorazione-collettiva",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 6-15", "minimo tranche of September"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "ristorazione-june": {
+    "ccnl": "pubblici-esercizi-fipe-angem-ristorazione-collettiva",
+    "cycles": ["ordinary month", "extra month", "termination"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 6-15", "trattamento integrativo and somma esente bands"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "confapi-year": {
+    "ccnl": "metalmeccanico-confapi",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "minimo tranche of June"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "confapi-june": {
+    "ccnl": "metalmeccanico-confapi",
+    "cycles": ["ordinary month", "termination"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "trattamento integrativo and somma esente bands"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "edilizia-impiegati-year": {
+    "ccnl": "edilizia-ance-impiegati",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "minimo tranche of March"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "edilizia-impiegati-june": {
+    "ccnl": "edilizia-ance-impiegati",
+    "cycles": ["ordinary month", "extra month", "termination"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "trattamento integrativo and somma esente bands"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "part-time-year": {
+    "ccnl": "metalmeccanico-federmeccanica",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, part time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "minimo tranche of June"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "part-time-june": {
+    "ccnl": "metalmeccanico-federmeccanica",
+    "cycles": ["ordinary month", "termination"],
+    "relationship": "permanent, part time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "trattamento integrativo and somma esente bands"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "apprentice-year": {
+    "ccnl": "metalmeccanico-federmeccanica",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "apprentice, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "minimo tranche of June"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "apprentice-june": {
+    "ccnl": "metalmeccanico-federmeccanica",
+    "cycles": ["ordinary month", "termination"],
+    "relationship": "apprentice, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "trattamento integrativo and somma esente bands"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "fixed-term-year": {
+    "ccnl": "metalmeccanico-federmeccanica",
+    "cycles": ["ordinary month", "extra month", "termination"],
+    "relationship": "fixed term, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "minimo tranche of June"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "fixed-term-june": {
+    "ccnl": "metalmeccanico-federmeccanica",
+    "cycles": ["ordinary month", "termination"],
+    "relationship": "fixed term, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "trattamento integrativo and somma esente bands"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "sickness-year": {
+    "ccnl": "metalmeccanico-federmeccanica",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, full time",
+    "variables": ["sickness"],
+    "thresholds": ["headcount 16-50", "minimo tranche of June"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "mid-month-year": {
+    "ccnl": "metalmeccanico-federmeccanica",
+    "cycles": ["ordinary month", "partial month", "termination"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "minimo tranche of June", "extra-month ratei above 15 days"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
   }
 }

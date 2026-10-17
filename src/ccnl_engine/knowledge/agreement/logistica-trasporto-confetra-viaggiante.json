@@ -6,6 +6,10 @@
     "cnel_code": "I100",
     "sector": "logistica",
     "tax_sector": "industria",
+    "inps_sectors": [
+      "industria",
+      "terziario"
+    ],
     "signatories": [
       "AITI",
       "ASSOESPRESSI",
@@ -122,6 +126,10 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "source",
+        "text": "INPS SECTOR OF THE EMPLOYER: INPS classifies an employer by the activity it carries out (art. 49 L. 88/1989), not by the CCNL it applies. The Manuale di classificazione dei datori di lavoro of May 2021 (ATECO 2007, PDF pp. 199-206) gives CSC 11501 (industria, trasporti) to 49.41.00 trasporto di merci su strada and 49.42.00 traslochi, 11505 (industria) to 52.24 movimento merci and 52.21.90, 11506 to 52.21.40 interporti, 11507 to 53.20.00 corrieri, and 70401 (terziario, intermediari) to 52.10.10 magazzini di custodia e deposito, 52.29.10 spedizionieri, 52.29.21 intermediari dei trasporti and 52.29.22 servizi logistici. The employers of this CCNL are therefore in the industria or in the terziario: meta.inps_sectors lists both and EmployerProfile.inps_sector chooses; without it the run reads the industria and has a missing_fact inps_sector blocker. INPS circ. 71/2025 moved the classification to ATECO 2025 from 1 April 2025 and announced a new edition of the manual, not found in this review: the CSC above are those of the 2021 edition."
       }
     ]
   },
@@ -3344,7 +3352,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "d07fbe0ec6d775eeff9890b3b4cf98203714fe91cb427e4c992a95455f025610",
+    "source_hash": "6087b11a82b153d03854cecec100e7bc4f8fa0e200726d751fe82d54e2ae5802",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3933,6 +3941,29 @@
           "DD 135/2025 prints 'Inps (30,68%)' on every table of the personale viaggiante, with no composition, no class of employer and no number of employees.",
           "30.68% is, to the cent, the employer rate of an INPS class industria employer up to 15 employees for operai and intermedi: IVS 23.81 + NASpI 1.61 + CUAF 0.68 + CIG ordinaria 1.70 + Fondo garanzia TFR 0.20 + malattia 2.22 + maternità 0.46 (INPS tables of January 2023 reproduced by GIA Parma, row 'Industria, aziende fino a 15 dipendenti, Operai - Intermedi'). The engine applies the same 30.68% to an operaio viaggiante of an employer up to 15 employees, and 31.28% from 16 to 50 and 31.58% above (CIG straordinaria 0.90 and the higher CIG ordinaria): match for the smallest band, no evidence for the others.",
           "Not established: whether the Ministry assumes an employer up to 15 employees or a class other than industria. A press article (Euroconference, 24 November 2021) classifies a road haulage employer in the INPS sector terziario, CSC 7.04.01, which would give other rates; the class is a fact of the employer, so it is not decided here."
+        ]
+      },
+      {
+        "id": "2026-10-17-ai-inps-class",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The INPS sector of the employers of the CCNL against the INPS classification manual, after the review 2026-10-16-ai-inps-composition left the class of the employer open.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.inps.it/content/dam/inps-site/pdf/allegati/3212KEY-manuale_di_classificazione_dei_datori_di_lavoro_maggio_2021.pdf",
+            "sha256": "ad8704fbb47ccf22b7f3728a2537351294a12b2aa031a7bb2cce88121d884678"
+          },
+          {
+            "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2025/03/Circolare_14885/Allegati/16000_Circolare-numero-71-del-31-03-2025.pdf",
+            "sha256": "69125472daa4b49d5c0408d83a46705f90adf49ee1f936d85a3323c341419434"
+          }
+        ],
+        "findings": [
+          "The Manuale di classificazione dei datori di lavoro of INPS (May 2021, ATECO 2007) classifies the activities of this CCNL in two sectors: autotrasporto, traslochi, movimento merci and corrieri in the industria (CSC 11501, 11505, 11507), magazzini di custodia, spedizionieri, intermediari dei trasporti and servizi logistici in the terziario (CSC 70401). The file applied the industria to every employer.",
+          "Corrected: meta.inps_sectors lists industria and terziario; EmployerProfile.inps_sector states the sector of the employer and the run reads its INPS rates, sickness cover and every rule that follows the sector; a run without it reads the industria with a missing_fact inps_sector blocker.",
+          "INPS circ. 71/2025 adopted ATECO 2025 from 1 April 2025 and announced a new edition of the manual; that edition was not found: the classification above is the one of the 2021 edition."
         ]
       }
     ],

@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2020-10-08 |
-| **Last review** | 2026-10-15 |
+| **Last review** | 2026-10-17 |
 | **Latest salary tranche** | 2020-07-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'ferie, permessi, festività, assenze, malattia e comporto': the leave, accrual, absence and sickness rules of the file against the text read in the P1 review. | corrected | Sickness (Art. 43, pp. 58-60): the employer tops up to 100% of the retribuzione globale from the first day up to the 365th day of absence in four years, within a comporto of 540 days in a rolling four years, net of what the worker would have received working. The file paid 50% in the waiting days and 75% after, up to 180 days: corrected and verified.<br>Ferie (Art. 32, p. 42): 30 working days plus 4 days for the festività soppresse, 34 in all (was 30): corrected and verified.<br>Absence divisor 26 (Art. 58, p. 88) and the tredicesima accrual of more than 15 days (Art. 66, p. 96, was assumed): verified. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova': the apprenticeship tracks and the part-time supplementary hours of the file against the text read in the P1 review. | corrected | Apprenticeship (p. 31): only the 36-month track (85% then 90%) was modelled; the 18-month and 24-month tracks are added. An apprentice now names the track.<br>Part-time supplementary hours are paid at 15% (Art. 22, p. 25): declared, the request cannot state them.<br>Probation and fixed-term rules carry no amount the engine computes. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the pension, health and bilateral contributions of the file against the text read in the P1 review. | confirmed | The CCNL of 8 October 2020 sets no contractual pension, health or bilateral contribution: Art. 74 only confirms the will to institute a supplementary pension. None is modelled. |
+| 2026-10-17 | claude-opus-5-5 (ai) | Periodic review due 2026-12-31: the minimi of every level against the CCNL of 8 October 2020, the status of the renewal, and the readiness of the file. | confirmed | The 28 minimi of the file are printed in the CCNL of 8 October 2020. Match.<br>No renewal of the CCNL 2016-2018 was signed by 2026-10-17: the unions report a contract in ultrattività and a dispute open in January 2026 (FP CGIL, letter to the Ministry of Health and the Conferenza delle Regioni); the 2020 tables stay in force.<br>Not promoted to reviewed: verification.confidence is unverified, the level records are derived from a CCNL text of 2020 with an aggregator as second source, and shift_on_call_allowances and part_time_supplementary_rate are open. The derived rule stays derived. |
 
 ## Salary table
 

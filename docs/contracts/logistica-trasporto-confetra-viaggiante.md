@@ -57,7 +57,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-06 |
-| **Last review** | 2026-10-16 |
+| **Last review** | 2026-10-17 |
 | **Latest salary tranche** | 2027-06-01 |
 
 ## Review history
@@ -71,6 +71,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | Malattie particolarmente gravi (art. 63 cc. 8 and 12). | corrected | The serious illnesses of INPS circ. 95/2016 were a limitation (grave_illness): now paid in full for 18 months and left out of the comporto when SicknessEpisode.serious_illness says so. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Indennità di trasferta of the travelling staff (art. 62). | corrected | The allowance amounts of art. 62 c. 3 from 1.1.2025 and the TFR rule of c. 7 are now CCNL data: a TravelAllowanceEvent without daily_amount takes the amount of its hours away. |
 | 2026-10-16 | claude-opus-5-5 (ai) | The employer INPS rate of the personale viaggiante in the cost table of the Ministry of Labour (DD 135 of 19 December 2025) against the INPS rate tables and the classes of the bundle. | flagged | DD 135/2025 prints 'Inps (30,68%)' on every table of the personale viaggiante, with no composition, no class of employer and no number of employees.<br>30.68% is, to the cent, the employer rate of an INPS class industria employer up to 15 employees for operai and intermedi: IVS 23.81 + NASpI 1.61 + CUAF 0.68 + CIG ordinaria 1.70 + Fondo garanzia TFR 0.20 + malattia 2.22 + maternità 0.46 (INPS tables of January 2023 reproduced by GIA Parma, row 'Industria, aziende fino a 15 dipendenti, Operai - Intermedi'). The engine applies the same 30.68% to an operaio viaggiante of an employer up to 15 employees, and 31.28% from 16 to 50 and 31.58% above (CIG straordinaria 0.90 and the higher CIG ordinaria): match for the smallest band, no evidence for the others.<br>Not established: whether the Ministry assumes an employer up to 15 employees or a class other than industria. A press article (Euroconference, 24 November 2021) classifies a road haulage employer in the INPS sector terziario, CSC 7.04.01, which would give other rates; the class is a fact of the employer, so it is not decided here. |
+| 2026-10-17 | claude-opus-5-5 (ai) | The INPS sector of the employers of the CCNL against the INPS classification manual, after the review 2026-10-16-ai-inps-composition left the class of the employer open. | corrected | The Manuale di classificazione dei datori di lavoro of INPS (May 2021, ATECO 2007) classifies the activities of this CCNL in two sectors: autotrasporto, traslochi, movimento merci and corrieri in the industria (CSC 11501, 11505, 11507), magazzini di custodia, spedizionieri, intermediari dei trasporti and servizi logistici in the terziario (CSC 70401). The file applied the industria to every employer.<br>Corrected: meta.inps_sectors lists industria and terziario; EmployerProfile.inps_sector states the sector of the employer and the run reads its INPS rates, sickness cover and every rule that follows the sector; a run without it reads the industria with a missing_fact inps_sector blocker.<br>INPS circ. 71/2025 adopted ATECO 2025 from 1 April 2025 and announced a new edition of the manual; that edition was not found: the classification above is the one of the 2021 edition. |
 
 ## Salary table
 
@@ -228,6 +229,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; the 2021 EDR may still enter the daily base of absences and sickness, which 'nessuna incidenza su alcun istituto contrattuale' excludes.
     
     INPS: uses 2026-industria.json (TaxSector.INDUSTRIA). File already present — no changes to the tax file.
+    
+    INPS SECTOR OF THE EMPLOYER: INPS classifies an employer by the activity it carries out (art. 49 L. 88/1989), not by the CCNL it applies. The Manuale di classificazione dei datori di lavoro of May 2021 (ATECO 2007, PDF pp. 199-206) gives CSC 11501 (industria, trasporti) to 49.41.00 trasporto di merci su strada and 49.42.00 traslochi, 11505 (industria) to 52.24 movimento merci and 52.21.90, 11506 to 52.21.40 interporti, 11507 to 53.20.00 corrieri, and 70401 (terziario, intermediari) to 52.10.10 magazzini di custodia e deposito, 52.29.10 spedizionieri, 52.29.21 intermediari dei trasporti and 52.29.22 servizi logistici. The employers of this CCNL are therefore in the industria or in the terziario: meta.inps_sectors lists both and EmployerProfile.inps_sector chooses; without it the run reads the industria and has a missing_fact inps_sector blocker. INPS circ. 71/2025 moved the classification to ATECO 2025 from 1 April 2025 and announced a new edition of the manual, not found in this review: the CSC above are those of the 2021 edition.
     
 
 ## Raw data

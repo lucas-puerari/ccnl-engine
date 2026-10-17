@@ -246,6 +246,11 @@ class CCNLMeta(BaseModel):
         public_life_insurance: Whether the employers of the CCNL enrol their
             staff in the Assicurazione Sociale Vita, when the CCNL decides
             it (the State does not); ``None`` when its employers differ.
+        inps_sectors: INPS sectors the employers applying the CCNL are
+            classified in by the activity they carry out (art. 49 L.
+            88/1989), when more than one; ``tax_sector`` is among them and
+            ``EmployerProfile.inps_sector`` chooses.  ``None``: every
+            employer is in ``tax_sector``.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -263,6 +268,7 @@ class CCNLMeta(BaseModel):
     workers_estimate: str = ""
     public_pension_fund: PublicPensionFund | None = None
     public_life_insurance: bool | None = None
+    inps_sectors: frozenset[TaxSector] | None = Field(None, min_length=2)
 
     @property
     def withholding_agent(self) -> bool:
@@ -286,6 +292,14 @@ class CCNLMeta(BaseModel):
         stated = (self.public_pension_fund, self.public_life_insurance)
         if any(value is not None for value in stated) and not public:
             msg = "public funds are for the public administrations only"
+            raise ValueError(msg)
+        return self
+
+    @model_validator(mode="after")
+    def _check_inps_sectors(self) -> CCNLMeta:
+        sectors = self.inps_sectors
+        if sectors is not None and self.tax_sector not in sectors:
+            msg = f"inps_sectors must include the tax_sector {self.tax_sector}"
             raise ValueError(msg)
         return self
 
