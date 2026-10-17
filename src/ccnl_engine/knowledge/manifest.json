@@ -1968,8 +1968,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tabacco-apti",
       "ruleset_version": "2026.2",
-      "source_hash": "ac44b9cbc86567e8732eb72770d516a6bce76ecfaa47f16ce407e9d7733b8ea0",
-      "source_type": "estimated",
+      "source_hash": "1e2366af825b33f41cc0450fe195b189fe87d71443f298298ba06dc10d005b9f",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tabacco-apti.json.gz"
     },

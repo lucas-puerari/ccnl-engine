@@ -1,5 +1,5 @@
 <!-- auto-generated -- run: uv run python scripts/documentation/coverage_matrix/generate.py -->
-<!-- generated: 2026-10-16 -->
+<!-- generated: 2026-10-17 -->
 
 # CCNL Coverage
 
@@ -217,7 +217,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 113 | IC91 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | autoscuole e consulenza automobilistica | — | 2023 | ⚠️ | bilateral_funds, health_fund_employer, seniority | 0 / 32 / 2 / 0 | 🧪 | 🤖 |
 | 114 | H05Y | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | turismo | ~350k | — | ⚠️ | base_salary, bilateral_funds, overtime, seniority, sickness, trattamento_integrativo | 61 / 2 / 0 / 0 | 🏭 | 🧑 |
 | 115 | H05Y | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo - Ristorazione collettiva (aziende dell'art. 1 c. 1 par. II)](pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | turismo | ~350k | — | ⚠️ | base_salary, bilateral_funds, overtime, seniority, trattamento_integrativo | 61 / 2 / 0 / 0 | 🏭 | 🧑 |
-| 116 | E042 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | lavorazione foglia di tabacco | ~2k | 2025 | ⚠️ | pension_fund_contribution, seniority | 0 / 0 / 58 / 1 | 🧪 | 🔍 |
+| 116 | E042 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | lavorazione foglia di tabacco | ~2k | 2025 | ⚠️ | pension_fund_contribution, seniority | 36 / 0 / 22 / 1 | 🧪 | 🔍 |
 | 117 | H442 | [CCNL per i dipendenti degli studi e delle attività professionali (Confprofessioni)](studi-professionali-confprofessioni.md) | terziario | ~350k | — | ⚠️ | base_salary, bilateral_funds, inps_employer, seniority | 46 / 0 / 0 / 0 | 🏭 | 🧑 |
 | 118 | K521 | [CCNL per i dipendenti delle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione](pulizia-artigianato-confartigianato.md) | pulizia artigianato | ~84505 | 2025 | ⚠️ | base_salary, bilateral_funds, holiday_work, inps_employer, leave, night_work, overtime, seniority | 0 / 0 / 86 / 1 | 🧪 | 🤖 |
 | 119 | D121 | [CCNL per i lavoratori addetti all'industria delle calzature](calzaturiero-assocalzaturifici.md) | industria | ~75k | — | ⚠️ | seniority | 0 / 37 / 1 / 1 | 🧪 | 🤖 |
