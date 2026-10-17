@@ -61,7 +61,7 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 1426 / 4083 / 660 / 59 |
+| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 1459 / 4116 / 594 / 59 |
 | `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 24 / 95 / 13 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 21 / 24 / 48 / 0 |
@@ -213,7 +213,7 @@ never grow.
 | 81 | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | ✅ | overtime | 0 / 44 / 0 / 1 |
 | 82 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | ⚠️ | base_salary, bilateral_funds, pension_fund_contribution | 58 / 7 / 0 / 0 |
 | 83 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | ⚠️ | base_salary, bilateral_funds, overtime, seniority, welfare | 85 / 0 / 0 / 0 |
-| 84 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | ⚠️ | base_salary, seniority, una_tantum | 0 / 0 / 70 / 1 |
+| 84 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | ⚠️ | base_salary, seniority, una_tantum | 33 / 33 / 4 / 1 |
 | 85 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | ⚠️ | base_salary, seniority | 0 / 88 / 1 / 1 |
 | 86 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | ⚠️ | base_salary, bilateral_funds, inail, inps_employee, inps_employer, overtime, seniority, sickness, territorial_supplement | 10 / 9 / 1 / 1 |
 | 87 | [CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)](organizzazioni-allevatori-aia.md) | ⚠️ | base_salary, inps_employer | 0 / 20 / 1 / 1 |

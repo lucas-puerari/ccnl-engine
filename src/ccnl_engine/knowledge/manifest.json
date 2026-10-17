@@ -1492,7 +1492,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "ccnl/noleggio-autobus-conducente-anav",
       "ruleset_version": "1.0.0",
-      "source_hash": "69fc2d67ad681353ed08f0c64e62db25b28bc73c361e93cf676358686635bba5",
+      "source_hash": "b4e22dfd6e1da95dcec670cbfc83a9d311648ce2946b67bb7d2638deea984343",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/noleggio-autobus-conducente-anav.json.gz"

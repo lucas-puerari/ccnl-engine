@@ -15,6 +15,16 @@
     ],
     "sources": [
       {
+        "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+        "type": "accordo_di_rinnovo",
+        "agreement_date": "2025-05-23"
+      },
+      {
+        "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+        "type": "tabella_retributiva",
+        "agreement_date": "2022-10-06"
+      },
+      {
         "url": "https://www.redigo.info/2025/05/27/ccnl-noleggio-autobus-con-conducente-laccordo-di-rinnovo-2024-2026/",
         "type": "news",
         "agreement_date": "2025-05-23"
@@ -115,6 +125,37 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      }
+    ]
+  },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-17-ai-tables",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The tabellari, contingenza and EDR of the eleven levels against the ANAV tables of the accordo of 6 October 2022, and the tranches and the EDR 2025 of the renewal of 23 May 2025.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+            "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
+          },
+          {
+            "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+            "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
+          }
+        ],
+        "findings": [
+          "Allegato n. 2 of the accordo of 6 October 2022, published by ANAV (text layer): the tabellare of October 2023, the contingenza and the EDR of the eleven levels move from assumed to verified (33 values). The signed CCNL scan (Allegato n. 5, p. 83) prints the same table at low resolution.",
+          "The renewal of 23 May 2025 prints only the increments at C2 (60 EUR from July 2025, 100 EUR from August 2026, EDR 2025 of 40 EUR), to reparametrise on the scale 100-200: the tranches and the EDR 2025 of each level are derived (33 values), with the increment rounded once, as the Allegato n. 2 of 2022 adds the aumento a regime in its last column (C4: 729,09 + 67,16 = 796,25, not the 796,26 of the three rounded tranches).",
+          "The ruleset names the renewal published by ANAV, the employer signatory: source_type contracting_party; the aggregator sources (redigo.info, kitech.it) are dropped.",
+          "Corrected: C4 2024-01-01: 796.26 -> 796.25; B2 2024-01-01: 1289.93 -> 1289.92; A1 2024-01-01: 1592.49 -> 1592.50; Q2 2024-01-01: 1592.49 -> 1592.50; Q1 2024-01-01: 1592.49 -> 1592.50."
+        ]
       }
     ]
   },
@@ -313,24 +354,30 @@
           {
             "valid_from": "2024-01-01",
             "valid_until": "2025-07-01",
-            "value": "796.26",
+            "value": "796.25",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                  "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row C4",
+                "quote": "C4 100 ... 511,44 10,33 ... 796,25"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:53:52Z",
+                "review_id": "2026-10-17-ai-tables"
               }
             }
           },
@@ -339,22 +386,26 @@
             "valid_until": "2026-08-01",
             "value": "841.03",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 796,25 plus 60 EUR x 100/134 rounded to cents once (the July 2025 tranche): 841.03.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2025-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -363,22 +414,26 @@
             "valid_until": null,
             "value": "915.65",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 796,25 plus 160 EUR x 100/134 rounded to cents once (both tranches, as the Allegato n. 2 of 2022 adds the aumento a regime to the old tabellare in its last column): 915.65.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2026-08-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -417,22 +472,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column d indennità di contingenza, row C4",
+              "quote": "C4 100 ... 511,44 10,33 ... 796,25"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -468,22 +529,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column e elemento distinto retribuzione (x 13 mensilità), row C4",
+              "quote": "C4 100 ... 511,44 10,33 ... 796,25"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -524,22 +591,26 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-accordo-rinnovo-2025-05-23",
+                "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
               },
-              "section": "Tabella retributiva"
+              "page": "2",
+              "section": "2) Istituzione Elemento Distinto della Retribuzione (EDR 2025)",
+              "quote": "viene istituito un nuovo Elemento Distinto della Retribuzione (EDR 2025) nella misura di 40 euro lordi mensili al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200). Tale EDR viene erogato per 14 mensilità"
             },
+            "transformation": "40 EUR x 100/134 rounded to cents: 29.85.",
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2025-07-01",
+              "verification_status": "unverified"
             }
           }
         }
@@ -575,22 +646,28 @@
             "valid_until": "2025-07-01",
             "value": "995.30",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                  "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row C3",
+                "quote": "C3 125 ... 515,67 10,33 ... 995,30"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:53:52Z",
+                "review_id": "2026-10-17-ai-tables"
               }
             }
           },
@@ -599,22 +676,26 @@
             "valid_until": "2026-08-01",
             "value": "1051.27",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 995,30 plus 60 EUR x 125/134 rounded to cents once (the July 2025 tranche): 1051.27.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2025-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -623,22 +704,26 @@
             "valid_until": null,
             "value": "1144.55",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 995,30 plus 160 EUR x 125/134 rounded to cents once (both tranches, as the Allegato n. 2 of 2022 adds the aumento a regime to the old tabellare in its last column): 1144.55.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2026-08-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -677,22 +762,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column d indennità di contingenza, row C3",
+              "quote": "C3 125 ... 515,67 10,33 ... 995,30"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -728,22 +819,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column e elemento distinto retribuzione (x 13 mensilità), row C3",
+              "quote": "C3 125 ... 515,67 10,33 ... 995,30"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -784,22 +881,26 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-accordo-rinnovo-2025-05-23",
+                "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
               },
-              "section": "Tabella retributiva"
+              "page": "2",
+              "section": "2) Istituzione Elemento Distinto della Retribuzione (EDR 2025)",
+              "quote": "viene istituito un nuovo Elemento Distinto della Retribuzione (EDR 2025) nella misura di 40 euro lordi mensili al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200). Tale EDR viene erogato per 14 mensilità"
             },
+            "transformation": "40 EUR x 125/134 rounded to cents: 37.31.",
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2025-07-01",
+              "verification_status": "unverified"
             }
           }
         }
@@ -835,22 +936,28 @@
             "valid_until": "2025-07-01",
             "value": "1066.97",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                  "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row C2",
+                "quote": "C2 134 ... 517,26 10,33 ... 1.066,97"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:53:52Z",
+                "review_id": "2026-10-17-ai-tables"
               }
             }
           },
@@ -859,22 +966,26 @@
             "valid_until": "2026-08-01",
             "value": "1126.97",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 1.066,97 plus 60 EUR x 134/134 rounded to cents once (the July 2025 tranche): 1126.97.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2025-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -883,22 +994,26 @@
             "valid_until": null,
             "value": "1226.97",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 1.066,97 plus 160 EUR x 134/134 rounded to cents once (both tranches, as the Allegato n. 2 of 2022 adds the aumento a regime to the old tabellare in its last column): 1226.97.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2026-08-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -937,22 +1052,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column d indennità di contingenza, row C2",
+              "quote": "C2 134 ... 517,26 10,33 ... 1.066,97"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -988,22 +1109,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column e elemento distinto retribuzione (x 13 mensilità), row C2",
+              "quote": "C2 134 ... 517,26 10,33 ... 1.066,97"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -1044,22 +1171,26 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-accordo-rinnovo-2025-05-23",
+                "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
               },
-              "section": "Tabella retributiva"
+              "page": "2",
+              "section": "2) Istituzione Elemento Distinto della Retribuzione (EDR 2025)",
+              "quote": "viene istituito un nuovo Elemento Distinto della Retribuzione (EDR 2025) nella misura di 40 euro lordi mensili al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200). Tale EDR viene erogato per 14 mensilità"
             },
+            "transformation": "40 EUR x 134/134 rounded to cents: 40.00.",
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2025-07-01",
+              "verification_status": "unverified"
             }
           }
         }
@@ -1095,22 +1226,28 @@
             "valid_until": "2025-07-01",
             "value": "1210.30",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                  "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row C1",
+                "quote": "C1 152 ... 520,75 10,33 ... 1.210,30"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:53:52Z",
+                "review_id": "2026-10-17-ai-tables"
               }
             }
           },
@@ -1119,22 +1256,26 @@
             "valid_until": "2026-08-01",
             "value": "1278.36",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 1.210,30 plus 60 EUR x 152/134 rounded to cents once (the July 2025 tranche): 1278.36.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2025-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1143,22 +1284,26 @@
             "valid_until": null,
             "value": "1391.79",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 1.210,30 plus 160 EUR x 152/134 rounded to cents once (both tranches, as the Allegato n. 2 of 2022 adds the aumento a regime to the old tabellare in its last column): 1391.79.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2026-08-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1197,22 +1342,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column d indennità di contingenza, row C1",
+              "quote": "C1 152 ... 520,75 10,33 ... 1.210,30"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -1248,22 +1399,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column e elemento distinto retribuzione (x 13 mensilità), row C1",
+              "quote": "C1 152 ... 520,75 10,33 ... 1.210,30"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -1304,22 +1461,26 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-accordo-rinnovo-2025-05-23",
+                "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
               },
-              "section": "Tabella retributiva"
+              "page": "2",
+              "section": "2) Istituzione Elemento Distinto della Retribuzione (EDR 2025)",
+              "quote": "viene istituito un nuovo Elemento Distinto della Retribuzione (EDR 2025) nella misura di 40 euro lordi mensili al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200). Tale EDR viene erogato per 14 mensilità"
             },
+            "transformation": "40 EUR x 152/134 rounded to cents: 45.37.",
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2025-07-01",
+              "verification_status": "unverified"
             }
           }
         }
@@ -1355,22 +1516,28 @@
             "valid_until": "2025-07-01",
             "value": "1234.19",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                  "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row B3",
+                "quote": "B3 155 ... 521,06 10,33 ... 1.234,19"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:53:52Z",
+                "review_id": "2026-10-17-ai-tables"
               }
             }
           },
@@ -1379,22 +1546,26 @@
             "valid_until": "2026-08-01",
             "value": "1303.59",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 1.234,19 plus 60 EUR x 155/134 rounded to cents once (the July 2025 tranche): 1303.59.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2025-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1403,22 +1574,26 @@
             "valid_until": null,
             "value": "1419.26",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 1.234,19 plus 160 EUR x 155/134 rounded to cents once (both tranches, as the Allegato n. 2 of 2022 adds the aumento a regime to the old tabellare in its last column): 1419.26.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2026-08-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1457,22 +1632,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column d indennità di contingenza, row B3",
+              "quote": "B3 155 ... 521,06 10,33 ... 1.234,19"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -1508,22 +1689,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column e elemento distinto retribuzione (x 13 mensilità), row B3",
+              "quote": "B3 155 ... 521,06 10,33 ... 1.234,19"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -1564,22 +1751,26 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-accordo-rinnovo-2025-05-23",
+                "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
               },
-              "section": "Tabella retributiva"
+              "page": "2",
+              "section": "2) Istituzione Elemento Distinto della Retribuzione (EDR 2025)",
+              "quote": "viene istituito un nuovo Elemento Distinto della Retribuzione (EDR 2025) nella misura di 40 euro lordi mensili al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200). Tale EDR viene erogato per 14 mensilità"
             },
+            "transformation": "40 EUR x 155/134 rounded to cents: 46.27.",
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2025-07-01",
+              "verification_status": "unverified"
             }
           }
         }
@@ -1613,24 +1804,30 @@
           {
             "valid_from": "2024-01-01",
             "valid_until": "2025-07-01",
-            "value": "1289.93",
+            "value": "1289.92",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                  "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row B2",
+                "quote": "B2 162 ... 522,46 10,33 ... 1.289,92"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:53:52Z",
+                "review_id": "2026-10-17-ai-tables"
               }
             }
           },
@@ -1639,22 +1836,26 @@
             "valid_until": "2026-08-01",
             "value": "1362.46",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 1.289,92 plus 60 EUR x 162/134 rounded to cents once (the July 2025 tranche): 1362.46.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2025-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1663,22 +1864,26 @@
             "valid_until": null,
             "value": "1483.35",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 1.289,92 plus 160 EUR x 162/134 rounded to cents once (both tranches, as the Allegato n. 2 of 2022 adds the aumento a regime to the old tabellare in its last column): 1483.35.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2026-08-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1717,22 +1922,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column d indennità di contingenza, row B2",
+              "quote": "B2 162 ... 522,46 10,33 ... 1.289,92"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -1768,22 +1979,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column e elemento distinto retribuzione (x 13 mensilità), row B2",
+              "quote": "B2 162 ... 522,46 10,33 ... 1.289,92"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -1824,22 +2041,26 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-accordo-rinnovo-2025-05-23",
+                "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
               },
-              "section": "Tabella retributiva"
+              "page": "2",
+              "section": "2) Istituzione Elemento Distinto della Retribuzione (EDR 2025)",
+              "quote": "viene istituito un nuovo Elemento Distinto della Retribuzione (EDR 2025) nella misura di 40 euro lordi mensili al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200). Tale EDR viene erogato per 14 mensilità"
             },
+            "transformation": "40 EUR x 162/134 rounded to cents: 48.36.",
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2025-07-01",
+              "verification_status": "unverified"
             }
           }
         }
@@ -1875,22 +2096,28 @@
             "valid_until": "2025-07-01",
             "value": "1353.62",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                  "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row B1",
+                "quote": "B1 170 ... 524,10 10,33 ... 1.353,62"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:53:52Z",
+                "review_id": "2026-10-17-ai-tables"
               }
             }
           },
@@ -1899,22 +2126,26 @@
             "valid_until": "2026-08-01",
             "value": "1429.74",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 1.353,62 plus 60 EUR x 170/134 rounded to cents once (the July 2025 tranche): 1429.74.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2025-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1923,22 +2154,26 @@
             "valid_until": null,
             "value": "1556.61",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 1.353,62 plus 160 EUR x 170/134 rounded to cents once (both tranches, as the Allegato n. 2 of 2022 adds the aumento a regime to the old tabellare in its last column): 1556.61.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2026-08-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1977,22 +2212,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column d indennità di contingenza, row B1",
+              "quote": "B1 170 ... 524,10 10,33 ... 1.353,62"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -2028,22 +2269,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column e elemento distinto retribuzione (x 13 mensilità), row B1",
+              "quote": "B1 170 ... 524,10 10,33 ... 1.353,62"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -2084,22 +2331,26 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-accordo-rinnovo-2025-05-23",
+                "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
               },
-              "section": "Tabella retributiva"
+              "page": "2",
+              "section": "2) Istituzione Elemento Distinto della Retribuzione (EDR 2025)",
+              "quote": "viene istituito un nuovo Elemento Distinto della Retribuzione (EDR 2025) nella misura di 40 euro lordi mensili al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200). Tale EDR viene erogato per 14 mensilità"
             },
+            "transformation": "40 EUR x 170/134 rounded to cents: 50.75.",
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2025-07-01",
+              "verification_status": "unverified"
             }
           }
         }
@@ -2135,22 +2386,28 @@
             "valid_until": "2025-07-01",
             "value": "1496.94",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                  "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row A2",
+                "quote": "A2 188 ... 527,49 10,33 ... 1.496,94"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:53:52Z",
+                "review_id": "2026-10-17-ai-tables"
               }
             }
           },
@@ -2159,22 +2416,26 @@
             "valid_until": "2026-08-01",
             "value": "1581.12",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 1.496,94 plus 60 EUR x 188/134 rounded to cents once (the July 2025 tranche): 1581.12.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2025-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -2183,22 +2444,26 @@
             "valid_until": null,
             "value": "1721.42",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 1.496,94 plus 160 EUR x 188/134 rounded to cents once (both tranches, as the Allegato n. 2 of 2022 adds the aumento a regime to the old tabellare in its last column): 1721.42.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2026-08-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -2237,22 +2502,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column d indennità di contingenza, row A2",
+              "quote": "A2 188 ... 527,49 10,33 ... 1.496,94"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -2288,22 +2559,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column e elemento distinto retribuzione (x 13 mensilità), row A2",
+              "quote": "A2 188 ... 527,49 10,33 ... 1.496,94"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -2344,22 +2621,26 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-accordo-rinnovo-2025-05-23",
+                "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
               },
-              "section": "Tabella retributiva"
+              "page": "2",
+              "section": "2) Istituzione Elemento Distinto della Retribuzione (EDR 2025)",
+              "quote": "viene istituito un nuovo Elemento Distinto della Retribuzione (EDR 2025) nella misura di 40 euro lordi mensili al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200). Tale EDR viene erogato per 14 mensilità"
             },
+            "transformation": "40 EUR x 188/134 rounded to cents: 56.12.",
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2025-07-01",
+              "verification_status": "unverified"
             }
           }
         }
@@ -2393,24 +2674,30 @@
           {
             "valid_from": "2024-01-01",
             "valid_until": "2025-07-01",
-            "value": "1592.49",
+            "value": "1592.50",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                  "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row A1",
+                "quote": "A1 200 ... 529,75 10,33 ... 1.592,50"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:53:52Z",
+                "review_id": "2026-10-17-ai-tables"
               }
             }
           },
@@ -2419,22 +2706,26 @@
             "valid_until": "2026-08-01",
             "value": "1682.05",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 1.592,50 plus 60 EUR x 200/134 rounded to cents once (the July 2025 tranche): 1682.05.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2025-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -2443,22 +2734,26 @@
             "valid_until": null,
             "value": "1831.31",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 1.592,50 plus 160 EUR x 200/134 rounded to cents once (both tranches, as the Allegato n. 2 of 2022 adds the aumento a regime to the old tabellare in its last column): 1831.31.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2026-08-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -2497,22 +2792,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column d indennità di contingenza, row A1",
+              "quote": "A1 200 ... 529,75 10,33 ... 1.592,50"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -2548,22 +2849,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column e elemento distinto retribuzione (x 13 mensilità), row A1",
+              "quote": "A1 200 ... 529,75 10,33 ... 1.592,50"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -2604,22 +2911,26 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-accordo-rinnovo-2025-05-23",
+                "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
               },
-              "section": "Tabella retributiva"
+              "page": "2",
+              "section": "2) Istituzione Elemento Distinto della Retribuzione (EDR 2025)",
+              "quote": "viene istituito un nuovo Elemento Distinto della Retribuzione (EDR 2025) nella misura di 40 euro lordi mensili al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200). Tale EDR viene erogato per 14 mensilità"
             },
+            "transformation": "40 EUR x 200/134 rounded to cents: 59.70.",
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2025-07-01",
+              "verification_status": "unverified"
             }
           }
         }
@@ -2653,24 +2964,30 @@
           {
             "valid_from": "2024-01-01",
             "valid_until": "2025-07-01",
-            "value": "1592.49",
+            "value": "1592.50",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                  "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row Q2",
+                "quote": "Q2 200 ... 529,75 10,33 ... 1.592,50"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:53:52Z",
+                "review_id": "2026-10-17-ai-tables"
               }
             }
           },
@@ -2679,22 +2996,26 @@
             "valid_until": "2026-08-01",
             "value": "1682.05",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 1.592,50 plus 60 EUR x 200/134 rounded to cents once (the July 2025 tranche): 1682.05.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2025-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -2703,22 +3024,26 @@
             "valid_until": null,
             "value": "1831.31",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 1.592,50 plus 160 EUR x 200/134 rounded to cents once (both tranches, as the Allegato n. 2 of 2022 adds the aumento a regime to the old tabellare in its last column): 1831.31.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2026-08-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -2757,22 +3082,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column d indennità di contingenza, row Q2",
+              "quote": "Q2 200 ... 529,75 10,33 ... 1.592,50"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -2808,22 +3139,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column e elemento distinto retribuzione (x 13 mensilità), row Q2",
+              "quote": "Q2 200 ... 529,75 10,33 ... 1.592,50"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -2864,22 +3201,26 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-accordo-rinnovo-2025-05-23",
+                "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
               },
-              "section": "Tabella retributiva"
+              "page": "2",
+              "section": "2) Istituzione Elemento Distinto della Retribuzione (EDR 2025)",
+              "quote": "viene istituito un nuovo Elemento Distinto della Retribuzione (EDR 2025) nella misura di 40 euro lordi mensili al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200). Tale EDR viene erogato per 14 mensilità"
             },
+            "transformation": "40 EUR x 200/134 rounded to cents: 59.70.",
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2025-07-01",
+              "verification_status": "unverified"
             }
           }
         },
@@ -2964,24 +3305,30 @@
           {
             "valid_from": "2024-01-01",
             "valid_until": "2025-07-01",
-            "value": "1592.49",
+            "value": "1592.50",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                  "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row Q1",
+                "quote": "Q1 200 ... 529,75 10,33 ... 1.592,50"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:53:52Z",
+                "review_id": "2026-10-17-ai-tables"
               }
             }
           },
@@ -2990,22 +3337,26 @@
             "valid_until": "2026-08-01",
             "value": "1682.05",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 1.592,50 plus 60 EUR x 200/134 rounded to cents once (the July 2025 tranche): 1682.05.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2025-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -3014,22 +3365,26 @@
             "valid_until": null,
             "value": "1831.31",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ic36-548-tabella-retributiva",
-                  "title": "kitech-ic36-548-tabella-retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                  "document_id": "anav-accordo-rinnovo-2025-05-23",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                  "kind": "associazione",
+                  "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                  "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
                 },
-                "section": "Tabella retributiva"
+                "page": "1-2",
+                "section": "Variazione del TEC, 1) Aumenti delle retribuzioni tabellari",
+                "quote": "di 160 euro lordi al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200): 60,00 euro, con la retribuzione relativa al mese di luglio 2025; 100,00 euro, con la retribuzione relativa al mese di agosto 2026"
               },
+              "transformation": "Tabellare of October 2023 1.592,50 plus 160 EUR x 200/134 rounded to cents once (both tranches, as the Allegato n. 2 of 2022 adds the aumento a regime to the old tabellare in its last column): 1831.31.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "effective_from": "2026-08-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -3068,22 +3423,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column d indennità di contingenza, row Q1",
+              "quote": "Q1 200 ... 529,75 10,33 ... 1.592,50"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -3119,22 +3480,28 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-allegato-2-aumento-retributivo-2022",
+                "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
               },
-              "section": "Tabella retributiva"
+              "page": "1",
+              "section": "Allegato n. 2, column e elemento distinto retribuzione (x 13 mensilità), row Q1",
+              "quote": "Q1 200 ... 529,75 10,33 ... 1.592,50"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T11:53:52Z",
+              "review_id": "2026-10-17-ai-tables"
             }
           }
         },
@@ -3175,22 +3542,26 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "kitech-ic36-548-tabella-retributiva",
-                "title": "kitech-ic36-548-tabella-retributiva",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                "document_id": "anav-accordo-rinnovo-2025-05-23",
+                "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+                "kind": "associazione",
+                "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+                "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
               },
-              "section": "Tabella retributiva"
+              "page": "2",
+              "section": "2) Istituzione Elemento Distinto della Retribuzione (EDR 2025)",
+              "quote": "viene istituito un nuovo Elemento Distinto della Retribuzione (EDR 2025) nella misura di 40 euro lordi mensili al livello C2 da riparametrare secondo la scala parametrale vigente (100 — 200). Tale EDR viene erogato per 14 mensilità"
             },
+            "transformation": "40 EUR x 200/134 rounded to cents: 59.70.",
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-09-18T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T11:53:52Z",
+              "effective_from": "2025-07-01",
+              "verification_status": "unverified"
             }
           }
         },
@@ -3272,9 +3643,9 @@
     "version": "1.0.0",
     "effective_from": "2024-01-01",
     "effective_until": "2026-12-31",
-    "source": "verbale-accordo-23052025",
+    "source": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "69fc2d67ad681353ed08f0c64e62db25b28bc73c361e93cf676358686635bba5",
+    "source_hash": "b4e22dfd6e1da95dcec670cbfc83a9d311648ce2946b67bb7d2638deea984343",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }
