@@ -122,12 +122,12 @@
   "apprentice": {
     "employee_rate": "0.0584",
     "employee_ivs_rate": "0.0584",
-    "employer_rate": "0.1161",
+    "employer_rate": "0.1311",
     "employer_ivs_rate": "0.1000",
     "small_firm_max_employees": 9,
-    "small_firm_employer_rate_months_0_11": "0.0311",
+    "small_firm_employer_rate_months_0_11": "0.0461",
     "small_firm_employer_ivs_rate_months_0_11": "0.0150",
-    "small_firm_employer_rate_months_12_23": "0.0461",
+    "small_firm_employer_rate_months_12_23": "0.0611",
     "small_firm_employer_ivs_rate_months_12_23": "0.0300",
     "provenance": {
       "status": "assumed",
@@ -140,7 +140,7 @@
         "section": "art. 1 c. 773; L. 92/2012 art. 2 cc. 36-37"
       },
       "transformation": "Employer rate 10% + NASpI 1.31% + 0.30% = 11.61%.",
-      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Assumed: the record cites no http(s) url. 10% (L. 296/2006 art. 1 c. 773) + NASpI 1.61% (L. 92/2012 art. 2 c. 36 and the 0.30% of art. 25 L. 845/1978) gives the 11.61%; since 1 January 2022 apprentices pay the wage-integration contributions of their employer (INPS circ. 76/2022 par. 1). Open question: circ. INPS 43/2026 gives no apprentice rates; the CISOA and disoccupazione agricola of agricultural apprentices are not found."
+      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Assumed: the record cites no http(s) url. 10% (L. 296/2006 art. 1 c. 773) + NASpI 1.61% (L. 92/2012 art. 2 c. 36 and the 0.30% of art. 25 L. 845/1978) gives the 11.61%; since 1 January 2022 apprentices pay the wage-integration contributions of their employer (INPS circ. 76/2022 par. 1). Open question: circ. INPS 43/2026 gives no apprentice rates; the CISOA and disoccupazione agricola of agricultural apprentices are not found. Carried over from 2026 with the CISOA of 1.50% (INPS circ. 1/2023), aligned on 2026-10-17."
     }
   },
   "ruleset": {
@@ -151,7 +151,7 @@
     "published_at": "2026-10-14",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "972998a7c8db6cafdbdc616e25996474c4f3ebdf5fa9c6a045524fdef3057394",
+    "source_hash": "c123ddab250d0db70c82ca3d9c716e8d14330c5f9cc6d8fb94210a96bf3e87ae",
     "source_type": "estimated",
     "provisional": true
   }
