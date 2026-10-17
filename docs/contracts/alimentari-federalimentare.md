@@ -32,7 +32,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, overtime, sickness |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -122,12 +122,40 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the 50% band over 5 years and the 17 and 24 month comporto windows of Art. 47.
 
-!!! warning "alimentari-federalimentare/alimentari_unmodelled_elements · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the trattamento economico per mancata contrattazione di secondo livello of Art. 51 bis (EUR 21.90 at level 6 to 50.37 at 1S a month for 12 months from 1 January 2023, 32.85 to 75.55 from 1 January 2027, outside the TFR), owed by firms without a premio per obiettivi; the premio di campagna of the conserve vegetali (Art. 51 ter); the premiums of Art. 31 on ordinary night, shift night, holiday and Sunday work; the EDR enters the TFR base only from 1 March 2024 (Art. 73); the pay of first-level and alta formazione apprentices (Art. 21 B-C).
+!!! warning "alimentari-federalimentare/second_level_omission_element · base_salary · impact yes · open"
+    Art. 51 bis: the trattamento economico per mancata contrattazione di secondo livello, EUR 21.90 at level 6 to 50.37 at 1S a month for 12 months from 1 January 2023, 32.85 to 75.55 from 1 January 2027, outside the TFR, owed by firms without a premio per obiettivi.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model Art. 51 bis, Art. 74 bis, Art. 51 ter and the Art. 31 premiums on ordinary hours.
+    **Remediation:** Add an employer fact for the premio per obiettivi and pay Art. 51 bis.
+
+!!! warning "alimentari-federalimentare/campaign_premium · base_salary · impact yes · open"
+    Art. 51 ter: the premio di campagna of the conserve vegetali.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the premio di campagna for the conserve vegetali.
+
+!!! warning "alimentari-federalimentare/ordinary_hours_premiums · overtime · impact yes · open"
+    Art. 31: the premiums on ordinary night, shift night, holiday and Sunday work.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the Art. 31 premiums on ordinary hours.
+
+!!! warning "alimentari-federalimentare/edr_tfr_from_march_2024 · base_salary · impact yes · open"
+    Art. 73: the EDR enters the TFR base only from 1 March 2024; the file counts it for every period.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Date the TFR relevance of the EDR from 1 March 2024.
+
+!!! warning "alimentari-federalimentare/first_level_apprentice_pay · base_salary · impact yes · open"
+    Art. 21 B-C: the pay of the first-level and alta formazione apprentices.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the first-level and alta formazione apprenticeship tracks.
 
 !!! warning "alimentari-federalimentare/health_and_bilateral_funds · bilateral_funds · impact yes · open"
     HEALTH AND BILATERAL FUNDS: the employer contributions to FASA (EUR 16 a month), the Cassa maternità, the bilateralità and the Cassa rischio vita (Art. 74 ter-quinquies) are owed for every worker; a firm outside the bilateral funds owes instead the EDR of EUR 20 x 12 of Art. 74 bis. Neither is modelled: the employer cost, and with the EDR the net pay, are short of them.

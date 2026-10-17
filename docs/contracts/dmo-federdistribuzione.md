@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, seniority, sickness, territorial_supplement |
+| **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority, sickness, territorial_supplement |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -124,12 +124,40 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the net daily pay of Art. 170 and the exempt events of c. 3.
 
-!!! warning "dmo-federdistribuzione/dmo_unmodelled_elements · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the indennità di cassa of 5% (Art. 202); the premiums on ordinary night (15%, Art. 134), Sunday (30%, Art. 136) and weekly rest day (30%, Art. 139) work; the pay rows of the operatori di vendita; the sostegno all'occupazione contract of Art. 70; the guarantee of the commission-paid staff (Art. 201). The una tantum of Art. 197 (July 2024 and 2025) is historic and outside the TFR base (c. 6).
+!!! warning "dmo-federdistribuzione/cashier_allowance · base_salary · impact yes · open"
+    Art. 202: the indennità di cassa of 5%.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the fund omission EDRs, the cashier allowance and the premiums on ordinary hours.
+    **Remediation:** Model the cashier allowance with a role.
+
+!!! warning "dmo-federdistribuzione/ordinary_hours_premiums · overtime · impact yes · open"
+    Art. 134, 136 and 139: the premiums on ordinary night (15%), Sunday (30%) and weekly rest day (30%) work.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the premiums on ordinary hours.
+
+!!! warning "dmo-federdistribuzione/sales_operators · base_salary · impact yes · open"
+    The pay rows of the operatori di vendita.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the operatori di vendita levels.
+
+!!! warning "dmo-federdistribuzione/employment_support_contract · base_salary · impact yes · open"
+    Art. 70: the sostegno all'occupazione contract.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the pay of the Art. 70 contract.
+
+!!! warning "dmo-federdistribuzione/commission_guarantee · base_salary · impact yes · open"
+    Art. 201: the guarantee of the commission-paid staff. The una tantum of Art. 197 (July 2024 and 2025) is historic and outside the TFR base (c. 6).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the guarantee of commission-paid staff.
 
 !!! warning "dmo-federdistribuzione/health_and_bilateral_funds · bilateral_funds · impact yes · open"
     HEALTH AND BILATERAL FUNDS: E.Bi.Di.M. (Art. 18), Fondo EST (Art. 19) and, for the quadri, Cassa QuAS (Art. 20) are owed for every worker, with their worker shares; an employer that does not pay them owes the worker instead the EDR of 0.30% of paga base and contingenza (14 months), EUR 16.00 x 14 and EUR 37.00 x 14. Neither is modelled: the net pay and the employer cost are short of them.

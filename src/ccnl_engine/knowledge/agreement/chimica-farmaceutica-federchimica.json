@@ -100,15 +100,145 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED (they change the gross pay): the lavoro eccedente from 37h45 to 40 weekly hours at 5% (art. 9 punto 1); the premiums on ordinary hours: Sunday or holiday work with compensatory rest 50%, night work outside shifts 50%, shifts 4% (day), 34% (night), 46% (night 3x7), Sunday 3x7 33%, pluriperiodale and Saturday 10%, the first 120 hours past 2,024 a year 30% (art. 9 punti 3-6, 9-11); the night-shift indemnity in cifra, outside the TFR base (EUR 13.50 per 8 hours, EUR 15.50 from 1/7/2027, 2025 renewal p. 47); the Easter payment of 1/25 (art. 12) and the holiday falling on a Sunday at 1/25 (art. 20); the premio di partecipazione, the premio variabile and the elemento perequativo (artt. 48-50); the una tantum contribution of EUR 25 withheld in July 2025 from non-member workers (2025 renewal p. 45). Overtime: the CCNL applies the premiums to the art. 15 punto 1 elements, superminimi included; categories A and B get none. The hourly quota of art. 20 excludes the EAR, which base_salary holds for A and B. The EDR is paid whatever the absences of the month and has no effect on other institutes, while the engine reduces it with the month and counts it in the sickness quota. Absences: deducted at 1/175 an hour, a day taken as 8 hours whatever the company schedule. Sickness: the scales of fixed-term contracts and apprentices (75/60/45/30 days in full, as many at half), the comporto 30% longer for disabled workers (L. 68/1999), the therapies of oncological and degenerative illnesses outside the comporto, the restart of an exhausted treatment on a hospital stay of more than 10 days; hospital stays are left out of the comporto over the whole window, the CCNL does it within one continuous event. Scope: the tables of the Fibre, Abrasivi, Lubrificanti e GPL and Ceramica sectors differ and are not modelled.",
-        "capability": "base_salary",
+        "text": "Art. 9 punto 1: the lavoro eccedente from 37h45 to 40 weekly hours at 5%.",
+        "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "chimica_unmodelled_elements",
+          "variant": "excess_hours",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the art. 9 premiums on ordinary hours, the night-shift indemnity, the Easter payment, the fixed-term sickness scales and the sector tables."
+          "remediation": "Add a band for the lavoro eccedente at 5%."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 9 punti 3-6, 9-11: the premiums on ordinary hours (Sunday or holiday work with compensatory rest 50%, night work outside shifts 50%, shifts 4% day, 34% night, 46% night 3x7, Sunday 3x7 33%, pluriperiodale and Saturday 10%, the first 120 hours past 2,024 a year 30%).",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ordinary_hours_premiums",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the Art. 9 premiums on ordinary hours."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Renewal of 2025, p. 47: the night-shift indemnity in cifra, outside the TFR base (EUR 13.50 per 8 hours, EUR 15.50 from 1/7/2027).",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "night_shift_indemnity",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the night-shift indemnity per shift."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 12 and Art. 20: the Easter payment of 1/25 and the holiday falling on a Sunday at 1/25.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "easter_and_sunday_holiday",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pay the Easter 1/25 and the Sunday holiday at 1/25."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Artt. 48-50: the premio di partecipazione, the premio variabile and the elemento perequativo.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "participation_premiums",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the premi of Artt. 48-50 with the employer facts they need."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Renewal of 2025, p. 45: the una tantum contribution of EUR 25 withheld in July 2025 from non-member workers.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "una_tantum_withholding_2025",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the withholding of July 2025 for non-member workers."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "The CCNL applies the overtime premiums to the art. 15 punto 1 elements, superminimi included, categories A and B get none, and the hourly quota of art. 20 excludes the EAR, which base_salary holds for A and B.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "overtime_base_and_categories",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Compute the overtime base on the art. 15 elements and exclude categories A and B."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "The EDR is paid whatever the absences of the month and has no effect on other institutes, while the engine reduces it with the month and counts it in the sickness quota.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "edr_absences",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Keep the EDR whole in partial months and out of the sickness quota."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Absences are deducted at 1/175 an hour, a day taken as 8 hours whatever the company schedule.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "absence_hours",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Take the company daily schedule for the hours of an absent day."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Sickness: the scales of fixed-term contracts and apprentices (75/60/45/30 days in full, as many at half), the comporto 30% longer for disabled workers (L. 68/1999), the therapies of oncological and degenerative illnesses outside the comporto, the restart of an exhausted treatment on a hospital stay of more than 10 days; hospital stays are left out of the comporto over the whole window, the CCNL does it within one continuous event.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sickness_scales_and_comporto",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the fixed-term and apprentice scales and the comporto rules of the sickness article."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Scope: the tables of the Fibre, Abrasivi, Lubrificanti e GPL and Ceramica sectors differ and are not modelled.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "other_sector_tables",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the tables of the other sectors."
         }
       }
     ]
@@ -4609,7 +4739,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "c0dcc0365bd9e268f42cfbf71b5a78f955a8f416ad00d6c11860a75bc3fe31ac",
+    "source_hash": "cca4e74fae62260be26ec2749de75a2c081eea6f85c8b3362c6c4a1424a06425",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

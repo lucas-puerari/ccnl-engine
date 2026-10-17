@@ -110,15 +110,145 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED PAY CLAUSES (CCNL of 3 July 2017 and renewal of 4 June 2026): elemento perequativo of 485 EUR a year with June pay in firms without second-level bargaining (Art. 48); indennità di funzione of the quadri (Art. 98); reperibilità (Art. 28, amounts by group of levels adjusted each June) and trasferta; ordinary night, holiday and compensatory-rest premiums (Art. 29 rows b, d, h, i, f, m); the shift-worker column of Art. 29 (night overtime 40%/45%, night holiday overtime 65%) and night holiday work within 8 hours (60%); flessibilità beyond 40 hours (15%/20%, Art. 23) and banca ore (50% of the overtime premium); festività on a Sunday (1/26) and the 1 h 20' of the ex operai; the superminimo ex Parte prima of 11 h 10' a year (Art. 38); leave on a 6-day week and the transitional extra day (Art. 33); sickness: comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27), the net-pay gross-up; child sickness indemnity from 2027 (Art. 58 bis) and oncological permits (Art. 55 bis); the 65% credit of the apprenticeship for the seniority increments of the worker kept on (Art. 10 p. 49); the IPCA top-up of June 2027 and 2028 above 2.653% and 2.729%.",
+        "text": "Art. 48: the elemento perequativo of 485 EUR a year with the June pay in firms without second-level bargaining.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "confapi_unmodelled_pay_elements",
+          "variant": "elemento_perequativo",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the perequativo, E.A.R., quadri allowance, standby, ordinary-hour premiums, shift-worker rates and the residual sickness rules of Art. 55."
+          "remediation": "Add an employer fact for the second-level bargaining and pay the element."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 98: the indennità di funzione of the quadri.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "quadri_allowance",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the quadri allowance with a role."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 28: reperibilità (amounts by group of levels adjusted each June) and trasferta.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "standby_and_travel",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model standby and travel."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 29 rows b, d, h, i, f, m: the ordinary night, holiday and compensatory-rest premiums; the shift-worker column (night overtime 40%/45%, night holiday overtime 65%) and night holiday work within 8 hours (60%).",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ordinary_hours_premiums",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the Art. 29 premiums and the shift-worker column."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 23: flessibilità beyond 40 hours (15%/20%) and banca ore (50% of the overtime premium).",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "flexibility_and_hours_bank",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the flexibility and hours-bank premiums."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "The festività on a Sunday (1/26) and the 1 h 20' of the ex operai; the superminimo ex Parte prima of 11 h 10' a year (Art. 38).",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sunday_holiday_and_ex_operai",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pay the Sunday holiday, the 1 h 20' and the Art. 38 superminimo."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 33: leave on a 6-day week and the transitional extra day.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "six_day_leave",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the leave of a 6-day week."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Sickness: comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27), the net-pay gross-up.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sickness_rules",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the residual sickness rules of Art. 55."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 58 bis and Art. 55 bis: the child sickness indemnity from 2027 and the oncological permits.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "child_sickness_and_oncological_permits",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the indemnity of Art. 58 bis and the permits of Art. 55 bis."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 10 p. 49: the 65% credit of the apprenticeship for the seniority increments of the worker kept on.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "apprentice_seniority_credit",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Credit 65% of the apprenticeship to the seniority."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Renewal of 4 June 2026: the IPCA top-up of June 2027 and 2028 above 2.653% and 2.729%.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ipca_top_up",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the IPCA top-up when the index is published."
         }
       },
       {
@@ -2638,7 +2768,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "9ec8ec177f30070c2b911e16132017e1e4117e6ab1a4d0dc1835b5ca8889b389",
+    "source_hash": "8be57282f46a9dbc725e5989f15c8133ec4e3982da3b12bcd28adbb0cbe5afe1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
