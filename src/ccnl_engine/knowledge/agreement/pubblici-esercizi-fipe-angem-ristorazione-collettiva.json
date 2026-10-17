@@ -2482,7 +2482,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "421258e3bfcaf23830a628b148721066a9e6a5fcd803a19898dacdca04ec4648",
+    "source_hash": "31d12547f01078589e85cf90ee5575cf0b42e827cc7ba422b5abb0dbe46d3704",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2879,6 +2879,29 @@
           "Level 4, January 2026: paga base conglobata 19.832,28 a year over 12 equals the 1652.69 of the file (tranche of 1 September 2025); the quattordicesima of the table, 1.652,69, is that month. Match: reference case pubblici-esercizi-fipe-angem-ristorazione-collettiva_4_2026_ministry.json.",
           "Employer contributions: the table prints Inps 29,75%, FIS 0,53% and CIGS 0,60%, 30.88% in all; the engine applies 30.8833% to an impiegato of a company of 51 employees (the FIS employer share 0.80% x 2/3 = 0.5333%, printed rounded). The CIGS line places the table above 50 employees (D.Lgs. 148/2015 art. 20, commercial companies with more than fifty employees). Match within the rounding of the printed rate; a rate, not a total, so no output is credited.",
           "Deviations, with cause and decision: INAIL 1,09% is not computed by the engine (documented); the health fund (158,40 a year) is the owed limitation health_and_bilateral_funds, which leaves the employer cost incomplete on every run (checked: is_employer_cost_complete false); the EBT contribution, the complementary pension at a 30% enrolment and the three seniority increments of row A are averages of the table, not facts of one worker: not compared. No independent net pay example: not compared."
+        ]
+      },
+      {
+        "id": "2026-10-17-ai-full-year",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The paga base and contingenza of every level from June 2024 against the accordo integrativo of 26 June 2024, the quattordicesima against the CCNL of 8 February 2018, and a year and a termination of a 4th level worker against a hand oracle.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+          },
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          }
+        ],
+        "findings": [
+          "Accordo integrativo of 26 June 2024 (pp. 1-3): the 50 totals of contingenza and paga base of the ten levels from June 2024 to December 2027 match the file, with the tranches of 2025 and 2026 in September.",
+          "Art. 184 of the CCNL of 8 February 2018 (p. 128, scan read by OCR): quattordicesima of the pay in force on 30 June, paid with the July pay, in ratei of the twelve months before 1 July. Match.",
+          "Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios ristorazione-year and ristorazione-june): a 4th level impiegato hired on 1 January 2026 by an employer with 10 employees, with the terziario rates up to 15 employees and the 0.77% sickness supplement of the pubblici esercizi taken apart; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done."
         ]
       }
     ],

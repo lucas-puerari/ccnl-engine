@@ -254,5 +254,69 @@
       "tfr",
       "employer_cost"
     ]
+  },
+  "fipe-year": {
+    "ccnl": "pubblici-esercizi-fipe-angem",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 6-15", "minimo tranche of June"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "fipe-june": {
+    "ccnl": "pubblici-esercizi-fipe-angem",
+    "cycles": ["ordinary month", "extra month", "termination"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 6-15", "trattamento integrativo and somma esente bands"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "ristorazione-year": {
+    "ccnl": "pubblici-esercizi-fipe-angem-ristorazione-collettiva",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 6-15", "minimo tranche of September"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "ristorazione-june": {
+    "ccnl": "pubblici-esercizi-fipe-angem-ristorazione-collettiva",
+    "cycles": ["ordinary month", "extra month", "termination"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 6-15", "trattamento integrativo and somma esente bands"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
   }
 }

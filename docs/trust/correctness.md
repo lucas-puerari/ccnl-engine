@@ -100,7 +100,9 @@ Evidence:
   with the tranche of May; Chimica Farmaceutica D1, 50 employees, with the
   tranche of July; Industria Alimentare 3rd level, 50 employees, with the
   EDR outside the quattordicesima; Distribuzione Moderna Organizzata IV, 50
-  employees, with the tranche of November), in
+  employees, with the tranche of November; Pubblici Esercizi and
+  Ristorazione Collettiva 4th level, 10 employees, with the tranches of June
+  and September and the 0.77% sickness supplement), in
   `tests/knowledge/ccnl_engine/period/sector/`. Every payment (gross, worker
   INPS, employer contributions with the solidarity contribution on the
   pension fund, TFR accrued net of the 0.50%, employer cost) and the year

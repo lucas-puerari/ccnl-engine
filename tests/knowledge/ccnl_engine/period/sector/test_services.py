@@ -52,9 +52,13 @@ from tests.knowledge.ccnl_engine.period.sector.oracles import (
     DMO_YEAR,
     EDILIZIA_JUNE,
     EDILIZIA_YEAR,
+    FIPE_JUNE,
+    FIPE_YEAR,
     INDUSTRIA_JUNE,
     INDUSTRIA_YEAR,
     OVERTIME_HOURS,
+    RISTORAZIONE_JUNE,
+    RISTORAZIONE_YEAR,
     STUDI_JUNE,
     STUDI_YEAR,
     TERZIARIO_JUNE,
@@ -97,6 +101,8 @@ class Scenario:
 _METAL = "metalmeccanico-federmeccanica"
 _TERZ = "terziario-confesercenti"
 _EDIL = "edilizia-ance"
+_RISTORAZIONE = "pubblici-esercizi-fipe-angem-ristorazione-collettiva"
+_FIPE = "pubblici-esercizi-fipe-angem"
 _DMO = "dmo-federdistribuzione"
 _ALIMENTARI = "alimentari-federalimentare"
 _CHIMICA = "chimica-farmaceutica-federchimica"
@@ -112,6 +118,8 @@ _TURISMO_OWED = frozenset({f"{_TURISMO}/health_and_bilateral_funds"})
 _CHIMICA_OWED: frozenset[str] = frozenset()
 _ALIMENTARI_OWED = frozenset({f"{_ALIMENTARI}/health_and_bilateral_funds"})
 _DMO_OWED = frozenset({f"{_DMO}/health_and_bilateral_funds"})
+_FIPE_OWED = frozenset({f"{_FIPE}/health_and_bilateral_funds"})
+_RISTORAZIONE_OWED = frozenset({f"{_RISTORAZIONE}/health_and_bilateral_funds"})
 _EDIL_OWED = frozenset({
     f"{_EDIL}/cassa_edile_contribution",
     f"{_EDIL}/territorial_sector_allowance",
@@ -276,6 +284,44 @@ SCENARIOS = {
         net_pay_reliable=False,
         terminated=True,
         provincial_pay_element=True,
+    ),
+    "fipe-year": Scenario(
+        _FIPE,
+        "4",
+        WorkerCategory.IMPIEGATO,
+        10,
+        FIPE_YEAR,
+        _FIPE_OWED,
+        net_pay_reliable=False,
+    ),
+    "fipe-june": Scenario(
+        _FIPE,
+        "4",
+        WorkerCategory.IMPIEGATO,
+        10,
+        FIPE_JUNE,
+        _FIPE_OWED,
+        net_pay_reliable=False,
+        terminated=True,
+    ),
+    "ristorazione-year": Scenario(
+        _RISTORAZIONE,
+        "4",
+        WorkerCategory.IMPIEGATO,
+        10,
+        RISTORAZIONE_YEAR,
+        _RISTORAZIONE_OWED,
+        net_pay_reliable=False,
+    ),
+    "ristorazione-june": Scenario(
+        _RISTORAZIONE,
+        "4",
+        WorkerCategory.IMPIEGATO,
+        10,
+        RISTORAZIONE_JUNE,
+        _RISTORAZIONE_OWED,
+        net_pay_reliable=False,
+        terminated=True,
     ),
 }
 

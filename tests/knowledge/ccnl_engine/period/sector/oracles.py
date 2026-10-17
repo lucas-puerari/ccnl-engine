@@ -17,7 +17,11 @@ and a 2025 income of 40,000 EUR (no renewal substitute tax):
 - alimentari: Industria Alimentare 3rd level impiegato, 50 employees,
   fourteen payments with the EDR on thirteen;
 - dmo: Distribuzione Moderna Organizzata IV, 50 employees, a provincial
-  element in force, fourteen payments.
+  element in force, fourteen payments;
+- fipe: Pubblici Esercizi 4th level, 10 employees, the tranche of June
+  and the 0.77% sickness supplement;
+- ristorazione: Ristorazione Collettiva 4th level, 10 employees, the
+  tranche of September.
 
 Each runs for the whole year and, apart, until a termination on 30 June.
 
@@ -68,8 +72,12 @@ __all__ = [
     "DMO_YEAR",
     "EDILIZIA_JUNE",
     "EDILIZIA_YEAR",
+    "FIPE_JUNE",
+    "FIPE_YEAR",
     "INDUSTRIA_JUNE",
     "INDUSTRIA_YEAR",
+    "RISTORAZIONE_JUNE",
+    "RISTORAZIONE_YEAR",
     "STUDI_JUNE",
     "STUDI_YEAR",
     "TERZIARIO_JUNE",
@@ -100,12 +108,18 @@ def _whole_euro(amount: Decimal) -> Decimal:
 
 @dataclass(frozen=True)
 class Rates:
-    """INPS shares of a sector, tier and category, as fractions."""
+    """INPS shares of a sector, tier and category, as fractions.
+
+    ``employer_supplement`` is an employer contribution INPS charges apart,
+    taken to cents on its own (the 0.77% sickness supplement of the
+    pubblici esercizi).
+    """
 
     employee_ivs: Decimal
     employee_other: Decimal
     employer_ivs: Decimal
     employer_other: Decimal
+    employer_supplement: Decimal = _ZERO
 
 
 @dataclass(frozen=True)
@@ -184,7 +198,11 @@ class SectorYear:
 def _payment(pay: Pay, rates: Rates) -> Payment:
     base = _whole_euro(pay.gross)
     employee = _cents(base * rates.employee_ivs) + _cents(base * rates.employee_other)
-    employer = _cents(base * rates.employer_ivs) + _cents(base * rates.employer_other)
+    employer = (
+        _cents(base * rates.employer_ivs)
+        + _cents(base * rates.employer_other)
+        + _cents(base * rates.employer_supplement)
+    )
     quota = _cents(pay.tfr_base / _TFR_DIVISOR)
     deduction = _cents(base * _TFR_EXTRA_IVS)
     accrual = quota - deduction
@@ -631,6 +649,66 @@ def _dmo_june() -> tuple[Pay, ...]:
 
 DMO_YEAR = sector_year(_dmo_year(), _TERZIARIO, _FULL_YEAR, terminated=False)
 DMO_JUNE = sector_year(_dmo_june(), _TERZIARIO, _HALF_YEAR, terminated=True)
+
+
+# Pubblici Esercizi and Ristorazione Collettiva: 4th level, 10 employees.
+
+#: 4th level contingenza and paga base: accordo integrativo of 26 June
+#: 2024, pp. 1-3 (sha256
+#: 0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922): "4
+#: 524,94 € 1.127,75 € 1.652,69 €" from June 2025 and "4 524,94 € 1.167,75
+#: € 1.692,69 €" from June 2026; the ristorazione collettiva tables move
+#: the same amounts to September 2025 and September 2026 (p. 3).
+_FIPE_OLD = Decimal("524.94") + Decimal("1127.75")
+_FIPE_NEW = Decimal("524.94") + Decimal("1167.75")
+#: Terziario from 6 to 15 employees (INPS circ. 117/2022 all. 1, as for
+#: the turismo above) and the additional sickness contribution of the
+#: pubblici esercizi, "pari allo 0,77% della retribuzione imponibile"
+#: (INPS msg. 2382/2024; D.M. 1 February 1957), charged apart.
+_FIPE_RATES = Rates(
+    employee_ivs=Decimal("0.0919"),
+    employee_other=Decimal("0.0026667"),
+    employer_ivs=Decimal("0.2381"),
+    employer_other=Decimal("0.0570333"),
+    employer_supplement=Decimal("0.0077"),
+)
+#: Quattordicesima of the pay "in atto al 30 giugno", paid with the July
+#: pay, in ratei of the twelve months before 1 July (CCNL 8 February 2018,
+#: art. 184, p. 128): six for a hire on 1 January; tredicesima of one
+#: monthly pay at Christmas (art. 183).
+
+
+def _fipe(month: int, tranche: int) -> Decimal:
+    return _FIPE_OLD if month < tranche else _FIPE_NEW
+
+
+def _fipe_year(tranche: int) -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _fipe(m, tranche), _fipe(m, tranche)) for m in range(1, 13)]
+    fourteenth = _cents(_fipe(6, tranche) * 6 / 12)
+    pays.insert(6, Pay(_run(6, "fourteenth"), fourteenth, fourteenth))
+    pays.append(Pay(_run(12, "thirteenth"), _FIPE_NEW, _FIPE_NEW))
+    return tuple(pays)
+
+
+def _fipe_june(tranche: int) -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _fipe(m, tranche), _fipe(m, tranche)) for m in range(1, 6)]
+    last = _fipe(6, tranche)
+    #: Six twelfths of the tredicesima are paid with the last month.
+    june = last + _cents(last * 6 / 12)
+    fourteenth = _cents(last * 6 / 12)
+    return (
+        *pays,
+        Pay(_run(6), june, june),
+        Pay(_run(6, "fourteenth"), fourteenth, fourteenth),
+    )
+
+
+FIPE_YEAR = sector_year(_fipe_year(6), _FIPE_RATES, _FULL_YEAR, terminated=False)
+FIPE_JUNE = sector_year(_fipe_june(6), _FIPE_RATES, _HALF_YEAR, terminated=True)
+RISTORAZIONE_YEAR = sector_year(
+    _fipe_year(9), _FIPE_RATES, _FULL_YEAR, terminated=False
+)
+RISTORAZIONE_JUNE = sector_year(_fipe_june(9), _FIPE_RATES, _HALF_YEAR, terminated=True)
 
 
 # Edilizia: ANCE operaio of the 1st level, 173 hours.
