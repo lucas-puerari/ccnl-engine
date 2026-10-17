@@ -98,7 +98,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/alimentari-federalimentare",
       "ruleset_version": "2026.2",
-      "source_hash": "ea2eeed7a1b2a6bb7a939404543d0f0038c6d8f0b12a102248bcc11f06b9e03c",
+      "source_hash": "4fbe90afc7842fd94b136295bcf401c614371a6e18b661f87377ec40a10e1729",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/alimentari-federalimentare.json.gz"

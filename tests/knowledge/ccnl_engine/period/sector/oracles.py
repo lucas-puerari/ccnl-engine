@@ -13,7 +13,9 @@ and a 2025 income of 40,000 EUR (no renewal substitute tax):
 - turismo: Turismo Federalberghi 4th level, 10 employees, fourteen
   payments and the tranche of May;
 - chimica: Chimica Farmaceutica Federchimica D1 impiegato, 50 employees,
-  the tranche of July.
+  the tranche of July;
+- alimentari: Industria Alimentare 3rd level impiegato, 50 employees,
+  fourteen payments with the EDR on thirteen.
 
 Each runs for the whole year and, apart, until a termination on 30 June.
 
@@ -56,6 +58,8 @@ from tests.knowledge.ccnl_engine.tax_credit.oracles import (
 )
 
 __all__ = [
+    "ALIMENTARI_JUNE",
+    "ALIMENTARI_YEAR",
     "CHIMICA_JUNE",
     "CHIMICA_YEAR",
     "EDILIZIA_JUNE",
@@ -518,6 +522,69 @@ def _chimica_june() -> tuple[Pay, ...]:
 
 CHIMICA_YEAR = sector_year(_chimica_year(), _INDUSTRIA, _FULL_YEAR, terminated=False)
 CHIMICA_JUNE = sector_year(_chimica_june(), _INDUSTRIA, _HALF_YEAR, terminated=True)
+
+
+# Alimentari: Industria Alimentare 3rd level impiegato, 50 employees.
+
+#: CCNL 1 March 2024 (sha256
+#: 11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c, PDF
+#: pages): minimo of the 3rd level from 1 January 2026, Art. 51 lett. A
+#: (p. 116, "3 130 ... 1566,16 37,01 1603,17"); ex contingenza 522,32
+#: (Art. 52, p. 121); EDR "di euro 10,33 mensili per 13 mensilità" (Art.
+#: 52, p. 121); IAR 85,41 from 1 December 2023 (Art. 51 lett. D, p. 118).
+_ALIMENTARI_ITEMS = (
+    Decimal("1566.16"),
+    Decimal("522.32"),
+    Decimal("85.41"),
+)
+_ALIMENTARI_EDR = Decimal("10.33")
+_ALIMENTARI = sum(_ALIMENTARI_ITEMS, _ALIMENTARI_EDR)
+
+
+def _twelfths(items: tuple[Decimal, ...], months: int) -> Decimal:
+    """Return ``months`` twelfths of a pay, each item taken to cents.
+
+    Returns:
+        The sum of the twelfths of the items.
+    """
+    return sum((_cents(item * months / 12) for item in items), _ZERO)
+
+
+#: Tredicesima of the monthly pay at Christmas and quattordicesima of the
+#: monthly pay (Art. 54, p. 123), both in twelfths for a hire within the
+#: year; the quattordicesima leaves out the EDR, paid on 13 months, and
+#: accrues from 1 July to 30 June as the gratifica speciale of the operai
+#: (p. 215), paid with the June pay: six twelfths for a hire on 1 January.
+_ALIMENTARI_FOURTEENTH = _twelfths(_ALIMENTARI_ITEMS, 6)
+
+
+def _alimentari_year() -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _ALIMENTARI, _ALIMENTARI) for m in range(1, 13)]
+    fourteenth = _ALIMENTARI_FOURTEENTH
+    pays.insert(6, Pay(_run(6, "fourteenth"), fourteenth, fourteenth))
+    pays.append(Pay(_run(12, "thirteenth"), _ALIMENTARI, _ALIMENTARI))
+    return tuple(pays)
+
+
+def _alimentari_june() -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _ALIMENTARI, _ALIMENTARI) for m in range(1, 6)]
+    #: Six twelfths of the tredicesima are paid with the last month.
+    rateo = _twelfths((*_ALIMENTARI_ITEMS, _ALIMENTARI_EDR), 6)
+    june = _ALIMENTARI + rateo
+    fourteenth = _ALIMENTARI_FOURTEENTH
+    return (
+        *pays,
+        Pay(_run(6), june, june),
+        Pay(_run(6, "fourteenth"), fourteenth, fourteenth),
+    )
+
+
+ALIMENTARI_YEAR = sector_year(
+    _alimentari_year(), _INDUSTRIA, _FULL_YEAR, terminated=False
+)
+ALIMENTARI_JUNE = sector_year(
+    _alimentari_june(), _INDUSTRIA, _HALF_YEAR, terminated=True
+)
 
 
 # Edilizia: ANCE operaio of the 1st level, 173 hours.

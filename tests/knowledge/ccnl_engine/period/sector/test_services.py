@@ -44,6 +44,8 @@ from ccnl_engine.inputs import (
 )
 from ccnl_engine.results import BlockerCode
 from tests.knowledge.ccnl_engine.period.sector.oracles import (
+    ALIMENTARI_JUNE,
+    ALIMENTARI_YEAR,
     CHIMICA_JUNE,
     CHIMICA_YEAR,
     EDILIZIA_JUNE,
@@ -93,6 +95,7 @@ class Scenario:
 _METAL = "metalmeccanico-federmeccanica"
 _TERZ = "terziario-confesercenti"
 _EDIL = "edilizia-ance"
+_ALIMENTARI = "alimentari-federalimentare"
 _CHIMICA = "chimica-farmaceutica-federchimica"
 _TURISMO = "turismo-federalberghi"
 _STUDI = "studi-professionali-confprofessioni"
@@ -104,6 +107,7 @@ _TERZ_OWED = frozenset({f"{_TERZ}/health_and_bilateral_funds"})
 _STUDI_OWED = frozenset({f"{_STUDI}/bilateral_contribution_or_element"})
 _TURISMO_OWED = frozenset({f"{_TURISMO}/health_and_bilateral_funds"})
 _CHIMICA_OWED: frozenset[str] = frozenset()
+_ALIMENTARI_OWED = frozenset({f"{_ALIMENTARI}/health_and_bilateral_funds"})
 _EDIL_OWED = frozenset({
     f"{_EDIL}/cassa_edile_contribution",
     f"{_EDIL}/territorial_sector_allowance",
@@ -227,6 +231,25 @@ SCENARIOS = {
         CHIMICA_JUNE,
         _CHIMICA_OWED,
         net_pay_reliable=True,
+        terminated=True,
+    ),
+    "alimentari-year": Scenario(
+        _ALIMENTARI,
+        "3",
+        WorkerCategory.IMPIEGATO,
+        50,
+        ALIMENTARI_YEAR,
+        _ALIMENTARI_OWED,
+        net_pay_reliable=False,
+    ),
+    "alimentari-june": Scenario(
+        _ALIMENTARI,
+        "3",
+        WorkerCategory.IMPIEGATO,
+        50,
+        ALIMENTARI_JUNE,
+        _ALIMENTARI_OWED,
+        net_pay_reliable=False,
         terminated=True,
     ),
 }
