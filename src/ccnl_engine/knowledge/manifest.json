@@ -183,7 +183,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/attivita-minerarie-assorisorse",
       "ruleset_version": "2026.1",
-      "source_hash": "2170739f2aee7e8b8af5d84d2d56651321649f14dbba9669c8c4d1272fe6981e",
+      "source_hash": "f8bed547140695b59830107cb8379c684b9ffc2f830892e0a6bb08cd5475e344",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/attivita-minerarie-assorisorse.json.gz"
