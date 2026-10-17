@@ -1747,8 +1747,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/radiotelevisive-radiofonico",
       "ruleset_version": "2026.2",
-      "source_hash": "773033aeca8ff8bf1c6e3bd124a6330cf50d050466aaf86fab5825af32d743aa",
-      "source_type": "estimated",
+      "source_hash": "aaacca36b14de4b92145ef4f1015f6a4ec92bc673ef0902e748ed2113467b11b",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/radiotelevisive-radiofonico.json.gz"
     },
@@ -1764,8 +1764,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/radiotelevisive-televisivo",
       "ruleset_version": "2026.2",
-      "source_hash": "c746800fcf07de0f11720a111843ff4011ef10e5eadb38b25d1dc73dec80f3f3",
-      "source_type": "estimated",
+      "source_hash": "ee19aa854a33eaad59cd4d121e5ce616df7a2b0a5eec58521a973217baebdef7",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/radiotelevisive-televisivo.json.gz"
     },
