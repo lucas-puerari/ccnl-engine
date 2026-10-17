@@ -166,5 +166,5 @@ def test_an_assumed_tranche_of_the_provisional_year_is_a_visible_blocker(
 
 
 def test_the_provisional_year_has_assumed_tranches_to_check() -> None:
-    """The scan above is not vacuous: seven CCNLs assume a 2027 tranche today."""
-    assert len(_assumed_tranches()) >= 7
+    """The scan above is not vacuous: some CCNLs still assume a 2027 tranche."""
+    assert _assumed_tranches()

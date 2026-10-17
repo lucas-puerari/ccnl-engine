@@ -87,6 +87,31 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-17-ai-tables",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The minimi tabellari of the Settore Televisivo Multimediale against the tables of the renewal published by Confindustria Radio Televisioni.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+            "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
+          }
+        ],
+        "findings": [
+          "The minimi of the 9 levels from 2026-01-01 to 2028-01-01 (PDF p. 1, text layer; the same tables are in the consolidated CCNL 2026, PDF pp. 74-75) match the file and move from assumed to verified.",
+          "The ruleset names this source, published by Confindustria Radio Televisioni, the employer signatory: source_type contracting_party instead of estimated."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -434,23 +459,29 @@
             "valid_until": "2027-06-01",
             "value": "835.62",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2026-01-01, row 1",
+                "quote": "1 793,07 835,62 878,18 902,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -458,23 +489,29 @@
             "valid_until": "2028-01-01",
             "value": "878.18",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2027-06-01, row 1",
+                "quote": "1 793,07 835,62 878,18 902,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2027-06-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -482,23 +519,29 @@
             "valid_until": null,
             "value": "902.11",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2028-01-01, row 1",
+                "quote": "1 793,07 835,62 878,18 902,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2028-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -589,23 +632,29 @@
             "valid_until": "2027-06-01",
             "value": "969.61",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2026-01-01, row 2",
+                "quote": "2 920,25 969,61 1.018,97 1.046,74"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -613,23 +662,29 @@
             "valid_until": "2028-01-01",
             "value": "1018.97",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2027-06-01, row 2",
+                "quote": "2 920,25 969,61 1.018,97 1.046,74"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2027-06-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -637,23 +692,29 @@
             "valid_until": null,
             "value": "1046.74",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2028-01-01, row 2",
+                "quote": "2 920,25 969,61 1.018,97 1.046,74"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2028-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -744,23 +805,29 @@
             "valid_until": "2027-06-01",
             "value": "1102.56",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2026-01-01, row 3",
+                "quote": "3 1.046,39 1.102,56 1.158,73 1.190,33"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -768,23 +835,29 @@
             "valid_until": "2028-01-01",
             "value": "1158.73",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2027-06-01, row 3",
+                "quote": "3 1.046,39 1.102,56 1.158,73 1.190,33"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2027-06-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -792,23 +865,29 @@
             "valid_until": null,
             "value": "1190.33",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2028-01-01, row 3",
+                "quote": "3 1.046,39 1.102,56 1.158,73 1.190,33"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2028-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -899,23 +978,29 @@
             "valid_until": "2027-06-01",
             "value": "1320.90",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2026-01-01, row 4",
+                "quote": "4 1.253,67 1.320,90 1.388,14 1.425,96"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -923,23 +1008,29 @@
             "valid_until": "2028-01-01",
             "value": "1388.14",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2027-06-01, row 4",
+                "quote": "4 1.253,67 1.320,90 1.388,14 1.425,96"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2027-06-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -947,23 +1038,29 @@
             "valid_until": null,
             "value": "1425.96",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2028-01-01, row 4",
+                "quote": "4 1.253,67 1.320,90 1.388,14 1.425,96"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2028-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -1054,23 +1151,29 @@
             "valid_until": "2027-06-01",
             "value": "1571.00",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2026-01-01, row 5",
+                "quote": "5 1.491,00 1.571,00 1.651,00 1.696,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1078,23 +1181,29 @@
             "valid_until": "2028-01-01",
             "value": "1651.00",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2027-06-01, row 5",
+                "quote": "5 1.491,00 1.571,00 1.651,00 1.696,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2027-06-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1102,23 +1211,29 @@
             "valid_until": null,
             "value": "1696.00",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2028-01-01, row 5",
+                "quote": "5 1.491,00 1.571,00 1.651,00 1.696,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2028-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -1209,23 +1324,29 @@
             "valid_until": "2027-06-01",
             "value": "1704.98",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2026-01-01, row 6",
+                "quote": "6 1.618,17 1.704,98 1.791,79 1.840,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1233,23 +1354,29 @@
             "valid_until": "2028-01-01",
             "value": "1791.79",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2027-06-01, row 6",
+                "quote": "6 1.618,17 1.704,98 1.791,79 1.840,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2027-06-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1257,23 +1384,29 @@
             "valid_until": null,
             "value": "1840.62",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2028-01-01, row 6",
+                "quote": "6 1.618,17 1.704,98 1.791,79 1.840,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2028-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -1364,23 +1497,29 @@
             "valid_until": "2027-06-01",
             "value": "1787.33",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2026-01-01, row 7",
+                "quote": "7 1.696,27 1.787,33 1.878,40 1.929,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1388,23 +1527,29 @@
             "valid_until": "2028-01-01",
             "value": "1878.40",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2027-06-01, row 7",
+                "quote": "7 1.696,27 1.787,33 1.878,40 1.929,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2027-06-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1412,23 +1557,29 @@
             "valid_until": null,
             "value": "1929.62",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2028-01-01, row 7",
+                "quote": "7 1.696,27 1.787,33 1.878,40 1.929,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2028-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -1519,23 +1670,29 @@
             "valid_until": "2027-06-01",
             "value": "1938.18",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2026-01-01, row 8",
+                "quote": "8 1.839,46 1.938,18 2.036,91 2.092,44"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1543,23 +1700,29 @@
             "valid_until": "2028-01-01",
             "value": "2036.91",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2027-06-01, row 8",
+                "quote": "8 1.839,46 1.938,18 2.036,91 2.092,44"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2027-06-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1567,23 +1730,29 @@
             "valid_until": null,
             "value": "2092.44",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2028-01-01, row 8",
+                "quote": "8 1.839,46 1.938,18 2.036,91 2.092,44"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2028-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -1674,23 +1843,29 @@
             "valid_until": "2027-06-01",
             "value": "2114.34",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2026-01-01, row 9",
+                "quote": "9 2.006,68 2.114,34 2.222,00 2.282,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1698,23 +1873,29 @@
             "valid_until": "2028-01-01",
             "value": "2222.00",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2027-06-01, row 9",
+                "quote": "9 2.006,68 2.114,34 2.222,00 2.282,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2027-06-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1722,23 +1903,29 @@
             "valid_until": null,
             "value": "2282.56",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "document_id": "crtv-tabelle-ccnl-2025",
+                  "title": "Confindustria Radio Televisioni, tabelle del rinnovo del CCNL per le imprese radiotelevisive private (ipotesi 3 novembre 2025, sciolta l'8 gennaio 2026)",
                   "kind": "associazione",
-                  "url": "https://www.confindustriaradiotv.it/"
+                  "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+                  "sha256": "ccc821ea357f2a323ad6a0f8583ec1b8efa4730d6586d3d83644336341cb7334"
                 },
-                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+                "page": "1",
+                "section": "Settore Televisivo Multimediale, minimi contrattuali tabellari mensili, column 2028-01-01, row 9",
+                "quote": "9 2.006,68 2.114,34 2.222,00 2.282,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:34:42Z",
+                "effective_from": "2028-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:34:42Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -1902,9 +2089,9 @@
     "effective_from": "2026-01-01",
     "effective_until": null,
     "published_at": "2026-09-18",
-    "source": "unavailable",
-    "source_type": "estimated",
+    "source": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
+    "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "c746800fcf07de0f11720a111843ff4011ef10e5eadb38b25d1dc73dec80f3f3"
+    "source_hash": "ee19aa854a33eaad59cd4d121e5ce616df7a2b0a5eec58521a973217baebdef7"
   }
 }
