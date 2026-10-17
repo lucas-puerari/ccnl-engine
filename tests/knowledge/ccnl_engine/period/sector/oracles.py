@@ -15,7 +15,9 @@ and a 2025 income of 40,000 EUR (no renewal substitute tax):
 - chimica: Chimica Farmaceutica Federchimica D1 impiegato, 50 employees,
   the tranche of July;
 - alimentari: Industria Alimentare 3rd level impiegato, 50 employees,
-  fourteen payments with the EDR on thirteen.
+  fourteen payments with the EDR on thirteen;
+- dmo: Distribuzione Moderna Organizzata IV, 50 employees, a provincial
+  element in force, fourteen payments.
 
 Each runs for the whole year and, apart, until a termination on 30 June.
 
@@ -62,6 +64,8 @@ __all__ = [
     "ALIMENTARI_YEAR",
     "CHIMICA_JUNE",
     "CHIMICA_YEAR",
+    "DMO_JUNE",
+    "DMO_YEAR",
     "EDILIZIA_JUNE",
     "EDILIZIA_YEAR",
     "INDUSTRIA_JUNE",
@@ -585,6 +589,48 @@ ALIMENTARI_YEAR = sector_year(
 ALIMENTARI_JUNE = sector_year(
     _alimentari_june(), _INDUSTRIA, _HALF_YEAR, terminated=True
 )
+
+
+# DMO: Distribuzione Moderna Organizzata IV, 50 employees.
+
+#: Level IV, paga base and contingenza + EDR: Testo Unico of 29 September
+#: 2025, Allegato 11, PDF p. 98 (sha256
+#: 9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf):
+#: "IV € 1257,46 - € 524,22 € 1781,68" from 1 November 2025, "IV € 1292,46
+#: - € 524,22 € 1816,68" from 1 November 2026.  The terzo elemento
+#: nazionale is not paid: a provincial element is in force (Art. 195).
+_DMO_UNTIL_OCTOBER = Decimal("1257.46") + Decimal("524.22")
+_DMO_FROM_NOVEMBER = Decimal("1292.46") + Decimal("524.22")
+#: Quattordicesima of the pay "in atto al 30 giugno", paid on 1 July, in
+#: twelfths of the twelve months before (Art. 205, PDF p. 59): six for a
+#: hire on 1 January; tredicesima of one monthly pay (Art. 204).
+_DMO_FOURTEENTH = _cents(_DMO_UNTIL_OCTOBER * 6 / 12)
+
+
+def _dmo(month: int) -> Decimal:
+    return _DMO_UNTIL_OCTOBER if month < 11 else _DMO_FROM_NOVEMBER
+
+
+def _dmo_year() -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _dmo(m), _dmo(m)) for m in range(1, 13)]
+    pays.insert(6, Pay(_run(6, "fourteenth"), _DMO_FOURTEENTH, _DMO_FOURTEENTH))
+    pays.insert(12, Pay(_run(12, "thirteenth"), _DMO_FROM_NOVEMBER, _DMO_FROM_NOVEMBER))
+    return tuple(pays)
+
+
+def _dmo_june() -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _dmo(m), _dmo(m)) for m in range(1, 6)]
+    #: Six twelfths of the tredicesima are paid with the last month.
+    june = _DMO_UNTIL_OCTOBER + _cents(_DMO_UNTIL_OCTOBER * 6 / 12)
+    return (
+        *pays,
+        Pay(_run(6), june, june),
+        Pay(_run(6, "fourteenth"), _DMO_FOURTEENTH, _DMO_FOURTEENTH),
+    )
+
+
+DMO_YEAR = sector_year(_dmo_year(), _TERZIARIO, _FULL_YEAR, terminated=False)
+DMO_JUNE = sector_year(_dmo_june(), _TERZIARIO, _HALF_YEAR, terminated=True)
 
 
 # Edilizia: ANCE operaio of the 1st level, 173 hours.
