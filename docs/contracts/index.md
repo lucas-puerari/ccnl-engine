@@ -1,5 +1,5 @@
 <!-- auto-generated -- run: uv run python scripts/documentation/coverage_matrix/generate.py -->
-<!-- generated: 2026-10-16 -->
+<!-- generated: 2026-10-17 -->
 
 # CCNL Coverage
 
@@ -116,7 +116,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 12 | S225 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Sanitari: psicologi, farmacisti, biologi, fisici, chimici)](dirigenza-sanitaria-area-sanita-aran.md) | Pubblica Amministrazione | ~37k | 2026 | ⚠️ | base_salary | 0 / 10 / 0 / 0 | 🧪 | 🤖 |
 | 13 | V751 | [CCNL Area Tessile-Moda e Chimica-Ceramica — Artigianato](tessile-moda-artigianato-confartigianato.md) | tessile moda chimica ceramica artigianato | ~120k | 2024 | ⚠️ | base_salary, inps_employer, seniority | 0 / 36 / 1 / 0 | 🧪 | 🤖 |
 | 14 | A051 | [CCNL Attivita Agromeccaniche (Contoterzismo) CAI Agromec-FAI-FLAI-UILA](contoterzismo-caiagromec.md) | Agricoltura | ~4k | 2024 | ⚠️ | inps_employer | 0 / 48 / 1 / 1 | 🧪 | 🤖 |
-| 15 | B282 | [CCNL Attivita Minerarie (ASSORISORSE)](attivita-minerarie-assorisorse.md) | Industria estrattiva - Miniere, cave, saline, metallurgia estrattiva | ~3000 | 2022 | ⚠️ | base_salary, seniority | 0 / 0 / 38 / 1 | 🧪 | 🤖 |
+| 15 | B282 | [CCNL Attivita Minerarie (ASSORISORSE)](attivita-minerarie-assorisorse.md) | Industria estrattiva - Miniere, cave, saline, metallurgia estrattiva | ~3000 | 2022 | ⚠️ | seniority | 36 / 0 / 2 / 1 | 🧪 | 🤖 |
 | 16 | I320 | [CCNL Attività Ferroviarie — AGENS](trasporto-ferroviario-agens.md) | trasporto | ~75k | 2025 | ⚠️ | base_salary, seniority | 0 / 55 / 1 / 1 | 🧪 | 🤖 |
 | 17 | I022 | [CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)](autoferrotranvieri-internavigatori.md) | trasporti | ~120k | 2024 | ⚠️ | inps_employer, seniority | 0 / 138 / 1 / 1 | 🧪 | 🤖 |
 | 18 | IC35 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | Autorimesse e noleggio automezzi | ~41k | 2025 | ⚠️ | base_salary, seniority | 0 / 95 / 1 / 1 | 🧪 | 🤖 |
