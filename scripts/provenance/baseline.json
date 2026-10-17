@@ -272,41 +272,6 @@
       "additional_months[2023-01-01]": "assumed"
     },
     "agreement/istruzione-ricerca-aran.json": {
-      "levels[ASSISTENTE].fixed_allowances[EP_0_8]": "assumed",
-      "levels[ASSISTENTE].fixed_allowances[EP_15_20]": "assumed",
-      "levels[ASSISTENTE].fixed_allowances[EP_21_27]": "assumed",
-      "levels[ASSISTENTE].fixed_allowances[EP_28_34]": "assumed",
-      "levels[ASSISTENTE].fixed_allowances[EP_9_14]": "assumed",
-      "levels[ASSISTENTE].fixed_allowances[EP_da35]": "assumed",
-      "levels[COLLABORATORE_SCOLASTICO].fixed_allowances[EP_0_8]": "assumed",
-      "levels[COLLABORATORE_SCOLASTICO].fixed_allowances[EP_15_20]": "assumed",
-      "levels[COLLABORATORE_SCOLASTICO].fixed_allowances[EP_21_27]": "assumed",
-      "levels[COLLABORATORE_SCOLASTICO].fixed_allowances[EP_28_34]": "assumed",
-      "levels[COLLABORATORE_SCOLASTICO].fixed_allowances[EP_9_14]": "assumed",
-      "levels[COLLABORATORE_SCOLASTICO].fixed_allowances[EP_da35]": "assumed",
-      "levels[DOCENTE_DIPLOMATO_SECONDARIA].fixed_allowances[EP_0_8]": "assumed",
-      "levels[DOCENTE_DIPLOMATO_SECONDARIA].fixed_allowances[EP_15_20]": "assumed",
-      "levels[DOCENTE_DIPLOMATO_SECONDARIA].fixed_allowances[EP_21_27]": "assumed",
-      "levels[DOCENTE_DIPLOMATO_SECONDARIA].fixed_allowances[EP_9_14]": "assumed",
-      "levels[DOCENTE_INFANZIA_PRIMARIA].fixed_allowances[EP_0_8]": "assumed",
-      "levels[DOCENTE_INFANZIA_PRIMARIA].fixed_allowances[EP_15_20]": "assumed",
-      "levels[DOCENTE_INFANZIA_PRIMARIA].fixed_allowances[EP_21_27]": "assumed",
-      "levels[DOCENTE_INFANZIA_PRIMARIA].fixed_allowances[EP_9_14]": "assumed",
-      "levels[DOCENTE_LAUREATO_SECONDARIA_II].fixed_allowances[EP_0_8]": "assumed",
-      "levels[DOCENTE_LAUREATO_SECONDARIA_II].fixed_allowances[EP_15_20]": "assumed",
-      "levels[DOCENTE_LAUREATO_SECONDARIA_II].fixed_allowances[EP_9_14]": "assumed",
-      "levels[DOCENTE_SECONDARIA].fixed_allowances[EP_0_8]": "assumed",
-      "levels[DOCENTE_SECONDARIA].fixed_allowances[EP_15_20]": "assumed",
-      "levels[DOCENTE_SECONDARIA].fixed_allowances[EP_9_14]": "assumed",
-      "levels[FUNZIONARIO_ED_ESPERTO].fixed_allowances[EP_0_8]": "assumed",
-      "levels[FUNZIONARIO_ED_ESPERTO].fixed_allowances[EP_15_20]": "assumed",
-      "levels[FUNZIONARIO_ED_ESPERTO].fixed_allowances[EP_9_14]": "assumed",
-      "levels[OPERATORE].fixed_allowances[EP_0_8]": "assumed",
-      "levels[OPERATORE].fixed_allowances[EP_15_20]": "assumed",
-      "levels[OPERATORE].fixed_allowances[EP_21_27]": "assumed",
-      "levels[OPERATORE].fixed_allowances[EP_28_34]": "assumed",
-      "levels[OPERATORE].fixed_allowances[EP_9_14]": "assumed",
-      "levels[OPERATORE].fixed_allowances[EP_da35]": "assumed",
       "work_rules.absence_rules": "assumed"
     },
     "agreement/lapidei-industria.json": {
@@ -906,8 +871,7 @@
       "apprentice": "assumed"
     },
     "contribution/2026/pubblica-amministrazione.json": {
-      "apprentice": "assumed",
-      "inps.minimum_base": "assumed"
+      "apprentice": "assumed"
     },
     "contribution/2027/agricoltura.json": {
       "apprentice": "assumed",
@@ -1327,9 +1291,6 @@
     "agreement/funivie-anef.json": [
       "funivie-anef/apprentice_seniority"
     ],
-    "agreement/funzioni-centrali-aran.json": [
-      "funzioni-centrali-aran/ctps_rates_proxy"
-    ],
     "agreement/funzioni-locali-aran.json": [
       "funzioni-locali-aran/renewal_2025_2027_missing"
     ],
@@ -1442,8 +1403,6 @@
     "agreement/logistica-trasporto-confetra.json": [
       "logistica-trasporto-confetra/apprentice_seniority",
       "logistica-trasporto-confetra/health_and_bilateral_funds",
-      "logistica-trasporto-confetra/inps_employer_class_unconfirmed",
-      "logistica-trasporto-confetra/part_time_supplementary_rate",
       "logistica-trasporto-confetra/sixth_day_overtime"
     ],
     "agreement/marittimi-industria-armatoriale.json": [
@@ -1478,7 +1437,6 @@
       "metalmeccanico-federmeccanica/flexible_benefits",
       "metalmeccanico-federmeccanica/health_and_bilateral_funds",
       "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement",
-      "metalmeccanico-federmeccanica/part_time_supplementary_rate",
       "metalmeccanico-federmeccanica/shift_and_multiweek_premiums"
     ],
     "agreement/multiservizi-anip.json": [
