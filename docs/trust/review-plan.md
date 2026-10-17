@@ -10,7 +10,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 208 | 186 | 0 | `funzioni-centrali-aran` |
 | terziario | 43 | 4 977 055 | 215 | 1535 | 615 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 48 | 4 946 900 | 327 | 2285 | 543 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| industria | 48 | 4 946 900 | 291 | 2285 | 579 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 56 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 37 | 305 | 95 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 19 | 240 | 42 | 5 | `operai-agricoli-florovivaisti` |
@@ -133,7 +133,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`materiali-costruzione-lapidei-confapi`](../contracts/materiali-costruzione-lapidei-confapi.md) | 5 000 | exploratory | 22 | 8 | 40 | party or official | none | none |
 | [`attivita-minerarie-assorisorse`](../contracts/attivita-minerarie-assorisorse.md) | 3 000 | exploratory | 39 | 0 | 0 | party or official | none | none |
 | [`cinema-audiovisivi-industria`](../contracts/cinema-audiovisivi-industria.md) | 2 300 | exploratory | 2 | 62 | 0 | aggregator | none | none |
-| [`tabacco-apti`](../contracts/tabacco-apti.md) | 2 000 | exploratory | 59 | 0 | 0 | party or official | none | none |
+| [`tabacco-apti`](../contracts/tabacco-apti.md) | 2 000 | exploratory | 23 | 0 | 36 | party or official | none | none |
 | [`radiotelevisive-televisivo`](../contracts/radiotelevisive-televisivo.md) | none | exploratory | 39 | 0 | 0 | party or official | none | none |
 | [`radiotelevisive-radiofonico`](../contracts/radiotelevisive-radiofonico.md) | none | exploratory | 21 | 0 | 0 | party or official | none | none |
 
