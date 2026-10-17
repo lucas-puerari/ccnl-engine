@@ -1,14 +1,5 @@
 {
   "missing_outputs": {
-    "alimentari-federalimentare": [
-      "employee_contributions",
-      "employer_contributions",
-      "employer_cost",
-      "gross",
-      "net",
-      "tax",
-      "tfr"
-    ],
     "dmo-federdistribuzione": [
       "employee_contributions",
       "employer_contributions",

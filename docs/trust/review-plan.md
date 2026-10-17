@@ -94,7 +94,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`metalmeccanico-confapi`](../contracts/metalmeccanico-confapi.md) | 350 000 | production | 0 | 7 | 58 | party or official | maintainer | 2027-05-01 |
 | [`chimica-farmaceutica-federchimica`](../contracts/chimica-farmaceutica-federchimica.md) | 210 000 | production | 0 | 5 | 111 | party or official | maintainer | 2027-04-30 |
 | [`tessile-smi`](../contracts/tessile-smi.md) | 160 000 | exploratory | 2 | 47 | 0 | party or official | none | none |
-| [`alimentari-federalimentare`](../contracts/alimentari-federalimentare.md) | 145 000 | production | 0 | 0 | 75 | party or official | maintainer | 2026-12-01 |
+| [`alimentari-federalimentare`](../contracts/alimentari-federalimentare.md) | 145 000 | production | 0 | 0 | 75 | party or official | maintainer | 2027-04-30 |
 | [`poste-italiane-k700`](../contracts/poste-italiane-k700.md) | 117 000 | exploratory | 2 | 53 | 0 | party or official | none | none |
 | [`telecomunicazioni-asstel`](../contracts/telecomunicazioni-asstel.md) | 110 000 | exploratory | 2 | 45 | 0 | party or official | none | none |
 | [`metalmeccanico-confimi-pmi`](../contracts/metalmeccanico-confimi-pmi.md) | 100 000 | exploratory | 1 | 44 | 0 | aggregator | none | none |

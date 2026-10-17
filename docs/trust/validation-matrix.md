@@ -19,7 +19,7 @@ net, TFR, employer cost), or list what it still misses in
 
 | CCNL | Readiness | Source | Independence | Cycle | Relationship | Variables | Thresholds | Totals | Components | Rates and rules | Outcome | Last review | Review due |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| `alimentari-federalimentare` | production | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary | — | — | match | 2026-10-13 | 2026-12-01 |
+| `alimentari-federalimentare` | production | primary | hand oracle, source-linked | conguaglio, extra month, ordinary month, termination | permanent, full time | — | headcount 16-50, trattamento integrativo and somma esente bands | base_salary, employee_contributions, employer_contributions, employer_cost, gross, net, tax, tfr | — | — | match | 2026-10-17 | 2027-04-30 |
 | `autoscuole-unasca` | exploratory | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | fixed_allowances | — | match | — | — |
 | `aziende-termali-federterme` | exploratory | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | fixed_allowances | — | match | — | — |
 | `chimica-farmaceutica-federchimica` | production | primary | hand oracle, source-linked | conguaglio, extra month, ordinary month, termination | permanent, full time | — | headcount 16-50, minimo tranche of July, trattamento integrativo and somma esente bands | base_salary, employee_contributions, employer_contributions, employer_cost, gross, net, tax, tfr | — | — | match | 2026-10-17 | 2027-04-30 |
