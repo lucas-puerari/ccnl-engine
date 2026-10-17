@@ -21,7 +21,9 @@ and a 2025 income of 40,000 EUR (no renewal substitute tax):
 - fipe: Pubblici Esercizi 4th level, 10 employees, the tranche of June
   and the 0.77% sickness supplement;
 - ristorazione: Ristorazione Collettiva 4th level, 10 employees, the
-  tranche of September.
+  tranche of September;
+- confapi: Metalmeccanico Unionmeccanica Confapi 5th level impiegato, 50
+  employees, the tranche of June.
 
 Each runs for the whole year and, apart, until a termination on 30 June.
 
@@ -68,6 +70,8 @@ __all__ = [
     "ALIMENTARI_YEAR",
     "CHIMICA_JUNE",
     "CHIMICA_YEAR",
+    "CONFAPI_JUNE",
+    "CONFAPI_YEAR",
     "DMO_JUNE",
     "DMO_YEAR",
     "EDILIZIA_JUNE",
@@ -709,6 +713,42 @@ RISTORAZIONE_YEAR = sector_year(
     _fipe_year(9), _FIPE_RATES, _FULL_YEAR, terminated=False
 )
 RISTORAZIONE_JUNE = sector_year(_fipe_june(9), _FIPE_RATES, _HALF_YEAR, terminated=True)
+
+
+# Confapi: Metalmeccanico Unionmeccanica Confapi 5th level, 50 employees.
+
+#: 5th level minimo: accordo of 24 July 2025, p. 1 (sha256
+#: 4ec057a5c4a209b5b52d9d582822c5df0e7229475ac74b2602d3a94a436cfc4c, a
+#: scan read by OCR): "€ 2.145,87 | €27,90 | €2.173,77 | €22,10 |
+#: €2.195,87 | €50,00 | € 2.245,87", 2,195.87 from 1 September 2025 and
+#: 2,245.87 from 1 June 2026, confirmed by the verbale of 17 June 2026, p. 1
+#: (sha256 61857a25fcb618e5df4353ee564a718c7b549919b37bf60734a722c2a69756f5):
+#: "5 € 50,00 € 2.245,87".
+_CONFAPI_UNTIL_MAY = Decimal("2195.87")
+_CONFAPI_FROM_JUNE = Decimal("2245.87")
+
+
+def _confapi(month: int) -> Decimal:
+    return _CONFAPI_UNTIL_MAY if month < 6 else _CONFAPI_FROM_JUNE
+
+
+def _confapi_year() -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _confapi(m), _confapi(m)) for m in range(1, 13)]
+    #: Tredicesima of one monthly pay at Christmas: CCNL 3 July 2017, art.
+    #: 42, p. 119 (thirteen payments).
+    thirteenth = _CONFAPI_FROM_JUNE
+    return (*pays, Pay(_run(12, "thirteenth"), thirteenth, thirteenth))
+
+
+def _confapi_june() -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _confapi(m), _confapi(m)) for m in range(1, 6)]
+    #: Six twelfths of the tredicesima are paid with the last month.
+    june = _CONFAPI_FROM_JUNE + _cents(_CONFAPI_FROM_JUNE * 6 / 12)
+    return (*pays, Pay(_run(6), june, june))
+
+
+CONFAPI_YEAR = sector_year(_confapi_year(), _INDUSTRIA, _FULL_YEAR, terminated=False)
+CONFAPI_JUNE = sector_year(_confapi_june(), _INDUSTRIA, _HALF_YEAR, terminated=True)
 
 
 # Edilizia: ANCE operaio of the 1st level, 173 hours.
