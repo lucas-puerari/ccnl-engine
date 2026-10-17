@@ -53,6 +53,8 @@ from tests.knowledge.ccnl_engine.period.sector.oracles import (
     STUDI_YEAR,
     TERZIARIO_JUNE,
     TERZIARIO_YEAR,
+    TURISMO_JUNE,
+    TURISMO_YEAR,
     SectorYear,
 )
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
@@ -89,6 +91,7 @@ class Scenario:
 _METAL = "metalmeccanico-federmeccanica"
 _TERZ = "terziario-confesercenti"
 _EDIL = "edilizia-ance"
+_TURISMO = "turismo-federalberghi"
 _STUDI = "studi-professionali-confprofessioni"
 _METAL_OWED = frozenset({
     f"{_METAL}/health_and_bilateral_funds",
@@ -96,6 +99,7 @@ _METAL_OWED = frozenset({
 })
 _TERZ_OWED = frozenset({f"{_TERZ}/health_and_bilateral_funds"})
 _STUDI_OWED = frozenset({f"{_STUDI}/bilateral_contribution_or_element"})
+_TURISMO_OWED = frozenset({f"{_TURISMO}/health_and_bilateral_funds"})
 _EDIL_OWED = frozenset({
     f"{_EDIL}/cassa_edile_contribution",
     f"{_EDIL}/territorial_sector_allowance",
@@ -180,6 +184,25 @@ SCENARIOS = {
         10,
         STUDI_JUNE,
         _STUDI_OWED,
+        net_pay_reliable=False,
+        terminated=True,
+    ),
+    "turismo-year": Scenario(
+        _TURISMO,
+        "4",
+        WorkerCategory.IMPIEGATO,
+        10,
+        TURISMO_YEAR,
+        _TURISMO_OWED,
+        net_pay_reliable=False,
+    ),
+    "turismo-june": Scenario(
+        _TURISMO,
+        "4",
+        WorkerCategory.IMPIEGATO,
+        10,
+        TURISMO_JUNE,
+        _TURISMO_OWED,
         net_pay_reliable=False,
         terminated=True,
     ),

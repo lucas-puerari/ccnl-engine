@@ -96,7 +96,7 @@ Evidence:
   payments; edilizia: ANCE operaio of the 1st level with the 4.95%, the
   Cassa Edile accrual and Prevedi), and of further `production` CCNLs
   (Studi Professionali 4th level, 10 employees, with the solidarity fund
-  of the attività professionali), in
+  of the attività professionali; Turismo Federalberghi 4th level, 10 employees, with the tranche of May), in
   `tests/knowledge/ccnl_engine/period/sector/`. Every payment (gross,
   worker INPS, employer contributions with the solidarity contribution on
   the pension fund, TFR accrued net of the 0.50%, employer cost) and the year
