@@ -137,7 +137,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add a supplementary-hours kind to the overtime event and a supplementare band with the CCNL rate."
+          "remediation": "Resolved: OvertimeKind.SUPPLEMENTARY selects the OT_SUPPLEMENTARE band of the CCNL rate (tests/integration/ccnl_engine/working_time/overtime/test_supplementary.py); the higher rate past the yearly limit is not modelled.",
+          "status": "resolved"
         }
       },
       {
@@ -2593,7 +2594,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "fcd4582cc0ff8e9a4a686dac68b012497343337966f5bb11530de621e5ad3c4e",
+    "source_hash": "b34336f6ba524965966e6f7edff3e18d46accb5299d81b90ace3574072c26e90",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2779,6 +2780,49 @@
               "review_id": "2026-10-14-ai-p1"
             },
             "note": "From 1 January 2025, the start of the salary series of the bundle: the testo unico of the renewal of 6 December 2024 is in force on that date; the earlier start of 2023-05-01 was not stated by any source."
+          }
+        },
+        {
+          "code": "OT_SUPPLEMENTARE",
+          "description": "Lavoro supplementare del part-time, maggiorazione del 18% (40% oltre il limite annuo, non modellato)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "value": "0.18",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "supplementare"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico",
+                "title": "Nuovo Testo Unico del CCNL logistica, trasporto merci e spedizione (Confetra)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "71",
+              "section": "Art. 56, lavoro supplementare",
+              "quote": "18% of the hourly quota of the retribuzione globale, 40% past the annual limit (read in review 2026-10-15-ai-contracts)"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T10:11:39Z",
+              "verification_status": "verified",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T10:11:39Z",
+              "review_id": "2026-10-17-ai-supplementary"
+            }
           }
         }
       ]
@@ -3181,6 +3225,23 @@
             "evidence": "INPS Manuale di classificazione dei datori di lavoro, May 2021, PDF pp. 199-206; DD 135/2025, tables of the personale non viaggiante.",
             "review_by": "2027-03-31"
           }
+        ]
+      },
+      {
+        "id": "2026-10-17-ai-supplementary",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The rate of the supplementary hours of the part-time workers.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "Art. 56 of the testo unico (p. 71), read in review 2026-10-15-ai-contracts (the Confetra site was down on 2026-10-17): supplementary hours at 18%, 40% past the yearly limit. The 18% band is added for OvertimeKind.SUPPLEMENTARY; the 40% needs the yearly count and is not modelled."
         ]
       }
     ],

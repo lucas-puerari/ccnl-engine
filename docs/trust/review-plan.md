@@ -10,11 +10,11 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 49 | 173 | 186 | 0 | `funzioni-centrali-aran` |
 | terziario | 43 | 4 977 055 | 215 | 1535 | 615 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 48 | 4 946 900 | 375 | 2277 | 501 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| industria | 48 | 4 946 900 | 375 | 2277 | 503 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 56 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 93 | 305 | 39 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 19 | 240 | 42 | 5 | `operai-agricoli-florovivaisti` |
-| edilizia | 4 | 710 000 | 4 | 118 | 77 | 0 | `edilizia-ance` |
+| edilizia | 4 | 710 000 | 4 | 118 | 78 | 0 | `edilizia-ance` |
 | credito | 3 | 348 000 | 3 | 39 | 78 | 0 | `bancari-abi` |
 
 ## pubblica-amministrazione
@@ -88,8 +88,8 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 
 | CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Owner | Next review |
 |---|---:|---|---:|---:|---:|---|---|---|
-| [`metalmeccanico-federmeccanica`](../contracts/metalmeccanico-federmeccanica.md) (anchor) | 1 700 000 | production | 0 | 0 | 85 | party or official | maintainer | 2027-06-01 |
-| [`logistica-trasporto-confetra`](../contracts/logistica-trasporto-confetra.md) (anchor) | 430 000 | reviewed | 0 | 3 | 62 | party or official | maintainer | 2027-06-01 |
+| [`metalmeccanico-federmeccanica`](../contracts/metalmeccanico-federmeccanica.md) (anchor) | 1 700 000 | production | 0 | 0 | 86 | party or official | maintainer | 2027-06-01 |
+| [`logistica-trasporto-confetra`](../contracts/logistica-trasporto-confetra.md) (anchor) | 430 000 | reviewed | 0 | 3 | 63 | party or official | maintainer | 2027-06-01 |
 | [`logistica-trasporto-confetra-viaggiante`](../contracts/logistica-trasporto-confetra-viaggiante.md) | 430 000 | reviewed | 0 | 30 | 53 | party or official | maintainer | 2027-06-01 |
 | [`metalmeccanico-confapi`](../contracts/metalmeccanico-confapi.md) | 350 000 | production | 0 | 7 | 58 | party or official | maintainer | 2027-05-01 |
 | [`chimica-farmaceutica-federchimica`](../contracts/chimica-farmaceutica-federchimica.md) | 210 000 | production | 0 | 5 | 111 | party or official | maintainer | 2027-04-30 |
@@ -176,7 +176,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 
 | CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Owner | Next review |
 |---|---:|---|---:|---:|---:|---|---|---|
-| [`edilizia-ance`](../contracts/edilizia-ance.md) (anchor) | 550 000 | production | 0 | 8 | 31 | party or official | maintainer | 2027-02-28 |
+| [`edilizia-ance`](../contracts/edilizia-ance.md) (anchor) | 550 000 | production | 0 | 8 | 32 | party or official | maintainer | 2027-02-28 |
 | [`edilizia-cooperative-ancpl`](../contracts/edilizia-cooperative-ancpl.md) | 90 000 | exploratory | 2 | 57 | 0 | party or official | none | none |
 | [`edilizia-pmi-confapi-aniem`](../contracts/edilizia-pmi-confapi-aniem.md) | 70 000 | exploratory | 2 | 30 | 14 | party or official | maintainer | 2027-03-01 |
 | [`edilizia-ance-impiegati`](../contracts/edilizia-ance-impiegati.md) | none | production | 0 | 23 | 32 | party or official | maintainer | 2027-02-28 |
