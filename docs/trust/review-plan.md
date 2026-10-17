@@ -92,7 +92,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`logistica-trasporto-confetra`](../contracts/logistica-trasporto-confetra.md) (anchor) | 430 000 | reviewed | 0 | 3 | 62 | party or official | maintainer | 2027-06-01 |
 | [`logistica-trasporto-confetra-viaggiante`](../contracts/logistica-trasporto-confetra-viaggiante.md) | 430 000 | reviewed | 0 | 30 | 53 | party or official | maintainer | 2027-06-01 |
 | [`metalmeccanico-confapi`](../contracts/metalmeccanico-confapi.md) | 350 000 | production | 0 | 7 | 58 | party or official | maintainer | 2027-05-01 |
-| [`chimica-farmaceutica-federchimica`](../contracts/chimica-farmaceutica-federchimica.md) | 210 000 | production | 0 | 5 | 111 | party or official | maintainer | 2026-12-01 |
+| [`chimica-farmaceutica-federchimica`](../contracts/chimica-farmaceutica-federchimica.md) | 210 000 | production | 0 | 5 | 111 | party or official | maintainer | 2027-04-30 |
 | [`tessile-smi`](../contracts/tessile-smi.md) | 160 000 | exploratory | 2 | 47 | 0 | party or official | none | none |
 | [`alimentari-federalimentare`](../contracts/alimentari-federalimentare.md) | 145 000 | production | 0 | 0 | 75 | party or official | maintainer | 2026-12-01 |
 | [`poste-italiane-k700`](../contracts/poste-italiane-k700.md) | 117 000 | exploratory | 2 | 53 | 0 | party or official | none | none |

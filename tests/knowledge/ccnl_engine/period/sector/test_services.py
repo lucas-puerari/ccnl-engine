@@ -44,6 +44,8 @@ from ccnl_engine.inputs import (
 )
 from ccnl_engine.results import BlockerCode
 from tests.knowledge.ccnl_engine.period.sector.oracles import (
+    CHIMICA_JUNE,
+    CHIMICA_YEAR,
     EDILIZIA_JUNE,
     EDILIZIA_YEAR,
     INDUSTRIA_JUNE,
@@ -91,6 +93,7 @@ class Scenario:
 _METAL = "metalmeccanico-federmeccanica"
 _TERZ = "terziario-confesercenti"
 _EDIL = "edilizia-ance"
+_CHIMICA = "chimica-farmaceutica-federchimica"
 _TURISMO = "turismo-federalberghi"
 _STUDI = "studi-professionali-confprofessioni"
 _METAL_OWED = frozenset({
@@ -100,6 +103,7 @@ _METAL_OWED = frozenset({
 _TERZ_OWED = frozenset({f"{_TERZ}/health_and_bilateral_funds"})
 _STUDI_OWED = frozenset({f"{_STUDI}/bilateral_contribution_or_element"})
 _TURISMO_OWED = frozenset({f"{_TURISMO}/health_and_bilateral_funds"})
+_CHIMICA_OWED: frozenset[str] = frozenset()
 _EDIL_OWED = frozenset({
     f"{_EDIL}/cassa_edile_contribution",
     f"{_EDIL}/territorial_sector_allowance",
@@ -206,6 +210,25 @@ SCENARIOS = {
         net_pay_reliable=False,
         terminated=True,
     ),
+    "chimica-year": Scenario(
+        _CHIMICA,
+        "D1",
+        WorkerCategory.IMPIEGATO,
+        50,
+        CHIMICA_YEAR,
+        _CHIMICA_OWED,
+        net_pay_reliable=True,
+    ),
+    "chimica-june": Scenario(
+        _CHIMICA,
+        "D1",
+        WorkerCategory.IMPIEGATO,
+        50,
+        CHIMICA_JUNE,
+        _CHIMICA_OWED,
+        net_pay_reliable=True,
+        terminated=True,
+    ),
 }
 
 
@@ -297,7 +320,11 @@ def test_the_year_matches_the_oracle(name: str) -> None:
 
 @pytest.mark.parametrize("name", _NAMES)
 def test_owed_amounts_leave_the_totals_they_touch_short(name: str) -> None:
-    """Every run carries the owed limitations; their totals decide the axes."""
+    """Every run carries the owed limitations; their totals decide the axes.
+
+    A CCNL that owes nothing the engine leaves out completes the employer
+    cost of every run but the one whose residual leave is not computed.
+    """
     s = SCENARIOS[name]
     for result in _year(name).period_results:
         owed = {
@@ -306,8 +333,14 @@ def test_owed_amounts_leave_the_totals_they_touch_short(name: str) -> None:
             if b.code is BlockerCode.OPEN_LIMITATION and b.detail in s.owed
         }
         assert owed == s.owed
-        assert not result.is_employer_cost_complete
-        assert not result.is_payable
+        if s.owed:
+            assert not result.is_employer_cost_complete
+            assert not result.is_payable
+        else:
+            features = {b.feature for b in result.blockers}
+            assert result.is_employer_cost_complete is (
+                "termination_residual_leave" not in features
+            )
 
 
 @pytest.mark.parametrize("name", _NAMES)
