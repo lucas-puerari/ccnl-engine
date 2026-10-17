@@ -40,6 +40,7 @@ from ccnl_engine.inputs import (
     NoPensionFund,
     Permanent,
     PriorYearTaxFacts,
+    WeeklyHours,
     WorkerCategory,
 )
 from ccnl_engine.results import BlockerCode
@@ -61,6 +62,8 @@ from tests.knowledge.ccnl_engine.period.sector.oracles import (
     INDUSTRIA_JUNE,
     INDUSTRIA_YEAR,
     OVERTIME_HOURS,
+    PART_TIME_JUNE,
+    PART_TIME_YEAR,
     RISTORAZIONE_JUNE,
     RISTORAZIONE_YEAR,
     STUDI_JUNE,
@@ -78,6 +81,7 @@ pytestmark = pytest.mark.legal_scenario
 _ENGINE = PayrollEngine.bundled()
 _ZERO = Decimal(0)
 _JUNE_END = date(2026, 6, 30)
+_FULL_TIME = WeeklyHours(40)
 _FACTS = PeriodFacts(
     regione="IT-88",
     comune_belfiore="A192",
@@ -100,6 +104,7 @@ class Scenario:
     hours: Decimal | None = None
     overtime: bool = False
     provincial_pay_element: bool | None = None
+    weekly_hours: int | None = None
 
 
 _METAL = "metalmeccanico-federmeccanica"
@@ -371,12 +376,34 @@ SCENARIOS = {
         net_pay_reliable=False,
         terminated=True,
     ),
+    "part-time-year": Scenario(
+        _METAL,
+        "C3",
+        WorkerCategory.IMPIEGATO,
+        50,
+        PART_TIME_YEAR,
+        _METAL_OWED,
+        net_pay_reliable=True,
+        weekly_hours=20,
+    ),
+    "part-time-june": Scenario(
+        _METAL,
+        "C3",
+        WorkerCategory.IMPIEGATO,
+        50,
+        PART_TIME_JUNE,
+        _METAL_OWED,
+        net_pay_reliable=True,
+        terminated=True,
+        weekly_hours=20,
+    ),
 }
 
 
 @cache
 def _year(name: str) -> CompetenceYearResult:
     s = SCENARIOS[name]
+    hours = None if s.weekly_hours is None else WeeklyHours(s.weekly_hours)
     facts = replace(
         _FACTS,
         ordinary_hours_worked=None if s.hours is None else ContributableHours(s.hours),
@@ -404,6 +431,8 @@ def _year(name: str) -> CompetenceYearResult:
                 tfr_treasury_fund=False,
                 pension_fund=NoPensionFund(),
                 contract_type=Permanent(),
+                weekly_hours=hours,
+                full_time_weekly_hours=None if hours is None else _FULL_TIME,
             ),
             employer=EmployerProfile(
                 headcount=Headcount(s.headcount),

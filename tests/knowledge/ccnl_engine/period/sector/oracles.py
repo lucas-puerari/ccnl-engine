@@ -85,6 +85,8 @@ __all__ = [
     "FIPE_YEAR",
     "INDUSTRIA_JUNE",
     "INDUSTRIA_YEAR",
+    "PART_TIME_JUNE",
+    "PART_TIME_YEAR",
     "RISTORAZIONE_JUNE",
     "RISTORAZIONE_YEAR",
     "STUDI_JUNE",
@@ -337,6 +339,13 @@ def _industria_year() -> tuple[Pay, ...]:
     return (*months, thirteenth)
 
 
+def _industria_year_without_overtime() -> tuple[Pay, ...]:
+    minima = [_C3_UNTIL_MAY if m < 6 else _C3_FROM_JUNE for m in range(1, 13)]
+    months = [Pay(_run(m), pay, pay) for m, pay in enumerate(minima, start=1)]
+    thirteenth = Pay(_run(12, "thirteenth"), _C3_FROM_JUNE, _C3_FROM_JUNE)
+    return (*months, thirteenth)
+
+
 def _industria_june() -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _C3_UNTIL_MAY, _C3_UNTIL_MAY) for m in range(1, 6)]
     #: Six twelfths of the tredicesima are paid with the last month.
@@ -349,6 +358,38 @@ INDUSTRIA_YEAR = sector_year(
     _industria_year(), _INDUSTRIA, _FULL_YEAR, terminated=False
 )
 INDUSTRIA_JUNE = sector_year(_industria_june(), _INDUSTRIA, _HALF_YEAR, terminated=True)
+
+
+# Part time: the same C3 impiegato on 20 of 40 weekly hours.
+
+#: A part-time worker is paid the full-time pay in proportion to the
+#: hours (D.Lgs. 81/2015 art. 7 c. 1; CCNL 5 February 2021, Sez. Quarta,
+#: Titolo I, Art. 4): half of each minimo, taken to cents.
+_HALF = Decimal("0.5")
+
+
+def _part_time(pays: tuple[Pay, ...]) -> tuple[Pay, ...]:
+    return tuple(
+        Pay(p.run_id, _cents(p.gross * _HALF), _cents(p.tfr_base * _HALF)) for p in pays
+    )
+
+
+def _part_time_june() -> tuple[Pay, ...]:
+    month = _cents(_C3_UNTIL_MAY * _HALF)
+    pays = [Pay(_run(m), month, month) for m in range(1, 6)]
+    last = _cents(_C3_FROM_JUNE * _HALF)
+    #: Six twelfths of the part-time tredicesima, with the last month.
+    june = last + _cents(last * 6 / 12)
+    return (*pays, Pay(_run(6), june, june))
+
+
+PART_TIME_YEAR = sector_year(
+    _part_time(_industria_year_without_overtime()),
+    _INDUSTRIA,
+    _FULL_YEAR,
+    terminated=False,
+)
+PART_TIME_JUNE = sector_year(_part_time_june(), _INDUSTRIA, _HALF_YEAR, terminated=True)
 
 
 # Terziario: Terziario Confesercenti IV.
