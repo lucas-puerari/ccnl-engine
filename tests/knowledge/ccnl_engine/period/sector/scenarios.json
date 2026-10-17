@@ -158,5 +158,37 @@
       "tfr",
       "employer_cost"
     ]
+  },
+  "chimica-year": {
+    "ccnl": "chimica-farmaceutica-federchimica",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "minimo tranche of July"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "chimica-june": {
+    "ccnl": "chimica-farmaceutica-federchimica",
+    "cycles": ["ordinary month", "termination"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "trattamento integrativo and somma esente bands"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
   }
 }

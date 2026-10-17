@@ -11,7 +11,9 @@ and a 2025 income of 40,000 EUR (no renewal substitute tax):
 - studi: Studi Professionali Confprofessioni 4th level, 10 employees,
   fourteen payments;
 - turismo: Turismo Federalberghi 4th level, 10 employees, fourteen
-  payments and the tranche of May.
+  payments and the tranche of May;
+- chimica: Chimica Farmaceutica Federchimica D1 impiegato, 50 employees,
+  the tranche of July.
 
 Each runs for the whole year and, apart, until a termination on 30 June.
 
@@ -54,6 +56,8 @@ from tests.knowledge.ccnl_engine.tax_credit.oracles import (
 )
 
 __all__ = [
+    "CHIMICA_JUNE",
+    "CHIMICA_YEAR",
     "EDILIZIA_JUNE",
     "EDILIZIA_YEAR",
     "INDUSTRIA_JUNE",
@@ -479,6 +483,41 @@ def _turismo_june() -> tuple[Pay, ...]:
 
 TURISMO_YEAR = sector_year(_turismo_year(), _TURISMO, _FULL_YEAR, terminated=False)
 TURISMO_JUNE = sector_year(_turismo_june(), _TURISMO, _HALF_YEAR, terminated=True)
+
+
+# Chimica: Chimica Farmaceutica Federchimica D1 impiegato, 50 employees.
+
+#: D1 trattamento economico minimo, minimo and IPO: ipotesi of 15 April
+#: 2025, allegato TEM, p. 48 (sha256
+#: 00f87d6fbef42494d47d90dab50146e353b31cbef4ca1f03d6f7ea37d97546ee, a
+#: scan read by OCR): "D1 | ... | 2.008,03 352,23 | 2.053,03 367,23 |"
+#: from 1 December 2025 and 1 July 2026.  D1 holds no EAR (art. 15 B 3)
+#: and its EDR starts in July 2027.
+_D1_UNTIL_JUNE = Decimal("2008.03") + Decimal("352.23")
+_D1_FROM_JULY = Decimal("2053.03") + Decimal("367.23")
+
+
+def _d1(month: int) -> Decimal:
+    return _D1_UNTIL_JUNE if month < 7 else _D1_FROM_JULY
+
+
+def _chimica_year() -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _d1(m), _d1(m)) for m in range(1, 13)]
+    #: Tredicesima of one monthly pay, paid "alla vigilia di Natale"
+    #: before the December pay: CCNL 10 May 2006 (CNEL n. 579), art. 21.
+    pays.insert(11, Pay(_run(12, "thirteenth"), _D1_FROM_JULY, _D1_FROM_JULY))
+    return tuple(pays)
+
+
+def _chimica_june() -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _d1(m), _d1(m)) for m in range(1, 6)]
+    #: Six twelfths of the tredicesima are paid with the last month.
+    june = _D1_UNTIL_JUNE + _cents(_D1_UNTIL_JUNE * 6 / 12)
+    return (*pays, Pay(_run(6), june, june))
+
+
+CHIMICA_YEAR = sector_year(_chimica_year(), _INDUSTRIA, _FULL_YEAR, terminated=False)
+CHIMICA_JUNE = sector_year(_chimica_june(), _INDUSTRIA, _HALF_YEAR, terminated=True)
 
 
 # Edilizia: ANCE operaio of the 1st level, 173 hours.

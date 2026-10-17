@@ -421,7 +421,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/chimica-farmaceutica-federchimica",
       "ruleset_version": "2026.2",
-      "source_hash": "c0dcc0365bd9e268f42cfbf71b5a78f955a8f416ad00d6c11860a75bc3fe31ac",
+      "source_hash": "55b2818046b98a6c53e39f3532dd14908883ae7abb166db1c0a5e11be156090d",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/chimica-farmaceutica-federchimica.json.gz"

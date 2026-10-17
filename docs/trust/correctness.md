@@ -94,19 +94,20 @@ Evidence:
   sector of the `production` CCNLs (industria: Metalmeccanico C3 with a
   weekday overtime; terziario: Terziario Confesercenti IV, fourteen
   payments; edilizia: ANCE operaio of the 1st level with the 4.95%, the
-  Cassa Edile accrual and Prevedi), and of further `production` CCNLs
-  (Studi Professionali 4th level, 10 employees, with the solidarity fund
-  of the attività professionali; Turismo Federalberghi 4th level, 10 employees, with the tranche of May), in
-  `tests/knowledge/ccnl_engine/period/sector/`. Every payment (gross,
-  worker INPS, employer contributions with the solidarity contribution on
-  the pension fund, TFR accrued net of the 0.50%, employer cost) and the year
-  (taxable, IRPEF, credits, surtax withheld at the termination, net cash,
-  TFR, employer cost) are compared to the cent with hand oracles written
-  from the cited tables and statutes, and so is the assurance: the amounts
-  each CCNL owes and the engine does not compute leave the employer cost
-  short, and the net pay too where they reach the worker. These oracles
-  read the same primary sources as the bundle: they check the pipeline,
-  not the sources, and are no independent output.
+  Cassa Edile accrual and Prevedi), and of further `production` CCNLs (Studi
+  Professionali 4th level, 10 employees, with the solidarity fund of the
+  attività professionali; Turismo Federalberghi 4th level, 10 employees,
+  with the tranche of May; Chimica Farmaceutica D1, 50 employees, with the
+  tranche of July), in `tests/knowledge/ccnl_engine/period/sector/`. Every
+  payment (gross, worker INPS, employer contributions with the solidarity
+  contribution on the pension fund, TFR accrued net of the 0.50%, employer
+  cost) and the year (taxable, IRPEF, credits, surtax withheld at the
+  termination, net cash, TFR, employer cost) are compared to the cent with
+  hand oracles written from the cited tables and statutes, and so is the
+  assurance: the amounts each CCNL owes and the engine does not compute
+  leave the employer cost short, and the net pay too where they reach the
+  worker. These oracles read the same primary sources as the bundle: they
+  check the pipeline, not the sources, and are no independent output.
 - Observed payslip replay: each of the 74 records (70 transcribed payslips, two worked examples of a
   Cassa Edile and two example payslips of a payroll package) in
   `tests/knowledge/ccnl_engine/period/observed_payslip/` states in `replay`
