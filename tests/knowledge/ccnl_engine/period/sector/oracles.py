@@ -51,7 +51,7 @@ the engine does not compute (open ``owed`` limitations).
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from decimal import ROUND_HALF_UP, Decimal
 
 from tests.knowledge.ccnl_engine.irpef.oracles import (
@@ -85,6 +85,8 @@ __all__ = [
     "EDILIZIA_YEAR",
     "FIPE_JUNE",
     "FIPE_YEAR",
+    "FIXED_TERM_JUNE",
+    "FIXED_TERM_YEAR",
     "INDUSTRIA_JUNE",
     "INDUSTRIA_YEAR",
     "PART_TIME_JUNE",
@@ -465,6 +467,21 @@ APPRENTICE_YEAR = sector_year(
 )
 APPRENTICE_JUNE = sector_year(
     _apprentice_june(), _APPRENTICE, _HALF_YEAR, terminated=True
+)
+
+
+# Fixed term: the C3 impiegato on a fixed term of the year, no renewal.
+
+#: The additional NASpI contribution of a fixed-term employment, 1.40% of
+#: the INPS taxable pay (L. 92/2012 art. 2 c. 28), charged apart from the
+#: rates of the industria impiegato.
+_FIXED_TERM = replace(_INDUSTRIA, employer_supplement=Decimal("0.0140"))
+
+FIXED_TERM_YEAR = sector_year(
+    _industria_year_without_overtime(), _FIXED_TERM, _FULL_YEAR, terminated=True
+)
+FIXED_TERM_JUNE = sector_year(
+    _industria_june(), _FIXED_TERM, _HALF_YEAR, terminated=True
 )
 
 

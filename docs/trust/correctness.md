@@ -107,16 +107,17 @@ Evidence:
   3rd level, 30 employees, with the EDR outside the TFR and the Prevedi
   contributo contrattuale on the ratei; and the Metalmeccanico C3 on 20 of
   40 weekly hours, for part time, and as a professionalizzante apprentice at
-  85%), in `tests/knowledge/ccnl_engine/period/sector/`. Every payment
-  (gross, worker INPS, employer contributions with the solidarity
-  contribution on the pension fund, TFR accrued net of the 0.50%, employer
-  cost) and the year (taxable, IRPEF, credits, surtax withheld at the
-  termination, net cash, TFR, employer cost) are compared to the cent with
-  hand oracles written from the cited tables and statutes, and so is the
-  assurance: the amounts each CCNL owes and the engine does not compute
-  leave the employer cost short, and the net pay too where they reach the
-  worker. These oracles read the same primary sources as the bundle: they
-  check the pipeline, not the sources, and are no independent output.
+  85%, and on a fixed term of the year with the 1.40% NASpI addition), in
+  `tests/knowledge/ccnl_engine/period/sector/`. Every payment (gross, worker
+  INPS, employer contributions with the solidarity contribution on the
+  pension fund, TFR accrued net of the 0.50%, employer cost) and the year
+  (taxable, IRPEF, credits, surtax withheld at the termination, net cash,
+  TFR, employer cost) are compared to the cent with hand oracles written
+  from the cited tables and statutes, and so is the assurance: the amounts
+  each CCNL owes and the engine does not compute leave the employer cost
+  short, and the net pay too where they reach the worker. These oracles read
+  the same primary sources as the bundle: they check the pipeline, not the
+  sources, and are no independent output.
 - Observed payslip replay: each of the 74 records (70 transcribed payslips, two worked examples of a
   Cassa Edile and two example payslips of a payroll package) in
   `tests/knowledge/ccnl_engine/period/observed_payslip/` states in `replay`
