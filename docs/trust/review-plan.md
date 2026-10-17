@@ -9,7 +9,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 49 | 173 | 186 | 0 | `funzioni-centrali-aran` |
-| terziario | 43 | 4 977 055 | 215 | 1535 | 615 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| terziario | 43 | 4 977 055 | 187 | 1535 | 643 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 48 | 4 946 900 | 375 | 2277 | 501 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 56 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 93 | 305 | 39 | 2 | `metalmeccanico-artigianato` |
@@ -79,7 +79,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`fiori-recisi-ancef`](../contracts/fiori-recisi-ancef.md) | 1 300 | exploratory | 2 | 38 | 0 | party or official | none | none |
 | [`recapito-corrispondenza-fise`](../contracts/recapito-corrispondenza-fise.md) | 1 000 | exploratory | 2 | 47 | 0 | party or official | none | none |
 | [`servizi-postali-appalto-fise`](../contracts/servizi-postali-appalto-fise.md) | 1 000 | exploratory | 2 | 49 | 0 | party or official | none | none |
-| [`agenti-immobiliari-fiaip`](../contracts/agenti-immobiliari-fiaip.md) | none | exploratory | 31 | 0 | 0 | party or official | none | none |
+| [`agenti-immobiliari-fiaip`](../contracts/agenti-immobiliari-fiaip.md) | none | exploratory | 3 | 0 | 28 | party or official | none | none |
 | [`autoscuole-unasca`](../contracts/autoscuole-unasca.md) | none | exploratory | 2 | 32 | 0 | party or official | none | none |
 | [`aziende-termali-federterme`](../contracts/aziende-termali-federterme.md) | none | exploratory | 2 | 64 | 0 | party or official | none | none |
 | [`turismo-confesercenti`](../contracts/turismo-confesercenti.md) | none | exploratory | 1 | 57 | 0 | aggregator | none | none |

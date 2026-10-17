@@ -47,8 +47,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/agenti-immobiliari-fiaip",
       "ruleset_version": "2026.2",
-      "source_hash": "c0b7263c0b0c78685093fb459933d19d24ef917e4d23c7053c0c78f083fc0779",
-      "source_type": "estimated",
+      "source_hash": "46b9e1423742d6ee11520bf3d9b1090e5c83ef9aac789a25fd8ba884da8a4a47",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/agenti-immobiliari-fiaip.json.gz"
     },
