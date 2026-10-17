@@ -40,12 +40,14 @@ __all__ = [
     "no_pay_issue",
     "provincial_issue",
     "roles_issue",
+    "sector_issue",
 ]
 
 FULL_TIME_FACT = "full_time_weekly_hours"
 ROLES_FACT = "roles"
 NO_PAY_FACT = "no_pay_due"
 PROVINCIAL_FACT = "provincial_pay_element"
+SECTOR_FACT = "inps_sector"
 
 
 def no_pay_issue(ctx: RunContext) -> CalculationIssue | None:
@@ -155,16 +157,41 @@ def provincial_issue(ctx: RunContext) -> CalculationIssue | None:
     )
 
 
+def sector_issue(ctx: RunContext) -> CalculationIssue | None:
+    """Return the missing-fact issue of an INPS sector left open.
+
+    Returns:
+        An incomplete issue naming ``inps_sector`` when the CCNL is applied
+        by employers of more than one INPS sector and the employer does not
+        state its own, else ``None``.
+    """
+    sectors = ctx.contract.sector_unknown
+    if not sectors:
+        return None
+    return CalculationIssue(
+        code="inps_sector_unknown",
+        message=(
+            f"the employers of the CCNL are classified in {', '.join(sectors)} "
+            "by the activity they carry out, and the employer does not state "
+            f"its own: the amounts shown read {ctx.contract.ccnl.meta.tax_sector}; "
+            "state EmployerProfile.inps_sector"
+        ),
+        status=CalculationStatus.INCOMPLETE,
+        fact=SECTOR_FACT,
+    )
+
+
 def fact_issues(ctx: RunContext) -> tuple[CalculationIssue | None, ...]:
     """Return the issues of the employment facts, in a fixed order.
 
     Returns:
-        The full time, no-pay, roles and provincial element issues, each
-        ``None`` when not raised.
+        The full time, no-pay, roles, provincial element and INPS sector
+        issues, each ``None`` when not raised.
     """
     return (
         full_time_issue(ctx),
         no_pay_issue(ctx),
         roles_issue(ctx),
         provincial_issue(ctx),
+        sector_issue(ctx),
     )

@@ -70,6 +70,15 @@ class TestStrictSchema:
         data["meta"]["tax_sector"] = "pubblica-amministrazione"
         assert _validate(data).meta.public_pension_fund == "cpdel"
 
+    def test_inps_sectors_hold_the_tax_sector(self) -> None:
+        """The sectors of the employers include the one the CCNL reads."""
+        data = make_ccnl_dict()
+        data["meta"]["inps_sectors"] = ["industria", "credito"]
+        with pytest.raises(ValidationError, match="must include the tax_sector"):
+            _validate(data)
+        data["meta"]["inps_sectors"] = [data["meta"]["tax_sector"], "industria"]
+        assert "industria" in _validate(data).meta.inps_sectors  # type: ignore[operator]
+
     def test_contribution_relevant_false_is_rejected(self) -> None:
         """The engine never takes an allowance out of the INPS base."""
         data = make_ccnl_dict()

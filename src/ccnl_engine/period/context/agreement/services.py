@@ -21,7 +21,7 @@ from ccnl_engine.employment.context.models import (
     EffectiveDateContext,
     TemporalContext,
 )
-from ccnl_engine.errors import UnknownLevelError
+from ccnl_engine.errors import InvalidInputError, UnknownLevelError
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL, TaxSector
@@ -32,7 +32,12 @@ if TYPE_CHECKING:
     from ccnl_engine.period.requests import PeriodCalculationRequest
     from ccnl_engine.sector.models import YearRules
 
-__all__ = ["RunContract", "load_contract", "with_competence_contributions"]
+__all__ = [
+    "RunContract",
+    "load_contract",
+    "with_competence_contributions",
+    "with_employer_sector",
+]
 
 #: Fields of :class:`YearRules` that follow competence: the INPS
 #: contributions and the TFR revaluation at 31 December of the year.
@@ -57,7 +62,9 @@ class RunContract:
 
     ``provincial_unknown`` holds the national elements of the level left out
     because the employer does not state whether a provincial element
-    replaces them (:mod:`._provincial`).
+    replaces them (:mod:`._provincial`).  ``sector_unknown`` holds the INPS
+    sectors of a CCNL applied in more than one when the employer does not
+    state its own: the run reads the sector of the CCNL.
     """
 
     ccnl: CCNL
@@ -67,6 +74,46 @@ class RunContract:
     year_rules: YearRules
     catalog: CapabilityCatalog
     provincial_unknown: tuple[str, ...] = ()
+    sector_unknown: tuple[TaxSector, ...] = ()
+
+
+def with_employer_sector(
+    ccnl: CCNL, stated: TaxSector | None
+) -> tuple[CCNL, tuple[TaxSector, ...]]:
+    """Return the CCNL read in the INPS sector of the employer.
+
+    A CCNL applied by employers of more than one INPS sector
+    (``CCNLMeta.inps_sectors``) is read in the sector the employer states,
+    so every rule that follows the sector (INPS rates, sickness cover, the
+    Fondo Tesoreria) follows the classification of the employer.
+
+    Returns:
+        The CCNL, with ``tax_sector`` the stated sector, and the sectors
+        left open when the CCNL lists several and none is stated.
+
+    Raises:
+        InvalidInputError: When the stated sector is not one the CCNL lists.
+    """
+    meta = ccnl.meta
+    allowed = meta.inps_sectors or frozenset({meta.tax_sector})
+    if stated is None:
+        open_sectors = () if len(allowed) == 1 else tuple(sorted(allowed))
+        return ccnl, open_sectors
+    if stated not in allowed:
+        msg = (
+            f"EmployerProfile.inps_sector is {stated}, but the employers of "
+            f"{meta.ccnl_id} are classified in {', '.join(sorted(allowed))}"
+        )
+        raise InvalidInputError(
+            msg,
+            field="EmployerProfile.inps_sector",
+            feature="inps_employer",
+            ruleset=meta.ccnl_id,
+        )
+    if stated is meta.tax_sector:
+        return ccnl, ()
+    sector_meta = meta.model_copy(update={"tax_sector": stated})
+    return ccnl.model_copy(update={"meta": sector_meta}), ()
 
 
 def load_contract(
@@ -82,6 +129,7 @@ def load_contract(
     """
     period_id = request.period_id
     ccnl = flat_pay_divisor(repo.load_ccnl(request.ccnl_slug), request.weekly_hours)
+    ccnl, sector_unknown = with_employer_sector(ccnl, request.employer.inps_sector)
     tctx = TemporalContext.from_period(
         period_id.year, period_id.month, request.payment_date
     )
@@ -125,7 +173,14 @@ def load_contract(
         year_rules = year_rules.model_copy(update={"inps": inps})
     catalog = repo.load_capability_catalog(tctx.fiscal_year)
     return RunContract(
-        ccnl, level, tctx, date_ctx, year_rules, catalog, provincial_unknown
+        ccnl,
+        level,
+        tctx,
+        date_ctx,
+        year_rules,
+        catalog,
+        provincial_unknown,
+        sector_unknown,
     )
 
 
