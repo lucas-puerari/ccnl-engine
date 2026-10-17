@@ -38,6 +38,8 @@ from ccnl_engine.inputs import (
     CurrentYearTaxFacts,
     EmploymentPeriod,
     FamilyComposition,
+    FixedTerm,
+    NaspiExclusion,
     NoPensionFund,
     Permanent,
     PriorYearTaxFacts,
@@ -62,6 +64,8 @@ from tests.knowledge.ccnl_engine.period.sector.oracles import (
     EDILIZIA_YEAR,
     FIPE_JUNE,
     FIPE_YEAR,
+    FIXED_TERM_JUNE,
+    FIXED_TERM_YEAR,
     INDUSTRIA_JUNE,
     INDUSTRIA_YEAR,
     OVERTIME_HOURS,
@@ -109,6 +113,8 @@ class Scenario:
     provincial_pay_element: bool | None = None
     weekly_hours: int | None = None
     apprentice_track: str | None = None
+    ends_on: date | None = None
+    fixed_term: bool = False
 
 
 _METAL = "metalmeccanico-federmeccanica"
@@ -422,7 +428,38 @@ SCENARIOS = {
         terminated=True,
         apprentice_track="professionalizzante_36",
     ),
+    "fixed-term-year": Scenario(
+        _METAL,
+        "C3",
+        WorkerCategory.IMPIEGATO,
+        50,
+        FIXED_TERM_YEAR,
+        _METAL_OWED,
+        net_pay_reliable=True,
+        terminated=True,
+        ends_on=date(2026, 12, 31),
+        fixed_term=True,
+    ),
+    "fixed-term-june": Scenario(
+        _METAL,
+        "C3",
+        WorkerCategory.IMPIEGATO,
+        50,
+        FIXED_TERM_JUNE,
+        _METAL_OWED,
+        net_pay_reliable=True,
+        terminated=True,
+        fixed_term=True,
+    ),
 }
+
+
+def _contract(s: Scenario) -> Permanent | Apprentice | FixedTerm:
+    if s.apprentice_track is not None:
+        return Apprentice(months_elapsed=0, track=s.apprentice_track)
+    if s.fixed_term:
+        return FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE)
+    return Permanent()
 
 
 @cache
@@ -451,13 +488,11 @@ def _year(name: str) -> CompetenceYearResult:
                 category=s.category,
                 seniority=new_hire(),
                 employment_period=EmploymentPeriod(
-                    date(2026, 1, 1), _JUNE_END if s.terminated else None
+                    date(2026, 1, 1), s.ends_on or (_JUNE_END if s.terminated else None)
                 ),
                 tfr_treasury_fund=False,
                 pension_fund=NoPensionFund(),
-                contract_type=Permanent()
-                if s.apprentice_track is None
-                else Apprentice(months_elapsed=0, track=s.apprentice_track),
+                contract_type=_contract(s),
                 weekly_hours=hours,
                 full_time_weekly_hours=None if hours is None else _FULL_TIME,
             ),
