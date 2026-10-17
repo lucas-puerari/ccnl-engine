@@ -303,12 +303,12 @@ class TestLoadBancariAbi:
         assert am.value_at(date(2026, 1, 1)) == Decimal(13)
 
     def test_bancari_abi_hourly_divisor(self) -> None:
-        """Hourly divisor: 162 until 2024-07-01, then 160 (37h/week rinnovo 2024)."""
+        """Hourly divisor 360 x daily hours / 13: 7,5 hours, 7,4 from 2024-07-01."""
         ccnl = load_ccnl("bancari-abi.json")
         divisor = ccnl.parameters.hourly_divisor
         assert len(divisor.periods) == 2
-        assert divisor.periods[0].value == Decimal(162)
-        assert divisor.periods[1].value == Decimal(160)
+        assert divisor.periods[0].value == Decimal("207.69")
+        assert divisor.periods[1].value == Decimal("204.92")
 
     def test_bancari_abi_no_fixed_allowances(self) -> None:
         """Conglobated model: all levels must have no fixed allowances."""
