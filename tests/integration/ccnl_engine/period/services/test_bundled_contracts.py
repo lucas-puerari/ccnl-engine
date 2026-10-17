@@ -185,6 +185,7 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
                     cigs_indotto=False,
                     agricultural_zone=AgriculturalZone.ORDINARY,
                     public_life_insurance=False if _public_regime(ccnl) else None,
+                    inps_sector=ccnl.meta.tax_sector,
                 ),
                 facts=_facts(slug, ccnl),
                 current_year=_ONLY_EMPLOYMENT,

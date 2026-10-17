@@ -30,6 +30,7 @@ from ccnl_engine.inputs import (
     PeriodState,
     Permanent,
     PublicEndOfService,
+    TaxSector,
     WorkerCategory,
 )
 from tests.integration.ccnl_engine.withholding.builders import paid_before
@@ -197,6 +198,24 @@ def _commercio_employer(
     return replace(request, employer=employer)
 
 
+def _logistica_employer(
+    january: Callable[[Employment], PeriodInput], sector: TaxSector | None
+) -> PeriodInput:
+    """Return a Logistica run, a CCNL of the industria and of the terziario.
+
+    Returns:
+        The January request with ``inps_sector`` set to ``sector``.
+    """
+    logistica = replace(
+        CONCIA_D2,
+        ccnl_slug="logistica-trasporto-confetra.json",
+        level_code="3S",
+    )
+    request = january(logistica)
+    employer = replace(request.employer, inps_sector=sector)
+    return replace(request, employer=employer)
+
+
 def _operaio(
     january: Callable[[Employment], PeriodInput], hours: Decimal | None
 ) -> PeriodInput:
@@ -302,6 +321,14 @@ def employer_cases[C](
                 "provincial_pay_element",
             )
             for stated in (False, True)
+        ),
+        "EmployerProfile.inps_sector": tuple(
+            case(
+                _logistica_employer(january, sector),
+                _logistica_employer(january, None),
+                "inps_sector",
+            )
+            for sector in (TaxSector.INDUSTRIA, TaxSector.TERZIARIO)
         ),
     }
 
