@@ -60,15 +60,6 @@
       "tax",
       "tfr"
     ],
-    "studi-professionali-confprofessioni": [
-      "employee_contributions",
-      "employer_contributions",
-      "employer_cost",
-      "gross",
-      "net",
-      "tax",
-      "tfr"
-    ],
     "turismo-federalberghi": [
       "employee_contributions",
       "employer_contributions",

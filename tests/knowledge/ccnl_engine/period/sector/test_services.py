@@ -49,6 +49,8 @@ from tests.knowledge.ccnl_engine.period.sector.oracles import (
     INDUSTRIA_JUNE,
     INDUSTRIA_YEAR,
     OVERTIME_HOURS,
+    STUDI_JUNE,
+    STUDI_YEAR,
     TERZIARIO_JUNE,
     TERZIARIO_YEAR,
     SectorYear,
@@ -87,11 +89,13 @@ class Scenario:
 _METAL = "metalmeccanico-federmeccanica"
 _TERZ = "terziario-confesercenti"
 _EDIL = "edilizia-ance"
+_STUDI = "studi-professionali-confprofessioni"
 _METAL_OWED = frozenset({
     f"{_METAL}/health_and_bilateral_funds",
     f"{_METAL}/flexible_benefits",
 })
 _TERZ_OWED = frozenset({f"{_TERZ}/health_and_bilateral_funds"})
+_STUDI_OWED = frozenset({f"{_STUDI}/bilateral_contribution_or_element"})
 _EDIL_OWED = frozenset({
     f"{_EDIL}/cassa_edile_contribution",
     f"{_EDIL}/territorial_sector_allowance",
@@ -159,6 +163,25 @@ SCENARIOS = {
         net_pay_reliable=False,
         terminated=True,
         hours=Decimal(173),
+    ),
+    "studi-year": Scenario(
+        _STUDI,
+        "4",
+        WorkerCategory.IMPIEGATO,
+        10,
+        STUDI_YEAR,
+        _STUDI_OWED,
+        net_pay_reliable=False,
+    ),
+    "studi-june": Scenario(
+        _STUDI,
+        "4",
+        WorkerCategory.IMPIEGATO,
+        10,
+        STUDI_JUNE,
+        _STUDI_OWED,
+        net_pay_reliable=False,
+        terminated=True,
     ),
 }
 

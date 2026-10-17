@@ -1,4 +1,4 @@
-"""Hand oracles of a year and of a termination, one per contribution sector.
+"""Hand oracles of a year and of a termination per contribution sector and CCNL.
 
 Each scenario is a worker hired on 1 January 2026 by an employer in
 Sardegna (Alghero), with no pension fund of their own, no family deduction
@@ -7,7 +7,9 @@ and a 2025 income of 40,000 EUR (no renewal substitute tax):
 - industria: Metalmeccanico Federmeccanica C3 impiegato, 50 employees, two
   hours of weekday overtime on 10 March;
 - terziario: Terziario Confesercenti IV, 50 employees, fourteen payments;
-- edilizia: ANCE operaio of the 1st level, 30 employees, 173 hours a month.
+- edilizia: ANCE operaio of the 1st level, 30 employees, 173 hours a month;
+- studi: Studi Professionali Confprofessioni 4th level, 10 employees,
+  fourteen payments.
 
 Each runs for the whole year and, apart, until a termination on 30 June.
 
@@ -54,6 +56,8 @@ __all__ = [
     "EDILIZIA_YEAR",
     "INDUSTRIA_JUNE",
     "INDUSTRIA_YEAR",
+    "STUDI_JUNE",
+    "STUDI_YEAR",
     "TERZIARIO_JUNE",
     "TERZIARIO_YEAR",
     "Payment",
@@ -357,6 +361,64 @@ TERZIARIO_YEAR = sector_year(
     _terziario_year(), _TERZIARIO, _FULL_YEAR, terminated=False
 )
 TERZIARIO_JUNE = sector_year(_terziario_june(), _TERZIARIO, _HALF_YEAR, terminated=True)
+
+
+# Studi: Studi Professionali Confprofessioni, 4th level, 10 employees.
+
+#: 4th level minimo tabellare: CCNL 16 February 2024, Art. 140, p. 72
+#: (sha256 89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544):
+#: "4° 1.595,42 18,70 1.614,12", in force until 30 November 2026 and from
+#: 1 December 2026.
+_STUDI_UNTIL_NOVEMBER = Decimal("1595.42")
+_STUDI_FROM_DECEMBER = Decimal("1614.12")
+#: Studi professionali from 6 to 15 employees: the terziario shares of INPS
+#: circ. 117/2022 all. 1 (employer IVS 23.81, NASpI 1.31 + 0.30, Fondo
+#: garanzia TFR 0.20, CUAF 0.68, maternità 0.24, malattia 2.44; worker IVS
+#: 9.19), with the Fondo di solidarietà bilaterale per le attività
+#: professionali in place of the FIS: D.I. 21 May 2024 art. 6 c. 1 lett. b)
+#: (sha256 fd1d01d5444dff1cfdd2cf5d0a12ff5b2ee5c1fca8a64758e61f4a7bee9c9bbf),
+#: "0,80%, di cui due terzi a carico del datore di lavoro e un terzo a
+#: carico del lavoratore" above five and up to fifteen employees.  No CIGS
+#: up to 15 employees.  The worker is owed the INPS sickness indemnity (Art.
+#: 120), so the employer pays the malattia share.
+_STUDI = Rates(
+    employee_ivs=Decimal("0.0919"),
+    employee_other=Decimal("0.0026667"),
+    employer_ivs=Decimal("0.2381"),
+    employer_other=Decimal("0.0570333"),
+)
+#: Quattordicesima of one monthly pay "in atto allo stesso 30 giugno", in
+#: twelfths for a worker hired within the year (Art. 143, p. 74, with Art.
+#: 142): six for a hire on 1 January; tredicesima of one monthly pay at
+#: Christmas (Art. 142).
+_STUDI_FOURTEENTH = _cents(_STUDI_UNTIL_NOVEMBER * 6 / 12)
+
+
+def _studi(month: int) -> Decimal:
+    return _STUDI_UNTIL_NOVEMBER if month < 12 else _STUDI_FROM_DECEMBER
+
+
+def _studi_year() -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _studi(m), _studi(m)) for m in range(1, 13)]
+    pays.insert(6, Pay(_run(6, "fourteenth"), _STUDI_FOURTEENTH, _STUDI_FOURTEENTH))
+    thirteenth = _STUDI_FROM_DECEMBER
+    pays.insert(12, Pay(_run(12, "thirteenth"), thirteenth, thirteenth))
+    return tuple(pays)
+
+
+def _studi_june() -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _studi(m), _studi(m)) for m in range(1, 6)]
+    #: Six twelfths of the tredicesima are paid with the last month.
+    june = _STUDI_UNTIL_NOVEMBER + _cents(_STUDI_UNTIL_NOVEMBER * 6 / 12)
+    return (
+        *pays,
+        Pay(_run(6), june, june),
+        Pay(_run(6, "fourteenth"), _STUDI_FOURTEENTH, _STUDI_FOURTEENTH),
+    )
+
+
+STUDI_YEAR = sector_year(_studi_year(), _STUDI, _FULL_YEAR, terminated=False)
+STUDI_JUNE = sector_year(_studi_june(), _STUDI, _HALF_YEAR, terminated=True)
 
 
 # Edilizia: ANCE operaio of the 1st level, 173 hours.

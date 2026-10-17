@@ -2060,7 +2060,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "368fc28b2d904f1a9581791664f17599fd7e6d6b1e1ea171aa31629fb582a440",
+    "source_hash": "0f095f0515be98dd32637ba48851fe74496577bc2d3a591c156976c09ff2b5d9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2418,9 +2418,36 @@
         "findings": [
           "The INPS gap above 15 employees (fsbap_rates_above_15) is now recorded on every run of an employer with more than 15 employees (applies_when headcount_from 16): up to 15 employees the terziario rates coincide with the solidarity fund of the studi professionali, so the file moves to production."
         ]
+      },
+      {
+        "id": "2026-10-17-ai-periodic",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Periodic review due 2026-12-01: the minimi tabellari of every level and tranche, the scatti, the ENAC, the divisor and the extra months against the CCNL of 16 February 2024, the solidarity fund against the D.I. of 21 May 2024, and a year and a termination of a 4th level worker against a hand oracle.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          },
+          {
+            "url": "https://www.lavoro.gov.it/sites/default/files/temi-e-priorita%2C%20ammortizzatori-sociali/normativa/Decreto-Interministeriale-del-%2021052024.pdf",
+            "sha256": "fd1d01d5444dff1cfdd2cf5d0a12ff5b2ee5c1fca8a64758e61f4a7bee9c9bbf"
+          }
+        ],
+        "findings": [
+          "The 32 minimi of Art. 140 (eight levels, tranches of March 2024, October 2024, October 2025 and December 2026, pp. 71-72) match the file.",
+          "Scatti of Art. 134 (p. 68): eight triennial increments, Quadri 30, I 26, II 23, III Super and III 22, IV Super, IV and V 20. Match.",
+          "ENAC of Art. 141 (p. 73): 42,35 at the I, 102,53 at the II and 110,40 at the III Super level. Match.",
+          "Tredicesima at Christmas (Art. 142) and quattordicesima by 30 June of the pay in force on that date (Art. 143), both in twelfths for a hire within the year. Match with the fourteen payments of the file.",
+          "Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios studi-year and studi-june): a 4th level impiegato hired on 1 January 2026 by an employer with 10 employees; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent.",
+          "fsbap_rates_above_15 stays open: up to 15 employees the terziario rates equal the 0.80% of the solidarity fund (D.I. 21 May 2024 art. 6 c. 1 lett. b), above 15 they need a contribution sector of their own, an engine change outside this review.",
+          "bilateral_contribution_or_element stays open: the per-worker amount of Art. 13 needs an employer fact for the alternative element; it remains an owed amount on every run."
+        ]
       }
     ],
     "owner": "maintainer",
-    "review_due": "2026-12-01"
+    "review_due": "2027-04-30"
   }
 }
