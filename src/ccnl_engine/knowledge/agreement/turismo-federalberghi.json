@@ -2879,7 +2879,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "08ed7d573c125f8bb88b74cf0f6a831c4c7db62a48f899cfee9929cad7257138",
+    "source_hash": "9bf629c4f6e944f8f1a5ee90a7f8c5970c380be094edd808850d9aaafa37faa4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3187,9 +3187,34 @@
           "sickness_net_basis is recorded on every run with a sickness event (trigger run), not only documented.",
           "The apprenticeship durations without a signed source are now a limitation on every apprentice run (apprenticeship_durations_unsourced); with every remaining gap flagged on the runs it concerns, the file moves to production."
         ]
+      },
+      {
+        "id": "2026-10-17-ai-periodic",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Periodic review due 2026-12-01: the paga base nazionale of every level and tranche from July 2024, the extra months against the ipotesi of 5 July 2024, the scatti and the hourly divisor against the CCNL of 20 February 2010, and a year and a termination of a 4th level worker against a hand oracle.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+            "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+          },
+          {
+            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+          }
+        ],
+        "findings": [
+          "Art. 152 c. 1 as replaced in 2024 (p. 42, scan read by OCR): the 50 amounts of the ten levels from July 2024 to November 2027 match the file.",
+          "Art. 160 (p. 45): tredicesima of one monthly pay at Christmas; art. 161 (p. 46): quattordicesima of the pay in force on 30 June, paid with the July pay, in twelfths of the twelve months before 1 July. Match with the fourteen payments of the file.",
+          "Art. 158 c. 4 of the 2010 text (pp. 140-141): six scatti, A 40,80 to 7 30,47. Match. Hourly divisor 172 for a 40-hour week. Match.",
+          "Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios turismo-year and turismo-june): a 4th level impiegato hired on 1 January 2026 by an employer with 10 employees, across the tranche of May 2026; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent.",
+          "apprenticeship_durations_unsourced stays open: no signed or CNEL copy of the accord of 17 April 2012 as amended in 2014 was found in this review."
+        ]
       }
     ],
     "owner": "maintainer",
-    "review_due": "2026-12-01"
+    "review_due": "2027-04-30"
   }
 }

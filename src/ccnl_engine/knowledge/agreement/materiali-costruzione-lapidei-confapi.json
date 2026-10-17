@@ -101,6 +101,33 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-17-ai-lapidei",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The minimi of the eight Lapidei levels against the testo definitivo of 9 September 2025.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+            "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
+          }
+        ],
+        "findings": [
+          "40 minimi (eight levels, April 2019, September 2020, February 2021, January 2022 and January 2025) are printed in Art. 25 (PDF p. 96) and in the tables of Allegato V (PDF pp. 219-220): verified.",
+          "8 minimi of 1 January 2024 are not printed: the verbale of 25 January 2024 (Allegato V, PDF p. 219) prints the totals at 31 December 2023 and the increments; the minimo is the total plus the increment less the EDR (and the superminimo collettivo of level 8). Derived; every one matches the file.",
+          "The table of the verbale prints level 6 'a regime' at 1.935,75, the Art. 25 table at 1.935,76 (1.925,43 + 10,33): a one-cent misprint of the verbale; the file follows Art. 25.",
+          "The ruleset now names its source, the testo definitivo published by FENEAL-UIL, a signatory: source_type contracting_party instead of estimated."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -395,22 +422,28 @@
             "valid_until": "2020-09-01",
             "value": "1453.21",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.4.2019"
+                "page": "219",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.4.2019 al 31.8.2020, row 8",
+                "quote": "8 1.453,21 10,33 7,75 1.471,29"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2019-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -419,22 +452,28 @@
             "valid_until": "2021-02-01",
             "value": "1473.80",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.9.2020"
+                "page": "219",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.9.2020, row 8",
+                "quote": "8 1.473,80 10,33 7,75 1.491,88"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2020-09-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -443,22 +482,28 @@
             "valid_until": "2022-01-01",
             "value": "1488.51",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.2.2021"
+                "page": "220",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.2.2021, row 8",
+                "quote": "8 1.488,51 10,33 7,75 1.506,59"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2021-02-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -467,22 +512,28 @@
             "valid_until": "2024-01-01",
             "value": "1522.70",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.1.2022"
+                "page": "220",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.1.2022, row 8",
+                "quote": "8 1.522,70 10,33 7,75 1.540,78"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2022-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -491,22 +542,26 @@
             "valid_until": "2025-01-01",
             "value": "1586.01",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - aumenti 1.1.2024 Lapidei"
+                "page": "219",
+                "section": "Allegato V, Minimi tabellari allegati al Verbale di accordo del 25.1.2024, Lapidei, row 8",
+                "quote": "8 100 1.540,78 63,31 27,13 90,44 1.631,22"
               },
+              "transformation": "Minimo al 31.12.2023 1540.78 (a total with the EDR 10,33 and the superminimo collettivo 7,75) plus the increment of 1.1.2024 63.31, less the EDR and the superminimo: 1586.01.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -515,22 +570,28 @@
             "valid_until": null,
             "value": "1613.14",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Art. 25 - Minimi contrattuali Lapidei dal 1.1.2025"
+                "page": "96",
+                "section": "Art. 25, Minimi contrattuali, Lapidei dal 1.1.2025, row 8",
+                "quote": "8 1.613,14 10,33 7,75 1.631,22"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           }
@@ -635,22 +696,28 @@
             "valid_until": "2020-09-01",
             "value": "1624.70",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.4.2019"
+                "page": "219",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.4.2019 al 31.8.2020, row 7",
+                "quote": "7 1.624,70 10,33 1.635,03"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2019-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -659,22 +726,28 @@
             "valid_until": "2021-02-01",
             "value": "1648.99",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.9.2020"
+                "page": "219",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.9.2020, row 7",
+                "quote": "7 1.648,99 10,33 1.659,32"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2020-09-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -683,22 +756,28 @@
             "valid_until": "2022-01-01",
             "value": "1666.34",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.2.2021"
+                "page": "220",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.2.2021, row 7",
+                "quote": "7 1.666,34 10,33 1.676,67"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2021-02-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -707,22 +786,28 @@
             "valid_until": "2024-01-01",
             "value": "1706.69",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.1.2022"
+                "page": "220",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.1.2022, row 7",
+                "quote": "7 1.706,69 10,33 1.717,02"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2022-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -731,22 +816,26 @@
             "valid_until": "2025-01-01",
             "value": "1781.39",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - aumenti 1.1.2024 Lapidei"
+                "page": "219",
+                "section": "Allegato V, Minimi tabellari allegati al Verbale di accordo del 25.1.2024, Lapidei, row 7",
+                "quote": "7 118 1.717,02 74,70 32,02 106,72 1.823,74"
               },
+              "transformation": "Minimo al 31.12.2023 1717.02 (a total with the EDR 10,33) plus the increment of 1.1.2024 74.70, less the EDR: 1781.39.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -755,22 +844,28 @@
             "valid_until": null,
             "value": "1813.41",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Art. 25 - Minimi contrattuali Lapidei dal 1.1.2025"
+                "page": "96",
+                "section": "Art. 25, Minimi contrattuali, Lapidei dal 1.1.2025, row 7",
+                "quote": "7 1.813,41 10,33 1.823,74"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           }
@@ -842,22 +937,28 @@
             "valid_until": "2020-09-01",
             "value": "1720.73",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.4.2019"
+                "page": "219",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.4.2019 al 31.8.2020, row 6",
+                "quote": "6 1.720,73 10,33 1.731,06"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2019-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -866,22 +967,28 @@
             "valid_until": "2021-02-01",
             "value": "1747.08",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.9.2020"
+                "page": "219",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.9.2020, row 6",
+                "quote": "6 1.747,08 10,33 1.757,41"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2020-09-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -890,22 +997,28 @@
             "valid_until": "2022-01-01",
             "value": "1765.90",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.2.2021"
+                "page": "220",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.2.2021, row 6",
+                "quote": "6 1.765,90 10,33 1.776,23"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2021-02-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -914,22 +1027,28 @@
             "valid_until": "2024-01-01",
             "value": "1809.66",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.1.2022"
+                "page": "220",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.1.2022, row 6",
+                "quote": "6 1.809,66 10,33 1.819,99"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2022-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -938,22 +1057,26 @@
             "valid_until": "2025-01-01",
             "value": "1890.69",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - aumenti 1.1.2024 Lapidei"
+                "page": "219",
+                "section": "Allegato V, Minimi tabellari allegati al Verbale di accordo del 25.1.2024, Lapidei, row 6",
+                "quote": "6 128 1.819,99 81,03 34,73 115,76 1.935,75"
               },
+              "transformation": "Minimo al 31.12.2023 1819.99 (a total with the EDR 10,33) plus the increment of 1.1.2024 81.03, less the EDR: 1890.69.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -962,22 +1085,28 @@
             "valid_until": null,
             "value": "1925.43",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Art. 25 - Minimi contrattuali Lapidei dal 1.1.2025"
+                "page": "96",
+                "section": "Art. 25, Minimi contrattuali, Lapidei dal 1.1.2025, row 6",
+                "quote": "6 1.925,43 10,33 1.935,76"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           }
@@ -1049,22 +1178,28 @@
             "valid_until": "2020-09-01",
             "value": "1797.35",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.4.2019"
+                "page": "219",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.4.2019 al 31.8.2020, row 5",
+                "quote": "5 1.797,35 10,33 1.807,68"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2019-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1073,22 +1208,28 @@
             "valid_until": "2021-02-01",
             "value": "1825.35",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.9.2020"
+                "page": "219",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.9.2020, row 5",
+                "quote": "5 1.825,35 10,33 1.835,68"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2020-09-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1097,22 +1238,28 @@
             "valid_until": "2022-01-01",
             "value": "1845.35",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.2.2021"
+                "page": "220",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.2.2021, row 5",
+                "quote": "5 1.845,35 10,33 1.855,68"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2021-02-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1121,22 +1268,28 @@
             "valid_until": "2024-01-01",
             "value": "1891.85",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.1.2022"
+                "page": "220",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.1.2022, row 5",
+                "quote": "5 1.891,85 10,33 1.902,18"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2022-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1145,22 +1298,26 @@
             "valid_until": "2025-01-01",
             "value": "1977.95",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - aumenti 1.1.2024 Lapidei"
+                "page": "219",
+                "section": "Allegato V, Minimi tabellari allegati al Verbale di accordo del 25.1.2024, Lapidei, row 5",
+                "quote": "5 136 1.902,18 86,10 36,90 123,00 2.025,18"
               },
+              "transformation": "Minimo al 31.12.2023 1902.18 (a total with the EDR 10,33) plus the increment of 1.1.2024 86.10, less the EDR: 1977.95.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1169,22 +1326,28 @@
             "valid_until": null,
             "value": "2014.85",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Art. 25 - Minimi contrattuali Lapidei dal 1.1.2025"
+                "page": "96",
+                "section": "Art. 25, Minimi contrattuali, Lapidei dal 1.1.2025, row 5",
+                "quote": "5 2.014,85 10,33 2.025,18"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           }
@@ -1256,22 +1419,28 @@
             "valid_until": "2020-09-01",
             "value": "1862.76",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.4.2019"
+                "page": "219",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.4.2019 al 31.8.2020, row 4",
+                "quote": "4 1.862,76 10,33 1.873,09"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2019-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1280,22 +1449,28 @@
             "valid_until": "2021-02-01",
             "value": "1892.82",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.9.2020"
+                "page": "219",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.9.2020, row 4",
+                "quote": "4 1.892,82 10,33 1.903,15"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2020-09-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1304,22 +1479,28 @@
             "valid_until": "2022-01-01",
             "value": "1914.29",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.2.2021"
+                "page": "220",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.2.2021, row 4",
+                "quote": "4 1.914,29 10,33 1.924,62"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2021-02-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1328,22 +1509,28 @@
             "valid_until": "2024-01-01",
             "value": "1964.21",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.1.2022"
+                "page": "220",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.1.2022, row 4",
+                "quote": "4 1.964,21 10,33 1.974,54"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2022-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1352,22 +1539,26 @@
             "valid_until": "2025-01-01",
             "value": "2056.64",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - aumenti 1.1.2024 Lapidei"
+                "page": "219",
+                "section": "Allegato V, Minimi tabellari allegati al Verbale di accordo del 25.1.2024, Lapidei, row 4",
+                "quote": "4 146 1.974,54 92,43 39,61 132,04 2.106,58"
               },
+              "transformation": "Minimo al 31.12.2023 1974.54 (a total with the EDR 10,33) plus the increment of 1.1.2024 92.43, less the EDR: 2056.64.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1376,22 +1567,28 @@
             "valid_until": null,
             "value": "2096.25",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Art. 25 - Minimi contrattuali Lapidei dal 1.1.2025"
+                "page": "96",
+                "section": "Art. 25, Minimi contrattuali, Lapidei dal 1.1.2025, row 4",
+                "quote": "4 2.096,25 10,33 2.106,58"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           }
@@ -1463,22 +1660,28 @@
             "valid_until": "2020-09-01",
             "value": "1956.11",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.4.2019"
+                "page": "219",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.4.2019 al 31.8.2020, row 3",
+                "quote": "3 1.956,11 10,33 1.966,44"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2019-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1487,22 +1690,28 @@
             "valid_until": "2021-02-01",
             "value": "1987.82",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.9.2020"
+                "page": "219",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.9.2020, row 3",
+                "quote": "3 1.987,82 10,33 1.998,15"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2020-09-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1511,22 +1720,28 @@
             "valid_until": "2022-01-01",
             "value": "2010.47",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.2.2021"
+                "page": "220",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.2.2021, row 3",
+                "quote": "3 2.010,47 10,33 2.020,80"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2021-02-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1535,22 +1750,28 @@
             "valid_until": "2024-01-01",
             "value": "2063.12",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.1.2022"
+                "page": "220",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.1.2022, row 3",
+                "quote": "3 2.063,12 10,33 2.073,45"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2022-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1559,22 +1780,26 @@
             "valid_until": "2025-01-01",
             "value": "2160.61",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - aumenti 1.1.2024 Lapidei"
+                "page": "219",
+                "section": "Allegato V, Minimi tabellari allegati al Verbale di accordo del 25.1.2024, Lapidei, row 3",
+                "quote": "3 154 2.073,45 97,49 41,78 139,28 2.212,73"
               },
+              "transformation": "Minimo al 31.12.2023 2073.45 (a total with the EDR 10,33) plus the increment of 1.1.2024 97.49, less the EDR: 2160.61.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1583,22 +1808,28 @@
             "valid_until": null,
             "value": "2202.40",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Art. 25 - Minimi contrattuali Lapidei dal 1.1.2025"
+                "page": "96",
+                "section": "Art. 25, Minimi contrattuali, Lapidei dal 1.1.2025, row 3",
+                "quote": "3 2.202,40 10,33 2.212,73"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           }
@@ -1670,22 +1901,28 @@
             "valid_until": "2020-09-01",
             "value": "2285.29",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.4.2019"
+                "page": "219",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.4.2019 al 31.8.2020, row 2",
+                "quote": "2 2.285,29 10,33 2.295,62"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2019-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1694,22 +1931,28 @@
             "valid_until": "2021-02-01",
             "value": "2324.20",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.9.2020"
+                "page": "219",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.9.2020, row 2",
+                "quote": "2 2.324,20 10,33 2.334,53"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2020-09-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1718,22 +1961,28 @@
             "valid_until": "2022-01-01",
             "value": "2351.99",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.2.2021"
+                "page": "220",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.2.2021, row 2",
+                "quote": "2 2.351,99 10,33 2.362,32"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2021-02-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1742,22 +1991,28 @@
             "valid_until": "2024-01-01",
             "value": "2416.61",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.1.2022"
+                "page": "220",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.1.2022, row 2",
+                "quote": "2 2.416,61 10,33 2.426,94"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2022-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1766,22 +2021,26 @@
             "valid_until": "2025-01-01",
             "value": "2536.26",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - aumenti 1.1.2024 Lapidei"
+                "page": "219",
+                "section": "Allegato V, Minimi tabellari allegati al Verbale di accordo del 25.1.2024, Lapidei, row 2",
+                "quote": "2 189 2.426,94 119,65 51,28 170,93 2.597,87"
               },
+              "transformation": "Minimo al 31.12.2023 2426.94 (a total with the EDR 10,33) plus the increment of 1.1.2024 119.65, less the EDR: 2536.26.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1790,22 +2049,28 @@
             "valid_until": null,
             "value": "2587.54",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Art. 25 - Minimi contrattuali Lapidei dal 1.1.2025"
+                "page": "96",
+                "section": "Art. 25, Minimi contrattuali, Lapidei dal 1.1.2025, row 2",
+                "quote": "2 2.587,54 10,33 2.597,87"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           }
@@ -1877,22 +2142,28 @@
             "valid_until": "2020-09-01",
             "value": "2459.62",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.4.2019"
+                "page": "219",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.4.2019 al 31.8.2020, row 1",
+                "quote": "1 2.459,62 10,33 2.469,95"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2019-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1901,22 +2172,28 @@
             "valid_until": "2021-02-01",
             "value": "2502.86",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.9.2020"
+                "page": "219",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.9.2020, row 1",
+                "quote": "1 2.502,86 10,33 2.513,19"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2020-09-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1925,22 +2202,28 @@
             "valid_until": "2022-01-01",
             "value": "2533.74",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.2.2021"
+                "page": "220",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.2.2021, row 1",
+                "quote": "1 2.533,74 10,33 2.544,07"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2021-02-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1949,22 +2232,28 @@
             "valid_until": "2024-01-01",
             "value": "2605.54",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - Lapidei dall'1.1.2022"
+                "page": "220",
+                "section": "Allegato V, Lapidei (Piccola Industria) dall'1.1.2022, row 1",
+                "quote": "1 2.605,54 10,33 2.615,87"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2022-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           },
@@ -1973,22 +2262,26 @@
             "valid_until": "2025-01-01",
             "value": "2738.49",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Allegato V - aumenti 1.1.2024 Lapidei"
+                "page": "219",
+                "section": "Allegato V, Minimi tabellari allegati al Verbale di accordo del 25.1.2024, Lapidei, row 1",
+                "quote": "1 210 2.615,87 132,95 56,98 189,92 2.805,79"
               },
+              "transformation": "Minimo al 31.12.2023 2615.87 (a total with the EDR 10,33) plus the increment of 1.1.2024 132.95, less the EDR: 2738.49.",
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1997,22 +2290,28 @@
             "valid_until": null,
             "value": "2795.46",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "fenealuil-f020-ccnl-materiali-costruzione-2025",
                   "title": "CCNL Materiali da Costruzione PMI CONFAPI ANIEM testo definitivo 09/09/2025",
                   "kind": "associazione",
-                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf"
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+                  "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
                 },
-                "section": "Art. 25 - Minimi contrattuali Lapidei dal 1.1.2025"
+                "page": "96",
+                "section": "Art. 25, Minimi contrattuali, Lapidei dal 1.1.2025, row 1",
+                "quote": "1 2.795,46 10,33 2.805,79"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2019-04-01"
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:39:18Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:39:18Z",
+                "review_id": "2026-10-17-ai-lapidei"
               }
             }
           }
@@ -2081,9 +2380,9 @@
     "effective_from": "2026-01-01",
     "effective_until": null,
     "published_at": "2026-09-18",
-    "source": "unavailable",
-    "source_type": "estimated",
+    "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+    "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "0b822635798a66421d8998df919565ba4287a86b90c7e1f49f51eff3c55b25ca"
+    "source_hash": "8faa90bd940ca47eec31808407c3a5afbfcbd4844f05295a5bafa2d809d91c56"
   }
 }

@@ -117,7 +117,7 @@
       },
       {
         "kind": "simplification",
-        "text": "PART-TIME SUPPLEMENTARY HOURS: supplementary hours of the operai are paid with 20% of the hourly quota, and a flexible clause adds 10% (CCNL 19 April 2010, Art. 78, pp. 105-106). The request has no kind for supplementary hours: an overtime event of a part-time worker takes the overtime bands unless the caller passes the multiplier.",
+        "text": "PART-TIME SUPPLEMENTARY HOURS: the operai are paid the supplementary hours with the hourly quota raised by 20% (Art. 78, pp. 90-91), modelled as the OT_SUPPLEMENTARE band of OvertimeKind.SUPPLEMENTARY; the CCNL gives that pay 'incidenza su tutti gli istituti retributivi legali e contrattuali, indiretti e differiti, compresi le contribuzioni e gli accantonamenti in Cassa Edile', which the engine does not apply (an overtime pay stays out of the TFR base and of the Cassa Edile accruals), nor the 10% of the flexible clauses.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -125,7 +125,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add a supplementary-hours kind to the overtime event and a supplementare band with the CCNL rate."
+          "remediation": "Give the supplementary pay of the operai its incidence on the TFR base and the Cassa Edile accruals, then remove this note."
         }
       },
       {
@@ -1503,7 +1503,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "44b24f62f066364b4475c241a6056c6b604a3b5260f2133ecd32ade828724450",
+    "source_hash": "85aefa9cf8cea745e4d6fb2f23e176e8328006353275fc24cf8b88eaf10c1cf2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1684,6 +1684,50 @@
               "verified_at": "2026-10-13T07:47:58Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        },
+        {
+          "code": "OT_SUPPLEMENTARE",
+          "description": "Lavoro supplementare del part-time orizzontale degli operai, maggiorazione del 20%",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2010-04-19",
+                "value": "0.20",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "supplementare"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "90-91",
+              "section": "Art. 78, part-time, lavoro supplementare",
+              "quote": "Per il personale operaio, le eventuali ore di lavoro supplementare prestate nel rispetto del limite settimanale di cui sopra saranno compensate con la quota oraria di retribuzione diretta, maggiorata di una percentuale del 20%"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T10:11:39Z",
+              "verification_status": "verified",
+              "effective_from": "2010-04-19",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T10:11:39Z",
+              "review_id": "2026-10-17-ai-supplementary"
             }
           }
         }
@@ -1998,6 +2042,23 @@
         "findings": [
           "Operaio di 1° livello, January 2026 (the tranche of the table of May 2025), 30 employees, 173 hours: minimo 6,17, ex contingenza 2,96 and EDR 0,06 an hour equal the monthly amounts over 173; riposi annui 4,95% and the Cassa Edile accrual 18,50% are the table's rates on minimo and contingenza; the employer INPS rate 34.28% (15-50 employees) matches. Match.",
           "Deviations, with cause and decision: the EVR, the indennità territoriale di settore and the transport and meal indemnities are provincial and declared (NOT MODELLED AMOUNTS); the Cassa Edile contribution (5,47% in the table) was not declared: declared; INAIL 11% is not computed by the engine (documented). No independent net pay example: not compared."
+        ]
+      },
+      {
+        "id": "2026-10-17-ai-supplementary",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The rate of the supplementary hours of the part-time workers.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "Art. 78 (pp. 90-91): the operai are paid the supplementary hours with the hourly quota raised by 20%, which 'avrà incidenza su tutti gli istituti retributivi legali e contrattuali, indiretti e differiti, compresi le contribuzioni e gli accantonamenti in Cassa Edile'. The 20% band is added; its incidence on the TFR and the Cassa Edile accruals is not modelled (the engine keeps an overtime pay out of the TFR base), so part_time_supplementary_rate stays open, narrowed to it. The 10% of the flexible clauses is not modelled either."
         ]
       }
     ],

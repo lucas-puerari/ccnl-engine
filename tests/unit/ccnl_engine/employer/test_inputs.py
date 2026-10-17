@@ -9,6 +9,7 @@ from ccnl_engine.employer.inputs import (
     EmployerActivity,
     EmployerProfile,
     Headcount,
+    TaxSector,
 )
 from ccnl_engine.errors import InvalidInputError
 
@@ -79,4 +80,19 @@ def test_agricultural_zone_is_parsed_and_checked() -> None:
         EmployerProfile(
             headcount=Headcount(5),
             agricultural_zone="hilly",  # type: ignore[arg-type]
+        )
+
+
+def test_inps_sector_is_parsed_and_checked() -> None:
+    """A sector given by value is the enum; an unknown one is rejected."""
+    profile = EmployerProfile(
+        headcount=Headcount(5),
+        inps_sector="terziario",  # type: ignore[arg-type]
+    )
+    assert profile.inps_sector is TaxSector.TERZIARIO
+    assert EmployerProfile(headcount=Headcount(5)).inps_sector is None
+    with pytest.raises(InvalidInputError, match="inps_sector"):
+        EmployerProfile(
+            headcount=Headcount(5),
+            inps_sector="logistica",  # type: ignore[arg-type]
         )
