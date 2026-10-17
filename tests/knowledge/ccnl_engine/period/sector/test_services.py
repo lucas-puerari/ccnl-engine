@@ -31,7 +31,7 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodResult,
 )
-from ccnl_engine.events import OvertimeEvent
+from ccnl_engine.events import OvertimeEvent, SicknessEpisode
 from ccnl_engine.inputs import (
     Apprentice,
     ContributableHours,
@@ -73,6 +73,9 @@ from tests.knowledge.ccnl_engine.period.sector.oracles import (
     PART_TIME_YEAR,
     RISTORAZIONE_JUNE,
     RISTORAZIONE_YEAR,
+    SICK_FROM,
+    SICK_UNTIL,
+    SICKNESS_YEAR,
     STUDI_JUNE,
     STUDI_YEAR,
     TERZIARIO_JUNE,
@@ -115,6 +118,7 @@ class Scenario:
     apprentice_track: str | None = None
     ends_on: date | None = None
     fixed_term: bool = False
+    sickness: bool = False
 
 
 _METAL = "metalmeccanico-federmeccanica"
@@ -451,6 +455,16 @@ SCENARIOS = {
         terminated=True,
         fixed_term=True,
     ),
+    "sickness-year": Scenario(
+        _METAL,
+        "C3",
+        WorkerCategory.IMPIEGATO,
+        50,
+        SICKNESS_YEAR,
+        _METAL_OWED,
+        net_pay_reliable=True,
+        sickness=True,
+    ),
 }
 
 
@@ -479,6 +493,11 @@ def _year(name: str) -> CompetenceYearResult:
             event_date=date(2026, 3, 10), hours=OVERTIME_HOURS, hourly_rate=rate
         )
         periods = {3: replace(facts, events=(event,))}
+    if s.sickness:
+        episode = SicknessEpisode(
+            episode_id="sick-march", started_on=SICK_FROM, ended_on=SICK_UNTIL
+        )
+        periods = {3: replace(facts, events=(episode,))}
     return _ENGINE.calculate_competence_year(
         CompetenceYearPlan(
             year=2026,

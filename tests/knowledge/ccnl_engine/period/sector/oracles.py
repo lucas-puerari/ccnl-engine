@@ -52,6 +52,7 @@ the engine does not compute (open ``owed`` limitations).
 from __future__ import annotations
 
 from dataclasses import dataclass, replace
+from datetime import date
 from decimal import ROUND_HALF_UP, Decimal
 
 from tests.knowledge.ccnl_engine.irpef.oracles import (
@@ -93,6 +94,9 @@ __all__ = [
     "PART_TIME_YEAR",
     "RISTORAZIONE_JUNE",
     "RISTORAZIONE_YEAR",
+    "SICKNESS_YEAR",
+    "SICK_FROM",
+    "SICK_UNTIL",
     "STUDI_JUNE",
     "STUDI_YEAR",
     "TERZIARIO_JUNE",
@@ -152,6 +156,9 @@ class Pay:
             INPS on ``fund``: an employer contribution.
         cassa_net: Accrual paid through the Cassa Edile, net of the
             withholding the Cassa makes: in the gross, not in the cash.
+        absence: Pay deducted for days of absence, which the run posts
+            apart from the gross (the sick pay that replaces it is in the
+            gross).
     """
 
     run_id: str
@@ -160,6 +167,7 @@ class Pay:
     fund: Decimal = _ZERO
     solidarity: Decimal = _ZERO
     cassa_net: Decimal = _ZERO
+    absence: Decimal = _ZERO
 
 
 @dataclass(frozen=True)
@@ -176,6 +184,7 @@ class Payment:
     tfr_deduction: Decimal
     tfr_accrual: Decimal
     employer_cost: Decimal
+    absence: Decimal = _ZERO
 
 
 @dataclass(frozen=True)
@@ -213,7 +222,8 @@ class SectorYear:
 
 
 def _payment(pay: Pay, rates: Rates) -> Payment:
-    base = _whole_euro(pay.gross)
+    paid = pay.gross - pay.absence
+    base = _whole_euro(paid)
     employee = _cents(base * rates.employee_ivs) + _cents(base * rates.employee_other)
     employer = (
         _cents(base * rates.employer_ivs)
@@ -233,7 +243,8 @@ def _payment(pay: Pay, rates: Rates) -> Payment:
         tfr_quota=quota,
         tfr_deduction=deduction,
         tfr_accrual=accrual,
-        employer_cost=pay.gross + employer + pay.solidarity + accrual + pay.fund,
+        employer_cost=paid + employer + pay.solidarity + accrual + pay.fund,
+        absence=pay.absence,
     )
 
 
@@ -270,8 +281,9 @@ def sector_year(
     """
     payments = tuple(_payment(pay, rates) for pay in pays)
     gross = sum((p.gross for p in payments), _ZERO)
+    absence = sum((p.absence for p in payments), _ZERO)
     inps = sum((p.employee_inps for p in payments), _ZERO)
-    taxable = gross - inps
+    taxable = gross - absence - inps
     irpef = net_irpef(taxable, days)
     tax_credits = _trattamento(taxable, days) + somma_esente(taxable, days)
     surtax = (
@@ -290,7 +302,7 @@ def sector_year(
         credits=tax_credits,
         surtax=surtax,
         cassa_net=cassa_net,
-        net=gross - inps - irpef + tax_credits - surtax - cassa_net,
+        net=gross - absence - inps - irpef + tax_credits - surtax - cassa_net,
         tfr=sum((p.tfr_accrual for p in payments), _ZERO),
         employer_cost=sum((p.employer_cost for p in payments), _ZERO),
     )
@@ -483,6 +495,31 @@ FIXED_TERM_YEAR = sector_year(
 FIXED_TERM_JUNE = sector_year(
     _industria_june(), _FIXED_TERM, _HALF_YEAR, terminated=True
 )
+
+
+# Sickness: the C3 impiegato sick from 9 to 18 March.
+
+#: Nine working days of sickness, Monday to Saturday, from 9 to 18 March:
+#: the month deducts them at 1/26 of the minimo each and pays them back
+#: at 100%, the three days of carenza and the six after: CCNL 5 February
+#: 2021, Sez. Quarta, Art. 2 (Trattamento in caso di malattia), PDF p. 202:
+#: "alla intera retribuzione globale per i primi 122 giorni di calendario".
+#: INPS pays no sickness indemnity to the impiegati of the industria.
+_SICK_DAYS = 9
+_SICK_DAY = _cents(_C3_UNTIL_MAY / 26)
+SICK_FROM = date(2026, 3, 9)
+SICK_UNTIL = date(2026, 3, 18)
+
+
+def _sickness_year() -> tuple[Pay, ...]:
+    pays = list(_industria_year_without_overtime())
+    absence = _SICK_DAY * _SICK_DAYS
+    march = pays[2]
+    pays[2] = Pay(march.run_id, march.gross + absence, march.tfr_base, absence=absence)
+    return tuple(pays)
+
+
+SICKNESS_YEAR = sector_year(_sickness_year(), _INDUSTRIA, _FULL_YEAR, terminated=False)
 
 
 def _iv(month: int) -> Decimal:
