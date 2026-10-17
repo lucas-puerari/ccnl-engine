@@ -9,7 +9,9 @@ and a 2025 income of 40,000 EUR (no renewal substitute tax):
 - terziario: Terziario Confesercenti IV, 50 employees, fourteen payments;
 - edilizia: ANCE operaio of the 1st level, 30 employees, 173 hours a month;
 - studi: Studi Professionali Confprofessioni 4th level, 10 employees,
-  fourteen payments.
+  fourteen payments;
+- turismo: Turismo Federalberghi 4th level, 10 employees, fourteen
+  payments and the tranche of May.
 
 Each runs for the whole year and, apart, until a termination on 30 June.
 
@@ -60,6 +62,8 @@ __all__ = [
     "STUDI_YEAR",
     "TERZIARIO_JUNE",
     "TERZIARIO_YEAR",
+    "TURISMO_JUNE",
+    "TURISMO_YEAR",
     "Payment",
     "Rates",
     "SectorYear",
@@ -419,6 +423,62 @@ def _studi_june() -> tuple[Pay, ...]:
 
 STUDI_YEAR = sector_year(_studi_year(), _STUDI, _FULL_YEAR, terminated=False)
 STUDI_JUNE = sector_year(_studi_june(), _STUDI, _HALF_YEAR, terminated=True)
+
+
+# Turismo: Turismo Federalberghi, 4th level, 10 employees.
+
+#: 4th level paga base nazionale conglobata: ipotesi of 5 July 2024, art.
+#: 152 c. 1, p. 42 (sha256
+#: a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b, a
+#: scan read by OCR): "4 1.620,69 1.660,69 1.695,69 1.730,69 1.750,69"
+#: from July 2024, June 2025, May 2026, April 2027 and November 2027.
+_TURISMO_UNTIL_APRIL = Decimal("1660.69")
+_TURISMO_FROM_MAY = Decimal("1695.69")
+#: Terziario from 6 to 15 employees, INPS circ. 117/2022 all. 1: employer
+#: IVS 23.81, NASpI 1.31 + 0.30, Fondo garanzia TFR 0.20, CUAF 0.68,
+#: maternità 0.24, malattia 2.44 and FIS 0.53333 (0.80 above five
+#: employees less the worker third, D.Lgs. 148/2015 art. 29 c. 8, art. 33
+#: c. 1); worker IVS 9.19 and FIS 0.26667.  No CIGS up to 15 employees.
+_TURISMO = Rates(
+    employee_ivs=Decimal("0.0919"),
+    employee_other=Decimal("0.0026667"),
+    employer_ivs=Decimal("0.2381"),
+    employer_other=Decimal("0.0570333"),
+)
+#: Quattordicesima of the pay "in atto al 30 giugno", in twelfths of the
+#: twelve months before 1 July (art. 161 cc. 1, 4, p. 46): six for a hire
+#: on 1 January; tredicesima of one monthly pay at Christmas (art. 160 c.
+#: 1, p. 45).
+_TURISMO_FOURTEENTH = _cents(_TURISMO_FROM_MAY * 6 / 12)
+
+
+def _turismo(month: int) -> Decimal:
+    return _TURISMO_UNTIL_APRIL if month < 5 else _TURISMO_FROM_MAY
+
+
+def _turismo_year() -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _turismo(m), _turismo(m)) for m in range(1, 13)]
+    fourteenth = _TURISMO_FOURTEENTH
+    pays.insert(6, Pay(_run(6, "fourteenth"), fourteenth, fourteenth))
+    thirteenth = _TURISMO_FROM_MAY
+    pays.append(Pay(_run(12, "thirteenth"), thirteenth, thirteenth))
+    return tuple(pays)
+
+
+def _turismo_june() -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _turismo(m), _turismo(m)) for m in range(1, 6)]
+    #: Six twelfths of the tredicesima are paid with the last month.
+    june = _TURISMO_FROM_MAY + _cents(_TURISMO_FROM_MAY * 6 / 12)
+    fourteenth = _TURISMO_FOURTEENTH
+    return (
+        *pays,
+        Pay(_run(6), june, june),
+        Pay(_run(6, "fourteenth"), fourteenth, fourteenth),
+    )
+
+
+TURISMO_YEAR = sector_year(_turismo_year(), _TURISMO, _FULL_YEAR, terminated=False)
+TURISMO_JUNE = sector_year(_turismo_june(), _TURISMO, _HALF_YEAR, terminated=True)
 
 
 # Edilizia: ANCE operaio of the 1st level, 173 hours.

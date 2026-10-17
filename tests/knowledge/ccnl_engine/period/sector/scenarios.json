@@ -126,5 +126,37 @@
       "tfr",
       "employer_cost"
     ]
+  },
+  "turismo-year": {
+    "ccnl": "turismo-federalberghi",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 6-15", "minimo tranche of May"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "turismo-june": {
+    "ccnl": "turismo-federalberghi",
+    "cycles": ["ordinary month", "extra month", "termination"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 6-15", "trattamento integrativo and somma esente bands"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
   }
 }
