@@ -8,7 +8,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
-| pubblica-amministrazione | 14 | 7 548 000 | 49 | 173 | 186 | 0 | `funzioni-centrali-aran` |
+| pubblica-amministrazione | 14 | 7 548 000 | 14 | 208 | 186 | 0 | `funzioni-centrali-aran` |
 | terziario | 43 | 4 977 055 | 215 | 1535 | 615 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 48 | 4 946 900 | 375 | 2277 | 503 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 56 | 0 | `lavoro-domestico-non-convivente` |
@@ -21,10 +21,10 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 
 | CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Owner | Next review |
 |---|---:|---|---:|---:|---:|---|---|---|
-| [`istruzione-ricerca-aran`](../contracts/istruzione-ricerca-aran.md) | 1 200 000 | exploratory | 36 | 6 | 48 | party or official | none | none |
 | [`universita-aran`](../contracts/universita-aran.md) | 1 200 000 | exploratory | 5 | 4 | 20 | party or official | none | none |
 | [`afam-aran`](../contracts/afam-aran.md) | 1 200 000 | exploratory | 2 | 13 | 24 | party or official | none | none |
 | [`enti-ricerca-aran`](../contracts/enti-ricerca-aran.md) | 1 200 000 | exploratory | 1 | 4 | 32 | party or official | none | none |
+| [`istruzione-ricerca-aran`](../contracts/istruzione-ricerca-aran.md) | 1 200 000 | exploratory | 1 | 41 | 48 | party or official | none | none |
 | [`universita-tecnologi-aran`](../contracts/universita-tecnologi-aran.md) | 1 200 000 | exploratory | 1 | 4 | 2 | party or official | none | none |
 | [`sanita-aran`](../contracts/sanita-aran.md) | 580 000 | reviewed | 0 | 5 | 16 | party or official | maintainer | 2027-01-31 |
 | [`funzioni-locali-aran`](../contracts/funzioni-locali-aran.md) | 400 000 | reviewed | 0 | 9 | 18 | party or official | maintainer | 2027-01-31 |

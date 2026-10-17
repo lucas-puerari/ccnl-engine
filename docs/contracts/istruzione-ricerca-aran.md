@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 48 verified / 6 derived / 36 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 48 verified / 41 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-07-01 |
-| **Last review** | 2026-10-12 |
+| **Last review** | 2026-10-17 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | Overtime of the scuola ATA staff: Tabella E1.7 of the CCNL 2019-2021 and the overtime articles of the CCNL 2022-2024 and 2025-2027. | corrected | The ATA 'prestazioni aggiuntive' are paid at fixed hourly amounts by area from 1 January 2024 (Tabella E1.7): nine bands in EUR per hour by area and time of day, now paid by the engine.<br>The CCNL 2022-2024 (art. 23) and 2025-2027 (art. 11) update only the università overtime (Tabella B4): the scuola amounts stay those of 2024.<br>The docenti ore aggiuntive (Tabella E1.6) are by activity, not by time of day: left to the caller (limitation fixed_hourly_overtime, docenti levels). |
 | 2026-10-12 | claude-opus-5-5 (ai) | Fasce stipendiali of the scuola staff, 2023-2027. | corrected | Every worker was paid the first fascia (0-8 years): the five higher fasce are now seniority steps, read on the tables of the three CCNL.<br>DOCENTE_SECONDARIA joined the scuola media and the laureato di II grado, equal in the first fascia only: split into DOCENTE_SECONDARIA (scuola media) and DOCENTE_LAUREATO_SECONDARIA_II. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Months from 1.1.2022 to 31.1.2023 (CCNL 2019-2021 Tabella C1). | corrected | The file started on 1.2.2023 (limitation before_february_2023): the tabellare dal 1.1.2021 and the elemento perequativo by fascia of Tabella C1 now cover 2022 and January 2023. |
+| 2026-10-17 | claude-opus-5-5 (ai) | The number of instalments of the elemento perequativo of the CCNL 19/04/2018 the file pays until its conglobamento. | corrected | The 35 elemento perequativo records of the Scuola levels move from assumed to derived: INPS msg. 3224/2018 reads the element as paid 'con cadenza mensile', Tabella D2 of the CCNL 19/04/2018 gives 10 monthly instalments in 2018, and Tabella C1 of the CCNL 6/12/2022 (p. 244) prints the yearly amount as twelve monthly ones (308,04 = 12 x 25,67). No text puts it in the tredicesima. Art. 37 of the Scuola section was not read, so the records stay derived.<br>The absence rule stays assumed: no text of the comparto fixes the daily quota of an unpaid absence of the scuola staff. |
 
 ## Salary table
 
