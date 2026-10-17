@@ -999,7 +999,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/funzioni-locali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "e3c0f5442762769f50ae700fce506c901a10bf302fcd21767f1296dffcd1d989",
+      "source_hash": "071309ec2662dbd9b5ceb5b674398ea3bdd36c9fcfa373a5dc4dae706272b790",
       "source_type": "institutional_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/funzioni-locali-aran.json.gz"
@@ -1815,7 +1815,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/sanita-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "88b082bcc00183937088167a37e48e6080a4a48ef7b52904f7b6c6f9ddf16f8d",
+      "source_hash": "acf48a171b6679212a2c3a6e92f6d1b880d6b80794f6e4420c7d4401af33245b",
       "source_type": "commercial_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/sanita-aran.json.gz"
