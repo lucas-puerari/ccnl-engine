@@ -982,7 +982,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/funzioni-centrali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "cc07a9599374a8a33043f45d69667e6ee77e102ec4e06e58c5c3112a0f046fe7",
+      "source_hash": "95c643fdb77d5989ce4ff15eaed982aed875dbc05990db1ac75861b2b48324bf",
       "source_type": "institutional_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/funzioni-centrali-aran.json.gz"
@@ -2403,7 +2403,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "inps/2026/pubblica-amministrazione",
       "ruleset_version": "2026.1",
-      "source_hash": "4c97559554ee9f2bb391f732e0f19ded95e0e074443b91dec2ae2b6862e6e871",
+      "source_hash": "7bd7140857906914594d590bac24f0520a5668f2387a41c302d36dc245c7ed42",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contribution/2026/pubblica-amministrazione.json.gz",
