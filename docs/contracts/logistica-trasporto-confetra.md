@@ -38,7 +38,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | bilateral_funds, inps_employer, overtime, seniority |
+| **Limits of this contract** | bilateral_funds, overtime, seniority |
 
 5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -57,7 +57,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-06 |
-| **Last review** | 2026-10-16 |
+| **Last review** | 2026-10-17 |
 | **Latest salary tranche** | 2027-06-01 |
 
 ## Review history
@@ -76,6 +76,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'confrontare lordo, netto e costo azienda con esempi indipendenti': a run of the engine against the cost table of the Ministry of Labour (DD 135 of 19 December 2025, impiegati non viaggianti, January 2026). | flagged | Impiegato 3S with 3 scatti, January 2026: minimo plus EPA 2000.37 ((23.644,44 + 360) / 12), scatti 74.37 and EDR 10.00 a month match the table (p. 9); the TFR of the month is the table's TFR base over 13.5 less the 0.5% IVS offset. Match.<br>Deviation: the table applies an employer INPS rate of 29.44%; the engine applies 29.06% from 16 to 50 employees and 29.36% from 51. Cause not established (the table does not state the class of employer and size); decision: flagged for the INPS review of the logistica contribution class. Sanilog (165 euro) and Ebilog (46,20 euro) of the table equal the declared 150 and 42 euro plus the 10% solidarity contribution. INAIL 0.404%: not computed by the engine. No independent net pay example. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Closure of the divergence left open by the review 2026-10-15-ai-cost-check: the employer INPS rate against the cost table of the Ministry of Labour (DD 135/2025). | flagged | The table prints 'Inps (29,44%)' on every row, operai and impiegati non viaggianti alike (30,68% for the personale viaggiante), with no composition and no class of employer. The 0.08 points above the 29.36% of the engine fit more than one composition (the whole 0.90% CIGS and a 0.24% maternità, for one), and a single rate for operai and impiegati does not fit the industria class of the file, where the operai pay the 2.22% malattia. The class is not established.<br>Divergence (source_context_missing): Employer INPS rate of an impiegato non viaggiante, January 2026: 29.44% in DD 135/2025 against 29.06% (16-50 employees) or 29.36% (51 and more) in the engine. Cause: The table does not state the INPS class of the employer nor the composition of its rate; the class of the file (industria) is not confirmed. |
 | 2026-10-16 | claude-opus-5-5 (ai) | Follow-up of the source_context_missing divergence of 2026-10-15-ai-divergences: the composition of the 29.44% of DD 135/2025 for the personale non viaggiante. | flagged | The INPS rate tables of January 2023 (reproduced by GIA Parma) have no row of 29.44%: impiegati of class industria pay 29.06% from 16 to 50 employees and 29.36% above. The 30.68% of the personale viaggiante of the same decree is the class industria rate of operai up to 15 employees (review 2026-10-16-ai-inps-composition of logistica-trasporto-confetra-viaggiante).<br>The composition of 29.44% and the class of the employer remain unknown; the divergence stays open and its limitation keeps blocking the runs. |
+| 2026-10-17 | claude-opus-5-5 (ai) | The INPS sector of the employers of the CCNL against the INPS classification manual, after the review 2026-10-16-ai-inps-composition left the class of the employer open. | corrected | The Manuale di classificazione dei datori di lavoro of INPS (May 2021, ATECO 2007) classifies the activities of this CCNL in two sectors: autotrasporto, traslochi, movimento merci and corrieri in the industria (CSC 11501, 11505, 11507), magazzini di custodia, spedizionieri, intermediari dei trasporti and servizi logistici in the terziario (CSC 70401). The file applied the industria to every employer.<br>Corrected: meta.inps_sectors lists industria and terziario; EmployerProfile.inps_sector states the sector of the employer and the run reads its INPS rates, sickness cover and every rule that follows the sector; a run without it reads the industria with a missing_fact inps_sector blocker.<br>INPS circ. 71/2025 adopted ATECO 2025 from 1 April 2025 and announced a new edition of the manual; that edition was not found: the classification above is the one of the 2021 edition.<br>The 29.44% of DD 135/2025 for the personale non viaggiante is still no INPS rate of either sector: industria impiegati 29.06% (16 to 50 employees) and 29.36% (above 50), terziario 29.31% to 30.11%. The table states neither the class nor the composition; the engine follows the classification of the employer.<br>Divergence (accepted_external_variance): Employer INPS rate of an impiegato non viaggiante, January 2026: 29.44% in DD 135/2025 against 29.06% or 29.36% (industria) and 29.31% to 30.11% (terziario) in the engine. Cause: The cost table of the Ministry of Labour applies one rate to operai and impiegati and states neither the INPS class of the employer nor the composition of the rate; no composition of the INPS rates of the industria or of the terziario of 2026 gives 29.44%. INPS rates follow the CSC of the employer (art. 49 L. 88/1989), which the employer now states. |
 
 ## Salary table
 
@@ -152,12 +153,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Pass the contributions as bilateral fund events, or model them per worker.
 
-!!! warning "logistica-trasporto-confetra/inps_employer_class_unconfirmed · inps_employer · impact unknown · open"
+!!! note "logistica-trasporto-confetra/inps_employer_class_unconfirmed · inps_employer · impact unknown · resolved"
     INPS CONTRIBUTION CLASS: the file applies the rates of the industria (impiegati 29.06% from 16 to 50 employees and 29.36% from 51, operai 31.28% and 31.58% with the 2.22% malattia). The cost table of the Ministry of Labour for this CCNL (DD 135 of 19 December 2025) applies 29.44% to operai and impiegati alike, and states neither the INPS class of the employer nor the composition of the rate: the class of a logistica employer is not confirmed, and the employer and worker contributions may differ.
 
     **Applies when:** `inps_employer` applies.
 
-    **Remediation:** Read the INPS classification (codice statistico contributivo) of the logistica, trasporto merci e spedizione employers and the composition of the 29.44% of DD 135/2025, then set the class of the file and remove this note.
+    **Remediation:** Resolved: the employer states its INPS sector (EmployerProfile.inps_sector, industria or terziario by the CSC of its ATECO in the INPS manual); without it the run has a missing_fact inps_sector blocker. Tested in tests/integration/ccnl_engine/api/test_engine_modes.py.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -240,6 +241,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP: percentage type from TABELLA A consolidated text September 2025. 75% year 1 (m1-12), 85% year 2 (m13-24), 100% from m25. Eligible levels: 1, 2, 3, 3S, 4, 4J, 5, 6 (level Q excluded). Maximum duration 36 months. Source: Art. 106 + TABELLA A consolidated text 09/2025 (contrattotrasporti.it).
     
     APPRENTICESHIP TABELLA B (testo unico p. 75): the profili artigiani and equivalent profiles (addetti al magazzinaggio, alla manutenzione veicoli, alla movimentazione) are paid 90% in the first year, 95% in the second and 100% after, not the 75 and 85% of Tabella A. The profile, not the level, selects the table: track 'profili_artigiani' beside 'standard'; set Apprentice.track.
+    
+    INPS SECTOR OF THE EMPLOYER: INPS classifies an employer by the activity it carries out (art. 49 L. 88/1989), not by the CCNL it applies. The Manuale di classificazione dei datori di lavoro of May 2021 (ATECO 2007, PDF pp. 199-206) gives CSC 11501 (industria, trasporti) to 49.41.00 trasporto di merci su strada and 49.42.00 traslochi, 11505 (industria) to 52.24 movimento merci and 52.21.90, 11506 to 52.21.40 interporti, 11507 to 53.20.00 corrieri, and 70401 (terziario, intermediari) to 52.10.10 magazzini di custodia e deposito, 52.29.10 spedizionieri, 52.29.21 intermediari dei trasporti and 52.29.22 servizi logistici. The employers of this CCNL are therefore in the industria or in the terziario: meta.inps_sectors lists both and EmployerProfile.inps_sector chooses; without it the run reads the industria and has a missing_fact inps_sector blocker. INPS circ. 71/2025 moved the classification to ATECO 2025 from 1 April 2025 and announced a new edition of the manual, not found in this review: the CSC above are those of the 2021 edition.
     
 
 ## Raw data
