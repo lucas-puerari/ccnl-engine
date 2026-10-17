@@ -478,5 +478,21 @@
       "tfr",
       "employer_cost"
     ]
+  },
+  "sickness-year": {
+    "ccnl": "metalmeccanico-federmeccanica",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, full time",
+    "variables": ["sickness"],
+    "thresholds": ["headcount 16-50", "minimo tranche of June"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
   }
 }
