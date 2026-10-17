@@ -127,7 +127,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 23 | F032 | [CCNL Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | industria del cemento calce e gesso | ~25k | — | ⚠️ | base_salary, seniority | 0 / 80 / 2 / 0 | 🧪 | 🤖 |
 | 24 | B122 | [CCNL Ceramica Industria (Confindustria-Assopiastrelle)](ceramica-industria-confindustria.md) | ceramica | ~23k | — | ⚠️ | seniority | 0 / 60 / 1 / 1 | 🧪 | 🤖 |
 | 25 | B018 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | chimica | ~56k | 2026 | ⚠️ | base_salary, seniority | 0 / 21 / 1 / 1 | 🧪 | 🤖 |
-| 26 | S005 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | Pubblica Amministrazione — Comparto Funzioni Centrali | ~250k | 2026 | ⚠️ | inps_employer | 26 / 5 / 0 / 0 | 👁 | 🧑 |
+| 26 | S005 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | Pubblica Amministrazione — Comparto Funzioni Centrali | ~250k | 2026 | ✅ | — | 26 / 5 / 0 / 0 | 👁 | 🧑 |
 | 27 | S105 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | Pubblica Amministrazione | ~400k | 2026 | ⚠️ | base_salary | 18 / 9 / 0 / 0 | 👁 | 🧑 |
 | 28 | S305 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN](istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~1,2M | 2026 | ⚠️ | inps_employee, overtime | 48 / 6 / 36 / 0 | 🧪 | 🤖 |
 | 29 | S305 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN, AFAM (Alta formazione artistica, musicale e coreutica)](afam-aran.md) | Pubblica Amministrazione | ~1,2M | 2026 | ✅ | pension_fund_contribution, sickness | 24 / 13 / 2 / 0 | 🧪 | 🤖 |

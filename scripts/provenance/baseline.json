@@ -962,8 +962,7 @@
       "apprentice": "assumed"
     },
     "contribution/2026/pubblica-amministrazione.json": {
-      "apprentice": "assumed",
-      "inps.minimum_base": "assumed"
+      "apprentice": "assumed"
     },
     "contribution/2027/agricoltura.json": {
       "apprentice": "assumed",
@@ -1382,9 +1381,6 @@
     ],
     "agreement/funivie-anef.json": [
       "funivie-anef/apprentice_seniority"
-    ],
-    "agreement/funzioni-centrali-aran.json": [
-      "funzioni-centrali-aran/ctps_rates_proxy"
     ],
     "agreement/funzioni-locali-aran.json": [
       "funzioni-locali-aran/renewal_2025_2027_missing"
