@@ -318,5 +318,37 @@
       "tfr",
       "employer_cost"
     ]
+  },
+  "confapi-year": {
+    "ccnl": "metalmeccanico-confapi",
+    "cycles": ["ordinary month", "extra month", "conguaglio"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "minimo tranche of June"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
+  },
+  "confapi-june": {
+    "ccnl": "metalmeccanico-confapi",
+    "cycles": ["ordinary month", "termination"],
+    "relationship": "permanent, full time",
+    "variables": [],
+    "thresholds": ["headcount 16-50", "trattamento integrativo and somma esente bands"],
+    "outputs": [
+      "gross",
+      "employee_contributions",
+      "employer_contributions",
+      "tax",
+      "net",
+      "tfr",
+      "employer_cost"
+    ]
   }
 }

@@ -48,6 +48,8 @@ from tests.knowledge.ccnl_engine.period.sector.oracles import (
     ALIMENTARI_YEAR,
     CHIMICA_JUNE,
     CHIMICA_YEAR,
+    CONFAPI_JUNE,
+    CONFAPI_YEAR,
     DMO_JUNE,
     DMO_YEAR,
     EDILIZIA_JUNE,
@@ -101,6 +103,7 @@ class Scenario:
 _METAL = "metalmeccanico-federmeccanica"
 _TERZ = "terziario-confesercenti"
 _EDIL = "edilizia-ance"
+_CONFAPI = "metalmeccanico-confapi"
 _RISTORAZIONE = "pubblici-esercizi-fipe-angem-ristorazione-collettiva"
 _FIPE = "pubblici-esercizi-fipe-angem"
 _DMO = "dmo-federdistribuzione"
@@ -120,6 +123,7 @@ _ALIMENTARI_OWED = frozenset({f"{_ALIMENTARI}/health_and_bilateral_funds"})
 _DMO_OWED = frozenset({f"{_DMO}/health_and_bilateral_funds"})
 _FIPE_OWED = frozenset({f"{_FIPE}/health_and_bilateral_funds"})
 _RISTORAZIONE_OWED = frozenset({f"{_RISTORAZIONE}/health_and_bilateral_funds"})
+_CONFAPI_OWED = frozenset({f"{_CONFAPI}/bilateral_system_or_ear"})
 _EDIL_OWED = frozenset({
     f"{_EDIL}/cassa_edile_contribution",
     f"{_EDIL}/territorial_sector_allowance",
@@ -320,6 +324,25 @@ SCENARIOS = {
         10,
         RISTORAZIONE_JUNE,
         _RISTORAZIONE_OWED,
+        net_pay_reliable=False,
+        terminated=True,
+    ),
+    "confapi-year": Scenario(
+        _CONFAPI,
+        "5",
+        WorkerCategory.IMPIEGATO,
+        50,
+        CONFAPI_YEAR,
+        _CONFAPI_OWED,
+        net_pay_reliable=False,
+    ),
+    "confapi-june": Scenario(
+        _CONFAPI,
+        "5",
+        WorkerCategory.IMPIEGATO,
+        50,
+        CONFAPI_JUNE,
+        _CONFAPI_OWED,
         net_pay_reliable=False,
         terminated=True,
     ),

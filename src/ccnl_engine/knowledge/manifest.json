@@ -1424,7 +1424,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-confapi",
       "ruleset_version": "2026.2",
-      "source_hash": "9ec8ec177f30070c2b911e16132017e1e4117e6ab1a4d0dc1835b5ca8889b389",
+      "source_hash": "3b2517e713006b87f2a3d6ddeb84b5299d32782e6f662237e1f9b5f0f819048a",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-confapi.json.gz"

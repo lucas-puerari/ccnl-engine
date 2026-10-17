@@ -102,7 +102,8 @@ Evidence:
   EDR outside the quattordicesima; Distribuzione Moderna Organizzata IV, 50
   employees, with the tranche of November; Pubblici Esercizi and
   Ristorazione Collettiva 4th level, 10 employees, with the tranches of June
-  and September and the 0.77% sickness supplement), in
+  and September and the 0.77% sickness supplement; Metalmeccanico Confapi
+  5th level, 50 employees, with the tranche of June), in
   `tests/knowledge/ccnl_engine/period/sector/`. Every payment (gross, worker
   INPS, employer contributions with the solidarity contribution on the
   pension fund, TFR accrued net of the 0.50%, employer cost) and the year

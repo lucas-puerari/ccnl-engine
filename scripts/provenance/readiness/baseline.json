@@ -8,15 +8,6 @@
       "net",
       "tax",
       "tfr"
-    ],
-    "metalmeccanico-confapi": [
-      "employee_contributions",
-      "employer_contributions",
-      "employer_cost",
-      "gross",
-      "net",
-      "tax",
-      "tfr"
     ]
   }
 }
