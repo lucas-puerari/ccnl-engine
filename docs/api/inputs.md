@@ -46,6 +46,8 @@ state types.
 
 ::: ccnl_engine.inputs.AgriculturalZone
 
+::: ccnl_engine.inputs.TaxSector
+
 ## Family and tax facts
 
 ::: ccnl_engine.inputs.FamilyComposition

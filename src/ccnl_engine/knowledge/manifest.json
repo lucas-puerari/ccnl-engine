@@ -1322,7 +1322,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra-viaggiante",
       "ruleset_version": "2026.2",
-      "source_hash": "d07fbe0ec6d775eeff9890b3b4cf98203714fe91cb427e4c992a95455f025610",
+      "source_hash": "6087b11a82b153d03854cecec100e7bc4f8fa0e200726d751fe82d54e2ae5802",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/logistica-trasporto-confetra-viaggiante.json.gz"
@@ -1339,7 +1339,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra",
       "ruleset_version": "2026.2",
-      "source_hash": "f2cd497cfb0d6b0da942ca636a73faa7f1e5ade9ed0e43f362f858f8ac2d8f4d",
+      "source_hash": "fcd4582cc0ff8e9a4a686dac68b012497343337966f5bb11530de621e5ad3c4e",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/logistica-trasporto-confetra.json.gz"
