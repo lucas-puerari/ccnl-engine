@@ -17,22 +17,6 @@
       "net",
       "tax",
       "tfr"
-    ],
-    "pubblici-esercizi-fipe-angem": [
-      "employee_contributions",
-      "employer_contributions",
-      "employer_cost",
-      "net",
-      "tax",
-      "tfr"
-    ],
-    "pubblici-esercizi-fipe-angem-ristorazione-collettiva": [
-      "employee_contributions",
-      "employer_contributions",
-      "employer_cost",
-      "net",
-      "tax",
-      "tfr"
     ]
   }
 }
