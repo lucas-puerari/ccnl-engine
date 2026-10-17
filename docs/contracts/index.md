@@ -1,5 +1,5 @@
 <!-- auto-generated -- run: uv run python scripts/documentation/coverage_matrix/generate.py -->
-<!-- generated: 2026-10-16 -->
+<!-- generated: 2026-10-17 -->
 
 # CCNL Coverage
 
@@ -179,7 +179,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 75 | I100 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | logistica | ~430k | 2024 | ⚠️ | bilateral_funds, inps_employer, overtime, seniority | 62 / 3 / 0 / 0 | 👁 | 🧑 |
 | 76 | I100 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra) - Personale viaggiante](logistica-trasporto-confetra-viaggiante.md) | logistica | ~430k | 2024 | ⚠️ | base_salary, seniority | 53 / 30 / 0 / 0 | 👁 | 🧑 |
 | 77 | I391 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | navigazione marittima — personale di terra | ~15k | — | ⚠️ | seniority | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
-| 78 | F020 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | Industria materiali da costruzione — Lapidei piccola industria | ~5000 | 2025 | ⚠️ | inps_employer, pension_fund_contribution | 0 / 0 / 70 / 0 | 🧪 | 🤖 |
+| 78 | F020 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | Industria materiali da costruzione — Lapidei piccola industria | ~5000 | 2025 | ⚠️ | inps_employer, pension_fund_contribution | 40 / 8 / 22 / 0 | 🧪 | 🤖 |
 | 79 | C016 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | metalmeccanico cooperativo | ~28k | — | ⚠️ | base_salary, seniority | 0 / 45 / 1 / 1 | 🧪 | 🤖 |
 | 80 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | 2024 | ⚠️ | bilateral_funds, inps_employer, overtime, sickness | 38 / 43 / 0 / 0 | 🧪 | 🤖 |
 | 81 | C01A | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | metalmeccanico | ~100k | — | ✅ | overtime | 0 / 44 / 0 / 1 | 🧪 | 🤖 |

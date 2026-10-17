@@ -1373,8 +1373,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/materiali-costruzione-lapidei-confapi",
       "ruleset_version": "2026.2",
-      "source_hash": "0b822635798a66421d8998df919565ba4287a86b90c7e1f49f51eff3c55b25ca",
-      "source_type": "estimated",
+      "source_hash": "8faa90bd940ca47eec31808407c3a5afbfcbd4844f05295a5bafa2d809d91c56",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/materiali-costruzione-lapidei-confapi.json.gz"
     },
