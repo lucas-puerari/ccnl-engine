@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 36 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 24 verified / 12 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -57,12 +57,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-16 |
-| **Last review** | — |
+| **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2026-10-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-18 | claude-opus-5-5 (ai) | base_salary of levels 1-6 and 6S, all four tranches (2024-07-01, 2025-01-01, 2025-10-01, 2026-10-01), against the Settore tessile abbigliamento table of the Verbale integrativo of 22 July 2024 published by Filctem CGIL (signatory). | corrected | Levels 1-6: all 24 periods match the 'Nuovi minimi contrattuali' table of the Settore tessile abbigliamento (Verbale integrativo 22 July 2024, p. 2, scanned PDF read by OCR and visual check) except level 5 from 2026-10-01: the table prints 1.813,56 (1.751,06 + the printed increment 62,50), the file had 1813.50.<br>Level 6S: the file stores the printed 6s minimo plus the quadri indennità di funzione of EUR 20,66 (art. 119 CCNL 14 Dec 2017; 6° super = quadri per art. 29). All four periods equal printed minimo + 20.66 and are recorded as derived on the CCNL text; the indennità is not repeated in the 2024 renewal and is assumed unchanged.<br>The minimi are conglobated tabellare amounts (single 'Retribuzione tabellare' column, no separate contingenza or EDR), consistent with the file's conglobated model.<br>The file models only the Settore tessile abbigliamento table. The same verbale prints distinct tables for calzaturiero (from 2026-10-01 and for level 6/6s already from 2024), lavorazioni a mano e su misura, pulitintolavanderie, occhialeria, chimica-concia-gomma-plastica-vetro and ceramica; those are not modelled.<br>Corrected to the printed table: 5 2026-10-01: 1813.50 -> 1813.56. |
 
 ## Salary table
 
@@ -72,7 +74,7 @@ Latest effective values per level (monthly gross, EUR).
 |---|---|---:|:---:|
 | `6S` | Level 6S — senior manager / technical director (incl. function allowance EUR 20.66) | € 2,133.07 | 2026-10-01 |
 | `6` | Level 6 — skilled technician / senior clerical employee | € 1,978.15 | 2026-10-01 |
-| `5` | Level 5 — specialist operator / clerical employee | € 1,813.50 | 2026-10-01 |
+| `5` | Level 5 — specialist operator / clerical employee | € 1,813.56 | 2026-10-01 |
 | `4` | Level 4 — highly qualified operator | € 1,675.42 | 2026-10-01 |
 | `3` | Level 3 — specialist operator | € 1,606.03 | 2026-10-01 |
 | `2` | Level 2 — qualified operator | € 1,538.39 | 2026-10-01 |
