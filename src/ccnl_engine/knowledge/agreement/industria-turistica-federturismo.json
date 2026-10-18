@@ -94,6 +94,33 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-tables",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The paga base nazionale conglobata (art. 110) of the nine levels against the Federturismo circular of 16 January 2025 that prints the tables agreed in the renewal of 21 December 2024.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+            "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
+          }
+        ],
+        "findings": [
+          "Federturismo Confindustria, a signatory, prints in its circular of 16 January 2025 the paga base nazionale conglobata of art. 110 'condivise' by the parties for 01/01/2025, 01/06/2025, 01/05/2026 and 01/04/2027 (PDF pp. 1-2, rows A1-D1 on p. 1, D2 on p. 2): the 36 minimi of the file are checked against the general table, not the separate tables of the imprese di viaggi e turismo e congressi (different tranches) or the aziende alberghiere minori (art. 178).",
+          "The file's values were derived parametrically from A1 and D2 (an aggregator); 11 of them differ by one cent from the printed table and are corrected.",
+          "The ruleset names this source, published by Federturismo Confindustria, a signatory: source_type contracting_party.",
+          "Corrected to the printed table: A2 2025-01-01: 2164.27 -> 2164.26; A2 2027-04-01: 2315.87 -> 2315.88; B1 2025-01-01: 2016.87 -> 2016.88; B1 2027-04-01: 2158.18 -> 2158.17; C1 2025-06-01: 1771.22 -> 1771.21; C1 2027-04-01: 1861.27 -> 1861.28; C3 2025-01-01: 1540.03 -> 1540.02; C3 2025-06-01: 1568.17 -> 1568.16; C3 2027-04-01: 1647.90 -> 1647.91; D1 2025-01-01: 1481.04 -> 1481.05; D1 2027-04-01: 1584.79 -> 1584.80."
+        ]
+      }
+    ]
+  },
   "levels": [
     {
       "code": "D2",
@@ -106,22 +133,31 @@
             "valid_until": "2025-06-01",
             "value": "1368.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/01/2025', row D2",
+                "quote": "D2 1.297,82 1.368,69 1.393,70 1.422,88 1.464,57"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -129,22 +165,31 @@
             "valid_until": "2026-05-01",
             "value": "1393.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/06/2025', row D2",
+                "quote": "D2 1.297,82 1.368,69 1.393,70 1.422,88 1.464,57"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -152,22 +197,31 @@
             "valid_until": "2027-04-01",
             "value": "1422.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/05/2026', row D2",
+                "quote": "D2 1.297,82 1.368,69 1.393,70 1.422,88 1.464,57"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2026-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -175,22 +229,31 @@
             "valid_until": null,
             "value": "1464.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/04/2027', row D2",
+                "quote": "D2 1.297,82 1.368,69 1.393,70 1.422,88 1.464,57"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           }
         ]
@@ -224,24 +287,33 @@
           {
             "valid_from": "2025-01-01",
             "valid_until": "2025-06-01",
-            "value": "1481.04",
+            "value": "1481.05",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/01/2025', row D1",
+                "quote": "D1 1.404,36 1.481,05 1.508,11 1.539,69 1.584,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -249,22 +321,31 @@
             "valid_until": "2026-05-01",
             "value": "1508.11",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/06/2025', row D1",
+                "quote": "D1 1.404,36 1.481,05 1.508,11 1.539,69 1.584,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -272,45 +353,63 @@
             "valid_until": "2027-04-01",
             "value": "1539.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/05/2026', row D1",
+                "quote": "D1 1.404,36 1.481,05 1.508,11 1.539,69 1.584,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2026-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": null,
-            "value": "1584.79",
+            "value": "1584.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/04/2027', row D1",
+                "quote": "D1 1.404,36 1.481,05 1.508,11 1.539,69 1.584,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           }
         ]
@@ -344,47 +443,65 @@
           {
             "valid_from": "2025-01-01",
             "valid_until": "2025-06-01",
-            "value": "1540.03",
+            "value": "1540.02",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/01/2025', row C3",
+                "quote": "C3 1.460,28 1.540,02 1.568,16 1.601,00 1.647,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
             "valid_from": "2025-06-01",
             "valid_until": "2026-05-01",
-            "value": "1568.17",
+            "value": "1568.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/06/2025', row C3",
+                "quote": "C3 1.460,28 1.540,02 1.568,16 1.601,00 1.647,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -392,45 +509,63 @@
             "valid_until": "2027-04-01",
             "value": "1601.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/05/2026', row C3",
+                "quote": "C3 1.460,28 1.540,02 1.568,16 1.601,00 1.647,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2026-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": null,
-            "value": "1647.90",
+            "value": "1647.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/04/2027', row C3",
+                "quote": "C3 1.460,28 1.540,02 1.568,16 1.601,00 1.647,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           }
         ]
@@ -466,22 +601,31 @@
             "valid_until": "2025-06-01",
             "value": "1641.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/01/2025', row C2",
+                "quote": "C2 1.556,59 1.641,59 1.671,59 1.706,59 1.756,59"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -489,22 +633,31 @@
             "valid_until": "2026-05-01",
             "value": "1671.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/06/2025', row C2",
+                "quote": "C2 1.556,59 1.641,59 1.671,59 1.706,59 1.756,59"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -512,22 +665,31 @@
             "valid_until": "2027-04-01",
             "value": "1706.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/05/2026', row C2",
+                "quote": "C2 1.556,59 1.641,59 1.671,59 1.706,59 1.756,59"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2026-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -535,22 +697,31 @@
             "valid_until": null,
             "value": "1756.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/04/2027', row C2",
+                "quote": "C2 1.556,59 1.641,59 1.671,59 1.706,59 1.756,59"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           }
         ]
@@ -586,45 +757,63 @@
             "valid_until": "2025-06-01",
             "value": "1739.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/01/2025', row C1",
+                "quote": "C1 1.649,36 1.739,43 1.771,21 1.808,30 1.861,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
             "valid_from": "2025-06-01",
             "valid_until": "2026-05-01",
-            "value": "1771.22",
+            "value": "1771.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/06/2025', row C1",
+                "quote": "C1 1.649,36 1.739,43 1.771,21 1.808,30 1.861,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -632,45 +821,63 @@
             "valid_until": "2027-04-01",
             "value": "1808.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/05/2026', row C1",
+                "quote": "C1 1.649,36 1.739,43 1.771,21 1.808,30 1.861,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2026-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": null,
-            "value": "1861.27",
+            "value": "1861.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/04/2027', row C1",
+                "quote": "C1 1.649,36 1.739,43 1.771,21 1.808,30 1.861,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           }
         ]
@@ -706,22 +913,31 @@
             "valid_until": "2025-06-01",
             "value": "1843.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/01/2025', row B2",
+                "quote": "B2 1.748,47 1.843,95 1.877,65 1.916,96 1.973,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -729,22 +945,31 @@
             "valid_until": "2026-05-01",
             "value": "1877.65",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/06/2025', row B2",
+                "quote": "B2 1.748,47 1.843,95 1.877,65 1.916,96 1.973,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -752,22 +977,31 @@
             "valid_until": "2027-04-01",
             "value": "1916.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/05/2026', row B2",
+                "quote": "B2 1.748,47 1.843,95 1.877,65 1.916,96 1.973,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2026-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -775,22 +1009,31 @@
             "valid_until": null,
             "value": "1973.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/04/2027', row B2",
+                "quote": "B2 1.748,47 1.843,95 1.877,65 1.916,96 1.973,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           }
         ]
@@ -824,24 +1067,33 @@
           {
             "valid_from": "2025-01-01",
             "valid_until": "2025-06-01",
-            "value": "2016.87",
+            "value": "2016.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/01/2025', row B1",
+                "quote": "B1 1.912,45 2.016,88 2.053,74 2.096,74 2.158,17"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -849,22 +1101,31 @@
             "valid_until": "2026-05-01",
             "value": "2053.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/06/2025', row B1",
+                "quote": "B1 1.912,45 2.016,88 2.053,74 2.096,74 2.158,17"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -872,45 +1133,63 @@
             "valid_until": "2027-04-01",
             "value": "2096.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/05/2026', row B1",
+                "quote": "B1 1.912,45 2.016,88 2.053,74 2.096,74 2.158,17"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2026-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": null,
-            "value": "2158.18",
+            "value": "2158.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/04/2027', row B1",
+                "quote": "B1 1.912,45 2.016,88 2.053,74 2.096,74 2.158,17"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           }
         ]
@@ -944,24 +1223,33 @@
           {
             "valid_from": "2025-01-01",
             "valid_until": "2025-06-01",
-            "value": "2164.27",
+            "value": "2164.26",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/01/2025', row A2",
+                "quote": "A2 2.052,20 2.164,26 2.203,82 2.249,96 2.315,88"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -969,22 +1257,31 @@
             "valid_until": "2026-05-01",
             "value": "2203.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/06/2025', row A2",
+                "quote": "A2 2.052,20 2.164,26 2.203,82 2.249,96 2.315,88"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -992,45 +1289,63 @@
             "valid_until": "2027-04-01",
             "value": "2249.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/05/2026', row A2",
+                "quote": "A2 2.052,20 2.164,26 2.203,82 2.249,96 2.315,88"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2026-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": null,
-            "value": "2315.87",
+            "value": "2315.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/04/2027', row A2",
+                "quote": "A2 2.052,20 2.164,26 2.203,82 2.249,96 2.315,88"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           }
         ]
@@ -1099,22 +1414,31 @@
             "valid_until": "2025-06-01",
             "value": "2337.18",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/01/2025', row A1",
+                "quote": "A1 2.216,16 2.337,18 2.379,89 2.429,72 2.500,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -1122,22 +1446,31 @@
             "valid_until": "2026-05-01",
             "value": "2379.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/06/2025', row A1",
+                "quote": "A1 2.216,16 2.337,18 2.379,89 2.429,72 2.500,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -1145,22 +1478,31 @@
             "valid_until": "2027-04-01",
             "value": "2429.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/05/2026', row A1",
+                "quote": "A1 2.216,16 2.337,18 2.379,89 2.429,72 2.500,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2026-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           },
           {
@@ -1168,22 +1510,31 @@
             "valid_until": null,
             "value": "2500.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
-                  "kind": "rivista",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+                  "document_id": "federturismo-circolare-tabelle-retributive-2025-01-16",
+                  "title": "Federturismo Confindustria, circolare 'Tabelle retributive CCNL Industria Turistica' del 16 gennaio 2025 (rinnovo del 21 dicembre 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
+                  "published_on": "2025-01-16",
+                  "sha256": "1aedde8d90f677f73c9bb78d0b68307085556581edcf3ce03253c2eea07776c6"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Nuovi valori della paga base nazionale conglobata di cui all'art. 110 del CCNL (table for all comparti except imprese di viaggi e turismo e congressi and aziende alberghiere minori), column 'Dal 01/04/2027', row A1",
+                "quote": "A1 2.216,16 2.337,18 2.379,89 2.429,72 2.500,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:06Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:06Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Paga base nazionale conglobata (art. 110 CCNL Industria Turistica), general table; the file's base_salary is the conglobated paga base, matching the printed item."
             }
           }
         ]
@@ -1428,11 +1779,11 @@
     "version": "2026.2",
     "effective_from": "2025-01-01",
     "effective_until": null,
-    "source": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B",
+    "source": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
     "verification_status": "unverified",
-    "source_hash": "d6a9034e0a60336fa1feb04c64ee70c2359be9c01f5908205101ee1a0cec3fda",
+    "source_hash": "93a8bfe0895efcf43d0e411952045e014cc182ef02e9c052da376b7d8a163e5c",
     "published_at": "2026-09-07",
-    "source_type": "commercial_secondary"
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
