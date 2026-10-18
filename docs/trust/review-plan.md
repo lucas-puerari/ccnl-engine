@@ -10,7 +10,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 208 | 186 | 0 | `funzioni-centrali-aran` |
 | terziario | 43 | 4 977 055 | 52 | 1540 | 773 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 48 | 4 946 900 | 151 | 2241 | 763 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| industria | 48 | 4 946 900 | 151 | 2171 | 833 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 56 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 35 | 281 | 121 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 12 | 233 | 56 | 5 | `operai-agricoli-florovivaisti` |
@@ -98,7 +98,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`poste-italiane-k700`](../contracts/poste-italiane-k700.md) | 117 000 | exploratory | 1 | 53 | 1 | party or official | none | none |
 | [`telecomunicazioni-asstel`](../contracts/telecomunicazioni-asstel.md) | 110 000 | exploratory | 1 | 45 | 1 | party or official | none | none |
 | [`metalmeccanico-confimi-pmi`](../contracts/metalmeccanico-confimi-pmi.md) | 100 000 | exploratory | 0 | 44 | 1 | aggregator | none | none |
-| [`gomma-plastica-federazione-gomma-plastica`](../contracts/gomma-plastica-federazione-gomma-plastica.md) | 90 000 | exploratory | 2 | 77 | 0 | aggregator | none | none |
+| [`gomma-plastica-federazione-gomma-plastica`](../contracts/gomma-plastica-federazione-gomma-plastica.md) | 90 000 | exploratory | 2 | 7 | 70 | aggregator | none | none |
 | [`legno-arredamento-federlegno`](../contracts/legno-arredamento-federlegno.md) | 90 000 | exploratory | 1 | 88 | 1 | aggregator | none | none |
 | [`calzaturiero-assocalzaturifici`](../contracts/calzaturiero-assocalzaturifici.md) | 75 000 | exploratory | 2 | 37 | 0 | aggregator | none | none |
 | [`trasporto-ferroviario-agens`](../contracts/trasporto-ferroviario-agens.md) | 75 000 | exploratory | 1 | 7 | 49 | aggregator | none | none |
