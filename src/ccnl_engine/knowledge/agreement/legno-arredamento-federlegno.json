@@ -138,6 +138,37 @@
         "findings": [
           "Art. 36 (ex 18) - Tredicesima mensilità (p. 86): \"il lavoratore non in prova ha diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità quanti sono i mesi di servizio prestato presso l'azienda. La frazione di mese superiore ai 15 giorni va considerata a questi effetti come mese intero.\". Match: more_than 15."
         ]
+      },
+      {
+        "id": "2026-10-18-ai-tables",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The paga base (split model: base_salary excludes contingenza and EDR) of the 16 level codes for 1 July 2023, 1 January 2024 and 1 January 2025, derived from the minimi (paga base + contingenza + EDR) and per-level contingenza printed in the signed agreements of 20 June 2023 and 27 January 2025 between FederlegnoArredo and Feneal, Filca, Fillea (FILLEA-CGIL copies).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+            "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
+          },
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+            "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+          },
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/All_1_Ipotesi_di_accordo_ccnl_legno_arredo_industria_3.9.2026.pdf",
+            "sha256": "14847a31abf5c7848d9578587d660b255741c977262e3a56043b79d3a4b22d2a"
+          }
+        ],
+        "findings": [
+          "No signatory document prints the paga base alone for these dates: the 20 June 2023 ipotesi (PDF p. 3) prints paga base al 31.12.2022, contingenza, EDR 10,33, minimi al 31.12.2022, aumento dal 1.07.2023 and nuovi minimi; the 27 January 2025 verbale (PDF p. 2) prints minimi anno 2024 and minimi dal 01-01-2025, stated to include paga base, contingenza and EDR non conglobati. The file's base_salary is the paga base (contingenza and EDR modelled separately), so every period is derived: 45 derived values, all equal to the file.",
+          "Level mapping: the tables group levels sharing a salary band (AE4/AS1, AC1/AS2, AC3/AC2/AS4); each code of a group takes the group's value, as in the file.",
+          "AS3, AE4 and AS1 at 2023-07-01: the 2023 table is off by one cent (paga base + aumento = 1.639,62 and 1.489,49, nuovi minimi - contingenza - EDR = 1.639,61 and 1.489,48); the 2024 IPCA increments (129,91 and 120,65 on the 2025 allegato) follow the printed minimi. Left unbacked; the maintainer should choose (the minimi-based 1639.61 / 1489.48 match the parties' later arithmetic).",
+          "Rule applied: a derived value with two conflicting derivation paths in the signed text is left unbacked (AS3, AE4, AS1 at 2023-07-01), even for one cent.",
+          "Level naming: the signed 2023 table labels the top row '12° AD3 (Quadri)', while the file's level descriptions and apprenticeship note call AC5 'quadri' (and model a function allowance for AD3). Values are unaffected; the descriptions should be checked.",
+          "The file is out of date: the ipotesi of the 2026-2028 renewal signed 3 September 2026 (FILLEA-CGIL copy, PDF pp. 52-53) grants from September 2026 an increase of 95,00 at AS1 (parametro 134) riparametrated on all levels and prints a new paga base dal 01-09-2026 per level (contingenza and EDR unchanged); from January 2027 a further 39,00 at AS1. The file's 2025-01-01 period is open-ended and lacks a 2026-09-01 period.",
+          "The ruleset names a document signed by FederlegnoArredo and the three unions (FILLEA-CGIL copy): source_type contracting_party."
+        ]
       }
     ]
   },
@@ -380,18 +411,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-ipotesi-rinnovo-ccnl-2023-06-20",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Legno, Sughero, Mobile, Arredamento e Boschivi e Forestali, Milano 20 giugno 2023, con tabella paga base, contingenza, EDR e nuovi minimi dal 1.07.2023 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                  "published_on": "2023-06-20",
+                  "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Ipotesi di accordo 20 giugno 2023, table (rotated) 'Paga base al 31.12.2022 | Contingenza | E.D.R. | Retribuzione (minimi) al 31.12.2022 | Aumento dal 1.07.2023 | Nuovi minimi dal 1.07.2023', row AE1",
+                "quote": "1° AE1 100,0 1.011,23 512,16 10,33 1.533,72 102,20 1.635,92"
               },
+              "transformation": "Paga base from 1 July 2023 = paga base al 31.12.2022 1.011,23 + aumento dal 1.07.2023 102,20 (the increase goes to paga base; contingenza 512,16 and EDR 10,33 are frozen) = 1113.43; equals nuovi minimi 1.635,92 - contingenza - EDR.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2023-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -403,18 +440,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI ANNO 2024', row AE1 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AE1 100 1.733,85 23,85 1.757,70 19,33 1.753,18"
               },
+              "transformation": "Paga base = minimi anno 2024 1.733,85 - contingenza 512,16 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AE1, and unchanged in the 2026 ipotesi, PDF p. 53) = 1211.36.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -426,18 +469,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI DAL 01-01-2025', row AE1 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AE1 100 1.733,85 23,85 1.757,70 19,33 1.753,18"
               },
+              "transformation": "Paga base = minimi dal 01-01-2025 1.753,18 - contingenza 512,16 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AE1, and unchanged in the 2026 ipotesi, PDF p. 53) = 1230.69.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -541,18 +590,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-ipotesi-rinnovo-ccnl-2023-06-20",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Legno, Sughero, Mobile, Arredamento e Boschivi e Forestali, Milano 20 giugno 2023, con tabella paga base, contingenza, EDR e nuovi minimi dal 1.07.2023 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                  "published_on": "2023-06-20",
+                  "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Ipotesi di accordo 20 giugno 2023, table (rotated) 'Paga base al 31.12.2022 | Contingenza | E.D.R. | Retribuzione (minimi) al 31.12.2022 | Aumento dal 1.07.2023 | Nuovi minimi dal 1.07.2023', row AE2",
+                "quote": "2° AE2 119,0 1.201,85 514,79 10,33 1.726,97 121,62 1.848,59"
               },
+              "transformation": "Paga base from 1 July 2023 = paga base al 31.12.2022 1.201,85 + aumento dal 1.07.2023 121,62 (the increase goes to paga base; contingenza 514,79 and EDR 10,33 are frozen) = 1323.47; equals nuovi minimi 1.848,59 - contingenza - EDR.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2023-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -564,18 +619,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI ANNO 2024', row AE2 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AE2 119 1.959,16 25,59 1.984,75 21,83 1.980,99"
               },
+              "transformation": "Paga base = minimi anno 2024 1.959,16 - contingenza 514,79 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AE2, and unchanged in the 2026 ipotesi, PDF p. 53) = 1434.04.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -587,18 +648,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI DAL 01-01-2025', row AE2 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AE2 119 1.959,16 25,59 1.984,75 21,83 1.980,99"
               },
+              "transformation": "Paga base = minimi dal 01-01-2025 1.980,99 - contingenza 514,79 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AE2, and unchanged in the 2026 ipotesi, PDF p. 53) = 1455.87.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -702,18 +769,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-ipotesi-rinnovo-ccnl-2023-06-20",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Legno, Sughero, Mobile, Arredamento e Boschivi e Forestali, Milano 20 giugno 2023, con tabella paga base, contingenza, EDR e nuovi minimi dal 1.07.2023 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                  "published_on": "2023-06-20",
+                  "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Ipotesi di accordo 20 giugno 2023, table (rotated) 'Paga base al 31.12.2022 | Contingenza | E.D.R. | Retribuzione (minimi) al 31.12.2022 | Aumento dal 1.07.2023 | Nuovi minimi dal 1.07.2023', row AE3",
+                "quote": "3° AE3 126,5 1.277,20 516,53 10,33 1.804,06 129,28 1.933,34"
               },
+              "transformation": "Paga base from 1 July 2023 = paga base al 31.12.2022 1.277,20 + aumento dal 1.07.2023 129,28 (the increase goes to paga base; contingenza 516,53 and EDR 10,33 are frozen) = 1406.48; equals nuovi minimi 1.933,34 - contingenza - EDR.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2023-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -725,18 +798,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI ANNO 2024', row AE3 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AE3 126,5 2.048,97 26,40 2.075,37 22,83 2.071,80"
               },
+              "transformation": "Paga base = minimi anno 2024 2.048,97 - contingenza 516,53 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AE3, and unchanged in the 2026 ipotesi, PDF p. 53) = 1522.11.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -748,18 +827,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI DAL 01-01-2025', row AE3 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AE3 126,5 2.048,97 26,40 2.075,37 22,83 2.071,80"
               },
+              "transformation": "Paga base = minimi dal 01-01-2025 2.071,80 - contingenza 516,53 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AE3, and unchanged in the 2026 ipotesi, PDF p. 53) = 1544.94.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -886,18 +971,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI ANNO 2024', row AE4/AS1 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AE4/AS1 134 2.138,22 27,27 2.165,49 23,82 2.162,04"
               },
+              "transformation": "Paga base = minimi anno 2024 2.138,22 - contingenza 517,76 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AE4/AS1, and unchanged in the 2026 ipotesi, PDF p. 53) = 1610.13.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -909,18 +1000,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI DAL 01-01-2025', row AE4/AS1 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AE4/AS1 134 2.138,22 27,27 2.165,49 23,82 2.162,04"
               },
+              "transformation": "Paga base = minimi dal 01-01-2025 2.162,04 - contingenza 517,76 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AE4/AS1, and unchanged in the 2026 ipotesi, PDF p. 53) = 1633.95.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1047,18 +1144,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI ANNO 2024', row AE4/AS1 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AE4/AS1 134 2.138,22 27,27 2.165,49 23,82 2.162,04"
               },
+              "transformation": "Paga base = minimi anno 2024 2.138,22 - contingenza 517,76 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AE4/AS1, and unchanged in the 2026 ipotesi, PDF p. 53) = 1610.13.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1070,18 +1173,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI DAL 01-01-2025', row AE4/AS1 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AE4/AS1 134 2.138,22 27,27 2.165,49 23,82 2.162,04"
               },
+              "transformation": "Paga base = minimi dal 01-01-2025 2.162,04 - contingenza 517,76 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AE4/AS1, and unchanged in the 2026 ipotesi, PDF p. 53) = 1633.95.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1184,18 +1293,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-ipotesi-rinnovo-ccnl-2023-06-20",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Legno, Sughero, Mobile, Arredamento e Boschivi e Forestali, Milano 20 giugno 2023, con tabella paga base, contingenza, EDR e nuovi minimi dal 1.07.2023 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                  "published_on": "2023-06-20",
+                  "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Ipotesi di accordo 20 giugno 2023, table (rotated) 'Paga base al 31.12.2022 | Contingenza | E.D.R. | Retribuzione (minimi) al 31.12.2022 | Aumento dal 1.07.2023 | Nuovi minimi dal 1.07.2023', row AC1/AS2",
+                "quote": "5° AC1/AS2 140,0 1.412,95 518,45 10,33 1.941,73 143,08 2.084,81"
               },
+              "transformation": "Paga base from 1 July 2023 = paga base al 31.12.2022 1.412,95 + aumento dal 1.07.2023 143,08 (the increase goes to paga base; contingenza 518,45 and EDR 10,33 are frozen) = 1556.03; equals nuovi minimi 2.084,81 - contingenza - EDR.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2023-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1207,18 +1322,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI ANNO 2024', row AC1/AS2 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AC1/AS2 140 2.209,52 28,98 2.238,50 24,62 2.234,14"
               },
+              "transformation": "Paga base = minimi anno 2024 2.209,52 - contingenza 518,45 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AC1/AS2, and unchanged in the 2026 ipotesi, PDF p. 53) = 1680.74.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1230,18 +1351,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI DAL 01-01-2025', row AC1/AS2 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AC1/AS2 140 2.209,52 28,98 2.238,50 24,62 2.234,14"
               },
+              "transformation": "Paga base = minimi dal 01-01-2025 2.234,14 - contingenza 518,45 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AC1/AS2, and unchanged in the 2026 ipotesi, PDF p. 53) = 1705.36.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1344,18 +1471,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-ipotesi-rinnovo-ccnl-2023-06-20",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Legno, Sughero, Mobile, Arredamento e Boschivi e Forestali, Milano 20 giugno 2023, con tabella paga base, contingenza, EDR e nuovi minimi dal 1.07.2023 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                  "published_on": "2023-06-20",
+                  "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Ipotesi di accordo 20 giugno 2023, table (rotated) 'Paga base al 31.12.2022 | Contingenza | E.D.R. | Retribuzione (minimi) al 31.12.2022 | Aumento dal 1.07.2023 | Nuovi minimi dal 1.07.2023', row AC1/AS2",
+                "quote": "5° AC1/AS2 140,0 1.412,95 518,45 10,33 1.941,73 143,08 2.084,81"
               },
+              "transformation": "Paga base from 1 July 2023 = paga base al 31.12.2022 1.412,95 + aumento dal 1.07.2023 143,08 (the increase goes to paga base; contingenza 518,45 and EDR 10,33 are frozen) = 1556.03; equals nuovi minimi 2.084,81 - contingenza - EDR.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2023-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1367,18 +1500,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI ANNO 2024', row AC1/AS2 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AC1/AS2 140 2.209,52 28,98 2.238,50 24,62 2.234,14"
               },
+              "transformation": "Paga base = minimi anno 2024 2.209,52 - contingenza 518,45 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AC1/AS2, and unchanged in the 2026 ipotesi, PDF p. 53) = 1680.74.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1390,18 +1529,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI DAL 01-01-2025', row AC1/AS2 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AC1/AS2 140 2.209,52 28,98 2.238,50 24,62 2.234,14"
               },
+              "transformation": "Paga base = minimi dal 01-01-2025 2.234,14 - contingenza 518,45 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AC1/AS2, and unchanged in the 2026 ipotesi, PDF p. 53) = 1705.36.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1527,18 +1672,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI ANNO 2024', row AS3 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AS3 147,5 2.300,87 30,66 2.331,53 25,65 2.326,52"
               },
+              "transformation": "Paga base = minimi anno 2024 2.300,87 - contingenza 521,02 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AS3, and unchanged in the 2026 ipotesi, PDF p. 53) = 1769.52.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1550,18 +1701,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI DAL 01-01-2025', row AS3 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AS3 147,5 2.300,87 30,66 2.331,53 25,65 2.326,52"
               },
+              "transformation": "Paga base = minimi dal 01-01-2025 2.326,52 - contingenza 521,02 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AS3, and unchanged in the 2026 ipotesi, PDF p. 53) = 1795.17.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1664,18 +1821,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-ipotesi-rinnovo-ccnl-2023-06-20",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Legno, Sughero, Mobile, Arredamento e Boschivi e Forestali, Milano 20 giugno 2023, con tabella paga base, contingenza, EDR e nuovi minimi dal 1.07.2023 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                  "published_on": "2023-06-20",
+                  "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Ipotesi di accordo 20 giugno 2023, table (rotated) 'Paga base al 31.12.2022 | Contingenza | E.D.R. | Retribuzione (minimi) al 31.12.2022 | Aumento dal 1.07.2023 | Nuovi minimi dal 1.07.2023', row AC3/AC2/AS4",
+                "quote": "7° AC3/AC2/AS4 155,0 1.563,67 522,41 10,33 2.096,41 158,41 2.254,82"
               },
+              "transformation": "Paga base from 1 July 2023 = paga base al 31.12.2022 1.563,67 + aumento dal 1.07.2023 158,41 (the increase goes to paga base; contingenza 522,41 and EDR 10,33 are frozen) = 1722.08; equals nuovi minimi 2.254,82 - contingenza - EDR.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2023-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1687,18 +1850,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI ANNO 2024', row AC3/AC2/AS4 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AC3/AC2/AS4 155 2.389,76 32,37 2.422,13 26,64 2.416,40"
               },
+              "transformation": "Paga base = minimi anno 2024 2.389,76 - contingenza 522,41 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AC3/AC2/AS4, and unchanged in the 2026 ipotesi, PDF p. 53) = 1857.02.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1710,18 +1879,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI DAL 01-01-2025', row AC3/AC2/AS4 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AC3/AC2/AS4 155 2.389,76 32,37 2.422,13 26,64 2.416,40"
               },
+              "transformation": "Paga base = minimi dal 01-01-2025 2.416,40 - contingenza 522,41 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AC3/AC2/AS4, and unchanged in the 2026 ipotesi, PDF p. 53) = 1883.66.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1824,18 +1999,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-ipotesi-rinnovo-ccnl-2023-06-20",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Legno, Sughero, Mobile, Arredamento e Boschivi e Forestali, Milano 20 giugno 2023, con tabella paga base, contingenza, EDR e nuovi minimi dal 1.07.2023 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                  "published_on": "2023-06-20",
+                  "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Ipotesi di accordo 20 giugno 2023, table (rotated) 'Paga base al 31.12.2022 | Contingenza | E.D.R. | Retribuzione (minimi) al 31.12.2022 | Aumento dal 1.07.2023 | Nuovi minimi dal 1.07.2023', row AC3/AC2/AS4",
+                "quote": "7° AC3/AC2/AS4 155,0 1.563,67 522,41 10,33 2.096,41 158,41 2.254,82"
               },
+              "transformation": "Paga base from 1 July 2023 = paga base al 31.12.2022 1.563,67 + aumento dal 1.07.2023 158,41 (the increase goes to paga base; contingenza 522,41 and EDR 10,33 are frozen) = 1722.08; equals nuovi minimi 2.254,82 - contingenza - EDR.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2023-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1847,18 +2028,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI ANNO 2024', row AC3/AC2/AS4 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AC3/AC2/AS4 155 2.389,76 32,37 2.422,13 26,64 2.416,40"
               },
+              "transformation": "Paga base = minimi anno 2024 2.389,76 - contingenza 522,41 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AC3/AC2/AS4, and unchanged in the 2026 ipotesi, PDF p. 53) = 1857.02.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1870,18 +2057,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI DAL 01-01-2025', row AC3/AC2/AS4 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AC3/AC2/AS4 155 2.389,76 32,37 2.422,13 26,64 2.416,40"
               },
+              "transformation": "Paga base = minimi dal 01-01-2025 2.416,40 - contingenza 522,41 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AC3/AC2/AS4, and unchanged in the 2026 ipotesi, PDF p. 53) = 1883.66.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1984,18 +2177,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-ipotesi-rinnovo-ccnl-2023-06-20",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Legno, Sughero, Mobile, Arredamento e Boschivi e Forestali, Milano 20 giugno 2023, con tabella paga base, contingenza, EDR e nuovi minimi dal 1.07.2023 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                  "published_on": "2023-06-20",
+                  "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Ipotesi di accordo 20 giugno 2023, table (rotated) 'Paga base al 31.12.2022 | Contingenza | E.D.R. | Retribuzione (minimi) al 31.12.2022 | Aumento dal 1.07.2023 | Nuovi minimi dal 1.07.2023', row AC3/AC2/AS4",
+                "quote": "7° AC3/AC2/AS4 155,0 1.563,67 522,41 10,33 2.096,41 158,41 2.254,82"
               },
+              "transformation": "Paga base from 1 July 2023 = paga base al 31.12.2022 1.563,67 + aumento dal 1.07.2023 158,41 (the increase goes to paga base; contingenza 522,41 and EDR 10,33 are frozen) = 1722.08; equals nuovi minimi 2.254,82 - contingenza - EDR.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2023-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -2007,18 +2206,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI ANNO 2024', row AC3/AC2/AS4 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AC3/AC2/AS4 155 2.389,76 32,37 2.422,13 26,64 2.416,40"
               },
+              "transformation": "Paga base = minimi anno 2024 2.389,76 - contingenza 522,41 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AC3/AC2/AS4, and unchanged in the 2026 ipotesi, PDF p. 53) = 1857.02.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -2030,18 +2235,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI DAL 01-01-2025', row AC3/AC2/AS4 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AC3/AC2/AS4 155 2.389,76 32,37 2.422,13 26,64 2.416,40"
               },
+              "transformation": "Paga base = minimi dal 01-01-2025 2.416,40 - contingenza 522,41 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AC3/AC2/AS4, and unchanged in the 2026 ipotesi, PDF p. 53) = 1883.66.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -2144,18 +2355,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-ipotesi-rinnovo-ccnl-2023-06-20",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Legno, Sughero, Mobile, Arredamento e Boschivi e Forestali, Milano 20 giugno 2023, con tabella paga base, contingenza, EDR e nuovi minimi dal 1.07.2023 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                  "published_on": "2023-06-20",
+                  "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Ipotesi di accordo 20 giugno 2023, table (rotated) 'Paga base al 31.12.2022 | Contingenza | E.D.R. | Retribuzione (minimi) al 31.12.2022 | Aumento dal 1.07.2023 | Nuovi minimi dal 1.07.2023', row AC4",
+                "quote": "8° AC4 170,0 1.714,33 525,22 10,33 2.249,88 173,74 2.423,62"
               },
+              "transformation": "Paga base from 1 July 2023 = paga base al 31.12.2022 1.714,33 + aumento dal 1.07.2023 173,74 (the increase goes to paga base; contingenza 525,22 and EDR 10,33 are frozen) = 1888.07; equals nuovi minimi 2.423,62 - contingenza - EDR.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2023-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -2167,18 +2384,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI ANNO 2024', row AC4 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AC4 170 2.568,73 35,76 2.604,49 28,65 2.597,38"
               },
+              "transformation": "Paga base = minimi anno 2024 2.568,73 - contingenza 525,22 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AC4, and unchanged in the 2026 ipotesi, PDF p. 53) = 2033.18.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -2190,18 +2413,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI DAL 01-01-2025', row AC4 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AC4 170 2.568,73 35,76 2.604,49 28,65 2.597,38"
               },
+              "transformation": "Paga base = minimi dal 01-01-2025 2.597,38 - contingenza 525,22 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AC4, and unchanged in the 2026 ipotesi, PDF p. 53) = 2061.83.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -2304,18 +2533,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-ipotesi-rinnovo-ccnl-2023-06-20",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Legno, Sughero, Mobile, Arredamento e Boschivi e Forestali, Milano 20 giugno 2023, con tabella paga base, contingenza, EDR e nuovi minimi dal 1.07.2023 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                  "published_on": "2023-06-20",
+                  "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Ipotesi di accordo 20 giugno 2023, table (rotated) 'Paga base al 31.12.2022 | Contingenza | E.D.R. | Retribuzione (minimi) al 31.12.2022 | Aumento dal 1.07.2023 | Nuovi minimi dal 1.07.2023', row AC5",
+                "quote": "9° AC5 185,0 1.864,95 527,94 10,33 2.403,22 189,07 2.592,29"
               },
+              "transformation": "Paga base from 1 July 2023 = paga base al 31.12.2022 1.864,95 + aumento dal 1.07.2023 189,07 (the increase goes to paga base; contingenza 527,94 and EDR 10,33 are frozen) = 2054.02; equals nuovi minimi 2.592,29 - contingenza - EDR.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2023-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -2327,18 +2562,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI ANNO 2024', row AC5 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AC5 185 2.747,55 39,21 2.786,76 30,65 2.778,20"
               },
+              "transformation": "Paga base = minimi anno 2024 2.747,55 - contingenza 527,94 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AC5, and unchanged in the 2026 ipotesi, PDF p. 53) = 2209.28.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -2350,18 +2591,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI DAL 01-01-2025', row AC5 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AC5 185 2.747,55 39,21 2.786,76 30,65 2.778,20"
               },
+              "transformation": "Paga base = minimi dal 01-01-2025 2.778,20 - contingenza 527,94 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AC5, and unchanged in the 2026 ipotesi, PDF p. 53) = 2239.93.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -2465,18 +2712,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-ipotesi-rinnovo-ccnl-2023-06-20",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Legno, Sughero, Mobile, Arredamento e Boschivi e Forestali, Milano 20 giugno 2023, con tabella paga base, contingenza, EDR e nuovi minimi dal 1.07.2023 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                  "published_on": "2023-06-20",
+                  "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Ipotesi di accordo 20 giugno 2023, table (rotated) 'Paga base al 31.12.2022 | Contingenza | E.D.R. | Retribuzione (minimi) al 31.12.2022 | Aumento dal 1.07.2023 | Nuovi minimi dal 1.07.2023', row AD1",
+                "quote": "10° AD1 195,0 1.965,41 529,75 10,33 2.505,49 199,29 2.704,78"
               },
+              "transformation": "Paga base from 1 July 2023 = paga base al 31.12.2022 1.965,41 + aumento dal 1.07.2023 199,29 (the increase goes to paga base; contingenza 529,75 and EDR 10,33 are frozen) = 2164.70; equals nuovi minimi 2.704,78 - contingenza - EDR.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2023-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -2488,18 +2741,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI ANNO 2024', row AD1 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AD1 195 2.866,83 41,76 2.908,59 31,99 2.898,82"
               },
+              "transformation": "Paga base = minimi anno 2024 2.866,83 - contingenza 529,75 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AD1, and unchanged in the 2026 ipotesi, PDF p. 53) = 2326.75.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -2511,18 +2770,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI DAL 01-01-2025', row AD1 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AD1 195 2.866,83 41,76 2.908,59 31,99 2.898,82"
               },
+              "transformation": "Paga base = minimi dal 01-01-2025 2.898,82 - contingenza 529,75 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AD1, and unchanged in the 2026 ipotesi, PDF p. 53) = 2358.74.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -2626,18 +2891,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-ipotesi-rinnovo-ccnl-2023-06-20",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Legno, Sughero, Mobile, Arredamento e Boschivi e Forestali, Milano 20 giugno 2023, con tabella paga base, contingenza, EDR e nuovi minimi dal 1.07.2023 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                  "published_on": "2023-06-20",
+                  "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Ipotesi di accordo 20 giugno 2023, table (rotated) 'Paga base al 31.12.2022 | Contingenza | E.D.R. | Retribuzione (minimi) al 31.12.2022 | Aumento dal 1.07.2023 | Nuovi minimi dal 1.07.2023', row AD2",
+                "quote": "11° AD2 205,0 2.066,47 531,91 10,33 2.608,71 209,51 2.818,22"
               },
+              "transformation": "Paga base from 1 July 2023 = paga base al 31.12.2022 2.066,47 + aumento dal 1.07.2023 209,51 (the increase goes to paga base; contingenza 531,91 and EDR 10,33 are frozen) = 2275.98; equals nuovi minimi 2.818,22 - contingenza - EDR.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2023-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -2649,18 +2920,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI ANNO 2024', row AD2 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AD2 205 2.987,11 44,31 3.031,42 33,35 3.020,46"
               },
+              "transformation": "Paga base = minimi anno 2024 2.987,11 - contingenza 531,91 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AD2, and unchanged in the 2026 ipotesi, PDF p. 53) = 2444.87.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -2672,18 +2949,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI DAL 01-01-2025', row AD2 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AD2 205 2.987,11 44,31 3.031,42 33,35 3.020,46"
               },
+              "transformation": "Paga base = minimi dal 01-01-2025 3.020,46 - contingenza 531,91 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AD2, and unchanged in the 2026 ipotesi, PDF p. 53) = 2478.22.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -2787,18 +3070,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-ipotesi-rinnovo-ccnl-2023-06-20",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Legno, Sughero, Mobile, Arredamento e Boschivi e Forestali, Milano 20 giugno 2023, con tabella paga base, contingenza, EDR e nuovi minimi dal 1.07.2023 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                  "published_on": "2023-06-20",
+                  "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Ipotesi di accordo 20 giugno 2023, table (rotated) 'Paga base al 31.12.2022 | Contingenza | E.D.R. | Retribuzione (minimi) al 31.12.2022 | Aumento dal 1.07.2023 | Nuovi minimi dal 1.07.2023', row AD3",
+                "quote": "12° AD3 (Quadri) 210,0 2.115,59 531,91 10,33 2.657,83 214,62 2.872,45"
               },
+              "transformation": "Paga base from 1 July 2023 = paga base al 31.12.2022 2.115,59 + aumento dal 1.07.2023 214,62 (the increase goes to paga base; contingenza 531,91 and EDR 10,33 are frozen) = 2330.21; equals nuovi minimi 2.872,45 - contingenza - EDR.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2023-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -2810,18 +3099,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI ANNO 2024', row AD3 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AD3 210 3.044,54 44,31 3.088,85 33,98 3.078,52"
               },
+              "transformation": "Paga base = minimi anno 2024 3.044,54 - contingenza 531,91 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AD3, and unchanged in the 2026 ipotesi, PDF p. 53) = 2502.30.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -2833,18 +3128,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "legno-industria-cnel-f051-pdf",
-                  "title": "legno-industria-cnel-f051-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf"
+                  "document_id": "federlegno-verbale-adeguamento-minimi-2025-01-27",
+                  "title": "Verbale di accordo 'Adeguamento minimi anno 2025' del 27 gennaio 2025, FederlegnoArredo e Feneal-Uil, Filca-Cisl, Fillea-Cgil, con allegato dei minimi anno 2024 e dal 01-01-2025 (scansione firmata, copia FILLEA-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7fa0a5f88dd6a883f20166eecb9e31974651d9686dccf1438b4d153843b1bc55"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato al verbale di accordo 27 gennaio 2025, column 'MINIMI DAL 01-01-2025', row AD3 ('I minimi comprendono paga base, contingenza e EDR non conglobati')",
+                "quote": "AD3 210 3.044,54 44,31 3.088,85 33,98 3.078,52"
               },
+              "transformation": "Paga base = minimi dal 01-01-2025 3.078,52 - contingenza 531,91 - EDR 10,33 (contingenza and EDR per level printed in the signed ipotesi of 20 June 2023, PDF p. 3, row AD3, and unchanged in the 2026 ipotesi, PDF p. 53) = 2536.28.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:14Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -3181,11 +3482,11 @@
     "version": "2026.2",
     "effective_from": "2023-07-01",
     "effective_until": null,
-    "source": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf",
+    "source": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "89f51ec0b2f7f00b9fe8943078bcf8fd318405965fa1e2903781253c13f9d0ac",
+    "source_hash": "e1e48d3e018664e7f94c0e86d74007e594d2e9965d3b051de17a8ac86c0bce54",
     "published_at": "2026-09-07",
-    "source_type": "institutional_secondary"
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
