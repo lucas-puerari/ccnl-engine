@@ -2087,8 +2087,8 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "ccnl/trasporto-ferroviario-agens",
       "ruleset_version": "2026.2",
-      "source_hash": "5ed3c76940ef1958c68f5659c1e1b9aaa5c0924038d69a1f664b55d5a723ee03",
-      "source_type": "commercial_secondary",
+      "source_hash": "07e28fd19f5cd5a3bdd353019e323c84776005a59911b61f47e64c2f75f1413e",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/trasporto-ferroviario-agens.json.gz"
     },

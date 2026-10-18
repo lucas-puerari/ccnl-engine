@@ -10,7 +10,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 208 | 186 | 0 | `funzioni-centrali-aran` |
 | terziario | 43 | 4 977 055 | 52 | 1576 | 737 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 48 | 4 946 900 | 151 | 2289 | 715 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| industria | 48 | 4 946 900 | 151 | 2241 | 763 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 56 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 35 | 305 | 97 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 12 | 240 | 49 | 5 | `operai-agricoli-florovivaisti` |
@@ -101,7 +101,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`gomma-plastica-federazione-gomma-plastica`](../contracts/gomma-plastica-federazione-gomma-plastica.md) | 90 000 | exploratory | 2 | 77 | 0 | aggregator | none | none |
 | [`legno-arredamento-federlegno`](../contracts/legno-arredamento-federlegno.md) | 90 000 | exploratory | 1 | 88 | 1 | aggregator | none | none |
 | [`calzaturiero-assocalzaturifici`](../contracts/calzaturiero-assocalzaturifici.md) | 75 000 | exploratory | 2 | 37 | 0 | aggregator | none | none |
-| [`trasporto-ferroviario-agens`](../contracts/trasporto-ferroviario-agens.md) | 75 000 | exploratory | 1 | 55 | 1 | aggregator | none | none |
+| [`trasporto-ferroviario-agens`](../contracts/trasporto-ferroviario-agens.md) | 75 000 | exploratory | 1 | 7 | 49 | aggregator | none | none |
 | [`grafica-editoria-aieg`](../contracts/grafica-editoria-aieg.md) | 70 000 | exploratory | 1 | 71 | 1 | aggregator | none | none |
 | [`gas-acqua-utilitalia`](../contracts/gas-acqua-utilitalia.md) | 65 000 | exploratory | 1 | 63 | 0 | party or official | none | none |
 | [`igiene-ambientale-utilitalia`](../contracts/igiene-ambientale-utilitalia.md) | 65 000 | exploratory | 1 | 144 | 0 | aggregator | none | none |

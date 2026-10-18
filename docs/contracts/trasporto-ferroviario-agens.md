@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 55 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 49 verified / 7 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 70 - Tredicesima e quattordicesima mensilità (p. 119): "il lavoratore ha diritto a tanti dodicesimi dell'ammontare della tredicesima e/o della quattordicesima mensilità, quanti sono i mesi interi di servizio prestati presso l’azienda nei 12 mesi antecedenti quello di erogazione. La frazione di mese superiore a quindici giorni va considerata a questi effetti come mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
+| 2026-10-18 | claude-opus-5-5 (ai) | The base salaries (minimi contrattuali mensili) of all 16 posizioni retributive for the tranches from 1.6.2025, 1.11.2025 and 1.6.2026 against the pay table of the CCNL text of 22 May 2025 published by ORSA Ferrovie, a signatory union. | confirmed | Art. 68 punto 3 (PDF p. 117, printed p. 116) prints the minimi contrattuali mensili of the 16 posizioni retributive Q1-F2 in three columns (dal 1°.6.2025, dal 1°.11.2025, dal 1°.6.2026); all 48 file values match the printed table.<br>Art. 68 punto 3.1: "Gli importi dei minimi contrattuali di cui sopra sono comprensivi dell'ex indennità di contingenza (...) nonché dell'E.D.R. di cui al Protocollo Interconfederale del 31 luglio 1992 e dell'E.D.R. di cui all'accordo nazionale del 24.1.2008." This confirms the conglobated base_salary model of the file.<br>The indennità di funzione Quadri (art. 71) is a separate element of pay (art. 68 punto 1.2 c), so the file's Q1/Q2 base_salary correctly excludes it. |
 
 ## Salary table
 
