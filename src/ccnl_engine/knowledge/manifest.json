@@ -1730,7 +1730,7 @@
       "valid_to": "2029-12-31",
       "ruleset_id": "ccnl/pulizia-artigianato-confartigianato",
       "ruleset_version": "2025.1",
-      "source_hash": "ce9408720ac9a8d6d09862704e4364c78c0bf93a60278f1230202b2a0dfd9b47",
+      "source_hash": "f9bfe6f5896344d530e408862f2573eddbbf36450c264d2b60692b25df3654db",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/pulizia-artigianato-confartigianato.json.gz"
@@ -1747,7 +1747,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/radiotelevisive-radiofonico",
       "ruleset_version": "2026.2",
-      "source_hash": "aaacca36b14de4b92145ef4f1015f6a4ec92bc673ef0902e748ed2113467b11b",
+      "source_hash": "9c96405a9a5eff58439337fa08351bbb5c09aa69f70c79b036707237ecbfa85b",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/radiotelevisive-radiofonico.json.gz"
@@ -1764,7 +1764,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/radiotelevisive-televisivo",
       "ruleset_version": "2026.2",
-      "source_hash": "ee19aa854a33eaad59cd4d121e5ce616df7a2b0a5eec58521a973217baebdef7",
+      "source_hash": "7698dcb20d5aee26185a17306614a110e14a4389f915facfec6a443a520be7d4",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/radiotelevisive-televisivo.json.gz"
@@ -1866,7 +1866,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/scuole-private-agidae",
       "ruleset_version": "2026.2",
-      "source_hash": "40d6da0b2e382f902ce76284562bf991ca43511b60d62d49a74adb86ca64071f",
+      "source_hash": "270e97471d74ca9d0bde8f6176824852ff9184714021123cb4416097af4e8863",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/scuole-private-agidae.json.gz"
@@ -1917,7 +1917,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/sistemazioni-idraulico-forestali-impiegati",
       "ruleset_version": "2026.1",
-      "source_hash": "f36268be89a00a6b986aadc7f57b24a710792d07cedfc09451499fe3688088ed",
+      "source_hash": "455bc4463033cd5872710430ee9b0344f5d0fdd624601758a6922b10697ce8f9",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/sistemazioni-idraulico-forestali-impiegati.json.gz"
@@ -1934,7 +1934,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/sistemazioni-idraulico-forestali-operai",
       "ruleset_version": "2026.1",
-      "source_hash": "da6ab455b0a8ba373f34f588fb3a725ab83a47314d4bb41d6071b8806d58053a",
+      "source_hash": "482a5c0f64dc0dc52addf5981d8ced9c18bc4b5bf1365f79465669a00d1a1769",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/sistemazioni-idraulico-forestali-operai.json.gz"
@@ -1968,7 +1968,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tabacco-apti",
       "ruleset_version": "2026.2",
-      "source_hash": "1e2366af825b33f41cc0450fe195b189fe87d71443f298298ba06dc10d005b9f",
+      "source_hash": "89ca8ac43dd69ce80b76baffe90539e0e6fd7fea1d0dd6955464bbb4d0f53903",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tabacco-apti.json.gz"
@@ -2087,7 +2087,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "ccnl/trasporto-ferroviario-agens",
       "ruleset_version": "2026.2",
-      "source_hash": "81b52021cfafbca1eb227a2d5936f4f675ce1cb65653375e26c89c76cfc4db72",
+      "source_hash": "5ed3c76940ef1958c68f5659c1e1b9aaa5c0924038d69a1f664b55d5a723ee03",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/trasporto-ferroviario-agens.json.gz"

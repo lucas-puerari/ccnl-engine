@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 56 verified / 0 derived / 30 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 57 verified / 0 derived / 30 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-17 |
-| **Last review** | 2026-10-17 |
+| **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2029-12-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-17 | claude-opus-5-5 (ai) | The tabellare of the seven levels from December 2024 to December 2029 against the ipotesi di rinnovo of 17 December 2025. | corrected | 56 tabellari (seven levels, eight columns, pp. 7-9 of the signed scan, read by OCR and on the page images) move from assumed to verified.<br>Corrected: level 2 from 1 December 2029 is 1.727,83 in the text (1.716,16 + 11,67, and the table 'a regime'), not 1.727,84; the file reproportioned the level 5 tranche instead of reading the table.<br>The 21 tabellari of November 2022, July 2023 and July 2024 stay assumed: the accordo of 27 October 2022 (Art. 35) prints only the increments of the 5th level, 'riferito al 5° livello', and no table of the other levels was found. |
+| 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 38 Tredicesima mensilità (p. 22): "Nel caso di inizio o di cessazione del rapporto durante il corso dell'anno, il lavoratore non in prova avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese non superiori ai 15 giorni non saranno calcolate, mentre saranno considerate come mese intero se superiori ai 15 giorni.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 
 ## Salary table
 

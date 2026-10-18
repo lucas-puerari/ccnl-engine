@@ -247,6 +247,23 @@
           "Corrected: level 2 from 1 December 2029 is 1.727,83 in the text (1.716,16 + 11,67, and the table 'a regime'), not 1.727,84; the file reproportioned the level 5 tranche instead of reading the table.",
           "The 21 tabellari of November 2022, July 2023 and July 2024 stay assumed: the accordo of 27 October 2022 (Art. 35) prints only the increments of the 5th level, 'riferito al 5° livello', and no table of the other levels was found."
         ]
+      },
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filcams.cgil.it/media/ccnl_-imprese_artigiane_pulizia_18sett_2014_pdf",
+            "sha256": "38fcc6d742327034b074737d8293908057611a19bffea503a63a8efebc727691"
+          }
+        ],
+        "findings": [
+          "Art. 38 Tredicesima mensilità (p. 22): \"Nel caso di inizio o di cessazione del rapporto durante il corso dell'anno, il lavoratore non in prova avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese non superiori ai 15 giorni non saranno calcolate, mentre saranno considerate come mese intero se superiori ai 15 giorni.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
       }
     ]
   },
@@ -573,6 +590,38 @@
           "back_calculation": null
         },
         "note": null
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "pulizia-artigianato-confartigianato-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro per i dipendenti dalle imprese artigiane esercenti Servizi di pulizia, Disinfezione, Disinfestazione, Derattizzazione e Sanificazione, Roma, 18 settembre 2014",
+            "kind": "associazione",
+            "url": "https://www.filcams.cgil.it/media/ccnl_-imprese_artigiane_pulizia_18sett_2014_pdf",
+            "published_on": "2014-09-18",
+            "sha256": "38fcc6d742327034b074737d8293908057611a19bffea503a63a8efebc727691"
+          },
+          "page": "22",
+          "section": "Art. 38 Tredicesima mensilità",
+          "quote": "Nel caso di inizio o di cessazione del rapporto durante il corso dell'anno, il lavoratore non in prova avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese non superiori ai 15 giorni non saranno calcolate, mentre saranno considerate come mese intero se superiori ai 15 giorni."
+        },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2025-12-17",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        },
+        "note": "Quote read by OCR of a scanned PDF."
       }
     }
   },
@@ -3523,7 +3572,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "ce9408720ac9a8d6d09862704e4364c78c0bf93a60278f1230202b2a0dfd9b47",
+    "source_hash": "f9bfe6f5896344d530e408862f2573eddbbf36450c264d2b60692b25df3654db",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
