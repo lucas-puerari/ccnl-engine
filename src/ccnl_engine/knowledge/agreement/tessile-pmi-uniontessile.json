@@ -123,6 +123,24 @@
           "The review recorded no list of the documents it read.",
           "Confidence set to needs_review: values to re-check."
         ]
+      },
+      {
+        "id": "2026-10-17-ai-tables",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The minimi of the ten levels of the settore tessili e abbigliamento against the signed renewal of 18 February 2025.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+            "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+          }
+        ],
+        "findings": [
+          "Settore tessili e abbigliamento (PDF p. 21 of the signed scan, checked on the page image): the 38 minimi of the file, from the minimi of 1/02/2022 to 1/01/2027, match and move from assumed to verified. Level 1 is a flat 1.558,00 from 2025 with no increment printed. The errata of 21/2/2025 (pp. 24-25) does not touch this table.",
+          "The ruleset names this source, published by FILCTEM-CGIL, a signatory: source_type contracting_party instead of estimated."
+        ]
       }
     ]
   },
@@ -339,23 +357,30 @@
             "valid_until": "2025-01-01",
             "value": "1281.95",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/02/2022', row 1",
+                "quote": "1 1.281,95 1.558,00 1.558,00 1.558,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-04-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2024-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -363,23 +388,30 @@
             "valid_until": null,
             "value": "1558.00",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondiments/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/01/2025', row 1",
+                "quote": "1 1.281,95 1.558,00 1.558,00 1.558,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -417,23 +449,30 @@
             "valid_until": "2025-01-01",
             "value": "1624.36",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/02/2022', row 2",
+                "quote": "2 1.624,36 1.710,47 1.762,14 1.796,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-04-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2024-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -441,23 +480,30 @@
             "valid_until": "2026-01-01",
             "value": "1710.47",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/01/2025', row 2",
+                "quote": "2 1.624,36 1.710,47 1.762,14 1.796,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -465,23 +511,30 @@
             "valid_until": "2027-01-01",
             "value": "1762.14",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-tessile-pmi-categ501",
-                  "title": "Tabelle retributive CCNL Abbigliamento Moda Tessili PMI Uniontessile Confapi — KITech",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=501"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "Abbigliamento e Moda — minimi tabellari 01/01/2026"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 01/01/2026', row 2",
+                "quote": "2 1.624,36 1.710,47 1.762,14 1.796,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -489,23 +542,30 @@
             "valid_until": null,
             "value": "1796.58",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 01/01/2027', row 2",
+                "quote": "2 1.624,36 1.710,47 1.762,14 1.796,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -543,23 +603,30 @@
             "valid_until": "2025-01-01",
             "value": "1669.04",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/02/2022', row 2bis",
+                "quote": "2bis 1.669,04 1.759,60 1.813,93 1.850,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-04-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2024-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -567,23 +634,30 @@
             "valid_until": "2026-01-01",
             "value": "1759.60",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/01/2025', row 2bis",
+                "quote": "2bis 1.669,04 1.759,60 1.813,93 1.850,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -591,23 +665,30 @@
             "valid_until": "2027-01-01",
             "value": "1813.93",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-tessile-pmi-categ501",
-                  "title": "Tabelle retributive CCNL Abbigliamento Moda Tessili PMI Uniontessile Confapi — KITech",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=501"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "Abbigliamento e Moda — minimi tabellari 01/01/2026"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 01/01/2026', row 2bis",
+                "quote": "2bis 1.669,04 1.759,60 1.813,93 1.850,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -615,23 +696,30 @@
             "valid_until": null,
             "value": "1850.15",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 01/01/2027', row 2bis",
+                "quote": "2bis 1.669,04 1.759,60 1.813,93 1.850,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -669,23 +757,30 @@
             "valid_until": "2025-01-01",
             "value": "1720.03",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/02/2022', row 3",
+                "quote": "3 1.720,03 1.814,47 1.871,14 1.908,92"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-04-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2024-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -693,23 +788,30 @@
             "valid_until": "2026-01-01",
             "value": "1814.47",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/01/2025', row 3",
+                "quote": "3 1.720,03 1.814,47 1.871,14 1.908,92"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -717,23 +819,30 @@
             "valid_until": "2027-01-01",
             "value": "1871.14",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-tessile-pmi-categ501",
-                  "title": "Tabelle retributive CCNL Abbigliamento Moda Tessili PMI Uniontessile Confapi — KITech",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=501"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "Abbigliamento e Moda — minimi tabellari 01/01/2026"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 01/01/2026', row 3",
+                "quote": "3 1.720,03 1.814,47 1.871,14 1.908,92"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -741,23 +850,30 @@
             "valid_until": null,
             "value": "1908.92",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 01/01/2027', row 3",
+                "quote": "3 1.720,03 1.814,47 1.871,14 1.908,92"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -795,23 +911,30 @@
             "valid_until": "2025-01-01",
             "value": "1761.28",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/02/2022', row 3bis",
+                "quote": "3bis 1.761,28 1.858,50 1.916,84 1.955,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-04-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2024-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -819,23 +942,30 @@
             "valid_until": "2026-01-01",
             "value": "1858.50",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/01/2025', row 3bis",
+                "quote": "3bis 1.761,28 1.858,50 1.916,84 1.955,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -843,23 +973,30 @@
             "valid_until": "2027-01-01",
             "value": "1916.84",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-tessile-pmi-categ501",
-                  "title": "Tabelle retributive CCNL Abbigliamento Moda Tessili PMI Uniontessile Confapi — KITech",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=501"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "Abbigliamento e Moda — minimi tabellari 01/01/2026"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 01/01/2026', row 3bis",
+                "quote": "3bis 1.761,28 1.858,50 1.916,84 1.955,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -867,23 +1004,30 @@
             "valid_until": null,
             "value": "1955.72",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 01/01/2027', row 3bis",
+                "quote": "3bis 1.761,28 1.858,50 1.916,84 1.955,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -921,23 +1065,30 @@
             "valid_until": "2025-01-01",
             "value": "1802.56",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/02/2022', row 4",
+                "quote": "4 1.802,56 1.902,56 1.962,56 2.002,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-04-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2024-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -945,23 +1096,30 @@
             "valid_until": "2026-01-01",
             "value": "1902.56",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/01/2025', row 4",
+                "quote": "4 1.802,56 1.902,56 1.962,56 2.002,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -969,23 +1127,30 @@
             "valid_until": "2027-01-01",
             "value": "1962.56",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-tessile-pmi-categ501",
-                  "title": "Tabelle retributive CCNL Abbigliamento Moda Tessili PMI Uniontessile Confapi — KITech",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=501"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "Abbigliamento e Moda — minimi tabellari 01/01/2026"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 01/01/2026', row 4",
+                "quote": "4 1.802,56 1.902,56 1.962,56 2.002,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -993,23 +1158,30 @@
             "valid_until": null,
             "value": "2002.56",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 01/01/2027', row 4",
+                "quote": "4 1.802,56 1.902,56 1.962,56 2.002,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -1047,23 +1219,30 @@
             "valid_until": "2025-01-01",
             "value": "1904.62",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/02/2022', row 5",
+                "quote": "5 1.904,62 2.010,73 2.074,40 2.116,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-04-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2024-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1071,23 +1250,30 @@
             "valid_until": "2026-01-01",
             "value": "2010.73",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/01/2025', row 5",
+                "quote": "5 1.904,62 2.010,73 2.074,40 2.116,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1095,23 +1281,30 @@
             "valid_until": "2027-01-01",
             "value": "2074.40",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-tessile-pmi-categ501",
-                  "title": "Tabelle retributive CCNL Abbigliamento Moda Tessili PMI Uniontessile Confapi — KITech",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=501"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "Abbigliamento e Moda — minimi tabellari 01/01/2026"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 01/01/2026', row 5",
+                "quote": "5 1.904,62 2.010,73 2.074,40 2.116,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1119,23 +1312,30 @@
             "valid_until": null,
             "value": "2116.84",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 01/01/2027', row 5",
+                "quote": "5 1.904,62 2.010,73 2.074,40 2.116,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -1173,23 +1373,30 @@
             "valid_until": "2025-01-01",
             "value": "2032.22",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/02/2022', row 6",
+                "quote": "6 2.032,22 2.145,00 2.212,66 2.257,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-04-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2024-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1197,23 +1404,30 @@
             "valid_until": "2026-01-01",
             "value": "2145.00",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/01/2025', row 6",
+                "quote": "6 2.032,22 2.145,00 2.212,66 2.257,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1221,23 +1435,30 @@
             "valid_until": "2027-01-01",
             "value": "2212.66",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-tessile-pmi-categ501",
-                  "title": "Tabelle retributive CCNL Abbigliamento Moda Tessili PMI Uniontessile Confapi — KITech",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=501"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "Abbigliamento e Moda — minimi tabellari 01/01/2026"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 01/01/2026', row 6",
+                "quote": "6 2.032,22 2.145,00 2.212,66 2.257,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1245,23 +1466,30 @@
             "valid_until": null,
             "value": "2257.77",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 01/01/2027', row 6",
+                "quote": "6 2.032,22 2.145,00 2.212,66 2.257,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -1299,23 +1527,30 @@
             "valid_until": "2025-01-01",
             "value": "2165.73",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/02/2022', row 7",
+                "quote": "7 2.165,73 2.284,62 2.355,95 2.403,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-04-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2024-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1323,23 +1558,30 @@
             "valid_until": "2026-01-01",
             "value": "2284.62",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/01/2025', row 7",
+                "quote": "7 2.165,73 2.284,62 2.355,95 2.403,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1347,23 +1589,30 @@
             "valid_until": "2027-01-01",
             "value": "2355.95",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-tessile-pmi-categ501",
-                  "title": "Tabelle retributive CCNL Abbigliamento Moda Tessili PMI Uniontessile Confapi — KITech",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=501"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "Abbigliamento e Moda — minimi tabellari 01/01/2026"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 01/01/2026', row 7",
+                "quote": "7 2.165,73 2.284,62 2.355,95 2.403,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1371,23 +1620,30 @@
             "valid_until": null,
             "value": "2403.51",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 01/01/2027', row 7",
+                "quote": "7 2.165,73 2.284,62 2.355,95 2.403,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -1425,23 +1681,30 @@
             "valid_until": "2025-01-01",
             "value": "2294.34",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/02/2022', row 8",
+                "quote": "8 2.294,34 2.421,56 2.497,90 2.548,78"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-04-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2024-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1449,23 +1712,30 @@
             "valid_until": "2026-01-01",
             "value": "2421.56",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 1/01/2025', row 8",
+                "quote": "8 2.294,34 2.421,56 2.497,90 2.548,78"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1473,23 +1743,30 @@
             "valid_until": "2027-01-01",
             "value": "2497.90",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-tessile-pmi-categ501",
-                  "title": "Tabelle retributive CCNL Abbigliamento Moda Tessili PMI Uniontessile Confapi — KITech",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=501"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "Abbigliamento e Moda — minimi tabellari 01/01/2026"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 01/01/2026', row 8",
+                "quote": "8 2.294,34 2.421,56 2.497,90 2.548,78"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1497,23 +1774,30 @@
             "valid_until": null,
             "value": "2548.78",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiscoetasse-tessile-pmi-2025-2027",
-                  "title": "CCNL tessile PMI Confapi: tabelle retributive 2025-2027 — FISCOeTASSE",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.fiscoetasse.com/approfondimenti/16754-ccnl-tessile-abbigliamento-moda-pmi-tabelle-retributive-2025-2027.html"
+                  "document_id": "filctem-uniontessile-confapi-rinnovo-2025",
+                  "title": "Rinnovo CCNL tessile abbigliamento PMI Uniontessile Confapi 2024-2027, 18 febbraio 2025 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                  "published_on": "2025-02-18",
+                  "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
                 },
-                "section": "tabelle retributive 2025-2027"
+                "page": "21",
+                "section": "Settore tessili e abbigliamento, column 'Minimi dal 01/01/2027', row 8",
+                "quote": "8 2.294,34 2.421,56 2.497,90 2.548,78"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-17T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:47:28Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:47:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -1560,9 +1844,9 @@
     "effective_from": "2026-01-01",
     "effective_until": null,
     "published_at": "2026-09-18",
-    "source": "unavailable",
-    "source_type": "estimated",
+    "source": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+    "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "cb10bffe039e015dcafa873685047a4074962ee7fed97b89693cfe6058bd4fb7"
+    "source_hash": "5ef9af5ccda3542458be3982b38eeb690b8942d267bf665e1a46855f832cc794"
   }
 }

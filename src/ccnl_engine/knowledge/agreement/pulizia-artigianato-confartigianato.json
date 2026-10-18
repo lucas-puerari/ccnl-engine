@@ -22,7 +22,7 @@
         "agreement_date": "2022-10-27"
       },
       {
-        "url": "unavailable",
+        "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
         "type": "tabella_retributiva",
         "agreement_date": "2025-12-17"
       }
@@ -221,6 +221,32 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      }
+    ]
+  },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-17-ai-tables",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The tabellare of the seven levels from December 2024 to December 2029 against the ipotesi di rinnovo of 17 December 2025.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
+            "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
+          }
+        ],
+        "findings": [
+          "56 tabellari (seven levels, eight columns, pp. 7-9 of the signed scan, read by OCR and on the page images) move from assumed to verified.",
+          "Corrected: level 2 from 1 December 2029 is 1.727,83 in the text (1.716,16 + 11,67, and the table 'a regime'), not 1.727,84; the file reproportioned the level 5 tranche instead of reading the table.",
+          "The 21 tabellari of November 2022, July 2023 and July 2024 stay assumed: the accordo of 27 October 2022 (Art. 35) prints only the increments of the 5th level, 'riferito al 5° livello', and no table of the other levels was found."
+        ]
       }
     ]
   },
@@ -772,33 +798,31 @@
             "valid_until": "2026-01-01",
             "value": "1611.06",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-ccnl-2022-cemu",
-                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
-                  "pages": [],
-                  "published_on": "2022-11-02",
-                  "jurisdiction": "it"
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
+                  "published_on": "2025-12-17",
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva",
-                "quote": null
+                "page": "7",
+                "section": "Tabelle retributive, column 'Retribuzione tabellare in vigore al 31/12/2025', row 1",
+                "quote": "1 1.611,06"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2022-11-01",
-                "effective_until": "2025-12-16",
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": null
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -806,33 +830,31 @@
             "valid_until": "2026-07-01",
             "value": "1662.00",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "7",
+                "section": "Tabelle retributive, column 'tabellare dal 1° gennaio 2026', row 1",
+                "quote": "1 1.662,00"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
                 "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L1/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -840,33 +862,31 @@
             "valid_until": "2027-02-01",
             "value": "1693.84",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "7-8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° luglio 2026', row 1",
+                "quote": "1 1.693,84"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L1/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -874,33 +894,31 @@
             "valid_until": "2027-07-01",
             "value": "1725.68",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° febbraio 2027', row 1",
+                "quote": "1 1.725,68"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L1/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -908,33 +926,31 @@
             "valid_until": "2028-02-01",
             "value": "1770.26",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° luglio 2027', row 1",
+                "quote": "1 1.770,26"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L1/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -942,33 +958,31 @@
             "valid_until": "2028-11-01",
             "value": "1821.20",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8-9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° febbraio 2028', row 1",
+                "quote": "1 1.821,20"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2028-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L1/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -976,33 +990,31 @@
             "valid_until": "2029-12-01",
             "value": "1872.14",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° novembre 2028', row 1",
+                "quote": "1 1.872,14"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2028-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L1/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -1010,33 +1022,31 @@
             "valid_until": null,
             "value": "1884.88",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° dicembre 2029', row 1",
+                "quote": "1 1.884,88"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2029-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L1/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           }
         ]
@@ -1230,33 +1240,31 @@
             "valid_until": "2026-01-01",
             "value": "1476.82",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-ccnl-2022-cemu",
-                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
-                  "pages": [],
-                  "published_on": "2022-11-02",
-                  "jurisdiction": "it"
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
+                  "published_on": "2025-12-17",
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva",
-                "quote": null
+                "page": "7",
+                "section": "Tabelle retributive, column 'Retribuzione tabellare in vigore al 31/12/2025', row 2",
+                "quote": "2 1.476,82"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2022-11-01",
-                "effective_until": "2025-12-16",
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": null
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -1264,33 +1272,31 @@
             "valid_until": "2026-07-01",
             "value": "1523.52",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "7",
+                "section": "Tabelle retributive, column 'tabellare dal 1° gennaio 2026', row 2",
+                "quote": "2 1.523,52"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
                 "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L2/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -1298,33 +1304,31 @@
             "valid_until": "2027-02-01",
             "value": "1552.71",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "7-8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° luglio 2026', row 2",
+                "quote": "2 1.552,71"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L2/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -1332,33 +1336,31 @@
             "valid_until": "2027-07-01",
             "value": "1581.90",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° febbraio 2027', row 2",
+                "quote": "2 1.581,90"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L2/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -1366,33 +1368,31 @@
             "valid_until": "2028-02-01",
             "value": "1622.76",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° luglio 2027', row 2",
+                "quote": "2 1.622,76"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L2/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -1400,33 +1400,31 @@
             "valid_until": "2028-11-01",
             "value": "1669.46",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8-9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° febbraio 2028', row 2",
+                "quote": "2 1.669,46"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2028-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L2/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -1434,67 +1432,63 @@
             "valid_until": "2029-12-01",
             "value": "1716.16",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° novembre 2028', row 2",
+                "quote": "2 1.716,16"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2028-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L2/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
             "valid_from": "2029-12-01",
             "valid_until": null,
-            "value": "1727.84",
+            "value": "1727.83",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° dicembre 2029', row 2",
+                "quote": "2 1.727,83"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2029-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L2/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           }
         ]
@@ -1644,33 +1638,31 @@
             "valid_until": "2026-01-01",
             "value": "1431.41",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-ccnl-2022-cemu",
-                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
-                  "pages": [],
-                  "published_on": "2022-11-02",
-                  "jurisdiction": "it"
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
+                  "published_on": "2025-12-17",
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva",
-                "quote": null
+                "page": "7",
+                "section": "Tabelle retributive, column 'Retribuzione tabellare in vigore al 31/12/2025', row 3S",
+                "quote": "3S 1.431,41"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2022-11-01",
-                "effective_until": "2025-12-16",
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": null
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -1678,33 +1670,31 @@
             "valid_until": "2026-07-01",
             "value": "1476.67",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "7",
+                "section": "Tabelle retributive, column 'tabellare dal 1° gennaio 2026', row 3S",
+                "quote": "3S 1.476,67"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
                 "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3S/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -1712,33 +1702,31 @@
             "valid_until": "2027-02-01",
             "value": "1504.96",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "7-8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° luglio 2026', row 3S",
+                "quote": "3S 1.504,96"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3S/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -1746,33 +1734,31 @@
             "valid_until": "2027-07-01",
             "value": "1533.25",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° febbraio 2027', row 3S",
+                "quote": "3S 1.533,25"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3S/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -1780,33 +1766,31 @@
             "valid_until": "2028-02-01",
             "value": "1572.86",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° luglio 2027', row 3S",
+                "quote": "3S 1.572,86"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3S/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -1814,33 +1798,31 @@
             "valid_until": "2028-11-01",
             "value": "1618.12",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8-9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° febbraio 2028', row 3S",
+                "quote": "3S 1.618,12"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2028-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3S/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -1848,33 +1830,31 @@
             "valid_until": "2029-12-01",
             "value": "1663.38",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° novembre 2028', row 3S",
+                "quote": "3S 1.663,38"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2028-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3S/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -1882,33 +1862,31 @@
             "valid_until": null,
             "value": "1674.70",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° dicembre 2029', row 3S",
+                "quote": "3S 1.674,70"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2029-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3S/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           }
         ]
@@ -2058,33 +2036,31 @@
             "valid_until": "2026-01-01",
             "value": "1382.38",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-ccnl-2022-cemu",
-                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
-                  "pages": [],
-                  "published_on": "2022-11-02",
-                  "jurisdiction": "it"
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
+                  "published_on": "2025-12-17",
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva",
-                "quote": null
+                "page": "7",
+                "section": "Tabelle retributive, column 'Retribuzione tabellare in vigore al 31/12/2025', row 3",
+                "quote": "3 1.382,38"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2022-11-01",
-                "effective_until": "2025-12-16",
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": null
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -2092,33 +2068,31 @@
             "valid_until": "2026-07-01",
             "value": "1426.09",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "7",
+                "section": "Tabelle retributive, column 'tabellare dal 1° gennaio 2026', row 3",
+                "quote": "3 1.426,09"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
                 "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -2126,33 +2100,31 @@
             "valid_until": "2027-02-01",
             "value": "1453.41",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "7-8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° luglio 2026', row 3",
+                "quote": "3 1.453,41"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -2160,33 +2132,31 @@
             "valid_until": "2027-07-01",
             "value": "1480.73",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° febbraio 2027', row 3",
+                "quote": "3 1.480,73"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -2194,33 +2164,31 @@
             "valid_until": "2028-02-01",
             "value": "1518.98",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° luglio 2027', row 3",
+                "quote": "3 1.518,98"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -2228,33 +2196,31 @@
             "valid_until": "2028-11-01",
             "value": "1562.69",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8-9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° febbraio 2028', row 3",
+                "quote": "3 1.562,69"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2028-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -2262,33 +2228,31 @@
             "valid_until": "2029-12-01",
             "value": "1606.40",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° novembre 2028', row 3",
+                "quote": "3 1.606,40"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2028-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -2296,33 +2260,31 @@
             "valid_until": null,
             "value": "1617.33",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° dicembre 2029', row 3",
+                "quote": "3 1.617,33"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2029-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           }
         ]
@@ -2472,33 +2434,31 @@
             "valid_until": "2026-01-01",
             "value": "1306.78",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-ccnl-2022-cemu",
-                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
-                  "pages": [],
-                  "published_on": "2022-11-02",
-                  "jurisdiction": "it"
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
+                  "published_on": "2025-12-17",
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva",
-                "quote": null
+                "page": "7",
+                "section": "Tabelle retributive, column 'Retribuzione tabellare in vigore al 31/12/2025', row 4",
+                "quote": "4 1.306,78"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2022-11-01",
-                "effective_until": "2025-12-16",
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": null
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -2506,33 +2466,31 @@
             "valid_until": "2026-07-01",
             "value": "1348.10",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "7",
+                "section": "Tabelle retributive, column 'tabellare dal 1° gennaio 2026', row 4",
+                "quote": "4 1.348,10"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
                 "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L4/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -2540,33 +2498,31 @@
             "valid_until": "2027-02-01",
             "value": "1373.93",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "7-8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° luglio 2026', row 4",
+                "quote": "4 1.373,93"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L4/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -2574,33 +2530,31 @@
             "valid_until": "2027-07-01",
             "value": "1399.76",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° febbraio 2027', row 4",
+                "quote": "4 1.399,76"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L4/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -2608,33 +2562,31 @@
             "valid_until": "2028-02-01",
             "value": "1435.92",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° luglio 2027', row 4",
+                "quote": "4 1.435,92"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L4/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -2642,33 +2594,31 @@
             "valid_until": "2028-11-01",
             "value": "1477.24",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8-9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° febbraio 2028', row 4",
+                "quote": "4 1.477,24"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2028-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L4/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -2676,33 +2626,31 @@
             "valid_until": "2029-12-01",
             "value": "1518.56",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° novembre 2028', row 4",
+                "quote": "4 1.518,56"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2028-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L4/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -2710,33 +2658,31 @@
             "valid_until": null,
             "value": "1528.89",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° dicembre 2029', row 4",
+                "quote": "4 1.528,89"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2029-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L4/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           }
         ]
@@ -2886,33 +2832,31 @@
             "valid_until": "2026-01-01",
             "value": "1264.97",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-ccnl-2022-cemu",
-                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
-                  "pages": [],
-                  "published_on": "2022-11-02",
-                  "jurisdiction": "it"
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
+                  "published_on": "2025-12-17",
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva",
-                "quote": null
+                "page": "7",
+                "section": "Tabelle retributive, column 'Retribuzione tabellare in vigore al 31/12/2025', row 5",
+                "quote": "5 1.264,97"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2022-11-01",
-                "effective_until": "2025-12-16",
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": null
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -2920,33 +2864,31 @@
             "valid_until": "2026-07-01",
             "value": "1304.97",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "7",
+                "section": "Tabelle retributive, column 'tabellare dal 1° gennaio 2026', row 5",
+                "quote": "5 1.304,97"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
                 "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": null
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -2954,33 +2896,31 @@
             "valid_until": "2027-02-01",
             "value": "1329.97",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "7-8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° luglio 2026', row 5",
+                "quote": "5 1.329,97"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": null
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -2988,33 +2928,31 @@
             "valid_until": "2027-07-01",
             "value": "1354.97",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° febbraio 2027', row 5",
+                "quote": "5 1.354,97"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": null
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -3022,33 +2960,31 @@
             "valid_until": "2028-02-01",
             "value": "1389.97",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° luglio 2027', row 5",
+                "quote": "5 1.389,97"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": null
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -3056,33 +2992,31 @@
             "valid_until": "2028-11-01",
             "value": "1429.97",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8-9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° febbraio 2028', row 5",
+                "quote": "5 1.429,97"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2028-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": null
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -3090,33 +3024,31 @@
             "valid_until": "2029-12-01",
             "value": "1469.97",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° novembre 2028', row 5",
+                "quote": "5 1.469,97"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2028-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": null
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -3124,33 +3056,31 @@
             "valid_until": null,
             "value": "1479.97",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° dicembre 2029', row 5",
+                "quote": "5 1.479,97"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2029-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": null
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           }
         ]
@@ -3300,33 +3230,31 @@
             "valid_until": "2026-01-01",
             "value": "1218.54",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-ccnl-2022-cemu",
-                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
-                  "pages": [],
-                  "published_on": "2022-11-02",
-                  "jurisdiction": "it"
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
+                  "published_on": "2025-12-17",
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva",
-                "quote": null
+                "page": "7",
+                "section": "Tabelle retributive, column 'Retribuzione tabellare in vigore al 31/12/2025', row 6",
+                "quote": "6 1.218,54"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2022-11-01",
-                "effective_until": "2025-12-16",
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": null
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -3334,33 +3262,31 @@
             "valid_until": "2026-07-01",
             "value": "1257.07",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "7",
+                "section": "Tabelle retributive, column 'tabellare dal 1° gennaio 2026', row 6",
+                "quote": "6 1.257,07"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
                 "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L6/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -3368,33 +3294,31 @@
             "valid_until": "2027-02-01",
             "value": "1281.15",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "7-8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° luglio 2026', row 6",
+                "quote": "6 1.281,15"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L6/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -3402,33 +3326,31 @@
             "valid_until": "2027-07-01",
             "value": "1305.23",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° febbraio 2027', row 6",
+                "quote": "6 1.305,23"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L6/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -3436,33 +3358,31 @@
             "valid_until": "2028-02-01",
             "value": "1338.95",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8",
+                "section": "Tabelle retributive, column 'tabellare dal 1° luglio 2027', row 6",
+                "quote": "6 1.338,95"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L6/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -3470,33 +3390,31 @@
             "valid_until": "2028-11-01",
             "value": "1377.48",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "8-9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° febbraio 2028', row 6",
+                "quote": "6 1.377,48"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2028-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L6/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -3504,33 +3422,31 @@
             "valid_until": "2029-12-01",
             "value": "1416.01",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° novembre 2028', row 6",
+                "quote": "6 1.416,01"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2028-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L6/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           },
           {
@@ -3538,33 +3454,31 @@
             "valid_until": null,
             "value": "1425.64",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
-                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "document_id": "k521-ipotesi-rinnovo-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese artigiane dei servizi di pulizia, 17 dicembre 2025 (scansione firmata, copia informaimpresa.it)",
                   "kind": "associazione",
-                  "url": "unavailable",
-                  "pages": [],
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
                   "published_on": "2025-12-17",
-                  "jurisdiction": "it"
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
                 },
-                "page": null,
-                "section": "Tabella retributiva — accordo rinnovo 2025",
-                "quote": null
+                "page": "9",
+                "section": "Tabelle retributive, column 'tabellare dal 1° dicembre 2029', row 6",
+                "quote": "6 1.425,64"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-12T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
-                "effective_from": "2026-01-01",
-                "effective_until": null,
-                "back_calculation": null
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:29:31Z",
+                "verification_status": "verified",
+                "effective_from": "2029-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:29:31Z",
+                "review_id": "2026-10-17-ai-tables"
               },
-              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L6/Dec2024_L5, 4), 2)"
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image; each tabellare equals the one before plus the printed tranche."
             }
           }
         ]
@@ -3609,7 +3523,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "174eb3a436d2a6436a29745a96b4143da9c9c9b26c9aacf1e5b697a2199f4b69",
+    "source_hash": "ce9408720ac9a8d6d09862704e4364c78c0bf93a60278f1230202b2a0dfd9b47",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

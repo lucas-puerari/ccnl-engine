@@ -167,6 +167,32 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-17-ai-tables",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The paga nazionale conglobata of the nine levels against Allegato 1 of the CCNL of 19 July 2024 published by FLAI-CGIL.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+            "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+          }
+        ],
+        "findings": [
+          "Allegato 1 (PDF pp. 58-59, printed pp. 113-114, text layer): the 45 paghe conglobate from 31/08/2024 to 01/08/2027 move from assumed to verified; the file had them from aggregators (lavoro-economia.it, ilccnl.it, kitech.it).",
+          "The ruleset names this source, published by FLAI-CGIL, a signatory: source_type contracting_party instead of estimated.",
+          "Corrected to the printed table: 4 2025-06-01: 1728.12 -> 1728.13; Q 2026-06-01: 2396.59 -> 2396.58; 1 2026-06-01: 2286.83 -> 2286.84; 4 2026-06-01: 1750.00 -> 1750.01; 7 2026-06-01: 1538.26 -> 1538.27; Q 2027-08-01: 2486.49 -> 2486.48; 1 2027-08-01: 2372.61 -> 2372.62; 4 2027-08-01: 1815.64 -> 1815.65; 7 2027-08-01: 1595.96 -> 1595.97."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -349,33 +375,29 @@
             "valid_until": "2024-09-01",
             "value": "2239.26",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello Q, 2024-01-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, paga nazionale conglobata al 31/08/24, row QUADRI",
+                "quote": "QUADRI 2.239,26 97,39 2.336,65"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2024-01-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -383,33 +405,29 @@
             "valid_until": "2025-06-01",
             "value": "2336.65",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ilccnl-ortofrutticoli-2024",
-                  "title": "CCNL Ortofrutta ed Agrumi — parziale sept 2024 con Contingenza=0 e EDR=0 (ilccnl.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://ilccnl.it/contratto/ccnl/ortofrutticoli-ed-agrumari",
-                  "pages": [],
-                  "published_on": "2024-09-01",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello Q, settembre 2024 (confermato)",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, totale dal 2024-09-01, row QUADRI",
+                "quote": "QUADRI 2.239,26 97,39 2.336,65"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2024-09-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -417,101 +435,89 @@
             "valid_until": "2026-06-01",
             "value": "2366.62",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello Q, 2025-06-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, totale dal 2025-06-01, row QUADRI",
+                "quote": "QUADRI 2.336,65 29,97 2.366,62"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2025-06-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
             "valid_from": "2026-06-01",
             "valid_until": "2027-08-01",
-            "value": "2396.59",
+            "value": "2396.58",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ortofrutta-2026",
-                  "title": "Kitech tabella retributiva CCNL Ortofrutta ed Agrumari — giugno 2026",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=72",
-                  "pages": [],
-                  "published_on": "2026-06-01",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello Q, giugno 2026 (confermato da kitech.it e lavoro-economia.it)",
-                "quote": null
+                "page": "59",
+                "section": "Allegato 1, totale dal 2026-06-01, row QUADRI",
+                "quote": "QUADRI 2.366,62 29,97 2.396,58"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2026-06-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": null,
-            "value": "2486.49",
+            "value": "2486.48",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello Q, 2027-08-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "59",
+                "section": "Allegato 1, totale dal 2027-08-01, row QUADRI",
+                "quote": "QUADRI 2.396,58 89,90 2.486,48"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2027-08-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -602,33 +608,29 @@
             "valid_until": "2024-09-01",
             "value": "2136.72",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 1, 2024-01-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, paga nazionale conglobata al 31/08/24, row 1°",
+                "quote": "1° 2.136,72 92,93 2.229,65"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2024-01-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -636,33 +638,29 @@
             "valid_until": "2025-06-01",
             "value": "2229.65",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ilccnl-ortofrutticoli-2024",
-                  "title": "CCNL Ortofrutta ed Agrumi — parziale sept 2024 con Contingenza=0 e EDR=0 (ilccnl.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://ilccnl.it/contratto/ccnl/ortofrutticoli-ed-agrumari",
-                  "pages": [],
-                  "published_on": "2024-09-01",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 1, settembre 2024 (confermato)",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, totale dal 2024-09-01, row 1°",
+                "quote": "1° 2.136,72 92,93 2.229,65"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2024-09-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -670,101 +668,89 @@
             "valid_until": "2026-06-01",
             "value": "2258.24",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 1, 2025-06-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, totale dal 2025-06-01, row 1°",
+                "quote": "1° 2.229,65 28,59 2.258,24"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2025-06-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
             "valid_from": "2026-06-01",
             "valid_until": "2027-08-01",
-            "value": "2286.83",
+            "value": "2286.84",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ortofrutta-2026",
-                  "title": "Kitech tabella retributiva CCNL Ortofrutta ed Agrumari — giugno 2026",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=72",
-                  "pages": [],
-                  "published_on": "2026-06-01",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 1, giugno 2026 (confermato)",
-                "quote": null
+                "page": "59",
+                "section": "Allegato 1, totale dal 2026-06-01, row 1°",
+                "quote": "1° 2.258,24 28,59 2.286,84"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2026-06-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": null,
-            "value": "2372.61",
+            "value": "2372.62",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 1, 2027-08-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "59",
+                "section": "Allegato 1, totale dal 2027-08-01, row 1°",
+                "quote": "1° 2.286,84 85,78 2.372,62"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2027-08-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -812,33 +798,29 @@
             "valid_until": "2024-09-01",
             "value": "1888.05",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 2, 2024-01-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, paga nazionale conglobata al 31/08/24, row 2°",
+                "quote": "2° 1.888,05 82,11 1.970,16"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2024-01-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -846,33 +828,29 @@
             "valid_until": "2025-06-01",
             "value": "1970.16",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ilccnl-ortofrutticoli-2024",
-                  "title": "CCNL Ortofrutta ed Agrumi — parziale sept 2024 con Contingenza=0 e EDR=0 (ilccnl.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://ilccnl.it/contratto/ccnl/ortofrutticoli-ed-agrumari",
-                  "pages": [],
-                  "published_on": "2024-09-01",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 2, settembre 2024 (confermato)",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, totale dal 2024-09-01, row 2°",
+                "quote": "2° 1.888,05 82,11 1.970,16"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2024-09-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -880,33 +858,29 @@
             "valid_until": "2026-06-01",
             "value": "1995.43",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 2, 2025-06-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, totale dal 2025-06-01, row 2°",
+                "quote": "2° 1.970,16 25,27 1.995,43"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2025-06-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -914,33 +888,29 @@
             "valid_until": "2027-08-01",
             "value": "2020.70",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ortofrutta-2026",
-                  "title": "Kitech tabella retributiva CCNL Ortofrutta ed Agrumari — giugno 2026",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=72",
-                  "pages": [],
-                  "published_on": "2026-06-01",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 2, giugno 2026 (confermato)",
-                "quote": null
+                "page": "59",
+                "section": "Allegato 1, totale dal 2026-06-01, row 2°",
+                "quote": "2° 1.995,43 25,27 2.020,70"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2026-06-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -948,33 +918,29 @@
             "valid_until": null,
             "value": "2096.50",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 2, 2027-08-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "59",
+                "section": "Allegato 1, totale dal 2027-08-01, row 2°",
+                "quote": "2° 2.020,70 75,80 2.096,50"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2027-08-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -1022,33 +988,29 @@
             "valid_until": "2024-09-01",
             "value": "1805.39",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 3, 2024-01-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, paga nazionale conglobata al 31/08/24, row 3°",
+                "quote": "3° 1.805,39 78,52 1.883,91"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2024-01-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1056,33 +1018,29 @@
             "valid_until": "2025-06-01",
             "value": "1883.91",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ilccnl-ortofrutticoli-2024",
-                  "title": "CCNL Ortofrutta ed Agrumi — parziale sept 2024 con Contingenza=0 e EDR=0 (ilccnl.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://ilccnl.it/contratto/ccnl/ortofrutticoli-ed-agrumari",
-                  "pages": [],
-                  "published_on": "2024-09-01",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 3, settembre 2024 (confermato)",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, totale dal 2024-09-01, row 3°",
+                "quote": "3° 1.805,39 78,52 1.883,91"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2024-09-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1090,33 +1048,29 @@
             "valid_until": "2026-06-01",
             "value": "1908.07",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 3, 2025-06-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, totale dal 2025-06-01, row 3°",
+                "quote": "3° 1.883,91 24,16 1.908,07"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2025-06-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1124,33 +1078,29 @@
             "valid_until": "2027-08-01",
             "value": "1932.23",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ortofrutta-2026",
-                  "title": "Kitech tabella retributiva CCNL Ortofrutta ed Agrumari — giugno 2026",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=72",
-                  "pages": [],
-                  "published_on": "2026-06-01",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 3, giugno 2026 (confermato)",
-                "quote": null
+                "page": "59",
+                "section": "Allegato 1, totale dal 2026-06-01, row 3°",
+                "quote": "3° 1.908,07 24,16 1.932,23"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2026-06-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1158,33 +1108,29 @@
             "valid_until": null,
             "value": "2004.71",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 3, 2027-08-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "59",
+                "section": "Allegato 1, totale dal 2027-08-01, row 3°",
+                "quote": "3° 1.932,23 72,48 2.004,71"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2027-08-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -1232,33 +1178,29 @@
             "valid_until": "2024-09-01",
             "value": "1635.13",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 4, 2024-01-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, paga nazionale conglobata al 31/08/24, row 4°",
+                "quote": "4° 1.635,13 71,11 1.706,24"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2024-01-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1266,135 +1208,119 @@
             "valid_until": "2025-06-01",
             "value": "1706.24",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 4, 2024-09-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, totale dal 2024-09-01, row 4°",
+                "quote": "4° 1.635,13 71,11 1.706,24"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2024-09-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
             "valid_from": "2025-06-01",
             "valid_until": "2026-06-01",
-            "value": "1728.12",
+            "value": "1728.13",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 4, 2025-06-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, totale dal 2025-06-01, row 4°",
+                "quote": "4° 1.706,24 21,88 1.728,13"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2025-06-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
             "valid_from": "2026-06-01",
             "valid_until": "2027-08-01",
-            "value": "1750.00",
+            "value": "1750.01",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ortofrutta-2026",
-                  "title": "Kitech tabella retributiva CCNL Ortofrutta ed Agrumari — giugno 2026",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=72",
-                  "pages": [],
-                  "published_on": "2026-06-01",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 4, giugno 2026 (confermato da kitech.it: 1750.00)",
-                "quote": null
+                "page": "59",
+                "section": "Allegato 1, totale dal 2026-06-01, row 4°",
+                "quote": "4° 1.728,13 21,88 1.750,01"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2026-06-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": null,
-            "value": "1815.64",
+            "value": "1815.65",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 4, 2027-08-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "59",
+                "section": "Allegato 1, totale dal 2027-08-01, row 4°",
+                "quote": "4° 1.750,01 65,64 1.815,65"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2027-08-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -1442,33 +1368,29 @@
             "valid_until": "2024-09-01",
             "value": "1564.72",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 5, 2024-01-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, paga nazionale conglobata al 31/08/24, row 5°",
+                "quote": "5° 1.564,72 68,05 1.632,77"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2024-01-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1476,33 +1398,29 @@
             "valid_until": "2025-06-01",
             "value": "1632.77",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 5, 2024-09-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, totale dal 2024-09-01, row 5°",
+                "quote": "5° 1.564,72 68,05 1.632,77"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2024-09-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1510,33 +1428,29 @@
             "valid_until": "2026-06-01",
             "value": "1653.71",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 5, 2025-06-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, totale dal 2025-06-01, row 5°",
+                "quote": "5° 1.632,77 20,94 1.653,71"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2025-06-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1544,33 +1458,29 @@
             "valid_until": "2027-08-01",
             "value": "1674.65",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ortofrutta-2026",
-                  "title": "Kitech tabella retributiva CCNL Ortofrutta ed Agrumari — giugno 2026",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=72",
-                  "pages": [],
-                  "published_on": "2026-06-01",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 5, giugno 2026 (confermato da kitech.it: 1674.65)",
-                "quote": null
+                "page": "59",
+                "section": "Allegato 1, totale dal 2026-06-01, row 5°",
+                "quote": "5° 1.653,71 20,94 1.674,65"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2026-06-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1578,33 +1488,29 @@
             "valid_until": null,
             "value": "1737.47",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 5, 2027-08-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "59",
+                "section": "Allegato 1, totale dal 2027-08-01, row 5°",
+                "quote": "5° 1.674,65 62,82 1.737,47"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2027-08-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -1652,33 +1558,29 @@
             "valid_until": "2024-09-01",
             "value": "1531.31",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 6S, 2024-01-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, paga nazionale conglobata al 31/08/24, row 6°SUPER",
+                "quote": "6°SUPER 1.531,31 66,60 1.597,91"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2024-01-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1686,33 +1588,29 @@
             "valid_until": "2025-06-01",
             "value": "1597.91",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 6S, 2024-09-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, totale dal 2024-09-01, row 6°SUPER",
+                "quote": "6°SUPER 1.531,31 66,60 1.597,91"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2024-09-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1720,33 +1618,29 @@
             "valid_until": "2026-06-01",
             "value": "1618.40",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 6S, 2025-06-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, totale dal 2025-06-01, row 6°SUPER",
+                "quote": "6°SUPER 1.597,91 20,49 1.618,40"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2025-06-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1754,33 +1648,29 @@
             "valid_until": "2027-08-01",
             "value": "1638.89",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ortofrutta-2026",
-                  "title": "Kitech tabella retributiva CCNL Ortofrutta ed Agrumari — giugno 2026",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=72",
-                  "pages": [],
-                  "published_on": "2026-06-01",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 6S, giugno 2026 (confermato da kitech.it: 1638.89)",
-                "quote": null
+                "page": "59",
+                "section": "Allegato 1, totale dal 2026-06-01, row 6°SUPER",
+                "quote": "6°SUPER 1.618,40 20,49 1.638,89"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2026-06-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1788,33 +1678,29 @@
             "valid_until": null,
             "value": "1700.37",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 6S, 2027-08-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "59",
+                "section": "Allegato 1, totale dal 2027-08-01, row 6°SUPER",
+                "quote": "6°SUPER 1.638,89 61,48 1.700,37"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2027-08-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -1862,33 +1748,29 @@
             "valid_until": "2024-09-01",
             "value": "1494.53",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 6, paga base ante-rinnovo (confermata da modello 4-tranche)",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, paga nazionale conglobata al 31/08/24, row 6°",
+                "quote": "6° 1.494,53 65,00 1.559,53"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2024-01-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1896,33 +1778,29 @@
             "valid_until": "2025-06-01",
             "value": "1559.53",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 6, settembre 2024 (confermato)",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, totale dal 2024-09-01, row 6°",
+                "quote": "6° 1.494,53 65,00 1.559,53"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2024-09-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1930,33 +1808,29 @@
             "valid_until": "2026-06-01",
             "value": "1579.53",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 6, giugno 2025 (confermato)",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, totale dal 2025-06-01, row 6°",
+                "quote": "6° 1.559,53 20,00 1.579,53"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2025-06-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1964,33 +1838,29 @@
             "valid_until": "2027-08-01",
             "value": "1599.53",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 6, giugno 2026 (confermato da lavoro-economia.it e kitech.it)",
-                "quote": null
+                "page": "59",
+                "section": "Allegato 1, totale dal 2026-06-01, row 6°",
+                "quote": "6° 1.579,53 20,00 1.599,53"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2026-06-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1998,33 +1868,29 @@
             "valid_until": null,
             "value": "1659.53",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 6, agosto 2027 (confermato: 1494.53+60+20+20+65=1659.53)",
-                "quote": null
+                "page": "59",
+                "section": "Allegato 1, totale dal 2027-08-01, row 6°",
+                "quote": "6° 1.599,53 60,00 1.659,53"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2027-08-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -2072,33 +1938,29 @@
             "valid_until": "2024-09-01",
             "value": "1437.29",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 7, 2024-01-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, paga nazionale conglobata al 31/08/24, row 7°",
+                "quote": "7° 1.437,29 62,51 1.499,80"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2024-01-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -2106,33 +1968,29 @@
             "valid_until": "2025-06-01",
             "value": "1499.80",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 7, 2024-09-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, totale dal 2024-09-01, row 7°",
+                "quote": "7° 1.437,29 62,51 1.499,80"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2024-09-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -2140,101 +1998,89 @@
             "valid_until": "2026-06-01",
             "value": "1519.03",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 7, 2025-06-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "58",
+                "section": "Allegato 1, totale dal 2025-06-01, row 7°",
+                "quote": "7° 1.499,80 19,23 1.519,03"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2025-06-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
             "valid_from": "2026-06-01",
             "valid_until": "2027-08-01",
-            "value": "1538.26",
+            "value": "1538.27",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-ortofrutta-2026",
-                  "title": "Kitech tabella retributiva CCNL Ortofrutta ed Agrumari — giugno 2026",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=72",
-                  "pages": [],
-                  "published_on": "2026-06-01",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 7, giugno 2026 (confermato da kitech.it: 1538.26)",
-                "quote": null
+                "page": "59",
+                "section": "Allegato 1, totale dal 2026-06-01, row 7°",
+                "quote": "7° 1.519,03 19,23 1.538,27"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2026-06-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": null,
-            "value": "1595.96",
+            "value": "1595.97",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-h341",
-                  "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                  "pages": [],
-                  "published_on": "2024-07-19",
-                  "jurisdiction": "it"
+                  "document_id": "flai-ccnl-ortofrutticolo-agrumario-2025",
+                  "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, rinnovo 19 luglio 2024 (testo FLAI-CGIL 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                  "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 7, 2027-08-01. SEMPLIFICAZIONE: derivato via regola proporzionale (stesso aumento %, radice livello 6 pre-rinnovo). Back-solve verificato su livello 2026-06-01 confermato.",
-                "quote": null
+                "page": "59",
+                "section": "Allegato 1, totale dal 2027-08-01, row 7°",
+                "quote": "7° 1.538,27 57,70 1.595,97"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
-                "verification_status": "unverified",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:41:02Z",
                 "effective_from": "2027-08-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:41:02Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -2249,11 +2095,11 @@
     "version": "2024.1",
     "effective_from": "2024-01-01",
     "effective_until": "2027-12-31",
-    "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
+    "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "352737d6e07514e78e90e6c067269598350f7f9af00bf67b499d9f6a4f9690a4",
-    "source_type": "commercial_secondary"
+    "source_hash": "d472c50ee9ad48be0551847fcccf59bd06e1c210bdb4bf4dbfa90a7c1ccf16c0",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

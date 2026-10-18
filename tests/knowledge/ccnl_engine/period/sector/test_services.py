@@ -31,21 +31,27 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodResult,
 )
-from ccnl_engine.events import OvertimeEvent
+from ccnl_engine.events import OvertimeEvent, SicknessEpisode
 from ccnl_engine.inputs import (
+    Apprentice,
     ContributableHours,
     CurrentYearTaxFacts,
     EmploymentPeriod,
     FamilyComposition,
+    FixedTerm,
+    NaspiExclusion,
     NoPensionFund,
     Permanent,
     PriorYearTaxFacts,
+    WeeklyHours,
     WorkerCategory,
 )
 from ccnl_engine.results import BlockerCode
 from tests.knowledge.ccnl_engine.period.sector.oracles import (
     ALIMENTARI_JUNE,
     ALIMENTARI_YEAR,
+    APPRENTICE_JUNE,
+    APPRENTICE_YEAR,
     CHIMICA_JUNE,
     CHIMICA_YEAR,
     CONFAPI_JUNE,
@@ -58,11 +64,21 @@ from tests.knowledge.ccnl_engine.period.sector.oracles import (
     EDILIZIA_YEAR,
     FIPE_JUNE,
     FIPE_YEAR,
+    FIXED_TERM_JUNE,
+    FIXED_TERM_YEAR,
     INDUSTRIA_JUNE,
     INDUSTRIA_YEAR,
+    MID_MONTH_FROM,
+    MID_MONTH_UNTIL,
+    MID_MONTH_YEAR,
     OVERTIME_HOURS,
+    PART_TIME_JUNE,
+    PART_TIME_YEAR,
     RISTORAZIONE_JUNE,
     RISTORAZIONE_YEAR,
+    SICK_FROM,
+    SICK_UNTIL,
+    SICKNESS_YEAR,
     STUDI_JUNE,
     STUDI_YEAR,
     TERZIARIO_JUNE,
@@ -78,6 +94,7 @@ pytestmark = pytest.mark.legal_scenario
 _ENGINE = PayrollEngine.bundled()
 _ZERO = Decimal(0)
 _JUNE_END = date(2026, 6, 30)
+_FULL_TIME = WeeklyHours(40)
 _FACTS = PeriodFacts(
     regione="IT-88",
     comune_belfiore="A192",
@@ -100,6 +117,12 @@ class Scenario:
     hours: Decimal | None = None
     overtime: bool = False
     provincial_pay_element: bool | None = None
+    weekly_hours: int | None = None
+    apprentice_track: str | None = None
+    ends_on: date | None = None
+    fixed_term: bool = False
+    sickness: bool = False
+    starts_on: date = date(2026, 1, 1)
 
 
 _METAL = "metalmeccanico-federmeccanica"
@@ -371,12 +394,108 @@ SCENARIOS = {
         net_pay_reliable=False,
         terminated=True,
     ),
+    "part-time-year": Scenario(
+        _METAL,
+        "C3",
+        WorkerCategory.IMPIEGATO,
+        50,
+        PART_TIME_YEAR,
+        _METAL_OWED,
+        net_pay_reliable=True,
+        weekly_hours=20,
+    ),
+    "part-time-june": Scenario(
+        _METAL,
+        "C3",
+        WorkerCategory.IMPIEGATO,
+        50,
+        PART_TIME_JUNE,
+        _METAL_OWED,
+        net_pay_reliable=True,
+        terminated=True,
+        weekly_hours=20,
+    ),
+    "apprentice-year": Scenario(
+        _METAL,
+        "C3",
+        WorkerCategory.IMPIEGATO,
+        50,
+        APPRENTICE_YEAR,
+        _METAL_OWED,
+        net_pay_reliable=True,
+        apprentice_track="professionalizzante_36",
+    ),
+    "apprentice-june": Scenario(
+        _METAL,
+        "C3",
+        WorkerCategory.IMPIEGATO,
+        50,
+        APPRENTICE_JUNE,
+        _METAL_OWED,
+        net_pay_reliable=True,
+        terminated=True,
+        apprentice_track="professionalizzante_36",
+    ),
+    "fixed-term-year": Scenario(
+        _METAL,
+        "C3",
+        WorkerCategory.IMPIEGATO,
+        50,
+        FIXED_TERM_YEAR,
+        _METAL_OWED,
+        net_pay_reliable=True,
+        terminated=True,
+        ends_on=date(2026, 12, 31),
+        fixed_term=True,
+    ),
+    "fixed-term-june": Scenario(
+        _METAL,
+        "C3",
+        WorkerCategory.IMPIEGATO,
+        50,
+        FIXED_TERM_JUNE,
+        _METAL_OWED,
+        net_pay_reliable=True,
+        terminated=True,
+        fixed_term=True,
+    ),
+    "sickness-year": Scenario(
+        _METAL,
+        "C3",
+        WorkerCategory.IMPIEGATO,
+        50,
+        SICKNESS_YEAR,
+        _METAL_OWED,
+        net_pay_reliable=True,
+        sickness=True,
+    ),
+    "mid-month-year": Scenario(
+        _METAL,
+        "C3",
+        WorkerCategory.IMPIEGATO,
+        50,
+        MID_MONTH_YEAR,
+        _METAL_OWED,
+        net_pay_reliable=True,
+        terminated=True,
+        starts_on=MID_MONTH_FROM,
+        ends_on=MID_MONTH_UNTIL,
+    ),
 }
+
+
+def _contract(s: Scenario) -> Permanent | Apprentice | FixedTerm:
+    if s.apprentice_track is not None:
+        return Apprentice(months_elapsed=0, track=s.apprentice_track)
+    if s.fixed_term:
+        return FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE)
+    return Permanent()
 
 
 @cache
 def _year(name: str) -> CompetenceYearResult:
     s = SCENARIOS[name]
+    hours = None if s.weekly_hours is None else WeeklyHours(s.weekly_hours)
     facts = replace(
         _FACTS,
         ordinary_hours_worked=None if s.hours is None else ContributableHours(s.hours),
@@ -390,6 +509,11 @@ def _year(name: str) -> CompetenceYearResult:
             event_date=date(2026, 3, 10), hours=OVERTIME_HOURS, hourly_rate=rate
         )
         periods = {3: replace(facts, events=(event,))}
+    if s.sickness:
+        episode = SicknessEpisode(
+            episode_id="sick-march", started_on=SICK_FROM, ended_on=SICK_UNTIL
+        )
+        periods = {3: replace(facts, events=(episode,))}
     return _ENGINE.calculate_competence_year(
         CompetenceYearPlan(
             year=2026,
@@ -399,11 +523,13 @@ def _year(name: str) -> CompetenceYearResult:
                 category=s.category,
                 seniority=new_hire(),
                 employment_period=EmploymentPeriod(
-                    date(2026, 1, 1), _JUNE_END if s.terminated else None
+                    s.starts_on, s.ends_on or (_JUNE_END if s.terminated else None)
                 ),
                 tfr_treasury_fund=False,
                 pension_fund=NoPensionFund(),
-                contract_type=Permanent(),
+                contract_type=_contract(s),
+                weekly_hours=hours,
+                full_time_weekly_hours=None if hours is None else _FULL_TIME,
             ),
             employer=EmployerProfile(
                 headcount=Headcount(s.headcount),
@@ -412,7 +538,7 @@ def _year(name: str) -> CompetenceYearResult:
             default_facts=facts,
             periods=periods,
             prior_year=PriorYearTaxFacts(employment_income=Decimal(40_000)),
-            current_year=CurrentYearTaxFacts.employment_only(2026, date(2026, 1, 1)),
+            current_year=CurrentYearTaxFacts.employment_only(2026, s.starts_on),
         )
     )
 

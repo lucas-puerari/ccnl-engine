@@ -85,15 +85,67 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED AMOUNTS: the trattamento economico per mancata contrattazione di secondo livello of Art. 51 bis (EUR 21.90 at level 6 to 50.37 at 1S a month for 12 months from 1 January 2023, 32.85 to 75.55 from 1 January 2027, outside the TFR), owed by firms without a premio per obiettivi; the premio di campagna of the conserve vegetali (Art. 51 ter); the premiums of Art. 31 on ordinary night, shift night, holiday and Sunday work; the EDR enters the TFR base only from 1 March 2024 (Art. 73); the pay of first-level and alta formazione apprentices (Art. 21 B-C).",
+        "text": "Art. 51 bis: the trattamento economico per mancata contrattazione di secondo livello, EUR 21.90 at level 6 to 50.37 at 1S a month for 12 months from 1 January 2023, 32.85 to 75.55 from 1 January 2027, outside the TFR, owed by firms without a premio per obiettivi.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "alimentari_unmodelled_elements",
+          "variant": "second_level_omission_element",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model Art. 51 bis, Art. 74 bis, Art. 51 ter and the Art. 31 premiums on ordinary hours."
+          "remediation": "Add an employer fact for the premio per obiettivi and pay Art. 51 bis."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 51 ter: the premio di campagna of the conserve vegetali.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "campaign_premium",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the premio di campagna for the conserve vegetali."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 31: the premiums on ordinary night, shift night, holiday and Sunday work.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ordinary_hours_premiums",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the Art. 31 premiums on ordinary hours."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 73: the EDR enters the TFR base only from 1 March 2024; the file counts it for every period.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "edr_tfr_from_march_2024",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Date the TFR relevance of the EDR from 1 March 2024."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 21 B-C: the pay of the first-level and alta formazione apprentices.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "first_level_apprentice_pay",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the first-level and alta formazione apprenticeship tracks."
         }
       },
       {
@@ -3202,7 +3254,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "4fbe90afc7842fd94b136295bcf401c614371a6e18b661f87377ec40a10e1729",
+    "source_hash": "e5b29f684f4b47622f4c4da35d4354bd895e7e02c0540aeb8283993d8c8cb574",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
