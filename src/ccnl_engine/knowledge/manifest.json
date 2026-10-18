@@ -336,8 +336,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/carta-cartone-assocarta",
       "ruleset_version": "2026.2",
-      "source_hash": "16d0d76d4839e8b0b2c1530d14b2b13e38d192e8306de339f4a3fd5e35cd5d66",
-      "source_type": "commercial_secondary",
+      "source_hash": "2668fc7713b2a457fbf6eb5d88dce8df9eb2c3f38319aecaba5dd5b21b121d9d",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/carta-cartone-assocarta.json.gz"
     },

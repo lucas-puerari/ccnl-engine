@@ -49,7 +49,7 @@
     "notes": [
       {
         "kind": "info",
-        "text": "SALARY MODEL: two tranches modelled — 2024-07-01 (last tranche of CCNL 28/07/2021, source: lexplain.it) and 2026-04-01 (first tranche of rinnovo 10/02/2026, source: kitech.it). The 2024 tranche total = paga base + EMC (Elemento di Modernizzazione Contrattuale, EUR 20.00 at C1, parametrised). The 2026 rinnovo is conglobated: EMC absorbed into the new paga base. Both periods are modelled as base_salary totals; fixed_allowances=[] for all levels. The +125 EUR increase on C1 paga base (rinnovo) minus the EMC (EUR 20 abolished) = net +105 EUR on C1 total (1855.11 → 1960.11)."
+        "text": "SALARY MODEL: base_salary is the stipendio of Art. 49, TEM + EMC (Elemento di Modernizzazione Contrattuale, EUR 20.00 at C1, parametrised). 2024-07-01: column 'Minimi dal 1.7.2024' of the ipotesi of 28/07/2021 (CNEL G022, deposit 138131, p. 46), which already includes the EMC. 2026-04-01 to 2028-09-01: previous minimo + the C1 increments of the ipotesi of 10/02/2026 (CNEL deposit 246200, p. 8: 125, 45, 45, 60) reparametrised by level parameter / 153 (Art. 48 table, p. 3). The 2026 ipotesi neither abolishes nor conglobates the EMC (Art. 100 bis) and keeps Art. 49 in force, so the EMC stays in base_salary; fixed_allowances=[] for all levels."
       },
       {
         "kind": "info",
@@ -57,7 +57,7 @@
       },
       {
         "kind": "info",
-        "text": "CONGLOBATED CHECK: 2024 values confirmed via lexplain.it (paga base + EMC columns explicit). 2026 values from kitech.it; rinnovo zetaservice PDF confirms Q (2882.91) and C1 (1960.11) at 2026-04-01, consistent with kitech. Level ordering is strictly monotone at both tranche dates."
+        "text": "EMC CHECK: aggregators and a payroll firm print 2026 minimi without the EMC (C1 1960.11 = 1835.11 + 125), but none cites a clause removing it; the signed 2026 ipotesi keeps Art. 100 bis and Art. 49. The Assocarta 'nota illustrativa e tabella nuovi minimi' of 24/02/2026 is members-only and was not read: if it shows the EMC absorbed, the 2026-2028 values are EUR 13-33 too high."
       },
       {
         "kind": "info",
@@ -94,6 +94,39 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      }
+    ]
+  },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-tables",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The minimi di stipendio (TEM + Elemento di Modernizzazione Contrattuale) of the 13 levels: the 1 July 2024 tranche against the table of the ipotesi of 28 July 2021, and the four tranches of the ipotesi of 10 February 2026 (1/4/2026, 1/1/2027, 1/1/2028, 1/9/2028) derived from its C1 increments and parameter scale; both texts as deposited at CNEL.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
+            "sha256": "0f5fed9944514d7364253221b29fee9c45c621897309f8f4e748f30adb6690c7"
+          },
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+            "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
+          }
+        ],
+        "findings": [
+          "The four tranches of the 2026 renewal (52 periods) are corrected upward by the level's EMC: the file built them on the TEM-only minimo (C1 1835.11 + 125 = 1960.11), dropping the Elemento di Modernizzazione Contrattuale of EUR 20 at C1 (EUR 32.68 at Q, 13.07 at E) that the file's own 2024-07-01 value includes. The signed ipotesi of 10 February 2026 (CNEL 246200, 8-page scan read on the page images) neither abolishes nor conglobates the EMC (Art. 100 bis) and does not amend Art. 49, which defines the stipendio contrattuale as TEM + EMC; it only adds increments 'parametrati su livello C1' of 125 (aprile 2026), 45 (gennaio 2027), 45 (gennaio 2028) and 60 (settembre 2028), p. 8. The signatories' unitary communiqué of 10 February 2026 gives an overall increase of 14,8% (EUR 291 package, 275 on the minimi); ADAPT's analysis (not a signatory) gives +275 = 14,82% on the previous minimo, which is 275 / 1855.11 (with the EMC), not 275 / 1835.11 (14,99%). The values are derived as previous minimo + increment x parameter / 153, with the parameters of the Art. 48 table on p. 3 (Q 250 ... C1 153 ... E 100, the same scale as the 2021 table). On 1/4/2026 the difference from the file equals the level's EMC (e.g. C1 1960.11 -> 1980.11, Q 2882.91 -> 2915.59, B2S +23.82 against an EMC of 23.80 because of a 2-cent rounding in the file's TEM base); on the later dates it also includes the reparametrisation error below. C1 differs by exactly 20.00 on all four dates.",
+          "The future tranches of the file (1/1/2027, 1/1/2028, 1/9/2028) were also reparametrised on the ratio of the 2026 minimi (level / C1) instead of the contractual parameter scale (level / 153): e.g. Q +66.19 instead of 45 x 250/153 = 73.53 on 1/1/2027, E +33.44 instead of 29.41; the error grows with the distance from C1 and reaches -0.37 net at E on 1/9/2028 after the EMC offset. The derivation uses the parameter scale the ipotesi refers to.",
+          "Ipotesi 28 luglio 2021 (CNEL 138131, p. 46, table image): the 'Minimi dal 1.7.2024' column (TEM + EMC cumulated) matches 12 of the 13 file values; C1S is 1.924,37 against 1924.38 in the file and is corrected.",
+          "The coverage note of the file (EMC 'absorbed' into the 2026 paga base, net +105 at C1) is not supported by the signed text and will contradict the corrected values: the maintainer must rewrite it (base_salary = TEM + EMC throughout).",
+          "The ruleset now names the CNEL deposit of the text signed by Assocarta, Assografici, SLC-CGIL, Fistel-CISL, Uilcom-UIL and UGL carta e stampa: source_type contracting_party.",
+          "Corrected to the printed table: C1S 2024-07-01: 1924.38 -> 1924.37; Q 2026-04-01: 2882.91 -> 2915.59; Q 2027-01-01: 2949.10 -> 2989.12; Q 2028-01-01: 3015.29 -> 3062.65; Q 2028-09-01: 3103.54 -> 3160.69; AS 2026-04-01: 2873.55 -> 2906.09; AS 2027-01-01: 2939.52 -> 2979.33; AS 2028-01-01: 3005.49 -> 3052.57; AS 2028-09-01: 3093.45 -> 3150.22; A 2026-04-01: 2521.80 -> 2549.50; A 2027-01-01: 2579.70 -> 2611.85; A 2028-01-01: 2637.60 -> 2674.20; A 2028-09-01: 2714.79 -> 2757.34; B1 2026-04-01: 2292.49 -> 2317.07; B1 2027-01-01: 2345.12 -> 2372.36; B1 2028-01-01: 2397.75 -> 2427.65; B1 2028-09-01: 2467.92 -> 2501.38; B2S 2026-04-01: 2234.61 -> 2258.43; B2S 2027-01-01: 2285.91 -> 2311.96; B2S 2028-01-01: 2337.21 -> 2365.49; B2S 2028-09-01: 2405.61 -> 2436.86; B2 2026-04-01: 2159.89 -> 2182.63; B2 2027-01-01: 2209.48 -> 2233.81; B2 2028-01-01: 2259.07 -> 2284.99; B2 2028-09-01: 2325.19 -> 2353.23; C1S 2026-04-01: 2034.87 -> 2055.91; C1S 2027-01-01: 2081.59 -> 2103.26; C1S 2028-01-01: 2128.31 -> 2150.61; C1S 2028-09-01: 2190.60 -> 2213.75; C1 2026-04-01: 1960.11 -> 1980.11; C1 2027-01-01: 2005.11 -> 2025.11; C1 2028-01-01: 2050.11 -> 2070.11; C1 2028-09-01: 2110.11 -> 2130.11; C2 2026-04-01: 1826.94 -> 1845.10; C2 2027-01-01: 1868.88 -> 1885.98; C2 2028-01-01: 1910.82 -> 1926.86; C2 2028-09-01: 1966.74 -> 1981.37; C3 2026-04-01: 1732.11 -> 1748.97; C3 2027-01-01: 1771.88 -> 1786.91; C3 2028-01-01: 1811.65 -> 1824.85; C3 2028-09-01: 1864.67 -> 1875.44; D1 2026-04-01: 1656.25 -> 1672.07; D1 2027-01-01: 1694.27 -> 1707.66; D1 2028-01-01: 1732.29 -> 1743.25; D1 2028-09-01: 1782.99 -> 1790.70; D2 2026-04-01: 1561.08 -> 1575.58; D2 2027-01-01: 1596.92 -> 1608.23; D2 2028-01-01: 1632.76 -> 1640.88; D2 2028-09-01: 1680.55 -> 1684.41; E 2026-04-01: 1456.61 -> 1469.67; E 2027-01-01: 1490.05 -> 1499.08; E 2028-01-01: 1523.49 -> 1528.49; E 2028-09-01: 1568.08 -> 1567.71."
+        ]
       }
     ]
   },
@@ -378,113 +411,145 @@
             "valid_until": "2026-04-01",
             "value": "1387.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-138131-ipotesi-2021-07-28",
+                  "title": "Ipotesi di accordo 28 luglio 2021 per il rinnovo del CCNL per i dipendenti delle aziende esercenti l'industria della carta, della cellulosa, pasta legno, fibra vulcanizzata e presfibra e per le aziende cartotecniche e trasformatrici della carta e del cartone: Tabella minimi di stipendio (CNEL G022, deposito 138131)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
+                  "published_on": "2021-08-03",
+                  "sha256": "0f5fed9944514d7364253221b29fee9c45c621897309f8f4e748f30adb6690c7"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Tabella minimi di stipendio, column 'Minimi dal 1.7.2024', row Cat.E",
+                "quote": "Cat.E 100 1.322,81 ... 1.387,97"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T13:51:42Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2026-04-01",
             "valid_until": "2027-01-01",
-            "value": "1456.61",
+            "value": "1469.67",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: E 100 11,62"
               },
+              "transformation": "1387.97 (previous minimo dal 1.7.2024, TEM + EMC, CNEL 138131 p. 46) + 125 x 100/153 (C1 increment of aprile 2026 reparametrised on the level parameter, rounded to the cent: 81.70) = 1469.67",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2027-01-01",
             "valid_until": "2028-01-01",
-            "value": "1490.05",
+            "value": "1499.08",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: E 100 11,62"
               },
+              "transformation": "1469.67 (previous minimo) + 45 x 100/153 (C1 increment of gennaio 27 reparametrised on the level parameter, rounded to the cent: 29.41) = 1499.08",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": "2028-09-01",
-            "value": "1523.49",
+            "value": "1528.49",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: E 100 11,62"
               },
+              "transformation": "1499.08 (previous minimo) + 45 x 100/153 (C1 increment of gennaio 28 reparametrised on the level parameter, rounded to the cent: 29.41) = 1528.49",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-09-01",
             "valid_until": null,
-            "value": "1568.08",
+            "value": "1567.71",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: E 100 11,62"
               },
+              "transformation": "1528.49 (previous minimo) + 60 x 100/153 (C1 increment of settembre 28 reparametrised on the level parameter, rounded to the cent: 39.22) = 1567.71",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-09-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -521,113 +586,145 @@
             "valid_until": "2026-04-01",
             "value": "1484.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-138131-ipotesi-2021-07-28",
+                  "title": "Ipotesi di accordo 28 luglio 2021 per il rinnovo del CCNL per i dipendenti delle aziende esercenti l'industria della carta, della cellulosa, pasta legno, fibra vulcanizzata e presfibra e per le aziende cartotecniche e trasformatrici della carta e del cartone: Tabella minimi di stipendio (CNEL G022, deposito 138131)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
+                  "published_on": "2021-08-03",
+                  "sha256": "0f5fed9944514d7364253221b29fee9c45c621897309f8f4e748f30adb6690c7"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Tabella minimi di stipendio, column 'Minimi dal 1.7.2024', row Cat.D2",
+                "quote": "Cat.D2 111 1.412,35 ... 1.484,89"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T13:51:42Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2026-04-01",
             "valid_until": "2027-01-01",
-            "value": "1561.08",
+            "value": "1575.58",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: D2 111 11,88"
               },
+              "transformation": "1484.89 (previous minimo dal 1.7.2024, TEM + EMC, CNEL 138131 p. 46) + 125 x 111/153 (C1 increment of aprile 2026 reparametrised on the level parameter, rounded to the cent: 90.69) = 1575.58",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2027-01-01",
             "valid_until": "2028-01-01",
-            "value": "1596.92",
+            "value": "1608.23",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: D2 111 11,88"
               },
+              "transformation": "1575.58 (previous minimo) + 45 x 111/153 (C1 increment of gennaio 27 reparametrised on the level parameter, rounded to the cent: 32.65) = 1608.23",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": "2028-09-01",
-            "value": "1632.76",
+            "value": "1640.88",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: D2 111 11,88"
               },
+              "transformation": "1608.23 (previous minimo) + 45 x 111/153 (C1 increment of gennaio 28 reparametrised on the level parameter, rounded to the cent: 32.65) = 1640.88",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-09-01",
             "valid_until": null,
-            "value": "1680.55",
+            "value": "1684.41",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: D2 111 11,88"
               },
+              "transformation": "1640.88 (previous minimo) + 60 x 111/153 (C1 increment of settembre 28 reparametrised on the level parameter, rounded to the cent: 43.53) = 1684.41",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-09-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -664,113 +761,145 @@
             "valid_until": "2026-04-01",
             "value": "1573.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-138131-ipotesi-2021-07-28",
+                  "title": "Ipotesi di accordo 28 luglio 2021 per il rinnovo del CCNL per i dipendenti delle aziende esercenti l'industria della carta, della cellulosa, pasta legno, fibra vulcanizzata e presfibra e per le aziende cartotecniche e trasformatrici della carta e del cartone: Tabella minimi di stipendio (CNEL G022, deposito 138131)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
+                  "published_on": "2021-08-03",
+                  "sha256": "0f5fed9944514d7364253221b29fee9c45c621897309f8f4e748f30adb6690c7"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Tabella minimi di stipendio, column 'Minimi dal 1.7.2024', row Cat.D1",
+                "quote": "Cat.D1 121 1.494,11 ... 1.573,21"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T13:51:42Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2026-04-01",
             "valid_until": "2027-01-01",
-            "value": "1656.25",
+            "value": "1672.07",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: D1 121 12,39"
               },
+              "transformation": "1573.21 (previous minimo dal 1.7.2024, TEM + EMC, CNEL 138131 p. 46) + 125 x 121/153 (C1 increment of aprile 2026 reparametrised on the level parameter, rounded to the cent: 98.86) = 1672.07",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2027-01-01",
             "valid_until": "2028-01-01",
-            "value": "1694.27",
+            "value": "1707.66",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: D1 121 12,39"
               },
+              "transformation": "1672.07 (previous minimo) + 45 x 121/153 (C1 increment of gennaio 27 reparametrised on the level parameter, rounded to the cent: 35.59) = 1707.66",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": "2028-09-01",
-            "value": "1732.29",
+            "value": "1743.25",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: D1 121 12,39"
               },
+              "transformation": "1707.66 (previous minimo) + 45 x 121/153 (C1 increment of gennaio 28 reparametrised on the level parameter, rounded to the cent: 35.59) = 1743.25",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-09-01",
             "valid_until": null,
-            "value": "1782.99",
+            "value": "1790.70",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: D1 121 12,39"
               },
+              "transformation": "1743.25 (previous minimo) + 60 x 121/153 (C1 increment of settembre 28 reparametrised on the level parameter, rounded to the cent: 47.45) = 1790.70",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-09-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -807,113 +936,145 @@
             "valid_until": "2026-04-01",
             "value": "1643.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-138131-ipotesi-2021-07-28",
+                  "title": "Ipotesi di accordo 28 luglio 2021 per il rinnovo del CCNL per i dipendenti delle aziende esercenti l'industria della carta, della cellulosa, pasta legno, fibra vulcanizzata e presfibra e per le aziende cartotecniche e trasformatrici della carta e del cartone: Tabella minimi di stipendio (CNEL G022, deposito 138131)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
+                  "published_on": "2021-08-03",
+                  "sha256": "0f5fed9944514d7364253221b29fee9c45c621897309f8f4e748f30adb6690c7"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Tabella minimi di stipendio, column 'Minimi dal 1.7.2024', row Cat.C3",
+                "quote": "Cat.C3 129 1.559,28 ... 1.643,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T13:51:42Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2026-04-01",
             "valid_until": "2027-01-01",
-            "value": "1732.11",
+            "value": "1748.97",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: C3 129 12,91"
               },
+              "transformation": "1643.58 (previous minimo dal 1.7.2024, TEM + EMC, CNEL 138131 p. 46) + 125 x 129/153 (C1 increment of aprile 2026 reparametrised on the level parameter, rounded to the cent: 105.39) = 1748.97",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2027-01-01",
             "valid_until": "2028-01-01",
-            "value": "1771.88",
+            "value": "1786.91",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: C3 129 12,91"
               },
+              "transformation": "1748.97 (previous minimo) + 45 x 129/153 (C1 increment of gennaio 27 reparametrised on the level parameter, rounded to the cent: 37.94) = 1786.91",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": "2028-09-01",
-            "value": "1811.65",
+            "value": "1824.85",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: C3 129 12,91"
               },
+              "transformation": "1786.91 (previous minimo) + 45 x 129/153 (C1 increment of gennaio 28 reparametrised on the level parameter, rounded to the cent: 37.94) = 1824.85",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-09-01",
             "valid_until": null,
-            "value": "1864.67",
+            "value": "1875.44",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: C3 129 12,91"
               },
+              "transformation": "1824.85 (previous minimo) + 60 x 129/153 (C1 increment of settembre 28 reparametrised on the level parameter, rounded to the cent: 50.59) = 1875.44",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-09-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -950,113 +1111,145 @@
             "valid_until": "2026-04-01",
             "value": "1731.54",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-138131-ipotesi-2021-07-28",
+                  "title": "Ipotesi di accordo 28 luglio 2021 per il rinnovo del CCNL per i dipendenti delle aziende esercenti l'industria della carta, della cellulosa, pasta legno, fibra vulcanizzata e presfibra e per le aziende cartotecniche e trasformatrici della carta e del cartone: Tabella minimi di stipendio (CNEL G022, deposito 138131)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
+                  "published_on": "2021-08-03",
+                  "sha256": "0f5fed9944514d7364253221b29fee9c45c621897309f8f4e748f30adb6690c7"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Tabella minimi di stipendio, column 'Minimi dal 1.7.2024', row Cat.C2",
+                "quote": "Cat.C2 139 1.640,70 ... 1.731,54"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T13:51:42Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2026-04-01",
             "valid_until": "2027-01-01",
-            "value": "1826.94",
+            "value": "1845.10",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: C2 139 13,17"
               },
+              "transformation": "1731.54 (previous minimo dal 1.7.2024, TEM + EMC, CNEL 138131 p. 46) + 125 x 139/153 (C1 increment of aprile 2026 reparametrised on the level parameter, rounded to the cent: 113.56) = 1845.10",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2027-01-01",
             "valid_until": "2028-01-01",
-            "value": "1868.88",
+            "value": "1885.98",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: C2 139 13,17"
               },
+              "transformation": "1845.10 (previous minimo) + 45 x 139/153 (C1 increment of gennaio 27 reparametrised on the level parameter, rounded to the cent: 40.88) = 1885.98",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": "2028-09-01",
-            "value": "1910.82",
+            "value": "1926.86",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: C2 139 13,17"
               },
+              "transformation": "1885.98 (previous minimo) + 45 x 139/153 (C1 increment of gennaio 28 reparametrised on the level parameter, rounded to the cent: 40.88) = 1926.86",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-09-01",
             "valid_until": null,
-            "value": "1966.74",
+            "value": "1981.37",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: C2 139 13,17"
               },
+              "transformation": "1926.86 (previous minimo) + 60 x 139/153 (C1 increment of settembre 28 reparametrised on the level parameter, rounded to the cent: 54.51) = 1981.37",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-09-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1093,113 +1286,145 @@
             "valid_until": "2026-04-01",
             "value": "1855.11",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-138131-ipotesi-2021-07-28",
+                  "title": "Ipotesi di accordo 28 luglio 2021 per il rinnovo del CCNL per i dipendenti delle aziende esercenti l'industria della carta, della cellulosa, pasta legno, fibra vulcanizzata e presfibra e per le aziende cartotecniche e trasformatrici della carta e del cartone: Tabella minimi di stipendio (CNEL G022, deposito 138131)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
+                  "published_on": "2021-08-03",
+                  "sha256": "0f5fed9944514d7364253221b29fee9c45c621897309f8f4e748f30adb6690c7"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Tabella minimi di stipendio, column 'Minimi dal 1.7.2024', row Cat.C1",
+                "quote": "Cat.C1 153 1.755,11 ... 1.855,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T13:51:42Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2026-04-01",
             "valid_until": "2027-01-01",
-            "value": "1960.11",
+            "value": "1980.11",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: C1 153 13,43"
               },
+              "transformation": "1855.11 (previous minimo dal 1.7.2024, TEM + EMC, CNEL 138131 p. 46) + 125 x 153/153 (C1 increment of aprile 2026 reparametrised on the level parameter, rounded to the cent: 125.00) = 1980.11",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2027-01-01",
             "valid_until": "2028-01-01",
-            "value": "2005.11",
+            "value": "2025.11",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: C1 153 13,43"
               },
+              "transformation": "1980.11 (previous minimo) + 45 x 153/153 (C1 increment of gennaio 27 reparametrised on the level parameter, rounded to the cent: 45.00) = 2025.11",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": "2028-09-01",
-            "value": "2050.11",
+            "value": "2070.11",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: C1 153 13,43"
               },
+              "transformation": "2025.11 (previous minimo) + 45 x 153/153 (C1 increment of gennaio 28 reparametrised on the level parameter, rounded to the cent: 45.00) = 2070.11",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-09-01",
             "valid_until": null,
-            "value": "2110.11",
+            "value": "2130.11",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: C1 153 13,43"
               },
+              "transformation": "2070.11 (previous minimo) + 60 x 153/153 (C1 increment of settembre 28 reparametrised on the level parameter, rounded to the cent: 60.00) = 2130.11",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-09-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1234,115 +1459,147 @@
           {
             "valid_from": "2024-07-01",
             "valid_until": "2026-04-01",
-            "value": "1924.38",
+            "value": "1924.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-138131-ipotesi-2021-07-28",
+                  "title": "Ipotesi di accordo 28 luglio 2021 per il rinnovo del CCNL per i dipendenti delle aziende esercenti l'industria della carta, della cellulosa, pasta legno, fibra vulcanizzata e presfibra e per le aziende cartotecniche e trasformatrici della carta e del cartone: Tabella minimi di stipendio (CNEL G022, deposito 138131)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
+                  "published_on": "2021-08-03",
+                  "sha256": "0f5fed9944514d7364253221b29fee9c45c621897309f8f4e748f30adb6690c7"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Tabella minimi di stipendio, column 'Minimi dal 1.7.2024', row Cat.C1S",
+                "quote": "Cat.C1S 161 1.819,13 ... 1.924,37"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T13:51:42Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2026-04-01",
             "valid_until": "2027-01-01",
-            "value": "2034.87",
+            "value": "2055.91",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: C1S 161 13,43"
               },
+              "transformation": "1924.37 (previous minimo dal 1.7.2024, TEM + EMC, CNEL 138131 p. 46) + 125 x 161/153 (C1 increment of aprile 2026 reparametrised on the level parameter, rounded to the cent: 131.54) = 2055.91",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2027-01-01",
             "valid_until": "2028-01-01",
-            "value": "2081.59",
+            "value": "2103.26",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: C1S 161 13,43"
               },
+              "transformation": "2055.91 (previous minimo) + 45 x 161/153 (C1 increment of gennaio 27 reparametrised on the level parameter, rounded to the cent: 47.35) = 2103.26",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": "2028-09-01",
-            "value": "2128.31",
+            "value": "2150.61",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: C1S 161 13,43"
               },
+              "transformation": "2103.26 (previous minimo) + 45 x 161/153 (C1 increment of gennaio 28 reparametrised on the level parameter, rounded to the cent: 47.35) = 2150.61",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-09-01",
             "valid_until": null,
-            "value": "2190.60",
+            "value": "2213.75",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: C1S 161 13,43"
               },
+              "transformation": "2150.61 (previous minimo) + 60 x 161/153 (C1 increment of settembre 28 reparametrised on the level parameter, rounded to the cent: 63.14) = 2213.75",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-09-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1379,113 +1636,145 @@
             "valid_until": "2026-04-01",
             "value": "2040.47",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-138131-ipotesi-2021-07-28",
+                  "title": "Ipotesi di accordo 28 luglio 2021 per il rinnovo del CCNL per i dipendenti delle aziende esercenti l'industria della carta, della cellulosa, pasta legno, fibra vulcanizzata e presfibra e per le aziende cartotecniche e trasformatrici della carta e del cartone: Tabella minimi di stipendio (CNEL G022, deposito 138131)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
+                  "published_on": "2021-08-03",
+                  "sha256": "0f5fed9944514d7364253221b29fee9c45c621897309f8f4e748f30adb6690c7"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Tabella minimi di stipendio, column 'Minimi dal 1.7.2024', row Cat.B2",
+                "quote": "Cat.B2 174 1.926,73 ... 2.040,47"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T13:51:42Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2026-04-01",
             "valid_until": "2027-01-01",
-            "value": "2159.89",
+            "value": "2182.63",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: B2 174 13,69"
               },
+              "transformation": "2040.47 (previous minimo dal 1.7.2024, TEM + EMC, CNEL 138131 p. 46) + 125 x 174/153 (C1 increment of aprile 2026 reparametrised on the level parameter, rounded to the cent: 142.16) = 2182.63",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2027-01-01",
             "valid_until": "2028-01-01",
-            "value": "2209.48",
+            "value": "2233.81",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: B2 174 13,69"
               },
+              "transformation": "2182.63 (previous minimo) + 45 x 174/153 (C1 increment of gennaio 27 reparametrised on the level parameter, rounded to the cent: 51.18) = 2233.81",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": "2028-09-01",
-            "value": "2259.07",
+            "value": "2284.99",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: B2 174 13,69"
               },
+              "transformation": "2233.81 (previous minimo) + 45 x 174/153 (C1 increment of gennaio 28 reparametrised on the level parameter, rounded to the cent: 51.18) = 2284.99",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-09-01",
             "valid_until": null,
-            "value": "2325.19",
+            "value": "2353.23",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: B2 174 13,69"
               },
+              "transformation": "2284.99 (previous minimo) + 60 x 174/153 (C1 increment of settembre 28 reparametrised on the level parameter, rounded to the cent: 68.24) = 2353.23",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-09-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1522,113 +1811,145 @@
             "valid_until": "2026-04-01",
             "value": "2109.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-138131-ipotesi-2021-07-28",
+                  "title": "Ipotesi di accordo 28 luglio 2021 per il rinnovo del CCNL per i dipendenti delle aziende esercenti l'industria della carta, della cellulosa, pasta legno, fibra vulcanizzata e presfibra e per le aziende cartotecniche e trasformatrici della carta e del cartone: Tabella minimi di stipendio (CNEL G022, deposito 138131)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
+                  "published_on": "2021-08-03",
+                  "sha256": "0f5fed9944514d7364253221b29fee9c45c621897309f8f4e748f30adb6690c7"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Tabella minimi di stipendio, column 'Minimi dal 1.7.2024', row Cat.B2S",
+                "quote": "Cat.B2S 182 1.990,78 ... 2.109,74"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T13:51:42Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2026-04-01",
             "valid_until": "2027-01-01",
-            "value": "2234.61",
+            "value": "2258.43",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: B2S 182 13,69"
               },
+              "transformation": "2109.74 (previous minimo dal 1.7.2024, TEM + EMC, CNEL 138131 p. 46) + 125 x 182/153 (C1 increment of aprile 2026 reparametrised on the level parameter, rounded to the cent: 148.69) = 2258.43",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2027-01-01",
             "valid_until": "2028-01-01",
-            "value": "2285.91",
+            "value": "2311.96",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: B2S 182 13,69"
               },
+              "transformation": "2258.43 (previous minimo) + 45 x 182/153 (C1 increment of gennaio 27 reparametrised on the level parameter, rounded to the cent: 53.53) = 2311.96",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": "2028-09-01",
-            "value": "2337.21",
+            "value": "2365.49",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: B2S 182 13,69"
               },
+              "transformation": "2311.96 (previous minimo) + 45 x 182/153 (C1 increment of gennaio 28 reparametrised on the level parameter, rounded to the cent: 53.53) = 2365.49",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-09-01",
             "valid_until": null,
-            "value": "2405.61",
+            "value": "2436.86",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: B2S 182 13,69"
               },
+              "transformation": "2365.49 (previous minimo) + 60 x 182/153 (C1 increment of settembre 28 reparametrised on the level parameter, rounded to the cent: 71.37) = 2436.86",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-09-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1665,113 +1986,145 @@
             "valid_until": "2026-04-01",
             "value": "2163.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-138131-ipotesi-2021-07-28",
+                  "title": "Ipotesi di accordo 28 luglio 2021 per il rinnovo del CCNL per i dipendenti delle aziende esercenti l'industria della carta, della cellulosa, pasta legno, fibra vulcanizzata e presfibra e per le aziende cartotecniche e trasformatrici della carta e del cartone: Tabella minimi di stipendio (CNEL G022, deposito 138131)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
+                  "published_on": "2021-08-03",
+                  "sha256": "0f5fed9944514d7364253221b29fee9c45c621897309f8f4e748f30adb6690c7"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Tabella minimi di stipendio, column 'Minimi dal 1.7.2024', row Cat.B1",
+                "quote": "Cat.B1 188 2.040,60 ... 2.163,48"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T13:51:42Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2026-04-01",
             "valid_until": "2027-01-01",
-            "value": "2292.49",
+            "value": "2317.07",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: B1 188 13,94"
               },
+              "transformation": "2163.48 (previous minimo dal 1.7.2024, TEM + EMC, CNEL 138131 p. 46) + 125 x 188/153 (C1 increment of aprile 2026 reparametrised on the level parameter, rounded to the cent: 153.59) = 2317.07",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2027-01-01",
             "valid_until": "2028-01-01",
-            "value": "2345.12",
+            "value": "2372.36",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: B1 188 13,94"
               },
+              "transformation": "2317.07 (previous minimo) + 45 x 188/153 (C1 increment of gennaio 27 reparametrised on the level parameter, rounded to the cent: 55.29) = 2372.36",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": "2028-09-01",
-            "value": "2397.75",
+            "value": "2427.65",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: B1 188 13,94"
               },
+              "transformation": "2372.36 (previous minimo) + 45 x 188/153 (C1 increment of gennaio 28 reparametrised on the level parameter, rounded to the cent: 55.29) = 2427.65",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-09-01",
             "valid_until": null,
-            "value": "2467.92",
+            "value": "2501.38",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: B1 188 13,94"
               },
+              "transformation": "2427.65 (previous minimo) + 60 x 188/153 (C1 increment of settembre 28 reparametrised on the level parameter, rounded to the cent: 73.73) = 2501.38",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-09-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1808,113 +2161,145 @@
             "valid_until": "2026-04-01",
             "value": "2376.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-138131-ipotesi-2021-07-28",
+                  "title": "Ipotesi di accordo 28 luglio 2021 per il rinnovo del CCNL per i dipendenti delle aziende esercenti l'industria della carta, della cellulosa, pasta legno, fibra vulcanizzata e presfibra e per le aziende cartotecniche e trasformatrici della carta e del cartone: Tabella minimi di stipendio (CNEL G022, deposito 138131)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
+                  "published_on": "2021-08-03",
+                  "sha256": "0f5fed9944514d7364253221b29fee9c45c621897309f8f4e748f30adb6690c7"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Tabella minimi di stipendio, column 'Minimi dal 1.7.2024', row Cat.A",
+                "quote": "Cat.A 212 2.237,74 ... 2.376,30"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T13:51:42Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2026-04-01",
             "valid_until": "2027-01-01",
-            "value": "2521.80",
+            "value": "2549.50",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: A 212 15,49"
               },
+              "transformation": "2376.30 (previous minimo dal 1.7.2024, TEM + EMC, CNEL 138131 p. 46) + 125 x 212/153 (C1 increment of aprile 2026 reparametrised on the level parameter, rounded to the cent: 173.20) = 2549.50",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2027-01-01",
             "valid_until": "2028-01-01",
-            "value": "2579.70",
+            "value": "2611.85",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: A 212 15,49"
               },
+              "transformation": "2549.50 (previous minimo) + 45 x 212/153 (C1 increment of gennaio 27 reparametrised on the level parameter, rounded to the cent: 62.35) = 2611.85",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": "2028-09-01",
-            "value": "2637.60",
+            "value": "2674.20",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: A 212 15,49"
               },
+              "transformation": "2611.85 (previous minimo) + 45 x 212/153 (C1 increment of gennaio 28 reparametrised on the level parameter, rounded to the cent: 62.35) = 2674.20",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-09-01",
             "valid_until": null,
-            "value": "2714.79",
+            "value": "2757.34",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: A 212 15,49"
               },
+              "transformation": "2674.20 (previous minimo) + 60 x 212/153 (C1 increment of settembre 28 reparametrised on the level parameter, rounded to the cent: 83.14) = 2757.34",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-09-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1951,113 +2336,145 @@
             "valid_until": "2026-04-01",
             "value": "2702.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-138131-ipotesi-2021-07-28",
+                  "title": "Ipotesi di accordo 28 luglio 2021 per il rinnovo del CCNL per i dipendenti delle aziende esercenti l'industria della carta, della cellulosa, pasta legno, fibra vulcanizzata e presfibra e per le aziende cartotecniche e trasformatrici della carta e del cartone: Tabella minimi di stipendio (CNEL G022, deposito 138131)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
+                  "published_on": "2021-08-03",
+                  "sha256": "0f5fed9944514d7364253221b29fee9c45c621897309f8f4e748f30adb6690c7"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Tabella minimi di stipendio, column 'Minimi dal 1.7.2024', row Cat.AS",
+                "quote": "Cat.AS 249 2.539,92 ... 2.702,66"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T13:51:42Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2026-04-01",
             "valid_until": "2027-01-01",
-            "value": "2873.55",
+            "value": "2906.09",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: AS 249 15,49"
               },
+              "transformation": "2702.66 (previous minimo dal 1.7.2024, TEM + EMC, CNEL 138131 p. 46) + 125 x 249/153 (C1 increment of aprile 2026 reparametrised on the level parameter, rounded to the cent: 203.43) = 2906.09",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2027-01-01",
             "valid_until": "2028-01-01",
-            "value": "2939.52",
+            "value": "2979.33",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: AS 249 15,49"
               },
+              "transformation": "2906.09 (previous minimo) + 45 x 249/153 (C1 increment of gennaio 27 reparametrised on the level parameter, rounded to the cent: 73.24) = 2979.33",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": "2028-09-01",
-            "value": "3005.49",
+            "value": "3052.57",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: AS 249 15,49"
               },
+              "transformation": "2979.33 (previous minimo) + 45 x 249/153 (C1 increment of gennaio 28 reparametrised on the level parameter, rounded to the cent: 73.24) = 3052.57",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-09-01",
             "valid_until": null,
-            "value": "3093.45",
+            "value": "3150.22",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: AS 249 15,49"
               },
+              "transformation": "3052.57 (previous minimo) + 60 x 249/153 (C1 increment of settembre 28 reparametrised on the level parameter, rounded to the cent: 97.65) = 3150.22",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-09-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -2095,113 +2512,145 @@
             "valid_until": "2026-04-01",
             "value": "2711.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-138131-ipotesi-2021-07-28",
+                  "title": "Ipotesi di accordo 28 luglio 2021 per il rinnovo del CCNL per i dipendenti delle aziende esercenti l'industria della carta, della cellulosa, pasta legno, fibra vulcanizzata e presfibra e per le aziende cartotecniche e trasformatrici della carta e del cartone: Tabella minimi di stipendio (CNEL G022, deposito 138131)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
+                  "published_on": "2021-08-03",
+                  "sha256": "0f5fed9944514d7364253221b29fee9c45c621897309f8f4e748f30adb6690c7"
                 },
-                "section": "Tabella retributiva"
+                "page": "46",
+                "section": "Tabella minimi di stipendio, column 'Minimi dal 1.7.2024', row Quadro",
+                "quote": "Quadro 250 2.547,94 ... 2.711,34"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T13:51:42Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2026-04-01",
             "valid_until": "2027-01-01",
-            "value": "2882.91",
+            "value": "2915.59",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: Q 250 15,49"
               },
+              "transformation": "2711.34 (previous minimo dal 1.7.2024, TEM + EMC, CNEL 138131 p. 46) + 125 x 250/153 (C1 increment of aprile 2026 reparametrised on the level parameter, rounded to the cent: 204.25) = 2915.59",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2027-01-01",
             "valid_until": "2028-01-01",
-            "value": "2949.10",
+            "value": "2989.12",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: Q 250 15,49"
               },
+              "transformation": "2915.59 (previous minimo) + 45 x 250/153 (C1 increment of gennaio 27 reparametrised on the level parameter, rounded to the cent: 73.53) = 2989.12",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": "2028-09-01",
-            "value": "3015.29",
+            "value": "3062.65",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: Q 250 15,49"
               },
+              "transformation": "2989.12 (previous minimo) + 45 x 250/153 (C1 increment of gennaio 28 reparametrised on the level parameter, rounded to the cent: 73.53) = 3062.65",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-09-01",
             "valid_until": null,
-            "value": "3103.54",
+            "value": "3160.69",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "carta-cartone-assocarta",
-                  "title": "carta-cartone-assocarta",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/"
+                  "document_id": "cnel-g022-246200-ipotesi-2026-02-10",
+                  "title": "Ipotesi di accordo 10 febbraio 2026 per il rinnovo del CCNL carta e cartotecnica del 28 luglio 2021, signed scan (CNEL G022, deposito 246200)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+                  "published_on": "2026-09-08",
+                  "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c"
                 },
-                "section": "Tabella retributiva"
+                "page": "8",
+                "section": "PARTE ECONOMICA, 'TABELLE AUMENTI parametrati su livello C1'; parameters from the Art. 48 table, p. 3",
+                "quote": "TABELLE AUMENTI parametrati su livello C1: aprile 2026 € 125 / gennaio 27 € 45 / gennaio 28 € 45 / settembre 28 € 60; Art. 48: Q 250 15,49"
               },
+              "transformation": "3062.65 (previous minimo) + 60 x 250/153 (C1 increment of settembre 28 reparametrised on the level parameter, rounded to the cent: 98.04) = 3160.69",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:51:42Z",
+                "effective_from": "2028-09-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -2322,11 +2771,11 @@
     "version": "2026.2",
     "effective_from": "2024-07-01",
     "effective_until": null,
-    "source": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/",
+    "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
     "verification_status": "unverified",
-    "source_hash": "16d0d76d4839e8b0b2c1530d14b2b13e38d192e8306de339f4a3fd5e35cd5d66",
+    "source_hash": "2668fc7713b2a457fbf6eb5d88dce8df9eb2c3f38319aecaba5dd5b21b121d9d",
     "published_at": "2026-09-07",
-    "source_type": "commercial_secondary"
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
