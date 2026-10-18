@@ -145,11 +145,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** State the seniority of a worker in service in 2013-2014 net of the 19 months of the freeze.
 
 !!! warning "bancari-abi/abi_saturday_overtime_and_hourly_base · overtime · impact yes · open"
-    OVERTIME, SATURDAY AND HOURLY BASE: Saturday overtime is paid 30% (Art. 114 c. 15), and the request has no Saturday kind; the hourly pay of overtime and of holiday work is 1/360 of the annual pay for each day divided by 7,4 (Art. 114 c. 15), that is the monthly pay times 13 over 2.664, not the monthly pay over the hourly divisor of 160: the caller passes that hourly rate on the overtime event.
+    OVERTIME, SATURDAY AND HOURLY BASE: Saturday overtime is paid 30% (Art. 114 c. 15), and the request has no Saturday kind. The hourly pay of overtime and of holiday work is 1/360 of the annual pay for each day divided by 7,4 (Art. 114 c. 15): the hourly divisor carries the 360 x 7,4 / 13, but the engine applies it to the minimo tabellare, and the elements of the 'retribuzione annua' (scatti and other fixed items) were not read.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add a Saturday kind and derive the overtime hourly rate as the annual pay over 360 and 7,4.
+    **Remediation:** Add a Saturday kind and read the elements of the annual pay that art. 114 c. 15 divides.
 
 !!! warning "bancari-abi/abi_sickness_counting · sickness · impact yes · open"
     SICKNESS COUNTING: Art. 66 c. 1 keeps the job and the whole pay for 6, 8, 12, 15, 18 or 22 months by seniority; c. 2 lets the employer count instead the 48 months before the last day of absence, with 8, 10, 14, 18, 22 or 24 months. The file applies c. 2; an employer counting by c. 1 pays fewer months. The periods rise by 50% for tbc, AIDS and disabilità grave and double for oncological illness (cc. 4-5), not modelled.
@@ -208,7 +208,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | — | — | — | [↗](https://www.ccnlbancari.it/) |
 
 ??? note "Coverage notes"
-    Hourly divisor 162 for the 37.5h/week period (2023-11-23 to 2024-06-30) and 160 from 2024-07-01 (37h/week).
+    Hourly divisor 207,69 for the 37.5h/week period (2023-11-23 to 2024-06-30) and 204,92 from 2024-07-01 (37h/week): 360 x daily hours / 13 (Art. 114 c. 15, Art. 108).
     
     Seniority: first scatto after 48 months, then every 36 months; maximum 8 scatti for the Aree Professionali and 7 for QD3/QD4 (maximum_count_by_level).
     

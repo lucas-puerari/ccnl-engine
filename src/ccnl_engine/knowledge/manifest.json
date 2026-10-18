@@ -285,7 +285,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/bancari-abi",
       "ruleset_version": "2026.2",
-      "source_hash": "7942b3ab68b08c95c5f4e73b51b395bfafa03e34abadecf4475762b860bbc0f7",
+      "source_hash": "8e8a6e802c91d15dc5b706a6b0d37dfdf6a81618e22d413378879bdc97ce3467",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/bancari-abi.json.gz"

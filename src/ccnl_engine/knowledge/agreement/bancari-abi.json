@@ -43,7 +43,7 @@
     "notes": [
       {
         "kind": "info",
-        "text": "Hourly divisor 162 for the 37.5h/week period (2023-11-23 to 2024-06-30) and 160 from 2024-07-01 (37h/week)."
+        "text": "Hourly divisor 207,69 for the 37.5h/week period (2023-11-23 to 2024-06-30) and 204,92 from 2024-07-01 (37h/week): 360 x daily hours / 13 (Art. 114 c. 15, Art. 108)."
       },
       {
         "kind": "info",
@@ -120,7 +120,7 @@
       },
       {
         "kind": "simplification",
-        "text": "OVERTIME, SATURDAY AND HOURLY BASE: Saturday overtime is paid 30% (Art. 114 c. 15), and the request has no Saturday kind; the hourly pay of overtime and of holiday work is 1/360 of the annual pay for each day divided by 7,4 (Art. 114 c. 15), that is the monthly pay times 13 over 2.664, not the monthly pay over the hourly divisor of 160: the caller passes that hourly rate on the overtime event.",
+        "text": "OVERTIME, SATURDAY AND HOURLY BASE: Saturday overtime is paid 30% (Art. 114 c. 15), and the request has no Saturday kind. The hourly pay of overtime and of holiday work is 1/360 of the annual pay for each day divided by 7,4 (Art. 114 c. 15): the hourly divisor carries the 360 x 7,4 / 13, but the engine applies it to the minimo tabellare, and the elements of the 'retribuzione annua' (scatti and other fixed items) were not read.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -128,7 +128,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add a Saturday kind and derive the overtime hourly rate as the annual pay over 360 and 7,4."
+          "remediation": "Add a Saturday kind and read the elements of the annual pay that art. 114 c. 15 divides."
         }
       },
       {
@@ -156,12 +156,46 @@
         {
           "valid_from": "2023-11-23",
           "valid_until": "2024-07-01",
-          "value": "162"
+          "value": "207.69",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-abi-2023-11-23-testo-coordinato-fabi",
+                "title": "CCNL ABI 23 novembre 2023, testo coordinato (FABI, 2025)",
+                "kind": "associazione",
+                "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+                "published_on": "2025-07-01",
+                "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
+              },
+              "page": "152",
+              "section": "Art. 114 c. 15; Art. 108",
+              "quote": "Il lavoro straordinario viene retribuito con la corresponsione di un compenso pari alla paga oraria calcolata secondo il comune criterio (1/360 della retribuzione annua per ogni giornata diviso 7,4) [...] 1. L'orario di lavoro settimanale (di norma dal lunedì al venerdì) è fissato in 37 ore e 30 minuti"
+            },
+            "note": "Art. 114 c. 15 (p. 152) sets the paga oraria at 1/360 of the annual pay for each day divided by the daily hours; on the 13 monthly payments of additional_months the monthly pay is divided by 360 x daily hours / 13. The elements of the 'retribuzione annua' were not read: the divisor applies to the monthly base the engine passes. Art. 108 c. 1 (p. 145) sets 37 ore e 30 minuti over five days, 7,5 hours a day: 360 x 7,5 / 13 = 207,69. The daily 7,5 is inferred from the weekly hours: the testo coordinato prints only the 7,4 in force from 1 July 2024."
+          }
         },
         {
           "valid_from": "2024-07-01",
           "valid_until": null,
-          "value": "160"
+          "value": "204.92",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-abi-2023-11-23-testo-coordinato-fabi",
+                "title": "CCNL ABI 23 novembre 2023, testo coordinato (FABI, 2025)",
+                "kind": "associazione",
+                "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+                "published_on": "2025-07-01",
+                "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
+              },
+              "page": "152",
+              "section": "Art. 114 c. 15; Art. 108",
+              "quote": "Il lavoro straordinario viene retribuito con la corresponsione di un compenso pari alla paga oraria calcolata secondo il comune criterio (1/360 della retribuzione annua per ogni giornata diviso 7,4) [...] 3. A far tempo dal 1° luglio 2024 alla lavoratrice/lavoratore viene riconosciuta un'ulteriore riduzione dell'orario settimanale di lavoro di 30 minuti. Pertanto l'orario settimanale sarà distribuito su 37 ore."
+            },
+            "note": "Art. 114 c. 15 (p. 152) sets the paga oraria at 1/360 of the annual pay for each day divided by the daily hours; on the 13 monthly payments of additional_months the monthly pay is divided by 360 x daily hours / 13. The elements of the 'retribuzione annua' were not read: the divisor applies to the monthly base the engine passes. Art. 108 c. 3 (p. 145) cuts the week to 37 hours from 1 July 2024, the 7,4 a day of art. 114 c. 15: 360 x 7,4 / 13 = 204,92."
+          }
         }
       ]
     },
@@ -1791,7 +1825,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "7942b3ab68b08c95c5f4e73b51b395bfafa03e34abadecf4475762b860bbc0f7",
+    "source_hash": "8e8a6e802c91d15dc5b706a6b0d37dfdf6a81618e22d413378879bdc97ce3467",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
