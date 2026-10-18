@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 0 derived / 86 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 56 verified / 0 derived / 30 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -52,12 +52,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-17 |
-| **Last review** | — |
+| **Last review** | 2026-10-17 |
 | **Latest salary tranche** | 2029-12-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-17 | claude-opus-5-5 (ai) | The tabellare of the seven levels from December 2024 to December 2029 against the ipotesi di rinnovo of 17 December 2025. | corrected | 56 tabellari (seven levels, eight columns, pp. 7-9 of the signed scan, read by OCR and on the page images) move from assumed to verified.<br>Corrected: level 2 from 1 December 2029 is 1.727,83 in the text (1.716,16 + 11,67, and the table 'a regime'), not 1.727,84; the file reproportioned the level 5 tranche instead of reading the table.<br>The 21 tabellari of November 2022, July 2023 and July 2024 stay assumed: the accordo of 27 October 2022 (Art. 35) prints only the increments of the 5th level, 'riferito al 5° livello', and no table of the other levels was found. |
 
 ## Salary table
 
@@ -66,7 +68,7 @@ Latest effective values per level (monthly gross, EUR).
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
 | `1` | Quadri e impiegati direttivi | € 1,884.88 | 2029-12-01 |
-| `2` | Impiegati di concetto | € 1,727.84 | 2029-12-01 |
+| `2` | Impiegati di concetto | € 1,727.83 | 2029-12-01 |
 | `3S` | Impiegati di concetto (superiore) | € 1,674.70 | 2029-12-01 |
 | `3` | Impiegati d'ordine, operai specializzati | € 1,617.33 | 2029-12-01 |
 | `4` | Impiegati d'ordine, operai qualificati | € 1,528.89 | 2029-12-01 |
@@ -218,7 +220,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | Document | Kind | Date | URL |
 |---|---|---|---|
 | — | — | 2022-10-27 | [↗](https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf) |
-| — | — | 2025-12-17 | not available |
+| — | — | 2025-12-17 | [↗](https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf) |
 
 ??? note "Coverage notes"
     Salary model: CONGLOBATO. Contingenza=0 e EDR=0 conglobati dal 1.10.2014. Confermato da ilccnl.it luglio 2026: Paga Base 1693.84 | Contingenza 0 | Terzo Elemento 0 | Totale 1693.84 per livello 1.

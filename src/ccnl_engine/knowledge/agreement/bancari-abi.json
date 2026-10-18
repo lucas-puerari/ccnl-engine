@@ -1791,7 +1791,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "521bb4783ce90da4dd4095b8a1e0663695906cf4644a2da8d65497e6fc7c077f",
+    "source_hash": "7942b3ab68b08c95c5f4e73b51b395bfafa03e34abadecf4475762b860bbc0f7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2155,7 +2155,7 @@
     "readiness": "exploratory",
     "verified_cases": 0,
     "owner": "maintainer",
-    "review_due": "2026-12-31",
+    "review_due": "2027-03-31",
     "reviews": [
       {
         "id": "2026-10-14-ai-p1",
@@ -2279,6 +2279,29 @@
         ],
         "findings": [
           "Art. 36 (p. 53): one level below for 18 months, then the destination; all 3a area profiles are destinations: 3A1 added (from 1e2A); the apprenticeship_destination_levels limitation is resolved."
+        ]
+      },
+      {
+        "id": "2026-10-17-ai-periodic",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Periodic review due 2026-12-31: the stipendi from 2023 and the scatti against the CCNL ABI of 23 November 2023, the hourly divisor, and the readiness of the file.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://www.fisac-cgil.it/wp-content/uploads/NORME2.pdf",
+            "sha256": "c6506346fe9e68332ddd33d960f28ec965c42eaeb15170f6da2bd7bcd70f1ddd"
+          },
+          {
+            "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+            "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
+          }
+        ],
+        "findings": [
+          "The 36 stipendi of the nine levels from 2023 and the scatti (QD4 and QD3 95,31, QD2 to 3A1 41,55, 1a and 2a area 29,07) are printed in the texts read. Match.",
+          "Flagged: the hourly divisor of the file (162, then 160) has no provenance. Art. 114 c. 15 of the testo coordinato computes the paga oraria 'secondo il comune criterio (1/360 della retribuzione annua per ogni giornata diviso 7,4)': on thirteen monthly payments the monthly pay over 204,92, not over 160. Every amount the engine derives from the hourly divisor (absence deductions, the hourly rate of the overtime bands) is affected; the elements of the 'retribuzione annua' were not read.",
+          "Not promoted to reviewed: verification.confidence is unverified and the hourly divisor is unsourced. The two derived rules (the solidarity fund rates and the absence rule) stay derived."
         ]
       }
     ]

@@ -36,12 +36,12 @@ def test_every_production_ccnl_is_listed_with_evidence() -> None:
 def test_the_independence_of_each_kind_of_evidence_is_kept_apart() -> None:
     """Metalmeccanico has all three kinds; a source-linked case is no output."""
     metal = matrix()["metalmeccanico-federmeccanica"]
-    alimentari = matrix()["alimentari-federalimentare"]
+    autoscuole = matrix()["autoscuole-unasca"]
 
     assert metal.independence == {"hand oracle", "provider output", "source-linked"}
     assert {"termination", "extra month"} <= metal.cycles
     assert {"tfr", "employer_cost", "net"} <= metal.outputs
-    assert alimentari.independence == {"source-linked"}
+    assert autoscuole.independence == {"source-linked"}
 
 
 def _row() -> Row:

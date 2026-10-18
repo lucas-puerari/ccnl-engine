@@ -2399,7 +2399,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "bd9ea911a3237b4318891dba4438e800c51292c7dd5456fb7055c7a2e1e5753e",
+    "source_hash": "56f9409fb46f824219b04e6de9d4102f77f75b4d36c5717fca5cc682370de3c4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2748,6 +2748,34 @@
         "outcome": "corrected",
         "findings": [
           "edilizia_impiegati_sickness (the art. 66 treatment beyond two years of service) is recorded on every sickness run of a worker with 24 months of seniority or more, or of unknown seniority."
+        ]
+      },
+      {
+        "id": "2026-10-17-ai-full-year",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "A year and a termination of an impiegato of the 3rd level against a hand oracle, and the 23 derived rules of the file.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
+            "sha256": "d01c1635bf8f5185043f6c5509f0c829fb58bdb1d9ef2943f554d825f60d1710"
+          },
+          {
+            "url": "https://ance.it/wp-content/uploads/allegati/Tabella_retribuzioni_Edili_SS_-_OT_-_Decorrenza_1_febbraio_2025.pdf",
+            "sha256": "b681a3f867cd31d4cef09e5234d85a2b6f183a72c66054ed6ff8bd326d88f715"
+          },
+          {
+            "url": "https://www.prevedi.it/wp-content/uploads/2026/09/3722_Nota_Informativa_-_Informazioni_chiave_per_laderente_-_Scheda_I_destinatari_e_i_contributi.pdf",
+            "sha256": "195f6e83abef137bc3ad9ad832af61b633e1c923f202623d6bc16fdef2900de6"
+          }
+        ],
+        "findings": [
+          "Engine corrected: at a termination the June pay settles the ratei of the tredicesima; the Prevedi contributo contrattuale, 'applicato anche per 13° e 14° mensilità', was not charged on them (6,50 EUR and its 10% solidarity contribution short), while an extra-month run of the same ratei charges it. The settled ratei now owe it (tests/knowledge/ccnl_engine/pension_fund/services/test_prevedi.py::test_a_termination_owes_the_ratei_it_settles).",
+          "Engine corrected: the ratei settled at a termination entered the TFR base whole, the EDR included, while the EDR stays out of the TFR base in the monthly pay and in an extra-month run (0,38 EUR of TFR too much here). The settled ratei now leave out the allowances outside the TFR base.",
+          "Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios edilizia-impiegati-year and edilizia-impiegati-june): an impiegato of the 3rd level hired on 1 January 2026 by an employer with 30 employees, across the tranche of March 2026; after the two corrections every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done.",
+          "The 23 derived rules stay derived: the contingenza and EDR of each level (14) are read from the ANCE provincial tables, not tabulated in the CCNL; the Prevedi amounts are rebuilt from two verbali and the fund scheda; two scatti differ between the table (8,2) and the secondary tables (8,22); the payment day of the quattordicesima and the absence divisor are stated transformations. No signatory text states them directly."
         ]
       }
     ],

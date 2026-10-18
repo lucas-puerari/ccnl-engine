@@ -4739,7 +4739,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "cca4e74fae62260be26ec2749de75a2c081eea6f85c8b3362c6c4a1424a06425",
+    "source_hash": "55b2818046b98a6c53e39f3532dd14908883ae7abb166db1c0a5e11be156090d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5374,9 +5374,28 @@
           "Hourly divisor and additional months from the 2006 text (valid_from 2006-05-10); payment day of the tredicesima added.",
           "No renewal or inflation verification after 15 April 2025 through October 2026 (CNEL B011 listing)."
         ]
+      },
+      {
+        "id": "2026-10-17-ai-periodic",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Periodic review due 2026-12-01: the trattamento economico minimo of every category and tranche of the renewal of 15 April 2025, and a year and a termination of a D1 impiegato against a hand oracle.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
+            "sha256": "00f87d6fbef42494d47d90dab50146e353b31cbef4ca1f03d6f7ea37d97546ee"
+          }
+        ],
+        "findings": [
+          "Allegato TEM (p. 48, scan read by OCR): the previgente minimo and IPO of the 15 categories plus the increments of July 2025, December 2025, July 2026, July 2027 and June 2028 rebuild the 75 amounts of the file; the A1 to A3 and B1 to B2 amounts add the EAR of 190 and 100 euro (art. 15 B 3), as their transformations state. Match.",
+          "Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios chimica-year and chimica-june): a D1 impiegato hired on 1 January 2026 by an employer with 50 employees, across the tranche of July 2026; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. No owed amount blocks these runs.",
+          "The 5 derived rules stay derived: each reads its value from a cited text through a stated transformation, and this review found no primary text that states them directly."
+        ]
       }
     ],
     "owner": "maintainer",
-    "review_due": "2026-12-01"
+    "review_due": "2027-04-30"
   }
 }

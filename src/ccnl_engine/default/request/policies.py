@@ -120,6 +120,13 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "that pays one (Commercio terzo elemento) has a missing_fact "
         "provincial_pay_element blocker",
     ),
+    "EmployerProfile.inps_sector": requires_fact(
+        "inps_employer",
+        "employer.inps_sector",
+        _REPORTED,
+        "the INPS sector of the CCNL; a CCNL applied by employers of more "
+        "than one sector (Logistica) has a missing_fact inps_sector blocker",
+    ),
     "Employment.category": requires_fact(
         "worker_category",
         "employment.category",

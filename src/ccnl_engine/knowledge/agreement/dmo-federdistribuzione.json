@@ -3074,7 +3074,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "d8995bf8b183b101857fd45fd6ace704320174ee220ba3266566788f40299300",
+    "source_hash": "0b67a27d1c7e3a6a83639b708965ff5eb14480192708774734f5800ab1054f3e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3474,6 +3474,26 @@
         "outcome": "corrected",
         "findings": [
           "sickness_net_basis is recorded on every run with a sickness event (trigger run), not only documented."
+        ]
+      },
+      {
+        "id": "2026-10-17-ai-full-year",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The paga base, contingenza, terzo elemento, indennità di funzione and scatti of every level against the Testo Unico of 29 September 2025, and a year and a termination of a level IV worker against a hand oracle.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "Allegato 11 (PDF pp. 97-99): 47 of the 48 paghe base of the file are printed in the tables; the IV of 1 April 2023 prints 1112,46 in the paga base column, but its total 1646,68 less the contingenza 524,22 gives the 1122,46 of the file, which the CCNL Terziario Confesercenti also reaches (total 1646,68). The paga base column has a misprint; the file keeps 1122,46.",
+          "Contingenza + EDR of every level, the terzo elemento of 2,07 (Art. 195), the indennità di funzione of the Quadri (260,76) and of the VII (5,16) and the scatti (Quadri 25,46 to VII 19,47): match.",
+          "Art. 204 and 205 (PDF p. 59): tredicesima at Christmas, quattordicesima of the pay in force on 30 June paid on 1 July, in twelfths of the twelve months before. Match.",
+          "Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios dmo-year and dmo-june): a level IV impiegato hired on 1 January 2026 by an employer with 50 employees where a provincial element is in force; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done."
         ]
       }
     ],
