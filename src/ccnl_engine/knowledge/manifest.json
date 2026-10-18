@@ -2206,8 +2206,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/vigilanza-privata-assiv",
       "ruleset_version": "2026.2",
-      "source_hash": "f14aa2f2702917cca39a8078027d83f02f0c4019077c2ccd8cba3a8e1718627e",
-      "source_type": "commercial_secondary",
+      "source_hash": "a8ce584b60acff905f4f2366c0cceb26246d3481d48ede805795b18fde293639",
+      "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/vigilanza-privata-assiv.json.gz"
     },
