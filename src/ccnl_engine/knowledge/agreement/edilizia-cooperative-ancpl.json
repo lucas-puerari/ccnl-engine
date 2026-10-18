@@ -93,6 +93,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2009/04/c_edilicoop2000.pdf",
+            "sha256": "99e9fedbcad5b4a77ca54ba60394f092afbe677bc6837d0187d1e323109e8c4a"
+          }
+        ],
+        "findings": [
+          "Art. 96 - Tredicesima mensilità (p. 96): \"Nel caso di inizio o di cessazione del rapporto di lavoro nel corso dell'anno devono essere corrisposti tanti dodicesimi dell'ammontare della 13a mensilità per quanti sono i mesi di servizio prestato presso l'impresa. La frazione di mese non superiore ai 15 giorni non va considerata mentre deve essere considerata come mese intero la frazione di mese superiore ai 15 giorni.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -228,6 +252,37 @@
               "value": "16.53"
             }
           ]
+        }
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "edilizia-cooperative-ancpl-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro per i lavoratori delle cooperative di produzione e lavoro dell'edilizia e attività affini",
+            "kind": "associazione",
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2009/04/c_edilicoop2000.pdf",
+            "published_on": "2000-02-09",
+            "sha256": "99e9fedbcad5b4a77ca54ba60394f092afbe677bc6837d0187d1e323109e8c4a"
+          },
+          "page": "96",
+          "section": "Art. 96 - Tredicesima mensilità",
+          "quote": "Nel caso di inizio o di cessazione del rapporto di lavoro nel corso dell'anno devono essere corrisposti tanti dodicesimi dell'ammontare della 13a mensilità per quanti sono i mesi di servizio prestato presso l'impresa. La frazione di mese non superiore ai 15 giorni non va considerata mentre deve essere considerata come mese intero la frazione di mese superiore ai 15 giorni."
+        },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2025-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
         }
       }
     }
@@ -1955,7 +2010,7 @@
     "effective_until": null,
     "source": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/",
     "verification_status": "unverified",
-    "source_hash": "f8c9078b40149ff1aa764d3a2bc0078a969d6f4cff7057a7781e3480b282373e",
+    "source_hash": "8ae273639da0264db9414fc1fd074fdd38074917c9db881fbecc0350a41ad104",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

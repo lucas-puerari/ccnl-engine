@@ -124,6 +124,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+            "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+          }
+        ],
+        "findings": [
+          "Art. 41 - Tredicesima e quattordicesima mensilità (p. 40): \"In caso di inizio o di cessazione del rapporto durante il corso dell'anno, salvo che la cessazione avvenga durante il periodo di prova, il dipendente avrà diritto a tanti dodicesimi dell'ammontare delle predette mensilità per quanti sono i mesi di durata del rapporto nel corso dell'anno stesso. Le frazioni di mese superiori a quindici giorni si calcoleranno mese intero, quelle eguali o inferiori non saranno conteggiate.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -250,6 +274,37 @@
           "extraction_timestamp": "2026-09-07T15:03:36",
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
+        }
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "consorzi-agrari-assocap-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro per i dipendenti dei consorzi agrari 1 gennaio 2024 - 31 dicembre 2027",
+            "kind": "associazione",
+            "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+            "published_on": "2023-12-12",
+            "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+          },
+          "page": "40",
+          "section": "Art. 41 - Tredicesima e quattordicesima mensilità",
+          "quote": "In caso di inizio o di cessazione del rapporto durante il corso dell'anno, salvo che la cessazione avvenga durante il periodo di prova, il dipendente avrà diritto a tanti dodicesimi dell'ammontare delle predette mensilità per quanti sono i mesi di durata del rapporto nel corso dell'anno stesso. Le frazioni di mese superiori a quindici giorni si calcoleranno mese intero, quelle eguali o inferiori non saranno conteggiate."
+        },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2025-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
         }
       }
     }
@@ -1311,7 +1366,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "3226e0dd531ed09de19a2972f0c96b3bf65dd2a6d99ac173a1d870ca43ff703a",
+    "source_hash": "9a06d6753de8440d66a9ef6e026bc528a148344b44bcf5966b9aefd72809d85d",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

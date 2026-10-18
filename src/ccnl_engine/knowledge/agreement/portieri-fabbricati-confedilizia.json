@@ -239,6 +239,35 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-ccnl-testo",
+            "title": "Ipotesi di accordo del 30.10.2025 (CCNL per i dipendenti da proprietari di fabbricati)",
+            "kind": "altro",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "published_on": "2025-10-30",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "78",
+          "section": "Capo IV - Mensilità supplementare, Art. 130 - Gratifica natalizia",
+          "quote": "il lavoratore avrà diritto a tanti dodicesimi dell'ammontare della gratifica natalizia quanti sono i mesi interi di servizio prestato. 3. La frazione di mese pari o superiore ai 15 giorni vale per un mese intero."
+        },
+        "transformation": "Fractions of a month of 15 days or more count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2026-01-01",
+          "verification_status": "unverified"
+        },
+        "note": "Quote read by OCR of a scanned PDF."
+      }
     }
   },
   "levels": [
@@ -1354,7 +1383,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "fc8a23317b9d2b4d266c60ffe97a84e8b50ed233e2faddd7b13e8deff23ac5d9",
+    "source_hash": "682701f0b079e21acbaa1679b3e8fad9b41c8d6d54fe9c4cc984729628bb1a2c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

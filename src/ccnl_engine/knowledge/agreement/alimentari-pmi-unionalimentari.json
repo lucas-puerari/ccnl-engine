@@ -96,6 +96,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+            "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+          }
+        ],
+        "findings": [
+          "Art. 48 - Tredicesima mensilità (p. 127): \"Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno, il lavoratore ha diritto a tanti dodicesimi della gratifica natalizia quanti sono i mesi di anzianità di servizio presso l’azienda. La frazione di mese superiore ai 15 giorni viene considerata a questi effetti mese intero.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -264,7 +288,38 @@
           "note": "Read from the PDF the url serves (sha256 7e9b29394505b6cd14125c88c6f0cc4ba78c14f026b546bb387636e40e42ee15), text layer. valid_from is the first day of the bundled tax year, the employer rate being in force since 1/1/2015. No human review recorded."
         }
       }
-    ]
+    ],
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "alimentari-pmi-unionalimentari-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro per i lavoratori dipendenti della piccola e media industria alimentare - 28 novembre 2013 - 1 maggio 2013 – 30 giugno 2016",
+            "kind": "associazione",
+            "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+            "published_on": "2013-11-28",
+            "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+          },
+          "page": "127",
+          "section": "Art. 48 - Tredicesima mensilità",
+          "quote": "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno, il lavoratore ha diritto a tanti dodicesimi della gratifica natalizia quanti sono i mesi di anzianità di servizio presso l’azienda. La frazione di mese superiore ai 15 giorni viene considerata a questi effetti mese intero."
+        },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2025-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        }
+      }
+    }
   },
   "apprenticeship": [],
   "levels": [
@@ -1509,7 +1564,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "d8e3721f43afe6a0c317b9a505b1cb063564f8ca982250d898ad51255fab9698",
+    "source_hash": "72f85aa6c7b480a844b8f948c93b59063a8e3546842d86c9b1de7ed4c828db15",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 45 verified / 0 derived / 8 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 46 verified / 0 derived / 8 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-19 |
-| **Last review** | 2026-10-17 |
+| **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2027-08-01 |
 
 ## Review history
@@ -57,6 +57,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-17 | claude-opus-5-5 (ai) | The paga nazionale conglobata of the nine levels against Allegato 1 of the CCNL of 19 July 2024 published by FLAI-CGIL. | corrected | Allegato 1 (PDF pp. 58-59, printed pp. 113-114, text layer): the 45 paghe conglobate from 31/08/2024 to 01/08/2027 move from assumed to verified; the file had them from aggregators (lavoro-economia.it, ilccnl.it, kitech.it).<br>The ruleset names this source, published by FLAI-CGIL, a signatory: source_type contracting_party instead of estimated.<br>Corrected to the printed table: 4 2025-06-01: 1728.12 -> 1728.13; Q 2026-06-01: 2396.59 -> 2396.58; 1 2026-06-01: 2286.83 -> 2286.84; 4 2026-06-01: 1750.00 -> 1750.01; 7 2026-06-01: 1538.26 -> 1538.27; Q 2027-08-01: 2486.49 -> 2486.48; 1 2027-08-01: 2372.61 -> 2372.62; 4 2027-08-01: 1815.64 -> 1815.65; 7 2027-08-01: 1595.96 -> 1595.97. |
+| 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 79 - Anzianità di servizio (general clause), applied to Art. 77 - 13ª mensilità (p. 43) (p. 44): "le frazioni di anno saranno computate, a tutti gli effetti contrattuali, per dodicesimi computandosi come mese intero le frazioni di mese superiori o uguali a 15 giorni.". Added: at_least 15 (the file applied the engine default, at least 15 days). |
 
 ## Salary table
 

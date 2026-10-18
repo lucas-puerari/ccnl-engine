@@ -47,7 +47,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/agenti-immobiliari-fiaip",
       "ruleset_version": "2026.2",
-      "source_hash": "46b9e1423742d6ee11520bf3d9b1090e5c83ef9aac789a25fd8ba884da8a4a47",
+      "source_hash": "1cb8af050eaa86ed724c33e376f3284eea38aa5cebf02887dc5c6e196c31601c",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/agenti-immobiliari-fiaip.json.gz"
@@ -81,7 +81,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/agenzie-viaggio-fiavet",
       "ruleset_version": "2026.2",
-      "source_hash": "680009b3ddff8217660e907c65aa29a30c9cd61da72525e5832642911078e7b5",
+      "source_hash": "0c59ce2165fe9d12746f0415f59298965517f28d669320755d8ebbdf94db4a9d",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/agenzie-viaggio-fiavet.json.gz"
@@ -115,7 +115,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/alimentari-pmi-unionalimentari",
       "ruleset_version": "2026.2",
-      "source_hash": "d8e3721f43afe6a0c317b9a505b1cb063564f8ca982250d898ad51255fab9698",
+      "source_hash": "72f85aa6c7b480a844b8f948c93b59063a8e3546842d86c9b1de7ed4c828db15",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/alimentari-pmi-unionalimentari.json.gz"
@@ -132,7 +132,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/alimentaristi-cooperative-e016",
       "ruleset_version": "2026.2",
-      "source_hash": "983e79ce76b282705782b18e617d1f2dcd000da38a07c6e4ea3525922f602399",
+      "source_hash": "6e3abd675cb02378762a908afab382bcca15778b16dd4b2a77a1d34f45fb2d7c",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/alimentaristi-cooperative-e016.json.gz"
@@ -200,7 +200,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/autoferrotranvieri-internavigatori",
       "ruleset_version": "2026.2",
-      "source_hash": "c784823b2b0b6656f99e2f44e975800371b210379f129b5e05a420960d3456a0",
+      "source_hash": "28baad050437acb4a56fae4bbd810e4357ecb77ef9183c5d58f0ac5df68ecf3d",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/autoferrotranvieri-internavigatori.json.gz"
@@ -268,7 +268,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/aziende-termali-federterme",
       "ruleset_version": "2024.1",
-      "source_hash": "06a60356a53dcb7d652ec0eed94d3bafc8d861429c04c0883cdcd624f2f1fc5a",
+      "source_hash": "3ee8460685908887cc537971212781ec8d8c74aebe5a33ab38df2e302dd9d8a7",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/aziende-termali-federterme.json.gz"
@@ -302,7 +302,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/bcc-credito-cooperativo",
       "ruleset_version": "2026.2",
-      "source_hash": "f84c8fd5a6df3fed015d2a29aedf2b134ec1983073acb0e9eb35d8a7094ae58f",
+      "source_hash": "8f3b975efb380b5aed4afd0c60f627bede34ab601b01fa18e6602cd86a917cb2",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/bcc-credito-cooperativo.json.gz"
@@ -438,7 +438,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/cinema-audiovisivi-industria",
       "ruleset_version": "2025.1",
-      "source_hash": "4089486d17a4f289b2cc6402310ddaccc28b04eb2b87e49b0d7a97c95ad9332b",
+      "source_hash": "83ae39823efd09485894126e95c20b463d59b46d69d3f462ff6387591c5452e6",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/cinema-audiovisivi-industria.json.gz"
@@ -506,7 +506,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/consorzi-agrari-assocap",
       "ruleset_version": "2026.2",
-      "source_hash": "3226e0dd531ed09de19a2972f0c96b3bf65dd2a6d99ac173a1d870ca43ff703a",
+      "source_hash": "9a06d6753de8440d66a9ef6e026bc528a148344b44bcf5966b9aefd72809d85d",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/consorzi-agrari-assocap.json.gz"
@@ -540,7 +540,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/contoterzismo-caiagromec",
       "ruleset_version": "2026.2",
-      "source_hash": "14cb25f8f871b1fca737a919fc4888fabbc5eda5d74af0ea99909133648cbdbf",
+      "source_hash": "c4435a36897310f8449f3ce6de1baaeea1c7179cf3040c169dccbaf3d2e07b8d",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/contoterzismo-caiagromec.json.gz"
@@ -761,7 +761,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-cooperative-ancpl",
       "ruleset_version": "2026.1",
-      "source_hash": "f8c9078b40149ff1aa764d3a2bc0078a969d6f4cff7057a7781e3480b282373e",
+      "source_hash": "8ae273639da0264db9414fc1fd074fdd38074917c9db881fbecc0350a41ad104",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/edilizia-cooperative-ancpl.json.gz"
@@ -795,7 +795,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/elettrico-elettricita-futura",
       "ruleset_version": "2026.2",
-      "source_hash": "3be9666fa4c27100bdc8ea5e3a5842979ec3f1aa90cb96df3c058fe0cd6a07ba",
+      "source_hash": "4eaf3593d81bb8d3f12889431b359c4ed349ec05d32d7b1b06e83ea215f0ec84",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/elettrico-elettricita-futura.json.gz"
@@ -812,7 +812,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/energia-petrolio-confindustria",
       "ruleset_version": "2026.2",
-      "source_hash": "f9b3a7b7ea292b9e5a71ac9ced4051fb66febc5c4e3780aeb5b277cbb3424cd2",
+      "source_hash": "e310c7497befb4a1ab147431c9fec5d7a1859ab090750357f6eab77e318eba11",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/energia-petrolio-confindustria.json.gz"
@@ -880,7 +880,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/farmacie-private-h121",
       "ruleset_version": "2026.2",
-      "source_hash": "de047ba15d3b7825282ff0ade810ffe92cc35d17e1dda1b2cfea61b83d666029",
+      "source_hash": "cdf26e6b1b5c156644c9d8ca16a6a2142a065ecc5cd9e75f5a49b7a2c1a96003",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/farmacie-private-h121.json.gz"
@@ -914,7 +914,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/fiori-recisi-ancef",
       "ruleset_version": "2026.2",
-      "source_hash": "36b9f3298a6ba8aaddcb48fc50301e7130b590f8d27d4f639c67c429719b49b3",
+      "source_hash": "efe78a2d249d8e23f4934d3671214175f0d1839fb0675d65e6417a4e9019cf56",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/fiori-recisi-ancef.json.gz"
@@ -1050,7 +1050,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/grafica-editoria-aieg",
       "ruleset_version": "2026.2",
-      "source_hash": "3852496da4dfdebbd500ecbda0372889304a8d50145840c3ad076f75b8ce1b45",
+      "source_hash": "e3a45d7dd61b00a4159fdb1b63a8ed97af5bdd605b2c8ea2fab2edd7c18a9ac4",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/grafica-editoria-aieg.json.gz"
@@ -1067,7 +1067,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/igiene-ambientale-utilitalia",
       "ruleset_version": "2026.2",
-      "source_hash": "012b37648d32c347137b83daa1b757487dae1dfbb3014c115b069d309d84aa8a",
+      "source_hash": "7c9a71722df5e53ca95cc25e25f5af243b5986dcaedef7aafeb58539a42b2dcd",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/igiene-ambientale-utilitalia.json.gz"
@@ -1390,7 +1390,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanica-cooperative",
       "ruleset_version": "2026.2",
-      "source_hash": "bebfd2af2e41eff4f533943fe750e5d90f31f94fec87d7d82ec4344dcdb5d53c",
+      "source_hash": "c9434dc21a5ea2e7fe6f9982a3cbc2f14a60c94dabf2ead9a6eeb7e835f10ac3",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/metalmeccanica-cooperative.json.gz"
@@ -1441,7 +1441,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-confimi-pmi",
       "ruleset_version": "2025.1",
-      "source_hash": "0c1ea35b6e866e642c7286a1adea099ae7efc6e77d07b1845e57e485756b4ffc",
+      "source_hash": "66d6bb7f352167d2f3c649f734788684d1470fa8165e5fdb58e0ff5733175bce",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/metalmeccanico-confimi-pmi.json.gz"
@@ -1492,7 +1492,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "ccnl/noleggio-autobus-conducente-anav",
       "ruleset_version": "1.0.0",
-      "source_hash": "b4e22dfd6e1da95dcec670cbfc83a9d311648ce2946b67bb7d2638deea984343",
+      "source_hash": "cc6c3f27b8d904798beb4201110342fae315fe755dd7f34c1905932bb752f5c2",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/noleggio-autobus-conducente-anav.json.gz"
@@ -1543,7 +1543,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/operai-agricoli-florovivaisti",
       "ruleset_version": "2026.2",
-      "source_hash": "d5ca79c00076a7d1e4ae92ef88310a786a9b38f901a896d6c9a231bf598b6cca",
+      "source_hash": "16dbdd20495215348cf5b261f43bbd53d45ef66848dde47fc13987cae3488d6a",
       "source_type": "commercial_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/operai-agricoli-florovivaisti.json.gz"
@@ -1577,7 +1577,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/organizzazioni-allevatori-aia",
       "ruleset_version": "2026.2",
-      "source_hash": "7aad31eaa55408d5004a405940cde2556d07883037209902eee8fd5b756d36fd",
+      "source_hash": "b9eacc92907b23035b77183820be925f6f07f978a41dea0c3840053aa7139b42",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/organizzazioni-allevatori-aia.json.gz"
@@ -1594,7 +1594,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/ortofrutticoli-agrumari",
       "ruleset_version": "2024.1",
-      "source_hash": "d472c50ee9ad48be0551847fcccf59bd06e1c210bdb4bf4dbfa90a7c1ccf16c0",
+      "source_hash": "4e31c21ce3e85646181b27a204c191b35bbccd239987c5902111968b5c9c8125",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/ortofrutticoli-agrumari.json.gz"
@@ -1628,7 +1628,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "ccnl/panificazione-assipan",
       "ruleset_version": "2026.2",
-      "source_hash": "c612d4a4df0f04b5fc0aa39644812fbfeb2d4729c907e5f242ca509df7722d7f",
+      "source_hash": "84715a9844637fc49539dff9cc46c7a580be68b97d0acc44c8c96fa29fcf9b8e",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/panificazione-assipan.json.gz"
@@ -1662,7 +1662,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/portieri-fabbricati-confedilizia",
       "ruleset_version": "2026.2",
-      "source_hash": "fc8a23317b9d2b4d266c60ffe97a84e8b50ed233e2faddd7b13e8deff23ac5d9",
+      "source_hash": "682701f0b079e21acbaa1679b3e8fad9b41c8d6d54fe9c4cc984729628bb1a2c",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/portieri-fabbricati-confedilizia.json.gz"

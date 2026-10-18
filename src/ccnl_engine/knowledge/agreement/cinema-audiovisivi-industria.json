@@ -88,6 +88,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.slc-cgil.it/images/CCNL_cineaudiovisivo_09072019.pdf",
+            "sha256": "aa5591694eecf78be4686fe19f5ec97b7667394edd5f3fdb66a40fbda517bdcc"
+          }
+        ],
+        "findings": [
+          "Art. 26 Gratifica natalizia o 13° mensilità (p. 19): \"Nel caso di inizio o cessazione del rapporto di lavoro durante il corso dell'anno, il lavoratore ha diritto a tanti dodicesimi della gratifica natalizia per quanti sono i mesi di servizio prestato presso l'azienda. Le frazioni di mese superiori a 15 giorni sono considerate come mese intero di servizio.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -233,6 +257,38 @@
           "verification_status": "unverified",
           "effective_from": "2025-07-23"
         }
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cinema-audiovisivi-industria-ccnl-testo",
+            "title": "CONTRATTO COLLETTIVO NAZIONALE DI LAVORO PER I DIPENDENTI DELL'INDUSTRIA CINEAUDIOVISIVA",
+            "kind": "associazione",
+            "url": "https://www.slc-cgil.it/images/CCNL_cineaudiovisivo_09072019.pdf",
+            "published_on": "2019-07-09",
+            "sha256": "aa5591694eecf78be4686fe19f5ec97b7667394edd5f3fdb66a40fbda517bdcc"
+          },
+          "page": "19",
+          "section": "Art. 26 Gratifica natalizia o 13° mensilità",
+          "quote": "Nel caso di inizio o cessazione del rapporto di lavoro durante il corso dell'anno, il lavoratore ha diritto a tanti dodicesimi della gratifica natalizia per quanti sono i mesi di servizio prestato presso l'azienda. Le frazioni di mese superiori a 15 giorni sono considerate come mese intero di servizio."
+        },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2025-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        },
+        "note": "Quote read by OCR of a scanned PDF."
       }
     }
   },
@@ -1819,7 +1875,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153",
     "verification_status": "unverified",
-    "source_hash": "4089486d17a4f289b2cc6402310ddaccc28b04eb2b87e49b0d7a97c95ad9332b",
+    "source_hash": "83ae39823efd09485894126e95c20b463d59b46d69d3f462ff6387591c5452e6",
     "published_at": "2026-09-18",
     "source_type": "commercial_secondary"
   },

@@ -91,6 +91,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-cooperazione-alimentare-2023.pdf",
+            "sha256": "a38eb5c832d99cddb4c6fe1b31c24b72291c8362b8633aa3c523c6a189fc043a"
+          }
+        ],
+        "findings": [
+          "Art. 47 - Tredicesima e quattordicesima mensilità (p. 52): \"Nel caso di inizio o cessazione del rapporto durante il corso dell’anno il lavoratore non in prova avrà diritto a tanti dodicesimi dell’ammontare della tredicesima e della quattordicesima mensilità per quanti sono i mesi interi di servizio prestato. Le frazioni di mese non superiori a quindici giorni non saranno calcolate, mentre saranno calcolate come mese intero le frazioni superiori ai quindici giorni.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
+      }
+    ]
+  },
   "levels": [
     {
       "code": "6",
@@ -2172,6 +2196,37 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "alimentaristi-cooperative-e016-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro per i lavoratori dipendenti da aziende cooperative di trasformazione di prodotti agricoli e zootecnici e lavorazione prodotti alimentari - 1° dicembre 2019 - 30 novembre 2023",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-cooperazione-alimentare-2023.pdf",
+            "published_on": "2020-12-02",
+            "sha256": "a38eb5c832d99cddb4c6fe1b31c24b72291c8362b8633aa3c523c6a189fc043a"
+          },
+          "page": "52",
+          "section": "Art. 47 - Tredicesima e quattordicesima mensilità",
+          "quote": "Nel caso di inizio o cessazione del rapporto durante il corso dell’anno il lavoratore non in prova avrà diritto a tanti dodicesimi dell’ammontare della tredicesima e della quattordicesima mensilità per quanti sono i mesi interi di servizio prestato. Le frazioni di mese non superiori a quindici giorni non saranno calcolate, mentre saranno calcolate come mese intero le frazioni superiori ai quindici giorni."
+        },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2023-12-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        }
+      }
     }
   },
   "apprenticeship": [
@@ -2204,7 +2259,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
     "verification_status": "unverified",
-    "source_hash": "983e79ce76b282705782b18e617d1f2dcd000da38a07c6e4ea3525922f602399",
+    "source_hash": "6e3abd675cb02378762a908afab382bcca15778b16dd4b2a77a1d34f45fb2d7c",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -97,6 +97,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-2016-Metalmeccanici-PMI-Confimi.pdf",
+            "sha256": "842c80dd4c5eed9ed9600ffcafe90f57c8113e9e6ef8fc93f021e8f09e44c0a4"
+          }
+        ],
+        "findings": [
+          "Art. 38 - Tredicesima mensilità (p. 119): \"Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell'anno il lavoratore, ha diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità quanti sono i mesi di anzianità di servizio presso l'azienda. La frazione di mese superiore ai 15 giorni va considerata a questi effetti come mese intero.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -263,6 +287,37 @@
               "value": "45.96"
             }
           ]
+        }
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "metalmeccanico-confimi-pmi-ccnl-testo",
+            "title": "COSTITUZIONE DELLE PARTI - In Roma, 22 luglio 2016",
+            "kind": "associazione",
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-2016-Metalmeccanici-PMI-Confimi.pdf",
+            "published_on": "2016-07-22",
+            "sha256": "842c80dd4c5eed9ed9600ffcafe90f57c8113e9e6ef8fc93f021e8f09e44c0a4"
+          },
+          "page": "119",
+          "section": "Art. 38 - Tredicesima mensilità",
+          "quote": "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell'anno il lavoratore, ha diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità quanti sono i mesi di anzianità di servizio presso l'azienda. La frazione di mese superiore ai 15 giorni va considerata a questi effetti come mese intero."
+        },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2025-10-28",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
         }
       }
     }
@@ -1437,7 +1492,7 @@
     "effective_until": null,
     "source": "https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/",
     "verification_status": "unverified",
-    "source_hash": "0c1ea35b6e866e642c7286a1adea099ae7efc6e77d07b1845e57e485756b4ffc",
+    "source_hash": "66d6bb7f352167d2f3c649f734788684d1470fa8165e5fdb58e0ff5733175bce",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

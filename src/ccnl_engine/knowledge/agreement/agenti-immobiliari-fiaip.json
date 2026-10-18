@@ -309,6 +309,34 @@
           ]
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "agenti-immobiliari-fiaip-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro per dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso - Codice CNEL H0B1 - 19 maggio 2025 - Testo ufficiale",
+            "kind": "altro",
+            "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+            "published_on": "2025-05-19",
+            "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+          },
+          "page": "99",
+          "section": "Art. 168 Tredicesima mensilità (rinvio all'Art. 152 Computo frazione annua anzianità, p. 93)",
+          "quote": "il lavoratore avrà diritto a tanti dodicesimi dell'ammontare della 13A mensilità quanti sono i mesi di servizio prestato, come previsto dall'art. 152. [...] Art. 152 Computo frazione annua anzianità Ad eccezione degli effetti derivanti dalla normativa sugli scatti di anzianità, le frazioni di anno saranno computate, a tutti gli effetti contrattuali, per dodicesimi, computandosi come mese intero le frazioni di mese superiori o uguali a 15 giorni."
+        },
+        "transformation": "Fractions of a month of 15 days or more count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2026-01-01",
+          "verification_status": "unverified"
+        }
+      }
     }
   },
   "levels": [
@@ -1493,6 +1521,6 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "46b9e1423742d6ee11520bf3d9b1090e5c83ef9aac789a25fd8ba884da8a4a47"
+    "source_hash": "1cb8af050eaa86ed724c33e376f3284eea38aa5cebf02887dc5c6e196c31601c"
   }
 }

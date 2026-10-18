@@ -190,6 +190,23 @@
           "The ruleset names this source, published by FLAI-CGIL, a signatory: source_type contracting_party instead of estimated.",
           "Corrected to the printed table: 4 2025-06-01: 1728.12 -> 1728.13; Q 2026-06-01: 2396.59 -> 2396.58; 1 2026-06-01: 2286.83 -> 2286.84; 4 2026-06-01: 1750.00 -> 1750.01; 7 2026-06-01: 1538.26 -> 1538.27; Q 2027-08-01: 2486.49 -> 2486.48; 1 2027-08-01: 2372.61 -> 2372.62; 4 2027-08-01: 1815.64 -> 1815.65; 7 2027-08-01: 1595.96 -> 1595.97."
         ]
+      },
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+            "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+          }
+        ],
+        "findings": [
+          "Art. 79 - Anzianità di servizio (general clause), applied to Art. 77 - 13ª mensilità (p. 43) (p. 44): \"le frazioni di anno saranno computate, a tutti gli effetti contrattuali, per dodicesimi computandosi come mese intero le frazioni di mese superiori o uguali a 15 giorni.\". Added: at_least 15 (the file applied the engine default, at least 15 days)."
+        ]
       }
     ]
   },
@@ -331,6 +348,37 @@
           "back_calculation": null
         },
         "note": null
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ortofrutticoli-agrumari-ccnl-testo",
+            "title": "Contratto collettivo nazionale di lavoro per i dipendenti da aziende ortofrutticole ed agrumarie 1 gennaio 2024 - 31 dicembre 2027",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+            "published_on": "2024-07-19",
+            "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+          },
+          "page": "44",
+          "section": "Art. 79 - Anzianità di servizio (general clause), applied to Art. 77 - 13ª mensilità (p. 43)",
+          "quote": "le frazioni di anno saranno computate, a tutti gli effetti contrattuali, per dodicesimi computandosi come mese intero le frazioni di mese superiori o uguali a 15 giorni."
+        },
+        "transformation": "Fractions of a month of 15 days or more count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2024-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        }
       }
     }
   },
@@ -2098,7 +2146,7 @@
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "d472c50ee9ad48be0551847fcccf59bd06e1c210bdb4bf4dbfa90a7c1ccf16c0",
+    "source_hash": "4e31c21ce3e85646181b27a204c191b35bbccd239987c5902111968b5c9c8125",
     "source_type": "contracting_party"
   },
   "work_rules": {

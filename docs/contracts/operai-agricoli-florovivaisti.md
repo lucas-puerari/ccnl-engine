@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 10 verified / 9 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 11 verified / 9 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-05-28 |
-| **Last review** | 2026-10-15 |
+| **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova', re-read on the full text published by a party. | flagged | Allegato n. 10 (pp. 122-125): the under-classification counts provincial levels inside the areas, not the national areas the file uses: apprentice runs are now blocked by a limitation instead of paying the Area3 and Area2 minima. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'confrontare lordo, netto e costo azienda con esempi indipendenti': a run of the engine against the labour cost table of the Regione Toscana price list (Allegato 3, section 4, operai agricoli e florovivaisti, CCNL 2022-2025). | flagged | The table prices the provincial wages of Firenze, Arezzo and the other provinces, not the national area minima of the file: only its structure compares. TFR: 1.312,85 on 17.723,44 a year is 1/13.5, as the engine accrues (991.85 / 13.5 = 73.47 for Area3). Match.<br>Deviation: the table's employer contributions in zona normale are 35.37% of the pay including INAIL; the engine applies 33.953% including the 8.50% INAIL of INPS circ. 43/2026 (25.453% without it). Cause not established (the table states neither its year nor its composition beyond the INAIL share of 13.24%); decision: flagged, the engine keeps the rates of circ. 43/2026. No independent net pay example. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Closure of the divergence left open by the review 2026-10-15-ai-cost-check: the employer contributions against the labour cost table of the Regione Toscana price list. | confirmed | Year: the price list is the edition of December 2025 (file metadata 2 December 2025; the idraulico-forestale tables are dated 2025 and 2026), but its agricultural section (pp. 29-37) is headed 'CCNL operai agricoli e flovivaistici 2022-2025', prices the provincial wages of that contract and states 'in agricoltura i contributi inail sono compresi nell'inps e sono il 13,24% del totale'. The 2026 rates replace the INAIL share with the unified 8.50% of INPS circ. 43/2026, which the engine applies. The table's 35.37% (6.268,78 on 17.723,44, Firenze e Prato, comune) is built on rates before 2026 and does not split them further.<br>The engine keeps the 2026 rates of circ. 43/2026; the table compares for the TFR structure only.<br>Divergence (external_artifact_error): Employer contributions of an operaio comune in zona normale: 35.37% of the pay with INAIL in the Regione Toscana table against 33.953% with the 8.50% INAIL in the engine for 2026. Cause: The table applies the agricultural rates of the CCNL 2022-2025 years, INAIL included as 13.24% of the total, not the 2026 rates with the unified INAIL of INPS circ. 43/2026: it is no evidence for 2026 contributions. |
+| 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 52 - Tredicesima mensilità (p. 54-55): "l'operaio ha diritto a tanti dodicesimi dell'ammontare della tredicesima quanti sono i mesi di servizio prestati presso l'azienda. [...] La frazione di mese superiore ai quindici giorni viene considerata, a questi effetti, come mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 
 ## Salary table
 

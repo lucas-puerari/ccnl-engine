@@ -89,6 +89,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://gme.mercatoelettrico.org/portals/0/Documents/en-us/20230116_CCNL_Elettrico.pdf",
+            "sha256": "d124da13a54fab3a4ae33be0dfb9b167cf0eabfcf474d36d55b018f1131b2297"
+          }
+        ],
+        "findings": [
+          "Art. 40 - Tredicesima e Quattordicesima mensilità (p. 96): \"Nel caso di inizio o di cessazione del rapporto di lavoro durante l’anno o nel caso di assenza non retribuita, il lavoratore, non in prova, ha diritto a tanti dodicesimi dell’ammontare di tali mensilità quanti sono i mesi interi di servizio prestato, computando come mese intero la frazione di mese superiore a 15 giorni.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -260,6 +284,37 @@
           "extraction_timestamp": "2026-09-07T15:03:36",
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
+        }
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "elettrico-elettricita-futura-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro per i lavoratori addetti al settore elettrico 18 luglio 2022",
+            "kind": "altro",
+            "url": "https://gme.mercatoelettrico.org/portals/0/Documents/en-us/20230116_CCNL_Elettrico.pdf",
+            "published_on": "2022-07-18",
+            "sha256": "d124da13a54fab3a4ae33be0dfb9b167cf0eabfcf474d36d55b018f1131b2297"
+          },
+          "page": "96",
+          "section": "Art. 40 - Tredicesima e Quattordicesima mensilità",
+          "quote": "Nel caso di inizio o di cessazione del rapporto di lavoro durante l’anno o nel caso di assenza non retribuita, il lavoratore, non in prova, ha diritto a tanti dodicesimi dell’ammontare di tali mensilità quanti sono i mesi interi di servizio prestato, computando come mese intero la frazione di mese superiore a 15 giorni."
+        },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2025-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
         }
       }
     }
@@ -2488,7 +2543,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/elettrico/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "3be9666fa4c27100bdc8ea5e3a5842979ec3f1aa90cb96df3c058fe0cd6a07ba",
+    "source_hash": "4eaf3593d81bb8d3f12889431b359c4ed349ec05d32d7b1b06e83ea215f0ec84",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

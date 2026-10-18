@@ -156,6 +156,23 @@
           "The ruleset names the renewal published by ANAV, the employer signatory: source_type contracting_party; the aggregator sources (redigo.info, kitech.it) are dropped.",
           "Corrected: C4 2024-01-01: 796.26 -> 796.25; B2 2024-01-01: 1289.93 -> 1289.92; A1 2024-01-01: 1592.49 -> 1592.50; Q2 2024-01-01: 1592.49 -> 1592.50; Q1 2024-01-01: 1592.49 -> 1592.50."
         ]
+      },
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fitcisl.org/wp-content/uploads/2022/11/20221013_Tpl_CCNL-Noleggio-autobus-con-conducente-e-attivita-correlate.pdf",
+            "sha256": "ab879154e167d0350bf0fa47e5ca356b42dd81fd20eab74d8caf847fe60b3e28"
+          }
+        ],
+        "findings": [
+          "Articolo 48 - Tredicesima mensilità, comma 2 (p. 81): \"il lavoratore non in prova avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese non superiori ai 14 giorni non saranno calcolate, mentre saranno considerate come mese intero se superiori ai 14 giorni.\". Added: more_than 14 (the file applied the engine default, at least 15 days)."
+        ]
       }
     ]
   },
@@ -305,6 +322,38 @@
           "verification_status": "unverified",
           "effective_from": "2024-01-01"
         }
+      }
+    },
+    "accrual_rule": {
+      "min_days": 14,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "noleggio-autobus-conducente-anav-ccnl-testo",
+            "title": "Contratto collettivo nazionale di lavoro per i dipendenti da imprese esercenti noleggio autobus con conducente e le relative attività correlate - Addì 6 ottobre 2022",
+            "kind": "associazione",
+            "url": "https://www.fitcisl.org/wp-content/uploads/2022/11/20221013_Tpl_CCNL-Noleggio-autobus-con-conducente-e-attivita-correlate.pdf",
+            "published_on": "2022-10-06",
+            "sha256": "ab879154e167d0350bf0fa47e5ca356b42dd81fd20eab74d8caf847fe60b3e28"
+          },
+          "page": "81",
+          "section": "Articolo 48 - Tredicesima mensilità, comma 2",
+          "quote": "il lavoratore non in prova avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese non superiori ai 14 giorni non saranno calcolate, mentre saranno considerate come mese intero se superiori ai 14 giorni."
+        },
+        "transformation": "Fractions of a month of more than 14 days count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2024-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        },
+        "note": "Quote read by OCR of a scanned PDF."
       }
     }
   },
@@ -3645,7 +3694,7 @@
     "effective_until": "2026-12-31",
     "source": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "b4e22dfd6e1da95dcec670cbfc83a9d311648ce2946b67bb7d2638deea984343",
+    "source_hash": "cc6c3f27b8d904798beb4201110342fae315fe755dd7f34c1905932bb752f5c2",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

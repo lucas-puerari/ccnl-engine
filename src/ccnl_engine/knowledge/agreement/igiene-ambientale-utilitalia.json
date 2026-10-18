@@ -1040,6 +1040,34 @@
         "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
         "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "igiene-ambientale-utilitalia-ccnl-testo",
+            "title": "CCNL Igiene Ambientale - Edizione aggiornata 2026 - Testo consolidato 24.07.2025 + Ipotesi di accordo 09.12.2025",
+            "kind": "altro",
+            "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+            "published_on": "2025-07-24",
+            "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
+          },
+          "page": "101",
+          "section": "Art. 31 - Mensilità aggiuntive, A) Tredicesima mensilità, comma 2",
+          "quote": "il dipendente ha diritto a un numero di dodicesimi di tredicesima mensilità pari al numero di mesi di servizio prestato. [...] le frazioni di mese almeno pari a 15 giorni sono computate come mese intero, trascurandosi le frazioni inferiori."
+        },
+        "transformation": "Fractions of a month of 15 days or more count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2025-01-01",
+          "verification_status": "unverified"
+        }
+      }
     }
   },
   "apprenticeship": [
@@ -4210,7 +4238,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "012b37648d32c347137b83daa1b757487dae1dfbb3014c115b069d309d84aa8a",
+    "source_hash": "7c9a71722df5e53ca95cc25e25f5af243b5986dcaedef7aafeb58539a42b2dcd",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

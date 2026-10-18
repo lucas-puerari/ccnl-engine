@@ -86,6 +86,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+            "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
+          }
+        ],
+        "findings": [
+          "Art. 20 - Mensilità aggiuntive (13ª e 14ª) (p. 22): \"dette mensilità aggiuntive sono frazionabili in dodicesimi nell'ipotesi di inizio o di cessazione del rapporto nel corso dell'anno. [...] La frazione di mese superiore a 15 giorni è considerata come un mese intero.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -131,6 +155,38 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "contoterzismo-caiagromec-ccnl-testo",
+            "title": "CONTRATTO COLLETTIVO NAZIONALE DI LAVORO per i lavoratori dipendenti dalle imprese che esercitano attività agromeccaniche (contoterzismo in agricoltura) 1° gennaio 2024 31 dicembre 2027",
+            "kind": "associazione",
+            "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+            "published_on": "2024-06-19",
+            "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
+          },
+          "page": "22",
+          "section": "Art. 20 - Mensilità aggiuntive (13ª e 14ª)",
+          "quote": "dette mensilità aggiuntive sono frazionabili in dodicesimi nell'ipotesi di inizio o di cessazione del rapporto nel corso dell'anno. [...] La frazione di mese superiore a 15 giorni è considerata come un mese intero."
+        },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2024-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        },
+        "note": "Quote read by OCR of a scanned PDF."
       }
     }
   },
@@ -1470,7 +1526,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/",
     "verification_status": "unverified",
-    "source_hash": "14cb25f8f871b1fca737a919fc4888fabbc5eda5d74af0ea99909133648cbdbf",
+    "source_hash": "c4435a36897310f8449f3ce6de1baaeea1c7179cf3040c169dccbaf3d2e07b8d",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

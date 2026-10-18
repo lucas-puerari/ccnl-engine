@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 33 verified / 33 derived / 4 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 34 verified / 33 derived / 4 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-23 |
-| **Last review** | 2026-10-17 |
+| **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2026-08-01 |
 
 ## Review history
@@ -57,6 +57,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-17 | claude-opus-5-5 (ai) | The tabellari, contingenza and EDR of the eleven levels against the ANAV tables of the accordo of 6 October 2022, and the tranches and the EDR 2025 of the renewal of 23 May 2025. | corrected | Allegato n. 2 of the accordo of 6 October 2022, published by ANAV (text layer): the tabellare of October 2023, the contingenza and the EDR of the eleven levels move from assumed to verified (33 values). The signed CCNL scan (Allegato n. 5, p. 83) prints the same table at low resolution.<br>The renewal of 23 May 2025 prints only the increments at C2 (60 EUR from July 2025, 100 EUR from August 2026, EDR 2025 of 40 EUR), to reparametrise on the scale 100-200: the tranches and the EDR 2025 of each level are derived (33 values), with the increment rounded once, as the Allegato n. 2 of 2022 adds the aumento a regime in its last column (C4: 729,09 + 67,16 = 796,25, not the 796,26 of the three rounded tranches).<br>The ruleset names the renewal published by ANAV, the employer signatory: source_type contracting_party; the aggregator sources (redigo.info, kitech.it) are dropped.<br>Corrected: C4 2024-01-01: 796.26 -> 796.25; B2 2024-01-01: 1289.93 -> 1289.92; A1 2024-01-01: 1592.49 -> 1592.50; Q2 2024-01-01: 1592.49 -> 1592.50; Q1 2024-01-01: 1592.49 -> 1592.50. |
+| 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Articolo 48 - Tredicesima mensilità, comma 2 (p. 81): "il lavoratore non in prova avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese non superiori ai 14 giorni non saranno calcolate, mentre saranno considerate come mese intero se superiori ai 14 giorni.". Added: more_than 14 (the file applied the engine default, at least 15 days). |
 
 ## Salary table
 

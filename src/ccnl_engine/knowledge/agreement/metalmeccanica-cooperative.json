@@ -102,6 +102,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fiom-cgil.it/attachments/article/2153/Ccnl%20Cooperative%20Metalmeccanica%20-%2013%20maggio%202013.pdf",
+            "sha256": "123620870b60586c43ee7d4d5f09192f99aae9e014cfb06296f71cd1ff03be85"
+          }
+        ],
+        "findings": [
+          "Titolo IV - Retribuzione ed altri istituti economici, Art. 7 - Tredicesima mensilità (p. 123): \"il lavoratore ha diritto a tanti dodicesimi dell'ammontare della 13° mensilità quanti sono i mesi di anzianità di servizio presso l'azienda. La frazione di mese superiore a 15 giorni va considerata a questi effetti come mese intero.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -229,6 +253,38 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "metalmeccanica-cooperative-ccnl-testo",
+            "title": "Contratto nazionale di lavoro addetti alle aziende cooperative (ANCPL-Legacoop, Federlavoro e Servizi-Confcooperative, AGCI-PL / FIM-CISL, FIOM-CGIL, UILM-UIL)",
+            "kind": "associazione",
+            "url": "https://www.fiom-cgil.it/attachments/article/2153/Ccnl%20Cooperative%20Metalmeccanica%20-%2013%20maggio%202013.pdf",
+            "published_on": "2013-05-13",
+            "sha256": "123620870b60586c43ee7d4d5f09192f99aae9e014cfb06296f71cd1ff03be85"
+          },
+          "page": "123",
+          "section": "Titolo IV - Retribuzione ed altri istituti economici, Art. 7 - Tredicesima mensilità",
+          "quote": "il lavoratore ha diritto a tanti dodicesimi dell'ammontare della 13° mensilità quanti sono i mesi di anzianità di servizio presso l'azienda. La frazione di mese superiore a 15 giorni va considerata a questi effetti come mese intero."
+        },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2025-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        },
+        "note": "Quote read by OCR of a scanned PDF."
       }
     }
   },
@@ -1422,7 +1478,7 @@
     "effective_until": null,
     "source": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/",
     "verification_status": "unverified",
-    "source_hash": "bebfd2af2e41eff4f533943fe750e5d90f31f94fec87d7d82ec4344dcdb5d53c",
+    "source_hash": "c9434dc21a5ea2e7fe6f9982a3cbc2f14a60c94dabf2ead9a6eeb7e835f10ac3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

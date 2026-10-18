@@ -149,6 +149,34 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "energia-petrolio-confindustria-ccnl-testo",
+            "title": "Ipotesi di accordo - rinnovo del CCNL Energia e Petrolio 21 luglio 2022 (Contratto Collettivo Nazionale di Lavoro)",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/energia_petrolio/250416_ENERGIA_RINNOVO%20CCNL%20%202025-2027.pdf",
+            "published_on": "2025-04-16",
+            "sha256": "fced86c079a021b7bc66824eba642679a91e4157b58c8295a5432837ba18409e"
+          },
+          "page": "37",
+          "section": "Art. 36 - Tredicesima e quattordicesima mensilità",
+          "quote": "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno, al lavoratore saranno corrisposti tanti dodicesimi delle mensilità di cui sopra quanti risulteranno i mesi passati in servizio nel periodo annuale cui ciascuna di essa si riferisce. Le frazioni di mese pari o superiori a 15 giorni verranno considerate a questi effetti come un dodicesimo. Le frazioni inferiori saranno trascurate."
+        },
+        "transformation": "Fractions of a month of 15 days or more count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2025-07-01",
+          "verification_status": "unverified"
+        }
+      }
     }
   },
   "apprenticeship": [
@@ -5253,7 +5281,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
     "verification_status": "unverified",
-    "source_hash": "f9b3a7b7ea292b9e5a71ac9ced4051fb66febc5c4e3780aeb5b277cbb3424cd2",
+    "source_hash": "e310c7497befb4a1ab147431c9fec5d7a1859ab090750357f6eab77e318eba11",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
