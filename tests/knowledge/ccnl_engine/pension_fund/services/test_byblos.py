@@ -10,8 +10,8 @@ scatti of 13.43 = 1881.97.  Employer 1.5% = 28.22955 -> 28.23; employee 1%
 = 18.8197 -> 18.82; solidarity 10% of 28.23 = 2.823 -> 2.82.
 
 Tredicesima of 2026 of a worker hired on 1 January 2026: the December pay
-of C1, 1960.11 from April 2026, for twelve months.  Employer 1.5% =
-29.40165 -> 29.40.
+of C1, 1980.11 from April 2026, for twelve months.  Employer 1.5% =
+29.70165 -> 29.70.
 """
 
 from __future__ import annotations
