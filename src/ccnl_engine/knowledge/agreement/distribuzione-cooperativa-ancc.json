@@ -134,6 +134,36 @@
         "findings": [
           "Art. 190 - Mensilita' supplementari (13a e 14a) (p. 202): \"il lavoratore avrà diritto a tanti dodicesimi dell'ammontare della 13a mensilità, per quanti sono i mesi interi di servizio prestati nella cooperativa intendendosi per tali le frazioni di mese superiori ai 15 giorni.\". Match: more_than 15."
         ]
+      },
+      {
+        "id": "2026-10-18-ai-tables",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The paga base nazionale of the 9 levels on the four modelled tranches of the renewal of 29 March 2024 (1/05/2025, 1/12/2025, 1/11/2026, 1/03/2027), derived from the paga base printed by the economic renewal of 19 February 2019 plus the Art. 185 increments printed by the 2024 renewal; all texts as deposited at CNEL.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+            "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
+          },
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/100291",
+            "sha256": "4fc74fcaa412c8d0432955562b107aa07901dce89eb45fee8b5e418b0c6ed3e5"
+          },
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/161824",
+            "sha256": "684d1be0788688a5b79dd3553ce334878f3ee986bebf819f2ca87855ee9284f5"
+          }
+        ],
+        "findings": [
+          "Ipotesi 29 marzo 2024 (CNEL 183889, 73-page scan read on the page image of PDF p. 70): Art. 185 prints only the per-level increments (01/04/2023, 01/04/2024, 01/05/2025, 01/12/2025, 01/11/2026, 01/03/2027; IV livello 30, 70, 30, 35, 35, 40 = 240), not the resulting minimi. The level labels (quadro, 1, 2, 3S, 3, 4S, 4, 5, 6) are the file codes; each row's increments sum to the printed TOTALE (within one or two cents of rounding, e.g. quadro 425,01 against 425,00).",
+          "The base is the 'Paga Base Nazionale dal 01.07.2019' table of the economic renewal of 19 February 2019 (CNEL 100291, p. 3; 'III° Liv.Super' = 3S, 'IV° Liv. Super' = 4S). No minimi increase applied between 1.7.2019 and 31.3.2023: the 2019 accord ran to 31.12.2019 in ultrattività, and the Protocollo straordinario of 12 December 2022 (CNEL 161824) granted una tantum amounts plus the 30-euro acconto from 1/4/2023 that Art. 185 lists as its first tranche.",
+          "35 of the 36 file values equal paga base 1.7.2019 + cumulated Art. 185 increments to the cent; 4S on 1/03/2027 is 1411.61 in the file against 1153.29 + 32.29 + 75.35 + 32.29 + 37.67 + 37.67 + 43.06 = 1411.62 and is corrected. The file's base_salary is the paga base nazionale (conglobata) only, with contingenza and terzo elemento as fixed allowances; this matches the item both tables print.",
+          "The file's coverage note calls the 2026-11-01 and 2027-03-01 tranches 'derived' by per-level ratios; they are printed increments in Art. 185 and the note can be updated.",
+          "The ruleset now names the CNEL deposit of the text signed by ANCC-Coop, Confcooperative Consumo e Utenza, AGCI Agrital, Filcams-CGIL, Fisascat-CISL and Uiltucs: source_type contracting_party.",
+          "Corrected to the printed table: 4S 2027-03-01: 1411.61 -> 1411.62."
+        ]
       }
     ]
   },
@@ -352,18 +382,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 6, columns 01/04/2023 to 01/05/2025",
+                "quote": "6 100 20,83 48,61 20,83 24,31 24,31 27,78 166,67"
               },
+              "transformation": "744,04 (Paga Base Nazionale dal 01.07.2019, row 'VI° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 20,83 + 48,61 + 20,83 (Art. 185 increments to 01/05/2025) = 834.31",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2025-05-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -375,18 +411,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 6, columns 01/04/2023 to 01/12/2025",
+                "quote": "6 100 20,83 48,61 20,83 24,31 24,31 27,78 166,67"
               },
+              "transformation": "744,04 (Paga Base Nazionale dal 01.07.2019, row 'VI° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 20,83 + 48,61 + 20,83 + 24,31 (Art. 185 increments to 01/12/2025) = 858.62",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2025-12-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -398,18 +440,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 6, columns 01/04/2023 to 01/11/2026",
+                "quote": "6 100 20,83 48,61 20,83 24,31 24,31 27,78 166,67"
               },
+              "transformation": "744,04 (Paga Base Nazionale dal 01.07.2019, row 'VI° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 20,83 + 48,61 + 20,83 + 24,31 + 24,31 (Art. 185 increments to 01/11/2026) = 882.93",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2026-11-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -421,18 +469,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 6, columns 01/04/2023 to 01/03/2027",
+                "quote": "6 100 20,83 48,61 20,83 24,31 24,31 27,78 166,67"
               },
+              "transformation": "744,04 (Paga Base Nazionale dal 01.07.2019, row 'VI° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 20,83 + 48,61 + 20,83 + 24,31 + 24,31 + 27,78 (Art. 185 increments to 01/03/2027) = 910.71",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2027-03-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -535,18 +589,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 5, columns 01/04/2023 to 01/05/2025",
+                "quote": "5 130 27,08 63,19 27,08 31,60 31,60 36,11 216,67"
               },
+              "transformation": "967,25 (Paga Base Nazionale dal 01.07.2019, row 'V° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 27,08 + 63,19 + 27,08 (Art. 185 increments to 01/05/2025) = 1084.60",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2025-05-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -558,18 +618,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 5, columns 01/04/2023 to 01/12/2025",
+                "quote": "5 130 27,08 63,19 27,08 31,60 31,60 36,11 216,67"
               },
+              "transformation": "967,25 (Paga Base Nazionale dal 01.07.2019, row 'V° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 27,08 + 63,19 + 27,08 + 31,60 (Art. 185 increments to 01/12/2025) = 1116.20",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2025-12-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -581,18 +647,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 5, columns 01/04/2023 to 01/11/2026",
+                "quote": "5 130 27,08 63,19 27,08 31,60 31,60 36,11 216,67"
               },
+              "transformation": "967,25 (Paga Base Nazionale dal 01.07.2019, row 'V° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 27,08 + 63,19 + 27,08 + 31,60 + 31,60 (Art. 185 increments to 01/11/2026) = 1147.80",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2026-11-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -604,18 +676,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 5, columns 01/04/2023 to 01/03/2027",
+                "quote": "5 130 27,08 63,19 27,08 31,60 31,60 36,11 216,67"
               },
+              "transformation": "967,25 (Paga Base Nazionale dal 01.07.2019, row 'V° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 27,08 + 63,19 + 27,08 + 31,60 + 31,60 + 36,11 (Art. 185 increments to 01/03/2027) = 1183.91",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2027-03-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -718,18 +796,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 4, columns 01/04/2023 to 01/05/2025",
+                "quote": "4 144 30,00 70,00 30,00 35,00 35,00 40,00 240,00"
               },
+              "transformation": "1.071,43 (Paga Base Nazionale dal 01.07.2019, row 'IV° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 30,00 + 70,00 + 30,00 (Art. 185 increments to 01/05/2025) = 1201.43",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2025-05-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -741,18 +825,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 4, columns 01/04/2023 to 01/12/2025",
+                "quote": "4 144 30,00 70,00 30,00 35,00 35,00 40,00 240,00"
               },
+              "transformation": "1.071,43 (Paga Base Nazionale dal 01.07.2019, row 'IV° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 30,00 + 70,00 + 30,00 + 35,00 (Art. 185 increments to 01/12/2025) = 1236.43",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2025-12-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -764,18 +854,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 4, columns 01/04/2023 to 01/11/2026",
+                "quote": "4 144 30,00 70,00 30,00 35,00 35,00 40,00 240,00"
               },
+              "transformation": "1.071,43 (Paga Base Nazionale dal 01.07.2019, row 'IV° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 30,00 + 70,00 + 30,00 + 35,00 + 35,00 (Art. 185 increments to 01/11/2026) = 1271.43",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2026-11-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -787,18 +883,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 4, columns 01/04/2023 to 01/03/2027",
+                "quote": "4 144 30,00 70,00 30,00 35,00 35,00 40,00 240,00"
               },
+              "transformation": "1.071,43 (Paga Base Nazionale dal 01.07.2019, row 'IV° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 30,00 + 70,00 + 30,00 + 35,00 + 35,00 + 40,00 (Art. 185 increments to 01/03/2027) = 1311.43",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2027-03-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -901,18 +1003,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 4S, columns 01/04/2023 to 01/05/2025",
+                "quote": "4S 155 32,29 75,35 32,29 37,67 37,67 43,06 258,33"
               },
+              "transformation": "1.153,29 (Paga Base Nazionale dal 01.07.2019, row 'IV° Liv. Super', CNEL 100291 p. 3; unchanged until 31.03.2023) + 32,29 + 75,35 + 32,29 (Art. 185 increments to 01/05/2025) = 1293.22",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2025-05-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -924,18 +1032,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 4S, columns 01/04/2023 to 01/12/2025",
+                "quote": "4S 155 32,29 75,35 32,29 37,67 37,67 43,06 258,33"
               },
+              "transformation": "1.153,29 (Paga Base Nazionale dal 01.07.2019, row 'IV° Liv. Super', CNEL 100291 p. 3; unchanged until 31.03.2023) + 32,29 + 75,35 + 32,29 + 37,67 (Art. 185 increments to 01/12/2025) = 1330.89",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2025-12-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -947,41 +1061,53 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 4S, columns 01/04/2023 to 01/11/2026",
+                "quote": "4S 155 32,29 75,35 32,29 37,67 37,67 43,06 258,33"
               },
+              "transformation": "1.153,29 (Paga Base Nazionale dal 01.07.2019, row 'IV° Liv. Super', CNEL 100291 p. 3; unchanged until 31.03.2023) + 32,29 + 75,35 + 32,29 + 37,67 + 37,67 (Art. 185 increments to 01/11/2026) = 1368.56",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2026-11-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2027-03-01",
             "valid_until": null,
-            "value": "1411.61",
+            "value": "1411.62",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 4S, columns 01/04/2023 to 01/03/2027",
+                "quote": "4S 155 32,29 75,35 32,29 37,67 37,67 43,06 258,33"
               },
+              "transformation": "1.153,29 (Paga Base Nazionale dal 01.07.2019, row 'IV° Liv. Super', CNEL 100291 p. 3; unchanged until 31.03.2023) + 32,29 + 75,35 + 32,29 + 37,67 + 37,67 + 43,06 (Art. 185 increments to 01/03/2027) = 1411.62",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2027-03-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1084,18 +1210,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 3, columns 01/04/2023 to 01/05/2025",
+                "quote": "3 167 34,79 81,18 34,79 40,59 40,59 46,39 278,33"
               },
+              "transformation": "1.242,58 (Paga Base Nazionale dal 01.07.2019, row 'III° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 34,79 + 81,18 + 34,79 (Art. 185 increments to 01/05/2025) = 1393.34",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2025-05-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1107,18 +1239,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 3, columns 01/04/2023 to 01/12/2025",
+                "quote": "3 167 34,79 81,18 34,79 40,59 40,59 46,39 278,33"
               },
+              "transformation": "1.242,58 (Paga Base Nazionale dal 01.07.2019, row 'III° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 34,79 + 81,18 + 34,79 + 40,59 (Art. 185 increments to 01/12/2025) = 1433.93",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2025-12-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1130,18 +1268,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 3, columns 01/04/2023 to 01/11/2026",
+                "quote": "3 167 34,79 81,18 34,79 40,59 40,59 46,39 278,33"
               },
+              "transformation": "1.242,58 (Paga Base Nazionale dal 01.07.2019, row 'III° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 34,79 + 81,18 + 34,79 + 40,59 + 40,59 (Art. 185 increments to 01/11/2026) = 1474.52",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2026-11-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1153,18 +1297,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 3, columns 01/04/2023 to 01/03/2027",
+                "quote": "3 167 34,79 81,18 34,79 40,59 40,59 46,39 278,33"
               },
+              "transformation": "1.242,58 (Paga Base Nazionale dal 01.07.2019, row 'III° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 34,79 + 81,18 + 34,79 + 40,59 + 40,59 + 46,39 (Art. 185 increments to 01/03/2027) = 1520.91",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2027-03-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1267,18 +1417,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 3S, columns 01/04/2023 to 01/05/2025",
+                "quote": "3S 180 37,50 87,50 37,50 43,75 43,75 50,00 300,00"
               },
+              "transformation": "1.339,29 (Paga Base Nazionale dal 01.07.2019, row 'III° Liv.Super', CNEL 100291 p. 3; unchanged until 31.03.2023) + 37,50 + 87,50 + 37,50 (Art. 185 increments to 01/05/2025) = 1501.79",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2025-05-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1290,18 +1446,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 3S, columns 01/04/2023 to 01/12/2025",
+                "quote": "3S 180 37,50 87,50 37,50 43,75 43,75 50,00 300,00"
               },
+              "transformation": "1.339,29 (Paga Base Nazionale dal 01.07.2019, row 'III° Liv.Super', CNEL 100291 p. 3; unchanged until 31.03.2023) + 37,50 + 87,50 + 37,50 + 43,75 (Art. 185 increments to 01/12/2025) = 1545.54",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2025-12-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1313,18 +1475,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 3S, columns 01/04/2023 to 01/11/2026",
+                "quote": "3S 180 37,50 87,50 37,50 43,75 43,75 50,00 300,00"
               },
+              "transformation": "1.339,29 (Paga Base Nazionale dal 01.07.2019, row 'III° Liv.Super', CNEL 100291 p. 3; unchanged until 31.03.2023) + 37,50 + 87,50 + 37,50 + 43,75 + 43,75 (Art. 185 increments to 01/11/2026) = 1589.29",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2026-11-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1336,18 +1504,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 3S, columns 01/04/2023 to 01/03/2027",
+                "quote": "3S 180 37,50 87,50 37,50 43,75 43,75 50,00 300,00"
               },
+              "transformation": "1.339,29 (Paga Base Nazionale dal 01.07.2019, row 'III° Liv.Super', CNEL 100291 p. 3; unchanged until 31.03.2023) + 37,50 + 87,50 + 37,50 + 43,75 + 43,75 + 50,00 (Art. 185 increments to 01/03/2027) = 1639.29",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2027-03-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1450,18 +1624,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 2, columns 01/04/2023 to 01/05/2025",
+                "quote": "2 202 42,08 98,19 42,08 49,10 49,10 56,11 336,67"
               },
+              "transformation": "1.502,98 (Paga Base Nazionale dal 01.07.2019, row 'II° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 42,08 + 98,19 + 42,08 (Art. 185 increments to 01/05/2025) = 1685.33",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2025-05-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1473,18 +1653,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 2, columns 01/04/2023 to 01/12/2025",
+                "quote": "2 202 42,08 98,19 42,08 49,10 49,10 56,11 336,67"
               },
+              "transformation": "1.502,98 (Paga Base Nazionale dal 01.07.2019, row 'II° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 42,08 + 98,19 + 42,08 + 49,10 (Art. 185 increments to 01/12/2025) = 1734.43",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2025-12-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1496,18 +1682,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 2, columns 01/04/2023 to 01/11/2026",
+                "quote": "2 202 42,08 98,19 42,08 49,10 49,10 56,11 336,67"
               },
+              "transformation": "1.502,98 (Paga Base Nazionale dal 01.07.2019, row 'II° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 42,08 + 98,19 + 42,08 + 49,10 + 49,10 (Art. 185 increments to 01/11/2026) = 1783.53",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2026-11-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1519,18 +1711,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 2, columns 01/04/2023 to 01/03/2027",
+                "quote": "2 202 42,08 98,19 42,08 49,10 49,10 56,11 336,67"
               },
+              "transformation": "1.502,98 (Paga Base Nazionale dal 01.07.2019, row 'II° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 42,08 + 98,19 + 42,08 + 49,10 + 49,10 + 56,11 (Art. 185 increments to 01/03/2027) = 1839.64",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2027-03-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1633,18 +1831,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 1, columns 01/04/2023 to 01/05/2025",
+                "quote": "1 232 48,33 112,78 48,33 56,39 56,39 64,44 386,67"
               },
+              "transformation": "1.726,20 (Paga Base Nazionale dal 01.07.2019, row 'I° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 48,33 + 112,78 + 48,33 (Art. 185 increments to 01/05/2025) = 1935.64",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2025-05-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1656,18 +1860,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 1, columns 01/04/2023 to 01/12/2025",
+                "quote": "1 232 48,33 112,78 48,33 56,39 56,39 64,44 386,67"
               },
+              "transformation": "1.726,20 (Paga Base Nazionale dal 01.07.2019, row 'I° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 48,33 + 112,78 + 48,33 + 56,39 (Art. 185 increments to 01/12/2025) = 1992.03",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2025-12-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1679,18 +1889,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 1, columns 01/04/2023 to 01/11/2026",
+                "quote": "1 232 48,33 112,78 48,33 56,39 56,39 64,44 386,67"
               },
+              "transformation": "1.726,20 (Paga Base Nazionale dal 01.07.2019, row 'I° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 48,33 + 112,78 + 48,33 + 56,39 + 56,39 (Art. 185 increments to 01/11/2026) = 2048.42",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2026-11-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1702,18 +1918,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row 1, columns 01/04/2023 to 01/03/2027",
+                "quote": "1 232 48,33 112,78 48,33 56,39 56,39 64,44 386,67"
               },
+              "transformation": "1.726,20 (Paga Base Nazionale dal 01.07.2019, row 'I° Livello', CNEL 100291 p. 3; unchanged until 31.03.2023) + 48,33 + 112,78 + 48,33 + 56,39 + 56,39 + 64,44 (Art. 185 increments to 01/03/2027) = 2112.86",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2027-03-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1817,18 +2039,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row quadro, columns 01/04/2023 to 01/05/2025",
+                "quote": "quadro 255 53,13 123,96 53,13 61,98 61,98 70,83 425,00"
               },
+              "transformation": "1.897,32 (Paga Base Nazionale dal 01.07.2019, row 'QUADRI', CNEL 100291 p. 3; unchanged until 31.03.2023) + 53,13 + 123,96 + 53,13 (Art. 185 increments to 01/05/2025) = 2127.54",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2025-05-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1840,18 +2068,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row quadro, columns 01/04/2023 to 01/12/2025",
+                "quote": "quadro 255 53,13 123,96 53,13 61,98 61,98 70,83 425,00"
               },
+              "transformation": "1.897,32 (Paga Base Nazionale dal 01.07.2019, row 'QUADRI', CNEL 100291 p. 3; unchanged until 31.03.2023) + 53,13 + 123,96 + 53,13 + 61,98 (Art. 185 increments to 01/12/2025) = 2189.52",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2025-12-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1863,18 +2097,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row quadro, columns 01/04/2023 to 01/11/2026",
+                "quote": "quadro 255 53,13 123,96 53,13 61,98 61,98 70,83 425,00"
               },
+              "transformation": "1.897,32 (Paga Base Nazionale dal 01.07.2019, row 'QUADRI', CNEL 100291 p. 3; unchanged until 31.03.2023) + 53,13 + 123,96 + 53,13 + 61,98 + 61,98 (Art. 185 increments to 01/11/2026) = 2251.50",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2026-11-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1886,18 +2126,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016"
+                  "document_id": "cnel-h016-183889-ipotesi-2024-03-29",
+                  "title": "Ipotesi di accordo 29 marzo 2024 di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, signed scan (CNEL H016, deposito 183889)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                  "published_on": "2024-04-02",
+                  "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "70",
+                "section": "Art. 185 'Aumenti retributivi minimi tabellari', row quadro, columns 01/04/2023 to 01/03/2027",
+                "quote": "quadro 255 53,13 123,96 53,13 61,98 61,98 70,83 425,00"
               },
+              "transformation": "1.897,32 (Paga Base Nazionale dal 01.07.2019, row 'QUADRI', CNEL 100291 p. 3; unchanged until 31.03.2023) + 53,13 + 123,96 + 53,13 + 61,98 + 61,98 + 70,83 (Art. 185 increments to 01/03/2027) = 2322.33",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:36Z",
+                "effective_from": "2027-03-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -2023,11 +2269,11 @@
     "version": "2026.2",
     "effective_from": "2025-05-01",
     "effective_until": null,
-    "source": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016",
+    "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
     "verification_status": "unverified",
-    "source_hash": "970300b907c5c0d11037309b3a8104e9e6ce4d2b39cea26b91216b24934a0bfb",
+    "source_hash": "4d24b9d841fc85a006956af4d06d426a99c3cb6d691c33cc46fc80135d640d91",
     "published_at": "2026-09-07",
-    "source_type": "commercial_secondary"
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
