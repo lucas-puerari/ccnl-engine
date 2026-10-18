@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 77 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 57 verified / 21 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 40 - Tredicesima e Quattordicesima mensilità (p. 96): "Nel caso di inizio o di cessazione del rapporto di lavoro durante l’anno o nel caso di assenza non retribuita, il lavoratore, non in prova, ha diritto a tanti dodicesimi dell’ammontare di tali mensilità quanti sono i mesi interi di servizio prestato, computando come mese intero la frazione di mese superiore a 15 giorni.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
+| 2026-10-18 | claude-opus-5-5 (ai) | The minimi contrattuali integrati of the 14 levels on the four tranches of the ipotesi di accordo of 11 February 2025 (1/4/2025, 1/4/2026, 1/4/2027, 1/10/2027), against the table printed in the signed text deposited at CNEL. | corrected | The signed ipotesi of 11 February 2025 (CNEL K051, deposito 216334, 44-page scan without text layer, read on the page image of PDF p. 37) prints the table 'Minimi contrattuali integrati' with the parameter, the increment and the minimo of the 14 levels QS-C1 on 1/4/2025, 1/4/2026, 1/4/2027 and 1/10/2027 ('Aumento medio a regime €290 su parametro medio 179,76 valore punto 29,80'). The table level labels are the file codes.<br>41 of the 56 file values match; 15 (all on 1/4/2027 or 1/10/2027) differ by one cent and are corrected to the printed table.<br>Art. 38 c. 1 (PDF p. 34) defines the monthly pay as the minimo contrattuale integrato (minimi tabellari conglobated with the ex indennità di contingenza from 1 April 2013) and c. 3 adds the EDR of EUR 10,33 separately: the file's base_salary (minimo) with the EDR as a fixed allowance matches.<br>The appendix table on PDF p. 42 (5 categories, 'Aumento medio a regime € 220 su parametro medio 134,19') belongs to the separate area contrattuale in the appendix and is not used.<br>The ruleset now names the CNEL deposit of the text signed by the contracting parties (Elettricità Futura, Utilitalia, Energia Libera, Enel, GSE, Terna, Sogin, Filctem-CGIL, Flaei-CISL, Uiltec-UIL): source_type contracting_party.<br>Corrected to the printed table: Q 2027-04-01: 3858.47 -> 3858.48; Q 2027-10-01: 3947.60 -> 3947.61; ASS 2027-04-01: 3405.74 -> 3405.73; ASS 2027-10-01: 3484.42 -> 3484.41; AS 2027-04-01: 3187.64 -> 3187.65; AS 2027-10-01: 3261.27 -> 3261.28; A1 2027-04-01: 2913.65 -> 2913.66; A1 2027-10-01: 2980.96 -> 2980.97; BSS 2027-04-01: 2774.62 -> 2774.63; BS 2027-04-01: 2656.36 -> 2656.35; BS 2027-10-01: 2717.73 -> 2717.72; B1 2027-04-01: 2417.48 -> 2417.49; B2S 2027-04-01: 2257.70 -> 2257.71; CS 2027-04-01: 1862.65 -> 1862.64; CS 2027-10-01: 1905.68 -> 1905.67. |
 
 ## Salary table
 
@@ -70,18 +71,18 @@ Latest effective values per level (monthly gross, EUR).
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
 | `QS` | Senior Quadro | € 4,399.12 | 2027-10-01 |
-| `Q` | Quadro | € 3,947.60 | 2027-10-01 |
-| `ASS` | Senior Senior Specialist Area | € 3,484.42 | 2027-10-01 |
-| `AS` | Senior Specialist Area | € 3,261.27 | 2027-10-01 |
+| `Q` | Quadro | € 3,947.61 | 2027-10-01 |
+| `ASS` | Senior Senior Specialist Area | € 3,484.41 | 2027-10-01 |
+| `AS` | Senior Specialist Area | € 3,261.28 | 2027-10-01 |
 | `A1S` | Area 1 Senior | € 3,124.14 | 2027-10-01 |
-| `A1` | Area 1 | € 2,980.96 | 2027-10-01 |
+| `A1` | Area 1 | € 2,980.97 | 2027-10-01 |
 | `BSS` | Area B Senior Senior | € 2,838.72 | 2027-10-01 |
-| `BS` | Area B Senior | € 2,717.73 | 2027-10-01 |
+| `BS` | Area B Senior | € 2,717.72 | 2027-10-01 |
 | `B1S` | Area B1 Senior | € 2,589.64 | 2027-10-01 |
 | `B1` | Area B1 | € 2,473.33 | 2027-10-01 |
 | `B2S` | Area B2 Senior | € 2,309.87 | 2027-10-01 |
 | `B2` | Area B2 | € 2,149.26 | 2027-10-01 |
-| `CS` | Area C Senior | € 1,905.68 | 2027-10-01 |
+| `CS` | Area C Senior | € 1,905.67 | 2027-10-01 |
 | `C1` | Area C1 | € 1,724.71 | 2027-10-01 |
 
 ## Seniority increments
