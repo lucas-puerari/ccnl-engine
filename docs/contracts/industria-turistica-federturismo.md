@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 46 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 36 verified / 10 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -49,12 +49,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-01-01 |
-| **Last review** | — |
+| **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2027-04-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-18 | claude-opus-5-5 (ai) | The paga base nazionale conglobata (art. 110) of the nine levels against the Federturismo circular of 16 January 2025 that prints the tables agreed in the renewal of 21 December 2024. | corrected | Federturismo Confindustria, a signatory, prints in its circular of 16 January 2025 the paga base nazionale conglobata of art. 110 'condivise' by the parties for 01/01/2025, 01/06/2025, 01/05/2026 and 01/04/2027 (PDF pp. 1-2, rows A1-D1 on p. 1, D2 on p. 2): the 36 minimi of the file are checked against the general table, not the separate tables of the imprese di viaggi e turismo e congressi (different tranches) or the aziende alberghiere minori (art. 178).<br>The file's values were derived parametrically from A1 and D2 (an aggregator); 11 of them differ by one cent from the printed table and are corrected.<br>The ruleset names this source, published by Federturismo Confindustria, a signatory: source_type contracting_party.<br>Corrected to the printed table: A2 2025-01-01: 2164.27 -> 2164.26; A2 2027-04-01: 2315.87 -> 2315.88; B1 2025-01-01: 2016.87 -> 2016.88; B1 2027-04-01: 2158.18 -> 2158.17; C1 2025-06-01: 1771.22 -> 1771.21; C1 2027-04-01: 1861.27 -> 1861.28; C3 2025-01-01: 1540.03 -> 1540.02; C3 2025-06-01: 1568.17 -> 1568.16; C3 2027-04-01: 1647.90 -> 1647.91; D1 2025-01-01: 1481.04 -> 1481.05; D1 2027-04-01: 1584.79 -> 1584.80. |
 
 ## Salary table
 
@@ -63,13 +65,13 @@ Latest effective values per level (monthly gross, EUR).
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
 | `A1` | Livello A1 | € 2,500.91 | 2027-04-01 |
-| `A2` | Livello A2 | € 2,315.87 | 2027-04-01 |
-| `B1` | Livello B1 | € 2,158.18 | 2027-04-01 |
+| `A2` | Livello A2 | € 2,315.88 | 2027-04-01 |
+| `B1` | Livello B1 | € 2,158.17 | 2027-04-01 |
 | `B2` | Livello B2 | € 1,973.12 | 2027-04-01 |
-| `C1` | Livello C1 | € 1,861.27 | 2027-04-01 |
+| `C1` | Livello C1 | € 1,861.28 | 2027-04-01 |
 | `C2` | Livello C2 | € 1,756.59 | 2027-04-01 |
-| `C3` | Livello C3 | € 1,647.90 | 2027-04-01 |
-| `D1` | Livello D1 | € 1,584.79 | 2027-04-01 |
+| `C3` | Livello C3 | € 1,647.91 | 2027-04-01 |
+| `D1` | Livello D1 | € 1,584.80 | 2027-04-01 |
 | `D2` | Livello D2 | € 1,464.57 | 2027-04-01 |
 
 ## Seniority increments

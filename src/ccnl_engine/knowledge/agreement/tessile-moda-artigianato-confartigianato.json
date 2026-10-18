@@ -175,6 +175,42 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-tables",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "base_salary of levels 1-6 and 6S, all four tranches (2024-07-01, 2025-01-01, 2025-10-01, 2026-10-01), against the Settore tessile abbigliamento table of the Verbale integrativo of 22 July 2024 published by Filctem CGIL (signatory).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+            "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+          },
+          {
+            "url": "https://www.cna.it/wp-content/uploads/2021/01/CCNL-Area-Tessile-Moda-Chimica-Ceramica.pdf",
+            "sha256": "27240326b23f4e0ca597de9bb3029e83bf057d8ed3ef1183090c76bcbd712800"
+          },
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240716_ARTIGIANI_Ipotesi%20Accordo%20CCNL%20Area%20Tessile-Moda-Chimica-Ceramica.pdf",
+            "sha256": "50f37650d8e6cce0a26461bdf96cf75a041a0855e7c1e3c1fa5d17c9122dc998"
+          }
+        ],
+        "findings": [
+          "Levels 1-6: all 24 periods match the 'Nuovi minimi contrattuali' table of the Settore tessile abbigliamento (Verbale integrativo 22 July 2024, p. 2, scanned PDF read by OCR and visual check) except level 5 from 2026-10-01: the table prints 1.813,56 (1.751,06 + the printed increment 62,50), the file had 1813.50.",
+          "Level 6S: the file stores the printed 6s minimo plus the quadri indennità di funzione of EUR 20,66 (art. 119 CCNL 14 Dec 2017; 6° super = quadri per art. 29). All four periods equal printed minimo + 20.66 and are recorded as derived on the CCNL text; the indennità is not repeated in the 2024 renewal and is assumed unchanged.",
+          "The minimi are conglobated tabellare amounts (single 'Retribuzione tabellare' column, no separate contingenza or EDR), consistent with the file's conglobated model.",
+          "The file models only the Settore tessile abbigliamento table. The same verbale prints distinct tables for calzaturiero (from 2026-10-01 and for level 6/6s already from 2024), lavorazioni a mano e su misura, pulitintolavanderie, occhialeria, chimica-concia-gomma-plastica-vetro and ceramica; those are not modelled.",
+          "Corrected to the printed table: 5 2026-10-01: 1813.50 -> 1813.56."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -341,22 +377,31 @@
             "valid_until": "2025-01-01",
             "value": "1323.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "1 | 1.298,05 | 1.323,50 | 1.359,87 | 1.404,41 | 1.454,41"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           },
           {
@@ -364,22 +409,31 @@
             "valid_until": "2025-10-01",
             "value": "1359.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "1 | 1.298,05 | 1.323,50 | 1.359,87 | 1.404,41 | 1.454,41"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           },
           {
@@ -387,22 +441,31 @@
             "valid_until": "2026-10-01",
             "value": "1404.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "1 | 1.298,05 | 1.323,50 | 1.359,87 | 1.404,41 | 1.454,41"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2025-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           },
           {
@@ -410,22 +473,31 @@
             "valid_until": null,
             "value": "1454.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "1 | 1.298,05 | 1.323,50 | 1.359,87 | 1.404,41 | 1.454,41"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           }
         ]
@@ -462,22 +534,31 @@
             "valid_until": "2025-01-01",
             "value": "1399.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "2 | 1.372,64 | 1.399,62 | 1.438,17 | 1.485,39 | 1.538,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           },
           {
@@ -485,22 +566,31 @@
             "valid_until": "2025-10-01",
             "value": "1438.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "2 | 1.372,64 | 1.399,62 | 1.438,17 | 1.485,39 | 1.538,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           },
           {
@@ -508,22 +598,31 @@
             "valid_until": "2026-10-01",
             "value": "1485.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "2 | 1.372,64 | 1.399,62 | 1.438,17 | 1.485,39 | 1.538,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2025-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           },
           {
@@ -531,22 +630,31 @@
             "valid_until": null,
             "value": "1538.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "2 | 1.372,64 | 1.399,62 | 1.438,17 | 1.485,39 | 1.538,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           }
         ]
@@ -583,22 +691,31 @@
             "valid_until": "2025-01-01",
             "value": "1462.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "3 | 1.434,03 | 1.462,03 | 1.502,03 | 1.551,03 | 1.606,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           },
           {
@@ -606,22 +723,31 @@
             "valid_until": "2025-10-01",
             "value": "1502.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "3 | 1.434,03 | 1.462,03 | 1.502,03 | 1.551,03 | 1.606,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           },
           {
@@ -629,22 +755,31 @@
             "valid_until": "2026-10-01",
             "value": "1551.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "3 | 1.434,03 | 1.462,03 | 1.502,03 | 1.551,03 | 1.606,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2025-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           },
           {
@@ -652,22 +787,31 @@
             "valid_until": null,
             "value": "1606.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "3 | 1.434,03 | 1.462,03 | 1.502,03 | 1.551,03 | 1.606,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           }
         ]
@@ -704,22 +848,31 @@
             "valid_until": "2025-01-01",
             "value": "1524.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "4 | 1.495,60 | 1.524,87 | 1.566,69 | 1.617,92 | 1.675,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           },
           {
@@ -727,22 +880,31 @@
             "valid_until": "2025-10-01",
             "value": "1566.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "4 | 1.495,60 | 1.524,87 | 1.566,69 | 1.617,92 | 1.675,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           },
           {
@@ -750,22 +912,31 @@
             "valid_until": "2026-10-01",
             "value": "1617.92",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "4 | 1.495,60 | 1.524,87 | 1.566,69 | 1.617,92 | 1.675,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2025-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           },
           {
@@ -773,22 +944,31 @@
             "valid_until": null,
             "value": "1675.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "4 | 1.495,60 | 1.524,87 | 1.566,69 | 1.617,92 | 1.675,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           }
         ]
@@ -825,22 +1005,31 @@
             "valid_until": "2025-01-01",
             "value": "1649.93",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "5 | 1.618,11 | 1.649,93 | 1.695,38 | 1.751,06 | 1.813,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           },
           {
@@ -848,22 +1037,31 @@
             "valid_until": "2025-10-01",
             "value": "1695.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "5 | 1.618,11 | 1.649,93 | 1.695,38 | 1.751,06 | 1.813,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           },
           {
@@ -871,45 +1069,63 @@
             "valid_until": "2026-10-01",
             "value": "1751.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "5 | 1.618,11 | 1.649,93 | 1.695,38 | 1.751,06 | 1.813,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2025-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           },
           {
             "valid_from": "2026-10-01",
             "valid_until": null,
-            "value": "1813.50",
+            "value": "1813.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "5 | 1.618,11 | 1.649,93 | 1.695,38 | 1.751,06 | 1.813,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           }
         ]
@@ -946,22 +1162,31 @@
             "valid_until": "2025-01-01",
             "value": "1800.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "6 | 1.765,50 | 1.800,12 | 1.849,57 | 1.910,15 | 1.978,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           },
           {
@@ -969,22 +1194,31 @@
             "valid_until": "2025-10-01",
             "value": "1849.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "6 | 1.765,50 | 1.800,12 | 1.849,57 | 1.910,15 | 1.978,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           },
           {
@@ -992,22 +1226,31 @@
             "valid_until": "2026-10-01",
             "value": "1910.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "6 | 1.765,50 | 1.800,12 | 1.849,57 | 1.910,15 | 1.978,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2025-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           },
           {
@@ -1015,22 +1258,31 @@
             "valid_until": null,
             "value": "1978.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Tabelle retributive, Settore tessile abbigliamento, Nuovi minimi contrattuali",
+                "quote": "6 | 1.765,50 | 1.800,12 | 1.849,57 | 1.910,15 | 1.978,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:46Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Table read from the Verbale integrativo of the Ipotesi di accordo (22 July 2024) signed by all employer associations and Filctem CGIL, Femca CISL, Uiltec UIL; scanned PDF, values read by OCR and checked visually on the page image."
             }
           }
         ]
@@ -1070,18 +1322,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-2017-12-14",
+                  "title": "CCNL Area Tessile-Moda, Chimica-Ceramica per i dipendenti delle aziende artigiane (14 dicembre 2017), testo CNA",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2021/01/CCNL-Area-Tessile-Moda-Chimica-Ceramica.pdf",
+                  "published_on": "2017-12-14",
+                  "sha256": "27240326b23f4e0ca597de9bb3029e83bf057d8ed3ef1183090c76bcbd712800"
                 },
-                "section": "Tabella retributiva"
+                "page": "115",
+                "section": "Art. 119 Normativa quadri (Settore Tessile, Abbigliamento, Calzaturiero)",
+                "quote": "al personale con qualifica di quadro sarà riconosciuta una indennità di funzione di Euro 20,66"
               },
+              "transformation": "Minimo tabellare of level 6s printed in the Verbale integrativo of 22 July 2024 (p. 2, Settore tessile abbigliamento, Nuovi minimi contrattuali: '6s | 1.885,68 | 1.922,59 | 1.975,32 | 2.039,91 | 2.112,41', column from 2024-07-01) = 1.922,59, plus the quadri indennità di funzione of EUR 20,66 (art. 119; level 6° super = quadri per art. 29): 1922.59 + 20.66 = 1943.25.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1093,18 +1351,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-2017-12-14",
+                  "title": "CCNL Area Tessile-Moda, Chimica-Ceramica per i dipendenti delle aziende artigiane (14 dicembre 2017), testo CNA",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2021/01/CCNL-Area-Tessile-Moda-Chimica-Ceramica.pdf",
+                  "published_on": "2017-12-14",
+                  "sha256": "27240326b23f4e0ca597de9bb3029e83bf057d8ed3ef1183090c76bcbd712800"
                 },
-                "section": "Tabella retributiva"
+                "page": "115",
+                "section": "Art. 119 Normativa quadri (Settore Tessile, Abbigliamento, Calzaturiero)",
+                "quote": "al personale con qualifica di quadro sarà riconosciuta una indennità di funzione di Euro 20,66"
               },
+              "transformation": "Minimo tabellare of level 6s printed in the Verbale integrativo of 22 July 2024 (p. 2, Settore tessile abbigliamento, Nuovi minimi contrattuali: '6s | 1.885,68 | 1.922,59 | 1.975,32 | 2.039,91 | 2.112,41', column from 2025-01-01) = 1.975,32, plus the quadri indennità di funzione of EUR 20,66 (art. 119; level 6° super = quadri per art. 29): 1975.32 + 20.66 = 1995.98.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1116,18 +1380,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-2017-12-14",
+                  "title": "CCNL Area Tessile-Moda, Chimica-Ceramica per i dipendenti delle aziende artigiane (14 dicembre 2017), testo CNA",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2021/01/CCNL-Area-Tessile-Moda-Chimica-Ceramica.pdf",
+                  "published_on": "2017-12-14",
+                  "sha256": "27240326b23f4e0ca597de9bb3029e83bf057d8ed3ef1183090c76bcbd712800"
                 },
-                "section": "Tabella retributiva"
+                "page": "115",
+                "section": "Art. 119 Normativa quadri (Settore Tessile, Abbigliamento, Calzaturiero)",
+                "quote": "al personale con qualifica di quadro sarà riconosciuta una indennità di funzione di Euro 20,66"
               },
+              "transformation": "Minimo tabellare of level 6s printed in the Verbale integrativo of 22 July 2024 (p. 2, Settore tessile abbigliamento, Nuovi minimi contrattuali: '6s | 1.885,68 | 1.922,59 | 1.975,32 | 2.039,91 | 2.112,41', column from 2025-10-01) = 2.039,91, plus the quadri indennità di funzione of EUR 20,66 (art. 119; level 6° super = quadri per art. 29): 2039.91 + 20.66 = 2060.57.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2025-10-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1139,18 +1409,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-abbigliamento-artigianato",
-                  "title": "tessile-abbigliamento-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-2017-12-14",
+                  "title": "CCNL Area Tessile-Moda, Chimica-Ceramica per i dipendenti delle aziende artigiane (14 dicembre 2017), testo CNA",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2021/01/CCNL-Area-Tessile-Moda-Chimica-Ceramica.pdf",
+                  "published_on": "2017-12-14",
+                  "sha256": "27240326b23f4e0ca597de9bb3029e83bf057d8ed3ef1183090c76bcbd712800"
                 },
-                "section": "Tabella retributiva"
+                "page": "115",
+                "section": "Art. 119 Normativa quadri (Settore Tessile, Abbigliamento, Calzaturiero)",
+                "quote": "al personale con qualifica di quadro sarà riconosciuta una indennità di funzione di Euro 20,66"
               },
+              "transformation": "Minimo tabellare of level 6s printed in the Verbale integrativo of 22 July 2024 (p. 2, Settore tessile abbigliamento, Nuovi minimi contrattuali: '6s | 1.885,68 | 1.922,59 | 1.975,32 | 2.039,91 | 2.112,41', column from 2026-10-01) = 2.112,41, plus the quadri indennità di funzione of EUR 20,66 (art. 119; level 6° super = quadri per art. 29): 2112.41 + 20.66 = 2133.07.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:46Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1290,11 +1566,11 @@
     "version": "2026.2",
     "effective_from": "2024-07-01",
     "effective_until": null,
-    "source": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato",
+    "source": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
     "verification_status": "unverified",
-    "source_hash": "e92acce7e545f663aad6b5be3ee15d1297f6c84e5eb2e5e88ea5a1a7ed4814a8",
+    "source_hash": "97bf9fed97d20ae3aac0ffec0dfa107d49b09dbda724a2d2fa774f81229fdf76",
     "published_at": "2026-09-07",
-    "source_type": "commercial_secondary"
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

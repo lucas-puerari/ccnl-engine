@@ -143,6 +143,25 @@
         "findings": [
           "Art. 70 - Tredicesima e quattordicesima mensilità (p. 119): \"il lavoratore ha diritto a tanti dodicesimi dell'ammontare della tredicesima e/o della quattordicesima mensilità, quanti sono i mesi interi di servizio prestati presso l’azienda nei 12 mesi antecedenti quello di erogazione. La frazione di mese superiore a quindici giorni va considerata a questi effetti come mese intero.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
         ]
+      },
+      {
+        "id": "2026-10-18-ai-tables",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The base salaries (minimi contrattuali mensili) of all 16 posizioni retributive for the tranches from 1.6.2025, 1.11.2025 and 1.6.2026 against the pay table of the CCNL text of 22 May 2025 published by ORSA Ferrovie, a signatory union.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+            "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
+          }
+        ],
+        "findings": [
+          "Art. 68 punto 3 (PDF p. 117, printed p. 116) prints the minimi contrattuali mensili of the 16 posizioni retributive Q1-F2 in three columns (dal 1°.6.2025, dal 1°.11.2025, dal 1°.6.2026); all 48 file values match the printed table.",
+          "Art. 68 punto 3.1: \"Gli importi dei minimi contrattuali di cui sopra sono comprensivi dell'ex indennità di contingenza (...) nonché dell'E.D.R. di cui al Protocollo Interconfederale del 31 luglio 1992 e dell'E.D.R. di cui all'accordo nazionale del 24.1.2008.\" This confirms the conglobated base_salary model of the file.",
+          "The indennità di funzione Quadri (art. 71) is a separate element of pay (art. 68 punto 1.2 c), so the file's Q1/Q2 base_salary correctly excludes it."
+        ]
       }
     ]
   },
@@ -383,21 +402,29 @@
             "valid_until": "2025-11-01",
             "value": "1548.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2025",
+                "quote": "F2 1.548,29 1.594,81 1.633,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -406,21 +433,29 @@
             "valid_until": "2026-06-01",
             "value": "1594.81",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.11.2025",
+                "quote": "F2 1.548,29 1.594,81 1.633,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -429,21 +464,29 @@
             "valid_until": null,
             "value": "1633.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2026",
+                "quote": "F2 1.548,29 1.594,81 1.633,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -481,21 +524,29 @@
             "valid_until": "2025-11-01",
             "value": "1579.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2025",
+                "quote": "F1 1.579,25 1.626,70 1.666,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -504,21 +555,29 @@
             "valid_until": "2026-06-01",
             "value": "1626.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.11.2025",
+                "quote": "F1 1.579,25 1.626,70 1.666,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -527,21 +586,29 @@
             "valid_until": null,
             "value": "1666.23",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2026",
+                "quote": "F1 1.579,25 1.626,70 1.666,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -579,21 +646,29 @@
             "valid_until": "2025-11-01",
             "value": "1703.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2025",
+                "quote": "E3 1.703,12 1.754,29 1.796,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -602,21 +677,29 @@
             "valid_until": "2026-06-01",
             "value": "1754.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.11.2025",
+                "quote": "E3 1.703,12 1.754,29 1.796,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -625,21 +708,29 @@
             "valid_until": null,
             "value": "1796.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2026",
+                "quote": "E3 1.703,12 1.754,29 1.796,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -677,21 +768,29 @@
             "valid_until": "2025-11-01",
             "value": "1734.10",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2025",
+                "quote": "Operatori E2 1.734,10 1.786,18 1.829,60"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -700,21 +799,29 @@
             "valid_until": "2026-06-01",
             "value": "1786.18",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.11.2025",
+                "quote": "Operatori E2 1.734,10 1.786,18 1.829,60"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -723,21 +830,29 @@
             "valid_until": null,
             "value": "1829.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2026",
+                "quote": "Operatori E2 1.734,10 1.786,18 1.829,60"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -775,21 +890,29 @@
             "valid_until": "2025-11-01",
             "value": "1811.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2025",
+                "quote": "E1 1.811,50 1.865,92 1.911,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -798,21 +921,29 @@
             "valid_until": "2026-06-01",
             "value": "1865.92",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.11.2025",
+                "quote": "E1 1.811,50 1.865,92 1.911,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -821,21 +952,29 @@
             "valid_until": null,
             "value": "1911.26",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2026",
+                "quote": "E1 1.811,50 1.865,92 1.911,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -873,21 +1012,29 @@
             "valid_until": "2025-11-01",
             "value": "1842.47",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2025",
+                "quote": "D3 1.842,47 1.897,82 1.943,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -896,21 +1043,29 @@
             "valid_until": "2026-06-01",
             "value": "1897.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.11.2025",
+                "quote": "D3 1.842,47 1.897,82 1.943,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -919,21 +1074,29 @@
             "valid_until": null,
             "value": "1943.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2026",
+                "quote": "D3 1.842,47 1.897,82 1.943,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -971,21 +1134,29 @@
             "valid_until": "2025-11-01",
             "value": "1873.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2025",
+                "quote": "Operatori Specializzati D2 1.873,44 1.929,72 1.976,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -994,21 +1165,29 @@
             "valid_until": "2026-06-01",
             "value": "1929.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.11.2025",
+                "quote": "Operatori Specializzati D2 1.873,44 1.929,72 1.976,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1017,21 +1196,29 @@
             "valid_until": null,
             "value": "1976.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2026",
+                "quote": "Operatori Specializzati D2 1.873,44 1.929,72 1.976,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -1069,21 +1256,29 @@
             "valid_until": "2025-11-01",
             "value": "1935.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2025",
+                "quote": "D1 1.935,36 1.993,51 2.041,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1092,21 +1287,29 @@
             "valid_until": "2026-06-01",
             "value": "1993.51",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.11.2025",
+                "quote": "D1 1.935,36 1.993,51 2.041,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1115,21 +1318,29 @@
             "valid_until": null,
             "value": "2041.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2026",
+                "quote": "D1 1.935,36 1.993,51 2.041,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -1167,21 +1378,29 @@
             "valid_until": "2025-11-01",
             "value": "1966.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2025",
+                "quote": "C2 1.966,33 2.025,40 2.074,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1190,21 +1409,29 @@
             "valid_until": "2026-06-01",
             "value": "2025.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.11.2025",
+                "quote": "C2 1.966,33 2.025,40 2.074,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1213,21 +1440,29 @@
             "valid_until": null,
             "value": "2074.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2026",
+                "quote": "C2 1.966,33 2.025,40 2.074,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -1265,21 +1500,29 @@
             "valid_until": "2025-11-01",
             "value": "1997.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2025",
+                "quote": "C1 1.997,30 2.057,30 2.107,30"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1288,21 +1531,29 @@
             "valid_until": "2026-06-01",
             "value": "2057.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.11.2025",
+                "quote": "C1 1.997,30 2.057,30 2.107,30"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1311,21 +1562,29 @@
             "valid_until": null,
             "value": "2107.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2026",
+                "quote": "C1 1.997,30 2.057,30 2.107,30"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -1363,21 +1622,29 @@
             "valid_until": "2025-11-01",
             "value": "2043.75",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2025",
+                "quote": "B3 2.043,75 2.105,14 2.156,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1386,21 +1653,29 @@
             "valid_until": "2026-06-01",
             "value": "2105.14",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.11.2025",
+                "quote": "B3 2.043,75 2.105,14 2.156,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1409,21 +1684,29 @@
             "valid_until": null,
             "value": "2156.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2026",
+                "quote": "B3 2.043,75 2.105,14 2.156,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -1461,21 +1744,29 @@
             "valid_until": "2025-11-01",
             "value": "2074.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2025",
+                "quote": "Tecnici Specializzati B2 2.074,71 2.137,04 2.188,97"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1484,21 +1775,29 @@
             "valid_until": "2026-06-01",
             "value": "2137.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.11.2025",
+                "quote": "Tecnici Specializzati B2 2.074,71 2.137,04 2.188,97"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1507,21 +1806,29 @@
             "valid_until": null,
             "value": "2188.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2026",
+                "quote": "Tecnici Specializzati B2 2.074,71 2.137,04 2.188,97"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -1559,21 +1866,29 @@
             "valid_until": "2025-11-01",
             "value": "2167.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2025",
+                "quote": "B1 2.167,61 2.232,73 2.286,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1582,21 +1897,29 @@
             "valid_until": "2026-06-01",
             "value": "2232.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.11.2025",
+                "quote": "B1 2.167,61 2.232,73 2.286,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1605,21 +1928,29 @@
             "valid_until": null,
             "value": "2286.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2026",
+                "quote": "B1 2.167,61 2.232,73 2.286,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -1657,21 +1988,29 @@
             "valid_until": "2025-11-01",
             "value": "2275.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2025",
+                "quote": "Direttivi A 2.275,99 2.344,37 2.401,34"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1680,21 +2019,29 @@
             "valid_until": "2026-06-01",
             "value": "2344.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.11.2025",
+                "quote": "Direttivi A 2.275,99 2.344,37 2.401,34"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1703,21 +2050,29 @@
             "valid_until": null,
             "value": "2401.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2026",
+                "quote": "Direttivi A 2.275,99 2.344,37 2.401,34"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -1755,21 +2110,29 @@
             "valid_until": "2025-11-01",
             "value": "2353.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2025",
+                "quote": "Q2 2.353,41 2.424,11 2.483,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1778,21 +2141,29 @@
             "valid_until": "2026-06-01",
             "value": "2424.11",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.11.2025",
+                "quote": "Q2 2.353,41 2.424,11 2.483,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1801,21 +2172,29 @@
             "valid_until": null,
             "value": "2483.02",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2026",
+                "quote": "Q2 2.353,41 2.424,11 2.483,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -1885,21 +2264,29 @@
             "valid_until": "2025-11-01",
             "value": "2678.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2025",
+                "quote": "Q1 2.678,55 2.759,01 2.826,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1908,21 +2295,29 @@
             "valid_until": "2026-06-01",
             "value": "2759.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.11.2025",
+                "quote": "Q1 2.678,55 2.759,01 2.826,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2025-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1931,21 +2326,29 @@
             "valid_until": null,
             "value": "2826.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+                  "document_id": "ccnl-mobilita-area-af-2025-05-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (testo pubblicato da ORSA Ferrovie)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+                  "published_on": "2025-05-22",
+                  "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
                 },
-                "section": "Tabella retributiva"
+                "page": "117",
+                "section": "Parte V, Art. 68 (Retribuzione), punto 3 - Minimi contrattuali, colonna dal 1°.6.2026",
+                "quote": "Q1 2.678,55 2.759,01 2.826,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:37:31Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:37:31Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -2011,11 +2414,11 @@
     "version": "2026.2",
     "effective_from": "2024-01-01",
     "effective_until": "2026-12-31",
-    "source": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive",
+    "source": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "5ed3c76940ef1958c68f5659c1e1b9aaa5c0924038d69a1f664b55d5a723ee03",
+    "source_hash": "07e28fd19f5cd5a3bdd353019e323c84776005a59911b61f47e64c2f75f1413e",
     "published_at": "2026-09-07",
-    "source_type": "commercial_secondary"
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
