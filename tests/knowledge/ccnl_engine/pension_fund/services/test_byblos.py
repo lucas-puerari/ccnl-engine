@@ -97,7 +97,7 @@ def test_overtime_stays_out_of_the_base() -> None:
 
 
 def test_thirteenth_bears_the_contribution() -> None:
-    """The normale retribuzione annua holds the 13ma: 29.40 employer."""
+    """The normale retribuzione annua holds the 13ma: 29.70 employer."""
     year = ENGINE.calculate_competence_year(
         CompetenceYearPlan(
             year=2026,
@@ -111,4 +111,4 @@ def test_thirteenth_bears_the_contribution() -> None:
         for r in year.period_results
         if r.run is not None and r.run.run_kind == "thirteenth"
     ]
-    assert _entry(thirteenth, "pension_fund_employer") == Decimal("29.40")
+    assert _entry(thirteenth, "pension_fund_employer") == Decimal("29.70")
