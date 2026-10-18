@@ -51,7 +51,7 @@ def period_request(
         opening = PeriodState.zero()
     ct = contract_type if contract_type is not None else Permanent()
     return PeriodCalculationRequest(
-        employer=EmployerProfile(headcount=Headcount(50)),
+        employer=EmployerProfile(headcount=Headcount(50), second_level_bargaining=True),
         period_id=PeriodId(year=YEAR, month=month),
         payment_date=date(YEAR, month, 28),
         ccnl_slug=ccnl,

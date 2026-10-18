@@ -116,6 +116,8 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "cigs_indotto": "EmployerProfile.cigs_indotto",
     "provincial_pay_element": "EmployerProfile.provincial_pay_element",
     "inps_sector": "EmployerProfile.inps_sector",
+    "second_level_bargaining": "EmployerProfile.second_level_bargaining",
+    "pay_above_ccnl": "PriorYearTaxFacts.pay_above_ccnl",
     "full_time_weekly_hours": "Employment.full_time_weekly_hours",
     "naspi_exclusion": "FixedTerm.naspi_exclusion",
     "no_pay_due": "AbsenceEvent.no_pay_due",

@@ -96,6 +96,7 @@
   "reliability.omission.residence": "Residenza: senza regione e comune le addizionali IRPEF non sono determinate.",
   "reliability.omission.family": "Familiari a carico: non sono applicate detrazioni per familiari.",
   "reliability.omission.provincial": "Elemento retributivo provinciale: non incluso.",
+  "reliability.omission.perequativo": "Elemento perequativo: senza la contrattazione di secondo livello dell'azienda e la retribuzione oltre il CCNL dell'anno precedente non è incluso.",
   "reliability.omission.contribution_history": "Prima iscrizione all'INPS: serve oltre il massimale contributivo.",
   "reliability.omission.other_income": "Altri redditi dell'anno: l'IRPEF considera solo questo rapporto di lavoro.",
   "trace.title": "Calcolo",

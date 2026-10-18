@@ -30,6 +30,7 @@ __all__ = [
     "OneOffEarning",
     "OvertimeEarning",
     "PayItem",
+    "PerequativoElementEarning",
     "ProductivityBonusEarning",
     "PublicTfrReduction",
     "RaccordoElementEarning",
@@ -130,6 +131,12 @@ class RaccordoElementEarning(_PayItemBase):
     """Elemento di Raccordo Contrattuale paid with the tredicesima."""
 
     kind: Literal["raccordo_element_earning"] = "raccordo_element_earning"
+
+
+class PerequativoElementEarning(_PayItemBase):
+    """Elemento perequativo paid where no second-level bargaining exists."""
+
+    kind: Literal["perequativo_element_earning"] = "perequativo_element_earning"
 
 
 class HourlyPercentageEarning(_PayItemBase):
@@ -292,6 +299,7 @@ PayItem = Annotated[
     | OneOffEarning
     | ExtraMonthEarning
     | RaccordoElementEarning
+    | PerequativoElementEarning
     | HourlyPercentageEarning
     | PublicTfrReduction
     | FringeBenefitItem

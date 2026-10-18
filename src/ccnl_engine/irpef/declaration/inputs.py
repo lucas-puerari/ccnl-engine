@@ -64,10 +64,19 @@ class PriorYearTaxFacts:
             year, one entry per State, credited at the conguaglio (art. 165
             TUIR, art. 23 c. 3 DPR 600/1973).  A list is accepted and
             stored as a tuple.
+        pay_above_ccnl: Pay above the amounts the CCNL fixes the worker
+            received in the year before the year paid, in EUR, ``>= 0``:
+            the elemento perequativo of the CCNL Metalmeccanico
+            Federmeccanica (art. 13, Sez. Quarta, Titolo IV) is lowered by
+            it.  The caller decides what it counts (superminimi, premi
+            annui, una tantum and any other pay subject to contributions
+            beyond the CCNL); zero when the worker received only the pay
+            of the CCNL.  ``None`` means not known: a run that pays the
+            element leaves it out with an incomplete issue.
 
     Raises:
-        InvalidInputError: When ``employment_income`` is not a finite,
-            non-negative ``Decimal``, a waiver names no regime,
+        InvalidInputError: When ``employment_income`` or ``pay_above_ccnl``
+            is not a finite, non-negative ``Decimal``, a waiver names no regime,
             ``shortfall_deferral`` is not a request, or two foreign taxes
             name the same State.
     """
@@ -76,16 +85,18 @@ class PriorYearTaxFacts:
     waived_regimes: frozenset[SubstituteTaxRegime] = frozenset()
     shortfall_deferral: ShortfallDeferralRequest | None = None
     foreign_taxes: tuple[ForeignTaxPaid, ...] = ()
+    pay_above_ccnl: Decimal | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         owner = "PriorYearTaxFacts"
-        require_decimal(
-            self.employment_income,
-            f"{owner}.employment_income",
-            feature=_FEATURE,
-            minimum=Decimal(0),
-            optional=True,
-        )
+        for name in ("employment_income", "pay_above_ccnl"):
+            require_decimal(
+                getattr(self, name),
+                f"{owner}.{name}",
+                feature=_FEATURE,
+                minimum=Decimal(0),
+                optional=True,
+            )
         waived = frozenset_of(
             self.waived_regimes, f"{owner}.waived_regimes", _regime, feature=_FEATURE
         )

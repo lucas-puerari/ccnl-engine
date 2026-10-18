@@ -49,7 +49,11 @@ PA_FUNZIONI_CENTRALI = "funzioni-centrali-aran.json"
 _SUBSTITUTE_TAX = "substitute_tax"
 
 #: Employer of 50 employees, the headcount the scenarios assume.
-EMPLOYER = EmployerProfile(provincial_pay_element=False, headcount=Headcount(50))
+EMPLOYER = EmployerProfile(
+    provincial_pay_element=False,
+    second_level_bargaining=True,
+    headcount=Headcount(50),
+)
 
 
 def regular_period(

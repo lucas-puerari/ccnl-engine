@@ -46,7 +46,9 @@ from tests.knowledge.ccnl_engine.balance.builders import (
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 _ENGINE = PayrollEngine.bundled()
-_EMPLOYER = EmployerProfile(provincial_pay_element=False, headcount=Headcount(50))
+_EMPLOYER = EmployerProfile(
+    provincial_pay_element=False, second_level_bargaining=True, headcount=Headcount(50)
+)
 _METALMECCANICO = "metalmeccanico-federmeccanica.json"
 _POSTAL_FISE = "servizi-postali-appalto-fise.json"
 _MILAN_NO_DEPENDANT = PeriodFacts(

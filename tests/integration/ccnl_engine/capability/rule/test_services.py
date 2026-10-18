@@ -59,6 +59,7 @@ def _ctx(
             contract_type=contract or Permanent(),
             regione=regione,
             comune_belfiore=comune,
+            employer=SimpleNamespace(second_level_bargaining=True),
         ),
         accrual=None,
         settlements=(),

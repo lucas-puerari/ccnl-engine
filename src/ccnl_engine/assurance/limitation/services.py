@@ -15,6 +15,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.assurance.ruleset.services import provisional_paths
 from ccnl_engine.capability.results import CapabilityScope
+from ccnl_engine.compensation.perequativo.services import perequativo_paths
 from ccnl_engine.contribution.enam.services import enam_paths
 from ccnl_engine.contribution.minimum_base.services import (
     minimum_base_paths,
@@ -90,6 +91,7 @@ def run_limitations(
         | provisional_paths(ctx)
         | tfr_compensation_paths(ctx)
         | minimum_base_paths(ctx)
+        | perequativo_paths(ctx)
     )
     facts = limitation_facts(ctx, report, traversed)
     candidates = (*ctx.repo.load_engine_limitations(), *ctx.contract.ccnl.limitations)

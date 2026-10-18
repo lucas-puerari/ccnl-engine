@@ -64,6 +64,7 @@ KIND_CAPABILITIES: dict[str, frozenset[str]] = {
     "fixed_allowance_earning": frozenset({"base_salary"}),
     "extra_month_earning": frozenset({"base_salary"}),
     "raccordo_element_earning": frozenset({"base_salary"}),
+    "perequativo_element_earning": frozenset({"base_salary"}),
     "hourly_percentage_earning": frozenset({"base_salary"}),
     "public_tfr_reduction": frozenset({"base_salary"}),
     "seniority_earning": frozenset({"seniority"}),

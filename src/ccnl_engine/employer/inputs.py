@@ -98,14 +98,22 @@ class EmployerProfile:
             CCNL; when it lists more than one, the run has a
             ``missing_fact`` blocker.  A sector the CCNL does not list
             raises.
+        second_level_bargaining: Whether the employer has second-level
+            bargaining on the performance bonus or on other pay subject to
+            contributions, which takes away the elemento perequativo of a
+            CCNL that pays one (Metalmeccanico Federmeccanica art. 13,
+            Sez. Quarta, Titolo IV).  ``None`` means not known: a run that
+            would pay the element leaves it out and has a ``missing_fact``
+            blocker.
 
     Raises:
         InvalidInputError: When ``headcount`` is not a :class:`Headcount`,
             ``activity`` is not an :class:`EmployerActivity` value,
             ``agricultural_zone`` not an :class:`AgriculturalZone` value,
             ``inps_sector`` not a :class:`TaxSector` value or
-            ``public_life_insurance``, ``fis_reduction`` or
-            ``provincial_pay_element`` is not a bool.
+            ``public_life_insurance``, ``fis_reduction``,
+            ``provincial_pay_element``, ``cigs_indotto`` or
+            ``second_level_bargaining`` is not a bool.
     """
 
     headcount: Headcount
@@ -116,6 +124,7 @@ class EmployerProfile:
     provincial_pay_element: bool | None = None
     agricultural_zone: AgriculturalZone | None = None
     inps_sector: TaxSector | None = None
+    second_level_bargaining: bool | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_instance(
@@ -151,7 +160,12 @@ class EmployerProfile:
                 "EmployerProfile.public_life_insurance",
                 feature=_FEATURE,
             )
-        for name in ("fis_reduction", "provincial_pay_element", "cigs_indotto"):
+        for name in (
+            "fis_reduction",
+            "provincial_pay_element",
+            "cigs_indotto",
+            "second_level_bargaining",
+        ):
             value = getattr(self, name)
             if value is not None:
                 require_bool(value, f"EmployerProfile.{name}", feature=_FEATURE)

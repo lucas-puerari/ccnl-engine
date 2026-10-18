@@ -44,7 +44,7 @@ if TYPE_CHECKING:
     from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
     from ccnl_engine.period.requests import PeriodCalculationRequest
 
-__all__ = ["run_settlements", "settlement_issues"]
+__all__ = ["pays_month", "run_settlements", "settlement_issues"]
 
 _EXTRA_MONTHS = frozenset({RunKind.THIRTEENTH, RunKind.FOURTEENTH})
 
@@ -84,7 +84,7 @@ def run_settlements(
     accruals = settled[str(regular)]
     if run_id.kind in _EXTRA_MONTHS:
         _check_not_settled(run_id, accruals, ended_on.month)
-    if run_id.month != ended_on.month or not _pays_month(request, run_id, regular):
+    if run_id.month != ended_on.month or not pays_month(request, run_id, regular):
         return ()
     paid = _paid_early(request, ended_on.month, accruals)
     return tuple(accrual for accrual in accruals if accrual.kind not in paid)
@@ -122,7 +122,7 @@ def settlement_issues(
         calendar, period, non_accruing_days(request.events), month_accrual_rule(ccnl)
     ).get(str(regular), ())
     run_id = run_identifier(request.run, month.year, month.month)
-    if not settled or not _pays_month(request, run_id, regular):
+    if not settled or not pays_month(request, run_id, regular):
         return ()
     paid = _paid_early(request, ended_on.month, settled)
     issues = tuple(
@@ -198,7 +198,7 @@ def _absences_issue() -> CalculationIssue:
     )
 
 
-def _pays_month(
+def pays_month(
     request: PeriodCalculationRequest, run_id: PayrollRunId, regular: PayrollRunId
 ) -> bool:
     """Return whether the run pays its month: the one that liquidates ratei.

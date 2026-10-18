@@ -120,6 +120,14 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "that pays one (Commercio terzo elemento) has a missing_fact "
         "provincial_pay_element blocker",
     ),
+    "EmployerProfile.second_level_bargaining": requires_fact(
+        "base_salary",
+        "employer.second_level_bargaining",
+        _REPORTED,
+        "unknown second-level bargaining: a run that would pay the elemento "
+        "perequativo of the CCNL (Metalmeccanico Federmeccanica) leaves it "
+        "out and has a missing_fact second_level_bargaining blocker",
+    ),
     "EmployerProfile.inps_sector": requires_fact(
         "inps_employer",
         "employer.inps_sector",
@@ -144,8 +152,9 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         _PENDING,
         "an employment whose start is not stated: a full month and full "
         "ratei without a blocker, even for a hire or a termination within the "
-        "month; a run after the first has a missing_fact opening_state blocker "
-        "unless its opening state is stated",
+        "month, and an elemento perequativo of the twelve months of the year "
+        "before; a run after the first has a missing_fact opening_state "
+        "blocker unless its opening state is stated",
     ),
     "Employment.weekly_hours": requires_fact(
         "base_salary",

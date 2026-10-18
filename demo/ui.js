@@ -457,6 +457,8 @@ const MATERIAL_FACTS = {
   "facts.comune_belfiore": "residence",
   "facts.family_composition": "family",
   provincial_pay_element: "provincial",
+  second_level_bargaining: "perequativo",
+  pay_above_ccnl: "perequativo",
   contribution_history: "contribution_history",
   employment_income: "other_income",
   other_employers: "other_income",

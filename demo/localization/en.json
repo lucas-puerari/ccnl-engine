@@ -96,6 +96,7 @@
   "reliability.omission.residence": "Residence: without region and municipality the IRPEF surtaxes are not determined.",
   "reliability.omission.family": "Dependants: no family deductions are applied.",
   "reliability.omission.provincial": "Provincial pay element: not included.",
+  "reliability.omission.perequativo": "Elemento perequativo: without the second-level bargaining of the employer and the pay above the CCNL of the year before, it is not included.",
   "reliability.omission.contribution_history": "First INPS enrolment: needed above the contribution ceiling.",
   "reliability.omission.other_income": "Other income of the year: IRPEF considers this employment only.",
   "trace.title": "Calculation",

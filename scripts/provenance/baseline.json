@@ -1232,7 +1232,7 @@
     ],
     "agreement/metalmeccanico-federmeccanica.json": [
       "metalmeccanico-federmeccanica/apprentice_seniority",
-      "metalmeccanico-federmeccanica/elemento_perequativo",
+      "metalmeccanico-federmeccanica/elemento_perequativo_part_time",
       "metalmeccanico-federmeccanica/flexible_benefits",
       "metalmeccanico-federmeccanica/health_and_bilateral_funds",
       "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement",

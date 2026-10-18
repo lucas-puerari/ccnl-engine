@@ -96,3 +96,15 @@ def test_inps_sector_is_parsed_and_checked() -> None:
             headcount=Headcount(5),
             inps_sector="logistica",  # type: ignore[arg-type]
         )
+
+
+def test_second_level_bargaining_is_a_bool() -> None:
+    """The bargaining fact defaults to unknown and rejects a non-bool."""
+    assert EmployerProfile(headcount=Headcount(5)).second_level_bargaining is None
+    stated = EmployerProfile(headcount=Headcount(5), second_level_bargaining=False)
+    assert stated.second_level_bargaining is False
+    with pytest.raises(InvalidInputError, match="second_level_bargaining"):
+        EmployerProfile(
+            headcount=Headcount(5),
+            second_level_bargaining="no",  # type: ignore[arg-type]
+        )

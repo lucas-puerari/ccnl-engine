@@ -12,6 +12,9 @@
 - A national element a provincial element replaces is paid only when the
   employer states that none is in force (:mod:`._provincial`); unknown,
   the run leaves it out and names the missing fact.
+- An elemento perequativo is paid only when the employer states that it
+  has no second-level bargaining (:mod:`ccnl_engine.compensation.perequativo`);
+  unknown, a run that would pay it leaves it out and names the missing fact.
 - An allowance the CCNL restricts to a role is paid only to a worker who
   holds it.  ``Employment.roles`` left ``None`` does not state that the
   worker holds none: when the level has a role-restricted allowance in
@@ -22,6 +25,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.compensation.perequativo.services import perequativo_months
 from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
@@ -32,9 +36,11 @@ if TYPE_CHECKING:
     from ccnl_engine.period.context.services import RunContext
 
 __all__ = [
+    "BARGAINING_FACT",
     "FULL_TIME_FACT",
     "NO_PAY_FACT",
     "ROLES_FACT",
+    "bargaining_issue",
     "fact_issues",
     "full_time_issue",
     "no_pay_issue",
@@ -48,6 +54,7 @@ ROLES_FACT = "roles"
 NO_PAY_FACT = "no_pay_due"
 PROVINCIAL_FACT = "provincial_pay_element"
 SECTOR_FACT = "inps_sector"
+BARGAINING_FACT = "second_level_bargaining"
 
 
 def no_pay_issue(ctx: RunContext) -> CalculationIssue | None:
@@ -181,12 +188,38 @@ def sector_issue(ctx: RunContext) -> CalculationIssue | None:
     )
 
 
+def bargaining_issue(ctx: RunContext) -> CalculationIssue | None:
+    """Return the missing-fact issue of an elemento perequativo left out.
+
+    Returns:
+        An incomplete issue naming ``second_level_bargaining`` when the run
+        would pay the elemento perequativo of the CCNL and the employer does
+        not say whether it has second-level bargaining, else ``None``.
+    """
+    request = ctx.request
+    if request.employer.second_level_bargaining is not None:
+        return None
+    if perequativo_months(request, ctx.contract.ccnl) == 0:
+        return None
+    return CalculationIssue(
+        code="second_level_bargaining_unknown",
+        message=(
+            "the CCNL pays the elemento perequativo to the workers of an "
+            "employer without second-level bargaining on pay, and the "
+            "employer does not say whether it has one: the amounts shown "
+            "leave it out; state EmployerProfile.second_level_bargaining"
+        ),
+        status=CalculationStatus.INCOMPLETE,
+        fact=BARGAINING_FACT,
+    )
+
+
 def fact_issues(ctx: RunContext) -> tuple[CalculationIssue | None, ...]:
     """Return the issues of the employment facts, in a fixed order.
 
     Returns:
-        The full time, no-pay, roles, provincial element and INPS sector
-        issues, each ``None`` when not raised.
+        The full time, no-pay, roles, provincial element, INPS sector and
+        second-level bargaining issues, each ``None`` when not raised.
     """
     return (
         full_time_issue(ctx),
@@ -194,4 +227,5 @@ def fact_issues(ctx: RunContext) -> tuple[CalculationIssue | None, ...]:
         roles_issue(ctx),
         provincial_issue(ctx),
         sector_issue(ctx),
+        bargaining_issue(ctx),
     )

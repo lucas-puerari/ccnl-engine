@@ -54,6 +54,7 @@ from tests.integration.ccnl_engine.default.fact.builders import (
     employer_cases,
     fixed_term_cases,
     pension_cases,
+    perequativo_leaver,
     sickness_cases,
 )
 from tests.integration.ccnl_engine.family.builders import (
@@ -460,6 +461,14 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
             replace(_january(events=(_renewal(),)), prior_year=PriorYearTaxFacts()),
             "employment_income",
         ),
+    ),
+    "PriorYearTaxFacts.pay_above_ccnl": tuple(
+        DefaultCase(
+            perequativo_leaver(_january, False, above),
+            perequativo_leaver(_january, False, None),
+            "pay_above_ccnl",
+        )
+        for above in (Decimal(0), Decimal(150))
     ),
     "AbsenceEvent.suspends_accrual": (
         DefaultCase(_year_with_leave(True), _year_with_leave(None), "suspends_accrual"),

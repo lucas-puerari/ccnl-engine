@@ -233,6 +233,15 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
         "with a blocker, also for the renewal increments a 2026 minimo may "
         "carry",
     ),
+    "PriorYearTaxFacts.pay_above_ccnl": requires_fact(
+        "base_salary",
+        "prior_year.pay_above_ccnl",
+        _REPORTED,
+        "unknown pay above the CCNL of the year before: a run that pays the "
+        "elemento perequativo (Metalmeccanico Federmeccanica) to an employer "
+        "without second-level bargaining leaves it out and has the issue "
+        "pay_above_ccnl_unknown",
+    ),
     "PriorYearTaxFacts.waived_regimes": absence_is_fact(
         "the worker waived no substitute tax regime in writing"
     ),

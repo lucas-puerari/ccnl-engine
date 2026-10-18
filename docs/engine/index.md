@@ -308,6 +308,18 @@ employment dates and never from the runs already closed:
   `Employment.erc_amount` x its months / 12 as a `raccordo_element_earning`
   (ordinary IRPEF and INPS, outside the TFR base). An unstated ERC leaves it
   out with a `missing_fact` blocker `erc_unknown`;
+- on a CCNL with a `perequativo_element` (the elemento perequativo of the
+  CCNL metalmeccanici Federmeccanica, art. 13), the run of June, or of the
+  termination month when the employment ends earlier in the year, pays an
+  employer that states `EmployerProfile.second_level_bargaining=False` the
+  yearly amount x the months of the employment in the year before / 12,
+  less `PriorYearTaxFacts.pay_above_ccnl` (what counts is the caller's
+  call: superminimi, premi, una tantum), never below zero, as a
+  `perequativo_element_earning` (ordinary IRPEF and INPS, outside the TFR
+  base and the tredicesima). An unstated bargaining leaves it out with a
+  `missing_fact` blocker `second_level_bargaining_unknown`, an unstated pay
+  above the CCNL with `pay_above_ccnl_unknown`; a part-time worker is paid
+  in full under the open limitation `elemento_perequativo_part_time`;
 - on a CCNL with an `hourly_pay` (the operai of the CCNL edilizia
   industria), the run that posts the monthly pay of a worker of one of its
   `categories` pays the pay chain over the hourly divisor times

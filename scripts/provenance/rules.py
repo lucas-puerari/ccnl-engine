@@ -213,7 +213,8 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
 
     Yields:
         One rule per salary period, allowance, seniority block,
-        additional-months period, the accrual rule, the hourly pay and
+        additional-months period, the accrual rule, the ERC and the
+        elemento perequativo, the hourly pay and
         each of its percentages, the absence and
         sickness rules, one per first-tier overtime band, one per
         employer fund rate period, the solidarity fund and the assistance
@@ -240,6 +241,10 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
     if isinstance(raccordo, dict):
         record = raccordo.get("provenance")
         yield _rule(file, "raccordo_element", ("base_salary",), record)
+    perequativo = params.get("perequativo_element")
+    if isinstance(perequativo, dict):
+        record = perequativo.get("provenance")
+        yield _rule(file, "perequativo_element", ("base_salary",), record)
     yield from _hourly_rules(file, params.get("hourly_pay"))
     yield from _work_rules(file, data.get("work_rules"))
     yield from _overtime_rules(file, data.get("work_rules"))

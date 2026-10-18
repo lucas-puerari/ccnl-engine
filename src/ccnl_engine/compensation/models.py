@@ -259,6 +259,56 @@ class RaccordoElement(BaseModel):
     provenance: RuleProvenance
 
 
+class PerequativoElement(BaseModel):
+    """Yearly amount the CCNL pays where no second-level bargaining exists.
+
+    The elemento perequativo of the CCNL metalmeccanici Federmeccanica
+    (art. 13, Sez. Quarta, Titolo IV): the workers in force on 1 January of
+    a company without second-level bargaining on pay are paid
+    ``annual_amount`` with the pay of ``payment_month``, by the months of
+    the employment in the year before, less the pay above the CCNL they
+    received in that year.
+
+    Attributes:
+        annual_amount: The yearly amount, read on 1 January of the year paid.
+        payment_month: Month whose pay carries it, 1-12.
+        month_rule: When a fraction of a month of the year before counts as
+            a whole month; one rule for every year, without
+            ``valid_from`` or ``previous``.
+        tfr_relevant: Whether it enters the TFR base, as the CCNL states;
+            the policy of ``perequativo_element_earning`` must agree.
+        provenance: Source of the clause; ``missing`` is not allowed.
+
+    Raises:
+        ValueError: When the provenance is ``missing``, an amount is not
+            positive or the month rule changes over time.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    annual_amount: TimeSeries
+    payment_month: int = Field(ge=1, le=12)
+    month_rule: ExtraMonthAccrualRule
+    tfr_relevant: bool
+    provenance: RuleProvenance
+
+    @model_validator(mode="after")
+    def _check_clause(self) -> Self:
+        if self.provenance.status is ProvenanceStatus.MISSING:
+            msg = "a stored elemento perequativo needs a source; omit it when missing"
+            raise ValueError(msg)
+        if any(
+            p.value is not None and p.value <= 0 for p in self.annual_amount.periods
+        ):
+            msg = "the annual amounts of the elemento perequativo must be > 0"
+            raise ValueError(msg)
+        rule = self.month_rule
+        if rule.valid_from is not None or rule.previous is not None:
+            msg = "the month rule of the elemento perequativo cannot change over time"
+            raise ValueError(msg)
+        return self
+
+
 class CCNLParameters(BaseModel):
     """Contract-wide parameters.
 
@@ -273,6 +323,8 @@ class CCNLParameters(BaseModel):
     ``flat_pay_max_weekly_hours``: the ceiling up to which a regime pays its
     minimum in full whatever the hours (lavoro domestico art. 14 c. 2: 30).
     ``raccordo_element``: the ERC the CCNL pays with the tredicesima.
+    ``perequativo_element``: the elemento perequativo the CCNL pays where
+    no second-level bargaining exists.
     ``enam_levels``: the levels whose permanent workers owe the contribution
     of the Gestione Assistenza Magistrale (ex ENAM, L. 93/1957 art. 3).
     ``solidarity_fund``: its fund of D.Lgs. 148/2015 art. 26, if modelled.
@@ -293,6 +345,7 @@ class CCNLParameters(BaseModel):
     flat_pay_max_weekly_hours: int | None = Field(default=None, ge=1)
     contractual_fund_contribution: ContractualFundContribution | None = None
     raccordo_element: RaccordoElement | None = None
+    perequativo_element: PerequativoElement | None = None
     enam_levels: tuple[str, ...] = ()
     solidarity_fund: SolidarityFund | None = None
     hourly_pay: HourlyPay | None = None

@@ -164,7 +164,7 @@
       },
       {
         "kind": "simplification",
-        "text": "ELEMENTO PEREQUATIVO: the worker of a company without second-level bargaining is owed the elemento perequativo of 485 euro a year, paid with the June pay (Ministry of Labour cost table of June 2026, DD 82/2026, row A). The engine does not pay it: whether the company has second-level bargaining is not in the request.",
+        "text": "ELEMENTO PEREQUATIVO: the worker of a company without second-level bargaining is owed the elemento perequativo of 485 euro a year, paid with the June pay (art. 13, Sez. Quarta, Titolo IV; Ministry of Labour cost table of June 2026, DD 82/2026, row A). The engine pays it from parameters.perequativo_element when the employer states EmployerProfile.second_level_bargaining and the request the pay above the CCNL of the year before.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -172,7 +172,21 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Pass the elemento perequativo as a variable pay item, or add a fact for the second-level bargaining."
+          "remediation": "Resolved: the employer states EmployerProfile.second_level_bargaining and the request PriorYearTaxFacts.pay_above_ccnl; the run of June (or of the termination month) pays 485 x the months of the year before / 12 less the pay above the CCNL; without the bargaining fact the run has a missing_fact second_level_bargaining blocker, without the pay above an incomplete pay_above_ccnl_unknown issue. Tested in tests/knowledge/ccnl_engine/compensation/perequativo/test_services.py.",
+          "status": "resolved"
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "ELEMENTO PEREQUATIVO, PART TIME: art. 13 does not say whether a part-time worker is owed the elemento perequativo in full or in proportion to the hours. The engine pays it in full; the run that pays it to a part-time worker is affected.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "elemento_perequativo_part_time",
+          "applies_when": {
+            "trigger": "path"
+          },
+          "remediation": "Source the treatment of the part-time worker (a later renewal, a joint interpretation of the parties or case law), model the ratio in parameters.perequativo_element, then remove this note."
         }
       },
       {
@@ -409,6 +423,77 @@
           "verified_at": "2026-10-11T19:00:57Z",
           "review_id": "2026-10-11-ai"
         }
+      }
+    },
+    "perequativo_element": {
+      "annual_amount": {
+        "periods": [
+          {
+            "valid_from": "2014-01-01",
+            "valid_until": null,
+            "value": "485.00"
+          }
+        ]
+      },
+      "payment_month": 6,
+      "month_rule": {
+        "min_days": 15,
+        "comparison": "more_than",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+              "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
+              "kind": "associazione",
+              "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+              "published_on": "2021-02-05",
+              "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+            },
+            "page": "181-182",
+            "section": "Sez. Quarta, Titolo IV, Art. 13 - Elemento perequativo",
+            "quote": "La frazione di mese superiore a 15 giorni sarà considerata, a questi effetti, come mese intero."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-18T00:00:00",
+            "verification_status": "verified",
+            "effective_from": "2014-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-18T00:00:00Z",
+            "review_id": "2026-10-18-ai-elemento-perequativo"
+          }
+        }
+      },
+      "tfr_relevant": false,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+            "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "published_on": "2021-02-05",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          },
+          "page": "181-182",
+          "section": "Sez. Quarta, Titolo IV, Art. 13 - Elemento perequativo",
+          "quote": "A decorrere dal 2008, ai lavoratori in forza al 1° gennaio di ogni anno nelle aziende prive di contrattazione di secondo livello riguardante il Premio di risultato o altri istituti retributivi comunque soggetti a contribuzione e che nel corso dell'anno precedente (1° gennaio – 31 dicembre) abbiano percepito un trattamento retributivo composto esclusivamente da importi retributivi fissati dal CCNL (lavoratori privi di superminimi collettivi o individuali, premi annui o altri importi retributivi comunque soggetti a contribuzione), è corrisposta, a titolo perequativo, con la retribuzione del mese di giugno, una cifra annua pari a 260 euro, onnicomprensiva e non incidente sul Tfr ovvero una cifra inferiore fino a concorrenza in caso di presenza di retribuzioni aggiuntive a quelle fissate dal CCNL, in funzione della durata, anche non consecutiva, del rapporto di lavoro nel corso dell'anno precedente. La frazione di mese superiore a 15 giorni sarà considerata, a questi effetti, come mese intero. A decorrere dal 1° gennaio 2011 l'importo sopra riportato è elevato a 455 euro. A decorrere dal 1° gennaio 2014 l'Elemento Perequativo è elevato a 485 euro. Nel caso di risoluzione del rapporto di lavoro antecedentemente al momento di corresponsione dell'elemento perequativo, fermo restando i criteri di maturazione dello stesso, il suddetto importo verrà corrisposto all'atto della liquidazione delle competenze. L'elemento perequativo come sopra definito sarà ad ogni effetto di competenza dell'anno di erogazione in quanto il riferimento ai trattamenti retributivi percepiti è assunto dalle parti quale parametro di riferimento ai fini del riconoscimento dell'istituto."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2014-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T00:00:00Z",
+          "review_id": "2026-10-18-ai-elemento-perequativo"
+        },
+        "transformation": "Paid to a worker in force on 1 January of an employer that states it has no second-level bargaining (EmployerProfile.second_level_bargaining false): 485.00 (the amount in force on 1 January) x the months of the employment in the year before, a fraction above 15 days counting as a whole month, / 12, rounded to the cent; then less the pay above the CCNL of the year before (PriorYearTaxFacts.pay_above_ccnl, as the caller counts it), never below zero. The months count the duration of the employment, not the presence. Paid on the run of June, or on the run of the termination month when the employment ends earlier in the year. Ordinary pay for IRPEF and INPS of the year paid, outside the TFR base and the base of the tredicesima ('onnicomprensiva e non incidente sul Tfr'). The text does not scale it for a part-time worker: paid in full, with the limitation elemento_perequativo_part_time.",
+        "note": "Read on the text layer of the CCNL of 5 February 2021 (sha256 ff182dd8..., PDF pp. 181-182, printed pp. 177-178). The renewal of 22 November 2025 (FIOM scan, sha256 37152685...) has no text layer and was not machine-readable here; the 485 euro of 2026 is confirmed by the cost table of the Ministry of Labour of June 2026 (DD 82 of 5 October 2026, row A, elemento perequativo 485,00), read in the review 2026-10-15-ai-cost-check."
       }
     },
     "employer_funds": [
@@ -3164,7 +3249,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "900cae5ff8103459a6e4ade73e2b683c867dd58a5e7ee48d7b8ff0bd1f9d013a",
+    "source_hash": "3e8ef483cf20a57797ecfc16ff4de1b319d419812ace6ae34d2ef62c88e7ff85",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -5131,6 +5216,34 @@
         ],
         "findings": [
           "Lavoro supplementare (Sez. Quarta, Titolo I, PDF p. 58): 10% onnicomprensiva up to 40 weekly hours and 50% of the yearly part-time hours, 20% beyond that yearly limit. The 10% band is added for OvertimeKind.SUPPLEMENTARY; the 20% past the yearly limit needs the yearly count of supplementary hours and is not modelled."
+        ]
+      },
+      {
+        "id": "2026-10-18-ai-elemento-perequativo",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The elemento perequativo (art. 13, Sez. Quarta, Titolo IV), which the review 2026-10-15-ai-cost-check declared as not modelled.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          },
+          {
+            "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/tabelle-impiegati-all-DD-82-del-05102026",
+            "sha256": "4fc6ef9789a1708128cfddfcfa9860d9321a81997a3ba1fd425d50eeb33eae6b"
+          },
+          {
+            "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/DD-82-del-05102026",
+            "sha256": "2ccc16042e1414cb342591b3eee399a38072aa30e1316e5d579acc0a48a3061c"
+          }
+        ],
+        "findings": [
+          "Art. 13 (PDF pp. 181-182, printed pp. 177-178): to the workers in force on 1 January of a company without second-level bargaining on the premio di risultato or other pay subject to contributions, 260 euro a year from 2008, 455 from 2011 and 485 from 2014, paid with the June pay, 'onnicomprensiva e non incidente sul Tfr', lowered 'fino a concorrenza' by the pay above the CCNL and scaled by the months of the employment in the year before, a fraction above 15 days counting as a month; paid at the termination when the employment ends before June; 'di competenza dell'anno di erogazione'.",
+          "The renewal of 22 November 2025 (FIOM scan, sha256 37152685...) has no text layer and could not be read here. The cost table of DD 82/2026 (row A) still gives the elemento perequativo at 485,00 euro a year for June 2026: the amount is kept.",
+          "Corrected: parameters.perequativo_element pays 485 x months / 12 less PriorYearTaxFacts.pay_above_ccnl on the run of June or of the termination month, ordinary pay for IRPEF and INPS, outside the TFR and the tredicesima. EmployerProfile.second_level_bargaining states the bargaining; unknown, the run has a missing_fact blocker. The limitation elemento_perequativo is resolved.",
+          "The text does not treat a part-time worker: the engine pays the full amount and the new limitation elemento_perequativo_part_time (impact unknown) blocks the runs it concerns. The text does not list what counts as pay above the CCNL beyond superminimi and premi annui: the caller states it."
         ]
       }
     ],

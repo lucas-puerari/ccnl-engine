@@ -77,6 +77,7 @@ EMPLOYER = EmployerProfile(
     headcount=Headcount(50),
     activity=EmployerActivity.OTHER,
     provincial_pay_element=False,
+    second_level_bargaining=True,
 )
 #: Resident in Alghero (Sardegna), no dependant.
 FACTS = PeriodFacts(

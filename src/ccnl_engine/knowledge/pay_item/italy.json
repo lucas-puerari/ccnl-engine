@@ -74,6 +74,20 @@
     "legal_basis": "Art. 51 TUIR; CCNL grafici editoriali, ipotesi di accordo 19/01/2021 (ERC without incidence on any institute)"
   },
   {
+    "policy_id": "it/earning/perequativo_element",
+    "policy_version": "2026.1",
+    "kinds": [
+      "perequativo_element_earning"
+    ],
+    "effective_from": "2008-01-01",
+    "effective_until": null,
+    "tax": "ordinary",
+    "contribution": "included",
+    "tfr": "excluded",
+    "cost": "employee_cash",
+    "legal_basis": "Art. 51 TUIR; CCNL metalmeccanici Federmeccanica 5/2/2021, Sez. Quarta, Titolo IV, Art. 13 (elemento perequativo 'onnicomprensiva e non incidente sul Tfr')"
+  },
+  {
     "policy_id": "it/earning/hourly_percentage",
     "policy_version": "2026.1",
     "kinds": [

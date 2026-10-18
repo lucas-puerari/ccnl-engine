@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority, welfare |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 86 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 87 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-11-22 |
-| **Last review** | 2026-10-17 |
+| **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'confrontare lordo, netto e costo azienda con esempi indipendenti': a run of the engine against the cost table of the Ministry of Labour for the CCNL (D.Lgs. 36/2023 art. 41 c. 13). | corrected | Impiegato C3 with 3 scatti, June 2026, 51 employees: tabellare 2211.43 and scatti 88.92 a month equal the table (26.537,16 and 1.067,04 a year over 12); the employer INPS rate 29.36% and the tredicesima on tabellare and scatti match; the TFR of the month 158.90 is the table's (tabellare + scatti) / 13.5 less the 0.5% IVS contribution the employer offsets (art. 3 L. 297/1982), which the table does not deduct. Match.<br>Deviations, with cause and decision: INAIL 4.417% and the health fund (171,60 a year) are capabilities the engine does not compute (documented); Cometa at a 40% enrolment is the table's average, the engine pays it on enrolment; the elemento perequativo (485 euro) and the flexible benefits (250 euro) were neither modelled nor declared: declared. The stale INPS note (30.13/30.20/30.50%) is corrected. No independent net pay example: not compared. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova', re-read on the full text published by a party. | confirmed | Apprenticeship tracks 36, 30 and 24 months at 85/90/95% (p. 271) and their durations (pp. 267-268) match the three tracks of the file. |
 | 2026-10-17 | claude-opus-5-5 (ai) | The rate of the supplementary hours of the part-time workers. | corrected | Lavoro supplementare (Sez. Quarta, Titolo I, PDF p. 58): 10% onnicomprensiva up to 40 weekly hours and 50% of the yearly part-time hours, 20% beyond that yearly limit. The 10% band is added for OvertimeKind.SUPPLEMENTARY; the 20% past the yearly limit needs the yearly count of supplementary hours and is not modelled. |
+| 2026-10-18 | claude-opus-5-5 (ai) | The elemento perequativo (art. 13, Sez. Quarta, Titolo IV), which the review 2026-10-15-ai-cost-check declared as not modelled. | corrected | Art. 13 (PDF pp. 181-182, printed pp. 177-178): to the workers in force on 1 January of a company without second-level bargaining on the premio di risultato or other pay subject to contributions, 260 euro a year from 2008, 455 from 2011 and 485 from 2014, paid with the June pay, 'onnicomprensiva e non incidente sul Tfr', lowered 'fino a concorrenza' by the pay above the CCNL and scaled by the months of the employment in the year before, a fraction above 15 days counting as a month; paid at the termination when the employment ends before June; 'di competenza dell'anno di erogazione'.<br>The renewal of 22 November 2025 (FIOM scan, sha256 37152685...) has no text layer and could not be read here. The cost table of DD 82/2026 (row A) still gives the elemento perequativo at 485,00 euro a year for June 2026: the amount is kept.<br>Corrected: parameters.perequativo_element pays 485 x months / 12 less PriorYearTaxFacts.pay_above_ccnl on the run of June or of the termination month, ordinary pay for IRPEF and INPS, outside the TFR and the tredicesima. EmployerProfile.second_level_bargaining states the bargaining; unknown, the run has a missing_fact blocker. The limitation elemento_perequativo is resolved.<br>The text does not treat a part-time worker: the engine pays the full amount and the new limitation elemento_perequativo_part_time (impact unknown) blocks the runs it concerns. The text does not list what counts as pay above the CCNL beyond superminimi and premi annui: the caller states it. |
 
 ## Salary table
 
@@ -156,12 +157,19 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Pass the contributions as bilateral fund events, or model them per worker.
 
-!!! warning "metalmeccanico-federmeccanica/elemento_perequativo · base_salary · impact yes · open"
-    ELEMENTO PEREQUATIVO: the worker of a company without second-level bargaining is owed the elemento perequativo of 485 euro a year, paid with the June pay (Ministry of Labour cost table of June 2026, DD 82/2026, row A). The engine does not pay it: whether the company has second-level bargaining is not in the request.
+!!! note "metalmeccanico-federmeccanica/elemento_perequativo · base_salary · impact yes · resolved"
+    ELEMENTO PEREQUATIVO: the worker of a company without second-level bargaining is owed the elemento perequativo of 485 euro a year, paid with the June pay (art. 13, Sez. Quarta, Titolo IV; Ministry of Labour cost table of June 2026, DD 82/2026, row A). The engine pays it from parameters.perequativo_element when the employer states EmployerProfile.second_level_bargaining and the request the pay above the CCNL of the year before.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Pass the elemento perequativo as a variable pay item, or add a fact for the second-level bargaining.
+    **Remediation:** Resolved: the employer states EmployerProfile.second_level_bargaining and the request PriorYearTaxFacts.pay_above_ccnl; the run of June (or of the termination month) pays 485 x the months of the year before / 12 less the pay above the CCNL; without the bargaining fact the run has a missing_fact second_level_bargaining blocker, without the pay above an incomplete pay_above_ccnl_unknown issue. Tested in tests/knowledge/ccnl_engine/compensation/perequativo/test_services.py.
+
+!!! warning "metalmeccanico-federmeccanica/elemento_perequativo_part_time · base_salary · impact unknown · open"
+    ELEMENTO PEREQUATIVO, PART TIME: art. 13 does not say whether a part-time worker is owed the elemento perequativo in full or in proportion to the hours. The engine pays it in full; the run that pays it to a part-time worker is affected.
+
+    **Applies when:** `base_salary` applies; the run takes the engine code path.
+
+    **Remediation:** Source the treatment of the part-time worker (a later renewal, a joint interpretation of the parties or case law), model the ratio in parameters.perequativo_element, then remove this note.
 
 !!! warning "metalmeccanico-federmeccanica/flexible_benefits · welfare · impact yes · open"
     FLEXIBLE BENEFITS: every worker is owed flexible benefits of 250 euro a year (Ministry of Labour cost table of June 2026, DD 82/2026, row D), paid by the employer outside the net pay. Not modelled: the employer cost is short of them.

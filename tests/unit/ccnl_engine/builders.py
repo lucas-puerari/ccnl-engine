@@ -326,7 +326,11 @@ def make_minimal_ccnl(*, app_type: str = "percentage") -> CCNL:
 # ---------------------------------------------------------------------------
 
 #: Employer of 50 employees, the headcount the fixtures assume.
-EMPLOYER_50 = EmployerProfile(provincial_pay_element=False, headcount=Headcount(50))
+EMPLOYER_50 = EmployerProfile(
+    provincial_pay_element=False,
+    second_level_bargaining=True,
+    headcount=Headcount(50),
+)
 
 
 def year_plan(

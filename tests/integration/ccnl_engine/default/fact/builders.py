@@ -41,7 +41,7 @@ if TYPE_CHECKING:
     from collections.abc import Callable, Mapping
 
 
-__all__ = ["fixed_term_cases"]
+__all__ = ["fixed_term_cases", "perequativo_leaver"]
 
 #: A first fixed-term contract with no exclusion of L. 92/2012 art. 2 c. 29.
 _FIXED_TERM = FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE)
@@ -198,6 +198,33 @@ def _commercio_employer(
     return replace(request, employer=employer)
 
 
+def perequativo_leaver(
+    january: Callable[[Employment], PeriodInput],
+    bargaining: bool | None,
+    above: Decimal | None = Decimal(0),
+) -> PeriodInput:
+    """Return a Metalmeccanico run that pays the elemento perequativo.
+
+    Employed since 2020 and ended on 30 January 2026: the January run pays
+    the element of 2026 on the twelve months of 2025.
+
+    Returns:
+        The January request with ``second_level_bargaining`` set to
+        ``bargaining`` and ``pay_above_ccnl`` to ``above``.
+    """
+    leaver = replace(
+        CONCIA_D2,
+        ccnl_slug="metalmeccanico-federmeccanica.json",
+        level_code="C3",
+        category=WorkerCategory.IMPIEGATO,
+        employment_period=EmploymentPeriod(date(2020, 1, 1), date(2026, 1, 30)),
+    )
+    request = january(leaver)
+    employer = replace(request.employer, second_level_bargaining=bargaining)
+    prior_year = replace(request.prior_year, pay_above_ccnl=above)
+    return replace(request, employer=employer, prior_year=prior_year)
+
+
 def _logistica_employer(
     january: Callable[[Employment], PeriodInput], sector: TaxSector | None
 ) -> PeriodInput:
@@ -329,6 +356,14 @@ def employer_cases[C](
                 "inps_sector",
             )
             for sector in (TaxSector.INDUSTRIA, TaxSector.TERZIARIO)
+        ),
+        "EmployerProfile.second_level_bargaining": tuple(
+            case(
+                perequativo_leaver(january, stated),
+                perequativo_leaver(january, None),
+                "second_level_bargaining",
+            )
+            for stated in (False, True)
         ),
     }
 
