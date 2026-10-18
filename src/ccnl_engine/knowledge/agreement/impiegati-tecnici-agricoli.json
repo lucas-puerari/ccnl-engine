@@ -132,6 +132,33 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-tables",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The minimi nazionali di stipendio mensile conglobato of the seven categories against the signed CCNL of 18 June 2024.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
+            "sha256": "94fba8a7cda3856266ed91ab8eec45264803a5396179772d67fbc995b7f7f076"
+          }
+        ],
+        "findings": [
+          "Art. 31, Tab. 1 (PDF p. 35, signed scan with text layer, read on the page image): the minimi nazionali di stipendio mensile conglobato from 01/07/2024 for Q and categories 1-6 match the 7 values of the file (file 1Q = Q, 1-6 = 1°-6°); they move to verified. Q is printed as 1.788,38 without the indennità di funzione, which Art. 18 lett. b (p. 24, 'una indennità mensile pari a 100 euro, da corrispondersi per 14 mensilità') grants on top, as the file models it.",
+          "Art. 31 (p. 34) applies the 5% from 1/04/2024 and 1.9% from 1/01/2025 to the stipendi contrattuali of the territorial contracts, not to the national minimi; Tab. 1 has a single date, 01/07/2024 (for territorial contracts renewed under the CCNL 7/07/2021 the minimi apply from the date of their next renewal and no later than 1/01/2027, p. 35). The coverage note that calls the 2025 tranche of the national table missing is wrong: there is no 2025 national minimo, and the open-ended period is correct.",
+          "The national minimo is conglobated (minimo base + contingenza + EDR, footnote p. 34 citing the Verbale 4.6.2008), matching the file's base_salary; territorial contracts may set higher stipendi contrattuali, and the minimo di stipendio integrativo is outside this table.",
+          "The ruleset names this source, published by FLAI-CGIL, a signatory: source_type contracting_party."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -256,22 +283,31 @@
             "valid_until": null,
             "value": "1217.23",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "impiegati-tecnici-agricoli",
-                  "title": "impiegati-tecnici-agricoli",
-                  "kind": "rivista",
-                  "url": "https://www.contratticcnl.it/ccnl/a021/"
+                  "document_id": "flai-ccnl-quadri-impiegati-agricoli-2024-2027",
+                  "title": "CCNL per i Quadri e gli Impiegati Agricoli 18 giugno 2024 (1 gennaio 2024 - 31 dicembre 2027), testo firmato (copia FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
+                  "published_on": "2024-06-18",
+                  "sha256": "94fba8a7cda3856266ed91ab8eec45264803a5396179772d67fbc995b7f7f076"
                 },
-                "section": "Tabella retributiva"
+                "page": "35",
+                "section": "Titolo VI, Art. 31, Tab. 1 'Minimi nazionali di stipendio mensile conglobato a decorrere dal 01/07/2024', categoria 6°",
+                "quote": "6° 1.217,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:18Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:18Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Minimo nazionale di stipendio mensile conglobato (Art. 31, Tab. 1), applicable from 01/07/2024 where the territorial contract was not renewed under the CCNL 7/07/2021."
             }
           }
         ]
@@ -308,22 +344,31 @@
             "valid_until": null,
             "value": "1278.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "impiegati-tecnici-agricoli",
-                  "title": "impiegati-tecnici-agricoli",
-                  "kind": "rivista",
-                  "url": "https://www.contratticcnl.it/ccnl/a021/"
+                  "document_id": "flai-ccnl-quadri-impiegati-agricoli-2024-2027",
+                  "title": "CCNL per i Quadri e gli Impiegati Agricoli 18 giugno 2024 (1 gennaio 2024 - 31 dicembre 2027), testo firmato (copia FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
+                  "published_on": "2024-06-18",
+                  "sha256": "94fba8a7cda3856266ed91ab8eec45264803a5396179772d67fbc995b7f7f076"
                 },
-                "section": "Tabella retributiva"
+                "page": "35",
+                "section": "Titolo VI, Art. 31, Tab. 1 'Minimi nazionali di stipendio mensile conglobato a decorrere dal 01/07/2024', categoria 5°",
+                "quote": "5° 1.278,60"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:18Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:18Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Minimo nazionale di stipendio mensile conglobato (Art. 31, Tab. 1), applicable from 01/07/2024 where the territorial contract was not renewed under the CCNL 7/07/2021."
             }
           }
         ]
@@ -360,22 +405,31 @@
             "valid_until": null,
             "value": "1335.93",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "impiegati-tecnici-agricoli",
-                  "title": "impiegati-tecnici-agricoli",
-                  "kind": "rivista",
-                  "url": "https://www.contratticcnl.it/ccnl/a021/"
+                  "document_id": "flai-ccnl-quadri-impiegati-agricoli-2024-2027",
+                  "title": "CCNL per i Quadri e gli Impiegati Agricoli 18 giugno 2024 (1 gennaio 2024 - 31 dicembre 2027), testo firmato (copia FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
+                  "published_on": "2024-06-18",
+                  "sha256": "94fba8a7cda3856266ed91ab8eec45264803a5396179772d67fbc995b7f7f076"
                 },
-                "section": "Tabella retributiva"
+                "page": "35",
+                "section": "Titolo VI, Art. 31, Tab. 1 'Minimi nazionali di stipendio mensile conglobato a decorrere dal 01/07/2024', categoria 4°",
+                "quote": "4° 1.335,93"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:18Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:18Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Minimo nazionale di stipendio mensile conglobato (Art. 31, Tab. 1), applicable from 01/07/2024 where the territorial contract was not renewed under the CCNL 7/07/2021."
             }
           }
         ]
@@ -412,22 +466,31 @@
             "valid_until": null,
             "value": "1417.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "impiegati-tecnici-agricoli",
-                  "title": "impiegati-tecnici-agricoli",
-                  "kind": "rivista",
-                  "url": "https://www.contratticcnl.it/ccnl/a021/"
+                  "document_id": "flai-ccnl-quadri-impiegati-agricoli-2024-2027",
+                  "title": "CCNL per i Quadri e gli Impiegati Agricoli 18 giugno 2024 (1 gennaio 2024 - 31 dicembre 2027), testo firmato (copia FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
+                  "published_on": "2024-06-18",
+                  "sha256": "94fba8a7cda3856266ed91ab8eec45264803a5396179772d67fbc995b7f7f076"
                 },
-                "section": "Tabella retributiva"
+                "page": "35",
+                "section": "Titolo VI, Art. 31, Tab. 1 'Minimi nazionali di stipendio mensile conglobato a decorrere dal 01/07/2024', categoria 3°",
+                "quote": "3° 1.417,89"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:18Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:18Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Minimo nazionale di stipendio mensile conglobato (Art. 31, Tab. 1), applicable from 01/07/2024 where the territorial contract was not renewed under the CCNL 7/07/2021."
             }
           }
         ]
@@ -464,22 +527,31 @@
             "valid_until": null,
             "value": "1541.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "impiegati-tecnici-agricoli",
-                  "title": "impiegati-tecnici-agricoli",
-                  "kind": "rivista",
-                  "url": "https://www.contratticcnl.it/ccnl/a021/"
+                  "document_id": "flai-ccnl-quadri-impiegati-agricoli-2024-2027",
+                  "title": "CCNL per i Quadri e gli Impiegati Agricoli 18 giugno 2024 (1 gennaio 2024 - 31 dicembre 2027), testo firmato (copia FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
+                  "published_on": "2024-06-18",
+                  "sha256": "94fba8a7cda3856266ed91ab8eec45264803a5396179772d67fbc995b7f7f076"
                 },
-                "section": "Tabella retributiva"
+                "page": "35",
+                "section": "Titolo VI, Art. 31, Tab. 1 'Minimi nazionali di stipendio mensile conglobato a decorrere dal 01/07/2024', categoria 2°",
+                "quote": "2° 1.541,41"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:18Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:18Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Minimo nazionale di stipendio mensile conglobato (Art. 31, Tab. 1), applicable from 01/07/2024 where the territorial contract was not renewed under the CCNL 7/07/2021."
             }
           }
         ]
@@ -516,22 +588,31 @@
             "valid_until": null,
             "value": "1686.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "impiegati-tecnici-agricoli",
-                  "title": "impiegati-tecnici-agricoli",
-                  "kind": "rivista",
-                  "url": "https://www.contratticcnl.it/ccnl/a021/"
+                  "document_id": "flai-ccnl-quadri-impiegati-agricoli-2024-2027",
+                  "title": "CCNL per i Quadri e gli Impiegati Agricoli 18 giugno 2024 (1 gennaio 2024 - 31 dicembre 2027), testo firmato (copia FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
+                  "published_on": "2024-06-18",
+                  "sha256": "94fba8a7cda3856266ed91ab8eec45264803a5396179772d67fbc995b7f7f076"
                 },
-                "section": "Tabella retributiva"
+                "page": "35",
+                "section": "Titolo VI, Art. 31, Tab. 1 'Minimi nazionali di stipendio mensile conglobato a decorrere dal 01/07/2024', categoria 1°",
+                "quote": "1° 1.686,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:18Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:18Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Minimo nazionale di stipendio mensile conglobato (Art. 31, Tab. 1), applicable from 01/07/2024 where the territorial contract was not renewed under the CCNL 7/07/2021."
             }
           }
         ]
@@ -568,22 +649,31 @@
             "valid_until": null,
             "value": "1788.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "impiegati-tecnici-agricoli",
-                  "title": "impiegati-tecnici-agricoli",
-                  "kind": "rivista",
-                  "url": "https://www.contratticcnl.it/ccnl/a021/"
+                  "document_id": "flai-ccnl-quadri-impiegati-agricoli-2024-2027",
+                  "title": "CCNL per i Quadri e gli Impiegati Agricoli 18 giugno 2024 (1 gennaio 2024 - 31 dicembre 2027), testo firmato (copia FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
+                  "published_on": "2024-06-18",
+                  "sha256": "94fba8a7cda3856266ed91ab8eec45264803a5396179772d67fbc995b7f7f076"
                 },
-                "section": "Tabella retributiva"
+                "page": "35",
+                "section": "Titolo VI, Art. 31, Tab. 1 'Minimi nazionali di stipendio mensile conglobato a decorrere dal 01/07/2024', categoria Q",
+                "quote": "Q 1.788,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:18Z",
+                "effective_from": "2024-07-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:18Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Minimo nazionale di stipendio mensile conglobato (Art. 31, Tab. 1), applicable from 01/07/2024 where the territorial contract was not renewed under the CCNL 7/07/2021."
             }
           }
         ]
@@ -648,11 +738,11 @@
     "version": "2026.2",
     "effective_from": "2024-07-01",
     "effective_until": "2027-12-31",
-    "source": "https://www.contratticcnl.it/ccnl/a021/",
+    "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "67a9b1f701e95274c77f7628023e886ae85cb39c74c533e9019840b355496f6b",
+    "source_hash": "f71f0c5fee716796a19fca9cc1e5652aa7282ba6b60746e1e2521154311e1b64",
     "published_at": "2026-09-07",
-    "source_type": "commercial_secondary"
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
