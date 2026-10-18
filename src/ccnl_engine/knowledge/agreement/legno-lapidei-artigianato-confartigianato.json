@@ -194,6 +194,35 @@
         "findings": [
           "Art. 47 - Gratifica natalizia per il Settore Legno, Arredamento, Mobili; Art. 47 bis - Gratifica natalizia per il Settore Escavazione e Lavorazione di materiali Lapidei (p. 45): \"il lavoratore non in prova ha diritto a tanti dodicesimi dell'ammontare della 13° mensilità quanti sono i mesi di servizio prestati presso l'azienda. La frazione di mese superiore ai 15 giorni sarà considerata come mese intero. [...] La frazione di mese superiore a 15 giorni sarà considerata come mese intero.\". Match: more_than 15."
         ]
+      },
+      {
+        "id": "2026-10-18-ai-tables",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The conglobated retribuzione tabellare of the eight levels of the Imprese Artigiane, Settore Legno, Arredamento, Mobili table against the signed verbale integrativo of 15 March 2024, which prints the table after each of the four tranches (01/03/2024, 01/01/2025, 01/01/2026, 01/10/2026) of the renewal of 5 March 2024.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+            "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
+          },
+          {
+            "url": "https://www.filleacgil.net/images/MORELLO/CcnlLegnoLapideirtigiani_marzo2024.pdf",
+            "sha256": "823685b781c3906627f36b0812aa1b45cc1b0117c99f08236fedc6c27c30ed46"
+          },
+          {
+            "url": "https://www.filleacgil.net/images/DAL-2024/ARCHIVIO-PRECEDENTE/cannata/PEZZI_PROPAGANDA/CcnlLegnoLapideiArtigiani_2024.pdf",
+            "sha256": "4b53e5a25042c48cd752331872041fbe25d8ef071d1e0702f40ab3036b79ee5e"
+          }
+        ],
+        "findings": [
+          "The signed verbale integrativo of 15 March 2024 (signatures of CNA, Confartigianato Legno e Arredo, Confartigianato Marmisti, Casartigiani, CLAAI, Feneal, Filca, Fillea) prints, for the Imprese Artigiane Settore Legno, Arredamento, Mobili, the retribuzione tabellare before and after each tranche (PDF pp. 2-4). Image-only scan, read on the page images. The file models this table (not the PMI or Lapidei tables): all 32 values match.",
+          "The copy used is published by Confartigianato Imprese Vicenza, a territorial association of the signatory Confartigianato. Cross-checks: the signed ipotesi of 5 March 2024 (FILLEA-CGIL copy, PDF p. 7) prints the level D tranches 55/50/40/35; the FILLEA-CGIL leaflet prints the same 01/09/2022 base, per-level tranches and 01/10/2026 regime values for every level.",
+          "The printed item is the retribuzione tabellare (conglobated minimo, contingenza conglobata), matching the file's base_salary meaning.",
+          "Level C 01/03/2024 is printed '1639,4' (trailing zero dropped); recorded as 1639,40, equal to the file value.",
+          "The ruleset names a document of a signatory association: source_type contracting_party."
+        ]
       }
     ]
   },
@@ -411,22 +440,31 @@
             "valid_until": "2025-01-01",
             "value": "1378.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row F",
+                "quote": "F 1329,97 48,94 1378,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -434,22 +472,31 @@
             "valid_until": "2026-01-01",
             "value": "1423.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Seconda tranche di incremento dal 01/01/2025', column 'Retribuzione tabellare dal 01/01/2025', row F",
+                "quote": "F 1378,91 44,49 1423,40"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -457,22 +504,31 @@
             "valid_until": "2026-10-01",
             "value": "1458.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "4",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Terza tranche di incremento dal 01/01/2026', column 'Retribuzione tabellare dal 01/01/2026', row F",
+                "quote": "F 1423,40 35,59 1458,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -480,22 +536,31 @@
             "valid_until": null,
             "value": "1490.13",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "4",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Quarta tranche di incremento dal 01/10/2026', column 'Retribuzione tabellare dal 01/10/2026', row F",
+                "quote": "F 1458,99 31,14 1490,13"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           }
         ]
@@ -532,22 +597,31 @@
             "valid_until": "2025-01-01",
             "value": "1467.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row E",
+                "quote": "E 1415,50 52,09 1467,59"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -555,22 +629,31 @@
             "valid_until": "2026-01-01",
             "value": "1514.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Seconda tranche di incremento dal 01/01/2025', column 'Retribuzione tabellare dal 01/01/2025', row E",
+                "quote": "E 1467,59 47,35 1514,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -578,22 +661,31 @@
             "valid_until": "2026-10-01",
             "value": "1552.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "4",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Terza tranche di incremento dal 01/01/2026', column 'Retribuzione tabellare dal 01/01/2026', row E",
+                "quote": "E 1514,94 37,88 1552,82"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -601,22 +693,31 @@
             "valid_until": null,
             "value": "1585.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "4",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Quarta tranche di incremento dal 01/10/2026', column 'Retribuzione tabellare dal 01/10/2026', row E",
+                "quote": "E 1552,82 33,15 1585,97"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           }
         ]
@@ -653,22 +754,31 @@
             "valid_until": "2025-01-01",
             "value": "1549.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row D",
+                "quote": "D 1494,71 55 1549,71"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -676,22 +786,31 @@
             "valid_until": "2026-01-01",
             "value": "1599.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Seconda tranche di incremento dal 01/01/2025', column 'Retribuzione tabellare dal 01/01/2025', row D",
+                "quote": "D 1549,71 50 1599,71"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -699,22 +818,31 @@
             "valid_until": "2026-10-01",
             "value": "1639.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "4",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Terza tranche di incremento dal 01/01/2026', column 'Retribuzione tabellare dal 01/01/2026', row D",
+                "quote": "D 1599,71 40 1639,71"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -722,22 +850,31 @@
             "valid_until": null,
             "value": "1674.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "4",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Quarta tranche di incremento dal 01/10/2026', column 'Retribuzione tabellare dal 01/10/2026', row D",
+                "quote": "D 1639,71 35 1674,71"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           }
         ]
@@ -774,22 +911,31 @@
             "valid_until": "2025-01-01",
             "value": "1639.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row C (printed '1639,4', i.e. 1.639,40)",
+                "quote": "C 1581,22 58,18 1639,4"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -797,22 +943,31 @@
             "valid_until": "2026-01-01",
             "value": "1692.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Seconda tranche di incremento dal 01/01/2025', column 'Retribuzione tabellare dal 01/01/2025', row C",
+                "quote": "C 1639,4 52,89 1692,29"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -820,22 +975,31 @@
             "valid_until": "2026-10-01",
             "value": "1734.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "4",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Terza tranche di incremento dal 01/01/2026', column 'Retribuzione tabellare dal 01/01/2026', row C",
+                "quote": "C 1692,29 42,32 1734,61"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -843,22 +1007,31 @@
             "valid_until": null,
             "value": "1771.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "4",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Quarta tranche di incremento dal 01/10/2026', column 'Retribuzione tabellare dal 01/10/2026', row C",
+                "quote": "C 1734,61 37,03 1771,64"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           }
         ]
@@ -895,22 +1068,31 @@
             "valid_until": "2025-01-01",
             "value": "1718.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row C Super",
+                "quote": "C Super 1657,27 60,98 1718,25"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -918,22 +1100,31 @@
             "valid_until": "2026-01-01",
             "value": "1773.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Seconda tranche di incremento dal 01/01/2025', column 'Retribuzione tabellare dal 01/01/2025', row C Super",
+                "quote": "C Super 1718,25 55,44 1773,69"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -941,22 +1132,31 @@
             "valid_until": "2026-10-01",
             "value": "1818.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "4",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Terza tranche di incremento dal 01/01/2026', column 'Retribuzione tabellare dal 01/01/2026', row C Super",
+                "quote": "C Super 1773,69 44,35 1818,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -964,22 +1164,31 @@
             "valid_until": null,
             "value": "1856.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "4",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Quarta tranche di incremento dal 01/10/2026', column 'Retribuzione tabellare dal 01/10/2026', row C Super",
+                "quote": "C Super 1818,04 38,81 1856,85"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           }
         ]
@@ -1016,22 +1225,31 @@
             "valid_until": "2025-01-01",
             "value": "1796.32",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row B",
+                "quote": "B 1732,57 63,75 1796,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -1039,22 +1257,31 @@
             "valid_until": "2026-01-01",
             "value": "1854.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Seconda tranche di incremento dal 01/01/2025', column 'Retribuzione tabellare dal 01/01/2025', row B",
+                "quote": "B 1796,32 57,96 1854,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -1062,22 +1289,31 @@
             "valid_until": "2026-10-01",
             "value": "1900.65",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "4",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Terza tranche di incremento dal 01/01/2026', column 'Retribuzione tabellare dal 01/01/2026', row B",
+                "quote": "B 1854,28 46,37 1900,65"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -1085,22 +1321,31 @@
             "valid_until": null,
             "value": "1941.22",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "4",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Quarta tranche di incremento dal 01/10/2026', column 'Retribuzione tabellare dal 01/10/2026', row B",
+                "quote": "B 1900,65 40,57 1941,22"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           }
         ]
@@ -1137,22 +1382,31 @@
             "valid_until": "2025-01-01",
             "value": "1965.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row A",
+                "quote": "A 1895,44 69,75 1965,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -1160,22 +1414,31 @@
             "valid_until": "2026-01-01",
             "value": "2028.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Seconda tranche di incremento dal 01/01/2025', column 'Retribuzione tabellare dal 01/01/2025', row A",
+                "quote": "A 1965,19 63,40 2028,59"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -1183,22 +1446,31 @@
             "valid_until": "2026-10-01",
             "value": "2079.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "4",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Terza tranche di incremento dal 01/01/2026', column 'Retribuzione tabellare dal 01/01/2026', row A",
+                "quote": "A 2028,59 50,72 2079,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -1206,22 +1478,31 @@
             "valid_until": null,
             "value": "2123.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "4",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Quarta tranche di incremento dal 01/10/2026', column 'Retribuzione tabellare dal 01/10/2026', row A",
+                "quote": "A 2079,31 44,38 2123,69"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           }
         ]
@@ -1258,22 +1539,31 @@
             "valid_until": "2025-01-01",
             "value": "2108.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row AS",
+                "quote": "AS 2033,54 74,83 2108,37"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -1281,22 +1571,31 @@
             "valid_until": "2026-01-01",
             "value": "2176.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Seconda tranche di incremento dal 01/01/2025', column 'Retribuzione tabellare dal 01/01/2025', row AS",
+                "quote": "AS 2108,37 68,02 2176,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -1304,22 +1603,31 @@
             "valid_until": "2026-10-01",
             "value": "2230.81",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Terza tranche di incremento dal 01/01/2026', column 'Retribuzione tabellare dal 01/01/2026', row AS",
+                "quote": "AS 2176,39 54,42 2230,81"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           },
           {
@@ -1327,22 +1635,31 @@
             "valid_until": null,
             "value": "2278.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                  "document_id": "ccnl-legno-lapidei-artigianato-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare per tranche (scansione firmata, pubblicata da Confartigianato Imprese Vicenza)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "522008411b77b6454a180000f2fe5e49672a0054bcf50c13eaac4f8d66bea462"
                 },
-                "section": "Tabella retributiva"
+                "page": "4",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Legno, Arredamento, Mobili; table 'Quarta tranche di incremento dal 01/10/2026', column 'Retribuzione tabellare dal 01/10/2026', row AS",
+                "quote": "AS 2230,81 47,62 2278,43"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:53:55Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:53:55Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Legno, Arredamento, Mobili (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
             }
           }
         ]
@@ -1497,11 +1814,11 @@
     "version": "2026.2",
     "effective_from": "2024-03-01",
     "effective_until": null,
-    "source": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf",
+    "source": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
     "verification_status": "unverified",
-    "source_hash": "a5ee8cb63125bb829251a5172f5559f7da8910ec51a8e0a1d7a67c56c22fabc3",
+    "source_hash": "06daa8ceec6e5fb12d238352aa739d6d049b1c931f0beca89b7438419d58a67f",
     "published_at": "2026-09-07",
-    "source_type": "commercial_secondary"
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
