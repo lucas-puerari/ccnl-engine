@@ -194,6 +194,31 @@ def test_tredicesima_owes_its_ratei() -> None:
     assert _contractual(thirteenth) == Decimal("15.00")
 
 
+def test_a_termination_owes_the_ratei_it_settles() -> None:
+    """End on 30 June: the June pay settles six ratei of the tredicesima.
+
+    The last month owes 15.00 and the six ratei 15.00 x 6 / 12 = 7.50, as
+    an extra-month run of the same ratei would; the quattordicesima, paid
+    in its own run, owes its ratei there.
+    """
+    year = ENGINE.calculate_competence_year(
+        CompetenceYearPlan(
+            year=2026,
+            employment=_employment(
+                employment_period=EmploymentPeriod(date(2026, 1, 1), date(2026, 6, 30))
+            ),
+            employer=EMPLOYER,
+            current_year=employment_only(),
+        )
+    )
+    by_run = {
+        r.run.run_id: _contractual(r) for r in year.period_results if r.run is not None
+    }
+    assert by_run["2026-05-regular"] == Decimal("15.00")
+    assert by_run["2026-06-regular"] == Decimal("22.50")
+    assert by_run["2026-06-fourteenth"] == Decimal("7.50")
+
+
 def test_apprentice_owes_the_apprentice_amount() -> None:
     """An apprentice impiegato owes 10.00 whatever the level."""
     employment = _employment(contract_type=Apprentice(months_elapsed=6))

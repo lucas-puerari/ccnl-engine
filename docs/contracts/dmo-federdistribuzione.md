@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, seniority, sickness, territorial_supplement |
+| **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority, sickness, territorial_supplement |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | 2026-10-13 |
+| **Last review** | 2026-10-17 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule read again in the Testo Unico of 29 September 2025 (Federdistribuzione, 99 pages), for the production tier. | corrected | 90 records verified; the work rules cited an aggregator and now cite the Testo Unico. The 2025/01 URL of the sources returns 404: replaced by the 2026/04 one.<br>Night overtime 50%, not 30% (Art. 132 c. 3); added the 20% beyond the 48th weekly hour (c. 1). The premiums are on the normale retribuzione of Art. 189 (hourly_base_method gross_incl_allowances, which documents the rule: the caller states OvertimeEvent.hourly_rate).<br>Sickness: 75% for days 4-20 and 100% from day 21 of the net daily pay, carenza by event, apprentices excluded (Art. 170), not a flat 100%.<br>Seniority amounts in force since 1990 (Art. 188): the gap before 23 April 2024 removed.<br>Terzo elemento 2.07 due only without a provincial element (Art. 199): now gated.<br>Apprenticeship: second half of level VI at VII (Art. 46 c. 3); the 36-month end of levels II-V stated.<br>Added the payment days of the tredicesima and quattordicesima and Fon.Te. (Art. 95, 1.55% and 0.55%, apprentices 1.05%).<br>Night holiday overtime 0.50 stays derived: no clause sets it, Art. 132 c. 5 forbids cumulation.<br>No renewal after the Testo Unico through October 2026. |
 | 2026-10-13 | claude-opus-5-5 (ai) | Scope of the declared limitations. | corrected | sickness_net_basis is recorded on every run with a sickness event (trigger run), not only documented. |
+| 2026-10-17 | claude-opus-5-5 (ai) | The paga base, contingenza, terzo elemento, indennità di funzione and scatti of every level against the Testo Unico of 29 September 2025, and a year and a termination of a level IV worker against a hand oracle. | confirmed | Allegato 11 (PDF pp. 97-99): 47 of the 48 paghe base of the file are printed in the tables; the IV of 1 April 2023 prints 1112,46 in the paga base column, but its total 1646,68 less the contingenza 524,22 gives the 1122,46 of the file, which the CCNL Terziario Confesercenti also reaches (total 1646,68). The paga base column has a misprint; the file keeps 1122,46.<br>Contingenza + EDR of every level, the terzo elemento of 2,07 (Art. 195), the indennità di funzione of the Quadri (260,76) and of the VII (5,16) and the scatti (Quadri 25,46 to VII 19,47): match.<br>Art. 204 and 205 (PDF p. 59): tredicesima at Christmas, quattordicesima of the pay in force on 30 June paid on 1 July, in twelfths of the twelve months before. Match.<br>Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios dmo-year and dmo-june): a level IV impiegato hired on 1 January 2026 by an employer with 50 employees where a provincial element is in force; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done. |
 
 ## Salary table
 
@@ -124,12 +125,40 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the net daily pay of Art. 170 and the exempt events of c. 3.
 
-!!! warning "dmo-federdistribuzione/dmo_unmodelled_elements · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the indennità di cassa of 5% (Art. 202); the premiums on ordinary night (15%, Art. 134), Sunday (30%, Art. 136) and weekly rest day (30%, Art. 139) work; the pay rows of the operatori di vendita; the sostegno all'occupazione contract of Art. 70; the guarantee of the commission-paid staff (Art. 201). The una tantum of Art. 197 (July 2024 and 2025) is historic and outside the TFR base (c. 6).
+!!! warning "dmo-federdistribuzione/cashier_allowance · base_salary · impact yes · open"
+    Art. 202: the indennità di cassa of 5%.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the fund omission EDRs, the cashier allowance and the premiums on ordinary hours.
+    **Remediation:** Model the cashier allowance with a role.
+
+!!! warning "dmo-federdistribuzione/ordinary_hours_premiums · overtime · impact yes · open"
+    Art. 134, 136 and 139: the premiums on ordinary night (15%), Sunday (30%) and weekly rest day (30%) work.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the premiums on ordinary hours.
+
+!!! warning "dmo-federdistribuzione/sales_operators · base_salary · impact yes · open"
+    The pay rows of the operatori di vendita.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the operatori di vendita levels.
+
+!!! warning "dmo-federdistribuzione/employment_support_contract · base_salary · impact yes · open"
+    Art. 70: the sostegno all'occupazione contract.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the pay of the Art. 70 contract.
+
+!!! warning "dmo-federdistribuzione/commission_guarantee · base_salary · impact yes · open"
+    Art. 201: the guarantee of the commission-paid staff. The una tantum of Art. 197 (July 2024 and 2025) is historic and outside the TFR base (c. 6).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the guarantee of commission-paid staff.
 
 !!! warning "dmo-federdistribuzione/health_and_bilateral_funds · bilateral_funds · impact yes · open"
     HEALTH AND BILATERAL FUNDS: E.Bi.Di.M. (Art. 18), Fondo EST (Art. 19) and, for the quadri, Cassa QuAS (Art. 20) are owed for every worker, with their worker shares; an employer that does not pay them owes the worker instead the EDR of 0.30% of paga base and contingenza (14 months), EUR 16.00 x 14 and EUR 37.00 x 14. Neither is modelled: the net pay and the employer cost are short of them.

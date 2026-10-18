@@ -102,15 +102,93 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED AMOUNTS: the EVR set by the provincial agreements (Art. 46); the premio di fedeltà of one month a year after 20 years of service (Art. 65); the premiums on ordinary hours of Art. 54 (lavoro festivo 45%, notturno 34% or 10% in shifts, festivo notturno 50%); the indennità speciale (Art. 47), di cassa (Art. 50) and for alta montagna, cassoni and galleria (Art. 52); mensa, trasporto and trasferta (provincial; verbale 2025); the 1/25 for the festività of 4 November (Art. 43); the absorption of a superminimo into the quadri function allowance (Art. 76). The una tantum premio di ingresso of the verbale of 3 March 2022 and the riduzione contributiva edile concern the operai only.",
-        "capability": "base_salary",
+        "text": "Art. 46: the EVR set by the provincial agreements.",
+        "capability": "territorial_supplement",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "edilizia_impiegati_unmodelled",
+          "variant": "provincial_evr",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the provincial elements as inputs and the percentage accruals of the CCNL."
+          "remediation": "Add the provincial EVR as an input."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 65: the premio di fedeltà of one month a year after 20 years of service.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "loyalty_premium",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the premio di fedeltà on seniority."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 54: the premiums on ordinary hours (lavoro festivo 45%, notturno 34% or 10% in shifts, festivo notturno 50%).",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ordinary_hours_premiums",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the Art. 54 premiums on ordinary hours."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 47, 50 and 52: the indennità speciale, di cassa and for alta montagna, cassoni and galleria.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "special_allowances",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the allowances of Artt. 47, 50 and 52."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Mensa, trasporto and trasferta, set by the provincial agreements (verbale 2025).",
+        "capability": "territorial_supplement",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "provincial_meals_transport_travel",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the provincial mensa, trasporto and trasferta as inputs."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 43: the 1/25 for the festività of 4 November.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "november_4_holiday",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pay the 1/25 of 4 November."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 76: the absorption of a superminimo into the quadri function allowance. The una tantum premio di ingresso of the verbale of 3 March 2022 and the riduzione contributiva edile concern the operai only.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "quadri_absorption",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the absorption of Art. 76."
         }
       },
       {
@@ -2321,7 +2399,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "64b22c3f6a1b0c86d4e2a733fc724c7b99fa57d12d1e9404b8102e495d8dc5b5",
+    "source_hash": "770a9d8284c5b33b3878823c89423a314eff009f819e67cd03c864de6fc1c388",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2670,6 +2748,34 @@
         "outcome": "corrected",
         "findings": [
           "edilizia_impiegati_sickness (the art. 66 treatment beyond two years of service) is recorded on every sickness run of a worker with 24 months of seniority or more, or of unknown seniority."
+        ]
+      },
+      {
+        "id": "2026-10-17-ai-full-year",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "A year and a termination of an impiegato of the 3rd level against a hand oracle, and the 23 derived rules of the file.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
+            "sha256": "d01c1635bf8f5185043f6c5509f0c829fb58bdb1d9ef2943f554d825f60d1710"
+          },
+          {
+            "url": "https://ance.it/wp-content/uploads/allegati/Tabella_retribuzioni_Edili_SS_-_OT_-_Decorrenza_1_febbraio_2025.pdf",
+            "sha256": "b681a3f867cd31d4cef09e5234d85a2b6f183a72c66054ed6ff8bd326d88f715"
+          },
+          {
+            "url": "https://www.prevedi.it/wp-content/uploads/2026/09/3722_Nota_Informativa_-_Informazioni_chiave_per_laderente_-_Scheda_I_destinatari_e_i_contributi.pdf",
+            "sha256": "195f6e83abef137bc3ad9ad832af61b633e1c923f202623d6bc16fdef2900de6"
+          }
+        ],
+        "findings": [
+          "Engine corrected: at a termination the June pay settles the ratei of the tredicesima; the Prevedi contributo contrattuale, 'applicato anche per 13° e 14° mensilità', was not charged on them (6,50 EUR and its 10% solidarity contribution short), while an extra-month run of the same ratei charges it. The settled ratei now owe it (tests/knowledge/ccnl_engine/pension_fund/services/test_prevedi.py::test_a_termination_owes_the_ratei_it_settles).",
+          "Engine corrected: the ratei settled at a termination entered the TFR base whole, the EDR included, while the EDR stays out of the TFR base in the monthly pay and in an extra-month run (0,38 EUR of TFR too much here). The settled ratei now leave out the allowances outside the TFR base.",
+          "Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios edilizia-impiegati-year and edilizia-impiegati-june): an impiegato of the 3rd level hired on 1 January 2026 by an employer with 30 employees, across the tranche of March 2026; after the two corrections every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done.",
+          "The 23 derived rules stay derived: the contingenza and EDR of each level (14) are read from the ANCE provincial tables, not tabulated in the CCNL; the Prevedi amounts are rebuilt from two verbali and the fund scheda; two scatti differ between the table (8,2) and the secondary tables (8,22); the payment day of the quattordicesima and the absence divisor are stated transformations. No signatory text states them directly."
         ]
       }
     ],

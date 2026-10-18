@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | 2026-10-16 |
+| **Last review** | 2026-10-17 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | Accrual of the tredicesima and quattordicesima (artt. 183 c. 2 and 184 c. 4). | corrected | The accrual rule was missing (engine default of 15 days per month): the CCNL cumulates the fractions of month, a rateo for each 30 days and one for a remainder of 15 days or more, now modelled (cumulated_fractions). |
 | 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule not yet verified, the apprenticeship (arts. 68 and 72), the limitations and the L2 values, for the production tier. | corrected | 22 records verified on the signed texts (salary periods on the accordo integrativo of 26 June 2024, accrual rule and Fon.Te. on the CCNL of 8 February 2018).<br>Fon.Te.: 0.55% employer and worker on the TFR base, art. 185 c. 3; valid from 29 November 1996 (the fund table), not from 2026.<br>Apprenticeship: level 1 is not a destination; level 6 lasts 24 months (art. 72 c. 1), now its own track; the 42 and 48 month profiles stay a limitation.<br>Holiday overtime: whether the 20% of art. 132 adds to the 30%/60% of art. 126 is not stated; the two bands stay derived with the limitation.<br>L2: INPS terziario verified (circ. 117/2022 allegato accepted on 2026-10-13), with the 0.77% sickness supplement of the pubblici esercizi (CCNL art. 190 c. 3); TFR art. 217, the scatti included since 1 November 2021.<br>No renewal after the accordo integrativo of 26 June 2024 changes gross pay. |
 | 2026-10-16 | claude-opus-5-5 (ai) | Checklist item 'confrontare lordo, netto e costo azienda con esempi indipendenti': a run of the engine against the cost table of the Ministry of Labour for the comparto ristorazione collettiva (DD 63 of 10 July 2025, national table of January 2026, D.Lgs. 36/2023 art. 41 c. 13). | flagged | Level 4, January 2026: paga base conglobata 19.832,28 a year over 12 equals the 1652.69 of the file (tranche of 1 September 2025); the quattordicesima of the table, 1.652,69, is that month. Match: reference case pubblici-esercizi-fipe-angem-ristorazione-collettiva_4_2026_ministry.json.<br>Employer contributions: the table prints Inps 29,75%, FIS 0,53% and CIGS 0,60%, 30.88% in all; the engine applies 30.8833% to an impiegato of a company of 51 employees (the FIS employer share 0.80% x 2/3 = 0.5333%, printed rounded). The CIGS line places the table above 50 employees (D.Lgs. 148/2015 art. 20, commercial companies with more than fifty employees). Match within the rounding of the printed rate; a rate, not a total, so no output is credited.<br>Deviations, with cause and decision: INAIL 1,09% is not computed by the engine (documented); the health fund (158,40 a year) is the owed limitation health_and_bilateral_funds, which leaves the employer cost incomplete on every run (checked: is_employer_cost_complete false); the EBT contribution, the complementary pension at a 30% enrolment and the three seniority increments of row A are averages of the table, not facts of one worker: not compared. No independent net pay example: not compared. |
+| 2026-10-17 | claude-opus-5-5 (ai) | The paga base and contingenza of every level from June 2024 against the accordo integrativo of 26 June 2024, the quattordicesima against the CCNL of 8 February 2018, and a year and a termination of a 4th level worker against a hand oracle. | confirmed | Accordo integrativo of 26 June 2024 (pp. 1-3): the 50 totals of contingenza and paga base of the ten levels from June 2024 to December 2027 match the file, with the tranches of 2025 and 2026 in September.<br>Art. 184 of the CCNL of 8 February 2018 (p. 128, scan read by OCR): quattordicesima of the pay in force on 30 June, paid with the July pay, in ratei of the twelve months before 1 July. Match.<br>Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios ristorazione-year and ristorazione-june): a 4th level impiegato hired on 1 January 2026 by an employer with 10 employees, with the terziario rates up to 15 employees and the 0.77% sickness supplement of the pubblici esercizi taken apart; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done. |
 
 ## Salary table
 
@@ -135,12 +136,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Let the caller state the art. 72 c. 2 profile and add the 42 and 48 month tracks with the 95% fourth year.
 
-!!! warning "pubblici-esercizi-fipe-angem-ristorazione-collettiva/fipe_unmodelled_elements · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the guarantee premium of the renewal of 5 June 2024 (art. 13 c. 10) paid with the November 2027 pay to workers without second-level bargaining. The caller pays it as a variable item.
+!!! warning "pubblici-esercizi-fipe-angem-ristorazione-collettiva/guarantee_premium_2027 · base_salary · impact yes · open"
+    Art. 13 c. 10 of the renewal of 5 June 2024: the guarantee premium paid with the November 2027 pay to workers without second-level bargaining. The caller pays it as a variable item.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the Fondo Est elemento distinto and the 2027 guarantee premium as conditional allowances.
+    **Remediation:** Model the 2027 guarantee premium as a conditional allowance.
 
 !!! warning "pubblici-esercizi-fipe-angem-ristorazione-collettiva/health_and_bilateral_funds · bilateral_funds · impact yes · open"
     HEALTH FUND: the Fondo Est is owed for every worker (CCNL 2018 art. 186); an employer that does not pay it owes the worker instead the elemento distinto of EUR 16.00 for 14 months (c. 12). Neither is modelled: the employer cost, and with the elemento the net pay, are short of it.

@@ -36,8 +36,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
 1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -56,7 +56,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-08-06 |
-| **Last review** | 2026-10-15 |
+| **Last review** | 2026-10-17 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | Salary tables, additional months, hourly and daily divisors, overtime, leave, sickness and seniority, against the CCNLs of 12 February 2018, 9 May 2022, 27 January 2025 and 6 August 2026. | corrected | Salary amounts confirmed (annual table over 12; elevate professionalità 2022: 35,000 / 13).<br>The first period started on 2022-05-09, the signing date; the new classification applies from 1 November 2022 (art. 18 c. 1).<br>The 2025-2027 values cited a union page; they are now cited to the ARAN text of 6 August 2026 (Tabella 3).<br>Daily quota: art. 29 c. 4 divides by 30, not 26.<br>Overtime is in art. 25 c. 5 of the CCNL 12.2.2018, kept in force by the CCNL 2025-2027.<br>Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 24), not 270 days at 100%.<br>Leave: 26 days for the first three years of a first public employment until 31 December 2026 (art. 21 CCNL 2022-2024). |
 | 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: Tabella 3 of the CCNL of 6 August 2026 for the four areas and the three years; the remaining derived records; the next review date. | confirmed | The twelve monthly amounts (four areas from 1 January 2025, 2026 and 2027) are the annual tabellare of Tabella 3 over 12, to the cent.<br>Perseo Sirio stays derived: the 1% of the employer and of the worker are read in the fund's information sheet, which states the rates in force, not since when; the CCNL does not print them.<br>review_due set to 2027-12-31, the expiry of the 2025-2027 agreement. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | corrected | CNEL S005 matches (ARAN with CISL FP, CONFSAL UNSA, FLP, CGS, CONFINTESA FP, UIL PA).<br>Term: the CCNL of 6 August 2026 covers the triennio 2025-2027; meta.validity still held the CCNL of 9 May 2022 and is updated. |
+| 2026-10-17 | claude-opus-5-5 (ai) | The CTPS rates the file reads, against the INPS table of the Gestione Dipendenti Pubblici. | confirmed | The INPS page prints 'CTPS 33 24,2 8,8' (total, employer, worker): the 24.20% and 8.80% of the bundle. The rates no longer rest on the kitech.it proxy the limitation named; ctps_rates_proxy is resolved. |
 
 ## Salary table
 
@@ -87,12 +88,12 @@ Latest effective values per level (monthly gross, EUR).
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "funzioni-centrali-aran/ctps_rates_proxy · inps_employer · impact unknown · open"
+!!! note "funzioni-centrali-aran/ctps_rates_proxy · inps_employer · impact unknown · resolved"
     aliquote INPS CTPS (ex-INPDAP) — dipendente 8,80%, datore 24,20% — da proxy kitech.it 2026; verificare circolare INPS annuale per valori esatti.
 
     **Applies when:** `inps_employer` applies.
 
-    **Remediation:** Verify the CTPS rates against the annual INPS circular.
+    **Remediation:** Resolved: the CTPS rates of the bundle (employee 8.80%, employer 24.20%) are read from the INPS page 'I contributi dei dipendenti pubblici', table of the Gestione Dipendenti Pubblici, checked again on 2026-10-17 (contribution/2026/pubblica-amministrazione.json, inps.provenance, verified).
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
