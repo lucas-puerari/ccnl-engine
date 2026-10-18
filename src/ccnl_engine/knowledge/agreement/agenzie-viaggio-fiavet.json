@@ -217,7 +217,34 @@
           "note": "Read from the PDF the url serves (sha256 e1604b50f245d34b4ea04aa53bb91056f55635b39b8c0935f31f2a79b578d40e), text layer; valid_from is the first day of the bundled tax year, the rates being in force since 29 November 1996. The base is the retribuzione utile ai fini del calcolo del TFR, as note (1) of the Scheda 'I destinatari e i contributi' states (https://www.fondofonte.it/statuto-e-nota-informativa/parte-i-scheda-iii-i-destinatari-e-i-contributi/, sha256 dc19e50af945d0671920bb1ebc77e5d75cc2a9dd2f6fd8cad5dd2882a66c8cb2). No human review recorded."
         }
       }
-    ]
+    ],
+    "accrual_rule": {
+      "comparison": "cumulated_fractions",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "agenzie-viaggio-fiavet-ccnl-testo",
+            "title": "Ipotesi di Accordo per il Rinnovo del Contratto Collettivo Nazionale di Lavoro per i Dipendenti da Aziende del Settore Turismo (Agenzie di Viaggio e Turismo - Confcommercio, Accordo di Rinnovo 26 luglio 2024)",
+            "kind": "altro",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AgenzieViaggioTurismo_AccordoRinnovo_26.7.24.pdf",
+            "published_on": "2024-07-26",
+            "sha256": "4a110c78751772f16c62ea511166996a2316c61bf8096c9259e67eb343874d68"
+          },
+          "page": "27",
+          "section": "Articolo 157 – Tredicesima mensilità",
+          "quote": "In caso di prestazione lavorativa ridotta e/o di rapporti di lavoro iniziati e/o conclusi nel corso dell'anno, ai fini della determinazione dei ratei di tredicesima, le frazioni di mese saranno cumulate. La somma così ottenuta comporterà la corresponsione di un rateo mensile per ogni trenta giorni di calendario, nonché per la eventuale frazione residua pari o superiore a quindici giorni. La frazione inferiore ai quindici giorni non verrà considerata."
+        },
+        "transformation": "A whole month accrues a rateo; the days of the months served in part are summed: a rateo for each 30 days and one for a remainder of 15 days or more.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2024-07-01",
+          "verification_status": "unverified"
+        }
+      }
+    }
   },
   "levels": [
     {
@@ -2002,7 +2029,7 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "680009b3ddff8217660e907c65aa29a30c9cd61da72525e5832642911078e7b5",
+    "source_hash": "0c59ce2165fe9d12746f0415f59298965517f28d669320755d8ebbdf94db4a9d",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

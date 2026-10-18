@@ -122,6 +122,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Mobilita-Attivita-Ferroviarie.pdf",
+            "sha256": "270d82eb62f1e00c4bb8521e6ca06ae7fb4221fca2d985b6237426216e1e571f"
+          }
+        ],
+        "findings": [
+          "Art. 70 - Tredicesima e quattordicesima mensilità (p. 119): \"il lavoratore ha diritto a tanti dodicesimi dell'ammontare della tredicesima e/o della quattordicesima mensilità, quanti sono i mesi interi di servizio prestati presso l’azienda nei 12 mesi antecedenti quello di erogazione. La frazione di mese superiore a quindici giorni va considerata a questi effetti come mese intero.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -312,6 +336,38 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "trasporto-ferroviario-agens-ccnl-testo",
+            "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 di rinnovo del CCNL Mobilità/Area AF del 22 marzo 2022",
+            "kind": "associazione",
+            "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Mobilita-Attivita-Ferroviarie.pdf",
+            "published_on": "2025-05-22",
+            "sha256": "270d82eb62f1e00c4bb8521e6ca06ae7fb4221fca2d985b6237426216e1e571f"
+          },
+          "page": "119",
+          "section": "Art. 70 - Tredicesima e quattordicesima mensilità",
+          "quote": "il lavoratore ha diritto a tanti dodicesimi dell'ammontare della tredicesima e/o della quattordicesima mensilità, quanti sono i mesi interi di servizio prestati presso l’azienda nei 12 mesi antecedenti quello di erogazione. La frazione di mese superiore a quindici giorni va considerata a questi effetti come mese intero."
+        },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2024-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        },
+        "note": "Quote read by OCR of a scanned PDF."
       }
     }
   },
@@ -1957,7 +2013,7 @@
     "effective_until": "2026-12-31",
     "source": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive",
     "verification_status": "unverified",
-    "source_hash": "81b52021cfafbca1eb227a2d5936f4f675ce1cb65653375e26c89c76cfc4db72",
+    "source_hash": "5ed3c76940ef1958c68f5659c1e1b9aaa5c0924038d69a1f664b55d5a723ee03",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

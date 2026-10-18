@@ -125,6 +125,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confederdia.it/2023/12/01/contratto-collettivo-nazionale-di-lavoro-per-i-dipendenti-dalle-organizzazioni-degli-allevatori-consorzi-ed-enti-zootecnici-1-gennaio-2023-31-dicembre-2026-sostituisce-il-cc/",
+            "sha256": "9701a23bb69ce6afc1991530923185a1bb396d3d85113eb2eeb05939b74392d4"
+          }
+        ],
+        "findings": [
+          "Articolo 17 - Tredicesima e quattordicesima mensilità (p. html (no PDF; text inline on the web page)): \"il dipendente ha diritto a tanti dodicesimi dell'ammontare della tredicesima e della quattordicesima mensilità quanti sono i mesi di servizio prestati nel periodo di riferimento. Le frazioni di mese superiori a 15 giorni si calcoleranno come mese intero; quelle uguali o inferiori a 15 giorni non saranno conteggiate.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -287,6 +311,37 @@
           "extraction_timestamp": "2026-09-07T15:03:36",
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
+        }
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "organizzazioni-allevatori-aia-ccnl-testo",
+            "title": "Contratto collettivo nazionale di lavoro per i dipendenti dalle organizzazioni degli allevatori, consorzi ed enti zootecnici (1° gennaio 2023 - 31 dicembre 2026) (sostituisce il CCNL 22 novembre 2021)",
+            "kind": "associazione",
+            "url": "https://www.confederdia.it/2023/12/01/contratto-collettivo-nazionale-di-lavoro-per-i-dipendenti-dalle-organizzazioni-degli-allevatori-consorzi-ed-enti-zootecnici-1-gennaio-2023-31-dicembre-2026-sostituisce-il-cc/",
+            "published_on": "2023-11-14",
+            "sha256": "9701a23bb69ce6afc1991530923185a1bb396d3d85113eb2eeb05939b74392d4"
+          },
+          "page": "html (no PDF; text inline on the web page)",
+          "section": "Articolo 17 - Tredicesima e quattordicesima mensilità",
+          "quote": "il dipendente ha diritto a tanti dodicesimi dell'ammontare della tredicesima e della quattordicesima mensilità quanti sono i mesi di servizio prestati nel periodo di riferimento. Le frazioni di mese superiori a 15 giorni si calcoleranno come mese intero; quelle uguali o inferiori a 15 giorni non saranno conteggiate."
+        },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2025-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
         }
       }
     }
@@ -964,7 +1019,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "7aad31eaa55408d5004a405940cde2556d07883037209902eee8fd5b756d36fd",
+    "source_hash": "b9eacc92907b23035b77183820be925f6f07f978a41dea0c3840053aa7139b42",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

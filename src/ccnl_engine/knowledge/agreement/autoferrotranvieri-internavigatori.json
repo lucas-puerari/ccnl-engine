@@ -473,6 +473,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "autoferrotranvieri-internavigatori-ccnl-testo",
+            "title": "Contrattazione collettiva nazionale e disposizioni legislative - Autoferrotranvieri Internavigatori (Filt-CGIL, Febbraio 2013)",
+            "kind": "altro",
+            "url": "https://www.amt.genova.it/amt/accordi_aziendali/CCNL_TPL_integrato.pdf",
+            "sha256": "288cec0840b850299ce1f5b65ae9b57dd7b338aac2d1bca742f71c71f543ee36"
+          },
+          "page": "9",
+          "section": "Art. 18 - Tredicesima mensilità (CCNL 23 luglio 1976)",
+          "quote": "Nel caso di inizio o cessazione del rapporto di lavoro nel corso dell’anno sono corrisposti tanti dodicesimi della 13° mensilità quanti sono i mesi di servizio prestati nell’anno medesimo presso l’azienda. La frazione di mese superiore a 15 giorni è calcolata come mese intero."
+        },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2024-12-11",
+          "verification_status": "unverified"
+        }
+      }
     }
   },
   "levels": [
@@ -5152,7 +5179,7 @@
     "effective_until": null,
     "source": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
     "verification_status": "unverified",
-    "source_hash": "c784823b2b0b6656f99e2f44e975800371b210379f129b5e05a420960d3456a0",
+    "source_hash": "28baad050437acb4a56fae4bbd810e4357ecb77ef9183c5d58f0ac5df68ecf3d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

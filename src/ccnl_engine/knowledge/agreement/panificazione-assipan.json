@@ -95,6 +95,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://assipan.it/wp-content/uploads/2025/03/CCNL-della-Panificazione-26-febbraio-2025.pdf",
+            "sha256": "8533abbd8719e1de2e7f3fa2f228ebe44e62154d27b2e9a3120bd47ab31e1abf"
+          }
+        ],
+        "findings": [
+          "Titolo XIX - Art. 52 - Tredicesima e quattordicesima mensilità (p. 66): \"Il diritto alle mensilità aggiuntive matura per dodicesimi, intendendosi per mese intero la frazione di mese superiore a 15 giorni.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -203,6 +227,37 @@
           "extraction_timestamp": "2026-09-07T15:03:36",
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
+        }
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "panificazione-assipan-ccnl-testo",
+            "title": "CCNL della Panificazione - Testo Unico 26 febbraio 2025",
+            "kind": "associazione",
+            "url": "https://assipan.it/wp-content/uploads/2025/03/CCNL-della-Panificazione-26-febbraio-2025.pdf",
+            "published_on": "2025-02-26",
+            "sha256": "8533abbd8719e1de2e7f3fa2f228ebe44e62154d27b2e9a3120bd47ab31e1abf"
+          },
+          "page": "66",
+          "section": "Titolo XIX - Art. 52 - Tredicesima e quattordicesima mensilità",
+          "quote": "Il diritto alle mensilità aggiuntive matura per dodicesimi, intendendosi per mese intero la frazione di mese superiore a 15 giorni."
+        },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2023-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
         }
       }
     }
@@ -1532,7 +1587,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
     "verification_status": "unverified",
-    "source_hash": "c612d4a4df0f04b5fc0aa39644812fbfeb2d4729c907e5f242ca509df7722d7f",
+    "source_hash": "84715a9844637fc49539dff9cc46c7a580be68b97d0acc44c8c96fa29fcf9b8e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

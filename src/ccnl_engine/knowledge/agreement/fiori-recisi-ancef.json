@@ -102,6 +102,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+            "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
+          }
+        ],
+        "findings": [
+          "Articolo 46 - 13° Mensilità (p. 29): \"Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno, e sempre che sia superato il periodo di prova, il lavoratore avrà diritto a tanti dodicesimi dell’ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestati nell’azienda, intendendo per mese intero, le frazioni pari o superiori a 15 giorni.\". Added: at_least 15 (the file applied the engine default, at least 15 days)."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -219,6 +243,37 @@
           "extraction_timestamp": "2026-09-07T15:03:36",
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
+        }
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fiori-recisi-ancef-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro per i dipendenti da Aziende esercenti la lavorazione, il commercio, il trasporto, l'esportazione e l'importazione all'ingrosso di fiori freschi recisi, verde e piante ornamentali per imprese commerciali, consortili o cooperative. 2023 - 2026",
+            "kind": "associazione",
+            "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+            "published_on": "2023-03-30",
+            "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
+          },
+          "page": "29",
+          "section": "Articolo 46 - 13° Mensilità",
+          "quote": "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno, e sempre che sia superato il periodo di prova, il lavoratore avrà diritto a tanti dodicesimi dell’ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestati nell’azienda, intendendo per mese intero, le frazioni pari o superiori a 15 giorni."
+        },
+        "transformation": "Fractions of a month of 15 days or more count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2023-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
         }
       }
     }
@@ -1253,7 +1308,7 @@
     "effective_until": null,
     "source": "https://www.ccnlportatili.it/ccnl/fiori-recisi/",
     "verification_status": "unverified",
-    "source_hash": "36b9f3298a6ba8aaddcb48fc50301e7130b590f8d27d4f639c67c429719b49b3",
+    "source_hash": "efe78a2d249d8e23f4934d3671214175f0d1839fb0675d65e6417a4e9019cf56",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

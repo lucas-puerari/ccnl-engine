@@ -273,6 +273,35 @@
           "effective_from": "2024-10-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "aziende-termali-federterme-ccnl-testo",
+            "title": "Contratto collettivo nazionale di lavoro per i lavoratori dipendenti delle aziende termali - Codice CNEL K461 - 8 ottobre 2024",
+            "kind": "altro",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+            "published_on": "2024-10-08",
+            "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+          },
+          "page": "47",
+          "section": "Art. 37 - 13° e 14° mensilità",
+          "quote": "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno, la lavoratrice e il lavoratore ha diritto a tanti dodicesimi della 13° e 14° mensilità quanti sono i mesi interi di servizio prestato presso l’Azienda. La frazione di mese superiore ai 15 giorni viene considerata a questi effetti come mese intero."
+        },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2024-10-01",
+          "verification_status": "unverified"
+        },
+        "note": "Quote read by OCR of a scanned PDF."
+      }
     }
   },
   "levels": [
@@ -2230,7 +2259,7 @@
     "effective_until": null,
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
     "verification_status": "unverified",
-    "source_hash": "06a60356a53dcb7d652ec0eed94d3bafc8d861429c04c0883cdcd624f2f1fc5a",
+    "source_hash": "3ee8460685908887cc537971212781ec8d8c74aebe5a33ab38df2e302dd9d8a7",
     "published_at": "2026-09-12",
     "source_type": "commercial_secondary"
   },

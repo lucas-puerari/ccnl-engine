@@ -317,6 +317,34 @@
         "transformation": "0.36% split two thirds to the employer (0.24%) and one third to the worker (0.12%), on the INPS taxable pay of every permanent worker.",
         "note": "PDF sha256 a29c19b47b45ea058a586f6094a9ad9557cd3bd606256d6576c6857f902f620b, read on 2026-10-10. Apprentices included: an apprenticeship is 'un contratto di lavoro a tempo indeterminato' (D.Lgs. 81/2015 art. 41 c. 1, Normattiva, read on 2026-10-10); fixed-term workers excluded. Only the ordinary contribution is modelled: the additional contribution due when the fund pays a benefit and the straordinario contribution of the employers that use the assegno straordinario are not."
       }
+    },
+    "accrual_rule": {
+      "min_days": 1,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "bcc-credito-cooperativo-ccnl-testo",
+            "title": "Testo coordinato del Contratto Collettivo Nazionale di Lavoro per i Quadri Direttivi e per il personale delle Aree Professionali delle Banche di Credito Cooperativo Casse Rurali ed Artigiane del 9 luglio 2024",
+            "kind": "altro",
+            "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+            "published_on": "2024-12-19",
+            "sha256": "40a5f71d523fda7a9f942dc3f3255797074d5cfa1a78059ac2ca70d5ab2bdf51"
+          },
+          "page": "64",
+          "section": "Art. 46 - Tredicesima mensilità",
+          "quote": "Nel caso di inizio o cessazione del rapporto di lavoro nel corso dell'anno, la gratificazione spetta in misura proporzionale ai mesi di servizio prestati, considerando come mese intero la eventuale frazione residua."
+        },
+        "transformation": "Any fraction of a month counts as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2024-09-01",
+          "verification_status": "unverified"
+        }
+      }
     }
   },
   "levels": [
@@ -1694,7 +1722,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "f84c8fd5a6df3fed015d2a29aedf2b134ec1983073acb0e9eb35d8a7094ae58f",
+    "source_hash": "8f3b975efb380b5aed4afd0c60f627bede34ab601b01fa18e6602cd86a917cb2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

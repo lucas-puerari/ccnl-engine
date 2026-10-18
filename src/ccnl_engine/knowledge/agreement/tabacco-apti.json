@@ -123,6 +123,23 @@
           "The ruleset names this source, published by UILA-UIL, a signatory: source_type contracting_party instead of estimated.",
           "The contingenza and EDR of each category (18 rules) are not in the accordo and stay assumed."
         ]
+      },
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-Industria-Tabacco-2021-2024.pdf",
+            "sha256": "45297ea8fa28431034b7b1c979f06b02fb69647d01312c5fa596fba53df37ae5"
+          }
+        ],
+        "findings": [
+          "Articolo 33 - 13a e 14a MENSILITÀ (p. 43): \"il lavoratore non in prova ha diritto a tanti dodicesimi dell’ammontare della 13a e della 14a mensilità per quanti sono i mesi interi di servizio prestati. Le frazioni di mese superiori a 15 giorni saranno calcolate come mese intero.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
       }
     ]
   },
@@ -294,7 +311,38 @@
         },
         "contribution_base": "tfr_base"
       }
-    ]
+    ],
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "tabacco-apti-ccnl-testo",
+            "title": "Contratto collettivo nazionale di lavoro per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto, 1 gennaio 2021 - 31 dicembre 2024",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-Industria-Tabacco-2021-2024.pdf",
+            "published_on": "2021-02-11",
+            "sha256": "45297ea8fa28431034b7b1c979f06b02fb69647d01312c5fa596fba53df37ae5"
+          },
+          "page": "43",
+          "section": "Articolo 33 - 13a e 14a MENSILITÀ",
+          "quote": "il lavoratore non in prova ha diritto a tanti dodicesimi dell’ammontare della 13a e della 14a mensilità per quanti sono i mesi interi di servizio prestati. Le frazioni di mese superiori a 15 giorni saranno calcolate come mese intero."
+        },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        }
+      }
+    }
   },
   "apprenticeship": [
     {
@@ -2368,6 +2416,6 @@
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "1e2366af825b33f41cc0450fe195b189fe87d71443f298298ba06dc10d005b9f"
+    "source_hash": "89ca8ac43dd69ce80b76baffe90539e0e6fd7fea1d0dd6955464bbb4d0f53903"
   }
 }

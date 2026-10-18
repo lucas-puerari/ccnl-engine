@@ -8,7 +8,6 @@
       "work_rules.absence_rules": "assumed"
     },
     "agreement/agenti-immobiliari-fiaip.json": {
-      "accrual_rule": "missing",
       "additional_months[2025-05-01]": "assumed",
       "seniority_increments": "assumed"
     },
@@ -16,15 +15,12 @@
       "additional_months[2024-09-01]": "assumed"
     },
     "agreement/agenzie-viaggio-fiavet.json": {
-      "accrual_rule": "missing",
       "additional_months[2024-06-01]": "assumed"
     },
     "agreement/alimentari-pmi-unionalimentari.json": {
-      "accrual_rule": "missing",
       "additional_months[2025-06-01]": "assumed"
     },
     "agreement/alimentaristi-cooperative-e016.json": {
-      "accrual_rule": "missing",
       "additional_months[2023-12-01]": "assumed"
     },
     "agreement/anas.json": {
@@ -40,7 +36,6 @@
       "seniority_increments": "assumed"
     },
     "agreement/autoferrotranvieri-internavigatori.json": {
-      "accrual_rule": "missing",
       "additional_months[2024-12-11]": "assumed"
     },
     "agreement/autorimesse-ic35.json": {
@@ -55,11 +50,7 @@
       "additional_months[2023-01-01]": "assumed"
     },
     "agreement/aziende-termali-federterme.json": {
-      "accrual_rule": "missing",
       "additional_months[2024-10-01]": "assumed"
-    },
-    "agreement/bcc-credito-cooperativo.json": {
-      "accrual_rule": "missing"
     },
     "agreement/calzaturiero-assocalzaturifici.json": {
       "accrual_rule": "missing",
@@ -84,14 +75,12 @@
       "additional_months[2026-01-01]": "assumed"
     },
     "agreement/cinema-audiovisivi-industria.json": {
-      "accrual_rule": "missing",
       "additional_months[2025-01-01]": "assumed"
     },
     "agreement/comunicazione-artigianato-confartigianato.json": {
       "additional_months[2024-12-01]": "assumed"
     },
     "agreement/consorzi-agrari-assocap.json": {
-      "accrual_rule": "missing",
       "additional_months[2025-01-01]": "assumed"
     },
     "agreement/consorzi-di-bonifica-snebi.json": {
@@ -99,7 +88,6 @@
       "additional_months[2025-07-01]": "assumed"
     },
     "agreement/contoterzismo-caiagromec.json": {
-      "accrual_rule": "missing",
       "additional_months[2024-06-01]": "assumed"
     },
     "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json": {
@@ -113,18 +101,15 @@
       "additional_months[2025-05-01]": "assumed"
     },
     "agreement/edilizia-cooperative-ancpl.json": {
-      "accrual_rule": "missing",
       "additional_months[2025-02-01]": "assumed"
     },
     "agreement/edilizia-pmi-confapi-aniem.json": {
       "additional_months[2025-04-01]": "assumed"
     },
     "agreement/elettrico-elettricita-futura.json": {
-      "accrual_rule": "missing",
       "additional_months[2025-04-01]": "assumed"
     },
     "agreement/energia-petrolio-confindustria.json": {
-      "accrual_rule": "missing",
       "additional_months[2025-07-01]": "assumed"
     },
     "agreement/enti-ricerca-aran.json": {
@@ -137,14 +122,12 @@
       "additional_months[2022-07-01]": "assumed"
     },
     "agreement/farmacie-private-h121.json": {
-      "accrual_rule": "missing",
       "additional_months[2021-11-01]": "assumed"
     },
     "agreement/federcasa.json": {
       "additional_months[2024-12-01]": "assumed"
     },
     "agreement/fiori-recisi-ancef.json": {
-      "accrual_rule": "missing",
       "additional_months[2023-01-01]": "assumed"
     },
     "agreement/formazione-professionale.json": {
@@ -167,11 +150,9 @@
       "additional_months[2023-01-01]": "assumed"
     },
     "agreement/grafica-editoria-aieg.json": {
-      "accrual_rule": "missing",
       "additional_months[2024-03-01]": "assumed"
     },
     "agreement/igiene-ambientale-utilitalia.json": {
-      "accrual_rule": "missing",
       "additional_months[2026-02-01]": "assumed"
     },
     "agreement/impianti-sportivi-sport.json": {
@@ -238,14 +219,9 @@
       "seniority_increments": "assumed"
     },
     "agreement/metalmeccanica-cooperative.json": {
-      "accrual_rule": "missing",
       "additional_months[2025-06-01]": "assumed"
     },
-    "agreement/metalmeccanico-confimi-pmi.json": {
-      "accrual_rule": "missing"
-    },
     "agreement/noleggio-autobus-conducente-anav.json": {
-      "accrual_rule": "missing",
       "additional_months[2024-01-01]": "assumed",
       "levels[Q1].fixed_allowances[INDENNITA_FUNZIONE]": "assumed",
       "levels[Q2].fixed_allowances[INDENNITA_FUNZIONE]": "assumed",
@@ -259,18 +235,15 @@
       "additional_months[2023-01-19]": "assumed"
     },
     "agreement/operai-agricoli-florovivaisti.json": {
-      "accrual_rule": "missing",
       "additional_months[2022-06-01]": "assumed"
     },
     "agreement/orafi-argentieri-industria-federorafi.json": {
       "additional_months[2022-06-01]": "assumed"
     },
     "agreement/organizzazioni-allevatori-aia.json": {
-      "accrual_rule": "missing",
       "additional_months[2025-09-01]": "assumed"
     },
     "agreement/ortofrutticoli-agrumari.json": {
-      "accrual_rule": "missing",
       "additional_months[2024-01-01]": "assumed",
       "levels[Q].fixed_allowances[IND_FUN]": "assumed",
       "overtime_bands[OT_FESTIVO]": "assumed",
@@ -281,7 +254,6 @@
       "work_rules.sickness_rules": "assumed"
     },
     "agreement/panificazione-assipan.json": {
-      "accrual_rule": "missing",
       "additional_months[2023-01-01]": "assumed"
     },
     "agreement/pelli-cuoio-industria-assopellettieri.json": {
@@ -289,14 +261,12 @@
       "additional_months[2023-04-01]": "assumed"
     },
     "agreement/portieri-fabbricati-confedilizia.json": {
-      "accrual_rule": "missing",
       "additional_months[2026-01-01]": "assumed"
     },
     "agreement/poste-italiane-k700.json": {
       "additional_months[2024-07-23]": "assumed"
     },
     "agreement/pulizia-artigianato-confartigianato.json": {
-      "accrual_rule": "missing",
       "additional_months[2022-11-01]": "assumed",
       "levels[1].base_salary[2022-11-01]": "assumed",
       "levels[1].base_salary[2023-07-01]": "assumed",
@@ -329,7 +299,6 @@
       "work_rules.sickness_rules": "assumed"
     },
     "agreement/radiotelevisive-radiofonico.json": {
-      "accrual_rule": "missing",
       "additional_months[2026-01-01]": "assumed",
       "levels[1].fixed_allowances[CONTINGENZA]": "assumed",
       "levels[2].fixed_allowances[CONTINGENZA]": "assumed",
@@ -340,7 +309,6 @@
       "seniority_increments": "assumed"
     },
     "agreement/radiotelevisive-televisivo.json": {
-      "accrual_rule": "missing",
       "additional_months[2026-01-01]": "assumed",
       "levels[1].fixed_allowances[CONTINGENZA]": "assumed",
       "levels[2].fixed_allowances[CONTINGENZA]": "assumed",
@@ -364,7 +332,6 @@
       "additional_months[2023-09-01]": "assumed"
     },
     "agreement/scuole-private-agidae.json": {
-      "accrual_rule": "missing",
       "additional_months[2024-09-01]": "assumed"
     },
     "agreement/scuole-private-laiche-aninsei.json": {
@@ -374,17 +341,14 @@
       "additional_months[2023-12-21]": "assumed"
     },
     "agreement/sistemazioni-idraulico-forestali-impiegati.json": {
-      "accrual_rule": "missing",
       "additional_months[2026-01-01]": "assumed",
       "seniority_increments": "assumed"
     },
     "agreement/sistemazioni-idraulico-forestali-operai.json": {
-      "accrual_rule": "missing",
       "additional_months[2026-01-01]": "assumed",
       "seniority_increments": "assumed"
     },
     "agreement/tabacco-apti.json": {
-      "accrual_rule": "missing",
       "additional_months[2025-01-01]": "assumed",
       "employer_funds[ALIFOND].employee_min_rate[2025-07-01]": "assumed",
       "employer_funds[ALIFOND].rate[2025-07-01]": "assumed",
@@ -430,7 +394,6 @@
       "additional_months[2025-01-01]": "assumed"
     },
     "agreement/trasporto-ferroviario-agens.json": {
-      "accrual_rule": "missing",
       "additional_months[2025-06-01]": "assumed"
     },
     "agreement/turismo-confesercenti.json": {
