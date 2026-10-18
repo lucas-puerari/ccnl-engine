@@ -49,12 +49,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-02-23 |
-| **Last review** | — |
+| **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-18 | claude-opus-5-5 (ai) | The minimi of the 8 levels A-H of the chimica, concia e settori accorpati sector on 1 January 2026, derived from the minimi at 31/12/2025 and the 01/01/2026 increase printed in the signed ipotesi of 23 February 2026. | confirmed | Ipotesi 23 febbraio 2026 (22-page signed scan without text layer, published by Confapi Varese, territorial association of the Confapi system to which the signatory Unionchimica belongs; read on the page image of PDF p. 18; it bears the signatures of all parties and is linked from api.varese.it): the table 'Chimica - Concia e Settori accorpati' prints, for levels A (parametro 100,00) to H (178,79), the minimi al 31/12/2025 and the increases from 01/01/2026, 01/04/2027, 01/12/2027, 01/06/2028 and 01/12/2028. It does not print the resulting minimi, so the 2026-01-01 values are derived as minimo al 31/12/2025 + 01/01/2026 increase.<br>The file's levels A-H match the table (A lowest, H highest, same parameter order). All 8 file values equal the derivation to the cent: no correction. The same figures appear in the Confapi Varese illustrative circular of 24 February 2026 (p. 9).<br>The file's base_salary is the minimo tabellare, with the indennità di funzione (H) and the aggiunta personale (E, F, G) as fixed allowances; the table prints the minimi only, which matches.<br>The file's coverage note says 'Scala parametrale: H=100 reference, descending'; the signed table prints A = 100,00 rising to H = 178,79. The maintainer should fix the note.<br>The file models only the 2026-01-01 tranche: the four later tranches (1/4/2027, 1/12/2027, 1/6/2028, 1/12/2028) are printed in the same table and could be added by the maintainer.<br>The latest B018 text deposited at CNEL is the ipotesi of 5 December 2023 (deposito 194975); the 2026 renewal is not yet deposited. The ruleset now names the signed 2026 text: source_type contracting_party. |
 
 ## Salary table
 

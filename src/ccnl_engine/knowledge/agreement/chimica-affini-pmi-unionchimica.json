@@ -106,6 +106,39 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-tables",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The minimi of the 8 levels A-H of the chimica, concia e settori accorpati sector on 1 January 2026, derived from the minimi at 31/12/2025 and the 01/01/2026 increase printed in the signed ipotesi of 23 February 2026.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+            "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+          },
+          {
+            "url": "https://a0e3h6.emailsp.com/assets/1/All.%201%20Circolare_rinnovo%20CCNL%20Unionchimica%20Confapi_23febb2026.pdf",
+            "sha256": "378f92768bdb6e45d928df5f6975601edb3a2aca55ab6251c54b2b7c81dec572"
+          }
+        ],
+        "findings": [
+          "Ipotesi 23 febbraio 2026 (22-page signed scan without text layer, published by Confapi Varese, territorial association of the Confapi system to which the signatory Unionchimica belongs; read on the page image of PDF p. 18; it bears the signatures of all parties and is linked from api.varese.it): the table 'Chimica - Concia e Settori accorpati' prints, for levels A (parametro 100,00) to H (178,79), the minimi al 31/12/2025 and the increases from 01/01/2026, 01/04/2027, 01/12/2027, 01/06/2028 and 01/12/2028. It does not print the resulting minimi, so the 2026-01-01 values are derived as minimo al 31/12/2025 + 01/01/2026 increase.",
+          "The file's levels A-H match the table (A lowest, H highest, same parameter order). All 8 file values equal the derivation to the cent: no correction. The same figures appear in the Confapi Varese illustrative circular of 24 February 2026 (p. 9).",
+          "The file's base_salary is the minimo tabellare, with the indennità di funzione (H) and the aggiunta personale (E, F, G) as fixed allowances; the table prints the minimi only, which matches.",
+          "The file's coverage note says 'Scala parametrale: H=100 reference, descending'; the signed table prints A = 100,00 rising to H = 178,79. The maintainer should fix the note.",
+          "The file models only the 2026-01-01 tranche: the four later tranches (1/4/2027, 1/12/2027, 1/6/2028, 1/12/2028) are printed in the same table and could be added by the maintainer.",
+          "The latest B018 text deposited at CNEL is the ipotesi of 5 December 2023 (deposito 194975); the 2026 renewal is not yet deposited. The ruleset now names the signed 2026 text: source_type contracting_party."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -296,18 +329,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=181"
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
-                "section": "Tabella retributiva"
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' and '01/01/2026', row A",
+                "quote": "A 100,00 1.648,62 € 42,07 € 41,81 € 17,56 € 50,17 € 13,38 € 165,00 €"
               },
+              "transformation": "1.648,62 (minimo al 31/12/2025) + 42,07 (increase from 01/01/2026) = 1690.69",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:45Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -348,18 +387,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=181"
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
-                "section": "Tabella retributiva"
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' and '01/01/2026', row B",
+                "quote": "B 115,15 1.781,99 € 48,44 € 48,15 € 20,22 € 57,78 € 15,41 € 189,99 €"
               },
+              "transformation": "1.781,99 (minimo al 31/12/2025) + 48,44 (increase from 01/01/2026) = 1830.43",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:45Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -400,18 +445,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=181"
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
-                "section": "Tabella retributiva"
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' and '01/01/2026', row C",
+                "quote": "C 132,12 1.977,77 € 55,58 € 55,24 € 23,20 € 66,29 € 17,68 € 217,99 €"
               },
+              "transformation": "1.977,77 (minimo al 31/12/2025) + 55,58 (increase from 01/01/2026) = 2033.35",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:45Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -452,18 +503,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=181"
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
-                "section": "Tabella retributiva"
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' and '01/01/2026', row D",
+                "quote": "D 143,64 2.206,00 € 61,00 € 59,86 € 25,14 € 71,84 € 19,16 € 237,00 €"
               },
+              "transformation": "2.206,00 (minimo al 31/12/2025) + 61,00 (increase from 01/01/2026) = 2267.00",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:45Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -504,18 +561,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=181"
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
-                "section": "Tabella retributiva"
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' and '01/01/2026', row E",
+                "quote": "E 150,91 2.380,54 € 63,49 € 63,10 € 26,50 € 75,72 € 20,19 € 249,00 €"
               },
+              "transformation": "2.380,54 (minimo al 31/12/2025) + 63,49 (increase from 01/01/2026) = 2444.03",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:45Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -588,18 +651,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=181"
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
-                "section": "Tabella retributiva"
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' and '01/01/2026', row F",
+                "quote": "F 159,39 2.636,01 € 67,05 € 66,64 € 27,99 € 79,97 € 21,33 € 262,99 €"
               },
+              "transformation": "2.636,01 (minimo al 31/12/2025) + 67,05 (increase from 01/01/2026) = 2703.06",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:45Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -672,18 +741,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=181"
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
-                "section": "Tabella retributiva"
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' and '01/01/2026', row G",
+                "quote": "G 173,33 2.900,66 € 72,92 € 72,47 € 30,44 € 86,97 € 23,19 € 285,99 €"
               },
+              "transformation": "2.900,66 (minimo al 31/12/2025) + 72,92 (increase from 01/01/2026) = 2973.58",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:45Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -756,18 +831,24 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
-                  "title": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=181"
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
-                "section": "Tabella retributiva"
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' and '01/01/2026', row H",
+                "quote": "H 178,79 3.093,29 € 75,22 € 74,76 € 31,40 € 89,71 € 23,92 € 295,00 €"
               },
+              "transformation": "3.093,29 (minimo al 31/12/2025) + 75,22 (increase from 01/01/2026) = 3168.51",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:45Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -886,11 +967,11 @@
     "version": "2026.2",
     "effective_from": "2026-01-01",
     "effective_until": "2028-12-31",
-    "source": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=181",
+    "source": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "7cbf9eff2a5d0a9d12c501805cc13534b14400e4bf94bf1ea2ce2ef904c447e5",
+    "source_hash": "9b0a4720ff0b13d0f76afecfa8beb51202fd5dea38cf000b614d13dd12368047",
     "published_at": "2026-09-07",
-    "source_type": "commercial_secondary"
+    "source_type": "institutional_secondary"
   },
   "work_rules": {
     "time_supplements": {
