@@ -122,7 +122,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 18 | IC35 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | Autorimesse e noleggio automezzi | ~41k | 2025 | ⚠️ | base_salary, seniority | 0 / 95 / 1 / 1 | 🧪 | 🤖 |
 | 19 | I192 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | autostrade e trafori — addetti alle concessionarie autostradali | ~15k | 2023 | ⚠️ | seniority | 0 / 140 / 1 / 1 | 🧪 | 🤖 |
 | 20 | H601 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | Terziario | ~22k | 2025 | ⚠️ | base_salary, inps_employer | 0 / 44 / 1 / 1 | 🧪 | 🤖 |
-| 21 | G022 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | carta-cartone | ~35k | 2026 | ⚠️ | seniority | 0 / 75 / 1 / 0 | 🧪 | 🤖 |
+| 21 | G022 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | carta-cartone | ~35k | 2026 | ⚠️ | seniority | 13 / 62 / 1 / 0 | 🧪 | 🤖 |
 | 22 | T011 | [CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)](sanita-privata-aiop-aris.md) | Sanità privata | ~150k | 2020 | ✅ | overtime | 36 / 1 / 0 / 0 | 🧪 | 🤖 |
 | 23 | F032 | [CCNL Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | industria del cemento calce e gesso | ~25k | — | ⚠️ | base_salary, seniority | 1 / 80 / 1 / 0 | 🧪 | 🤖 |
 | 24 | B122 | [CCNL Ceramica Industria (Confindustria-Assopiastrelle)](ceramica-industria-confindustria.md) | ceramica | ~23k | — | ⚠️ | seniority | 0 / 60 / 1 / 1 | 🧪 | 🤖 |
@@ -187,7 +187,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 83 | C011 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | metalmeccanico | ~1,7M | 2025 | ⚠️ | base_salary, bilateral_funds, overtime, seniority, welfare | 86 / 0 / 0 / 0 | 🏭 | 🧑 |
 | 84 | IC36 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | Trasporti - Noleggio autobus con conducente | ~5422 | 2025 | ⚠️ | base_salary, seniority, una_tantum | 34 / 33 / 4 / 0 | 🧪 | 🤖 |
 | 85 | D271 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | industria occhialeria e ottica | ~20k | — | ⚠️ | base_salary, seniority | 77 / 11 / 1 / 1 | 🧪 | 🤖 |
-| 86 | A011 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | agricoltura | ~600k | 2026 | ⚠️ | base_salary, bilateral_funds, inail, inps_employee, inps_employer, overtime, seniority, sickness, territorial_supplement | 11 / 9 / 1 / 0 | 🧪 | 🤖 |
+| 86 | A011 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | agricoltura | ~600k | 2026 | ⚠️ | base_salary, bilateral_funds, inail, inps_employee, inps_employer, overtime, seniority, sickness, territorial_supplement | 11 / 6 / 1 / 0 | 🧪 | 🤖 |
 | 87 | A221 | [CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)](organizzazioni-allevatori-aia.md) | Agricoltura | ~2k | 2024 | ⚠️ | base_salary, inps_employer | 1 / 20 / 1 / 0 | 🧪 | 🤖 |
 | 88 | H341 | [CCNL Ortofrutticoli ed Agrumari (Import-Export)](ortofrutticoli-agrumari.md) | ortofrutticoli ed agrumari import-export | ~60000 | 2024 | ⚠️ | base_salary, leave, seniority, sickness | 46 / 0 / 8 / 0 | 🧪 | 🤖 |
 | 89 | E023 | [CCNL Panificazione e Settori Affini — Industria (Assipan/Fiesa)](panificazione-assipan.md) | alimentare | ~20k | 2025 | ⚠️ | seniority | 1 / 48 / 1 / 0 | 🧪 | 🤖 |

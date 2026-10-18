@@ -10,10 +10,10 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 208 | 186 | 0 | `funzioni-centrali-aran` |
 | terziario | 43 | 4 977 055 | 52 | 1540 | 773 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 48 | 4 946 900 | 151 | 2038 | 966 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| industria | 48 | 4 946 900 | 151 | 2025 | 979 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 56 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 35 | 249 | 153 | 2 | `metalmeccanico-artigianato` |
-| agricoltura | 9 | 752 860 | 12 | 233 | 56 | 5 | `operai-agricoli-florovivaisti` |
+| agricoltura | 9 | 752 860 | 12 | 230 | 56 | 5 | `operai-agricoli-florovivaisti` |
 | edilizia | 4 | 710 000 | 2 | 118 | 80 | 0 | `edilizia-ance` |
 | credito | 3 | 348 000 | 2 | 40 | 78 | 0 | `bancari-abi` |
 
@@ -111,7 +111,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`trasporto-aereo-assaeroporti`](../contracts/trasporto-aereo-assaeroporti.md) | 40 000 | exploratory | 1 | 72 | 1 | party or official | none | none |
 | [`energia-petrolio-confindustria`](../contracts/energia-petrolio-confindustria.md) | 38 000 | exploratory | 1 | 171 | 0 | party or official | none | none |
 | [`alimentari-pmi-unionalimentari`](../contracts/alimentari-pmi-unionalimentari.md) | 35 000 | exploratory | 1 | 44 | 1 | party or official | none | none |
-| [`carta-cartone-assocarta`](../contracts/carta-cartone-assocarta.md) | 35 000 | exploratory | 1 | 75 | 0 | aggregator | none | none |
+| [`carta-cartone-assocarta`](../contracts/carta-cartone-assocarta.md) | 35 000 | exploratory | 1 | 62 | 13 | aggregator | none | none |
 | [`vetro-meccanizzato-assovetro`](../contracts/vetro-meccanizzato-assovetro.md) | 28 000 | exploratory | 36 | 0 | 0 | aggregator | none | none |
 | [`metalmeccanica-cooperative`](../contracts/metalmeccanica-cooperative.md) | 28 000 | exploratory | 1 | 45 | 1 | party or official | none | none |
 | [`cemento-calce-gesso-industria`](../contracts/cemento-calce-gesso-industria.md) | 25 000 | exploratory | 1 | 80 | 1 | party or official | none | none |
@@ -162,7 +162,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 
 | CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Owner | Next review |
 |---|---:|---|---:|---:|---:|---|---|---|
-| [`operai-agricoli-florovivaisti`](../contracts/operai-agricoli-florovivaisti.md) (anchor) | 600 000 | exploratory | 1 | 9 | 11 | aggregator | maintainer | none |
+| [`operai-agricoli-florovivaisti`](../contracts/operai-agricoli-florovivaisti.md) (anchor) | 600 000 | exploratory | 1 | 6 | 11 | aggregator | maintainer | none |
 | [`impiegati-tecnici-agricoli`](../contracts/impiegati-tecnici-agricoli.md) | 80 000 | exploratory | 2 | 8 | 7 | aggregator | none | none |
 | [`cooperative-consorzi-agricoli`](../contracts/cooperative-consorzi-agricoli.md) | 60 000 | exploratory | 0 | 9 | 33 | party or official | maintainer | 2027-02-01 |
 | [`consorzi-di-bonifica-snebi`](../contracts/consorzi-di-bonifica-snebi.md) | 4 000 | exploratory | 2 | 56 | 0 | party or official | none | none |

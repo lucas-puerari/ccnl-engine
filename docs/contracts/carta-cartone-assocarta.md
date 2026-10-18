@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 75 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 13 verified / 62 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,12 +51,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-02-10 |
-| **Last review** | — |
+| **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2028-09-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-18 | claude-opus-5-5 (ai) | The minimi di stipendio (TEM + Elemento di Modernizzazione Contrattuale) of the 13 levels: the 1 July 2024 tranche against the table of the ipotesi of 28 July 2021, and the four tranches of the ipotesi of 10 February 2026 (1/4/2026, 1/1/2027, 1/1/2028, 1/9/2028) derived from its C1 increments and parameter scale; both texts as deposited at CNEL. | corrected | The four tranches of the 2026 renewal (52 periods) are corrected upward by the level's EMC: the file built them on the TEM-only minimo (C1 1835.11 + 125 = 1960.11), dropping the Elemento di Modernizzazione Contrattuale of EUR 20 at C1 (EUR 32.68 at Q, 13.07 at E) that the file's own 2024-07-01 value includes. The signed ipotesi of 10 February 2026 (CNEL 246200, 8-page scan read on the page images) neither abolishes nor conglobates the EMC (Art. 100 bis) and does not amend Art. 49, which defines the stipendio contrattuale as TEM + EMC; it only adds increments 'parametrati su livello C1' of 125 (aprile 2026), 45 (gennaio 2027), 45 (gennaio 2028) and 60 (settembre 2028), p. 8. The signatories' unitary communiqué of 10 February 2026 gives an overall increase of 14,8% (EUR 291 package, 275 on the minimi); ADAPT's analysis (not a signatory) gives +275 = 14,82% on the previous minimo, which is 275 / 1855.11 (with the EMC), not 275 / 1835.11 (14,99%). The values are derived as previous minimo + increment x parameter / 153, with the parameters of the Art. 48 table on p. 3 (Q 250 ... C1 153 ... E 100, the same scale as the 2021 table). On 1/4/2026 the difference from the file equals the level's EMC (e.g. C1 1960.11 -> 1980.11, Q 2882.91 -> 2915.59, B2S +23.82 against an EMC of 23.80 because of a 2-cent rounding in the file's TEM base); on the later dates it also includes the reparametrisation error below. C1 differs by exactly 20.00 on all four dates.<br>The future tranches of the file (1/1/2027, 1/1/2028, 1/9/2028) were also reparametrised on the ratio of the 2026 minimi (level / C1) instead of the contractual parameter scale (level / 153): e.g. Q +66.19 instead of 45 x 250/153 = 73.53 on 1/1/2027, E +33.44 instead of 29.41; the error grows with the distance from C1 and reaches -0.37 net at E on 1/9/2028 after the EMC offset. The derivation uses the parameter scale the ipotesi refers to.<br>Ipotesi 28 luglio 2021 (CNEL 138131, p. 46, table image): the 'Minimi dal 1.7.2024' column (TEM + EMC cumulated) matches 12 of the 13 file values; C1S is 1.924,37 against 1924.38 in the file and is corrected.<br>The coverage note of the file (EMC 'absorbed' into the 2026 paga base, net +105 at C1) is not supported by the signed text and will contradict the corrected values: the maintainer must rewrite it (base_salary = TEM + EMC throughout).<br>The ruleset now names the CNEL deposit of the text signed by Assocarta, Assografici, SLC-CGIL, Fistel-CISL, Uilcom-UIL and UGL carta e stampa: source_type contracting_party.<br>Corrected to the printed table: C1S 2024-07-01: 1924.38 -> 1924.37; Q 2026-04-01: 2882.91 -> 2915.59; Q 2027-01-01: 2949.10 -> 2989.12; Q 2028-01-01: 3015.29 -> 3062.65; Q 2028-09-01: 3103.54 -> 3160.69; AS 2026-04-01: 2873.55 -> 2906.09; AS 2027-01-01: 2939.52 -> 2979.33; AS 2028-01-01: 3005.49 -> 3052.57; AS 2028-09-01: 3093.45 -> 3150.22; A 2026-04-01: 2521.80 -> 2549.50; A 2027-01-01: 2579.70 -> 2611.85; A 2028-01-01: 2637.60 -> 2674.20; A 2028-09-01: 2714.79 -> 2757.34; B1 2026-04-01: 2292.49 -> 2317.07; B1 2027-01-01: 2345.12 -> 2372.36; B1 2028-01-01: 2397.75 -> 2427.65; B1 2028-09-01: 2467.92 -> 2501.38; B2S 2026-04-01: 2234.61 -> 2258.43; B2S 2027-01-01: 2285.91 -> 2311.96; B2S 2028-01-01: 2337.21 -> 2365.49; B2S 2028-09-01: 2405.61 -> 2436.86; B2 2026-04-01: 2159.89 -> 2182.63; B2 2027-01-01: 2209.48 -> 2233.81; B2 2028-01-01: 2259.07 -> 2284.99; B2 2028-09-01: 2325.19 -> 2353.23; C1S 2026-04-01: 2034.87 -> 2055.91; C1S 2027-01-01: 2081.59 -> 2103.26; C1S 2028-01-01: 2128.31 -> 2150.61; C1S 2028-09-01: 2190.60 -> 2213.75; C1 2026-04-01: 1960.11 -> 1980.11; C1 2027-01-01: 2005.11 -> 2025.11; C1 2028-01-01: 2050.11 -> 2070.11; C1 2028-09-01: 2110.11 -> 2130.11; C2 2026-04-01: 1826.94 -> 1845.10; C2 2027-01-01: 1868.88 -> 1885.98; C2 2028-01-01: 1910.82 -> 1926.86; C2 2028-09-01: 1966.74 -> 1981.37; C3 2026-04-01: 1732.11 -> 1748.97; C3 2027-01-01: 1771.88 -> 1786.91; C3 2028-01-01: 1811.65 -> 1824.85; C3 2028-09-01: 1864.67 -> 1875.44; D1 2026-04-01: 1656.25 -> 1672.07; D1 2027-01-01: 1694.27 -> 1707.66; D1 2028-01-01: 1732.29 -> 1743.25; D1 2028-09-01: 1782.99 -> 1790.70; D2 2026-04-01: 1561.08 -> 1575.58; D2 2027-01-01: 1596.92 -> 1608.23; D2 2028-01-01: 1632.76 -> 1640.88; D2 2028-09-01: 1680.55 -> 1684.41; E 2026-04-01: 1456.61 -> 1469.67; E 2027-01-01: 1490.05 -> 1499.08; E 2028-01-01: 1523.49 -> 1528.49; E 2028-09-01: 1568.08 -> 1567.71. |
 
 ## Salary table
 
@@ -64,19 +66,19 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Q — executive manager, maximum technical or managerial responsibility | € 3,103.54 | 2028-09-01 |
-| `AS` | AS — special level, senior technical manager | € 3,093.45 | 2028-09-01 |
-| `A` | A — 6th category worker, production process supervisor | € 2,714.79 | 2028-09-01 |
-| `B1` | B1 — 5th category worker, highly qualified technician | € 2,467.92 | 2028-09-01 |
-| `B2S` | B2S — 4th category worker (super), plant-responsible technician | € 2,405.61 | 2028-09-01 |
-| `B2` | B2 — 4th category worker, technician with advanced specialisation | € 2,325.19 | 2028-09-01 |
-| `C1S` | C1S — 3rd category worker (super), highly specialised operator | € 2,190.60 | 2028-09-01 |
-| `C1` | C1 — 3rd category worker (higher grade), specialised operator | € 2,110.11 | 2028-09-01 |
-| `C2` | C2 — 3rd category worker, assigned to specialised processing | € 1,966.74 | 2028-09-01 |
-| `C3` | C3 — 3rd category worker, assigned to semi-specialised processing | € 1,864.67 | 2028-09-01 |
-| `D1` | D1 — 2nd category worker (higher grade), qualified operator | € 1,782.99 | 2028-09-01 |
-| `D2` | D2 — 2nd category worker, auxiliary machinery operator | € 1,680.55 | 2028-09-01 |
-| `E` | E — 1st category worker, simple and executive tasks | € 1,568.08 | 2028-09-01 |
+| `Q` | Q — executive manager, maximum technical or managerial responsibility | € 3,160.69 | 2028-09-01 |
+| `AS` | AS — special level, senior technical manager | € 3,150.22 | 2028-09-01 |
+| `A` | A — 6th category worker, production process supervisor | € 2,757.34 | 2028-09-01 |
+| `B1` | B1 — 5th category worker, highly qualified technician | € 2,501.38 | 2028-09-01 |
+| `B2S` | B2S — 4th category worker (super), plant-responsible technician | € 2,436.86 | 2028-09-01 |
+| `B2` | B2 — 4th category worker, technician with advanced specialisation | € 2,353.23 | 2028-09-01 |
+| `C1S` | C1S — 3rd category worker (super), highly specialised operator | € 2,213.75 | 2028-09-01 |
+| `C1` | C1 — 3rd category worker (higher grade), specialised operator | € 2,130.11 | 2028-09-01 |
+| `C2` | C2 — 3rd category worker, assigned to specialised processing | € 1,981.37 | 2028-09-01 |
+| `C3` | C3 — 3rd category worker, assigned to semi-specialised processing | € 1,875.44 | 2028-09-01 |
+| `D1` | D1 — 2nd category worker (higher grade), qualified operator | € 1,790.70 | 2028-09-01 |
+| `D2` | D2 — 2nd category worker, auxiliary machinery operator | € 1,684.41 | 2028-09-01 |
+| `E` | E — 1st category worker, simple and executive tasks | € 1,567.71 | 2028-09-01 |
 
 ## Seniority increments
 
@@ -172,11 +174,11 @@ Each simplification below is a model limitation of the registry. An open limitat
 | — | — | 2026-02-10 | [↗](https://www.zetaservice.com/wp-content/uploads/2026/02/RINNOVO-CCNL-CARTA-AZIENDE-INDUSTRIALI-G022.pdf) |
 
 ??? note "Coverage notes"
-    SALARY MODEL: two tranches modelled — 2024-07-01 (last tranche of CCNL 28/07/2021, source: lexplain.it) and 2026-04-01 (first tranche of rinnovo 10/02/2026, source: kitech.it). The 2024 tranche total = paga base + EMC (Elemento di Modernizzazione Contrattuale, EUR 20.00 at C1, parametrised). The 2026 rinnovo is conglobated: EMC absorbed into the new paga base. Both periods are modelled as base_salary totals; fixed_allowances=[] for all levels. The +125 EUR increase on C1 paga base (rinnovo) minus the EMC (EUR 20 abolished) = net +105 EUR on C1 total (1855.11 → 1960.11).
+    SALARY MODEL: base_salary is the stipendio of Art. 49, TEM + EMC (Elemento di Modernizzazione Contrattuale, EUR 20.00 at C1, parametrised). 2024-07-01: column 'Minimi dal 1.7.2024' of the ipotesi of 28/07/2021 (CNEL G022, deposit 138131, p. 46), which already includes the EMC. 2026-04-01 to 2028-09-01: previous minimo + the C1 increments of the ipotesi of 10/02/2026 (CNEL deposit 246200, p. 8: 125, 45, 45, 60) reparametrised by level parameter / 153 (Art. 48 table, p. 3). The 2026 ipotesi neither abolishes nor conglobates the EMC (Art. 100 bis) and keeps Art. 49 in force, so the EMC stays in base_salary; fixed_allowances=[] for all levels.
     
     FUTURE TRANCHES: +45 EUR at C1 from 01.01.2027, +45 from 01.01.2028, +60 from 01.09.2028 confirmed from rinnovo 10.02.2026 (zetaservice PDF). Per-level amounts are parametrically derived: each level increment = C1_increment × (level_2026-04-01 / C1_2026-04-01), rounded to cent. Math-verified all 13 levels × 3 tranches: all within ±0.02 EUR of parametric formula — consistent with the conglobated coefficient scale of the 2026 rinnovo.
     
-    CONGLOBATED CHECK: 2024 values confirmed via lexplain.it (paga base + EMC columns explicit). 2026 values from kitech.it; rinnovo zetaservice PDF confirms Q (2882.91) and C1 (1960.11) at 2026-04-01, consistent with kitech. Level ordering is strictly monotone at both tranche dates.
+    EMC CHECK: aggregators and a payroll firm print 2026 minimi without the EMC (C1 1960.11 = 1835.11 + 125), but none cites a clause removing it; the signed 2026 ipotesi keeps Art. 100 bis and Art. 49. The Assocarta 'nota illustrativa e tabella nuovi minimi' of 24/02/2026 is members-only and was not read: if it shows the EMC absorbed, the 2026-2028 values are EUR 13-33 too high.
     
     HOURLY DIVISOR: 173 (40h/week, Art. Orario di Lavoro CCNL 28/07/2021; confirmed ilccnl.it).
     

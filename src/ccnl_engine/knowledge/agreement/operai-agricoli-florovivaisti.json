@@ -60,7 +60,7 @@
       },
       {
         "kind": "info",
-        "text": "RENEWAL: CCNL signed 23/05/2022 (valid 2022-2025), renewed 28/05/2026 (quadriennio 2026-2029, signed verbale). Two salary tranches on the salary in force on 28 May 2026: +3.4% from 2026-06-01 and +1.7% from 2027-01-01, not compounded (Art. 50 and Allegato n. 1). No una tantum."
+        "text": "RENEWAL: CCNL signed 23/05/2022 (valid 2022-2025), renewed 28/05/2026 (quadriennio 2026-2029, signed verbale). Art. 50: the provincial salari contrattuali in force on 28 May 2026 rise by 3.4% from 2026-06-01 and by 1.7% from 2027-01-01, not compounded; the minimi di area of Allegato n. 1 include both increases (base x 1.051) and apply from 2026-06-01 in the provinces without a CPL (see the cpl_minimi_timing limitation). The file models the minimi di area. No una tantum."
       },
       {
         "kind": "info",
@@ -166,7 +166,7 @@
       },
       {
         "kind": "info",
-        "text": "HISTORICAL PERIODS ADDED (2026-09-09). Three salary periods now modelled per area: (1) 2023-01-01: INPS Circ. n.94/2024 Allegato 1 (primary source, Area1=1389.15, Area2=1266.90, Area3=944.62). (2) 2025-01-01: Dottrinalavoro Jan 2025 PDF (Area1=1458.61, Area2=1330.25, Area3=991.85). Cross-check: 2025 values / 2023 values = 1.050 (approx. +5% tranche per 2022-2025 CCNL). (3) 2026-06-01: first tranche of 2026-2029 renewal (+3.4%). 2023-01-01 is the earliest verified period; pre-2023 values not modelled."
+        "text": "HISTORICAL PERIODS ADDED (2026-09-09). Three salary periods now modelled per area: (1) 2023-01-01: INPS Circ. n.94/2024 Allegato 1 (primary source, Area1=1389.15, Area2=1266.90, Area3=944.62). (2) 2025-01-01: Dottrinalavoro Jan 2025 PDF (Area1=1458.61, Area2=1330.25, Area3=991.85). Cross-check: 2025 values / 2023 values = 1.050 (approx. +5% tranche per 2022-2025 CCNL). (3) 2026-06-01: minimi di area of the 2026-2029 renewal (Allegato n. 1, both increases included). 2023-01-01 is the earliest verified period; pre-2023 values not modelled."
       },
       {
         "kind": "info",
@@ -286,6 +286,19 @@
             ]
           },
           "remediation": "Model the provincial levels of each area, or pass the apprentice classification of the provincial contract."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "CPL TIMING: the minimi di area of the renewal of 28/05/2026 (Allegato n. 1, p. 52) apply from 1 June 2026 only in the provinces without a contratto provinciale di lavoro (CPL); where a CPL is in force they apply from its renewal, by 1 January 2029 at the latest (Art. 50, p. 30). The file applies them from 1 June 2026 everywhere: a worker in a province with a CPL not yet renewed is paid above the national floor in force for that province.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "cpl_minimi_timing",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add an employer fact for the CPL status of the province, or pass the minimo in force as an input."
         }
       }
     ]
@@ -418,22 +431,31 @@
             "valid_until": "2025-01-01",
             "value": "944.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "inps-circ-94-2024-allegato1",
-                  "title": "INPS Circolare n. 94 del 13/11/2024 — Allegato 1",
-                  "kind": "inps_circolare",
-                  "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2024/11/Circolare_14697/Allegati/15379_Circolare-numero-94-del-13-11-2024_Allegato-n-1.pdf"
+                  "document_id": "verbale-ccnl-operai-agricoli-2022",
+                  "title": "Verbale di accordo per rinnovo del CCNL per gli operai agricoli e florovivaisti (2022-2025), 23 maggio 2022 (testo firmato, copia scansionata pubblicata da EBTA)",
+                  "kind": "altro",
+                  "url": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
+                  "published_on": "2022-05-23",
+                  "sha256": "2ef94afdbbd314e024be7131dd583db59cae60409fd8edfa3b96cbd57c80e6cd"
                 },
-                "section": "Minimi salariali mensili OTI — Area 3"
+                "page": "33",
+                "section": "Allegato n. 1, Minimi salariali di area mensili, Tabella n. 1, Operai agricoli",
+                "quote": "Area 3 944,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-09T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:57:59Z",
+                "effective_from": "2023-01-01",
                 "verification_status": "verified",
-                "effective_from": "2023-01-01"
-              }
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T13:57:59Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "The minimi di area are the national floor; actual salari contrattuali are set by provincial contracts (Art. 49 of the 2022 verbale, Art. 50 of the 2026 verbale). The 2022 verbale is a signed scan published by EBTA (Ente Bilaterale Agricolo Trentino, bilateral body of the signatory parties)."
             }
           },
           {
@@ -444,25 +466,31 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "dottrinalavoro-retribuzioni-2025",
-                  "title": "Dottrinalavoro — Retribuzioni al 1° gennaio 2025",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.dottrinalavoro.it/wp-content/uploads/2024/12/Retribuzioni-al-1_1_2025.pdf"
+                  "document_id": "verbale-ccnl-operai-agricoli-2026",
+                  "title": "Verbale di accordo di rinnovo del CCNL per gli operai agricoli e florovivaisti, 28 maggio 2026 (testo firmato)",
+                  "kind": "associazione",
+                  "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
+                  "published_on": "2026-05-28",
+                  "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
                 },
-                "section": "Tabella retributiva OTI agricoltura — Area 3"
+                "page": "30",
+                "section": "Art. 50, Aumenti salariali, Minimi salariali di area",
+                "quote": "I minimi salariali di area stabiliti a livello nazionale comprensivi degli aumenti di cui al precedente capoverso sono quelli di cui alle tabelle 1 e 2 (Allegato n. 1)."
               },
+              "transformation": "The 2022 minimo 944.62 (verbale 23 May 2022, Allegato n. 1, p. 33) raised by 5% from 1 January 2025 under the accord of 27 October 2023 (rule reported by Confagricoltura: 'un incremento del 5% a decorrere dal 1° gennaio 2025'): 944.62 x 1.05 = 991.851, half-up to the cent 991.85. Cross-check: the 2026 minimi 'comprensivi degli aumenti' of 3.4% + 1.7% (p. 52, 1042,434) equal 991.85 x 1.051 to three decimals, so 991.85 is the minimo in force on 28 May 2026.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-09T00:00:00",
-                "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:57:59Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2026-06-01",
-            "valid_until": "2027-01-01",
-            "value": "1025.57",
+            "valid_until": null,
+            "value": "1042.43",
             "provenance": {
               "status": "derived",
               "location": {
@@ -474,44 +502,18 @@
                   "published_on": "2026-05-28",
                   "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
                 },
-                "section": "Art. 50, Aumenti salariali",
-                "quote": "I salari contrattuali vigenti nelle singole province alla data del 28 maggio 2026 [...] sono incrementati: - a decorrere dal 1 ° giugno 2026 del 3,4 per cento; - a decorrere dal 1 ° gennaio 2027 del 1,7 per cento."
+                "page": "52",
+                "section": "Allegato n. 1, Minimi salariali di area mensili, Tabella n. 1, Operai agricoli",
+                "quote": "Area3 1042,434"
               },
-              "transformation": "991.85 (the 2025 salary of the bundle, still in force on 28 May 2026) x 1.034, to the cent: 1025.57.",
-              "note": "Derived: the verbale prints no amount for the first tranche; the 2025 base is corroborated by the minimi of Allegato n. 1, which are that base times 1.051."
-            }
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": null,
-            "value": "1042.43",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "verbale-ccnl-operai-agricoli-2026",
-                  "title": "Verbale di accordo di rinnovo del CCNL per gli operai agricoli e florovivaisti, 28 maggio 2026 (testo firmato)",
-                  "kind": "associazione",
-                  "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
-                  "published_on": "2026-05-28",
-                  "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
-                },
-                "page": "Allegato n. 1",
-                "section": "Minimi salariali di area mensili, Tabella n. 1, operai agricoli",
-                "quote": "Area 3 1042,434"
-              },
+              "transformation": "Printed to three decimals (1042,434); rounded half-up to the cent: 1042.43. Art. 50 (p. 30): these minimi, which include both tranches of the renewal (+5.1%), apply from 1 June 2026 in the provinces without a contratto provinciale (CPL); where a CPL is in force they apply from its renewal, by 1 January 2029 at the latest.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-14T13:04:23Z",
-                "verification_status": "verified",
-                "effective_from": "2027-01-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-14T13:04:23Z",
-                "review_id": "2026-10-14-ai-p1"
-              },
-              "transformation": "The minimi 'comprensivi degli aumenti' are the salary in force on 28 May 2026 plus 3.4% and 1.7% of it: 991.85 x 1.051 = 1042.434 to three decimals; the two tranches are not compounded. Printed to three decimals (1042.434) and paid to the cent: 1042.43.",
-              "note": "Art. 50: the minimi of area apply from 1 June 2026 in the provinces without a provincial contract renewed under the CCNL of 23 May 2022, and elsewhere from the date of the provincial renewal, not later than 1 January 2029; the bundle keeps them from 1 January 2027, the second tranche, as the national floor of its single table."
+                "extraction_timestamp": "2026-10-18T13:57:59Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "unverified"
+              }
             }
           }
         ]
@@ -548,22 +550,31 @@
             "valid_until": "2025-01-01",
             "value": "1266.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "inps-circ-94-2024-allegato1",
-                  "title": "INPS Circolare n. 94 del 13/11/2024 — Allegato 1",
-                  "kind": "inps_circolare",
-                  "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2024/11/Circolare_14697/Allegati/15379_Circolare-numero-94-del-13-11-2024_Allegato-n-1.pdf"
+                  "document_id": "verbale-ccnl-operai-agricoli-2022",
+                  "title": "Verbale di accordo per rinnovo del CCNL per gli operai agricoli e florovivaisti (2022-2025), 23 maggio 2022 (testo firmato, copia scansionata pubblicata da EBTA)",
+                  "kind": "altro",
+                  "url": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
+                  "published_on": "2022-05-23",
+                  "sha256": "2ef94afdbbd314e024be7131dd583db59cae60409fd8edfa3b96cbd57c80e6cd"
                 },
-                "section": "Minimi salariali mensili OTI — Area 2"
+                "page": "33",
+                "section": "Allegato n. 1, Minimi salariali di area mensili, Tabella n. 1, Operai agricoli",
+                "quote": "Area 2 1.266,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-09T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:57:59Z",
+                "effective_from": "2023-01-01",
                 "verification_status": "verified",
-                "effective_from": "2023-01-01"
-              }
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T13:57:59Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "The minimi di area are the national floor; actual salari contrattuali are set by provincial contracts (Art. 49 of the 2022 verbale, Art. 50 of the 2026 verbale). The 2022 verbale is a signed scan published by EBTA (Ente Bilaterale Agricolo Trentino, bilateral body of the signatory parties)."
             }
           },
           {
@@ -574,25 +585,31 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "dottrinalavoro-retribuzioni-2025",
-                  "title": "Dottrinalavoro — Retribuzioni al 1° gennaio 2025",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.dottrinalavoro.it/wp-content/uploads/2024/12/Retribuzioni-al-1_1_2025.pdf"
+                  "document_id": "verbale-ccnl-operai-agricoli-2026",
+                  "title": "Verbale di accordo di rinnovo del CCNL per gli operai agricoli e florovivaisti, 28 maggio 2026 (testo firmato)",
+                  "kind": "associazione",
+                  "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
+                  "published_on": "2026-05-28",
+                  "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
                 },
-                "section": "Tabella retributiva OTI agricoltura — Area 2"
+                "page": "30",
+                "section": "Art. 50, Aumenti salariali, Minimi salariali di area",
+                "quote": "I minimi salariali di area stabiliti a livello nazionale comprensivi degli aumenti di cui al precedente capoverso sono quelli di cui alle tabelle 1 e 2 (Allegato n. 1)."
               },
+              "transformation": "The 2022 minimo 1266.90 (verbale 23 May 2022, Allegato n. 1, p. 33) raised by 5% from 1 January 2025 under the accord of 27 October 2023 (rule reported by Confagricoltura: 'un incremento del 5% a decorrere dal 1° gennaio 2025'): 1266.90 x 1.05 = 1330.245, half-up to the cent 1330.25. Cross-check: the 2026 minimi 'comprensivi degli aumenti' of 3.4% + 1.7% (p. 52, 1398,093) equal 1330.25 x 1.051 to three decimals, so 1330.25 is the minimo in force on 28 May 2026.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-09T00:00:00",
-                "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:57:59Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2026-06-01",
-            "valid_until": "2027-01-01",
-            "value": "1375.48",
+            "valid_until": null,
+            "value": "1398.09",
             "provenance": {
               "status": "derived",
               "location": {
@@ -604,44 +621,18 @@
                   "published_on": "2026-05-28",
                   "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
                 },
-                "section": "Art. 50, Aumenti salariali",
-                "quote": "I salari contrattuali vigenti nelle singole province alla data del 28 maggio 2026 [...] sono incrementati: - a decorrere dal 1 ° giugno 2026 del 3,4 per cento; - a decorrere dal 1 ° gennaio 2027 del 1,7 per cento."
+                "page": "52",
+                "section": "Allegato n. 1, Minimi salariali di area mensili, Tabella n. 1, Operai agricoli",
+                "quote": "Area2 1398,093"
               },
-              "transformation": "1330.25 (the 2025 salary of the bundle, still in force on 28 May 2026) x 1.034, to the cent: 1375.48.",
-              "note": "Derived: the verbale prints no amount for the first tranche; the 2025 base is corroborated by the minimi of Allegato n. 1, which are that base times 1.051."
-            }
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": null,
-            "value": "1398.09",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "verbale-ccnl-operai-agricoli-2026",
-                  "title": "Verbale di accordo di rinnovo del CCNL per gli operai agricoli e florovivaisti, 28 maggio 2026 (testo firmato)",
-                  "kind": "associazione",
-                  "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
-                  "published_on": "2026-05-28",
-                  "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
-                },
-                "page": "Allegato n. 1",
-                "section": "Minimi salariali di area mensili, Tabella n. 1, operai agricoli",
-                "quote": "Area 2 1398,093"
-              },
+              "transformation": "Printed to three decimals (1398,093); rounded half-up to the cent: 1398.09. Art. 50 (p. 30): these minimi, which include both tranches of the renewal (+5.1%), apply from 1 June 2026 in the provinces without a contratto provinciale (CPL); where a CPL is in force they apply from its renewal, by 1 January 2029 at the latest.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-14T13:04:23Z",
-                "verification_status": "verified",
-                "effective_from": "2027-01-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-14T13:04:23Z",
-                "review_id": "2026-10-14-ai-p1"
-              },
-              "transformation": "The minimi 'comprensivi degli aumenti' are the salary in force on 28 May 2026 plus 3.4% and 1.7% of it: 1330.25 x 1.051 = 1398.093 to three decimals; the two tranches are not compounded. Printed to three decimals (1398.093) and paid to the cent: 1398.09.",
-              "note": "Art. 50: the minimi of area apply from 1 June 2026 in the provinces without a provincial contract renewed under the CCNL of 23 May 2022, and elsewhere from the date of the provincial renewal, not later than 1 January 2029; the bundle keeps them from 1 January 2027, the second tranche, as the national floor of its single table."
+                "extraction_timestamp": "2026-10-18T13:57:59Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "unverified"
+              }
             }
           }
         ]
@@ -678,22 +669,31 @@
             "valid_until": "2025-01-01",
             "value": "1389.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "inps-circ-94-2024-allegato1",
-                  "title": "INPS Circolare n. 94 del 13/11/2024 — Allegato 1",
-                  "kind": "inps_circolare",
-                  "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2024/11/Circolare_14697/Allegati/15379_Circolare-numero-94-del-13-11-2024_Allegato-n-1.pdf"
+                  "document_id": "verbale-ccnl-operai-agricoli-2022",
+                  "title": "Verbale di accordo per rinnovo del CCNL per gli operai agricoli e florovivaisti (2022-2025), 23 maggio 2022 (testo firmato, copia scansionata pubblicata da EBTA)",
+                  "kind": "altro",
+                  "url": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
+                  "published_on": "2022-05-23",
+                  "sha256": "2ef94afdbbd314e024be7131dd583db59cae60409fd8edfa3b96cbd57c80e6cd"
                 },
-                "section": "Minimi salariali mensili OTI — Area 1"
+                "page": "33",
+                "section": "Allegato n. 1, Minimi salariali di area mensili, Tabella n. 1, Operai agricoli",
+                "quote": "Area 1 1.389,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-09T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:57:59Z",
+                "effective_from": "2023-01-01",
                 "verification_status": "verified",
-                "effective_from": "2023-01-01"
-              }
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T13:57:59Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "The minimi di area are the national floor; actual salari contrattuali are set by provincial contracts (Art. 49 of the 2022 verbale, Art. 50 of the 2026 verbale). The 2022 verbale is a signed scan published by EBTA (Ente Bilaterale Agricolo Trentino, bilateral body of the signatory parties)."
             }
           },
           {
@@ -704,25 +704,31 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "dottrinalavoro-retribuzioni-2025",
-                  "title": "Dottrinalavoro — Retribuzioni al 1° gennaio 2025",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.dottrinalavoro.it/wp-content/uploads/2024/12/Retribuzioni-al-1_1_2025.pdf"
+                  "document_id": "verbale-ccnl-operai-agricoli-2026",
+                  "title": "Verbale di accordo di rinnovo del CCNL per gli operai agricoli e florovivaisti, 28 maggio 2026 (testo firmato)",
+                  "kind": "associazione",
+                  "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
+                  "published_on": "2026-05-28",
+                  "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
                 },
-                "section": "Tabella retributiva OTI agricoltura — Area 1"
+                "page": "30",
+                "section": "Art. 50, Aumenti salariali, Minimi salariali di area",
+                "quote": "I minimi salariali di area stabiliti a livello nazionale comprensivi degli aumenti di cui al precedente capoverso sono quelli di cui alle tabelle 1 e 2 (Allegato n. 1)."
               },
+              "transformation": "The 2022 minimo 1389.15 (verbale 23 May 2022, Allegato n. 1, p. 33) raised by 5% from 1 January 2025 under the accord of 27 October 2023 (rule reported by Confagricoltura: 'un incremento del 5% a decorrere dal 1° gennaio 2025'): 1389.15 x 1.05 = 1458.6075, half-up to the cent 1458.61. Cross-check: the 2026 minimi 'comprensivi degli aumenti' of 3.4% + 1.7% (p. 52, 1532,999) equal 1458.61 x 1.051 to three decimals, so 1458.61 is the minimo in force on 28 May 2026.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-09T00:00:00",
-                "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T13:57:59Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2026-06-01",
-            "valid_until": "2027-01-01",
-            "value": "1508.20",
+            "valid_until": null,
+            "value": "1533.00",
             "provenance": {
               "status": "derived",
               "location": {
@@ -734,44 +740,18 @@
                   "published_on": "2026-05-28",
                   "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
                 },
-                "section": "Art. 50, Aumenti salariali",
-                "quote": "I salari contrattuali vigenti nelle singole province alla data del 28 maggio 2026 [...] sono incrementati: - a decorrere dal 1 ° giugno 2026 del 3,4 per cento; - a decorrere dal 1 ° gennaio 2027 del 1,7 per cento."
-              },
-              "transformation": "1458.61 (the 2025 salary of the bundle, still in force on 28 May 2026) x 1.034, to the cent: 1508.20.",
-              "note": "Derived: the verbale prints no amount for the first tranche; the 2025 base is corroborated by the minimi of Allegato n. 1, which are that base times 1.051."
-            }
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": null,
-            "value": "1533.00",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "verbale-ccnl-operai-agricoli-2026",
-                  "title": "Verbale di accordo di rinnovo del CCNL per gli operai agricoli e florovivaisti, 28 maggio 2026 (testo firmato)",
-                  "kind": "associazione",
-                  "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
-                  "published_on": "2026-05-28",
-                  "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
-                },
-                "page": "Allegato n. 1",
-                "section": "Minimi salariali di area mensili, Tabella n. 1, operai agricoli",
+                "page": "52",
+                "section": "Allegato n. 1, Minimi salariali di area mensili, Tabella n. 1, Operai agricoli",
                 "quote": "Area 1 1532,999"
               },
+              "transformation": "Printed to three decimals (1532,999); rounded half-up to the cent: 1533.00. Art. 50 (p. 30): these minimi, which include both tranches of the renewal (+5.1%), apply from 1 June 2026 in the provinces without a contratto provinciale (CPL); where a CPL is in force they apply from its renewal, by 1 January 2029 at the latest.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-14T13:04:23Z",
-                "verification_status": "verified",
-                "effective_from": "2027-01-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-14T13:04:23Z",
-                "review_id": "2026-10-14-ai-p1"
-              },
-              "transformation": "The minimi 'comprensivi degli aumenti' are the salary in force on 28 May 2026 plus 3.4% and 1.7% of it: 1458.61 x 1.051 = 1532.999 to three decimals; the two tranches are not compounded. Printed to three decimals (1532.999) and paid to the cent: 1533.00.",
-              "note": "Art. 50: the minimi of area apply from 1 June 2026 in the provinces without a provincial contract renewed under the CCNL of 23 May 2022, and elsewhere from the date of the provincial renewal, not later than 1 January 2029; the bundle keeps them from 1 January 2027, the second tranche, as the national floor of its single table."
+                "extraction_timestamp": "2026-10-18T13:57:59Z",
+                "effective_from": "2026-06-01",
+                "verification_status": "unverified"
+              }
             }
           }
         ]
@@ -829,11 +809,11 @@
     "version": "2026.2",
     "effective_from": "2023-01-01",
     "effective_until": null,
-    "source": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/",
+    "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "16dbdd20495215348cf5b261f43bbd53d45ef66848dde47fc13987cae3488d6a",
+    "source_hash": "6a7303d6201304d0d47334d8483b18e1bc03f8949d9664d6a574226d07c276f0",
     "published_at": "2026-09-07",
-    "source_type": "commercial_secondary"
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
@@ -1305,6 +1285,41 @@
         ],
         "findings": [
           "Art. 52 - Tredicesima mensilità (p. 54-55): \"l'operaio ha diritto a tanti dodicesimi dell'ammontare della tredicesima quanti sono i mesi di servizio prestati presso l'azienda. [...] La frazione di mese superiore ai quindici giorni viene considerata, a questi effetti, come mese intero.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
+      },
+      {
+        "id": "2026-10-18-ai-tables",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Base salaries (minimi salariali di area mensili, operai agricoli, Areas 1-3) of every period, checked against the signed verbali of 23 May 2022 and 28 May 2026.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
+            "sha256": "2ef94afdbbd314e024be7131dd583db59cae60409fd8edfa3b96cbd57c80e6cd"
+          },
+          {
+            "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
+            "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
+          },
+          {
+            "url": "https://www.confagricolturaro.it/confagricoltura-informa/lavoro/contratti/ccnl-operai-agricoli-e-florovivaisti-accordo-per-il-recupero-del-differenziale-inflattivo-del-biennio-20222023/",
+            "sha256": "html page, not hashed (dynamic)"
+          },
+          {
+            "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2024/11/Circolare_14697/Allegati/15379_Circolare-numero-94-del-13-11-2024_Allegato-n-1.pdf",
+            "sha256": "dec0afe6d0268be0e1a92730bf4f1aeda5b7ed9dd18900bd6e0d249d9888838a"
+          }
+        ],
+        "findings": [
+          "The 2023 values (1.389,15 / 1.266,90 / 944,62) match Allegato n. 1, Tabella n. 1 of the signed verbale of 23 May 2022 (scanned, OCR plus visual check of p. 33).",
+          "Date of the 2023 period: Art. 49 of the 2022 verbale applies the minimi from 1 June 2022 in provinces without a CPL under the CCNL 19 June 2018 and, elsewhere, from the CPL renewal date and not later than 1 January 2025; the accord of 27 October 2023 brought that date forward to 1 January 2024. The file start 2023-01-01 comes from the INPS label 'in vigore dall'1.1.2023' and is not a date stated by the parties; the value is in force throughout the file period in provinces without a CPL.",
+          "The 2025 values are not printed in any signatory text found: they follow from the 2022 minimi plus 5% (accord of 27 October 2023, signed text not located; the rule is reported by Confagricoltura Rovigo and Belluno) and are confirmed exactly by the 2026 minimi, which equal them times 1.051. Area 2 rounds 1330.245 half-up to 1330.25, which is the base the 2026 table uses (1330.25 x 1.051 = 1398.093).",
+          "The 2027 values are printed to three decimals (1532,999 / 1398,093 / 1042,434) and kept rounded to the cent.",
+          "Art. 50 of the 2026 verbale applies the new minimi (which already include both tranches) from 1 June 2026 in provinces without a CPL renewed under the CCNL of 23 May 2022, and elsewhere from the CPL renewal date and not later than 1 January 2029. No text supports a national minimo of 1025.57 / 1375.48 / 1508.20 for June to December 2026: those figures apply the 3.4% first tranche (which raises provincial salari contrattuali) to the 2025 minimi. The 2026-06-01 periods are left unbacked.",
+          "Maintainer decision: the 2026-06-01 periods take the printed minimi of Allegato n. 1 (p. 52), +5.1%, replacing the file values built on +3.4% (1508.20, 1375.48, 1025.57); the 2027-01-01 periods carried the same printed minimi and are merged into them.",
+          "Corrected to the printed table: Area1 2026-06-01: 1508.20 -> 1533.00; Area2 2026-06-01: 1375.48 -> 1398.09; Area3 2026-06-01: 1025.57 -> 1042.43."
         ]
       }
     ],

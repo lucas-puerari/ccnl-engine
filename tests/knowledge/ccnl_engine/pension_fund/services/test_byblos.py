@@ -10,8 +10,8 @@ scatti of 13.43 = 1881.97.  Employer 1.5% = 28.22955 -> 28.23; employee 1%
 = 18.8197 -> 18.82; solidarity 10% of 28.23 = 2.823 -> 2.82.
 
 Tredicesima of 2026 of a worker hired on 1 January 2026: the December pay
-of C1, 1960.11 from April 2026, for twelve months.  Employer 1.5% =
-29.40165 -> 29.40.
+of C1, 1980.11 from April 2026, for twelve months.  Employer 1.5% =
+29.70165 -> 29.70.
 """
 
 from __future__ import annotations
@@ -97,7 +97,7 @@ def test_overtime_stays_out_of_the_base() -> None:
 
 
 def test_thirteenth_bears_the_contribution() -> None:
-    """The normale retribuzione annua holds the 13ma: 29.40 employer."""
+    """The normale retribuzione annua holds the 13ma: 29.70 employer."""
     year = ENGINE.calculate_competence_year(
         CompetenceYearPlan(
             year=2026,
@@ -111,4 +111,4 @@ def test_thirteenth_bears_the_contribution() -> None:
         for r in year.period_results
         if r.run is not None and r.run.run_kind == "thirteenth"
     ]
-    assert _entry(thirteenth, "pension_fund_employer") == Decimal("29.40")
+    assert _entry(thirteenth, "pension_fund_employer") == Decimal("29.70")
