@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority, sickness, territorial_supplement |
+| **Limits of this contract** | base_salary, overtime, seniority, sickness, territorial_supplement |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | 2026-10-13 |
+| **Last review** | 2026-10-17 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule of the impiegati and quadri read in the ANCE minimi table of the CCNL of 21 February 2025, the CCNL of 19 April 2010 (FILLEA text), the Art. 92 apprenticeship text of 2019 and the ANCE provincial tables, for the production tier; new file split from edilizia-ance. | corrected | 47 records verified, 19 derived (contingenza, EDR, contractual fund, absence quota, seniority of levels 1-2, payment day of the premio annuo).<br>Split by category (Art. 77): the operai of levels 1-4 in edilizia-ance, the impiegati and quadri of levels 1-7 in edilizia-ance-impiegati.<br>base_salary is now the national minimo of the ANCE table; the ex contingenza and the EDR 10.33 are fixed allowances (derived, ANCE provincial tables), the EDR outside the TFR base. The previous consolidated values (minimo + contingenza + EDR) matched.<br>Aggregator sources (idealista, leggeinchiaro, businessonline, kitech) removed.<br>Absence quota: by_hourly 8 hours (1/173 of Art. 44 and Allegato A), not by_26, which no clause supports.<br>contractual_fund_uncovered closed: every operaio level has an hourly Prevedi amount and every impiegato or quadro level a monthly one.<br>No renewal changing the national minimi after the verbale of 21 February 2025 through October 2026.<br>Fourteen monthly payments: tredicesima (Art. 63, 20 December) and premio annuo (Art. 64, 30 June, stored 28 June).<br>Night overtime 47% (Art. 54), not the 40% of the operai.<br>Seniority 8.20 for levels 1-2 (printed 'Imp. 4ª 8,2'), not 8.22: derived.<br>Quadri indennità di funzione EUR 140 (Art. 76) added.<br>Sickness: 100% for 180 days without INPS (Art. 66 band up to two years); the longer bands declared. |
 | 2026-10-13 | claude-opus-5-5 (ai) | Scope of the declared limitations. | corrected | edilizia_impiegati_sickness (the art. 66 treatment beyond two years of service) is recorded on every sickness run of a worker with 24 months of seniority or more, or of unknown seniority. |
+| 2026-10-17 | claude-opus-5-5 (ai) | A year and a termination of an impiegato of the 3rd level against a hand oracle, and the 23 derived rules of the file. | corrected | Engine corrected: at a termination the June pay settles the ratei of the tredicesima; the Prevedi contributo contrattuale, 'applicato anche per 13° e 14° mensilità', was not charged on them (6,50 EUR and its 10% solidarity contribution short), while an extra-month run of the same ratei charges it. The settled ratei now owe it (tests/knowledge/ccnl_engine/pension_fund/services/test_prevedi.py::test_a_termination_owes_the_ratei_it_settles).<br>Engine corrected: the ratei settled at a termination entered the TFR base whole, the EDR included, while the EDR stays out of the TFR base in the monthly pay and in an extra-month run (0,38 EUR of TFR too much here). The settled ratei now leave out the allowances outside the TFR base.<br>Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios edilizia-impiegati-year and edilizia-impiegati-june): an impiegato of the 3rd level hired on 1 January 2026 by an employer with 30 employees, across the tranche of March 2026; after the two corrections every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done.<br>The 23 derived rules stay derived: the contingenza and EDR of each level (14) are read from the ANCE provincial tables, not tabulated in the CCNL; the Prevedi amounts are rebuilt from two verbali and the fund scheda; two scatti differ between the table (8,2) and the secondary tables (8,22); the payment day of the quattordicesima and the absence divisor are stated transformations. No signatory text states them directly. |
 
 ## Salary table
 
@@ -115,12 +116,54 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the seniority bands of Art. 66 with equal full-pay days and the cumulated comporto in 30 months.
 
-!!! warning "edilizia-ance-impiegati/edilizia_impiegati_unmodelled · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the EVR set by the provincial agreements (Art. 46); the premio di fedeltà of one month a year after 20 years of service (Art. 65); the premiums on ordinary hours of Art. 54 (lavoro festivo 45%, notturno 34% or 10% in shifts, festivo notturno 50%); the indennità speciale (Art. 47), di cassa (Art. 50) and for alta montagna, cassoni and galleria (Art. 52); mensa, trasporto and trasferta (provincial; verbale 2025); the 1/25 for the festività of 4 November (Art. 43); the absorption of a superminimo into the quadri function allowance (Art. 76). The una tantum premio di ingresso of the verbale of 3 March 2022 and the riduzione contributiva edile concern the operai only.
+!!! warning "edilizia-ance-impiegati/provincial_evr · territorial_supplement · impact yes · open"
+    Art. 46: the EVR set by the provincial agreements.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the provincial elements as inputs and the percentage accruals of the CCNL.
+    **Remediation:** Add the provincial EVR as an input.
+
+!!! warning "edilizia-ance-impiegati/loyalty_premium · base_salary · impact yes · open"
+    Art. 65: the premio di fedeltà of one month a year after 20 years of service.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the premio di fedeltà on seniority.
+
+!!! warning "edilizia-ance-impiegati/ordinary_hours_premiums · overtime · impact yes · open"
+    Art. 54: the premiums on ordinary hours (lavoro festivo 45%, notturno 34% or 10% in shifts, festivo notturno 50%).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the Art. 54 premiums on ordinary hours.
+
+!!! warning "edilizia-ance-impiegati/special_allowances · base_salary · impact yes · open"
+    Art. 47, 50 and 52: the indennità speciale, di cassa and for alta montagna, cassoni and galleria.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the allowances of Artt. 47, 50 and 52.
+
+!!! warning "edilizia-ance-impiegati/provincial_meals_transport_travel · territorial_supplement · impact yes · open"
+    Mensa, trasporto and trasferta, set by the provincial agreements (verbale 2025).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the provincial mensa, trasporto and trasferta as inputs.
+
+!!! warning "edilizia-ance-impiegati/november_4_holiday · base_salary · impact yes · open"
+    Art. 43: the 1/25 for the festività of 4 November.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pay the 1/25 of 4 November.
+
+!!! warning "edilizia-ance-impiegati/quadri_absorption · base_salary · impact yes · open"
+    Art. 76: the absorption of a superminimo into the quadri function allowance. The una tantum premio di ingresso of the verbale of 3 March 2022 and the riduzione contributiva edile concern the operai only.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the absorption of Art. 76.
 
 !!! warning "edilizia-ance-impiegati/provincial_production_premium · territorial_supplement · impact yes · open"
     PREMIO DI PRODUZIONE: the premio di produzione set by the provincial agreements (Art. 44 n. 5) is owed to every impiegato; the engine reads no provincial agreement. Not modelled: the net pay and the employer cost are short of it.

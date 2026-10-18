@@ -109,13 +109,13 @@ def test_agricultural_runs_read_no_weak_inps_rule() -> None:
     assert not {feature for feature, _ in permanent} & _INPS
 
 
-def test_the_assumed_public_minimum_base_blocks_public_runs() -> None:
-    """The minimum base of the public administrations is assumed."""
+def test_a_public_run_reads_no_weak_inps_rule() -> None:
+    """The minimum base and the CTPS rates of the State are verified."""
     result = regular_period(
         ccnl_slug="funzioni-centrali-aran.json", level_code="FUNZIONARI"
     )
 
-    assert {(f, "assumed") for f in _INPS} <= _weak(result)
+    assert not {feature for feature, _ in _weak(result)} & _INPS
 
 
 def _concia_year(comune: str, regione: str) -> tuple[PeriodResult, ...]:

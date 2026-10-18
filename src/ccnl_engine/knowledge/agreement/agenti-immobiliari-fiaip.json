@@ -160,6 +160,35 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-17-ai-tables",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The paga base nazionale conglobata of the seven levels against the signed ipotesi of 19 May 2025 and the final text of the CCNL 2025 (Ebnaip).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+            "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
+          },
+          {
+            "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+            "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+          }
+        ],
+        "findings": [
+          "Tabelle retributive of the signed ipotesi (p. 7, scan checked on the page image): the 28 minimi from 1/5/2025 to 1/5/2027 match the file and move from assumed to verified. The final text of the CCNL (Ebnaip copy, art. 162-163, PDF pp. 96-97) prints the same base at April 2025, increments and final amounts.",
+          "The ruleset names the signed ipotesi published by FIAIP, the employer signatory: source_type contracting_party instead of estimated."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -294,23 +323,30 @@
             "valid_until": "2026-01-01",
             "value": "2604.83",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2025"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2025-05-01, row Q",
+                "quote": "Q € 2.604,83 € 2.664,62 € 2.724,41 € 2.799,14"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2025-05-01",
                 "verification_status": "verified",
-                "effective_from": "2025-05-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -318,23 +354,30 @@
             "valid_until": "2027-01-01",
             "value": "2664.62",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2026"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2026-01-01, row Q",
+                "quote": "Q € 2.604,83 € 2.664,62 € 2.724,41 € 2.799,14"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -342,23 +385,30 @@
             "valid_until": "2027-05-01",
             "value": "2724.41",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2027"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2027-01-01, row Q",
+                "quote": "Q € 2.604,83 € 2.664,62 € 2.724,41 € 2.799,14"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2027-01-01",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -366,23 +416,30 @@
             "valid_until": null,
             "value": "2799.14",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2027"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2027-05-01, row Q",
+                "quote": "Q € 2.604,83 € 2.664,62 € 2.724,41 € 2.799,14"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2027-05-01",
                 "verification_status": "verified",
-                "effective_from": "2027-05-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -420,23 +477,30 @@
             "valid_until": "2026-01-01",
             "value": "2404.16",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2025"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2025-05-01, row 1",
+                "quote": "1 € 2.404,16 € 2.459,35 € 2.514,53 € 2.583,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2025-05-01",
                 "verification_status": "verified",
-                "effective_from": "2025-05-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -444,23 +508,30 @@
             "valid_until": "2027-01-01",
             "value": "2459.35",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2026"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2026-01-01, row 1",
+                "quote": "1 € 2.404,16 € 2.459,35 € 2.514,53 € 2.583,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -468,23 +539,30 @@
             "valid_until": "2027-05-01",
             "value": "2514.53",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2027"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2027-01-01, row 1",
+                "quote": "1 € 2.404,16 € 2.459,35 € 2.514,53 € 2.583,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2027-01-01",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -492,23 +570,30 @@
             "valid_until": null,
             "value": "2583.51",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2027"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2027-05-01, row 1",
+                "quote": "1 € 2.404,16 € 2.459,35 € 2.514,53 € 2.583,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2027-05-01",
                 "verification_status": "verified",
-                "effective_from": "2027-05-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -546,23 +631,30 @@
             "valid_until": "2026-01-01",
             "value": "2156.50",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2025"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2025-05-01, row 2",
+                "quote": "2 € 2.156,50 € 2.206,00 € 2.255,50 € 2.317,37"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2025-05-01",
                 "verification_status": "verified",
-                "effective_from": "2025-05-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -570,23 +662,30 @@
             "valid_until": "2027-01-01",
             "value": "2206.00",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2026"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2026-01-01, row 2",
+                "quote": "2 € 2.156,50 € 2.206,00 € 2.255,50 € 2.317,37"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -594,23 +693,30 @@
             "valid_until": "2027-05-01",
             "value": "2255.50",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2027"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2027-01-01, row 2",
+                "quote": "2 € 2.156,50 € 2.206,00 € 2.255,50 € 2.317,37"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2027-01-01",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -618,23 +724,30 @@
             "valid_until": null,
             "value": "2317.37",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2027"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2027-05-01, row 2",
+                "quote": "2 € 2.156,50 € 2.206,00 € 2.255,50 € 2.317,37"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2027-05-01",
                 "verification_status": "verified",
-                "effective_from": "2027-05-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -672,23 +785,30 @@
             "valid_until": "2026-01-01",
             "value": "1925.95",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2025"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2025-05-01, row 3",
+                "quote": "3 € 1.925,95 € 1.970,16 € 2.014,37 € 2.069,63"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2025-05-01",
                 "verification_status": "verified",
-                "effective_from": "2025-05-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -696,23 +816,30 @@
             "valid_until": "2027-01-01",
             "value": "1970.16",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2026"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2026-01-01, row 3",
+                "quote": "3 € 1.925,95 € 1.970,16 € 2.014,37 € 2.069,63"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -720,23 +847,30 @@
             "valid_until": "2027-05-01",
             "value": "2014.37",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2027"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2027-01-01, row 3",
+                "quote": "3 € 1.925,95 € 1.970,16 € 2.014,37 € 2.069,63"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2027-01-01",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -744,23 +878,30 @@
             "valid_until": null,
             "value": "2069.63",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2027"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2027-05-01, row 3",
+                "quote": "3 € 1.925,95 € 1.970,16 € 2.014,37 € 2.069,63"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2027-05-01",
                 "verification_status": "verified",
-                "effective_from": "2027-05-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -798,23 +939,30 @@
             "valid_until": "2026-01-01",
             "value": "1742.68",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2025"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2025-05-01, row IV",
+                "quote": "IV € 1.742,68 € 1.782,68 € 1.822,68 € 1.872,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2025-05-01",
                 "verification_status": "verified",
-                "effective_from": "2025-05-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -822,23 +970,30 @@
             "valid_until": "2027-01-01",
             "value": "1782.68",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2026"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2026-01-01, row IV",
+                "quote": "IV € 1.742,68 € 1.782,68 € 1.822,68 € 1.872,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -846,23 +1001,30 @@
             "valid_until": "2027-05-01",
             "value": "1822.68",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2027"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2027-01-01, row IV",
+                "quote": "IV € 1.742,68 € 1.782,68 € 1.822,68 € 1.872,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2027-01-01",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -870,23 +1032,30 @@
             "valid_until": null,
             "value": "1872.68",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2027"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2027-05-01, row IV",
+                "quote": "IV € 1.742,68 € 1.782,68 € 1.822,68 € 1.872,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2027-05-01",
                 "verification_status": "verified",
-                "effective_from": "2027-05-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -924,23 +1093,30 @@
             "valid_until": "2026-01-01",
             "value": "1629.42",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2025"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2025-05-01, row V",
+                "quote": "V € 1.629,42 € 1.666,82 € 1.704,22 € 1.750,97"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2025-05-01",
                 "verification_status": "verified",
-                "effective_from": "2025-05-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -948,23 +1124,30 @@
             "valid_until": "2027-01-01",
             "value": "1666.82",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2026"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2026-01-01, row V",
+                "quote": "V € 1.629,42 € 1.666,82 € 1.704,22 € 1.750,97"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -972,23 +1155,30 @@
             "valid_until": "2027-05-01",
             "value": "1704.22",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2027"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2027-01-01, row V",
+                "quote": "V € 1.629,42 € 1.666,82 € 1.704,22 € 1.750,97"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2027-01-01",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -996,23 +1186,30 @@
             "valid_until": null,
             "value": "1750.97",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2027"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2027-05-01, row V",
+                "quote": "V € 1.629,42 € 1.666,82 € 1.704,22 € 1.750,97"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2027-05-01",
                 "verification_status": "verified",
-                "effective_from": "2027-05-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -1050,23 +1247,30 @@
             "valid_until": "2026-01-01",
             "value": "1517.10",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2025"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2025-05-01, row VI",
+                "quote": "VI € 1.517,10 € 1.549,75 € 1.582,39 € 1.623,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2025-05-01",
                 "verification_status": "verified",
-                "effective_from": "2025-05-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1074,23 +1278,30 @@
             "valid_until": "2027-01-01",
             "value": "1549.75",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2026"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2026-01-01, row VI",
+                "quote": "VI € 1.517,10 € 1.549,75 € 1.582,39 € 1.623,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2026-01-01",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1098,23 +1309,30 @@
             "valid_until": "2027-05-01",
             "value": "1582.39",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2027"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2027-01-01, row VI",
+                "quote": "VI € 1.517,10 € 1.549,75 € 1.582,39 € 1.623,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2027-01-01",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           },
           {
@@ -1122,23 +1340,30 @@
             "valid_until": null,
             "value": "1623.19",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
-                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "document_id": "fiaip-ipotesi-rinnovo-2025-05-19",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per i dipendenti delle imprese di mediazione immobiliare FIAIP, 19 maggio 2025 (scansione firmata, copia FIAIP)",
                   "kind": "associazione",
-                  "url": "https://www.ebnaip.it/"
+                  "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+                  "published_on": "2025-05-19",
+                  "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
                 },
-                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2027"
+                "page": "7",
+                "section": "Tabelle retributive, decorrenza 2027-05-01, row VI",
+                "quote": "VI € 1.517,10 € 1.549,75 € 1.582,39 € 1.623,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-12T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T11:50:28Z",
+                "effective_from": "2027-05-01",
                 "verification_status": "verified",
-                "effective_from": "2027-05-01"
-              },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T11:50:28Z",
+                "review_id": "2026-10-17-ai-tables"
+              }
             }
           }
         ]
@@ -1265,9 +1490,9 @@
     "effective_from": "2026-01-01",
     "effective_until": null,
     "published_at": "2026-09-18",
-    "source": "unavailable",
-    "source_type": "estimated",
+    "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+    "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "c0b7263c0b0c78685093fb459933d19d24ef917e4d23c7053c0c78f083fc0779"
+    "source_hash": "46b9e1423742d6ee11520bf3d9b1090e5c83ef9aac789a25fd8ba884da8a4a47"
   }
 }

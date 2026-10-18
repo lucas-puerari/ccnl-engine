@@ -11,6 +11,7 @@ from __future__ import annotations
 
 from dataclasses import replace
 from datetime import date
+from decimal import Decimal
 
 import pytest
 
@@ -26,7 +27,7 @@ from ccnl_engine import (
     PeriodResult,
 )
 from ccnl_engine.catalog import RulesetKind, RulesetReadiness
-from ccnl_engine.inputs import EngineMode, Permanent, WorkerCategory
+from ccnl_engine.inputs import EngineMode, Permanent, TaxSector, WorkerCategory
 from ccnl_engine.results import BlockerCode, ResultTotal
 from tests.knowledge.ccnl_engine.period.builders import (
     CONCIA_D2,
@@ -188,23 +189,51 @@ def test_a_production_ccnl_pays_the_net_but_not_a_complete_employer_cost() -> No
     }
 
 
-def test_an_unconfirmed_inps_class_blocks_a_logistica_run() -> None:
-    """DD 135/2025 prints 29.44% for every non-travelling worker: class unknown."""
+def _logistica(sector: TaxSector | None) -> PeriodResult:
     employment = Employment(
         ccnl_slug="logistica-trasporto-confetra.json",
         level_code="3S",
+        category=WorkerCategory.IMPIEGATO,
         contract_type=Permanent(),
     )
-    result = _SIMULATION.calculate_period(
+    return _SIMULATION.calculate_period(
         PeriodInput(
             run=PayrollRun.regular(2026, 1),
             payment_date=date(2026, 1, 27),
             employment=employment,
-            employer=_EMPLOYER,
+            employer=replace(_EMPLOYER, inps_sector=sector),
         )
     )
 
-    assert (
-        BlockerCode.OPEN_LIMITATION,
-        "logistica-trasporto-confetra/inps_employer_class_unconfirmed",
-    ) in {(b.code, b.detail) for b in result.blockers}
+
+def _employer_inps(result: PeriodResult) -> Decimal:
+    entries = result.ledger_entries
+    return sum(
+        (e.amount for e in entries if e.account == "employer_contributions"),
+        Decimal(0),
+    )
+
+
+def test_a_logistica_run_needs_the_inps_sector_of_the_employer() -> None:
+    """Autotrasporto is industria, a spedizioniere terziario (INPS manual)."""
+    unstated = _logistica(None)
+    industria = _logistica(TaxSector.INDUSTRIA)
+    terziario = _logistica(TaxSector.TERZIARIO)
+
+    def facts(result: PeriodResult) -> set[str]:
+        missing = BlockerCode.MISSING_FACT
+        return {b.detail for b in result.blockers if b.code is missing}
+
+    assert "inps_sector" in facts(unstated)
+    assert "inps_sector" not in facts(industria) | facts(terziario)
+    assert "logistica-trasporto-confetra/inps_employer_class_unconfirmed" not in {
+        b.detail for b in unstated.blockers
+    }
+    assert _employer_inps(unstated) == _employer_inps(industria)
+    #: Terziario above 15 employees: 30.11333% of the INPS base, the gross
+    #: to the euro, the IVS and the other shares each taken to cents.
+    base = terziario.period_gross.quantize(Decimal(1))
+    expected = base * Decimal("0.3011333")
+    assert abs(_employer_inps(terziario) - expected) <= Decimal("0.01")
+    #: Industria impiegati from 16 to 50 employees: 29.06%.
+    assert abs(_employer_inps(industria) - base * Decimal("0.2906")) <= Decimal("0.01")

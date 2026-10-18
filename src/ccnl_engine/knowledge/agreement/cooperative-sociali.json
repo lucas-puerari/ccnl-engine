@@ -96,7 +96,7 @@
       },
       {
         "kind": "simplification",
-        "text": "INPS: the tax_sector terziario applies the terziario employer rates (29.31% to 30.11%), while the Ministry D.D. 30/2024 cost tables agreed by the signatories (PDF p. 186) apply 'Inps (28,03%)' to every level. Social cooperatives are classified by INPS by their activity; no primary INPS circular for their contribution set was read, so the difference is not reconciled.",
+        "text": "INPS: the tax_sector terziario applies the terziario employer rates (29.31% to 30.11%), while the Ministry D.D. 30/2024 cost tables agreed by the signatories (PDF p. 186) apply 'Inps (28,03%)' to every level. Social cooperatives are classified by INPS by their activity; no primary INPS circular for their contribution set was read, so the difference is not reconciled. CLASS CHECKED 2026-10-17: the INPS Manuale di classificazione dei datori di lavoro (May 2021) gives CSC 70704 (terziario) to 87.30.00 strutture di assistenza residenziale per anziani e disabili, 88.10.00 assistenza sociale non residenziale and 88.91.00 asili nido, and 70706 (terziario) to 87.20.00: the class the file applies. The 28.03% of the cost tables matches no composition of the 2026 terziario rates, and the tables state none.",
         "capability": "inps_employer",
         "monetary_impact": "yes",
         "limitation": {
@@ -2940,7 +2940,7 @@
     "effective_until": null,
     "source": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
     "verification_status": "unverified",
-    "source_hash": "cb81bcdb3ffa05c05d939372f756f6b1d59638898391a047b65b5cc0ddb0882a",
+    "source_hash": "828f655c1416a8962d733c437b8e0a0c224f521929fd833666758a16fac53da7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3280,6 +3280,24 @@
           "Absence by_26 stays derived: Art. 41 deducts hours at 1/165.",
           "Open: the INPS rate of the cost tables (28.03%) vs terziario, and the type-B exemptions of L. 381/1991.",
           "The CCNL expired on 31 December 2025; no renewal found through October 2026."
+        ]
+      },
+      {
+        "id": "2026-10-17-ai-inps-class",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The INPS class of the employers of the CCNL against the INPS classification manual.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://www.inps.it/content/dam/inps-site/pdf/allegati/3212KEY-manuale_di_classificazione_dei_datori_di_lavoro_maggio_2021.pdf",
+            "sha256": "ad8704fbb47ccf22b7f3728a2537351294a12b2aa031a7bb2cce88121d884678"
+          }
+        ],
+        "findings": [
+          "The activities of the social cooperatives of type A are classified by INPS in the terziario: CSC 70704 for 87.30.00, 88.10.00 and 88.91.00, 70706 for 87.20.00 (manual of May 2021, ATECO 2007, PDF pp. 265-266). The file applies the terziario rates: the class is confirmed.",
+          "The 28.03% of the Ministry cost tables (D.D. 30/2024) is still unexplained: no composition of the 2026 terziario rates gives it, and the tables state none. inps_rate_not_reconciled stays open; a cooperative may also fall in the DPR 602/1970 regime for its members, which the file does not model."
         ]
       }
     ],

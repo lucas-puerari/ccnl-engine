@@ -1946,7 +1946,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "3eb1f48a5a7d8377982a378478a99b8e1586d864d46fadc864003b4f6b1b42d2",
+    "source_hash": "61cce5d26da627a45e66c66a26ac5ca6f76080847ed689130949f47c3f6192d8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2247,7 +2247,7 @@
     "readiness": "exploratory",
     "verified_cases": 0,
     "owner": "maintainer",
-    "review_due": "2026-12-31",
+    "review_due": "2027-06-30",
     "reviews": [
       {
         "id": "2026-10-14-ai-p1",
@@ -2357,6 +2357,25 @@
         ],
         "findings": [
           "The CCNL of 8 October 2020 sets no contractual pension, health or bilateral contribution: Art. 74 only confirms the will to institute a supplementary pension. None is modelled."
+        ]
+      },
+      {
+        "id": "2026-10-17-ai-periodic",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Periodic review due 2026-12-31: the minimi of every level against the CCNL of 8 October 2020, the status of the renewal, and the readiness of the file.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+            "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
+          }
+        ],
+        "findings": [
+          "The 28 minimi of the file are printed in the CCNL of 8 October 2020. Match.",
+          "No renewal of the CCNL 2016-2018 was signed by 2026-10-17: the unions report a contract in ultrattività and a dispute open in January 2026 (FP CGIL, letter to the Ministry of Health and the Conferenza delle Regioni); the 2020 tables stay in force.",
+          "Not promoted to reviewed: verification.confidence is unverified, the level records are derived from a CCNL text of 2020 with an aggregator as second source, and shift_on_call_allowances and part_time_supplementary_rate are open. The derived rule stays derived."
         ]
       }
     ]

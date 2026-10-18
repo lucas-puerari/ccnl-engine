@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 0 derived / 30 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 28 verified / 0 derived / 2 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -49,12 +49,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-19 |
-| **Last review** | — |
+| **Last review** | 2026-10-17 |
 | **Latest salary tranche** | 2027-05-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-17 | claude-opus-5-5 (ai) | The paga base nazionale conglobata of the seven levels against the signed ipotesi of 19 May 2025 and the final text of the CCNL 2025 (Ebnaip). | confirmed | Tabelle retributive of the signed ipotesi (p. 7, scan checked on the page image): the 28 minimi from 1/5/2025 to 1/5/2027 match the file and move from assumed to verified. The final text of the CCNL (Ebnaip copy, art. 162-163, PDF pp. 96-97) prints the same base at April 2025, increments and final amounts.<br>The ruleset names the signed ipotesi published by FIAIP, the employer signatory: source_type contracting_party instead of estimated. |
 
 ## Salary table
 
