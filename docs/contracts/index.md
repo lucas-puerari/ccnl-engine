@@ -193,8 +193,8 @@ on unverified sources, or be well sourced and not cleared for production.
 | 89 | E023 | [CCNL Panificazione e Settori Affini — Industria (Assipan/Fiesa)](panificazione-assipan.md) | alimentare | ~20k | 2025 | ⚠️ | seniority | 0 / 48 / 1 / 1 | 🧪 | 🤖 |
 | 90 | K700 | [CCNL Poste Italiane S.p.A. (personale non dirigente)](poste-italiane-k700.md) | Servizi postali | ~117k | 2024 | ⚠️ | base_salary, inps_employer | 0 / 53 / 2 / 0 | 🧪 | 🤖 |
 | 91 | T091 | [CCNL RSA e Strutture Residenziali Socio-Assistenziali (AIOP)](rsa-aiop.md) | residenze sanitarie assistenziali — personale non medico | ~17k | 2012 | ⚠️ | seniority | 0 / 31 / 2 / 0 | 🧪 | 🤖 |
-| 92 | G091 | [CCNL Radiotelevisivo — Settore Radiofonico](radiotelevisive-radiofonico.md) | radiotelevisione — settore radiofonico | — | 2026 | ⚠️ | seniority | 0 / 0 / 20 / 1 | 🧪 | 🤖 |
-| 93 | G091 | [CCNL Radiotelevisivo — Settore Televisivo Multimediale](radiotelevisive-televisivo.md) | radiotelevisione — settore televisivo multimediale | — | 2026 | ⚠️ | seniority | 0 / 0 / 38 / 1 | 🧪 | 🤖 |
+| 92 | G091 | [CCNL Radiotelevisivo — Settore Radiofonico](radiotelevisive-radiofonico.md) | radiotelevisione — settore radiofonico | — | 2026 | ⚠️ | seniority | 12 / 0 / 8 / 1 | 🧪 | 🤖 |
+| 93 | G091 | [CCNL Radiotelevisivo — Settore Televisivo Multimediale](radiotelevisive-televisivo.md) | radiotelevisione — settore televisivo multimediale | — | 2026 | ⚠️ | seniority | 27 / 0 / 11 / 1 | 🧪 | 🤖 |
 | 94 | K711 | [CCNL Recapito Corrispondenza (FISE-ARE)](recapito-corrispondenza-fise.md) | Recapito corrispondenza e spedizioni | ~1k | 2023 | ✅ | — | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
 | 95 | T271 | [CCNL Scuole Materne — FISM](scuole-materne-fism.md) | istruzione privata cattolica per l'infanzia | ~30k | — | ⚠️ | base_salary, seniority | 0 / 47 / 2 / 0 | 🧪 | 🤖 |
 | 96 | T231 | [CCNL Scuole Private Laiche (ANINSEI-Assoscuola)](scuole-private-laiche-aninsei.md) | istruzione privata laica | ~25k | — | ⚠️ | seniority | 0 / 43 / 2 / 0 | 🧪 | 🤖 |
