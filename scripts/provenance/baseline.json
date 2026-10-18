@@ -531,9 +531,6 @@
       "additional_months[2023-06-01]": "assumed",
       "additional_months[2024-01-01]": "assumed"
     },
-    "contribution/2026/agricoltura.json": {
-      "apprentice": "assumed"
-    },
     "contribution/2026/pubblica-amministrazione.json": {
       "apprentice": "assumed"
     },
