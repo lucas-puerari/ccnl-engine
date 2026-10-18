@@ -27,10 +27,10 @@ class TestLoadOperaiAgricoli:
         assert {lv.code for lv in ccnl.levels} == {"Area1", "Area2", "Area3"}
 
     def test_operai_agricoli_level_area2_salary_2026(self) -> None:
-        """Area2 base salary at June 2026 tranche is 1375.48 EUR."""
+        """Area2 base salary from June 2026 is the minimo di area 1398.09 EUR."""
         ccnl = load_ccnl("operai-agricoli-florovivaisti.json")
         area2 = next(lv for lv in ccnl.levels if lv.code == "Area2")
-        assert area2.base_salary.value_at(date(2026, 9, 1)) == Decimal("1375.48")
+        assert area2.base_salary.value_at(date(2026, 9, 1)) == Decimal("1398.09")
 
     def test_operai_agricoli_level_area2_salary_2027(self) -> None:
         """Area2 base salary at Jan 2027 tranche is 1398.09 EUR (Allegato n. 1)."""
