@@ -404,8 +404,8 @@
       "valid_to": "2028-12-31",
       "ruleset_id": "ccnl/chimica-affini-pmi-unionchimica",
       "ruleset_version": "2026.2",
-      "source_hash": "7cbf9eff2a5d0a9d12c501805cc13534b14400e4bf94bf1ea2ce2ef904c447e5",
-      "source_type": "commercial_secondary",
+      "source_hash": "9b0a4720ff0b13d0f76afecfa8beb51202fd5dea38cf000b614d13dd12368047",
+      "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/chimica-affini-pmi-unionchimica.json.gz"
     },
