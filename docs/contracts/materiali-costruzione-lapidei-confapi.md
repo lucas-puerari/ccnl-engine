@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 40 verified / 8 derived / 22 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 41 verified / 8 derived / 21 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-09-09 |
-| **Last review** | 2026-10-17 |
+| **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2025-01-01 |
 
 ## Review history
@@ -57,6 +57,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-17 | claude-opus-5-5 (ai) | The minimi of the eight Lapidei levels against the testo definitivo of 9 September 2025. | confirmed | 40 minimi (eight levels, April 2019, September 2020, February 2021, January 2022 and January 2025) are printed in Art. 25 (PDF p. 96) and in the tables of Allegato V (PDF pp. 219-220): verified.<br>8 minimi of 1 January 2024 are not printed: the verbale of 25 January 2024 (Allegato V, PDF p. 219) prints the totals at 31 December 2023 and the increments; the minimo is the total plus the increment less the EDR (and the superminimo collettivo of level 8). Derived; every one matches the file.<br>The table of the verbale prints level 6 'a regime' at 1.935,75, the Art. 25 table at 1.935,76 (1.925,43 + 10,33): a one-cent misprint of the verbale; the file follows Art. 25.<br>The ruleset now names its source, the testo definitivo published by FENEAL-UIL, a signatory: source_type contracting_party instead of estimated. |
+| 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 28 - Tredicesima mensilità (o gratifica natalizia) (p. 103): "Nel caso di inizio o cessazione del rapporto durante il corso dell'anno, l'impiegato avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi interi di servizio prestato presso l'azienda. La frazione di mese superiore ai 15 giorni va considerata a questi effetti come mese intero.". Match: more_than 15. |
 
 ## Salary table
 

@@ -266,26 +266,28 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "carta-ccnl-2021",
-            "title": "CCNL Carta e cartone industria",
+            "document_id": "carta-cartone-assocarta-ccnl-testo",
+            "title": "CARTA - Aziende industriali del 28/07/2021 - CCNL (Contratto collettivo nazionale di lavoro per le aziende esercenti l'industria della carta e cartone [...] 30 novembre 2016, rinnovato 28 luglio 2021)",
             "kind": "altro",
-            "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf"
+            "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+            "published_on": "2021-07-28",
+            "sha256": "fb3e0cce00ffb6d13a42dd60ead6658f609ff475cb60ed43e8edc76695239a77"
           },
           "page": "65",
-          "section": "Art. 67 (operai) e art. 86 (impiegati), Tredicesima mensilità",
+          "section": "Art. 67 - Gratifica natalizia (operai)",
           "quote": "Le frazioni di mese non superiori ai 15 giorni non saranno calcolate, mentre saranno considerate come mese intero le frazioni superiori ai 15 giorni."
         },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-07-01"
-        },
-        "note": "Database printout of the text hosted by a company. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2024-07-01",
+          "verification_status": "unverified"
+        }
       }
     },
     "employer_funds": [
@@ -2322,7 +2324,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/",
     "verification_status": "unverified",
-    "source_hash": "5f6ea7522b4b94a5a43931b0506e8c5dc0bcc69902557b8419f7b07a8c25a9c1",
+    "source_hash": "16d0d76d4839e8b0b2c1530d14b2b13e38d192e8306de339f4a3fd5e35cd5d66",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

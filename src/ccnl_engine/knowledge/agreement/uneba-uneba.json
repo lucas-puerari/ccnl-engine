@@ -107,6 +107,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.uneba.org/wp-content/uploads/2016/09/CCNL-UNEBA-2010-2012.pdf",
+            "sha256": "3ddfc41a332b63a4f174e5ef7d2c7f211196b400815d1895cc1de12caac44c85"
+          }
+        ],
+        "findings": [
+          "Art. 44 - Tredicesima mensilità (p. 44): \"Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno la lavoratrice ed il lavoratore avranno diritto a tanti dodicesimi dell’ammontare della 13° mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese pari o superiori ai 15 giorni saranno considerate come mese intero.\". Match: at_least 15."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -258,26 +282,31 @@
       "min_days": 15,
       "comparison": "at_least",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "uneba-ccnl-2010-2012",
-            "title": "CCNL UNEBA 2010-2012",
+            "document_id": "uneba-uneba-ccnl-testo",
+            "title": "Contratto collettivo nazionale di lavoro per il personale dipendente dai settori socio-assistenziale, socio-sanitario ed educativo UNEBA 2010-2012 (Testo Ufficiale, Roma 08/05/2013)",
             "kind": "associazione",
-            "url": "https://www.uneba.org/wp-content/uploads/2016/09/CCNL-UNEBA-2010-2012.pdf"
+            "url": "https://www.uneba.org/wp-content/uploads/2016/09/CCNL-UNEBA-2010-2012.pdf",
+            "published_on": "2013-05-08",
+            "sha256": "3ddfc41a332b63a4f174e5ef7d2c7f211196b400815d1895cc1de12caac44c85"
           },
           "page": "44",
-          "section": "Art. 44, Tredicesima mensilità",
-          "quote": "Le frazioni di mese pari o superiori ai 15 giorni saranno considerate come mese intero."
+          "section": "Art. 44 - Tredicesima mensilità",
+          "quote": "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno la lavoratrice ed il lavoratore avranno diritto a tanti dodicesimi dell’ammontare della 13° mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese pari o superiori ai 15 giorni saranno considerate come mese intero."
         },
+        "transformation": "Fractions of a month of 15 days or more count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-10-01"
-        },
-        "note": "Clause read in the 2010-2012 full text; the 2025 renewal rewrites the quattordicesima and refers to the tredicesima for its computation. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2024-10-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T11:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        }
       }
     }
   },
@@ -1493,7 +1522,7 @@
     "effective_until": null,
     "source": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "49a5d35c973950911f58a149fb1271424b55794f7357b469f1b8c5332e312621",
+    "source_hash": "d8cba51417b976d2ac689cee7458729f0fac45d4eb0b571299ddc4a689ade5a9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

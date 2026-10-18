@@ -101,6 +101,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+            "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
+          }
+        ],
+        "findings": [
+          "Art. 49 Tredicesima mensilità (p. 37): \"Le frazioni di mese vengono prese in considerazione solo se superiori a 15 giorni ed in tal caso equiparate ad un mese intero.\". Match: more_than 15."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -225,26 +249,31 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "fism-ccnl-2024-2027",
-            "title": "CCNL FISM 2024-2027",
+            "document_id": "scuole-materne-fism-ccnl-testo",
+            "title": "CCNL FISM 2024-2027 delle scuole dell'infanzia e dei servizi educativi",
             "kind": "associazione",
-            "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+            "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+            "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
           },
           "page": "37",
-          "section": "Art. 49, Tredicesima mensilità",
+          "section": "Art. 49 Tredicesima mensilità",
           "quote": "Le frazioni di mese vengono prese in considerazione solo se superiori a 15 giorni ed in tal caso equiparate ad un mese intero."
         },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2023-09-01"
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2023-09-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T11:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
         },
-        "note": "Scanned text read by OCR. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+        "note": "Quote read by OCR of a scanned PDF."
       }
     }
   },
@@ -1424,7 +1453,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "f3f8fed7cf8a3a872fb6477270e81ec1dd6846195fdb9fc82586cf1935b29a97",
+    "source_hash": "31fa60f7811844bce2bc132047da0df8e01caa3cb5b275d709b2bc7e48c35c5b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

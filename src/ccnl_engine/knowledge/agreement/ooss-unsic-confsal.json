@@ -127,6 +127,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
+            "sha256": "25f8b7efbb81b8eb2dc36c8bbb0157a7125fbcaa0e30c9da0f19e453dcbe9db3"
+          }
+        ],
+        "findings": [
+          "Art. 52 - Mensilità aggiuntive (p. 93): \"Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell'anno, il lavoratore dipendente ha diritto a tanti dodicesimi della 13ma e della 14ma per quanti sono i mesi di lavoro prestato. Per tali fini il periodo iniziale o finale superiore a 15 (quindici) giorni è computato come mese intero secondo il criterio della prevalenza.\". Match: more_than 15."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -263,26 +287,32 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "unsic-ooss-2023-2025",
-            "title": "CCNL OOSS UNSIC-CONFSAL 2023-2025",
+            "document_id": "ooss-unsic-confsal-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro disciplinante i rapporti di lavoro delle Organizzazioni Sindacali, decorrenza dal 01/01/2023 al 31/12/2025",
             "kind": "associazione",
-            "url": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf"
+            "url": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
+            "published_on": "2023-01-19",
+            "sha256": "25f8b7efbb81b8eb2dc36c8bbb0157a7125fbcaa0e30c9da0f19e453dcbe9db3"
           },
           "page": "93",
-          "section": "Art. 52, Tredicesima e quattordicesima mensilità",
-          "quote": "il periodo iniziale o finale superiore a 15 (quindici) giorni è computato come mese intero secondo il criterio della prevalenza."
+          "section": "Art. 52 - Mensilità aggiuntive",
+          "quote": "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell'anno, il lavoratore dipendente ha diritto a tanti dodicesimi della 13ma e della 14ma per quanti sono i mesi di lavoro prestato. Per tali fini il periodo iniziale o finale superiore a 15 (quindici) giorni è computato come mese intero secondo il criterio della prevalenza."
         },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2023-01-19"
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2023-01-19",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T11:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
         },
-        "note": "Scanned text read by OCR. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+        "note": "Quote read by OCR of a scanned PDF."
       }
     }
   },
@@ -793,7 +823,7 @@
     "effective_until": null,
     "source": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
     "verification_status": "unverified",
-    "source_hash": "771f0497bffed6bfbbf887bbe6eea6a29eb7b524d4f09c44b22dd6e291675aca",
+    "source_hash": "3752bee58156059c0002e5be532ccd8a447d8a49ce94644e1192fabb60afdaaf",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -97,6 +97,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.asstel.it/wp-content/uploads/2023/05/CCNL-TLC-Slc-Cgil-Fistel-Cisl-Uilcom-Uil-12-novembre-2020-nuovo.pdf",
+            "sha256": "67ac2f50eea25ec50d43e02f0f65aa89f6c850a7bcf5ca7dd78e98a1dfd785d4"
+          }
+        ],
+        "findings": [
+          "Art. 42 - 13ª mensilità (p. 83): \"Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell'anno, il lavoratore non in prova ha diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità quanti sono i mesi di anzianità di servizio presso l’azienda. La frazione di mese superiore a quindici giorni va considerata a questi effetti come mese intero.\". Match: more_than 15."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -230,27 +254,31 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "asstel-ccnl-tlc-2020",
-            "title": "CCNL TLC 12 novembre 2020",
+            "document_id": "telecomunicazioni-asstel-ccnl-testo",
+            "title": "CCNL TLC 12 novembre 2020 (Asstel, Slc-Cgil, Fistel-Cisl, Uilcom-Uil)",
             "kind": "associazione",
             "url": "https://www.asstel.it/wp-content/uploads/2023/05/CCNL-TLC-Slc-Cgil-Fistel-Cisl-Uilcom-Uil-12-novembre-2020-nuovo.pdf",
-            "published_on": "2020-11-12"
+            "published_on": "2020-11-12",
+            "sha256": "67ac2f50eea25ec50d43e02f0f65aa89f6c850a7bcf5ca7dd78e98a1dfd785d4"
           },
           "page": "83",
-          "section": "Art. 42, Tredicesima mensilità",
-          "quote": "La frazione di mese superiore a quindici giorni va considerata a questi effetti come mese intero."
+          "section": "Art. 42 - 13ª mensilità",
+          "quote": "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell'anno, il lavoratore non in prova ha diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità quanti sono i mesi di anzianità di servizio presso l’azienda. La frazione di mese superiore a quindici giorni va considerata a questi effetti come mese intero."
         },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2026-01-01"
-        },
-        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T11:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        }
       }
     }
   },
@@ -1438,7 +1466,7 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "75f8c72b866b17649b42174c4507c0c92b07e47088e8254d719c66bbfcb2db57",
+    "source_hash": "534afbccad643e9df34a3d0ec2e7ebcb513a43df7d2ed7991565163cbe98dc2c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

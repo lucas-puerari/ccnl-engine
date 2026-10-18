@@ -105,6 +105,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf",
+            "sha256": "093a8610fb069f16df77cee5fec9e858568f2f3776bcf14013eb4673869dc45b"
+          }
+        ],
+        "findings": [
+          "Disciplina speciale Parte prima, Art. 12 - Gratifica natalizia (operai); also Parte terza Art. 8 - Tredicesima mensilità, p. 93 (p. 85): \"Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno, il lavoratore ha diritto a tanti dodicesimi della gratifica natalizia quanti sono i mesi di anzianità di servizio presso l’azienda. La frazione di mese superiore ai 15 giorni viene considerata a questi effetti come mese intero.\". Match: more_than 15."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -229,27 +253,31 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "federorafi-ccnl-2017",
-            "title": "CCNL Orafi argentieri industria 18 maggio 2017",
+            "document_id": "orafi-argentieri-industria-federorafi-ccnl-testo",
+            "title": "Contratto nazionale per gli addetti del settore orafo, argentiero e della gioielleria 18 maggio 2017",
             "kind": "associazione",
             "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf",
-            "published_on": "2017-05-18"
+            "published_on": "2017-05-18",
+            "sha256": "093a8610fb069f16df77cee5fec9e858568f2f3776bcf14013eb4673869dc45b"
           },
           "page": "85",
-          "section": "Parte prima art. 12 (operai), parte terza art. 8 (impiegati), Tredicesima mensilità",
-          "quote": "La frazione di mese superiore ai 15 giorni va considerata a questi effetti come mese intero."
+          "section": "Disciplina speciale Parte prima, Art. 12 - Gratifica natalizia (operai); also Parte terza Art. 8 - Tredicesima mensilità, p. 93",
+          "quote": "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno, il lavoratore ha diritto a tanti dodicesimi della gratifica natalizia quanti sono i mesi di anzianità di servizio presso l’azienda. La frazione di mese superiore ai 15 giorni viene considerata a questi effetti come mese intero."
         },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2022-06-01"
-        },
-        "note": "Clause read in the 2017 text; later renewals not checked. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2022-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T11:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        }
       }
     }
   },
@@ -1321,7 +1349,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "64ba9e5251a6d29db8da62d54962ec180311ee663cb6bb7e71482fa94486dad0",
+    "source_hash": "ea54f85722ac954cbe6905fcb5f1f04567dbb6104bea28863aa0cd3e314aeb37",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

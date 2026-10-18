@@ -73,6 +73,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+            "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
+          }
+        ],
+        "findings": [
+          "Art. 106 - Tredicesima mensilita' (p. 149): \"il dipendente ha diritto a tanti dodicesimi della tredicesima mensilità per quanti sono i mesi di servizio prestati, computando come mese intero la frazione di mese pari o superiore a 15 giorni.\". Match: at_least 15."
+        ]
+      }
+    ]
+  },
   "levels": [
     {
       "code": "C1",
@@ -1261,27 +1285,32 @@
       "min_days": 15,
       "comparison": "at_least",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "anas-ccnl-2025-2027",
-            "title": "CCNL Gruppo ANAS 2025-2027",
+            "document_id": "anas-ccnl-testo",
+            "title": "Gruppo ANAS Contratto collettivo nazionale di lavoro 2025-2027, stipulato in data 18 dicembre 2025",
             "kind": "altro",
             "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
-            "published_on": "2025-12-18"
+            "published_on": "2025-12-18",
+            "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
           },
           "page": "149",
-          "section": "Art. 106, Tredicesima mensilità",
-          "quote": "computando come mese intero la frazione di mese pari o superiore a 15 giorni"
+          "section": "Art. 106 - Tredicesima mensilita'",
+          "quote": "il dipendente ha diritto a tanti dodicesimi della tredicesima mensilità per quanti sono i mesi di servizio prestati, computando come mese intero la frazione di mese pari o superiore a 15 giorni."
         },
+        "transformation": "Fractions of a month of 15 days or more count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2026-03-01"
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2026-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T11:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
         },
-        "note": "Scanned text read by OCR; one OCR character corrected. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+        "note": "Quote read by OCR of a scanned PDF."
       }
     }
   },
@@ -1325,7 +1354,7 @@
     "effective_until": null,
     "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "3f8d10139a2d1c7848f85719a1be2e7376627e932b5754891b9bc9cff9c71a56",
+    "source_hash": "e80c56f4b7cc3c051bb21b9cc0a4553ee3d89b12c59cf56f66857527db39d884",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

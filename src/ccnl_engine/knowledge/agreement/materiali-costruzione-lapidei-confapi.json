@@ -125,6 +125,23 @@
           "The table of the verbale prints level 6 'a regime' at 1.935,75, the Art. 25 table at 1.935,76 (1.925,43 + 10,33): a one-cent misprint of the verbale; the file follows Art. 25.",
           "The ruleset now names its source, the testo definitivo published by FENEAL-UIL, a signatory: source_type contracting_party instead of estimated."
         ]
+      },
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+            "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
+          }
+        ],
+        "findings": [
+          "Art. 28 - Tredicesima mensilità (o gratifica natalizia) (p. 103): \"Nel caso di inizio o cessazione del rapporto durante il corso dell'anno, l'impiegato avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi interi di servizio prestato presso l'azienda. La frazione di mese superiore ai 15 giorni va considerata a questi effetti come mese intero.\". Match: more_than 15."
+        ]
       }
     ]
   },
@@ -253,27 +270,31 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "confapi-materiali-costruzione-2024",
-            "title": "CCNL Materiali da costruzione CONFAPI 25 gennaio 2024",
+            "document_id": "materiali-costruzione-lapidei-confapi-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro per i lavoratori della piccola e media industria del settore materiali da costruzione: lapidei, laterizi, cemento (codice contratto F020) 25 gennaio 2024",
             "kind": "associazione",
             "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
-            "published_on": "2024-01-25"
+            "published_on": "2024-01-25",
+            "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
           },
           "page": "103",
-          "section": "Art. 28, Tredicesima mensilità",
-          "quote": "La frazione di mese superiore ai 15 giorni va considerata a questi effetti come mese intero."
+          "section": "Art. 28 - Tredicesima mensilità (o gratifica natalizia)",
+          "quote": "Nel caso di inizio o cessazione del rapporto durante il corso dell'anno, l'impiegato avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi interi di servizio prestato presso l'azienda. La frazione di mese superiore ai 15 giorni va considerata a questi effetti come mese intero."
         },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2026-01-01"
-        },
-        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T11:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        }
       }
     },
     "contractual_fund_contribution": {
@@ -2383,6 +2404,6 @@
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "8faa90bd940ca47eec31808407c3a5afbfcbd4844f05295a5bafa2d809d91c56"
+    "source_hash": "cb45d0a09c40434a8a3fde6b471de26531bccc2cd9d948ee298f8723e1a5ee68"
   }
 }

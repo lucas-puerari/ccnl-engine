@@ -228,27 +228,28 @@
       "min_days": 15,
       "comparison": "at_least",
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "gas-acqua-ccnl-2022",
-            "title": "CCNL Gas-acqua 30 settembre 2022",
+            "document_id": "gas-acqua-utilitalia-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro per il settore gas-acqua 30 settembre 2022",
             "kind": "altro",
             "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
-            "published_on": "2022-09-30"
+            "published_on": "2022-09-30",
+            "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
           },
           "page": "118",
-          "section": "Art. 37, Tredicesima e quattordicesima mensilità",
-          "quote": "a tal fine le frazioni di mese non inferiori a 15 giorni vanno computate come mese intero."
+          "section": "Art. 37 - Mensilità aggiuntive",
+          "quote": "il lavoratore ha diritto a tanti dodicesimi delle mensilità di cui sopra quanti sono i mesi interi di servizio prestato nel periodo annuale cui ciascuna di esse si riferisce; a tal fine le frazioni di mese non inferiori a 15 giorni vanno computate come mese intero."
         },
+        "transformation": "Fractions of a month of 15 days or more count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2022-10-01"
-        },
-        "note": "Copy published by a member company; comma 4 keeps different company practices. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2022-10-01",
+          "verification_status": "unverified"
+        }
       }
     }
   },
@@ -1961,7 +1962,7 @@
     "effective_until": null,
     "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
     "verification_status": "unverified",
-    "source_hash": "6c97924d84e524e9f278da28a22d81bb65d0177858b954b54e4f020f86993c12",
+    "source_hash": "a3f4fbba5d33e24dd7db854b6f749e427a2623e98427be371d87954800d914fb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -209,26 +209,28 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "aninsei-ccnl-2024-2027",
-            "title": "CCNL ANINSEI 2024-2027",
+            "document_id": "scuole-private-laiche-aninsei-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro ANINSEI per il personale della scuola non statale 1° settembre 2024 - 31 dicembre 2027 (Testo ufficiale)",
             "kind": "altro",
-            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+            "published_on": "2024-06-15",
+            "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
           },
           "page": "51",
-          "section": "Art. 21, Tredicesima mensilità",
-          "quote": "Le frazioni di mese vengono prese in considerazione solo se superiori a 15 giorni ed in tal caso equiparate ad un mese intero."
+          "section": "Art. 21 - Tredicesima mensilità",
+          "quote": "Nel caso di inizio o cessazione del rapporto di lavoro nel corso dell'anno vanno corrisposti tanti dodicesimi dell'ultima mensilità percepita pari ai mesi di servizio prestati. [...] Le frazioni di mese vengono prese in considerazione solo se superiori a 15 giorni ed in tal caso equiparate ad un mese intero."
         },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-06-15"
-        },
-        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2024-06-15",
+          "verification_status": "unverified"
+        }
       }
     }
   },
@@ -1360,7 +1362,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "d7094059e5f7b69bd825636fa62b3a2bd3a981c506bf7199d55935d7541a7507",
+    "source_hash": "68018fd00df63d425c38fdf6fdb5e7c0d119126ffdd250472730fa0fe77a3a4e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

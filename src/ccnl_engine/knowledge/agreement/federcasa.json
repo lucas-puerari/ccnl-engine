@@ -95,6 +95,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
+            "sha256": "4c9e5b5a0a22a0712fbbe475c9cc77248f0e0a33b3c338fab6881915146c2c0c"
+          }
+        ],
+        "findings": [
+          "Art. 76 - Tredicesima e quattordicesima mensilità (p. 68): \"In tali casi il lavoratore non in prova ha diritto a tanti dodicesimi dell'ammontare delle predette mensilità quanti sono i mesi interi di servizio prestato. Le frazioni di mese superiore a quindici giorni vanno computate come un mese intero.\". Match: more_than 15."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -291,27 +315,32 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "federcasa-ccnl-2022-2024",
-            "title": "CCNL Federcasa 2022-2024",
+            "document_id": "federcasa-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di lavoro per i dipendenti delle aziende, società ed enti pubblici economici aderenti a Federcasa 2022-2024",
             "kind": "associazione",
             "url": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
-            "published_on": "2024-11-06"
+            "published_on": "2024-11-06",
+            "sha256": "4c9e5b5a0a22a0712fbbe475c9cc77248f0e0a33b3c338fab6881915146c2c0c"
           },
           "page": "68",
-          "section": "Art. 76, Tredicesima e quattordicesima mensilità",
-          "quote": "Le frazioni di mese superiore a quindici giorni vanno computate come un mese intero."
+          "section": "Art. 76 - Tredicesima e quattordicesima mensilità",
+          "quote": "In tali casi il lavoratore non in prova ha diritto a tanti dodicesimi dell'ammontare delle predette mensilità quanti sono i mesi interi di servizio prestato. Le frazioni di mese superiore a quindici giorni vanno computate come un mese intero."
         },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-12-01"
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2024-12-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T11:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
         },
-        "note": "Scanned text read by OCR; one clause for both extra months. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+        "note": "Quote read by OCR of a scanned PDF."
       }
     }
   },
@@ -1141,7 +1170,7 @@
     "effective_until": null,
     "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "fde8c810080d47fe41f193068f5be52797da343b3c8784cecaf0405de7d66858",
+    "source_hash": "26380e47adf395ae4194633af6c2081f5be938fc46503cbcafe8523f9e73dd07",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

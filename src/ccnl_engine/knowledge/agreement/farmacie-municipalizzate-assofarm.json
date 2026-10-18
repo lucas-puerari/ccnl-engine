@@ -102,6 +102,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+            "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
+          }
+        ],
+        "findings": [
+          "Articolo 20 - Tredicesima e quattordicesima mensilita' (p. 20): \"Le frazioni di mese pari o superiori a 15 giorni vengono computate come mese intero e si trascurano quelle inferiori.\". Match: at_least 15."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -253,26 +277,32 @@
       "min_days": 15,
       "comparison": "at_least",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "assofarm-ccnl-2022-2024",
-            "title": "CCNL Assofarm 2022-2024",
+            "document_id": "farmacie-municipalizzate-assofarm-ccnl-testo",
+            "title": "Contratto collettivo nazionale di lavoro per i dipendenti delle Imprese gestite o partecipate dagli Enti Locali, Esercenti Farmacie, Parafarmacie, Magazzini Farmaceutici all'ingrosso, Laboratori Farmaceutici, Roma, 7 luglio 2022 - 31 dicembre 2024",
             "kind": "associazione",
-            "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+            "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+            "published_on": "2022-07-07",
+            "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
           },
           "page": "20",
-          "section": "Art. 20, Tredicesima e quattordicesima mensilità",
+          "section": "Articolo 20 - Tredicesima e quattordicesima mensilita'",
           "quote": "Le frazioni di mese pari o superiori a 15 giorni vengono computate come mese intero e si trascurano quelle inferiori."
         },
+        "transformation": "Fractions of a month of 15 days or more count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2022-07-01"
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2022-07-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T11:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
         },
-        "note": "Scanned text read by OCR; one clause for tredicesima and quattordicesima. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+        "note": "Quote read by OCR of a scanned PDF."
       }
     }
   },
@@ -1547,7 +1577,7 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "c6ee987770a9b3145bfdca8024e3454bd1a18b101e9538d43d3ac420997f62b8",
+    "source_hash": "241aad30e6c6063cf424e7791591583a6dabda3cf2d009849b52c970c2b7c7e9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
