@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, inail, inps_employee, inps_employer, overtime, seniority, sickness, territorial_supplement |
 
-15 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+16 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 11 verified / 9 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 11 verified / 6 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|
 | **Last renewal** | 2026-05-28 |
 | **Last review** | 2026-10-18 |
-| **Latest salary tranche** | 2027-01-01 |
+| **Latest salary tranche** | 2026-06-01 |
 
 ## Review history
 
@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'confrontare lordo, netto e costo azienda con esempi indipendenti': a run of the engine against the labour cost table of the Regione Toscana price list (Allegato 3, section 4, operai agricoli e florovivaisti, CCNL 2022-2025). | flagged | The table prices the provincial wages of Firenze, Arezzo and the other provinces, not the national area minima of the file: only its structure compares. TFR: 1.312,85 on 17.723,44 a year is 1/13.5, as the engine accrues (991.85 / 13.5 = 73.47 for Area3). Match.<br>Deviation: the table's employer contributions in zona normale are 35.37% of the pay including INAIL; the engine applies 33.953% including the 8.50% INAIL of INPS circ. 43/2026 (25.453% without it). Cause not established (the table states neither its year nor its composition beyond the INAIL share of 13.24%); decision: flagged, the engine keeps the rates of circ. 43/2026. No independent net pay example. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Closure of the divergence left open by the review 2026-10-15-ai-cost-check: the employer contributions against the labour cost table of the Regione Toscana price list. | confirmed | Year: the price list is the edition of December 2025 (file metadata 2 December 2025; the idraulico-forestale tables are dated 2025 and 2026), but its agricultural section (pp. 29-37) is headed 'CCNL operai agricoli e flovivaistici 2022-2025', prices the provincial wages of that contract and states 'in agricoltura i contributi inail sono compresi nell'inps e sono il 13,24% del totale'. The 2026 rates replace the INAIL share with the unified 8.50% of INPS circ. 43/2026, which the engine applies. The table's 35.37% (6.268,78 on 17.723,44, Firenze e Prato, comune) is built on rates before 2026 and does not split them further.<br>The engine keeps the 2026 rates of circ. 43/2026; the table compares for the TFR structure only.<br>Divergence (external_artifact_error): Employer contributions of an operaio comune in zona normale: 35.37% of the pay with INAIL in the Regione Toscana table against 33.953% with the 8.50% INAIL in the engine for 2026. Cause: The table applies the agricultural rates of the CCNL 2022-2025 years, INAIL included as 13.24% of the total, not the 2026 rates with the unified INAIL of INPS circ. 43/2026: it is no evidence for 2026 contributions. |
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 52 - Tredicesima mensilità (p. 54-55): "l'operaio ha diritto a tanti dodicesimi dell'ammontare della tredicesima quanti sono i mesi di servizio prestati presso l'azienda. [...] La frazione di mese superiore ai quindici giorni viene considerata, a questi effetti, come mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
+| 2026-10-18 | claude-opus-5-5 (ai) | Base salaries (minimi salariali di area mensili, operai agricoli, Areas 1-3) of every period, checked against the signed verbali of 23 May 2022 and 28 May 2026. | corrected | The 2023 values (1.389,15 / 1.266,90 / 944,62) match Allegato n. 1, Tabella n. 1 of the signed verbale of 23 May 2022 (scanned, OCR plus visual check of p. 33).<br>Date of the 2023 period: Art. 49 of the 2022 verbale applies the minimi from 1 June 2022 in provinces without a CPL under the CCNL 19 June 2018 and, elsewhere, from the CPL renewal date and not later than 1 January 2025; the accord of 27 October 2023 brought that date forward to 1 January 2024. The file start 2023-01-01 comes from the INPS label 'in vigore dall'1.1.2023' and is not a date stated by the parties; the value is in force throughout the file period in provinces without a CPL.<br>The 2025 values are not printed in any signatory text found: they follow from the 2022 minimi plus 5% (accord of 27 October 2023, signed text not located; the rule is reported by Confagricoltura Rovigo and Belluno) and are confirmed exactly by the 2026 minimi, which equal them times 1.051. Area 2 rounds 1330.245 half-up to 1330.25, which is the base the 2026 table uses (1330.25 x 1.051 = 1398.093).<br>The 2027 values are printed to three decimals (1532,999 / 1398,093 / 1042,434) and kept rounded to the cent.<br>Art. 50 of the 2026 verbale applies the new minimi (which already include both tranches) from 1 June 2026 in provinces without a CPL renewed under the CCNL of 23 May 2022, and elsewhere from the CPL renewal date and not later than 1 January 2029. No text supports a national minimo of 1025.57 / 1375.48 / 1508.20 for June to December 2026: those figures apply the 3.4% first tranche (which raises provincial salari contrattuali) to the 2025 minimi. The 2026-06-01 periods are left unbacked.<br>Maintainer decision: the 2026-06-01 periods take the printed minimi of Allegato n. 1 (p. 52), +5.1%, replacing the file values built on +3.4% (1508.20, 1375.48, 1025.57); the 2027-01-01 periods carried the same printed minimi and are merged into them.<br>Corrected to the printed table: Area1 2026-06-01: 1508.20 -> 1533.00; Area2 2026-06-01: 1375.48 -> 1398.09; Area3 2026-06-01: 1025.57 -> 1042.43. |
 
 ## Salary table
 
@@ -77,9 +78,9 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Area1` | Area 1 — Operai Specializzati (specialised agricultural workers) | € 1,533.00 | 2027-01-01 |
-| `Area2` | Area 2 — Operai Qualificati (qualified agricultural workers) | € 1,398.09 | 2027-01-01 |
-| `Area3` | Area 3 — Operai Comuni (unskilled general agricultural workers) | € 1,042.43 | 2027-01-01 |
+| `Area1` | Area 1 — Operai Specializzati (specialised agricultural workers) | € 1,533.00 | 2026-06-01 |
+| `Area2` | Area 2 — Operai Qualificati (qualified agricultural workers) | € 1,398.09 | 2026-06-01 |
+| `Area3` | Area 3 — Operai Comuni (unskilled general agricultural workers) | € 1,042.43 | 2026-06-01 |
 
 ## Seniority increments
 
@@ -199,6 +200,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the provincial levels of each area, or pass the apprentice classification of the provincial contract.
 
+!!! warning "operai-agricoli-florovivaisti/cpl_minimi_timing · base_salary · impact yes · open"
+    CPL TIMING: the minimi di area of the renewal of 28/05/2026 (Allegato n. 1, p. 52) apply from 1 June 2026 only in the provinces without a contratto provinciale di lavoro (CPL); where a CPL is in force they apply from its renewal, by 1 January 2029 at the latest (Art. 50, p. 30). The file applies them from 1 June 2026 everywhere: a worker in a province with a CPL not yet renewed is paid above the national floor in force for that province.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add an employer fact for the CPL status of the province, or pass the minimo in force as an input.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -258,7 +266,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 ??? note "Coverage notes"
     SALARY MODEL: conglobated retribuzione tabellare minima (paga base + contingenza + EDR merged since 01/01/2009). Contingenza = 0.00 and EDR = 0.00 per ilccnl.it table. Single base_salary per area per period. Source: contratticcnl.it tabelle retributive, confirmed by research from ilccnl.it showing zero contingenza columns.
     
-    RENEWAL: CCNL signed 23/05/2022 (valid 2022-2025), renewed 28/05/2026 (quadriennio 2026-2029, signed verbale). Two salary tranches on the salary in force on 28 May 2026: +3.4% from 2026-06-01 and +1.7% from 2027-01-01, not compounded (Art. 50 and Allegato n. 1). No una tantum.
+    RENEWAL: CCNL signed 23/05/2022 (valid 2022-2025), renewed 28/05/2026 (quadriennio 2026-2029, signed verbale). Art. 50: the provincial salari contrattuali in force on 28 May 2026 rise by 3.4% from 2026-06-01 and by 1.7% from 2027-01-01, not compounded; the minimi di area of Allegato n. 1 include both increases (base x 1.051) and apply from 2026-06-01 in the provinces without a CPL (see the cpl_minimi_timing limitation). The file models the minimi di area. No una tantum.
     
     LEVELS: Three national professional areas (OTI, Operai a Tempo Indeterminato, national minimums). Area1=Specializzati, Area2=Qualificati, Area3=Comuni. National table sets floor only; provincial contracts (contratti provinciali di lavoro) always exceed these minimums.
     
@@ -270,7 +278,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     CNEL CODE: A011. Confirmed from ilccnl.it page header and contratticcnl.it/ccnl/a011/. CNEL archive (cnel.it) returned 404 at time of extraction.
     
-    HISTORICAL PERIODS ADDED (2026-09-09). Three salary periods now modelled per area: (1) 2023-01-01: INPS Circ. n.94/2024 Allegato 1 (primary source, Area1=1389.15, Area2=1266.90, Area3=944.62). (2) 2025-01-01: Dottrinalavoro Jan 2025 PDF (Area1=1458.61, Area2=1330.25, Area3=991.85). Cross-check: 2025 values / 2023 values = 1.050 (approx. +5% tranche per 2022-2025 CCNL). (3) 2026-06-01: first tranche of 2026-2029 renewal (+3.4%). 2023-01-01 is the earliest verified period; pre-2023 values not modelled.
+    HISTORICAL PERIODS ADDED (2026-09-09). Three salary periods now modelled per area: (1) 2023-01-01: INPS Circ. n.94/2024 Allegato 1 (primary source, Area1=1389.15, Area2=1266.90, Area3=944.62). (2) 2025-01-01: Dottrinalavoro Jan 2025 PDF (Area1=1458.61, Area2=1330.25, Area3=991.85). Cross-check: 2025 values / 2023 values = 1.050 (approx. +5% tranche per 2022-2025 CCNL). (3) 2026-06-01: minimi di area of the 2026-2029 renewal (Allegato n. 1, both increases included). 2023-01-01 is the earliest verified period; pre-2023 values not modelled.
     
     JANUARY 2027 TRANCHE: the minimi of area of Allegato n. 1 of the verbale of 28 May 2026, printed Area 1 1532,999, Area 2 1398,093, Area 3 1042,434 (the 28 May 2026 salary x 1.051) and paid to the cent: 1533.00 / 1398.09 / 1042.43. Until 14 October 2026 the bundle compounded the tranches (June 2026 x 1.017: 1533.84 / 1398.86 / 1043.00), 0.57 to 0.84 a month too much.
     
