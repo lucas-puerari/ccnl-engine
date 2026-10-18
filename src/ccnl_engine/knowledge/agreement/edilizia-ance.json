@@ -91,15 +91,119 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED AMOUNTS: the EVR set by the provincial agreements (Art. 46); the special maggiorazione of the capisquadra in the base of Art. 17 and 18 (Art. 24 point 4); the festività of Art. 17 point 3 (8 hours of the point 4 elements, with the 4.95% and the 18.5% on them), which PeriodFacts.ordinary_hours_worked leaves out; the una tantum premio di ingresso of EUR 100 to operai under 29 of the verbale of 3 March 2022 (Allegato 5); the APE paid by the Cassa Edile (Art. 29); the premiums on ordinary hours of Art. 19 (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week (Art. 5); the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario (Art. 20-21); mensa, trasporto and trasferta (provincial; verbale 2025); the riduzione contributiva edile on the employer INPS contributions of full-time operai (art. 29 L. 341/1995).",
-        "capability": "base_salary",
+        "text": "Art. 46: the EVR set by the provincial agreements.",
+        "capability": "territorial_supplement",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "edilizia_operai_unmodelled",
+          "variant": "provincial_evr",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the provincial elements and the festività hours as inputs."
+          "remediation": "Add the provincial EVR as an input."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 24 point 4: the special maggiorazione of the capisquadra in the base of Art. 17 and 18.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "capisquadra_supplement",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the capisquadra maggiorazione with a role."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 17 point 3: the festività (8 hours of the point 4 elements, with the 4.95% and the 18.5% on them), which PeriodFacts.ordinary_hours_worked leaves out.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "holiday_hours",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the festività hours to the hourly pay of the operai."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Verbale of 3 March 2022, Allegato 5: the una tantum premio di ingresso of EUR 100 to operai under 29.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "entry_premium_2022",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the premio di ingresso with the age of the worker."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 29: the APE paid by the Cassa Edile.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ape_cassa_edile",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the APE as a Cassa Edile payment."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 19 and Art. 5: the premiums on ordinary hours (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ordinary_hours_premiums",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the premiums on ordinary hours of Art. 19 and Art. 5."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 20-21: the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "hardship_allowances",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the allowances of Artt. 20-21."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Mensa, trasporto and trasferta, set by the provincial agreements (verbale 2025).",
+        "capability": "territorial_supplement",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "provincial_meals_transport_travel",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the provincial mensa, trasporto and trasferta as inputs."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 29 L. 341/1995: the riduzione contributiva edile on the employer INPS contributions of full-time operai.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "contribution_reduction",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the riduzione contributiva edile of the year."
         }
       },
       {
@@ -1503,7 +1607,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "85aefa9cf8cea745e4d6fb2f23e176e8328006353275fc24cf8b88eaf10c1cf2",
+    "source_hash": "96f295124a5f8bbb7ad387a4ebee6170bbab85e6b1f0d0bf9711596e824984be",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

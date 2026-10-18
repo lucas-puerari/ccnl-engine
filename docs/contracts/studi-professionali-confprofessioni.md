@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, inps_employer, seniority |
+| **Limits of this contract** | base_salary, bilateral_funds, inps_employer, overtime, seniority, sickness |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -127,12 +127,75 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Let seniority_increments pay the level amount to apprentices (a flag such as apprentices_accrue_level_amount), then remove this note.
 
-!!! warning "studi-professionali-confprofessioni/studi_unmodelled_elements · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS (CCNL 16/02/2024): the lavoro supplementare of part-time at 40% of the quota oraria of the retribuzione di fatto, outside the deferred institutes and the TFR (Art. 42: no request kind carries it); the comporto counted over the episodes of the 365 days before the last one, and the +90 days for serious illnesses paid 100% in months 7-8 and 70% in month 9 (Artt. 120-121); the 100% of festività during sickness (Art. 124); the infortunio integration (100% on the day of the event, 60% days 1-3, 75% after, Art. 123); the employer top-up to 100% of the holidays during compulsory maternity or paternity leave (Art. 110 c. 8); the ROL (40 or 66 hours) and the 32 hours of ex festività paid when not taken, the festività falling on Sunday and the flexibility hours not recovered (Artt. 91, 92, 97 C, 98); the salario d'ingresso of the reimpiego, up to two levels below for 9 months and one for 6 (Art. 56); the indennità di disponibilità of the lavoro intermittente, 30% (Art. 58); the diaria of the trasferte, EUR 15 or 30 a day (Art. 115); the exclusion of the quattordicesima for workers already paid extra months (Art. 143). The una tantum of EUR 400 (EUR 200 in May 2024 and May 2025, p. 73) is historic and outside the TFR base.
+!!! warning "studi-professionali-confprofessioni/part_time_supplementary · overtime · impact yes · open"
+    Art. 42: the lavoro supplementare of part-time at 40% of the quota oraria of the retribuzione di fatto, outside the deferred institutes and the TFR.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the bilateral omission element, the part-time supplementare, the rolling comporto and the allowances of Artt. 56, 58 and 115.
+    **Remediation:** Add the OT_SUPPLEMENTARE band once OvertimeKind.SUPPLEMENTARY is on main.
+
+!!! warning "studi-professionali-confprofessioni/rolling_comporto_and_serious_illness · sickness · impact yes · open"
+    Artt. 120-121: the comporto counted over the episodes of the 365 days before the last one, and the +90 days for serious illnesses paid 100% in months 7-8 and 70% in month 9.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the rolling comporto and the serious-illness extension.
+
+!!! warning "studi-professionali-confprofessioni/holiday_during_sickness · sickness · impact yes · open"
+    Art. 124: the 100% of festività during sickness.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pay the festività during sickness at 100%.
+
+!!! warning "studi-professionali-confprofessioni/injury_integration · sickness · impact yes · open"
+    Art. 123: the infortunio integration (100% on the day of the event, 60% days 1-3, 75% after).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the injury integration.
+
+!!! warning "studi-professionali-confprofessioni/maternity_holiday_top_up · base_salary · impact yes · open"
+    Art. 110 c. 8: the employer top-up to 100% of the holidays during compulsory maternity or paternity leave.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the top-up of Art. 110.
+
+!!! warning "studi-professionali-confprofessioni/unused_leave_hours · base_salary · impact yes · open"
+    Artt. 91, 92, 97 C, 98: the ROL (40 or 66 hours) and the 32 hours of ex festività paid when not taken, the festività falling on Sunday and the flexibility hours not recovered.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pay the unused ROL, ex festività and flexibility hours.
+
+!!! warning "studi-professionali-confprofessioni/reemployment_entry_pay · base_salary · impact yes · open"
+    Art. 56: the salario d'ingresso of the reimpiego, up to two levels below for 9 months and one for 6.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the entry pay of the reimpiego.
+
+!!! warning "studi-professionali-confprofessioni/intermittent_availability · base_salary · impact yes · open"
+    Art. 58: the indennità di disponibilità of the lavoro intermittente, 30%.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the availability allowance.
+
+!!! warning "studi-professionali-confprofessioni/travel_diaria · base_salary · impact yes · open"
+    Art. 115: the diaria of the trasferte, EUR 15 or 30 a day.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the trasferta diaria.
+
+!!! warning "studi-professionali-confprofessioni/fourteenth_exclusion · base_salary · impact yes · open"
+    Art. 143: the exclusion of the quattordicesima for workers already paid extra months. The una tantum of EUR 400 (EUR 200 in May 2024 and May 2025, p. 73) is historic and outside the TFR base.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add a worker fact for extra months already paid.
 
 !!! warning "studi-professionali-confprofessioni/bilateral_contribution_or_element · bilateral_funds · impact yes · open"
     BILATERAL CONTRIBUTION: the employer pays the bilateral contribution of Art. 13 for every worker, or instead the elemento retributivo of EUR 43 x 14, in every institute including TFR. Neither is modelled: the employer cost, and with the elemento the net pay, are short of it.

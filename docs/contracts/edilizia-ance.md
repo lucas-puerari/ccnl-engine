@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, overtime, sickness, territorial_supplement |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -103,12 +103,68 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the coefficients of Art. 26 on their own base and the comporto by seniority.
 
-!!! warning "edilizia-ance/edilizia_operai_unmodelled · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the EVR set by the provincial agreements (Art. 46); the special maggiorazione of the capisquadra in the base of Art. 17 and 18 (Art. 24 point 4); the festività of Art. 17 point 3 (8 hours of the point 4 elements, with the 4.95% and the 18.5% on them), which PeriodFacts.ordinary_hours_worked leaves out; the una tantum premio di ingresso of EUR 100 to operai under 29 of the verbale of 3 March 2022 (Allegato 5); the APE paid by the Cassa Edile (Art. 29); the premiums on ordinary hours of Art. 19 (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week (Art. 5); the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario (Art. 20-21); mensa, trasporto and trasferta (provincial; verbale 2025); the riduzione contributiva edile on the employer INPS contributions of full-time operai (art. 29 L. 341/1995).
+!!! warning "edilizia-ance/provincial_evr · territorial_supplement · impact yes · open"
+    Art. 46: the EVR set by the provincial agreements.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the provincial elements and the festività hours as inputs.
+    **Remediation:** Add the provincial EVR as an input.
+
+!!! warning "edilizia-ance/capisquadra_supplement · base_salary · impact yes · open"
+    Art. 24 point 4: the special maggiorazione of the capisquadra in the base of Art. 17 and 18.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the capisquadra maggiorazione with a role.
+
+!!! warning "edilizia-ance/holiday_hours · base_salary · impact yes · open"
+    Art. 17 point 3: the festività (8 hours of the point 4 elements, with the 4.95% and the 18.5% on them), which PeriodFacts.ordinary_hours_worked leaves out.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the festività hours to the hourly pay of the operai.
+
+!!! warning "edilizia-ance/entry_premium_2022 · base_salary · impact yes · open"
+    Verbale of 3 March 2022, Allegato 5: the una tantum premio di ingresso of EUR 100 to operai under 29.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the premio di ingresso with the age of the worker.
+
+!!! warning "edilizia-ance/ape_cassa_edile · base_salary · impact yes · open"
+    Art. 29: the APE paid by the Cassa Edile.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the APE as a Cassa Edile payment.
+
+!!! warning "edilizia-ance/ordinary_hours_premiums · overtime · impact yes · open"
+    Art. 19 and Art. 5: the premiums on ordinary hours (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the premiums on ordinary hours of Art. 19 and Art. 5.
+
+!!! warning "edilizia-ance/hardship_allowances · base_salary · impact yes · open"
+    Art. 20-21: the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the allowances of Artt. 20-21.
+
+!!! warning "edilizia-ance/provincial_meals_transport_travel · territorial_supplement · impact yes · open"
+    Mensa, trasporto and trasferta, set by the provincial agreements (verbale 2025).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the provincial mensa, trasporto and trasferta as inputs.
+
+!!! warning "edilizia-ance/contribution_reduction · base_salary · impact yes · open"
+    Art. 29 L. 341/1995: the riduzione contributiva edile on the employer INPS contributions of full-time operai.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the riduzione contributiva edile of the year.
 
 !!! warning "edilizia-ance/territorial_sector_allowance · territorial_supplement · impact yes · open"
     INDENNITÀ TERRITORIALE DI SETTORE: set by the provincial agreements (Art. 12) and owed to every operaio, also in the base of the 4.95% and 18.5% and in the TFR base of Art. 33. Not modelled: the net pay and the employer cost are short of it.
