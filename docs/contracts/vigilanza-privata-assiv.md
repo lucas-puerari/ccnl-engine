@@ -54,12 +54,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-05-30 |
-| **Last review** | — |
+| **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-18 | claude-opus-5-5 (ai) | The paga base tabellare conglobata of the GPG section (levels Q and 1-6), six tranches from 1/6/2023 to 1/12/2026, against the ipotesi di accordo of 16 February 2024 and the cost-of-labour tables of Ministry of Labour D.D. n. 50 of 8 August 2024. | confirmed | Ipotesi di accordo 16/02/2024 (p. 2, page image checked): the table printing the 4th and 6th level paga base tabellare conglobata from 1/6/2024 to 1/12/2026 matches the file; these 10 minimi move to verified. The other levels follow, per the same page, by applying the conventional parameters of the CCNL to the 4th level increments; the 6th level is set conventionally.<br>Ministry of Labour D.D. n. 50 of 8/8/2024 (tables for the Servizio tecnico-operativo, PDF pp. 18-23; same values on the amministrativo pages 12-17) prints the annual paga base tabellare conglobata per level at 6/2023, 6/2024, 6/2025, 12/2025, 4/2026 and 12/2026; the decree states the signatory parties formally shared the final tables on 7/8/2024. Divided by 12, all 42 values equal the file: the 32 periods not printed monthly in the ipotesi are recorded as derived.<br>FILCAMS CGIL publishes the same monthly table online (page 'Vigilanza privata e Servizi di sicurezza - 16 febbraio 2024'); it matches the file for every tranche from 1/6/2024 and for levels 1, 3, 4, 6 at 1/6/2023, but prints Q 2049,04, level 2 1660,39 and level 5 1261,86 at 1/6/2023 (file and decree: 2049.03, 1660.38, 1261.87). Its own 1/6/2024 values (2097,24, 1696,09, 1285,44) build on the file's figures, so the difference is a 0.01 rounding in that column; the decree values are kept.<br>The base_salary of the file is the paga base tabellare conglobata (salario unico nazionale, art. 106 CCNL 2013), the item both sources print; scatti, the una tantum and the 13th/14th are separate.<br>The ruleset now names the ipotesi of 16/02/2024 published via the FILCAMS CGIL contract page: source_type contracting_party instead of the aggregator page.<br>Maintainer decision: all 42 periods are derived from the Ministry of Labour D.D. n. 50 of 08/08/2024 (cost tables, annual paga base / 12); the unsigned ipotesi of 16/02/2024 is only a cross-check for levels 4 and 6. |
 
 ## Salary table
 
