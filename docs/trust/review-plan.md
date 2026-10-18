@@ -10,7 +10,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 208 | 186 | 0 | `funzioni-centrali-aran` |
 | terziario | 43 | 4 977 055 | 170 | 1535 | 660 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 48 | 4 946 900 | 216 | 2285 | 654 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| industria | 48 | 4 946 900 | 178 | 2285 | 692 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 56 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 37 | 305 | 95 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 19 | 240 | 42 | 5 | `operai-agricoli-florovivaisti` |
@@ -107,7 +107,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`igiene-ambientale-utilitalia`](../contracts/igiene-ambientale-utilitalia.md) | 65 000 | exploratory | 2 | 143 | 0 | aggregator | none | none |
 | [`elettrico-elettricita-futura`](../contracts/elettrico-elettricita-futura.md) | 60 000 | exploratory | 2 | 77 | 0 | aggregator | none | none |
 | [`chimica-affini-pmi-unionchimica`](../contracts/chimica-affini-pmi-unionchimica.md) | 56 000 | exploratory | 2 | 21 | 0 | aggregator | none | none |
-| [`tessile-pmi-uniontessile`](../contracts/tessile-pmi-uniontessile.md) | 48 000 | exploratory | 44 | 0 | 0 | aggregator | none | none |
+| [`tessile-pmi-uniontessile`](../contracts/tessile-pmi-uniontessile.md) | 48 000 | exploratory | 6 | 0 | 38 | aggregator | none | none |
 | [`trasporto-aereo-assaeroporti`](../contracts/trasporto-aereo-assaeroporti.md) | 40 000 | exploratory | 2 | 72 | 0 | party or official | none | none |
 | [`energia-petrolio-confindustria`](../contracts/energia-petrolio-confindustria.md) | 38 000 | exploratory | 2 | 170 | 0 | party or official | none | none |
 | [`alimentari-pmi-unionalimentari`](../contracts/alimentari-pmi-unionalimentari.md) | 35 000 | exploratory | 2 | 44 | 0 | party or official | none | none |

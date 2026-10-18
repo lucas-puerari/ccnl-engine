@@ -2036,8 +2036,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tessile-pmi-uniontessile",
       "ruleset_version": "2026.2",
-      "source_hash": "cb10bffe039e015dcafa873685047a4074962ee7fed97b89693cfe6058bd4fb7",
-      "source_type": "estimated",
+      "source_hash": "5ef9af5ccda3542458be3982b38eeb690b8942d267bf665e1a46855f832cc794",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tessile-pmi-uniontessile.json.gz"
     },
