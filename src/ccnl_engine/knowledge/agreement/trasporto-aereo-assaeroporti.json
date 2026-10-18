@@ -113,6 +113,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+            "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+          }
+        ],
+        "findings": [
+          "Art. G29 - Tredicesima mensilità (p. 43): \"Le frazioni di mese pari o superiori a 15 giorni saranno considerate come mese intero.\". Match: at_least 15."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -264,27 +288,31 @@
       "min_days": 15,
       "comparison": "at_least",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "assaeroporti-parte-specifica-2025",
-            "title": "CCNL Trasporto aereo, parte specifica gestori aeroportuali",
+            "document_id": "trasporto-aereo-assaeroporti-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale del Trasporto Aereo, Parte Specifica Gestori Aeroportuali",
             "kind": "associazione",
             "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
-            "published_on": "2025-06-04"
+            "published_on": "2025-06-04",
+            "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
           },
           "page": "43",
-          "section": "Artt. G29 e G30, Tredicesima e quattordicesima mensilità",
+          "section": "Art. G29 - Tredicesima mensilità",
           "quote": "Le frazioni di mese pari o superiori a 15 giorni saranno considerate come mese intero."
         },
+        "transformation": "Fractions of a month of 15 days or more count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2025-01-01"
-        },
-        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2025-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T11:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        }
       }
     }
   },
@@ -2448,7 +2476,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "27d11c34915aace74aed8af59207faf6ee86d876842e1402cb0aa294f5a0b0ce",
+    "source_hash": "b45bd1fa3ff3251bc9be7d2236ffff8d07ad1ea0193a24221780160f33b19b7a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

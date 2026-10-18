@@ -229,27 +229,28 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "ipotesi-vigilanza-privata-2024-02-16",
-            "title": "Ipotesi di accordo Vigilanza Privata e Servizi di Sicurezza 16 febbraio 2024",
-            "kind": "associazione",
-            "url": "https://www.assiv.it/wp-content/uploads/2024/07/Accordo-Integrativo-Vigilanza-privata-e-Servizi-di-Sicurezza-Filcams-Fisascat-e-UILTuCS-.pdf",
-            "published_on": "2024-02-16"
+            "document_id": "vigilanza-privata-assiv-ccnl-testo",
+            "title": "CCNL per Dipendenti da Istituti e Imprese di vigilanza privata e servizi fiduciari, validità dal 1° febbraio 2013 al 31 dicembre 2015 (8 aprile 2013)",
+            "kind": "altro",
+            "url": "https://www.bollettinoadapt.it/wp-content/uploads/2019/10/ccnl2013.pdf",
+            "published_on": "2013-04-08",
+            "sha256": "c6b3a6176dee20e6a727e4da153bd3511850275e991e0e344f92e1d1b4c0df79"
           },
-          "page": "3",
-          "section": "Art. 26 as rewritten from 1 January 2024, Tredicesima e quattordicesima mensilità",
-          "quote": "A tal fine le frazioni di mese che superino i 15 giorni saranno considerate mese intero."
+          "page": "81",
+          "section": "Art. 117 - Mensilità supplementari (13ma e 14ma)",
+          "quote": "Nel caso di inizio o cessazione del rapporto di lavoro nel corso dell’anno, il lavoratore avrà diritto, per i mesi di servizio prestato, a tanti dodicesimi della mensilità di cui al presente articolo per quanti sono i mesi rispettivamente maturati nel corso dei periodi sopracitati. A tal fine le frazioni di mese che superino i 15 giorni saranno considerate mese intero."
         },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2023-06-01"
-        },
-        "note": "Hypothesis of agreement, ratification not found; art. 117 of the CCNL 8 aprile 2013 has the same wording. Scanned text read by OCR. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2023-06-01",
+          "verification_status": "unverified"
+        }
       }
     }
   },
@@ -1446,7 +1447,7 @@
     "effective_until": null,
     "source": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30121:vigilanza452023&catid=257&Itemid=139",
     "verification_status": "unverified",
-    "source_hash": "6b6abd59a5b7f477e0e0cad48a65945a63ded1bfa1550df9ca2989caecef7d3a",
+    "source_hash": "f14aa2f2702917cca39a8078027d83f02f0c4019077c2ccd8cba3a8e1718627e",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

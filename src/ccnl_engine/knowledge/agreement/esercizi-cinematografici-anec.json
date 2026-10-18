@@ -92,6 +92,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+            "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
+          }
+        ],
+        "findings": [
+          "Art. 20 - Tredicesima mensilita' o gratifica natalizia (p. 27): \"La frazione di mese superiore a 15 giorni sarà considerata, a tali effetti, come mese intero.\". Match: more_than 15."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -279,26 +303,31 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "anec-ccnl-2023-2026",
-            "title": "CCNL Esercizi cinematografici 2023-2026",
+            "document_id": "esercizi-cinematografici-anec-ccnl-testo",
+            "title": "ANEC Contratto collettivo nazionale di lavoro dell'esercizio cinematografico e cinema-teatrali 2023-2026",
             "kind": "associazione",
-            "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+            "published_on": "2025-10-16",
+            "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
           },
           "page": "27",
-          "section": "Artt. 20 e 21, Tredicesima e quattordicesima mensilità",
+          "section": "Art. 20 - Tredicesima mensilita' o gratifica natalizia",
           "quote": "La frazione di mese superiore a 15 giorni sarà considerata, a tali effetti, come mese intero."
         },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2023-01-01"
-        },
-        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2023-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T11:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        }
       }
     },
     "employer_funds": [
@@ -1863,7 +1892,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "5ec2f4f70de44adc49f1c9202a048f00fdc960ef3ad0c5d15b5a14416a1c6e7b",
+    "source_hash": "8d9854b25b08d0dfdbe745af6ec747c143c016751f9bc89cb5b7cf24d47edfc4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

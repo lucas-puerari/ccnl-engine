@@ -234,27 +234,28 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "aiop-rsa-2012",
-            "title": "CCNL AIOP RSA 22 marzo 2012",
+            "document_id": "rsa-aiop-ccnl-testo",
+            "title": "1° Contratto collettivo nazionale di lavoro per il personale dipendente delle RSA e delle altre strutture residenziali e socio-assistenziali associate AIOP 22 marzo 2012",
             "kind": "altro",
             "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
-            "published_on": "2012-03-22"
+            "published_on": "2012-03-22",
+            "sha256": "a857ab65ee5a6101fb8ae50099804c1229815a1c676b798896a2ea7ed0260919"
           },
           "page": "27",
-          "section": "Art. 54, Tredicesima mensilità",
-          "quote": "La frazione di mese superiore a 15 giorni va considerata, a questi effetti, come mese intero."
+          "section": "Articolo 54 - Tredicesima mensilità",
+          "quote": "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell'anno, il lavoratore ha diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità quanti sono i mesi di anzianità di servizio. La frazione di mese superiore a 15 giorni va considerata, a questi effetti, come mese intero."
         },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2012-04-01"
-        },
-        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2012-04-01",
+          "verification_status": "unverified"
+        }
       }
     }
   },
@@ -1180,7 +1181,7 @@
     "effective_until": null,
     "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
     "verification_status": "unverified",
-    "source_hash": "adc2f24419a92cb69fc689239a6b5005d48cae31a003927c58756523af9e2ba0",
+    "source_hash": "ca5a50302319512f2f0b354675bd8faec576b52fded6307309d0ff51382d8290",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -13,7 +13,6 @@
       "seniority_increments": "assumed"
     },
     "agreement/agenzie-marittime-i481.json": {
-      "accrual_rule": "assumed",
       "additional_months[2024-09-01]": "assumed"
     },
     "agreement/agenzie-viaggio-fiavet.json": {
@@ -29,7 +28,6 @@
       "additional_months[2023-12-01]": "assumed"
     },
     "agreement/anas.json": {
-      "accrual_rule": "assumed",
       "additional_months[2026-03-01]": "assumed"
     },
     "agreement/assicurazioni-ania.json": {
@@ -50,7 +48,6 @@
       "additional_months[2025-12-09]": "assumed"
     },
     "agreement/autoscuole-unasca.json": {
-      "accrual_rule": "assumed",
       "additional_months[2021-01-01]": "assumed"
     },
     "agreement/autostrade-trafori.json": {
@@ -69,7 +66,6 @@
       "additional_months[2024-08-01]": "assumed"
     },
     "agreement/carta-cartone-assocarta.json": {
-      "accrual_rule": "assumed",
       "additional_months[2024-07-01]": "assumed"
     },
     "agreement/ced-assoced.json": {
@@ -77,7 +73,6 @@
       "additional_months[2025-09-01]": "assumed"
     },
     "agreement/cemento-calce-gesso-industria.json": {
-      "accrual_rule": "assumed",
       "additional_months[2024-12-31]": "assumed"
     },
     "agreement/ceramica-industria-confindustria.json": {
@@ -107,15 +102,11 @@
       "accrual_rule": "missing",
       "additional_months[2024-06-01]": "assumed"
     },
-    "agreement/cooperative-consorzi-agricoli.json": {
-      "accrual_rule": "assumed"
-    },
     "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json": {
       "accrual_rule": "missing",
       "additional_months[2019-12-19]": "assumed"
     },
     "agreement/distribuzione-cooperativa-ancc.json": {
-      "accrual_rule": "assumed",
       "additional_months[2025-05-01]": "assumed"
     },
     "agreement/edilizia-artigianato-cna.json": {
@@ -126,7 +117,6 @@
       "additional_months[2025-02-01]": "assumed"
     },
     "agreement/edilizia-pmi-confapi-aniem.json": {
-      "accrual_rule": "assumed",
       "additional_months[2025-04-01]": "assumed"
     },
     "agreement/elettrico-elettricita-futura.json": {
@@ -141,11 +131,9 @@
       "work_rules.absence_rules": "assumed"
     },
     "agreement/esercizi-cinematografici-anec.json": {
-      "accrual_rule": "assumed",
       "additional_months[2023-01-01]": "assumed"
     },
     "agreement/farmacie-municipalizzate-assofarm.json": {
-      "accrual_rule": "assumed",
       "additional_months[2022-07-01]": "assumed"
     },
     "agreement/farmacie-private-h121.json": {
@@ -153,7 +141,6 @@
       "additional_months[2021-11-01]": "assumed"
     },
     "agreement/federcasa.json": {
-      "accrual_rule": "assumed",
       "additional_months[2024-12-01]": "assumed"
     },
     "agreement/fiori-recisi-ancef.json": {
@@ -173,7 +160,6 @@
       "additional_months[2025-05-01]": "assumed"
     },
     "agreement/gas-acqua-utilitalia.json": {
-      "accrual_rule": "assumed",
       "additional_months[2022-10-01]": "assumed"
     },
     "agreement/gomma-plastica-federazione-gomma-plastica.json": {
@@ -200,11 +186,9 @@
       "additional_months[2025-01-01]": "assumed"
     },
     "agreement/informatica-pmi-unimatica.json": {
-      "accrual_rule": "assumed",
       "additional_months[2025-01-01]": "assumed"
     },
     "agreement/istituzioni-servizi-socio-assistenziali-anaste.json": {
-      "accrual_rule": "assumed",
       "additional_months[2023-01-01]": "assumed"
     },
     "agreement/istruzione-ricerca-aran.json": {
@@ -215,7 +199,6 @@
       "additional_months[2022-12-31]": "assumed"
     },
     "agreement/laterizi-industria-f021.json": {
-      "accrual_rule": "assumed",
       "additional_months[2022-04-01]": "assumed"
     },
     "agreement/lavanderie-industriali-assosistema.json": {
@@ -223,19 +206,15 @@
       "additional_months[2026-05-01]": "assumed"
     },
     "agreement/legno-arredamento-federlegno.json": {
-      "accrual_rule": "assumed",
       "additional_months[2023-07-01]": "assumed"
     },
     "agreement/legno-lapidei-artigianato-confartigianato.json": {
-      "accrual_rule": "assumed",
       "additional_months[2024-03-01]": "assumed"
     },
     "agreement/marittimi-industria-armatoriale.json": {
-      "accrual_rule": "assumed",
       "additional_months[2024-07-01]": "assumed"
     },
     "agreement/materiali-costruzione-lapidei-confapi.json": {
-      "accrual_rule": "assumed",
       "additional_months[2019-04-01]": "assumed",
       "contractual_fund_contribution[1][2026-01-01]": "assumed",
       "contractual_fund_contribution[2][2026-01-01]": "assumed",
@@ -277,7 +256,6 @@
       "additional_months[2023-05-01]": "assumed"
     },
     "agreement/ooss-unsic-confsal.json": {
-      "accrual_rule": "assumed",
       "additional_months[2023-01-19]": "assumed"
     },
     "agreement/operai-agricoli-florovivaisti.json": {
@@ -285,7 +263,6 @@
       "additional_months[2022-06-01]": "assumed"
     },
     "agreement/orafi-argentieri-industria-federorafi.json": {
-      "accrual_rule": "assumed",
       "additional_months[2022-06-01]": "assumed"
     },
     "agreement/organizzazioni-allevatori-aia.json": {
@@ -316,7 +293,6 @@
       "additional_months[2026-01-01]": "assumed"
     },
     "agreement/poste-italiane-k700.json": {
-      "accrual_rule": "assumed",
       "additional_months[2024-07-23]": "assumed"
     },
     "agreement/pulizia-artigianato-confartigianato.json": {
@@ -382,11 +358,9 @@
       "additional_months[2024-02-01]": "assumed"
     },
     "agreement/rsa-aiop.json": {
-      "accrual_rule": "assumed",
       "additional_months[2012-04-01]": "assumed"
     },
     "agreement/scuole-materne-fism.json": {
-      "accrual_rule": "assumed",
       "additional_months[2023-09-01]": "assumed"
     },
     "agreement/scuole-private-agidae.json": {
@@ -394,11 +368,9 @@
       "additional_months[2024-09-01]": "assumed"
     },
     "agreement/scuole-private-laiche-aninsei.json": {
-      "accrual_rule": "assumed",
       "additional_months[2024-06-15]": "assumed"
     },
     "agreement/servizi-postali-appalto-fise.json": {
-      "accrual_rule": "assumed",
       "additional_months[2023-12-21]": "assumed"
     },
     "agreement/sistemazioni-idraulico-forestali-impiegati.json": {
@@ -437,7 +409,6 @@
       "seniority_increments": "assumed"
     },
     "agreement/telecomunicazioni-asstel.json": {
-      "accrual_rule": "assumed",
       "additional_months[2026-01-01]": "assumed"
     },
     "agreement/tessile-moda-artigianato-confartigianato.json": {
@@ -456,7 +427,6 @@
       "additional_months[2024-11-11]": "assumed"
     },
     "agreement/trasporto-aereo-assaeroporti.json": {
-      "accrual_rule": "assumed",
       "additional_months[2025-01-01]": "assumed"
     },
     "agreement/trasporto-ferroviario-agens.json": {
@@ -467,7 +437,6 @@
       "additional_months[2024-07-01]": "assumed"
     },
     "agreement/uneba-uneba.json": {
-      "accrual_rule": "assumed",
       "additional_months[2024-10-01]": "assumed"
     },
     "agreement/universita-aran.json": {
@@ -519,7 +488,6 @@
       "seniority_increments": "assumed"
     },
     "agreement/vigilanza-privata-assiv.json": {
-      "accrual_rule": "assumed",
       "additional_months[2023-06-01]": "assumed"
     },
     "agreement/vigilanza-privata-federdat-gpg.json": {

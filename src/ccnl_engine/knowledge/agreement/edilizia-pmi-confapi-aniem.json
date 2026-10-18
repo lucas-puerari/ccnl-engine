@@ -268,27 +268,31 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "aniem-confapi-edilizia-2025",
-            "title": "CCNL Edilizia ANIEM-CONFAPI, testo armonizzato 15 aprile 2025",
+            "document_id": "edilizia-pmi-confapi-aniem-ccnl-testo",
+            "title": "Contratto collettivo nazionale di lavoro lavoratori della piccola e media industria delle costruzioni edilizie e affini, 15 aprile 2025",
             "kind": "associazione",
             "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
-            "published_on": "2025-04-15"
+            "published_on": "2025-04-15",
+            "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
           },
           "page": "95",
-          "section": "Artt. 63 e 64, Tredicesima mensilità e premio annuo (impiegati)",
+          "section": "Articolo 63 - Tredicesima mensilita' (Parte II, impiegati)",
           "quote": "La frazione di mese non superiore ai quindici giorni non va considerata mentre deve essere considerata come mese intero la frazione di mese superiore ai quindici giorni."
         },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2025-04-01"
-        },
-        "note": "Clause of the impiegati; operai receive the gratifica through the Cassa Edile accrual. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2025-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T11:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        }
       }
     },
     "employer_funds": [
@@ -1725,7 +1729,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "60bc99e9334c23f68c89e7a0e2df785a14fd5d12f9b53e7c3a451a4dc1bffdcc",
+    "source_hash": "b400fff3bd7c2798644ca524ca76cd5d06024f8e9b31d5f1679522380e262b47",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
@@ -2087,6 +2091,23 @@
         "findings": [
           "The 14 minimi match Allegato A (operai, p. 187) and Allegato B (impiegati, p. 188) from 1 April 2025 and 1 March 2027: verified.",
           "Monthly payments: the single file pays 13 to all levels, but the impiegati are owed 14 (Art. 63-64) and the operai a 18.5% to the Edilcassa instead of a tredicesima (Art. 16, 18). Both gaps were info notes; they are now limitations that block the runs they concern. The 13 stays assumed."
+        ]
+      },
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+            "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
+          }
+        ],
+        "findings": [
+          "Articolo 63 - Tredicesima mensilita' (Parte II, impiegati) (p. 95): \"La frazione di mese non superiore ai quindici giorni non va considerata mentre deve essere considerata come mese intero la frazione di mese superiore ai quindici giorni.\". Match: more_than 15."
         ]
       }
     ],

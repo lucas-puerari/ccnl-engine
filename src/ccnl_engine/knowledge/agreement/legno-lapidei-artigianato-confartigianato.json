@@ -173,6 +173,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fenealuil.it/wp-content/uploads/2014/10/CCNL-Legno-Lapidei-Artigiani-25.03.14.pdf",
+            "sha256": "6e40ca166cb3acb734bc103bf1692e60c4ca97344138d20dba07d66d59b3de30"
+          }
+        ],
+        "findings": [
+          "Art. 47 - Gratifica natalizia per il Settore Legno, Arredamento, Mobili; Art. 47 bis - Gratifica natalizia per il Settore Escavazione e Lavorazione di materiali Lapidei (p. 45): \"il lavoratore non in prova ha diritto a tanti dodicesimi dell'ammontare della 13° mensilità quanti sono i mesi di servizio prestati presso l'azienda. La frazione di mese superiore ai 15 giorni sarà considerata come mese intero. [...] La frazione di mese superiore a 15 giorni sarà considerata come mese intero.\". Match: more_than 15."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -346,27 +370,32 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "legno-lapidei-artigianato-2014",
-            "title": "CCNL Legno e lapidei artigianato 25 marzo 2014",
+            "document_id": "legno-lapidei-artigianato-confartigianato-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro Area Legno-Lapidei per i lavoratori dipendenti delle aziende dei settori Legno, Arredamento, Mobili, Escavazione e Lavorazione di materiali Lapidei, Roma, 25 marzo 2014",
             "kind": "associazione",
             "url": "https://www.fenealuil.it/wp-content/uploads/2014/10/CCNL-Legno-Lapidei-Artigiani-25.03.14.pdf",
-            "published_on": "2014-03-25"
+            "published_on": "2014-03-25",
+            "sha256": "6e40ca166cb3acb734bc103bf1692e60c4ca97344138d20dba07d66d59b3de30"
           },
           "page": "45",
-          "section": "Artt. 47 e 47 bis, Tredicesima mensilità",
-          "quote": "La frazione di mese superiore ai 15 giorni sarà considerata come mese intero."
+          "section": "Art. 47 - Gratifica natalizia per il Settore Legno, Arredamento, Mobili; Art. 47 bis - Gratifica natalizia per il Settore Escavazione e Lavorazione di materiali Lapidei",
+          "quote": "il lavoratore non in prova ha diritto a tanti dodicesimi dell'ammontare della 13° mensilità quanti sono i mesi di servizio prestati presso l'azienda. La frazione di mese superiore ai 15 giorni sarà considerata come mese intero. [...] La frazione di mese superiore a 15 giorni sarà considerata come mese intero."
         },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-03-01"
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2024-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T11:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
         },
-        "note": "Scanned text read by OCR; clause read in the 2014 text, later renewals not checked. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+        "note": "Quote read by OCR of a scanned PDF."
       }
     }
   },
@@ -1470,7 +1499,7 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "bb859034962493c4dfeb55d512f99a144e85b5856eaedfb978f8b1c1b163431c",
+    "source_hash": "a5ee8cb63125bb829251a5172f5559f7da8910ec51a8e0a1d7a67c56c22fabc3",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

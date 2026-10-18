@@ -1560,27 +1560,31 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "coop-agricole-ccnl-stesura-2022",
-            "title": "CCNL Cooperative e consorzi agricoli 2019-2023, stesura 3 agosto 2022",
+            "document_id": "cooperative-consorzi-agricoli-ccnl-testo",
+            "title": "CCNL per i dipendenti di cooperative e consorzi agricoli, verbale d'incontro 3 agosto 2022 (stesura del CCNL rinnovato il 18 dicembre 2020)",
             "kind": "associazione",
             "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/03_08_2022-STESURA-CCNL-COOPERATIVE-AGRICOLE-2019-2023.pdf",
-            "published_on": "2022-08-03"
+            "published_on": "2022-08-03",
+            "sha256": "586ec86c279b9cf2484217d15e0e663985d32c3ed31a4e649e1574a1f594004b"
           },
           "page": "52",
-          "section": "Art. 34, Tredicesima e quattordicesima mensilità",
+          "section": "Art. 34 - 13ma e 14ma mensilita'",
           "quote": "La frazione di mese superiore a 15 giorni viene considerata come mese intero."
         },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-04-01"
-        },
-        "note": "Clause read in the 2022 stesura; the 2024-2027 renewal was not checked for this clause. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2024-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T11:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        }
       }
     }
   },
@@ -1614,7 +1618,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "4b372456f2b76f968aeb688602d3bbb462c4d8d605aa507e9928083bc27786ee",
+    "source_hash": "c2b3fe8baff126c7a42bcf416d2de89a28a2e8101246557e22a57f3022b77ce2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1829,6 +1833,23 @@
           "14 monthly payments: the verbale names the 13ma and 14ma for the operai a tempo indeterminato (p. 14) but restates no clause for the impiegati: derived, no longer assumed.",
           "Fixed-term operai are owed a terzo elemento of 30.44% instead of the monthly payments (p. 14): not modelled and not declared; now a limitation.",
           "Scatti are not in the verbale: derived. The file applies the impiegati maximum of 12 to the operai, whose maximum is 5; the note said so but did not block: now a limitation from the 6th biennale."
+        ]
+      },
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/03_08_2022-STESURA-CCNL-COOPERATIVE-AGRICOLE-2019-2023.pdf",
+            "sha256": "586ec86c279b9cf2484217d15e0e663985d32c3ed31a4e649e1574a1f594004b"
+          }
+        ],
+        "findings": [
+          "Art. 34 - 13ma e 14ma mensilita' (p. 52): \"La frazione di mese superiore a 15 giorni viene considerata come mese intero.\". Match: more_than 15."
         ]
       }
     ],

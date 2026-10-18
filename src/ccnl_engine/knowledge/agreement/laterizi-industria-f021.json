@@ -133,6 +133,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+            "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+          }
+        ],
+        "findings": [
+          "Art. 26 - Tredicesima mensilità (p. 42): \"Nel caso di inizio o di cessazione del rapporto di lavoro nel corso dell'anno, saranno corrisposti tanti dodicesimi della 13ª mensilità per quanti sono i mesi di servizio prestato presso l'azienda. La frazione di mese superiore ai 15 giorni sarà considerata agli effetti della 13ª mensilità come un mese intero.\". Match: more_than 15."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -266,27 +290,31 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "laterizi-manufatti-ccnl-2020",
-            "title": "CCNL Laterizi e manufatti cementizi 12 febbraio 2020",
+            "document_id": "laterizi-industria-f021-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di lavoro 12 febbraio 2020 per i dipendenti delle Aziende produttrici di Laterizi e Manufatti Cementizi",
             "kind": "associazione",
             "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
-            "published_on": "2020-02-12"
+            "published_on": "2020-02-12",
+            "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
           },
           "page": "42",
-          "section": "Art. 26, Tredicesima mensilità",
-          "quote": "La frazione di mese superiore ai 15 giorni sarà considerata agli effetti della 13ª mensilità come un mese intero."
+          "section": "Art. 26 - Tredicesima mensilità",
+          "quote": "Nel caso di inizio o di cessazione del rapporto di lavoro nel corso dell'anno, saranno corrisposti tanti dodicesimi della 13ª mensilità per quanti sono i mesi di servizio prestato presso l'azienda. La frazione di mese superiore ai 15 giorni sarà considerata agli effetti della 13ª mensilità come un mese intero."
         },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2022-04-01"
-        },
-        "note": "Clause read in the 2020 text; later renewals not checked for this clause. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2022-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T11:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        }
       }
     }
   },
@@ -2902,7 +2930,7 @@
     "effective_until": null,
     "source": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "544f86113e9dc61abe097f5779372c965117201020b67bf4dd5bf09346b8a861",
+    "source_hash": "c270b22921cdd2e939630c81eda136bcae22571ae863603aceac14e5cc11cff5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

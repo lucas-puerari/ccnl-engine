@@ -128,6 +128,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.slc-cgil.it/images/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf",
+            "sha256": "6bbe76bde0c25e44094fcc648466fa38812a877349d9a9115aff15ba35e01d21"
+          }
+        ],
+        "findings": [
+          "Art. 80 - Tredicesima mensilità (impiegati) (p. 123): \"Nel caso di inizio o di cessazione del rapporto durante il corso dell'anno, l'impiegato non in prova avrà diritto a tanti dodicesimi dell'ammontare della 13ª mensilità per quanti sono i mesi di servizio prestato. La frazione di mese non superiore ai 15 giorni non sarà considerata, mentre sarà considerata come mese intero la frazione di mese superiore a 15 giorni.\". Match: more_than 15."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -279,27 +303,31 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "unigec-unimatica-2021",
-            "title": "CCNL CONFAPI UNIGEC-UNIMATICA 9 marzo 2021",
+            "document_id": "informatica-pmi-unimatica-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro 9 marzo 2021 per i dipendenti della piccola e media impresa della comunicazione, dell'informatica, dei servizi innovativi e della microimpresa (codice contratto G029)",
             "kind": "associazione",
             "url": "https://www.slc-cgil.it/images/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf",
-            "published_on": "2021-03-09"
+            "published_on": "2021-03-09",
+            "sha256": "6bbe76bde0c25e44094fcc648466fa38812a877349d9a9115aff15ba35e01d21"
           },
           "page": "123",
-          "section": "Art. 80, Tredicesima mensilità (impiegati); Art. 72 (operai)",
-          "quote": "La frazione di mese non superiore ai 15 giorni non sarà considerata, mentre sarà considerata come mese intero la frazione di mese superiore a 15 giorni."
+          "section": "Art. 80 - Tredicesima mensilità (impiegati)",
+          "quote": "Nel caso di inizio o di cessazione del rapporto durante il corso dell'anno, l'impiegato non in prova avrà diritto a tanti dodicesimi dell'ammontare della 13ª mensilità per quanti sono i mesi di servizio prestato. La frazione di mese non superiore ai 15 giorni non sarà considerata, mentre sarà considerata come mese intero la frazione di mese superiore a 15 giorni."
         },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2025-01-01"
-        },
-        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2025-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T11:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        }
       }
     }
   },
@@ -1431,7 +1459,7 @@
     "effective_until": null,
     "source": "https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "1b009e4ea6fd9d1cf6473a1eed7739a347432b0797005218958b2b9ef535ea16",
+    "source_hash": "bfc0e283cb9ab15e1b972ee42e3d40ef6c6f8779ede72ce624971a1a5c25a843",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

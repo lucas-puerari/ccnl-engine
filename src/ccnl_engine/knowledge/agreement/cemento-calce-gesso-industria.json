@@ -98,6 +98,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
+            "sha256": "0577ad1f914031470abf63b59ffc33b0eff779311bbe10fe670a28b3b0823f97"
+          }
+        ],
+        "findings": [
+          "Art. 49 - Tredicesima mensilita' o gratifica natalizia (p. 141): \"Agli effetti di cui sopra la frazione di mese non superiore a 15 giorni non va considerata, mentre va considerata come mese intero la frazione di mese superiore ai 15 giorni.\". Match: more_than 15."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -258,27 +282,31 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "federbeton-cemento-2025",
-            "title": "CCNL Cemento, calce e gesso 8 maggio 2025",
+            "document_id": "cemento-calce-gesso-industria-ccnl-testo",
+            "title": "Federbeton Confindustria Contratto collettivo nazionale di lavoro 8 maggio 2025 per i dipendenti delle Aziende esercenti la produzione del cemento, della calce e suoi derivati, del gesso e relativi manufatti, delle malte e dei materiali di base per le costruzioni",
             "kind": "associazione",
             "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
-            "published_on": "2025-05-08"
+            "published_on": "2025-05-08",
+            "sha256": "0577ad1f914031470abf63b59ffc33b0eff779311bbe10fe670a28b3b0823f97"
           },
           "page": "141",
-          "section": "Art. 49, Tredicesima mensilità",
-          "quote": "la frazione di mese non superiore a 15 giorni non va considerata, mentre va considerata come mese intero la frazione di mese superiore ai 15 giorni."
+          "section": "Art. 49 - Tredicesima mensilita' o gratifica natalizia",
+          "quote": "Agli effetti di cui sopra la frazione di mese non superiore a 15 giorni non va considerata, mentre va considerata come mese intero la frazione di mese superiore ai 15 giorni."
         },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-12-31"
-        },
-        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2024-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T11:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        }
       }
     }
   },
@@ -2567,7 +2595,7 @@
     "effective_until": null,
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
     "verification_status": "verified",
-    "source_hash": "f7a021485affdf5bfcbc6677be23261f5d59aa5f2bf9044765995575417691d8",
+    "source_hash": "cdfb014e3b0e34a7770c8aeec95fd2bd1717b922b84e4928c59a517b8d82ad6d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

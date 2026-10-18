@@ -113,6 +113,30 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+            "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
+          }
+        ],
+        "findings": [
+          "Art. 37 - Tredicesima mensilità (p. 53): \"Ai fini di cui sopra saranno calcolate come mese intero le frazioni di mese superiori ai 15 giorni; diversamente tali frazioni non saranno computate.\". Match: more_than 15."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -276,27 +300,31 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "servizi-postali-appalto-2023",
-            "title": "CCNL Servizi postali in appalto 21 dicembre 2023",
+            "document_id": "servizi-postali-appalto-fise-ccnl-testo",
+            "title": "Contratto collettivo nazionale di lavoro per imprese esercenti servizi postali in appalto 21 dicembre 2023",
             "kind": "associazione",
             "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
-            "published_on": "2023-12-21"
+            "published_on": "2023-12-21",
+            "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
           },
           "page": "53",
-          "section": "Artt. 37 e 38, Tredicesima e quattordicesima mensilità",
-          "quote": "saranno calcolate come mese intero le frazioni di mese superiori ai 15 giorni; diversamente tali frazioni non saranno computate."
+          "section": "Art. 37 - Tredicesima mensilità",
+          "quote": "Ai fini di cui sopra saranno calcolate come mese intero le frazioni di mese superiori ai 15 giorni; diversamente tali frazioni non saranno computate."
         },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2023-12-21"
-        },
-        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-18T11:00:00Z",
+          "effective_from": "2023-12-21",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T11:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        }
       }
     }
   },
@@ -1663,7 +1691,7 @@
     "effective_until": null,
     "source": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
     "verification_status": "unverified",
-    "source_hash": "028565cd79424374a14890a58abfa6276103e0ae2287bbc9a225b15dabc75750",
+    "source_hash": "27b0570822170b0ea031e2573babbc02e6506ddda57f6a5e5a1f562877998b37",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
