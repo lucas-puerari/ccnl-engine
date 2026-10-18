@@ -10,12 +10,12 @@
     {
       "level_code": "D1",
       "as_of": "2027-04-01",
-      "expected_monthly": "1584.79"
+      "expected_monthly": "1584.80"
     },
     {
       "level_code": "C3",
       "as_of": "2027-04-01",
-      "expected_monthly": "1647.90"
+      "expected_monthly": "1647.91"
     },
     {
       "level_code": "C2",
@@ -25,7 +25,7 @@
     {
       "level_code": "C1",
       "as_of": "2027-04-01",
-      "expected_monthly": "1861.27"
+      "expected_monthly": "1861.28"
     },
     {
       "level_code": "B2",
@@ -35,12 +35,12 @@
     {
       "level_code": "B1",
       "as_of": "2027-04-01",
-      "expected_monthly": "2158.18"
+      "expected_monthly": "2158.17"
     },
     {
       "level_code": "A2",
       "as_of": "2027-04-01",
-      "expected_monthly": "2315.87"
+      "expected_monthly": "2315.88"
     },
     {
       "level_code": "A1",
