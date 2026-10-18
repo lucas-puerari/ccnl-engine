@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 77 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 70 verified / 7 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -49,12 +49,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | — |
+| **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2028-12-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-18 | claude-opus-5-5 (ai) | The TEM minimi of the ten levels against the minimi tables of the renewals of 26 January 2023 (2023-2025) and 10 December 2025 (2026-2028), both published by FILCTEM-CGIL. | corrected | Rinnovo 26 gennaio 2023 (signed scan with the integration of 2 February 2023, PDF p. 15, read on the page image): Art. 17 c. 3 prints the minimi of levels I-Q from 1/1/2023, 1/1/2024 and 1/4/2025. The 30 values of the file match.<br>Rinnovo 10 dicembre 2025: the signed ipotesi (45-page scan, PDF p. 31) states only the level F increment (60 from 1/01/2026, 60 from 1/04/2027, 60 from 1/04/2028, 15 from 1/12/2028); FILCTEM-CGIL publishes the per-level table of Art. 17 as a separate one-page file, which prints the minimi of the ten levels on the four dates and the per-level increments. The 40 values of the file were derived parametrically from level F; 11 differ by one or two cents from the printed table and are corrected.<br>The file's base_salary is the conglobated TEM (Art. 17 Paragrafo A), the same item the tables print. The ruleset names a source published by FILCTEM-CGIL, a signatory: source_type contracting_party.<br>Corrected to the printed table: I 2027-04-01: 1662.67 -> 1662.66; I 2028-04-01: 1710.60 -> 1710.59; I 2028-12-01: 1722.59 -> 1722.57; G 2028-04-01: 1995.28 -> 1995.27; E 2027-04-01: 2136.42 -> 2136.43; E 2028-04-01: 2198.02 -> 2198.03; E 2028-12-01: 2213.42 -> 2213.43; D 2028-04-01: 2290.45 -> 2290.44; D 2028-12-01: 2306.50 -> 2306.49; B 2028-04-01: 2350.47 -> 2350.48; B 2028-12-01: 2366.94 -> 2366.95. |
 
 ## Salary table
 
@@ -64,14 +66,14 @@ Latest effective values per level (monthly gross, EUR).
 |---|---|---:|:---:|
 | `Q` | Q — senior manager grade (quadro under L. 190/1985), highest responsibility | € 2,664.67 | 2028-12-01 |
 | `A` | A — quadro, highly specialised technical or functional expert | € 2,508.94 | 2028-12-01 |
-| `B` | B — technical or administrative manager, high professional grade | € 2,366.94 | 2028-12-01 |
+| `B` | B — technical or administrative manager, high professional grade | € 2,366.95 | 2028-12-01 |
 | `C` | C — department head, white-collar employee with operational autonomy | € 2,335.85 | 2028-12-01 |
-| `D` | D — team leader, qualified technical/administrative employee | € 2,306.50 | 2028-12-01 |
-| `E` | E — highly skilled worker, expert technical employee | € 2,213.42 | 2028-12-01 |
+| `D` | D — team leader, qualified technical/administrative employee | € 2,306.49 | 2028-12-01 |
+| `E` | E — highly skilled worker, expert technical employee | € 2,213.43 | 2028-12-01 |
 | `F` | F — skilled worker, technical employee (CCNL reference level) | € 2,156.12 | 2028-12-01 |
 | `G` | G — qualified worker 2nd category, white-collar employee | € 2,009.25 | 2028-12-01 |
 | `H` | H — qualified worker 1st category, clerical staff | € 1,916.08 | 2028-12-01 |
-| `I` | I — elementary tasks, simple operations with brief training | € 1,722.59 | 2028-12-01 |
+| `I` | I — elementary tasks, simple operations with brief training | € 1,722.57 | 2028-12-01 |
 
 ## Seniority increments
 

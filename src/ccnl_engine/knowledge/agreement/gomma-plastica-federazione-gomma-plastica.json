@@ -112,6 +112,41 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-tables",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The TEM minimi of the ten levels against the minimi tables of the renewals of 26 January 2023 (2023-2025) and 10 December 2025 (2026-2028), both published by FILCTEM-CGIL.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+            "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
+          },
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+            "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
+          },
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028.pdf",
+            "sha256": "0e54790bc83d376f16dd3c6b568837212ff24b1e29e4f8407fdd981f65c8f316"
+          }
+        ],
+        "findings": [
+          "Rinnovo 26 gennaio 2023 (signed scan with the integration of 2 February 2023, PDF p. 15, read on the page image): Art. 17 c. 3 prints the minimi of levels I-Q from 1/1/2023, 1/1/2024 and 1/4/2025. The 30 values of the file match.",
+          "Rinnovo 10 dicembre 2025: the signed ipotesi (45-page scan, PDF p. 31) states only the level F increment (60 from 1/01/2026, 60 from 1/04/2027, 60 from 1/04/2028, 15 from 1/12/2028); FILCTEM-CGIL publishes the per-level table of Art. 17 as a separate one-page file, which prints the minimi of the ten levels on the four dates and the per-level increments. The 40 values of the file were derived parametrically from level F; 11 differ by one or two cents from the printed table and are corrected.",
+          "The file's base_salary is the conglobated TEM (Art. 17 Paragrafo A), the same item the tables print. The ruleset names a source published by FILCTEM-CGIL, a signatory: source_type contracting_party.",
+          "Corrected to the printed table: I 2027-04-01: 1662.67 -> 1662.66; I 2028-04-01: 1710.60 -> 1710.59; I 2028-12-01: 1722.59 -> 1722.57; G 2028-04-01: 1995.28 -> 1995.27; E 2027-04-01: 2136.42 -> 2136.43; E 2028-04-01: 2198.02 -> 2198.03; E 2028-12-01: 2213.42 -> 2213.43; D 2028-04-01: 2290.45 -> 2290.44; D 2028-12-01: 2306.50 -> 2306.49; B 2028-04-01: 2350.47 -> 2350.48; B 2028-12-01: 2366.94 -> 2366.95."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -263,22 +298,31 @@
             "valid_until": "2024-01-01",
             "value": "1493.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2023', row I (signed scan, read on the page image)",
+                "quote": "I 1.493,30 1.529,25 1.566,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2023-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -286,22 +330,31 @@
             "valid_until": "2025-04-01",
             "value": "1529.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2024', row I (signed scan, read on the page image)",
+                "quote": "I 1.493,30 1.529,25 1.566,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -309,22 +362,31 @@
             "valid_until": "2026-01-01",
             "value": "1566.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/4/2025', row I (signed scan, read on the page image)",
+                "quote": "I 1.493,30 1.529,25 1.566,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -332,91 +394,127 @@
             "valid_until": "2027-04-01",
             "value": "1614.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/01/2026', row I",
+                "quote": "I 1.614,73 1.662,66 1.710,59 1.722,57"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": "2028-04-01",
-            "value": "1662.67",
+            "value": "1662.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2027', row I",
+                "quote": "I 1.614,73 1.662,66 1.710,59 1.722,57"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
             "valid_from": "2028-04-01",
             "valid_until": "2028-12-01",
-            "value": "1710.60",
+            "value": "1710.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2028', row I",
+                "quote": "I 1.614,73 1.662,66 1.710,59 1.722,57"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
             "valid_from": "2028-12-01",
             "valid_until": null,
-            "value": "1722.59",
+            "value": "1722.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/12/2028', row I",
+                "quote": "I 1.614,73 1.662,66 1.710,59 1.722,57"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-12-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           }
         ]
@@ -452,22 +550,31 @@
             "valid_until": "2024-01-01",
             "value": "1661.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2023', row H (signed scan, read on the page image)",
+                "quote": "H 1.661,03 1.701,02 1.742,79"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2023-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -475,22 +582,31 @@
             "valid_until": "2025-04-01",
             "value": "1701.02",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2024', row H (signed scan, read on the page image)",
+                "quote": "H 1.661,03 1.701,02 1.742,79"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -498,22 +614,31 @@
             "valid_until": "2026-01-01",
             "value": "1742.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/4/2025', row H (signed scan, read on the page image)",
+                "quote": "H 1.661,03 1.701,02 1.742,79"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -521,22 +646,31 @@
             "valid_until": "2027-04-01",
             "value": "1796.11",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/01/2026', row H",
+                "quote": "H 1.796,11 1.849,43 1.902,75 1.916,08"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -544,22 +678,31 @@
             "valid_until": "2028-04-01",
             "value": "1849.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2027', row H",
+                "quote": "H 1.796,11 1.849,43 1.902,75 1.916,08"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -567,22 +710,31 @@
             "valid_until": "2028-12-01",
             "value": "1902.75",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2028', row H",
+                "quote": "H 1.796,11 1.849,43 1.902,75 1.916,08"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -590,22 +742,31 @@
             "valid_until": null,
             "value": "1916.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/12/2028', row H",
+                "quote": "H 1.796,11 1.849,43 1.902,75 1.916,08"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-12-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           }
         ]
@@ -641,22 +802,31 @@
             "valid_until": "2024-01-01",
             "value": "1741.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2023', row G (signed scan, read on the page image)",
+                "quote": "G 1.741,80 1.783,74 1.827,54"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2023-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -664,22 +834,31 @@
             "valid_until": "2025-04-01",
             "value": "1783.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2024', row G (signed scan, read on the page image)",
+                "quote": "G 1.741,80 1.783,74 1.827,54"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -687,22 +866,31 @@
             "valid_until": "2026-01-01",
             "value": "1827.54",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/4/2025', row G (signed scan, read on the page image)",
+                "quote": "G 1.741,80 1.783,74 1.827,54"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -710,22 +898,31 @@
             "valid_until": "2027-04-01",
             "value": "1883.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/01/2026', row G",
+                "quote": "G 1.883,45 1.939,36 1.995,27 2.009,25"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -733,45 +930,63 @@
             "valid_until": "2028-04-01",
             "value": "1939.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2027', row G",
+                "quote": "G 1.883,45 1.939,36 1.995,27 2.009,25"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
             "valid_from": "2028-04-01",
             "valid_until": "2028-12-01",
-            "value": "1995.28",
+            "value": "1995.27",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2028', row G",
+                "quote": "G 1.883,45 1.939,36 1.995,27 2.009,25"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -779,22 +994,31 @@
             "valid_until": null,
             "value": "2009.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/12/2028', row G",
+                "quote": "G 1.883,45 1.939,36 1.995,27 2.009,25"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-12-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           }
         ]
@@ -830,22 +1054,31 @@
             "valid_until": "2024-01-01",
             "value": "1869.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2023', row F (signed scan, read on the page image)",
+                "quote": "F 1.869,12 1.914,12 1.961,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2023-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -853,22 +1086,31 @@
             "valid_until": "2025-04-01",
             "value": "1914.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2024', row F (signed scan, read on the page image)",
+                "quote": "F 1.869,12 1.914,12 1.961,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -876,22 +1118,31 @@
             "valid_until": "2026-01-01",
             "value": "1961.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/4/2025', row F (signed scan, read on the page image)",
+                "quote": "F 1.869,12 1.914,12 1.961,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -899,22 +1150,31 @@
             "valid_until": "2027-04-01",
             "value": "2021.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/01/2026', row F",
+                "quote": "F 2.021,12 2.081,12 2.141,12 2.156,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -922,22 +1182,31 @@
             "valid_until": "2028-04-01",
             "value": "2081.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2027', row F",
+                "quote": "F 2.021,12 2.081,12 2.141,12 2.156,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -945,22 +1214,31 @@
             "valid_until": "2028-12-01",
             "value": "2141.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2028', row F",
+                "quote": "F 2.021,12 2.081,12 2.141,12 2.156,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -968,22 +1246,31 @@
             "valid_until": null,
             "value": "2156.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/12/2028', row F",
+                "quote": "F 2.021,12 2.081,12 2.141,12 2.156,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-12-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           }
         ]
@@ -1019,22 +1306,31 @@
             "valid_until": "2024-01-01",
             "value": "1918.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2023', row E (signed scan, read on the page image)",
+                "quote": "E 1.918,78 1.964,98 2.013,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2023-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1042,22 +1338,31 @@
             "valid_until": "2025-04-01",
             "value": "1964.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2024', row E (signed scan, read on the page image)",
+                "quote": "E 1.918,78 1.964,98 2.013,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1065,22 +1370,31 @@
             "valid_until": "2026-01-01",
             "value": "2013.23",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/4/2025', row E (signed scan, read on the page image)",
+                "quote": "E 1.918,78 1.964,98 2.013,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1088,91 +1402,127 @@
             "valid_until": "2027-04-01",
             "value": "2074.83",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/01/2026', row E",
+                "quote": "E 2.074,83 2.136,43 2.198,03 2.213,43"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": "2028-04-01",
-            "value": "2136.42",
+            "value": "2136.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2027', row E",
+                "quote": "E 2.074,83 2.136,43 2.198,03 2.213,43"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
             "valid_from": "2028-04-01",
             "valid_until": "2028-12-01",
-            "value": "2198.02",
+            "value": "2198.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2028', row E",
+                "quote": "E 2.074,83 2.136,43 2.198,03 2.213,43"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
             "valid_from": "2028-12-01",
             "valid_until": null,
-            "value": "2213.42",
+            "value": "2213.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/12/2028', row E",
+                "quote": "E 2.074,83 2.136,43 2.198,03 2.213,43"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-12-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           }
         ]
@@ -1208,22 +1558,31 @@
             "valid_until": "2024-01-01",
             "value": "1999.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2023', row D (signed scan, read on the page image)",
+                "quote": "D 1.999,48 2.047,62 2.097,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2023-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1231,22 +1590,31 @@
             "valid_until": "2025-04-01",
             "value": "2047.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2024', row D (signed scan, read on the page image)",
+                "quote": "D 1.999,48 2.047,62 2.097,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1254,22 +1622,31 @@
             "valid_until": "2026-01-01",
             "value": "2097.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/4/2025', row D (signed scan, read on the page image)",
+                "quote": "D 1.999,48 2.047,62 2.097,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1277,22 +1654,31 @@
             "valid_until": "2027-04-01",
             "value": "2162.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/01/2026', row D",
+                "quote": "D 2.162,08 2.226,26 2.290,44 2.306,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1300,68 +1686,95 @@
             "valid_until": "2028-04-01",
             "value": "2226.26",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2027', row D",
+                "quote": "D 2.162,08 2.226,26 2.290,44 2.306,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
             "valid_from": "2028-04-01",
             "valid_until": "2028-12-01",
-            "value": "2290.45",
+            "value": "2290.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2028', row D",
+                "quote": "D 2.162,08 2.226,26 2.290,44 2.306,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
             "valid_from": "2028-12-01",
             "valid_until": null,
-            "value": "2306.50",
+            "value": "2306.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/12/2028', row D",
+                "quote": "D 2.162,08 2.226,26 2.290,44 2.306,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-12-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           }
         ]
@@ -1397,22 +1810,31 @@
             "valid_until": "2024-01-01",
             "value": "2024.93",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2023', row C (signed scan, read on the page image)",
+                "quote": "C 2.024,93 2.073,68 2.124,60"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2023-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1420,22 +1842,31 @@
             "valid_until": "2025-04-01",
             "value": "2073.68",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2024', row C (signed scan, read on the page image)",
+                "quote": "C 2.024,93 2.073,68 2.124,60"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1443,22 +1874,31 @@
             "valid_until": "2026-01-01",
             "value": "2124.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/4/2025', row C (signed scan, read on the page image)",
+                "quote": "C 2.024,93 2.073,68 2.124,60"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1466,22 +1906,31 @@
             "valid_until": "2027-04-01",
             "value": "2189.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/01/2026', row C",
+                "quote": "C 2.189,60 2.254,60 2.319,60 2.335,85"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1489,22 +1938,31 @@
             "valid_until": "2028-04-01",
             "value": "2254.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2027', row C",
+                "quote": "C 2.189,60 2.254,60 2.319,60 2.335,85"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1512,22 +1970,31 @@
             "valid_until": "2028-12-01",
             "value": "2319.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2028', row C",
+                "quote": "C 2.189,60 2.254,60 2.319,60 2.335,85"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1535,22 +2002,31 @@
             "valid_until": null,
             "value": "2335.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/12/2028', row C",
+                "quote": "C 2.189,60 2.254,60 2.319,60 2.335,85"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-12-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           }
         ]
@@ -1586,22 +2062,31 @@
             "valid_until": "2024-01-01",
             "value": "2051.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2023', row B (signed scan, read on the page image)",
+                "quote": "B 2.051,87 2.101,27 2.152,87"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2023-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1609,22 +2094,31 @@
             "valid_until": "2025-04-01",
             "value": "2101.27",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2024', row B (signed scan, read on the page image)",
+                "quote": "B 2.051,87 2.101,27 2.152,87"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1632,22 +2126,31 @@
             "valid_until": "2026-01-01",
             "value": "2152.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/4/2025', row B (signed scan, read on the page image)",
+                "quote": "B 2.051,87 2.101,27 2.152,87"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1655,22 +2158,31 @@
             "valid_until": "2027-04-01",
             "value": "2218.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/01/2026', row B",
+                "quote": "B 2.218,74 2.284,61 2.350,48 2.366,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1678,68 +2190,95 @@
             "valid_until": "2028-04-01",
             "value": "2284.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2027', row B",
+                "quote": "B 2.218,74 2.284,61 2.350,48 2.366,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
             "valid_from": "2028-04-01",
             "valid_until": "2028-12-01",
-            "value": "2350.47",
+            "value": "2350.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2028', row B",
+                "quote": "B 2.218,74 2.284,61 2.350,48 2.366,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
             "valid_from": "2028-12-01",
             "valid_until": null,
-            "value": "2366.94",
+            "value": "2366.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/12/2028', row B",
+                "quote": "B 2.218,74 2.284,61 2.350,48 2.366,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-12-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           }
         ]
@@ -1775,22 +2314,31 @@
             "valid_until": "2024-01-01",
             "value": "2174.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2023', row A (signed scan, read on the page image)",
+                "quote": "A 2.174,98 2.227,34 2.282,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2023-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1798,22 +2346,31 @@
             "valid_until": "2025-04-01",
             "value": "2227.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2024', row A (signed scan, read on the page image)",
+                "quote": "A 2.174,98 2.227,34 2.282,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1821,22 +2378,31 @@
             "valid_until": "2026-01-01",
             "value": "2282.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/4/2025', row A (signed scan, read on the page image)",
+                "quote": "A 2.174,98 2.227,34 2.282,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1844,22 +2410,31 @@
             "valid_until": "2027-04-01",
             "value": "2351.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/01/2026', row A",
+                "quote": "A 2.351,85 2.421,67 2.491,49 2.508,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1867,22 +2442,31 @@
             "valid_until": "2028-04-01",
             "value": "2421.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2027', row A",
+                "quote": "A 2.351,85 2.421,67 2.491,49 2.508,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1890,22 +2474,31 @@
             "valid_until": "2028-12-01",
             "value": "2491.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2028', row A",
+                "quote": "A 2.351,85 2.421,67 2.491,49 2.508,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1913,22 +2506,31 @@
             "valid_until": null,
             "value": "2508.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/12/2028', row A",
+                "quote": "A 2.351,85 2.421,67 2.491,49 2.508,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-12-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           }
         ]
@@ -1965,22 +2567,31 @@
             "valid_until": "2024-01-01",
             "value": "2309.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2023', row Q (signed scan, read on the page image)",
+                "quote": "Q 2.309,97 2.365,59 2.423,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2023-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -1988,22 +2599,31 @@
             "valid_until": "2025-04-01",
             "value": "2365.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/1/2024', row Q (signed scan, read on the page image)",
+                "quote": "Q 2.309,97 2.365,59 2.423,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -2011,22 +2631,31 @@
             "valid_until": "2026-01-01",
             "value": "2423.68",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-rinnovo-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL gomma plastica 2023-2025, 26 gennaio 2023 con integrazione del 2 febbraio 2023 (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/230126_GOMMAPLASTICA_RINNOVO%20CCNL%202023-2025.pdf",
+                  "published_on": "2023-02-02",
+                  "sha256": "64d2555ecf25ab391c6b945f54258003594a2796fc195866afad6c3452ded573"
                 },
-                "section": "Tabella retributiva"
+                "page": "15",
+                "section": "Art. 17 c. 3, 'Dal 1° gennaio 2023 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column 'Dal 1/4/2025', row Q (signed scan, read on the page image)",
+                "quote": "Q 2.309,97 2.365,59 2.423,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -2034,22 +2663,31 @@
             "valid_until": "2027-04-01",
             "value": "2497.83",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/01/2026', row Q",
+                "quote": "Q 2.497,83 2.571,98 2.646,13 2.664,67"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -2057,22 +2695,31 @@
             "valid_until": "2028-04-01",
             "value": "2571.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2027', row Q",
+                "quote": "Q 2.497,83 2.571,98 2.646,13 2.664,67"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -2080,22 +2727,31 @@
             "valid_until": "2028-12-01",
             "value": "2646.13",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/04/2028', row Q",
+                "quote": "Q 2.497,83 2.571,98 2.646,13 2.664,67"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           },
           {
@@ -2103,22 +2759,31 @@
             "valid_until": null,
             "value": "2664.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "gomma-plastica-federazione-gomma-plastica",
-                  "title": "gomma-plastica-federazione-gomma-plastica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/"
+                  "document_id": "filctem-gomma-plastica-tabelle-minimi-2026-2028",
+                  "title": "Rinnovo CCNL gomma plastica 2026-2028 (ipotesi 10 dicembre 2025): tabella dei minimi retributivi per livello, Art. 17 (copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
+                  "published_on": "2025-12-11",
+                  "sha256": "8db81ba108a38f8b1553e119f6ae4c978d23e6bcf0bc103bf7245a2408e76a5d"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Art. 17, 'Dal 1° gennaio 2026 i minimi retributivi sono fissati per ciascun livello nella seguente tabella', column '01/12/2028', row Q",
+                "quote": "Q 2.497,83 2.571,98 2.646,13 2.664,67"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:42:28Z",
+                "effective_from": "2028-12-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:42:28Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Trattamento economico minimo (TEM), Art. 17 Paragrafo A CCNL gomma plastica: the file's base_salary is the conglobated TEM."
             }
           }
         ]
@@ -2213,11 +2878,11 @@
     "version": "2026.2",
     "effective_from": "2023-01-01",
     "effective_until": null,
-    "source": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/",
+    "source": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
     "verification_status": "unverified",
-    "source_hash": "15ce3ea45ceb05c65c93cd601fc38987d6f5053f2be86b6feb2cbe2e47abef38",
+    "source_hash": "26c3702a6c11200f893d76d9e7b6d826a80db2a6fa1c2dfe9676ce90fddea600",
     "published_at": "2026-09-07",
-    "source_type": "commercial_secondary"
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

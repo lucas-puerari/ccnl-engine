@@ -1033,8 +1033,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/gomma-plastica-federazione-gomma-plastica",
       "ruleset_version": "2026.2",
-      "source_hash": "15ce3ea45ceb05c65c93cd601fc38987d6f5053f2be86b6feb2cbe2e47abef38",
-      "source_type": "commercial_secondary",
+      "source_hash": "26c3702a6c11200f893d76d9e7b6d826a80db2a6fa1c2dfe9676ce90fddea600",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/gomma-plastica-federazione-gomma-plastica.json.gz"
     },
