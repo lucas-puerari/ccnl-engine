@@ -5,10 +5,10 @@ settore grafico-editoriale: worker at least 1%, employer 1.9% for a worker
 "al quale non si applica l'ERC" and 1.4% for one "al quale si applica
 l'ERC", "sulla retribuzione contrattuale annua" from 1.1.2024.
 
-C1 in January 2026, hired that month: 1954.47.  Without ERC: employer
-1954.47 x 1.9% = 37.13493 -> 37.13, solidarity 3.713 -> 3.71.  With ERC:
-1954.47 x 1.4% = 27.36258 -> 27.36, solidarity 2.736 -> 2.74.  Employee
-1% = 19.5447 -> 19.54 in both cases.
+C1 in January 2026, hired that month: 1954.44.  Without ERC: employer
+1954.44 x 1.9% = 37.13436 -> 37.13, solidarity 3.713 -> 3.71.  With ERC:
+1954.44 x 1.4% = 27.36216 -> 27.36, solidarity 2.736 -> 2.74.  Employee
+1% = 19.5444 -> 19.54 in both cases.
 """
 
 from __future__ import annotations
@@ -70,7 +70,7 @@ def test_employer_rate_follows_the_erc(
     """1.9% without the ERC, 1.4% with it; the worker pays 1% either way."""
     result = _january(erc_amount)
     inputs = _inputs(result)
-    assert inputs["base"] == Decimal("1954.47")
+    assert inputs["base"] == Decimal("1954.44")
     assert _entry(result, "pension_fund_employer") == Decimal(employer)
     assert _entry(result, "pension_fund_employee") == Decimal("19.54")
     assert inputs["solidarity"] == Decimal(solidarity)

@@ -95,6 +95,19 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "LEVELS E, D2, A, AS: the file values exceed the sum of the printed items (minimo of 01/10/2022 + contingenza + EDR + cumulative TEM increments, FISTel compendium pp. 172, 176, 173, 19) by a constant amount at every tranche: E +14.74, D2 +16.77, A +30.81, AS +36.47, about one 2022 tranche. No signatory prints the post-2024 totals, so the values are kept from the aggregator and not verified.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "grafica_levels_unreconciled",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Read a printed post-2024 table of the signatories (testo a stampa) and reconcile levels E, D2, A and AS."
+        }
       }
     ]
   },
@@ -118,6 +131,36 @@
         ],
         "findings": [
           "Parte Terza (Impiegati), Art. 8 - Tredicesima mensilità (p. 98): \"Nel caso di inizio o cessazione del rapporto durante il corso dell’anno, l’impiegato non in prova avrà diritto a tanti dodicesimi dell’ammontare della 13a mensilità per quanti sono i mesi di servizio prestato. La frazione di mese non superiore a 15 giorni non sarà considerata, mentre sarà considerata come mese intero la frazione di mese superiore a 15 giorni.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
+      },
+      {
+        "id": "2026-10-18-ai-tables",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The base_salary (minimo + contingenza + EDR) of the twelve Grafici levels against the renewal of 19 December 2023 and the CCNL 19 January 2021 it amends.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+            "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
+          },
+          {
+            "url": "https://www.slc-cgil.it/images/20240111-_Tabelle_parte_economica_Grafici.pdf",
+            "sha256": "0a1d4ba3ee5cd1c09237d5a13f33568d7329b1e0c86f00dc3dd7e049069a0ca1"
+          },
+          {
+            "url": "https://www.uilcom.it/wp-content/uploads/2023/10/CCNL-GRAFICI.pdf",
+            "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+          }
+        ],
+        "findings": [
+          "No signatory text prints the 2024-2026 Grafici totals. The signed ipotesi of 19/12/2023 (PDF p. 17) sets the B3 increments (Marzo 24 € 90, Ottobre 24 € 30, Maggio 25 € 30, Ottobre 25 € 50, Luglio 26 € 52) to be riparametrati and keeps contingenza and EDR unchanged; p. 19 (also printed by SLC-FISTel-UILCOM national secretariats on 11/01/2024) gives the per-level increments; the CCNL 2021 printed text gives the minimi at 01/10/2022 (p. 172), contingenza (p. 176) and EDR 10,33 (p. 173). The file's base_salary is the total minimo + contingenza + EDR, so each value is derived as that sum.",
+          "The file's second tranche starts 2024-09-01, but the ipotesi and the increment table date it October 2024: the 12 periods of 2024-09-01 are left unbacked and should be moved to 2024-10-01.",
+          "Levels Q, B1S, B1, B2, B3, C1, C2, D1: the 32 periods of 2024-03-01, 2025-05-01, 2025-10-01 and 2026-07-01 are derived; the file values were 0-3 cents higher (aggregator rounding) and 25 are corrected.",
+          "Levels E, D2, A, AS: the file exceeds the derived sum by a constant 14.74-14.77 (E), 16.77-16.79 (D2), 30.81-30.83 (A), 36.47-36.49 (AS) at every tranche. These 16 periods are left unbacked pending a printed table; the derived values are in each reason.",
+          "The file's meta lists the signatories as AIEG and Acigraf; the texts are signed by Assografici, AIE and ANES with SLC-CGIL, FISTel-CISL and UILCOM-UIL (CNEL G011).",
+          "Corrected to the printed table: D1 2024-03-01: 1582.37 -> 1582.36; D1 2025-05-01: 1626.84 -> 1626.82; D1 2025-10-01: 1663.90 -> 1663.88; D1 2026-07-01: 1702.44 -> 1702.42; C2 2024-03-01: 1694.91 -> 1694.90; C2 2025-05-01: 1743.97 -> 1743.96; C2 2025-10-01: 1784.85 -> 1784.84; C2 2026-07-01: 1827.37 -> 1827.35; C1 2024-03-01: 1852.88 -> 1852.87; C1 2025-05-01: 1908.29 -> 1908.27; C1 2025-10-01: 1954.47 -> 1954.44; C1 2026-07-01: 2002.49 -> 2002.46; B3 2024-03-01: 1964.85 -> 1964.84; B3 2025-05-01: 2024.85 -> 2024.84; B3 2025-10-01: 2074.85 -> 2074.84; B3 2026-07-01: 2126.85 -> 2126.84; B2 2025-05-01: 2142.24 -> 2142.23; B2 2025-10-01: 2196.06 -> 2196.05; B2 2026-07-01: 2252.04 -> 2252.02; B1 2025-10-01: 2311.16 -> 2311.15; B1 2026-07-01: 2371.11 -> 2371.10; B1S 2025-10-01: 2363.93 -> 2363.92; B1S 2026-07-01: 2425.41 -> 2425.40; Q 2025-05-01: 2732.71 -> 2732.70; Q 2026-07-01: 2882.11 -> 2882.10."
         ]
       }
     ]
@@ -490,7 +533,7 @@
         "periods": [
           {
             "valid_from": "2024-03-01",
-            "valid_until": "2024-09-01",
+            "valid_until": "2024-10-01",
             "value": "1365.55",
             "provenance": {
               "status": "derived",
@@ -512,7 +555,7 @@
             }
           },
           {
-            "valid_from": "2024-09-01",
+            "valid_from": "2024-10-01",
             "valid_until": "2025-05-01",
             "value": "1383.20",
             "provenance": {
@@ -633,7 +676,7 @@
         "periods": [
           {
             "valid_from": "2024-03-01",
-            "valid_until": "2024-09-01",
+            "valid_until": "2024-10-01",
             "value": "1485.52",
             "provenance": {
               "status": "derived",
@@ -655,7 +698,7 @@
             }
           },
           {
-            "valid_from": "2024-09-01",
+            "valid_from": "2024-10-01",
             "valid_until": "2025-05-01",
             "value": "1505.82",
             "provenance": {
@@ -776,116 +819,146 @@
         "periods": [
           {
             "valid_from": "2024-03-01",
-            "valid_until": "2024-09-01",
-            "value": "1582.37",
+            "valid_until": "2024-10-01",
+            "value": "1582.36",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row D1, cumulative through 'Incremento TEM marzo 2024'",
+                "quote": "D1 126 66,70 22,23 22,23 37,06 38,54 186,76"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (987.98, p. 172, Parte Settima Art. 1, row 'D1 947,22 965,75 987,98') + indennità di contingenza (517.35, p. 176, Allegato 1, row 'D1 517,35') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to marzo 2024 (66.70, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 1582.36",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
-            "valid_from": "2024-09-01",
+            "valid_from": "2024-10-01",
             "valid_until": "2025-05-01",
-            "value": "1604.60",
+            "value": "1604.59",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, cumulative through 'Incremento TEM ottobre 2024'; ipotesi of 19/12/2023, p. 17",
+                "quote": "Ottobre 24 € 30"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (p. 172) + indennità di contingenza (p. 176) + EDR 10.33 (p. 173) + TEM increments to ottobre 2024 (p. 19) = 1604.59. The signed ipotesi of 19/12/2023 (p. 17) dates the second tranche October 2024, not September.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2024-10-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2025-05-01",
             "valid_until": "2025-10-01",
-            "value": "1626.84",
+            "value": "1626.82",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row D1, cumulative through 'Incremento TEM maggio 2025'",
+                "quote": "D1 126 66,70 22,23 22,23 37,06 38,54 186,76"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (987.98, p. 172, Parte Settima Art. 1, row 'D1 947,22 965,75 987,98') + indennità di contingenza (517.35, p. 176, Allegato 1, row 'D1 517,35') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to maggio 2025 (66.70 + 22.23 + 22.23, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 1626.82",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2025-05-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": "2026-07-01",
-            "value": "1663.90",
+            "value": "1663.88",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row D1, cumulative through 'Incremento TEM ottobre 2025'",
+                "quote": "D1 126 66,70 22,23 22,23 37,06 38,54 186,76"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (987.98, p. 172, Parte Settima Art. 1, row 'D1 947,22 965,75 987,98') + indennità di contingenza (517.35, p. 176, Allegato 1, row 'D1 517,35') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to ottobre 2025 (66.70 + 22.23 + 22.23 + 37.06, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 1663.88",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2025-10-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2026-07-01",
             "valid_until": null,
-            "value": "1702.44",
+            "value": "1702.42",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row D1, cumulative through 'Incremento TEM luglio 2026'",
+                "quote": "D1 126 66,70 22,23 22,23 37,06 38,54 186,76"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (987.98, p. 172, Parte Settima Art. 1, row 'D1 947,22 965,75 987,98') + indennità di contingenza (517.35, p. 176, Allegato 1, row 'D1 517,35') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to luglio 2026 (66.70 + 22.23 + 22.23 + 37.06 + 38.54, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 1702.42",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2026-07-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -919,116 +992,146 @@
         "periods": [
           {
             "valid_from": "2024-03-01",
-            "valid_until": "2024-09-01",
-            "value": "1694.91",
+            "valid_until": "2024-10-01",
+            "value": "1694.90",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row C2, cumulative through 'Incremento TEM marzo 2024'",
+                "quote": "C2 139 73,58 24,53 24,53 40,88 42,51 206,03"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1091.36, p. 172, Parte Settima Art. 1, row 'C2 1.046,39 1.066,83 1.091,36') + indennità di contingenza (519.63, p. 176, Allegato 1, row 'C2 519,63') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to marzo 2024 (73.58, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 1694.90",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
-            "valid_from": "2024-09-01",
+            "valid_from": "2024-10-01",
             "valid_until": "2025-05-01",
-            "value": "1719.44",
+            "value": "1719.43",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, cumulative through 'Incremento TEM ottobre 2024'; ipotesi of 19/12/2023, p. 17",
+                "quote": "Ottobre 24 € 30"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (p. 172) + indennità di contingenza (p. 176) + EDR 10.33 (p. 173) + TEM increments to ottobre 2024 (p. 19) = 1719.43. The signed ipotesi of 19/12/2023 (p. 17) dates the second tranche October 2024, not September.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2024-10-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2025-05-01",
             "valid_until": "2025-10-01",
-            "value": "1743.97",
+            "value": "1743.96",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row C2, cumulative through 'Incremento TEM maggio 2025'",
+                "quote": "C2 139 73,58 24,53 24,53 40,88 42,51 206,03"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1091.36, p. 172, Parte Settima Art. 1, row 'C2 1.046,39 1.066,83 1.091,36') + indennità di contingenza (519.63, p. 176, Allegato 1, row 'C2 519,63') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to maggio 2025 (73.58 + 24.53 + 24.53, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 1743.96",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2025-05-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": "2026-07-01",
-            "value": "1784.85",
+            "value": "1784.84",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row C2, cumulative through 'Incremento TEM ottobre 2025'",
+                "quote": "C2 139 73,58 24,53 24,53 40,88 42,51 206,03"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1091.36, p. 172, Parte Settima Art. 1, row 'C2 1.046,39 1.066,83 1.091,36') + indennità di contingenza (519.63, p. 176, Allegato 1, row 'C2 519,63') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to ottobre 2025 (73.58 + 24.53 + 24.53 + 40.88, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 1784.84",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2025-10-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2026-07-01",
             "valid_until": null,
-            "value": "1827.37",
+            "value": "1827.35",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row C2, cumulative through 'Incremento TEM luglio 2026'",
+                "quote": "C2 139 73,58 24,53 24,53 40,88 42,51 206,03"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1091.36, p. 172, Parte Settima Art. 1, row 'C2 1.046,39 1.066,83 1.091,36') + indennità di contingenza (519.63, p. 176, Allegato 1, row 'C2 519,63') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to luglio 2026 (73.58 + 24.53 + 24.53 + 40.88 + 42.51, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 1827.35",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2026-07-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1062,116 +1165,146 @@
         "periods": [
           {
             "valid_from": "2024-03-01",
-            "valid_until": "2024-09-01",
-            "value": "1852.88",
+            "valid_until": "2024-10-01",
+            "value": "1852.87",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row C1, cumulative through 'Incremento TEM marzo 2024'",
+                "quote": "C1 157 83,11 27,70 27,70 46,17 48,02 232,70"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1236.42, p. 172, Parte Settima Art. 1, row 'C1 1.185,63 1.208,72 1.236,42') + indennità di contingenza (523.01, p. 176, Allegato 1, row 'C1 523,01') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to marzo 2024 (83.11, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 1852.87",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
-            "valid_from": "2024-09-01",
+            "valid_from": "2024-10-01",
             "valid_until": "2025-05-01",
-            "value": "1880.58",
+            "value": "1880.57",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, cumulative through 'Incremento TEM ottobre 2024'; ipotesi of 19/12/2023, p. 17",
+                "quote": "Ottobre 24 € 30"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (p. 172) + indennità di contingenza (p. 176) + EDR 10.33 (p. 173) + TEM increments to ottobre 2024 (p. 19) = 1880.57. The signed ipotesi of 19/12/2023 (p. 17) dates the second tranche October 2024, not September.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2024-10-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2025-05-01",
             "valid_until": "2025-10-01",
-            "value": "1908.29",
+            "value": "1908.27",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row C1, cumulative through 'Incremento TEM maggio 2025'",
+                "quote": "C1 157 83,11 27,70 27,70 46,17 48,02 232,70"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1236.42, p. 172, Parte Settima Art. 1, row 'C1 1.185,63 1.208,72 1.236,42') + indennità di contingenza (523.01, p. 176, Allegato 1, row 'C1 523,01') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to maggio 2025 (83.11 + 27.70 + 27.70, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 1908.27",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2025-05-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": "2026-07-01",
-            "value": "1954.47",
+            "value": "1954.44",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row C1, cumulative through 'Incremento TEM ottobre 2025'",
+                "quote": "C1 157 83,11 27,70 27,70 46,17 48,02 232,70"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1236.42, p. 172, Parte Settima Art. 1, row 'C1 1.185,63 1.208,72 1.236,42') + indennità di contingenza (523.01, p. 176, Allegato 1, row 'C1 523,01') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to ottobre 2025 (83.11 + 27.70 + 27.70 + 46.17, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 1954.44",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2025-10-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2026-07-01",
             "valid_until": null,
-            "value": "2002.49",
+            "value": "2002.46",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row C1, cumulative through 'Incremento TEM luglio 2026'",
+                "quote": "C1 157 83,11 27,70 27,70 46,17 48,02 232,70"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1236.42, p. 172, Parte Settima Art. 1, row 'C1 1.185,63 1.208,72 1.236,42') + indennità di contingenza (523.01, p. 176, Allegato 1, row 'C1 523,01') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to luglio 2026 (83.11 + 27.70 + 27.70 + 46.17 + 48.02, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2002.46",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2026-07-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1205,116 +1338,146 @@
         "periods": [
           {
             "valid_from": "2024-03-01",
-            "valid_until": "2024-09-01",
-            "value": "1964.85",
+            "valid_until": "2024-10-01",
+            "value": "1964.84",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row B3, cumulative through 'Incremento TEM marzo 2024'",
+                "quote": "B3 170 90 30 30 50 52 252"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1339.04, p. 172, Parte Settima Art. 1, row 'B3 1.284,04 1.309,04 1.339,04') + indennità di contingenza (525.47, p. 176, Allegato 1, row 'B3 525,47') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to marzo 2024 (90, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 1964.84",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
-            "valid_from": "2024-09-01",
+            "valid_from": "2024-10-01",
             "valid_until": "2025-05-01",
-            "value": "1994.85",
+            "value": "1994.84",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, cumulative through 'Incremento TEM ottobre 2024'; ipotesi of 19/12/2023, p. 17",
+                "quote": "Ottobre 24 € 30"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (p. 172) + indennità di contingenza (p. 176) + EDR 10.33 (p. 173) + TEM increments to ottobre 2024 (p. 19) = 1994.84. The signed ipotesi of 19/12/2023 (p. 17) dates the second tranche October 2024, not September.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2024-10-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2025-05-01",
             "valid_until": "2025-10-01",
-            "value": "2024.85",
+            "value": "2024.84",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row B3, cumulative through 'Incremento TEM maggio 2025'",
+                "quote": "B3 170 90 30 30 50 52 252"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1339.04, p. 172, Parte Settima Art. 1, row 'B3 1.284,04 1.309,04 1.339,04') + indennità di contingenza (525.47, p. 176, Allegato 1, row 'B3 525,47') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to maggio 2025 (90 + 30 + 30, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2024.84",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2025-05-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": "2026-07-01",
-            "value": "2074.85",
+            "value": "2074.84",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row B3, cumulative through 'Incremento TEM ottobre 2025'",
+                "quote": "B3 170 90 30 30 50 52 252"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1339.04, p. 172, Parte Settima Art. 1, row 'B3 1.284,04 1.309,04 1.339,04') + indennità di contingenza (525.47, p. 176, Allegato 1, row 'B3 525,47') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to ottobre 2025 (90 + 30 + 30 + 50, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2074.84",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2025-10-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2026-07-01",
             "valid_until": null,
-            "value": "2126.85",
+            "value": "2126.84",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row B3, cumulative through 'Incremento TEM luglio 2026'",
+                "quote": "B3 170 90 30 30 50 52 252"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1339.04, p. 172, Parte Settima Art. 1, row 'B3 1.284,04 1.309,04 1.339,04') + indennità di contingenza (525.47, p. 176, Allegato 1, row 'B3 525,47') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to luglio 2026 (90 + 30 + 30 + 50 + 52, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2126.84",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2026-07-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1348,116 +1511,146 @@
         "periods": [
           {
             "valid_from": "2024-03-01",
-            "valid_until": "2024-09-01",
+            "valid_until": "2024-10-01",
             "value": "2077.65",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row B2, cumulative through 'Incremento TEM marzo 2024'",
+                "quote": "B2 183 96,88 32,29 32,29 53,82 55,97 271,25"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1442.41, p. 172, Parte Settima Art. 1, row 'B2 1.383,21 1.410,12 1.442,41') + indennità di contingenza (528.03, p. 176, Allegato 1, row 'B2 528,03') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to marzo 2024 (96.88, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2077.65",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
-            "valid_from": "2024-09-01",
+            "valid_from": "2024-10-01",
             "valid_until": "2025-05-01",
-            "value": "2109.95",
+            "value": "2109.94",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, cumulative through 'Incremento TEM ottobre 2024'; ipotesi of 19/12/2023, p. 17",
+                "quote": "Ottobre 24 € 30"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (p. 172) + indennità di contingenza (p. 176) + EDR 10.33 (p. 173) + TEM increments to ottobre 2024 (p. 19) = 2109.94. The signed ipotesi of 19/12/2023 (p. 17) dates the second tranche October 2024, not September.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2024-10-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2025-05-01",
             "valid_until": "2025-10-01",
-            "value": "2142.24",
+            "value": "2142.23",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row B2, cumulative through 'Incremento TEM maggio 2025'",
+                "quote": "B2 183 96,88 32,29 32,29 53,82 55,97 271,25"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1442.41, p. 172, Parte Settima Art. 1, row 'B2 1.383,21 1.410,12 1.442,41') + indennità di contingenza (528.03, p. 176, Allegato 1, row 'B2 528,03') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to maggio 2025 (96.88 + 32.29 + 32.29, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2142.23",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2025-05-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": "2026-07-01",
-            "value": "2196.06",
+            "value": "2196.05",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row B2, cumulative through 'Incremento TEM ottobre 2025'",
+                "quote": "B2 183 96,88 32,29 32,29 53,82 55,97 271,25"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1442.41, p. 172, Parte Settima Art. 1, row 'B2 1.383,21 1.410,12 1.442,41') + indennità di contingenza (528.03, p. 176, Allegato 1, row 'B2 528,03') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to ottobre 2025 (96.88 + 32.29 + 32.29 + 53.82, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2196.05",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2025-10-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2026-07-01",
             "valid_until": null,
-            "value": "2252.04",
+            "value": "2252.02",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row B2, cumulative through 'Incremento TEM luglio 2026'",
+                "quote": "B2 183 96,88 32,29 32,29 53,82 55,97 271,25"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1442.41, p. 172, Parte Settima Art. 1, row 'B2 1.383,21 1.410,12 1.442,41') + indennità di contingenza (528.03, p. 176, Allegato 1, row 'B2 528,03') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to luglio 2026 (96.88 + 32.29 + 32.29 + 53.82 + 55.97, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2252.02",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2026-07-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1491,47 +1684,59 @@
         "periods": [
           {
             "valid_from": "2024-03-01",
-            "valid_until": "2024-09-01",
+            "valid_until": "2024-10-01",
             "value": "2184.33",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row B1, cumulative through 'Incremento TEM marzo 2024'",
+                "quote": "B1 196 103,76 34,59 34,59 57,64 59,95 290,53"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1539.84, p. 172, Parte Settima Art. 1, row 'B1 1.476,43 1.505,25 1.539,84') + indennità di contingenza (530.40, p. 176, Allegato 1, row 'B1 530,40') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to marzo 2024 (103.76, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2184.33",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
-            "valid_from": "2024-09-01",
+            "valid_from": "2024-10-01",
             "valid_until": "2025-05-01",
             "value": "2218.92",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, cumulative through 'Incremento TEM ottobre 2024'; ipotesi of 19/12/2023, p. 17",
+                "quote": "Ottobre 24 € 30"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (p. 172) + indennità di contingenza (p. 176) + EDR 10.33 (p. 173) + TEM increments to ottobre 2024 (p. 19) = 2218.92. The signed ipotesi of 19/12/2023 (p. 17) dates the second tranche October 2024, not September.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2024-10-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1543,64 +1748,82 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row B1, cumulative through 'Incremento TEM maggio 2025'",
+                "quote": "B1 196 103,76 34,59 34,59 57,64 59,95 290,53"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1539.84, p. 172, Parte Settima Art. 1, row 'B1 1.476,43 1.505,25 1.539,84') + indennità di contingenza (530.40, p. 176, Allegato 1, row 'B1 530,40') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to maggio 2025 (103.76 + 34.59 + 34.59, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2253.51",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2025-05-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": "2026-07-01",
-            "value": "2311.16",
+            "value": "2311.15",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row B1, cumulative through 'Incremento TEM ottobre 2025'",
+                "quote": "B1 196 103,76 34,59 34,59 57,64 59,95 290,53"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1539.84, p. 172, Parte Settima Art. 1, row 'B1 1.476,43 1.505,25 1.539,84') + indennità di contingenza (530.40, p. 176, Allegato 1, row 'B1 530,40') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to ottobre 2025 (103.76 + 34.59 + 34.59 + 57.64, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2311.15",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2025-10-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2026-07-01",
             "valid_until": null,
-            "value": "2371.11",
+            "value": "2371.10",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row B1, cumulative through 'Incremento TEM luglio 2026'",
+                "quote": "B1 196 103,76 34,59 34,59 57,64 59,95 290,53"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1539.84, p. 172, Parte Settima Art. 1, row 'B1 1.476,43 1.505,25 1.539,84') + indennità di contingenza (530.40, p. 176, Allegato 1, row 'B1 530,40') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to luglio 2026 (103.76 + 34.59 + 34.59 + 57.64 + 59.95, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2371.10",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2026-07-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1634,47 +1857,59 @@
         "periods": [
           {
             "valid_from": "2024-03-01",
-            "valid_until": "2024-09-01",
+            "valid_until": "2024-10-01",
             "value": "2233.87",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row B1S, cumulative through 'Incremento TEM marzo 2024'",
+                "quote": "B1S 201 106,41 35,47 35,47 59,11 61,48 297,94"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1586.73, p. 172, Parte Settima Art. 1, row 'B1s (*) 1.521,70 1.551,25 1.586,73') + indennità di contingenza (530.40, p. 176, Allegato 1, row 'B1S 530,40') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to marzo 2024 (106.41, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2233.87",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
-            "valid_from": "2024-09-01",
+            "valid_from": "2024-10-01",
             "valid_until": "2025-05-01",
             "value": "2269.34",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, cumulative through 'Incremento TEM ottobre 2024'; ipotesi of 19/12/2023, p. 17",
+                "quote": "Ottobre 24 € 30"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (p. 172) + indennità di contingenza (p. 176) + EDR 10.33 (p. 173) + TEM increments to ottobre 2024 (p. 19) = 2269.34. The signed ipotesi of 19/12/2023 (p. 17) dates the second tranche October 2024, not September.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2024-10-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -1686,64 +1921,82 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row B1S, cumulative through 'Incremento TEM maggio 2025'",
+                "quote": "B1S 201 106,41 35,47 35,47 59,11 61,48 297,94"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1586.73, p. 172, Parte Settima Art. 1, row 'B1s (*) 1.521,70 1.551,25 1.586,73') + indennità di contingenza (530.40, p. 176, Allegato 1, row 'B1S 530,40') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to maggio 2025 (106.41 + 35.47 + 35.47, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2304.81",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2025-05-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": "2026-07-01",
-            "value": "2363.93",
+            "value": "2363.92",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row B1S, cumulative through 'Incremento TEM ottobre 2025'",
+                "quote": "B1S 201 106,41 35,47 35,47 59,11 61,48 297,94"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1586.73, p. 172, Parte Settima Art. 1, row 'B1s (*) 1.521,70 1.551,25 1.586,73') + indennità di contingenza (530.40, p. 176, Allegato 1, row 'B1S 530,40') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to ottobre 2025 (106.41 + 35.47 + 35.47 + 59.11, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2363.92",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2025-10-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2026-07-01",
             "valid_until": null,
-            "value": "2425.41",
+            "value": "2425.40",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row B1S, cumulative through 'Incremento TEM luglio 2026'",
+                "quote": "B1S 201 106,41 35,47 35,47 59,11 61,48 297,94"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1586.73, p. 172, Parte Settima Art. 1, row 'B1s (*) 1.521,70 1.551,25 1.586,73') + indennità di contingenza (530.40, p. 176, Allegato 1, row 'B1S 530,40') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to luglio 2026 (106.41 + 35.47 + 35.47 + 59.11 + 61.48, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2425.40",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2026-07-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -1777,7 +2030,7 @@
         "periods": [
           {
             "valid_from": "2024-03-01",
-            "valid_until": "2024-09-01",
+            "valid_until": "2024-10-01",
             "value": "2304.32",
             "provenance": {
               "status": "derived",
@@ -1799,7 +2052,7 @@
             }
           },
           {
-            "valid_from": "2024-09-01",
+            "valid_from": "2024-10-01",
             "valid_until": "2025-05-01",
             "value": "2341.38",
             "provenance": {
@@ -1920,7 +2173,7 @@
         "periods": [
           {
             "valid_from": "2024-03-01",
-            "valid_until": "2024-09-01",
+            "valid_until": "2024-10-01",
             "value": "2634.91",
             "provenance": {
               "status": "derived",
@@ -1942,7 +2195,7 @@
             }
           },
           {
-            "valid_from": "2024-09-01",
+            "valid_from": "2024-10-01",
             "valid_until": "2025-05-01",
             "value": "2678.68",
             "provenance": {
@@ -2063,70 +2316,88 @@
         "periods": [
           {
             "valid_from": "2024-03-01",
-            "valid_until": "2024-09-01",
+            "valid_until": "2024-10-01",
             "value": "2644.82",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row Q, cumulative through 'Incremento TEM marzo 2024'",
+                "quote": "Q 249 131,82 43,94 43,94 73,24 76,16 369,10"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1962.68, p. 172, Parte Settima Art. 1, row 'Q 1.882,12 1.918,73 1.962,68') + indennità di contingenza (539.99, p. 176, Allegato 1, row 'Q 539,99') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to marzo 2024 (131.82, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2644.82",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
-            "valid_from": "2024-09-01",
+            "valid_from": "2024-10-01",
             "valid_until": "2025-05-01",
             "value": "2688.76",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, cumulative through 'Incremento TEM ottobre 2024'; ipotesi of 19/12/2023, p. 17",
+                "quote": "Ottobre 24 € 30"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (p. 172) + indennità di contingenza (p. 176) + EDR 10.33 (p. 173) + TEM increments to ottobre 2024 (p. 19) = 2688.76. The signed ipotesi of 19/12/2023 (p. 17) dates the second tranche October 2024, not September.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2024-10-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2025-05-01",
             "valid_until": "2025-10-01",
-            "value": "2732.71",
+            "value": "2732.70",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row Q, cumulative through 'Incremento TEM maggio 2025'",
+                "quote": "Q 249 131,82 43,94 43,94 73,24 76,16 369,10"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1962.68, p. 172, Parte Settima Art. 1, row 'Q 1.882,12 1.918,73 1.962,68') + indennità di contingenza (539.99, p. 176, Allegato 1, row 'Q 539,99') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to maggio 2025 (131.82 + 43.94 + 43.94, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2732.70",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2025-05-01",
+                "verification_status": "unverified"
               }
             }
           },
@@ -2138,41 +2409,53 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row Q, cumulative through 'Incremento TEM ottobre 2025'",
+                "quote": "Q 249 131,82 43,94 43,94 73,24 76,16 369,10"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1962.68, p. 172, Parte Settima Art. 1, row 'Q 1.882,12 1.918,73 1.962,68') + indennità di contingenza (539.99, p. 176, Allegato 1, row 'Q 539,99') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to ottobre 2025 (131.82 + 43.94 + 43.94 + 73.24, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2805.94",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2025-10-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2026-07-01",
             "valid_until": null,
-            "value": "2882.11",
+            "value": "2882.10",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "fistel-veneto-grafici-editoriali-2024-2026",
+                  "title": "CCNL grafici editoriali 2024-2026: ipotesi di accordo 19 dicembre 2023 (scansione firmata) con tabelle degli incrementi e testo a stampa del CCNL 19 gennaio 2021 (FISTel-CISL Veneto)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "published_on": "2024-01-11",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "19",
+                "section": "Misura e decorrenza dell'incremento Grafici, row Q, cumulative through 'Incremento TEM luglio 2026'",
+                "quote": "Q 249 131,82 43,94 43,94 73,24 76,16 369,10"
               },
+              "transformation": "base_salary = minimo di stipendio e salario at 01/10/2022 (1962.68, p. 172, Parte Settima Art. 1, row 'Q 1.882,12 1.918,73 1.962,68') + indennità di contingenza (539.99, p. 176, Allegato 1, row 'Q 539,99') + EDR 10.33 (p. 173, 'Dal 1° gennaio 1993 viene corrisposto un E.D.R. di Euro 10,33 uguale per tutti') + TEM increments to luglio 2026 (131.82 + 43.94 + 43.94 + 73.24 + 76.16, p. 19); contingenza and EDR unchanged per the ipotesi (p. 17, 'Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate'). = 2882.10",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T14:08:48Z",
+                "effective_from": "2026-07-01",
+                "verification_status": "unverified"
               }
             }
           }
@@ -2303,11 +2586,11 @@
     "version": "2026.2",
     "effective_from": "2024-03-01",
     "effective_until": null,
-    "source": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/",
+    "source": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
     "verification_status": "unverified",
-    "source_hash": "e3a45d7dd61b00a4159fdb1b63a8ed97af5bdd605b2c8ea2fab2edd7c18a9ac4",
+    "source_hash": "63826e5ce625f1cc063a3849c8e702249e8b3555f93708e68d4e04cd6dfd7139",
     "published_at": "2026-09-07",
-    "source_type": "commercial_secondary"
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

@@ -185,7 +185,7 @@ never grow.
 | 53 | [CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)](formazione-professionale.md) | ✅ | — | 0 / 33 / 1 / 1 |
 | 54 | [CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas](gas-acqua-utilitalia.md) | ⚠️ | inps_employer, seniority | 0 / 63 / 1 / 0 |
 | 55 | [CCNL Gomma e Plastica Industria (Federazione Gomma Plastica)](gomma-plastica-federazione-gomma-plastica.md) | ⚠️ | base_salary, seniority | 70 / 7 / 1 / 1 |
-| 56 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | ⚠️ | seniority | 1 / 71 / 1 / 0 |
+| 56 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | ⚠️ | base_salary, seniority | 1 / 71 / 1 / 0 |
 | 57 | [CCNL Gruppo ANAS](anas.md) | ⚠️ | seniority | 1 / 42 / 1 / 0 |
 | 58 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | ⚠️ | inps_employer, pension_fund_contribution, seniority | 0 / 144 / 1 / 0 |
 | 59 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | ⚠️ | base_salary, overtime, sickness | 0 / 32 / 1 / 1 |

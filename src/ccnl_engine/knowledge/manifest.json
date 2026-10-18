@@ -1050,8 +1050,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/grafica-editoria-aieg",
       "ruleset_version": "2026.2",
-      "source_hash": "e3a45d7dd61b00a4159fdb1b63a8ed97af5bdd605b2c8ea2fab2edd7c18a9ac4",
-      "source_type": "commercial_secondary",
+      "source_hash": "63826e5ce625f1cc063a3849c8e702249e8b3555f93708e68d4e04cd6dfd7139",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/grafica-editoria-aieg.json.gz"
     },
