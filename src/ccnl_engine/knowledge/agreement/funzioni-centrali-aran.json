@@ -1015,7 +1015,8 @@
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "ctps_rates_proxy",
-          "remediation": "Verify the CTPS rates against the annual INPS circular."
+          "remediation": "Resolved: the CTPS rates of the bundle (employee 8.80%, employer 24.20%) are read from the INPS page 'I contributi dei dipendenti pubblici', table of the Gestione Dipendenti Pubblici, checked again on 2026-10-17 (contribution/2026/pubblica-amministrazione.json, inps.provenance, verified).",
+          "status": "resolved"
         }
       },
       {
@@ -1039,7 +1040,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "cc07a9599374a8a33043f45d69667e6ee77e102ec4e06e58c5c3112a0f046fe7",
+    "source_hash": "95c643fdb77d5989ce4ff15eaed982aed875dbc05990db1ac75861b2b48324bf",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1420,6 +1421,23 @@
         "findings": [
           "CNEL S005 matches (ARAN with CISL FP, CONFSAL UNSA, FLP, CGS, CONFINTESA FP, UIL PA).",
           "Term: the CCNL of 6 August 2026 covers the triennio 2025-2027; meta.validity still held the CCNL of 9 May 2022 and is updated."
+        ]
+      },
+      {
+        "id": "2026-10-17-ai-ctps",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The CTPS rates the file reads, against the INPS table of the Gestione Dipendenti Pubblici.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html",
+            "sha256": "0ed469bb067c7a9928b708725be4404cce980a5e5e549459c10f6dc65b1b406e"
+          }
+        ],
+        "findings": [
+          "The INPS page prints 'CTPS 33 24,2 8,8' (total, employer, worker): the 24.20% and 8.80% of the bundle. The rates no longer rest on the kitech.it proxy the limitation named; ctps_rates_proxy is resolved."
         ]
       }
     ],

@@ -99,7 +99,17 @@ Evidence:
   attività professionali; Turismo Federalberghi 4th level, 10 employees,
   with the tranche of May; Chimica Farmaceutica D1, 50 employees, with the
   tranche of July; Industria Alimentare 3rd level, 50 employees, with the
-  EDR outside the quattordicesima), in
+  EDR outside the quattordicesima; Distribuzione Moderna Organizzata IV, 50
+  employees, with the tranche of November; Pubblici Esercizi and
+  Ristorazione Collettiva 4th level, 10 employees, with the tranches of June
+  and September and the 0.77% sickness supplement; Metalmeccanico Confapi
+  5th level, 50 employees, with the tranche of June; ANCE impiegato of the
+  3rd level, 30 employees, with the EDR outside the TFR and the Prevedi
+  contributo contrattuale on the ratei; and the Metalmeccanico C3 on 20 of
+  40 weekly hours, for part time, and as a professionalizzante apprentice at
+  85%, and on a fixed term of the year with the 1.40% NASpI addition, and
+  with nine days of sickness in March, and hired on 10 March and leaving on
+  20 October, with the partial months at 1/26 a day), in
   `tests/knowledge/ccnl_engine/period/sector/`. Every payment (gross, worker
   INPS, employer contributions with the solidarity contribution on the
   pension fund, TFR accrued net of the 0.50%, employer cost) and the year
@@ -206,7 +216,7 @@ enforced; in `operational` mode a CCNL that is not `production` adds a
 Bundled CCNL rulesets at `production`:
 <!-- trust:readiness-production -->12<!-- /trust:readiness-production -->.
 Payable rules with provenance status `verified`:
-<!-- trust:rules-verified -->1724<!-- /trust:rules-verified -->
+<!-- trust:rules-verified -->1992<!-- /trust:rules-verified -->
 (see [Provenance](provenance.md#current-counts)).
 See [Readiness](readiness.md) for promotion criteria and the current
 distribution.

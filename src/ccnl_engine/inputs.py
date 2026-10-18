@@ -26,6 +26,7 @@ from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.employer.inputs import (
     AgriculturalZone,
     EmployerActivity,
+    TaxSector,
 )
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.fact.inputs import (
@@ -109,6 +110,7 @@ __all__ = [
     "SubstituteTaxRegime",
     "SurtaxComponent",
     "SurtaxObligation",
+    "TaxSector",
     "TfrFundBalance",
     "WeeklyHours",
     "WorkCalendar",

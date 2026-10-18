@@ -285,6 +285,17 @@ _SECTOR_REVIEWED = {
 #: Blocks read from INPS circ. 6/2026 and its allegato 1, re-read in sectors
 #: whose rates are still derived.
 _CIRCULAR_6_REVIEWED = frozenset({"inps.employee_additional", "inps.minimum_base"})
+#: Files of which only some blocks are reviewed tables.
+_REVIEWED_PATHS = {
+    "contribution/2026/artigianato.json": {"inps.cigs_indotto", *_CIRCULAR_6_REVIEWED},
+    "contribution/2026/credito.json": _CIRCULAR_6_REVIEWED,
+    "contribution/2026/agricoltura.json": {"inps.employee_additional"},
+    "contribution/2026/pubblica-amministrazione.json": {
+        "inps",
+        "inps.public_funds.cpdel",
+        *_CIRCULAR_6_REVIEWED,
+    },
+}
 
 
 def _reviewed(file: str, path: str) -> bool:
@@ -293,17 +304,14 @@ def _reviewed(file: str, path: str) -> bool:
     Returns:
         True for the reviewed L2 rules of the production CCNL, the edilizia
         and terziario INPS tables, the domestic INPS table, the blocks of
-        INPS circ. 6/2026 of the other sectors and the shared 2026 tax
-        tables.
+        INPS circ. 6/2026 of the other sectors, the CTPS and CPDEL rates of
+        the INPS table of the Gestione Dipendenti Pubblici and the shared
+        2026 tax tables.
     """
     if file == "sector/2026/industria.json" and path.startswith("tfr"):
         return True
-    if file == "contribution/2026/artigianato.json":
-        return path in {"inps.cigs_indotto", *_CIRCULAR_6_REVIEWED}
-    if file == "contribution/2026/credito.json":
-        return path in _CIRCULAR_6_REVIEWED
-    if file == "contribution/2026/agricoltura.json":
-        return path == "inps.employee_additional"
+    if file in _REVIEWED_PATHS:
+        return path in _REVIEWED_PATHS[file]
     if file.startswith("sector/2026/"):
         return path in _SECTOR_REVIEWED
     return file in {

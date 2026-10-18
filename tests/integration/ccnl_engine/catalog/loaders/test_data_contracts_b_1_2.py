@@ -273,10 +273,10 @@ class TestLoadOrtofrutticoliAgrumari:
         assert lv.base_salary.value_at(date(2024, 9, 1)) == Decimal("1559.53")
 
     def test_ortofrutticoli_agrumari_level_q_salary_tranche3(self) -> None:
-        """Level Q at 2026-06-01 is 2396.59 EUR (confirmed from kitech.it)."""
+        """Level Q at 2026-06-01 is 2396.58 EUR (Allegato 1 of the FLAI text)."""
         ccnl = load_ccnl("ortofrutticoli-agrumari.json")
         lv = ccnl.level_by_code("Q")
-        assert lv.base_salary.value_at(date(2026, 6, 1)) == Decimal("2396.59")
+        assert lv.base_salary.value_at(date(2026, 6, 1)) == Decimal("2396.58")
 
     def test_ortofrutticoli_agrumari_level_ordering(self) -> None:
         """Q is highest-order level; 7 is lowest-order level."""

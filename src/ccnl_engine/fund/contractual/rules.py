@@ -4,7 +4,8 @@ The amount is fixed per level and month
 (:class:`~ccnl_engine.fund.models.ContractualFundContribution`): a run that posts the
 monthly
 pay of its month owes it, an extra-month run only when the clause says so, in
-proportion to its ratei.  The clause may set the categories it covers, a
+proportion to its ratei, and so do the ratei of the extra months a termination
+settles with the last month.  The clause may set the categories it covers, a
 minimum of days worked in the month, a proportion for part time and a minimum
 length of a fixed term (CNCE vademecum on the Prevedi contribution).  A level
 or a category the clause gives no amount for owes an amount the engine does
@@ -162,7 +163,16 @@ def _by_month(
         amount = money(monthly * months / _TWELVE)
         return ContractualRun(amount, series, key=key, not_enrolled=added)
     read = ContractualRun(series=series, key=key, not_enrolled=added)
-    return _monthly(spec, ctx, monthly, read)
+    run = _monthly(spec, ctx, monthly, read)
+    if not spec.extra_months:
+        return run
+    # The ratei of the extra months settled at termination owe the amount
+    # an extra-month run of the same ratei would.
+    settled = sum(
+        (money(monthly * Decimal(s.months) / _TWELVE) for s in ctx.settlements),
+        _ZERO,
+    )
+    return replace(run, amount=run.amount + settled)
 
 
 def _hourly(spec: ContractualFundContribution, ctx: RunContext) -> ContractualRun:

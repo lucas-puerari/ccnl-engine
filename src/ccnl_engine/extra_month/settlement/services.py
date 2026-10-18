@@ -3,7 +3,7 @@
 When the employment ends before an extra month's payment month, the ratei
 accrued up to the termination are paid on the last regular run as
 extra-month earnings (``it/earning/extra_month`` policy: ordinary IRPEF,
-INPS and TFR base).
+INPS and TFR base, less the allowances the CCNL keeps out of the TFR).
 """
 
 from __future__ import annotations
@@ -94,7 +94,7 @@ def settle_extra_months(
         The earnings, their ledger entries and the bases they enter.
     """
     due = [
-        (accrual, _gross(chain, accrual))
+        (accrual, _scaled(chain, accrual))
         for accrual in settlements
         if accrual.accrued > 0
     ]
@@ -104,7 +104,8 @@ def settle_extra_months(
     treatment = _treatment_from_resolution(resolution)
     items: list[PayItem] = []
     entries: list[LedgerEntry] = []
-    for accrual, gross in due:
+    for accrual, scaled in due:
+        gross = _gross(scaled)
         item_id = f"extra_month_{accrual.kind.value}_{run_id}"
         items.append(
             ExtraMonthEarning(
@@ -129,21 +130,32 @@ def settle_extra_months(
                 policy_id=resolution.policy_id,
             )
         )
-    total = sum((gross for _, gross in due), _ZERO)
+    total = sum((_gross(scaled) for _, scaled in due), _ZERO)
+    # The allowances outside the TFR base (an EDR) stay out of it in the
+    # ratei too, as in an extra-month run.
+    excluded = sum((scaled.tfr_excluded_total for _, scaled in due), _ZERO)
     return ExtraMonthSettlement(
         items=tuple(items),
         entries=tuple(entries),
         inps_base=total if treatment.inps else _ZERO,
-        tfr_base=total if treatment.tfr else _ZERO,
+        tfr_base=total - excluded if treatment.tfr else _ZERO,
         irpef_base=total if treatment.irpef else _ZERO,
     )
 
 
-def _gross(chain: MonthlyPayChain, accrual: ExtraMonthAccrual) -> Decimal:
-    """Return the gross of ``accrual`` on ``chain``.
+def _scaled(chain: MonthlyPayChain, accrual: ExtraMonthAccrual) -> MonthlyPayChain:
+    """Return ``chain`` scaled to the ratei of ``accrual``.
 
     Returns:
-        Sum of the scaled extra-month components.
+        The extra-month components of the ratei.
     """
-    scaled = _apply_extra_month_policy(chain, accrual.kind.value, accrual.fraction)
+    return _apply_extra_month_policy(chain, accrual.kind.value, accrual.fraction)
+
+
+def _gross(scaled: MonthlyPayChain) -> Decimal:
+    """Return the gross of the scaled extra-month components.
+
+    Returns:
+        Sum of the components.
+    """
     return money(scaled.base + scaled.seniority + scaled.allowances_total)

@@ -91,15 +91,119 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED AMOUNTS: the EVR set by the provincial agreements (Art. 46); the special maggiorazione of the capisquadra in the base of Art. 17 and 18 (Art. 24 point 4); the festività of Art. 17 point 3 (8 hours of the point 4 elements, with the 4.95% and the 18.5% on them), which PeriodFacts.ordinary_hours_worked leaves out; the una tantum premio di ingresso of EUR 100 to operai under 29 of the verbale of 3 March 2022 (Allegato 5); the APE paid by the Cassa Edile (Art. 29); the premiums on ordinary hours of Art. 19 (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week (Art. 5); the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario (Art. 20-21); mensa, trasporto and trasferta (provincial; verbale 2025); the riduzione contributiva edile on the employer INPS contributions of full-time operai (art. 29 L. 341/1995).",
-        "capability": "base_salary",
+        "text": "Art. 46: the EVR set by the provincial agreements.",
+        "capability": "territorial_supplement",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "edilizia_operai_unmodelled",
+          "variant": "provincial_evr",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the provincial elements and the festività hours as inputs."
+          "remediation": "Add the provincial EVR as an input."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 24 point 4: the special maggiorazione of the capisquadra in the base of Art. 17 and 18.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "capisquadra_supplement",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the capisquadra maggiorazione with a role."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 17 point 3: the festività (8 hours of the point 4 elements, with the 4.95% and the 18.5% on them), which PeriodFacts.ordinary_hours_worked leaves out.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "holiday_hours",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the festività hours to the hourly pay of the operai."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Verbale of 3 March 2022, Allegato 5: the una tantum premio di ingresso of EUR 100 to operai under 29.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "entry_premium_2022",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the premio di ingresso with the age of the worker."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 29: the APE paid by the Cassa Edile.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ape_cassa_edile",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the APE as a Cassa Edile payment."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 19 and Art. 5: the premiums on ordinary hours (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ordinary_hours_premiums",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the premiums on ordinary hours of Art. 19 and Art. 5."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 20-21: the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "hardship_allowances",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the allowances of Artt. 20-21."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Mensa, trasporto and trasferta, set by the provincial agreements (verbale 2025).",
+        "capability": "territorial_supplement",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "provincial_meals_transport_travel",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the provincial mensa, trasporto and trasferta as inputs."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 29 L. 341/1995: the riduzione contributiva edile on the employer INPS contributions of full-time operai.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "contribution_reduction",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the riduzione contributiva edile of the year."
         }
       },
       {
@@ -117,7 +221,7 @@
       },
       {
         "kind": "simplification",
-        "text": "PART-TIME SUPPLEMENTARY HOURS: supplementary hours of the operai are paid with 20% of the hourly quota, and a flexible clause adds 10% (CCNL 19 April 2010, Art. 78, pp. 105-106). The request has no kind for supplementary hours: an overtime event of a part-time worker takes the overtime bands unless the caller passes the multiplier.",
+        "text": "PART-TIME SUPPLEMENTARY HOURS: the operai are paid the supplementary hours with the hourly quota raised by 20% (Art. 78, pp. 90-91), modelled as the OT_SUPPLEMENTARE band of OvertimeKind.SUPPLEMENTARY; the CCNL gives that pay 'incidenza su tutti gli istituti retributivi legali e contrattuali, indiretti e differiti, compresi le contribuzioni e gli accantonamenti in Cassa Edile', which the engine does not apply (an overtime pay stays out of the TFR base and of the Cassa Edile accruals), nor the 10% of the flexible clauses.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -125,7 +229,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add a supplementary-hours kind to the overtime event and a supplementare band with the CCNL rate."
+          "remediation": "Give the supplementary pay of the operai its incidence on the TFR base and the Cassa Edile accruals, then remove this note."
         }
       },
       {
@@ -1503,7 +1607,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "44b24f62f066364b4475c241a6056c6b604a3b5260f2133ecd32ade828724450",
+    "source_hash": "96f295124a5f8bbb7ad387a4ebee6170bbab85e6b1f0d0bf9711596e824984be",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1684,6 +1788,50 @@
               "verified_at": "2026-10-13T07:47:58Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        },
+        {
+          "code": "OT_SUPPLEMENTARE",
+          "description": "Lavoro supplementare del part-time orizzontale degli operai, maggiorazione del 20%",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2010-04-19",
+                "value": "0.20",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "supplementare"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "90-91",
+              "section": "Art. 78, part-time, lavoro supplementare",
+              "quote": "Per il personale operaio, le eventuali ore di lavoro supplementare prestate nel rispetto del limite settimanale di cui sopra saranno compensate con la quota oraria di retribuzione diretta, maggiorata di una percentuale del 20%"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-17T10:11:39Z",
+              "verification_status": "verified",
+              "effective_from": "2010-04-19",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-17T10:11:39Z",
+              "review_id": "2026-10-17-ai-supplementary"
             }
           }
         }
@@ -1998,6 +2146,23 @@
         "findings": [
           "Operaio di 1° livello, January 2026 (the tranche of the table of May 2025), 30 employees, 173 hours: minimo 6,17, ex contingenza 2,96 and EDR 0,06 an hour equal the monthly amounts over 173; riposi annui 4,95% and the Cassa Edile accrual 18,50% are the table's rates on minimo and contingenza; the employer INPS rate 34.28% (15-50 employees) matches. Match.",
           "Deviations, with cause and decision: the EVR, the indennità territoriale di settore and the transport and meal indemnities are provincial and declared (NOT MODELLED AMOUNTS); the Cassa Edile contribution (5,47% in the table) was not declared: declared; INAIL 11% is not computed by the engine (documented). No independent net pay example: not compared."
+        ]
+      },
+      {
+        "id": "2026-10-17-ai-supplementary",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The rate of the supplementary hours of the part-time workers.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "Art. 78 (pp. 90-91): the operai are paid the supplementary hours with the hourly quota raised by 20%, which 'avrà incidenza su tutti gli istituti retributivi legali e contrattuali, indiretti e differiti, compresi le contribuzioni e gli accantonamenti in Cassa Edile'. The 20% band is added; its incidence on the TFR and the Cassa Edile accruals is not modelled (the engine keeps an overtime pay out of the TFR base), so part_time_supplementary_rate stays open, narrowed to it. The 10% of the flexible clauses is not modelled either."
         ]
       }
     ],

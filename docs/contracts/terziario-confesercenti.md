@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, seniority, sickness, una_tantum |
+| **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority, sickness, territorial_supplement, una_tantum |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -123,12 +123,54 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the net daily pay of Art. 187 and the exempt events of its second paragraph.
 
-!!! warning "terziario-confesercenti/terziario_confesercenti_unmodelled · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the provincial terzi elementi of Art. 214 (amounts set by provincial agreements); the indennità di cassa e maneggio denaro of 5% (Art. 218); the minimi of the operatori di vendita I and II categoria (CNEL 20279 tables); the hourly divisors 182 and 195 of the 42 and 45 hour weeks (Art. 211); the 30% on Sunday overtime (Art. 149: OT_FESTIVO covers public holidays only); the apprentice sickness of Art. 54 (60% of the gross pay for the three days of carenza of six events a year and for hospital stays, while the file pays apprentices no integration); the 42 and 48 month apprenticeship profiles of Art. 68 Tabella B; the una tantum of the Protocollo 12/12/2022 (EUR 200 + 150 at level IV with the January and March 2023 pay, historic).
+!!! warning "terziario-confesercenti/provincial_third_elements · territorial_supplement · impact yes · open"
+    Art. 214: the provincial terzi elementi, amounts set by provincial agreements.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the fund omission EDRs, the cashier allowance, the operatori di vendita minimi, Sunday overtime and the apprentice sickness of Art. 54.
+    **Remediation:** Add the provincial terzi elementi as inputs.
+
+!!! warning "terziario-confesercenti/cashier_allowance · base_salary · impact yes · open"
+    Art. 218: the indennità di cassa e maneggio denaro of 5%.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the cashier allowance with a role.
+
+!!! warning "terziario-confesercenti/sales_operators · base_salary · impact yes · open"
+    The minimi of the operatori di vendita I and II categoria (CNEL 20279 tables).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the operatori di vendita levels.
+
+!!! warning "terziario-confesercenti/long_week_divisors · base_salary · impact yes · open"
+    Art. 211: the hourly divisors 182 and 195 of the 42 and 45 hour weeks.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pick the divisor by the weekly hours.
+
+!!! warning "terziario-confesercenti/sunday_overtime · overtime · impact yes · open"
+    Art. 149: the 30% on Sunday overtime (OT_FESTIVO covers public holidays only).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add a rest-day band of 30%.
+
+!!! warning "terziario-confesercenti/apprentice_sickness · sickness · impact yes · open"
+    Art. 54: the apprentice sickness, 60% of the gross pay for the three days of carenza of six events a year and for hospital stays, while the file pays apprentices no integration.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the apprentice sickness of Art. 54.
+
+!!! warning "terziario-confesercenti/long_apprenticeship_profiles · base_salary · impact yes · open"
+    Art. 68 Tabella B: the 42 and 48 month apprenticeship profiles. The una tantum of the Protocollo 12/12/2022 (EUR 200 + 150 at level IV with the January and March 2023 pay) is historic.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the 42 and 48 month tracks.
 
 !!! warning "terziario-confesercenti/health_and_bilateral_funds · bilateral_funds · impact yes · open"
     HEALTH FUNDS: the Fondo ASTER (Art. 104 as renewed in 2024) and, for the quadri, the Cassa QuAS (Art. 106) are owed for every worker; an employer that does not pay them owes the worker instead an EDR of EUR 16.00 x 14 and EUR 37.00 x 14. Neither is modelled: the employer cost, and with the EDR the net pay, are short of them.

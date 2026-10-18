@@ -15,7 +15,18 @@ and a 2025 income of 40,000 EUR (no renewal substitute tax):
 - chimica: Chimica Farmaceutica Federchimica D1 impiegato, 50 employees,
   the tranche of July;
 - alimentari: Industria Alimentare 3rd level impiegato, 50 employees,
-  fourteen payments with the EDR on thirteen.
+  fourteen payments with the EDR on thirteen;
+- dmo: Distribuzione Moderna Organizzata IV, 50 employees, a provincial
+  element in force, fourteen payments;
+- fipe: Pubblici Esercizi 4th level, 10 employees, the tranche of June
+  and the 0.77% sickness supplement;
+- ristorazione: Ristorazione Collettiva 4th level, 10 employees, the
+  tranche of September;
+- confapi: Metalmeccanico Unionmeccanica Confapi 5th level impiegato, 50
+  employees, the tranche of June;
+- edilizia-impiegati: ANCE impiegato of the 3rd level, 30 employees,
+  fourteen payments, the EDR outside the TFR and the Prevedi contributo
+  contrattuale.
 
 Each runs for the whole year and, apart, until a termination on 30 June.
 
@@ -40,7 +51,8 @@ the engine does not compute (open ``owed`` limitations).
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
+from datetime import date
 from decimal import ROUND_HALF_UP, Decimal
 
 from tests.knowledge.ccnl_engine.irpef.oracles import (
@@ -60,12 +72,34 @@ from tests.knowledge.ccnl_engine.tax_credit.oracles import (
 __all__ = [
     "ALIMENTARI_JUNE",
     "ALIMENTARI_YEAR",
+    "APPRENTICE_JUNE",
+    "APPRENTICE_YEAR",
     "CHIMICA_JUNE",
     "CHIMICA_YEAR",
+    "CONFAPI_JUNE",
+    "CONFAPI_YEAR",
+    "DMO_JUNE",
+    "DMO_YEAR",
+    "EDILIZIA_IMPIEGATI_JUNE",
+    "EDILIZIA_IMPIEGATI_YEAR",
     "EDILIZIA_JUNE",
     "EDILIZIA_YEAR",
+    "FIPE_JUNE",
+    "FIPE_YEAR",
+    "FIXED_TERM_JUNE",
+    "FIXED_TERM_YEAR",
     "INDUSTRIA_JUNE",
     "INDUSTRIA_YEAR",
+    "MID_MONTH_FROM",
+    "MID_MONTH_UNTIL",
+    "MID_MONTH_YEAR",
+    "PART_TIME_JUNE",
+    "PART_TIME_YEAR",
+    "RISTORAZIONE_JUNE",
+    "RISTORAZIONE_YEAR",
+    "SICKNESS_YEAR",
+    "SICK_FROM",
+    "SICK_UNTIL",
     "STUDI_JUNE",
     "STUDI_YEAR",
     "TERZIARIO_JUNE",
@@ -96,12 +130,20 @@ def _whole_euro(amount: Decimal) -> Decimal:
 
 @dataclass(frozen=True)
 class Rates:
-    """INPS shares of a sector, tier and category, as fractions."""
+    """INPS shares of a sector, tier and category, as fractions.
+
+    ``employer_supplement`` is an employer contribution INPS charges apart,
+    taken to cents on its own (the 0.77% sickness supplement of the
+    pubblici esercizi).  ``tfr_offset`` is the additional IVS the employer
+    deducts from the TFR quota: none for an apprentice.
+    """
 
     employee_ivs: Decimal
     employee_other: Decimal
     employer_ivs: Decimal
     employer_other: Decimal
+    employer_supplement: Decimal = _ZERO
+    tfr_offset: Decimal = _TFR_EXTRA_IVS
 
 
 @dataclass(frozen=True)
@@ -117,6 +159,9 @@ class Pay:
             INPS on ``fund``: an employer contribution.
         cassa_net: Accrual paid through the Cassa Edile, net of the
             withholding the Cassa makes: in the gross, not in the cash.
+        absence: Pay deducted for days of absence, which the run posts
+            apart from the gross (the sick pay that replaces it is in the
+            gross).
     """
 
     run_id: str
@@ -125,6 +170,7 @@ class Pay:
     fund: Decimal = _ZERO
     solidarity: Decimal = _ZERO
     cassa_net: Decimal = _ZERO
+    absence: Decimal = _ZERO
 
 
 @dataclass(frozen=True)
@@ -141,6 +187,7 @@ class Payment:
     tfr_deduction: Decimal
     tfr_accrual: Decimal
     employer_cost: Decimal
+    absence: Decimal = _ZERO
 
 
 @dataclass(frozen=True)
@@ -178,11 +225,16 @@ class SectorYear:
 
 
 def _payment(pay: Pay, rates: Rates) -> Payment:
-    base = _whole_euro(pay.gross)
+    paid = pay.gross - pay.absence
+    base = _whole_euro(paid)
     employee = _cents(base * rates.employee_ivs) + _cents(base * rates.employee_other)
-    employer = _cents(base * rates.employer_ivs) + _cents(base * rates.employer_other)
+    employer = (
+        _cents(base * rates.employer_ivs)
+        + _cents(base * rates.employer_other)
+        + _cents(base * rates.employer_supplement)
+    )
     quota = _cents(pay.tfr_base / _TFR_DIVISOR)
-    deduction = _cents(base * _TFR_EXTRA_IVS)
+    deduction = _cents(base * rates.tfr_offset)
     accrual = quota - deduction
     return Payment(
         run_id=pay.run_id,
@@ -194,7 +246,8 @@ def _payment(pay: Pay, rates: Rates) -> Payment:
         tfr_quota=quota,
         tfr_deduction=deduction,
         tfr_accrual=accrual,
-        employer_cost=pay.gross + employer + pay.solidarity + accrual + pay.fund,
+        employer_cost=paid + employer + pay.solidarity + accrual + pay.fund,
+        absence=pay.absence,
     )
 
 
@@ -231,8 +284,9 @@ def sector_year(
     """
     payments = tuple(_payment(pay, rates) for pay in pays)
     gross = sum((p.gross for p in payments), _ZERO)
+    absence = sum((p.absence for p in payments), _ZERO)
     inps = sum((p.employee_inps for p in payments), _ZERO)
-    taxable = gross - inps
+    taxable = gross - absence - inps
     irpef = net_irpef(taxable, days)
     tax_credits = _trattamento(taxable, days) + somma_esente(taxable, days)
     surtax = (
@@ -251,7 +305,7 @@ def sector_year(
         credits=tax_credits,
         surtax=surtax,
         cassa_net=cassa_net,
-        net=gross - inps - irpef + tax_credits - surtax - cassa_net,
+        net=gross - absence - inps - irpef + tax_credits - surtax - cassa_net,
         tfr=sum((p.tfr_accrual for p in payments), _ZERO),
         employer_cost=sum((p.employer_cost for p in payments), _ZERO),
     )
@@ -306,6 +360,13 @@ def _industria_year() -> tuple[Pay, ...]:
     return (*months, thirteenth)
 
 
+def _industria_year_without_overtime() -> tuple[Pay, ...]:
+    minima = [_C3_UNTIL_MAY if m < 6 else _C3_FROM_JUNE for m in range(1, 13)]
+    months = [Pay(_run(m), pay, pay) for m, pay in enumerate(minima, start=1)]
+    thirteenth = Pay(_run(12, "thirteenth"), _C3_FROM_JUNE, _C3_FROM_JUNE)
+    return (*months, thirteenth)
+
+
 def _industria_june() -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _C3_UNTIL_MAY, _C3_UNTIL_MAY) for m in range(1, 6)]
     #: Six twelfths of the tredicesima are paid with the last month.
@@ -318,6 +379,38 @@ INDUSTRIA_YEAR = sector_year(
     _industria_year(), _INDUSTRIA, _FULL_YEAR, terminated=False
 )
 INDUSTRIA_JUNE = sector_year(_industria_june(), _INDUSTRIA, _HALF_YEAR, terminated=True)
+
+
+# Part time: the same C3 impiegato on 20 of 40 weekly hours.
+
+#: A part-time worker is paid the full-time pay in proportion to the
+#: hours (D.Lgs. 81/2015 art. 7 c. 1; CCNL 5 February 2021, Sez. Quarta,
+#: Titolo I, Art. 4): half of each minimo, taken to cents.
+_HALF = Decimal("0.5")
+
+
+def _part_time(pays: tuple[Pay, ...]) -> tuple[Pay, ...]:
+    return tuple(
+        Pay(p.run_id, _cents(p.gross * _HALF), _cents(p.tfr_base * _HALF)) for p in pays
+    )
+
+
+def _part_time_june() -> tuple[Pay, ...]:
+    month = _cents(_C3_UNTIL_MAY * _HALF)
+    pays = [Pay(_run(m), month, month) for m in range(1, 6)]
+    last = _cents(_C3_FROM_JUNE * _HALF)
+    #: Six twelfths of the part-time tredicesima, with the last month.
+    june = last + _cents(last * 6 / 12)
+    return (*pays, Pay(_run(6), june, june))
+
+
+PART_TIME_YEAR = sector_year(
+    _part_time(_industria_year_without_overtime()),
+    _INDUSTRIA,
+    _FULL_YEAR,
+    terminated=False,
+)
+PART_TIME_JUNE = sector_year(_part_time_june(), _INDUSTRIA, _HALF_YEAR, terminated=True)
 
 
 # Terziario: Terziario Confesercenti IV.
@@ -341,6 +434,122 @@ _TERZIARIO = Rates(
     employer_ivs=Decimal("0.2381"),
     employer_other=Decimal("0.0630333"),
 )
+
+
+# Apprentice: a professionalizzante apprentice of destination C3.
+
+#: Professionalizzante of 36 months, 85% of the minimo of the destination
+#: level in the first 12 months: CCNL 5 February 2021, Disciplina
+#: dell'apprendistato professionalizzante, Art. 8, p. 267 ("36 12 85% 12
+#: 90% 12 95%"), each pay taken to cents.
+_APPRENTICE_PCT = Decimal("0.85")
+#: Apprentice of an industria employer from 16 to 50 employees: employer
+#: 10% (L. 296/2006 art. 1 c. 773) + NASpI 1.61% (L. 92/2012 art. 2 c. 36
+#: and art. 25 L. 845/1978) + CIGO 1.70% and CIGS 0.60% (D.Lgs. 148/2015
+#: artt. 13, 23, extended to apprentices by L. 234/2021), worker 5.84% +
+#: CIGS 0.30%.  No additional 0.50% IVS is deducted from the TFR of an
+#: apprentice (INPS circ. 70/2007, note 5).
+_APPRENTICE = Rates(
+    employee_ivs=Decimal("0.0584"),
+    employee_other=Decimal("0.0030"),
+    employer_ivs=Decimal("0.1000"),
+    employer_other=Decimal("0.0391"),
+    tfr_offset=_ZERO,
+)
+
+
+def _apprentice(pays: tuple[Pay, ...]) -> tuple[Pay, ...]:
+    pct = _APPRENTICE_PCT
+    return tuple(
+        Pay(p.run_id, _cents(p.gross * pct), _cents(p.tfr_base * pct)) for p in pays
+    )
+
+
+def _apprentice_june() -> tuple[Pay, ...]:
+    month = _cents(_C3_UNTIL_MAY * _APPRENTICE_PCT)
+    pays = [Pay(_run(m), month, month) for m in range(1, 6)]
+    last = _cents(_C3_FROM_JUNE * _APPRENTICE_PCT)
+    #: Six twelfths of the apprentice tredicesima, with the last month.
+    june = last + _cents(last * 6 / 12)
+    return (*pays, Pay(_run(6), june, june))
+
+
+APPRENTICE_YEAR = sector_year(
+    _apprentice(_industria_year_without_overtime()),
+    _APPRENTICE,
+    _FULL_YEAR,
+    terminated=False,
+)
+APPRENTICE_JUNE = sector_year(
+    _apprentice_june(), _APPRENTICE, _HALF_YEAR, terminated=True
+)
+
+
+# Fixed term: the C3 impiegato on a fixed term of the year, no renewal.
+
+#: The additional NASpI contribution of a fixed-term employment, 1.40% of
+#: the INPS taxable pay (L. 92/2012 art. 2 c. 28), charged apart from the
+#: rates of the industria impiegato.
+_FIXED_TERM = replace(_INDUSTRIA, employer_supplement=Decimal("0.0140"))
+
+FIXED_TERM_YEAR = sector_year(
+    _industria_year_without_overtime(), _FIXED_TERM, _FULL_YEAR, terminated=True
+)
+FIXED_TERM_JUNE = sector_year(
+    _industria_june(), _FIXED_TERM, _HALF_YEAR, terminated=True
+)
+
+
+# Sickness: the C3 impiegato sick from 9 to 18 March.
+
+#: Nine working days of sickness, Monday to Saturday, from 9 to 18 March:
+#: the month deducts them at 1/26 of the minimo each and pays them back
+#: at 100%, the three days of carenza and the six after: CCNL 5 February
+#: 2021, Sez. Quarta, Art. 2 (Trattamento in caso di malattia), PDF p. 202:
+#: "alla intera retribuzione globale per i primi 122 giorni di calendario".
+#: INPS pays no sickness indemnity to the impiegati of the industria.
+_SICK_DAYS = 9
+_SICK_DAY = _cents(_C3_UNTIL_MAY / 26)
+SICK_FROM = date(2026, 3, 9)
+SICK_UNTIL = date(2026, 3, 18)
+
+
+def _sickness_year() -> tuple[Pay, ...]:
+    pays = list(_industria_year_without_overtime())
+    absence = _SICK_DAY * _SICK_DAYS
+    march = pays[2]
+    pays[2] = Pay(march.run_id, march.gross + absence, march.tfr_base, absence=absence)
+    return tuple(pays)
+
+
+SICKNESS_YEAR = sector_year(_sickness_year(), _INDUSTRIA, _FULL_YEAR, terminated=False)
+
+
+# Mid-month: the C3 impiegato hired on 10 March and leaving on 20 October.
+
+#: A month employed in part pays 1/26 of the monthly pay for each working
+#: day, Monday to Saturday (CCNL 5 February 2021, Sez. Quarta, Titolo III,
+#: Art. 9, p. 164: "una quota giornaliera della retribuzione di fatto, pari
+#: a 1/26 della retribuzione mensile fissa"): 19 days from 10 to 31 March,
+#: 17 from 1 to 20 October.  The ratei of the tredicesima count a fraction
+#: above 15 days as a month (Titolo IV, Art. 7 c. 3, p. 178): March to
+#: October, eight twelfths, paid with the last month.
+MID_MONTH_FROM = date(2026, 3, 10)
+MID_MONTH_UNTIL = date(2026, 10, 20)
+_MID_MONTH_DAYS = (MID_MONTH_UNTIL - MID_MONTH_FROM).days + 1
+
+
+def _mid_month() -> tuple[Pay, ...]:
+    march = _cents(_C3_UNTIL_MAY * 19 / 26)
+    months = [Pay(_run(3), march, march)]
+    for m in range(4, 10):
+        pay = _C3_UNTIL_MAY if m < 6 else _C3_FROM_JUNE
+        months.append(Pay(_run(m), pay, pay))
+    october = _cents(_C3_FROM_JUNE * 17 / 26) + _cents(_C3_FROM_JUNE * 8 / 12)
+    return (*months, Pay(_run(10), october, october))
+
+
+MID_MONTH_YEAR = sector_year(_mid_month(), _INDUSTRIA, _MID_MONTH_DAYS, terminated=True)
 
 
 def _iv(month: int) -> Decimal:
@@ -584,6 +793,224 @@ ALIMENTARI_YEAR = sector_year(
 )
 ALIMENTARI_JUNE = sector_year(
     _alimentari_june(), _INDUSTRIA, _HALF_YEAR, terminated=True
+)
+
+
+# DMO: Distribuzione Moderna Organizzata IV, 50 employees.
+
+#: Level IV, paga base and contingenza + EDR: Testo Unico of 29 September
+#: 2025, Allegato 11, PDF p. 98 (sha256
+#: 9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf):
+#: "IV € 1257,46 - € 524,22 € 1781,68" from 1 November 2025, "IV € 1292,46
+#: - € 524,22 € 1816,68" from 1 November 2026.  The terzo elemento
+#: nazionale is not paid: a provincial element is in force (Art. 195).
+_DMO_UNTIL_OCTOBER = Decimal("1257.46") + Decimal("524.22")
+_DMO_FROM_NOVEMBER = Decimal("1292.46") + Decimal("524.22")
+#: Quattordicesima of the pay "in atto al 30 giugno", paid on 1 July, in
+#: twelfths of the twelve months before (Art. 205, PDF p. 59): six for a
+#: hire on 1 January; tredicesima of one monthly pay (Art. 204).
+_DMO_FOURTEENTH = _cents(_DMO_UNTIL_OCTOBER * 6 / 12)
+
+
+def _dmo(month: int) -> Decimal:
+    return _DMO_UNTIL_OCTOBER if month < 11 else _DMO_FROM_NOVEMBER
+
+
+def _dmo_year() -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _dmo(m), _dmo(m)) for m in range(1, 13)]
+    pays.insert(6, Pay(_run(6, "fourteenth"), _DMO_FOURTEENTH, _DMO_FOURTEENTH))
+    pays.insert(12, Pay(_run(12, "thirteenth"), _DMO_FROM_NOVEMBER, _DMO_FROM_NOVEMBER))
+    return tuple(pays)
+
+
+def _dmo_june() -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _dmo(m), _dmo(m)) for m in range(1, 6)]
+    #: Six twelfths of the tredicesima are paid with the last month.
+    june = _DMO_UNTIL_OCTOBER + _cents(_DMO_UNTIL_OCTOBER * 6 / 12)
+    return (
+        *pays,
+        Pay(_run(6), june, june),
+        Pay(_run(6, "fourteenth"), _DMO_FOURTEENTH, _DMO_FOURTEENTH),
+    )
+
+
+DMO_YEAR = sector_year(_dmo_year(), _TERZIARIO, _FULL_YEAR, terminated=False)
+DMO_JUNE = sector_year(_dmo_june(), _TERZIARIO, _HALF_YEAR, terminated=True)
+
+
+# Pubblici Esercizi and Ristorazione Collettiva: 4th level, 10 employees.
+
+#: 4th level contingenza and paga base: accordo integrativo of 26 June
+#: 2024, pp. 1-3 (sha256
+#: 0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922): "4
+#: 524,94 € 1.127,75 € 1.652,69 €" from June 2025 and "4 524,94 € 1.167,75
+#: € 1.692,69 €" from June 2026; the ristorazione collettiva tables move
+#: the same amounts to September 2025 and September 2026 (p. 3).
+_FIPE_OLD = Decimal("524.94") + Decimal("1127.75")
+_FIPE_NEW = Decimal("524.94") + Decimal("1167.75")
+#: Terziario from 6 to 15 employees (INPS circ. 117/2022 all. 1, as for
+#: the turismo above) and the additional sickness contribution of the
+#: pubblici esercizi, "pari allo 0,77% della retribuzione imponibile"
+#: (INPS msg. 2382/2024; D.M. 1 February 1957), charged apart.
+_FIPE_RATES = Rates(
+    employee_ivs=Decimal("0.0919"),
+    employee_other=Decimal("0.0026667"),
+    employer_ivs=Decimal("0.2381"),
+    employer_other=Decimal("0.0570333"),
+    employer_supplement=Decimal("0.0077"),
+)
+#: Quattordicesima of the pay "in atto al 30 giugno", paid with the July
+#: pay, in ratei of the twelve months before 1 July (CCNL 8 February 2018,
+#: art. 184, p. 128): six for a hire on 1 January; tredicesima of one
+#: monthly pay at Christmas (art. 183).
+
+
+def _fipe(month: int, tranche: int) -> Decimal:
+    return _FIPE_OLD if month < tranche else _FIPE_NEW
+
+
+def _fipe_year(tranche: int) -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _fipe(m, tranche), _fipe(m, tranche)) for m in range(1, 13)]
+    fourteenth = _cents(_fipe(6, tranche) * 6 / 12)
+    pays.insert(6, Pay(_run(6, "fourteenth"), fourteenth, fourteenth))
+    pays.append(Pay(_run(12, "thirteenth"), _FIPE_NEW, _FIPE_NEW))
+    return tuple(pays)
+
+
+def _fipe_june(tranche: int) -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _fipe(m, tranche), _fipe(m, tranche)) for m in range(1, 6)]
+    last = _fipe(6, tranche)
+    #: Six twelfths of the tredicesima are paid with the last month.
+    june = last + _cents(last * 6 / 12)
+    fourteenth = _cents(last * 6 / 12)
+    return (
+        *pays,
+        Pay(_run(6), june, june),
+        Pay(_run(6, "fourteenth"), fourteenth, fourteenth),
+    )
+
+
+FIPE_YEAR = sector_year(_fipe_year(6), _FIPE_RATES, _FULL_YEAR, terminated=False)
+FIPE_JUNE = sector_year(_fipe_june(6), _FIPE_RATES, _HALF_YEAR, terminated=True)
+RISTORAZIONE_YEAR = sector_year(
+    _fipe_year(9), _FIPE_RATES, _FULL_YEAR, terminated=False
+)
+RISTORAZIONE_JUNE = sector_year(_fipe_june(9), _FIPE_RATES, _HALF_YEAR, terminated=True)
+
+
+# Confapi: Metalmeccanico Unionmeccanica Confapi 5th level, 50 employees.
+
+#: 5th level minimo: accordo of 24 July 2025, p. 1 (sha256
+#: 4ec057a5c4a209b5b52d9d582822c5df0e7229475ac74b2602d3a94a436cfc4c, a
+#: scan read by OCR): "€ 2.145,87 | €27,90 | €2.173,77 | €22,10 |
+#: €2.195,87 | €50,00 | € 2.245,87", 2,195.87 from 1 September 2025 and
+#: 2,245.87 from 1 June 2026, confirmed by the verbale of 17 June 2026, p. 1
+#: (sha256 61857a25fcb618e5df4353ee564a718c7b549919b37bf60734a722c2a69756f5):
+#: "5 € 50,00 € 2.245,87".
+_CONFAPI_UNTIL_MAY = Decimal("2195.87")
+_CONFAPI_FROM_JUNE = Decimal("2245.87")
+
+
+def _confapi(month: int) -> Decimal:
+    return _CONFAPI_UNTIL_MAY if month < 6 else _CONFAPI_FROM_JUNE
+
+
+def _confapi_year() -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _confapi(m), _confapi(m)) for m in range(1, 13)]
+    #: Tredicesima of one monthly pay at Christmas: CCNL 3 July 2017, art.
+    #: 42, p. 119 (thirteen payments).
+    thirteenth = _CONFAPI_FROM_JUNE
+    return (*pays, Pay(_run(12, "thirteenth"), thirteenth, thirteenth))
+
+
+def _confapi_june() -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _confapi(m), _confapi(m)) for m in range(1, 6)]
+    #: Six twelfths of the tredicesima are paid with the last month.
+    june = _CONFAPI_FROM_JUNE + _cents(_CONFAPI_FROM_JUNE * 6 / 12)
+    return (*pays, Pay(_run(6), june, june))
+
+
+CONFAPI_YEAR = sector_year(_confapi_year(), _INDUSTRIA, _FULL_YEAR, terminated=False)
+CONFAPI_JUNE = sector_year(_confapi_june(), _INDUSTRIA, _HALF_YEAR, terminated=True)
+
+
+# Edilizia impiegati: ANCE impiegato of the 3rd level, 30 employees.
+
+#: Minimo di stipendio of the 3rd level: ANCE, nuovi minimi of the CCNL 21
+#: February 2025, p. 1 (sha256
+#: d01c1635bf8f5185043f6c5509f0c829fb58bdb1d9ef2943f554d825f60d1710): "III
+#: 1.387,56 1.452,56 1.517,56" from 1 February 2025, 1 March 2026 and 1
+#: March 2027.  Contingenza 519,16 and EDR 10,33 of the impiegati of the
+#: 3rd level: ANCE Centro Nord Sardegna, tabella n. 2/2025 impiegati,
+#: provincia di Sassari, p. 1 (sha256
+#: b681a3f867cd31d4cef09e5234d85a2b6f183a72c66054ed6ff8bd326d88f715).  The
+#: EDR bears on no other institute: outside the TFR base, in the extra
+#: months too.
+_IMP_ITEMS = {"minimo": Decimal("1387.56"), "contingenza": Decimal("519.16")}
+_IMP_FROM_MARCH = Decimal("1452.56")
+_IMP_EDR = Decimal("10.33")
+#: Prevedi contributo contrattuale of an impiegato of the 3rd level, 13,00
+#: EUR a month, "applicato anche per 13° e 14° mensilità" in proportion to
+#: their ratei (Prevedi nota informativa, sha256
+#: 195f6e83abef137bc3ad9ad832af61b633e1c923f202623d6bc16fdef2900de6; CNCE
+#: vademecum, Comunicazione 559), with the 10% solidarity contribution of
+#: the employer (L. 166/1991 art. 9-bis).
+_IMP_PREVEDI = Decimal("13.00")
+
+
+def _imp_items(month: int) -> tuple[Decimal, ...]:
+    minimo = _IMP_ITEMS["minimo"] if month < 3 else _IMP_FROM_MARCH
+    return (minimo, _IMP_ITEMS["contingenza"])
+
+
+def _imp_pay(run_id: str, months: int, month: int, *, extra: bool = False) -> Pay:
+    """Return twelfths of the pay of ``month``, each item to cents.
+
+    Returns:
+        ``months`` twelfths of the pay, with the EDR outside the TFR base
+        and the Prevedi amount of the same twelfths.
+    """
+    items = _imp_items(month)
+    pay = sum((_cents(i * months / 12) for i in items), _ZERO)
+    edr = _cents(_IMP_EDR * months / 12)
+    fund = _cents(_IMP_PREVEDI * months / 12) if extra else _IMP_PREVEDI
+    return Pay(run_id, pay + edr, pay, fund=fund, solidarity=_cents(fund / 10))
+
+
+def _imp_year() -> tuple[Pay, ...]:
+    pays = [_imp_pay(_run(m), 12, m) for m in range(1, 13)]
+    #: Premio annuo (quattordicesima) of the service from 1 July to 30
+    #: June, paid at the end of June: six twelfths for a hire on 1 January
+    #: (CCNL 19 April 2010, art. 64); tredicesima of one monthly pay at
+    #: Christmas (art. 63), paid before the December pay.
+    pays.insert(6, _imp_pay(_run(6, "fourteenth"), 6, 6, extra=True))
+    pays.insert(12, _imp_pay(_run(12, "thirteenth"), 12, 12, extra=True))
+    return tuple(pays)
+
+
+def _imp_june() -> tuple[Pay, ...]:
+    pays = [_imp_pay(_run(m), 12, m) for m in range(1, 6)]
+    month = _imp_pay(_run(6), 12, 6)
+    #: Six twelfths of the tredicesima are paid with the last month, with
+    #: their Prevedi amount.
+    ratei = _imp_pay(_run(6), 6, 6, extra=True)
+    june = Pay(
+        month.run_id,
+        month.gross + ratei.gross,
+        month.tfr_base + ratei.tfr_base,
+        fund=month.fund + ratei.fund,
+        solidarity=_cents((month.fund + ratei.fund) / 10),
+    )
+    return (*pays, june, _imp_pay(_run(6, "fourteenth"), 6, 6, extra=True))
+
+
+#: Edilizia impiegato from 16 to 50 employees: the shares of the industria
+#: impiegato above, read on the same Assimpredil ANCE table 2/2026.
+EDILIZIA_IMPIEGATI_YEAR = sector_year(
+    _imp_year(), _INDUSTRIA, _FULL_YEAR, terminated=False
+)
+EDILIZIA_IMPIEGATI_JUNE = sector_year(
+    _imp_june(), _INDUSTRIA, _HALF_YEAR, terminated=True
 )
 
 
