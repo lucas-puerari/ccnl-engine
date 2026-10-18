@@ -1101,8 +1101,8 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/impiegati-tecnici-agricoli",
       "ruleset_version": "2026.2",
-      "source_hash": "67a9b1f701e95274c77f7628023e886ae85cb39c74c533e9019840b355496f6b",
-      "source_type": "commercial_secondary",
+      "source_hash": "f71f0c5fee716796a19fca9cc1e5652aa7282ba6b60746e1e2521154311e1b64",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/impiegati-tecnici-agricoli.json.gz"
     },

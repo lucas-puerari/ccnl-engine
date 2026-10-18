@@ -61,7 +61,7 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 1827 / 4172 / 203 / 26 |
+| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 1834 / 4165 / 203 / 26 |
 | `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 24 / 95 / 13 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 24 / 24 / 45 / 0 |
@@ -189,7 +189,7 @@ never grow.
 | 57 | [CCNL Gruppo ANAS](anas.md) | ⚠️ | seniority | 1 / 42 / 1 / 0 |
 | 58 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | ⚠️ | inps_employer, pension_fund_contribution, seniority | 0 / 144 / 1 / 0 |
 | 59 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | ⚠️ | base_salary, overtime, sickness | 0 / 32 / 1 / 1 |
-| 60 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | ⚠️ | base_salary, bilateral_funds, inps_employer | 0 / 15 / 1 / 1 |
+| 60 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | ⚠️ | base_salary, bilateral_funds, inps_employer | 7 / 8 / 1 / 1 |
 | 61 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | ⚠️ | base_salary, overtime, sickness | 111 / 5 / 0 / 0 |
 | 62 | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | ⚠️ | seniority, trattamento_integrativo | 0 / 46 / 1 / 0 |
 | 63 | [CCNL Industrie Cineaudiovisive (ANICA)](cinema-audiovisivi-industria.md) | ⚠️ | bilateral_funds, inps_employer | 1 / 62 / 1 / 0 |
