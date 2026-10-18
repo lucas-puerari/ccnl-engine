@@ -95,6 +95,41 @@
       }
     ]
   },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-tables",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The Elemento Retributivo Nazionale (conglobated minimo, TEM) of the ten levels against the signed ipotesi of the 2023-2025 renewal (28 April 2023, ERN table for 1.05.2023, 1.03.2024, 1.02.2025) and of the 2026-2028 renewal (30 January 2026, ERN table for March 2026 to November 2028), both published by FILCTEM-CGIL, a signatory.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+            "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
+          },
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+            "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
+          }
+        ],
+        "findings": [
+          "The two FILCTEM-CGIL scans (signed by ANFAO, Filctem, Femca, Uiltec) print the ERN per level for every tranche of the file: 2023 ipotesi PDF p. 22, 2026 ipotesi PDF p. 30 (All. 1). Both are image-only scans read on the page images (tesseract garbles the 2026 table). Level codes map one to one (Q, 6, 5S, 5, 4S, 4, 3S, 3, 2, 1); the 2023 table labels them by area and step professionale (e.g. '4° S Qualificata Consolidato').",
+          "The ERN is the conglobated tabular minimum and matches the file's base_salary meaning; the Q indennita di funzione is not in the ERN (Q ERN is only a few euro above level 6), consistent with the file's separate allowance.",
+          "Level 1 MAG.2027: the 2026 table prints 1.661,71, a transposition of 1.661,17 (1.622,04 + 39,13; 1.661,17 + 35,21 = 1.696,38 printed for MAG.28). The file's 1661.17 is kept as a derived value.",
+          "Level 4S 1.03.2024 and 1.02.2025: the 2023 table prints 2.014,69 and 2.074,05, but its own increments give 2.016,18 and 2.075,54, and the 2026 table (2.126,94 - 51,40) implies 2.075,54. The definitive text of 4 December 2023 reportedly corrected some minimi but is not published by a signatory; both periods are left unbacked.",
+          "One-cent residuals between the two signed tables remain for levels 6 and 5S (2025 ERN 2.448,66 and 2.323,28 vs 2.448,67 and 2.323,29 implied by the 2026 ERN minus the first 2026 tranche); each period is backed by the table that prints it.",
+          "Consistency check (base + printed increment) on both tables: 2023 table off by -0,01 for level 6 at 1.03.2024 (2.319,66 + 58,98 = 2.378,64 vs 2.378,63 printed) and by -1,49 for 4S; 2026 table consistent except the level 1 MAG.2027 transposition. Rule applied: a printed value stays a verified row unless a later signed table contradicts it by more than rounding (4S, unbacked); one-cent residuals are kept as printed and reported here.",
+          "The ruleset names a FILCTEM-CGIL document, a signatory: source_type contracting_party.",
+          "Corrected to the printed table: Q 2026-10-01: 2546.53 -> 2546.54; Q 2027-05-01: 2604.87 -> 2604.88; Q 2028-05-01: 2657.38 -> 2657.39; Q 2028-11-01: 2680.72 -> 2680.73; 6 2026-10-01: 2539.80 -> 2539.79; 6 2027-05-01: 2596.76 -> 2596.74; 6 2028-05-01: 2648.02 -> 2647.99; 6 2028-11-01: 2670.80 -> 2670.77; 5S 2027-05-01: 2467.76 -> 2467.75; 5S 2028-05-01: 2517.77 -> 2517.76; 5S 2028-11-01: 2540.00 -> 2539.99; 4S 2026-10-01: 2158.67 -> 2157.78; 4S 2027-05-01: 2211.56 -> 2209.18; 4S 2028-05-01: 2259.16 -> 2255.44; 4S 2028-11-01: 2280.32 -> 2276.00; 3S 2028-11-01: 2125.83 -> 2125.84; 2 2028-05-01: 1948.54 -> 1948.53; 2 2028-11-01: 1966.32 -> 1966.31; 1 2028-05-01: 1696.39 -> 1696.38; 1 2028-11-01: 1712.04 -> 1712.03."
+        ]
+      }
+    ]
+  },
   "parameters": {
     "hourly_divisor": {
       "periods": [
@@ -246,22 +281,31 @@
             "valid_until": "2024-03-01",
             "value": "1380.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.05.2023', row 1°",
+                "quote": "1° Operativa Base 1.380,43 € 1.469,43 € 1.559,43 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2023-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -269,22 +313,31 @@
             "valid_until": "2025-02-01",
             "value": "1469.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.03.2024', row 1°",
+                "quote": "1° Operativa Base 1.380,43 € 1.469,43 € 1.559,43 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -292,22 +345,31 @@
             "valid_until": "2026-03-01",
             "value": "1559.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.02.2025', row 1°",
+                "quote": "1° Operativa Base 1.380,43 € 1.469,43 € 1.559,43 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2025-02-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -315,22 +377,31 @@
             "valid_until": "2026-10-01",
             "value": "1598.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAR.2026', row 1",
+                "quote": "1 1.598,56 € 1.622,04 € 1.661,71 € 1.696,38 € 1.712,03 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -338,22 +409,31 @@
             "valid_until": "2027-05-01",
             "value": "1622.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN OTT.26', row 1",
+                "quote": "1 1.598,56 € 1.622,04 € 1.661,71 € 1.696,38 € 1.712,03 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -364,65 +444,89 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, increment table, row 1, column '3aTRANCHE'",
+                "quote": "1 39,13 € 23,48 € 39,13 € 35,21 € 15,65 € 152,60 €"
               },
+              "transformation": "ERN OTT.26 of level 1 printed 1.622,04 + 3a tranche 39,13 = 1.661,17. The ERN table prints 1.661,71 for MAG.2027, a transposition: 1.661,71 is inconsistent with the next column (1.696,38 = 1.661,17 + 35,21) and with the increment table.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2027-05-01",
+                "verification_status": "unverified"
               }
             }
           },
           {
             "valid_from": "2028-05-01",
             "valid_until": "2028-11-01",
-            "value": "1696.39",
+            "value": "1696.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.28', row 1",
+                "quote": "1 1.598,56 € 1.622,04 € 1.661,71 € 1.696,38 € 1.712,03 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2028-11-01",
             "valid_until": null,
-            "value": "1712.04",
+            "value": "1712.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN NOV.2028', row 1",
+                "quote": "1 1.598,56 € 1.622,04 € 1.661,71 € 1.696,38 € 1.712,03 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           }
         ]
@@ -458,22 +562,31 @@
             "valid_until": "2024-03-01",
             "value": "1698.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.05.2023', row 2°",
+                "quote": "2° Operativa Centrato 1.698,50 € 1.741,68 € 1.792,96 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2023-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -481,22 +594,31 @@
             "valid_until": "2025-02-01",
             "value": "1741.68",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.03.2024', row 2°",
+                "quote": "2° Operativa Centrato 1.698,50 € 1.741,68 € 1.792,96 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -504,22 +626,31 @@
             "valid_until": "2026-03-01",
             "value": "1792.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.02.2025', row 2°",
+                "quote": "2° Operativa Centrato 1.698,50 € 1.741,68 € 1.792,96 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2025-02-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -527,22 +658,31 @@
             "valid_until": "2026-10-01",
             "value": "1837.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAR.2026', row 2",
+                "quote": "2 1.837,41 € 1.864,08 € 1.908,53 € 1.948,53 € 1.966,31 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -550,22 +690,31 @@
             "valid_until": "2027-05-01",
             "value": "1864.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN OTT.26', row 2",
+                "quote": "2 1.837,41 € 1.864,08 € 1.908,53 € 1.948,53 € 1.966,31 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -573,68 +722,95 @@
             "valid_until": "2028-05-01",
             "value": "1908.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.2027', row 2",
+                "quote": "2 1.837,41 € 1.864,08 € 1.908,53 € 1.948,53 € 1.966,31 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2027-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2028-05-01",
             "valid_until": "2028-11-01",
-            "value": "1948.54",
+            "value": "1948.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.28', row 2",
+                "quote": "2 1.837,41 € 1.864,08 € 1.908,53 € 1.948,53 € 1.966,31 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2028-11-01",
             "valid_until": null,
-            "value": "1966.32",
+            "value": "1966.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN NOV.2028', row 2",
+                "quote": "2 1.837,41 € 1.864,08 € 1.908,53 € 1.948,53 € 1.966,31 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           }
         ]
@@ -670,22 +846,31 @@
             "valid_until": "2024-03-01",
             "value": "1798.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.05.2023', row 3°",
+                "quote": "3° Operativa Consolidato 1.798,40 € 1.844,12 € 1.898,42 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2023-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -693,22 +878,31 @@
             "valid_until": "2025-02-01",
             "value": "1844.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.03.2024', row 3°",
+                "quote": "3° Operativa Consolidato 1.798,40 € 1.844,12 € 1.898,42 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -716,22 +910,31 @@
             "valid_until": "2026-03-01",
             "value": "1898.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.02.2025', row 3°",
+                "quote": "3° Operativa Consolidato 1.798,40 € 1.844,12 € 1.898,42 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2025-02-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -739,22 +942,31 @@
             "valid_until": "2026-10-01",
             "value": "1945.65",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAR.2026', row 3",
+                "quote": "3 1.945,65 € 1.973,99 € 2.021,22 € 2.063,73 € 2.082,62 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -762,22 +974,31 @@
             "valid_until": "2027-05-01",
             "value": "1973.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN OTT.26', row 3",
+                "quote": "3 1.945,65 € 1.973,99 € 2.021,22 € 2.063,73 € 2.082,62 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -785,22 +1006,31 @@
             "valid_until": "2028-05-01",
             "value": "2021.22",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.2027', row 3",
+                "quote": "3 1.945,65 € 1.973,99 € 2.021,22 € 2.063,73 € 2.082,62 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2027-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -808,22 +1038,31 @@
             "valid_until": "2028-11-01",
             "value": "2063.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.28', row 3",
+                "quote": "3 1.945,65 € 1.973,99 € 2.021,22 € 2.063,73 € 2.082,62 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -831,22 +1070,31 @@
             "valid_until": null,
             "value": "2082.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN NOV.2028', row 3",
+                "quote": "3 1.945,65 € 1.973,99 € 2.021,22 € 2.063,73 € 2.082,62 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           }
         ]
@@ -882,22 +1130,31 @@
             "valid_until": "2024-03-01",
             "value": "1834.24",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.05.2023', row 3°",
+                "quote": "3° S Qualificata Base 1.834,24 € 1.880,87 € 1.936,25 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2023-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -905,22 +1162,31 @@
             "valid_until": "2025-02-01",
             "value": "1880.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.03.2024', row 3°",
+                "quote": "3° S Qualificata Base 1.834,24 € 1.880,87 € 1.936,25 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -928,22 +1194,31 @@
             "valid_until": "2026-03-01",
             "value": "1936.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.02.2025', row 3°",
+                "quote": "3° S Qualificata Base 1.834,24 € 1.880,87 € 1.936,25 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2025-02-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -951,22 +1226,31 @@
             "valid_until": "2026-10-01",
             "value": "1984.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAR.2026', row 3S",
+                "quote": "3S 1.984,86 € 2.014,03 € 2.062,64 € 2.106,39 € 2.125,84 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -974,22 +1258,31 @@
             "valid_until": "2027-05-01",
             "value": "2014.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN OTT.26', row 3S",
+                "quote": "3S 1.984,86 € 2.014,03 € 2.062,64 € 2.106,39 € 2.125,84 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -997,22 +1290,31 @@
             "valid_until": "2028-05-01",
             "value": "2062.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.2027', row 3S",
+                "quote": "3S 1.984,86 € 2.014,03 € 2.062,64 € 2.106,39 € 2.125,84 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2027-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1020,45 +1322,63 @@
             "valid_until": "2028-11-01",
             "value": "2106.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.28', row 3S",
+                "quote": "3S 1.984,86 € 2.014,03 € 2.062,64 € 2.106,39 € 2.125,84 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2028-11-01",
             "valid_until": null,
-            "value": "2125.83",
+            "value": "2125.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN NOV.2028', row 3S",
+                "quote": "3S 1.984,86 € 2.014,03 € 2.062,64 € 2.106,39 € 2.125,84 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           }
         ]
@@ -1094,22 +1414,31 @@
             "valid_until": "2024-03-01",
             "value": "1887.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.05.2023', row 4°",
+                "quote": "4° Qualificata Centrato 1.887,96 € 1.935,96 € 1.992,96 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2023-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1117,22 +1446,31 @@
             "valid_until": "2025-02-01",
             "value": "1935.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.03.2024', row 4°",
+                "quote": "4° Qualificata Centrato 1.887,96 € 1.935,96 € 1.992,96 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1140,22 +1478,31 @@
             "valid_until": "2026-03-01",
             "value": "1992.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.02.2025', row 4°",
+                "quote": "4° Qualificata Centrato 1.887,96 € 1.935,96 € 1.992,96 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2025-02-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1163,22 +1510,31 @@
             "valid_until": "2026-10-01",
             "value": "2042.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAR.2026', row 4",
+                "quote": "4 2.042,96 € 2.072,96 € 2.122,96 € 2.167,96 € 2.187,96 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1186,22 +1542,31 @@
             "valid_until": "2027-05-01",
             "value": "2072.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN OTT.26', row 4",
+                "quote": "4 2.042,96 € 2.072,96 € 2.122,96 € 2.167,96 € 2.187,96 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1209,22 +1574,31 @@
             "valid_until": "2028-05-01",
             "value": "2122.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.2027', row 4",
+                "quote": "4 2.042,96 € 2.072,96 € 2.122,96 € 2.167,96 € 2.187,96 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2027-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1232,22 +1606,31 @@
             "valid_until": "2028-11-01",
             "value": "2167.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.28', row 4",
+                "quote": "4 2.042,96 € 2.072,96 € 2.122,96 € 2.167,96 € 2.187,96 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1255,22 +1638,31 @@
             "valid_until": null,
             "value": "2187.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN NOV.2028', row 4",
+                "quote": "4 2.042,96 € 2.072,96 € 2.122,96 € 2.167,96 € 2.187,96 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           }
         ]
@@ -1306,22 +1698,31 @@
             "valid_until": "2024-03-01",
             "value": "1966.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.05.2023', row 4°",
+                "quote": "4° S Qualificata Consolidato 1.966,19 € 2.014,69 € 2.074,05 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2023-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1375,114 +1776,159 @@
             "valid_until": "2026-10-01",
             "value": "2126.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAR.2026', row 4S",
+                "quote": "4S 2.126,94 € 2.157,78 € 2.209,18 € 2.255,44 € 2.276,00 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2026-10-01",
             "valid_until": "2027-05-01",
-            "value": "2158.67",
+            "value": "2157.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN OTT.26', row 4S",
+                "quote": "4S 2.126,94 € 2.157,78 € 2.209,18 € 2.255,44 € 2.276,00 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2027-05-01",
             "valid_until": "2028-05-01",
-            "value": "2211.56",
+            "value": "2209.18",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.2027', row 4S",
+                "quote": "4S 2.126,94 € 2.157,78 € 2.209,18 € 2.255,44 € 2.276,00 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2027-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2028-05-01",
             "valid_until": "2028-11-01",
-            "value": "2259.16",
+            "value": "2255.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.28', row 4S",
+                "quote": "4S 2.126,94 € 2.157,78 € 2.209,18 € 2.255,44 € 2.276,00 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2028-11-01",
             "valid_until": null,
-            "value": "2280.32",
+            "value": "2276.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN NOV.2028', row 4S",
+                "quote": "4S 2.126,94 € 2.157,78 € 2.209,18 € 2.255,44 € 2.276,00 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           }
         ]
@@ -1518,22 +1964,31 @@
             "valid_until": "2024-03-01",
             "value": "2124.05",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.05.2023', row 5°",
+                "quote": "5° Tecnica/Gestionale Centrato 2.124,05 € 2.178,05 € 2.242,18 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2023-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1541,22 +1996,31 @@
             "valid_until": "2025-02-01",
             "value": "2178.05",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.03.2024', row 5°",
+                "quote": "5° Tecnica/Gestionale Centrato 2.124,05 € 2.178,05 € 2.242,18 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1564,22 +2028,31 @@
             "valid_until": "2026-03-01",
             "value": "2242.18",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.02.2025', row 5°",
+                "quote": "5° Tecnica/Gestionale Centrato 2.124,05 € 2.178,05 € 2.242,18 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2025-02-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1587,22 +2060,31 @@
             "valid_until": "2026-10-01",
             "value": "2296.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAR.2026', row 5",
+                "quote": "5 2.296,36 € 2.328,87 € 2.383,05 € 2.431,81 € 2.453,48 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1610,22 +2092,31 @@
             "valid_until": "2027-05-01",
             "value": "2328.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN OTT.26', row 5",
+                "quote": "5 2.296,36 € 2.328,87 € 2.383,05 € 2.431,81 € 2.453,48 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1633,22 +2124,31 @@
             "valid_until": "2028-05-01",
             "value": "2383.05",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.2027', row 5",
+                "quote": "5 2.296,36 € 2.328,87 € 2.383,05 € 2.431,81 € 2.453,48 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2027-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1656,22 +2156,31 @@
             "valid_until": "2028-11-01",
             "value": "2431.81",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.28', row 5",
+                "quote": "5 2.296,36 € 2.328,87 € 2.383,05 € 2.431,81 € 2.453,48 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1679,22 +2188,31 @@
             "valid_until": null,
             "value": "2453.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN NOV.2028', row 5",
+                "quote": "5 2.296,36 € 2.328,87 € 2.383,05 € 2.431,81 € 2.453,48 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           }
         ]
@@ -1730,22 +2248,31 @@
             "valid_until": "2024-03-01",
             "value": "2200.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.05.2023', row 5°",
+                "quote": "5° S Tecnica/Gestionale Consolidato 2.200,87 € 2.256,83 € 2.323,28 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2023-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1753,22 +2280,31 @@
             "valid_until": "2025-02-01",
             "value": "2256.83",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.03.2024', row 5°",
+                "quote": "5° S Tecnica/Gestionale Consolidato 2.200,87 € 2.256,83 € 2.323,28 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1776,22 +2312,31 @@
             "valid_until": "2026-03-01",
             "value": "2323.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.02.2025', row 5°",
+                "quote": "5° S Tecnica/Gestionale Consolidato 2.200,87 € 2.256,83 € 2.323,28 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2025-02-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1799,22 +2344,31 @@
             "valid_until": "2026-10-01",
             "value": "2378.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAR.2026', row 5S",
+                "quote": "5S 2.378,85 € 2.412,19 € 2.467,75 € 2.517,76 € 2.539,99 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1822,91 +2376,127 @@
             "valid_until": "2027-05-01",
             "value": "2412.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN OTT.26', row 5S",
+                "quote": "5S 2.378,85 € 2.412,19 € 2.467,75 € 2.517,76 € 2.539,99 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2027-05-01",
             "valid_until": "2028-05-01",
-            "value": "2467.76",
+            "value": "2467.75",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.2027', row 5S",
+                "quote": "5S 2.378,85 € 2.412,19 € 2.467,75 € 2.517,76 € 2.539,99 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2027-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2028-05-01",
             "valid_until": "2028-11-01",
-            "value": "2517.77",
+            "value": "2517.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.28', row 5S",
+                "quote": "5S 2.378,85 € 2.412,19 € 2.467,75 € 2.517,76 € 2.539,99 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2028-11-01",
             "valid_until": null,
-            "value": "2540.00",
+            "value": "2539.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN NOV.2028', row 5S",
+                "quote": "5S 2.378,85 € 2.412,19 € 2.467,75 € 2.517,76 € 2.539,99 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           }
         ]
@@ -1942,22 +2532,31 @@
             "valid_until": "2024-03-01",
             "value": "2319.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.05.2023', row 6°",
+                "quote": "6° Specialistica/Gestionale Centrato 2.319,66 € 2.378,63 € 2.448,66 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2023-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1965,22 +2564,31 @@
             "valid_until": "2025-02-01",
             "value": "2378.63",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.03.2024', row 6°",
+                "quote": "6° Specialistica/Gestionale Centrato 2.319,66 € 2.378,63 € 2.448,66 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -1988,22 +2596,31 @@
             "valid_until": "2026-03-01",
             "value": "2448.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.02.2025', row 6°",
+                "quote": "6° Specialistica/Gestionale Centrato 2.319,66 € 2.378,63 € 2.448,66 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2025-02-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -2011,114 +2628,159 @@
             "valid_until": "2026-10-01",
             "value": "2505.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAR.2026', row 6",
+                "quote": "6 2.505,62 € 2.539,79 € 2.596,74 € 2.647,99 € 2.670,77 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2026-10-01",
             "valid_until": "2027-05-01",
-            "value": "2539.80",
+            "value": "2539.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN OTT.26', row 6",
+                "quote": "6 2.505,62 € 2.539,79 € 2.596,74 € 2.647,99 € 2.670,77 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2027-05-01",
             "valid_until": "2028-05-01",
-            "value": "2596.76",
+            "value": "2596.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.2027', row 6",
+                "quote": "6 2.505,62 € 2.539,79 € 2.596,74 € 2.647,99 € 2.670,77 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2027-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2028-05-01",
             "valid_until": "2028-11-01",
-            "value": "2648.02",
+            "value": "2647.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.28', row 6",
+                "quote": "6 2.505,62 € 2.539,79 € 2.596,74 € 2.647,99 € 2.670,77 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2028-11-01",
             "valid_until": null,
-            "value": "2670.80",
+            "value": "2670.77",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN NOV.2028', row 6",
+                "quote": "6 2.505,62 € 2.539,79 € 2.596,74 € 2.647,99 € 2.670,77 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           }
         ]
@@ -2154,22 +2816,31 @@
             "valid_until": "2024-03-01",
             "value": "2323.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.05.2023', row Q",
+                "quote": "Q Specialistica/Gestionale Consolidato 2.323,95 € 2.383,03 € 2.453,19 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2023-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -2177,22 +2848,31 @@
             "valid_until": "2025-02-01",
             "value": "2383.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.03.2024', row Q",
+                "quote": "Q Specialistica/Gestionale Consolidato 2.323,95 € 2.383,03 € 2.453,19 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -2200,22 +2880,31 @@
             "valid_until": "2026-03-01",
             "value": "2453.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2023-2025",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2023-2025, 28 aprile 2023, Allegato 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+                  "published_on": "2023-04-28",
+                  "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
                 },
-                "section": "Tabella retributiva"
+                "page": "22",
+                "section": "Allegato 1, 'Tabella Elemento Retributivo Nazionale da applicare alle decorrenze sotto indicate', column 'elemento retributivo nazionale 1.02.2025', row Q",
+                "quote": "Q Specialistica/Gestionale Consolidato 2.323,95 € 2.383,03 € 2.453,19 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2025-02-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
@@ -2223,114 +2912,159 @@
             "valid_until": "2026-10-01",
             "value": "2511.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAR.2026', row Q",
+                "quote": "Q 2.511,53 € 2.546,54 € 2.604,88 € 2.657,39 € 2.680,73 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2026-10-01",
             "valid_until": "2027-05-01",
-            "value": "2546.53",
+            "value": "2546.54",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN OTT.26', row Q",
+                "quote": "Q 2.511,53 € 2.546,54 € 2.604,88 € 2.657,39 € 2.680,73 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2027-05-01",
             "valid_until": "2028-05-01",
-            "value": "2604.87",
+            "value": "2604.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.2027', row Q",
+                "quote": "Q 2.511,53 € 2.546,54 € 2.604,88 € 2.657,39 € 2.680,73 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2027-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2028-05-01",
             "valid_until": "2028-11-01",
-            "value": "2657.38",
+            "value": "2657.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN MAG.28', row Q",
+                "quote": "Q 2.511,53 € 2.546,54 € 2.604,88 € 2.657,39 € 2.680,73 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-05-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           },
           {
             "valid_from": "2028-11-01",
             "valid_until": null,
-            "value": "2680.72",
+            "value": "2680.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelleretributive",
-                  "title": "tabelleretributive",
-                  "kind": "rivista",
-                  "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+                  "document_id": "filctem-occhiali-rinnovo-ccnl-2026-2028",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Occhiali e occhialeria 2026-2028, Belluno 30 gennaio 2026, All. 1 Tabelle retributive (scansione firmata, copia FILCTEM-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                  "published_on": "2026-01-30",
+                  "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
                 },
-                "section": "Tabella retributiva"
+                "page": "30",
+                "section": "All. 1 Tabelle retributive, 'l'Elemento Retributivo Nazionale ERN assumerà i seguenti valori alle scadenze indicate', column 'ERN NOV.2028', row Q",
+                "quote": "Q 2.511,53 € 2.546,54 € 2.604,88 € 2.657,39 € 2.680,73 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:54:04Z",
+                "effective_from": "2028-11-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:54:04Z",
+                "review_id": "2026-10-18-ai-tables"
+              },
+              "note": "Elemento Retributivo Nazionale (conglobated tabular minimum) of the CCNL Occhiali ANFAO; the file's base_salary is this item, the Q indennita di funzione is modelled separately."
             }
           }
         ]
@@ -2419,11 +3153,11 @@
     "version": "2026.2",
     "effective_from": "2023-05-01",
     "effective_until": null,
-    "source": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive",
+    "source": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
     "verification_status": "verified",
-    "source_hash": "91b506e14ef772f67da002bd881497db9d14ab62e255cb6773b56f995fca4188",
+    "source_hash": "99c987c1f9611584912ea2ceb57aa0c72805ff5da2c6e04a17e6fa283d1eaec4",
     "published_at": "2026-09-07",
-    "source_type": "commercial_secondary"
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

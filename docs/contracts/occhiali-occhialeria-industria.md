@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🟢 Verified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 88 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 77 verified / 11 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -49,12 +49,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | — |
+| **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2028-11-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-18 | claude-opus-5-5 (ai) | The Elemento Retributivo Nazionale (conglobated minimo, TEM) of the ten levels against the signed ipotesi of the 2023-2025 renewal (28 April 2023, ERN table for 1.05.2023, 1.03.2024, 1.02.2025) and of the 2026-2028 renewal (30 January 2026, ERN table for March 2026 to November 2028), both published by FILCTEM-CGIL, a signatory. | corrected | The two FILCTEM-CGIL scans (signed by ANFAO, Filctem, Femca, Uiltec) print the ERN per level for every tranche of the file: 2023 ipotesi PDF p. 22, 2026 ipotesi PDF p. 30 (All. 1). Both are image-only scans read on the page images (tesseract garbles the 2026 table). Level codes map one to one (Q, 6, 5S, 5, 4S, 4, 3S, 3, 2, 1); the 2023 table labels them by area and step professionale (e.g. '4° S Qualificata Consolidato').<br>The ERN is the conglobated tabular minimum and matches the file's base_salary meaning; the Q indennita di funzione is not in the ERN (Q ERN is only a few euro above level 6), consistent with the file's separate allowance.<br>Level 1 MAG.2027: the 2026 table prints 1.661,71, a transposition of 1.661,17 (1.622,04 + 39,13; 1.661,17 + 35,21 = 1.696,38 printed for MAG.28). The file's 1661.17 is kept as a derived value.<br>Level 4S 1.03.2024 and 1.02.2025: the 2023 table prints 2.014,69 and 2.074,05, but its own increments give 2.016,18 and 2.075,54, and the 2026 table (2.126,94 - 51,40) implies 2.075,54. The definitive text of 4 December 2023 reportedly corrected some minimi but is not published by a signatory; both periods are left unbacked.<br>One-cent residuals between the two signed tables remain for levels 6 and 5S (2025 ERN 2.448,66 and 2.323,28 vs 2.448,67 and 2.323,29 implied by the 2026 ERN minus the first 2026 tranche); each period is backed by the table that prints it.<br>Consistency check (base + printed increment) on both tables: 2023 table off by -0,01 for level 6 at 1.03.2024 (2.319,66 + 58,98 = 2.378,64 vs 2.378,63 printed) and by -1,49 for 4S; 2026 table consistent except the level 1 MAG.2027 transposition. Rule applied: a printed value stays a verified row unless a later signed table contradicts it by more than rounding (4S, unbacked); one-cent residuals are kept as printed and reported here.<br>The ruleset names a FILCTEM-CGIL document, a signatory: source_type contracting_party.<br>Corrected to the printed table: Q 2026-10-01: 2546.53 -> 2546.54; Q 2027-05-01: 2604.87 -> 2604.88; Q 2028-05-01: 2657.38 -> 2657.39; Q 2028-11-01: 2680.72 -> 2680.73; 6 2026-10-01: 2539.80 -> 2539.79; 6 2027-05-01: 2596.76 -> 2596.74; 6 2028-05-01: 2648.02 -> 2647.99; 6 2028-11-01: 2670.80 -> 2670.77; 5S 2027-05-01: 2467.76 -> 2467.75; 5S 2028-05-01: 2517.77 -> 2517.76; 5S 2028-11-01: 2540.00 -> 2539.99; 4S 2026-10-01: 2158.67 -> 2157.78; 4S 2027-05-01: 2211.56 -> 2209.18; 4S 2028-05-01: 2259.16 -> 2255.44; 4S 2028-11-01: 2280.32 -> 2276.00; 3S 2028-11-01: 2125.83 -> 2125.84; 2 2028-05-01: 1948.54 -> 1948.53; 2 2028-11-01: 1966.32 -> 1966.31; 1 2028-05-01: 1696.39 -> 1696.38; 1 2028-11-01: 1712.04 -> 1712.03. |
 
 ## Salary table
 
@@ -62,16 +64,16 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadro — Lavoratori con responsabilita di direzione e coordinamento (Art. 2095 c.c.) | € 2,680.72 | 2028-11-01 |
-| `6` | Livello 6 — Lavoratori con autonomia decisionale e competenze trasversali elevate | € 2,670.80 | 2028-11-01 |
-| `5S` | Livello 5 Super — Lavoratori con funzioni tecniche o di supervisione avanzata | € 2,540.00 | 2028-11-01 |
+| `Q` | Quadro — Lavoratori con responsabilita di direzione e coordinamento (Art. 2095 c.c.) | € 2,680.73 | 2028-11-01 |
+| `6` | Livello 6 — Lavoratori con autonomia decisionale e competenze trasversali elevate | € 2,670.77 | 2028-11-01 |
+| `5S` | Livello 5 Super — Lavoratori con funzioni tecniche o di supervisione avanzata | € 2,539.99 | 2028-11-01 |
 | `5` | Livello 5 — Lavoratori con funzioni di controllo o alta specializzazione | € 2,453.48 | 2028-11-01 |
-| `4S` | Livello 4 Super — Lavoratori con elevata specializzazione o coordinamento | € 2,280.32 | 2028-11-01 |
+| `4S` | Livello 4 Super — Lavoratori con elevata specializzazione o coordinamento | € 2,276.00 | 2028-11-01 |
 | `4` | Livello 4 — Lavoratori polivalenti o con responsabilita tecnica | € 2,187.96 | 2028-11-01 |
-| `3S` | Livello 3 Super — Lavoratori specializzati di livello superiore | € 2,125.83 | 2028-11-01 |
+| `3S` | Livello 3 Super — Lavoratori specializzati di livello superiore | € 2,125.84 | 2028-11-01 |
 | `3` | Livello 3 — Lavoratori specializzati con autonomia operativa | € 2,082.62 | 2028-11-01 |
-| `2` | Livello 2 — Lavoratori qualificati con conoscenze specifiche | € 1,966.32 | 2028-11-01 |
-| `1` | Livello 1 — Lavoratori addetti a mansioni semplici e ripetitive | € 1,712.04 | 2028-11-01 |
+| `2` | Livello 2 — Lavoratori qualificati con conoscenze specifiche | € 1,966.31 | 2028-11-01 |
+| `1` | Livello 1 — Lavoratori addetti a mansioni semplici e ripetitive | € 1,712.03 | 2028-11-01 |
 
 ## Seniority increments
 

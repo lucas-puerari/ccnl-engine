@@ -1509,8 +1509,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/occhiali-occhialeria-industria",
       "ruleset_version": "2026.2",
-      "source_hash": "91b506e14ef772f67da002bd881497db9d14ab62e255cb6773b56f995fca4188",
-      "source_type": "commercial_secondary",
+      "source_hash": "99c987c1f9611584912ea2ceb57aa0c72805ff5da2c6e04a17e6fa283d1eaec4",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/occhiali-occhialeria-industria.json.gz"
     },
