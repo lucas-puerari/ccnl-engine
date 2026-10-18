@@ -100,12 +100,12 @@ def _agricultural(contract_type: Permanent | Apprentice) -> PeriodResult:
     )
 
 
-def test_an_assumed_inps_block_blocks_only_the_runs_that_read_it() -> None:
-    """The agricultural apprentice rates are assumed, the OTI rates are not."""
+def test_agricultural_runs_read_no_weak_inps_rule() -> None:
+    """The OTI rates and the apprentice rates with the CISOA are sourced."""
     apprentice = _weak(_agricultural(Apprentice(months_elapsed=6)))
     permanent = _weak(_agricultural(Permanent()))
 
-    assert {(f, "assumed") for f in _INPS} <= apprentice
+    assert not {feature for feature, _ in apprentice} & _INPS
     assert not {feature for feature, _ in permanent} & _INPS
 
 

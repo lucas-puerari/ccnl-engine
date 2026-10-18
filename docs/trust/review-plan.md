@@ -9,8 +9,8 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 208 | 186 | 0 | `funzioni-centrali-aran` |
-| terziario | 43 | 4 977 055 | 170 | 1535 | 660 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 48 | 4 946 900 | 178 | 2285 | 693 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| terziario | 43 | 4 977 055 | 76 | 1568 | 721 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| industria | 48 | 4 946 900 | 178 | 2285 | 692 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 56 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 37 | 305 | 95 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 19 | 240 | 42 | 5 | `operai-agricoli-florovivaisti` |
@@ -74,12 +74,12 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`esercizi-cinematografici-anec`](../contracts/esercizi-cinematografici-anec.md) | 6 000 | exploratory | 2 | 54 | 0 | party or official | none | none |
 | [`farmacie-municipalizzate-assofarm`](../contracts/farmacie-municipalizzate-assofarm.md) | 6 000 | exploratory | 2 | 45 | 0 | party or official | none | none |
 | [`federcasa`](../contracts/federcasa.md) | 6 000 | exploratory | 2 | 23 | 0 | party or official | none | none |
-| [`noleggio-autobus-conducente-anav`](../contracts/noleggio-autobus-conducente-anav.md) | 5 422 | exploratory | 71 | 0 | 0 | party or official | none | none |
+| [`noleggio-autobus-conducente-anav`](../contracts/noleggio-autobus-conducente-anav.md) | 5 422 | exploratory | 5 | 33 | 33 | party or official | none | none |
 | [`agenzie-marittime-i481`](../contracts/agenzie-marittime-i481.md) | 5 000 | exploratory | 2 | 36 | 0 | party or official | none | none |
 | [`fiori-recisi-ancef`](../contracts/fiori-recisi-ancef.md) | 1 300 | exploratory | 2 | 38 | 0 | party or official | none | none |
 | [`recapito-corrispondenza-fise`](../contracts/recapito-corrispondenza-fise.md) | 1 000 | exploratory | 2 | 47 | 0 | party or official | none | none |
 | [`servizi-postali-appalto-fise`](../contracts/servizi-postali-appalto-fise.md) | 1 000 | exploratory | 2 | 49 | 0 | party or official | none | none |
-| [`agenti-immobiliari-fiaip`](../contracts/agenti-immobiliari-fiaip.md) | none | exploratory | 31 | 0 | 0 | party or official | none | none |
+| [`agenti-immobiliari-fiaip`](../contracts/agenti-immobiliari-fiaip.md) | none | exploratory | 3 | 0 | 28 | party or official | none | none |
 | [`autoscuole-unasca`](../contracts/autoscuole-unasca.md) | none | exploratory | 2 | 32 | 0 | party or official | none | none |
 | [`aziende-termali-federterme`](../contracts/aziende-termali-federterme.md) | none | exploratory | 2 | 64 | 0 | party or official | none | none |
 | [`turismo-confesercenti`](../contracts/turismo-confesercenti.md) | none | exploratory | 1 | 57 | 0 | aggregator | none | none |
@@ -88,7 +88,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 
 | CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Owner | Next review |
 |---|---:|---|---:|---:|---:|---|---|---|
-| [`metalmeccanico-federmeccanica`](../contracts/metalmeccanico-federmeccanica.md) (anchor) | 1 700 000 | production | 0 | 0 | 87 | party or official | maintainer | 2027-06-01 |
+| [`metalmeccanico-federmeccanica`](../contracts/metalmeccanico-federmeccanica.md) (anchor) | 1 700 000 | production | 0 | 0 | 86 | party or official | maintainer | 2027-06-01 |
 | [`logistica-trasporto-confetra`](../contracts/logistica-trasporto-confetra.md) (anchor) | 430 000 | reviewed | 0 | 3 | 63 | party or official | maintainer | 2027-06-01 |
 | [`logistica-trasporto-confetra-viaggiante`](../contracts/logistica-trasporto-confetra-viaggiante.md) | 430 000 | reviewed | 0 | 30 | 53 | party or official | maintainer | 2027-06-01 |
 | [`metalmeccanico-confapi`](../contracts/metalmeccanico-confapi.md) | 350 000 | production | 0 | 7 | 58 | party or official | maintainer | 2027-05-01 |

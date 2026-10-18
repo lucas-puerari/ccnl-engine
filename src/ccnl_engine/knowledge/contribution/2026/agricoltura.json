@@ -132,25 +132,37 @@
   "apprentice": {
     "employee_rate": "0.0584",
     "employee_ivs_rate": "0.0584",
-    "employer_rate": "0.1161",
+    "employer_rate": "0.1311",
     "employer_ivs_rate": "0.1000",
     "small_firm_max_employees": 9,
-    "small_firm_employer_rate_months_0_11": "0.0311",
+    "small_firm_employer_rate_months_0_11": "0.0461",
     "small_firm_employer_ivs_rate_months_0_11": "0.0150",
-    "small_firm_employer_rate_months_12_23": "0.0461",
+    "small_firm_employer_rate_months_12_23": "0.0611",
     "small_firm_employer_ivs_rate_months_12_23": "0.0300",
     "provenance": {
-      "status": "assumed",
+      "status": "derived",
       "location": {
         "source_document": {
-          "document_id": "l-296-2006",
-          "title": "L. 296/2006, legge finanziaria 2007",
-          "kind": "legge"
+          "document_id": "inps-circolare-1-2023",
+          "title": "INPS Circolare n. 1 del 4 gennaio 2023, CISOA per gli apprendisti (copia informazionefiscale.it)",
+          "kind": "inps_circolare",
+          "url": "https://www.informazionefiscale.it/IMG/pdf/circolare_numero_1_del_04-01-2023.pdf",
+          "sha256": "02d6f243eb0ede6539be636d4e6cec6c625e1ab0753db6770e1dbed6ed9364e3"
         },
-        "section": "art. 1 c. 773; L. 92/2012 art. 2 cc. 36-37"
+        "page": "3",
+        "section": "3. Gli obblighi contributivi di finanziamento della CISOA",
+        "quote": "le imprese agricole interessate sono tenute a versare il relativo contributo di finanziamento, pari all’1,50% dell’imponibile contributivo [...] a decorrere dal 1° gennaio 2022, al versamento della suddetta contribuzione anche sulle retribuzioni dei lavoratori assunti con contratto di apprendistato di primo e terzo livello"
       },
-      "transformation": "Employer rate 10% + NASpI 1.31% + 0.30% = 11.61%.",
-      "note": "Assumed: the record cites no http(s) url. 10% (L. 296/2006 art. 1 c. 773) + NASpI 1.61% (L. 92/2012 art. 2 c. 36 and the 0.30% of art. 25 L. 845/1978) gives the 11.61%; since 1 January 2022 apprentices pay the wage-integration contributions of their employer (INPS circ. 76/2022 par. 1). Open question: circ. INPS 43/2026 gives no apprentice rates; the CISOA and disoccupazione agricola of agricultural apprentices are not found."
+      "transformation": "Employer 10% (L. 296/2006 art. 1 c. 773; 1.5% in the first and 3% in the second year up to nine employees) + NASpI 1.61% (L. 92/2012 art. 2 c. 36 and art. 25 L. 845/1978) + CISOA 1.50% = 13.11% (4.61%, 6.11%); worker 5.84%. The professionalizzanti apprentices owe the CISOA since circ. INPS 77/2017, the first- and third-level ones since 1 January 2022 (L. 234/2021 art. 1 cc. 191-192); the rate of 2026 is the 'CIS operai agricoli 1,5000' of allegato 1 to circ. INPS 43/2026 (https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2026/04/Circolare_15228/Allegati/16698_Circolare-numero-43-del-07-04-2026_Allegato-n-1.pdf, sha256 39a526358cec2ec2bd75e468c07a5cd72dc2bade525aeb80ee4e605ba4f16194, pp. 1-2).",
+      "note": "Not due from the employers insured for sickness under L. 1136/1954 (coltivatori diretti, CA 1D), whose column of the allegato is blank; the cooperatives of L. 240/1984 pay the industria CIGO/CIGS instead. Circ. 1/2023 read in a third-party copy: the inps.it file did not download. The previous record (assumed) gave 11.61% without the CISOA. Derived on 2026-10-17 by claude-opus-5-5.",
+      "extraction": {
+        "method": "ai",
+        "model": "claude-opus-5-5",
+        "extraction_timestamp": "2026-10-17T11:57:59Z",
+        "verification_status": "unverified",
+        "effective_from": "2026-01-01",
+        "effective_until": "2026-12-31"
+      }
     }
   },
   "ruleset": {
@@ -161,7 +173,7 @@
     "published_at": "2026-09-07",
     "source": "https://ciatreviso.it/contributi-inps-inail-2026-agricoli-aliquote-e-le-scadenze-per-operai-otd-e-oti/",
     "verification_status": "unverified",
-    "source_hash": "3b93559558a8c0769d60f63ee8f8dbc4f813937c951da083e7bffcc757e277dd",
+    "source_hash": "6a570c326a644183d7e40568a89713c4970f77cd3f95fb3faa9e0ad1f91dbcc1",
     "source_type": "contracting_party"
   }
 }

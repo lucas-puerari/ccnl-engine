@@ -61,11 +61,11 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 1717 / 4126 / 327 / 59 |
+| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 1777 / 4159 / 233 / 59 |
 | `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 24 / 95 / 13 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
-| `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 24 / 22 / 47 / 0 |
-| `inps_employer` | Contributi INPS a carico azienda | core | net | native | always | pipeline | — | — | simplified | 32 / 22 / 55 / 0 |
+| `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 24 / 24 / 45 / 0 |
+| `inps_employer` | Contributi INPS a carico azienda | core | net | native | always | pipeline | — | — | simplified | 32 / 24 / 53 / 0 |
 | `inail` | Premio INAIL a carico azienda | outside_input | net | unsupported | outside_input | — | `employer.inail_tariff_rate` | — | unavailable | none bundled |
 | `contribution_exemption` | Esonero contributivo | outside_input | net | unsupported | outside_input | — | `employer.contribution_exemption` | — | unavailable | none bundled |
 | `fiscal_adjustment` | Conguaglio IRPEF da assistenza fiscale o periodo precedente | outside_input | net | unsupported | outside_input | — | `facts.fiscal_adjustment` | — | unavailable | none bundled |
@@ -212,8 +212,8 @@ never grow.
 | 80 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | ⚠️ | bilateral_funds, inps_employer, overtime, sickness | 38 / 43 / 0 / 0 |
 | 81 | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | ✅ | overtime | 0 / 44 / 0 / 1 |
 | 82 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | ⚠️ | base_salary, bilateral_funds, overtime, pension_fund_contribution, sickness | 58 / 7 / 0 / 0 |
-| 83 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | ⚠️ | base_salary, bilateral_funds, overtime, seniority, welfare | 87 / 0 / 0 / 0 |
-| 84 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | ⚠️ | base_salary, seniority, una_tantum | 0 / 0 / 70 / 1 |
+| 83 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | ⚠️ | base_salary, bilateral_funds, overtime, seniority, welfare | 86 / 0 / 0 / 0 |
+| 84 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | ⚠️ | base_salary, seniority, una_tantum | 33 / 33 / 4 / 1 |
 | 85 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | ⚠️ | base_salary, seniority | 0 / 88 / 1 / 1 |
 | 86 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | ⚠️ | base_salary, bilateral_funds, inail, inps_employee, inps_employer, overtime, seniority, sickness, territorial_supplement | 10 / 9 / 1 / 1 |
 | 87 | [CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)](organizzazioni-allevatori-aia.md) | ⚠️ | base_salary, inps_employer | 0 / 20 / 1 / 1 |
@@ -241,7 +241,7 @@ never grow.
 | 109 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | ⚠️ | base_salary | 0 / 0 / 35 / 1 |
 | 110 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | ⚠️ | seniority | 0 / 48 / 1 / 1 |
 | 111 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | ⚠️ | seniority | 0 / 46 / 2 / 1 |
-| 112 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | ⚠️ | base_salary, bilateral_funds, pension_fund_contribution, seniority, una_tantum | 0 / 0 / 30 / 1 |
+| 112 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | ⚠️ | base_salary, bilateral_funds, pension_fund_contribution, seniority, una_tantum | 28 / 0 / 2 / 1 |
 | 113 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | ⚠️ | bilateral_funds, health_fund_employer, seniority | 0 / 32 / 2 / 0 |
 | 114 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | ⚠️ | base_salary, bilateral_funds, overtime, seniority, sickness, trattamento_integrativo | 61 / 2 / 0 / 0 |
 | 115 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo - Ristorazione collettiva (aziende dell'art. 1 c. 1 par. II)](pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | ⚠️ | base_salary, bilateral_funds, overtime, seniority, trattamento_integrativo | 61 / 2 / 0 / 0 |
