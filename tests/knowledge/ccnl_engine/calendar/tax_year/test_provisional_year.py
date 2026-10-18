@@ -165,6 +165,17 @@ def test_an_assumed_tranche_of_the_provisional_year_is_a_visible_blocker(
     assert not result.is_payable
 
 
-def test_the_provisional_year_has_assumed_tranches_to_check() -> None:
-    """The scan above is not vacuous: some CCNLs still assume a 2027 tranche."""
-    assert _assumed_tranches()
+def test_the_scan_reads_tranches_of_the_provisional_year() -> None:
+    """The scan above is not vacuous: CCNLs pay tranches in a provisional year.
+
+    Every such tranche may be sourced, leaving no assumed one to run; the
+    blocker of an assumed tranche is covered by the rule source tests.
+    """
+    starts = [
+        str(period.get("valid_from", ""))[:4]
+        for path in (KNOWLEDGE_DIR / "agreement").glob("*.json")
+        for level in json.loads(path.read_text(encoding="utf-8")).get("levels", [])
+        for period in level.get("base_salary", {}).get("periods", [])
+    ]
+
+    assert any(start in _PROVISIONAL_YEARS for start in starts)
