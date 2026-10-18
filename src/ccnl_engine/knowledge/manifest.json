@@ -336,8 +336,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/carta-cartone-assocarta",
       "ruleset_version": "2026.2",
-      "source_hash": "16d0d76d4839e8b0b2c1530d14b2b13e38d192e8306de339f4a3fd5e35cd5d66",
-      "source_type": "commercial_secondary",
+      "source_hash": "2668fc7713b2a457fbf6eb5d88dce8df9eb2c3f38319aecaba5dd5b21b121d9d",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/carta-cartone-assocarta.json.gz"
     },
@@ -1543,8 +1543,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/operai-agricoli-florovivaisti",
       "ruleset_version": "2026.2",
-      "source_hash": "16dbdd20495215348cf5b261f43bbd53d45ef66848dde47fc13987cae3488d6a",
-      "source_type": "commercial_secondary",
+      "source_hash": "6a7303d6201304d0d47334d8483b18e1bc03f8949d9664d6a574226d07c276f0",
+      "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/operai-agricoli-florovivaisti.json.gz"
     },
@@ -2206,8 +2206,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/vigilanza-privata-assiv",
       "ruleset_version": "2026.2",
-      "source_hash": "f14aa2f2702917cca39a8078027d83f02f0c4019077c2ccd8cba3a8e1718627e",
-      "source_type": "commercial_secondary",
+      "source_hash": "a8ce584b60acff905f4f2366c0cceb26246d3481d48ede805795b18fde293639",
+      "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/vigilanza-privata-assiv.json.gz"
     },
