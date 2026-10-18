@@ -110,15 +110,145 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED PAY CLAUSES (CCNL of 3 July 2017 and renewal of 4 June 2026): elemento perequativo of 485 EUR a year with June pay in firms without second-level bargaining (Art. 48); indennità di funzione of the quadri (Art. 98); reperibilità (Art. 28, amounts by group of levels adjusted each June) and trasferta; ordinary night, holiday and compensatory-rest premiums (Art. 29 rows b, d, h, i, f, m); the shift-worker column of Art. 29 (night overtime 40%/45%, night holiday overtime 65%) and night holiday work within 8 hours (60%); flessibilità beyond 40 hours (15%/20%, Art. 23) and banca ore (50% of the overtime premium); festività on a Sunday (1/26) and the 1 h 20' of the ex operai; the superminimo ex Parte prima of 11 h 10' a year (Art. 38); leave on a 6-day week and the transitional extra day (Art. 33); sickness: comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27), the net-pay gross-up; child sickness indemnity from 2027 (Art. 58 bis) and oncological permits (Art. 55 bis); the 65% credit of the apprenticeship for the seniority increments of the worker kept on (Art. 10 p. 49); the IPCA top-up of June 2027 and 2028 above 2.653% and 2.729%.",
+        "text": "Art. 48: the elemento perequativo of 485 EUR a year with the June pay in firms without second-level bargaining.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "confapi_unmodelled_pay_elements",
+          "variant": "elemento_perequativo",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the perequativo, E.A.R., quadri allowance, standby, ordinary-hour premiums, shift-worker rates and the residual sickness rules of Art. 55."
+          "remediation": "Add an employer fact for the second-level bargaining and pay the element."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 98: the indennità di funzione of the quadri.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "quadri_allowance",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the quadri allowance with a role."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 28: reperibilità (amounts by group of levels adjusted each June) and trasferta.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "standby_and_travel",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model standby and travel."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 29 rows b, d, h, i, f, m: the ordinary night, holiday and compensatory-rest premiums; the shift-worker column (night overtime 40%/45%, night holiday overtime 65%) and night holiday work within 8 hours (60%).",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ordinary_hours_premiums",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the Art. 29 premiums and the shift-worker column."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 23: flessibilità beyond 40 hours (15%/20%) and banca ore (50% of the overtime premium).",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "flexibility_and_hours_bank",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the flexibility and hours-bank premiums."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "The festività on a Sunday (1/26) and the 1 h 20' of the ex operai; the superminimo ex Parte prima of 11 h 10' a year (Art. 38).",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sunday_holiday_and_ex_operai",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pay the Sunday holiday, the 1 h 20' and the Art. 38 superminimo."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 33: leave on a 6-day week and the transitional extra day.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "six_day_leave",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the leave of a 6-day week."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Sickness: comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27), the net-pay gross-up.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sickness_rules",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the residual sickness rules of Art. 55."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 58 bis and Art. 55 bis: the child sickness indemnity from 2027 and the oncological permits.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "child_sickness_and_oncological_permits",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the indemnity of Art. 58 bis and the permits of Art. 55 bis."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 10 p. 49: the 65% credit of the apprenticeship for the seniority increments of the worker kept on.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "apprentice_seniority_credit",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Credit 65% of the apprenticeship to the seniority."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Renewal of 4 June 2026: the IPCA top-up of June 2027 and 2028 above 2.653% and 2.729%.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ipca_top_up",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the IPCA top-up when the index is published."
         }
       },
       {
@@ -2638,7 +2768,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "9ec8ec177f30070c2b911e16132017e1e4117e6ab1a4d0dc1835b5ca8889b389",
+    "source_hash": "274491b6e793856a32009d90095985af2fff83d17438369025f6fb7e27b3aff3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3005,6 +3135,29 @@
           "Fondapi 2.0%/1.2% from 2021-06-01 (Art. 50), not 2026-01-01; hourly divisor 173 from 2021-06-01 (Art. 40).",
           "Apprenticeship: the 30- and 24-month tracks of Art. 10 added (limitation apprenticeship_36_months_assumed closed); no seniority during the apprenticeship (Art. 10 p. 49, limitation apprentice_seniority closed).",
           "Not modelled pay clauses gathered in the limitation confapi_unmodelled_pay_elements; fondapi_base_elements narrowed to the indennità di funzione of the quadri."
+        ]
+      },
+      {
+        "id": "2026-10-17-ai-full-year",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The minimi of 2025 and 2026 against the accordo of 24 July 2025 and the verbale of 17 June 2026, the derived minimi of 2024 and 2025, and a year and a termination of a 5th level impiegato against a hand oracle.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/07/2025-07-24-CCNL-Unionmeccanica-accordo-aumenti-minini-2025-26.pdf",
+            "sha256": "4ec057a5c4a209b5b52d9d582822c5df0e7229475ac74b2602d3a94a436cfc4c"
+          },
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260617-Unionmeccanica-Confapi-Verbale-accordo-minimi-1-giugno-2026-IPCA-signed.pdf",
+            "sha256": "61857a25fcb618e5df4353ee564a718c7b549919b37bf60734a722c2a69756f5"
+          }
+        ],
+        "findings": [
+          "5th level (scans read by OCR): 2.195,87 from 1 September 2025 and 2.245,87 from 1 June 2026 in both documents. Match.",
+          "The 6 derived minimi of June 2024 and June 2025 stay derived: for each the verbale that set the tranche and the later accordo and renewal print amounts one to five cents apart (for example 1.752,96 against 1.752,97 at the 2nd level); the file keeps the verbale in force for the months it covers and records both. The derived absence and leave rules state their transformation of a cited text. No primary states any of them directly.",
+          "Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios confapi-year and confapi-june): a 5th level impiegato hired on 1 January 2026 by an employer with 50 employees, across the tranche of June 2026; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done."
         ]
       }
     ],
