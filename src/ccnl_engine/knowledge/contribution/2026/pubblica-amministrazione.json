@@ -380,17 +380,27 @@
   "apprentice": {
     "employee_rate": "0.0880",
     "employee_ivs_rate": "0.0880",
-    "employer_rate": "0.2420",
+    "employer_rate": "0.2581",
     "employer_ivs_rate": "0.2420",
     "small_firm_max_employees": 9,
-    "small_firm_employer_rate_months_0_11": "0.2420",
+    "small_firm_employer_rate_months_0_11": "0.2581",
     "small_firm_employer_ivs_rate_months_0_11": "0.2420",
-    "small_firm_employer_rate_months_12_23": "0.2420",
+    "small_firm_employer_rate_months_12_23": "0.2581",
     "small_firm_employer_ivs_rate_months_12_23": "0.2420",
     "provenance": {
-      "status": "assumed",
-      "location": null,
-      "note": "Schema-required placeholder: apprenticeship does not apply to PA contracts."
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "inps-circolare-31-2025",
+          "title": "INPS Circolare n. 31 del 30 gennaio 2025",
+          "kind": "inps_circolare",
+          "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2025/01/Circolare_14811/Allegati/15879_Circolare-numero-31-del-30-01-2025.pdf",
+          "sha256": "c66469d4253c7d86f3dbd29b83e78edf72c4a0ef98efe000fa28c529f69ac1d8"
+        },
+        "section": "3. Obblighi contributivi",
+        "quote": "Per il personale assunto con contratto di apprendistato e di formazione e lavoro a tempo determinato ai sensi dell'articolo 3-ter del decreto-legge n. 44/2023, le pubbliche Amministrazioni sono tenute, inoltre, al versamento della contribuzione di finanziamento delle prestazioni della Nuova Assicurazione Sociale per l'Impiego (NASpI) [...] La suddetta contribuzione è dovuta nella misura dell'1,61% della retribuzione imponibile ai fini previdenziali"
+      },
+      "note": "The only PA apprenticeship is the fixed-term one of D.L. 44/2023 art. 3-ter (hires until 31/12/2026, up to 36 months). Circ. 31/2025 par. 3 applies the ordinary contributions of fixed-term PA staff (CTPS IVS 24.20% employer, 8.80% employee, as in inps.employer_tiers) plus NASpI 1.61% employer (1.31% + 0.30%; the 1.40% surcharge is not due): employer 24.20 + 1.61 = 25.81%, IVS share 24.20%. No small-firm relief exists for PA, so the small-firm fields repeat the same rates. Assumes CTPS enrolment; CPDEL-enrolled bodies use other IVS rates."
     }
   },
   "ruleset": {
@@ -401,7 +411,7 @@
     "published_at": "2026-09-07",
     "source": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html",
     "verification_status": "unverified",
-    "source_hash": "7bd7140857906914594d590bac24f0520a5668f2387a41c302d36dc245c7ed42",
+    "source_hash": "c631d6919590ec24f81a76e04e4e9a31c46f1d8bb67b484810be370f8bf752bf",
     "source_type": "institutional_secondary"
   }
 }

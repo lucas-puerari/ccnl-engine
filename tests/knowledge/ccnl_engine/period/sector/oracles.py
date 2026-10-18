@@ -51,7 +51,8 @@ the engine does not compute (open ``owed`` limitations).
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
+from datetime import date
 from decimal import ROUND_HALF_UP, Decimal
 
 from tests.knowledge.ccnl_engine.irpef.oracles import (
@@ -71,6 +72,8 @@ from tests.knowledge.ccnl_engine.tax_credit.oracles import (
 __all__ = [
     "ALIMENTARI_JUNE",
     "ALIMENTARI_YEAR",
+    "APPRENTICE_JUNE",
+    "APPRENTICE_YEAR",
     "CHIMICA_JUNE",
     "CHIMICA_YEAR",
     "CONFAPI_JUNE",
@@ -83,10 +86,20 @@ __all__ = [
     "EDILIZIA_YEAR",
     "FIPE_JUNE",
     "FIPE_YEAR",
+    "FIXED_TERM_JUNE",
+    "FIXED_TERM_YEAR",
     "INDUSTRIA_JUNE",
     "INDUSTRIA_YEAR",
+    "MID_MONTH_FROM",
+    "MID_MONTH_UNTIL",
+    "MID_MONTH_YEAR",
+    "PART_TIME_JUNE",
+    "PART_TIME_YEAR",
     "RISTORAZIONE_JUNE",
     "RISTORAZIONE_YEAR",
+    "SICKNESS_YEAR",
+    "SICK_FROM",
+    "SICK_UNTIL",
     "STUDI_JUNE",
     "STUDI_YEAR",
     "TERZIARIO_JUNE",
@@ -121,7 +134,8 @@ class Rates:
 
     ``employer_supplement`` is an employer contribution INPS charges apart,
     taken to cents on its own (the 0.77% sickness supplement of the
-    pubblici esercizi).
+    pubblici esercizi).  ``tfr_offset`` is the additional IVS the employer
+    deducts from the TFR quota: none for an apprentice.
     """
 
     employee_ivs: Decimal
@@ -129,6 +143,7 @@ class Rates:
     employer_ivs: Decimal
     employer_other: Decimal
     employer_supplement: Decimal = _ZERO
+    tfr_offset: Decimal = _TFR_EXTRA_IVS
 
 
 @dataclass(frozen=True)
@@ -144,6 +159,9 @@ class Pay:
             INPS on ``fund``: an employer contribution.
         cassa_net: Accrual paid through the Cassa Edile, net of the
             withholding the Cassa makes: in the gross, not in the cash.
+        absence: Pay deducted for days of absence, which the run posts
+            apart from the gross (the sick pay that replaces it is in the
+            gross).
     """
 
     run_id: str
@@ -152,6 +170,7 @@ class Pay:
     fund: Decimal = _ZERO
     solidarity: Decimal = _ZERO
     cassa_net: Decimal = _ZERO
+    absence: Decimal = _ZERO
 
 
 @dataclass(frozen=True)
@@ -168,6 +187,7 @@ class Payment:
     tfr_deduction: Decimal
     tfr_accrual: Decimal
     employer_cost: Decimal
+    absence: Decimal = _ZERO
 
 
 @dataclass(frozen=True)
@@ -205,7 +225,8 @@ class SectorYear:
 
 
 def _payment(pay: Pay, rates: Rates) -> Payment:
-    base = _whole_euro(pay.gross)
+    paid = pay.gross - pay.absence
+    base = _whole_euro(paid)
     employee = _cents(base * rates.employee_ivs) + _cents(base * rates.employee_other)
     employer = (
         _cents(base * rates.employer_ivs)
@@ -213,7 +234,7 @@ def _payment(pay: Pay, rates: Rates) -> Payment:
         + _cents(base * rates.employer_supplement)
     )
     quota = _cents(pay.tfr_base / _TFR_DIVISOR)
-    deduction = _cents(base * _TFR_EXTRA_IVS)
+    deduction = _cents(base * rates.tfr_offset)
     accrual = quota - deduction
     return Payment(
         run_id=pay.run_id,
@@ -225,7 +246,8 @@ def _payment(pay: Pay, rates: Rates) -> Payment:
         tfr_quota=quota,
         tfr_deduction=deduction,
         tfr_accrual=accrual,
-        employer_cost=pay.gross + employer + pay.solidarity + accrual + pay.fund,
+        employer_cost=paid + employer + pay.solidarity + accrual + pay.fund,
+        absence=pay.absence,
     )
 
 
@@ -262,8 +284,9 @@ def sector_year(
     """
     payments = tuple(_payment(pay, rates) for pay in pays)
     gross = sum((p.gross for p in payments), _ZERO)
+    absence = sum((p.absence for p in payments), _ZERO)
     inps = sum((p.employee_inps for p in payments), _ZERO)
-    taxable = gross - inps
+    taxable = gross - absence - inps
     irpef = net_irpef(taxable, days)
     tax_credits = _trattamento(taxable, days) + somma_esente(taxable, days)
     surtax = (
@@ -282,7 +305,7 @@ def sector_year(
         credits=tax_credits,
         surtax=surtax,
         cassa_net=cassa_net,
-        net=gross - inps - irpef + tax_credits - surtax - cassa_net,
+        net=gross - absence - inps - irpef + tax_credits - surtax - cassa_net,
         tfr=sum((p.tfr_accrual for p in payments), _ZERO),
         employer_cost=sum((p.employer_cost for p in payments), _ZERO),
     )
@@ -337,6 +360,13 @@ def _industria_year() -> tuple[Pay, ...]:
     return (*months, thirteenth)
 
 
+def _industria_year_without_overtime() -> tuple[Pay, ...]:
+    minima = [_C3_UNTIL_MAY if m < 6 else _C3_FROM_JUNE for m in range(1, 13)]
+    months = [Pay(_run(m), pay, pay) for m, pay in enumerate(minima, start=1)]
+    thirteenth = Pay(_run(12, "thirteenth"), _C3_FROM_JUNE, _C3_FROM_JUNE)
+    return (*months, thirteenth)
+
+
 def _industria_june() -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _C3_UNTIL_MAY, _C3_UNTIL_MAY) for m in range(1, 6)]
     #: Six twelfths of the tredicesima are paid with the last month.
@@ -349,6 +379,38 @@ INDUSTRIA_YEAR = sector_year(
     _industria_year(), _INDUSTRIA, _FULL_YEAR, terminated=False
 )
 INDUSTRIA_JUNE = sector_year(_industria_june(), _INDUSTRIA, _HALF_YEAR, terminated=True)
+
+
+# Part time: the same C3 impiegato on 20 of 40 weekly hours.
+
+#: A part-time worker is paid the full-time pay in proportion to the
+#: hours (D.Lgs. 81/2015 art. 7 c. 1; CCNL 5 February 2021, Sez. Quarta,
+#: Titolo I, Art. 4): half of each minimo, taken to cents.
+_HALF = Decimal("0.5")
+
+
+def _part_time(pays: tuple[Pay, ...]) -> tuple[Pay, ...]:
+    return tuple(
+        Pay(p.run_id, _cents(p.gross * _HALF), _cents(p.tfr_base * _HALF)) for p in pays
+    )
+
+
+def _part_time_june() -> tuple[Pay, ...]:
+    month = _cents(_C3_UNTIL_MAY * _HALF)
+    pays = [Pay(_run(m), month, month) for m in range(1, 6)]
+    last = _cents(_C3_FROM_JUNE * _HALF)
+    #: Six twelfths of the part-time tredicesima, with the last month.
+    june = last + _cents(last * 6 / 12)
+    return (*pays, Pay(_run(6), june, june))
+
+
+PART_TIME_YEAR = sector_year(
+    _part_time(_industria_year_without_overtime()),
+    _INDUSTRIA,
+    _FULL_YEAR,
+    terminated=False,
+)
+PART_TIME_JUNE = sector_year(_part_time_june(), _INDUSTRIA, _HALF_YEAR, terminated=True)
 
 
 # Terziario: Terziario Confesercenti IV.
@@ -372,6 +434,122 @@ _TERZIARIO = Rates(
     employer_ivs=Decimal("0.2381"),
     employer_other=Decimal("0.0630333"),
 )
+
+
+# Apprentice: a professionalizzante apprentice of destination C3.
+
+#: Professionalizzante of 36 months, 85% of the minimo of the destination
+#: level in the first 12 months: CCNL 5 February 2021, Disciplina
+#: dell'apprendistato professionalizzante, Art. 8, p. 267 ("36 12 85% 12
+#: 90% 12 95%"), each pay taken to cents.
+_APPRENTICE_PCT = Decimal("0.85")
+#: Apprentice of an industria employer from 16 to 50 employees: employer
+#: 10% (L. 296/2006 art. 1 c. 773) + NASpI 1.61% (L. 92/2012 art. 2 c. 36
+#: and art. 25 L. 845/1978) + CIGO 1.70% and CIGS 0.60% (D.Lgs. 148/2015
+#: artt. 13, 23, extended to apprentices by L. 234/2021), worker 5.84% +
+#: CIGS 0.30%.  No additional 0.50% IVS is deducted from the TFR of an
+#: apprentice (INPS circ. 70/2007, note 5).
+_APPRENTICE = Rates(
+    employee_ivs=Decimal("0.0584"),
+    employee_other=Decimal("0.0030"),
+    employer_ivs=Decimal("0.1000"),
+    employer_other=Decimal("0.0391"),
+    tfr_offset=_ZERO,
+)
+
+
+def _apprentice(pays: tuple[Pay, ...]) -> tuple[Pay, ...]:
+    pct = _APPRENTICE_PCT
+    return tuple(
+        Pay(p.run_id, _cents(p.gross * pct), _cents(p.tfr_base * pct)) for p in pays
+    )
+
+
+def _apprentice_june() -> tuple[Pay, ...]:
+    month = _cents(_C3_UNTIL_MAY * _APPRENTICE_PCT)
+    pays = [Pay(_run(m), month, month) for m in range(1, 6)]
+    last = _cents(_C3_FROM_JUNE * _APPRENTICE_PCT)
+    #: Six twelfths of the apprentice tredicesima, with the last month.
+    june = last + _cents(last * 6 / 12)
+    return (*pays, Pay(_run(6), june, june))
+
+
+APPRENTICE_YEAR = sector_year(
+    _apprentice(_industria_year_without_overtime()),
+    _APPRENTICE,
+    _FULL_YEAR,
+    terminated=False,
+)
+APPRENTICE_JUNE = sector_year(
+    _apprentice_june(), _APPRENTICE, _HALF_YEAR, terminated=True
+)
+
+
+# Fixed term: the C3 impiegato on a fixed term of the year, no renewal.
+
+#: The additional NASpI contribution of a fixed-term employment, 1.40% of
+#: the INPS taxable pay (L. 92/2012 art. 2 c. 28), charged apart from the
+#: rates of the industria impiegato.
+_FIXED_TERM = replace(_INDUSTRIA, employer_supplement=Decimal("0.0140"))
+
+FIXED_TERM_YEAR = sector_year(
+    _industria_year_without_overtime(), _FIXED_TERM, _FULL_YEAR, terminated=True
+)
+FIXED_TERM_JUNE = sector_year(
+    _industria_june(), _FIXED_TERM, _HALF_YEAR, terminated=True
+)
+
+
+# Sickness: the C3 impiegato sick from 9 to 18 March.
+
+#: Nine working days of sickness, Monday to Saturday, from 9 to 18 March:
+#: the month deducts them at 1/26 of the minimo each and pays them back
+#: at 100%, the three days of carenza and the six after: CCNL 5 February
+#: 2021, Sez. Quarta, Art. 2 (Trattamento in caso di malattia), PDF p. 202:
+#: "alla intera retribuzione globale per i primi 122 giorni di calendario".
+#: INPS pays no sickness indemnity to the impiegati of the industria.
+_SICK_DAYS = 9
+_SICK_DAY = _cents(_C3_UNTIL_MAY / 26)
+SICK_FROM = date(2026, 3, 9)
+SICK_UNTIL = date(2026, 3, 18)
+
+
+def _sickness_year() -> tuple[Pay, ...]:
+    pays = list(_industria_year_without_overtime())
+    absence = _SICK_DAY * _SICK_DAYS
+    march = pays[2]
+    pays[2] = Pay(march.run_id, march.gross + absence, march.tfr_base, absence=absence)
+    return tuple(pays)
+
+
+SICKNESS_YEAR = sector_year(_sickness_year(), _INDUSTRIA, _FULL_YEAR, terminated=False)
+
+
+# Mid-month: the C3 impiegato hired on 10 March and leaving on 20 October.
+
+#: A month employed in part pays 1/26 of the monthly pay for each working
+#: day, Monday to Saturday (CCNL 5 February 2021, Sez. Quarta, Titolo III,
+#: Art. 9, p. 164: "una quota giornaliera della retribuzione di fatto, pari
+#: a 1/26 della retribuzione mensile fissa"): 19 days from 10 to 31 March,
+#: 17 from 1 to 20 October.  The ratei of the tredicesima count a fraction
+#: above 15 days as a month (Titolo IV, Art. 7 c. 3, p. 178): March to
+#: October, eight twelfths, paid with the last month.
+MID_MONTH_FROM = date(2026, 3, 10)
+MID_MONTH_UNTIL = date(2026, 10, 20)
+_MID_MONTH_DAYS = (MID_MONTH_UNTIL - MID_MONTH_FROM).days + 1
+
+
+def _mid_month() -> tuple[Pay, ...]:
+    march = _cents(_C3_UNTIL_MAY * 19 / 26)
+    months = [Pay(_run(3), march, march)]
+    for m in range(4, 10):
+        pay = _C3_UNTIL_MAY if m < 6 else _C3_FROM_JUNE
+        months.append(Pay(_run(m), pay, pay))
+    october = _cents(_C3_FROM_JUNE * 17 / 26) + _cents(_C3_FROM_JUNE * 8 / 12)
+    return (*months, Pay(_run(10), october, october))
+
+
+MID_MONTH_YEAR = sector_year(_mid_month(), _INDUSTRIA, _MID_MONTH_DAYS, terminated=True)
 
 
 def _iv(month: int) -> Decimal:

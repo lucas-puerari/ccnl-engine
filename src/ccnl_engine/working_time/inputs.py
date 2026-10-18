@@ -48,6 +48,9 @@ class OvertimeKind(StrEnum):
             holidays; a CCNL without a rest-day band pays it as ``HOLIDAY``.
         NIGHT_HOLIDAY: Night overtime on a public holiday (straordinario
             festivo notturno).
+        SUPPLEMENTARY: Hours a part-time worker works beyond the agreed
+            hours within the full-time week (lavoro supplementare, D.Lgs.
+            81/2015 art. 6 c. 2), paid with the CCNL supplementare band.
     """
 
     WEEKDAY = "weekday"
@@ -55,6 +58,7 @@ class OvertimeKind(StrEnum):
     HOLIDAY = "holiday"
     REST_DAY = "rest_day"
     NIGHT_HOLIDAY = "night_holiday"
+    SUPPLEMENTARY = "supplementare"
 
 
 @dataclass(frozen=True)

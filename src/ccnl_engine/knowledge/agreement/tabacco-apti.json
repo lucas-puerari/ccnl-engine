@@ -104,6 +104,25 @@
           "The review recorded no list of the documents it read.",
           "Confidence set to needs_review: values to re-check."
         ]
+      },
+      {
+        "id": "2026-10-17-ai-allegato-a",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The minimi of the nine categories against Allegato A of the accordo di rinnovo of 2 July 2025.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+            "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
+          }
+        ],
+        "findings": [
+          "Allegato A (p. 13 of the signed scan, read by OCR and on the page image): the 36 minimi of the nine categories from January 2025 to January 2028 match the file (3°B from 1/1/2027 is printed '1420,1').",
+          "The ruleset names this source, published by UILA-UIL, a signatory: source_type contracting_party instead of estimated.",
+          "The contingenza and EDR of each category (18 rules) are not in the accordo and stay assumed."
+        ]
       }
     ]
   },
@@ -363,23 +382,31 @@
             "valid_until": "2026-01-01",
             "value": "2078.10",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2025, row 1S",
+                "quote": "1S 1.995,35 2078,10 2147,06 2216,02 2271,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -387,23 +414,31 @@
             "valid_until": "2027-01-01",
             "value": "2147.06",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2026, row 1S",
+                "quote": "1S 1.995,35 2078,10 2147,06 2216,02 2271,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -411,23 +446,31 @@
             "valid_until": "2028-01-01",
             "value": "2216.02",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2027, row 1S",
+                "quote": "1S 1.995,35 2078,10 2147,06 2216,02 2271,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -435,23 +478,31 @@
             "valid_until": null,
             "value": "2271.18",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2028, row 1S",
+                "quote": "1S 1.995,35 2078,10 2147,06 2216,02 2271,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2028-01-01"
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           }
         ]
@@ -554,23 +605,31 @@
             "valid_until": "2026-01-01",
             "value": "1922.92",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2025, row 1°",
+                "quote": "1° 1.844,17 1922,92 1988,55 2054,18 2106,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -578,23 +637,31 @@
             "valid_until": "2027-01-01",
             "value": "1988.55",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2026, row 1°",
+                "quote": "1° 1.844,17 1922,92 1988,55 2054,18 2106,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -602,23 +669,31 @@
             "valid_until": "2028-01-01",
             "value": "2054.18",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2027, row 1°",
+                "quote": "1° 1.844,17 1922,92 1988,55 2054,18 2106,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -626,23 +701,31 @@
             "valid_until": null,
             "value": "2106.68",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2028, row 1°",
+                "quote": "1° 1.844,17 1922,92 1988,55 2054,18 2106,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2028-01-01"
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           }
         ]
@@ -745,23 +828,31 @@
             "valid_until": "2026-01-01",
             "value": "1678.01",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2025, row 2°",
+                "quote": "2° 1.605,57 1678,01 1738,38 1798,75 1847,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -769,23 +860,31 @@
             "valid_until": "2027-01-01",
             "value": "1738.38",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2026, row 2°",
+                "quote": "2° 1.605,57 1678,01 1738,38 1798,75 1847,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -793,23 +892,31 @@
             "valid_until": "2028-01-01",
             "value": "1798.75",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2027, row 2°",
+                "quote": "2° 1.605,57 1678,01 1738,38 1798,75 1847,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -817,23 +924,31 @@
             "valid_until": null,
             "value": "1847.04",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2028, row 2°",
+                "quote": "2° 1.605,57 1678,01 1738,38 1798,75 1847,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2028-01-01"
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           }
         ]
@@ -936,23 +1051,31 @@
             "valid_until": "2026-01-01",
             "value": "1469.06",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2025, row 3°A",
+                "quote": "3°A 1.402,00 1469,06 1524,95 1580,84 1625,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -960,23 +1083,31 @@
             "valid_until": "2027-01-01",
             "value": "1524.95",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2026, row 3°A",
+                "quote": "3°A 1.402,00 1469,06 1524,95 1580,84 1625,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -984,23 +1115,31 @@
             "valid_until": "2028-01-01",
             "value": "1580.84",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2027, row 3°A",
+                "quote": "3°A 1.402,00 1469,06 1524,95 1580,84 1625,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -1008,23 +1147,31 @@
             "valid_until": null,
             "value": "1625.55",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2028, row 3°A",
+                "quote": "3°A 1.402,00 1469,06 1524,95 1580,84 1625,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2028-01-01"
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           }
         ]
@@ -1127,23 +1274,31 @@
             "valid_until": "2026-01-01",
             "value": "1314.94",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2025, row 3°B",
+                "quote": "3°B 1.251,85 1314,94 1367,52 1420,1 1462,16"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -1151,23 +1306,31 @@
             "valid_until": "2027-01-01",
             "value": "1367.52",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2026, row 3°B",
+                "quote": "3°B 1.251,85 1314,94 1367,52 1420,1 1462,16"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -1175,23 +1338,31 @@
             "valid_until": "2028-01-01",
             "value": "1420.10",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2027, row 3°B",
+                "quote": "3°B 1.251,85 1314,94 1367,52 1420,1 1462,16"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -1199,23 +1370,31 @@
             "valid_until": null,
             "value": "1462.16",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2028, row 3°B",
+                "quote": "3°B 1.251,85 1314,94 1367,52 1420,1 1462,16"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2028-01-01"
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           }
         ]
@@ -1318,23 +1497,31 @@
             "valid_until": "2026-01-01",
             "value": "1194.90",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2025, row 4°A",
+                "quote": "4°A 1.134,90 1194,90 1244,90 1294,90 1334,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -1342,23 +1529,31 @@
             "valid_until": "2027-01-01",
             "value": "1244.90",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2026, row 4°A",
+                "quote": "4°A 1.134,90 1194,90 1244,90 1294,90 1334,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -1366,23 +1561,31 @@
             "valid_until": "2028-01-01",
             "value": "1294.90",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2027, row 4°A",
+                "quote": "4°A 1.134,90 1194,90 1244,90 1294,90 1334,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -1390,23 +1593,31 @@
             "valid_until": null,
             "value": "1334.90",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2028, row 4°A",
+                "quote": "4°A 1.134,90 1194,90 1244,90 1294,90 1334,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2028-01-01"
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           }
         ]
@@ -1509,23 +1720,31 @@
             "valid_until": "2026-01-01",
             "value": "1142.43",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2025, row 4°B",
+                "quote": "4°B 1.083,78 1142,43 1191,31 1240,19 1279,29"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -1533,23 +1752,31 @@
             "valid_until": "2027-01-01",
             "value": "1191.31",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2026, row 4°B",
+                "quote": "4°B 1.083,78 1142,43 1191,31 1240,19 1279,29"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -1557,23 +1784,31 @@
             "valid_until": "2028-01-01",
             "value": "1240.19",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2027, row 4°B",
+                "quote": "4°B 1.083,78 1142,43 1191,31 1240,19 1279,29"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -1581,23 +1816,31 @@
             "valid_until": null,
             "value": "1279.29",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2028, row 4°B",
+                "quote": "4°B 1.083,78 1142,43 1191,31 1240,19 1279,29"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2028-01-01"
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           }
         ]
@@ -1700,23 +1943,31 @@
             "valid_until": "2026-01-01",
             "value": "1107.52",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2025, row 5°",
+                "quote": "5° 1.049,77 1107,52 1155,65 1203,78 1242,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -1724,23 +1975,31 @@
             "valid_until": "2027-01-01",
             "value": "1155.65",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2026, row 5°",
+                "quote": "5° 1.049,77 1107,52 1155,65 1203,78 1242,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -1748,23 +2007,31 @@
             "valid_until": "2028-01-01",
             "value": "1203.78",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2027, row 5°",
+                "quote": "5° 1.049,77 1107,52 1155,65 1203,78 1242,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -1772,23 +2039,31 @@
             "valid_until": null,
             "value": "1242.28",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2028, row 5°",
+                "quote": "5° 1.049,77 1107,52 1155,65 1203,78 1242,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2028-01-01"
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           }
         ]
@@ -1891,23 +2166,31 @@
             "valid_until": "2026-01-01",
             "value": "988.31",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2025, row 6°",
+                "quote": "6° 933,62 988,31 1033,88 1079,45 1115,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -1915,23 +2198,31 @@
             "valid_until": "2027-01-01",
             "value": "1033.88",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2026, row 6°",
+                "quote": "6° 933,62 988,31 1033,88 1079,45 1115,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -1939,23 +2230,31 @@
             "valid_until": "2028-01-01",
             "value": "1079.45",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2027, row 6°",
+                "quote": "6° 933,62 988,31 1033,88 1079,45 1115,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           },
           {
@@ -1963,23 +2262,31 @@
             "valid_until": null,
             "value": "1115.90",
             "provenance": {
-              "status": "assumed",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
-                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
-                  "kind": "altro",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                  "title": "Accordo di rinnovo del CCNL per i dipendenti delle imprese di prima trasformazione del tabacco sciolto 2025-2028, 2 luglio 2025 (scansione firmata, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+                  "published_on": "2025-07-02",
+                  "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
                 },
-                "section": "Allegato A - Minimi retributivi mensili"
+                "page": "13",
+                "section": "Allegato A - Minimi retributivi mensili, column dal 1/1/2028, row 6°",
+                "quote": "6° 933,62 988,31 1033,88 1079,45 1115,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-17T10:44:30Z",
                 "verification_status": "verified",
-                "effective_from": "2028-01-01"
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-17T10:44:30Z",
+                "review_id": "2026-10-17-ai-allegato-a"
               },
-              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image."
             }
           }
         ]
@@ -2058,9 +2365,9 @@
     "effective_from": "2026-01-01",
     "effective_until": null,
     "published_at": "2026-09-18",
-    "source": "unavailable",
-    "source_type": "estimated",
+    "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+    "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "ac44b9cbc86567e8732eb72770d516a6bce76ecfaa47f16ce407e9d7733b8ea0"
+    "source_hash": "1e2366af825b33f41cc0450fe195b189fe87d71443f298298ba06dc10d005b9f"
   }
 }

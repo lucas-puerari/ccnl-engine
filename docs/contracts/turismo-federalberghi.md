@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, seniority, sickness, trattamento_integrativo |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -120,12 +120,61 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the net daily pay of art. 228, the unpaid first day of a short illness and the end of a fixed-term contract.
 
-!!! warning "turismo-federalberghi/turismo_unmodelled_elements · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the lower paga base of 1-2 star hotels and campsites up to 1200 presenze (art. 152 c.2 as replaced in 2024, p. 43; level 4 1,688.98 instead of 1,695.69 from May 2026); the elemento economico di garanzia paid with the November 2027 pay without an integrative agreement by 31 October 2026 (art. 13 c.10, pp. 11-12: A and B 186, 1-3 158, 4-5 140, 6s-7 112); the hourly table of the extra workers (art. 155 c.3, p. 44); the absorption of the Quadri allowance into individual treatments (art. 145); the first scatto counted from age 18 and from the month after the triennium (art. 158 c.2-3); the net cap of the apprentice pay (art. 58 c.3); the ratei of the tredicesima and quattordicesima during maternity, paternity and parental leave (artt. 160 c.4 and 161 c.6); the lower ramp of the hires of 14 November 2016 (verbale 30 November 2016). The caller pays them as variable items.
+!!! warning "turismo-federalberghi/small_hotel_table · base_salary · impact yes · open"
+    Art. 152 c. 2 as replaced in 2024, p. 43: the lower paga base of 1-2 star hotels and campsites up to 1200 presenze (level 4 1,688.98 instead of 1,695.69 from May 2026).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the small-hotel table, the 2027 guarantee element, the fund omission EDRs and the extras table.
+    **Remediation:** Add an employer fact for the small-hotel table.
+
+!!! warning "turismo-federalberghi/guarantee_element_2027 · base_salary · impact yes · open"
+    Art. 13 c. 10, pp. 11-12: the elemento economico di garanzia paid with the November 2027 pay without an integrative agreement by 31 October 2026 (A and B 186, 1-3 158, 4-5 140, 6s-7 112).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the 2027 guarantee element as a conditional allowance.
+
+!!! warning "turismo-federalberghi/extras_hourly_table · base_salary · impact yes · open"
+    Art. 155 c. 3, p. 44: the hourly table of the extra workers.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the extras hourly table.
+
+!!! warning "turismo-federalberghi/quadri_absorption · base_salary · impact yes · open"
+    Art. 145: the absorption of the Quadri allowance into individual treatments.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the absorption of Art. 145.
+
+!!! warning "turismo-federalberghi/first_scatto_from_18 · base_salary · impact yes · open"
+    Art. 158 c. 2-3: the first scatto counted from age 18 and from the month after the triennium.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Count the first scatto from age 18.
+
+!!! warning "turismo-federalberghi/apprentice_net_cap · base_salary · impact yes · open"
+    Art. 58 c. 3: the net cap of the apprentice pay.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Cap the apprentice net pay.
+
+!!! warning "turismo-federalberghi/extra_months_during_leave · base_salary · impact yes · open"
+    Artt. 160 c. 4 and 161 c. 6: the ratei of the tredicesima and quattordicesima during maternity, paternity and parental leave.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Accrue the ratei during the leaves.
+
+!!! warning "turismo-federalberghi/hires_2016_ramp · base_salary · impact yes · open"
+    Verbale of 30 November 2016: the lower ramp of the hires of 14 November 2016. The caller pays these amounts as variable items.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the 2016 ramp.
 
 !!! warning "turismo-federalberghi/health_and_bilateral_funds · bilateral_funds · impact yes · open"
     HEALTH AND BILATERAL FUNDS: the EBNT/EBT quota (art. 23, p. 13) and the Fondo FAST (art. 163, pp. 47-48) are owed for every worker; an employer that omits them owes the worker instead the EDR of 0.60% of the paga base x 14 and EUR 14 x 14. Neither is modelled: the employer cost, and with the EDR the net pay, are short of them.

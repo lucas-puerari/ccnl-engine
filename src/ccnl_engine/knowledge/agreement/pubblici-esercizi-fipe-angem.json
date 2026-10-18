@@ -160,15 +160,15 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED AMOUNTS: the guarantee premium of the renewal of 5 June 2024 (art. 13 c. 10) paid with the November 2027 pay to workers without second-level bargaining. The caller pays it as a variable item.",
+        "text": "Art. 13 c. 10 of the renewal of 5 June 2024: the guarantee premium paid with the November 2027 pay to workers without second-level bargaining. The caller pays it as a variable item.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "fipe_unmodelled_elements",
+          "variant": "guarantee_premium_2027",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the Fondo Est elemento distinto and the 2027 guarantee premium as conditional allowances."
+          "remediation": "Model the 2027 guarantee premium as a conditional allowance."
         }
       },
       {
@@ -2477,7 +2477,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "74946778638a7856c530c26e92e708de484fa3f8cff5826036ddff074ac205bc",
+    "source_hash": "2c60f54f534ac66ee4f84757e6929f451dcfc8a4f5e420aea021376d91671958",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

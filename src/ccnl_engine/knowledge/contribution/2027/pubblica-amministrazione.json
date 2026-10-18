@@ -347,17 +347,17 @@
   "apprentice": {
     "employee_rate": "0.0880",
     "employee_ivs_rate": "0.0880",
-    "employer_rate": "0.2420",
+    "employer_rate": "0.2581",
     "employer_ivs_rate": "0.2420",
     "small_firm_max_employees": 9,
-    "small_firm_employer_rate_months_0_11": "0.2420",
+    "small_firm_employer_rate_months_0_11": "0.2581",
     "small_firm_employer_ivs_rate_months_0_11": "0.2420",
-    "small_firm_employer_rate_months_12_23": "0.2420",
+    "small_firm_employer_rate_months_12_23": "0.2581",
     "small_firm_employer_ivs_rate_months_12_23": "0.2420",
     "provenance": {
       "status": "assumed",
       "location": null,
-      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Schema-required placeholder: apprenticeship does not apply to PA contracts."
+      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: The only PA apprenticeship is the fixed-term one of D.L. 44/2023 art. 3-ter (hires until 31/12/2026, up to 36 months). Circ. 31/2025 par. 3 applies the ordinary contributions of fixed-term PA staff (CTPS IVS 24.20% employer, 8.80% employee, as in inps.employer_tiers) plus NASpI 1.61% employer (1.31% + 0.30%; the 1.40% surcharge is not due): employer 24.20 + 1.61 = 25.81%, IVS share 24.20%. No small-firm relief exists for PA, so the small-firm fields repeat the same rates. Assumes CTPS enrolment; CPDEL-enrolled bodies use other IVS rates."
     }
   },
   "ruleset": {
@@ -368,7 +368,7 @@
     "published_at": "2026-10-14",
     "source": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html",
     "verification_status": "unverified",
-    "source_hash": "f25bb6c578a823280e9e17e9747baf22f7f5efdb07a3a26d7a2a2353c1f24be3",
+    "source_hash": "6c7ec8386e5d1e545c38f88344cfd0cecbe861960b0d3b4c17a58fe7184665fa",
     "source_type": "estimated",
     "provisional": true
   }

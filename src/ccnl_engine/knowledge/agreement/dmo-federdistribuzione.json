@@ -105,15 +105,67 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED AMOUNTS: the indennità di cassa of 5% (Art. 202); the premiums on ordinary night (15%, Art. 134), Sunday (30%, Art. 136) and weekly rest day (30%, Art. 139) work; the pay rows of the operatori di vendita; the sostegno all'occupazione contract of Art. 70; the guarantee of the commission-paid staff (Art. 201). The una tantum of Art. 197 (July 2024 and 2025) is historic and outside the TFR base (c. 6).",
+        "text": "Art. 202: the indennità di cassa of 5%.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "dmo_unmodelled_elements",
+          "variant": "cashier_allowance",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the fund omission EDRs, the cashier allowance and the premiums on ordinary hours."
+          "remediation": "Model the cashier allowance with a role."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 134, 136 and 139: the premiums on ordinary night (15%), Sunday (30%) and weekly rest day (30%) work.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ordinary_hours_premiums",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the premiums on ordinary hours."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "The pay rows of the operatori di vendita.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sales_operators",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the operatori di vendita levels."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 70: the sostegno all'occupazione contract.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "employment_support_contract",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the pay of the Art. 70 contract."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 201: the guarantee of the commission-paid staff. The una tantum of Art. 197 (July 2024 and 2025) is historic and outside the TFR base (c. 6).",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "commission_guarantee",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the guarantee of commission-paid staff."
         }
       },
       {
@@ -3022,7 +3074,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "0b67a27d1c7e3a6a83639b708965ff5eb14480192708774734f5800ab1054f3e",
+    "source_hash": "2642ef74c4740ed5fb4a1817c6c64aac53f047eae571ad9fb35d9ea98ac02376",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
