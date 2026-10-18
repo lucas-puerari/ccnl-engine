@@ -157,7 +157,7 @@ def test_sources_link_only_public_addresses(demo_app: types.ModuleType) -> None:
     """A source without an HTTP address has no link."""
     for ccnl, level in (
         ("sistemazioni-idraulico-forestali-operai", None),
-        ("pulizia-artigianato-confartigianato", None),
+        ("sistemazioni-idraulico-forestali-impiegati", None),
     ):
         level_code = level or json.loads(demo_app.load_ccnl_levels(ccnl))[0]["code"]
         sources = _year(

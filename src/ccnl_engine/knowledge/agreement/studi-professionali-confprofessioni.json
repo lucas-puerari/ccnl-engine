@@ -106,15 +106,132 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED AMOUNTS (CCNL 16/02/2024): the lavoro supplementare of part-time at 40% of the quota oraria of the retribuzione di fatto, outside the deferred institutes and the TFR (Art. 42: no request kind carries it); the comporto counted over the episodes of the 365 days before the last one, and the +90 days for serious illnesses paid 100% in months 7-8 and 70% in month 9 (Artt. 120-121); the 100% of festività during sickness (Art. 124); the infortunio integration (100% on the day of the event, 60% days 1-3, 75% after, Art. 123); the employer top-up to 100% of the holidays during compulsory maternity or paternity leave (Art. 110 c. 8); the ROL (40 or 66 hours) and the 32 hours of ex festività paid when not taken, the festività falling on Sunday and the flexibility hours not recovered (Artt. 91, 92, 97 C, 98); the salario d'ingresso of the reimpiego, up to two levels below for 9 months and one for 6 (Art. 56); the indennità di disponibilità of the lavoro intermittente, 30% (Art. 58); the diaria of the trasferte, EUR 15 or 30 a day (Art. 115); the exclusion of the quattordicesima for workers already paid extra months (Art. 143). The una tantum of EUR 400 (EUR 200 in May 2024 and May 2025, p. 73) is historic and outside the TFR base.",
-        "capability": "base_salary",
+        "text": "Art. 42: the lavoro supplementare of part-time at 40% of the quota oraria of the retribuzione di fatto, outside the deferred institutes and the TFR.",
+        "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "studi_unmodelled_elements",
+          "variant": "part_time_supplementary",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the bilateral omission element, the part-time supplementare, the rolling comporto and the allowances of Artt. 56, 58 and 115."
+          "remediation": "Add the OT_SUPPLEMENTARE band once OvertimeKind.SUPPLEMENTARY is on main."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Artt. 120-121: the comporto counted over the episodes of the 365 days before the last one, and the +90 days for serious illnesses paid 100% in months 7-8 and 70% in month 9.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "rolling_comporto_and_serious_illness",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the rolling comporto and the serious-illness extension."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 124: the 100% of festività during sickness.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "holiday_during_sickness",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pay the festività during sickness at 100%."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 123: the infortunio integration (100% on the day of the event, 60% days 1-3, 75% after).",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "injury_integration",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the injury integration."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 110 c. 8: the employer top-up to 100% of the holidays during compulsory maternity or paternity leave.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "maternity_holiday_top_up",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the top-up of Art. 110."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Artt. 91, 92, 97 C, 98: the ROL (40 or 66 hours) and the 32 hours of ex festività paid when not taken, the festività falling on Sunday and the flexibility hours not recovered.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "unused_leave_hours",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pay the unused ROL, ex festività and flexibility hours."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 56: the salario d'ingresso of the reimpiego, up to two levels below for 9 months and one for 6.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "reemployment_entry_pay",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the entry pay of the reimpiego."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 58: the indennità di disponibilità of the lavoro intermittente, 30%.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "intermittent_availability",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the availability allowance."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 115: the diaria of the trasferte, EUR 15 or 30 a day.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "travel_diaria",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the trasferta diaria."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 143: the exclusion of the quattordicesima for workers already paid extra months. The una tantum of EUR 400 (EUR 200 in May 2024 and May 2025, p. 73) is historic and outside the TFR base.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "fourteenth_exclusion",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add a worker fact for extra months already paid."
         }
       },
       {
@@ -2060,7 +2177,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "0f095f0515be98dd32637ba48851fe74496577bc2d3a591c156976c09ff2b5d9",
+    "source_hash": "7acf1288f6b601ccb2ccdcbbf44af545c6296d32af30b898da7890f93733e621",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

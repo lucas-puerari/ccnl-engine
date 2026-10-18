@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-10-27 |
-| **Last review** | 2026-10-12 |
+| **Last review** | 2026-10-17 |
 | **Latest salary tranche** | 2024-01-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Salary tables, additional months, hourly and daily divisors, overtime, leave, sickness and seniority, against the CCNL of 2 November 2022 and the definitive CCNL of 27 October 2025. | corrected | Salary amounts confirmed (annual table over 12; elevata qualificazione 2023: 35,000 / 13).<br>The first period started on 2022-11-02, the signing date; the new classification applies from 1 January 2023 (art. 99 c. 3).<br>Overtime is art. 47 c. 8 of the CCNL 2.11.2022, in force from 2022, not from 2024.<br>Citations moved from the ipotesi of January 2025 (other article numbers) to the definitive text of 27 October 2025.<br>Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 40), not 270 days at 100%.<br>Leave: 26 days for the first three years of a first public employment (art. 35 c. 4).<br>Signatories: FP CGIL and UIL FPL did not sign; CONFSAL, CGS, CSE and CISL signed.<br>The 2025-2027 renewal is an ipotesi of 29 July 2026, not in force. |
+| 2026-10-17 | claude-opus-5-5 (ai) | Periodic review due 2026-12-31: the tabellare of 2024 against Tabella 2a of the CCNL of 27 October 2025, and the status of the 2025-2027 renewal. | confirmed | Tabella 2a (p. 107): the five annual amounts from 1 January 2024 over 12 give the monthly amounts of the file (21.545,34 / 12 = 1.795,445, 1.795,45 half up). Match.<br>The 2025-2027 renewal is still the ipotesi of 29 July 2026 on 2026-10-17; renewal_2025_2027_not_modelled stays open with the status recorded. The next review is moved to 2027-01-31.<br>No independent example (an ARAN worked example or a real payslip of the comparto) was found in this review. |
 
 ## Salary table
 
@@ -86,7 +87,7 @@ Latest effective values per level (monthly gross, EUR).
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "sanita-aran/renewal_2025_2027_not_modelled · base_salary · impact unknown · open"
-    2025-2027 RENEWAL NOT YET MODELLED. An ipotesi di CCNL 2025-2027 was signed by ARAN on 29 July 2026 with retroactive effect from 1 January 2025. Increases (monthly, 13 mensilità) from Jan 2024 base: support +41.40 (Jan 2025)/+82.80 (Jan 2026)/+106.70 (Jan 2027); operatori +43.70/+87.40/+112.60; assistenti +46.60/+93.20/+120.00; funzionari +50.50/+101.10/+130.20; elevata qualificazione +70.20/+140.50/+181.00. Not yet modelled — ipotesi pending comitato di settore, Governo, and Corte dei conti certification.
+    2025-2027 RENEWAL NOT YET MODELLED. An ipotesi di CCNL 2025-2027 was signed by ARAN on 29 July 2026 with retroactive effect from 1 January 2025. Increases (monthly, 13 mensilità) from Jan 2024 base: support +41.40 (Jan 2025)/+82.80 (Jan 2026)/+106.70 (Jan 2027); operatori +43.70/+87.40/+112.60; assistenti +46.60/+93.20/+120.00; funzionari +50.50/+101.10/+130.20; elevata qualificazione +70.20/+140.50/+181.00. Not yet modelled — ipotesi pending comitato di settore, Governo, and Corte dei conti certification. STATUS CHECKED 2026-10-17: still an ipotesi (signed text of 29 July 2026, lentepubblica.it copy); no definitive signature found on 2026-10-17.
 
     **Applies when:** `base_salary` applies; from 2025-01-01.
 

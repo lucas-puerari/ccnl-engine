@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 0 derived / 20 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 12 verified / 0 derived / 8 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,12 +50,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-01-08 |
-| **Last review** | — |
+| **Last review** | 2026-10-17 |
 | **Latest salary tranche** | 2027-06-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-17 | claude-opus-5-5 (ai) | The minimi tabellari of the Settore radiofonico against the tables of the renewal published by Confindustria Radio Televisioni. | confirmed | The minimi of the 6 levels from 2026-01-01 to 2027-06-01 (PDF p. 2, text layer; the same tables are in the consolidated CCNL 2026, PDF pp. 74-75) match the file and move from assumed to verified.<br>The ruleset names this source, published by Confindustria Radio Televisioni, the employer signatory: source_type contracting_party instead of estimated. |
 
 ## Salary table
 

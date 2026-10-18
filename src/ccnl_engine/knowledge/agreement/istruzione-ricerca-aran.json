@@ -7576,7 +7576,7 @@
           "months_per_year": 12,
           "service_months_threshold": 0,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -7593,11 +7593,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 108
         },
@@ -7622,7 +7623,7 @@
           "months_per_year": 12,
           "service_months_threshold": 108,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -7639,11 +7640,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 180
         },
@@ -7668,7 +7670,7 @@
           "months_per_year": 12,
           "service_months_threshold": 180,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -7685,11 +7687,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 252
         },
@@ -7714,7 +7717,7 @@
           "months_per_year": 12,
           "service_months_threshold": 252,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -7731,11 +7734,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 336
         },
@@ -7760,7 +7764,7 @@
           "months_per_year": 12,
           "service_months_threshold": 336,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -7777,11 +7781,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 420
         },
@@ -7806,7 +7811,7 @@
           "months_per_year": 12,
           "service_months_threshold": 420,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -7823,11 +7828,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           }
         }
       ],
@@ -8081,7 +8087,7 @@
           "months_per_year": 12,
           "service_months_threshold": 0,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -8098,11 +8104,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 108
         },
@@ -8127,7 +8134,7 @@
           "months_per_year": 12,
           "service_months_threshold": 108,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -8144,11 +8151,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 180
         },
@@ -8173,7 +8181,7 @@
           "months_per_year": 12,
           "service_months_threshold": 180,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -8190,11 +8198,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 252
         },
@@ -8219,7 +8228,7 @@
           "months_per_year": 12,
           "service_months_threshold": 252,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -8236,11 +8245,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 336
         },
@@ -8265,7 +8275,7 @@
           "months_per_year": 12,
           "service_months_threshold": 336,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -8282,11 +8292,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 420
         },
@@ -8311,7 +8322,7 @@
           "months_per_year": 12,
           "service_months_threshold": 420,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -8328,11 +8339,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           }
         }
       ],
@@ -8586,7 +8598,7 @@
           "months_per_year": 12,
           "service_months_threshold": 0,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -8603,11 +8615,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 108
         },
@@ -8632,7 +8645,7 @@
           "months_per_year": 12,
           "service_months_threshold": 108,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -8649,11 +8662,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 180
         },
@@ -8678,7 +8692,7 @@
           "months_per_year": 12,
           "service_months_threshold": 180,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -8695,11 +8709,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 252
         },
@@ -8724,7 +8739,7 @@
           "months_per_year": 12,
           "service_months_threshold": 252,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -8741,11 +8756,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 336
         },
@@ -8770,7 +8786,7 @@
           "months_per_year": 12,
           "service_months_threshold": 336,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -8787,11 +8803,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 420
         },
@@ -8816,7 +8833,7 @@
           "months_per_year": 12,
           "service_months_threshold": 420,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -8833,11 +8850,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           }
         }
       ],
@@ -9091,7 +9109,7 @@
           "months_per_year": 12,
           "service_months_threshold": 0,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -9108,11 +9126,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 108
         },
@@ -9137,7 +9156,7 @@
           "months_per_year": 12,
           "service_months_threshold": 108,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -9154,11 +9173,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 180
         },
@@ -9183,7 +9203,7 @@
           "months_per_year": 12,
           "service_months_threshold": 180,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -9200,11 +9220,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 252
         },
@@ -9229,7 +9250,7 @@
           "months_per_year": 12,
           "service_months_threshold": 252,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -9246,11 +9267,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 336
         }
@@ -9505,7 +9527,7 @@
           "months_per_year": 12,
           "service_months_threshold": 0,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -9522,11 +9544,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 108
         },
@@ -9551,7 +9574,7 @@
           "months_per_year": 12,
           "service_months_threshold": 108,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -9568,11 +9591,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 180
         },
@@ -9597,7 +9621,7 @@
           "months_per_year": 12,
           "service_months_threshold": 180,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -9614,11 +9638,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 252
         },
@@ -9643,7 +9668,7 @@
           "months_per_year": 12,
           "service_months_threshold": 252,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -9660,11 +9685,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 336
         }
@@ -9919,7 +9945,7 @@
           "months_per_year": 12,
           "service_months_threshold": 0,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -9936,11 +9962,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 108
         },
@@ -9965,7 +9992,7 @@
           "months_per_year": 12,
           "service_months_threshold": 108,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -9982,11 +10009,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 180
         },
@@ -10011,7 +10039,7 @@
           "months_per_year": 12,
           "service_months_threshold": 180,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -10028,11 +10056,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 252
         }
@@ -10287,7 +10316,7 @@
           "months_per_year": 12,
           "service_months_threshold": 0,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -10304,11 +10333,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 108
         },
@@ -10333,7 +10363,7 @@
           "months_per_year": 12,
           "service_months_threshold": 108,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -10350,11 +10380,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 180
         },
@@ -10379,7 +10410,7 @@
           "months_per_year": 12,
           "service_months_threshold": 180,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -10396,11 +10427,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 252
         }
@@ -10655,7 +10687,7 @@
           "months_per_year": 12,
           "service_months_threshold": 0,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -10672,11 +10704,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 108
         },
@@ -10701,7 +10734,7 @@
           "months_per_year": 12,
           "service_months_threshold": 108,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -10718,11 +10751,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 180
         },
@@ -10747,7 +10781,7 @@
           "months_per_year": 12,
           "service_months_threshold": 180,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2019-2021",
@@ -10764,11 +10798,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "extraction_timestamp": "2026-10-17T10:19:27Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
-            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments, none with the tredicesima.",
+            "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 252
         }
@@ -10900,7 +10935,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "97d2f07219fdd2b25b5031db51bdd5b9582edfb7597b76986289d6715e9d1b2f",
+    "source_hash": "7517e284caeced23ee6d5aa0a3152cbeb7d1db3a9e7f4a7cf7a6a07188a5c068",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -11551,6 +11586,28 @@
         ],
         "findings": [
           "The file started on 1.2.2023 (limitation before_february_2023): the tabellare dal 1.1.2021 and the elemento perequativo by fascia of Tabella C1 now cover 2022 and January 2023."
+        ]
+      },
+      {
+        "id": "2026-10-17-ai-elemento-perequativo",
+        "date": "2026-10-17",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The number of instalments of the elemento perequativo of the CCNL 19/04/2018 the file pays until its conglobamento.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf",
+            "sha256": "2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+            "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+          }
+        ],
+        "findings": [
+          "The 35 elemento perequativo records of the Scuola levels move from assumed to derived: INPS msg. 3224/2018 reads the element as paid 'con cadenza mensile', Tabella D2 of the CCNL 19/04/2018 gives 10 monthly instalments in 2018, and Tabella C1 of the CCNL 6/12/2022 (p. 244) prints the yearly amount as twelve monthly ones (308,04 = 12 x 25,67). No text puts it in the tredicesima. Art. 37 of the Scuola section was not read, so the records stay derived.",
+          "The absence rule stays assumed: no text of the comparto fixes the daily quota of an unpaid absence of the scuola staff."
         ]
       }
     ]

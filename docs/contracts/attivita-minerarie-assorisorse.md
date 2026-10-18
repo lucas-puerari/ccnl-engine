@@ -30,7 +30,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | seniority |
 
 3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 0 derived / 38 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 36 verified / 0 derived / 2 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -49,12 +49,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2022-07-13 |
-| **Last review** | — |
+| **Last review** | 2026-10-17 |
 | **Latest salary tranche** | 2025-01-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-17 | claude-opus-5-5 (ai) | The minimi of the nine levels against Art. 17 of the renewal of 13 July 2022. | corrected | Art. 17 (p. 9 of the scan, read by OCR and on the page image): the 36 minimi of the nine levels at 1-1-2022, 1-1-2023, 1-12-2023 and 1-1-2025 move from assumed to verified.<br>Corrected: level 8 at 1-1-2022 is printed 1.557,23, and 1.557,23 + 33,33 (the first tranche at parameter 100) gives the 1.590,56 printed for 1-1-2023; the file held 1.557,28. |
 
 ## Salary table
 
@@ -94,12 +96,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the seniority article and add the increments to the CCNL file.
 
-!!! warning "attivita-minerarie-assorisorse/ocr_salary_values · base_salary · impact unknown · open"
+!!! note "attivita-minerarie-assorisorse/ocr_salary_values · base_salary · impact unknown · resolved"
     SIMPLIFICATION: Source PDF is scanned (image-based, CCITT compression). Salary values extracted via OCR (Ghostscript + Tesseract). Amounts verified by cross-checking parametrale ratios and incremental consistency.
 
     **Applies when:** `base_salary` applies.
 
-    **Remediation:** Check the OCR-extracted salary values against a text source of the renewal protocol.
+    **Remediation:** Resolved: the 36 minimi were checked on the page image of Art. 17 (review 2026-10-17-ai-minimi); level 8 at 1-1-2022 was corrected to 1.557,23.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
