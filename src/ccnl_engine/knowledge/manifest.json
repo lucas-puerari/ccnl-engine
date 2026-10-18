@@ -795,8 +795,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/elettrico-elettricita-futura",
       "ruleset_version": "2026.2",
-      "source_hash": "4eaf3593d81bb8d3f12889431b359c4ed349ec05d32d7b1b06e83ea215f0ec84",
-      "source_type": "commercial_secondary",
+      "source_hash": "f483c41d6a2be65b9bfaeb47fb2d636afa8b5c4a9afc1d172629a1fbd0500115",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/elettrico-elettricita-futura.json.gz"
     },

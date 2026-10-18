@@ -10,7 +10,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 208 | 186 | 0 | `funzioni-centrali-aran` |
 | terziario | 43 | 4 977 055 | 52 | 1576 | 737 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 48 | 4 946 900 | 151 | 2241 | 763 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| industria | 48 | 4 946 900 | 151 | 2185 | 819 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 56 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 35 | 305 | 97 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 12 | 240 | 49 | 5 | `operai-agricoli-florovivaisti` |
@@ -105,7 +105,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`grafica-editoria-aieg`](../contracts/grafica-editoria-aieg.md) | 70 000 | exploratory | 1 | 71 | 1 | aggregator | none | none |
 | [`gas-acqua-utilitalia`](../contracts/gas-acqua-utilitalia.md) | 65 000 | exploratory | 1 | 63 | 0 | party or official | none | none |
 | [`igiene-ambientale-utilitalia`](../contracts/igiene-ambientale-utilitalia.md) | 65 000 | exploratory | 1 | 144 | 0 | aggregator | none | none |
-| [`elettrico-elettricita-futura`](../contracts/elettrico-elettricita-futura.md) | 60 000 | exploratory | 1 | 77 | 1 | aggregator | none | none |
+| [`elettrico-elettricita-futura`](../contracts/elettrico-elettricita-futura.md) | 60 000 | exploratory | 1 | 21 | 57 | aggregator | none | none |
 | [`chimica-affini-pmi-unionchimica`](../contracts/chimica-affini-pmi-unionchimica.md) | 56 000 | exploratory | 2 | 21 | 0 | aggregator | none | none |
 | [`tessile-pmi-uniontessile`](../contracts/tessile-pmi-uniontessile.md) | 48 000 | exploratory | 6 | 0 | 38 | aggregator | none | none |
 | [`trasporto-aereo-assaeroporti`](../contracts/trasporto-aereo-assaeroporti.md) | 40 000 | exploratory | 1 | 72 | 1 | party or official | none | none |

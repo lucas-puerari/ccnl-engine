@@ -110,6 +110,28 @@
         "findings": [
           "Art. 40 - Tredicesima e Quattordicesima mensilità (p. 96): \"Nel caso di inizio o di cessazione del rapporto di lavoro durante l’anno o nel caso di assenza non retribuita, il lavoratore, non in prova, ha diritto a tanti dodicesimi dell’ammontare di tali mensilità quanti sono i mesi interi di servizio prestato, computando come mese intero la frazione di mese superiore a 15 giorni.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
         ]
+      },
+      {
+        "id": "2026-10-18-ai-tables",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The minimi contrattuali integrati of the 14 levels on the four tranches of the ipotesi di accordo of 11 February 2025 (1/4/2025, 1/4/2026, 1/4/2027, 1/10/2027), against the table printed in the signed text deposited at CNEL.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+            "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
+          }
+        ],
+        "findings": [
+          "The signed ipotesi of 11 February 2025 (CNEL K051, deposito 216334, 44-page scan without text layer, read on the page image of PDF p. 37) prints the table 'Minimi contrattuali integrati' with the parameter, the increment and the minimo of the 14 levels QS-C1 on 1/4/2025, 1/4/2026, 1/4/2027 and 1/10/2027 ('Aumento medio a regime €290 su parametro medio 179,76 valore punto 29,80'). The table level labels are the file codes.",
+          "41 of the 56 file values match; 15 (all on 1/4/2027 or 1/10/2027) differ by one cent and are corrected to the printed table.",
+          "Art. 38 c. 1 (PDF p. 34) defines the monthly pay as the minimo contrattuale integrato (minimi tabellari conglobated with the ex indennità di contingenza from 1 April 2013) and c. 3 adds the EDR of EUR 10,33 separately: the file's base_salary (minimo) with the EDR as a fixed allowance matches.",
+          "The appendix table on PDF p. 42 (5 categories, 'Aumento medio a regime € 220 su parametro medio 134,19') belongs to the separate area contrattuale in the appendix and is not used.",
+          "The ruleset now names the CNEL deposit of the text signed by the contracting parties (Elettricità Futura, Utilitalia, Energia Libera, Enel, GSE, Terna, Sogin, Filctem-CGIL, Flaei-CISL, Uiltec-UIL): source_type contracting_party.",
+          "Corrected to the printed table: Q 2027-04-01: 3858.47 -> 3858.48; Q 2027-10-01: 3947.60 -> 3947.61; ASS 2027-04-01: 3405.74 -> 3405.73; ASS 2027-10-01: 3484.42 -> 3484.41; AS 2027-04-01: 3187.64 -> 3187.65; AS 2027-10-01: 3261.27 -> 3261.28; A1 2027-04-01: 2913.65 -> 2913.66; A1 2027-10-01: 2980.96 -> 2980.97; BSS 2027-04-01: 2774.62 -> 2774.63; BS 2027-04-01: 2656.36 -> 2656.35; BS 2027-10-01: 2717.73 -> 2717.72; B1 2027-04-01: 2417.48 -> 2417.49; B2S 2027-04-01: 2257.70 -> 2257.71; CS 2027-04-01: 1862.65 -> 1862.64; CS 2027-10-01: 1905.68 -> 1905.67."
+        ]
       }
     ]
   },
@@ -331,21 +353,29 @@
             "valid_until": "2026-04-01",
             "value": "4115.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1° /4/2025', 'Minimo (€)', row QS",
+                "quote": "QS 255,07 127,71 4115,33 92,23 4207,56 92,23 4299,79 99,33 4399,12 411,50"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -354,21 +384,29 @@
             "valid_until": "2027-04-01",
             "value": "4207.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2026', 'Minimo (€)', row QS",
+                "quote": "QS 255,07 127,71 4115,33 92,23 4207,56 92,23 4299,79 99,33 4399,12 411,50"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -377,21 +415,29 @@
             "valid_until": "2027-10-01",
             "value": "4299.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2027', 'Minimo (€)', row QS",
+                "quote": "QS 255,07 127,71 4115,33 92,23 4207,56 92,23 4299,79 99,33 4399,12 411,50"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -400,21 +446,29 @@
             "valid_until": null,
             "value": "4399.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/10/2027', 'Minimo (€)', row QS",
+                "quote": "QS 255,07 127,71 4115,33 92,23 4207,56 92,23 4299,79 99,33 4399,12 411,50"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -484,21 +538,29 @@
             "valid_until": "2026-04-01",
             "value": "3692.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1° /4/2025', 'Minimo (€)', row Q",
+                "quote": "Q 228,89 114,60 3692,95 82,77 3775,71 82,77 3858,48 89,13 3947,61 369,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -507,67 +569,91 @@
             "valid_until": "2027-04-01",
             "value": "3775.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2026', 'Minimo (€)', row Q",
+                "quote": "Q 228,89 114,60 3692,95 82,77 3775,71 82,77 3858,48 89,13 3947,61 369,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": "2027-10-01",
-            "value": "3858.47",
+            "value": "3858.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2027', 'Minimo (€)', row Q",
+                "quote": "Q 228,89 114,60 3692,95 82,77 3775,71 82,77 3858,48 89,13 3947,61 369,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2027-10-01",
             "valid_until": null,
-            "value": "3947.60",
+            "value": "3947.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/10/2027', 'Minimo (€)', row Q",
+                "quote": "Q 228,89 114,60 3692,95 82,77 3775,71 82,77 3858,48 89,13 3947,61 369,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -637,21 +723,29 @@
             "valid_until": "2026-04-01",
             "value": "3259.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1° /4/2025', 'Minimo (€)', row ASS",
+                "quote": "ASS 202,04 101,15 3259,62 73,06 3332,68 73,06 3405,73 78,67 3484,41 325,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -660,67 +754,91 @@
             "valid_until": "2027-04-01",
             "value": "3332.68",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2026', 'Minimo (€)', row ASS",
+                "quote": "ASS 202,04 101,15 3259,62 73,06 3332,68 73,06 3405,73 78,67 3484,41 325,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": "2027-10-01",
-            "value": "3405.74",
+            "value": "3405.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2027', 'Minimo (€)', row ASS",
+                "quote": "ASS 202,04 101,15 3259,62 73,06 3332,68 73,06 3405,73 78,67 3484,41 325,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2027-10-01",
             "valid_until": null,
-            "value": "3484.42",
+            "value": "3484.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/10/2027', 'Minimo (€)', row ASS",
+                "quote": "ASS 202,04 101,15 3259,62 73,06 3332,68 73,06 3405,73 78,67 3484,41 325,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -789,21 +907,29 @@
             "valid_until": "2026-04-01",
             "value": "3050.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1° /4/2025', 'Minimo (€)', row AS",
+                "quote": "AS 189,10 94,68 3050,90 68,38 3119,27 68,38 3187,65 73,64 3261,28 305,06"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -812,67 +938,91 @@
             "valid_until": "2027-04-01",
             "value": "3119.27",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2026', 'Minimo (€)', row AS",
+                "quote": "AS 189,10 94,68 3050,90 68,38 3119,27 68,38 3187,65 73,64 3261,28 305,06"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": "2027-10-01",
-            "value": "3187.64",
+            "value": "3187.65",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2027', 'Minimo (€)', row AS",
+                "quote": "AS 189,10 94,68 3050,90 68,38 3119,27 68,38 3187,65 73,64 3261,28 305,06"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2027-10-01",
             "valid_until": null,
-            "value": "3261.27",
+            "value": "3261.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/10/2027', 'Minimo (€)', row AS",
+                "quote": "AS 189,10 94,68 3050,90 68,38 3119,27 68,38 3187,65 73,64 3261,28 305,06"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -941,21 +1091,29 @@
             "valid_until": "2026-04-01",
             "value": "2922.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1° /4/2025', 'Minimo (€)', row A1S",
+                "quote": "A1S 181,14 90,69 2922,60 65,50 2988,10 65,50 3053,60 70,54 3124,14 292,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -964,21 +1122,29 @@
             "valid_until": "2027-04-01",
             "value": "2988.10",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2026', 'Minimo (€)', row A1S",
+                "quote": "A1S 181,14 90,69 2922,60 65,50 2988,10 65,50 3053,60 70,54 3124,14 292,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -987,21 +1153,29 @@
             "valid_until": "2027-10-01",
             "value": "3053.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2027', 'Minimo (€)', row A1S",
+                "quote": "A1S 181,14 90,69 2922,60 65,50 2988,10 65,50 3053,60 70,54 3124,14 292,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1010,21 +1184,29 @@
             "valid_until": null,
             "value": "3124.14",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/10/2027', 'Minimo (€)', row A1S",
+                "quote": "A1S 181,14 90,69 2922,60 65,50 2988,10 65,50 3053,60 70,54 3124,14 292,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -1093,21 +1275,29 @@
             "valid_until": "2026-04-01",
             "value": "2788.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1° /4/2025', 'Minimo (€)', row A1",
+                "quote": "A1 172,84 86,54 2788,67 62,50 2851,16 62,50 2913,66 67,31 2980,97 278,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1116,67 +1306,91 @@
             "valid_until": "2027-04-01",
             "value": "2851.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2026', 'Minimo (€)', row A1",
+                "quote": "A1 172,84 86,54 2788,67 62,50 2851,16 62,50 2913,66 67,31 2980,97 278,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": "2027-10-01",
-            "value": "2913.65",
+            "value": "2913.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2027', 'Minimo (€)', row A1",
+                "quote": "A1 172,84 86,54 2788,67 62,50 2851,16 62,50 2913,66 67,31 2980,97 278,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2027-10-01",
             "valid_until": null,
-            "value": "2980.96",
+            "value": "2980.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/10/2027', 'Minimo (€)', row A1",
+                "quote": "A1 172,84 86,54 2788,67 62,50 2851,16 62,50 2913,66 67,31 2980,97 278,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -1245,21 +1459,29 @@
             "valid_until": "2026-04-01",
             "value": "2655.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1° /4/2025', 'Minimo (€)', row BSS",
+                "quote": "BSS 164,59 82,41 2655,60 59,52 2715,11 59,52 2774,63 64,09 2838,72 265,53"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1268,44 +1490,60 @@
             "valid_until": "2027-04-01",
             "value": "2715.11",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2026', 'Minimo (€)', row BSS",
+                "quote": "BSS 164,59 82,41 2655,60 59,52 2715,11 59,52 2774,63 64,09 2838,72 265,53"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": "2027-10-01",
-            "value": "2774.62",
+            "value": "2774.63",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2027', 'Minimo (€)', row BSS",
+                "quote": "BSS 164,59 82,41 2655,60 59,52 2715,11 59,52 2774,63 64,09 2838,72 265,53"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1314,21 +1552,29 @@
             "valid_until": null,
             "value": "2838.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/10/2027', 'Minimo (€)', row BSS",
+                "quote": "BSS 164,59 82,41 2655,60 59,52 2715,11 59,52 2774,63 64,09 2838,72 265,53"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -1397,21 +1643,29 @@
             "valid_until": "2026-04-01",
             "value": "2542.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1° /4/2025', 'Minimo (€)', row BS",
+                "quote": "BS 157,58 78,90 2542,40 56,98 2599,38 56,98 2656,35 61,36 2717,72 254,22"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1420,67 +1674,91 @@
             "valid_until": "2027-04-01",
             "value": "2599.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2026', 'Minimo (€)', row BS",
+                "quote": "BS 157,58 78,90 2542,40 56,98 2599,38 56,98 2656,35 61,36 2717,72 254,22"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": "2027-10-01",
-            "value": "2656.36",
+            "value": "2656.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2027', 'Minimo (€)', row BS",
+                "quote": "BS 157,58 78,90 2542,40 56,98 2599,38 56,98 2656,35 61,36 2717,72 254,22"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2027-10-01",
             "valid_until": null,
-            "value": "2717.73",
+            "value": "2717.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/10/2027', 'Minimo (€)', row BS",
+                "quote": "BS 157,58 78,90 2542,40 56,98 2599,38 56,98 2656,35 61,36 2717,72 254,22"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -1549,21 +1827,29 @@
             "valid_until": "2026-04-01",
             "value": "2422.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1° /4/2025', 'Minimo (€)', row B1S",
+                "quote": "B1S 150,15 75,18 2422,59 54,29 2476,88 54,29 2531,17 58,47 2589,64 242,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1572,21 +1858,29 @@
             "valid_until": "2027-04-01",
             "value": "2476.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2026', 'Minimo (€)', row B1S",
+                "quote": "B1S 150,15 75,18 2422,59 54,29 2476,88 54,29 2531,17 58,47 2589,64 242,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1595,21 +1889,29 @@
             "valid_until": "2027-10-01",
             "value": "2531.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2027', 'Minimo (€)', row B1S",
+                "quote": "B1S 150,15 75,18 2422,59 54,29 2476,88 54,29 2531,17 58,47 2589,64 242,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1618,21 +1920,29 @@
             "valid_until": null,
             "value": "2589.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/10/2027', 'Minimo (€)', row B1S",
+                "quote": "B1S 150,15 75,18 2422,59 54,29 2476,88 54,29 2531,17 58,47 2589,64 242,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -1701,21 +2011,29 @@
             "valid_until": "2026-04-01",
             "value": "2313.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1° /4/2025', 'Minimo (€)', row B1",
+                "quote": "B1 143,41 71,80 2313,78 51,85 2365,63 51,85 2417,49 55,84 2473,33 231,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1724,44 +2042,60 @@
             "valid_until": "2027-04-01",
             "value": "2365.63",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2026', 'Minimo (€)', row B1",
+                "quote": "B1 143,41 71,80 2313,78 51,85 2365,63 51,85 2417,49 55,84 2473,33 231,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": "2027-10-01",
-            "value": "2417.48",
+            "value": "2417.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2027', 'Minimo (€)', row B1",
+                "quote": "B1 143,41 71,80 2313,78 51,85 2365,63 51,85 2417,49 55,84 2473,33 231,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1770,21 +2104,29 @@
             "valid_until": null,
             "value": "2473.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/10/2027', 'Minimo (€)', row B1",
+                "quote": "B1 143,41 71,80 2313,78 51,85 2365,63 51,85 2417,49 55,84 2473,33 231,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -1853,21 +2195,29 @@
             "valid_until": "2026-04-01",
             "value": "2160.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1° /4/2025', 'Minimo (€)', row B2S",
+                "quote": "B2S 133,93 67,06 2160,86 48,43 2209,28 48,43 2257,71 52,15 2309,87 216,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1876,44 +2226,60 @@
             "valid_until": "2027-04-01",
             "value": "2209.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2026', 'Minimo (€)', row B2S",
+                "quote": "B2S 133,93 67,06 2160,86 48,43 2209,28 48,43 2257,71 52,15 2309,87 216,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": "2027-10-01",
-            "value": "2257.70",
+            "value": "2257.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2027', 'Minimo (€)', row B2S",
+                "quote": "B2S 133,93 67,06 2160,86 48,43 2209,28 48,43 2257,71 52,15 2309,87 216,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -1922,21 +2288,29 @@
             "valid_until": null,
             "value": "2309.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/10/2027', 'Minimo (€)', row B2S",
+                "quote": "B2S 133,93 67,06 2160,86 48,43 2209,28 48,43 2257,71 52,15 2309,87 216,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -2005,21 +2379,29 @@
             "valid_until": "2026-04-01",
             "value": "2010.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1° /4/2025', 'Minimo (€)', row B2",
+                "quote": "B2 124,62 62,39 2010,61 45,06 2055,67 45,06 2100,73 48,53 2149,26 201,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -2028,21 +2410,29 @@
             "valid_until": "2027-04-01",
             "value": "2055.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2026', 'Minimo (€)', row B2",
+                "quote": "B2 124,62 62,39 2010,61 45,06 2055,67 45,06 2100,73 48,53 2149,26 201,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -2051,21 +2441,29 @@
             "valid_until": "2027-10-01",
             "value": "2100.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2027', 'Minimo (€)', row B2",
+                "quote": "B2 124,62 62,39 2010,61 45,06 2055,67 45,06 2100,73 48,53 2149,26 201,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -2074,21 +2472,29 @@
             "valid_until": null,
             "value": "2149.26",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/10/2027', 'Minimo (€)', row B2",
+                "quote": "B2 124,62 62,39 2010,61 45,06 2055,67 45,06 2100,73 48,53 2149,26 201,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -2157,21 +2563,29 @@
             "valid_until": "2026-04-01",
             "value": "1782.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1° /4/2025', 'Minimo (€)', row CS",
+                "quote": "CS 110,50 55,32 1782,73 39,95 1822,69 39,95 1862,64 43,03 1905,67 178,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -2180,67 +2594,91 @@
             "valid_until": "2027-04-01",
             "value": "1822.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2026', 'Minimo (€)', row CS",
+                "quote": "CS 110,50 55,32 1782,73 39,95 1822,69 39,95 1862,64 43,03 1905,67 178,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": "2027-10-01",
-            "value": "1862.65",
+            "value": "1862.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2027', 'Minimo (€)', row CS",
+                "quote": "CS 110,50 55,32 1782,73 39,95 1822,69 39,95 1862,64 43,03 1905,67 178,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
           {
             "valid_from": "2027-10-01",
             "valid_until": null,
-            "value": "1905.68",
+            "value": "1905.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/10/2027', 'Minimo (€)', row CS",
+                "quote": "CS 110,50 55,32 1782,73 39,95 1822,69 39,95 1862,64 43,03 1905,67 178,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -2309,21 +2747,29 @@
             "valid_until": "2026-04-01",
             "value": "1613.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1° /4/2025', 'Minimo (€)', row C1",
+                "quote": "C1 100,00 50,07 1613,45 36,16 1649,61 36,16 1685,77 38,94 1724,71 161,33"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2025-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -2332,21 +2778,29 @@
             "valid_until": "2027-04-01",
             "value": "1649.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2026', 'Minimo (€)', row C1",
+                "quote": "C1 100,00 50,07 1613,45 36,16 1649,61 36,16 1685,77 38,94 1724,71 161,33"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2026-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -2355,21 +2809,29 @@
             "valid_until": "2027-10-01",
             "value": "1685.77",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/4/2027', 'Minimo (€)', row C1",
+                "quote": "C1 100,00 50,07 1613,45 36,16 1649,61 36,16 1685,77 38,94 1724,71 161,33"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           },
@@ -2378,21 +2840,29 @@
             "valid_until": null,
             "value": "1724.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "elettrico-elettricita-futura",
-                  "title": "elettrico-elettricita-futura",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/elettrico/tabelle-retributive/"
+                  "document_id": "cnel-k051-216334-ipotesi-2025-02-11",
+                  "title": "Ipotesi di Accordo 11 febbraio 2025 per il rinnovo del CCNL 18 luglio 2022 per i lavoratori addetti al settore elettrico (CNEL K051, deposito 216334, signed scan)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+                  "published_on": "2025-04-24",
+                  "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Dichiarazioni a verbale all'art. 38, table 'Minimi contrattuali integrati', column 'Da 1°/10/2027', 'Minimo (€)', row C1",
+                "quote": "C1 100,00 50,07 1613,45 36,16 1649,61 36,16 1685,77 38,94 1724,71 161,33"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-18T11:51:26Z",
+                "effective_from": "2027-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-18T11:51:26Z",
+                "review_id": "2026-10-18-ai-tables"
               }
             }
           }
@@ -2541,11 +3011,11 @@
     "version": "2026.2",
     "effective_from": "2025-04-01",
     "effective_until": null,
-    "source": "https://www.contratticcnl.it/elettrico/tabelle-retributive/",
+    "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
     "verification_status": "unverified",
-    "source_hash": "4eaf3593d81bb8d3f12889431b359c4ed349ec05d32d7b1b06e83ea215f0ec84",
+    "source_hash": "f483c41d6a2be65b9bfaeb47fb2d636afa8b5c4a9afc1d172629a1fbd0500115",
     "published_at": "2026-09-07",
-    "source_type": "commercial_secondary"
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
