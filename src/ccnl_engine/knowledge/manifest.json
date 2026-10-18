@@ -1118,8 +1118,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/industria-turistica-federturismo",
       "ruleset_version": "2026.2",
-      "source_hash": "d6a9034e0a60336fa1feb04c64ee70c2359be9c01f5908205101ee1a0cec3fda",
-      "source_type": "commercial_secondary",
+      "source_hash": "93a8bfe0895efcf43d0e411952045e014cc182ef02e9c052da376b7d8a163e5c",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/industria-turistica-federturismo.json.gz"
     },
@@ -2019,8 +2019,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tessile-moda-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "e92acce7e545f663aad6b5be3ee15d1297f6c84e5eb2e5e88ea5a1a7ed4814a8",
-      "source_type": "commercial_secondary",
+      "source_hash": "97bf9fed97d20ae3aac0ffec0dfa107d49b09dbda724a2d2fa774f81229fdf76",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tessile-moda-artigianato-confartigianato.json.gz"
     },
@@ -2087,8 +2087,8 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "ccnl/trasporto-ferroviario-agens",
       "ruleset_version": "2026.2",
-      "source_hash": "5ed3c76940ef1958c68f5659c1e1b9aaa5c0924038d69a1f664b55d5a723ee03",
-      "source_type": "commercial_secondary",
+      "source_hash": "07e28fd19f5cd5a3bdd353019e323c84776005a59911b61f47e64c2f75f1413e",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/trasporto-ferroviario-agens.json.gz"
     },

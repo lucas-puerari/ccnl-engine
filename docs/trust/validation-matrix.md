@@ -33,7 +33,7 @@ net, TFR, employer cost), or list what it still misses in
 | `edilizia-pmi-confapi-aniem` | exploratory | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | fixed_allowances | — | match | 2026-10-18 | 2027-03-01 |
 | `funzioni-centrali-aran` | reviewed | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary | — | — | match | 2026-10-17 | 2027-12-31 |
 | `funzioni-locali-aran` | reviewed | real payslip | provider output | ordinary month | permanent, hours not stated | — | headcount 50 | base_salary | — | — | match | 2026-10-17 | 2027-01-31 |
-| `industria-turistica-federturismo` | exploratory | real payslip | provider output | ordinary month | permanent, hours not stated | — | headcount 50 | base_salary | — | — | match | — | — |
+| `industria-turistica-federturismo` | exploratory | real payslip | provider output | ordinary month | permanent, hours not stated | — | headcount 50 | base_salary | — | — | match | 2026-10-18 | — |
 | `lavoro-domestico-convivente-orario-ridotto` | reviewed | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | fixed_allowances | — | match | 2026-10-16 | 2027-01-31 |
 | `lavoro-domestico-convivente` | reviewed | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | fixed_allowances | — | match | 2026-10-16 | 2027-01-31 |
 | `lavoro-domestico-non-convivente` | reviewed | primary | source-linked | ordinary month | permanent, full time | — | — | base_salary, gross | fixed_allowances | — | match | 2026-10-15 | 2027-01-31 |
