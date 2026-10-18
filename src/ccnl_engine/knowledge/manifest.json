@@ -1118,8 +1118,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/industria-turistica-federturismo",
       "ruleset_version": "2026.2",
-      "source_hash": "d6a9034e0a60336fa1feb04c64ee70c2359be9c01f5908205101ee1a0cec3fda",
-      "source_type": "commercial_secondary",
+      "source_hash": "93a8bfe0895efcf43d0e411952045e014cc182ef02e9c052da376b7d8a163e5c",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/industria-turistica-federturismo.json.gz"
     },

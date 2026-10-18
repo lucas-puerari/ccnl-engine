@@ -9,7 +9,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 208 | 186 | 0 | `funzioni-centrali-aran` |
-| terziario | 43 | 4 977 055 | 52 | 1576 | 737 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| terziario | 43 | 4 977 055 | 52 | 1540 | 773 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 48 | 4 946 900 | 151 | 2289 | 715 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 56 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 35 | 305 | 97 | 2 | `metalmeccanico-artigianato` |
@@ -61,7 +61,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`vigilanza-privata-federdat-gpg`](../contracts/vigilanza-privata-federdat-gpg.md) | 45 000 | exploratory | 2 | 48 | 0 | party or official | none | none |
 | [`autorimesse-ic35`](../contracts/autorimesse-ic35.md) | 41 000 | exploratory | 2 | 95 | 0 | party or official | none | none |
 | [`vigilanza-privata-federdat-sf`](../contracts/vigilanza-privata-federdat-sf.md) | 40 000 | exploratory | 3 | 46 | 0 | party or official | none | none |
-| [`industria-turistica-federturismo`](../contracts/industria-turistica-federturismo.md) | 40 000 | exploratory | 1 | 46 | 0 | aggregator | none | none |
+| [`industria-turistica-federturismo`](../contracts/industria-turistica-federturismo.md) | 40 000 | exploratory | 1 | 10 | 36 | aggregator | none | none |
 | [`portieri-fabbricati-confedilizia`](../contracts/portieri-fabbricati-confedilizia.md) | 40 000 | exploratory | 1 | 38 | 0 | party or official | none | none |
 | [`impianti-sportivi-sport`](../contracts/impianti-sportivi-sport.md) | 35 533 | exploratory | 2 | 32 | 0 | party or official | none | none |
 | [`scuole-materne-fism`](../contracts/scuole-materne-fism.md) | 30 000 | exploratory | 1 | 47 | 1 | party or official | none | none |
