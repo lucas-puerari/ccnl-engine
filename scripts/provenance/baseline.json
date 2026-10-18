@@ -924,6 +924,7 @@
     ],
     "agreement/grafica-editoria-aieg.json": [
       "grafica-editoria-aieg/apprentice_seniority",
+      "grafica-editoria-aieg/grafica_levels_unreconciled",
       "grafica-editoria-aieg/pre_july_2026_amounts_missing"
     ],
     "agreement/igiene-ambientale-utilitalia.json": [
