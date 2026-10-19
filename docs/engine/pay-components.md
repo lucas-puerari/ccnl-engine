@@ -77,8 +77,9 @@ print("Half time:", gross(WeeklyHours(Decimal(20))))
 In a month outside `months` the regular or termination run posts no
 monthly pay: its `base_salary` decision has the reason
 `vertical_part_time_month_not_worked` and the input `month_worked=false`,
-the INPS minimum reason is `month_not_worked`, and no contractual fund
-amount or sick pay of the month is owed. The months not worked accrue no
+the INPS minimum reason is `month_not_worked`, no contractual fund amount
+of the month is owed, and the engine computes no sick pay on the month (an
+amount the caller states on a `SickLeaveEvent` is still paid). The months not worked accrue no
 extra-month rateo: a worker of January to June is paid half a tredicesima,
 on the pay of the payment month. The withholding projection of the
 upcoming runs counts those months at zero.
@@ -87,8 +88,12 @@ Not modelled: a partial month (hire, termination, unpaid absence) is
 prorated on the CCNL daily quotas of the calendar, not on the days of
 `weekday_hours`; hours that change from month to month; the art. 13 TUIR
 deduction days of the months not worked (the calendar days of the
-relationship are counted); any CCNL clause that pays a vertical part time
-otherwise (e.g. an extra-month rateo on the hours of the year).
+relationship are counted); the contractual fund amount on the extra-month
+ratei settled by a termination run that falls in a month not worked (it is
+left out); the INPS weekly contribution minimum for pension credit, which
+the engine does not model for any worker; any CCNL clause that pays a
+vertical part time otherwise (e.g. an extra-month rateo on the hours of the
+year).
 
 ## Role allowances
 
