@@ -173,19 +173,6 @@
       },
       {
         "kind": "simplification",
-        "text": "HEALTH FUND: the Fondo Est is owed for every worker (CCNL 2018 art. 186); an employer that does not pay it owes the worker instead the elemento distinto of EUR 16.00 for 14 months (c. 12). Neither is modelled: the employer cost, and with the elemento the net pay, are short of it.",
-        "capability": "bilateral_funds",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "health_and_bilateral_funds",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "remediation": "Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "TRATTAMENTO INTEGRATIVO SPECIALE (L. 199/2025 art. 1 cc. 18-20, Gazzetta Ufficiale text, https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1, page sha256 e05f6f864509f87e7488cdae075fe3a1f2632f6f4577b87ee05479a1ed193c1d): from 1 January to 30 September 2026 the workers of the esercizi di somministrazione di alimenti e bevande (L. 287/1991 art. 5) and of the 'comparto del turismo, ivi inclusi gli stabilimenti termali', with employment income of 2025 not above 40,000 EUR, receive 'un trattamento integrativo speciale, che non concorre alla formazione del reddito, pari al 15 per cento delle retribuzioni lorde corrisposte in relazione al lavoro notturno e alle prestazioni di lavoro straordinario [...] effettuate nei giorni festivi'. The employer pays it 'su richiesta del lavoratore' (c. 20), a fact the request has no field for: the engine does not pay it, so the net pay of a worker who asked for it is understated.",
         "capability": "trattamento_integrativo",
         "monetary_impact": "yes",
@@ -479,7 +466,188 @@
         "transformation": "A whole month accrues a rateo; the calendar days of the months worked in part (start, end, or reduced work) are summed: a rateo for each 30 days and one for a remainder of 15 days or more.",
         "note": "Scanned CCNL read by OCR and checked on the page images (pp. 127-128). Same wording for the tredicesima (art. 183 c. 2) and the quattordicesima (art. 184 c. 4)."
       }
-    }
+    },
+    "health_funds": [
+      {
+        "code": "ebt",
+        "description": "Quota contrattuale di servizio EBNT ed Enti Bilaterali Territoriali, Art. 24 CCNL 2018",
+        "employer": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2018-01-01",
+                "valid_until": null,
+                "value": "0.002"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2018-01-01",
+                "valid_until": null,
+                "value": "0.002"
+              }
+            ]
+          }
+        },
+        "extra_months": true,
+        "alternative": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2018-01-01",
+                "valid_until": null,
+                "value": "0.006"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "pe2018",
+              "title": "CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo (FIPE), 8 febbraio 2018 (scansione firmata)",
+              "kind": "associazione",
+              "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+              "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+            },
+            "page": "40",
+            "quote": "la quota contrattuale di servizio per il relativo finanziamento è fissata nella misura globale dello 0,40 per cento di paga base e contingenza, per quattordici mensilità, di cui lo 0,20 per cento a carico del datore di lavoro e lo 0,20 per cento a carico del lavoratore. [...] (3) Conseguentemente l'azienda che ometta il versamento della quota di cui al comma 1 è tenuta a corrispondere al lavoratore un elemento distinto della retribuzione, non assorbibile, di importo pari allo 0,60% di paga base e contingenza per 14 mensilità, che rientra nella retribuzione di fatto di cui all'art. 157 e la stessa rimane comunque obbligata, verso i lavoratori aventi diritto all'erogazione delle prestazioni assicurate dall'Ente bilaterale. [...] è escluso dalla quota annua della retribuzione utile ai fini del calcolo del trattamento di fine rapporto, l'importo degli scatti di anzianità, dalla data del 1° gennaio 2018 fino al 31 ottobre 2021."
+          },
+          "note": "Not in the repo coverage note. The 2024 renewal (pe2024, 23 pp., only the amended articles) does not amend Art. 24. valid_from 2018-01-01 = CCNL 2018 start; the rate predates it. Art. 24 page image checked; the TFR quote (p. 149) is OCR only."
+        }
+      },
+      {
+        "code": "fondo_est",
+        "description": "Fondo Est, assistenza sanitaria integrativa, Art. 186 (CCNL 2018 as amended 2024)",
+        "levels": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "6s",
+          "7"
+        ],
+        "permanent_only": true,
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2018-02-01",
+                "valid_until": "2019-01-01",
+                "value": "11.0"
+              },
+              {
+                "valid_from": "2019-01-01",
+                "valid_until": "2027-01-01",
+                "value": "12.0"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "15.0"
+              }
+            ]
+          }
+        },
+        "employee_deductible": true,
+        "solidarity_rate": "0.1",
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2018-02-08",
+                "valid_until": null,
+                "value": "16.0"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "pe2024",
+              "title": "CCNL Pubblici Esercizi FIPE, accordo di rinnovo 5 giugno 2024 (scansione firmata)",
+              "kind": "associazione",
+              "url": "https://www.fipe.it/wp-content/uploads/2024/06/Contratto-CCNL-05_06_24.pdf",
+              "sha256": "b133dcca1351c72309389e53eeea21cb9b0459c82736423749206d6f11235c43"
+            },
+            "page": "17",
+            "quote": "(5) A decorrere dal 1° febbraio 2018, per il finanziamento del fondo è dovuto un contributo pari a 11,00 euro mensili, per dodici mensilità, a carico del datore di lavoro. A decorrere dal 1° gennaio 2019, per il finanziamento del fondo è dovuto un contributo pari a 12,00 euro mensili, per dodici mensilità, a carico del datore di lavoro. A decorrere dal 1° gennaio 2027, il contributo obbligatorio a favore del Fondo è incrementato di tre euro mensili a carico del datore di lavoro. [...] (12) L'azienda che ometta il versamento delle suddette quote è tenuta ad erogare al lavoratore un elemento distinto della retribuzione non assorbibile di importo pari ad euro 16,00 lordi, da corrispondere per 14 mensilità e che rientra nella retribuzione, di cui all'articolo 157, fermo restando il diritto del lavoratore al risarcimento del maggior danno subito."
+          },
+          "note": "No worker share in this CCNL (unlike TDS). Alternative valid_from = CCNL 2018 signature (exact start not stated in the clause)."
+        }
+      },
+      {
+        "code": "quas",
+        "description": "Cassa Qu.A.S. quadri, Art. 153 (CCNL 2018 as amended 2024)",
+        "levels": [
+          "Qa",
+          "Qb"
+        ],
+        "employer": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2018-01-01",
+                "valid_until": "2025-01-01",
+                "value": "340.0"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2026-01-01",
+                "value": "360.0"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "380.0"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2018-01-01",
+                "valid_until": null,
+                "value": "50.0"
+              }
+            ]
+          }
+        },
+        "employee_deductible": true,
+        "solidarity_rate": "0.1",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "pe2018",
+              "title": "CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo (FIPE), 8 febbraio 2018 (scansione firmata)",
+              "kind": "associazione",
+              "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+              "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+            },
+            "page": "114",
+            "quote": "(2) La relativa quota contributiva annua è fissata in euro 340,00 a carico dell'azienda e in euro 50,00 a carico del dipendente. (3) La quota costitutiva una tantum è fissata in euro 340,00 a carico dell'azienda."
+          },
+          "transformation": "Also: CCNL Pubblici Esercizi FIPE, accordo di rinnovo 5 giugno 2024 (scansione firmata), p. 15: A decorrere dal 1° gennaio 2025, il contributo obbligatorio annuo a favore della cassa è incrementato di euro 20,00 € a carico del datore di lavoro a favore della categoria dei Quadri. A decorrere dal 1° gennaio 2026, il contributo obbligatorio annuo a favore della cassa è incrementato di euro 20,00 € a carico del datore di lavoro a favore della categoria dei Quadri.",
+          "note": "Not in the repo coverage note. 340 valid_from set to CCNL 2018 start; it predates it."
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -2477,7 +2645,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "2c60f54f534ac66ee4f84757e6929f451dcfc8a4f5e420aea021376d91671958",
+    "source_hash": "0d8adf24fabe793bd402ddae3ad2cae2e116d9b07887fd6f8609e4f768b7c7dd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

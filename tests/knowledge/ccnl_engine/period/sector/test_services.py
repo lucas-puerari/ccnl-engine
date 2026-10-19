@@ -143,11 +143,14 @@ _METAL_OWED = frozenset({
 })
 _TERZ_OWED = frozenset({f"{_TERZ}/health_and_bilateral_funds"})
 _STUDI_OWED = frozenset({f"{_STUDI}/bilateral_contribution_or_element"})
-_TURISMO_OWED = frozenset({f"{_TURISMO}/health_and_bilateral_funds"})
+#: The funds of Turismo and FIPE are modelled; the scenarios leave the
+#: employer's funds unstated, as their oracles leave the funds out: a missing
+#: fact, owed like an open limitation.
+_TURISMO_OWED = frozenset({"contractual_funds"})
 _CHIMICA_OWED: frozenset[str] = frozenset()
 _ALIMENTARI_OWED = frozenset({f"{_ALIMENTARI}/health_and_bilateral_funds"})
 _DMO_OWED = frozenset({f"{_DMO}/health_and_bilateral_funds"})
-_FIPE_OWED = frozenset({f"{_FIPE}/health_and_bilateral_funds"})
+_FIPE_OWED = frozenset({"contractual_funds"})
 _RISTORAZIONE_OWED = frozenset({f"{_RISTORAZIONE}/health_and_bilateral_funds"})
 _CONFAPI_OWED = frozenset({f"{_CONFAPI}/bilateral_system_or_ear"})
 _EDILIZIA_IMPIEGATI_OWED = frozenset({
@@ -598,7 +601,8 @@ def test_owed_amounts_leave_the_totals_they_touch_short(name: str) -> None:
         owed = {
             b.detail
             for b in result.blockers
-            if b.code is BlockerCode.OPEN_LIMITATION and b.detail in s.owed
+            if b.code in {BlockerCode.OPEN_LIMITATION, BlockerCode.MISSING_FACT}
+            and b.detail in s.owed
         }
         assert owed == s.owed
         if s.owed:

@@ -223,7 +223,7 @@ def test_the_funds_are_a_set_of_codes() -> None:
 
 def test_a_fund_amount_needs_a_value() -> None:
     """An amount with neither a monthly value nor a rate is rejected."""
-    with pytest.raises(ValueError, match="monthly amount or a rate"):
+    with pytest.raises(ValueError, match="monthly or annual amount or a rate"):
         FundAmount()
 
 
@@ -355,3 +355,47 @@ def test_a_fund_without_element_owes_nothing_when_unpaid() -> None:
         Decimal(0),
     )
     assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYER) == 0
+
+
+def test_part_time_owes_the_fixed_shares_in_full() -> None:
+    """The shares are per capita: 10 and 2 EUR also at 20 of 40 hours."""
+    result = _run(frozenset({"fondo_test"}), weekly_hours=WeeklyHours(Decimal(20)))
+
+    assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYER) == Decimal("10.00")
+    assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYEE) == Decimal("2.00")
+
+
+class _FullElementRepository(BundledKnowledgeRepository):
+    """Turismo with an element the CCNL owes in full to a part-timer."""
+
+    def load_ccnl(self, ccnl_id: str) -> CCNL:
+        ccnl = super().load_ccnl(ccnl_id)
+        full = _HEALTH.model_copy(update={"alternative_scaled": False})
+        parameters = ccnl.parameters.model_copy(update={"health_funds": (full,)})
+        return ccnl.model_copy(update={"parameters": parameters})
+
+
+def test_an_element_owed_in_full_ignores_part_time() -> None:
+    """Not reproportioned: 16 EUR at 20 of 40 hours."""
+    result = PayrollEngine(repository=_FullElementRepository()).calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(2026, 6),
+            payment_date=date(2026, 6, 27),
+            employment=Employment(
+                ccnl_id="turismo-federalberghi",
+                level_code="4",
+                contract_type=Permanent(),
+                employment_period=EmploymentPeriod(_HIRED, None),
+                seniority=SeniorityFact.since(_HIRED, SenioritySource.EMPLOYER_RECORDS),
+                pension_fund=NoPensionFund(),
+                weekly_hours=WeeklyHours(Decimal(20)),
+                full_time_weekly_hours=WeeklyHours(Decimal(40)),
+            ),
+            employer=EmployerProfile(
+                headcount=Headcount(60), contractual_funds=frozenset()
+            ),
+        )
+    )
+
+    items = [i for i in result.pay_items if i.item_id.startswith("fondo_test_element")]
+    assert [i.amount for i in items] == [Decimal("16.00")]

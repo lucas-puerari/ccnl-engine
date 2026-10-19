@@ -7,8 +7,10 @@ paid posts the employer share as a cost, with the INPS solidarity
 contribution on it, and withholds the worker share, out of the IRPEF base
 when the fund is a health fund; a fund not paid owes the worker its
 elemento distinto, an earning in the INPS and IRPEF bases (and the TFR base
-when the CCNL says so).  The fixed amounts follow the minimo of the run:
-they are scaled by its part time, proration and extra-month ratei.  Left
+when the CCNL says so).  The shares are per capita: a fixed share is due in
+full whatever the part time, a share in percent follows the minimo of the
+run.  The element is pay: it follows the minimo of the run (part time,
+partial month, extra-month ratei) unless the CCNL owes it in full.  Left
 unstated, the funds are a missing fact: nothing is posted and the run is not
 payable.
 """
@@ -47,6 +49,7 @@ CAPABILITY = "contractual_funds"
 #: Public fact the employer states the funds it pays with.
 FACT = "contractual_funds"
 _ZERO = Decimal(0)
+_MONTHS = Decimal(12)
 _EXTRA_KINDS = frozenset({RunKind.THIRTEENTH, RunKind.FOURTEENTH})
 
 
@@ -123,12 +126,14 @@ def _covers(ctx: RunContext, fund: ContractualFund) -> bool:
     return not extra or fund.extra_months or fund.alternative_extra_months
 
 
-def _monthly(ctx: RunContext, amount: FundAmount | None) -> Decimal:
+def _monthly(
+    ctx: RunContext, amount: FundAmount | None, *, scaled: bool = False
+) -> Decimal:
     """Return ``amount`` on the minimo of the run.
 
     Returns:
-        The fixed amount scaled like the minimo plus the rate of it, to the
-        cent; zero for no amount.
+        The fixed amount, scaled like the minimo when ``scaled``, plus the
+        rate of the minimo, to the cent; zero for no amount.
     """
     if amount is None:
         return _ZERO
@@ -136,8 +141,12 @@ def _monthly(ctx: RunContext, amount: FundAmount | None) -> Decimal:
     paid = ctx.chain.base
     full = ctx.contract.level.base_salary.value_at(day)
     fixed = _ZERO if amount.monthly is None else amount.monthly.value_at(day)
+    if amount.annual is not None:
+        fixed += amount.annual.value_at(day) / _MONTHS
     rate = _ZERO if amount.rate is None else amount.rate.value_at(day)
-    return money(fixed * paid / full + rate * paid)
+    if scaled:
+        fixed = fixed * paid / full
+    return money(fixed + rate * paid)
 
 
 def _extra(ctx: RunContext) -> bool:
@@ -203,7 +212,7 @@ def _paid(ctx: RunContext, fund: ContractualFund) -> ExtraMonthSettlement:
 def _element(ctx: RunContext, fund: ContractualFund) -> ExtraMonthSettlement:
     if fund.alternative is None or (_extra(ctx) and not fund.alternative_extra_months):
         return ExtraMonthSettlement()
-    amount = _monthly(ctx, fund.alternative)
+    amount = _monthly(ctx, fund.alternative, scaled=fund.alternative_scaled)
     item_id = f"{fund.code}_element_{ctx.run_id}"
     cp, payment = ctx.cp, ctx.contract.tctx.payment
     item = FixedAllowanceEarning(

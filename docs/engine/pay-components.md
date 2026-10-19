@@ -301,8 +301,11 @@ it pays in `EmployerProfile.contractual_funds` (an empty set for none):
 | the fund is named | employer share to `bilateral_fund_employer`, INPS solidarity on it (10% for a health fund) to `employer_contributions`, worker share withheld to `bilateral_fund_employee` and, for a health fund, taken out of the IRPEF base (TUIR art. 51 c. 2 lett. a); on the extra months only when the CCNL says so |
 | the fund is not named | the elemento distinto as an earning in the INPS and IRPEF bases (and the TFR base when the CCNL says so), on the extra months when it is due "per 14 mensilità" |
 
-Fixed amounts follow the minimo of the run: part time, a partial month and
-the ratei of an extra month scale them. A CCNL whose funds are not modelled
+The shares are per capita: a fixed share is due in full whatever the part
+time, a share in percent follows the minimo of the run. The element is pay:
+part time, a partial month and the ratei of an extra month scale it, unless
+the CCNL owes it in full (`alternative_scaled: false`). A yearly amount
+(`annual`, e.g. Qu.A.S.) is charged a twelfth a month. A CCNL whose funds are not modelled
 yet keeps its open limitation; for those, pass the amounts due in the period
 as a `BilateralFundEvent`. The employee portion
 reduces net pay; the employer portion increases employer cost. For the

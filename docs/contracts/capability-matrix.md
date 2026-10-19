@@ -1,6 +1,6 @@
 <!-- auto-generated; run: uv run python scripts/documentation/capability_matrix/generate.py -->
 
-<!-- generated: 2026-10-19 -->
+<!-- generated: 2026-10-20 -->
 
 # Capability Matrix
 
@@ -238,13 +238,13 @@ never grow.
 | 105 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | ⚠️ | base_salary, seniority | 1 / 72 / 1 / 0 |
 | 106 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | ⚠️ | seniority | 0 / 47 / 1 / 1 |
 | 107 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | ⚠️ | seniority, trattamento_integrativo | 0 / 57 / 1 / 0 |
-| 108 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | ⚠️ | base_salary, bilateral_funds, seniority, sickness, trattamento_integrativo | 71 / 1 / 0 / 0 |
+| 108 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | ⚠️ | base_salary, seniority, sickness, trattamento_integrativo | 71 / 1 / 0 / 0 |
 | 109 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | ⚠️ | base_salary | 0 / 0 / 35 / 1 |
 | 110 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | ⚠️ | seniority | 0 / 48 / 1 / 1 |
 | 111 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | ⚠️ | seniority | 0 / 46 / 2 / 1 |
 | 112 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | ⚠️ | base_salary, bilateral_funds, pension_fund_contribution, seniority, una_tantum | 28 / 1 / 2 / 0 |
 | 113 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | ⚠️ | bilateral_funds, health_fund_employer, seniority | 1 / 32 / 1 / 0 |
-| 114 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | ⚠️ | base_salary, bilateral_funds, overtime, seniority, sickness, trattamento_integrativo | 61 / 2 / 0 / 0 |
+| 114 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | ⚠️ | base_salary, overtime, seniority, sickness, trattamento_integrativo | 61 / 2 / 0 / 0 |
 | 115 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo - Ristorazione collettiva (aziende dell'art. 1 c. 1 par. II)](pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | ⚠️ | base_salary, bilateral_funds, overtime, seniority, trattamento_integrativo | 61 / 2 / 0 / 0 |
 | 116 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | ⚠️ | pension_fund_contribution, seniority | 37 / 0 / 22 / 0 |
 | 117 | [CCNL per i dipendenti degli studi e delle attività professionali (Confprofessioni)](studi-professionali-confprofessioni.md) | ⚠️ | base_salary, bilateral_funds, inps_employer, overtime, seniority, sickness | 46 / 0 / 0 / 0 |
