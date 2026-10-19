@@ -3,7 +3,7 @@
 Everything a request or a plan carries beyond the common path: contract
 types, hours, seniority, the TFR fund, family, prior and current year tax
 facts, the calendar, the opening state and the balances imported from another provider,
-and the JSON form of a request.
+and the JSON form of a request, with every error it holds.
 """
 
 from __future__ import annotations
@@ -48,6 +48,7 @@ from ccnl_engine.interchange.request.serializers import (
     request_from_json,
     request_to_json,
 )
+from ccnl_engine.interchange.request.validators import validate_request_json
 from ccnl_engine.irpef.declaration.inputs import (
     ForeignTaxPaid,
     PriorYearTaxFacts,
@@ -124,4 +125,5 @@ __all__ = [
     "period_state_to_json",
     "request_from_json",
     "request_to_json",
+    "validate_request_json",
 ]

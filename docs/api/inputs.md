@@ -121,3 +121,13 @@ releases.
 ::: ccnl_engine.inputs.request_to_json
 
 ::: ccnl_engine.inputs.request_from_json
+
+`validate_request_json` reads the same JSON and returns every error at
+once instead of raising the first, for a batch import that shows a row all
+its problems: each `InvalidInputError` carries the path of the rejected
+value from the root, e.g. `PeriodInput.facts.events[1].hours`, and an
+empty tuple means the request reads. An object reports at most one error
+of its own, and only once its children are valid; the CCNL and the level
+are checked by the run, not here.
+
+::: ccnl_engine.inputs.validate_request_json
