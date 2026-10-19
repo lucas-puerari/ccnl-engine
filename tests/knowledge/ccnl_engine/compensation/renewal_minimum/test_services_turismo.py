@@ -75,7 +75,7 @@ def _year(*, waived: bool) -> CompetenceYearResult:
         CompetenceYearPlan(
             year=2026,
             employment=Employment(
-                ccnl_slug="turismo-federalberghi",
+                ccnl_id="turismo-federalberghi",
                 level_code="4",
                 contract_type=Permanent(),
                 category=WorkerCategory.IMPIEGATO,

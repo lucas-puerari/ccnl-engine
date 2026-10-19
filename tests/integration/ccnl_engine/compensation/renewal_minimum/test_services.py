@@ -119,8 +119,8 @@ def test_tax_year_outside_the_regime_is_not_assessed() -> None:
 class _RenewalFromJuly2025(BundledKnowledgeRepository):
     """Turismo with its renewal starting inside the table of June 2025."""
 
-    def load_ccnl(self, filename: str) -> CCNL:
-        ccnl = super().load_ccnl(filename)
+    def load_ccnl(self, ccnl_id: str) -> CCNL:
+        ccnl = super().load_ccnl(ccnl_id)
         (renewal,) = ccnl.parameters.renewals
         moved = renewal.model_copy(update={"tables_from": date(2025, 7, 1)})
         parameters = ccnl.parameters.model_copy(update={"renewals": (moved,)})
@@ -134,7 +134,7 @@ def test_a_renewal_without_increment_posts_nothing() -> None:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=2026, month=1),
             payment_date=date(2026, 1, 27),
-            ccnl_slug="turismo-federalberghi.json",
+            ccnl_id="turismo-federalberghi",
             level_code="4",
             seniority=new_hire(2026),
             sector=EmploymentSector.PRIVATE,
