@@ -88,6 +88,7 @@ class SommaEsenteOutcome:
 #: this employment matters only while the somma esente is due.
 INCOME_UNKNOWN_ISSUE = CalculationIssue(
     code="somma_esente_income_unknown",
+    capability=CAPABILITY,
     message=(
         "somma_esente: the reddito complessivo of L. 207/2024 art. 1 c. 4 "
         "includes the income beyond this employment, which the run does not "
@@ -102,6 +103,7 @@ INCOME_UNKNOWN_ISSUE = CalculationIssue(
 #: dipendente, the band of c. 4 is taken on the income of this employer alone.
 BAND_ASSUMED_ISSUE = CalculationIssue(
     code="somma_esente_band_assumed",
+    capability=CAPABILITY,
     message=(
         "somma_esente: the worker has employment income from other employers "
         "or exempt regime income (c. 9) this tax year; the percentage of L. "

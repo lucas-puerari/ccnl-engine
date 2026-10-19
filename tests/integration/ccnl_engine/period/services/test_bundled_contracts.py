@@ -98,8 +98,8 @@ def _minimum_held(result: PeriodResult) -> bool:
     if decision.inputs.get("minimum_base_reason") == "category_excluded":
         return True
     if any(i.code == _MINIMUM_UNDETERMINED for i in result.issues):
-        issues = BlockerCode.CALCULATION_ISSUE
-        return {b.feature for b in result.blockers if b.code is issues} >= _INPS
+        causes = {BlockerCode.MISSING_FACT, BlockerCode.CALCULATION_ISSUE}
+        return {b.feature for b in result.blockers if b.code in causes} >= _INPS
     base = decision.inputs["base"]
     floor = contribution_base(FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR)
     return isinstance(base, Decimal) and base >= floor

@@ -53,6 +53,7 @@ _ZERO = Decimal(0)
 #: A public employer needs to state whether it owes the ASV.
 LIFE_INSURANCE_UNKNOWN = CalculationIssue(
     code="public_life_insurance_unknown",
+    capability="inps_employee",
     message=(
         "the employers of the CCNL differ on the Assicurazione Sociale Vita "
         "(ex ENPDEP): every ente di diritto pubblico owes it but the State, the "
@@ -65,6 +66,7 @@ LIFE_INSURANCE_UNKNOWN = CalculationIssue(
 #: A public employee needs the end-of-service regime to be stated.
 END_OF_SERVICE_UNKNOWN = CalculationIssue(
     code="public_end_of_service_unknown",
+    capability="inps_employee",
     message=(
         "the contributions of a public employee to INPS Gestione Dipendenti "
         "Pubblici and the accrual of the TFR depend on the end-of-service "

@@ -248,6 +248,7 @@ def tfr_revaluation_issues(ctx: RunContext) -> tuple[CalculationIssue, ...]:
     return (
         CalculationIssue(
             code=TFR_FUND_UNKNOWN_CODE,
+            capability="tfr_revaluation",
             message=(
                 f"tfr_revaluation: the TFR fund at 31 December {year - 1} is not "
                 f"stated, so its revaluation at the end of {year} (art. 2120 c. 4 "

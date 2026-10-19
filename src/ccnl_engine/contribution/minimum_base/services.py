@@ -113,6 +113,7 @@ def minimum_base_issue(minimum: MinimumBase | None) -> CalculationIssue | None:
     unknown = minimum.reason is MinimumBaseReason.CATEGORY_UNKNOWN
     return CalculationIssue(
         code=ISSUE_CODE,
+        capability="inps_employee",
         message=(
             f"the INPS base {minimum.actual} is below the minimum of up to "
             f"{minimum.bound} the month can have ({_LEGAL_BASIS}) and the "

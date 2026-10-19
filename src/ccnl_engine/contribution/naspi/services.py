@@ -61,6 +61,7 @@ def naspi_issue(ctx: RunContext) -> CalculationIssue | None:
     provenance = ctx.contract.year_rules.fixed_term_additional_rate_provenance
     return CalculationIssue(
         code=ISSUE_CODE,
+        capability="inps_employer",
         message=(
             "inps_employer: the NASpI surcharge of a fixed-term contract "
             "(L. 92/2012 art. 2 c. 28-29) depends on a fact the request does "
