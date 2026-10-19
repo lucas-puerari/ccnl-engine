@@ -8,18 +8,27 @@ read (identity and integrity hash) and how far a person has cleared it.
 Only CCNL rulesets carry a readiness tier.  The tax, INPS and surtax files
 record provenance per rule and no tier, so their :attr:`RulesetAssurance\
 .readiness` is ``None``: not tracked, never assumed.
+
+A CCNL ruleset also carries the date its next review is due.  The tier is a
+property of the file; whether the review is overdue depends on the day a
+run pays, so :meth:`RulesetAssurance.review_overdue` takes that day and the
+assessment of the run applies it (see :mod:`~ccnl_engine.assurance.rules`).
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import StrEnum
+from typing import TYPE_CHECKING
 
 from ccnl_engine.provenance.ruleset.models import (
     RulesetIdentity,
     RulesetReadiness,
     VerificationStatus,
 )
+
+if TYPE_CHECKING:
+    import datetime as dt
 
 __all__ = ["RulesetAssurance", "RulesetKind"]
 
@@ -59,12 +68,16 @@ class RulesetAssurance:
         confidence: Editorial confidence in the values: the CCNL
             ``verification.confidence``, or the identity
             ``verification_status`` for the other kinds.
+        review_due: Day by which the next review is due, the CCNL
+            ``verification.review_due``; ``None`` when the ruleset records
+            none (every kind but :attr:`RulesetKind.CCNL`).
     """
 
     identity: RulesetIdentity
     kind: RulesetKind
     readiness: RulesetReadiness | None
     confidence: VerificationStatus
+    review_due: dt.date | None = None
 
     @classmethod
     def without_tier(
@@ -121,3 +134,18 @@ class RulesetAssurance:
             self.readiness is RulesetReadiness.PRODUCTION
             and not self.confidence_contradicts_readiness
         )
+
+    def review_overdue(self, on: dt.date) -> bool:
+        """Whether the next review was due before ``on``.
+
+        The due day itself is still in time.  A ruleset that records no
+        review date is never overdue.
+
+        Args:
+            on: Day the review date is compared with, e.g. the payment date
+                of a run.
+
+        Returns:
+            ``True`` when :attr:`review_due` is set and earlier than ``on``.
+        """
+        return self.review_due is not None and self.review_due < on

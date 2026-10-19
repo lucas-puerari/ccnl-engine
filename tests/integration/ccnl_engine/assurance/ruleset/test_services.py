@@ -5,10 +5,13 @@ from __future__ import annotations
 from datetime import date
 from typing import TYPE_CHECKING
 
+import pytest
+
 from ccnl_engine.assurance.models import BlockerCode
 from ccnl_engine.assurance.policies import EngineMode
 from ccnl_engine.assurance.rules import NO_TRACKED_READINESS
 from ccnl_engine.balance.models import PeriodState
+from ccnl_engine.catalog.services import inspect_ruleset, list_contracts
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
@@ -23,7 +26,7 @@ from tests.integration.ccnl_engine.catalog.builders import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.agreement.facade import TaxSector
+    from ccnl_engine.agreement.facade import CCNL, TaxSector
     from ccnl_engine.period.results import PeriodResult
     from ccnl_engine.sector.models import YearRules
 
@@ -100,3 +103,70 @@ def test_a_year_without_somma_esente_reports_no_somma_ruleset() -> None:
 
     assert "tax/2026/somma-esente" in with_somma
     assert "tax/2026/somma-esente" not in without
+
+
+class _ReviewDueRepository(BundledKnowledgeRepository):
+    """Bundled rules whose CCNL records another review date."""
+
+    def __init__(self, review_due: date) -> None:
+        super().__init__()
+        self._review_due = review_due
+
+    def load_ccnl(self, filename: str) -> CCNL:
+        """Return the bundled CCNL with its review due on the given day.
+
+        Returns:
+            The CCNL.
+        """
+        ccnl = super().load_ccnl(filename)
+        verification = ccnl.verification.model_copy(
+            update={"review_due": self._review_due}
+        )
+        return ccnl.model_copy(update={"verification": verification})
+
+
+def _readiness_details(result: PeriodResult) -> list[str]:
+    return [
+        b.detail
+        for b in result.blockers
+        if b.code is BlockerCode.RULESET_NOT_PRODUCTION
+    ]
+
+
+def test_a_production_ccnl_past_its_review_date_is_not_production() -> None:
+    """A review due the day before the payment blocks the operational run."""
+    repo = _ReviewDueRepository(date(2026, 3, 26))
+
+    operational = _run(repo, EngineMode.OPERATIONAL)
+    simulated = _run(repo, EngineMode.SIMULATION)
+
+    assert _readiness_details(operational) == ["ccnl/metalmeccanico-federmeccanica"]
+    assert _readiness_details(simulated) == []
+    (ccnl,) = [r for r in operational.rulesets if r.kind is RulesetKind.CCNL]
+    assert ccnl.readiness is RulesetReadiness.PRODUCTION
+    assert ccnl.review_due == date(2026, 3, 26)
+
+
+@pytest.mark.parametrize("review_due", [date(2026, 3, 27), date(2026, 12, 31)])
+def test_a_review_due_on_or_after_the_payment_keeps_the_tier(review_due: date) -> None:
+    """The run pays on 27 March: a review due that day or later is in time."""
+    result = _run(_ReviewDueRepository(review_due), EngineMode.OPERATIONAL)
+
+    assert _readiness_details(result) == []
+
+
+def test_no_bundled_production_ccnl_is_past_its_review_date_in_2026() -> None:
+    """Every production CCNL records a review date later than 2026."""
+    repo = BundledKnowledgeRepository()
+    production = [
+        inspect_ruleset(repo, summary.ccnl_id)
+        for summary in list_contracts()
+        if summary.readiness is RulesetReadiness.PRODUCTION
+    ]
+
+    assert production
+    assert [
+        r.id
+        for r in production
+        if r.review_due is None or r.review_overdue(date(2026, 12, 31))
+    ] == []
