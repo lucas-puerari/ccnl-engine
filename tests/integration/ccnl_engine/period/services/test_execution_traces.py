@@ -297,4 +297,7 @@ class TestYearDecisions:
         # December run (zero: a worker hired in the year has no fund to
         # revalue).
         before_the_renewal = 5
-        assert len(year.decisions) == 15 * len(runs) + 2 - before_the_renewal
+        # mètaSalute on each of the 12 monthly runs, the flexible benefits on
+        # the February run.
+        funds = 12 + 1
+        assert len(year.decisions) == 15 * len(runs) + 2 - before_the_renewal + funds

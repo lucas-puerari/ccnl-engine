@@ -28,7 +28,7 @@ from ccnl_engine import (
 )
 from ccnl_engine.catalog import RulesetKind, RulesetReadiness
 from ccnl_engine.inputs import EngineMode, Permanent, TaxSector, WorkerCategory
-from ccnl_engine.results import BlockerCode, ResultTotal
+from ccnl_engine.results import BlockerCode
 from tests.knowledge.ccnl_engine.period.builders import (
     CONCIA_D2,
     competence_year,
@@ -157,14 +157,13 @@ def test_a_reviewed_ccnl_is_payable_only_in_simulation() -> None:
     ]
 
 
-def test_a_production_ccnl_pays_the_net_but_not_a_complete_employer_cost() -> None:
-    """Metalmeccanico C3 is production: its net pay is payable, its cost is not.
+def test_a_production_ccnl_pays_its_net_and_its_employer_cost() -> None:
+    """Metalmeccanico C3 is production and a fully stated run is payable.
 
     Its L2 rules (INPS of industria, apprentices, TFR) were verified for
-    2026 and a real payslip (p23) is its reference case.  The employer owes
-    mètaSalute and the flexible benefits for every worker, which the engine
-    does not compute: the employer cost is incomplete until they are
-    modelled, and the net pay they do not touch stays payable.
+    2026 and a real payslip (p23) is its reference case.  mètaSalute and the
+    flexible benefits the employer owes for every worker are modelled
+    (``parameters.health_funds``), so the employer cost is complete too.
     """
     employment = replace(
         CONCIA_D2,
@@ -177,16 +176,9 @@ def test_a_production_ccnl_pays_the_net_but_not_a_complete_employer_cost() -> No
 
     assert ccnl.readiness is RulesetReadiness.PRODUCTION
     assert result.is_net_pay_payable
-    assert not result.is_employer_cost_complete
-    assert not result.is_payable
-    assert {(b.code, b.detail, b.totals) for b in result.blockers} == {
-        (
-            BlockerCode.OPEN_LIMITATION,
-            f"{_METALMECCANICO}/{variant}",
-            frozenset({ResultTotal.EMPLOYER_COST}),
-        )
-        for variant in ("health_and_bilateral_funds", "flexible_benefits")
-    }
+    assert result.is_employer_cost_complete
+    assert result.blockers == ()
+    assert result.is_payable
 
 
 def _logistica(sector: TaxSector | None) -> PeriodResult:

@@ -137,10 +137,10 @@ _ALIMENTARI = "alimentari-federalimentare"
 _CHIMICA = "chimica-farmaceutica-federchimica"
 _TURISMO = "turismo-federalberghi"
 _STUDI = "studi-professionali-confprofessioni"
-_METAL_OWED = frozenset({
-    f"{_METAL}/health_and_bilateral_funds",
-    f"{_METAL}/flexible_benefits",
-})
+#: mètaSalute and the flexible benefits of Federmeccanica are modelled, on
+#: the employer cost only; the scenarios state that the employer pays neither,
+#: as their oracles leave them out.
+_METAL_OWED: frozenset[str] = frozenset()
 _TERZ_OWED = frozenset({"contractual_funds"})
 _STUDI_OWED = frozenset({f"{_STUDI}/bilateral_contribution_or_element"})
 #: The funds of Turismo and FIPE are modelled; the scenarios leave the
@@ -537,6 +537,7 @@ def _year(name: str) -> CompetenceYearResult:
             employer=EmployerProfile(
                 headcount=Headcount(s.headcount),
                 provincial_pay_element=s.provincial_pay_element,
+                contractual_funds=frozenset() if s.ccnl == _METAL else None,
             ),
             default_facts=facts,
             periods=periods,
@@ -610,9 +611,10 @@ def test_owed_amounts_leave_the_totals_they_touch_short(name: str) -> None:
             assert not result.is_payable
         else:
             features = {b.feature for b in result.blockers}
-            assert result.is_employer_cost_complete is (
-                "termination_residual_leave" not in features
-            )
+            # The unmodelled residual leave and the overtime supplement past
+            # the exempt quota leave the employer cost short.
+            short = bool({"termination_residual_leave", "overtime"} & features)
+            assert result.is_employer_cost_complete is not short
 
 
 @pytest.mark.parametrize("name", _NAMES)

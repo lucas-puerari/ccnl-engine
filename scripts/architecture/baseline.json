@@ -12,7 +12,7 @@
   "src/ccnl_engine/employment/fact/inputs.py": 403,
   "src/ccnl_engine/employment/inputs.py": 305,
   "src/ccnl_engine/extra_month/models.py": 473,
-  "src/ccnl_engine/fund/health/services.py": 322,
+  "src/ccnl_engine/fund/health/services.py": 408,
   "src/ccnl_engine/limitation/models.py": 308,
   "src/ccnl_engine/pay_item/models.py": 316,
   "src/ccnl_engine/period/decision/override/services.py": 311,

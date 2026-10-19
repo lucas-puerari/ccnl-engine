@@ -578,6 +578,7 @@ function renderBreakdown(r) {
   rows.push(row(t("breakdown.gross", { runs: r.runs }), r.annual_gross));
   rows.push(row(t("breakdown.inps_employer"), a.employer_contributions));
   if (a.bilateral_fund_employer) rows.push(row(t("breakdown.bilateral_employer"), a.bilateral_fund_employer));
+  if (a.non_cash_benefits) rows.push(row(t("breakdown.welfare_employer"), a.non_cash_benefits));
   if (a.pension_fund_employer) rows.push(row(t("breakdown.pension_employer"), a.pension_fund_employer));
   rows.push(row(t("breakdown.tfr"), a.tfr_accrual));
   rows.push(row(t("breakdown.cost"), r.annual_employer_cost, "total-row"));

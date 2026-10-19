@@ -345,16 +345,13 @@ def test_a_rate_fund_without_worker_share() -> None:
     ] == ["ente_minimo"]
 
 
-def test_a_fund_without_element_owes_nothing_when_unpaid() -> None:
-    """Not paid and without an element: decided, nothing posted."""
+def test_a_fund_without_element_is_paid_whatever_the_employer_states() -> None:
+    """The CCNL owes it with no alternative: posted even when not named."""
     result = _more(frozenset())
 
     (decision,) = [d for d in result.decisions if d.capability == "contractual_funds"]
-    assert (decision.reason_code, decision.amount) == (
-        "alternative_element_paid",
-        Decimal(0),
-    )
-    assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYER) == 0
+    assert (decision.reason_code, decision.amount) == ("fund_paid", Decimal("1.70"))
+    assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYER) == Decimal("1.70")
 
 
 def test_part_time_owes_the_fixed_shares_in_full() -> None:
@@ -399,3 +396,44 @@ def test_an_element_owed_in_full_ignores_part_time() -> None:
 
     items = [i for i in result.pay_items if i.item_id.startswith("fondo_test_element")]
     assert [i.amount for i in items] == [Decimal("16.00")]
+
+
+class _GroupRepository(BundledKnowledgeRepository):
+    """Turismo with two alternative funds and no element."""
+
+    def load_ccnl(self, ccnl_id: str) -> CCNL:
+        ccnl = super().load_ccnl(ccnl_id)
+        first = _EMPLOYER_ONLY.model_copy(update={"group": "ente"})
+        second = _LEVELS.model_copy(update={"group": "ente", "levels": None})
+        parameters = ccnl.parameters.model_copy(
+            update={"health_funds": (first, second)}
+        )
+        return ccnl.model_copy(update={"parameters": parameters})
+
+
+def test_a_group_without_element_owes_nothing_when_none_is_named() -> None:
+    """Neither way of the group is named and it has no element: nothing."""
+    result = PayrollEngine(repository=_GroupRepository()).calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(2026, 6),
+            payment_date=date(2026, 6, 27),
+            employment=Employment(
+                ccnl_id="turismo-federalberghi",
+                level_code="4",
+                contract_type=Permanent(),
+                employment_period=EmploymentPeriod(_HIRED, None),
+                seniority=SeniorityFact.since(_HIRED, SenioritySource.EMPLOYER_RECORDS),
+                pension_fund=NoPensionFund(),
+            ),
+            employer=EmployerProfile(
+                headcount=Headcount(60), contractual_funds=frozenset()
+            ),
+        )
+    )
+
+    (decision,) = [d for d in result.decisions if d.capability == "contractual_funds"]
+    assert (decision.inputs["fund"], decision.reason_code, decision.amount) == (
+        "ente_minimo",
+        "alternative_element_paid",
+        Decimal(0),
+    )

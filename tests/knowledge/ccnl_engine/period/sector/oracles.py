@@ -147,6 +147,34 @@ class Rates:
 
 
 @dataclass(frozen=True)
+class HealthFund:
+    """A fund the CCNL owes for every worker, with no alternative element.
+
+    The employer pays it on every monthly payment, with the 10% INPS
+    solidarity on it (an employer contribution); a welfare amount is made
+    available once a year, in its month, outside the pay.
+
+    Attributes:
+        monthly: Employer share a month.
+        welfare: Welfare amount of the year.
+        welfare_month: Month the welfare amount is made available in.
+    """
+
+    monthly: Decimal
+    welfare: Decimal = _ZERO
+    welfare_month: int = 0
+
+
+#: mètaSalute, 13 EUR a month (CCNL 5 February 2021 art. 16, p. 184), and
+#: the flexible benefits of 250 EUR, made available by February in 2026
+#: (ipotesi 22 November 2025, p. 3).
+METASALUTE = HealthFund(Decimal(13), Decimal(250), 2)
+#: EBM Salute, 8 EUR a month from 2022 (accordo 4 June 2026, p. 22).
+EBM_SALUTE = HealthFund(Decimal(8))
+_SOLIDARITY = Decimal("0.10")
+
+
+@dataclass(frozen=True)
 class Pay:
     """What one payment pays, from the cited tables.
 
@@ -224,6 +252,24 @@ class SectorYear:
     employer_cost: Decimal
 
 
+def _with_fund(pay: Pay, health: HealthFund | None) -> Pay:
+    """Add the employer share of ``health`` to a monthly payment.
+
+    Returns:
+        ``pay`` with the share and its solidarity, and the welfare in its
+        month; unchanged for an extra month or without a fund.
+    """
+    if health is None or not pay.run_id.endswith(("regular", "termination")):
+        return pay
+    month = int(pay.run_id[5:7])
+    welfare = health.welfare if month == health.welfare_month else _ZERO
+    return replace(
+        pay,
+        fund=pay.fund + health.monthly + welfare,
+        solidarity=pay.solidarity + _cents(health.monthly * _SOLIDARITY),
+    )
+
+
 def _payment(pay: Pay, rates: Rates) -> Payment:
     paid = pay.gross - pay.absence
     base = _whole_euro(paid)
@@ -275,14 +321,19 @@ def _trattamento(taxable: Decimal, days: int) -> Decimal:
 
 
 def sector_year(
-    pays: tuple[Pay, ...], rates: Rates, days: int, *, terminated: bool
+    pays: tuple[Pay, ...],
+    rates: Rates,
+    days: int,
+    *,
+    terminated: bool,
+    health: HealthFund | None = None,
 ) -> SectorYear:
     """Return the oracle of the payments ``pays`` of one tax year.
 
     Returns:
         The figures of each payment and of the year.
     """
-    payments = tuple(_payment(pay, rates) for pay in pays)
+    payments = tuple(_payment(_with_fund(pay, health), rates) for pay in pays)
     gross = sum((p.gross for p in payments), _ZERO)
     absence = sum((p.absence for p in payments), _ZERO)
     inps = sum((p.employee_inps for p in payments), _ZERO)
@@ -376,9 +427,11 @@ def _industria_june() -> tuple[Pay, ...]:
 
 
 INDUSTRIA_YEAR = sector_year(
-    _industria_year(), _INDUSTRIA, _FULL_YEAR, terminated=False
+    _industria_year(), _INDUSTRIA, _FULL_YEAR, terminated=False, health=METASALUTE
 )
-INDUSTRIA_JUNE = sector_year(_industria_june(), _INDUSTRIA, _HALF_YEAR, terminated=True)
+INDUSTRIA_JUNE = sector_year(
+    _industria_june(), _INDUSTRIA, _HALF_YEAR, terminated=True, health=METASALUTE
+)
 
 
 # Part time: the same C3 impiegato on 20 of 40 weekly hours.
@@ -409,8 +462,11 @@ PART_TIME_YEAR = sector_year(
     _INDUSTRIA,
     _FULL_YEAR,
     terminated=False,
+    health=METASALUTE,
 )
-PART_TIME_JUNE = sector_year(_part_time_june(), _INDUSTRIA, _HALF_YEAR, terminated=True)
+PART_TIME_JUNE = sector_year(
+    _part_time_june(), _INDUSTRIA, _HALF_YEAR, terminated=True, health=METASALUTE
+)
 
 
 # Terziario: Terziario Confesercenti IV.
@@ -479,9 +535,10 @@ APPRENTICE_YEAR = sector_year(
     _APPRENTICE,
     _FULL_YEAR,
     terminated=False,
+    health=METASALUTE,
 )
 APPRENTICE_JUNE = sector_year(
-    _apprentice_june(), _APPRENTICE, _HALF_YEAR, terminated=True
+    _apprentice_june(), _APPRENTICE, _HALF_YEAR, terminated=True, health=METASALUTE
 )
 
 
@@ -493,10 +550,14 @@ APPRENTICE_JUNE = sector_year(
 _FIXED_TERM = replace(_INDUSTRIA, employer_supplement=Decimal("0.0140"))
 
 FIXED_TERM_YEAR = sector_year(
-    _industria_year_without_overtime(), _FIXED_TERM, _FULL_YEAR, terminated=True
+    _industria_year_without_overtime(),
+    _FIXED_TERM,
+    _FULL_YEAR,
+    terminated=True,
+    health=METASALUTE,
 )
 FIXED_TERM_JUNE = sector_year(
-    _industria_june(), _FIXED_TERM, _HALF_YEAR, terminated=True
+    _industria_june(), _FIXED_TERM, _HALF_YEAR, terminated=True, health=METASALUTE
 )
 
 
@@ -522,7 +583,9 @@ def _sickness_year() -> tuple[Pay, ...]:
     return tuple(pays)
 
 
-SICKNESS_YEAR = sector_year(_sickness_year(), _INDUSTRIA, _FULL_YEAR, terminated=False)
+SICKNESS_YEAR = sector_year(
+    _sickness_year(), _INDUSTRIA, _FULL_YEAR, terminated=False, health=METASALUTE
+)
 
 
 # Mid-month: the C3 impiegato hired on 10 March and leaving on 20 October.
@@ -549,7 +612,9 @@ def _mid_month() -> tuple[Pay, ...]:
     return (*months, Pay(_run(10), october, october))
 
 
-MID_MONTH_YEAR = sector_year(_mid_month(), _INDUSTRIA, _MID_MONTH_DAYS, terminated=True)
+MID_MONTH_YEAR = sector_year(
+    _mid_month(), _INDUSTRIA, _MID_MONTH_DAYS, terminated=True, health=METASALUTE
+)
 
 
 def _iv(month: int) -> Decimal:
@@ -930,8 +995,12 @@ def _confapi_june() -> tuple[Pay, ...]:
     return (*pays, Pay(_run(6), june, june))
 
 
-CONFAPI_YEAR = sector_year(_confapi_year(), _INDUSTRIA, _FULL_YEAR, terminated=False)
-CONFAPI_JUNE = sector_year(_confapi_june(), _INDUSTRIA, _HALF_YEAR, terminated=True)
+CONFAPI_YEAR = sector_year(
+    _confapi_year(), _INDUSTRIA, _FULL_YEAR, terminated=False, health=EBM_SALUTE
+)
+CONFAPI_JUNE = sector_year(
+    _confapi_june(), _INDUSTRIA, _HALF_YEAR, terminated=True, health=EBM_SALUTE
+)
 
 
 # Edilizia impiegati: ANCE impiegato of the 3rd level, 30 employees.

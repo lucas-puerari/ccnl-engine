@@ -158,6 +158,7 @@
   "breakdown.head.employer": "Costo azienda",
   "breakdown.inps_employer": "Contributi INPS del datore",
   "breakdown.bilateral_employer": "Enti bilaterali e assistenza (datore)",
+  "breakdown.welfare_employer": "Welfare messo a disposizione (datore)",
   "breakdown.pension_employer": "Previdenza complementare (datore)",
   "breakdown.tfr": "TFR maturato",
   "breakdown.cost": "Costo azienda totale",

@@ -94,6 +94,11 @@ def _surtax(result: PeriodResult) -> Decimal:
     )
 
 
+#: Items of the contractual funds the CCNL owes on every run (mètaSalute of
+#: the Metalmeccanico), apart from the bilateral fund event under test.
+_FUNDS = ("metasalute_",)
+
+
 def _event_trail(
     result: PeriodResult, accounts: set[AccountKind]
 ) -> list[tuple[AccountKind, str, str, str | None, Decimal]]:
@@ -107,7 +112,7 @@ def _event_trail(
     items = {item.item_id: item for item in result.pay_items}
     trail: list[tuple[AccountKind, str, str, str | None, Decimal]] = []
     for entry in result.ledger_entries:
-        if entry.account not in accounts:
+        if entry.account not in accounts or entry.pay_item_id.startswith(_FUNDS):
             continue
         item = items[entry.pay_item_id]
         assert entry.pay_item_kind == item.kind
@@ -257,6 +262,7 @@ class TestBilateralFundEventAccounting:
             e.amount
             for e in result.ledger_entries
             if e.account == AccountKind.BILATERAL_FUND_EMPLOYER
+            and not e.pay_item_id.startswith(_FUNDS)
         )
         assert total == Decimal("50.00")
 

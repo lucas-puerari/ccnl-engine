@@ -135,8 +135,17 @@ class TestPermanentWorker:
             self.result, AccountKind.EMPLOYEE_CONTRIBUTIONS
         )
         employer = _decision(self.result, "inps_employer")
-        assert employer.amount == _posted(
-            self.result, AccountKind.EMPLOYER_CONTRIBUTIONS
+        # The 10% INPS solidarity on mètaSalute is posted apart.
+        solidarity = sum(
+            (
+                e.amount
+                for e in self.result.ledger_entries
+                if e.entry_id.endswith("_solidarity")
+            ),
+            Decimal(0),
+        )
+        assert employer.amount == (
+            _posted(self.result, AccountKind.EMPLOYER_CONTRIBUTIONS) - solidarity
         )
 
     def test_tfr_divides_the_base_by_the_bundled_divisor(self) -> None:

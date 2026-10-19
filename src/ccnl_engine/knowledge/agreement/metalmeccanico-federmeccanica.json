@@ -148,22 +148,6 @@
       },
       {
         "kind": "simplification",
-        "text": "HEALTH FUND: mètaSalute, the health fund of the CCNL, is paid by the employer for every worker: 171,60 euro a year with the 10% INPS solidarity contribution, so 156 euro to the fund, in the cost table of the Ministry of Labour of June 2026 (DD 82 of 5 October 2026). Not modelled.",
-        "capability": "bilateral_funds",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "health_and_bilateral_funds",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "totals": [
-            "employer_cost"
-          ],
-          "remediation": "Pass the contributions as bilateral fund events, or model them per worker."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "ELEMENTO PEREQUATIVO: the worker of a company without second-level bargaining is owed the elemento perequativo of 485 euro a year, paid with the June pay (Ministry of Labour cost table of June 2026, DD 82/2026, row A). The engine does not pay it: whether the company has second-level bargaining is not in the request.",
         "capability": "base_salary",
         "monetary_impact": "yes",
@@ -173,22 +157,6 @@
             "trigger": "outside_input"
           },
           "remediation": "Pass the elemento perequativo as a variable pay item, or add a fact for the second-level bargaining."
-        }
-      },
-      {
-        "kind": "simplification",
-        "text": "FLEXIBLE BENEFITS: every worker is owed flexible benefits of 250 euro a year (Ministry of Labour cost table of June 2026, DD 82/2026, row D), paid by the employer outside the net pay. Not modelled: the employer cost is short of them.",
-        "capability": "welfare",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "flexible_benefits",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "totals": [
-            "employer_cost"
-          ],
-          "remediation": "Model the yearly flexible benefits per worker, then remove this note."
         }
       },
       {
@@ -495,6 +463,86 @@
           "page": "2",
           "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
           "quote": "D1 1.784,94 1.833,02 1.885,37"
+        }
+      }
+    ],
+    "health_funds": [
+      {
+        "code": "metasalute",
+        "description": "Fondo mètaSalute, assistenza sanitaria integrativa, Art. 16 Sez. Quarta Tit. IV",
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2017-10-01",
+                "valid_until": null,
+                "value": "13.0"
+              }
+            ]
+          }
+        },
+        "solidarity_rate": "0.1",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "fm2021",
+              "title": "CCNL Federmeccanica-Assistal 5 febbraio 2021 (testo stampato)",
+              "kind": "associazione",
+              "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+              "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+            },
+            "page": "184",
+            "quote": "Per i suddetti lavoratori è prevista a decorrere dal 1° ottobre 2017 una contribuzione pari a 156 euro annui (suddivisi in 12 quote mensili da 13 euro l'una) a totale carico dell'azienda comprensiva delle coperture per i familiari fiscalmente a carico"
+          },
+          "transformation": "Also: Ministero del Lavoro, tabelle costo del lavoro metalmeccanica impiegati allegate al DD 82 del 5 ottobre 2026, p. 1: Assistenza sanitaria integr.+ Contrib. Di solidarietà 10%                 171,60 (13 x 12 = 156 + 10% solidarity = 171.60).",
+          "note": "Employer only, health fund with 10% INPS solidarity. The ipotesi of 22 November 2025 does not amend art. 16. Covers permanent workers, apprentices and fixed terms of at least 5 months out of probation: the shorter fixed terms, the probation and the written renunciation are not modelled."
+        }
+      },
+      {
+        "code": "flexible_benefits",
+        "description": "Welfare (flexible benefits), Art. 17 Sez. Quarta Tit. IV",
+        "employer": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "250.0"
+              }
+            ]
+          }
+        },
+        "charged_in_month": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "2"
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": null,
+              "value": "6"
+            }
+          ]
+        },
+        "welfare": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "fm2025",
+              "title": "CCNL Federmeccanica-Assistal, Ipotesi di accordo 22 novembre 2025 (siglata, scansione)",
+              "kind": "associazione",
+              "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+              "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+            },
+            "page": "3",
+            "quote": "A decorrere dall'anno 2026, entro il 1° giugno di ciascun anno le aziende dovranno mettere a disposizione dei lavoratori strumenti di welfare, elencati in via esemplificativa in calce al presente articolo, del valore di 250 euro da utilizzare entro il 31 maggio dell'anno successivo. Per il solo anno 2026 l'importo annuale, pari a 250 euro, sarà messo a disposizione entro il mese di febbraio."
+          },
+          "transformation": "Also: CCNL Federmeccanica-Assistal 5 febbraio 2021 (testo stampato), p. 185: I suddetti valori sono onnicomprensivi ed espressamente esclusi dalla base di calcolo del trattamento di fine rapporto. ... I suddetti valori non sono riproporzionabili per i lavoratori part-time e sono comprensivi esclusivamente di eventuali costi fiscali o contributivi a carico dell'azienda. Ministero del Lavoro, tabelle costo del lavoro metalmeccanica impiegati allegate al DD 82 del 5 ottobre 2026, p. 1: Flaxible Benefits   250,00",
+          "note": "250 EUR a year made available by February in 2026 and by 1 June from 2027, an employer cost outside the pay, the TFR and the bases (all-inclusive of the employer's tax and contribution costs), not reproportioned for part time. The years before 2026 (200 EUR) and the eligibility conditions (past probation, in force on 1 June or hired by 31 December, fixed terms of 3 months in the year) are not modelled."
         }
       }
     ]
@@ -3183,7 +3231,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "c2c4e71e0caaa98191a632e084ee9f1a20e833bacdc59cb5c7325f32055c8734",
+    "source_hash": "c94dd49017f78cdfe6f858ad80a32b5c573d6f2ec9787c6b88ed05a5caa669bd",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },

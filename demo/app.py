@@ -60,6 +60,7 @@ _ACCOUNTS = (
     "employer_contributions",
     "bilateral_fund_employer",
     "pension_fund_employer",
+    "non_cash_benefits",
     "tfr_accrual",
 )
 _EARNINGS = {

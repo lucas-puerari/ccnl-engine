@@ -74,6 +74,7 @@ def test_annual_figures_are_the_sum_of_the_runs(demo_app: types.ModuleType) -> N
     assert year["annual_employer_cost"] == pytest.approx(
         year["annual_gross"]
         + accounts["employer_contributions"]
+        + accounts["non_cash_benefits"]
         + accounts["bilateral_fund_employer"]
         + accounts["pension_fund_employer"]
         + accounts["tfr_accrual"],
