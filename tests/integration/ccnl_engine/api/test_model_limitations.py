@@ -129,7 +129,7 @@ def test_apprentice_without_seniority_is_a_missing_fact() -> None:
         "3",
         Apprentice(months_elapsed=1, track="gruppo_1"),
     )
-    assert (BlockerCode.MISSING_FACT, None, "seniority") in {
+    assert (BlockerCode.MISSING_FACT, "seniority", "seniority") in {
         (b.code, b.feature, b.detail) for b in result.blockers
     }
     assert not result.is_payable

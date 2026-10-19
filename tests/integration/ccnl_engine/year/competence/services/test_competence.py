@@ -230,7 +230,11 @@ class TestEmploymentPeriodRuns:
             )
         )
         march = result.period_results[0]
-        partial = (BlockerCode.CALCULATION_ISSUE, None, "partial_month_rule_missing")
+        partial = (
+            BlockerCode.CALCULATION_ISSUE,
+            "base_salary",
+            "partial_month_rule_missing",
+        )
         keys = [(b.code, b.feature, b.detail) for b in result.blockers]
 
         assert march.period_gross == Decimal("0.00")

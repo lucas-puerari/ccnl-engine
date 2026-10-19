@@ -24,6 +24,13 @@ is one :class:`~ccnl_engine.assurance.models.ResultBlocker`:
   is not ``production``, or a run where no ruleset tracks one (the CCNL
   identity is missing): the run fails closed.
 
+A cause is reported once.  A missing fact keeps its key of
+:data:`~ccnl_engine.decision.models.PUBLIC_FACTS` as detail, names its public
+field (``Employment.seniority``) in the remediation and the capability it
+leaves open as feature; the other blockers of that capability (its decision that is not
+final, its gap) follow from the fact and are not repeated.  Likewise an
+issue or a non-final decision of a capability makes its gap redundant.
+
 A ``derived`` rule lowers the evidence axis but does not block on its own:
 the bundle holds no ``verified`` rule yet, so requiring one would block every
 result without telling them apart.  For the same reason ``simulation`` mode
@@ -47,7 +54,7 @@ from ccnl_engine.assurance.models import (
     decide_payability,
 )
 from ccnl_engine.assurance.policies import EngineMode
-from ccnl_engine.decision.models import CalculationStatus
+from ccnl_engine.decision.models import PUBLIC_FACTS, CalculationStatus
 
 if TYPE_CHECKING:
     from ccnl_engine.capability.results import CapabilityReport
@@ -82,7 +89,7 @@ def assess(
     Returns:
         The assurance of the run.
     """
-    blockers = (
+    blockers = _one_per_cause((
         *(_issue_blocker(issue) for issue in issues),
         *(
             _blocker(BlockerCode.CALCULATION_ISSUE, d.capability, d.reason_code)
@@ -101,7 +108,7 @@ def assess(
             for lim in limitations
             if lim.blocks
         ),
-    )
+    ))
     return ResultAssurance(
         calculation=CalculationStatus.worst((
             *(i.status for i in issues),
@@ -188,15 +195,46 @@ def _readiness_blockers(
 
 def _issue_blocker(issue: CalculationIssue) -> ResultBlocker:
     if issue.fact is not None:
-        return _blocker(BlockerCode.MISSING_FACT, None, issue.fact)
-    return _blocker(BlockerCode.CALCULATION_ISSUE, None, issue.code)
+        return _blocker(BlockerCode.MISSING_FACT, issue.capability, issue.fact)
+    return _blocker(BlockerCode.CALCULATION_ISSUE, issue.capability, issue.code)
+
+
+#: Blockers of a capability from the most to the least specific cause: a
+#: capability keeps only the blockers of its most specific rank.
+_CAUSE_RANK: dict[BlockerCode, int] = {
+    BlockerCode.MISSING_FACT: 0,
+    BlockerCode.REQUIREMENT_UNRESOLVED: 0,
+    BlockerCode.CALCULATION_ISSUE: 1,
+    BlockerCode.CAPABILITY_NOT_COMPUTED: 2,
+}
+
+
+def _one_per_cause(blockers: tuple[ResultBlocker, ...]) -> tuple[ResultBlocker, ...]:
+    """Drop the blockers that repeat a more specific cause of their capability.
+
+    Returns:
+        ``blockers`` in order, without duplicates and without the ranked
+        blockers of a capability that has one of a more specific rank.
+    """
+    best: dict[str, int] = {}
+    for b in blockers:
+        if b.feature is not None and b.code in _CAUSE_RANK:
+            best[b.feature] = min(best.get(b.feature, 2), _CAUSE_RANK[b.code])
+    kept = (
+        b
+        for b in blockers
+        if b.feature is None
+        or b.code not in _CAUSE_RANK
+        or _CAUSE_RANK[b.code] == best[b.feature]
+    )
+    return tuple(dict.fromkeys(kept))
 
 
 _REMEDIATION: dict[BlockerCode, str] = {
     BlockerCode.CALCULATION_ISSUE: (
         "resolve the condition reported as {detail}, then calculate again"
     ),
-    BlockerCode.MISSING_FACT: "supply the fact {detail} in the request",
+    BlockerCode.MISSING_FACT: "supply {field} in the request",
     BlockerCode.REQUIREMENT_UNRESOLVED: (
         "{feature} is required unless a decision of the run rules it out, and "
         "{detail} was left to its default: supply {detail} (a value that "
@@ -232,5 +270,9 @@ def _blocker(
     detail: str,
     totals: frozenset[ResultTotal] = ALL_TOTALS,
 ) -> ResultBlocker:
-    remediation = _REMEDIATION[code].format(feature=feature or "the run", detail=detail)
+    remediation = _REMEDIATION[code].format(
+        feature=feature or "the run",
+        detail=detail,
+        field=PUBLIC_FACTS.get(str(detail), detail),
+    )
     return ResultBlocker(code, feature, str(detail), remediation, totals)

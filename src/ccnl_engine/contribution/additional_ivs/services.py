@@ -103,6 +103,7 @@ def additional_ivs_issue(ctx: RunContext) -> CalculationIssue | None:
         return None
     return CalculationIssue(
         code=UNKNOWN_CODE,
+        capability="inps_employee",
         message=(
             f"the run settles the additional 1% IVS of {run_id.year} "
             f"(D.L. 384/1992 art. 3-ter) on a base of other employers of "

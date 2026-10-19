@@ -148,6 +148,7 @@ class RunFamily:
         )
         return CalculationIssue(
             code="family_income_unknown",
+            capability=CAPABILITY,
             message=(
                 "the art. 12 TUIR family deductions depend on the reddito "
                 f"complessivo of {self.rules.year}, and the run has {found}: "
@@ -228,6 +229,7 @@ class RunFamily:
 def _fact_issue(fact: str) -> CalculationIssue:
     return CalculationIssue(
         code="dependent_condition_unknown",
+        capability=CAPABILITY,
         message=(
             f"a dependant may give right to an art. 12 TUIR deduction and "
             f"leaves Dependent.{fact} unknown: state it; until then the "

@@ -61,6 +61,7 @@ def other_employers_issue(
         return None
     return CalculationIssue(
         code="other_employment_inps_base_unknown",
+        capability="inps_employee",
         message=(
             f"the INPS base of the worker's other employments of {ctx.cp.year} "
             "is not stated: it counts toward the IVS massimale (L. 335/1995 "

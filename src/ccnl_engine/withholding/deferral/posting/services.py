@@ -142,6 +142,7 @@ def unrecovered_deferral(
     law = withholding_rule(WithholdingTopic.CONGUAGLIO, ctx.contract.year_rules.year)
     issue = CalculationIssue(
         code="deferred_shortfall_unrecovered",
+        capability=CAPABILITY,
         message=(
             f"shortfall_deferral: {deferred.irpef} IRPEF of the conguaglio "
             f"{deferred.tax_year} deferred on written request was not withheld "

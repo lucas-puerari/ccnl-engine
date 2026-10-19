@@ -27,6 +27,7 @@ _ZERO = Decimal(0)
 #: A fund with a young member rate needs the enrolment to state it.
 YOUNG_MEMBER_UNKNOWN = CalculationIssue(
     code="pension_fund_young_member_unknown",
+    capability="pension_fund_contribution",
     message=(
         "the fund has a higher employer rate for members enrolled young "
         "(Cometa: after 5 February 2021, before turning 35) and the enrolment "
@@ -39,6 +40,7 @@ YOUNG_MEMBER_UNKNOWN = CalculationIssue(
 #: A fund with an ERC holder rate needs the employment to state the ERC.
 ERC_UNKNOWN = CalculationIssue(
     code="pension_fund_erc_unknown",
+    capability="pension_fund_contribution",
     message=(
         "Byblos has a lower employer rate (1.4%) for the holders of the "
         "Elemento di Raccordo Contrattuale of the CCNL grafici editoriali and "
@@ -51,6 +53,7 @@ ERC_UNKNOWN = CalculationIssue(
 #: A fund on a conventional base needs the enrolment to state it.
 CONVENTIONAL_BASE_UNKNOWN = CalculationIssue(
     code="pension_fund_conventional_base_unknown",
+    capability="pension_fund_contribution",
     message=(
         "the fund computes its rates on a conventional base of the worker "
         "(Previambiente: the 1997 base pay, contingenza and one scatto of the "
