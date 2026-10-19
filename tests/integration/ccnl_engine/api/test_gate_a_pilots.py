@@ -141,6 +141,14 @@ _SPECIFIC: Final[dict[str, frozenset[Blocker]]] = {
         ("ruleset_not_production", "", "ccnl/commercio-confcommercio"),
     }),
 }
+#: Pilots whose renewal increment cannot be measured yet: the CCNL does not
+#: list its renewal (``parameters.renewals``) or lacks the table before it.
+_RENEWAL_UNMEASURED: Final = frozenset({
+    "chimica-farmaceutica-federchimica",
+    "pubblici-esercizi-fipe-angem",
+    "studi-professionali-confprofessioni",
+    "commercio-confcommercio",
+})
 #: Pilots whose middle level stays under Milan's exemption threshold: the
 #: comunale is a final zero and only its source is weak.
 _UNDER_MILAN_THRESHOLD: Final = frozenset({
@@ -148,6 +156,9 @@ _UNDER_MILAN_THRESHOLD: Final = frozenset({
     "pubblici-esercizi-fipe-angem",
     "studi-professionali-confprofessioni",
 })
+#: Pilots whose middle level drops under Milan's threshold once the renewal
+#: increment is taxed at 5% and leaves the IRPEF base.
+_UNDER_MILAN_THRESHOLD_TAXED: Final = frozenset({"terziario-confesercenti"})
 _PROFILES: Final = [
     (income, comune)
     for income in (_ELIGIBLE, _EXCLUDED)
@@ -157,11 +168,14 @@ _PROFILES: Final = [
 
 def _expected(ccnl_id: str, income: Decimal, comune: str) -> frozenset[Blocker]:
     expected = set(_SPECIFIC[ccnl_id])
-    if income == _ELIGIBLE:
+    if income == _ELIGIBLE and ccnl_id in _RENEWAL_UNMEASURED:
         expected |= _RENEWAL
     if comune == _MILAN:
         expected |= _SURTAX_SOURCE
-        if ccnl_id not in _UNDER_MILAN_THRESHOLD:
+        under = ccnl_id in _UNDER_MILAN_THRESHOLD or (
+            income == _ELIGIBLE and ccnl_id in _UNDER_MILAN_THRESHOLD_TAXED
+        )
+        if not under:
             expected |= _SURTAX_PRIOR_RATES
     return frozenset(expected)
 

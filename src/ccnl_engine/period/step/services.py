@@ -16,7 +16,10 @@ from ccnl_engine.compensation.hourly.services import (
     percentage_settlement,
 )
 from ccnl_engine.compensation.raccordo.services import erc_settlement
-from ccnl_engine.compensation.renewal_minimum.services import renewal_minimum
+from ccnl_engine.compensation.renewal_minimum.services import (
+    renewal_minimum,
+    renewal_settlement,
+)
 from ccnl_engine.contribution.ceiling.services import (
     IvsCeiling,
     ivs_ceiling_decision,
@@ -137,7 +140,8 @@ def run_events(ctx: RunContext) -> RunEvents:
         with_sickness=any(i.code == WITH_UNPAID_ABSENCE for i in events.totals.issues),
     )
     totals = reduction.added_to(erc.added_to(settlement.added_to(events.totals)))
-    totals = hourly.added_to(totals)
+    renewal = renewal_settlement(ctx)
+    totals = renewal.added_to(hourly.added_to(totals))
     return RunEvents(
         totals,
         events.items + settlement.items + erc.items + reduction.items + hourly.items,
@@ -145,7 +149,8 @@ def run_events(ctx: RunContext) -> RunEvents:
         + settlement.entries
         + erc.entries
         + reduction.entries
-        + hourly.entries,
+        + hourly.entries
+        + renewal.entries,
     )
 
 

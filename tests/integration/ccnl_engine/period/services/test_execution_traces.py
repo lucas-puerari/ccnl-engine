@@ -289,9 +289,12 @@ class TestYearDecisions:
         # the IVS massimale eligibility, the seniority, the worker category
         # that picks the industria employer rate, the two surtaxes left
         # undetermined by the residence the plan omits, the renewal regime on
-        # the minimo (a 2024-2026 table, waived by the plan), the pension fund
+        # the minimo (waived by the plan) from the first tranche of the renewal
+        # of 22 November 2025 in June, so not in the five runs before, the
+        # pension fund
         # (Cometa, the enrolment unknown in the plan), plus the ratei
         # counted by the tredicesima run and the TFR revaluation of the
         # December run (zero: a worker hired in the year has no fund to
         # revalue).
-        assert len(year.decisions) == 15 * len(runs) + 2
+        before_the_renewal = 5
+        assert len(year.decisions) == 15 * len(runs) + 2 - before_the_renewal

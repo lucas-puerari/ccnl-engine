@@ -546,7 +546,43 @@
           "review_id": "2026-10-13-ai-production"
         }
       }
-    }
+    },
+    "renewals": [
+      {
+        "signed_on": "2025-07-24",
+        "tables_from": "2025-09-01",
+        "source": {
+          "source_document": {
+            "document_id": "unionmeccanica-accordo-2025-07-24",
+            "title": "Ipotesi di accordo 2025-2026 Unionmeccanica-Confapi, Fim-Cisl, Fiom-Cgil, Uilm-Uil, Roma 24 luglio 2025 (signed; ratified 25 September 2025)",
+            "kind": "associazione",
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/07/2025-07-24-CCNL-Unionmeccanica-accordo-aumenti-minini-2025-26.pdf",
+            "published_on": "2025-07-24",
+            "sha256": "4ec057a5c4a209b5b52d9d582822c5df0e7229475ac74b2602d3a94a436cfc4c"
+          },
+          "page": "1",
+          "section": "Table 'minimo 01/09/2025', row 1",
+          "quote": "b) €22,10: decorrenza 01/09/2025;"
+        }
+      },
+      {
+        "signed_on": "2026-06-04",
+        "tables_from": "2027-06-01",
+        "source": {
+          "source_document": {
+            "document_id": "unionmeccanica-ipotesi-rinnovo-2026-06-04",
+            "title": "Ipotesi di accordo per il rinnovo del CCNL Unionmeccanica-Confapi 2025-2028, Roma 4 giugno 2026 (signed; ratified 23 July 2026)",
+            "kind": "associazione",
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
+            "published_on": "2026-06-04",
+            "sha256": "ae59a64f408072c1438892143e2146eea350d7e2c3e5883fb8538f86ffc47f53"
+          },
+          "page": "5",
+          "section": "Minimi tabellari - Livelli retributivi mensili, column 'minimo 01/06/2027', row 1",
+          "quote": "per il biennio 2027-2028 l'aumento del minimo retributivo come da tabella. Per il biennio"
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -2768,7 +2804,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "274491b6e793856a32009d90095985af2fff83d17438369025f6fb7e27b3aff3",
+    "source_hash": "90575c4c25c9d19bdaa46d001dfb15f511a6326505254e145d7bb441faf976c0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
