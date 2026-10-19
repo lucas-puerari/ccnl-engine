@@ -59,7 +59,7 @@ REPLAY_KEYS: Final = frozenset(AXIS_OF) - {"hourly_percentages"}
 PERIMETER_KEYS: Final = frozenset({"employer_cost", "tfr_accrual"})
 #: Facts a request is built from, each a field of the public API.
 INPUT_KEYS: Final = frozenset({
-    "ccnl_slug",
+    "ccnl_id",
     "level_code",
     "year",
     "month",
@@ -101,7 +101,7 @@ EVENT_TYPES: Final = frozenset({
     "BilateralFundEvent",
     "TravelAllowanceEvent",
 })
-_REQUIRED_INPUTS: Final = ("ccnl_slug", "level_code", "year", "month", "headcount")
+_REQUIRED_INPUTS: Final = ("ccnl_id", "level_code", "year", "month", "headcount")
 _CONTRACT_TYPES: Final = ("permanent", "fixed_term")
 _RUN_KINDS: Final = ("regular", "thirteenth", "fourteenth")
 #: Fields of a pension fund enrolment a record states.

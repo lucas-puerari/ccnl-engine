@@ -18,7 +18,7 @@ import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
 
-_CCNL = load_ccnl("commercio-confcommercio.json")
+_CCNL = load_ccnl("commercio-confcommercio")
 _TRANCHES = (
     date(2024, 4, 1),
     date(2025, 3, 1),

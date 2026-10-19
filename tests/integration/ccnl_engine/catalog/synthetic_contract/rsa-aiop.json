@@ -1,6 +1,6 @@
 {
   "_description": "rsa-aiop — data checks 2026",
-  "ccnl_file": "rsa-aiop.json",
+  "ccnl_id": "rsa-aiop",
   "salary_checks": [
     {
       "level_code": "A",

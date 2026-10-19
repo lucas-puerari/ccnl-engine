@@ -43,7 +43,7 @@ _ENAM_BASE = "istruzione-ricerca-aran/enam_base"
 
 def _january(level: str, contract: Permanent | FixedTerm | None = None) -> PeriodResult:
     employment = Employment(
-        ccnl_slug="istruzione-ricerca-aran.json",
+        ccnl_id="istruzione-ricerca-aran",
         level_code=level,
         seniority=new_hire(),
         pension_fund=NoPensionFund(),

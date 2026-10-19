@@ -1,6 +1,6 @@
 {
   "_description": "commercio-confcommercio — data checks 2026",
-  "ccnl_file": "commercio-confcommercio.json",
+  "ccnl_id": "commercio-confcommercio",
   "salary_checks": [
     {
       "level_code": "Q",

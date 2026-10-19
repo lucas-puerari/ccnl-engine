@@ -57,7 +57,7 @@ if TYPE_CHECKING:
     from ccnl_engine.decision.models import CalculationDecision
     from ccnl_engine.event.facade import WorkEvent
 
-_CCNL = load_ccnl("metalmeccanico-federmeccanica.json")
+_CCNL = load_ccnl("metalmeccanico-federmeccanica")
 _BARE = _CCNL.model_copy(update={"work_rules": None})
 _DAY = date(2026, 3, 10)
 _OVERTIME = OvertimeEvent(_DAY, Decimal(10), Decimal("15.00"), Decimal("1.25"))
@@ -75,7 +75,7 @@ class TestOvertimeRun:
         PeriodCalculationRequest(
             period_id=PeriodId(year=2026, month=3),
             payment_date=date(2026, 3, 27),
-            ccnl_slug="metalmeccanico-federmeccanica.json",
+            ccnl_id="metalmeccanico-federmeccanica",
             level_code="C3",
             employer=EmployerProfile(headcount=Headcount(50)),
             opening_state=PeriodState.zero(),

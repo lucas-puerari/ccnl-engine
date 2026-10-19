@@ -1,6 +1,6 @@
 {
   "_description": "lavoro-domestico-convivente — data checks 2026",
-  "ccnl_file": "lavoro-domestico-convivente.json",
+  "ccnl_id": "lavoro-domestico-convivente",
   "salary_checks": [
     {
       "level_code": "A",

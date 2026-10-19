@@ -79,7 +79,7 @@ def _year(
     year: int, opening: PeriodState | None, ended_on: date | None
 ) -> CompetenceYearResult:
     employment = Employment(
-        ccnl_slug="commercio-confcommercio.json",
+        ccnl_id="commercio-confcommercio",
         level_code="4",
         seniority=new_hire(),
         employment_period=EmploymentPeriod(date(2020, 1, 1), ended_on),
@@ -321,7 +321,7 @@ def test_capability_report_follows_the_surtax_decisions() -> None:
     }
 
 
-_METALMECCANICO_C3 = "metalmeccanico-federmeccanica.json"
+_METALMECCANICO_C3 = "metalmeccanico-federmeccanica"
 #: The December pay was posted by the regular run: the termination run pays
 #: only its own items, here 60 overtime hours at 25.00 (1,500.00), enough
 #: net pay for the surtax it withholds.
@@ -349,7 +349,7 @@ def _termination_after(ended_on: date | None) -> tuple[PeriodResult, PeriodResul
         The tredicesima and the termination run.
     """
     employment = Employment(
-        ccnl_slug=_METALMECCANICO_C3,
+        ccnl_id=_METALMECCANICO_C3,
         level_code="C3",
         seniority=new_hire(),
         employment_period=EmploymentPeriod(date(2020, 1, 1), ended_on),
@@ -368,7 +368,7 @@ def _termination_after(ended_on: date | None) -> tuple[PeriodResult, PeriodResul
             run=PayrollRun(run_kind="termination", month=12, year=2026),  # type: ignore[arg-type]
             payment_date=date(2026, 12, 31),
             employment=Employment(
-                ccnl_slug=_METALMECCANICO_C3,
+                ccnl_id=_METALMECCANICO_C3,
                 level_code="C3",
                 seniority=new_hire(),
                 employment_period=EmploymentPeriod(

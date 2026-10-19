@@ -1,6 +1,6 @@
 {
   "_description": "chimica-farmaceutica-federchimica data checks: the TEM of 1 July 2024 (Intesa 8/1/2024) and of 1 June 2028 (renewal 15/4/2025), EDR excluded",
-  "ccnl_file": "chimica-farmaceutica-federchimica.json",
+  "ccnl_id": "chimica-farmaceutica-federchimica",
   "salary_checks": [
     {
       "level_code": "F",

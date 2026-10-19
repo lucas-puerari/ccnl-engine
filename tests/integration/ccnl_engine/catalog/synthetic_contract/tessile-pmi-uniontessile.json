@@ -1,6 +1,6 @@
 {
   "_description": "tessile-pmi-uniontessile — data checks 2026",
-  "ccnl_file": "tessile-pmi-uniontessile.json",
+  "ccnl_id": "tessile-pmi-uniontessile",
   "salary_checks": [
     {
       "level_code": "8",

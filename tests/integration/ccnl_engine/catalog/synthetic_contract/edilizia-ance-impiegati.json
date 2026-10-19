@@ -1,6 +1,6 @@
 {
   "_description": "edilizia-ance-impiegati (impiegati e quadri): data checks 2026",
-  "ccnl_file": "edilizia-ance-impiegati.json",
+  "ccnl_id": "edilizia-ance-impiegati",
   "salary_checks": [
     {
       "level_code": "1",

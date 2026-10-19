@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING, Protocol
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL, TaxSector
     from ccnl_engine.capability.registry.models import CapabilityCatalog
+    from ccnl_engine.catalog.loaders import ContractSummary
     from ccnl_engine.family.models import FamilyDeductionRules
     from ccnl_engine.limitation.models import ModelLimitation
     from ccnl_engine.sector.models import YearRules
@@ -22,10 +23,23 @@ class KnowledgeRepository(Protocol):  # pragma: no cover
     :class:`~ccnl_engine.period.repositories.BundledKnowledgeRepository` is the
     production implementation that reads
     from the package-bundled JSON files.
+
+    A CCNL is named by its slug (e.g. ``"metalmeccanico-federmeccanica"``);
+    the engine resolves a CNEL code to a slug through
+    :meth:`load_contracts`.
     """
 
-    def load_ccnl(self, filename: str) -> CCNL:
-        """Load and return the CCNL for *filename*."""
+    @property
+    def bundle_version(self) -> str:
+        """Version of the rule bundle, stamped on every result."""
+        ...
+
+    def load_contracts(self) -> tuple[ContractSummary, ...]:
+        """Load and return the summary of every CCNL, sorted by ``ccnl_id``."""
+        ...
+
+    def load_ccnl(self, ccnl_id: str) -> CCNL:
+        """Load and return the CCNL with slug *ccnl_id*."""
         ...
 
     def load_year_rules(

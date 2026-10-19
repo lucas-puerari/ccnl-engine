@@ -36,9 +36,9 @@ _HIRED = EmploymentPeriod(date(2026, 11, 17))
 @pytest.mark.parametrize(
     ("slug", "accrued"),
     [
-        ("turismo-federalberghi.json", 1 + Decimal(12) / 26),
-        ("sanita-aran.json", 1 + Decimal(14 * 12) / 365),
-        ("funzioni-locali-aran.json", Decimal(45 * 12) / 365),
+        ("turismo-federalberghi", 1 + Decimal(12) / 26),
+        ("sanita-aran", 1 + Decimal(14 * 12) / 365),
+        ("funzioni-locali-aran", Decimal(45 * 12) / 365),
     ],
 )
 def test_hire_in_november_accrues_by_days(slug: str, accrued: Decimal) -> None:

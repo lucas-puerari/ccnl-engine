@@ -1,6 +1,6 @@
 {
   "_description": "contoterzismo-caiagromec — data checks 2026",
-  "ccnl_file": "contoterzismo-caiagromec.json",
+  "ccnl_id": "contoterzismo-caiagromec",
   "salary_checks": [
     {
       "level_code": "6",

@@ -38,7 +38,7 @@ pytestmark = pytest.mark.legal_scenario
 
 def _run(slug: str, level: str, fund: str, month: int = 1) -> PeriodResult:
     employment = Employment(
-        ccnl_slug=slug,
+        ccnl_id=slug,
         level_code=level,
         seniority=new_hire(),
         employment_period=EmploymentPeriod(date(2026, 1, 1)),
@@ -59,7 +59,7 @@ def _entry(result: PeriodResult, account: str) -> Decimal:
 
 def test_no_contribution_and_the_tfr_paid() -> None:
     """Fon.Te.: no employer or employee part, the TFR goes to the fund."""
-    result = _run("commercio-confcommercio.json", "4", "FONTE")
+    result = _run("commercio-confcommercio", "4", "FONTE")
     assert _entry(result, "pension_fund_employer") == 0
     assert _entry(result, "pension_fund_employee") == 0
     assert _entry(result, "pension_fund_tfr") > 0
@@ -68,7 +68,7 @@ def test_no_contribution_and_the_tfr_paid() -> None:
 
 def test_previambiente_owes_its_contractual_contribution() -> None:
     """C. 12: 10 + 5 = 15.00, no rates, no conventional base needed."""
-    result = _run("igiene-ambientale-utilitalia.json", "Q", "PREVIAMBIENTE", 3)
+    result = _run("igiene-ambientale-utilitalia", "Q", "PREVIAMBIENTE", 3)
     assert _entry(result, "pension_fund_employer") == Decimal("15.00")
     assert _entry(result, "pension_fund_employee") == 0
     codes = {i.code for i in result.issues}
@@ -78,4 +78,4 @@ def test_previambiente_owes_its_contractual_contribution() -> None:
 def test_public_employee_cannot_confer_the_tfr_alone() -> None:
     """Perseo Sirio: the TFR alone is for the private employees only."""
     with pytest.raises(InvalidInputError, match="TFR alone"):
-        _run("funzioni-centrali-aran.json", "FUNZIONARI", "PERSEO_SIRIO")
+        _run("funzioni-centrali-aran", "FUNZIONARI", "PERSEO_SIRIO")

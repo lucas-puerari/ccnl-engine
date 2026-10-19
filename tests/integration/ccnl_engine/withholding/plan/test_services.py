@@ -43,7 +43,7 @@ if TYPE_CHECKING:
     )
 
 _YEAR = 2026
-_COOP_SOCIALI = "cooperative-sociali.json"
+_COOP_SOCIALI = "cooperative-sociali"
 _HALF_FOURTEENTH = calendar_schedule(
     WorkCalendar.from_additional_months(_YEAR, Decimal("13.5"))
 )
@@ -64,7 +64,7 @@ def _request(
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=run.year, month=run.month),
         payment_date=paid_on,
-        ccnl_slug=_COOP_SOCIALI,
+        ccnl_id=_COOP_SOCIALI,
         level_code="D2",
         opening_state=opening or PeriodState.zero(),
         run=run,
@@ -234,7 +234,7 @@ def test_request_schedule_of_other_year_rejected() -> None:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=1),
             payment_date=date(_YEAR, 1, 28),
-            ccnl_slug=_COOP_SOCIALI,
+            ccnl_id=_COOP_SOCIALI,
             level_code="D2",
             withholding_schedule=calendar_schedule(WorkCalendar(year=_YEAR + 1)),
         )
@@ -258,7 +258,7 @@ def test_standalone_december_is_not_the_last_slot_with_half_fourteenth() -> None
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=12),
             payment_date=date(_YEAR, 12, 28),
-            ccnl_slug=_COOP_SOCIALI,
+            ccnl_id=_COOP_SOCIALI,
             level_code="D2",
             opening_state=opening,
             run=PayrollRun.regular(_YEAR, 12),

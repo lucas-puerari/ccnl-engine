@@ -43,7 +43,7 @@ if TYPE_CHECKING:
 
 _ENGINE = PayrollEngine(repository=NextYearRepository())
 _COMMERCIO_L4 = Employment(
-    ccnl_slug="commercio-confcommercio.json", level_code="4", contract_type=Permanent()
+    ccnl_id="commercio-confcommercio", level_code="4", contract_type=Permanent()
 )
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 

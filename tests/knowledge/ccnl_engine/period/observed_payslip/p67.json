@@ -64,7 +64,7 @@
     "replayability": "partial",
     "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
     "inputs": {
-      "ccnl_slug": "funzioni-locali-aran.json",
+      "ccnl_id": "funzioni-locali-aran",
       "level_code": "FUNZIONARI_EQ",
       "year": 2026,
       "month": 5,

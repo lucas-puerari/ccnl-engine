@@ -25,7 +25,7 @@ from ccnl_engine.inputs import (
     WeeklyHours,
 )
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 _new_hire = SeniorityFact(0, date(2026, 1, 1), SenioritySource.PAYSLIP)
 
@@ -46,7 +46,7 @@ def _run(engine: PayrollEngine, **fields: Any) -> Decimal:  # noqa: ANN401
             run=PayrollRun.regular(2026, 1),
             payment_date=date(2026, 1, 28),
             employment=Employment(
-                ccnl_slug=_CCNL, level_code="C3", contract_type=Permanent(), **fields
+                ccnl_id=_CCNL, level_code="C3", contract_type=Permanent(), **fields
             ),
             employer=_EMPLOYER,
         )
@@ -86,7 +86,7 @@ def test_employment_dates_select_the_year_runs(engine: PayrollEngine) -> None:
         CompetenceYearPlan(
             year=2026,
             employment=Employment(
-                ccnl_slug=_CCNL,
+                ccnl_id=_CCNL,
                 level_code="C3",
                 employment_period=EmploymentPeriod(date(2026, 3, 1), date(2026, 5, 31)),
                 contract_type=Permanent(),

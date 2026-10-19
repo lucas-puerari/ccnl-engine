@@ -43,7 +43,7 @@ _SINCE_JULY = SeniorityFact.since(date(2026, 7, 1), SenioritySource.EMPLOYER_REC
 
 def _year(erc: Decimal | None, ended_on: date | None = None) -> CompetenceYearResult:
     employment = Employment(
-        ccnl_slug="grafica-editoria-aieg.json",
+        ccnl_id="grafica-editoria-aieg",
         level_code="C1",
         seniority=_SINCE_JULY,
         pension_fund=NoPensionFund(),
@@ -110,7 +110,7 @@ def test_none_after_december_2020() -> None:
 def test_unknown_erc_is_a_missing_fact() -> None:
     """Employed since 2019: the tredicesima leaves the ERC out, names it."""
     employment = Employment(
-        ccnl_slug="grafica-editoria-aieg.json",
+        ccnl_id="grafica-editoria-aieg",
         level_code="C1",
         seniority=_SINCE_JULY,
         pension_fund=NoPensionFund(),

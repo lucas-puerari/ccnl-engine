@@ -1,6 +1,6 @@
 {
   "_description": "poste-italiane-k700 — data checks 2026",
-  "ccnl_file": "poste-italiane-k700.json",
+  "ccnl_id": "poste-italiane-k700",
   "salary_checks": [
     {
       "level_code": "F",

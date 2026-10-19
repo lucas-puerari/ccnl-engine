@@ -36,7 +36,7 @@ pytestmark = pytest.mark.legal_scenario
 
 def _january(regime: PublicEndOfService) -> PeriodResult:
     employment = Employment(
-        ccnl_slug="dirigenza-sanitaria-medico-veterinaria-aran.json",
+        ccnl_id="dirigenza-sanitaria-medico-veterinaria-aran",
         level_code="DIRIGENTE",
         seniority=new_hire(),
         pension_fund=NoPensionFund(),

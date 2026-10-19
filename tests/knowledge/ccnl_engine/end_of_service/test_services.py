@@ -56,11 +56,11 @@ pytestmark = pytest.mark.legal_scenario
 
 def _employment(
     regime: PublicEndOfService | None,
-    slug: str = "funzioni-centrali-aran.json",
+    slug: str = "funzioni-centrali-aran",
     level: str = "FUNZIONARI",
 ) -> Employment:
     return Employment(
-        ccnl_slug=slug,
+        ccnl_id=slug,
         level_code=level,
         seniority=new_hire(),
         pension_fund=NoPensionFund(),
@@ -160,8 +160,8 @@ def test_unknown_regime_is_a_missing_fact() -> None:
 @pytest.mark.parametrize(
     ("slug", "level", "employee"),
     [
-        ("funzioni-locali-aran.json", "ISTRUTTORI", "38.56"),
-        ("funzioni-centrali-aran.json", "FUNZIONARI", None),
+        ("funzioni-locali-aran", "ISTRUTTORI", "38.56"),
+        ("funzioni-centrali-aran", "FUNZIONARI", None),
     ],
     ids=["inadel", "enpas"],
 )
@@ -205,7 +205,7 @@ def test_tredicesima_in_the_base_of_inadel_alone(
         ),
         replace(
             _employment(PublicEndOfService.TFR_INPS),
-            ccnl_slug="commercio-confcommercio.json",
+            ccnl_id="commercio-confcommercio",
             level_code="4",
         ),
     ],

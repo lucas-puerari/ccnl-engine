@@ -1,6 +1,6 @@
 {
   "_description": "elettrico-elettricita-futura — data checks 2026",
-  "ccnl_file": "elettrico-elettricita-futura.json",
+  "ccnl_id": "elettrico-elettricita-futura",
   "salary_checks": [
     {
       "level_code": "QS",

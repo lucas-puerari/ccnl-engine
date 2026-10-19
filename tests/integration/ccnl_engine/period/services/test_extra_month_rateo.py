@@ -14,7 +14,7 @@ from ccnl_engine.run.models import PayrollRun
 from ccnl_engine.run.types import PeriodId
 from tests.unit.ccnl_engine.builders import EMPLOYER_50
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 
 _LEVEL = "C3"
 
@@ -37,7 +37,7 @@ class TestExtraMonthRateo:
             employer=EMPLOYER_50,
             period_id=PeriodId(year=2026, month=period_month),
             payment_date=date(2026, period_month, 28),
-            ccnl_slug=_CCNL,
+            ccnl_id=_CCNL,
             level_code=_LEVEL,
             opening_state=PeriodState(cash=TaxCashState()),
             run=run,
@@ -97,7 +97,7 @@ class TestExtraMonthRateo:
                 employer=EMPLOYER_50,
                 period_id=PeriodId(year=2026, month=6),
                 payment_date=date(2026, 6, 28),
-                ccnl_slug=_CCNL,
+                ccnl_id=_CCNL,
                 level_code=_LEVEL,
                 opening_state=PeriodState(cash=TaxCashState()),
             )
@@ -107,7 +107,7 @@ class TestExtraMonthRateo:
                 employer=EMPLOYER_50,
                 period_id=PeriodId(year=2026, month=12),
                 payment_date=date(2026, 12, 28),
-                ccnl_slug=_CCNL,
+                ccnl_id=_CCNL,
                 level_code=_LEVEL,
                 opening_state=PeriodState(cash=TaxCashState()),
             )

@@ -1,6 +1,6 @@
 {
   "_description": "bancari-abi — data checks 2026",
-  "ccnl_file": "bancari-abi.json",
+  "ccnl_id": "bancari-abi",
   "salary_checks": [
     {
       "level_code": "QD4",

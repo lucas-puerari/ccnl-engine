@@ -43,7 +43,7 @@ class TestBundledKnowledgeRepository:
             "ccnl_engine.period.repositories.load_ccnl",
             lambda _: sentinel,
         )
-        assert repo.load_ccnl("some.json") is sentinel
+        assert repo.load_ccnl("some") is sentinel
 
     def test_load_year_rules_delegates(
         self, repo: BundledKnowledgeRepository, monkeypatch: pytest.MonkeyPatch

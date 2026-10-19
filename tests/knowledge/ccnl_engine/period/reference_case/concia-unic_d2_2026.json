@@ -19,7 +19,7 @@
     "verified_at": "2026-10-10"
   },
   "inputs": {
-    "ccnl_slug": "concia-unic.json",
+    "ccnl_id": "concia-unic",
     "level_code": "D2",
     "year": 2026,
     "month": 3,

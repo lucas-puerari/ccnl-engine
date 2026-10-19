@@ -110,7 +110,7 @@ def test_categories_are_required() -> None:
 
 def test_base_allowance_must_be_an_allowance_of_the_ccnl() -> None:
     """A base allowance no level of the CCNL pays is a data error."""
-    ccnl = load_ccnl("edilizia-ance.json")
+    ccnl = load_ccnl("edilizia-ance")
     data = ccnl.model_dump(mode="json")
     data["parameters"]["hourly_pay"]["percentages"][0]["base_allowances"] = ["ITS"]
 

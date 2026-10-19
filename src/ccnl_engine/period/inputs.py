@@ -254,7 +254,7 @@ class PeriodInput:
         return PeriodCalculationRequest(
             period_id=PeriodId(year=self.run.year, month=self.run.month),
             payment_date=self.payment_date,
-            ccnl_slug=employment.ccnl_slug,
+            ccnl_id=employment.ccnl_id,
             level_code=employment.level_code,
             employer=self.employer,
             opening_state=self.opening_state,

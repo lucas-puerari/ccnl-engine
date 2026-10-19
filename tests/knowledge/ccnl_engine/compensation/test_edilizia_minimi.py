@@ -18,7 +18,7 @@ import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
 
-_CCNL = load_ccnl("edilizia-ance.json")
+_CCNL = load_ccnl("edilizia-ance")
 _TRANCHES = (date(2025, 2, 1), date(2026, 3, 1), date(2027, 3, 1))
 _DIVISOR = Decimal(173)
 #: Level, monthly minimo (impiegati column), hourly minimo (operai column).

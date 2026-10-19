@@ -24,7 +24,7 @@ from ccnl_engine.inputs import Permanent
 
 engine = PayrollEngine.bundled()
 employment = Employment(
-    ccnl_slug="commercio-confcommercio.json",
+    ccnl_id="commercio-confcommercio",
     level_code="4",
     # Recognised seniority: 36 months on 1 January 2026, read from a payslip.
     seniority=SeniorityFact(36, date(2026, 1, 1), SenioritySource.PAYSLIP),

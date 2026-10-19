@@ -70,7 +70,7 @@ class UnknownCcnlError(CcnlEngineError):
             " ".join(parts),
             code="unknown_ccnl",
             remediation=(
-                "Call PayrollEngine.list_contracts() for the valid CCNL identifiers."
+                "Call engine.list_contracts() for the valid CCNL identifiers."
             ),
         )
 

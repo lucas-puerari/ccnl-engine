@@ -23,7 +23,7 @@ from ccnl_engine.period.services import calculate_period
 from ccnl_engine.reconciliation.validators import reconcile
 from ccnl_engine.run.types import PeriodId
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _LEVEL = "C3"
 _YEAR = 2026
 
@@ -47,7 +47,7 @@ def _req(
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=month),
         payment_date=date(_YEAR, month, 28),
-        ccnl_slug=_CCNL,
+        ccnl_id=_CCNL,
         level_code=_LEVEL,
         opening_state=PeriodState(
             cash=TaxCashState(
@@ -159,7 +159,7 @@ class TestOpeningPlusMovementsEqualsClosing:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=month),
             payment_date=date(_YEAR, month, 28),
-            ccnl_slug=_CCNL,
+            ccnl_id=_CCNL,
             level_code=_LEVEL,
             opening_state=opening,
         )

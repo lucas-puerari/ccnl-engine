@@ -25,7 +25,7 @@ _DAY = date(2026, 6, 1)
 
 
 def _allowance(slug: str, level: str, code: str) -> Decimal:
-    level_rules = load_ccnl(f"{slug}.json").level_by_code(level)
+    level_rules = load_ccnl(slug).level_by_code(level)
     (element,) = [f for f in level_rules.fixed_allowances if f.code == code]
     value: Decimal = element.monthly.value_at(_DAY)
     return value
@@ -33,7 +33,7 @@ def _allowance(slug: str, level: str, code: str) -> Decimal:
 
 def test_artisan_apprentices_accrue_ten_euro_from_2025() -> None:
     """No apprentice scatto before 2025, 10 euro from 1 January 2025."""
-    seniority = load_ccnl("metalmeccanico-artigianato.json").parameters
+    seniority = load_ccnl("metalmeccanico-artigianato").parameters
     amount = seniority.seniority_increments.apprentice_amount
 
     assert amount is not None

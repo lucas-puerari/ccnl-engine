@@ -1,6 +1,6 @@
 {
   "_description": "energia-petrolio-confindustria — data checks 2026",
-  "ccnl_file": "energia-petrolio-confindustria.json",
+  "ccnl_id": "energia-petrolio-confindustria",
   "salary_checks": [
     {
       "level_code": "6-0",

@@ -16,14 +16,14 @@ from ccnl_engine.catalog.loaders import load_ccnl
 
 def test_abi_terza_area_destinations() -> None:
     """3A1 to 3A4."""
-    (track,) = load_ccnl("bancari-abi.json").apprenticeship
+    (track,) = load_ccnl("bancari-abi").apprenticeship
 
     assert set(track.destination_levels) == {"3A1", "3A2", "3A3", "3A4"}
 
 
 def test_agricoli_apprentices_are_blocked() -> None:
     """The provincial levels are not in the national file."""
-    ccnl = load_ccnl("operai-agricoli-florovivaisti.json")
+    ccnl = load_ccnl("operai-agricoli-florovivaisti")
     scopes = {
         n.limitation.variant: n.limitation.applies_when
         for n in ccnl.coverage.notes

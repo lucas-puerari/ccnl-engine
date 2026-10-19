@@ -142,7 +142,7 @@ def _run(*events: object) -> PeriodResult:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=2026, month=3),
             payment_date=date(2026, 3, 28),
-            ccnl_slug="metalmeccanico-federmeccanica.json",
+            ccnl_id="metalmeccanico-federmeccanica",
             level_code="C3",
             opening_state=PeriodState.zero(),
             events=tuple(events),  # type: ignore[arg-type]
@@ -219,7 +219,7 @@ def test_events_without_the_rules_of_the_year_fail() -> None:
         )
 
 
-_DRIVER = "logistica-trasporto-confetra-viaggiante.json"
+_DRIVER = "logistica-trasporto-confetra-viaggiante"
 
 
 def _driver(*events: object) -> PeriodResult:
@@ -228,7 +228,7 @@ def _driver(*events: object) -> PeriodResult:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=2026, month=3),
             payment_date=date(2026, 3, 28),
-            ccnl_slug=_DRIVER,
+            ccnl_id=_DRIVER,
             level_code="B3",
             opening_state=PeriodState.zero(),
             events=tuple(events),  # type: ignore[arg-type]
@@ -396,7 +396,7 @@ def test_a_stated_amount_without_hours_earns_no_night_allowance() -> None:
 
 
 _CCNL_TRAVEL = json.loads(
-    (KNOWLEDGE_DIR / "agreement" / _DRIVER).read_text(encoding="utf-8")
+    (KNOWLEDGE_DIR / "agreement" / f"{_DRIVER}.json").read_text(encoding="utf-8")
 )["work_rules"]["travel_allowance"]
 
 

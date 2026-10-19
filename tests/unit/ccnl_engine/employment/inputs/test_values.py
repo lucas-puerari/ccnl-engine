@@ -192,7 +192,7 @@ class TestWithinFullTime:
                 employer=EmployerProfile(headcount=Headcount(50)),
                 period_id=PeriodId(year=2026, month=1),
                 payment_date=date(2026, 1, 27),
-                ccnl_slug="commercio-confcommercio.json",
+                ccnl_id="commercio-confcommercio",
                 level_code="4",
                 weekly_hours=WeeklyHours(60),
                 full_time_weekly_hours=WeeklyHours(40),
@@ -205,7 +205,7 @@ class TestEmploymentValidation:
     def test_keeps_value_objects(self) -> None:
         """Every fact is stored as the value object given."""
         employment = Employment(
-            ccnl_slug="commercio-confcommercio.json",
+            ccnl_id="commercio-confcommercio",
             level_code="4",
             weekly_hours=WeeklyHours(20),
             full_time_weekly_hours=WeeklyHours(40),
@@ -221,7 +221,7 @@ class TestEmploymentValidation:
     def test_optional_facts_default_to_none(self) -> None:
         """Untracked facts stay ``None``."""
         employment = Employment(
-            ccnl_slug="commercio-confcommercio.json",
+            ccnl_id="commercio-confcommercio",
             level_code="4",
             contract_type=Permanent(),
         )
@@ -240,13 +240,13 @@ class TestEmploymentValidation:
             pytest.param({"employment_period": _START}, id="raw-period"),
             pytest.param({"roles": {"caposquadra"}}, id="mutable-roles"),
             pytest.param({"contribution_history": "post_1995"}, id="raw-history"),
-            pytest.param({"ccnl_slug": 7}, id="non-str-slug"),
+            pytest.param({"ccnl_id": 7}, id="non-str-slug"),
         ],
     )
     def test_rejects_values_of_the_wrong_type(self, kwargs: dict[str, object]) -> None:
         """A raw value in place of its value object fails at construction."""
         fields: dict[str, object] = {
-            "ccnl_slug": "commercio-confcommercio.json",
+            "ccnl_id": "commercio-confcommercio",
             "level_code": "4",
             "contract_type": Permanent(),
             **kwargs,
@@ -256,22 +256,29 @@ class TestEmploymentValidation:
 
 
 class TestCcnlIdentifier:
-    """The CCNL is named by its id, with or without ``.json``."""
+    """The CCNL is named by one id: its slug or its CNEL code."""
 
-    @pytest.mark.parametrize(
-        "ccnl_id", ["commercio-confcommercio", "commercio-confcommercio.json"]
-    )
-    def test_the_id_names_the_bundle_file(self, ccnl_id: str) -> None:
-        """Both forms name the same bundle file."""
+    @pytest.mark.parametrize("ccnl_id", ["commercio-confcommercio", "H011", "C01A"])
+    def test_a_slug_or_a_cnel_code_is_kept_as_given(self, ccnl_id: str) -> None:
+        """The id is stored unchanged; the repository resolves it on the run."""
         employment = Employment(
-            ccnl_slug=ccnl_id, level_code="4", contract_type=Permanent()
+            ccnl_id=ccnl_id, level_code="4", contract_type=Permanent()
         )
-        assert employment.ccnl_slug == "commercio-confcommercio.json"
+        assert employment.ccnl_id == ccnl_id
 
     @pytest.mark.parametrize(
-        "ccnl_id", ["Commercio", "commercio.JSON", "-commercio", ""]
+        "ccnl_id",
+        [
+            "commercio-confcommercio.json",
+            "Commercio",
+            "commercio.JSON",
+            "-commercio",
+            "N/A",
+            "E04",
+            "",
+        ],
     )
     def test_a_malformed_id_is_rejected(self, ccnl_id: str) -> None:
-        """Upper case, a leading hyphen or an empty id are not CCNL ids."""
-        with pytest.raises(InvalidInputError, match="CCNL id"):
-            Employment(ccnl_slug=ccnl_id, level_code="4", contract_type=Permanent())
+        """A filename, mixed case, a leading hyphen or an empty id are not ids."""
+        with pytest.raises(InvalidInputError, match="CCNL slug"):
+            Employment(ccnl_id=ccnl_id, level_code="4", contract_type=Permanent())

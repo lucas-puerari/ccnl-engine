@@ -22,7 +22,7 @@ from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
 )
 from tests.unit.ccnl_engine.builders import year_plan
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _LEVEL = "C3"
 _YEAR = 2026
 

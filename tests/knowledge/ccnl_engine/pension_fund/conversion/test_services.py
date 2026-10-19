@@ -60,7 +60,7 @@ def _march(
         seniority_converted_on=asked_on,
     )
     employment = Employment(
-        ccnl_slug=f"{slug}.json",
+        ccnl_id=slug,
         level_code="Q",
         seniority=SeniorityFact.since(since, SenioritySource.EMPLOYER_RECORDS),
         employment_period=EmploymentPeriod(since),
@@ -104,7 +104,7 @@ def test_a_fund_without_conversion_rejects_the_option() -> None:
         "FONTE", Decimal("0.0055"), tfr_to_fund=True, seniority_to_fund=True
     )
     employment = Employment(
-        ccnl_slug="commercio-confcommercio.json",
+        ccnl_id="commercio-confcommercio",
         level_code="4",
         seniority=SeniorityFact.since(_SINCE, SenioritySource.EMPLOYER_RECORDS),
         pension_fund=enrolment,

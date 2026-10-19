@@ -115,7 +115,7 @@ def test_domestic_run_of_2027_records_the_provisional_inps_rules() -> None:
     and is not payable, although the IRPEF limitation does not concern it.
     """
     employment = Employment(
-        ccnl_slug="lavoro-domestico-non-convivente.json",
+        ccnl_id="lavoro-domestico-non-convivente",
         level_code="A",
         seniority=new_hire(2027),
         tfr_fund=no_tfr_fund(2027),
@@ -194,7 +194,7 @@ def _december_2026() -> tuple[PeriodResult, PeriodResult]:
             run=PayrollRun.thirteenth(2026, 12),
             payment_date=date(2026, 12, 27),
             employment=Employment(
-                ccnl_slug=COMMERCIO, level_code="4", contract_type=Permanent()
+                ccnl_id=COMMERCIO, level_code="4", contract_type=Permanent()
             ),
             employer=EMPLOYER,
             opening_state=december.closing_state,
@@ -214,7 +214,7 @@ def _january_2027(opening: PeriodState) -> PeriodResult:
             run=PayrollRun.regular(2027, 1),
             payment_date=date(2027, 1, 27),
             employment=Employment(
-                ccnl_slug=COMMERCIO, level_code="4", contract_type=Permanent()
+                ccnl_id=COMMERCIO, level_code="4", contract_type=Permanent()
             ),
             employer=EMPLOYER,
             opening_state=opening,

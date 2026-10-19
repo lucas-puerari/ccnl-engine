@@ -36,8 +36,8 @@ pytestmark = pytest.mark.legal_scenario
 @pytest.mark.parametrize(
     ("slug", "level", "employee", "employer"),
     [
-        ("funzioni-centrali-aran.json", "FUNZIONARI", "203.86", "539.17"),
-        ("funzioni-locali-aran.json", "ISTRUTTORI", "180.35", "466.55"),
+        ("funzioni-centrali-aran", "FUNZIONARI", "203.86", "539.17"),
+        ("funzioni-locali-aran", "ISTRUTTORI", "180.35", "466.55"),
     ],
     ids=["ctps", "cpdel"],
 )
@@ -46,7 +46,7 @@ def test_rates_of_the_fund_of_the_ccnl(
 ) -> None:
     """CTPS for the State, CPDEL for the enti locali."""
     employment = Employment(
-        ccnl_slug=slug,
+        ccnl_id=slug,
         level_code=level,
         seniority=new_hire(),
         pension_fund=NoPensionFund(),

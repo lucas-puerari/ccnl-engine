@@ -36,7 +36,7 @@ from ccnl_engine.inputs import EmploymentPeriod, Permanent, WeeklyHours
 
 _ENGINE = PayrollEngine.bundled()
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
-_METALMECCANICO = "metalmeccanico-federmeccanica.json"
+_METALMECCANICO = "metalmeccanico-federmeccanica"
 _MONTHLY = Decimal("2158.26")
 
 
@@ -49,7 +49,7 @@ def _employment(
 ) -> Employment:
     hours = None if weekly_hours is None else WeeklyHours(weekly_hours)
     return Employment(
-        ccnl_slug=ccnl,
+        ccnl_id=ccnl,
         level_code=level,
         employment_period=period,
         weekly_hours=hours,
@@ -301,7 +301,7 @@ def test_ccnl_without_rule_never_pays_a_full_month() -> None:
         3,
         _employment(
             EmploymentPeriod(date(2026, 3, 15)),
-            ccnl="vetro-meccanizzato-assovetro.json",
+            ccnl="vetro-meccanizzato-assovetro",
             level="C",
         ),
     )

@@ -1,6 +1,6 @@
 {
   "_description": "alimentari-pmi-unionalimentari — data checks 2026",
-  "ccnl_file": "alimentari-pmi-unionalimentari.json",
+  "ccnl_id": "alimentari-pmi-unionalimentari",
   "salary_checks": [
     {
       "level_code": "Q",

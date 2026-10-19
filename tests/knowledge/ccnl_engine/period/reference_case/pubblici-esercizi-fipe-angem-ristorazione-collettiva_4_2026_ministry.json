@@ -21,7 +21,7 @@
   },
   "tolerance": "0.00",
   "inputs": {
-    "ccnl_slug": "pubblici-esercizi-fipe-angem-ristorazione-collettiva.json",
+    "ccnl_id": "pubblici-esercizi-fipe-angem-ristorazione-collettiva",
     "level_code": "4",
     "year": 2026,
     "month": 1,

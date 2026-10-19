@@ -30,9 +30,9 @@ _TUESDAY = date(2026, 3, 10)
 @pytest.mark.parametrize(
     ("slug", "multiplier"),
     [
-        ("metalmeccanico-federmeccanica.json", "1.10"),
-        ("logistica-trasporto-confetra.json", "1.18"),
-        ("edilizia-ance.json", "1.20"),
+        ("metalmeccanico-federmeccanica", "1.10"),
+        ("logistica-trasporto-confetra", "1.18"),
+        ("edilizia-ance", "1.20"),
     ],
     ids=["federmeccanica", "logistica", "edilizia"],
 )
@@ -65,9 +65,9 @@ def test_supplementary_resolution_of_the_limitations() -> None:
         assert note.limitation is not None
         return str(note.limitation.status)
 
-    assert status("metalmeccanico-federmeccanica.json") == "resolved"
-    assert status("logistica-trasporto-confetra.json") == "resolved"
-    assert status("edilizia-ance.json") == "open"
+    assert status("metalmeccanico-federmeccanica") == "resolved"
+    assert status("logistica-trasporto-confetra") == "resolved"
+    assert status("edilizia-ance") == "open"
 
 
 def test_a_ccnl_without_the_band_asks_for_a_multiplier() -> None:
@@ -75,7 +75,7 @@ def test_a_ccnl_without_the_band_asks_for_a_multiplier() -> None:
     event = OvertimeEvent(
         _TUESDAY, Decimal(3), Decimal("12.00"), kind=OvertimeKind.SUPPLEMENTARY
     )
-    bands = CCNLOvertimeBands.of(load_ccnl("terziario-confesercenti.json"), 2026)
+    bands = CCNLOvertimeBands.of(load_ccnl("terziario-confesercenti"), 2026)
 
     with pytest.raises(Exception, match="supplementare"):
         resolve_overtime_rate(event, bands)

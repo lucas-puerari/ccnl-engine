@@ -35,7 +35,7 @@ def _run(ccnl: str, **kwargs: object) -> PeriodResult:
         PeriodCalculationRequest(
             period_id=PeriodId(year=2026, month=3),
             payment_date=date(2026, 3, 27),
-            ccnl_slug=ccnl,
+            ccnl_id=ccnl,
             level_code=level,
             employer=EmployerProfile(headcount=Headcount(50)),
             opening_state=PeriodState.zero(),
@@ -46,8 +46,8 @@ def _run(ccnl: str, **kwargs: object) -> PeriodResult:
 
 
 _LEVELS = {
-    "bancari-abi.json": ("QD1",),
-    "bcc-credito-cooperativo.json": ("QD1",),
+    "bancari-abi": ("QD1",),
+    "bcc-credito-cooperativo": ("QD1",),
 }
 
 
@@ -62,8 +62,8 @@ def _fund(result: PeriodResult) -> dict[str, tuple[Decimal, Decimal]]:
 @pytest.mark.parametrize(
     ("ccnl", "employer", "employee"),
     [
-        ("bancari-abi.json", Decimal("0.00133"), Decimal("0.00067")),
-        ("bcc-credito-cooperativo.json", Decimal("0.0024"), Decimal("0.0012")),
+        ("bancari-abi", Decimal("0.00133"), Decimal("0.00067")),
+        ("bcc-credito-cooperativo", Decimal("0.0024"), Decimal("0.0012")),
     ],
 )
 def test_permanent_worker_pays_the_fund_of_the_ccnl(
@@ -76,5 +76,5 @@ def test_permanent_worker_pays_the_fund_of_the_ccnl(
 
 def test_fixed_term_worker_pays_no_fund() -> None:
     """The fund charges permanent contracts only."""
-    result = _run("bancari-abi.json", contract_type=FixedTerm())
+    result = _run("bancari-abi", contract_type=FixedTerm())
     assert _fund(result) == {}

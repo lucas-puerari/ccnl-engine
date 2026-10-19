@@ -45,7 +45,7 @@ _HEADROOM = Decimal("795.00")
 
 def _components(enrolled_on: date) -> dict[str, tuple[Decimal, Decimal]]:
     employment = Employment(
-        ccnl_slug="funzioni-centrali-aran.json",
+        ccnl_id="funzioni-centrali-aran",
         level_code="FUNZIONARI",
         seniority=new_hire(),
         pension_fund=NoPensionFund(),

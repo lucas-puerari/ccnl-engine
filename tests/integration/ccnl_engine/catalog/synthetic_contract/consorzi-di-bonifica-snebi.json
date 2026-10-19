@@ -1,6 +1,6 @@
 {
   "_description": "consorzi-di-bonifica-snebi — data checks 2026",
-  "ccnl_file": "consorzi-di-bonifica-snebi.json",
+  "ccnl_id": "consorzi-di-bonifica-snebi",
   "salary_checks": [
     {
       "level_code": "D100",

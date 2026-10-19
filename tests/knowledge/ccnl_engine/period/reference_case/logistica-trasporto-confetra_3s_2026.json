@@ -20,7 +20,7 @@
     "section": "Minimi contrattuali mensili ed EPA dal 1.1.2026, row 3°S"
   },
   "inputs": {
-    "ccnl_slug": "logistica-trasporto-confetra.json",
+    "ccnl_id": "logistica-trasporto-confetra",
     "level_code": "3S",
     "year": 2026,
     "month": 1,

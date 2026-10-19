@@ -1,6 +1,6 @@
 {
   "_description": "istruzione-ricerca-aran — data checks 2026",
-  "ccnl_file": "istruzione-ricerca-aran.json",
+  "ccnl_id": "istruzione-ricerca-aran",
   "salary_checks": [
     {
       "level_code": "COLLABORATORE_SCOLASTICO",

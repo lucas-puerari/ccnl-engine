@@ -41,7 +41,7 @@ from tests.integration.ccnl_engine.surtax.residence.builders import (
 )
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _LEVEL = "C3"
 _YEAR = 2026
 _RESIDUAL_LEAVE = "termination_residual_leave"
@@ -64,7 +64,7 @@ def _req(month: int = 1) -> PeriodCalculationRequest:
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=month),
         payment_date=date(_YEAR, month, 28),
-        ccnl_slug=_CCNL,
+        ccnl_id=_CCNL,
         level_code=_LEVEL,
         seniority=new_hire(),
         opening_state=PeriodState.zero(),

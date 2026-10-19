@@ -11,6 +11,7 @@ from decimal import ROUND_HALF_UP, Context, Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.validity.rules import rule_scope
+from ccnl_engine.catalog.services import resolve_ccnl
 from ccnl_engine.compensation.provincial_element.services import (
     without_replaced_elements,
 )
@@ -128,7 +129,7 @@ def load_contract(
         UnknownLevelError: When the CCNL has no level ``request.level_code``.
     """
     period_id = request.period_id
-    ccnl = flat_pay_divisor(repo.load_ccnl(request.ccnl_slug), request.weekly_hours)
+    ccnl = flat_pay_divisor(resolve_ccnl(repo, request.ccnl_id), request.weekly_hours)
     ccnl, sector_unknown = with_employer_sector(ccnl, request.employer.inps_sector)
     tctx = TemporalContext.from_period(
         period_id.year, period_id.month, request.payment_date

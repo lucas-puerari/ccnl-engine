@@ -1,6 +1,6 @@
 {
   "_description": "ooss-unsic-confsal — data checks 2026",
-  "ccnl_file": "ooss-unsic-confsal.json",
+  "ccnl_id": "ooss-unsic-confsal",
   "salary_checks": [
     {
       "level_code": "1",

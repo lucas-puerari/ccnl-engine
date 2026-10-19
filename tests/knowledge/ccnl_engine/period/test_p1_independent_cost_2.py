@@ -50,7 +50,7 @@ def test_logistica_impiegato_3s_january_2026() -> None:
     """Minimo with EPA, scatti and EDR of the table."""
     result = regular_period(
         employment=Employment(
-            ccnl_slug="logistica-trasporto-confetra.json",
+            ccnl_id="logistica-trasporto-confetra",
             level_code="3S",
             seniority=SeniorityFact.since(
                 date(2020, 1, 1), SenioritySource.EMPLOYER_RECORDS
@@ -82,7 +82,7 @@ def test_domestic_cs_contributions(
     """The hourly contributions of the guide, by weekly hours."""
     result = regular_period(
         employment=Employment(
-            ccnl_slug="lavoro-domestico-non-convivente.json",
+            ccnl_id="lavoro-domestico-non-convivente",
             level_code="CS",
             seniority=new_hire(),
             contract_type=Permanent(),
@@ -101,7 +101,7 @@ def test_domestic_cs_hourly_minimum() -> None:
     """8,30 an hour: 40 hours a week over 52 weeks and 12 months."""
     result = regular_period(
         employment=Employment(
-            ccnl_slug="lavoro-domestico-non-convivente.json",
+            ccnl_id="lavoro-domestico-non-convivente",
             level_code="CS",
             seniority=new_hire(),
             contract_type=Permanent(),

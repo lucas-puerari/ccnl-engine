@@ -1,6 +1,6 @@
 {
   "_description": "panificazione-artigianato-confartigianato — data checks 2026",
-  "ccnl_file": "panificazione-artigianato-confartigianato.json",
+  "ccnl_id": "panificazione-artigianato-confartigianato",
   "salary_checks": [
     {
       "level_code": "B4",

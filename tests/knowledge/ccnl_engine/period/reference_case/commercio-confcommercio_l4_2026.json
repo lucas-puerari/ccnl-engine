@@ -23,7 +23,7 @@
     "section": "Table 'Paga base dal 1/11/2025', row IV: paga base 1257,46, contingenza 524,22; terzo elemento 2,07 from Art. 215 of the Testo Unico 2019 (PDF p. 199)"
   },
   "inputs": {
-    "ccnl_slug": "commercio-confcommercio.json",
+    "ccnl_id": "commercio-confcommercio",
     "level_code": "4",
     "year": 2026,
     "month": 9,

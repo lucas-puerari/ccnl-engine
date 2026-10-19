@@ -1,6 +1,6 @@
 {
   "_description": "assicurazioni-ania — data checks 2026",
-  "ccnl_file": "assicurazioni-ania.json",
+  "ccnl_id": "assicurazioni-ania",
   "salary_checks": [
     {
       "level_code": "L7",

@@ -83,7 +83,7 @@ from ccnl_engine.inputs import (
 )
 
 employment = Employment(
-    ccnl_slug="commercio-confcommercio.json",
+    ccnl_id="commercio-confcommercio",
     level_code="4",
     contract_type=Permanent(),
     sector=EmploymentSector.PRIVATE,

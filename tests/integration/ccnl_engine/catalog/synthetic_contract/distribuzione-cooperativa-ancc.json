@@ -1,6 +1,6 @@
 {
   "_description": "distribuzione-cooperativa-ancc — data checks 2026",
-  "ccnl_file": "distribuzione-cooperativa-ancc.json",
+  "ccnl_id": "distribuzione-cooperativa-ancc",
   "salary_checks": [
     {
       "level_code": "6",

@@ -183,7 +183,7 @@ class TestLoadCcnlErrorContracts:
     def test_nonexistent_file_raises_unknown_ccnl(self) -> None:
         """A filename the bundle does not hold is an unknown CCNL."""
         with pytest.raises(UnknownCcnlError) as raised:
-            load_ccnl("this-ccnl-does-not-exist.json")
+            load_ccnl("this-ccnl-does-not-exist")
         assert raised.value.ccnl_id == "this-ccnl-does-not-exist"
 
     def test_invalid_json_content_raises_json_decode_error(self) -> None:
@@ -196,7 +196,7 @@ class TestLoadCcnlErrorContracts:
             ),
             pytest.raises(json.JSONDecodeError),
         ):
-            load_ccnl("fake.json")
+            load_ccnl("fake")
 
 
 # ---------------------------------------------------------------------------

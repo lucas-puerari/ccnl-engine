@@ -42,13 +42,13 @@ if TYPE_CHECKING:
 
 pytestmark = pytest.mark.legal_scenario
 
-_CARTA = "carta-cartone-assocarta.json"
+_CARTA = "carta-cartone-assocarta"
 _ENROLLED = PensionFundEnrolment("BYBLOS", Decimal("0.01"), tfr_to_fund=True)
 
 
 def _employment(seniority: SeniorityFact) -> Employment:
     return Employment(
-        ccnl_slug=_CARTA,
+        ccnl_id=_CARTA,
         level_code="C1",
         seniority=seniority,
         pension_fund=_ENROLLED,

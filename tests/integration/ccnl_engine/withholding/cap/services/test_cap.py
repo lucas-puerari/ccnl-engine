@@ -69,7 +69,7 @@ if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
     from ccnl_engine.year.results import CompetenceYearResult
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _YEAR = 2026
 _ZERO = Decimal(0)
 _PAY = Decimal("2158.26")
@@ -87,7 +87,7 @@ def _run(
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=month),
             payment_date=date(_YEAR, month, 27),
-            ccnl_slug=_CCNL,
+            ccnl_id=_CCNL,
             level_code="C3",
             opening_state=opening,
             events=events,

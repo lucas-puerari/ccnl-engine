@@ -18,7 +18,7 @@ from ccnl_engine.catalog.loaders import load_ccnl
 
 
 def _variants(slug: str) -> set[str]:
-    ccnl = load_ccnl(f"{slug}.json")
+    ccnl = load_ccnl(slug)
     return {n.limitation.variant for n in ccnl.coverage.notes if n.limitation}
 
 
@@ -33,7 +33,7 @@ def _variants(slug: str) -> set[str]:
 )
 def test_sanita_privata_overtime_bands(code: str, rate: str) -> None:
     """The four bands of Art. 59."""
-    rules = load_ccnl("sanita-privata-aiop-aris.json").work_rules
+    rules = load_ccnl("sanita-privata-aiop-aris").work_rules
     assert rules is not None
     assert rules.time_supplements is not None
     (band,) = [b for b in rules.time_supplements.overtime_bands if b.code == code]

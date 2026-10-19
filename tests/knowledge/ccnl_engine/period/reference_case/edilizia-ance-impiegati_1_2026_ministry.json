@@ -24,7 +24,7 @@
   },
   "tolerance": "0.00",
   "inputs": {
-    "ccnl_slug": "edilizia-ance-impiegati.json",
+    "ccnl_id": "edilizia-ance-impiegati",
     "level_code": "1",
     "year": 2026,
     "month": 1,

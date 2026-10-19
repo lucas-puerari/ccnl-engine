@@ -1,6 +1,6 @@
 {
   "_description": "legno-lapidei-artigianato-confartigianato — data checks 2026",
-  "ccnl_file": "legno-lapidei-artigianato-confartigianato.json",
+  "ccnl_id": "legno-lapidei-artigianato-confartigianato",
   "salary_checks": [
     {
       "level_code": "F",

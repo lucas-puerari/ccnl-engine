@@ -33,7 +33,7 @@ def test_permanent_worker_pays_the_fund() -> None:
             run=PayrollRun.regular(year=2026, month=3),
             payment_date=date(2026, 3, 27),
             employment=Employment(
-                ccnl_slug="assicurazioni-ania.json",
+                ccnl_id="assicurazioni-ania",
                 level_code="L4",
                 seniority=new_hire(),
                 contract_type=Permanent(),

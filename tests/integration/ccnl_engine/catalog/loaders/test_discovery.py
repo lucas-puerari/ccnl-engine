@@ -48,7 +48,7 @@ class TestListContracts:
     def test_readiness_is_the_verification_of_the_data_file(self) -> None:
         """The summary tier is the one the loaded CCNL records."""
         for info in list_contracts():
-            ccnl = load_ccnl(f"{info.ccnl_id}.json")
+            ccnl = load_ccnl(info.ccnl_id)
             assert info.readiness is ccnl.verification.readiness
 
 
@@ -154,3 +154,16 @@ class TestLoadAll:
         for item in items:
             assert isinstance(item.ccnl_id, str)
             assert CcnlId(item.ccnl_id) == item.ccnl_id
+
+
+class TestLoadCcnl:
+    """load_ccnl takes a slug, never a filename or a path."""
+
+    @pytest.mark.parametrize(
+        "ccnl_id",
+        ["metalmeccanico-federmeccanica.json", "../manifest", "C011", "N/A"],
+    )
+    def test_an_id_that_is_not_a_slug_is_unknown(self, ccnl_id: str) -> None:
+        """A filename, a path or a CNEL code never reaches the bundle reader."""
+        with pytest.raises(UnknownCcnlError):
+            load_ccnl(ccnl_id)

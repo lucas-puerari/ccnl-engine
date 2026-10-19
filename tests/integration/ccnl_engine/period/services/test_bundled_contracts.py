@@ -54,15 +54,15 @@ from tests.knowledge.ccnl_engine.seniority.builders import (
 )
 
 _ENGINE = PayrollEngine.bundled()
-_SLUGS = [f"{info.ccnl_id}.json" for info in PayrollEngine.list_contracts()]
+_SLUGS = [info.ccnl_id for info in PayrollEngine.bundled().list_contracts()]
 #: Domestic contracts need declared weekly and contributable hours for INPS:
 #: a full-time week, 54 hours for conviventi and 40 for non conviventi (the
 #: weeks the bundle derives the monthly minimum from), the 30-hour ceiling
 #: of the reduced-hours conviventi.
 _DOMESTIC = {
-    "lavoro-domestico-convivente.json": WeeklyHours(54),
-    "lavoro-domestico-convivente-orario-ridotto.json": WeeklyHours(30),
-    "lavoro-domestico-non-convivente.json": WeeklyHours(40),
+    "lavoro-domestico-convivente": WeeklyHours(54),
+    "lavoro-domestico-convivente-orario-ridotto": WeeklyHours(30),
+    "lavoro-domestico-non-convivente": WeeklyHours(40),
 }
 _DOMESTIC_FACTS = PeriodFacts(contributable_hours=ContributableHours(Decimal(173)))
 #: Ordinary hours of a full month of a worker paid by the hour.
@@ -167,7 +167,7 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
                 run=PayrollRun.regular(year=2026, month=9),
                 payment_date=date(2026, 9, 27),
                 employment=Employment(
-                    ccnl_slug=slug,
+                    ccnl_id=slug,
                     level_code=level.code,
                     weekly_hours=_DOMESTIC.get(slug),
                     full_time_weekly_hours=_DOMESTIC.get(slug),

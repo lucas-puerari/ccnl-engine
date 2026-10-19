@@ -46,7 +46,7 @@ if TYPE_CHECKING:
 pytestmark = pytest.mark.legal_scenario
 
 _OPERAIO = Employment(
-    ccnl_slug="edilizia-ance.json",
+    ccnl_id="edilizia-ance",
     level_code="1",
     category=WorkerCategory.OPERAIO,
     seniority=new_hire(),

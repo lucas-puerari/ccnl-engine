@@ -1,4 +1,4 @@
-"""Catalog use cases: list the bundled contracts and inspect a ruleset."""
+"""Catalog use cases: list the contracts of a repository and inspect a ruleset."""
 
 from __future__ import annotations
 
@@ -24,7 +24,7 @@ _METALMECCANICO = "metalmeccanico-federmeccanica"
 def test_every_listed_contract_can_be_inspected() -> None:
     """Listing and inspection agree on the tier of every contract."""
     repo = BundledKnowledgeRepository()
-    for summary in list_contracts():
+    for summary in list_contracts(repo):
         ruleset = inspect_ruleset(repo, summary.ccnl_id)
         assert ruleset.kind is RulesetKind.CCNL
         assert ruleset.readiness is summary.readiness
@@ -37,13 +37,18 @@ def test_slug_and_cnel_code_name_the_same_ruleset() -> None:
 
     assert by_slug.id == f"ccnl/{_METALMECCANICO}"
     assert inspect_ruleset(repo, "C011") == by_slug
-    assert inspect_ruleset(repo, f"{_METALMECCANICO}.json") == by_slug
+
+
+def test_a_filename_names_no_ccnl() -> None:
+    """A slug with ``.json`` is a filename, not a CCNL id."""
+    with pytest.raises(UnknownCcnlError):
+        inspect_ruleset(BundledKnowledgeRepository(), f"{_METALMECCANICO}.json")
 
 
 def test_levels_are_listed_in_the_order_of_the_data() -> None:
     """Every level of the CCNL, each code as ``Employment`` takes it."""
     repo = BundledKnowledgeRepository()
-    levels = list_levels(repo, f"{_METALMECCANICO}.json")
+    levels = list_levels(repo, _METALMECCANICO)
 
     assert levels == list_levels(repo, "C011")
     assert len({level.code for level in levels}) == len(levels)

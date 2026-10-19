@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
 
 # Load all CCNLs once at collection time; load_ccnl is cached so this is cheap.
-_ALL_CCNL: list[CCNL] = [load_ccnl(ci.ccnl_id + ".json") for ci in list_contracts()]
+_ALL_CCNL: list[CCNL] = [load_ccnl(ci.ccnl_id) for ci in list_contracts()]
 
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 

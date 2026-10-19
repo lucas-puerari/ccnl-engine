@@ -18,7 +18,7 @@ from ccnl_engine.catalog.loaders import load_ccnl
 
 
 def _bands(slug: str) -> dict[str, Decimal]:
-    rules = load_ccnl(f"{slug}.json").work_rules
+    rules = load_ccnl(slug).work_rules
     assert rules is not None
     assert rules.time_supplements is not None
     return {

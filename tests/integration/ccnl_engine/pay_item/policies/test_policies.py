@@ -146,7 +146,7 @@ class TestPolicyContext:
     def test_optional_fields_default(self) -> None:
         """Optional fields default to None/False/zero when omitted."""
         ctx = PolicyContext(year=2026, as_of=_TODAY)
-        assert ctx.ccnl_slug is None
+        assert ctx.ccnl_id is None
         assert ctx.sector is None
         assert ctx.gross_ytd == Decimal(0)
         assert ctx.is_manager is False
@@ -156,12 +156,12 @@ class TestPolicyContext:
         ctx = PolicyContext(
             year=2026,
             as_of=_TODAY,
-            ccnl_slug="test.json",
+            ccnl_id="test",
             sector="industria",
             gross_ytd=Decimal("50000.00"),
             is_manager=True,
         )
-        assert ctx.ccnl_slug == "test.json"
+        assert ctx.ccnl_id == "test"
         assert ctx.sector == "industria"
         assert ctx.gross_ytd == Decimal("50000.00")
         assert ctx.is_manager is True

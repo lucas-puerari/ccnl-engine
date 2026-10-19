@@ -85,7 +85,7 @@ def _pension_decision(result: PeriodResult) -> CalculationDecision:
 def test_alifond_on_the_food_industry() -> None:
     """Alimentari level 3 enrolled in ALIFOND at the 1% minimum."""
     employment = Employment(
-        ccnl_slug="alimentari-federalimentare.json",
+        ccnl_id="alimentari-federalimentare",
         level_code="3",
         seniority=new_hire(),
         pension_fund=PensionFundEnrolment("ALIFOND", Decimal("0.01"), tfr_to_fund=True),
@@ -102,7 +102,7 @@ def test_alifond_on_the_food_industry() -> None:
 def test_fondapi_on_the_food_pmi() -> None:
     """Alimentari PMI level 4 enrolled in FONDAPI at the 1% minimum."""
     employment = Employment(
-        ccnl_slug="alimentari-pmi-unionalimentari.json",
+        ccnl_id="alimentari-pmi-unionalimentari",
         level_code="4",
         seniority=new_hire(),
         pension_fund=PensionFundEnrolment("FONDAPI", Decimal("0.01"), tfr_to_fund=True),
@@ -119,7 +119,7 @@ def test_fondapi_on_the_food_pmi() -> None:
 def test_fonchim_on_the_chemical_industry() -> None:
     """Chimica farmaceutica D1 enrolled in FONCHIM at the 1.20% minimum."""
     employment = Employment(
-        ccnl_slug="chimica-farmaceutica-federchimica.json",
+        ccnl_id="chimica-farmaceutica-federchimica",
         level_code="D1",
         seniority=new_hire(),
         pension_fund=PensionFundEnrolment(
@@ -143,7 +143,7 @@ def test_prevedi_voluntary_contributions() -> None:
     solidarity on 36.24 is 3.62.
     """
     employment = Employment(
-        ccnl_slug="edilizia-ance-impiegati.json",
+        ccnl_id="edilizia-ance-impiegati",
         level_code="5",
         category=WorkerCategory.IMPIEGATO,
         seniority=new_hire(),
@@ -167,7 +167,7 @@ def _cometa(
         else SeniorityFact(seniority_months, date(2026, 1, 1), SenioritySource.PAYSLIP)
     )
     employment = Employment(
-        ccnl_slug="metalmeccanico-federmeccanica.json",
+        ccnl_id="metalmeccanico-federmeccanica",
         level_code="C3",
         seniority=seniority,
         pension_fund=PensionFundEnrolment(
@@ -213,8 +213,8 @@ def test_cometa_unknown_young_membership_is_a_missing_fact() -> None:
 @pytest.mark.parametrize(
     ("slug", "level", "rate", "employer", "employee"),
     [
-        ("metalmeccanico-confapi.json", "5", "0.012", "43.92", "26.35"),
-        ("tessile-pmi-uniontessile.json", "4", "0.016", "39.25", "31.40"),
+        ("metalmeccanico-confapi", "5", "0.012", "43.92", "26.35"),
+        ("tessile-pmi-uniontessile", "4", "0.016", "39.25", "31.40"),
     ],
     ids=["metalmeccanico", "tessile"],
 )
@@ -224,7 +224,7 @@ def test_fondapi_on_the_minimum(
     """Fondapi on the minimum, not payable while the EDR is missing."""
     result = regular_period(
         employment=Employment(
-            ccnl_slug=slug,
+            ccnl_id=slug,
             level_code=level,
             seniority=new_hire(),
             pension_fund=PensionFundEnrolment(
@@ -236,7 +236,7 @@ def test_fondapi_on_the_minimum(
     assert _entry(result, "pension_fund_employer") == Decimal(employer)
     assert _entry(result, "pension_fund_employee") == Decimal(employee)
     limitations = {limitation.id for limitation in result.assurance.limitations}
-    assert f"{slug.removesuffix('.json')}/fondapi_base_elements" in limitations
+    assert f"{slug}/fondapi_base_elements" in limitations
     assert not result.is_payable
 
 
@@ -249,7 +249,7 @@ def test_fondapi_chemical_tiers(rate: str, employer: str, employee: str) -> None
     """The employer rate rises with the rate the worker chooses."""
     result = regular_period(
         employment=Employment(
-            ccnl_slug="chimica-affini-pmi-unionchimica.json",
+            ccnl_id="chimica-affini-pmi-unionchimica",
             level_code="D",
             seniority=new_hire(),
             pension_fund=PensionFundEnrolment(

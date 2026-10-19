@@ -1,6 +1,6 @@
 {
   "_description": "scuole-materne-fism — data checks 2026",
-  "ccnl_file": "scuole-materne-fism.json",
+  "ccnl_id": "scuole-materne-fism",
   "salary_checks": [
     {
       "level_code": "I",

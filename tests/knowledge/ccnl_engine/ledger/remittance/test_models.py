@@ -32,7 +32,7 @@ if TYPE_CHECKING:
 
 pytestmark = pytest.mark.legal_scenario
 
-_PORTIERI = "portieri-fabbricati-confedilizia.json"
+_PORTIERI = "portieri-fabbricati-confedilizia"
 _PRIOR = PriorYearTaxFacts(employment_income=Decimal("25000.00"))
 
 
@@ -49,7 +49,7 @@ def test_run_reports_withholding_and_credits_on_separate_lines() -> None:
     withholding slots of the year.  The 1001 line is the IRPEF withheld,
     not the IRPEF less the credit: the net pay adds the credits back.
     """
-    result = regular_period(ccnl_slug=_PORTIERI, level_code="B5", prior_year=_PRIOR)
+    result = regular_period(ccnl_id=_PORTIERI, level_code="B5", prior_year=_PRIOR)
     lines = {
         (str(ln.account), ln.remittance_code): ln for ln in result.remittance_summary()
     }
@@ -81,7 +81,7 @@ def test_year_offsets_the_whole_trattamento_under_1701() -> None:
         CompetenceYearPlan(
             year=2026,
             employment=Employment(
-                ccnl_slug=_PORTIERI, level_code="B5", contract_type=Permanent()
+                ccnl_id=_PORTIERI, level_code="B5", contract_type=Permanent()
             ),
             employer=EMPLOYER,
             prior_year=_PRIOR,

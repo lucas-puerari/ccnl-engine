@@ -73,7 +73,7 @@ def test_a_domestic_run_reads_no_base_of_other_employments() -> None:
     result = calculate_period(
         period_request(
             1,
-            ccnl="lavoro-domestico-non-convivente.json",
+            ccnl="lavoro-domestico-non-convivente",
             level="B",
             weekly_hours=25,
             contributable_hours=Decimal(108),

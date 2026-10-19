@@ -1,6 +1,6 @@
 {
   "_description": "vigilanza-privata-assiv — data checks 2026",
-  "ccnl_file": "vigilanza-privata-assiv.json",
+  "ccnl_id": "vigilanza-privata-assiv",
   "salary_checks": [
     {
       "level_code": "6",

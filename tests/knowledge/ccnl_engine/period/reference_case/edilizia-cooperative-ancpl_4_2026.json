@@ -19,7 +19,7 @@
     "section": "Minimi tabellari cooperative, livello 4"
   },
   "inputs": {
-    "ccnl_slug": "edilizia-cooperative-ancpl.json",
+    "ccnl_id": "edilizia-cooperative-ancpl",
     "level_code": "4",
     "year": 2026,
     "month": 4,

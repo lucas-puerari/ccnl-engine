@@ -19,7 +19,7 @@ class TestDiffRealMetalmeccanico:
 
     def test_has_changes_across_renewal(self) -> None:
         """A date range spanning the 2026-06-01 tranche produces changes."""
-        ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
+        ccnl = load_ccnl("metalmeccanico-federmeccanica")
         result = diff_ccnl(ccnl, date(2026, 1, 1), date(2026, 7, 1))
         assert result.affected_rules > 0, (
             "Expected salary changes between 2026-01 and 2026-07 but found none"
@@ -27,7 +27,7 @@ class TestDiffRealMetalmeccanico:
 
     def test_same_period_produces_no_changes(self) -> None:
         """Dates within the same salary tranche produce no changes."""
-        ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
+        ccnl = load_ccnl("metalmeccanico-federmeccanica")
         # Both dates fall in the same period (2026-06-01..next)
         result = diff_ccnl(ccnl, date(2026, 7, 1), date(2026, 9, 1))
         assert result.changes == (), (
@@ -36,7 +36,7 @@ class TestDiffRealMetalmeccanico:
 
     def test_change_values_are_positive(self) -> None:
         """All detected changes have non-negative monetary values."""
-        ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
+        ccnl = load_ccnl("metalmeccanico-federmeccanica")
         result = diff_ccnl(ccnl, date(2026, 1, 1), date(2026, 7, 1))
         for change in result.changes:
             if change.from_value is not None:
@@ -52,7 +52,7 @@ class TestDiffRealMetalmeccanico:
         """Effective dates fall within or at the boundary of the diff range."""
         from_d = date(2026, 1, 1)
         to_d = date(2026, 7, 1)
-        ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
+        ccnl = load_ccnl("metalmeccanico-federmeccanica")
         result = diff_ccnl(ccnl, from_d, to_d)
         for change in result.changes:
             assert from_d <= change.effective_date <= to_d, (
@@ -61,13 +61,13 @@ class TestDiffRealMetalmeccanico:
 
     def test_ccnl_id_correct(self) -> None:
         """The diff carries the correct CCNL id."""
-        ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
+        ccnl = load_ccnl("metalmeccanico-federmeccanica")
         result = diff_ccnl(ccnl, date(2026, 1, 1), date(2026, 7, 1))
         assert result.ccnl_id == "metalmeccanico-federmeccanica"
 
     def test_all_salary_changes_are_increases(self) -> None:
         """For metalmeccanico, salary tranches are always increases."""
-        ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
+        ccnl = load_ccnl("metalmeccanico-federmeccanica")
         result = diff_ccnl(ccnl, date(2026, 1, 1), date(2026, 7, 1))
         salary_changes = [c for c in result.changes if "base_salary" in c.path]
         for ch in salary_changes:

@@ -87,7 +87,7 @@ def _cometa(young_member: bool | None) -> Employment:
     return replace(
         CONCIA_D2,
         category=None,
-        ccnl_slug="metalmeccanico-federmeccanica.json",
+        ccnl_id="metalmeccanico-federmeccanica",
         level_code="C3",
         pension_fund=enrolment,
     )
@@ -97,7 +97,7 @@ def _byblos(erc_amount: Decimal | None) -> Employment:
     return replace(
         CONCIA_D2,
         category=None,
-        ccnl_slug="grafica-editoria-aieg.json",
+        ccnl_id="grafica-editoria-aieg",
         level_code="C1",
         seniority=new_hire(),
         employment_period=EmploymentPeriod(date(2019, 1, 1)),
@@ -120,7 +120,7 @@ def _previambiente(
     employment = replace(
         CONCIA_D2,
         category=None,
-        ccnl_slug="igiene-ambientale-utilitalia.json",
+        ccnl_id="igiene-ambientale-utilitalia",
         level_code="Q",
         pension_fund=enrolment,
     )
@@ -134,7 +134,7 @@ def _public(regime: PublicEndOfService | None) -> Employment:
     return replace(
         CONCIA_D2,
         category=None,
-        ccnl_slug="funzioni-centrali-aran.json",
+        ccnl_id="funzioni-centrali-aran",
         level_code="FUNZIONARI",
         sector=EmploymentSector.PUBLIC,
         public_end_of_service=regime,
@@ -155,7 +155,7 @@ def _small_terziario(
     terziario = replace(
         CONCIA_D2,
         category=None,
-        ccnl_slug="commercio-confcommercio.json",
+        ccnl_id="commercio-confcommercio",
         level_code="5",
     )
     request = january(terziario)
@@ -171,9 +171,7 @@ def _craft_firm(
     Returns:
         The January run, the indotto given.
     """
-    craft = replace(
-        CONCIA_D2, ccnl_slug="metalmeccanico-artigianato.json", level_code="3"
-    )
+    craft = replace(CONCIA_D2, ccnl_id="metalmeccanico-artigianato", level_code="3")
     request = january(craft)
     employer = replace(request.employer, headcount=Headcount(20), cigs_indotto=indotto)
     return replace(request, employer=employer)
@@ -190,7 +188,7 @@ def _commercio_employer(
     commercio = replace(
         CONCIA_D2,
         category=None,
-        ccnl_slug="commercio-confcommercio.json",
+        ccnl_id="commercio-confcommercio",
         level_code="4",
     )
     request = january(commercio)
@@ -208,7 +206,7 @@ def _logistica_employer(
     """
     logistica = replace(
         CONCIA_D2,
-        ccnl_slug="logistica-trasporto-confetra.json",
+        ccnl_id="logistica-trasporto-confetra",
         level_code="3S",
     )
     request = january(logistica)
@@ -221,7 +219,7 @@ def _operaio(
 ) -> PeriodInput:
     employment = replace(
         CONCIA_D2,
-        ccnl_slug="edilizia-ance.json",
+        ccnl_id="edilizia-ance",
         level_code="2",
         category=WorkerCategory.OPERAIO,
         pension_fund=NoPensionFund(),
@@ -337,7 +335,7 @@ __all__ = ["sickness_cases"]
 
 _EMPLOYMENT = Employment(
     contract_type=Permanent(),
-    ccnl_slug="metalmeccanico-federmeccanica.json",
+    ccnl_id="metalmeccanico-federmeccanica",
     level_code="C3",
     category=WorkerCategory.OPERAIO,
     seniority=new_hire(2025),
@@ -423,7 +421,7 @@ def _logistica_long(*, serious: bool | None) -> PeriodInput:
     )
     run = _march(PeriodState.zero(), episode)
     employment = replace(
-        _EMPLOYMENT, ccnl_slug="logistica-trasporto-confetra.json", level_code="3"
+        _EMPLOYMENT, ccnl_id="logistica-trasporto-confetra", level_code="3"
     )
     return replace(run, employment=employment)
 
@@ -440,7 +438,7 @@ def _cinema_sickness(contributions: int | None) -> PeriodInput:
     run = _march(PeriodState.zero(), episode)
     employment = replace(
         _EMPLOYMENT,
-        ccnl_slug="cinema-audiovisivi-industria.json",
+        ccnl_id="cinema-audiovisivi-industria",
         level_code="4",
         category=WorkerCategory.IMPIEGATO,
     )

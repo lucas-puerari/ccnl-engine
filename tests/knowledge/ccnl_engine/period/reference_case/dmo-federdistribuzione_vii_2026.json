@@ -22,7 +22,7 @@
     "section": "Allegato 11, table 'Paga base dal 01/11/2025', row VII: paga base 873,22, altri elementi 5,16, contingenza + EDR 517,51; terzo elemento 2,07 from Art. 199 (PDF p. 59)"
   },
   "inputs": {
-    "ccnl_slug": "dmo-federdistribuzione.json",
+    "ccnl_id": "dmo-federdistribuzione",
     "level_code": "VII",
     "year": 2026,
     "month": 10,

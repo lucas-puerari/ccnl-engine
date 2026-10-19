@@ -35,7 +35,7 @@ engine = PayrollEngine.bundled()
 def test_ytd_state_carries_irpef_forward() -> None:
     """Closing state from January carries YTD IRPEF withheld into February."""
     employment = Employment(
-        ccnl_slug="metalmeccanico-federmeccanica.json",
+        ccnl_id="metalmeccanico-federmeccanica",
         level_code="C3",
         seniority=new_hire(),
         contract_type=Permanent(),

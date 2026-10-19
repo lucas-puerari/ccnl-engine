@@ -54,7 +54,7 @@ def _march(last: date) -> PeriodResult:
             run=PayrollRun.regular(year=2026, month=3),
             payment_date=date(2026, 3, 27),
             employment=Employment(
-                ccnl_slug="lavoro-domestico-convivente.json",
+                ccnl_id="lavoro-domestico-convivente",
                 level_code="CS",
                 seniority=SeniorityFact(36, date(2026, 1, 1), SenioritySource.PAYSLIP),
                 weekly_hours=WeeklyHours(54),

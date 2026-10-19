@@ -62,7 +62,7 @@ def _march(
     events: tuple[WorkEvent, ...] = (),
 ) -> PeriodResult:
     employment = Employment(
-        ccnl_slug=f"{_SLUG}.json",
+        ccnl_id=_SLUG,
         level_code="Q",
         seniority=new_hire(),
         employment_period=EmploymentPeriod(date(2026, 1, 1)),

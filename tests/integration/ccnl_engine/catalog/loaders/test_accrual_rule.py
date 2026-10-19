@@ -20,7 +20,7 @@ from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.models import AccrualComparison
 
 _FILES = sorted(
-    entry.name
+    entry.name.removesuffix(".json")
     for entry in importlib.resources
     .files("ccnl_engine.knowledge")
     .joinpath("agreement")

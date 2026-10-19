@@ -266,7 +266,7 @@ python scripts/provenance/check.py --update-baseline --allow-growth
 ```python
 from ccnl_engine.catalog.loaders import load_ccnl
 
-ccnl = load_ccnl("commercio-confcommercio.json")
+ccnl = load_ccnl("commercio-confcommercio")
 
 for level in ccnl.levels:
     for period in level.base_salary.periods:

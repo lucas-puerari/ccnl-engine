@@ -1,6 +1,6 @@
 {
   "_description": "igiene-ambientale-utilitalia — data checks 2026",
-  "ccnl_file": "igiene-ambientale-utilitalia.json",
+  "ccnl_id": "igiene-ambientale-utilitalia",
   "salary_checks": [
     {
       "level_code": "D2",

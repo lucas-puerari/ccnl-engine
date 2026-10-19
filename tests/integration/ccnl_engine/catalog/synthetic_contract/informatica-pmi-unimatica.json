@@ -1,6 +1,6 @@
 {
   "_description": "informatica-pmi-unimatica — data checks 2026",
-  "ccnl_file": "informatica-pmi-unimatica.json",
+  "ccnl_id": "informatica-pmi-unimatica",
   "salary_checks": [
     {
       "level_code": "10",

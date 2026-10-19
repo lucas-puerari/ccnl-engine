@@ -64,7 +64,7 @@ _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 _HIRED = date(2026, 1, 1)
 _EMPLOYMENT = Employment(
     contract_type=Permanent(),
-    ccnl_slug="metalmeccanico-federmeccanica.json",
+    ccnl_id="metalmeccanico-federmeccanica",
     level_code="C3",
     category=WorkerCategory.OPERAIO,
     seniority=new_hire(),
@@ -110,7 +110,7 @@ def test_days_past_the_122nd_are_paid_at_80_percent() -> None:
             year=2026,
             employment=Employment(
                 contract_type=Permanent(),
-                ccnl_slug="metalmeccanico-federmeccanica.json",
+                ccnl_id="metalmeccanico-federmeccanica",
                 level_code="C3",
                 category=WorkerCategory.OPERAIO,
                 seniority=seniority,
@@ -216,7 +216,7 @@ def test_an_import_without_the_known_history_blocks() -> None:
             payment_date=date(2026, 3, 27),
             employment=Employment(
                 contract_type=Permanent(),
-                ccnl_slug="metalmeccanico-federmeccanica.json",
+                ccnl_id="metalmeccanico-federmeccanica",
                 level_code="C3",
                 category=WorkerCategory.OPERAIO,
                 seniority=new_hire(2025),

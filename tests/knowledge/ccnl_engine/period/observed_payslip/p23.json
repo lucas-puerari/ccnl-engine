@@ -138,7 +138,7 @@
     "replayability": "partial",
     "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
     "inputs": {
-      "ccnl_slug": "metalmeccanico-federmeccanica.json",
+      "ccnl_id": "metalmeccanico-federmeccanica",
       "level_code": "C3",
       "year": 2026,
       "month": 8,

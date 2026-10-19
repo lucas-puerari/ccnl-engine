@@ -1,6 +1,6 @@
 {
   "_description": "forze-polizia-ordinamento-civile — data checks 2026",
-  "ccnl_file": "forze-polizia-ordinamento-civile.json",
+  "ccnl_id": "forze-polizia-ordinamento-civile",
   "salary_checks": [
     {
       "level_code": "AGENTE",

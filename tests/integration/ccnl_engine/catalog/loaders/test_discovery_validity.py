@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 
 _ENGINE = PayrollEngine.bundled()
 _YEAR = 2026
-_CONTRACTS = {str(c.ccnl_id): c for c in PayrollEngine.list_contracts()}
+_CONTRACTS = {str(c.ccnl_id): c for c in PayrollEngine.bundled().list_contracts()}
 _DOMESTIC = frozenset({
     "lavoro-domestico-convivente",
     "lavoro-domestico-convivente-orario-ridotto",
@@ -83,7 +83,7 @@ _LATE_TABLES = {
 def _employment(ccnl: CCNL, level_code: str) -> Employment:
     domestic = ccnl.meta.ccnl_id in _DOMESTIC
     return Employment(
-        ccnl_slug=f"{ccnl.meta.ccnl_id}.json",
+        ccnl_id=ccnl.meta.ccnl_id,
         level_code=level_code,
         weekly_hours=WeeklyHours(25) if domestic else None,
         seniority=_SENIORITY,
@@ -141,7 +141,7 @@ def _window(summary: ContractSummary) -> ValidityWindow:
 def test_the_window_predicts_every_run_of_the_year(ccnl_id: str) -> None:
     """Inside the window a run computes; outside it may miss a rule."""
     window = _window(_CONTRACTS[ccnl_id])
-    ccnl = load_ccnl(f"{ccnl_id}.json")
+    ccnl = load_ccnl(ccnl_id)
     wrong: list[str] = []
     for level_code, month in _runs(ccnl):
         competence = date(_YEAR, month, 1)
@@ -168,7 +168,7 @@ def test_a_competence_year_leaves_out_the_months_before_the_tables(
     ccnl_id: str, first_day: date
 ) -> None:
     """The months the window does not cover are listed, the others computed."""
-    ccnl = load_ccnl(f"{ccnl_id}.json")
+    ccnl = load_ccnl(ccnl_id)
     plan = CompetenceYearPlan(
         year=_YEAR,
         employment=_employment(ccnl, ccnl.levels[0].code),

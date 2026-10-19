@@ -20,7 +20,7 @@
     "section": "Tabella A, lavoratori conviventi art. 14 c. 1 lettera a, livello CS"
   },
   "inputs": {
-    "ccnl_slug": "lavoro-domestico-convivente.json",
+    "ccnl_id": "lavoro-domestico-convivente",
     "level_code": "CS",
     "year": 2026,
     "month": 3,

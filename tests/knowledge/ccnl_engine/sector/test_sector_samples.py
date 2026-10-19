@@ -109,7 +109,7 @@ def _expected(
 
 
 def _solidarity(slug: str, base: Decimal) -> tuple[Decimal, Decimal]:
-    path = KNOWLEDGE_DIR / "agreement" / slug
+    path = KNOWLEDGE_DIR / "agreement" / f"{slug}.json"
     fund = json.loads(path.read_text(encoding="utf-8"))["parameters"].get(
         "solidarity_fund"
     )
@@ -131,7 +131,7 @@ def _run(
 ) -> PeriodResult:
     return regular_period(
         employment=Employment(
-            ccnl_slug=slug,
+            ccnl_id=slug,
             level_code=level,
             category=category,
             seniority=new_hire(),
@@ -149,15 +149,15 @@ def _actual(result: PeriodResult) -> tuple[Decimal, Decimal]:
 
 #: Sector, CCNL, level and the category of the level.
 _SAMPLES = (
-    ("industria", "metalmeccanico-federmeccanica.json", "C3", "operaio"),
-    ("terziario", "commercio-confcommercio.json", "4", "impiegato"),
-    ("edilizia", "edilizia-ance-impiegati.json", "4", "impiegato"),
-    ("artigianato", "metalmeccanico-artigianato.json", "2bis", "operaio"),
-    ("credito", "bancari-abi.json", "3A4", "impiegato"),
-    ("agricoltura", "operai-agricoli-florovivaisti.json", "Area2", "operaio"),
+    ("industria", "metalmeccanico-federmeccanica", "C3", "operaio"),
+    ("terziario", "commercio-confcommercio", "4", "impiegato"),
+    ("edilizia", "edilizia-ance-impiegati", "4", "impiegato"),
+    ("artigianato", "metalmeccanico-artigianato", "2bis", "operaio"),
+    ("credito", "bancari-abi", "3A4", "impiegato"),
+    ("agricoltura", "operai-agricoli-florovivaisti", "Area2", "operaio"),
     (
         "pubblica-amministrazione",
-        "funzioni-centrali-aran.json",
+        "funzioni-centrali-aran",
         "FUNZIONARI",
         "impiegato",
     ),
@@ -182,10 +182,10 @@ def test_permanent_and_fixed_term_contributions(
 def test_part_time_scales_the_pay_and_keeps_the_rates() -> None:
     """20 of 40 hours: half the pay, the same rates on it."""
     full = _run(
-        "metalmeccanico-federmeccanica.json", "C3", WorkerCategory.OPERAIO, Permanent()
+        "metalmeccanico-federmeccanica", "C3", WorkerCategory.OPERAIO, Permanent()
     )
     half = _run(
-        "metalmeccanico-federmeccanica.json",
+        "metalmeccanico-federmeccanica",
         "C3",
         WorkerCategory.OPERAIO,
         Permanent(),
@@ -217,7 +217,7 @@ def test_apprentice_rates(
     Both plus the FIS and CIGS shares of the employer's headcount.
     """
     result = _run(
-        "commercio-confcommercio.json",
+        "commercio-confcommercio",
         "4",
         WorkerCategory.IMPIEGATO,
         Apprentice(months_elapsed=6),
@@ -240,7 +240,7 @@ def test_domestic_hourly_contributions() -> None:
     hours = Decimal(86)
     result = regular_period(
         employment=Employment(
-            ccnl_slug="lavoro-domestico-non-convivente.json",
+            ccnl_id="lavoro-domestico-non-convivente",
             level_code="B",
             seniority=new_hire(),
             contract_type=Permanent(),

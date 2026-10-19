@@ -27,7 +27,7 @@ if TYPE_CHECKING:
 
 __all__ = ["METALMECCANICO", "YEAR", "account_total", "period_request"]
 
-METALMECCANICO = "metalmeccanico-federmeccanica.json"
+METALMECCANICO = "metalmeccanico-federmeccanica"
 YEAR = 2026
 
 
@@ -54,7 +54,7 @@ def period_request(
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=YEAR, month=month),
         payment_date=date(YEAR, month, 28),
-        ccnl_slug=ccnl,
+        ccnl_id=ccnl,
         level_code=level,
         opening_state=opening,
         events=events,  # type: ignore[arg-type]

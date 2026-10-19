@@ -44,9 +44,9 @@ from tests.integration.ccnl_engine.period.builders import (
 if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
 
-_CCNL_METAL = "metalmeccanico-federmeccanica.json"
+_CCNL_METAL = "metalmeccanico-federmeccanica"
 _LEVEL_C3 = "C3"
-_CCNL_PORTIERI = "portieri-fabbricati-confedilizia.json"
+_CCNL_PORTIERI = "portieri-fabbricati-confedilizia"
 _LEVEL_B5 = "B5"
 _YEAR = 2026
 _ZERO = Decimal(0)
@@ -65,7 +65,7 @@ def _req_metal(
         prior_year=PriorYearTaxFacts(employment_income=income),
         period_id=PeriodId(year=_YEAR, month=month),
         payment_date=date(_YEAR, month, 28),
-        ccnl_slug=_CCNL_METAL,
+        ccnl_id=_CCNL_METAL,
         level_code=_LEVEL_C3,
         opening_state=opening or PeriodState.zero(),
         events=events,  # type: ignore[arg-type]
@@ -83,7 +83,7 @@ def _req_portieri(
         prior_year=PriorYearTaxFacts(employment_income=income),
         period_id=PeriodId(year=_YEAR, month=month),
         payment_date=date(_YEAR, month, 28),
-        ccnl_slug=_CCNL_PORTIERI,
+        ccnl_id=_CCNL_PORTIERI,
         level_code=_LEVEL_B5,
         opening_state=opening or PeriodState.zero(),
         events=events,  # type: ignore[arg-type]

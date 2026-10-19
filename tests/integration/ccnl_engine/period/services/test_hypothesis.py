@@ -20,7 +20,7 @@ from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.services import calculate_period
 from ccnl_engine.run.types import PeriodId
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _LEVEL_CODES = ["C1", "C3", "D1"]
 _YEAR = 2026
 
@@ -42,7 +42,7 @@ def _req(
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=month),
         payment_date=date(_YEAR, month, 28),
-        ccnl_slug=_CCNL,
+        ccnl_id=_CCNL,
         level_code=level_code,
         opening_state=PeriodState(cash=TaxCashState(tax=TaxYtd(irpef=irpef_ytd))),
     )

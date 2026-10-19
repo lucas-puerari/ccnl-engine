@@ -22,7 +22,7 @@ from tests.integration.ccnl_engine.period.builders import (
 if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _LEVEL = "C3"
 _YEAR = 2026
 
@@ -41,7 +41,7 @@ def _real_result(
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=month),
         payment_date=date(_YEAR, month, 28),
-        ccnl_slug=_CCNL,
+        ccnl_id=_CCNL,
         level_code=_LEVEL,
         opening_state=op,
     )

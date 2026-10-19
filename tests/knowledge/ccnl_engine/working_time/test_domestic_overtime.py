@@ -41,8 +41,8 @@ from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 pytestmark = pytest.mark.legal_scenario
 
 _ENGINE = PayrollEngine.bundled()
-_CONVIVENTE = "lavoro-domestico-convivente.json"
-_NON_CONVIVENTE = "lavoro-domestico-non-convivente.json"
+_CONVIVENTE = "lavoro-domestico-convivente"
+_NON_CONVIVENTE = "lavoro-domestico-non-convivente"
 
 
 def _run(slug: str, kind: OvertimeKind) -> PeriodResult:
@@ -52,7 +52,7 @@ def _run(slug: str, kind: OvertimeKind) -> PeriodResult:
             run=PayrollRun.regular(year=2026, month=3),
             payment_date=date(2026, 3, 27),
             employment=Employment(
-                ccnl_slug=slug,
+                ccnl_id=slug,
                 level_code="CS",
                 seniority=new_hire(),
                 weekly_hours=WeeklyHours(weekly),

@@ -68,7 +68,7 @@ def metalmeccanico_c3(category: WorkerCategory | None) -> Employment:
         does not fix it.
     """
     return Employment(
-        ccnl_slug="metalmeccanico-federmeccanica.json",
+        ccnl_id="metalmeccanico-federmeccanica",
         level_code="C3",
         category=category,
         contract_type=Permanent(),

@@ -60,9 +60,9 @@ _D = Decimal
 _YEAR = 2026
 _DATE = date(_YEAR, 1, 15)
 _PAYMENT = date(_YEAR, 1, 28)
-_METALMECCANICO = "metalmeccanico-federmeccanica.json"
-_COMMERCIO = "commercio-confcommercio.json"
-_FISE = "servizi-postali-appalto-fise.json"
+_METALMECCANICO = "metalmeccanico-federmeccanica"
+_COMMERCIO = "commercio-confcommercio"
+_FISE = "servizi-postali-appalto-fise"
 _RESOLVER = load_policy_resolver()
 _PDR = load_variable_pay_rules(_YEAR).pdr
 _FRINGE = fringe_threshold_of(
@@ -71,13 +71,13 @@ _FRINGE = fringe_threshold_of(
 
 
 def _run(
-    ccnl_slug: str = _METALMECCANICO, level_code: str = "C3", **kwargs: object
+    ccnl_id: str = _METALMECCANICO, level_code: str = "C3", **kwargs: object
 ) -> PeriodResult:
     request = PeriodCalculationRequest(
         pension_fund=NoPensionFund(),
         period_id=PeriodId(year=_YEAR, month=1),
         payment_date=_PAYMENT,
-        ccnl_slug=ccnl_slug,
+        ccnl_id=ccnl_id,
         level_code=level_code,
         employer=kwargs.pop("employer", EmployerProfile(headcount=Headcount(50))),  # type: ignore[arg-type]
         opening_state=kwargs.pop("opening_state", PeriodState.zero()),  # type: ignore[arg-type]

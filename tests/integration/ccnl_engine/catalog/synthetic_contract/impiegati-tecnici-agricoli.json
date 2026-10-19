@@ -1,6 +1,6 @@
 {
   "_description": "impiegati-tecnici-agricoli — data checks 2026",
-  "ccnl_file": "impiegati-tecnici-agricoli.json",
+  "ccnl_id": "impiegati-tecnici-agricoli",
   "salary_checks": [
     {
       "level_code": "6",

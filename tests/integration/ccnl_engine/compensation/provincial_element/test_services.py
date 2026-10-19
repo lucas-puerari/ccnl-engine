@@ -25,7 +25,7 @@ def _run(in_force: bool | None) -> PeriodResult:
         PeriodCalculationRequest(
             period_id=PeriodId(year=2026, month=9),
             payment_date=date(2026, 9, 27),
-            ccnl_slug="commercio-confcommercio.json",
+            ccnl_id="commercio-confcommercio",
             level_code="4",
             employer=EmployerProfile(
                 headcount=Headcount(50), provincial_pay_element=in_force

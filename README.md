@@ -40,7 +40,7 @@ year = engine.calculate_competence_year(
     CompetenceYearPlan(
         year=2026,
         employment=Employment(
-            ccnl_slug=contract.ccnl_id, level_code="4", contract_type=Permanent()
+            ccnl_id=contract.ccnl_id, level_code="4", contract_type=Permanent()
         ),
         employer=EmployerProfile(headcount=Headcount(50)),
     )

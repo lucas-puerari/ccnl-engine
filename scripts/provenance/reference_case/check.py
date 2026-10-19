@@ -311,8 +311,8 @@ def _iso_date(value: object) -> bool:
 
 def _ccnl_id(case: Mapping[str, object]) -> str | None:
     inputs = case.get("inputs")
-    slug = inputs.get("ccnl_slug") if isinstance(inputs, dict) else None
-    return slug.removesuffix(".json") if isinstance(slug, str) else None
+    ccnl_id = inputs.get("ccnl_id") if isinstance(inputs, dict) else None
+    return ccnl_id if isinstance(ccnl_id, str) else None
 
 
 def index(cases_dir: Path = CASES_DIR) -> dict[str, tuple[CaseEvidence, ...]]:

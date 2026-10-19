@@ -29,7 +29,7 @@ def _plan(level_code: str = "C1") -> CompetenceYearPlan:
     return CompetenceYearPlan(
         year=2026,
         employment=Employment(
-            ccnl_slug="anas.json", level_code=level_code, contract_type=Permanent()
+            ccnl_id="anas", level_code=level_code, contract_type=Permanent()
         ),
         employer=_EMPLOYER,
     )

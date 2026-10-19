@@ -20,7 +20,7 @@
     "verified_at": "2026-09-12"
   },
   "inputs": {
-    "ccnl_slug": "autoscuole-unasca.json",
+    "ccnl_id": "autoscuole-unasca",
     "level_code": "3",
     "year": 2026,
     "month": 6,

@@ -40,7 +40,7 @@ def _plan(
     return CompetenceYearPlan(
         year=2026,
         employment=Employment(
-            ccnl_slug=ccnl_id,
+            ccnl_id=ccnl_id,
             level_code=level_code,
             contract_type=Permanent(),
             employment_period=EmploymentPeriod(_HIRED, None),

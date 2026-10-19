@@ -1,6 +1,6 @@
 {
   "_description": "turismo-confesercenti — data checks 2026",
-  "ccnl_file": "turismo-confesercenti.json",
+  "ccnl_id": "turismo-confesercenti",
   "salary_checks": [
     {
       "level_code": "7",

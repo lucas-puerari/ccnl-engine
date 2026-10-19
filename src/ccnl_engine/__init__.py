@@ -38,7 +38,7 @@ Usage::
         run=PayrollRun.regular(2026, 1),
         payment_date=date(2026, 1, 28),
         employment=Employment(
-            ccnl_slug="metalmeccanico-federmeccanica.json",
+            ccnl_id="metalmeccanico-federmeccanica",
             level_code="C3",
             contract_type=Permanent(),
         ),

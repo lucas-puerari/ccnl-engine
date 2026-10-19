@@ -28,7 +28,7 @@ if TYPE_CHECKING:
     from ccnl_engine.surtax.models import SurtaxRules
 
 _YEAR = 2026
-_CCNL = load_ccnl("metalmeccanico-federmeccanica.json")
+_CCNL = load_ccnl("metalmeccanico-federmeccanica")
 _REPO = BundledKnowledgeRepository()
 
 

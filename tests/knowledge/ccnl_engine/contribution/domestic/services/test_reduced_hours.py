@@ -49,13 +49,13 @@ from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 pytestmark = pytest.mark.legal_scenario
 
 _ENGINE = PayrollEngine.bundled()
-_REDUCED = "lavoro-domestico-convivente-orario-ridotto.json"
-_CONVIVENTE = "lavoro-domestico-convivente.json"
+_REDUCED = "lavoro-domestico-convivente-orario-ridotto"
+_CONVIVENTE = "lavoro-domestico-convivente"
 
 
 def _march(slug: str, level: str, weekly: int, full_time: int | None) -> PeriodResult:
     employment = Employment(
-        ccnl_slug=slug,
+        ccnl_id=slug,
         level_code=level,
         seniority=new_hire(),
         weekly_hours=WeeklyHours(weekly),

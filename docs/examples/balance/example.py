@@ -16,7 +16,7 @@ from ccnl_engine.inputs import Permanent
 engine = PayrollEngine.bundled()
 
 employment = Employment(
-    ccnl_slug="metalmeccanico-federmeccanica.json",
+    ccnl_id="metalmeccanico-federmeccanica",
     level_code="C3",
     contract_type=Permanent(),
 )

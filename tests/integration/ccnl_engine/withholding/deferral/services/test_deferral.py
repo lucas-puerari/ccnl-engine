@@ -59,7 +59,7 @@ from tests.unit.ccnl_engine.builders import EMPLOYER_50
 if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _YEAR = 2026
 _ZERO = Decimal(0)
 _CENT = Decimal("0.01")
@@ -151,7 +151,7 @@ def _adjustment(
             run=PayrollRun(run_kind=kind, month=month, year=_YEAR),
             payment_date=date(_YEAR, month, 28),
             employment=Employment(
-                ccnl_slug=_CCNL,
+                ccnl_id=_CCNL,
                 level_code="C3",
                 employment_period=period,
                 contract_type=Permanent(),
@@ -256,7 +256,7 @@ class TestOtherRuns:
                     run=PayrollRun.regular(year=_YEAR, month=3),
                     payment_date=date(_YEAR, 3, 28),
                     employment=Employment(
-                        ccnl_slug="lavoro-domestico-convivente.json",
+                        ccnl_id="lavoro-domestico-convivente",
                         level_code="A",
                         weekly_hours=WeeklyHours(40),
                         contract_type=Permanent(),

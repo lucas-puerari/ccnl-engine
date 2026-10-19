@@ -18,7 +18,7 @@ import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
 
-_CCNL = load_ccnl("metalmeccanico-artigianato.json")
+_CCNL = load_ccnl("metalmeccanico-artigianato")
 _TRANCHES = (date(2024, 12, 1), date(2025, 7, 1), date(2026, 3, 1), date(2026, 11, 1))
 #: Level, tabellare until 30 November 2024, increases of the four tranches.
 _TABLE = (

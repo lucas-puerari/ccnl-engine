@@ -39,7 +39,7 @@ def _june(engine: PayrollEngine, slug: str, level: str) -> PeriodResult | None:
                 run=PayrollRun.regular(2026, 6),
                 payment_date=date(2026, 6, 27),
                 employment=Employment(
-                    ccnl_slug=slug, level_code=level, contract_type=Permanent()
+                    ccnl_id=slug, level_code=level, contract_type=Permanent()
                 ),
                 employer=EmployerProfile(headcount=Headcount(50)),
             )
@@ -59,8 +59,8 @@ def pairs() -> dict[str, Pair]:
     operational = PayrollEngine.bundled(mode="operational")
     repo = BundledKnowledgeRepository()
     computed: dict[str, Pair] = {}
-    for summary in PayrollEngine.list_contracts():
-        slug = f"{summary.ccnl_id}.json"
+    for summary in PayrollEngine.bundled().list_contracts():
+        slug = summary.ccnl_id
         level = repo.load_ccnl(slug).levels[0].code
         simulated = _june(simulation, slug, level)
         if simulated is not None:
@@ -77,7 +77,9 @@ def test_most_contracts_run_in_both_modes(pairs: dict[str, Pair]) -> None:
 
 def test_every_run_reports_its_ccnl_readiness(pairs: dict[str, Pair]) -> None:
     """The CCNL ruleset of every run carries the tier of the catalog."""
-    tiers = {str(s.ccnl_id): s.readiness for s in PayrollEngine.list_contracts()}
+    tiers = {
+        str(s.ccnl_id): s.readiness for s in PayrollEngine.bundled().list_contracts()
+    }
     for ccnl_id, (simulated, _) in pairs.items():
         (ccnl,) = [r for r in simulated.rulesets if r.kind is RulesetKind.CCNL]
         assert ccnl.readiness is tiers[ccnl_id]

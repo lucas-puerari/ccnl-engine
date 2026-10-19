@@ -61,8 +61,8 @@ def ccnls() -> tuple[CCNL, ...]:
     """
     repo = BundledKnowledgeRepository()
     return tuple(
-        repo.load_ccnl(f"{info.ccnl_id}.json")
-        for info in PayrollEngine.list_contracts()
+        repo.load_ccnl(info.ccnl_id)
+        for info in PayrollEngine.bundled().list_contracts()
     )
 
 

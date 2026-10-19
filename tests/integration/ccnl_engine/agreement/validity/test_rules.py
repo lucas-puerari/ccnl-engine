@@ -31,7 +31,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.agreement.facade import CCNL
 
-_ALL_CCNL: list[CCNL] = [load_ccnl(c.ccnl_id + ".json") for c in list_contracts()]
+_ALL_CCNL: list[CCNL] = [load_ccnl(c.ccnl_id) for c in list_contracts()]
 _DAY = timedelta(days=1)
 _LATER = timedelta(days=3 * 365)
 

@@ -184,7 +184,7 @@ def _base_case(
         CompetenceYearPlan(
             year=2026,
             employment=Employment(
-                ccnl_slug=ccnl_id,
+                ccnl_id=ccnl_id,
                 level_code=levels[len(levels) // 2].code,
                 contract_type=Permanent(),
                 category=WorkerCategory.IMPIEGATO,

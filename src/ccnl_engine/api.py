@@ -13,7 +13,6 @@ from decimal import (
 from typing import TYPE_CHECKING, Final, Literal
 
 from ccnl_engine.balance.opening.services import opening_state
-from ccnl_engine.bundle.facade import __version__
 from ccnl_engine.catalog import services as _catalog
 from ccnl_engine.period.input.services import (
     competence_plan,
@@ -100,7 +99,7 @@ class PayrollEngine:
             run=PayrollRun.regular(2026, 1),
             payment_date=date(2026, 1, 28),
             employment=Employment(
-                ccnl_slug="metalmeccanico-federmeccanica.json",
+                ccnl_id="metalmeccanico-federmeccanica",
                 level_code="C3",
                 contract_type=Permanent(),
             ),
@@ -159,21 +158,20 @@ class PayrollEngine:
         """Payability policy of the results of this engine."""
         return self._mode
 
-    @staticmethod
-    def list_contracts() -> tuple[ContractSummary, ...]:
-        """Return every bundled contract with its readiness tier.
+    def list_contracts(self) -> tuple[ContractSummary, ...]:
+        """Return every contract of the repository with its readiness tier.
 
         Returns:
-            One summary per bundled CCNL, sorted by ``ccnl_id``.
+            One summary per CCNL of the repository, sorted by ``ccnl_id``.
         """
-        return _catalog.list_contracts()
+        return _catalog.list_contracts(self._repo)
 
     def list_levels(self, ccnl_id: str) -> tuple[LevelSummary, ...]:
         """Return the levels of one CCNL, each code as ``Employment`` takes it.
 
         Args:
-            ccnl_id: Slug (with or without ``.json``) or CNEL code; an
-                unknown one raises ``UnknownCcnlError``.
+            ccnl_id: Slug or CNEL code; an unknown one raises
+                ``UnknownCcnlError``.
 
         Returns:
             One summary per level, in the order of the CCNL data.
@@ -188,13 +186,13 @@ class PayrollEngine:
         calculating.
 
         Args:
-            ccnl_id: Slug (e.g. ``"metalmeccanico-federmeccanica"``, with or
-                without ``.json``) or CNEL code of a bundled CCNL.
+            ccnl_id: Slug (e.g. ``"metalmeccanico-federmeccanica"``) or CNEL
+                code of a CCNL of the repository.
 
         Returns:
             The assurance of the CCNL ruleset.
 
-        A ``ccnl_id`` that matches no bundled CCNL raises
+        A ``ccnl_id`` that matches no CCNL of the repository raises
         :class:`~ccnl_engine.errors.UnknownCcnlError`.
         """
         return _catalog.inspect_ruleset(self._repo, ccnl_id)
@@ -217,7 +215,7 @@ class PayrollEngine:
                 period_request(request),
                 repo=self._repo,
                 resolver=self._resolver,
-                bundle_version=__version__,
+                bundle_version=self._repo.bundle_version,
                 mode=self._mode,
             )
 
@@ -250,7 +248,7 @@ class PayrollEngine:
                 competence_plan(plan),
                 repo=self._repo,
                 resolver=self._resolver,
-                bundle_version=__version__,
+                bundle_version=self._repo.bundle_version,
                 mode=self._mode,
             )
 
@@ -274,7 +272,7 @@ class PayrollEngine:
                 tax_year_plan(plan),
                 repo=self._repo,
                 resolver=self._resolver,
-                bundle_version=__version__,
+                bundle_version=self._repo.bundle_version,
                 mode=self._mode,
             )
 

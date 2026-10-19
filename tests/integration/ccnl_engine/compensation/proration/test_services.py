@@ -34,10 +34,10 @@ if TYPE_CHECKING:
     from ccnl_engine.period.requests import PeriodCalculationRequest
     from ccnl_engine.run.models import PayrollRunId
 
-_FEDERMECCANICA = "metalmeccanico-federmeccanica.json"
-_VETRO = "vetro-meccanizzato-assovetro.json"
-_SANITA = "dirigenza-sanitaria-area-sanita-aran.json"
-_EDILIZIA = "edilizia-ance.json"
+_FEDERMECCANICA = "metalmeccanico-federmeccanica"
+_VETRO = "vetro-meccanizzato-assovetro"
+_SANITA = "dirigenza-sanitaria-area-sanita-aran"
+_EDILIZIA = "edilizia-ance"
 _CHAIN = MonthlyPayChain(
     base=Decimal("2158.26"), seniority=Decimal("0.00"), allowances=()
 )

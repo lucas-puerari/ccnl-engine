@@ -12,14 +12,14 @@
     "kind": "observed_payslip",
     "document": "Observed payslip p23",
     "path": "tests/knowledge/ccnl_engine/period/observed_payslip/p23.json",
-    "sha256": "c6d37214534c758522db5088fa3a896b86ec7fc13660e4646e0ae260ec67b31d",
+    "sha256": "0930b3a8443476749af6213789d309764b6a8634e5b76de10ec488ee627c2f17",
     "section": "pay_elements",
     "verified_by": "claude-opus-5-5",
     "verified_at": "2026-10-10",
     "independence": "The payslip was issued by the payroll of the employer, anonymised and stored before the engine computed the run: its minimo is not an output of this engine."
   },
   "inputs": {
-    "ccnl_slug": "metalmeccanico-federmeccanica.json",
+    "ccnl_id": "metalmeccanico-federmeccanica",
     "level_code": "C3",
     "year": 2026,
     "month": 8,

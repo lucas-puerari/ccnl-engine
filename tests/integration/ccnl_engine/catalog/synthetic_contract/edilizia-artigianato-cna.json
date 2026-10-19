@@ -1,6 +1,6 @@
 {
   "_description": "edilizia-artigianato-cna — data checks 2026",
-  "ccnl_file": "edilizia-artigianato-cna.json",
+  "ccnl_id": "edilizia-artigianato-cna",
   "salary_checks": [
     {
       "level_code": "1",

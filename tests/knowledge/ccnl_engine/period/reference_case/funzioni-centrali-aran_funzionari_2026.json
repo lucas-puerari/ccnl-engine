@@ -17,7 +17,7 @@
     "section": "Tabella 3, retribuzione tabellare annua dal 1.1.2026, area dei funzionari"
   },
   "inputs": {
-    "ccnl_slug": "funzioni-centrali-aran.json",
+    "ccnl_id": "funzioni-centrali-aran",
     "level_code": "FUNZIONARI",
     "year": 2026,
     "month": 10,

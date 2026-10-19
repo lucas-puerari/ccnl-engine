@@ -1,6 +1,6 @@
 {
   "_description": "ced-assoced — data checks 2026",
-  "ccnl_file": "ced-assoced.json",
+  "ccnl_id": "ced-assoced",
   "salary_checks": [
     {
       "level_code": "6",

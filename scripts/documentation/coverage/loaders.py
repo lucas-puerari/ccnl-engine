@@ -199,8 +199,8 @@ def bundled_ccnls() -> list[CCNL]:
     Returns:
         The CCNL models.
     """
-    filenames = [r.name for r in resources("agreement")]
-    return sorted((load_ccnl(fn) for fn in filenames), key=lambda c: c.meta.name)
+    slugs = [r.name.removesuffix(".json") for r in resources("agreement")]
+    return sorted((load_ccnl(slug) for slug in slugs), key=lambda c: c.meta.name)
 
 
 @dataclass(frozen=True)

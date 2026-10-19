@@ -33,7 +33,7 @@ if TYPE_CHECKING:
 pytestmark = pytest.mark.legal_scenario
 
 _EMPLOYMENT = Employment(
-    ccnl_slug="funzioni-centrali-aran.json",
+    ccnl_id="funzioni-centrali-aran",
     level_code="FUNZIONARI",
     seniority=new_hire(),
     pension_fund=PensionFundEnrolment(

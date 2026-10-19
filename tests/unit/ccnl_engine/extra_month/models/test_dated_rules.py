@@ -56,6 +56,6 @@ def test_a_month_after_the_change_takes_the_new_rule() -> None:
 
 def test_the_bundle_turismo_clause_is_undated() -> None:
     """Federalberghi: twenty-sixths before and after 2024 (arts. 225 and 277)."""
-    rule = month_accrual_rule(load_ccnl("turismo-federalberghi.json"))
+    rule = month_accrual_rule(load_ccnl("turismo-federalberghi"))
     assert rule.at(date(2024, 6, 1)).comparison is AccrualComparison.WORKING_DAYS_26
     assert rule.at(date(2024, 7, 1)).comparison is AccrualComparison.WORKING_DAYS_26

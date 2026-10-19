@@ -1,6 +1,6 @@
 {
   "_description": "orafi-argentieri-industria-federorafi — data checks 2026",
-  "ccnl_file": "orafi-argentieri-industria-federorafi.json",
+  "ccnl_id": "orafi-argentieri-industria-federorafi",
   "salary_checks": [
     {
       "level_code": "2",

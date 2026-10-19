@@ -167,13 +167,13 @@ _SIGNED_ON = date(2025, 3, 1)
 #: The explicit worker with no category, for a level that fixes another one.
 _UNCATEGORISED = replace(CONCIA_D2, category=None)
 _TABACCO_3A = replace(
-    _UNCATEGORISED, ccnl_slug="tabacco-apti.json", level_code="3A", pension_fund=None
+    _UNCATEGORISED, ccnl_id="tabacco-apti", level_code="3A", pension_fund=None
 )
 _ALIFOND = PensionFundEnrolment("ALIFOND", Decimal("0.01"), tfr_to_fund=False)
 #: Alimentari 1S, a quadro level paying the IND_FUNZIONE_QUADRO allowance
 #: to the holders of the role ``quadro``.
 _ALIMENTARI_1S = replace(
-    _UNCATEGORISED, ccnl_slug="alimentari-federalimentare.json", level_code="1S"
+    _UNCATEGORISED, ccnl_id="alimentari-federalimentare", level_code="1S"
 )
 _ASCENDANT = declared_dependent(DependentRelationship.ASCENDANT)
 _SPOUSE = declared_dependent(DependentRelationship.SPOUSE)

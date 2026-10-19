@@ -48,7 +48,7 @@ def test_tredicesima_commercio_level4() -> None:
         CompetenceYearPlan(
             year=2026,
             employment=Employment(
-                ccnl_slug="commercio-confcommercio.json",
+                ccnl_id="commercio-confcommercio",
                 level_code="4",
                 seniority=new_hire(),
                 contract_type=Permanent(),
@@ -72,7 +72,7 @@ def test_tredicesima_commercio_level4() -> None:
 # ---------------------------------------------------------------------------
 
 _LEAVER = Employment(
-    ccnl_slug="commercio-confcommercio.json",
+    ccnl_id="commercio-confcommercio",
     level_code="4",
     seniority=new_hire(),
     employment_period=EmploymentPeriod(date(2026, 3, 15), date(2026, 11, 16)),

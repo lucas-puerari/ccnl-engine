@@ -22,9 +22,9 @@ from ccnl_engine.period.services import calculate_period
 from ccnl_engine.run.models import PayrollRun
 from ccnl_engine.run.types import PeriodId
 
-_CCNL_METALMECCANICO = "metalmeccanico-federmeccanica.json"
+_CCNL_METALMECCANICO = "metalmeccanico-federmeccanica"
 _LEVEL_C3 = "C3"
-_CCNL_COMMERCIO = "commercio-confcommercio.json"
+_CCNL_COMMERCIO = "commercio-confcommercio"
 _LEVEL_4 = "4"
 _YEAR = 2026
 
@@ -42,7 +42,7 @@ def _extra_month_req(
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=payment_month),
         payment_date=date(_YEAR, payment_month, 28),
-        ccnl_slug=ccnl,
+        ccnl_id=ccnl,
         level_code=level,
         opening_state=PeriodState(cash=TaxCashState()),
         run=run,
@@ -97,7 +97,7 @@ def test_full_year_tredicesima_equals_monthly_gross() -> None:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=6),
             payment_date=date(_YEAR, 6, 28),
-            ccnl_slug=_CCNL_METALMECCANICO,
+            ccnl_id=_CCNL_METALMECCANICO,
             level_code=_LEVEL_C3,
             opening_state=PeriodState(cash=TaxCashState()),
         )
@@ -155,7 +155,7 @@ def test_commercio_level4_quattordicesima_full_year_at_june_rate() -> None:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=6),
             payment_date=date(_YEAR, 6, 28),
-            ccnl_slug=_CCNL_COMMERCIO,
+            ccnl_id=_CCNL_COMMERCIO,
             level_code=_LEVEL_4,
             opening_state=PeriodState(cash=TaxCashState()),
         )

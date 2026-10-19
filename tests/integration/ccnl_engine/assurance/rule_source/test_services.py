@@ -52,9 +52,9 @@ if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
     from ccnl_engine.sector.models import YearRules
 
-_METALMECCANICO = "metalmeccanico-federmeccanica.json"
+_METALMECCANICO = "metalmeccanico-federmeccanica"
 #: A CCNL whose salary table still reads assumed rules.
-_AGENTI = "agenti-immobiliari-fiaip.json"
+_AGENTI = "agenti-immobiliari-fiaip"
 _MISSING = RuleProvenance(status=ProvenanceStatus.MISSING, note="no source")
 
 
@@ -78,7 +78,7 @@ def _run(
     repo: BundledKnowledgeRepository | None = None, **kwargs: object
 ) -> PeriodResult:
     fields: dict[str, object] = {
-        "ccnl_slug": _METALMECCANICO,
+        "ccnl_id": _METALMECCANICO,
         "level_code": "C3",
         "category": WorkerCategory.IMPIEGATO,
         "current_year": employment_only(),
@@ -124,7 +124,7 @@ class TestBundledRun:
         and waived the renewal regime on the minimo in writing.
         """
         result = _run(
-            ccnl_slug=_AGENTI,
+            ccnl_id=_AGENTI,
             level_code="IV",
             category=None,
             regione=REGIONE,

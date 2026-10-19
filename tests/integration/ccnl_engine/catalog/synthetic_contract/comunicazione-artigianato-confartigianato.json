@@ -1,6 +1,6 @@
 {
   "_description": "comunicazione-artigianato-confartigianato — data checks 2026",
-  "ccnl_file": "comunicazione-artigianato-confartigianato.json",
+  "ccnl_id": "comunicazione-artigianato-confartigianato",
   "salary_checks": [
     {
       "level_code": "6",

@@ -43,7 +43,7 @@ __all__ = ["Apprentice", "Contract", "Employment", "FixedTerm", "Permanent"]
 
 _CONTRACT_FEATURE = "contract_type"
 #: A CCNL file name of the bundle: no directory, no other extension.
-_SLUG = re.compile(r"[a-z0-9][a-z0-9-]*(\.json)?")
+_CCNL_ID = re.compile(r"[a-z0-9][a-z0-9-]*|[A-Z][A-Z0-9]{3}")
 
 
 @dataclass(frozen=True, slots=True)
@@ -110,10 +110,11 @@ class Employment:
     producing a payslip.
 
     Attributes:
-        ccnl_slug: Knowledge-bundle CCNL filename, e.g.
-            ``"metalmeccanico-federmeccanica.json"``: lower-case letters,
-            digits and hyphens, then ``.json``.  A name the bundle does not
-            hold raises :class:`~ccnl_engine.errors.UnknownCcnlError` when the run loads
+        ccnl_id: The CCNL, by slug (lower-case letters, digits and
+            hyphens, e.g. ``"metalmeccanico-federmeccanica"``) or by CNEL
+            code (e.g. ``"E042"``).  An id the repository does not hold, or
+            a CNEL code shared by several CCNLs, raises
+            :class:`~ccnl_engine.errors.UnknownCcnlError` when the run loads
             it.
         level_code: Contractual level code, e.g. ``"C3"``.
         contract_type: :class:`Permanent`, :class:`FixedTerm` or
@@ -198,7 +199,7 @@ class Employment:
             no known value.
     """
 
-    ccnl_slug: str
+    ccnl_id: str
     level_code: str
     contract_type: Permanent | Apprentice | FixedTerm
     category: WorkerCategory | None = None
@@ -216,16 +217,14 @@ class Employment:
     public_end_of_service: PublicEndOfService | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
-        if not isinstance(self.ccnl_slug, str) or not _SLUG.fullmatch(self.ccnl_slug):
+        if not isinstance(self.ccnl_id, str) or not _CCNL_ID.fullmatch(self.ccnl_id):
             reject(
-                "Employment.ccnl_slug",
-                "a CCNL id such as 'metalmeccanico-federmeccanica', with or "
-                "without '.json'",
-                self.ccnl_slug,
+                "Employment.ccnl_id",
+                "a CCNL slug such as 'metalmeccanico-federmeccanica' or a "
+                "CNEL code such as 'E042'",
+                self.ccnl_id,
                 feature=FEATURE,
             )
-        if not self.ccnl_slug.endswith(".json"):
-            object.__setattr__(self, "ccnl_slug", f"{self.ccnl_slug}.json")
         require_str(
             self.level_code, "Employment.level_code", feature=FEATURE, non_blank=True
         )

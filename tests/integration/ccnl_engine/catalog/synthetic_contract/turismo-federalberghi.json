@@ -1,6 +1,6 @@
 {
   "_description": "turismo-federalberghi — data checks 2026",
-  "ccnl_file": "turismo-federalberghi.json",
+  "ccnl_id": "turismo-federalberghi",
   "salary_checks": [
     {
       "level_code": "A",

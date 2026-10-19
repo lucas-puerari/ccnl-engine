@@ -19,7 +19,7 @@ result = engine.calculate_period(
         run=PayrollRun.regular(year=2026, month=1),
         payment_date=date(2026, 1, 28),
         employment=Employment(
-            ccnl_slug="commercio-confcommercio.json",
+            ccnl_id="commercio-confcommercio",
             level_code="4",
             contract_type=Permanent(),
         ),

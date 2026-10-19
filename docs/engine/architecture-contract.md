@@ -41,7 +41,7 @@ The contract has four pages:
 - A leaf directory holds only the roles it needs. No empty file is created
   for symmetry.
 - A move keeps the persisted identities: ruleset ids (`tax/2026/...`,
-  `inps/2026/...`), `ccnl_slug` values and the tags of the state codec do
+  `inps/2026/...`), `ccnl_id` values and the tags of the state codec do
   not follow the directories.
 
 ## Decisions

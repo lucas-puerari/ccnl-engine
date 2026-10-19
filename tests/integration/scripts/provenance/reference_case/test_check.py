@@ -19,7 +19,7 @@ _CASE: dict[str, object] = {
     "verification": "source_linked",
     "axes": ["base_salary"],
     "source": {"document": "CCNL", "section": "Art. 1"},
-    "inputs": {"ccnl_slug": "x.json"},
+    "inputs": {"ccnl_id": "x"},
     "expected": {"base_salary": "1000.00"},
 }
 
@@ -59,10 +59,10 @@ def test_the_index_maps_each_ccnl_to_its_valid_cases(tmp_path: Path) -> None:
         a=_CASE,
         b=_CASE | {"axes": []},
         c=_CASE | {"inputs": {}},
-        d=_CASE | {"inputs": {"ccnl_slug": "y.json"}},
+        d=_CASE | {"inputs": {"ccnl_id": "y"}},
         e=_CASE
         | {
-            "inputs": {"ccnl_slug": "y.json"},
+            "inputs": {"ccnl_id": "y"},
             "axes": [],
             "elements": ["fixed_allowances"],
             "expected": {"fixed_allowances": "200.00"},
@@ -94,9 +94,7 @@ _VERIFIED: dict[str, object] = _CASE | {
 def test_a_production_ccnl_needs_a_valid_and_a_verified_case(tmp_path: Path) -> None:
     """A source-linked case is evidence, not an independent output."""
     knowledge = _knowledge(tmp_path / "k", x="production", y="production", z="reviewed")
-    folder = _cases(
-        tmp_path, a=_CASE, b=_VERIFIED | {"inputs": {"ccnl_slug": "z.json"}}
-    )
+    folder = _cases(tmp_path, a=_CASE, b=_VERIFIED | {"inputs": {"ccnl_id": "z"}})
 
     assert production_errors(knowledge, folder, frozenset()) == [
         "agreement/x.json: production without a verified reference case",

@@ -85,7 +85,7 @@ def _year() -> CompetenceYearResult:
         CompetenceYearPlan(
             year=2026,
             employment=Employment(
-                ccnl_slug="concia-unic.json",
+                ccnl_id="concia-unic",
                 level_code="D2",
                 category=WorkerCategory.OPERAIO,
                 seniority=new_hire(),

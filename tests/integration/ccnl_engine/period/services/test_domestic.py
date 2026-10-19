@@ -41,7 +41,7 @@ def test_domestic_contributions_nonzero() -> None:
     result = calculate_period(
         period_request(
             month=6,
-            ccnl="lavoro-domestico-convivente.json",
+            ccnl="lavoro-domestico-convivente",
             level="BS",
             weekly_hours=30,
             contributable_hours=Decimal(130),
@@ -76,7 +76,7 @@ def test_domestic_work_no_type_error() -> None:
     """
     req = period_request(
         month=6,
-        ccnl="lavoro-domestico-convivente.json",
+        ccnl="lavoro-domestico-convivente",
         level="BS",
         weekly_hours=30,
         contributable_hours=Decimal(130),
@@ -102,7 +102,7 @@ def test_domestic_missing_weekly_hours_raises() -> None:
         calculate_period(
             period_request(
                 month=6,
-                ccnl="lavoro-domestico-convivente.json",
+                ccnl="lavoro-domestico-convivente",
                 level="BS",
                 contributable_hours=Decimal(130),
             )
@@ -119,7 +119,7 @@ def test_domestic_missing_contributable_hours_raises() -> None:
         calculate_period(
             period_request(
                 month=6,
-                ccnl="lavoro-domestico-convivente.json",
+                ccnl="lavoro-domestico-convivente",
                 level="BS",
                 weekly_hours=30,
             )
@@ -136,7 +136,7 @@ def test_domestic_contributions_wage_bracket() -> None:
     result = calculate_period(
         period_request(
             month=6,
-            ccnl="lavoro-domestico-convivente.json",
+            ccnl="lavoro-domestico-convivente",
             level="BS",
             weekly_hours=20,
             contributable_hours=Decimal(86),
@@ -158,7 +158,7 @@ def test_domestic_contributions_fixed_term_hours_bracket() -> None:
     result = calculate_period(
         period_request(
             month=6,
-            ccnl="lavoro-domestico-convivente.json",
+            ccnl="lavoro-domestico-convivente",
             level="BS",
             weekly_hours=30,
             contributable_hours=Decimal(130),
@@ -177,7 +177,7 @@ def test_domestic_contributions_fixed_term_wage_bracket() -> None:
     result = calculate_period(
         period_request(
             month=6,
-            ccnl="lavoro-domestico-convivente.json",
+            ccnl="lavoro-domestico-convivente",
             level="BS",
             weekly_hours=20,
             contributable_hours=Decimal(86),
@@ -201,7 +201,7 @@ def test_domestic_replacement_worker_takes_the_permanent_hourly_rate(
         return calculate_period(
             period_request(
                 month=6,
-                ccnl="lavoro-domestico-convivente.json",
+                ccnl="lavoro-domestico-convivente",
                 level="BS",
                 weekly_hours=weekly_hours,
                 contributable_hours=Decimal(86),

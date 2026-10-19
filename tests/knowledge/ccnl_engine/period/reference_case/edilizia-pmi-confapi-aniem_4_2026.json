@@ -19,7 +19,7 @@
     "section": "Tabella retributiva dal 1 aprile 2025, livello 4"
   },
   "inputs": {
-    "ccnl_slug": "edilizia-pmi-confapi-aniem.json",
+    "ccnl_id": "edilizia-pmi-confapi-aniem",
     "level_code": "4",
     "year": 2026,
     "month": 1,

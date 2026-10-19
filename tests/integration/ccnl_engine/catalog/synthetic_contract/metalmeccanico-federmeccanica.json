@@ -1,6 +1,6 @@
 {
   "_description": "metalmeccanico-federmeccanica — data checks 2026",
-  "ccnl_file": "metalmeccanico-federmeccanica.json",
+  "ccnl_id": "metalmeccanico-federmeccanica",
   "salary_checks": [
     {
       "level_code": "D1",

@@ -37,7 +37,7 @@ def _run() -> PeriodResult:
     return regular_period(
         month=3,
         employment=Employment(
-            ccnl_slug="acconciatura-estetica-confartigianato.json",
+            ccnl_id="acconciatura-estetica-confartigianato",
             level_code="3",
             contract_type=Apprentice(months_elapsed=0, track="gruppo_1"),
             seniority=SeniorityFact(48, date(2026, 3, 1), SenioritySource.PAYSLIP),

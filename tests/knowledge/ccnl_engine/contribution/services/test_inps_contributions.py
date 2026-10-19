@@ -98,7 +98,7 @@ def test_additional_ivs_uses_the_monthly_threshold() -> None:
     employment = replace(
         CONCIA_D2,
         category=None,
-        ccnl_slug="metalmeccanico-federmeccanica.json",
+        ccnl_id="metalmeccanico-federmeccanica",
         level_code="C3",
         employment_period=EmploymentPeriod(date(2026, 6, 1)),
     )
@@ -137,7 +137,7 @@ def test_monthly_base_reaches_the_daily_floor() -> None:
 
 
 _AUTOSCUOLE_3 = replace(
-    CONCIA_D2, category=None, ccnl_slug="autoscuole-unasca.json", level_code="3"
+    CONCIA_D2, category=None, ccnl_id="autoscuole-unasca", level_code="3"
 )
 
 
@@ -208,7 +208,7 @@ def test_operaio_agricolo_is_contributed_on_the_pay() -> None:
     """
     employment = replace(
         CONCIA_D2,
-        ccnl_slug="operai-agricoli-florovivaisti.json",
+        ccnl_id="operai-agricoli-florovivaisti",
         level_code="Area3",
         category=WorkerCategory.OPERAIO,
     )
@@ -310,7 +310,7 @@ def test_agricultural_fixed_term_pays_no_naspi_surcharge() -> None:
     """
     agricultural = replace(
         CONCIA_D2,
-        ccnl_slug="operai-agricoli-florovivaisti.json",
+        ccnl_id="operai-agricoli-florovivaisti",
         level_code="Area3",
         category=WorkerCategory.OPERAIO,
     )
@@ -337,7 +337,7 @@ def test_agricultural_fixed_term_without_category_blocks_the_run() -> None:
     agricultural = replace(
         CONCIA_D2,
         category=None,
-        ccnl_slug="operai-agricoli-florovivaisti.json",
+        ccnl_id="operai-agricoli-florovivaisti",
         level_code="Area3",
         contract_type=FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE),
     )
@@ -357,7 +357,7 @@ def _terziario_of_five(reduced: bool | None) -> PeriodResult:
         employment=replace(
             CONCIA_D2,
             category=None,
-            ccnl_slug="commercio-confcommercio.json",
+            ccnl_id="commercio-confcommercio",
             level_code="5",
         ),
     )
@@ -401,14 +401,14 @@ def test_small_terziario_employer_pays_the_cut_fis(
 
 
 @pytest.mark.parametrize(
-    ("category", "ccnl_slug", "level", "gross", "employer"),
+    ("category", "ccnl_id", "level", "gross", "employer"),
     [
         # Operai file, level 1, 173 hours: the chain 1,590.56 with the
         # riposi annui 78.22 and the Cassa Edile 292.34 (4.95% and 18.5% of
         # 1,580.23, minimo and contingenza), base 1,961 x 33.68% = 660.46.
         (
             WorkerCategory.OPERAIO,
-            "edilizia-ance.json",
+            "edilizia-ance",
             "1",
             Decimal("1961.12"),
             Decimal("660.46"),
@@ -416,7 +416,7 @@ def test_small_terziario_employer_pays_the_cut_fis(
         # Impiegati file, level 1: base 1,591 x 28.46% = 452.80.
         (
             WorkerCategory.IMPIEGATO,
-            "edilizia-ance-impiegati.json",
+            "edilizia-ance-impiegati",
             "1",
             Decimal("1590.56"),
             Decimal("452.80"),
@@ -427,7 +427,7 @@ def test_small_terziario_employer_pays_the_cut_fis(
         # 1,126.93.
         (
             WorkerCategory.DIRIGENTE,
-            "edilizia-ance-impiegati.json",
+            "edilizia-ance-impiegati",
             "7",
             Decimal("2678.86"),
             Decimal("1126.93"),
@@ -436,7 +436,7 @@ def test_small_terziario_employer_pays_the_cut_fis(
 )
 def test_edilizia_employer_rate_follows_the_category(
     category: WorkerCategory,
-    ccnl_slug: str,
+    ccnl_id: str,
     level: str,
     gross: Decimal,
     employer: Decimal,
@@ -450,7 +450,7 @@ def test_edilizia_employer_rate_follows_the_category(
     contributed on 1,591 (whole euro, INPS circ. 208/2001).
     """
     employment = replace(
-        CONCIA_D2, category=category, ccnl_slug=ccnl_slug, level_code=level
+        CONCIA_D2, category=category, ccnl_id=ccnl_id, level_code=level
     )
     request = regular_run(1, employment=employment)
     employer_profile = replace(request.employer, headcount=Headcount(10))

@@ -64,7 +64,7 @@ def _n(count: int) -> str:
 
 
 def _bundled_ccnls() -> list[CCNL]:
-    return [load_ccnl(r.name) for r in resources("agreement")]
+    return [load_ccnl(r.name.removesuffix(".json")) for r in resources("agreement")]
 
 
 def _readiness_counts(ccnls: list[CCNL]) -> dict[str, str]:

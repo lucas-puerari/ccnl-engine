@@ -1,6 +1,6 @@
 {
   "_description": "legno-arredamento-federlegno — data checks 2026",
-  "ccnl_file": "legno-arredamento-federlegno.json",
+  "ccnl_id": "legno-arredamento-federlegno",
   "salary_checks": [
     {
       "level_code": "AE1",

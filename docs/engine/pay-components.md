@@ -38,7 +38,7 @@ engine = PayrollEngine.bundled()
 
 def gross(weekly_hours: WeeklyHours | None = None) -> str:
     employment = Employment(
-        ccnl_slug="metalmeccanico-federmeccanica.json",
+        ccnl_id="metalmeccanico-federmeccanica",
         level_code="C3",
         contract_type=Permanent(),
         weekly_hours=weekly_hours,
@@ -237,7 +237,7 @@ result = engine.calculate_period(
         run=PayrollRun.regular(year=2026, month=12),
         payment_date=date(2026, 12, 23),
         employment=Employment(
-            ccnl_slug="metalmeccanico-federmeccanica.json",
+            ccnl_id="metalmeccanico-federmeccanica",
             level_code="C3",
             contract_type=Permanent(),
             employment_period=EmploymentPeriod(date(2020, 1, 1)),
@@ -287,7 +287,7 @@ result = engine.calculate_period(
         run=PayrollRun.regular(year=2026, month=3),
         payment_date=date(2026, 3, 27),
         employment=Employment(
-            ccnl_slug="metalmeccanico-federmeccanica.json",
+            ccnl_id="metalmeccanico-federmeccanica",
             level_code="C3",
             contract_type=Permanent(),
         ),

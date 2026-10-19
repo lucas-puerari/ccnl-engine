@@ -53,7 +53,7 @@ def _plan(
     return CompetenceYearPlan(
         year=2026,
         employment=Employment(
-            ccnl_slug="commercio-confcommercio.json",
+            ccnl_id="commercio-confcommercio",
             level_code="4",
             employment_period=period,
             contract_type=Permanent(),

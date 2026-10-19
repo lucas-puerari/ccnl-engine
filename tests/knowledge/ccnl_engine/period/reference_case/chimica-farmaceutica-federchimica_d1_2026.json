@@ -18,7 +18,7 @@
     "section": "Trattamento Economico Minimo (TEM) mensile alle diverse scadenze, column 01/07/2026, row D1"
   },
   "inputs": {
-    "ccnl_slug": "chimica-farmaceutica-federchimica.json",
+    "ccnl_id": "chimica-farmaceutica-federchimica",
     "level_code": "D1",
     "year": 2026,
     "month": 7,

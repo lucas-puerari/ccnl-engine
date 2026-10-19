@@ -61,7 +61,7 @@ def _june(ytd: Decimal, history: ContributionHistory | None) -> PeriodResult:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=2026, month=6),
             payment_date=date(2026, 6, 26),
-            ccnl_slug="metalmeccanico-federmeccanica.json",
+            ccnl_id="metalmeccanico-federmeccanica",
             level_code="C3",
             opening_state=opening,
             contribution_history=history,

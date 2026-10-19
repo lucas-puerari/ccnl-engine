@@ -21,7 +21,7 @@ from ccnl_engine.catalog.loaders import load_ccnl
 
 def test_abi_cadence_and_maxima() -> None:
     """48 months, then 36; 8 scatti, 7 for QD3 and QD4."""
-    si = load_ccnl("bancari-abi.json").parameters.seniority_increments
+    si = load_ccnl("bancari-abi").parameters.seniority_increments
 
     assert (si.first_cadence_months, si.cadence_months) == (48, 36)
     assert si.maximum_count == 8
@@ -30,14 +30,14 @@ def test_abi_cadence_and_maxima() -> None:
 
 def test_operai_agricoli_scatti_are_biennial() -> None:
     """Art. 54: 'per ciascun biennio di anzianità'."""
-    si = load_ccnl("operai-agricoli-florovivaisti.json").parameters.seniority_increments
+    si = load_ccnl("operai-agricoli-florovivaisti").parameters.seniority_increments
 
     assert (si.cadence_months, si.maximum_count) == (24, 5)
 
 
 def test_artisan_scatti_amounts() -> None:
     """The fixed amounts for the workers hired after 27 November 1997."""
-    ccnl = load_ccnl("metalmeccanico-artigianato.json")
+    ccnl = load_ccnl("metalmeccanico-artigianato")
     si = ccnl.parameters.seniority_increments
     amounts = {
         level: series.periods[-1].value for level, series in si.amount_by_level.items()

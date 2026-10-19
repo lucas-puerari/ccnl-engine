@@ -41,7 +41,7 @@ from tests.knowledge.ccnl_engine.support import EMPLOYER, ENGINE
 pytestmark = pytest.mark.legal_scenario
 
 _EMPLOYMENT = Employment(
-    ccnl_slug="metalmeccanico-federmeccanica.json",
+    ccnl_id="metalmeccanico-federmeccanica",
     level_code="C3",
     contract_type=Permanent(),
 )

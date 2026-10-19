@@ -1,6 +1,6 @@
 {
   "_description": "industria-turistica-federturismo — data checks 2026",
-  "ccnl_file": "industria-turistica-federturismo.json",
+  "ccnl_id": "industria-turistica-federturismo",
   "salary_checks": [
     {
       "level_code": "D2",

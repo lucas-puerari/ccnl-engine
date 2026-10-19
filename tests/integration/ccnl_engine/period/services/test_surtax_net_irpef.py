@@ -48,7 +48,7 @@ def _run(weekly_hours: int) -> PeriodResult:
         CompetenceYearPlan(
             year=_YEAR,
             employment=Employment(
-                ccnl_slug="metalmeccanico-federmeccanica.json",
+                ccnl_id="metalmeccanico-federmeccanica",
                 level_code="C3",
                 weekly_hours=WeeklyHours(weekly_hours),
                 full_time_weekly_hours=WeeklyHours(_FULL_TIME),

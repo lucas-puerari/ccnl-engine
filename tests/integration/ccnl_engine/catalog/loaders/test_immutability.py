@@ -32,7 +32,7 @@ def commercio() -> CCNL:
     Returns:
         The validated, cached CCNL instance.
     """
-    return load_ccnl("commercio-confcommercio.json")
+    return load_ccnl("commercio-confcommercio")
 
 
 @pytest.fixture(scope="module")
@@ -42,7 +42,7 @@ def metalmeccanico() -> CCNL:
     Returns:
         The validated, cached CCNL instance.
     """
-    return load_ccnl("metalmeccanico-federmeccanica.json")
+    return load_ccnl("metalmeccanico-federmeccanica")
 
 
 class TestLevelCollections:

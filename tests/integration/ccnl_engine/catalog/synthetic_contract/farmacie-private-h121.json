@@ -1,6 +1,6 @@
 {
   "_description": "farmacie-private-h121 — data checks 2026",
-  "ccnl_file": "farmacie-private-h121.json",
+  "ccnl_id": "farmacie-private-h121",
   "salary_checks": [
     {
       "level_code": "Q1",

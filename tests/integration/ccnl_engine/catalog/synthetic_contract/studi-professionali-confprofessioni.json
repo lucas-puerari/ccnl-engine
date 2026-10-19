@@ -1,6 +1,6 @@
 {
   "_description": "studi-professionali-confprofessioni — data checks 2026",
-  "ccnl_file": "studi-professionali-confprofessioni.json",
+  "ccnl_id": "studi-professionali-confprofessioni",
   "salary_checks": [
     {
       "level_code": "5",

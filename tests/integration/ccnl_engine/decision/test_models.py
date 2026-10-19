@@ -79,7 +79,7 @@ def year_result() -> CompetenceYearResult:
     return calculate_competence_year(
         year_plan(
             2026,
-            "metalmeccanico-federmeccanica.json",
+            "metalmeccanico-federmeccanica",
             "C3",
             facts=resident(),
             opening_state=fresh_tax_year(2026),

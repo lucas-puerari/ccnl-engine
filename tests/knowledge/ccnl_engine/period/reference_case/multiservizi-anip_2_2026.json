@@ -17,7 +17,7 @@
     "section": "Art. 73, table 'Con decorrenza 1 luglio 2025', row 2, columns Indennità di contingenza and E.D.R."
   },
   "inputs": {
-    "ccnl_slug": "multiservizi-anip.json",
+    "ccnl_id": "multiservizi-anip",
     "level_code": "2",
     "year": 2026,
     "month": 3,

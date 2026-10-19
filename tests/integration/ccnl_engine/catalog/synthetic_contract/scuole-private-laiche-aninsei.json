@@ -1,6 +1,6 @@
 {
   "_description": "scuole-private-laiche-aninsei — data checks 2026",
-  "ccnl_file": "scuole-private-laiche-aninsei.json",
+  "ccnl_id": "scuole-private-laiche-aninsei",
   "salary_checks": [
     {
       "level_code": "I",

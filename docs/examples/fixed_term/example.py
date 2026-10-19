@@ -19,7 +19,7 @@ result = engine.calculate_period(
         run=PayrollRun.regular(year=2026, month=3),
         payment_date=date(2026, 3, 27),
         employment=Employment(
-            ccnl_slug="commercio-confcommercio.json",
+            ccnl_id="commercio-confcommercio",
             level_code="4",
             # Second fixed-term contract with the employer, no exclusion of
             # L. 92/2012 art. 2 c. 29: surcharge 1.4% + 0.5% (c. 28).

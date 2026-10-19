@@ -1,6 +1,6 @@
 {
   "_description": "consorzi-agrari-assocap — data checks 2026",
-  "ccnl_file": "consorzi-agrari-assocap.json",
+  "ccnl_id": "consorzi-agrari-assocap",
   "salary_checks": [
     {
       "level_code": "Q",

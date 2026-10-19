@@ -146,7 +146,7 @@ def list_ccnls() -> str:
     """
     result = [
         {"id": c.ccnl_id, "name": c.name, "readiness": str(c.readiness)}
-        for c in PayrollEngine.list_contracts()
+        for c in _ENGINE.list_contracts()
     ]
     result.sort(key=operator.itemgetter("name"))
     return json.dumps(result)
@@ -178,7 +178,7 @@ def load_level_tracks(ccnl_id: str, level_code: str) -> str:
     Returns:
         JSON-encoded list of track names, ``[]`` when none exist.
     """
-    ccnl = load_ccnl(f"{ccnl_id}.json")
+    ccnl = load_ccnl(ccnl_id)
     return json.dumps([
         track.name
         for track in ccnl.apprenticeship or []
@@ -248,7 +248,7 @@ def _employment(params: dict[str, Any], ccnl_id: str) -> Employment:
     )
     weekly, full_time = _hours(params)
     return Employment(
-        ccnl_slug=ccnl_id,
+        ccnl_id=ccnl_id,
         level_code=str(params["level"]),
         contract_type=_contract(params),
         seniority=seniority,
@@ -352,7 +352,7 @@ def _sources(ccnl_id: str) -> list[dict[str, Any]]:
         One ``{title, url, kind, date}`` per source; ``url`` is ``None``
         unless it is a public HTTP address.
     """
-    meta = load_ccnl(f"{ccnl_id}.json").meta
+    meta = load_ccnl(ccnl_id).meta
     return [
         {
             "title": source.title,
@@ -406,8 +406,8 @@ def compute_salary(params_json: str) -> str:
     """
     try:
         params: dict[str, Any] = json.loads(params_json)
-        ccnl_id = str(params["ccnl"]).removesuffix(".json")
-        ccnl = load_ccnl(f"{ccnl_id}.json")
+        ccnl_id = str(params["ccnl"])
+        ccnl = load_ccnl(ccnl_id)
         params["domestic"] = not ccnl.meta.withholding_agent
         employment = _employment(params, ccnl_id)
         year = _ENGINE.calculate_competence_year(
@@ -489,15 +489,15 @@ def scenario_snippet(params_json: str) -> str:
         gross, net and employer cost :func:`compute_salary` shows.
     """
     params: dict[str, Any] = json.loads(params_json)
-    ccnl_id = str(params["ccnl"]).removesuffix(".json")
-    params["domestic"] = not load_ccnl(f"{ccnl_id}.json").meta.withholding_agent
+    ccnl_id = str(params["ccnl"])
+    params["domestic"] = not load_ccnl(ccnl_id).meta.withholding_agent
     employment = _employment(params, ccnl_id)
     facts = _facts(params, employment)
     inputs = {"Permanent", "FixedTerm", "Apprentice"} & {
         type(employment.contract_type).__name__
     }
     fields = [
-        f"ccnl_slug={json.dumps(ccnl_id)}",
+        f"ccnl_id={json.dumps(ccnl_id)}",
         f"level_code={json.dumps(employment.level_code)}",
         f"contract_type={_contract_code(employment)}",
     ]

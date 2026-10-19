@@ -51,7 +51,7 @@ def _night_run(amount: Decimal, opening: PeriodState) -> PeriodResult:
             prior_year=PriorYearTaxFacts(employment_income=Decimal(20_000)),
             period_id=PeriodId(year=_YEAR, month=3),
             payment_date=date(_YEAR, 3, 27),
-            ccnl_slug="commercio-confcommercio.json",
+            ccnl_id="commercio-confcommercio",
             level_code="4",
             opening_state=opening,
             events=(event,),
@@ -132,7 +132,7 @@ class TestPlafondInvariant:
         assert [(v.expected, v.actual) for v in above] == [(_CAP, Decimal(1_600))]
 
 
-_METAL = "metalmeccanico-federmeccanica.json"
+_METAL = "metalmeccanico-federmeccanica"
 _PDR_CEILING = Decimal("80000.00")
 
 
@@ -143,7 +143,7 @@ def _bonus_run(*events: object, income: Decimal = Decimal(25_000)) -> PeriodResu
             prior_year=PriorYearTaxFacts(employment_income=income),
             period_id=PeriodId(year=_YEAR, month=3),
             payment_date=date(_YEAR, 3, 27),
-            ccnl_slug=_METAL,
+            ccnl_id=_METAL,
             level_code="C3",
             opening_state=PeriodState.zero(),
             events=events,  # type: ignore[arg-type]

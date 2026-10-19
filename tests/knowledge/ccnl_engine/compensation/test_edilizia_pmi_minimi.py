@@ -17,7 +17,7 @@ import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
 
-_CCNL = load_ccnl("edilizia-pmi-confapi-aniem.json")
+_CCNL = load_ccnl("edilizia-pmi-confapi-aniem")
 _TRANCHES = (date(2025, 4, 1), date(2027, 3, 1))
 _TABLE = (
     ("1", ("1087.99", "1162.99")),

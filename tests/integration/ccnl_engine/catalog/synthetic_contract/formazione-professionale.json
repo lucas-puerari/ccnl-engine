@@ -1,6 +1,6 @@
 {
   "_description": "formazione-professionale (T261) — salary checks across all three tranches",
-  "ccnl_file": "formazione-professionale.json",
+  "ccnl_id": "formazione-professionale",
   "salary_checks": [
     {
       "level_code": "V",

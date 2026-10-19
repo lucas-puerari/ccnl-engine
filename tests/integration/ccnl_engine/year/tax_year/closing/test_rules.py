@@ -39,7 +39,7 @@ from tests.knowledge.ccnl_engine.balance.builders import (
 )
 from tests.unit.ccnl_engine.builders import year_plan
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _LEVEL = "C3"
 
 
@@ -216,7 +216,7 @@ class TestCarriedRecoveryInAYear:
                 employer=EmployerProfile(headcount=Headcount(50)),
                 period_id=PeriodId(year=2026, month=1),
                 payment_date=date(2026, 1, 28),
-                ccnl_slug=_CCNL,
+                ccnl_id=_CCNL,
                 level_code=_LEVEL,
                 opening_state=PeriodState(
                     cash=TaxCashState(obligations=_carrying(_recovery(2027, 0)))
@@ -265,7 +265,7 @@ class TestCurrentYearRecovery:
                 employer=EmployerProfile(headcount=Headcount(50)),
                 period_id=PeriodId(year=2026, month=12),
                 payment_date=date(2026, 12, 28),
-                ccnl_slug=_CCNL,
+                ccnl_id=_CCNL,
                 level_code=_LEVEL,
                 opening_state=opening,
                 planned_payments=(),

@@ -15,9 +15,9 @@ import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
 
-_METAL = "metalmeccanico-federmeccanica.json"
-_SIF_IMPIEGATI = "sistemazioni-idraulico-forestali-impiegati.json"
-_SIF_OPERAI = "sistemazioni-idraulico-forestali-operai.json"
+_METAL = "metalmeccanico-federmeccanica"
+_SIF_IMPIEGATI = "sistemazioni-idraulico-forestali-impiegati"
+_SIF_OPERAI = "sistemazioni-idraulico-forestali-operai"
 
 
 @pytest.mark.parametrize(

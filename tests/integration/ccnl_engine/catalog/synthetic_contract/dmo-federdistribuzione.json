@@ -1,6 +1,6 @@
 {
   "_description": "dmo-federdistribuzione — data checks 2026",
-  "ccnl_file": "dmo-federdistribuzione.json",
+  "ccnl_id": "dmo-federdistribuzione",
   "salary_checks": [
     {
       "level_code": "VII",

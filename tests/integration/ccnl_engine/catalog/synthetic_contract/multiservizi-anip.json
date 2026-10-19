@@ -1,6 +1,6 @@
 {
   "_description": "multiservizi-anip — data checks 2026",
-  "ccnl_file": "multiservizi-anip.json",
+  "ccnl_id": "multiservizi-anip",
   "salary_checks": [
     {
       "level_code": "1",

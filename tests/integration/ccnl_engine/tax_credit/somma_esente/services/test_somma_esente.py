@@ -419,9 +419,7 @@ def test_somma_esente_posted_to_credits() -> None:
     Expected: CREDITS > 0 in any period.
     """
     result = calculate_period(
-        period_request(
-            month=6, ccnl="acconciatura-estetica-confartigianato.json", level="3"
-        )
+        period_request(month=6, ccnl="acconciatura-estetica-confartigianato", level="3")
     )
     tax_credits = account_total(result, AccountKind.CREDITS)
     assert tax_credits > _ZERO, (

@@ -44,14 +44,14 @@ _ENGINE = PayrollEngine.bundled()
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 _METALMECCANICO = Employment(
     contract_type=Permanent(),
-    ccnl_slug="metalmeccanico-federmeccanica.json",
+    ccnl_id="metalmeccanico-federmeccanica",
     level_code="C3",
     category=WorkerCategory.OPERAIO,
     seniority=new_hire(),
 )
 _DIRIGENTE = Employment(
     contract_type=Permanent(),
-    ccnl_slug="dirigenza-funzioni-locali-aran.json",
+    ccnl_id="dirigenza-funzioni-locali-aran",
     level_code="DIRIGENTE",
 )
 _MISMATCH = "sickness_month_quota_mismatch"

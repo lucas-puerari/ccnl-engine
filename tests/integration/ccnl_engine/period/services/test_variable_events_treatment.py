@@ -40,7 +40,7 @@ from tests.integration.ccnl_engine.year.builders import (
     NextYearRepository,
 )
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _LEVEL = "C3"
 _YEAR = 2026
 _MONTH = 3
@@ -56,7 +56,7 @@ def _req(*events: object) -> PeriodCalculationRequest:
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=_PID,
         payment_date=_PAYMENT,
-        ccnl_slug=_CCNL,
+        ccnl_id=_CCNL,
         level_code=_LEVEL,
         opening_state=PeriodState.zero(),
         events=tuple(events),  # type: ignore[arg-type]

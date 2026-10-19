@@ -20,7 +20,7 @@ _FOUR = Decimal("0.0001")
 def test_tfr_is_the_pay_over_13_5() -> None:
     """Area3, January 2026: the TFR of the month is the pay over 13.5."""
     result = regular_period(
-        ccnl_slug="operai-agricoli-florovivaisti.json", level_code="Area3", month=1
+        ccnl_id="operai-agricoli-florovivaisti", level_code="Area3", month=1
     )
     (base,) = [i.amount for i in result.pay_items if isinstance(i, BaseSalaryEarning)]
     (tfr,) = [i.amount for i in result.pay_items if isinstance(i, TfrAccrualItem)]

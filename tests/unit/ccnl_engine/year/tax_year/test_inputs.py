@@ -15,7 +15,7 @@ from ccnl_engine.year.competence.inputs import CompetenceYearPlan
 from ccnl_engine.year.tax_year.inputs import TaxYearPlan
 
 _EMPLOYMENT = Employment(
-    ccnl_slug="commercio-confcommercio.json", level_code="4", contract_type=Permanent()
+    ccnl_id="commercio-confcommercio", level_code="4", contract_type=Permanent()
 )
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 

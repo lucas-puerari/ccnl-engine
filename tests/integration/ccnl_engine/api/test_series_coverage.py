@@ -40,7 +40,7 @@ if TYPE_CHECKING:
 
 _ENGINE = PayrollEngine.bundled()
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
-_ALL_CCNL: list[CCNL] = [load_ccnl(c.ccnl_id + ".json") for c in list_contracts()]
+_ALL_CCNL: list[CCNL] = [load_ccnl(c.ccnl_id) for c in list_contracts()]
 _YEAR_START = date(2026, 1, 1)
 #: Months of service past the last increment of every CCNL.
 _LONG_SERVICE = 400
@@ -97,7 +97,7 @@ def _period(slug: str, level: str, month: int, seniority: SeniorityFact | None) 
             run=PayrollRun.regular(2026, month),
             payment_date=date(2026, month, 27),
             employment=Employment(
-                ccnl_slug=slug,
+                ccnl_id=slug,
                 level_code=level,
                 seniority=seniority,
                 contract_type=Permanent(),
@@ -111,7 +111,7 @@ def _period(slug: str, level: str, month: int, seniority: SeniorityFact | None) 
 @pytest.mark.parametrize("ccnl", _ALL_CCNL, ids=lambda c: c.meta.ccnl_id)
 def test_every_month_of_2026_is_computed_or_typed(ccnl: CCNL) -> None:
     """No run of 2026 leaks a technical exception from a series lookup."""
-    slug = f"{ccnl.meta.ccnl_id}.json"
+    slug = ccnl.meta.ccnl_id
     leaks = [
         f"{level} {month:02d} {seniority}: {leak}"
         for level in _scanned_levels(ccnl)
@@ -128,7 +128,7 @@ def test_the_year_2026_is_computed_or_typed(ccnl: CCNL) -> None:
     """A full year of the first level leaks no technical exception."""
     level = min(ccnl.levels, key=lambda lv: lv.order).code
     employment = Employment(
-        ccnl_slug=f"{ccnl.meta.ccnl_id}.json",
+        ccnl_id=ccnl.meta.ccnl_id,
         level_code=level,
         seniority=SeniorityFact(0, _YEAR_START, SenioritySource.PAYSLIP),
         contract_type=Permanent(),

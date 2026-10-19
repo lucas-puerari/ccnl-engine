@@ -17,7 +17,7 @@
     "section": "Minimi retributivi in vigore dal 1° giugno 2026, row 5"
   },
   "inputs": {
-    "ccnl_slug": "metalmeccanico-confapi.json",
+    "ccnl_id": "metalmeccanico-confapi",
     "level_code": "5",
     "year": 2026,
     "month": 6,

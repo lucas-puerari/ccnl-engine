@@ -26,8 +26,8 @@ from ccnl_engine.run.types import PeriodId
 if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
 
-_AGRICOLTURA = ("operai-agricoli-florovivaisti.json", "Area1")
-_INDUSTRIA = ("metalmeccanico-federmeccanica.json", "C3")
+_AGRICOLTURA = ("operai-agricoli-florovivaisti", "Area1")
+_INDUSTRIA = ("metalmeccanico-federmeccanica", "C3")
 
 
 def _run(contract: tuple[str, str], zone: AgriculturalZone | None) -> PeriodResult:
@@ -36,7 +36,7 @@ def _run(contract: tuple[str, str], zone: AgriculturalZone | None) -> PeriodResu
         PeriodCalculationRequest(
             period_id=PeriodId(year=2026, month=3),
             payment_date=date(2026, 3, 27),
-            ccnl_slug=ccnl,
+            ccnl_id=ccnl,
             level_code=level,
             category=WorkerCategory.OPERAIO,
             employer=EmployerProfile(headcount=Headcount(10), agricultural_zone=zone),

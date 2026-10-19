@@ -1,6 +1,6 @@
 {
   "_description": "concia-unic (B101) — data checks 2026",
-  "ccnl_file": "concia-unic.json",
+  "ccnl_id": "concia-unic",
   "salary_checks": [
     {
       "level_code": "F1",

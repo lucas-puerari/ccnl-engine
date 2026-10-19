@@ -60,7 +60,7 @@ __all__ = [
 
 #: Concia D2, full time on a 40-hour week, enrolled after 1995.
 CONCIA_D2 = Employment(
-    ccnl_slug="concia-unic.json",
+    ccnl_id="concia-unic",
     level_code="D2",
     category=WorkerCategory.OPERAIO,
     seniority=new_hire(),

@@ -39,11 +39,11 @@ if TYPE_CHECKING:
 
 ENGINE = PayrollEngine.bundled()
 
-COMMERCIO = "commercio-confcommercio.json"
-COOP_SOCIALI = "cooperative-sociali.json"
-DOMESTIC = "lavoro-domestico-non-convivente.json"
-POSTAL_FISE = "servizi-postali-appalto-fise.json"
-PA_FUNZIONI_CENTRALI = "funzioni-centrali-aran.json"
+COMMERCIO = "commercio-confcommercio"
+COOP_SOCIALI = "cooperative-sociali"
+DOMESTIC = "lavoro-domestico-non-convivente"
+POSTAL_FISE = "servizi-postali-appalto-fise"
+PA_FUNZIONI_CENTRALI = "funzioni-centrali-aran"
 
 #: Ledger account of the flat taxes of the substitute regimes.
 _SUBSTITUTE_TAX = "substitute_tax"
@@ -54,7 +54,7 @@ EMPLOYER = EmployerProfile(provincial_pay_element=False, headcount=Headcount(50)
 
 def regular_period(
     *,
-    ccnl_slug: str = COMMERCIO,
+    ccnl_id: str = COMMERCIO,
     level_code: str = "4",
     year: int = 2026,
     month: int = 1,
@@ -72,7 +72,7 @@ def regular_period(
 ) -> PeriodResult:
     """Compute one regular payroll run through the public facade.
 
-    ``employment``, when given, replaces ``ccnl_slug`` and ``level_code``;
+    ``employment``, when given, replaces ``ccnl_id`` and ``level_code``;
     otherwise the worker is a
     :func:`~tests.knowledge.ccnl_engine.seniority.builders.new_hire`
     with no TFR fund
@@ -90,7 +90,7 @@ def regular_period(
             payment_date=payment_date or date(year, month, 27),
             employment=employment
             or Employment(
-                ccnl_slug=ccnl_slug,
+                ccnl_id=ccnl_id,
                 level_code=level_code,
                 seniority=new_hire(year),
                 tfr_fund=no_tfr_fund(year),
