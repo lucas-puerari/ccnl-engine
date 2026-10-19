@@ -212,7 +212,7 @@ never grow.
 | 79 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | ⚠️ | base_salary, seniority | 1 / 45 / 1 / 0 |
 | 80 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | ⚠️ | bilateral_funds, inps_employer, overtime, sickness | 38 / 43 / 0 / 0 |
 | 81 | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | ✅ | overtime | 1 / 44 / 0 / 0 |
-| 82 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | ⚠️ | base_salary, bilateral_funds, overtime, pension_fund_contribution, sickness | 58 / 7 / 0 / 0 |
+| 82 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | ⚠️ | base_salary, overtime, pension_fund_contribution, sickness | 58 / 7 / 0 / 0 |
 | 83 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | ⚠️ | base_salary, bilateral_funds, overtime, seniority, welfare | 86 / 0 / 0 / 0 |
 | 84 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | ⚠️ | base_salary, seniority, una_tantum | 34 / 33 / 4 / 0 |
 | 85 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | ⚠️ | base_salary, seniority | 77 / 11 / 1 / 1 |

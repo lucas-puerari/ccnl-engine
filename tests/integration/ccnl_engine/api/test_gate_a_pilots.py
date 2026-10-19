@@ -63,6 +63,8 @@ _FUNDS_PAID: Final = frozenset({
     "fondo_est",
     "aster",
     "quadrifor",
+    "ebm",
+    "ebm_salute",
 })
 
 #: Blockers of a worker eligible to the renewal regime: the increment paid
@@ -106,9 +108,7 @@ _SPECIFIC: Final[dict[str, frozenset[Blocker]]] = {
     "turismo-federalberghi": frozenset(),
     "pubblici-esercizi-fipe-angem": frozenset(),
     "terziario-confesercenti": frozenset(),
-    "metalmeccanico-confapi": frozenset({
-        _owed("metalmeccanico-confapi", "bilateral_funds", "bilateral_system_or_ear")
-    }),
+    "metalmeccanico-confapi": frozenset(),
     "metalmeccanico-federmeccanica": frozenset({
         _owed(
             "metalmeccanico-federmeccanica",

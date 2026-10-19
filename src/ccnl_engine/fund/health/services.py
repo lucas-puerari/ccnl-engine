@@ -75,12 +75,13 @@ def contractual_funds(ctx: RunContext) -> FundOutcome:
         The outcome; empty when no fund of the CCNL covers the worker on
         this run.
     """
-    funds = tuple(
+    covered = tuple(
         f for f in ctx.contract.ccnl.parameters.health_funds if _covers(ctx, f)
     )
-    if not funds:
+    if not covered:
         return FundOutcome()
     stated = ctx.request.employer.contractual_funds
+    funds = _one_per_group(covered, stated)
     if stated is None:
         return FundOutcome(
             decisions=tuple(
@@ -107,6 +108,28 @@ def contractual_funds(ctx: RunContext) -> FundOutcome:
             for f, p in zip(funds, parts, strict=True)
         ),
     )
+
+
+def _one_per_group(
+    funds: tuple[ContractualFund, ...], stated: frozenset[str] | None
+) -> tuple[ContractualFund, ...]:
+    """Keep one way of each group of alternative funds.
+
+    Returns:
+        The ungrouped funds and, of each group, the funds the employer
+        names, or its first fund when it names none (or states nothing).
+    """
+    named = stated or frozenset()
+    kept: list[ContractualFund] = []
+    for fund in funds:
+        if fund.group is None:
+            kept.append(fund)
+            continue
+        members = [f for f in funds if f.group == fund.group]
+        chosen = [f for f in members if f.code in named] or members[:1]
+        if fund in chosen:
+            kept.append(fund)
+    return tuple(kept)
 
 
 def _covers(ctx: RunContext, fund: ContractualFund) -> bool:
@@ -156,7 +179,7 @@ def _extra(ctx: RunContext) -> bool:
 def _paid(ctx: RunContext, fund: ContractualFund) -> ExtraMonthSettlement:
     if _extra(ctx) and not fund.extra_months:
         return ExtraMonthSettlement()
-    employer = _monthly(ctx, fund.employer)
+    employer = _monthly(ctx, _employer_share(ctx, fund))
     employee = _monthly(ctx, fund.employee)
     solidarity = money(employer * fund.solidarity_rate)
     cp, payment = ctx.cp, ctx.contract.tctx.payment
@@ -207,6 +230,21 @@ def _paid(ctx: RunContext, fund: ContractualFund) -> ExtraMonthSettlement:
         entries=tuple(entries),
         irpef_base=-employee if fund.employee_deductible else _ZERO,
     )
+
+
+def _employer_share(ctx: RunContext, fund: ContractualFund) -> FundAmount:
+    """Return the employer share of the worker: reduced for short part time.
+
+    Returns:
+        ``fund.reduced_employer`` when the worker works at most
+        ``fund.reduced_up_to_weekly_hours`` a week, ``fund.employer``
+        otherwise.
+    """
+    limit, reduced = fund.reduced_up_to_weekly_hours, fund.reduced_employer
+    hours = ctx.request.weekly_hours
+    if limit is None or reduced is None or hours is None:
+        return fund.employer
+    return reduced if Decimal(hours.value) <= limit else fund.employer
 
 
 def _element(ctx: RunContext, fund: ContractualFund) -> ExtraMonthSettlement:
