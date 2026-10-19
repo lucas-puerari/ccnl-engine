@@ -221,10 +221,11 @@ def test_every_result_names_its_rulesets(results: dict[str, PeriodResult]) -> No
 def test_no_bundled_result_is_payable_today(
     results: dict[str, PeriodResult],
 ) -> None:
-    """Every run reads at least one assumed rule: it blocks them all.
+    """Every run of this minimal request reads at least one weak rule.
 
-    Documented in the trust pages: amounts are for simulation until the
-    blocked rules are sourced.
+    The request leaves the comune row and the renewal facts at their
+    weakest; which pilot CCNLs a fully stated request can pay is pinned by
+    ``tests/integration/ccnl_engine/api/test_gate_a_pilots.py``.
     """
     assert not any(result.is_payable for result in results.values())
     assert all(
