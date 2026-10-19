@@ -97,10 +97,15 @@ A state is persisted between runs as JSON with
 `ccnl_engine.inputs.period_state_to_json` and read back with
 `period_state_from_json`. The JSON carries `PeriodState.SCHEMA_VERSION`, the
 engine version (`ccnl_engine.engine_version`) and the knowledge-bundle version
-that computed the state; reading accepts only the current three, because
-balances computed under other code or rules cannot continue a chain
-reproducibly. A state of another version is recomputed, or its totals are
-imported with `OpeningBalances`. Each value is tagged with the name of its
+that computed the state. Reading checks only the schema version: the engine
+and bundle versions stay in the JSON for audit, so a release of the engine or
+of the bundle does not invalidate the stored states. A state of an earlier
+schema is brought to the current one by `STATE_MIGRATIONS`, one step per
+version from `FIRST_SCHEMA_VERSION`, before it is decoded; a schema bump ships
+with its step, and a test fails the build when one is missing. A state of a
+newer schema than the engine, or older than the first one persisted, is
+rejected: it is recomputed, or its totals are imported with
+`OpeningBalances`. Each value is tagged with the name of its
 type in an explicit registry (`STATE_TYPES`), never with a module path, and
 rebuilt through its constructor; any malformed or foreign payload raises
 `InvalidInputError`.

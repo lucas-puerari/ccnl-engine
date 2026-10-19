@@ -18,7 +18,10 @@ import pytest
 import ccnl_engine as engine_package
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.balance.serializers import (
+    FIRST_SCHEMA_VERSION,
+    STATE_MIGRATIONS,
     STATE_TYPES,
+    migrate_state,
     period_state_from_json,
     period_state_to_json,
 )
@@ -46,7 +49,7 @@ def _write(state: PeriodState) -> str:
 
 
 def _read(text: str) -> PeriodState:
-    return period_state_from_json(text, **_VERSIONS)
+    return period_state_from_json(text)
 
 
 @pytest.mark.parametrize("state", [PeriodState.zero(), _state()], ids=["zero", "full"])
@@ -75,6 +78,47 @@ def _payload(**changes: object) -> str:
     return json.dumps(payload)
 
 
+@pytest.mark.parametrize(
+    "versions",
+    [
+        pytest.param({"engine_version": "0.1.0"}, id="other-engine"),
+        pytest.param({"bundle_version": "2025.1"}, id="other-bundle"),
+        pytest.param(
+            {"engine_version": "0.1.0", "bundle_version": "2025.1"}, id="both"
+        ),
+    ],
+)
+def test_a_state_of_another_engine_or_bundle_reads_back(
+    versions: dict[str, str],
+) -> None:
+    """Only the schema is checked: the other versions stay in the text for audit."""
+    assert _read(_payload(**versions)) == _state()
+
+
+def test_the_migrations_cover_every_schema_since_the_first() -> None:
+    """A schema bump without the step from the previous version fails here."""
+    assert set(STATE_MIGRATIONS) == set(
+        range(FIRST_SCHEMA_VERSION, PeriodState.SCHEMA_VERSION)
+    )
+
+
+def test_the_migrations_apply_in_order_up_to_the_target() -> None:
+    """Each step reads the tree of its version and writes that of the next."""
+    steps = {
+        1: lambda tree: [*typing.cast("list[int]", tree), 2],
+        2: lambda tree: [*typing.cast("list[int]", tree), 3],
+    }
+
+    assert migrate_state([1], 1, migrations=steps, target=3) == [1, 2, 3]
+    assert migrate_state([3], 3, migrations=steps, target=3) == [3]
+
+
+def test_a_missing_migration_is_a_defect_of_the_registry() -> None:
+    """A gap in the steps raises instead of decoding a tree of another schema."""
+    with pytest.raises(LookupError):
+        migrate_state([1], 1, migrations={}, target=2)
+
+
 def _with_state(state: object) -> str:
     return _payload(state=state)
 
@@ -89,9 +133,14 @@ _RUN = {"$type": "PayrollRunId", "fields": {"year": 2026, "month": 1}}
         pytest.param("[" * 100_000, id="too-deep"),
         pytest.param("[1]", id="not-an-object"),
         pytest.param(_payload(schema_version=1), id="old-schema"),
-        pytest.param(_payload(engine_version="0.1.0"), id="other-engine"),
-        pytest.param(_payload(bundle_version="2025.1"), id="other-bundle"),
+        pytest.param(
+            _payload(schema_version=PeriodState.SCHEMA_VERSION + 1), id="future-schema"
+        ),
+        pytest.param(_payload(schema_version="14"), id="schema-a-string"),
+        pytest.param(_payload(schema_version=True), id="schema-a-bool"),
+        pytest.param(_payload(schema_version=None), id="no-schema"),
         pytest.param(_payload(engine_version=None), id="no-engine"),
+        pytest.param(_payload(bundle_version=2025), id="bundle-not-a-string"),
         pytest.param(_with_state({"$type": "dict", "fields": {}}), id="foreign"),
         pytest.param(
             _with_state({
