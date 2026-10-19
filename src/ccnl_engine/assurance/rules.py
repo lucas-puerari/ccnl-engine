@@ -47,17 +47,16 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.assurance.models import (
-    ALL_TOTALS,
     BlockerCode,
     CoverageStatus,
     EvidenceStatus,
     ResultAssurance,
     ResultBlocker,
-    ResultTotal,
     decide_payability,
 )
 from ccnl_engine.assurance.policies import EngineMode
 from ccnl_engine.decision.models import PUBLIC_FACTS, CalculationStatus
+from ccnl_engine.limitation.types import ALL_TOTALS, ResultTotal
 
 if TYPE_CHECKING:
     import datetime as dt

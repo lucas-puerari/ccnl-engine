@@ -48,6 +48,9 @@ jobs:
       - name: Cognitive complexity
         run: uv run complexipy src tests scripts
 
+      - name: Dependency tiers and module sizes
+        run: uv run python scripts/architecture/check.py
+
       - name: Knowledge manifest is up to date
         run: uv run python scripts/knowledge/manifest/build.py --check
 

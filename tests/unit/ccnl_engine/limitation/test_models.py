@@ -9,7 +9,6 @@ from typing import Any
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.assurance.models import ResultTotal
 from ccnl_engine.limitation.models import (
     LimitationFacts,
     LimitationScope,
@@ -17,6 +16,7 @@ from ccnl_engine.limitation.models import (
     ModelLimitation,
     MonetaryImpact,
 )
+from ccnl_engine.limitation.types import ResultTotal
 
 _FACTS = LimitationFacts(
     ccnl_id="ccnl-a",

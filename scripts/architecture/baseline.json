@@ -1,0 +1,22 @@
+{
+  "src/ccnl_engine/agreement/metadata/models.py": 319,
+  "src/ccnl_engine/api.py": 314,
+  "src/ccnl_engine/assurance/models.py": 319,
+  "src/ccnl_engine/capability/rule/services.py": 349,
+  "src/ccnl_engine/compensation/models.py": 367,
+  "src/ccnl_engine/compensation/proration/services.py": 408,
+  "src/ccnl_engine/contribution/rate/models.py": 320,
+  "src/ccnl_engine/contribution/services.py": 322,
+  "src/ccnl_engine/extra_month/models.py": 466,
+  "src/ccnl_engine/limitation/models.py": 308,
+  "src/ccnl_engine/pay_item/models.py": 316,
+  "src/ccnl_engine/period/decision/override/services.py": 304,
+  "src/ccnl_engine/period/requests.py": 301,
+  "src/ccnl_engine/period/step/input/services.py": 326,
+  "src/ccnl_engine/sickness/cumulation/rules.py": 439,
+  "src/ccnl_engine/sickness/day/rules.py": 353,
+  "src/ccnl_engine/sickness/integration/models.py": 421,
+  "src/ccnl_engine/sickness/models.py": 318,
+  "src/ccnl_engine/working_time/models.py": 350,
+  "src/ccnl_engine/working_time/overtime/policies.py": 328
+}
