@@ -69,6 +69,16 @@
       "section": "art. 1 c. 7",
       "quote": "gli incrementi retributivi corrisposti ai lavoratori dipendenti nell'anno 2026, in attuazione di rinnovi contrattuali sottoscritti dal 1° gennaio 2024 al 31 dicembre 2026, sono assoggettati, salva espressa rinuncia scritta del prestatore di lavoro, a un'imposta sostitutiva dell'imposta sul reddito delle persone fisiche e delle addizionali regionali e comunali pari al 5 per cento. L'imposta sostitutiva di cui al primo periodo si applica soltanto ai lavoratori del settore privato con un reddito di lavoro dipendente, nell'anno 2025, non superiore a 33.000 euro."
     },
+    "increment_source": {
+      "source_document": {
+        "document_id": "ade-circ-2e-2026",
+        "title": "Agenzia delle Entrate, circolare n. 2/E del 24 febbraio 2026: novità sulla tassazione degli incrementi retributivi dei rinnovi contrattuali",
+        "kind": "amministrazione",
+        "url": "https://www.agenziaentrate.gov.it/portale/documents/20143/9680913/Circolare+n.+2+del+24+febbraio+2026.pdf/a340d513-97f7-061b-108f-cbf31ceb21d9"
+      },
+      "section": "par. 1, pp. 4-5",
+      "quote": "qualora l’erogazione degli incrementi retributivi derivanti dai rinnovi contrattuali, sottoscritti nel 2024, 2025 e 2026, in virtù di previsioni contrattuali, sia distribuita in più anni, l’imposta sostitutiva si applichi comunque alle tranche di incremento corrisposte dal 1° gennaio al 31 dicembre 2026, ancorché la loro erogazione sia iniziata precedentemente. [...] l’imposta sostitutiva si applica agli importi erogati dal 1° gennaio al 31 dicembre 2026 riferiti alle rate mensili del 2025 e del 2026 (27 euro da gennaio a maggio 2026, 27 euro più 53 euro da giugno a dicembre 2026). [...] l’agevolazione si applichi ai soli incrementi retributivi, previsti dai rinnovi contrattuali interessati, che confluiscono nella retribuzione diretta, vale a dire le dodici mensilità della retribuzione, la tredicesima e la quattordicesima mensilità. [...] Rimangono sempre esclusi gli scatti di anzianità e le somme corrisposte per prestazioni aggiuntive all’ordinaria attività"
+    },
     "description": "Incrementi retributivi 2026 da rinnovi contrattuali sottoscritti dal 2024-01-01 al 2026-12-31: imposta sostitutiva 5%, settore privato, reddito di lavoro dipendente 2025 non superiore a 33.000 EUR, salvo rinuncia scritta",
     "source_status": "assumed"
   },
@@ -111,7 +121,7 @@
     "published_at": "2026-10-09",
     "source": "TUIR art. 51 c. 3; L. 207/2024 art. 1 c. 390; L. 208/2015 art. 1 cc. 182-190; L. 199/2025 art. 1 cc. 7, 9, 10-11; TUIR art. 51 c. 5",
     "verification_status": "unverified",
-    "source_hash": "e76dc8ed793e0af077330121203e1fa3247235d732b501b90c8e9364b0286680",
+    "source_hash": "6a58cd85dce54512f85dc13b667b92e709de48aa820a62942a4deca8fbd75d9c",
     "source_type": "estimated",
     "provisional": true
   },

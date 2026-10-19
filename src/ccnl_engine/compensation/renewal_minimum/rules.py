@@ -4,9 +4,13 @@ L. 199/2025 art. 1 c. 7 taxes at 5% the pay increments paid in 2026 under
 renewals signed from 1 January 2024 to 31 December 2026, for private-sector
 workers whose 2025 employment income did not exceed 33,000 EUR.  A renewal
 raises the minimo tabellare, so its increments are paid inside the base
-salary, not as a separate event.  How much of the minimo counts as a
-renewal increment is a reading the engine does not settle: the bundle does
-not tie each table of the minimo to the agreement that set it.
+salary, not as a separate event.  Agenzia delle Entrate circ. 2/E of 24
+February 2026 (par. 1, the ``increment_source`` of the regime) reads the
+increment as every tranche of a qualifying renewal paid in 2026, started
+before or not, measured on the table in force before the renewal, on the
+direct pay (twelve months, 13th, 14th) and never on the seniority
+increments.  The bundle does not yet tie each table of the minimo to the
+agreement that set it, so the increment is not quantified.
 
 :func:`assess_renewal_minimum` therefore never posts the substitute tax on
 the minimo.  It decides what the worker facts alone decide: a known fact
