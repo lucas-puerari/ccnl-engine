@@ -141,7 +141,7 @@ _METAL_OWED = frozenset({
     f"{_METAL}/health_and_bilateral_funds",
     f"{_METAL}/flexible_benefits",
 })
-_TERZ_OWED = frozenset({f"{_TERZ}/health_and_bilateral_funds"})
+_TERZ_OWED = frozenset({"contractual_funds"})
 _STUDI_OWED = frozenset({f"{_STUDI}/bilateral_contribution_or_element"})
 #: The funds of Turismo and FIPE are modelled; the scenarios leave the
 #: employer's funds unstated, as their oracles leave the funds out: a missing

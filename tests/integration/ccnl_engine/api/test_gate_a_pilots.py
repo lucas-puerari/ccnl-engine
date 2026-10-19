@@ -55,7 +55,15 @@ _WITH_DELIBERA: Final = "A005"
 _MILAN: Final = "F205"
 #: The employer pays every contractual fund of the pilots (codes of other
 #: CCNLs are ignored).
-_FUNDS_PAID: Final = frozenset({"ebnt", "fast", "quas", "ebt", "fondo_est"})
+_FUNDS_PAID: Final = frozenset({
+    "ebnt",
+    "fast",
+    "quas",
+    "ebt",
+    "fondo_est",
+    "aster",
+    "quadrifor",
+})
 
 #: Blockers of a worker eligible to the renewal regime: the increment paid
 #: inside the minimo is not quantified (REVIEW A1).
@@ -97,13 +105,7 @@ _SPECIFIC: Final[dict[str, frozenset[Blocker]]] = {
     "chimica-farmaceutica-federchimica": frozenset(),
     "turismo-federalberghi": frozenset(),
     "pubblici-esercizi-fipe-angem": frozenset(),
-    "terziario-confesercenti": frozenset({
-        _owed(
-            "terziario-confesercenti",
-            "bilateral_funds",
-            "health_and_bilateral_funds",
-        )
-    }),
+    "terziario-confesercenti": frozenset(),
     "metalmeccanico-confapi": frozenset({
         _owed("metalmeccanico-confapi", "bilateral_funds", "bilateral_system_or_ear")
     }),

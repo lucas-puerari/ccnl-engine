@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority, sickness, territorial_supplement, una_tantum |
+| **Limits of this contract** | base_salary, overtime, seniority, sickness, territorial_supplement, una_tantum |
 
-13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -171,13 +171,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Add the 42 and 48 month tracks.
-
-!!! warning "terziario-confesercenti/health_and_bilateral_funds · bilateral_funds · impact yes · open"
-    HEALTH FUNDS: the Fondo ASTER (Art. 104 as renewed in 2024) and, for the quadri, the Cassa QuAS (Art. 106) are owed for every worker; an employer that does not pay them owes the worker instead an EDR of EUR 16.00 x 14 and EUR 37.00 x 14. Neither is modelled: the employer cost, and with the EDR the net pay, are short of them.
-
-    **Applies when:** `bilateral_funds` applies.
-
-    **Remediation:** Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
