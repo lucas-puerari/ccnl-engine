@@ -125,6 +125,7 @@ def accrual_issue(ctx: RunContext) -> CalculationIssue | None:
         return None
     return CalculationIssue(
         code="accrual_suspension_unknown",
+        capability="base_salary",
         message=(
             f"the ratei of {', '.join(kinds)} depend on absences whose "
             "suspension of accrual is not stated: the amounts shown count "

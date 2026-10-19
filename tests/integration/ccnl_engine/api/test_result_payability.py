@@ -35,7 +35,7 @@ from ccnl_engine.inputs import (
     WeeklyHours,
     WorkerCategory,
 )
-from ccnl_engine.results import BlockerCode, CalculationStatus
+from ccnl_engine.results import PUBLIC_FACTS, BlockerCode, CalculationStatus
 from tests.integration.ccnl_engine.irpef.declaration.builders import (
     RENEWAL_WAIVED,
 )
@@ -123,7 +123,13 @@ def test_incomplete_coverage_is_not_payable() -> None:
         "termination_residual_leave": "unsupported",
         "tfr_revaluation": "unresolved",
     }
-    assert blocked == set(gaps)
+    # The revaluation gap follows from its decision: one blocker per cause.
+    assert blocked == {"termination_residual_leave"}
+    assert (
+        BlockerCode.CALCULATION_ISSUE,
+        "tfr_revaluation",
+        "termination_not_computed",
+    ) in (_blocker_keys(result))
     assert (BlockerCode.RULE_SOURCE_WEAK, "base_salary", "assumed") not in (
         _blocker_keys(result)
     )
@@ -185,7 +191,7 @@ def test_unknown_ivs_ceiling_eligibility_is_a_missing_fact() -> None:
     ]
     assert decision.reason_code == "required_fact_missing"
     assert decision.amount is None
-    assert (BlockerCode.MISSING_FACT, None, "contribution_history") in (
+    assert (BlockerCode.MISSING_FACT, "inps_employee", "contribution_history") in (
         _blocker_keys(result)
     )
     assert result.assurance.calculation is CalculationStatus.INCOMPLETE
@@ -216,7 +222,9 @@ def test_unknown_seniority_is_a_missing_fact() -> None:
     (decision,) = [d for d in result.decisions if d.capability == "seniority"]
     assert decision.reason_code == "required_fact_missing"
     assert decision.amount is None
-    assert (BlockerCode.MISSING_FACT, None, "seniority") in _blocker_keys(result)
+    assert (BlockerCode.MISSING_FACT, "seniority", "seniority") in (
+        _blocker_keys(result)
+    )
     assert result.assurance.calculation is CalculationStatus.INCOMPLETE
     assert result.period_gross == Decimal("1724.40")
     assert result.is_payable is False
@@ -344,3 +352,39 @@ def test_household_employer_needs_no_residence() -> None:
 
     assert result.capability_report.unresolved == ()
     assert BlockerCode.REQUIREMENT_UNRESOLVED not in {b.code for b in result.blockers}
+
+
+def test_each_missing_fact_is_one_blocker_naming_its_field() -> None:
+    """A minimal request reports each missing fact once, with its public field.
+
+    The capability the fact leaves open is the feature, unless the fact
+    concerns the whole run (the opening state); the remediation names the
+    field of the request to fill.
+    """
+    result = PayrollEngine.bundled().calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(2026, 12),
+            payment_date=date(2026, 12, 20),
+            employment=Employment(
+                ccnl_slug="commercio-confcommercio",
+                level_code="4",
+                contract_type=Permanent(),
+            ),
+            employer=EmployerProfile(headcount=Headcount(50)),
+            facts=PeriodFacts(regione="IT-25", comune_belfiore="F205"),
+        )
+    )
+    keys = _blocker_keys(result)
+    missing = [b for b in result.blockers if b.code is BlockerCode.MISSING_FACT]
+
+    assert len(keys) == len(result.blockers)
+    assert len({b.detail for b in missing}) == len(missing) >= 8
+    for blocker in missing:
+        assert blocker.feature is not None or blocker.detail == "opening_state"
+        assert PUBLIC_FACTS[blocker.detail] in blocker.remediation
+        assert not any(
+            b.feature == blocker.feature
+            and b.code
+            in {BlockerCode.CALCULATION_ISSUE, BlockerCode.CAPABILITY_NOT_COMPUTED}
+            for b in result.blockers
+        )

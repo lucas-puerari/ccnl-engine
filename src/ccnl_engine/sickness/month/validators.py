@@ -125,6 +125,7 @@ def _quota_issue(
     )
     return CalculationIssue(
         code=QUOTA_MISMATCH,
+        capability="sickness",
         message=(
             f"the sick days of {employed[0]:%B %Y} deduct {deducted} of the "
             f"{posted} units of the pay posted ({quota.method.value}): {what}; "
@@ -162,6 +163,7 @@ def month_issues(
         issues.append(
             CalculationIssue(
                 code=WITH_UNPAID_ABSENCE,
+                capability="sickness",
                 message=(
                     "the run deducts sick days at the CCNL daily quota and an "
                     "unpaid absence at the hourly rate given: together they "

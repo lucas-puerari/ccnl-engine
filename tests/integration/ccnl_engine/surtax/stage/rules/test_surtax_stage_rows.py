@@ -13,6 +13,15 @@ from ccnl_engine.family.inputs import (
     DependentRelationship,
     FamilyComposition,
 )
+from ccnl_engine.provenance.source.models import (
+    SourceDocument,
+    SourceKind,
+    SourceLocation,
+)
+from ccnl_engine.provenance.source.rule.models import (
+    ProvenanceStatus,
+    RuleProvenance,
+)
 from ccnl_engine.surtax.models import SurtaxRules
 from ccnl_engine.surtax.stage.rules import (
     SurtaxOutcome,
@@ -83,6 +92,21 @@ def _rules() -> SurtaxRules:
                 specific_exemptions=("Esenzione per pensioni fino a 8.000",),
             ),
             "A005": ComunaleEntry(nome="Current", brackets=_FLAT, rates_year=2026),
+            "A006": ComunaleEntry(
+                nome="Closed",
+                brackets=_FLAT,
+                rates_year=2025,
+                provenance=RuleProvenance(
+                    status=ProvenanceStatus.DERIVED,
+                    location=SourceLocation(
+                        source_document=SourceDocument(
+                            document_id="mef-addizionale-comunale-elenco-2026",
+                            title="MEF elenco 2026",
+                            kind=SourceKind.AMMINISTRAZIONE,
+                        )
+                    ),
+                ),
+            ),
         },
     )
 
@@ -177,6 +201,17 @@ class TestMunicipalProvisions:
         (issue,) = outcome.issues
         assert issue.code == PRIOR_YEAR_RATES_ISSUE
         assert "rates of 2025" in issue.message
+
+    def test_rates_carried_by_a_closed_list_are_final(self) -> None:
+        """A list closed on 20 December: the 2025 rates are final, no issue."""
+        outcome = _compute(None, "A006")
+
+        (decision,) = outcome.decisions
+        assert decision.reason_code == "prior_year_rates_in_force"
+        assert decision.status is CalculationStatus.FINAL
+        assert decision.inputs["rates_year"] == "2025"
+        assert decision.amount == _D("400.00")
+        assert outcome.issues == ()
 
     def test_rates_of_the_tax_year_are_final(self) -> None:
         """A row whose rates year is the tax year is applied as final."""

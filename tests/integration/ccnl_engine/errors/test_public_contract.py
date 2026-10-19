@@ -104,7 +104,7 @@ def test_rule_series_not_yet_valid_without_seniority_is_a_missing_fact() -> None
     decision = _seniority_decision(result)
     assert decision.reason_code == "required_fact_missing"
     assert decision.amount is None
-    assert (BlockerCode.MISSING_FACT, None, "seniority") in {
+    assert (BlockerCode.MISSING_FACT, "seniority", "seniority") in {
         (b.code, b.feature, b.detail) for b in result.blockers
     }
     assert result.is_payable is False

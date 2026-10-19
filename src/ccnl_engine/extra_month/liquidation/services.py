@@ -175,6 +175,7 @@ def _paid_early(
 def _paid_issue(kind: str) -> CalculationIssue:
     return CalculationIssue(
         code="extra_month_paid_before_termination",
+        capability="base_salary",
         message=(
             f"a {kind} run closed earlier in the window already paid ratei the "
             "termination liquidates; the state does not record its amount, so "
@@ -188,6 +189,7 @@ def _paid_issue(kind: str) -> CalculationIssue:
 def _absences_issue() -> CalculationIssue:
     return CalculationIssue(
         code="termination_window_absences_unknown",
+        capability="base_salary",
         message=(
             "the ratei liquidated at the termination count the absences of this "
             "run only: those of the earlier months of the window, which can "

@@ -80,6 +80,7 @@ def category_rate_issue(
     categories = ", ".join(sorted(c.value for c in inps.employer_rate_by_category))
     return CalculationIssue(
         code=CATEGORY_RATE_ASSUMED_CODE,
+        capability="inps_employer",
         message=(
             "inps_employer: the level fixes no worker category and none was "
             f"declared, so the general employer rate {inps.employer_rate} "

@@ -143,6 +143,7 @@ def unrecovered_issue(
     law = withholding_rule(WithholdingTopic.CONGUAGLIO, tax_year)
     return CalculationIssue(
         code="withholding_shortfall_unrecovered",
+        capability=CAPABILITY,
         message=(
             f"withholding_shortfall: {shortfall.irpef} IRPEF, "
             f"{shortfall.surtax} surtax and {shortfall.credit_recovery} credit "

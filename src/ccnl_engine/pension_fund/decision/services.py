@@ -191,6 +191,7 @@ def pension_fund_issue(ctx: RunContext) -> CalculationIssue | None:
     held = f"pension funds ({funds})" if funds else "a negotiated pension fund"
     return CalculationIssue(
         code="pension_fund_enrolment_unknown",
+        capability=CAPABILITY,
         message=(
             f"the CCNL has {held} and the enrolment of the worker is not "
             "stated: the fund contributions and the destination of the TFR "
