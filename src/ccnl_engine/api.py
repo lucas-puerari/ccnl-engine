@@ -76,6 +76,7 @@ class PayrollEngine:
             Employment, EmployerProfile, Headcount, PayrollEngine,
             PayrollRun, PeriodInput,
         )
+        from ccnl_engine.inputs import Permanent
 
         engine = PayrollEngine.bundled()
         result = engine.calculate_period(PeriodInput(
@@ -84,6 +85,7 @@ class PayrollEngine:
             employment=Employment(
                 ccnl_slug="metalmeccanico-federmeccanica.json",
                 level_code="C3",
+                contract_type=Permanent(),
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
         ))
