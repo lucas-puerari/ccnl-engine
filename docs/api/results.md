@@ -154,3 +154,14 @@ unresolved requirement, otherwise `partial` when every gap is partial and
 ::: ccnl_engine.results.UncoveredRun
 
 ::: ccnl_engine.results.UnresolvedRequirement
+
+## JSON form of a result
+
+`result_to_json` writes a `PeriodResult`, a `CompetenceYearResult` or a
+`TaxYearResult` as JSON, with the same tagged values as a request: every
+field under `result` and, under `derived`, `is_payable`,
+`is_net_pay_payable`, `is_employer_cost_complete`, `blockers` and the
+totals, which a reader outside Python could not compute. The JSON is output
+only: a result is recomputed from its request, not read back.
+
+::: ccnl_engine.results.result_to_json

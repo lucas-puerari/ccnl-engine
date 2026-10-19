@@ -103,3 +103,21 @@ state types.
 ::: ccnl_engine.inputs.SurtaxObligation
 
 ::: ccnl_engine.inputs.DeferredShortfall
+
+## JSON form of a request
+
+`request_to_json` writes a `PeriodInput`, a `CompetenceYearPlan` or a
+`TaxYearPlan` as JSON, and `request_from_json` reads it back equal, through
+the constructors of every value, so a request read from JSON is validated
+like one built in Python. Each value is tagged with its type
+(`{"$type": "Employment", "fields": {...}}`, `{"$enum": ...}`); decimals
+are strings (`{"$decimal": "1234.50"}`), dates ISO 8601
+(`{"$date": "2026-01-28"}`), and run-keyed maps keep their `int` or `str`
+keys (`{"$map": [[3, ...], ["2026-12-thirteenth", ...]]}`). The envelope
+carries `schema_version`, bumped when a field changes; unlike a persisted
+state, a request carries no engine or bundle version and reads across
+releases.
+
+::: ccnl_engine.inputs.request_to_json
+
+::: ccnl_engine.inputs.request_from_json

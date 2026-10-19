@@ -1,7 +1,8 @@
 """What a :class:`~ccnl_engine.PeriodResult` reports beyond its amounts.
 
 Assurance and blockers, decisions and issues, model limitations, capability
-gaps, unresolved requirements, runs a year left out and the remittance lines.
+gaps, unresolved requirements, runs a year left out and the remittance lines;
+:func:`result_to_json` writes a whole result as JSON.
 :data:`PUBLIC_FACTS` maps the detail of a ``missing_fact`` blocker to the
 public field that supplies it.
 """
@@ -26,6 +27,7 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
     DecisionOrigin,
 )
+from ccnl_engine.interchange.result.serializers import result_to_json
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.ledger.remittance.models import (
     RemittanceColumn,
@@ -61,4 +63,5 @@ __all__ = [
     "ResultTotal",
     "UncoveredRun",
     "UnresolvedRequirement",
+    "result_to_json",
 ]
