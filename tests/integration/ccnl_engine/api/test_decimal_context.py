@@ -45,7 +45,7 @@ def _plan(
             contract_type=Permanent(),
             employment_period=EmploymentPeriod(_HIRED, None),
             seniority=SeniorityFact.since(_HIRED, SenioritySource.EMPLOYER_RECORDS),
-            weekly_hours=WeeklyHours(25),
+            weekly_hours=WeeklyHours(Decimal(25)),
         ),
         employer=EmployerProfile(headcount=Headcount(60)),
         default_facts=PeriodFacts(

@@ -5,7 +5,7 @@ from __future__ import annotations
 import calendar
 from dataclasses import dataclass
 from datetime import date, timedelta
-from decimal import Decimal
+from decimal import ROUND_DOWN, Decimal
 from enum import StrEnum
 from typing import cast
 
@@ -66,7 +66,7 @@ def _require_hours(value: object, path: str, *, positive: bool) -> None:
         positive=positive,
     )
     hours = cast("Decimal", value)
-    if hours != hours.quantize(_HUNDREDTH):
+    if hours != hours.quantize(_HUNDREDTH, rounding=ROUND_DOWN):
         msg = f"{path} must have at most two decimal places; got {hours}"
         raise InvalidInputError(msg, field=path, feature=FEATURE)
 
