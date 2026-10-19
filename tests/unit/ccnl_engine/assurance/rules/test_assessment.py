@@ -323,7 +323,7 @@ def test_a_missing_fact_is_the_one_blocker_of_its_capability() -> None:
     gap = _gap("addizionale_comunale", CapabilityGapKind.PARTIAL_RESULT)
 
     assurance = assess(
-        (issue,), (_decision(_PROVISIONAL),), _report((gap,)), (), _SIMULATION
+        (issue,), (_decision(_PROVISIONAL),), _report((gap,)), (), _SIMULATION, _PAID
     )
 
     assert _keys(assurance) == [
@@ -338,7 +338,9 @@ def test_an_issue_makes_the_gap_of_its_capability_redundant() -> None:
         _gap("irpef", CapabilityGapKind.PARTIAL_RESULT),
     )
 
-    assurance = assess((), (_decision(_PROVISIONAL),), _report(gaps), (), _SIMULATION)
+    assurance = assess(
+        (), (_decision(_PROVISIONAL),), _report(gaps), (), _SIMULATION, _PAID
+    )
 
     assert _keys(assurance) == [
         (BlockerCode.CALCULATION_ISSUE, "addizionale_comunale", "table_unknown"),
