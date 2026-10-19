@@ -153,6 +153,7 @@ class RegimeAssessment:
             return None
         return CalculationIssue(
             code=f"{self.regime.regime_id}_eligibility_unknown",
+            capability=f"{self.regime.regime_id}_substitute_tax",
             message=(
                 f"{self.regime.regime_id} substitute tax not applied "
                 f"({self.reason_code}): ordinary taxation used until the "

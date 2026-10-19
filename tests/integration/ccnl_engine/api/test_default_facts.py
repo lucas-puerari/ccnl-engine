@@ -234,6 +234,15 @@ class TestDefaultIsNotAFact:
             Dependent(DependentRelationship.SPOUSE)  # type: ignore[call-arg]
 
 
+def _blocked(request: Request) -> set[str]:
+    """Return what the blockers of ``request`` block.
+
+    Returns:
+        The feature of each blocker, its detail when it names no feature.
+    """
+    return {feature or detail for _, feature, detail in _triples(request)}
+
+
 def _triples(request: Request) -> set[tuple[BlockerCode, str | None, str]]:
     """Return the blockers of ``request`` through the public facade.
 
@@ -276,8 +285,13 @@ class TestTrueFactHasNoMoreBlockers:
 
     @pytest.mark.parametrize("case", _CASES)
     def test_true_fact_has_no_more_blockers(self, case: DefaultCase) -> None:
-        """The run stating the fact has at most the blockers of the default."""
-        assert len(_triples(case.true)) <= len(_triples(case.default))
+        """The run stating the fact blocks no capability the default leaves open.
+
+        Blockers are one per cause, so a stated fact may trade the missing
+        fact of a capability for the issue it then meets: the count is not
+        the measure, what is blocked is.
+        """
+        assert _blocked(case.true) <= _blocked(case.default)
 
     @pytest.mark.parametrize("case", _NAMING_CASES)
     def test_default_names_the_fact(self, case: DefaultCase) -> None:

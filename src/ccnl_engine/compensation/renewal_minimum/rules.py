@@ -196,6 +196,7 @@ def _missing_issue(
 ) -> CalculationIssue:
     return CalculationIssue(
         code=f"{regime.regime_id}_eligibility_unknown",
+        capability=f"{regime.regime_id}_substitute_tax",
         message=(
             f"{regime.regime_id} substitute tax on the renewal increments of "
             f"the minimo undetermined ({code}): ordinary taxation used until "
@@ -210,6 +211,7 @@ def _missing_issue(
 def _unquantified_issue(regime: PreferentialTaxRegime) -> CalculationIssue:
     return CalculationIssue(
         code=f"{regime.regime_id}_minimum_increment_unquantified",
+        capability=f"{regime.regime_id}_substitute_tax",
         message=(
             f"the minimo may carry increments of a renewal signed within the "
             f"window of the {regime.regime_id} regime and the worker meets its "

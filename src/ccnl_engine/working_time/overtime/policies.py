@@ -266,7 +266,11 @@ def overtime_issues(
             "threshold the event does not carry: pass an explicit multiplier "
             "for the hours beyond it"
         )
-        return (CalculationIssue(TIER_NOT_APPLIED, message, _PROVISIONAL),)
+        return (
+            CalculationIssue(
+                TIER_NOT_APPLIED, message, _PROVISIONAL, capability="overtime"
+            ),
+        )
     ccnl = [(rate.band, rate.supplement)] if rate.band is not None else []
     known = [(b, r) for b, r in (*ccnl, *rate.tiers) if r is not None]
     if not known or any(rate.multiplier == 1 + r for _, r in known):
@@ -277,7 +281,11 @@ def overtime_issues(
         f"the CCNL bands for {event.kind.value!r} work ({values}); the caller "
         "value is applied"
     )
-    return (CalculationIssue(CALLER_MULTIPLIER_DIFFERS, message, _PROVISIONAL),)
+    return (
+        CalculationIssue(
+            CALLER_MULTIPLIER_DIFFERS, message, _PROVISIONAL, capability="overtime"
+        ),
+    )
 
 
 _PROVISIONAL = CalculationStatus.PROVISIONAL
