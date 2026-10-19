@@ -224,7 +224,7 @@ def _hours(params: dict[str, Any]) -> tuple[WeeklyHours | None, WeeklyHours | No
     if pct >= 100 and not params.get("domestic"):
         return None, None
     weekly = max(1, round(full_time * pct / 100))
-    return WeeklyHours(weekly), WeeklyHours(full_time)
+    return WeeklyHours(Decimal(weekly)), WeeklyHours(Decimal(full_time))
 
 
 def _employment(params: dict[str, Any], ccnl_id: str) -> Employment:
@@ -515,9 +515,11 @@ def scenario_snippet(params_json: str) -> str:
         )
     if employment.weekly_hours is not None and employment.full_time_weekly_hours:
         inputs.add("WeeklyHours")
+        weekly = employment.weekly_hours.value
+        full_time = employment.full_time_weekly_hours.value
         fields.extend((
-            f"weekly_hours=WeeklyHours({employment.weekly_hours.value})",
-            f"full_time_weekly_hours=WeeklyHours({employment.full_time_weekly_hours.value})",
+            f"weekly_hours=WeeklyHours(Decimal({weekly}))",
+            f"full_time_weekly_hours=WeeklyHours(Decimal({full_time}))",
         ))
     fact_fields = []
     if facts.regione:
@@ -532,7 +534,11 @@ def scenario_snippet(params_json: str) -> str:
         )
     lines = [
         *(["from datetime import date"] if "date(" in "".join(fields) else []),
-        *(["from decimal import Decimal"] if facts.contributable_hours else []),
+        *(
+            ["from decimal import Decimal"]
+            if "Decimal(" in "".join(fields + fact_fields)
+            else []
+        ),
         "",
         "from ccnl_engine import (",
         "    CompetenceYearPlan,",

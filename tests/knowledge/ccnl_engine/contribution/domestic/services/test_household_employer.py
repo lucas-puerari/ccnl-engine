@@ -191,9 +191,9 @@ def _employment(case: _Case) -> Employment:
         ccnl_id=case.ccnl_id,
         level_code=case.level_code,
         seniority=new_hire(),
-        weekly_hours=WeeklyHours(case.weekly_hours),
+        weekly_hours=WeeklyHours(Decimal(case.weekly_hours)),
         full_time_weekly_hours=(
-            None if case.full_time is None else WeeklyHours(case.full_time)
+            None if case.full_time is None else WeeklyHours(Decimal(case.full_time))
         ),
         contract_type=Permanent(),
     )

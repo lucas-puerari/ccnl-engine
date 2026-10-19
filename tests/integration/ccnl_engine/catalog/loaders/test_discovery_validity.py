@@ -85,7 +85,7 @@ def _employment(ccnl: CCNL, level_code: str) -> Employment:
     return Employment(
         ccnl_id=ccnl.meta.ccnl_id,
         level_code=level_code,
-        weekly_hours=WeeklyHours(25) if domestic else None,
+        weekly_hours=WeeklyHours(Decimal(25)) if domestic else None,
         seniority=_SENIORITY,
         category=pricing_category(ccnl.parameters.seniority_increments, level_code),
         contract_type=Permanent(),

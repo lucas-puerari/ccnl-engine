@@ -51,7 +51,7 @@ EXEMPT_CATEGORY_FLOOR = "inps_minimum_base_exempt_category"
 
 
 def _hours(fact: WeeklyHours | None) -> Decimal | None:
-    return None if fact is None else Decimal(fact.value)
+    return None if fact is None else fact.value
 
 
 def _position(ctx: RunContext) -> MonthPosition:
@@ -78,6 +78,7 @@ def _position(ctx: RunContext) -> MonthPosition:
         category=ctx.worker_category,
         weekly_hours=_hours(request.weekly_hours),
         full_time_weekly_hours=_hours(request.full_time_weekly_hours),
+        worked=not proration.idle,
     )
 
 

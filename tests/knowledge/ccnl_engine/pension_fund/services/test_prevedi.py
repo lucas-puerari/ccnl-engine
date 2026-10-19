@@ -95,7 +95,8 @@ def test_impiegato_owes_the_monthly_amount() -> None:
 def test_part_time_is_proportioned() -> None:
     """20 of 40 weekly hours: 15.00 x 20 / 40 = 7.50."""
     employment = _employment(
-        weekly_hours=WeeklyHours(20), full_time_weekly_hours=WeeklyHours(40)
+        weekly_hours=WeeklyHours(Decimal(20)),
+        full_time_weekly_hours=WeeklyHours(Decimal(40)),
     )
     assert _contractual(_january(employment)) == Decimal("7.50")
 

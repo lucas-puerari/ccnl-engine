@@ -52,8 +52,8 @@ PART_TIME_VARIANT = "part_time_scaling"
 def _part_time(
     ccnl: CCNL,
     chain: MonthlyPayChain,
-    weekly_hours: int | None,
-    full_time_weekly_hours: int | None,
+    weekly_hours: Decimal | None,
+    full_time_weekly_hours: Decimal | None,
 ) -> MonthlyPayChain:
     """Scale ``chain`` to the part-time ratio of the weekly hours.
 
@@ -86,9 +86,7 @@ def _part_time(
         and weekly_hours is not None
         and weekly_hours < full_time_weekly_hours
     ):
-        scaled = chain.scaled_for_part_time(
-            Decimal(weekly_hours) / Decimal(full_time_weekly_hours)
-        )
+        scaled = chain.scaled_for_part_time(weekly_hours / full_time_weekly_hours)
         path = f"{ccnl.meta.ccnl_id}/{PART_TIME_VARIANT}"
         return replace(scaled, limitations=(*scaled.limitations, path))
     return chain
@@ -103,8 +101,8 @@ def _resolve_chain(
     seniority_months: int | None = None,
     roles: frozenset[str] = frozenset(),
     worker_category: WorkerCategory | None = None,
-    weekly_hours: int | None = None,
-    full_time_weekly_hours: int | None = None,
+    weekly_hours: Decimal | None = None,
+    full_time_weekly_hours: Decimal | None = None,
     hired_on: date | None = None,
 ) -> tuple[MonthlyPayChain, ApprenticeshipScaling | None]:
     """Resolve the elementary pay chain for the period.

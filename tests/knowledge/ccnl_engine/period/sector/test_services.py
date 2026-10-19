@@ -94,7 +94,7 @@ pytestmark = pytest.mark.legal_scenario
 _ENGINE = PayrollEngine.bundled()
 _ZERO = Decimal(0)
 _JUNE_END = date(2026, 6, 30)
-_FULL_TIME = WeeklyHours(40)
+_FULL_TIME = WeeklyHours(Decimal(40))
 _FACTS = PeriodFacts(
     regione="IT-88",
     comune_belfiore="A192",
@@ -495,7 +495,7 @@ def _contract(s: Scenario) -> Permanent | Apprentice | FixedTerm:
 @cache
 def _year(name: str) -> CompetenceYearResult:
     s = SCENARIOS[name]
-    hours = None if s.weekly_hours is None else WeeklyHours(s.weekly_hours)
+    hours = None if s.weekly_hours is None else WeeklyHours(Decimal(s.weekly_hours))
     facts = replace(
         _FACTS,
         ordinary_hours_worked=None if s.hours is None else ContributableHours(s.hours),

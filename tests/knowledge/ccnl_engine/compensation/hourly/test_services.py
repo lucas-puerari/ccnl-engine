@@ -196,8 +196,8 @@ def test_part_time_is_paid_the_full_rate_on_its_hours() -> None:
     """20 of 40 weekly hours, 86.5 hours: half of the full month."""
     employment = replace(
         _OPERAIO,
-        weekly_hours=WeeklyHours(20),
-        full_time_weekly_hours=WeeklyHours(40),
+        weekly_hours=WeeklyHours(Decimal(20)),
+        full_time_weekly_hours=WeeklyHours(Decimal(40)),
     )
     result = _january(Decimal("86.5"), employment)
 

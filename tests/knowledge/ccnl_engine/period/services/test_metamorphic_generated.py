@@ -39,8 +39,8 @@ def _part_time(weekly_hours: int) -> Employment:
     return Employment(
         ccnl_id=COMMERCIO,
         level_code="4",
-        weekly_hours=WeeklyHours(weekly_hours),
-        full_time_weekly_hours=WeeklyHours(_FULL_TIME),
+        weekly_hours=WeeklyHours(Decimal(weekly_hours)),
+        full_time_weekly_hours=WeeklyHours(Decimal(_FULL_TIME)),
         contract_type=Permanent(),
     )
 
@@ -64,7 +64,7 @@ def test_domestic_contributions_are_never_negative(hours: Decimal) -> None:
     employment = Employment(
         ccnl_id=DOMESTIC,
         level_code="B",
-        weekly_hours=WeeklyHours(25),
+        weekly_hours=WeeklyHours(Decimal(25)),
         contract_type=Permanent(),
     )
     breakdown = regular_period(
