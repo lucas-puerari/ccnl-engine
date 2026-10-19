@@ -2,7 +2,15 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal
+from decimal import (
+    ROUND_HALF_EVEN,
+    Context,
+    DivisionByZero,
+    InvalidOperation,
+    Overflow,
+    localcontext,
+)
+from typing import TYPE_CHECKING, Final, Literal
 
 from ccnl_engine.balance.opening.services import opening_state
 from ccnl_engine.bundle.facade import __version__
@@ -53,6 +61,15 @@ __all__ = ["PayrollEngine"]
 
 #: Mode names accepted in place of an :class:`EngineMode` member.
 type Mode = Literal["simulation", "operational"]
+
+#: Decimal context of every calculation, whatever the caller's thread
+#: context: the defaults of :mod:`decimal`, so a host that changes
+#: ``getcontext()`` does not change a cent.
+_CONTEXT: Final = Context(
+    prec=28,
+    rounding=ROUND_HALF_EVEN,
+    traps=[InvalidOperation, DivisionByZero, Overflow],
+)
 
 
 class PayrollEngine:
@@ -193,13 +210,14 @@ class PayrollEngine:
             assurance and payability, issues, decisions, amounts, closing
             state, pay items, ledger entries and capability report.
         """
-        return _calculate_period(
-            period_request(request),
-            repo=self._repo,
-            resolver=self._resolver,
-            bundle_version=__version__,
-            mode=self._mode,
-        )
+        with localcontext(_CONTEXT):
+            return _calculate_period(
+                period_request(request),
+                repo=self._repo,
+                resolver=self._resolver,
+                bundle_version=__version__,
+                mode=self._mode,
+            )
 
     def calculate_competence_year(
         self, plan: CompetenceYearPlan
@@ -225,13 +243,14 @@ class PayrollEngine:
         grants, or does not match its reason, raises
         :class:`~ccnl_engine.errors.InvalidInputError`.
         """
-        return _calculate_competence_year(
-            competence_plan(plan),
-            repo=self._repo,
-            resolver=self._resolver,
-            bundle_version=__version__,
-            mode=self._mode,
-        )
+        with localcontext(_CONTEXT):
+            return _calculate_competence_year(
+                competence_plan(plan),
+                repo=self._repo,
+                resolver=self._resolver,
+                bundle_version=__version__,
+                mode=self._mode,
+            )
 
     def calculate_tax_year(self, plan: TaxYearPlan) -> TaxYearResult:
         """Compute every payment cashed in a tax year, in payment order.
@@ -248,13 +267,14 @@ class PayrollEngine:
             One result per payment computed, the payments of the year and
             the conguaglio; ``next_opening_state`` opens the next tax year.
         """
-        return _calculate_tax_year(
-            tax_year_plan(plan),
-            repo=self._repo,
-            resolver=self._resolver,
-            bundle_version=__version__,
-            mode=self._mode,
-        )
+        with localcontext(_CONTEXT):
+            return _calculate_tax_year(
+                tax_year_plan(plan),
+                repo=self._repo,
+                resolver=self._resolver,
+                bundle_version=__version__,
+                mode=self._mode,
+            )
 
     @staticmethod
     def close_tax_year(closing_state: PeriodState) -> PeriodState:
@@ -269,7 +289,8 @@ class PayrollEngine:
             The opening state of the next tax year: a fresh tax year state
             and the obligations still running.
         """
-        return next_tax_year(closing_state)
+        with localcontext(_CONTEXT):
+            return next_tax_year(closing_state)
 
     @staticmethod
     def import_opening_balances(balances: OpeningBalances) -> PeriodState:
@@ -287,4 +308,5 @@ class PayrollEngine:
         Returns:
             The opening state, bound to ``balances.tax_year``.
         """
-        return opening_state(opening_balances(balances))
+        with localcontext(_CONTEXT):
+            return opening_state(opening_balances(balances))

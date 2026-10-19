@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from dataclasses import fields
-from decimal import Decimal
+from decimal import ROUND_HALF_UP, Decimal
 from typing import TYPE_CHECKING, cast
 
 from ccnl_engine.collection.validators import items_of_type, tuple_of
@@ -150,7 +150,7 @@ def _amount(value: object, path: str) -> None:
     """Reject an amount that is not a non-negative Decimal in cents."""
     require_decimal(value, path, feature=FEATURE, minimum=_ZERO)
     amount = cast("Decimal", value)
-    if amount != amount.quantize(_CENT):
+    if amount != amount.quantize(_CENT, rounding=ROUND_HALF_UP):
         reject(path, "an amount with at most two decimals", value, feature=FEATURE)
 
 

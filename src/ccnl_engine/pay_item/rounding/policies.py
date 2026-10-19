@@ -91,4 +91,6 @@ def contribution_base(x: Decimal, *, whole_euro: bool = True) -> Decimal:
     """
     if not whole_euro:
         return x
-    return CONTRIBUTION_BASE.apply(x).quantize(MONETARY.precision)
+    return CONTRIBUTION_BASE.apply(x).quantize(
+        MONETARY.precision, rounding=MONETARY.mode
+    )

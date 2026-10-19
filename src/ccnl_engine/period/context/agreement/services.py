@@ -7,7 +7,7 @@ those of the competence year of the run (:func:`with_competence_contributions`).
 from __future__ import annotations
 
 from dataclasses import dataclass
-from decimal import Decimal
+from decimal import ROUND_HALF_UP, Context, Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.validity.rules import rule_scope
@@ -185,7 +185,7 @@ def load_contract(
 
 
 #: Weeks of a month: a weekly schedule times 52 / 12 is its monthly hours.
-_WEEKS_PER_MONTH = Decimal(52) / Decimal(12)
+_WEEKS_PER_MONTH = Context(prec=28).divide(Decimal(52), Decimal(12))
 _CENT = Decimal("0.01")
 
 
@@ -204,7 +204,9 @@ def flat_pay_divisor(ccnl: CCNL, weekly_hours: WeeklyHours | None) -> CCNL:
     params = ccnl.parameters
     if params.flat_pay_max_weekly_hours is None or weekly_hours is None:
         return ccnl
-    hours = (Decimal(weekly_hours.value) * _WEEKS_PER_MONTH).quantize(_CENT)
+    hours = (Decimal(weekly_hours.value) * _WEEKS_PER_MONTH).quantize(
+        _CENT, rounding=ROUND_HALF_UP
+    )
     periods = tuple(
         p.model_copy(update={"value": hours}) for p in params.hourly_divisor.periods
     )
