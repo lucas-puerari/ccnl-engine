@@ -119,6 +119,11 @@ class PreferentialTaxRegime(BaseModel):
         agreements_signed_until: Last signing date of a qualifying
             agreement.  Required with ``agreements_signed_from``.
         source: Normative source of the regime: document, section and quote.
+        increment_source: Source of how the qualifying increment is
+            measured, when the law leaves it to an interpretation: for the
+            renewal regime, the tranches of a qualifying renewal paid in the
+            year, measured on the table in force before the renewal
+            (Agenzia delle Entrate circ. 2/E of 24 February 2026, par. 1).
         source_status: How far the parameters are backed by ``source``:
             ``derived`` or ``assumed``.  A regime always cites its source and
             records no reviewer, so it is neither ``missing`` nor
@@ -147,6 +152,7 @@ class PreferentialTaxRegime(BaseModel):
     agreements_signed_from: date | None = None
     agreements_signed_until: date | None = None
     source: SourceLocation
+    increment_source: SourceLocation | None = None
     source_status: ProvenanceStatus
     ruleset: RulesetIdentity | None = None
 
