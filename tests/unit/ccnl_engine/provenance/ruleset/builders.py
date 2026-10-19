@@ -49,6 +49,7 @@ def ccnl_ruleset(
     readiness: RulesetReadiness,
     confidence: VerificationStatus = VerificationStatus.VERIFIED,
     ruleset_id: str = "ccnl/x",
+    review_due: date | None = None,
 ) -> RulesetAssurance:
     """Return the assurance of a CCNL ruleset at ``readiness``.
 
@@ -56,5 +57,9 @@ def ccnl_ruleset(
         The assurance.
     """
     return RulesetAssurance(
-        ruleset_identity(ruleset_id), RulesetKind.CCNL, readiness, confidence
+        ruleset_identity(ruleset_id),
+        RulesetKind.CCNL,
+        readiness,
+        confidence,
+        review_due,
     )

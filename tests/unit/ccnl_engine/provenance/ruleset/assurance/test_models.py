@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from datetime import date
+
 import pytest
 
 from ccnl_engine.provenance.ruleset.assurance.models import RulesetKind
@@ -69,3 +71,20 @@ def test_confidence_must_back_a_cleared_tier(
 
     assert ruleset.confidence_contradicts_readiness is contradicts
     assert ruleset.is_production is production
+
+
+@pytest.mark.parametrize(
+    ("on", "overdue"),
+    [(date(2027, 1, 30), False), (date(2027, 1, 31), False), (date(2027, 2, 1), True)],
+)
+def test_a_review_is_overdue_only_after_its_due_day(on: date, overdue: bool) -> None:
+    """The due day is still in time; the day after is not."""
+    ruleset = ccnl_ruleset(_PRODUCTION, review_due=date(2027, 1, 31))
+
+    assert ruleset.review_overdue(on) is overdue
+
+
+def test_a_ruleset_without_review_date_is_never_overdue() -> None:
+    """Tax rulesets record no review date: nothing can fall due."""
+    assert tax_ruleset("tax/2026/industria").review_due is None
+    assert not tax_ruleset("tax/2026/industria").review_overdue(date(2099, 1, 1))

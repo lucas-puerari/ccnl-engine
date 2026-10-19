@@ -18,7 +18,7 @@ both modes compute the same amounts. `EngineMode` is in
 | Mode | Payable when |
 |---|---|
 | `simulation` (default) | No blocker. Ruleset readiness is reported in `result.rulesets`, not enforced. |
-| `operational` | No blocker, and every ruleset that tracks readiness is `production` with a `verified` confidence. Otherwise the result carries one `ruleset_not_production` blocker per such ruleset (detail: the ruleset id), and the amounts stay inspectable. |
+| `operational` | No blocker, and every ruleset that tracks readiness is `production` with a `verified` confidence and a `review_due` not before the payment date. Otherwise the result carries one `ruleset_not_production` blocker per such ruleset (detail: the ruleset id), and the amounts stay inspectable. |
 
 An operational engine returns a result with blockers rather than refusing
 before the calculation: the amounts, the other blockers and the readiness of

@@ -22,7 +22,10 @@ is one :class:`~ccnl_engine.assurance.models.ResultBlocker`:
   the limitation names;
 - in ``operational`` mode only, a ruleset that tracks a readiness tier and
   is not ``production``, or a run where no ruleset tracks one (the CCNL
-  identity is missing): the run fails closed.
+  identity is missing): the run fails closed;
+- in ``operational`` mode only, a ``production`` ruleset whose next review
+  was due before the payment date of the run: the tier is no longer
+  current for that run, whatever the installed bundle says.
 
 A ``derived`` rule lowers the evidence axis but does not block on its own:
 the bundle holds no ``verified`` rule yet, so requiring one would block every
@@ -50,6 +53,8 @@ from ccnl_engine.assurance.policies import EngineMode
 from ccnl_engine.decision.models import CalculationStatus
 
 if TYPE_CHECKING:
+    import datetime as dt
+
     from ccnl_engine.capability.results import CapabilityReport
     from ccnl_engine.decision.models import (
         CalculationDecision,
@@ -67,6 +72,7 @@ def assess(
     report: CapabilityReport,
     rulesets: tuple[RulesetAssurance, ...],
     mode: EngineMode,
+    payment_date: dt.date,
     limitations: tuple[ModelLimitation, ...] = (),
 ) -> ResultAssurance:
     """Derive the assurance of one run from what the run recorded.
@@ -77,6 +83,8 @@ def assess(
         report: Capability report of the run.
         rulesets: Rulesets the payable rules of the run came from.
         mode: Payability policy of the engine.
+        payment_date: Payment date of the run; in ``operational`` mode a
+            ruleset whose review was due before it is not production.
         limitations: Model limitations that concern the run.
 
     Returns:
@@ -95,7 +103,7 @@ def assess(
             _blocker(BlockerCode.CALLER_SUPPLIED_RULE, feature, ",".join(fields))
             for feature, fields in report.caller_supplied.items()
         ),
-        *_readiness_blockers(rulesets, mode),
+        *_readiness_blockers(rulesets, mode, payment_date),
         *(
             _blocker(BlockerCode.OPEN_LIMITATION, lim.capability, lim.id, lim.totals)
             for lim in limitations
@@ -130,7 +138,7 @@ def assess_nothing_computed(mode: EngineMode) -> ResultAssurance:
     """
     blockers = (
         _blocker(BlockerCode.RULE_SOURCE_WEAK, None, EvidenceStatus.MISSING),
-        *_readiness_blockers((), mode),
+        *_untracked_readiness_blockers(mode),
     )
     return ResultAssurance(
         calculation=CalculationStatus.FINAL,
@@ -169,20 +177,39 @@ def _evidence_blockers(report: CapabilityReport) -> tuple[ResultBlocker, ...]:
 NO_TRACKED_READINESS = "no_ruleset_tracks_readiness"
 
 
-def _readiness_blockers(
-    rulesets: tuple[RulesetAssurance, ...], mode: EngineMode
-) -> tuple[ResultBlocker, ...]:
+def _untracked_readiness_blockers(mode: EngineMode) -> tuple[ResultBlocker, ...]:
     if mode is EngineMode.SIMULATION:
         return ()
+    return (_blocker(BlockerCode.RULESET_NOT_PRODUCTION, None, NO_TRACKED_READINESS),)
+
+
+def _readiness_blockers(
+    rulesets: tuple[RulesetAssurance, ...],
+    mode: EngineMode,
+    payment_date: dt.date,
+) -> tuple[ResultBlocker, ...]:
     tracked = tuple(r for r in rulesets if r.readiness_tracked)
-    if not tracked:
-        return (
-            _blocker(BlockerCode.RULESET_NOT_PRODUCTION, None, NO_TRACKED_READINESS),
-        )
+    if mode is EngineMode.SIMULATION or not tracked:
+        return _untracked_readiness_blockers(mode)
     return tuple(
-        _blocker(BlockerCode.RULESET_NOT_PRODUCTION, None, r.id)
+        blocker
         for r in tracked
-        if not r.is_production
+        if (blocker := _readiness_blocker(r, payment_date)) is not None
+    )
+
+
+def _readiness_blocker(
+    ruleset: RulesetAssurance, payment_date: dt.date
+) -> ResultBlocker | None:
+    if not ruleset.is_production:
+        return _blocker(BlockerCode.RULESET_NOT_PRODUCTION, None, ruleset.id)
+    if not ruleset.review_overdue(payment_date):
+        return None
+    remediation = _REVIEW_OVERDUE.format(
+        detail=ruleset.id, review_due=ruleset.review_due, payment_date=payment_date
+    )
+    return ResultBlocker(
+        BlockerCode.RULESET_NOT_PRODUCTION, None, ruleset.id, remediation
     )
 
 
@@ -224,6 +251,17 @@ _REMEDIATION: dict[BlockerCode, str] = {
         "simulation mode"
     ),
 }
+
+
+#: Remediation of a ``production`` ruleset whose review was due before the
+#: payment date: the blocker keeps the code and detail of any ruleset short
+#: of production, only the reason differs.
+_REVIEW_OVERDUE = (
+    "{detail} was due for review on {review_due}, before the payment date "
+    "{payment_date}, so it no longer counts as production: review it and move "
+    "verification.review_due forward, install a bundle that does, or "
+    "calculate in simulation mode"
+)
 
 
 def _blocker(

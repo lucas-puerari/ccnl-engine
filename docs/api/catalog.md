@@ -26,6 +26,8 @@ if not ruleset.is_production:
 | `confidence` | `VerificationStatus`: the CCNL `verification.confidence`, or the identity `verification_status` |
 | `confidence_contradicts_readiness` | `True` when a `reviewed` or `production` tier lacks a `verified` confidence |
 | `is_production` | `production` and a confidence that agrees |
+| `review_due` | Day the next review of a CCNL is due (`verification.review_due`); `None` for the other kinds |
+| `review_overdue(day)` | `True` when `review_due` is before `day`; an `operational` run paid after it is blocked |
 
 `ContractSummary.validity` is the `ValidityWindow` (`first_day`,
 `last_day`, both included, `last_day` `None` when open-ended) on which every

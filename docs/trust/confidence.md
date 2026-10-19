@@ -76,8 +76,8 @@ one:
 | `caller_supplied_rule` | capability | field names | The caller supplied a rate or multiplier in place of a bundled rule |
 | `open_limitation` | capability | limitation id | An open [model limitation](#model-limitations) with monetary impact `yes` or `unknown` applies to the run |
 | `run_not_computed` | rule name (`base_salary`) | run id | Competence or tax year only: a run was left out because the bundle holds no base salary of its level on its competence date; see `ContractSummary.validity` |
-| `ruleset_conflict` | `None` | `id@version` | Competence or tax year only: two runs read the same ruleset version with a different hash, kind, readiness or confidence (a custom repository whose data changed between runs); both contents stay in `rulesets` |
-| `ruleset_not_production` | `None` | ruleset id | `operational` mode only: a ruleset that tracks readiness (today, the CCNL) is not `production` with a `verified` confidence; `no_ruleset_tracks_readiness` when the CCNL has no ruleset identity |
+| `ruleset_conflict` | `None` | `id@version` | Competence or tax year only: two runs read the same ruleset version with a different hash, kind, readiness, confidence or review date (a custom repository whose data changed between runs); both contents stay in `rulesets` |
+| `ruleset_not_production` | `None` | ruleset id | `operational` mode only: a ruleset that tracks readiness (today, the CCNL) is not `production` with a `verified` confidence, or its `verification.review_due` is before the payment date of the run (see [Readiness](readiness.md#review-date-at-run-time)); `no_ruleset_tracks_readiness` when the CCNL has no ruleset identity |
 
 A `derived` rule (taken from a cited document location, with no recorded
 human check) lowers the evidence axis but does not block on its own. Only
@@ -122,7 +122,8 @@ raises a `rule_source_missing` issue and is `incomplete`.
 
 Use an amount for payment only when its result says `is_payable`. In
 `operational` mode every run also carries a `ruleset_not_production` blocker
-unless its CCNL is `production` (see
+unless its CCNL is `production` and its review is not overdue on the payment
+date (see
 [Readiness](readiness.md#simulation-and-operational-modes)).
 
 ## Defaults of the public inputs
