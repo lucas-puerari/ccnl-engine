@@ -80,7 +80,8 @@ class PeriodResult:
             identity, hash, readiness and confidence.
         mode: Payability policy of the engine that produced the result;
             ``operational`` adds a blocker for every ruleset short of
-            ``production``.
+            ``production``, or whose review was due before
+            :attr:`payment_date`.
         limitations: Model limitations that concern the run (see
             :class:`~ccnl_engine.limitation.models.ModelLimitation`);
             an open one with a monetary impact blocks the amounts.
@@ -125,6 +126,7 @@ class PeriodResult:
             self.capability_report,
             self.rulesets,
             self.mode,
+            self.payment_date,
             self.limitations,
         )
 

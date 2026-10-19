@@ -174,6 +174,10 @@ class CalculationIssue:
             issue, e.g. ``"employment_income"``; one of
             :data:`PUBLIC_FACTS`, ``None`` when the issue is not about a
             missing fact.
+        capability: Capability whose amounts the issue concerns, e.g.
+            ``"seniority"``; ``None`` for a condition of the whole run (the
+            opening state, the provenance of the rules).  The assessment
+            reports one blocker per cause of a capability.
 
     Raises:
         ValueError: When ``code`` is not lower snake case, ``fact`` is not
@@ -185,6 +189,7 @@ class CalculationIssue:
     status: CalculationStatus
     source: SourceLocation | None = None
     fact: str | None = None
+    capability: str | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         _require_code(self.code, "code")

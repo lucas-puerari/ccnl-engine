@@ -251,10 +251,27 @@ Both modes compute the same amounts.
 | Mode | Readiness |
 |---|---|
 | `simulation` (default) | Reported in `result.rulesets`, not enforced. A result can be payable while its CCNL is `exploratory`: payability says every rule the run needed was known, sourced and applied, not that a person checked the values. |
-| `operational` | Enforced: each ruleset that tracks a tier and is not `is_production` adds a `ruleset_not_production` blocker naming its id. A run whose CCNL has no ruleset identity fails closed. |
+| `operational` | Enforced: each ruleset that tracks a tier and is not `is_production` adds a `ruleset_not_production` blocker naming its id. So does a `production` ruleset whose `verification.review_due` falls before the payment date of the run (see [Review date](#review-date-at-run-time)). A run whose CCNL has no ruleset identity fails closed. |
 
 An operational engine returns the result with its blockers instead of
 refusing before the calculation, so the amounts and every other blocker stay
 inspectable. With <!-- trust:readiness-production -->12<!-- /trust:readiness-production -->
 `production` rulesets, only those CCNLs are payable in operational mode: the
 gate opens one CCNL at a time, as each is promoted.
+
+### Review date at run time
+
+A `production` tier holds until the next review is due. Each CCNL records
+that day in `verification.review_due`, and `RulesetAssurance.review_due`
+carries it into every run. In `operational` mode a run whose payment date is
+later than `review_due` does not count the CCNL as production: it gets the
+same `ruleset_not_production` blocker (detail: the ruleset id), with a
+remediation that names the review date and the payment date. The due day
+itself is still in time. An installed wheel therefore stops paying a CCNL
+whose review lapsed, even though the release workflow
+(`scripts/provenance/check.py --deadlines`) no longer runs against it.
+
+`RulesetAssurance.is_production` stays a property of the file, so
+`inspect_ruleset` reports the tier before any run; use
+`RulesetAssurance.review_overdue(day)` to check a date yourself. `simulation`
+mode ignores the review date, as it ignores the tier.

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import date
 from typing import TYPE_CHECKING
 
 import pytest
@@ -28,10 +29,13 @@ _SIMULATION = EngineMode.SIMULATION
 _OPERATIONAL = EngineMode.OPERATIONAL
 _TAX = tax_ruleset("tax/2026/industria")
 _PRODUCTION = ccnl_ruleset(RulesetReadiness.PRODUCTION)
+_PAID = date(2026, 6, 27)
 
 
 def _clean_run(
-    rulesets: tuple[RulesetAssurance, ...], mode: EngineMode
+    rulesets: tuple[RulesetAssurance, ...],
+    mode: EngineMode,
+    payment_date: date = _PAID,
 ) -> ResultAssurance:
     """Assess a run that nothing but readiness could block.
 
@@ -44,7 +48,7 @@ def _clean_run(
         rule_sources={"irpef": ProvenanceStatus.DERIVED},
         caller_supplied={},
     )
-    return assess((), (), report, rulesets, mode)
+    return assess((), (), report, rulesets, mode, payment_date)
 
 
 def _readiness_details(assurance: ResultAssurance) -> list[str]:
@@ -106,3 +110,56 @@ def test_operational_fails_closed_without_a_tracked_ruleset() -> None:
     assert simulated.is_payable
     assert _readiness_details(operational) == [NO_TRACKED_READINESS]
     assert not operational.is_payable
+
+
+def _due(review_due: date | None) -> RulesetAssurance:
+    return ccnl_ruleset(
+        RulesetReadiness.PRODUCTION, ruleset_id="ccnl/y", review_due=review_due
+    )
+
+
+def test_a_production_ccnl_past_its_review_date_blocks_operational() -> None:
+    """A review due before the payment date leaves the tier out of date."""
+    rulesets = (_due(date(2026, 6, 26)), _TAX)
+
+    operational = _clean_run(rulesets, _OPERATIONAL)
+
+    assert not operational.is_payable
+    (blocker,) = operational.blockers
+    assert blocker.code is BlockerCode.RULESET_NOT_PRODUCTION
+    assert blocker.feature is None
+    assert blocker.detail == "ccnl/y"
+    assert "2026-06-26" in blocker.remediation
+    assert "2026-06-27" in blocker.remediation
+    assert "simulation mode" in blocker.remediation
+
+
+@pytest.mark.parametrize(
+    "review_due", [date(2026, 6, 27), date(2027, 1, 31), None], ids=str
+)
+def test_a_review_not_yet_overdue_keeps_the_ccnl_payable(
+    review_due: date | None,
+) -> None:
+    """The due day itself, a later day or no date at all do not block."""
+    assurance = _clean_run((_due(review_due), _TAX), _OPERATIONAL)
+
+    assert assurance.is_payable
+
+
+def test_simulation_ignores_an_overdue_review() -> None:
+    """Simulation reports readiness without enforcing it, dates included."""
+    assurance = _clean_run((_due(date(2026, 1, 31)), _TAX), _SIMULATION)
+
+    assert assurance.is_payable
+
+
+def test_a_ccnl_short_of_production_keeps_its_own_remediation() -> None:
+    """A ruleset already short of production raises one blocker, not two."""
+    ruleset = ccnl_ruleset(
+        RulesetReadiness.REVIEWED, ruleset_id="ccnl/y", review_due=date(2026, 1, 31)
+    )
+
+    (blocker,) = _clean_run((ruleset, _TAX), _OPERATIONAL).blockers
+
+    assert blocker.detail == "ccnl/y"
+    assert "promote it" in blocker.remediation

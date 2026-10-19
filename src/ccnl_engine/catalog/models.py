@@ -23,8 +23,8 @@ __all__ = ["ccnl_ruleset_assurance"]
 def ccnl_ruleset_assurance(ccnl: CCNL) -> RulesetAssurance | None:
     """Return the assurance of the ruleset of ``ccnl``.
 
-    Readiness and confidence come from ``ccnl.verification``, the only
-    place a reviewer records them.
+    Readiness, confidence and the next review date come from
+    ``ccnl.verification``, the only place a reviewer records them.
 
     Returns:
         The assurance, or ``None`` when the CCNL records no ruleset
@@ -37,4 +37,5 @@ def ccnl_ruleset_assurance(ccnl: CCNL) -> RulesetAssurance | None:
         kind=RulesetKind.CCNL,
         readiness=ccnl.verification.readiness,
         confidence=ccnl.verification.confidence,
+        review_due=ccnl.verification.review_due,
     )

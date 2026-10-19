@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from datetime import date
+
 from ccnl_engine.agreement.facade import CCNLVerification
 from ccnl_engine.catalog.models import ccnl_ruleset_assurance
 from ccnl_engine.provenance.ruleset.assurance.models import RulesetKind
@@ -14,11 +16,12 @@ from tests.unit.ccnl_engine.provenance.ruleset.builders import ruleset_identity
 
 
 def test_readiness_and_confidence_come_from_the_verification() -> None:
-    """The tier and confidence are those a reviewer recorded."""
+    """The tier, confidence and review date are those a reviewer recorded."""
     identity = ruleset_identity("ccnl/minimal")
     verification = CCNLVerification(
         confidence=VerificationStatus.UNVERIFIED,
         readiness=RulesetReadiness.REVIEWED,
+        review_due=date(2027, 1, 31),
     )
     ccnl = make_minimal_ccnl().model_copy(
         update={"ruleset": identity, "verification": verification}
@@ -31,6 +34,7 @@ def test_readiness_and_confidence_come_from_the_verification() -> None:
     assert assurance.kind is RulesetKind.CCNL
     assert assurance.readiness is RulesetReadiness.REVIEWED
     assert assurance.confidence is VerificationStatus.UNVERIFIED
+    assert assurance.review_due == date(2027, 1, 31)
     assert assurance.confidence_contradicts_readiness
 
 

@@ -80,6 +80,7 @@ _CORRECTED_RUN = "corrected_run"
 _NONE = "none"
 _HOURS_ISSUE = CalculationIssue(
     code=HOURS_UNKNOWN,
+    capability="base_salary",
     message=(
         "the CCNL pays the worker by the ordinary hour worked, which the run "
         "does not state: the pay of the month is undetermined, the amounts "
@@ -231,6 +232,7 @@ class RunProration:
         first, last = self.span
         return CalculationIssue(
             code=RULE_MISSING,
+            capability="base_salary",
             message=(
                 f"employment covers only {first.isoformat()} to "
                 f"{last.isoformat()} of the month and the CCNL data define no "

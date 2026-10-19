@@ -114,6 +114,7 @@ class SurtaxTable:
             rates_year = decision.inputs.get("rates_year", str(self.tax_year - 1))
             issue = CalculationIssue(
                 code=PRIOR_YEAR_RATES_ISSUE,
+                capability=self.capability,
                 message=(
                     f"{self.capability}: the bundled table holds the rates "
                     f"of {rates_year} for code {self.code!r}; the surtax of "
@@ -128,6 +129,7 @@ class SurtaxTable:
             return extra
         issue = CalculationIssue(
             code=self.unknown_issue,
+            capability=self.capability,
             message=(
                 f"{self.capability}: no {self.tax_year} table for code "
                 f"{self.code!r}; the surtax is not withheld and the result "
@@ -145,6 +147,7 @@ class SurtaxTable:
         """
         return CalculationIssue(
             code=code,
+            capability=self.capability,
             message=f"{self.capability} for code {self.code!r}: {detail}",
             status=CalculationStatus.PROVISIONAL,
         )

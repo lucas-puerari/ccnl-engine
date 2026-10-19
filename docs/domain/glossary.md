@@ -214,7 +214,8 @@ The `CalculationDecision` of the regional or municipal surtax
 (`determined_at_conguaglio`: final, amount 0, any run before the
 conguaglio), a surtax not due by rule (`no_irpef_due`,
 `below_exemption_threshold`: final, amount 0), a table applied
-(`table_applied`: final; `prior_year_rates_applied`,
+(`table_applied` and `prior_year_rates_in_force`: final;
+`prior_year_rates_applied`,
 `dependent_provisions_not_applied` and `specific_exemptions_not_applied`:
 provisional) and a
 well-formed code without a

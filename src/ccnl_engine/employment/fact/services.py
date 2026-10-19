@@ -67,6 +67,7 @@ def no_pay_issue(ctx: RunContext) -> CalculationIssue | None:
         return None
     return CalculationIssue(
         code="deduction_days_unknown",
+        capability="irpef",
         message=(
             "an absence of the run does not state whether any pay is due for "
             "its days: the days of the art. 13 TUIR deductions count them; "
@@ -92,6 +93,7 @@ def full_time_issue(ctx: RunContext) -> CalculationIssue | None:
         return None
     return CalculationIssue(
         code="full_time_hours_unknown",
+        capability="base_salary",
         message=(
             f"the employment states {hours.value} weekly hours but not the "
             "full time of the contract: the part-time fraction is "
@@ -123,6 +125,7 @@ def roles_issue(ctx: RunContext) -> CalculationIssue | None:
         return None
     return CalculationIssue(
         code="roles_unknown",
+        capability="base_salary",
         message=(
             f"the level pays allowances restricted to a role ({', '.join(gated)}) "
             "and the roles of the worker are not stated: the amounts shown "
@@ -146,6 +149,7 @@ def provincial_issue(ctx: RunContext) -> CalculationIssue | None:
         return None
     return CalculationIssue(
         code="provincial_pay_element_unknown",
+        capability="base_salary",
         message=(
             f"the level pays {', '.join(unknown)} only where no provincial "
             "element replaces it, and the employer does not say whether one "
@@ -170,6 +174,7 @@ def sector_issue(ctx: RunContext) -> CalculationIssue | None:
         return None
     return CalculationIssue(
         code="inps_sector_unknown",
+        capability="inps_employer",
         message=(
             f"the employers of the CCNL are classified in {', '.join(sectors)} "
             "by the activity they carry out, and the employer does not state "

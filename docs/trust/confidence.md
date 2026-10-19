@@ -63,21 +63,23 @@ request has no reader for.
 ## Payability rules
 
 A result is payable only when it has no blocker. Each of the following adds
-one:
+one, once per cause: a capability with a missing fact or an unresolved
+requirement reports only those, and one with an issue or a non-final decision
+does not report its gap as well.
 
 | `BlockerCode` | `feature` | `detail` | Raised when |
 |---|---|---|---|
-| `calculation_issue` | `None` | issue code | The run raised an issue (an assumption, a fallback, an unrecovered shortfall) |
+| `calculation_issue` | capability (`None` for the whole run) | issue code | The run raised an issue (an assumption, a fallback, an unrecovered shortfall) |
 | `calculation_issue` | capability | decision reason | A decision is not `final` |
-| `missing_fact` | `None` | fact name | An issue names a fact the calculation needs and the request did not supply |
+| `missing_fact` | capability (`None` for the whole run, e.g. `opening_state`) | fact name, a key of `ccnl_engine.results.PUBLIC_FACTS` | An issue names a fact the calculation needs and the request did not supply; the remediation names the public field (`Employment.seniority`) |
 | `requirement_unresolved` | capability | fact path | No decision ruled out a required capability and its applicability fact (e.g. `facts.regione`) was left to its default |
 | `capability_not_computed` | capability | gap kind | A capability that applies to the run is unsupported, unresolved or partial |
 | `rule_source_weak` | capability | `assumed` or `missing` | An executed capability read a rule weaker than the evidence its registry entry accepts (`derived` for every capability today), or no rule of the run carries a record |
 | `caller_supplied_rule` | capability | field names | The caller supplied a rate or multiplier in place of a bundled rule |
 | `open_limitation` | capability | limitation id | An open [model limitation](#model-limitations) with monetary impact `yes` or `unknown` applies to the run |
 | `run_not_computed` | rule name (`base_salary`) | run id | Competence or tax year only: a run was left out because the bundle holds no base salary of its level on its competence date; see `ContractSummary.validity` |
-| `ruleset_conflict` | `None` | `id@version` | Competence or tax year only: two runs read the same ruleset version with a different hash, kind, readiness or confidence (a custom repository whose data changed between runs); both contents stay in `rulesets` |
-| `ruleset_not_production` | `None` | ruleset id | `operational` mode only: a ruleset that tracks readiness (today, the CCNL) is not `production` with a `verified` confidence; `no_ruleset_tracks_readiness` when the CCNL has no ruleset identity |
+| `ruleset_conflict` | `None` | `id@version` | Competence or tax year only: two runs read the same ruleset version with a different hash, kind, readiness, confidence or review date (a custom repository whose data changed between runs); both contents stay in `rulesets` |
+| `ruleset_not_production` | `None` | ruleset id | `operational` mode only: a ruleset that tracks readiness (today, the CCNL) is not `production` with a `verified` confidence, or its `verification.review_due` is before the payment date of the run (see [Readiness](readiness.md#review-date-at-run-time)); `no_ruleset_tracks_readiness` when the CCNL has no ruleset identity |
 
 A `derived` rule (taken from a cited document location, with no recorded
 human check) lowers the evidence axis but does not block on its own. Only
@@ -122,7 +124,8 @@ raises a `rule_source_missing` issue and is `incomplete`.
 
 Use an amount for payment only when its result says `is_payable`. In
 `operational` mode every run also carries a `ruleset_not_production` blocker
-unless its CCNL is `production` (see
+unless its CCNL is `production` and its review is not overdue on the payment
+date (see
 [Readiness](readiness.md#simulation-and-operational-modes)).
 
 ## Defaults of the public inputs

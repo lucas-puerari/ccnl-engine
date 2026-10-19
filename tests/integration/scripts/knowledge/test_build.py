@@ -231,6 +231,38 @@ def test_build_carries_rows_without_a_delibera() -> None:
     assert raw.rates["A002"].rates_year == 2025
 
 
+def test_a_closed_list_carries_the_rates_as_derived() -> None:
+    """After 20 December no delibera takes effect: carried rates are final."""
+    current, previous = _lists()
+    closed = BuildOptions(retrieved="2026-12-21", digests=("a", "b"), version="2026.9")
+    rates = build(2026, [current, previous], closed).payload["rates"]
+
+    record = rates["A002"]["provenance"]
+    assert record["status"] == "derived"
+    assert record["location"]["source_document"]["url"].endswith("anno=2026")
+    assert "D.Lgs. 23/2011 art. 14 c. 8" in record["transformation"]
+    assert (
+        ComunaleRaw
+        .model_validate(build(2026, [current, previous], closed).payload)
+        .rates["A002"]
+        .provenance
+        is not None
+    )
+
+
+def test_the_list_stays_open_until_20_december() -> None:
+    """Retrieved on 20 December, a delibera may still take effect."""
+    current, previous = _lists()
+    open_ = BuildOptions(retrieved="2026-12-20", digests=("a", "b"), version="2026.9")
+    rates = build(2026, [current, previous], open_).payload["rates"]
+
+    assert rates["A002"]["provenance"]["status"] == "assumed"
+    assert (
+        "updated until 20 December 2026"
+        in (rates["A002"]["provenance"]["transformation"])
+    )
+
+
 def test_inapplicable_delibere_take_the_rates_in_force() -> None:
     """A late delibera is skipped, in the table year and the years before.
 

@@ -132,6 +132,7 @@ class RunSeniority:
         gated = ", ".join(self.gated) or _NONE
         return CalculationIssue(
             code="seniority_unknown",
+            capability=CAPABILITY,
             message=(
                 "the level pays seniority increments or allowances gated by "
                 f"months of service (gated: {gated}): without the recognised "
