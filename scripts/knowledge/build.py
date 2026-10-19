@@ -11,8 +11,12 @@ of the year the list shows ``0*`` for a municipality that has not yet
 published a delibera for the year.  Without an applicable delibera the
 rates in force stay in force (art. 1 c. 169 L. 296/2006), so such a row
 takes the row of the list of the year before, with ``rates_year`` set to
-that year and an ``assumed`` provenance: the engine applies them as
-provisional.  A delibera the list marks inapplicable (adopted after the
+that year.  Retrieved up to 20 December of the year, such a row has an
+``assumed`` provenance: a delibera may still take effect (D.Lgs. 23/2011
+art. 14 c. 8) and the engine applies the rates as provisional.  Retrieved
+after it, the list is closed for the year and the row has a ``derived``
+provenance: the rates stay in force by law and the engine applies them as
+final.  A delibera the list marks inapplicable (adopted after the
 deadline) is skipped the same way, down the lists passed with
 ``--previous``.  ``0*`` in a list of an earlier year, closed after 20
 December, means no surtax (rate 0).  A municipality missing from the list
@@ -48,6 +52,7 @@ import json
 import re
 import sys
 from dataclasses import dataclass, field
+from datetime import date
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, Final
@@ -410,6 +415,16 @@ def _resolve(year: int, code: str, lists: Sequence[MefList]) -> _Source | None:
     raise RowError(msg)
 
 
+def _closed(year: int, retrieved: str) -> bool:
+    """Whether a list retrieved on ``retrieved`` is closed for ``year``.
+
+    Returns:
+        True after 20 December of ``year``, when no delibera published later
+        takes effect for it (D.Lgs. 23/2011 art. 14 c. 8).
+    """
+    return date.fromisoformat(retrieved) > date(year, 12, 20)
+
+
 def _carried_note(year: int, source: _Source, retrieved: str) -> str:
     inapplicable = ""
     if source.skipped:
@@ -418,12 +433,17 @@ def _carried_note(year: int, source: _Source, retrieved: str) -> str:
             f" (the delibera listed for {years} was adopted after the deadline "
             "and the MEF list marks it inapplicable)"
         )
-    return (
+    carried = (
         f"No applicable {year} delibera in the MEF list retrieved on "
         f"{retrieved}{inapplicable}; the rates in force in {source.year} stay "
-        f"in force (art. 1 c. 169 L. 296/2006). The {year} list is updated "
-        f"until 20 December {year}."
+        f"in force (art. 1 c. 169 L. 296/2006)."
     )
+    if _closed(year, retrieved):
+        return (
+            f"{carried} The list closed on 20 December {year}: a later delibera "
+            "takes effect from the next year (D.Lgs. 23/2011 art. 14 c. 8)."
+        )
+    return f"{carried} The {year} list is updated until 20 December {year}."
 
 
 def _entry(year: int, code: str, source: _Source, retrieved: str) -> dict[str, Any]:
@@ -442,6 +462,15 @@ def _entry(year: int, code: str, source: _Source, retrieved: str) -> dict[str, A
         entry["rates_year"] = source.year
         note = _carried_note(year, source, retrieved)
         entry["provenance"] = {"status": "assumed", "transformation": note}
+        if _closed(year, retrieved):
+            entry["provenance"] = {
+                "status": "derived",
+                "location": {
+                    "source_document": _document(year, retrieved),
+                    "section": f"elenco generale {year}, closed on 20 December",
+                },
+                "transformation": note,
+            }
     elif correction is not None:
         entry["provenance"] = {"status": "assumed", "transformation": _CORRECTION_NOTE}
     return entry
