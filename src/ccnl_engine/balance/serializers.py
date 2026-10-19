@@ -3,11 +3,14 @@
 A state persisted between runs is plain JSON: every value of the state tree
 is a dataclass, an enum, a ``Decimal``, a ``date``, a tuple or a scalar, each
 written with a tag that names its type.  The envelope carries the schema
-version and the engine and knowledge-bundle versions that wrote it: reading
-accepts only the current three, because balances computed under other code
-or rules cannot continue a chain reproducibly.  Types are named by
-:data:`STATE_TYPES`, an explicit registry, and rebuilt through their
-constructors, so every invariant of the state is checked again.
+version and the engine and knowledge-bundle versions that wrote it.  Reading
+checks only the schema: a state of an earlier schema, back to
+:data:`FIRST_SCHEMA_VERSION`, is brought to the current one by the
+:data:`STATE_MIGRATIONS` before it is decoded, and the engine and bundle
+versions stay in the text for audit, so a release of either does not
+invalidate the stored states.  Types are named by :data:`STATE_TYPES`, an
+explicit registry, and rebuilt through their constructors, so every
+invariant of the state is checked again.
 """
 
 from __future__ import annotations
@@ -54,7 +57,15 @@ from ccnl_engine.tax_credit.account.models import (
 from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
 from ccnl_engine.withholding.deferral.inputs import DeferredShortfall
 
-__all__ = ["STATE_TYPES", "period_state_from_json", "period_state_to_json"]
+__all__ = [
+    "FIRST_SCHEMA_VERSION",
+    "STATE_MIGRATIONS",
+    "STATE_TYPES",
+    "StateMigration",
+    "migrate_state",
+    "period_state_from_json",
+    "period_state_to_json",
+]
 
 _FEATURE = "period_state"
 _FIELD = "PeriodState.json"
@@ -92,6 +103,21 @@ STATE_TYPES: Mapping[str, type] = MappingProxyType({
 })
 
 
+#: A step of the state tree (the ``state`` value of the JSON) from one schema
+#: version to the next.
+type StateMigration = Callable[[object], object]
+
+#: The oldest schema a persisted state is still read from: the first one
+#: written, states of earlier engines were not persisted.
+FIRST_SCHEMA_VERSION = 14
+
+#: The step from each schema version to the next, keyed by the version it
+#: reads.  A bump of :attr:`PeriodState.SCHEMA_VERSION` comes with the step
+#: from the previous version, so a stored state stays readable; a test holds
+#: the registry to every version from :data:`FIRST_SCHEMA_VERSION`.
+STATE_MIGRATIONS: Mapping[int, StateMigration] = MappingProxyType({})
+
+
 def period_state_to_json(
     state: PeriodState, *, engine_version: str, bundle_version: str
 ) -> str:
@@ -112,19 +138,23 @@ def period_state_to_json(
     return json.dumps(payload, sort_keys=True)
 
 
-def period_state_from_json(
-    text: str, *, engine_version: str, bundle_version: str
-) -> PeriodState:
+def period_state_from_json(text: str) -> PeriodState:
     """Return the state written by :func:`period_state_to_json`.
+
+    The state of an earlier schema is migrated to the current one first.
+    The engine and bundle versions that wrote it are not compared with the
+    running ones: they stay in the text, for audit.
 
     Returns:
         The state, its invariants checked by its constructors.
 
     Raises:
-        InvalidInputError: When the text is not such JSON, its schema,
-            engine or bundle version is not the current one, an object has
-            not the shape of its tag, names a type outside
-            :data:`STATE_TYPES`, or a constructor rejects a value.
+        InvalidInputError: When the text is not such JSON, its schema
+            version is not an integer from :data:`FIRST_SCHEMA_VERSION` to
+            the current one, its engine or bundle version is not a string,
+            an object has not the shape of its tag, names a type outside
+            :data:`STATE_TYPES`, or a migration or a constructor rejects a
+            value.
     """
     try:
         payload = json.loads(text)
@@ -132,11 +162,13 @@ def period_state_from_json(
         _reject(f"not JSON: {exc}")
     if not isinstance(payload, dict):
         _reject("not a persisted state")
-    _check_version(payload, "schema_version", PeriodState.SCHEMA_VERSION)
-    _check_version(payload, "engine_version", engine_version)
-    _check_version(payload, "bundle_version", bundle_version)
+    schema = _schema_version(payload)
+    for key in ("engine_version", "bundle_version"):
+        if not isinstance(payload.get(key), str):
+            _reject(f"{key} {payload.get(key)!r} is not a version string")
     try:
-        state = _decode(payload.get("state"))
+        tree = migrate_state(payload.get("state"), schema)
+        state = _decode(tree)
     except InvalidInputError:
         raise
     except (ArithmeticError, LookupError, TypeError, ValueError, RecursionError) as exc:
@@ -146,14 +178,43 @@ def period_state_from_json(
     return state
 
 
-def _check_version(payload: dict[str, Any], key: str, expected: object) -> None:
-    found = payload.get(key)
-    if found != expected:
+def migrate_state(
+    tree: object,
+    version: int,
+    *,
+    migrations: Mapping[int, StateMigration] = STATE_MIGRATIONS,
+    target: int = PeriodState.SCHEMA_VERSION,
+) -> object:
+    """Return the state tree of schema ``version`` brought to ``target``.
+
+    Each step of ``migrations`` from ``version`` up to ``target`` is applied
+    in order; a tree already of ``target`` is returned as it is.  A step
+    missing from ``migrations`` is a defect of the registry and raises
+    ``KeyError``.
+
+    Returns:
+        The state tree of schema ``target``.
+    """
+    for step in range(version, target):
+        tree = migrations[step](tree)
+    return tree
+
+
+def _schema_version(payload: dict[str, Any]) -> int:
+    found = payload.get("schema_version")
+    if type(found) is not int:
+        _reject(f"schema_version {found!r} is not an integer")
+    if found > PeriodState.SCHEMA_VERSION:
         _reject(
-            f"{key} {found!r}, expected {expected!r}: a state written by another "
-            "engine, bundle or schema is recomputed or imported as opening "
-            "balances, not read"
+            f"schema_version {found}, newer than {PeriodState.SCHEMA_VERSION}: "
+            "a state written by a later engine is read by that engine"
         )
+    if found < FIRST_SCHEMA_VERSION:
+        _reject(
+            f"schema_version {found}, older than {FIRST_SCHEMA_VERSION}: the "
+            "state is recomputed or imported as opening balances, not read"
+        )
+    return found
 
 
 _NAMES: Mapping[type, str] = MappingProxyType({
