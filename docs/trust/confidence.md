@@ -63,13 +63,15 @@ request has no reader for.
 ## Payability rules
 
 A result is payable only when it has no blocker. Each of the following adds
-one:
+one, once per cause: a capability with a missing fact or an unresolved
+requirement reports only those, and one with an issue or a non-final decision
+does not report its gap as well.
 
 | `BlockerCode` | `feature` | `detail` | Raised when |
 |---|---|---|---|
-| `calculation_issue` | `None` | issue code | The run raised an issue (an assumption, a fallback, an unrecovered shortfall) |
+| `calculation_issue` | capability (`None` for the whole run) | issue code | The run raised an issue (an assumption, a fallback, an unrecovered shortfall) |
 | `calculation_issue` | capability | decision reason | A decision is not `final` |
-| `missing_fact` | `None` | fact name | An issue names a fact the calculation needs and the request did not supply |
+| `missing_fact` | capability (`None` for the whole run, e.g. `opening_state`) | fact name, a key of `ccnl_engine.results.PUBLIC_FACTS` | An issue names a fact the calculation needs and the request did not supply; the remediation names the public field (`Employment.seniority`) |
 | `requirement_unresolved` | capability | fact path | No decision ruled out a required capability and its applicability fact (e.g. `facts.regione`) was left to its default |
 | `capability_not_computed` | capability | gap kind | A capability that applies to the run is unsupported, unresolved or partial |
 | `rule_source_weak` | capability | `assumed` or `missing` | An executed capability read a rule weaker than the evidence its registry entry accepts (`derived` for every capability today), or no rule of the run carries a record |

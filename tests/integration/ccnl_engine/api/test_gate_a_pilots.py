@@ -57,13 +57,16 @@ _MILAN: Final = "F205"
 #: Blockers of a worker eligible to the renewal regime: the increment paid
 #: inside the minimo is not quantified (REVIEW A1).
 _RENEWAL: Final[frozenset[Blocker]] = frozenset({
-    ("calculation_issue", "", "rinnovo_minimum_increment_unquantified"),
     (
         "calculation_issue",
         "rinnovo_substitute_tax",
         "renewal_increment_in_minimum_unquantified",
     ),
-    ("capability_not_computed", "rinnovo_substitute_tax", "partial_result"),
+    (
+        "calculation_issue",
+        "rinnovo_substitute_tax",
+        "rinnovo_minimum_increment_unquantified",
+    ),
 })
 #: Blocker of a resident of a comune whose 2026 row carries earlier rates
 #: (REVIEW A2).
@@ -72,10 +75,13 @@ _SURTAX_SOURCE: Final[frozenset[Blocker]] = frozenset({
 })
 #: Blockers of the same resident above the comune's exemption threshold.
 _SURTAX_PRIOR_RATES: Final[frozenset[Blocker]] = frozenset({
-    ("calculation_issue", "", "municipal_surtax_prior_year_rates"),
     ("calculation_issue", "addizionale_comunale", "deferred_to_installments"),
+    (
+        "calculation_issue",
+        "addizionale_comunale",
+        "municipal_surtax_prior_year_rates",
+    ),
     ("calculation_issue", "addizionale_comunale", "prior_year_rates_applied"),
-    ("capability_not_computed", "addizionale_comunale", "partial_result"),
 })
 
 

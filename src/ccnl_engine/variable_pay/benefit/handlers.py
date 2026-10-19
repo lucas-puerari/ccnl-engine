@@ -158,6 +158,7 @@ class FringeAssessment:
             return None
         return CalculationIssue(
             code="fringe_threshold_undetermined",
+            capability=_FRINGE,
             message=(
                 "the fringe-benefit threshold depends on whether a child is "
                 "within the own-income limit of art. 12 c. 2 TUIR (L. "

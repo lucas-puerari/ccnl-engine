@@ -142,6 +142,7 @@ def _serious_issue(
         return None
     return CalculationIssue(
         code=SERIOUS_ILLNESS_UNKNOWN,
+        capability="sickness",
         message=(
             f"sickness episode '{episode.episode_id}': days are paid at the "
             "reduced rate; the CCNL treats a particularly serious illness "
@@ -173,6 +174,7 @@ def _hospital_issue(
             return None
         return CalculationIssue(
             code=HOSPITAL_STAY_UNKNOWN,
+            capability="sickness",
             message=(
                 f"{name}: days are paid at the reduced rate; a hospital stay "
                 "the CCNL pays in full could change them: state the stays of "
@@ -183,6 +185,7 @@ def _hospital_issue(
         )
     return CalculationIssue(
         code=HOSPITAL_STAY,
+        capability="sickness",
         message=(
             f"{name}: days are paid at the reduced rate; a hospital stay the "
             "CCNL could pay in full is not modelled for it"
@@ -201,7 +204,13 @@ def cumulation_issues(
         run pays.
     """
     issues = [
-        CalculationIssue(code=code, message=message, status=_PROVISIONAL, fact=fact)
+        CalculationIssue(
+            code=code,
+            capability="sickness",
+            message=message,
+            status=_PROVISIONAL,
+            fact=fact,
+        )
         for holds, code, message, fact in _messages(episode, report)
         if holds
     ]
@@ -215,6 +224,7 @@ def cumulation_issues(
         issues.append(
             CalculationIssue(
                 code=FIXED_TERM,
+                capability="sickness",
                 message=(
                     f"sickness episode '{episode.episode_id}': the CCNL scales "
                     "the full-pay and comporto days to the length of a "
@@ -277,7 +287,13 @@ def year_issues(
         ),
     )
     return tuple(
-        CalculationIssue(code=code, message=message, status=_PROVISIONAL, fact=fact)
+        CalculationIssue(
+            code=code,
+            capability="sickness",
+            message=message,
+            status=_PROVISIONAL,
+            fact=fact,
+        )
         for holds, code, message, fact in conditions
         if holds
     )

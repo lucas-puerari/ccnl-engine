@@ -19,6 +19,11 @@ takes ``determined_at_conguaglio`` (final, amount 0) for a known table and
   provisions for dependents or disability the engine does not apply, and
   the worker declares a child or a disabled dependent; the surtax without
   them is applied and a provisional issue quotes the provisions;
+- ``prior_year_rates_in_force`` (final): the municipal row holds the rates
+  of an earlier year and its record is not ``assumed``: the MEF list was
+  retrieved after 20 December of the tax year, when a delibera can no longer
+  take effect for it (D.Lgs. 23/2011 art. 14 c. 8), so the rates in force
+  stay in force by law (art. 1 c. 169 L. 296/2006);
 - ``prior_year_rates_applied`` (provisional): the municipal row holds the
   rates of an earlier year (no delibera of the tax year published, or a
   table of advance rates, D.Lgs. 360/1998 art. 1 c. 4), not those of the
@@ -50,6 +55,7 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
 )
 from ccnl_engine.irpef import rules as _irpef
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 from ccnl_engine.surtax.jurisdiction.types import region_table_name
 from ccnl_engine.surtax.table.rules import (
     DEPENDENT_PROVISIONS_ISSUE,
@@ -165,9 +171,14 @@ def _municipal(
             ),
         )
     rates_year = entry.rates_year
+    in_force = (
+        rates_year is not None
+        and not surtax.comunale_rates_are_advance
+        and _carried_by_law(entry)
+    )
     if surtax.comunale_rates_are_advance:
         rates_year = surtax.year - 1
-    if rates_year is not None and rates_year < surtax.year:
+    if rates_year is not None and rates_year < surtax.year and not in_force:
         decision = table.decide(
             "prior_year_rates_applied",
             amount,
@@ -178,9 +189,24 @@ def _municipal(
         decision = table.decide(
             "specific_exemptions_not_applied", amount, CalculationStatus.PROVISIONAL
         )
+    elif rates_year is not None and rates_year < surtax.year:
+        decision = table.decide(
+            "prior_year_rates_in_force", amount, rates_year=str(rates_year)
+        )
     else:
         decision = table.decide("table_applied", amount)
     return decision, table.issues_of(decision, *extra)
+
+
+def _carried_by_law(entry: ComunaleEntry) -> bool:
+    """Whether the earlier rates of ``entry`` are final for the tax year.
+
+    Returns:
+        True when the row has a record that is not ``assumed``: the list it
+        comes from was closed for the tax year.
+    """
+    record = entry.provenance
+    return record is not None and record.status is not ProvenanceStatus.ASSUMED
 
 
 def _deferred(

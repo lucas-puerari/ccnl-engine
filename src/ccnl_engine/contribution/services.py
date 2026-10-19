@@ -43,6 +43,7 @@ if TYPE_CHECKING:
 #: is cut (D.Lgs. 148/2015 art. 29 c. 8-bis).
 FIS_REDUCTION_UNKNOWN = CalculationIssue(
     code="fis_reduction_unknown",
+    capability="inps_employer",
     message=(
         "an employer of the fondo di integrazione salariale with up to five "
         "employees pays 40% less FIS when it has not applied for the assegno "
@@ -57,6 +58,7 @@ FIS_REDUCTION_UNKNOWN = CalculationIssue(
 #: A craft firm above fifteen employees must say whether it owes the CIGS.
 CIGS_INDOTTO_UNKNOWN = CalculationIssue(
     code="cigs_indotto_unknown",
+    capability="inps_employer",
     message=(
         "a craft firm with more than fifteen employees in the indotto of a firm "
         "with the prevailing management influence owes the CIGS contribution "
@@ -71,6 +73,7 @@ CIGS_INDOTTO_UNKNOWN = CalculationIssue(
 #: An agricultural employer must say the zone its contributions are cut in.
 AGRICULTURAL_ZONE_UNKNOWN = CalculationIssue(
     code="agricultural_zone_unknown",
+    capability="inps_employer",
     message=(
         "an agricultural employer of a zona svantaggiata pays 68% less "
         "employer contributions, of a zona particolarmente svantaggiata 75% "
@@ -244,6 +247,7 @@ class TfrAccrual:
         return (
             CalculationIssue(
                 code=TFR_TREASURY_FUND_CODE,
+                capability="tfr",
                 message=(
                     "tfr: whether the TFR goes to the Fondo Tesoreria INPS "
                     "(L. 296/2006 art. 1 c. 756) is not known; it is posted to "

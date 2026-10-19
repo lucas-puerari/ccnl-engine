@@ -111,6 +111,8 @@ report `status` is the coverage axis of the assurance: `incomplete` with an
 unresolved requirement, otherwise `partial` when every gap is partial and
 `incomplete` with any other gap.
 
+::: ccnl_engine.results.PUBLIC_FACTS
+
 ::: ccnl_engine.results.AccountKind
 
 ::: ccnl_engine.results.BlockerCode

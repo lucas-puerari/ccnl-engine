@@ -104,6 +104,7 @@ def _unknown_issue(index: str, tax_year: int) -> CalculationIssue:
     law = separate_tax_rule(tax_year)
     return CalculationIssue(
         code="arrears_reference_period_unknown",
+        capability=_CAPABILITY,
         message=(
             f"ArrearsEvent {index} states no reference_period: arrears of an "
             f"earlier year are taxed separately ({law.citation}), "

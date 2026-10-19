@@ -65,7 +65,9 @@ _ZERO = Decimal(0)
 def _issue(
     code: str, message: str, status: CalculationStatus, fact: str | None = None
 ) -> CalculationIssue:
-    return CalculationIssue(code=code, message=message, status=status, fact=fact)
+    return CalculationIssue(
+        code=code, capability=CAPABILITY, message=message, status=status, fact=fact
+    )
 
 
 def _missing(episode: SicknessEpisode, terms: SicknessTerms) -> CalculationIssue:

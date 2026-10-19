@@ -2,6 +2,8 @@
 
 Assurance and blockers, decisions and issues, model limitations, capability
 gaps, unresolved requirements, runs a year left out and the remittance lines.
+:data:`PUBLIC_FACTS` maps the detail of a ``missing_fact`` blocker to the
+public field that supplies it.
 """
 
 from __future__ import annotations
@@ -18,6 +20,7 @@ from ccnl_engine.assurance.models import (
 from ccnl_engine.capability.requirement.rules import UnresolvedRequirement
 from ccnl_engine.capability.results import CapabilityGap, CapabilityScope
 from ccnl_engine.decision.models import (
+    PUBLIC_FACTS,
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
@@ -36,6 +39,7 @@ from ccnl_engine.limitation.models import (
 from ccnl_engine.year.coverage.models import UncoveredRun
 
 __all__ = [
+    "PUBLIC_FACTS",
     "AccountKind",
     "BlockerCode",
     "CalculationDecision",

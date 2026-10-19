@@ -170,3 +170,21 @@ class TestBundledWorkTimeRegime:
             EmployerActivity.THERMAL_ESTABLISHMENT,
         }
         assert not regime.has_signing_window
+
+
+def test_the_renewal_increment_reading_cites_its_circular() -> None:
+    """How the renewal increment is measured is sourced, not assumed.
+
+    The law taxes the "incrementi retributivi" of a renewal; circ. 2/E of
+    24 February 2026 (par. 1) reads them as the tranches of the renewal paid
+    in the year, measured on the table before it, on the direct pay only.
+    """
+    regime = load_variable_pay_rules(2026).rinnovo
+    increment = regime.increment_source
+
+    assert increment is not None
+    assert increment.source_document.document_id == "ade-circ-2e-2026"
+    assert increment.section == "par. 1, pp. 4-5"
+    assert increment.quote is not None
+    assert "tranche di incremento corrisposte" in increment.quote
+    assert "Rimangono sempre esclusi gli scatti di anzianità" in increment.quote

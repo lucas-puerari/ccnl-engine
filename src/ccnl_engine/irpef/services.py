@@ -42,6 +42,7 @@ class _Irpef:
 #: c. 6, so it matters only while the ulteriore detrazione is due.
 ULTERIORE_INCOME_UNKNOWN = CalculationIssue(
     code="ulteriore_income_unknown",
+    capability="ulteriore_detrazione_lavoro",
     message=(
         "ulteriore_detrazione: the reddito complessivo of L. 207/2024 art. 1 "
         "c. 6 includes the income beyond this employment, which the run does "

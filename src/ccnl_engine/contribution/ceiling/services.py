@@ -122,6 +122,7 @@ class IvsCeiling:
             return None
         return CalculationIssue(
             code="ivs_ceiling_eligibility_unknown",
+            capability="inps_employee",
             message=(
                 f"the INPS base of the year crosses the IVS massimale of "
                 f"{self.ceiling}: whether it caps the contributions depends on "

@@ -54,6 +54,7 @@ _ERC_COUNTED_ON = date(2020, 12, 31)
 #: The ERC of a run that pays it needs the employment to state it.
 ERC_UNKNOWN = CalculationIssue(
     code="erc_unknown",
+    capability="base_salary",
     message=(
         "the CCNL pays the Elemento di Raccordo Contrattuale with the "
         "tredicesima and the employment does not state it: the amounts shown "

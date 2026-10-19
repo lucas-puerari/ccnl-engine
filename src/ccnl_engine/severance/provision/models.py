@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from decimal import Decimal
+from decimal import ROUND_HALF_UP, Decimal
 
 from ccnl_engine.employment.fact.inputs import FEATURE
 from ccnl_engine.validators import (
@@ -45,7 +45,7 @@ class TfrFundBalance:
         require_int(self.year, "TfrFundBalance.year", feature=FEATURE, minimum=1900)
         path = "TfrFundBalance.amount"
         require_decimal(self.amount, path, feature=FEATURE, minimum=Decimal(0))
-        if self.amount != self.amount.quantize(_CENT):
+        if self.amount != self.amount.quantize(_CENT, rounding=ROUND_HALF_UP):
             reject(
                 path,
                 "an amount with at most two decimals",

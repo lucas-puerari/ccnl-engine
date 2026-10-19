@@ -45,6 +45,13 @@ from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 _WEAK = frozenset({"assumed", "missing"})
 _MINIMUM_UNDETERMINED = "inps_minimum_base_undetermined"
 _INPS = frozenset({"inps_employee", "inps_employer"})
+#: Blockers that state why a capability is open.
+_CAUSES = frozenset({
+    BlockerCode.MISSING_FACT,
+    BlockerCode.REQUIREMENT_UNRESOLVED,
+    BlockerCode.CALCULATION_ISSUE,
+    BlockerCode.CAPABILITY_NOT_COMPUTED,
+})
 #: A full month of ordinary hours, which a CCNL paying by the hour reads.
 _FACTS = PeriodFacts(
     regione="IT-25",
@@ -121,16 +128,16 @@ def test_no_payable_result_has_an_open_coverage_or_weak_rule(
 def test_coverage_axis_is_the_report_status(
     results: dict[str, PeriodResult],
 ) -> None:
-    """Every gap of the report is a blocker of the same feature."""
+    """Every gap of the report blocks its feature, once per cause.
+
+    The gap is its own blocker unless a missing fact or an issue of the same
+    feature already explains it.
+    """
     for result in results.values():
-        gaps = [gap.feature for gap in result.capability_report.gaps]
-        blocked = [
-            b.feature
-            for b in result.blockers
-            if b.code is BlockerCode.CAPABILITY_NOT_COMPUTED
-        ]
+        gaps = {gap.feature for gap in result.capability_report.gaps}
+        blocked = {b.feature for b in result.blockers if b.code in _CAUSES}
         assert result.assurance.coverage is result.capability_report.status
-        assert blocked == gaps
+        assert gaps <= blocked
 
 
 _PENSION = "pension_fund_contribution"
@@ -195,9 +202,8 @@ def test_ordinary_runs_have_no_coverage_gap(
         for r in results.values()
         if not (_minimum_open(r) or _contractual(r))
     )
-    issue = BlockerCode.CALCULATION_ISSUE
     assert all(
-        {b.feature for b in r.blockers if b.code is issue} >= _INPS
+        {b.feature for b in r.blockers if b.code in _CAUSES} >= _INPS
         for r in open_minimum
     )
 

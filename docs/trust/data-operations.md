@@ -103,7 +103,8 @@ that never instituted the surtax.
 | List shows | Table row |
 |---|---|
 | A delibera of the year | The rates, under the table `derived` record (CSV URL and section) |
-| `0*` in the list of the year | The row in force the year before, `rates_year` set, `assumed` |
+| `0*` in the list of the year, retrieved up to 20 December | The row in force the year before, `rates_year` set, `assumed`: the engine applies it as provisional |
+| `0*` in the list of the year, retrieved after 20 December | The row in force the year before, `rates_year` set, `derived` (D.Lgs. 23/2011 art. 14 c. 8): the engine applies it as final |
 | A delibera marked inapplicable (adopted after the deadline) | Skipped like `0*`: the rates in force stay, down to the oldest list passed |
 | `0*` in an earlier, closed list | Rate 0: the surtax was never instituted |
 | A code missing from the list of the year before (a merged municipality) and `0*` | Left out and named in `notes`: the engine reports the code as unknown and the result is not payable |

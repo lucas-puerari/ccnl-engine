@@ -134,17 +134,21 @@ class TestAssess:
     def test_issue_with_a_fact_is_a_missing_fact(self) -> None:
         """An issue naming a fact becomes a missing-fact blocker on that fact."""
         issue = CalculationIssue(
-            "rinnovo_eligibility_unknown", "sector unknown", _PROVISIONAL, fact="sector"
+            "rinnovo_eligibility_unknown",
+            "sector unknown",
+            _PROVISIONAL,
+            fact="sector",
+            capability="rinnovo_substitute_tax",
         )
 
         (blocker,) = assess((issue,), (), _report(), (), _SIMULATION, _PAID).blockers
 
         assert (blocker.code, blocker.feature, blocker.detail) == (
             BlockerCode.MISSING_FACT,
-            None,
+            "rinnovo_substitute_tax",
             "sector",
         )
-        assert blocker.remediation == "supply the fact sector in the request"
+        assert blocker.remediation == "supply Employment.sector in the request"
 
     def test_non_final_decision_blocks_its_capability(self) -> None:
         """A decision that is not final blocks; a final one does not."""
@@ -305,3 +309,38 @@ def test_other_blockers_touch_both_totals() -> None:
     (blocker,) = assess((), (), report, (), _SIMULATION, _PAID).blockers
 
     assert blocker.totals == frozenset(ResultTotal)
+
+
+def test_a_missing_fact_is_the_one_blocker_of_its_capability() -> None:
+    """The decision and the gap that follow from a missing fact are not repeated."""
+    issue = CalculationIssue(
+        "comune_unknown",
+        "comune unknown",
+        _PROVISIONAL,
+        fact="seniority",
+        capability="addizionale_comunale",
+    )
+    gap = _gap("addizionale_comunale", CapabilityGapKind.PARTIAL_RESULT)
+
+    assurance = assess(
+        (issue,), (_decision(_PROVISIONAL),), _report((gap,)), (), _SIMULATION
+    )
+
+    assert _keys(assurance) == [
+        (BlockerCode.MISSING_FACT, "addizionale_comunale", "seniority")
+    ]
+
+
+def test_an_issue_makes_the_gap_of_its_capability_redundant() -> None:
+    """A non-final decision explains the gap of its capability; others stay."""
+    gaps = (
+        _gap("addizionale_comunale", CapabilityGapKind.PARTIAL_RESULT),
+        _gap("irpef", CapabilityGapKind.PARTIAL_RESULT),
+    )
+
+    assurance = assess((), (_decision(_PROVISIONAL),), _report(gaps), (), _SIMULATION)
+
+    assert _keys(assurance) == [
+        (BlockerCode.CALCULATION_ISSUE, "addizionale_comunale", "table_unknown"),
+        (BlockerCode.CAPABILITY_NOT_COMPUTED, "irpef", "partial_result"),
+    ]

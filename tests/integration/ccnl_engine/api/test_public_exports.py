@@ -128,6 +128,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "WorkEvent",
     }),
     "ccnl_engine.results": frozenset({
+        "PUBLIC_FACTS",
         "AccountKind",
         "BlockerCode",
         "CalculationDecision",

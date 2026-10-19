@@ -63,6 +63,7 @@ _EXTRA_KINDS = frozenset({RunKind.THIRTEENTH, RunKind.FOURTEENTH})
 _FEATURE = "pension_fund_contribution"
 _CATEGORY_UNKNOWN = CalculationIssue(
     code="contractual_fund_category_unknown",
+    capability=_FEATURE,
     message=(
         "the contractual fund contribution of the CCNL depends on the worker "
         "category, which the level leaves open: the amounts shown leave it "
@@ -73,6 +74,7 @@ _CATEGORY_UNKNOWN = CalculationIssue(
 )
 _HOURS_UNKNOWN = CalculationIssue(
     code="contractual_fund_hours_unknown",
+    capability=_FEATURE,
     message=(
         "the contractual fund contribution of an operaio is an amount per "
         "ordinary hour worked, which the run does not state: the amounts "
@@ -83,6 +85,7 @@ _HOURS_UNKNOWN = CalculationIssue(
 )
 _UNCOVERED = CalculationIssue(
     code="contractual_fund_not_computed",
+    capability=_FEATURE,
     message=(
         "the CCNL owes its fund a contractual contribution for this worker "
         "that the engine does not compute (e.g. the Prevedi amount per hour "
