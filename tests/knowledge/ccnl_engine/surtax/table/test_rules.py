@@ -117,7 +117,9 @@ def _conguaglio(
                 tfr_treasury_fund=False,
             ),
             employer=EmployerProfile(
-                provincial_pay_element=False, headcount=Headcount(50)
+                provincial_pay_element=False,
+                headcount=Headcount(50),
+                contractual_funds=frozenset(),
             ),
             default_facts=PeriodFacts(
                 regione=regione,

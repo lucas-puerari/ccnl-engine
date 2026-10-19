@@ -115,19 +115,6 @@
           "variant": "sickness_net_basis",
           "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 187, align the computation, then resolve this limitation."
         }
-      },
-      {
-        "kind": "simplification",
-        "text": "HEALTH AND BILATERAL FUNDS (testo unico 2019): Fondo Est (Art. 104, p. 101), for the permanent workers other than the quadri, 10 euro a month from the employer and 2 euro from the worker, or an elemento distinto of 16 euro for 14 months when the employer does not enrol them; Qu.A.S. (Art. 105, p. 103), for the quadri, 350 euro a year from the employer and 56 euro from the worker from June 2011, plus an enrolment fee; Quadrifor (p. 108), 50 euro a year from the employer and 25 from the quadro; Ente Bilaterale Territoriale (p. 48), 0,10% from the employer and 0,05% from the worker on paga base and contingenza. Not modelled: the worker's shares lower the net pay.",
-        "capability": "bilateral_funds",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "health_and_bilateral_funds",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "remediation": "Pass the contributions as bilateral fund events, or model them per worker."
-        }
       }
     ]
   },
@@ -454,6 +441,263 @@
               "value": "0.0105"
             }
           ]
+        }
+      }
+    ],
+    "health_funds": [
+      {
+        "code": "ebt",
+        "description": "Ente Bilaterale Territoriale del Terziario, Art. 23",
+        "rate_allowances": [
+          "CONTINGENZA_EDR"
+        ],
+        "employer": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2000-01-01",
+                "valid_until": null,
+                "value": "0.001"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2000-01-01",
+                "valid_until": null,
+                "value": "0.0005"
+              }
+            ]
+          }
+        },
+        "extra_months": true,
+        "alternative": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2000-01-01",
+                "valid_until": "2011-03-01",
+                "value": "0.001"
+              },
+              {
+                "valid_from": "2011-03-01",
+                "valid_until": null,
+                "value": "0.003"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "uiltucs-tds",
+              "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+              "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+            },
+            "page": "12",
+            "quote": "il contributo da destinare in favore dell'Ente Bilaterale Territoriale è stabilito nella misura dello 0,10%, a carico dell'azienda e dello 0,05% a carico del lavoratore su paga base e contingenza, per quattordici mensilità."
+          },
+          "transformation": "Also: CCNL Terziario Distribuzione e Servizi (Confcommercio), Testo Unico 30 luglio 2019, p. 49: Dal 1° marzo 2011, l'e.d.r. di cui al comma precedente è di importo pari allo 0,30% di paga base e contingenza, corrisposto per 14 mensilità e rientra nella retribuzione di fatto, di cui all'art. 195.",
+          "note": "The rate is read on paga base and contingenza, the first two columns of the salary tables (the CONTINGENZA_EDR allowance of each level): the observed payslip p17 (level 3, January 2026) prints 'retribuzione ente bilaterale commercio' 1981.84 = paga base 1453.94 + contingenza 527.90 and withholds 0.05% of it. The EDR clause cross-refers to 'art. 195', a stale number (retribuzione di fatto is art. 208 of the 2019 text)."
+        }
+      },
+      {
+        "code": "fondo_est",
+        "description": "Fondo EST, assistenza sanitaria integrativa, Art. 104 (as renewed 22 marzo 2024)",
+        "levels": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "permanent_only": true,
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2005-09-01",
+                "valid_until": "2025-04-01",
+                "value": "10.0"
+              },
+              {
+                "valid_from": "2025-04-01",
+                "valid_until": null,
+                "value": "13.0"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2011-06-01",
+                "valid_until": "2012-01-01",
+                "value": "1.0"
+              },
+              {
+                "valid_from": "2012-01-01",
+                "valid_until": null,
+                "value": "2.0"
+              }
+            ]
+          }
+        },
+        "employee_deductible": true,
+        "solidarity_rate": "0.1",
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2019-07-30",
+                "valid_until": null,
+                "value": "16.0"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "uiltucs-tds",
+              "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+              "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+            },
+            "page": "17",
+            "quote": "A decorrere dal 1°aprile 2025 il contributo obbligatorio a favore del Fondo è incrementato di euro 3,00 mensile, a carico del datore di lavoro. [...] l'azienda che ometta il versamento delle suddette quote è tenuta ad erogare al lavoratore un elemento distinto della retribuzione non assorbibile di importo pari ad euro 16,00 lordi, da corrispondere per 14 mensilità e che rientra nella retribuzione di fatto, di cui all'art. 208."
+          },
+          "transformation": "Also: CCNL Terziario Distribuzione e Servizi (Confcommercio), Testo Unico 30 luglio 2019, p. 102: per il personale assunto a tempo pieno, 10 euro mensili per ciascun iscritto, con decorrenza dal 1° settembre 2005; ... A decorrere dal 1° giugno 2011 il contributo obbligatorio a favore del Fondo è incrementato di euro 1,00 mensile, a carico del lavoratore. A decorrere dal 1° gennaio 2012 il contributo obbligatorio a favore del Fondo è incrementato di euro 1,00 mensile, a carico del lavoratore.",
+          "note": "Employer share 13 EUR from 1 April 2025 (10 + 3), worker share 2 EUR; the observed payslip p17 (January 2026) prints 'contributo fondo EST' 2.00 and 'c/ditta' 13.00. The element is dated 'dal mese successivo alla data di sottoscrizione' of an earlier CCNL whose signature date was not identified: its valid_from is floored to the Testo Unico of 30 July 2019, before every period the bundle computes. The one-off 30 EUR of a first enrolment is not modelled."
+        }
+      },
+      {
+        "code": "quas",
+        "description": "Cassa Qu.A.S., assistenza sanitaria quadri, Art. 105",
+        "levels": [
+          "Q"
+        ],
+        "employer": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2011-06-01",
+                "valid_until": "2025-01-01",
+                "value": "350.0"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2026-01-01",
+                "value": "370.0"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "390.0"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2011-06-01",
+                "valid_until": null,
+                "value": "56.0"
+              }
+            ]
+          }
+        },
+        "employee_deductible": true,
+        "solidarity_rate": "0.1",
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2019-07-30",
+                "valid_until": null,
+                "value": "37.0"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "uiltucs-tds",
+              "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+              "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+            },
+            "page": "18",
+            "quote": "A decorrere dal 1° giugno 2011 il contributo obbligatorio annuo a favore della Cassa è pari a euro 350,00 a carico del datore di lavoro e di euro 56,00 a carico del lavoratore appartenente alla categoria dei Quadri. A decorrere dal 1° gennaio 2025 il contributo obbligatorio annuo a favore della Cassa è incrementato di euro 20,00 a carico del datore di lavoro a favore della categoria dei Quadri. A decorrere dal 1° gennaio 2026 il contributo obbligatorio annuo a favore della Cassa è incrementato di euro 20,00 a carico del datore di lavoro a favore della categoria dei Quadri. [...] L'azienda che ometta il versamento dei suddetti contributi obbligatori è tenuta ad erogare al lavoratore un elemento distinto della retribuzione non assorbibile di importo pari ad euro 37,00 lordi, da corrispondere per 14 mensilità e che rientra nella retribuzione di fatto, di cui all'art. 208."
+          },
+          "note": "Annual amounts charged a twelfth a month; the payment schedule of the Cassa regulation was not read. The enrolment fee is not modelled."
+        }
+      },
+      {
+        "code": "quadrifor",
+        "description": "Quadrifor, investimenti formativi quadri, Art. 109",
+        "levels": [
+          "Q"
+        ],
+        "employer": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2019-07-30",
+                "valid_until": null,
+                "value": "50.0"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2019-07-30",
+                "valid_until": null,
+                "value": "25.0"
+              }
+            ]
+          }
+        },
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "uiltucs-tds",
+              "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+              "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+            },
+            "page": "19",
+            "quote": "Il contributo obbligatorio annuo a favore di QUADRIFOR è pari a euro 75,00 (settantacinque/00), di cui euro 50,00 (cinquanta/00) a carico azienda e euro 25,00 (venticinque/00) a carico del lavoratore appartenente alla categoria dei Quadri."
+          },
+          "transformation": "Also: CCNL Terziario Distribuzione e Servizi (Confcommercio), Testo Unico 30 luglio 2019, p. 108: Il contributo obbligatorio annuo a favore di QUADRIFOR è pari a euro 75,00 (settantacinque/00), di cui euro 50,00 (cinquanta/00) a carico azienda e euro 25,00 (venticinque/00) a carico del lavoratore appartenente alla categoria dei Quadri.",
+          "note": "Unchanged by the 2024 renewal. No alternative element. Annual amounts charged a twelfth a month."
         }
       }
     ]
@@ -2778,7 +3022,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "7635ded49c1d61a0e09a0f4e565adc6a17b90d0a5624e8b97097765aff185322",
+    "source_hash": "d7063e6245d2c8ac6b6a01ff91d8ac457ed6e28f72d7bad8f045f476a3b1d5c7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3089,8 +3333,8 @@
   },
   "verification": {
     "confidence": "verified",
-    "readiness": "reviewed",
-    "verified_cases": 0,
+    "readiness": "production",
+    "verified_cases": 1,
     "reviews": [
       {
         "id": "2026-10-10-ai",
@@ -3234,6 +3478,33 @@
             "evidence": "tests/knowledge/ccnl_engine/period/services/test_observed_comparison.py::test_annual_deductions_match_the_conguaglio_of_p25 (tolerance 0.01) and ::test_other_payrolls_round_the_proportioned_deduction_half_up",
             "review_by": "2027-03-31"
           }
+        ]
+      },
+      {
+        "id": "2026-10-19-ai-production",
+        "date": "2026-10-19",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Checklist 'reviewed -> production': the health and bilateral funds left declared on 2026-10-15, the L2 values, the reference cases and the evidence of every total of the definition of done.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+          },
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          }
+        ],
+        "findings": [
+          "Funds modelled as rules (parameters.health_funds), the owed limitation health_and_bilateral_funds removed: EBT 0,10% + 0,05% of paga base and contingenza for 14 months, or an element of 0,30% for 14 months (2024 text p. 12, 2019 text p. 49); Fondo Est 13 + 2 EUR a month from 1 April 2025 for the permanent workers of levels 1-7, or 16 EUR for 14 months (p. 17); Qu.A.S. 390 + 56 EUR a year from 2026 for the quadri, or 37 EUR for 14 months (p. 18); Quadrifor 50 + 25 EUR a year (p. 19). The 2015 declaration (10 + 2 EUR, 350 + 56 EUR) was stale for 2025-2026.",
+          "The fund records stay derived: pages 1-62 of the 2024 text are image-only and their quotes come from OCR, checked against the page image for Fondo Est and Qu.A.S. only. Two observed payslips agree: p17 (January 2026) withholds 0,05% of 'retribuzione ente bilaterale commercio' 1981,84 (paga base 1453,94 + contingenza 527,90) and prints Fondo Est 2,00 and 13,00 c/ditta; p04 and p70 print Fondo Est 2,00.",
+          "The EBT rate reads the contingenza, which the tables list apart from the paga base: ContractualFund.rate_allowances names the CONTINGENZA_EDR allowance.",
+          "L2: the INPS rates of the terziario are those the owner accepted on 2026-10-13 (allegato of INPS circ. 117/2022, FIS and CIGS of D.Lgs. 148/2015 arts. 29 and 23); the apprenticeship rules (Artt. 53, 62, 64) and every other payable rule were verified on 2026-10-11 and 2026-10-14; the TFR is statutory (art. 2120 c.c.).",
+          "Reference case commercio-confcommercio_3_2026_observed.json verified on the observed payslip p06 (sha256 9d1a08fccc56e5d1cf61ec795d7e6f6d0682d2ad997cab7fe69573f0efc45de8): paga base 1453,94 for level 3 in April 2026, a value the engine did not produce.",
+          "Totals: gross, employee and employer contributions, tax, net pay, TFR and employer cost are compared with the hand oracles commercio-year and commercio-june (tests/knowledge/ccnl_engine/period/sector), level 4, 50 employees, a provincial element in force; base salary and gross with the reference cases. The oracles recompute the pipeline from the same sources: only the base salary has an independent output.",
+          "Not modelled: the one-off enrolment fees of Fondo Est (30 EUR) and Qu.A.S.; the payment month of the annual Qu.A.S. and Quadrifor amounts, charged a twelfth a month."
         ]
       }
     ],

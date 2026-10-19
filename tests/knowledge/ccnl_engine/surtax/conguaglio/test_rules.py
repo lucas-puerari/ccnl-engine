@@ -70,7 +70,11 @@ pytestmark = pytest.mark.legal_scenario
 
 _ENGINE = PayrollEngine(repository=NextYearRepository())
 _FACTS = PeriodFacts(regione="IT-88", comune_belfiore="I452")
-_EMPLOYER = EmployerProfile(provincial_pay_element=False, headcount=Headcount(50))
+_EMPLOYER = EmployerProfile(
+    provincial_pay_element=False,
+    headcount=Headcount(50),
+    contractual_funds=frozenset(),
+)
 _ZERO = Decimal(0)
 _REGIONAL, _SALDO, _ACCONTO = "3802", "3848", "3847"
 

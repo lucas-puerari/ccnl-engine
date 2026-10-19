@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import UTC, datetime
 from typing import TYPE_CHECKING
 
 import pytest
@@ -13,7 +14,8 @@ from scripts.documentation.validation_matrix.generate import (
     main,
     matrix,
 )
-from scripts.provenance.reference_case.check import AXES
+from scripts.provenance.reference_case.check import AXES, AXIS_OF
+from scripts.provenance.replay.check import credited_records
 
 if TYPE_CHECKING:
     from pathlib import Path
@@ -83,12 +85,18 @@ def test_an_unknown_label_fails() -> None:
 
 
 def test_the_replayed_components_and_rates_stay_apart_from_the_totals() -> None:
-    """Commercio pins only base salary as a total from its payslips."""
-    commercio = matrix()["commercio-confcommercio"]
+    """The commercio payslips pin a rate, never the contributions it sets.
 
-    assert "fixed_allowances" in commercio.components
-    assert "employee_inps_rate" in commercio.rules
-    assert not commercio.outputs & {"employee_contributions", "employer_contributions"}
+    The row of commercio also holds the totals of its hand oracles, so the
+    replays are pinned on a row of their own.
+    """
+    row = _row()
+    for replay in credited_records(datetime.now(tz=UTC).date()).values():
+        if replay["inputs"]["ccnl_id"] == "commercio-confcommercio":
+            row.pin(AXIS_OF[key] for key in replay["expected"])
+
+    assert "employee_inps_rate" in row.rules
+    assert not row.outputs & {"employee_contributions", "employer_contributions"}
 
 
 def test_divergences_show_their_decision() -> None:

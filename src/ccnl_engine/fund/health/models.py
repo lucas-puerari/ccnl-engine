@@ -28,7 +28,8 @@ class FundAmount(BaseModel):
         monthly: Fixed amount a month, in EUR.
         annual: Fixed amount a year, in EUR, charged a twelfth a month.
         rate: Fraction of the monthly minimo the run pays (paga base and
-            contingenza, as the CCNL table gives them).
+            contingenza, as the CCNL table gives them), with the allowances
+            the fund names in ``rate_allowances``.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -59,6 +60,10 @@ class ContractualFund(BaseModel):
             (e.g. the EBM contribution of a firm with or without an internal
             RLS) share a group: the employer names the one it pays; naming
             none owes the element of the first fund of the group once.
+        rate_allowances: Codes of the fixed allowances of the level a rate
+            reads besides the base salary: the contingenza of a CCNL whose
+            table lists it apart from the paga base (Commercio Art. 23,
+            "paga base e contingenza").
         employer: Employer share a month.
         reduced_employer: Employer share of a part-timer working at most
             ``reduced_up_to_weekly_hours`` a week, when the fund sets one.
@@ -95,6 +100,7 @@ class ContractualFund(BaseModel):
     levels: frozenset[str] | None = None
     permanent_only: bool = False
     group: str | None = None
+    rate_allowances: frozenset[str] = frozenset()
     employer: FundAmount
     reduced_employer: FundAmount | None = None
     reduced_up_to_weekly_hours: Decimal | None = Field(default=None, gt=0)

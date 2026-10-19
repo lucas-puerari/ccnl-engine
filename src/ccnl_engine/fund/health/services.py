@@ -199,6 +199,7 @@ def _charged_now(ctx: RunContext, month: TimeSeries) -> bool:
 
 def _monthly(
     ctx: RunContext,
+    fund: ContractualFund,
     amount: FundAmount | None,
     *,
     scaled: bool = False,
@@ -208,12 +209,18 @@ def _monthly(
 
     Returns:
         The fixed amount, scaled like the minimo when ``scaled``, plus the
-        rate of the minimo, to the cent; zero for no amount.
+        rate of the minimo and of the allowances the fund names in
+        ``rate_allowances``, as the run pays them, to the cent; zero for no
+        amount.
     """
     if amount is None:
         return _ZERO
     day = ctx.contract.tctx.competence
     paid = ctx.chain.base
+    rate_base = paid + sum(
+        (v for a, v in ctx.chain.allowances if a.code in fund.rate_allowances),
+        _ZERO,
+    )
     full = ctx.contract.level.base_salary.value_at(day)
     fixed = _ZERO if amount.monthly is None else amount.monthly.value_at(day)
     if amount.annual is not None:
@@ -221,7 +228,7 @@ def _monthly(
     rate = _ZERO if amount.rate is None else amount.rate.value_at(day)
     if scaled:
         fixed = fixed * paid / full
-    return money(fixed + rate * paid)
+    return money(fixed + rate * rate_base)
 
 
 def _extra(ctx: RunContext) -> bool:
@@ -232,8 +239,8 @@ def _paid(ctx: RunContext, fund: ContractualFund) -> ExtraMonthSettlement:
     if _extra(ctx) and not fund.extra_months:
         return ExtraMonthSettlement()
     whole = fund.charged_in_month is not None
-    employer = _monthly(ctx, _employer_share(ctx, fund), whole_year=whole)
-    employee = _monthly(ctx, fund.employee, whole_year=whole)
+    employer = _monthly(ctx, fund, _employer_share(ctx, fund), whole_year=whole)
+    employee = _monthly(ctx, fund, fund.employee, whole_year=whole)
     solidarity = money(employer * fund.solidarity_rate)
     if fund.welfare:
         return _welfare(ctx, fund, employer)
@@ -336,7 +343,7 @@ def _welfare(
 def _element(ctx: RunContext, fund: ContractualFund) -> ExtraMonthSettlement:
     if fund.alternative is None or (_extra(ctx) and not fund.alternative_extra_months):
         return ExtraMonthSettlement()
-    amount = _monthly(ctx, fund.alternative, scaled=fund.alternative_scaled)
+    amount = _monthly(ctx, fund, fund.alternative, scaled=fund.alternative_scaled)
     item_id = f"{fund.code}_element_{ctx.run_id}"
     cp, payment = ctx.cp, ctx.contract.tctx.payment
     item = FixedAllowanceEarning(

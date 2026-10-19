@@ -129,7 +129,8 @@ def test_trace_adds_up_to_the_monthly_gross(demo_app: types.ModuleType) -> None:
     ("params", "readiness", "production"),
     [
         (_STANDARD, "production", True),
-        (_COMMERCIO, "reviewed", False),
+        (_COMMERCIO, "production", True),
+        ({**_COMMERCIO, "ccnl": "concia-unic", "level": "D2"}, "reviewed", False),
         (
             {
                 **_COMMERCIO,
