@@ -96,6 +96,7 @@ __all__ = [
     "REQUEST_SCHEMA_VERSION",
     "REQUEST_TYPES",
     "Request",
+    "read_request",
     "request_from_json",
     "request_to_json",
 ]
@@ -223,15 +224,25 @@ def request_from_json[R: (PeriodInput, CompetenceYearPlan, TaxYearPlan)](
     Returns:
         The request.
     """
-    request, errors = _read(text, kind)
+    request, errors = read_request(text, kind)
     if errors:
         raise errors[0]
     return request
 
 
-def _read[R: (PeriodInput, CompetenceYearPlan, TaxYearPlan)](
+def read_request[R: (PeriodInput, CompetenceYearPlan, TaxYearPlan)](
     text: str, kind: type[R]
 ) -> tuple[R, tuple[InvalidInputError, ...]]:
+    """Read the request of type ``kind`` and every error of its values.
+
+    A text that is not such JSON, of another schema version or holding
+    another kind of request raises
+    :class:`~ccnl_engine.errors.InvalidInputError`: no value can be read.
+
+    Returns:
+        The request, meaningless when there is an error, and one error per
+        rejected value, each with its path as field.
+    """
     payload = loads(text, subject=_SUBJECT, feature=_FEATURE)
     version = payload.get("schema_version")
     if version != REQUEST_SCHEMA_VERSION:

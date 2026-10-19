@@ -108,6 +108,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "period_state_to_json",
         "request_from_json",
         "request_to_json",
+        "validate_request_json",
     }),
     "ccnl_engine.events": frozenset({
         "AbsenceEvent",
