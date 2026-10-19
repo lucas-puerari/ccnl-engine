@@ -18,8 +18,38 @@ if TYPE_CHECKING:
 __all__ = ["EVENT_DEFAULTS"]
 
 #: Classification of each defaulted field of the work events.
+_FROM_CCNL = (
+    "the value the CCNL sets, derived from its sourced rule; where the CCNL "
+    "sets none the engine applies, the event is rejected"
+)
+_SUPPLEMENT_HOURS = (
+    "read only without supplement_amount, which then requires it to derive "
+    "the CCNL supplement"
+)
+
+#: Classification of each defaulted field of the work events.
 EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
     "AbsenceEvent.end_date": absence_is_fact("a one-day absence"),
+    "AbsenceEvent.hourly_rate": absence_is_fact(_FROM_CCNL),
+    "AbsenceEvent.working_days": absence_is_fact(
+        "an absence of hours; a CCNL that deducts whole days then needs the "
+        "caller's hourly_rate"
+    ),
+    "OvertimeEvent.hourly_rate": absence_is_fact(_FROM_CCNL),
+    "NightShiftEvent.supplement_amount": absence_is_fact(_FROM_CCNL),
+    "NightShiftEvent.hours": absence_is_fact(_SUPPLEMENT_HOURS),
+    "HolidayWorkEvent.supplement_amount": absence_is_fact(_FROM_CCNL),
+    "HolidayWorkEvent.hours": absence_is_fact(_SUPPLEMENT_HOURS),
+    "HolidayWorkEvent.kind": absence_is_fact(
+        "work on a public holiday; a Sunday, rest day or compensatory rest is "
+        "a fact of the timesheet the event records"
+    ),
+    "ShiftWorkEvent.supplement_amount": absence_is_fact(_FROM_CCNL),
+    "ShiftWorkEvent.hours": absence_is_fact(_SUPPLEMENT_HOURS),
+    "ShiftWorkEvent.kind": absence_is_fact(
+        "read only without supplement_amount, which then requires it to "
+        "choose the CCNL shift band"
+    ),
     "AbsenceEvent.suspends_accrual": requires_fact(
         "absence",
         "event.suspends_accrual",

@@ -82,6 +82,9 @@ class RunContext:
         proration: Payable part of the month of a regular run.
         settlements: Ratei the run liquidates at the termination of the
             employment, paid as extra-month earnings.
+        full_time_chain: Pay chain of a fully employed regular month at full
+            time, which the CCNL hourly base divides by its full-time
+            divisor.
     """
 
     request: PeriodCalculationRequest
@@ -102,6 +105,7 @@ class RunContext:
     regular_chain: MonthlyPayChain
     proration: RunProration
     settlements: tuple[ExtraMonthAccrual, ...]
+    full_time_chain: MonthlyPayChain
 
     @property
     def fiscal_year(self) -> int:

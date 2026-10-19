@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 71 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 75 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-05 |
-| **Last review** | 2026-10-17 |
+| **Last review** | 2026-10-19 |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule read again in the signed texts: the ipotesi of 5 July 2024 (scan, Federalberghi copy), the renewal of 18 January 2014 and the CCNL of 20 February 2010. | corrected | 82 records verified. The salary periods cited the 2010 text: the 2016 values are in the 2014 renewal (p. 17), the 2024-2027 values in the 2024 ipotesi (p. 42). The 2024 text has no text layer: its quotes are OCR, checked on the page images.<br>Level B is quadro (art. 48 c.1), not impiegato; levels 1-7 have no category of their own (art. 50, by mansione): null.<br>Added the Quadri function allowance of art. 145: A 75.00, B 70.00 from January 2009.<br>Sickness: 75% for days 4-20 and 100% from day 21 of the net daily pay, 180 days a calendar year (art. 228), not a flat 100%.<br>Accrual: hotels and campsites counted twenty-sixths before 2024 too (artt. 225, 277): the cumulated-fractions clause dropped.<br>Seniority from 1 May 1990 (art. 158 c.4); Fon.Te. from 29 November 1996 (art. 162), no longer from 2026; ruleset and validity from the decorrenza of 1 July 2024 (art. 199); the ruleset source is the 2024 ipotesi.<br>Holiday overtime 30% stays derived from art. 219 c.1: the CCNL sets no festive overtime rate.<br>Overtime is paid on the retribuzione of art. 148 divided by 172 (art. 151): hourly_base_method gross_incl_allowances.<br>Production blocked: no signed copy of the accordo apprendistato of 17 April 2012 (base durations, art. 13) in the CNEL archive of H052 or at the signatories; only art. 14 bis is read in the 2014 renewal.<br>No renewal after the ipotesi of 5 July 2024 through October 2026. |
 | 2026-10-13 | claude-opus-5-5 (ai) | Scope of the declared limitations. | corrected | sickness_net_basis is recorded on every run with a sickness event (trigger run), not only documented.<br>The apprenticeship durations without a signed source are now a limitation on every apprentice run (apprenticeship_durations_unsourced); with every remaining gap flagged on the runs it concerns, the file moves to production. |
 | 2026-10-17 | claude-opus-5-5 (ai) | Periodic review due 2026-12-01: the paga base nazionale of every level and tranche from July 2024, the extra months against the ipotesi of 5 July 2024, the scatti and the hourly divisor against the CCNL of 20 February 2010, and a year and a termination of a 4th level worker against a hand oracle. | confirmed | Art. 152 c. 1 as replaced in 2024 (p. 42, scan read by OCR): the 50 amounts of the ten levels from July 2024 to November 2027 match the file.<br>Art. 160 (p. 45): tredicesima of one monthly pay at Christmas; art. 161 (p. 46): quattordicesima of the pay in force on 30 June, paid with the July pay, in twelfths of the twelve months before 1 July. Match with the fourteen payments of the file.<br>Art. 158 c. 4 of the 2010 text (pp. 140-141): six scatti, A 40,80 to 7 30,47. Match. Hourly divisor 172 for a 40-hour week. Match.<br>Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios turismo-year and turismo-june): a 4th level impiegato hired on 1 January 2026 by an employer with 10 employees, across the tranche of May 2026; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent.<br>apprenticeship_durations_unsourced stays open: no signed or CNEL copy of the accord of 17 April 2012 as amended in 2014 was found in this review. |
+| 2026-10-19 | claude-opus-5-5 (ai) | Hourly base of the time supplements and the supplements of ordinary night, holiday, Sunday, rest-day and shift work, read in the cited articles of the national text (text layer, or OCR of the scanned pages). AI review only: the same model extracted and checked the values. | confirmed | hourly_base_method gross_incl_allowances (was gross_incl_allowances), now verified: the engine reads it to derive the hourly rate of an event without one.<br>Supplement bands added: TUR_NOTTURNO, TUR_NOTTURNO_QUALIFICA, TUR_FESTIVO.<br>Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS. |
 
 ## Salary table
 
@@ -242,6 +243,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 ??? note "Coverage notes"
     CNEL code H052 is shared with CCNL Agenzie di Viaggio Fiavet: the engine allows duplicates.
+    
+    HOURLY RATE AND SUPPLEMENTS (artt. 148, 151, 216, 220 of the 2010 text): without a caller value the engine derives the hourly base (the art. 148 retribuzione over 172), the 25% on ordinary night hours from 24 to 6 (art. 216 c.1; 12% for the role qualifica_notturna, c.2: Employment.roles must be stated) and the 20% on the hours worked on a festività (art. 220). The night window of the lavoratori notturni (23:30-6:30, art. 218) only changes which hours the caller declares. Art. 220 also pays the festività hours themselves on top of the monthly pay: the engine posts the 20% only and the run is provisional. Not derived: the Sunday allowance of art. 126 (10% of the hourly paga base and contingenza: the bundle does not record that base_salary holds exactly those two voci), holiday overtime (art. 219 sets no rate), the divisors 190 and 192 of the 44- and 45-hour weeks (a stated full-time week other than 40 is not derived).
     
     SALARY TABLES: the 1 April 2016 values from art. 152 c.1 of the renewal of 18 January 2014 (p. 17); the five tranches lug 2024, giu 2025, mag 2026, apr 2027 and nov 2027 from art. 152 c.1 of the ipotesi of 5 July 2024 (p. 42).
     

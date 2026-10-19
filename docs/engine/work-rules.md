@@ -26,11 +26,11 @@ amounts are `Decimal` values in EUR, validated on construction.
 
 | Event | Fields | Treatment |
 |---|---|---|
-| `OvertimeEvent` | `hours`, `hourly_rate`, `multiplier` (default `None`: from the CCNL band), `kind` (`OvertimeKind`, default `WEEKDAY`) | Pay `hours × hourly_rate × multiplier`; subject to INPS, IRPEF and TFR |
-| `NightShiftEvent` | `supplement_amount` | Night-work supplement; INPS and IRPEF |
-| `HolidayWorkEvent` | `supplement_amount` | Public holiday or weekly rest-day supplement; INPS and IRPEF, no TFR |
-| `ShiftWorkEvent` | `supplement_amount` | Shift allowance; INPS and IRPEF, no TFR |
-| `AbsenceEvent` | `hours`, `hourly_rate`, `end_date`, `suspends_accrual` | Unpaid absence deducted from pay; reduces the INPS and TFR base |
+| `OvertimeEvent` | `hours`, `hourly_rate` (default `None`: the CCNL hourly base), `multiplier` (default `None`: from the CCNL band), `kind` (`OvertimeKind`, default `WEEKDAY`) | Pay `hours × hourly_rate × multiplier`; subject to INPS, IRPEF and TFR |
+| `NightShiftEvent` | `supplement_amount` or `hours` | Night-work supplement; INPS and IRPEF |
+| `HolidayWorkEvent` | `supplement_amount` or `hours`, `kind` (`HolidayWorkKind`, default `HOLIDAY`) | Public holiday, Sunday or weekly rest-day supplement; INPS and IRPEF, no TFR |
+| `ShiftWorkEvent` | `supplement_amount` or `hours` and `kind` (`ShiftKind`) | Shift allowance; INPS and IRPEF, no TFR |
+| `AbsenceEvent` | `hours`, `hourly_rate` (default `None`: the CCNL quota), `working_days`, `end_date`, `suspends_accrual` | Unpaid absence deducted from pay; reduces the INPS and TFR base |
 | `SicknessEpisode` | `episode_id`, `started_on`, `ended_on`, `relapse_of`, `prior_worked_days` (fixed-term), `hospital_stays`, `serious_illness` | Sickness episode; the engine derives the deduction, INPS indemnity, CCNL integration and carenza pay of the days in the run's month; see [Sickness](#sickness) |
 | `SickLeaveEvent` | `amount`, `sick_days`, `waiting_period_days` | Sick pay the caller computed: an override of the engine, never payable; INPS and IRPEF, no TFR |
 | `FringeEvent` | `amount` | Fringe benefit (art. 51 c. 3 TUIR); exempt while the year total stays within the threshold, then the whole year total is taxable; see [Fringe benefits](#fringe-benefits) |
@@ -91,14 +91,66 @@ from ccnl_engine.events import OvertimeEvent, OvertimeKind
 night = OvertimeEvent(
     date(2026, 3, 10), Decimal(2), Decimal("15.00"), kind=OvertimeKind.NIGHT
 )
+# Without hourly_rate: 2 h x the CCNL hourly base x 1.50.
+derived = OvertimeEvent(date(2026, 3, 10), Decimal(2), kind=OvertimeKind.NIGHT)
 ```
 
-### Other rates and amounts are caller inputs
+### Hourly rate, supplements and absence quota from the CCNL
 
-`OvertimeEvent.hourly_rate`, the `supplement_amount` of night, holiday and
-shift events, and the `separate_tax_rate` of arrears come from the caller.
-The TFR settlement is computed by the engine; its payout and rate are
-optional overrides.
+Without `OvertimeEvent.hourly_rate`, the `supplement_amount` of a night,
+holiday or shift event or `AbsenceEvent.hourly_rate`, the engine derives
+the value from the CCNL, only from a rule whose source is verified:
+
+| Value | Derived as | Rule |
+|---|---|---|
+| Hourly base | monthly pay elements of `hourly_base_method` / `parameters.hourly_divisor` in force on the event date | `work_rules.time_supplements.hourly_base_method`, read only when `hourly_base_provenance` is `verified` |
+| Overtime hourly rate | the hourly base | decision `ccnl_hourly_rate_derived` |
+| Night, holiday, Sunday, rest-day, shift supplement | `rate × hours × hourly base` (the band's own `base` when it names one) | the `supplement_bands` band of the event's work, level and role; decision `ccnl_supplement_applied` |
+| Absence | `hours × hourly base` (`by_hourly`), `working_days × monthly / 26` (`by_26`; also 22 and 30) | `work_rules.absence_rules`, only when `verified`; decision `ccnl_absence_quota_applied` |
+
+`hourly_base_method` names the elements of the worker's full-time monthly
+pay (the CCNL divisor is a full-time divisor; an apprentice's chain is
+reduced by the percentage): `minimo_tabellare` (base salary),
+`minimo_e_anzianita` (base salary and seniority, chimica art. 15 punto 1)
+or `gross_incl_allowances` (base salary, seniority and every fixed
+allowance paid in cash). Individual elements (`Employment.individual_elements`: superminimi,
+merito, assegni ad personam) are not in the hourly base: every derived
+decision reports `individual_elements: not_included`, and a worker whose
+CCNL counts them states the rate. A CCNL that sets `hourly_divisor_weekly_hours` (Turismo, Pubblici
+Esercizi, Terziario: 40) derives nothing for an employment whose stated
+full-time week differs, whose divisor is not modelled.
+
+A supplement band (`SupplementBand`) pays one work (`night`, `holiday`,
+`holiday_compensatory_rest`, `sunday`, `rest_day`, `day_shift`,
+`night_shift`), may be reserved to levels or to a role of
+`Employment.roles` (Turismo `qualifica_notturna`, 12%; Terziario
+`impianto_carburante_autostradale`, 10% on Sundays); with role bands the
+roles must be stated. The engine posts the maggiorazione only. A band
+whose CCNL also pays the hours themselves on top of the monthly pay
+(`hours_paid_apart: true`, e.g. Turismo art. 220) or whose text does not
+settle it (`null`, chimica and metalmeccanici) makes the run `provisional`
+with issue `supplement_hours_not_posted`: those hours are ordinary pay the
+engine does not post.
+
+The 8 pilot CCNLs carry the data; each lists in its coverage note "HOURLY
+RATE AND SUPPLEMENTS" what is derived and what stays the caller's:
+
+| CCNL | Night | Holiday | Other | Absence |
+|---|---|---|---|---|
+| chimica-farmaceutica-federchimica | caller (company window) | 50% | day shift 4% | caller (rule derived) |
+| turismo-federalberghi | 25% (12% role) | 20% | | 1/26 |
+| pubblici-esercizi-fipe-angem | 25% | 20% | Sunday 10% on paga base and contingenza | 1/26 |
+| terziario-confesercenti, commercio-confcommercio | 15% | 30% | Sunday 30% (10% role), rest day 30% | 1/26 |
+| metalmeccanico-confapi | caller (window, shift column) | 55% | compensatory rest 10% | caller (rule derived) |
+| metalmeccanico-federmeccanica | caller (window, shift column) | 50% | compensatory rest 10% | caller (rule derived) |
+| studi-professionali-confprofessioni | caller (unconfirmed) | 30% | | 1/26 |
+
+Where the CCNL sets no value the engine applies, the event is rejected
+with `InvalidInputError` naming the field and the reason. A value the
+caller states is applied as given and reported as a `caller_supplied`
+decision listing only the fields the caller stated. The
+`separate_tax_rate` of arrears comes from the caller; the TFR settlement is
+computed by the engine, its payout and rate are optional overrides.
 
 ### Sickness
 

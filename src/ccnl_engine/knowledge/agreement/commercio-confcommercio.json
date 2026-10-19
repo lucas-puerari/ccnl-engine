@@ -115,6 +115,10 @@
           "variant": "sickness_net_basis",
           "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 187, align the computation, then resolve this limitation."
         }
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY RATE AND SUPPLEMENTS (Testo Unico 30 July 2019, unchanged by the 2024 renewal, artt. 149-157, 206-211): without a caller value the engine derives the hourly base (the normale retribuzione of art. 206 over 168), the 15% on ordinary night hours from 22 to 6 (art. 151), the 30% on festività hours paid as straordinario festivo (art. 155 with art. 149), the 30% on ordinary Sunday hours (art. 153; 10% at the motorway fuel stations of art. 157, role impianto_carburante_autostradale: Employment.roles must be stated) and the 30% on the hours of the weekly rest day (art. 156). Art. 155 also pays the festività hours themselves: the engine posts the 30% only and the run is provisional. Second-level agreements may replace the Sunday and night rules (art. 153). Not derived: the divisors 182 and 195 of the 42- and 45-hour weeks; shift work, left to second-level bargaining."
       }
     ]
   },
@@ -3070,7 +3074,35 @@
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "uiltucs-tu2019",
+            "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "published_on": "2019-07-30",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          },
+          "page": "197",
+          "section": "Art. 211 - Quota oraria",
+          "quote": "La quota oraria della retribuzione, sia normale che di fatto, si ottiene dividendo l'importo mensile per i seguenti divisori convenzionali: a) 168, per il personale la cui durata normale di lavoro è di 40 ore settimanali; b) 182, per il personale la cui durata normale di lavoro è di 42 ore settimanali; c) 195, per il personale la cui durata normale di lavoro è di 45 ore settimanali."
+        },
+        "transformation": "Art. 206 normale retribuzione: paga base conglobata and contingenza (base_salary, with the contingenza and EDR element where the tables print it apart), terzi elementi, scatti and other elements of the collective bargaining: base salary, seniority and every fixed allowance. Art. 208 retribuzione di fatto adds the continuative individual elements, which the engine does not know: the hour at the retribuzione di fatto and the premium on the normale retribuzione of art. 149 are one base here. Only the divisor of the 40-hour week is modelled.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-19T09:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2024-03-22",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-19T09:00:00Z",
+          "review_id": "2026-10-19-ai-hourly-rates"
+        }
+      },
+      "hourly_divisor_weekly_hours": 40,
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -3246,6 +3278,222 @@
               "verified_by": "claude-opus-5-5",
               "verified_at": "2026-10-11T18:00:00Z",
               "review_id": "2026-10-11-ai"
+            }
+          }
+        }
+      ],
+      "supplement_bands": [
+        {
+          "code": "TDS_NOTTURNO",
+          "description": "Lavoro ordinario notturno dalle 22 alle 6 (art. 151)",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-03-22",
+                "valid_until": null,
+                "value": "0.15",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+              },
+              "page": "151",
+              "section": "Art. 151 - Lavoro notturno",
+              "quote": "A decorrere dal 1° gennaio 1995, le ore di lavoro ordinario prestato di notte, intendendosi per tali quelle effettuate dalle ore 22 alle ore 6 del mattino, verranno retribuite con aliquota oraria della retribuzione di fatto di cui all'art. 208 maggiorata del 15%."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T09:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2024-03-22",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T09:00:00Z",
+              "review_id": "2026-10-19-ai-hourly-rates"
+            }
+          }
+        },
+        {
+          "code": "TDS_FESTIVO",
+          "description": "Lavoro nelle festività dell'art. 154, come straordinario festivo (art. 155)",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-03-22",
+                "valid_until": null,
+                "value": "0.30",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+              },
+              "page": "154",
+              "section": "Art. 155 - Lavoro nelle festività",
+              "quote": "Le ore di lavoro, a qualsiasi titolo richieste, prestate nei giorni festivi indicati nel precedente art. 154, dovranno essere compensate come lavoro straordinario festivo nella misura e con le modalità previste dagli artt. 149 e 211 di questo stesso contratto."
+            },
+            "transformation": "Art. 149 (p. 149) pays the straordinario festivo with the hourly retribuzione di fatto and 30% on the hourly normale retribuzione: the band is the 30%; the hour itself is paid apart.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T09:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2024-03-22",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T09:00:00Z",
+              "review_id": "2026-10-19-ai-hourly-rates"
+            }
+          }
+        },
+        {
+          "code": "TDS_DOMENICA",
+          "description": "Lavoro ordinario domenicale (art. 153)",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-03-22",
+                "valid_until": null,
+                "value": "0.30",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+              },
+              "page": "152",
+              "section": "Art. 153 - Lavoro domenicale",
+              "quote": "verrà riconosciuta la sola maggiorazione del 30% sulla quota oraria della normale retribuzione di cui all'art. 206 per ciascuna ora di lavoro prestata di domenica. Tale maggiorazione è onnicomprensiva e non cumulabile."
+            },
+            "note": "Transitional until the renewal; second-level agreements prevail and absorb it.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T09:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2024-03-22",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T09:00:00Z",
+              "review_id": "2026-10-19-ai-hourly-rates"
+            }
+          }
+        },
+        {
+          "code": "TDS_DOMENICA_AUTOSTRADE",
+          "description": "Lavoro ordinario domenicale negli impianti di carburante autostradali (art. 157)",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-03-22",
+                "valid_until": null,
+                "value": "0.10",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "role": "impianto_carburante_autostradale",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+              },
+              "page": "155",
+              "section": "Art. 157 - Distributori di carburante autostradali",
+              "quote": "la sola maggiorazione del 10% (dieci per cento) della quota oraria della normale retribuzione di cui all'art. 206."
+            },
+            "transformation": "Reserved to the role impianto_carburante_autostradale of Employment.roles.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T09:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2024-03-22",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T09:00:00Z",
+              "review_id": "2026-10-19-ai-hourly-rates"
+            }
+          }
+        },
+        {
+          "code": "TDS_RIPOSO",
+          "description": "Lavoro nel giorno di riposo settimanale (art. 156)",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-03-22",
+                "valid_until": null,
+                "value": "0.30",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+              },
+              "page": "154-155",
+              "section": "Art. 156 - Riposo settimanale",
+              "quote": "le ore di lavoro prestate nei giorni di riposo settimanale, dovranno essere retribuite con la sola maggiorazione del 30% sulla quota oraria della normale retribuzione di cui all'art. 206, fermo restando il diritto del lavoratore di godere il riposo compensativo nel giorno successivo"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T09:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2024-03-22",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T09:00:00Z",
+              "review_id": "2026-10-19-ai-hourly-rates"
             }
           }
         }
@@ -3565,6 +3813,25 @@
         "findings": [
           "Renewal signed on 2024-03-22, first tranche from 2024-04-01: parameters.renewals.",
           "Minimo before the renewal = the paga base of the table 'Paga base dal 1/4/2023' (read by OCR on the scan, p. 64); it holds the 30 EUR of April 2023 of the Protocollo of 12 December 2022, signed outside the window."
+        ]
+      },
+      {
+        "id": "2026-10-19-ai-hourly-rates",
+        "date": "2026-10-19",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base of the time supplements and the supplements of ordinary night, holiday, Sunday, rest-day and shift work, read in the cited articles of the national text (text layer, or OCR of the scanned pages). AI review only: the same model extracted and checked the values.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          }
+        ],
+        "findings": [
+          "hourly_base_method gross_incl_allowances (was minimo_tabellare), now verified: the engine reads it to derive the hourly rate of an event without one.",
+          "Supplement bands added: TDS_NOTTURNO, TDS_FESTIVO, TDS_DOMENICA, TDS_DOMENICA_AUTOSTRADE, TDS_RIPOSO.",
+          "Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS."
         ]
       }
     ],

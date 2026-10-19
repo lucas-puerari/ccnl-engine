@@ -9,8 +9,8 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 208 | 186 | 0 | `funzioni-centrali-aran` |
-| terziario | 43 | 4 977 055 | 52 | 1540 | 774 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 48 | 4 946 900 | 151 | 2025 | 979 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| terziario | 43 | 4 977 055 | 52 | 1540 | 795 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| industria | 48 | 4 946 900 | 151 | 2026 | 987 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 56 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 35 | 249 | 153 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 12 | 230 | 56 | 5 | `operai-agricoli-florovivaisti` |
@@ -40,15 +40,15 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 
 | CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Owner | Next review |
 |---|---:|---|---:|---:|---:|---|---|---|
-| [`commercio-confcommercio`](../contracts/commercio-confcommercio.md) (anchor) | 800 000 | production | 0 | 0 | 69 | party or official | maintainer | 2027-03-31 |
+| [`commercio-confcommercio`](../contracts/commercio-confcommercio.md) (anchor) | 800 000 | reviewed | 0 | 0 | 75 | party or official | maintainer | 2027-03-31 |
 | [`multiservizi-anip`](../contracts/multiservizi-anip.md) | 580 000 | exploratory | 0 | 93 | 57 | party or official | none | none |
 | [`dmo-federdistribuzione`](../contracts/dmo-federdistribuzione.md) | 460 000 | production | 0 | 1 | 77 | party or official | maintainer | 2027-04-01 |
 | [`cooperative-sociali`](../contracts/cooperative-sociali.md) | 380 000 | reviewed | 0 | 1 | 62 | party or official | maintainer | 2027-01-31 |
-| [`pubblici-esercizi-fipe-angem`](../contracts/pubblici-esercizi-fipe-angem.md) | 350 000 | production | 0 | 2 | 61 | party or official | maintainer | 2027-06-01 |
+| [`pubblici-esercizi-fipe-angem`](../contracts/pubblici-esercizi-fipe-angem.md) | 350 000 | production | 0 | 2 | 65 | party or official | maintainer | 2027-06-01 |
 | [`pubblici-esercizi-fipe-angem-ristorazione-collettiva`](../contracts/pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | 350 000 | production | 0 | 2 | 61 | party or official | maintainer | 2027-06-01 |
-| [`studi-professionali-confprofessioni`](../contracts/studi-professionali-confprofessioni.md) | 350 000 | production | 0 | 0 | 47 | party or official | maintainer | 2027-04-30 |
-| [`terziario-confesercenti`](../contracts/terziario-confesercenti.md) | 230 000 | production | 0 | 0 | 75 | party or official | maintainer | 2027-03-31 |
-| [`turismo-federalberghi`](../contracts/turismo-federalberghi.md) | 220 000 | production | 0 | 1 | 71 | party or official | maintainer | 2027-04-30 |
+| [`studi-professionali-confprofessioni`](../contracts/studi-professionali-confprofessioni.md) | 350 000 | production | 0 | 0 | 48 | party or official | maintainer | 2027-04-30 |
+| [`terziario-confesercenti`](../contracts/terziario-confesercenti.md) | 230 000 | production | 0 | 0 | 81 | party or official | maintainer | 2027-03-31 |
+| [`turismo-federalberghi`](../contracts/turismo-federalberghi.md) | 220 000 | production | 0 | 1 | 75 | party or official | maintainer | 2027-04-30 |
 | [`sanita-privata-aiop-aris`](../contracts/sanita-privata-aiop-aris.md) (anchor) | 150 000 | exploratory | 0 | 1 | 36 | party or official | maintainer | 2027-06-30 |
 | [`uneba-uneba`](../contracts/uneba-uneba.md) | 130 000 | exploratory | 1 | 41 | 1 | party or official | none | none |
 | [`autoferrotranvieri-internavigatori`](../contracts/autoferrotranvieri-internavigatori.md) | 120 000 | exploratory | 1 | 139 | 0 | party or official | none | none |
@@ -88,11 +88,11 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 
 | CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Owner | Next review |
 |---|---:|---|---:|---:|---:|---|---|---|
-| [`metalmeccanico-federmeccanica`](../contracts/metalmeccanico-federmeccanica.md) (anchor) | 1 700 000 | production | 0 | 0 | 86 | party or official | maintainer | 2027-06-01 |
+| [`metalmeccanico-federmeccanica`](../contracts/metalmeccanico-federmeccanica.md) (anchor) | 1 700 000 | production | 0 | 1 | 88 | party or official | maintainer | 2027-06-01 |
 | [`logistica-trasporto-confetra`](../contracts/logistica-trasporto-confetra.md) (anchor) | 430 000 | reviewed | 0 | 3 | 63 | party or official | maintainer | 2027-06-01 |
 | [`logistica-trasporto-confetra-viaggiante`](../contracts/logistica-trasporto-confetra-viaggiante.md) | 430 000 | reviewed | 0 | 30 | 53 | party or official | maintainer | 2027-06-01 |
-| [`metalmeccanico-confapi`](../contracts/metalmeccanico-confapi.md) | 350 000 | production | 0 | 7 | 58 | party or official | maintainer | 2027-05-01 |
-| [`chimica-farmaceutica-federchimica`](../contracts/chimica-farmaceutica-federchimica.md) | 210 000 | production | 0 | 5 | 111 | party or official | maintainer | 2027-04-30 |
+| [`metalmeccanico-confapi`](../contracts/metalmeccanico-confapi.md) | 350 000 | production | 0 | 7 | 61 | party or official | maintainer | 2027-05-01 |
+| [`chimica-farmaceutica-federchimica`](../contracts/chimica-farmaceutica-federchimica.md) | 210 000 | production | 0 | 5 | 114 | party or official | maintainer | 2027-04-30 |
 | [`tessile-smi`](../contracts/tessile-smi.md) | 160 000 | exploratory | 2 | 47 | 0 | party or official | none | none |
 | [`alimentari-federalimentare`](../contracts/alimentari-federalimentare.md) | 145 000 | production | 0 | 0 | 75 | party or official | maintainer | 2027-04-30 |
 | [`poste-italiane-k700`](../contracts/poste-italiane-k700.md) | 117 000 | exploratory | 1 | 53 | 1 | party or official | none | none |

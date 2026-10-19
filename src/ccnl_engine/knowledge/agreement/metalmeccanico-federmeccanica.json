@@ -162,6 +162,10 @@
       {
         "kind": "info",
         "text": "APPRENTICESHIP TRACKS (CCNL 5 February 2021, accordo sull'apprendistato, pp. 267-271): 36 months, reduced by 6 months for a diploma of level 4 QEQ or above (30), 24 for the D2 figures on assembly lines; each third at 85, 90 and 95% of the destination level."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY RATE AND SUPPLEMENTS (Art. 7 Sez. Quarta Tit. III of the CCNL of 5 February 2021, rates untouched by the renewal of 22 November 2025): without a caller value the engine derives the hourly base (minimi, scatti and fixed allowances over 173) and the supplements on holiday hours (50%) and on holiday hours with a compensatory rest (10%), equal in both columns. Whether those hours are also paid on top of the monthly pay is not settled: a derived holiday supplement is provisional. Not derived, the caller states the amount: ordinary night work (20% until 22 and 30% after; shift workers 15%, 20% from June 2013, 25% from 22 to 6 in the impiantistica), because its window starts 12 hours after the morning shift of each work group and its rate depends on the hour and on the shift column, facts the request does not carry; night holiday work and Sunday work. Individual elements (merito, superminimi, cottimi) are not in the hourly base. Absences: no clause sets the divisor of an absence deduction; the 1/26 of art. 9 (festività on a Sunday) is taken by analogy (work_rules.absence_rules derived, was verified on the wrong clause): the caller states AbsenceEvent.hourly_rate."
       }
     ]
   },
@@ -3237,7 +3241,34 @@
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+            "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "published_on": "2021-02-05",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          },
+          "page": "161",
+          "section": "Sez. Quarta, Titolo III, Art. 7 - Lavoro straordinario, notturno e festivo",
+          "quote": "Le percentuali di maggiorazione di cui sopra sono computate sulla retribuzione oraria come definita dal 2° comma dell'articolo 3, Sezione quarta, Titolo IV."
+        },
+        "transformation": "Art. 3 Sez. Quarta Tit. IV (p. 173) divides by 173 the minimi tabellari (consolidated with contingenza and EDR in base_salary), the scatti, the aumenti di merito and the other compensi fixed by the month, plus the hourly elements: base salary, seniority and fixed allowances. Merito, superminimi, incentivi and the cottimo yield are individual elements the engine does not know.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-19T09:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2021-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-19T09:00:00Z",
+          "review_id": "2026-10-19-ai-hourly-rates"
+        }
+      },
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -3504,13 +3535,103 @@
             }
           }
         }
+      ],
+      "supplement_bands": [
+        {
+          "code": "FED_FESTIVO",
+          "description": "Lavoro festivo (art. 7 riga c)",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "valid_until": null,
+                "value": "0.50",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                "published_on": "2021-02-05",
+                "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+              },
+              "page": "161",
+              "section": "Sez. Quarta, Titolo III, Art. 7 table row c)",
+              "quote": "c) festivo . . . 50% 50%"
+            },
+            "transformation": "Same percentage in the column of work not in shifts and in the column of shift work.",
+            "note": "'Da corrispondere oltre alla normale retribuzione': whether the holiday hours themselves are paid on top of the monthly pay of a monthly-paid worker is not settled by the text.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T09:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2021-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T09:00:00Z",
+              "review_id": "2026-10-19-ai-hourly-rates"
+            }
+          }
+        },
+        {
+          "code": "FED_FESTIVO_RIPOSO",
+          "description": "Lavoro festivo con riposo compensativo (art. 7 riga d)",
+          "work": "holiday_compensatory_rest",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "valid_until": null,
+                "value": "0.10",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                "published_on": "2021-02-05",
+                "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+              },
+              "page": "161",
+              "section": "Sez. Quarta, Titolo III, Art. 7 table row d)",
+              "quote": "d) festivo con riposo compensativo . . . 10% 10%"
+            },
+            "transformation": "Same percentage in the column of work not in shifts and in the column of shift work.",
+            "note": "'Da corrispondere oltre alla normale retribuzione': whether the holiday hours themselves are paid on top of the monthly pay of a monthly-paid worker is not settled by the text.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T09:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2021-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T09:00:00Z",
+              "review_id": "2026-10-19-ai-hourly-rates"
+            }
+          }
+        }
       ]
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
-        "status": "verified",
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
@@ -3524,17 +3645,15 @@
           "section": "Sez. Quarta, Titolo III, Art. 9 - Festivita",
           "quote": "l'importo di una quota giornaliera della retribuzione di fatto, pari a 1/26 della retribuzione mensile fissa"
         },
+        "transformation": "No clause sets the divisor of an absence deduction; the daily quota of 1/26 of Art. 9 (a festività falling on a Sunday) is taken as the daily quota, the industria convention.",
+        "note": "Sez. Quarta Tit. IV Art. 3 (p. 173) sets the hourly pay at 1/173 'ai fini dei vari istituti contrattuali': an hourly deduction would be equally consistent. The engine derives no absence deduction from this rule: the caller states AbsenceEvent.hourly_rate.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "verified",
           "effective_from": "2021-06-01",
-          "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-11T19:00:57Z",
-          "review_id": "2026-10-11-ai"
-        },
-        "note": "The only daily quota the CCNL defines; the run applies it to absences and partly employed months."
+          "verification_status": "unverified"
+        }
       }
     },
     "leave_rules": {
@@ -5198,6 +5317,26 @@
         ],
         "findings": [
           "Lavoro supplementare (Sez. Quarta, Titolo I, PDF p. 58): 10% onnicomprensiva up to 40 weekly hours and 50% of the yearly part-time hours, 20% beyond that yearly limit. The 10% band is added for OvertimeKind.SUPPLEMENTARY; the 20% past the yearly limit needs the yearly count of supplementary hours and is not modelled."
+        ]
+      },
+      {
+        "id": "2026-10-19-ai-hourly-rates",
+        "date": "2026-10-19",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base of the time supplements and the supplements of ordinary night, holiday, Sunday, rest-day and shift work, read in the cited articles of the national text (text layer, or OCR of the scanned pages). AI review only: the same model extracted and checked the values.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          }
+        ],
+        "findings": [
+          "hourly_base_method gross_incl_allowances (was minimo_tabellare), now verified: the engine reads it to derive the hourly rate of an event without one.",
+          "Supplement bands added: FED_FESTIVO, FED_FESTIVO_RIPOSO.",
+          "Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS.",
+          "work_rules.absence_rules was verified on the 1/26 of art. 9, which pays a festività falling on a Sunday and sets no absence divisor: now derived, with the reading stated."
         ]
       }
     ],

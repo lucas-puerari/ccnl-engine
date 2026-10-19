@@ -68,6 +68,7 @@ from ccnl_engine.severance.settlement.services import (
 from ccnl_engine.sickness.month.validators import (
     WITH_UNPAID_ABSENCE,
 )
+from ccnl_engine.working_time.hourly.services import hourly_terms
 
 _NO_QUOTA = Decimal(0)
 
@@ -288,5 +289,7 @@ def run_decisions(
         + individual_element_decisions(ctx)
         + totals.decisions
         + amounts.decisions
-        + caller_supplied_decisions(request.events, contract.ccnl, request.level_code)
+        + caller_supplied_decisions(
+            request.events, contract.ccnl, request.level_code, hourly_terms(ctx)
+        )
     )

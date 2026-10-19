@@ -240,6 +240,10 @@
           },
           "remediation": "Add the tables of the other sectors."
         }
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY RATE AND SUPPLEMENTS (artt. 9, 15 punto 1, 20 of the 2006 text): without a caller value the engine derives the hourly base (minimo + IPO + scatti over 175), the 50% on holiday hours (art. 9 punto 3) and the 4% on rotating day shifts (punto 5 a). Not derived, the caller states the amount: ordinary night work of non-shift workers (50%, punto 4), whose 9-hour window the company fixes between 20 and 8 (art. 8 H); Sunday work (50% with compensatory rest, 33% for 3x7 continuous cycles under punto 6, a fact the request does not carry); night shifts (34%, 46% for 3x7, punto 5 b-c), because the fixed amount per 8 hours of art. 9 H in force after the 2022 renewal is unconfirmed (6.50 EUR from 2007, 13.50 from 1 April 2019, 15.50 from 1 July 2027). Art. 9 does not say whether the holiday hours themselves are paid on top of the monthly pay: a derived holiday supplement is provisional. Not modelled: the 5% on hours 37h45m to 40 and the 30% beyond 2,024 annual hours (punti 1 and 11). Absences: art. 20 punti 2-3 deduct 1/175 of the same elements per hour, but work_rules.absence_rules stays derived (its 8-hour day is not in the text), so the engine derives no absence deduction: the caller states AbsenceEvent.hourly_rate."
       }
     ]
   },
@@ -4780,7 +4784,33 @@
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "minimo_e_anzianita",
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-579-ccnl-chimica-2006",
+            "title": "CCNL industria chimica, chimico-farmaceutica, fibre chimiche e settori abrasivi, lubrificanti e GPL, testo definitivo 10 maggio 2006 (CNEL n. 579, file Word)",
+            "kind": "cnel",
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+            "published_on": "2006-05-10",
+            "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+          },
+          "section": "Art. 9 - Maggiorazioni, after the table",
+          "quote": "Le percentuali di maggiorazione vanno applicate sulle quote orarie degli elementi retributivi di cui al punto 1) dell'alt 15 calcolate secondo i criteri previsti dall'art. 20."
+        },
+        "transformation": "Art. 15 punto 1 lists minimo contrattuale, IPO, scatti di anzianità, ERI, aumenti di merito and altre eccedenze; art. 20 punto 4 divides that retribuzione mensile by 175. The bundle holds minimo + IPO as base_salary and the scatti as seniority: minimo_e_anzianita. The EDR (art. 15 B 2) is not among the elements; ERI, merito and eccedenze are individual elements the engine does not know.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-19T09:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2006-05-10",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-19T09:00:00Z",
+          "review_id": "2026-10-19-ai-hourly-rates"
+        }
+      },
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -5235,6 +5265,91 @@
             }
           }
         }
+      ],
+      "supplement_bands": [
+        {
+          "code": "CHIM_FESTIVO",
+          "description": "Lavoro nei giorni festivi (art. 9 punto 3)",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2006-05-10",
+                "valid_until": null,
+                "value": "0.50",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-579-ccnl-chimica-2006",
+                "title": "CCNL industria chimica, chimico-farmaceutica, fibre chimiche e settori abrasivi, lubrificanti e GPL, testo definitivo 10 maggio 2006 (CNEL n. 579, file Word)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+                "published_on": "2006-05-10",
+                "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+              },
+              "section": "Art. 9 punto 3",
+              "quote": "3) Lavoro compiuto di domenica con riposo compensativo o nei giorni considerati festivi ad esclusione di quanto previsto al successivo punto 6) 50%"
+            },
+            "note": "Art. 9 lists only the percentage: whether the holiday hours themselves are paid on top of the monthly pay is not stated.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T09:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2006-05-10",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T09:00:00Z",
+              "review_id": "2026-10-19-ai-hourly-rates"
+            }
+          }
+        },
+        {
+          "code": "CHIM_TURNO_DIURNO",
+          "description": "Turni diurni avvicendati (art. 9 punto 5 a)",
+          "work": "day_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2006-05-10",
+                "valid_until": null,
+                "value": "0.04",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-579-ccnl-chimica-2006",
+                "title": "CCNL industria chimica, chimico-farmaceutica, fibre chimiche e settori abrasivi, lubrificanti e GPL, testo definitivo 10 maggio 2006 (CNEL n. 579, file Word)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+                "published_on": "2006-05-10",
+                "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+              },
+              "section": "Art. 9 punto 5 a)",
+              "quote": "a) turni diurni 4%"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T09:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2006-05-10",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T09:00:00Z",
+              "review_id": "2026-10-19-ai-hourly-rates"
+            }
+          }
+        }
       ]
     },
     "absence_rules": {
@@ -5445,6 +5560,25 @@
         "findings": [
           "Ipotesi of 15 April 2025, first tranche from 1 July 2025: parameters.renewals.",
           "p. 46: the July 2025 tranche also pays the last 20 EUR (D1) of the renewal of 13 June 2022, signed outside the window: the minimo before the renewal at D1 is 2239.26 + 20 = 2259.26. The 2022 tranche of the other categories is not printed in the 2025 text (its tables are announced, not attached): their increment stays unmeasured."
+        ]
+      },
+      {
+        "id": "2026-10-19-ai-hourly-rates",
+        "date": "2026-10-19",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base of the time supplements and the supplements of ordinary night, holiday, Sunday, rest-day and shift work, read in the cited articles of the national text (text layer, or OCR of the scanned pages). AI review only: the same model extracted and checked the values.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+            "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+          }
+        ],
+        "findings": [
+          "hourly_base_method minimo_e_anzianita (was minimo_tabellare), now verified: the engine reads it to derive the hourly rate of an event without one.",
+          "Supplement bands added: CHIM_FESTIVO, CHIM_TURNO_DIURNO.",
+          "Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS."
         ]
       }
     ],

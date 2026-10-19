@@ -73,10 +73,10 @@ one, the comparable bundled value.
 
 | Event | Capability | Reason | Caller fields | Bundle value for comparison |
 |---|---|---|---|---|
-| `OvertimeEvent` | `overtime` | `caller_supplied_rate` | `hourly_rate`, and `multiplier` when given | Bands of the event's `kind` `bundle_band[<code>]`, `caller_supplement` (multiplier minus 1, when given), `bundle_hourly_divisor` |
-| `NightShiftEvent` | `night_work` | `caller_supplied_amount` | `supplement_amount` | Night bands |
-| `HolidayWorkEvent` | `holiday_work` | `caller_supplied_amount` | `supplement_amount` | Holiday bands |
-| `ShiftWorkEvent` | `shift_work` | `caller_supplied_amount` | `supplement_amount` | Per-shift allowances |
+| `OvertimeEvent` | `overtime` | `caller_supplied_rate` | `hourly_rate` and `multiplier`, each when given | Bands of the event's `kind` `bundle_band[<code>]`, `caller_supplement` (multiplier minus 1, when given), `bundle_hourly_divisor` |
+| `NightShiftEvent` | `night_work` | `caller_supplied_amount` | `supplement_amount` | Night supplement bands |
+| `HolidayWorkEvent` | `holiday_work` | `caller_supplied_amount` | `supplement_amount` | Supplement bands of its kind |
+| `ShiftWorkEvent` | `shift_work` | `caller_supplied_amount` | `supplement_amount` | Shift supplement bands and per-shift allowances |
 | `AbsenceEvent` | `absence` | `caller_supplied_rate` | `hourly_rate` | `bundle_hourly_divisor` |
 | `SickLeaveEvent` | `sickness` | `caller_override` | `amount` | None |
 | `ArrearsEvent` | `contract_renewal_arrears` | `caller_supplied_rate` | `separate_tax_rate` | None |

@@ -250,6 +250,10 @@
           },
           "remediation": "Model the IPCA top-up when the index is published."
         }
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY RATE AND SUPPLEMENTS (Art. 29 of the CCNL of 3 July 2017 (rates untouched by the renewals of 2021 and 2026)): without a caller value the engine derives the hourly base (minimi, scatti and fixed allowances over 173) and the supplements on holiday hours (55%) and on holiday hours with a compensatory rest (10%), equal in both columns. Whether those hours are also paid on top of the monthly pay is not settled: a derived holiday supplement is provisional. Not derived, the caller states the amount: ordinary night work (25% until 22 and 35% after (shift column 25%)), because its window starts 12 hours after the morning shift of each work group and its rate depends on the hour and on the shift column, facts the request does not carry; night holiday work and Sunday work. Individual elements (merito, superminimi, cottimi) are not in the hourly base. Absences: no clause sets the divisor of an absence deduction (work_rules.absence_rules is derived from the 1/26 of art. 32): the caller states AbsenceEvent.hourly_rate."
       }
     ]
   },
@@ -2959,6 +2963,34 @@
   "work_rules": {
     "time_supplements": {
       "hourly_base_method": "gross_incl_allowances",
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-unionmeccanica-confapi-2017",
+            "title": "CCNL 3 luglio 2017 piccola e media industria metalmeccanica, orafa e installazione impianti (Unionmeccanica-Confapi, Fim-Cisl, Fiom-Cgil, Uilm-Uil), testo a stampa",
+            "kind": "associazione",
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "published_on": "2017-07-03",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          },
+          "page": "101",
+          "section": "Art. 29 - Lavoro straordinario, notturno e festivo",
+          "quote": "Le percentuali di maggiorazione sono computate sulla quota oraria della retribuzione globale di fatto determinata dividendo per 173 l'ammontare mensile e per i lavoratori normalmente lavoranti a cottimo, della percentuale media contrattuale di cottimo."
+        },
+        "transformation": "Art. 38 (p. 112) divides by 173 the minimi tabellari conglobati, the scatti, the aumenti di merito and the other compensi fixed by the month, plus the hourly elements: the bundle base_salary, seniority and fixed allowances. Merito, superminimi, cottimi and incentivi are individual elements the engine does not know.",
+        "note": "The PDF text layer prints the sentence twice, overlapping; the quote is rebuilt from the two copies.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-19T09:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2021-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-19T09:00:00Z",
+          "review_id": "2026-10-19-ai-hourly-rates"
+        }
+      },
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -3138,6 +3170,96 @@
               "verified_at": "2026-10-13T07:18:29Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        }
+      ],
+      "supplement_bands": [
+        {
+          "code": "CONFAPI_FESTIVO",
+          "description": "Lavoro festivo (art. 29 riga c)",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "valid_until": null,
+                "value": "0.55",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-unionmeccanica-confapi-2017",
+                "title": "CCNL 3 luglio 2017 piccola e media industria metalmeccanica, orafa e installazione impianti (Unionmeccanica-Confapi, Fim-Cisl, Fiom-Cgil, Uilm-Uil), testo a stampa",
+                "kind": "associazione",
+                "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+                "published_on": "2017-07-03",
+                "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+              },
+              "page": "101",
+              "section": "Art. 29 table row c)",
+              "quote": "c) festivo 55% 55%"
+            },
+            "transformation": "Same percentage in the column of work not in shifts and in the column of shift work.",
+            "note": "'Da corrispondere oltre alla normale retribuzione': whether the holiday hours themselves are paid on top of the monthly pay of a monthly-paid worker is not settled by the text.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T09:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2021-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T09:00:00Z",
+              "review_id": "2026-10-19-ai-hourly-rates"
+            }
+          }
+        },
+        {
+          "code": "CONFAPI_FESTIVO_RIPOSO",
+          "description": "Lavoro festivo con riposo compensativo (art. 29 riga d)",
+          "work": "holiday_compensatory_rest",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "valid_until": null,
+                "value": "0.10",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-unionmeccanica-confapi-2017",
+                "title": "CCNL 3 luglio 2017 piccola e media industria metalmeccanica, orafa e installazione impianti (Unionmeccanica-Confapi, Fim-Cisl, Fiom-Cgil, Uilm-Uil), testo a stampa",
+                "kind": "associazione",
+                "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+                "published_on": "2017-07-03",
+                "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+              },
+              "page": "101",
+              "section": "Art. 29 table row d)",
+              "quote": "d) festivo con riposo compensativo 10% 10%"
+            },
+            "transformation": "Same percentage in the column of work not in shifts and in the column of shift work.",
+            "note": "'Da corrispondere oltre alla normale retribuzione': whether the holiday hours themselves are paid on top of the monthly pay of a monthly-paid worker is not settled by the text.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T09:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2021-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T09:00:00Z",
+              "review_id": "2026-10-19-ai-hourly-rates"
             }
           }
         }
@@ -3342,6 +3464,25 @@
           "5th level (scans read by OCR): 2.195,87 from 1 September 2025 and 2.245,87 from 1 June 2026 in both documents. Match.",
           "The 6 derived minimi of June 2024 and June 2025 stay derived: for each the verbale that set the tranche and the later accordo and renewal print amounts one to five cents apart (for example 1.752,96 against 1.752,97 at the 2nd level); the file keeps the verbale in force for the months it covers and records both. The derived absence and leave rules state their transformation of a cited text. No primary states any of them directly.",
           "Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios confapi-year and confapi-june): a 5th level impiegato hired on 1 January 2026 by an employer with 50 employees, across the tranche of June 2026; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done."
+        ]
+      },
+      {
+        "id": "2026-10-19-ai-hourly-rates",
+        "date": "2026-10-19",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base of the time supplements and the supplements of ordinary night, holiday, Sunday, rest-day and shift work, read in the cited articles of the national text (text layer, or OCR of the scanned pages). AI review only: the same model extracted and checked the values.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          }
+        ],
+        "findings": [
+          "hourly_base_method gross_incl_allowances (was gross_incl_allowances), now verified: the engine reads it to derive the hourly rate of an event without one.",
+          "Supplement bands added: CONFAPI_FESTIVO, CONFAPI_FESTIVO_RIPOSO.",
+          "Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS."
         ]
       }
     ],

@@ -34,6 +34,7 @@ from ccnl_engine.sickness.month.validators import (
     month_issues,
 )
 from ccnl_engine.sickness.term.rules import SicknessTerms
+from ccnl_engine.working_time.hourly.policies import HourlyTerms
 from ccnl_engine.working_time.overtime.policies import CCNLOvertimeBands
 
 if TYPE_CHECKING:
@@ -202,6 +203,7 @@ def _process_events(
     opening_work_time_cap: RegimeCapAccount | None = None,
     worker_facts: RegimeFacts = _NO_FACTS,
     overtime_bands: CCNLOvertimeBands | None = None,
+    hourly: HourlyTerms | None = None,
     sickness: SicknessTerms | None = None,
     travel_allowance: TravelAllowanceRules | None = None,
     standby: StandbyTerms | None = None,
@@ -213,7 +215,9 @@ def _process_events(
     after each eligible supplement, so later events of the run only get the
     substitute rate on what is left of the annual cap.  ``overtime_bands``
     are the CCNL bands an overtime event without a multiplier is paid with;
-    without them such an event is rejected.  ``sickness`` holds the rules
+    without them such an event is rejected.  ``hourly`` holds what a
+    work-time event without the caller's rate or amount is derived from;
+    without it such an event is rejected.  ``sickness`` holds the rules
     and recorded episodes a sickness episode is paid with; each episode and
     its deducted units are recorded before the next event.
 
@@ -241,6 +245,7 @@ def _process_events(
         work_time_cap=acc.work_time_cap,
         worker_facts=worker_facts,
         overtime_bands=overtime_bands or CCNLOvertimeBands(),
+        hourly=hourly or HourlyTerms(),
         sickness=terms,
         travel_allowance=travel_allowance,
         standby=standby,
