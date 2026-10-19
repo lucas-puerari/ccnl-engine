@@ -2,14 +2,15 @@
 
 Some events carry a rate or an amount the engine applies as given: the
 overtime hourly rate and an explicit multiplier, the hourly rate of an
-absence, a flat supplement, a separate tax rate, a sick pay amount that
-overrides the engine.  Each such event records one decision with origin
-:attr:`~ccnl_engine.decision.models.DecisionOrigin.CALLER_SUPPLIED`:
-the fields it took from the caller, their values and, where the bundle has
-a comparable value (a CCNL band, the hourly divisor), that value for
-comparison.  The amounts do not change.  An
-overtime multiplier derived from the CCNL band is an engine decision of the
-handler, not listed here.  A fringe benefit records its own decision.
+absence, a flat supplement, a separate tax rate, a sick pay amount or a
+TFR payout or rate that overrides the engine.  Each such event records one
+decision with origin
+:attr:`~ccnl_engine.decision.models.DecisionOrigin.CALLER_SUPPLIED`: the
+fields it took from the caller, their values and, where the bundle has a
+comparable value (a CCNL band, the hourly divisor), that value for
+comparison.  The amounts do not change.  An overtime multiplier derived
+from the CCNL band is an engine decision of the handler, not listed here.
+A fringe benefit records its own decision.
 """
 
 from __future__ import annotations
@@ -117,7 +118,7 @@ _RULES: dict[type, _CallerRule] = {
         ("employee_amount", "employer_amount"),
     ),
     TerminationTFREvent: _CallerRule(
-        "termination_tfr", CALLER_SUPPLIED_RATE, ("separate_tax_rate",)
+        "termination_tfr", CALLER_OVERRIDE, ("amount", "separate_tax_rate")
     ),
 }
 
@@ -225,12 +226,13 @@ def _comparable(ccnl: CCNL, event: WorkEvent) -> dict[str, Decimal | str]:
     return {}
 
 
-def _amount(event: WorkEvent) -> Decimal:
+def _amount(event: WorkEvent) -> Decimal | None:
     """Return the amount the event posts from the caller's values.
 
     Returns:
         The gross of a standard event (negative for an absence), the total
-        of a bilateral fund event, or the declared amount.
+        of a bilateral fund event, or the declared amount; ``None`` for a
+        TFR settlement whose payout the engine computes.
     """
     if isinstance(event, BilateralFundEvent):
         return event.employee_amount + event.employer_amount
@@ -255,6 +257,8 @@ def _decision(
     level_code: str | None,
 ) -> CalculationDecision:
     fields, paid = rule.fields, event
+    if isinstance(event, TerminationTFREvent):
+        fields = tuple(name for name in fields if getattr(event, name) is not None)
     if isinstance(event, OvertimeEvent):
         bands = CCNLOvertimeBands.of(ccnl, event.event_date.year, level_code)
         paid = resolve_overtime_rate(event, bands).paid(event)
@@ -299,6 +303,9 @@ def _supplied(event: WorkEvent) -> bool:
     """Return whether the event carries the caller's value of its rule.
 
     Returns:
-        ``False`` for a travel allowance paid at the CCNL amount.
+        ``False`` for a travel allowance paid at the CCNL amount and for a
+        TFR settlement the engine computes in full.
     """
+    if isinstance(event, TerminationTFREvent):
+        return event.amount is not None or event.separate_tax_rate is not None
     return not (isinstance(event, TravelAllowanceEvent) and event.daily_amount is None)

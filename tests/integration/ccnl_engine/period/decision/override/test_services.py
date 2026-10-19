@@ -181,7 +181,13 @@ class TestOvertimeRun:
         (
             TerminationTFREvent(_DAY, Decimal(9000), Decimal("0.23")),
             "termination_tfr",
-            CALLER_SUPPLIED_RATE,
+            CALLER_OVERRIDE,
+            "amount,separate_tax_rate",
+        ),
+        (
+            TerminationTFREvent(_DAY, separate_tax_rate=Decimal("0.23")),
+            "termination_tfr",
+            CALLER_OVERRIDE,
             "separate_tax_rate",
         ),
     ],
@@ -213,6 +219,11 @@ def test_amounts_follow_the_caller_values() -> None:
         Decimal(15),
         Decimal(200),
     ]
+
+
+def test_a_tfr_settlement_the_engine_computes_records_no_caller_value() -> None:
+    """Without a caller payout or rate the settlement is the engine's."""
+    assert caller_supplied_decisions((TerminationTFREvent(_DAY),), _CCNL) == ()
 
 
 def test_fringe_benefit_keeps_its_own_decision() -> None:

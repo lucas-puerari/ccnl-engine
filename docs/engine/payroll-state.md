@@ -6,7 +6,7 @@ has two parts with different lifetimes:
 
 | Part | Type | Lifetime | Holds |
 |---|---|---|---|
-| `state.accrual` | `EmploymentAccrualState` | the employment | competence runs closed (`competence_runs`, a tuple of `PayrollRunId` in closing order): the months and extra months of each competence year already paid; the INPS base toward the IVS massimale per competence year (`inps_bases`, see [INPS base by competence](#inps-base-by-competence)) |
+| `state.accrual` | `EmploymentAccrualState` | the employment | competence runs closed (`competence_runs`, a tuple of `PayrollRunId` in closing order): the months and extra months of each competence year already paid; the INPS base toward the IVS massimale per competence year (`inps_bases`, see [INPS base by competence](#inps-base-by-competence)); the TFR accrued with the employer per competence year (`tfr_quotas`, `TfrQuotaYtd(year, amount)`), known from `tfr_quotas_known_from` when balances were imported without them, which the [TFR settlement](pay-components.md#settlement-at-the-termination) adds to the fund of the year before |
 | `state.cash` | `TaxCashState` | one tax year | payments of the tax year (`payments`, a tuple of `PaymentId`, in payment order), the payment that settled the conguaglio (`conguaglio`), YTD earnings, fringe, tax withheld (with the municipal acconto withheld), trattamento integrativo, somma esente, night/holiday/shift cap, IRPEF and surtax not yet withheld (`shortfall`) |
 | `state.cash.obligations` | `EmploymentObligations` | carried from year to year | installment recoveries still running (trattamento integrativo, D.L. 3/2020 art. 1 c. 3; somma esente and ulteriore detrazione, L. 207/2024 art. 1 c. 7) surtax a conguaglio determined, still to withhold (`surtax`), and IRPEF of a conguaglio deferred on the worker's written request (`deferred_shortfall`, art. 23 c. 3 DPR 600/1973) |
 
@@ -102,7 +102,9 @@ and bundle versions stay in the JSON for audit, so a release of the engine or
 of the bundle does not invalidate the stored states. A state of an earlier
 schema is brought to the current one by `STATE_MIGRATIONS`, one step per
 version from `FIRST_SCHEMA_VERSION`, before it is decoded; a schema bump ships
-with its step, and a test fails the build when one is missing. A state of a
+with its step, and a test fails the build when one is missing. Schema 15
+added the TFR quotas: a state of schema 14 counted none, so its quotas are
+known from the year after its last closed run. A state of a
 newer schema than the engine, or older than the first one persisted, is
 rejected: it is recomputed, or its totals are imported with
 `OpeningBalances`. Each value is tagged with the name of its

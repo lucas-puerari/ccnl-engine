@@ -4,9 +4,10 @@ The run is computed in four stages: the request is normalised into a
 :class:`~ccnl_engine.period.context.services.RunContext`; the
 pipeline of :mod:`~ccnl_engine.period.step.services` posts
 (1) variable events and extra-month settlements, (2) INPS contributions and
-TFR accrual, (3) IRPEF via conguaglio YTD and surtax, (4) credits and
-recoveries, (5) pay items and ledger entries after the withholding cap; the
-result is then assembled with its closing YTD state and checked.
+TFR accrual, then the TFR settlement the engine computes, (3) IRPEF via
+conguaglio YTD and surtax, (4) credits and recoveries, (5) pay items and
+ledger entries after the withholding cap; the result is then assembled
+with its closing YTD state and checked.
 
 The API layer builds its defaults through these factories so that it depends
 on the application layer only, never on the concrete loaders.
@@ -27,6 +28,7 @@ from ccnl_engine.period.step.services import (
     run_amounts,
     run_decisions,
     run_events,
+    run_tfr_settlement,
 )
 
 if TYPE_CHECKING:
@@ -84,6 +86,7 @@ def calculate_period(
     ctx = build_context(request, repo, resolver)
     events = run_events(ctx)
     amounts = run_amounts(ctx, events.totals)
+    events = run_tfr_settlement(ctx, events, amounts)
     decisions = run_decisions(ctx, events.totals, amounts)
     recoveries = run_credits(ctx, amounts.tax_computation)
     posted = post_run(

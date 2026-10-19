@@ -1,4 +1,4 @@
-"""Payable rules of the TFR accrual and of its yearly revaluation."""
+"""Payable rules of the TFR accrual, its yearly revaluation and its settlement."""
 
 from __future__ import annotations
 
@@ -8,8 +8,14 @@ if TYPE_CHECKING:
     from ccnl_engine.capability.rule.services import Rule
     from ccnl_engine.severance.models import TfrRules
     from ccnl_engine.severance.revaluation.models import TfrRevaluationRules
+    from ccnl_engine.severance.settlement.models import TfrSettlementRules
 
-__all__ = ["revaluation_rule_name", "revaluation_rules", "tfr_rules"]
+__all__ = [
+    "revaluation_rule_name",
+    "revaluation_rules",
+    "settlement_rules",
+    "tfr_rules",
+]
 
 
 def tfr_rules(name: str, tfr: TfrRules) -> tuple[Rule, ...]:
@@ -52,4 +58,26 @@ def revaluation_rules(
         (f"{name}:rate", revaluation.rate.provenance),
         (f"{name}:price_index", revaluation.price_index.provenance),
         (f"{name}:substitute_tax", revaluation.substitute_tax.provenance),
+    )
+
+
+def settlement_rules(settlement: TfrSettlementRules | None) -> tuple[Rule, ...]:
+    """Return the separate taxation rules of the TFR settlement.
+
+    Returns:
+        The separate taxation, the reference income and the months of
+        service of artt. 17 and 19 TUIR and art. 2120 c. 1 c.c.; empty when
+        the year has no settlement rules.
+    """
+    if settlement is None:
+        return ()
+    name = (
+        f"tax/{settlement.year}/tfr-settlement"
+        if settlement.ruleset is None
+        else settlement.ruleset.id
+    )
+    return (
+        (f"{name}:separate_taxation", settlement.separate_taxation.provenance),
+        (f"{name}:reference_income", settlement.reference_income.provenance),
+        (f"{name}:service_period", settlement.service_period.provenance),
     )

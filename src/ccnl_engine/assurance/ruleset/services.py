@@ -68,6 +68,8 @@ def _candidates(
     yield RulesetKind.TAX, ctx.var_pay_rules.ruleset
     if rules.tfr_revaluation is not None:
         yield RulesetKind.TAX, rules.tfr_revaluation.ruleset
+    if rules.tfr_settlement is not None and "termination_tfr" in capabilities:
+        yield RulesetKind.TAX, rules.tfr_settlement.ruleset
     if rules.somma_esente is not None:
         yield RulesetKind.TAX, rules.somma_esente.ruleset
     if "family_deductions" in capabilities:

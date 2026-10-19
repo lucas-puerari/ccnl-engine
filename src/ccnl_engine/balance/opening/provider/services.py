@@ -31,6 +31,7 @@ from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.employment.spell.models import EmploymentSpell
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.run.models import PayrollRunId
+from ccnl_engine.severance.provision.models import TfrQuotaYtd
 from ccnl_engine.sickness.models import SicknessEpisode
 from ccnl_engine.surtax.obligation.models import SurtaxObligation
 from ccnl_engine.validators import require_instance
@@ -148,6 +149,13 @@ class OpeningBalances:
             with this employer (a rehire): the art. 13 TUIR deduction counts
             their union.  ``()`` states none: the next run adds the days of
             its own employment.
+        tfr_quotas: TFR the payments and competence runs accrued with the
+            employer, per competence year (the quotas net of the
+            additional IVS, posted to the company or to the Fondo
+            Tesoreria INPS).  ``None`` means not known: a termination in
+            ``tax_year`` or earlier whose TFR the engine computes then has a
+            ``missing_fact tfr_quotas`` blocker; the runs of the next years
+            count their own.
     """
 
     tax_year: int
@@ -188,6 +196,7 @@ class OpeningBalances:
     surtax_obligations: tuple[SurtaxObligation, ...] = field(kw_only=True)
     deferred_shortfall: DeferredShortfall | None = None
     employment_spells: tuple[EmploymentSpell, ...] = ()
+    tfr_quotas: tuple[TfrQuotaYtd, ...] | None = None
 
     def __post_init__(self) -> None:
         """Validate every amount and the consistency of the totals.
@@ -211,6 +220,10 @@ class OpeningBalances:
             ("employment_spells", EmploymentSpell),
         ):
             object.__setattr__(self, name, items(getattr(self, name), name, item))
+        if self.tfr_quotas is not None:
+            object.__setattr__(
+                self, "tfr_quotas", items(self.tfr_quotas, "tfr_quotas", TfrQuotaYtd)
+            )
         object.__setattr__(
             self, "recoveries", items(self.recoveries, "recoveries", RecoveryObligation)
         )

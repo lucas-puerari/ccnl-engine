@@ -267,6 +267,7 @@ class TestStateExportAndImport:
             recoveries=(),
             surtax_obligations=(),
             employment_spells=cash.employment_spells,
+            tfr_quotas=state.accrual.tfr_quotas,
         )
 
     @staticmethod

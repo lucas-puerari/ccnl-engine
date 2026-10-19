@@ -40,7 +40,7 @@ amounts are `Decimal` values in EUR, validated on construction.
 | `BonusEvent` | `amount`, `kind`, `agreement_signed_on` | One-off bonus; `kind` selects ordinary IRPEF, the PdR regime or the renewal regime |
 | `BilateralFundEvent` | `employee_amount`, `employer_amount` | Bilateral or health fund contribution; see [Pay components](pay-components.md#bilateral-funds-fondi-bilaterali) |
 | `ArrearsEvent` | `amount`, `separate_tax_rate`, `reference_period` | Renewal arrears; see [Renewal arrears](#renewal-arrears) |
-| `TerminationTFREvent` | `amount`, `separate_tax_rate` | TFR settlement at cessazione (art. 19 TUIR) |
+| `TerminationTFREvent` | `amount`, `separate_tax_rate` (both optional) | TFR settlement at cessazione (art. 19 TUIR); see [TFR settlement](pay-components.md#settlement-at-the-termination) |
 
 ### Overtime multiplier
 
@@ -96,8 +96,9 @@ night = OvertimeEvent(
 ### Other rates and amounts are caller inputs
 
 `OvertimeEvent.hourly_rate`, the `supplement_amount` of night, holiday and
-shift events, and the `separate_tax_rate` of arrears and TFR settlements come
-from the caller.
+shift events, and the `separate_tax_rate` of arrears come from the caller.
+The TFR settlement is computed by the engine; its payout and rate are
+optional overrides.
 
 ### Sickness
 

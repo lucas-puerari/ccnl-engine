@@ -33,6 +33,7 @@ def _expected() -> PeriodState:
         inps_bases=(InpsBaseYtd(2026, Decimal("2158.26"), Decimal(0)),),
         sickness_episodes=(SicknessEpisode("A", date(2026, 1, 5), date(2026, 1, 9)),),
         sickness_known_from=date(2026, 1, 1),
+        tfr_quotas_known_from=2027,
     )
     return PeriodState(
         accrual=accrual, cash=PeriodState.zero().cash, history_known=False

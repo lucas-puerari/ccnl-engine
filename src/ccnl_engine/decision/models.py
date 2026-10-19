@@ -104,6 +104,7 @@ _SEVERITY: dict[CalculationStatus, int] = {
 #: field the caller sets to resolve the issue.
 PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "activity": "EmployerProfile.activity",
+    "advances": "TfrFundBalance.advances",
     "agricultural_zone": "EmployerProfile.agricultural_zone",
     "agreement_signed_on": "BonusEvent.agreement_signed_on",
     "allocation_pct": "Dependent.allocation_pct",
@@ -128,6 +129,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "pension_fund": "Employment.pension_fund",
     "renewals": "FixedTerm.renewals",
     "residency_eligibility": "Dependent.residency_eligibility",
+    "revaluations": "TfrFundBalance.revaluations",
     "reference_period": "ArrearsEvent.reference_period",
     "roles": "Employment.roles",
     "sector": "Employment.sector",
@@ -140,6 +142,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "sickness_known_from": "OpeningBalances.sickness_known_from",
     "suspends_accrual": "AbsenceEvent.suspends_accrual",
     "tfr_fund": "Employment.tfr_fund",
+    "tfr_quotas": "OpeningBalances.tfr_quotas",
     "tfr_treasury_fund": "Employment.tfr_treasury_fund",
     "young_member": "PensionFundEnrolment.young_member",
     "erc_amount": "Employment.erc_amount",
