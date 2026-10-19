@@ -52,7 +52,7 @@ if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
 
 _YEAR = 2026
-_SLUG = "commercio-confcommercio.json"
+_SLUG = "commercio-confcommercio"
 _HIRED = EmploymentPeriod(date(_YEAR, 6, 16))
 _SOURCE = RuleProvenance(
     status=ProvenanceStatus.DERIVED,
@@ -80,13 +80,13 @@ class _Repo(BundledKnowledgeRepository):
     def __init__(self, rule: ExtraMonthAccrualRule | None) -> None:
         self._ccnl = _with_rule(rule)
 
-    def load_ccnl(self, filename: str) -> CCNL:
+    def load_ccnl(self, ccnl_id: str) -> CCNL:
         """Return the CCNL with the replaced rule.
 
         Returns:
             The CCNL of the test.
         """
-        assert filename == _SLUG
+        assert ccnl_id == _SLUG
         return self._ccnl
 
 
@@ -98,7 +98,7 @@ def _tredicesima(
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=12),
         payment_date=date(_YEAR, 12, 18),
-        ccnl_slug=_SLUG,
+        ccnl_id=_SLUG,
         level_code="4",
         run=PayrollRun.thirteenth(_YEAR, 12),
         employment_period=employment,
@@ -167,7 +167,7 @@ def test_accrual_built_by_the_caller_is_reported_as_request() -> None:
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=12),
         payment_date=date(_YEAR, 12, 18),
-        ccnl_slug=_SLUG,
+        ccnl_id=_SLUG,
         level_code="4",
         run=PayrollRun.thirteenth(_YEAR, 12),
         extra_month_accrual=accrual,

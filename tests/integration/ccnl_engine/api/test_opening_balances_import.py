@@ -69,7 +69,7 @@ from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 _ENGINE = PayrollEngine.bundled()
 _C3 = Employment(
-    ccnl_slug="metalmeccanico-federmeccanica.json",
+    ccnl_id="metalmeccanico-federmeccanica",
     level_code="C3",
     employment_period=EmploymentPeriod(date(2026, 9, 1)),
     seniority=new_hire(),
@@ -236,7 +236,7 @@ class TestCompetence:
                 run=PayrollRun.regular(2026, 12),
                 payment_date=date(2027, 1, 13),
                 employment=Employment(
-                    ccnl_slug="commercio-confcommercio.json",
+                    ccnl_id="commercio-confcommercio",
                     level_code="4",
                     contract_type=Permanent(),
                 ),
@@ -287,7 +287,7 @@ class TestCompetence:
                 run=PayrollRun.regular(2026, 12),
                 payment_date=date(2027, 1, 13),
                 employment=Employment(
-                    ccnl_slug="commercio-confcommercio.json",
+                    ccnl_id="commercio-confcommercio",
                     level_code="4",
                     contract_type=Permanent(),
                 ),
@@ -321,7 +321,7 @@ class TestCompetence:
                     run=PayrollRun.of(november),
                     payment_date=date(2027, 1, 13),
                     employment=Employment(
-                        ccnl_slug="commercio-confcommercio.json",
+                        ccnl_id="commercio-confcommercio",
                         level_code="4",
                         contract_type=Permanent(),
                     ),

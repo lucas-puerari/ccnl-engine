@@ -21,7 +21,7 @@
     "section": "Tabella C, lavoratori non conviventi, livello CS, valori orari"
   },
   "inputs": {
-    "ccnl_slug": "lavoro-domestico-non-convivente.json",
+    "ccnl_id": "lavoro-domestico-non-convivente",
     "level_code": "CS",
     "year": 2026,
     "month": 1,

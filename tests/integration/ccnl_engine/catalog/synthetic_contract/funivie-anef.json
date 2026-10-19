@@ -1,6 +1,6 @@
 {
   "_description": "funivie-anef — data checks 2026",
-  "ccnl_file": "funivie-anef.json",
+  "ccnl_id": "funivie-anef",
   "salary_checks": [
     {
       "level_code": "1S",

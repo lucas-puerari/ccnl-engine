@@ -21,7 +21,7 @@
     "section": "Tabella retributiva, Totale giu-26, level Qa"
   },
   "inputs": {
-    "ccnl_slug": "pubblici-esercizi-fipe-angem.json",
+    "ccnl_id": "pubblici-esercizi-fipe-angem",
     "level_code": "Qa",
     "year": 2026,
     "month": 6,

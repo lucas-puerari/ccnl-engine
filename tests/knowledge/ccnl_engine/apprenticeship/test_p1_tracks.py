@@ -19,7 +19,7 @@ from ccnl_engine.catalog.loaders import load_ccnl
 
 
 def _track(slug: str, name: str) -> list[tuple[int, Decimal]]:
-    ccnl = load_ccnl(f"{slug}.json")
+    ccnl = load_ccnl(slug)
     (track,) = [t for t in ccnl.apprenticeship if t.name == name]
     periods = [p for p in track.periods if isinstance(p, ApprenticeshipPeriod)]
     assert len(periods) == len(track.periods)
@@ -68,7 +68,7 @@ def test_artisan_impiegati_by_semester() -> None:
 )
 def test_part_time_supplementary_rate_is_declared(slug: str) -> None:
     """The request cannot state supplementary hours apart from overtime."""
-    ccnl = load_ccnl(f"{slug}.json")
+    ccnl = load_ccnl(slug)
     variants = {n.limitation.variant for n in ccnl.coverage.notes if n.limitation}
 
     assert "part_time_supplementary_rate" in variants

@@ -1,6 +1,6 @@
 {
   "_description": "esercizi-cinematografici-anec — data checks 2026",
-  "ccnl_file": "esercizi-cinematografici-anec.json",
+  "ccnl_id": "esercizi-cinematografici-anec",
   "salary_checks": [
     {
       "level_code": "1",

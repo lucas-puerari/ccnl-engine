@@ -30,7 +30,7 @@ from tests.knowledge.ccnl_engine.support import regular_period
 pytestmark = pytest.mark.legal_scenario
 
 _C3 = Employment(
-    ccnl_slug="metalmeccanico-federmeccanica.json",
+    ccnl_id="metalmeccanico-federmeccanica",
     level_code="C3",
     seniority=new_hire(),
     contract_type=Permanent(),

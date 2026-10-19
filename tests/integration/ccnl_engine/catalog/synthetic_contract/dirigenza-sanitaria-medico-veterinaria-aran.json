@@ -1,6 +1,6 @@
 {
   "_description": "dirigenza-sanitaria-medico-veterinaria-aran — data checks 2026",
-  "ccnl_file": "dirigenza-sanitaria-medico-veterinaria-aran.json",
+  "ccnl_id": "dirigenza-sanitaria-medico-veterinaria-aran",
   "salary_checks": [
     {
       "level_code": "DIRIGENTE",

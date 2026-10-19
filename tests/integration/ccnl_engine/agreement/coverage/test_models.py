@@ -20,7 +20,7 @@ from ccnl_engine.catalog.loaders import list_contracts, load_ccnl
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
 
-_ALL_CCNL: list[CCNL] = [load_ccnl(c.ccnl_id + ".json") for c in list_contracts()]
+_ALL_CCNL: list[CCNL] = [load_ccnl(c.ccnl_id) for c in list_contracts()]
 _MISSING, _NOT_APPLICABLE = SalaryGapKind.MISSING, SalaryGapKind.NOT_APPLICABLE
 
 #: Declared gaps of the required series: CCNL, gap kind, first date with a

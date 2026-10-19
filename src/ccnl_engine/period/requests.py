@@ -57,8 +57,8 @@ class PeriodCalculationRequest:
             rules and INPS rates
             (:class:`~ccnl_engine.calendar.tax_year.rules.TaxYearPolicy`),
             and is propagated to every ledger entry and pay item.
-        ccnl_slug: Knowledge-bundle CCNL filename, e.g.
-            ``metalmeccanico-federmeccanica.json``.
+        ccnl_id: Slug (e.g. ``metalmeccanico-federmeccanica``) or CNEL
+            code (e.g. ``E042``) of the CCNL.
         level_code: Worker's contractual level code, e.g. ``C3``.
         opening_state: State entering this period, with the history of
             the employment.  :meth:`PeriodState.zero` is the fact only for
@@ -145,7 +145,7 @@ class PeriodCalculationRequest:
 
     period_id: PeriodId
     payment_date: date
-    ccnl_slug: str
+    ccnl_id: str
     level_code: str
     employer: EmployerProfile
     opening_state: PeriodState = field(default_factory=PeriodState.zero)
@@ -257,7 +257,7 @@ class PeriodCalculationRequest:
         return (
             ("period_id", self.period_id, PeriodId, False),
             ("payment_date", self.payment_date, date, False),
-            ("ccnl_slug", self.ccnl_slug, str, False),
+            ("ccnl_id", self.ccnl_id, str, False),
             ("level_code", self.level_code, str, False),
             ("opening_state", self.opening_state, PeriodState, False),
             (

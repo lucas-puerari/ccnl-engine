@@ -17,7 +17,7 @@ def test_valid_enrolment() -> None:
     enrolment = PensionFundEnrolment("ALIFOND", Decimal("0.01"), tfr_to_fund=False)
     assert enrolment.fund_code == "ALIFOND"
     employment = Employment(
-        ccnl_slug="x.json",
+        ccnl_id="x",
         level_code="1",
         pension_fund=enrolment,
         contract_type=Permanent(),
@@ -50,7 +50,7 @@ def test_employment_rejects_another_type() -> None:
     """Employment.pension_fund must be an enrolment or None."""
     with pytest.raises(InvalidInputError, match="pension_fund must be"):
         Employment(
-            ccnl_slug="x.json",
+            ccnl_id="x",
             level_code="1",
             pension_fund="ALIFOND",  # type: ignore[arg-type]
             contract_type=Permanent(),

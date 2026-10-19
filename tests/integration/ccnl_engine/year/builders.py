@@ -20,6 +20,7 @@ from ccnl_engine.period.repositories import (
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL, TaxSector
     from ccnl_engine.capability.registry.models import CapabilityCatalog
+    from ccnl_engine.catalog.loaders import ContractSummary
     from ccnl_engine.family.models import FamilyDeductionRules
     from ccnl_engine.limitation.models import ModelLimitation
     from ccnl_engine.sector.models import YearRules
@@ -42,13 +43,26 @@ class NextYearRepository:
     def _source(year: int) -> int:
         return SOURCE_YEAR if year == TARGET_YEAR else year
 
-    def load_ccnl(self, filename: str) -> CCNL:
+    @property
+    def bundle_version(self) -> str:
+        """Version of the bundled datasets."""
+        return self._bundled.bundle_version
+
+    def load_contracts(self) -> tuple[ContractSummary, ...]:
+        """Return the bundled contracts.
+
+        Returns:
+            The summary of every bundled CCNL.
+        """
+        return self._bundled.load_contracts()
+
+    def load_ccnl(self, ccnl_id: str) -> CCNL:
         """Return the bundled CCNL.
 
         Returns:
-            The bundled CCNL for ``filename``.
+            The bundled CCNL with slug ``ccnl_id``.
         """
-        return self._bundled.load_ccnl(filename)
+        return self._bundled.load_ccnl(ccnl_id)
 
     def load_year_rules(
         self, year: int, sector: TaxSector, num_employees: int

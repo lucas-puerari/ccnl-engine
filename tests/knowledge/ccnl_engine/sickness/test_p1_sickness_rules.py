@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 
 
 def _rules(slug: str) -> CCNLWorkRules:
-    rules = load_ccnl(f"{slug}.json").work_rules
+    rules = load_ccnl(slug).work_rules
     assert rules is not None
     return rules
 
@@ -57,7 +57,7 @@ def test_operai_agricoli_leave_and_comporto() -> None:
     rules = _rules("operai-agricoli-florovivaisti")
     assert rules.leave_rules is not None
     assert rules.sickness_rules is not None
-    ccnl = load_ccnl("operai-agricoli-florovivaisti.json")
+    ccnl = load_ccnl("operai-agricoli-florovivaisti")
     variants = {n.limitation.variant for n in ccnl.coverage.notes if n.limitation}
 
     assert rules.leave_rules.default_annual_days == Decimal(26)

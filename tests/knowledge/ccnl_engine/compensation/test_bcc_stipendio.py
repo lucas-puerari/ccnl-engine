@@ -17,7 +17,7 @@ import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
 
-_CCNL = load_ccnl("bcc-credito-cooperativo.json")
+_CCNL = load_ccnl("bcc-credito-cooperativo")
 _TRANCHES = (date(2024, 9, 1), date(2025, 1, 1), date(2026, 1, 1))
 _TABLE = (
     ("QD4", ("4978.66", "5059.28", "5160.06")),

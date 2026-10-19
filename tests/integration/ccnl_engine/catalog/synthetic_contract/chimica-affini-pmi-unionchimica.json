@@ -1,6 +1,6 @@
 {
   "_description": "chimica-affini-pmi-unionchimica — data checks 2026",
-  "ccnl_file": "chimica-affini-pmi-unionchimica.json",
+  "ccnl_id": "chimica-affini-pmi-unionchimica",
   "salary_checks": [
     {
       "level_code": "A",

@@ -19,7 +19,7 @@ import pytest
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.limitation.models import LimitationFacts
 
-_CCNL = load_ccnl("lavoro-domestico-non-convivente.json")
+_CCNL = load_ccnl("lavoro-domestico-non-convivente")
 _HOURLY = (
     ("A", "6.51"),
     ("AS", "6.76"),
@@ -49,9 +49,9 @@ def test_monthly_minimo_is_the_hourly_minimo_of_the_table(
 @pytest.mark.parametrize(
     "slug",
     [
-        "lavoro-domestico-non-convivente.json",
-        "lavoro-domestico-convivente.json",
-        "lavoro-domestico-convivente-orario-ridotto.json",
+        "lavoro-domestico-non-convivente",
+        "lavoro-domestico-convivente",
+        "lavoro-domestico-convivente-orario-ridotto",
     ],
 )
 def test_the_2026_table_does_not_pass_for_2027(slug: str) -> None:

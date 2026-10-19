@@ -47,7 +47,7 @@ __all__ = [
     "year_n_without_request",
 ]
 
-CCNL = "metalmeccanico-federmeccanica.json"
+CCNL = "metalmeccanico-federmeccanica"
 YEAR = 2026
 _FRINGE = FringeEvent(event_date=date(YEAR, 12, 5), amount=Decimal(20000))
 DEFERRAL_REQUEST = ShortfallDeferralRequest(signed_on=date(YEAR, 12, 10))

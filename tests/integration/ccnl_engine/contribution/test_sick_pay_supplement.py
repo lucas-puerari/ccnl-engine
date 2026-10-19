@@ -35,8 +35,8 @@ if TYPE_CHECKING:
 class _PubbliciEsercizi(BundledKnowledgeRepository):
     """The CCNL with its sickness rule moved to the pubblici esercizi regime."""
 
-    def load_ccnl(self, filename: str) -> CCNL:
-        ccnl = load_ccnl(filename)
+    def load_ccnl(self, ccnl_id: str) -> CCNL:
+        ccnl = load_ccnl(ccnl_id)
         assert ccnl.work_rules is not None
         assert ccnl.work_rules.sickness_rules is not None
         sickness = ccnl.work_rules.sickness_rules.model_copy(
@@ -53,7 +53,7 @@ def _march(
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=2026, month=3),
         payment_date=date(2026, 3, 27),
-        ccnl_slug=slug,
+        ccnl_id=slug,
         level_code=level,
         seniority=new_hire(),
         opening_state=PeriodState.zero(),
@@ -64,7 +64,7 @@ def _march(
 
 def test_the_employer_pays_the_supplement_on_the_taxable_pay() -> None:
     """0.77% of the base, added to the employer total and to nothing else."""
-    args = ("commercio-confcommercio.json", "4", WorkerCategory.IMPIEGATO)
+    args = ("commercio-confcommercio", "4", WorkerCategory.IMPIEGATO)
     bundled = _march(*args, BundledKnowledgeRepository())
     result = _march(*args, _PubbliciEsercizi())
     (component,) = (
@@ -88,6 +88,6 @@ def test_the_employer_pays_the_supplement_on_the_taxable_pay() -> None:
 
 def test_a_sector_without_the_supplement_is_a_data_error() -> None:
     """Industria holds no supplement for the regime: the data are rejected."""
-    args = ("metalmeccanico-federmeccanica.json", "C3", WorkerCategory.OPERAIO)
+    args = ("metalmeccanico-federmeccanica", "C3", WorkerCategory.OPERAIO)
     with pytest.raises(DataIntegrityError, match="pubblici_esercizi"):
         _march(*args, _PubbliciEsercizi())

@@ -1,6 +1,6 @@
 {
   "_description": "tessile-moda-artigianato-confartigianato — data checks 2026",
-  "ccnl_file": "tessile-moda-artigianato-confartigianato.json",
+  "ccnl_id": "tessile-moda-artigianato-confartigianato",
   "salary_checks": [
     {
       "level_code": "1",

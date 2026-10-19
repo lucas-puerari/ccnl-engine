@@ -34,17 +34,17 @@ if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
 
 _DOMESTIC: dict[str, object] = {
-    "ccnl_slug": "lavoro-domestico-convivente.json",
+    "ccnl_id": "lavoro-domestico-convivente",
     "level_code": "A",
     "weekly_hours": WeeklyHours(40),
     "contributable_hours": ContributableHours(Decimal(173)),
 }
 _PUBLIC: dict[str, object] = {
-    "ccnl_slug": "dirigenza-funzioni-centrali-aran.json",
+    "ccnl_id": "dirigenza-funzioni-centrali-aran",
     "level_code": "SECONDA_FASCIA",
 }
 _METALMECCANICO: dict[str, object] = {
-    "ccnl_slug": "metalmeccanico-federmeccanica.json",
+    "ccnl_id": "metalmeccanico-federmeccanica",
     "level_code": "C3",
 }
 

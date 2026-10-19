@@ -46,7 +46,7 @@
     "replayability": "partial",
     "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
     "inputs": {
-      "ccnl_slug": "industria-turistica-federturismo.json",
+      "ccnl_id": "industria-turistica-federturismo",
       "level_code": "B2",
       "year": 2026,
       "month": 7,

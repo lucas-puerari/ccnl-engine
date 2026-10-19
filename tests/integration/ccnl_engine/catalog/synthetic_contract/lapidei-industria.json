@@ -1,6 +1,6 @@
 {
   "_description": "lapidei-industria — data checks 2026",
-  "ccnl_file": "lapidei-industria.json",
+  "ccnl_id": "lapidei-industria",
   "salary_checks": [
     {
       "level_code": "F",

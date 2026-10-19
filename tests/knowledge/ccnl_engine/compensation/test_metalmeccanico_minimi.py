@@ -17,7 +17,7 @@ import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
 
-_CCNL = load_ccnl("metalmeccanico-federmeccanica.json")
+_CCNL = load_ccnl("metalmeccanico-federmeccanica")
 #: Level, minimi from 1 June 2026, 2027 and 2028, as printed.
 _TABLE = (
     ("D1", "1784.94", "1833.02", "1885.37"),

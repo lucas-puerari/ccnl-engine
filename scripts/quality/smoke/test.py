@@ -39,7 +39,7 @@ def main() -> int:
         run=PayrollRun.regular(year=2026, month=1),
         payment_date=date(2026, 1, 28),
         employment=Employment(
-            ccnl_slug="agenti-immobiliari-fiaip.json",
+            ccnl_id="agenti-immobiliari-fiaip",
             level_code="II",
             contract_type=Permanent(),
         ),

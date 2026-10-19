@@ -1,6 +1,6 @@
 {
   "_description": "acconciatura-estetica-confartigianato — data checks 2026",
-  "ccnl_file": "acconciatura-estetica-confartigianato.json",
+  "ccnl_id": "acconciatura-estetica-confartigianato",
   "salary_checks": [
     {
       "level_code": "4",

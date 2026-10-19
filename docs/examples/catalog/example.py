@@ -26,8 +26,8 @@ for level in engine.list_levels(contract.ccnl_id):
     print(level.code, level.description)
 
 employment = Employment(
-    ccnl_slug=contract.ccnl_id,
+    ccnl_id=contract.ccnl_id,
     level_code="4",
     contract_type=Permanent(),
 )
-print(f"\nEmployment on {employment.ccnl_slug}, level {employment.level_code}")
+print(f"\nEmployment on {employment.ccnl_id}, level {employment.level_code}")

@@ -1,6 +1,6 @@
 {
   "_description": "autoferrotranvieri-internavigatori — data checks 2026",
-  "ccnl_file": "autoferrotranvieri-internavigatori.json",
+  "ccnl_id": "autoferrotranvieri-internavigatori",
   "salary_checks": [
     {
       "level_code": "100",

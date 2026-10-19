@@ -4,10 +4,11 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.bundle.facade import __version__
 from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
-from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.catalog.loaders import list_contracts, load_ccnl
 from ccnl_engine.family.loaders import load_family_deduction_rules
 from ccnl_engine.limitation.loaders import load_engine_limitations
 from ccnl_engine.sector.loaders import load_year_rules
@@ -18,6 +19,7 @@ from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL, TaxSector
     from ccnl_engine.capability.registry.models import CapabilityCatalog
+    from ccnl_engine.catalog.loaders import ContractSummary
     from ccnl_engine.family.models import FamilyDeductionRules
     from ccnl_engine.limitation.models import ModelLimitation
     from ccnl_engine.sector.models import YearRules
@@ -36,13 +38,26 @@ class BundledKnowledgeRepository:
     re-parsing.
     """
 
-    def load_ccnl(self, filename: str) -> CCNL:  # noqa: PLR6301
-        """Return the CCNL for *filename* from the bundled data files.
+    @property
+    def bundle_version(self) -> str:
+        """Version of the package-bundled datasets."""
+        return __version__
+
+    def load_contracts(self) -> tuple[ContractSummary, ...]:  # noqa: PLR6301
+        """Return the summary of every bundled CCNL, sorted by ``ccnl_id``.
+
+        Returns:
+            One summary per bundled CCNL, with its readiness tier.
+        """
+        return list_contracts()
+
+    def load_ccnl(self, ccnl_id: str) -> CCNL:  # noqa: PLR6301
+        """Return the CCNL with slug *ccnl_id* from the bundled data files.
 
         Returns:
             The validated, immutable CCNL.
         """
-        return load_ccnl(filename)
+        return load_ccnl(ccnl_id)
 
     def load_year_rules(  # noqa: PLR6301
         self, year: int, sector: TaxSector, num_employees: int

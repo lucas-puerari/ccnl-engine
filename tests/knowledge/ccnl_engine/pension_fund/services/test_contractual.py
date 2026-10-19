@@ -42,7 +42,7 @@ if TYPE_CHECKING:
 
 pytestmark = pytest.mark.legal_scenario
 
-_LAPIDEI = "materiali-costruzione-lapidei-confapi.json"
+_LAPIDEI = "materiali-costruzione-lapidei-confapi"
 _PARTIAL = "materiali-costruzione-lapidei-confapi/contractual_fund_partial"
 
 
@@ -51,7 +51,7 @@ def _january(
     weekly: WeeklyHours | None = None,
 ) -> PeriodResult:
     employment = Employment(
-        ccnl_slug=_LAPIDEI,
+        ccnl_id=_LAPIDEI,
         level_code="5",
         seniority=new_hire(),
         pension_fund=pension,
@@ -118,7 +118,7 @@ def test_part_time_is_an_open_limitation() -> None:
 def test_partial_month_is_an_open_limitation() -> None:
     """A hire on 15 January: no rule for a partial month, not payable."""
     employment = Employment(
-        ccnl_slug=_LAPIDEI,
+        ccnl_id=_LAPIDEI,
         level_code="5",
         employment_period=EmploymentPeriod(started_on=date(2026, 1, 15)),
         seniority=new_hire(),
@@ -133,7 +133,7 @@ def test_partial_month_is_an_open_limitation() -> None:
 def test_extra_month_run_owes_none() -> None:
     """A monthly contribution: the tredicesima of December owes none."""
     employment = Employment(
-        ccnl_slug=_LAPIDEI,
+        ccnl_id=_LAPIDEI,
         level_code="5",
         seniority=new_hire(),
         pension_fund=NoPensionFund(),

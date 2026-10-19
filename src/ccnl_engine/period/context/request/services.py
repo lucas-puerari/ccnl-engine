@@ -151,7 +151,7 @@ def build_context(
         policy_context=PolicyContext(
             year=fiscal_year,
             as_of=competence,
-            ccnl_slug=request.ccnl_slug,
+            ccnl_id=contract.ccnl.meta.ccnl_id,
             sector=contract.ccnl.meta.tax_sector,
             gross_ytd=opening.cash.earnings.gross,
         ),

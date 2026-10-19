@@ -190,7 +190,8 @@ open an issue with the label `statutory-rate-error`.
 ## Deprecation and version compatibility
 
 **Knowledge-base versions** follow `YYYY.N` (e.g. `2026.2`). Every
-`PeriodResult` and `CompetenceYearResult` records the version in `bundle_version`, and
+`PeriodResult` and `CompetenceYearResult` records the version of the engine's
+repository (`KnowledgeRepository.bundle_version`) in `bundle_version`, and
 each decision names the ruleset it applied (`rule`, `rule_version`), so any
 figure can be reproduced by pinning that version.
 

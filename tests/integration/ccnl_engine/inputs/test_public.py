@@ -44,9 +44,9 @@ from ccnl_engine.inputs import (
 _ENGINE = PayrollEngine.bundled()
 _YEAR = 2026
 _ZERO = Decimal(0)
-_METAL = "metalmeccanico-federmeccanica.json"
+_METAL = "metalmeccanico-federmeccanica"
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
-_EMPLOYMENT = Employment(ccnl_slug=_METAL, level_code="C3", contract_type=Permanent())
+_EMPLOYMENT = Employment(ccnl_id=_METAL, level_code="C3", contract_type=Permanent())
 _OVERTIME = OvertimeEvent(
     event_date=date(_YEAR, 6, 10), hours=Decimal(2), hourly_rate=Decimal(15)
 )
@@ -79,7 +79,7 @@ class TestEmployment:
     def test_defaults(self) -> None:
         """Untracked facts default to ``None`` (not known); permanent is stated."""
         employment = Employment(
-            ccnl_slug=_METAL, level_code="C3", contract_type=Permanent()
+            ccnl_id=_METAL, level_code="C3", contract_type=Permanent()
         )
         assert employment.weekly_hours is None
         assert employment.full_time_weekly_hours is None
@@ -94,7 +94,7 @@ class TestEmployment:
     def test_category_string_value_is_normalized(self) -> None:
         """A category given as its string value is stored as the enum member."""
         employment = Employment(
-            ccnl_slug=_METAL,
+            ccnl_id=_METAL,
             level_code="C3",
             category="impiegato",  # type: ignore[arg-type]
             contract_type=Permanent(),
@@ -105,7 +105,7 @@ class TestEmployment:
         """An unknown category string raises instead of being ignored."""
         with pytest.raises(InvalidInputError, match="unknown worker category"):
             Employment(
-                ccnl_slug=_METAL,
+                ccnl_id=_METAL,
                 level_code="C3",
                 category="manager",  # type: ignore[arg-type]
                 contract_type=Permanent(),
@@ -114,7 +114,7 @@ class TestEmployment:
     def test_sector_string_value_is_normalized(self) -> None:
         """A sector given as its string value is stored as the enum member."""
         employment = Employment(
-            ccnl_slug=_METAL,
+            ccnl_id=_METAL,
             level_code="C3",
             sector="private",  # type: ignore[arg-type]
             contract_type=Permanent(),
@@ -125,7 +125,7 @@ class TestEmployment:
         """A sector that names no known value is invalid input."""
         with pytest.raises(InvalidInputError, match="sector must be one of"):
             Employment(
-                ccnl_slug=_METAL,
+                ccnl_id=_METAL,
                 level_code="C3",
                 sector="mixed",  # type: ignore[arg-type]
                 contract_type=Permanent(),
@@ -135,7 +135,7 @@ class TestEmployment:
         """Contracted hours cannot exceed the full-time hours."""
         with pytest.raises(InvalidInputError, match="must not exceed"):
             Employment(
-                ccnl_slug=_METAL,
+                ccnl_id=_METAL,
                 level_code="C3",
                 weekly_hours=WeeklyHours(41),
                 full_time_weekly_hours=WeeklyHours(40),
@@ -258,7 +258,7 @@ class TestPeriodInput:
         result = _ENGINE.calculate_period(
             _period(
                 employment=Employment(
-                    ccnl_slug="lavoro-domestico-convivente.json",
+                    ccnl_id="lavoro-domestico-convivente",
                     level_code="BS",
                     weekly_hours=WeeklyHours(30),
                     contract_type=Permanent(),
@@ -272,7 +272,7 @@ class TestPeriodInput:
     def test_category_conflicting_with_level_is_rejected(self) -> None:
         """Commercio level Q is reserved to quadri, so impiegato is not admitted."""
         employment = Employment(
-            ccnl_slug="commercio-confcommercio.json",
+            ccnl_id="commercio-confcommercio",
             level_code="Q",
             category=WorkerCategory.IMPIEGATO,
             contract_type=Permanent(),
@@ -287,7 +287,7 @@ class TestPeriodInput:
         24.71% for impiegati, applied to the same contribution base.
         """
         employment = Employment(
-            ccnl_slug="metalmeccanico-artigianato.json",
+            ccnl_id="metalmeccanico-artigianato",
             level_code="3",
             contract_type=Permanent(),
         )

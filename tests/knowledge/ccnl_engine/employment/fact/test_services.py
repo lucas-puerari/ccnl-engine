@@ -47,7 +47,7 @@ def _commercio_year(period: EmploymentPeriod) -> CompetenceYearResult:
         CompetenceYearPlan(
             year=2026,
             employment=Employment(
-                ccnl_slug=COMMERCIO,
+                ccnl_id=COMMERCIO,
                 level_code="4",
                 employment_period=period,
                 contract_type=Permanent(),
@@ -187,7 +187,7 @@ def test_worker_category_selects_the_seniority_increment(
     """
     result = regular_period(
         employment=Employment(
-            ccnl_slug=POSTAL_FISE,
+            ccnl_id=POSTAL_FISE,
             level_code="2",
             seniority=_SIXTY_MONTHS,
             category=category,
@@ -203,7 +203,7 @@ def test_missing_required_worker_category_is_rejected() -> None:
     with pytest.raises(InvalidInputError, match="category"):
         regular_period(
             employment=Employment(
-                ccnl_slug=POSTAL_FISE,
+                ccnl_id=POSTAL_FISE,
                 level_code="2",
                 seniority=_SIXTY_MONTHS,
                 category=None,
@@ -221,7 +221,7 @@ def _negative_headcount() -> None:
 def _negative_seniority() -> None:
     regular_period(
         employment=Employment(
-            ccnl_slug=COMMERCIO,
+            ccnl_id=COMMERCIO,
             level_code="4",
             seniority=SeniorityFact(-12, date(2026, 1, 1), SenioritySource.PAYSLIP),
             contract_type=Permanent(),
@@ -233,7 +233,7 @@ def _end_before_start() -> None:
     period = EmploymentPeriod(date(2026, 9, 30), date(2026, 7, 1))
     regular_period(
         employment=Employment(
-            ccnl_slug=COMMERCIO,
+            ccnl_id=COMMERCIO,
             level_code="4",
             employment_period=period,
             contract_type=Permanent(),
@@ -244,7 +244,7 @@ def _end_before_start() -> None:
 def _hours_above_full_time() -> None:
     regular_period(
         employment=Employment(
-            ccnl_slug=COMMERCIO,
+            ccnl_id=COMMERCIO,
             level_code="4",
             weekly_hours=WeeklyHours(60),
             full_time_weekly_hours=WeeklyHours(40),
@@ -256,7 +256,7 @@ def _hours_above_full_time() -> None:
 def _negative_contributable_hours() -> None:
     regular_period(
         employment=Employment(
-            ccnl_slug=DOMESTIC,
+            ccnl_id=DOMESTIC,
             level_code="B",
             weekly_hours=WeeklyHours(25),
             contract_type=Permanent(),

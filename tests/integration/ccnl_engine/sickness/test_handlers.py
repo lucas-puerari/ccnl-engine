@@ -60,7 +60,7 @@ def _req(
     month: int,
     *events: object,
     opening: PeriodState | None = None,
-    slug: str = "metalmeccanico-federmeccanica.json",
+    slug: str = "metalmeccanico-federmeccanica",
     level: str = "C3",
     category: WorkerCategory | None = WorkerCategory.OPERAIO,
 ) -> PeriodCalculationRequest:
@@ -68,7 +68,7 @@ def _req(
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=2026, month=month),
         payment_date=date(2026, month, 27),
-        ccnl_slug=slug,
+        ccnl_id=slug,
         level_code=level,
         seniority=new_hire(),
         opening_state=opening or PeriodState.zero(),
@@ -194,7 +194,7 @@ class TestMissingRulesAndFacts:
     def test_ccnl_without_sickness_rule_is_incomplete(self) -> None:
         """Tabacco APTI defines no sickness rule."""
         result = calculate_period(
-            _req(3, _MARCH, slug="tabacco-apti.json", level="2", category=None)
+            _req(3, _MARCH, slug="tabacco-apti", level="2", category=None)
         )
         assert _sick(result) == {}
         decision = _decision(result)
@@ -205,8 +205,8 @@ class TestMissingRulesAndFacts:
         """Without the absence rule there is no daily quota."""
 
         class _NoAbsence(BundledKnowledgeRepository):
-            def load_ccnl(self, filename: str) -> CCNL:
-                ccnl = load_ccnl(filename)
+            def load_ccnl(self, ccnl_id: str) -> CCNL:
+                ccnl = load_ccnl(ccnl_id)
                 assert ccnl.work_rules is not None
                 rules = ccnl.work_rules.model_copy(update={"absence_rules": None})
                 return ccnl.model_copy(update={"work_rules": rules})
@@ -248,7 +248,7 @@ def test_hourly_quota_counts_hours() -> None:
         _req(
             3,
             _MARCH,
-            slug="dirigenza-sanitaria-medico-veterinaria-aran.json",
+            slug="dirigenza-sanitaria-medico-veterinaria-aran",
             level="DIRIGENTE",
             category=None,
         )
@@ -265,8 +265,8 @@ def test_hourly_quota_without_daily_hours_is_missing() -> None:
     """A by_hourly rule without the hours of a day sets no quota."""
 
     class _NoHours(BundledKnowledgeRepository):
-        def load_ccnl(self, filename: str) -> CCNL:
-            ccnl = load_ccnl(filename)
+        def load_ccnl(self, ccnl_id: str) -> CCNL:
+            ccnl = load_ccnl(ccnl_id)
             assert ccnl.work_rules is not None
             assert ccnl.work_rules.absence_rules is not None
             absence = ccnl.work_rules.absence_rules.model_copy(
@@ -278,7 +278,7 @@ def test_hourly_quota_without_daily_hours_is_missing() -> None:
     request = _req(
         3,
         _MARCH,
-        slug="dirigenza-sanitaria-medico-veterinaria-aran.json",
+        slug="dirigenza-sanitaria-medico-veterinaria-aran",
         level="DIRIGENTE",
         category=None,
     )
@@ -289,8 +289,8 @@ def test_hourly_quota_without_daily_hours_is_missing() -> None:
 class _OneTwentyFifth(BundledKnowledgeRepository):
     """Concia with a quota of 1/25 in place of its rule."""
 
-    def load_ccnl(self, filename: str) -> CCNL:
-        ccnl = load_ccnl(filename)
+    def load_ccnl(self, ccnl_id: str) -> CCNL:
+        ccnl = load_ccnl(ccnl_id)
         assert ccnl.work_rules is not None
         assert ccnl.work_rules.absence_rules is not None
         absence = ccnl.work_rules.absence_rules.model_copy(
@@ -302,7 +302,7 @@ class _OneTwentyFifth(BundledKnowledgeRepository):
 
 def test_a_quota_of_one_25th_sets_no_daily_quota() -> None:
     """A CCNL that states 1/25 but not which days are payable pays no sick day."""
-    request = _req(3, _MARCH, slug="concia-unic.json", level="D2")
+    request = _req(3, _MARCH, slug="concia-unic", level="D2")
     result = calculate_period(request, repo=_OneTwentyFifth())
     assert _decision(result).reason_code == "sickness_daily_quota_missing"
     assert _sick(result) == {}
@@ -313,7 +313,7 @@ def test_month_hours_quota_counts_the_working_days_of_the_month() -> None:
 
     Carenza 9-11 March: 3 days; 12-13 March: 2 days, each 1/22 of the pay.
     """
-    request = _req(3, _MARCH, slug="concia-unic.json", level="D2")
+    request = _req(3, _MARCH, slug="concia-unic", level="D2")
     inputs = _decision(calculate_period(request)).inputs
     assert inputs["divisor_method"] == "by_month_hours"
     segments = str(inputs["segments"])
@@ -327,8 +327,8 @@ class _InpsRegime(BundledKnowledgeRepository):
     def __init__(self, regime: str) -> None:
         self._regime = regime
 
-    def load_ccnl(self, filename: str) -> CCNL:
-        ccnl = load_ccnl(filename)
+    def load_ccnl(self, ccnl_id: str) -> CCNL:
+        ccnl = load_ccnl(ccnl_id)
         assert ccnl.work_rules is not None
         assert ccnl.work_rules.sickness_rules is not None
         sickness = ccnl.work_rules.sickness_rules.model_copy(
@@ -343,7 +343,7 @@ def test_a_regime_pays_its_inps_rate_on_every_day() -> None:
     request = _req(
         3,
         _MARCH,
-        slug="commercio-confcommercio.json",
+        slug="commercio-confcommercio",
         level="4",
         category=WorkerCategory.IMPIEGATO,
     )
@@ -367,7 +367,7 @@ def test_a_regime_reports_its_own_provenance() -> None:
     request = _req(
         3,
         _MARCH,
-        slug="commercio-confcommercio.json",
+        slug="commercio-confcommercio",
         level="4",
         category=WorkerCategory.IMPIEGATO,
     )
@@ -380,7 +380,7 @@ def test_an_unknown_regime_is_a_data_error() -> None:
     request = _req(
         3,
         _MARCH,
-        slug="commercio-confcommercio.json",
+        slug="commercio-confcommercio",
         level="4",
         category=WorkerCategory.IMPIEGATO,
     )
@@ -391,8 +391,8 @@ def test_an_unknown_regime_is_a_data_error() -> None:
 class _CarenzaPastFiveDays(BundledKnowledgeRepository):
     """Commercio paying the carenza only when the sickness lasts over 5 days."""
 
-    def load_ccnl(self, filename: str) -> CCNL:
-        ccnl = load_ccnl(filename)
+    def load_ccnl(self, ccnl_id: str) -> CCNL:
+        ccnl = load_ccnl(ccnl_id)
         assert ccnl.work_rules is not None
         assert ccnl.work_rules.sickness_rules is not None
         sickness = ccnl.work_rules.sickness_rules.model_copy(
@@ -415,7 +415,7 @@ def test_carenza_paid_only_past_the_minimum_length(ended_on: date, paid: bool) -
     request = _req(
         3,
         episode,
-        slug="commercio-confcommercio.json",
+        slug="commercio-confcommercio",
         level="4",
         category=WorkerCategory.IMPIEGATO,
     )
@@ -445,7 +445,7 @@ def test_earlier_episode_outside_the_chain_is_a_limitation() -> None:
         3,
         relapse,
         opening=_after_january_and_february(),
-        slug="commercio-confcommercio.json",
+        slug="commercio-confcommercio",
         level="4",
     )
     result = calculate_period(request)
@@ -509,7 +509,7 @@ class TestCommercioNetBasis:
         request = _req(
             3,
             self._EPISODE,
-            slug="commercio-confcommercio.json",
+            slug="commercio-confcommercio",
             level="4",
             category=WorkerCategory.IMPIEGATO,
         )
@@ -552,7 +552,7 @@ def test_a_carenza_left_on_a_sunday_does_not_stop_the_month() -> None:
 
 def test_a_worker_paid_by_the_hour_has_no_sick_hours_deducted() -> None:
     """An operaio edile is paid the hours worked: the sick ones are not deducted."""
-    result = calculate_period(_req(3, _MARCH, slug="edilizia-ance.json", level="1"))
+    result = calculate_period(_req(3, _MARCH, slug="edilizia-ance", level="1"))
     sick = _sick(result)
 
     assert "abs" not in sick

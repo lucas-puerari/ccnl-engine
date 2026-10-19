@@ -24,12 +24,12 @@ from tests.knowledge.ccnl_engine.support import regular_period
 
 pytestmark = pytest.mark.legal_scenario
 
-_METALMECCANICO = "metalmeccanico-federmeccanica.json"
+_METALMECCANICO = "metalmeccanico-federmeccanica"
 
 
 def _december(headcount: int, **facts: object) -> PeriodResult:
     employment = Employment(
-        ccnl_slug=_METALMECCANICO,
+        ccnl_id=_METALMECCANICO,
         level_code="C3",
         contract_type=Permanent(),
         seniority=new_hire(),

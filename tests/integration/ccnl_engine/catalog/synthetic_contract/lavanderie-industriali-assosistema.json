@@ -1,6 +1,6 @@
 {
   "_description": "lavanderie-industriali-assosistema — data checks 2026",
-  "ccnl_file": "lavanderie-industriali-assosistema.json",
+  "ccnl_id": "lavanderie-industriali-assosistema",
   "salary_checks": [
     {
       "level_code": "A1",

@@ -1,6 +1,6 @@
 {
   "_description": "aziende-termali-federterme (K461) — data checks 2024-2026",
-  "ccnl_file": "aziende-termali-federterme.json",
+  "ccnl_id": "aziende-termali-federterme",
   "salary_checks": [
     {
       "level_code": "6",

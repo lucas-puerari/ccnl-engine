@@ -36,11 +36,11 @@ pytestmark = pytest.mark.legal_scenario
 
 def _january(
     insured: bool | None,
-    slug: str = "funzioni-centrali-aran.json",
+    slug: str = "funzioni-centrali-aran",
     level: str = "FUNZIONARI",
 ) -> PeriodResult:
     employment = Employment(
-        ccnl_slug=slug,
+        ccnl_id=slug,
         level_code=level,
         seniority=new_hire(),
         pension_fund=NoPensionFund(),
@@ -82,6 +82,6 @@ def test_unstated_on_a_mixed_ccnl_is_a_missing_fact() -> None:
 
 def test_state_school_needs_no_statement() -> None:
     """The CCNL of the State school fixes it: none owed, no issue."""
-    result = _january(None, "istruzione-ricerca-aran.json", "DOCENTE_SECONDARIA")
+    result = _january(None, "istruzione-ricerca-aran", "DOCENTE_SECONDARIA")
     assert "life_insurance_employee" not in _components(result)
     assert "public_life_insurance_unknown" not in {i.code for i in result.issues}

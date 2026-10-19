@@ -41,9 +41,7 @@ _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 _METALMECCANICO = "metalmeccanico-federmeccanica"
 #: A reviewed CCNL, not production: operational mode blocks it.
 _COMMERCIO = "commercio-confcommercio"
-_EMPLOYMENT = Employment(
-    ccnl_slug=f"{_COMMERCIO}.json", level_code="4", contract_type=Permanent()
-)
+_EMPLOYMENT = Employment(ccnl_id=_COMMERCIO, level_code="4", contract_type=Permanent())
 
 
 def _june(engine: PayrollEngine) -> PeriodResult:
@@ -97,7 +95,9 @@ def test_run_reports_the_readiness_the_catalog_reports() -> None:
     """``inspect_ruleset`` before a run equals the CCNL entry of the run."""
     inspected = _SIMULATION.inspect_ruleset(_COMMERCIO)
     (ccnl,) = [r for r in _june(_SIMULATION).rulesets if r.kind is RulesetKind.CCNL]
-    (summary,) = [s for s in PayrollEngine.list_contracts() if s.ccnl_id == _COMMERCIO]
+    (summary,) = [
+        s for s in PayrollEngine.bundled().list_contracts() if s.ccnl_id == _COMMERCIO
+    ]
 
     assert ccnl == inspected
     assert inspected.readiness is summary.readiness is RulesetReadiness.REVIEWED
@@ -168,7 +168,7 @@ def test_a_production_ccnl_pays_the_net_but_not_a_complete_employer_cost() -> No
     """
     employment = replace(
         CONCIA_D2,
-        ccnl_slug=f"{_METALMECCANICO}.json",
+        ccnl_id=_METALMECCANICO,
         level_code="C3",
         category=WorkerCategory.OPERAIO,
     )
@@ -191,7 +191,7 @@ def test_a_production_ccnl_pays_the_net_but_not_a_complete_employer_cost() -> No
 
 def _logistica(sector: TaxSector | None) -> PeriodResult:
     employment = Employment(
-        ccnl_slug="logistica-trasporto-confetra.json",
+        ccnl_id="logistica-trasporto-confetra",
         level_code="3S",
         category=WorkerCategory.IMPIEGATO,
         contract_type=Permanent(),

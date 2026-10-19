@@ -39,13 +39,13 @@ _YEAR_FILES = sorted(
 _PROVISIONAL_YEARS = {"2027"}
 #: One CCNL and level of each tax sector.
 _SECTOR_RUNS = (
-    ("operai-agricoli-florovivaisti.json", "Area2"),
-    ("metalmeccanico-artigianato.json", "2bis"),
-    ("bancari-abi.json", "3A4"),
-    ("edilizia-ance-impiegati.json", "4"),
-    ("metalmeccanico-federmeccanica.json", "C3"),
-    ("funzioni-centrali-aran.json", "FUNZIONARI"),
-    ("commercio-confcommercio.json", "4"),
+    ("operai-agricoli-florovivaisti", "Area2"),
+    ("metalmeccanico-artigianato", "2bis"),
+    ("bancari-abi", "3A4"),
+    ("edilizia-ance-impiegati", "4"),
+    ("metalmeccanico-federmeccanica", "C3"),
+    ("funzioni-centrali-aran", "FUNZIONARI"),
+    ("commercio-confcommercio", "4"),
 )
 _TAX = (BlockerCode.OPEN_LIMITATION, "provisional_ruleset")
 _INPS = (BlockerCode.OPEN_LIMITATION, "provisional_inps_ruleset")
@@ -112,7 +112,7 @@ def test_a_run_of_every_sector_on_the_provisional_year_is_blocked(
     ccnl: str, level: str
 ) -> None:
     """January 2027 reads the provisional tax and INPS rules of its sector."""
-    result = regular_period(ccnl_slug=ccnl, level_code=level, year=2027, month=1)
+    result = regular_period(ccnl_id=ccnl, level_code=level, year=2027, month=1)
     blockers = {(b.code, b.detail) for b in result.blockers}
 
     assert {_TAX, _INPS} <= blockers
@@ -154,7 +154,7 @@ def test_an_assumed_tranche_of_the_provisional_year_is_a_visible_blocker(
     slug: str, level: str, year: int, month: int
 ) -> None:
     """A pay tranche no signed text backs yet blocks the run that pays it."""
-    result = regular_period(ccnl_slug=slug, level_code=level, year=year, month=month)
+    result = regular_period(ccnl_id=slug, level_code=level, year=year, month=month)
     weak = {
         (b.feature, b.detail)
         for b in result.blockers

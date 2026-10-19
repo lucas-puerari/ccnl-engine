@@ -31,7 +31,7 @@ def _run(headcount: int, indotto: bool | None) -> PeriodResult:
             ),
             period_id=PeriodId(year=2026, month=3),
             payment_date=date(2026, 3, 27),
-            ccnl_slug="metalmeccanico-artigianato.json",
+            ccnl_id="metalmeccanico-artigianato",
             level_code="3",
             opening_state=PeriodState.zero(),
         )

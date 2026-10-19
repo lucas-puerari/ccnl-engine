@@ -33,7 +33,7 @@ from tests.unit.ccnl_engine.builders import year_plan
 if TYPE_CHECKING:
     from ccnl_engine.year.results import CompetenceYearResult
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _FACTS = PeriodFacts(regione="IT-25")
 _ZERO = Decimal(0)
 

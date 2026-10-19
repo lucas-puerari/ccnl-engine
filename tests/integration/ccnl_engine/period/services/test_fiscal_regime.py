@@ -43,7 +43,7 @@ from tests.integration.ccnl_engine.withholding.builders import (
     paid_before,
 )
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _LEVEL = "C3"
 _YEAR = 2026
 _ZERO = Decimal(0)
@@ -79,7 +79,7 @@ def test_productivity_bonus_ineligible_above_income_ceiling() -> None:
         prior_year=PriorYearTaxFacts(employment_income=Decimal("90000.00")),
         period_id=PeriodId(year=_YEAR, month=1),
         payment_date=date(_YEAR, 1, 28),
-        ccnl_slug=_CCNL,
+        ccnl_id=_CCNL,
         level_code=_LEVEL,
         opening_state=PeriodState.zero(),
         events=(bonus,),
@@ -130,7 +130,7 @@ def test_trattamento_integrativo_recovery_uses_eight_installments() -> None:
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=10),
         payment_date=date(_YEAR, 10, 28),
-        ccnl_slug=_CCNL,
+        ccnl_id=_CCNL,
         level_code=_LEVEL,
         opening_state=opening,
         events=(bonus,),
@@ -176,7 +176,7 @@ def test_trattamento_integrativo_small_recovery_taken_in_one_period() -> None:
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=10),
         payment_date=date(_YEAR, 10, 28),
-        ccnl_slug=_CCNL,
+        ccnl_id=_CCNL,
         level_code=_LEVEL,
         opening_state=opening,
         events=(bonus,),

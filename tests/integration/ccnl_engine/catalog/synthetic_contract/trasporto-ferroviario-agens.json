@@ -1,6 +1,6 @@
 {
   "_description": "trasporto-ferroviario-agens — data checks 2026",
-  "ccnl_file": "trasporto-ferroviario-agens.json",
+  "ccnl_id": "trasporto-ferroviario-agens",
   "salary_checks": [
     {
       "level_code": "F2",

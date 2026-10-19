@@ -1,6 +1,6 @@
 {
   "_description": "gas-acqua-utilitalia — data checks 2026",
-  "ccnl_file": "gas-acqua-utilitalia.json",
+  "ccnl_id": "gas-acqua-utilitalia",
   "salary_checks": [
     {
       "level_code": "1",

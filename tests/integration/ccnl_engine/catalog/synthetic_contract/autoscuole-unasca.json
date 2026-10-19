@@ -1,6 +1,6 @@
 {
   "_description": "autoscuole-unasca (IC91) — data checks across 3 tranches",
-  "ccnl_file": "autoscuole-unasca.json",
+  "ccnl_id": "autoscuole-unasca",
   "salary_checks": [
     {
       "level_code": "1",

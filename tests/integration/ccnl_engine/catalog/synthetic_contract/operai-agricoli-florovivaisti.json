@@ -1,6 +1,6 @@
 {
   "_description": "operai-agricoli-florovivaisti — data checks 2026",
-  "ccnl_file": "operai-agricoli-florovivaisti.json",
+  "ccnl_id": "operai-agricoli-florovivaisti",
   "salary_checks": [
     {
       "level_code": "Area3",

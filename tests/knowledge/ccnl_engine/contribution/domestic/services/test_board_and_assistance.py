@@ -49,15 +49,15 @@ from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 pytestmark = pytest.mark.legal_scenario
 
 _ENGINE = PayrollEngine.bundled()
-_CONVIVENTE = "lavoro-domestico-convivente.json"
-_NON_CONVIVENTE = "lavoro-domestico-non-convivente.json"
+_CONVIVENTE = "lavoro-domestico-convivente"
+_NON_CONVIVENTE = "lavoro-domestico-non-convivente"
 _HOUSEHOLD = EmployerProfile(headcount=Headcount(1))
 _ZERO = Decimal(0)
 
 
 def _employment(slug: str = _CONVIVENTE, weekly: int = 54) -> Employment:
     return Employment(
-        ccnl_slug=slug,
+        ccnl_id=slug,
         level_code="CS",
         seniority=new_hire(),
         weekly_hours=WeeklyHours(weekly),
@@ -169,7 +169,7 @@ def test_termination_ratei_include_board_and_lodging() -> None:
         CompetenceYearPlan(
             year=2026,
             employment=Employment(
-                ccnl_slug=_CONVIVENTE,
+                ccnl_id=_CONVIVENTE,
                 level_code="CS",
                 seniority=new_hire(),
                 weekly_hours=WeeklyHours(54),

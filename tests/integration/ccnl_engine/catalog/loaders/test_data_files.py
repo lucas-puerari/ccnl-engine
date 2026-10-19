@@ -63,43 +63,43 @@ class TestLoadCcnl:
 
     def test_commercio_loads(self) -> None:
         """load_ccnl loads the commercio JSON and returns a CCNL instance."""
-        ccnl = load_ccnl("commercio-confcommercio.json")
+        ccnl = load_ccnl("commercio-confcommercio")
         assert isinstance(ccnl, CCNL)
         assert ccnl.meta.ccnl_id == "commercio-confcommercio"
         assert ccnl.meta.cnel_code == "H011"
 
     def test_commercio_has_eight_levels(self) -> None:
         """Commercio CCNL must contain exactly 8 classification levels."""
-        ccnl = load_ccnl("commercio-confcommercio.json")
+        ccnl = load_ccnl("commercio-confcommercio")
         assert len(ccnl.levels) == 8
 
     def test_commercio_level4_november_2025_salary(self) -> None:
         """Level 4 paga base on 2025-11-01 must be EUR 1,257.46."""
-        ccnl = load_ccnl("commercio-confcommercio.json")
+        ccnl = load_ccnl("commercio-confcommercio")
         level4 = next(lv for lv in ccnl.levels if lv.code == "4")
         assert level4.base_salary.value_at(date(2025, 11, 1)) == Decimal("1257.46")
 
     def test_commercio_level4_march_2025_salary(self) -> None:
         """Level 4 paga base on 2025-03-01 must be EUR 1,222.46."""
-        ccnl = load_ccnl("commercio-confcommercio.json")
+        ccnl = load_ccnl("commercio-confcommercio")
         level4 = next(lv for lv in ccnl.levels if lv.code == "4")
         assert level4.base_salary.value_at(date(2025, 3, 1)) == Decimal("1222.46")
 
     def test_commercio_level4_april_2024_salary(self) -> None:
         """Level 4 paga base on 2024-04-01 must be EUR 1,192.46."""
-        ccnl = load_ccnl("commercio-confcommercio.json")
+        ccnl = load_ccnl("commercio-confcommercio")
         level4 = next(lv for lv in ccnl.levels if lv.code == "4")
         assert level4.base_salary.value_at(date(2024, 4, 1)) == Decimal("1192.46")
 
     def test_load_ccnl_is_cached(self) -> None:
         """Two calls with the same filename return the identical CCNL object."""
-        first = load_ccnl("commercio-confcommercio.json")
-        second = load_ccnl("commercio-confcommercio.json")
+        first = load_ccnl("commercio-confcommercio")
+        second = load_ccnl("commercio-confcommercio")
         assert first is second
 
     def test_load_ccnl_is_immutable(self) -> None:
         """Mutating a field on the returned CCNL raises ValidationError."""
-        ccnl = load_ccnl("commercio-confcommercio.json")
+        ccnl = load_ccnl("commercio-confcommercio")
         with pytest.raises(pydantic.ValidationError):
             ccnl.schema_version = "0.5"  # type: ignore[misc]
 
@@ -195,7 +195,7 @@ class TestOvertimeBandInvariants:
         The TimeSupplements.no_ambiguous_collisions validator rejects ambiguous
         band layouts.  Passing here proves all 125 files are collision-free.
         """
-        ccnl = load_ccnl(getattr(entry, "name", str(entry)))
+        ccnl = load_ccnl(getattr(entry, "name", str(entry)).removesuffix(".json"))
         wr = ccnl.work_rules
         if wr is None or wr.time_supplements is None:
             return
@@ -209,7 +209,7 @@ class TestOvertimeBandInvariants:
 )
 def test_byblos_employer_rate_of_the_paper_ccnl(on: date, rate: str) -> None:
     """Byblos Scheda 1.5%; ipotesi 10/02/2026: "Da gennaio 2027 [...] 0,2%"."""
-    ccnl = load_ccnl("carta-cartone-assocarta.json")
+    ccnl = load_ccnl("carta-cartone-assocarta")
     (fund,) = ccnl.parameters.employer_funds
     assert fund.code == "BYBLOS"
     assert fund.rate.value_at(on) == Decimal(rate)
@@ -217,7 +217,7 @@ def test_byblos_employer_rate_of_the_paper_ccnl(on: date, rate: str) -> None:
 
 def test_previambiente_enrolled_amount_from_2027() -> None:
     """Ipotesi 09/12/2025: 22 + 8.50 = 30.50 EUR from January 2027."""
-    (fund,) = load_ccnl("igiene-ambientale-utilitalia.json").parameters.employer_funds
+    (fund,) = load_ccnl("igiene-ambientale-utilitalia").parameters.employer_funds
     assert fund.enrolled_monthly is not None
     assert fund.enrolled_monthly.value_at(date(2026, 12, 31)) == Decimal("22.00")
     assert fund.enrolled_monthly.value_at(date(2027, 1, 1)) == Decimal("30.50")

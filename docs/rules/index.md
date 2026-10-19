@@ -43,7 +43,7 @@ accidentally edited files are caught before any computation.
 ```python
 from ccnl_engine.catalog.loaders import load_ccnl
 
-ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
+ccnl = load_ccnl("metalmeccanico-federmeccanica")
 print(ccnl.ruleset.id)  # "ccnl/metalmeccanico-federmeccanica"
 print(ccnl.ruleset.version)  # "2026.2"
 print(ccnl.ruleset.source_hash)  # "4a7b..."

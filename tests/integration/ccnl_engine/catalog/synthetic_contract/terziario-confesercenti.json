@@ -1,6 +1,6 @@
 {
   "_description": "terziario-confesercenti — data checks 2026",
-  "ccnl_file": "terziario-confesercenti.json",
+  "ccnl_id": "terziario-confesercenti",
   "salary_checks": [
     {
       "level_code": "Q",

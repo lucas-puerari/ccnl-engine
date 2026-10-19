@@ -47,8 +47,8 @@ from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 _ENGINE = PayrollEngine.bundled()
 _EMPLOYER = EmployerProfile(provincial_pay_element=False, headcount=Headcount(50))
-_METALMECCANICO = "metalmeccanico-federmeccanica.json"
-_POSTAL_FISE = "servizi-postali-appalto-fise.json"
+_METALMECCANICO = "metalmeccanico-federmeccanica"
+_POSTAL_FISE = "servizi-postali-appalto-fise"
 _MILAN_NO_DEPENDANT = PeriodFacts(
     regione="IT-25", comune_belfiore="F205", family_composition=FamilyComposition()
 )
@@ -98,7 +98,7 @@ def test_incomplete_coverage_is_not_payable() -> None:
     period = EmploymentPeriod(started_on=date(2020, 1, 1), ended_on=date(2026, 1, 30))
     result = _january(
         Employment(
-            ccnl_slug=_METALMECCANICO,
+            ccnl_id=_METALMECCANICO,
             level_code="C3",
             category=WorkerCategory.IMPIEGATO,
             employment_period=period,
@@ -145,7 +145,7 @@ def test_ordinary_month_has_no_coverage_gap() -> None:
     """
     result = _january(
         Employment(
-            ccnl_slug=_METALMECCANICO,
+            ccnl_id=_METALMECCANICO,
             level_code="C3",
             category=WorkerCategory.IMPIEGATO,
             seniority=new_hire(),
@@ -176,7 +176,7 @@ def test_unknown_ivs_ceiling_eligibility_is_a_missing_fact() -> None:
     test asserts the blocker of its own fact.
     """
     employment = Employment(
-        ccnl_slug=_METALMECCANICO,
+        ccnl_id=_METALMECCANICO,
         level_code="C3",
         category=WorkerCategory.IMPIEGATO,
         contract_type=Permanent(),
@@ -209,7 +209,7 @@ def test_unknown_seniority_is_a_missing_fact() -> None:
     63.33 + 10.33 = 1,724.40.
     """
     employment = Employment(
-        ccnl_slug=_POSTAL_FISE,
+        ccnl_id=_POSTAL_FISE,
         level_code="2",
         category=WorkerCategory.OPERAIO,
         seniority=None,
@@ -237,7 +237,7 @@ def _march(started_on: date) -> PeriodResult:
         The regular run of March 2026.
     """
     employment = Employment(
-        ccnl_slug=_METALMECCANICO,
+        ccnl_id=_METALMECCANICO,
         level_code="C3",
         category=WorkerCategory.IMPIEGATO,
         employment_period=EmploymentPeriod(started_on=started_on),
@@ -277,7 +277,7 @@ def test_unknown_surtax_table_is_not_an_amount() -> None:
     payable for that capability, whatever the other blockers.
     """
     employment = Employment(
-        ccnl_slug=_METALMECCANICO,
+        ccnl_id=_METALMECCANICO,
         level_code="C3",
         category=WorkerCategory.IMPIEGATO,
         contract_type=Permanent(),
@@ -306,7 +306,7 @@ def test_unknown_family_is_not_an_empty_family() -> None:
     states that there is no dependant and resolves it.
     """
     employment = Employment(
-        ccnl_slug=_METALMECCANICO,
+        ccnl_id=_METALMECCANICO,
         level_code="C3",
         category=WorkerCategory.IMPIEGATO,
         seniority=new_hire(),
@@ -336,7 +336,7 @@ def test_household_employer_needs_no_residence() -> None:
             run=PayrollRun.regular(2026, 1),
             payment_date=date(2026, 1, 28),
             employment=Employment(
-                ccnl_slug="lavoro-domestico-non-convivente.json",
+                ccnl_id="lavoro-domestico-non-convivente",
                 level_code="B",
                 seniority=new_hire(),
                 weekly_hours=WeeklyHours(25),
@@ -366,7 +366,7 @@ def test_each_missing_fact_is_one_blocker_naming_its_field() -> None:
             run=PayrollRun.regular(2026, 12),
             payment_date=date(2026, 12, 20),
             employment=Employment(
-                ccnl_slug="commercio-confcommercio",
+                ccnl_id="commercio-confcommercio",
                 level_code="4",
                 contract_type=Permanent(),
             ),

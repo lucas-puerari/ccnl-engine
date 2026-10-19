@@ -145,7 +145,7 @@ def _add_reference_cases(rows: dict[str, Row]) -> None:
 def _add_payslips(rows: dict[str, Row]) -> None:
     today = datetime.now(tz=UTC).date()
     for replay in credited_records(today).values():
-        row = rows[replay["inputs"]["ccnl_slug"].removesuffix(".json")]
+        row = rows[replay["inputs"]["ccnl_id"]]
         row.sources.add("real payslip")
         row.independence.add("provider output")
         row.cycles.add("ordinary month")

@@ -30,7 +30,7 @@ if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
     from ccnl_engine.sector.models import YearRules
 
-_METALMECCANICO = "metalmeccanico-federmeccanica.json"
+_METALMECCANICO = "metalmeccanico-federmeccanica"
 
 
 def _run(
@@ -40,7 +40,7 @@ def _run(
     request = PeriodCalculationRequest(
         period_id=PeriodId(year=2026, month=3),
         payment_date=date(2026, 3, 27),
-        ccnl_slug=_METALMECCANICO,
+        ccnl_id=_METALMECCANICO,
         level_code="C3",
         employer=EmployerProfile(headcount=Headcount(50)),
         opening_state=PeriodState.zero(),
@@ -112,13 +112,13 @@ class _ReviewDueRepository(BundledKnowledgeRepository):
         super().__init__()
         self._review_due = review_due
 
-    def load_ccnl(self, filename: str) -> CCNL:
+    def load_ccnl(self, ccnl_id: str) -> CCNL:
         """Return the bundled CCNL with its review due on the given day.
 
         Returns:
             The CCNL.
         """
-        ccnl = super().load_ccnl(filename)
+        ccnl = super().load_ccnl(ccnl_id)
         verification = ccnl.verification.model_copy(
             update={"review_due": self._review_due}
         )
@@ -160,7 +160,7 @@ def test_no_bundled_production_ccnl_is_past_its_review_date_in_2026() -> None:
     repo = BundledKnowledgeRepository()
     production = [
         inspect_ruleset(repo, summary.ccnl_id)
-        for summary in list_contracts()
+        for summary in list_contracts(repo)
         if summary.readiness is RulesetReadiness.PRODUCTION
     ]
 

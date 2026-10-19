@@ -35,7 +35,7 @@ pytestmark = pytest.mark.legal_scenario
 
 def _january(erc_amount: Decimal | None) -> PeriodResult:
     employment = Employment(
-        ccnl_slug="grafica-editoria-aieg.json",
+        ccnl_id="grafica-editoria-aieg",
         level_code="C1",
         seniority=new_hire(),
         pension_fund=PensionFundEnrolment("BYBLOS", Decimal("0.01"), tfr_to_fund=True),
@@ -89,7 +89,7 @@ def test_unknown_erc_is_a_missing_fact() -> None:
 def test_no_erc_after_december_2020() -> None:
     """Hired in 2026: no ERC by definition, 1.9% without a missing fact."""
     employment = Employment(
-        ccnl_slug="grafica-editoria-aieg.json",
+        ccnl_id="grafica-editoria-aieg",
         level_code="C1",
         seniority=new_hire(),
         employment_period=EmploymentPeriod(started_on=date(2026, 1, 1)),

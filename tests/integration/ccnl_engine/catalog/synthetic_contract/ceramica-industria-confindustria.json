@@ -1,6 +1,6 @@
 {
   "_description": "ceramica-industria-confindustria — data checks 2026",
-  "ccnl_file": "ceramica-industria-confindustria.json",
+  "ccnl_id": "ceramica-industria-confindustria",
   "salary_checks": [
     {
       "level_code": "F",

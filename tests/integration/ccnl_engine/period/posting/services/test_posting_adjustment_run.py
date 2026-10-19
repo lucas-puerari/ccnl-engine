@@ -48,7 +48,7 @@ if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
     from ccnl_engine.year.results import CompetenceYearResult
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _ZERO = Decimal(0)
 _ADJUSTMENT = PayrollRun(run_kind=RunKind.ADJUSTMENT, month=12, year=2026)
 _RECOVERY = f"{ULTERIORE_RECOVERY}_recovery"

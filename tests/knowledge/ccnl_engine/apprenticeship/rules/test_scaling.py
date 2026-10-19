@@ -32,7 +32,7 @@ def _apprentice_run(slug: str, level: str, track: str | None = None) -> PeriodRe
     return regular_period(
         month=3,
         employment=Employment(
-            ccnl_slug=slug,
+            ccnl_id=slug,
             level_code=level,
             contract_type=Apprentice(months_elapsed=0, track=track),
         ),
@@ -82,7 +82,7 @@ def test_trasporto_aereo_pays_edr_in_full() -> None:
     5. Gross: 980.60 + 391.64 + 41.85 = 1414.09.
     """
     result = _apprentice_run(
-        "trasporto-aereo-assaeroporti.json", "4", "professionalizzante_36m"
+        "trasporto-aereo-assaeroporti", "4", "professionalizzante_36m"
     )
 
     assert _base_salary(result) == _D("980.60")
@@ -109,7 +109,7 @@ def test_energia_petrolio_pays_edr_and_funzione_in_full() -> None:
     4. Indennità di funzione, second step: 106.79, not reduced.
     5. Gross: 2336.95 + 51.00 + 106.79 = 2494.74.
     """
-    result = _apprentice_run("energia-petrolio-confindustria.json", "4-2")
+    result = _apprentice_run("energia-petrolio-confindustria", "4-2")
 
     assert _base_salary(result) == _D("2336.95")
     assert _allowances(result) == {
@@ -139,7 +139,7 @@ def test_igiene_ambientale_pays_edr_and_integrativa_in_full() -> None:
     4. Indennità integrativa: 50.00, not reduced.
     5. Gross: 1445.77 + 10.33 + 50.00 = 1506.10.
     """
-    result = _apprentice_run("igiene-ambientale-utilitalia.json", "D1")
+    result = _apprentice_run("igiene-ambientale-utilitalia", "D1")
 
     assert _base_salary(result) == _D("1445.77")
     assert _allowances(result) == {"EDR": _D("10.33"), "INDEMN_INT": _D("50.00")}

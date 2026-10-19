@@ -22,7 +22,7 @@ def _request(**kwargs: Any) -> PeriodCalculationRequest:  # noqa: ANN401
     fields: dict[str, Any] = {
         "period_id": PeriodId(year=_YEAR, month=3),
         "payment_date": date(_YEAR, 3, 27),
-        "ccnl_slug": "metalmeccanico-federmeccanica.json",
+        "ccnl_id": "metalmeccanico-federmeccanica",
         "level_code": "C3",
         "employer": EmployerProfile(headcount=Headcount(50)),
     }
@@ -42,7 +42,7 @@ class TestFieldTypes:
             ("seniority", 24),
             ("period_id", (2026, 3)),
             ("payment_date", "2026-03-27"),
-            ("ccnl_slug", 7),
+            ("ccnl_id", 7),
             ("contract_type", "permanent"),
             ("employer", 50),
             ("contribution_history", date(1996, 1, 1)),

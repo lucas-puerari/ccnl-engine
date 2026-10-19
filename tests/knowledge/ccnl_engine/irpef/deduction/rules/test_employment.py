@@ -70,7 +70,7 @@ _ZERO = Decimal("0.00")
 _FLAT = Decimal(1_955)
 #: Reason of the decision on the minimum left to the tax return.
 _MINIMUM_REASON = "minimum_proportioned_to_days"
-_METALMECCANICO = "metalmeccanico-federmeccanica.json"
+_METALMECCANICO = "metalmeccanico-federmeccanica"
 
 
 def _year(
@@ -99,7 +99,7 @@ def _minimum_inputs(result: PeriodResult) -> Mapping[str, object]:
     return decision.inputs
 
 
-_C3 = replace(CONCIA_D2, category=None, ccnl_slug=_METALMECCANICO, level_code="C3")
+_C3 = replace(CONCIA_D2, category=None, ccnl_id=_METALMECCANICO, level_code="C3")
 
 
 #: Metalmeccanico C3 for about three months, settled by the termination run:
@@ -378,7 +378,7 @@ def test_trattamento_integrativo_counts_the_family_deductions(
     :func:`~tests.knowledge.ccnl_engine.withholding.oracles.trattamento_integrativo_above_15000`.
     """
     employment = replace(
-        CONCIA_D2, category=None, ccnl_slug=COMMERCIO, level_code=level_code
+        CONCIA_D2, category=None, ccnl_id=COMMERCIO, level_code=level_code
     )
     year = _year(employment, replace(FACTS, family_composition=_FAMILY))
     cash = year.closing_state.cash

@@ -20,7 +20,7 @@
     "section": "Tabella B, lavoratori conviventi art. 14 c. 2, livello B"
   },
   "inputs": {
-    "ccnl_slug": "lavoro-domestico-convivente-orario-ridotto.json",
+    "ccnl_id": "lavoro-domestico-convivente-orario-ridotto",
     "level_code": "B",
     "year": 2026,
     "month": 3,

@@ -23,7 +23,7 @@ def run(pension_fund: PensionFundEnrolment | NoPensionFund) -> None:
             run=PayrollRun.regular(year=2026, month=1),
             payment_date=date(2026, 1, 27),
             employment=Employment(
-                ccnl_slug="tabacco-apti.json",
+                ccnl_id="tabacco-apti",
                 level_code="4A",
                 pension_fund=pension_fund,
                 contract_type=Permanent(),

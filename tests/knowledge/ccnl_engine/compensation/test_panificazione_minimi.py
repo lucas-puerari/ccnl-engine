@@ -17,7 +17,7 @@ import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
 
-_CCNL = load_ccnl("panificazione-artigianato-confartigianato.json")
+_CCNL = load_ccnl("panificazione-artigianato-confartigianato")
 _TRANCHES = (date(2024, 4, 1), date(2025, 1, 1), date(2025, 11, 1), date(2026, 4, 1))
 _ERR = Decimal("0.44")
 #: Level, indennità speciale (Art. 33) and the tabellare of each tranche.

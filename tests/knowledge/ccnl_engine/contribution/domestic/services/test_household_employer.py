@@ -79,8 +79,8 @@ from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 pytestmark = pytest.mark.legal_scenario
 
 _ENGINE = PayrollEngine.bundled()
-_CONVIVENTE = "lavoro-domestico-convivente.json"
-_NON_CONVIVENTE = "lavoro-domestico-non-convivente.json"
+_CONVIVENTE = "lavoro-domestico-convivente"
+_NON_CONVIVENTE = "lavoro-domestico-non-convivente"
 _HOUSEHOLD = EmployerProfile(headcount=Headcount(1))
 #: Hired on 1 September: the September run is the first of the employment.
 _HIRED = EmploymentPeriod(date(2026, 9, 1))
@@ -110,7 +110,7 @@ _SKIPPED = (
 class _Case:
     """One domestic payslip and the net computed by hand."""
 
-    ccnl_slug: str
+    ccnl_id: str
     level_code: str
     weekly_hours: int
     contributable_hours: int
@@ -188,7 +188,7 @@ _CASES = (
 
 def _employment(case: _Case) -> Employment:
     return Employment(
-        ccnl_slug=case.ccnl_slug,
+        ccnl_id=case.ccnl_id,
         level_code=case.level_code,
         seniority=new_hire(),
         weekly_hours=WeeklyHours(case.weekly_hours),
@@ -256,7 +256,7 @@ def _tax_postings(result: PeriodResult) -> list[str]:
 
 
 @pytest.mark.parametrize(
-    "case", _CASES, ids=lambda c: f"{c.ccnl_slug[:-5]}-{c.level_code}"
+    "case", _CASES, ids=lambda c: f"{c.ccnl_id[:-5]}-{c.level_code}"
 )
 def test_net_is_gross_less_employee_contributions(case: _Case) -> None:
     """No IRPEF, surtax or credit: net = gross - employee shares, below gross."""

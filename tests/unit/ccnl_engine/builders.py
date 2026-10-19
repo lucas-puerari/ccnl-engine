@@ -331,7 +331,7 @@ EMPLOYER_50 = EmployerProfile(provincial_pay_element=False, headcount=Headcount(
 
 def year_plan(
     year: int,
-    ccnl_slug: str,
+    ccnl_id: str,
     level_code: str,
     *,
     employer: EmployerProfile = EMPLOYER_50,
@@ -367,7 +367,7 @@ def year_plan(
         The year input.
     """
     employment.setdefault("contract_type", Permanent())
-    if ccnl_slug == "metalmeccanico-federmeccanica.json":
+    if ccnl_id == "metalmeccanico-federmeccanica":
         employment.setdefault("category", WorkerCategory.IMPIEGATO)
     employment.setdefault("seniority", new_hire(year))
     employment.setdefault("tfr_fund", no_tfr_fund(year))
@@ -376,7 +376,7 @@ def year_plan(
     base = facts if facts is not None else PeriodFacts()
     return CompetenceYearPlan(
         year=year,
-        employment=Employment(ccnl_slug=ccnl_slug, level_code=level_code, **employment),
+        employment=Employment(ccnl_id=ccnl_id, level_code=level_code, **employment),
         employer=employer,
         prior_year=prior_year if prior_year is not None else RENEWAL_WAIVED,
         periods={

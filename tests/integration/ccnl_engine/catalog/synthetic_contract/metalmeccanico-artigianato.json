@@ -1,6 +1,6 @@
 {
   "_description": "metalmeccanico-artigianato — data checks 2026",
-  "ccnl_file": "metalmeccanico-artigianato.json",
+  "ccnl_id": "metalmeccanico-artigianato",
   "salary_checks": [
     {
       "level_code": "6",

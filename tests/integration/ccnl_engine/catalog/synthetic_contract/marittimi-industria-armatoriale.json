@@ -1,6 +1,6 @@
 {
   "_description": "marittimi-industria-armatoriale — data checks 2026",
-  "ccnl_file": "marittimi-industria-armatoriale.json",
+  "ccnl_id": "marittimi-industria-armatoriale",
   "salary_checks": [
     {
       "level_code": "I",

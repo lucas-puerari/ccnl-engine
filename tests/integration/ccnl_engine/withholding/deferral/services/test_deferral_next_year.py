@@ -39,7 +39,7 @@ from tests.integration.ccnl_engine.withholding.deferral.builders import (
 if TYPE_CHECKING:
     from ccnl_engine.year.results import CompetenceYearResult
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _YEAR = 2026
 _ZERO = Decimal(0)
 _CENT = Decimal("0.01")

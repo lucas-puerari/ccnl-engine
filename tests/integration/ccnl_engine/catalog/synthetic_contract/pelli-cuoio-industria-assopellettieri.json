@@ -1,6 +1,6 @@
 {
   "_description": "pelli-cuoio-industria-assopellettieri — data checks 2026",
-  "ccnl_file": "pelli-cuoio-industria-assopellettieri.json",
+  "ccnl_id": "pelli-cuoio-industria-assopellettieri",
   "salary_checks": [
     {
       "level_code": "1",

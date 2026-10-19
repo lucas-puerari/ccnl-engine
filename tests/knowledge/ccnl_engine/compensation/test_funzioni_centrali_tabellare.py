@@ -16,7 +16,7 @@ import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
 
-_CCNL = load_ccnl("funzioni-centrali-aran.json")
+_CCNL = load_ccnl("funzioni-centrali-aran")
 _YEARS = (2025, 2026, 2027)
 #: Area, annual tabellare from 1 January 2025, 2026 and 2027, as printed.
 _TABLE = (

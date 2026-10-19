@@ -1,6 +1,6 @@
 {
   "_description": "pubblici-esercizi-fipe-angem — data checks 2026",
-  "ccnl_file": "pubblici-esercizi-fipe-angem.json",
+  "ccnl_id": "pubblici-esercizi-fipe-angem",
   "salary_checks": [
     {
       "level_code": "7",

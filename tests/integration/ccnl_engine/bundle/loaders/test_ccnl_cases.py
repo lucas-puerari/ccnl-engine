@@ -136,7 +136,7 @@ class TestDataCases:
     def test_case_matches(self, case_file: Path) -> None:
         """Load the CCNL and assert every declared check passes."""
         case = json.loads(case_file.read_text(encoding="utf-8"))
-        fname: str = case["ccnl_file"]
+        fname: str = case["ccnl_id"]
         ccnl = load_ccnl(fname)
 
         for sc in case.get("salary_checks", []):

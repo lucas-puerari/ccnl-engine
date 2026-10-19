@@ -1,6 +1,6 @@
 {
   "_description": "fiori-recisi-ancef — data checks 2026",
-  "ccnl_file": "fiori-recisi-ancef.json",
+  "ccnl_id": "fiori-recisi-ancef",
   "salary_checks": [
     {
       "level_code": "Q",

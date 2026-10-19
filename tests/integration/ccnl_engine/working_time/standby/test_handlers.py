@@ -30,7 +30,7 @@ from ccnl_engine.run.types import PeriodId
 if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
 
-_METAL = "metalmeccanico-federmeccanica.json"
+_METAL = "metalmeccanico-federmeccanica"
 
 
 def _run(
@@ -41,7 +41,7 @@ def _run(
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=2026, month=month),
             payment_date=date(2026, month, 27),
-            ccnl_slug=ccnl,
+            ccnl_id=ccnl,
             level_code=level,
             opening_state=PeriodState.zero(),
             events=tuple(events),  # type: ignore[arg-type]
@@ -112,7 +112,7 @@ def test_ccnl_without_rates_fails_closed() -> None:
     """A CCNL without standby rates rejects the event."""
     event = StandbyEvent(date(2026, 7, 3), StandbyKind.WEEK, Decimal(1))
     with pytest.raises(MissingRuleError, match="no standby rates"):
-        _run(event, level="4", ccnl="commercio-confcommercio.json")
+        _run(event, level="4", ccnl="commercio-confcommercio")
 
 
 def test_rates_before_june_2025_are_a_declared_gap() -> None:

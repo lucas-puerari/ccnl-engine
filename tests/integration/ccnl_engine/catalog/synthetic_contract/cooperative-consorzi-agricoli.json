@@ -1,6 +1,6 @@
 {
   "_description": "cooperative-consorzi-agricoli — data checks 2026",
-  "ccnl_file": "cooperative-consorzi-agricoli.json",
+  "ccnl_id": "cooperative-consorzi-agricoli",
   "salary_checks": [
     {
       "level_code": "np",

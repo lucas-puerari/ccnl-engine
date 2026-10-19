@@ -42,7 +42,7 @@ if TYPE_CHECKING:
 
 pytestmark = pytest.mark.legal_scenario
 
-_EDILI = "edilizia-pmi-confapi-aniem.json"
+_EDILI = "edilizia-pmi-confapi-aniem"
 _PARTIAL = "edilizia-pmi-confapi-aniem/contractual_fund_partial"
 
 
@@ -52,7 +52,7 @@ def _january(
     period: EmploymentPeriod | None = None,
 ) -> PeriodResult:
     employment = Employment(
-        ccnl_slug=_EDILI,
+        ccnl_id=_EDILI,
         level_code=level,
         seniority=new_hire(),
         pension_fund=pension,

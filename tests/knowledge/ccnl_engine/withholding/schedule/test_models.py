@@ -65,7 +65,7 @@ def _coop_sociali_d2_year() -> CompetenceYearResult:
         CompetenceYearPlan(
             year=2026,
             employment=Employment(
-                ccnl_slug=COOP_SOCIALI, level_code="D2", contract_type=Permanent()
+                ccnl_id=COOP_SOCIALI, level_code="D2", contract_type=Permanent()
             ),
             employer=EMPLOYER,
         )
@@ -157,7 +157,7 @@ def test_part_year_employment_withholds_the_tax_on_its_days(
         CompetenceYearPlan(
             year=2026,
             employment=Employment(
-                ccnl_slug=COMMERCIO,
+                ccnl_id=COMMERCIO,
                 level_code=level_code,
                 employment_period=EmploymentPeriod(date(2026, 3, 15)),
                 contract_type=Permanent(),
@@ -195,7 +195,7 @@ def test_mid_year_hire_projects_the_tredicesima_it_will_accrue() -> None:
         CompetenceYearPlan(
             year=2026,
             employment=Employment(
-                ccnl_slug="metalmeccanico-federmeccanica.json",
+                ccnl_id="metalmeccanico-federmeccanica",
                 level_code="C3",
                 employment_period=EmploymentPeriod(date(2026, 7, 1)),
                 contract_type=Permanent(),
@@ -240,7 +240,7 @@ def test_fourteenth_withholds_on_monthly_brackets() -> None:
     Observed on 6 October 2026 before this rule: 129.91 on the fourteenth,
     the share of a regular month.
     """
-    employment = replace(CONCIA_D2, category=None, ccnl_slug=COMMERCIO, level_code="4")
+    employment = replace(CONCIA_D2, category=None, ccnl_id=COMMERCIO, level_code="4")
     year = ENGINE.calculate_competence_year(competence_year(employment=employment))
     runs = {r.run: r for r in year.period_results}
     fourteenth = runs[PayrollRun.fourteenth(2026, 6)]

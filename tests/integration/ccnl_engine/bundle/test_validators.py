@@ -82,7 +82,7 @@ class TestContractLoaderIntegrity:
         self._repatch(monkeypatch, json.dumps(tampered))
 
         with pytest.raises(DataIntegrityError, match="source_hash mismatch"):
-            load_ccnl_from_bundle("commercio-confcommercio.json")
+            load_ccnl_from_bundle("commercio-confcommercio")
 
     def test_missing_ruleset_still_loads(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """A legacy file without any ruleset block must load unchanged."""
@@ -91,13 +91,13 @@ class TestContractLoaderIntegrity:
         assert "ruleset" not in payload
         self._repatch(monkeypatch, json.dumps(payload))
 
-        ccnl = load_ccnl_from_bundle("whatever.json")
+        ccnl = load_ccnl_from_bundle("whatever")
         assert ccnl.meta.ccnl_id == "test"
         assert ccnl.ruleset is None
 
     def test_valid_file_loads(self) -> None:
         """The real bundled file (hash intact) still validates."""
-        ccnl = load_ccnl_from_bundle("commercio-confcommercio.json")
+        ccnl = load_ccnl_from_bundle("commercio-confcommercio")
         assert ccnl.ruleset is not None
         assert ccnl.ruleset.id == "ccnl/commercio-confcommercio"
         assert ccnl.ruleset.version == "2026.2"

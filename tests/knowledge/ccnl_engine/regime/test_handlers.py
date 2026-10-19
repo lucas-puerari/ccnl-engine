@@ -83,7 +83,7 @@ class _Worker:
     waived: bool = False
     sector: EmploymentSector | None = _PRIVATE
     activity: EmployerActivity | None = EmployerActivity.OTHER
-    ccnl_slug: str = COMMERCIO
+    ccnl_id: str = COMMERCIO
     level_code: str = "4"
 
 
@@ -106,7 +106,7 @@ def _period(
     """
     waived = frozenset(SubstituteTaxRegime) if worker.waived else frozenset()
     employment = Employment(
-        ccnl_slug=worker.ccnl_slug,
+        ccnl_id=worker.ccnl_id,
         level_code=worker.level_code,
         seniority=new_hire(),
         sector=worker.sector,
@@ -220,7 +220,7 @@ def test_renewal_increment_with_unknown_income_is_ordinary_and_provisional() -> 
 
 _PUBLIC_ADMINISTRATION = _Worker(
     sector=EmploymentSector.PUBLIC,
-    ccnl_slug=PA_FUNZIONI_CENTRALI,
+    ccnl_id=PA_FUNZIONI_CENTRALI,
     level_code="ASSISTENTI",
 )
 

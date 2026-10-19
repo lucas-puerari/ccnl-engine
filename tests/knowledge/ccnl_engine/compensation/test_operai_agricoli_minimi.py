@@ -19,7 +19,7 @@ import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
 
-_CCNL = load_ccnl("operai-agricoli-florovivaisti.json")
+_CCNL = load_ccnl("operai-agricoli-florovivaisti")
 #: Area, salary in force on 28 May 2026, minimo of Allegato n. 1.
 _TABLE = (
     ("Area1", "1458.61", "1532.999"),

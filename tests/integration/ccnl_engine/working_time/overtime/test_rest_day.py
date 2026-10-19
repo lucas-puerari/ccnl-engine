@@ -22,8 +22,8 @@ from ccnl_engine.working_time.overtime.policies import (
 )
 
 _SUNDAY = date(2026, 3, 8)
-_DRIVERS = "logistica-trasporto-confetra-viaggiante.json"
-_METAL = "metalmeccanico-federmeccanica.json"
+_DRIVERS = "logistica-trasporto-confetra-viaggiante"
+_METAL = "metalmeccanico-federmeccanica"
 
 
 def _overtime(kind: OvertimeKind, multiplier: Decimal | None = None) -> OvertimeEvent:

@@ -22,7 +22,7 @@
     "section": "Minimi contrattuali mensili ed EPA and EDR ex accordo 18 maggio 2021, personale viaggiante, level I"
   },
   "inputs": {
-    "ccnl_slug": "logistica-trasporto-confetra-viaggiante.json",
+    "ccnl_id": "logistica-trasporto-confetra-viaggiante",
     "level_code": "I110",
     "year": 2026,
     "month": 3,

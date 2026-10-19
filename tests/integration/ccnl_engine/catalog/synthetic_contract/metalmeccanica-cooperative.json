@@ -1,6 +1,6 @@
 {
   "_description": "metalmeccanica-cooperative — data checks 2026",
-  "ccnl_file": "metalmeccanica-cooperative.json",
+  "ccnl_id": "metalmeccanica-cooperative",
   "salary_checks": [
     {
       "level_code": "D1",

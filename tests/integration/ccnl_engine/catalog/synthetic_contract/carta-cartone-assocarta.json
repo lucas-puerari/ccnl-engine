@@ -1,6 +1,6 @@
 {
   "_description": "carta-cartone-assocarta — data checks 2026",
-  "ccnl_file": "carta-cartone-assocarta.json",
+  "ccnl_id": "carta-cartone-assocarta",
   "salary_checks": [
     {
       "level_code": "E",

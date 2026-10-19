@@ -1,6 +1,6 @@
 {
   "_description": "bcc-credito-cooperativo — data checks 2026",
-  "ccnl_file": "bcc-credito-cooperativo.json",
+  "ccnl_id": "bcc-credito-cooperativo",
   "salary_checks": [
     {
       "level_code": "QD4",

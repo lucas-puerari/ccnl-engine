@@ -1,6 +1,6 @@
 {
   "_description": "anas — data checks 2026",
-  "ccnl_file": "anas.json",
+  "ccnl_id": "anas",
   "salary_checks": [
     {
       "level_code": "C1",

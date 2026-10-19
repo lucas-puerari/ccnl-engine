@@ -1,6 +1,6 @@
 {
   "_description": "lavoro-domestico-non-convivente - data checks 2026: monthly minimum = Tabella C hourly rate x 40 x 52 / 12 (CCNL 28/10/2025 art. 14 c. 1 lett. b, chiarimento a verbale 1); seniority increment = 4% of it (art. 37 c. 1)",
-  "ccnl_file": "lavoro-domestico-non-convivente.json",
+  "ccnl_id": "lavoro-domestico-non-convivente",
   "salary_checks": [
     {
       "level_code": "A",

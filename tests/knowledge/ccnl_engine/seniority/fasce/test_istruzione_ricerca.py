@@ -27,7 +27,7 @@ def _seniority(level: str, months: int) -> Decimal:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=2026, month=3),
             payment_date=date(2026, 3, 27),
-            ccnl_slug="istruzione-ricerca-aran.json",
+            ccnl_id="istruzione-ricerca-aran",
             level_code=level,
             seniority=SeniorityFact(months, date(2026, 3, 1), SenioritySource.PAYSLIP),
             opening_state=PeriodState.zero(),

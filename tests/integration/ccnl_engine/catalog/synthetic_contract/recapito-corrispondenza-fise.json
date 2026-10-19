@@ -1,6 +1,6 @@
 {
   "_description": "recapito-corrispondenza-fise — data checks 2026",
-  "ccnl_file": "recapito-corrispondenza-fise.json",
+  "ccnl_id": "recapito-corrispondenza-fise",
   "salary_checks": [
     {
       "level_code": "1",

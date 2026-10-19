@@ -17,7 +17,7 @@
     "section": "Tabella 2a, retribuzione tabellare annua dal 1.1.2024, area dei professionisti della salute e dei funzionari"
   },
   "inputs": {
-    "ccnl_slug": "sanita-aran.json",
+    "ccnl_id": "sanita-aran",
     "level_code": "PROFESSIONISTI",
     "year": 2026,
     "month": 3,

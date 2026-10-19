@@ -21,7 +21,7 @@ if TYPE_CHECKING:
 
 _ENGINE = PayrollEngine.bundled()
 _EMPLOYMENT = Employment(
-    ccnl_slug="metalmeccanico-federmeccanica.json",
+    ccnl_id="metalmeccanico-federmeccanica",
     level_code="C3",
     contract_type=Permanent(),
 )

@@ -17,7 +17,7 @@ import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
 
-_CCNL = load_ccnl("cooperative-consorzi-agricoli.json")
+_CCNL = load_ccnl("cooperative-consorzi-agricoli")
 _TRANCHES = (date(2024, 4, 1), date(2025, 5, 1), date(2026, 5, 1), date(2027, 2, 1))
 _TABLE = (
     ("1", ("2200.92", "2235.08", "2269.24", "2303.40")),

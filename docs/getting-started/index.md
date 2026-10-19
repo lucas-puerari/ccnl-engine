@@ -12,7 +12,8 @@ wheel on each.
 
 ## Find a CCNL and its level
 
-`Employment` takes the slug of a bundled CCNL and one of its level codes.
+`Employment.ccnl_id` takes the slug or the CNEL code of a CCNL, and
+`level_code` one of its level codes.
 Search the catalog by name or slug, pick the contract by slug or CNEL code
 and list its levels:
 
@@ -20,9 +21,9 @@ and list its levels:
 --8<-- "docs/examples/catalog/example.py"
 ```
 
-`PayrollEngine.list_contracts()` returns every contract; `search_ccnls()`
-matches name and slug; `get_ccnl()` and `engine.list_levels()` take a slug or a
-CNEL code. A CNEL code shared by several bundled contracts raises
+`engine.list_contracts()` returns every contract of the engine's repository;
+`search_ccnls()` matches name and slug of a bundled one; `get_ccnl()` and
+`engine.list_levels()` take a slug or a CNEL code. A CNEL code shared by several bundled contracts raises
 `UnknownCcnlError` with their slugs as `suggestions`.
 
 ## Quickstart

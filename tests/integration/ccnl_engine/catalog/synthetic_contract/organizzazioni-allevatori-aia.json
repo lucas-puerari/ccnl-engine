@@ -1,6 +1,6 @@
 {
   "_description": "organizzazioni-allevatori-aia — data checks 2026",
-  "ccnl_file": "organizzazioni-allevatori-aia.json",
+  "ccnl_id": "organizzazioni-allevatori-aia",
   "salary_checks": [
     {
       "level_code": "1/2",

@@ -20,7 +20,7 @@
     "section": "Art. 152 c.1, Paga base nazionale, column mag 2026, level 4"
   },
   "inputs": {
-    "ccnl_slug": "turismo-federalberghi.json",
+    "ccnl_id": "turismo-federalberghi",
     "level_code": "4",
     "year": 2026,
     "month": 5,

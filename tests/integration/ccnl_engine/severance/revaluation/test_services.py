@@ -87,7 +87,7 @@ def _run(
         PeriodCalculationRequest(
             period_id=PeriodId(year=2026, month=month),
             payment_date=date(2026, month, 27),
-            ccnl_slug="metalmeccanico-federmeccanica.json",
+            ccnl_id="metalmeccanico-federmeccanica",
             level_code="C3",
             employer=EmployerProfile(headcount=Headcount(50)),
             seniority=new_hire(),

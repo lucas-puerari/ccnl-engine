@@ -9,8 +9,8 @@ from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.period.context.agreement.services import with_employer_sector
 
-_LOGISTICA = load_ccnl("logistica-trasporto-confetra.json")
-_METAL = load_ccnl("metalmeccanico-federmeccanica.json")
+_LOGISTICA = load_ccnl("logistica-trasporto-confetra")
+_METAL = load_ccnl("metalmeccanico-federmeccanica")
 
 
 def test_a_single_sector_ccnl_needs_no_stated_sector() -> None:

@@ -68,7 +68,7 @@ def _weak(result: PeriodResult) -> set[tuple[str | None, str]]:
 
 def test_an_assumed_ccnl_rule_blocks_the_capability_that_reads_it() -> None:
     """Agenti immobiliari, level Q: its minimum is recorded assumed."""
-    result = regular_period(ccnl_slug="agenti-immobiliari-fiaip.json", level_code="Q")
+    result = regular_period(ccnl_id="agenti-immobiliari-fiaip", level_code="Q")
 
     assert ("base_salary", "assumed") in _weak(result)
     assert not result.is_payable
@@ -77,7 +77,7 @@ def test_an_assumed_ccnl_rule_blocks_the_capability_that_reads_it() -> None:
 def test_a_missing_gap_refuses_the_run() -> None:
     """Grafica editoria declares no seniority amount of Q before July 2026."""
     employment = Employment(
-        ccnl_slug="grafica-editoria-aieg.json",
+        ccnl_id="grafica-editoria-aieg",
         level_code="Q",
         seniority=SeniorityFact.since(
             date(2018, 1, 1), SenioritySource.EMPLOYER_RECORDS
@@ -92,7 +92,7 @@ def test_a_missing_gap_refuses_the_run() -> None:
 def _agricultural(contract_type: Permanent | Apprentice) -> PeriodResult:
     return regular_period(
         employment=Employment(
-            ccnl_slug="operai-agricoli-florovivaisti.json",
+            ccnl_id="operai-agricoli-florovivaisti",
             level_code="Area1",
             seniority=new_hire(2026),
             contract_type=contract_type,
@@ -111,9 +111,7 @@ def test_agricultural_runs_read_no_weak_inps_rule() -> None:
 
 def test_a_public_run_reads_no_weak_inps_rule() -> None:
     """The minimum base and the CTPS rates of the State are verified."""
-    result = regular_period(
-        ccnl_slug="funzioni-centrali-aran.json", level_code="FUNZIONARI"
-    )
+    result = regular_period(ccnl_id="funzioni-centrali-aran", level_code="FUNZIONARI")
 
     assert not {feature for feature, _ in _weak(result)} & _INPS
 
@@ -123,7 +121,7 @@ def _concia_year(comune: str, regione: str) -> tuple[PeriodResult, ...]:
         CompetenceYearPlan(
             year=2026,
             employment=Employment(
-                ccnl_slug="concia-unic.json",
+                ccnl_id="concia-unic",
                 level_code="D2",
                 category=WorkerCategory.OPERAIO,
                 seniority=new_hire(),

@@ -1,6 +1,6 @@
 {
   "_description": "federcasa — data checks 2026",
-  "ccnl_file": "federcasa.json",
+  "ccnl_id": "federcasa",
   "salary_checks": [
     {
       "level_code": "Q1",

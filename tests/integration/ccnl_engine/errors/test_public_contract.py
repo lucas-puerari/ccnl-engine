@@ -74,7 +74,7 @@ def _grafica_e(month: int, months_of_service: int | None) -> Employment:
         The employment, with ``months_of_service`` as of the run month.
     """
     return Employment(
-        ccnl_slug="grafica-editoria-aieg.json",
+        ccnl_id="grafica-editoria-aieg",
         level_code="E",
         seniority=(
             None
@@ -166,7 +166,7 @@ def test_run_before_the_first_tranche_raises_a_typed_error() -> None:
     ``ValueError``.
     """
     employment = Employment(
-        ccnl_slug="anas.json",
+        ccnl_id="anas",
         level_code="C1",
         seniority=None,
         contract_type=Permanent(),
@@ -197,7 +197,7 @@ def test_employment_rejects_a_role_that_is_not_a_string() -> None:
     """A role code that is not a string is rejected, not ignored."""
     with pytest.raises(InvalidInputError) as raised:
         Employment(
-            ccnl_slug="metalmeccanico-federmeccanica.json",
+            ccnl_id="metalmeccanico-federmeccanica",
             level_code="C3",
             roles=frozenset({1}),  # type: ignore[arg-type]
             contract_type=Permanent(),
@@ -279,7 +279,7 @@ def test_negative_net_is_out_of_scope_not_a_data_integrity_error() -> None:
     refused as out of scope, never as a corrupt bundle.
     """
     employment = Employment(
-        ccnl_slug="commercio-confcommercio.json",
+        ccnl_id="commercio-confcommercio",
         level_code="7",
         seniority=new_hire(),
         weekly_hours=WeeklyHours(20),

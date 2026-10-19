@@ -37,7 +37,7 @@ if TYPE_CHECKING:
 pytestmark = pytest.mark.legal_scenario
 
 _EMPLOYMENT = Employment(
-    ccnl_slug="esercizi-cinematografici-anec.json",
+    ccnl_id="esercizi-cinematografici-anec",
     level_code="3",
     seniority=SeniorityFact.since(date(2022, 1, 1), SenioritySource.EMPLOYER_RECORDS),
     pension_fund=PensionFundEnrolment("BYBLOS", Decimal("0.01"), tfr_to_fund=True),

@@ -56,7 +56,7 @@ if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
 
 _DAY = date(2026, 3, 10)
-_METAL = "metalmeccanico-federmeccanica.json"
+_METAL = "metalmeccanico-federmeccanica"
 _RATE = Decimal("15.00")
 #: Hired on 1 March: the March run is the first, opened by the zero state.
 _HIRED = EmploymentPeriod(date(2026, 3, 1))
@@ -81,7 +81,7 @@ def _run(event: OvertimeEvent, slug: str = _METAL, level: str = "C3") -> PeriodR
             ),
             period_id=PeriodId(year=2026, month=3),
             payment_date=date(2026, 3, 27),
-            ccnl_slug=slug,
+            ccnl_id=slug,
             level_code=level,
             category=WorkerCategory.IMPIEGATO if slug == _METAL else None,
             seniority=new_hire(),
@@ -162,19 +162,19 @@ def test_explicit_multiplier_different_from_the_band_prevails() -> None:
 def test_no_band_and_no_multiplier_is_rejected() -> None:
     """A CCNL with no overtime band gives no multiplier: fail closed."""
     with pytest.raises(InvalidInputError, match="pass an explicit multiplier"):
-        _run(_overtime(), "agenti-immobiliari-fiaip.json", "III")
+        _run(_overtime(), "agenti-immobiliari-fiaip", "III")
 
 
 def test_no_band_with_explicit_multiplier_has_nothing_to_compare() -> None:
     """Without a CCNL band the caller multiplier is applied with no issue."""
-    result = _run(_overtime(Decimal("1.30")), "agenti-immobiliari-fiaip.json", "III")
+    result = _run(_overtime(Decimal("1.30")), "agenti-immobiliari-fiaip", "III")
     assert _overtime_paid(result) == Decimal("195.00")
     assert CALLER_MULTIPLIER_DIFFERS not in _codes(result)
 
 
 def test_tiered_bands_apply_the_first_tier_provisionally() -> None:
     """Commercio: 15% applied to every hour, the 20% tier reported."""
-    result = _run(_overtime(), "commercio-confcommercio.json", "4")
+    result = _run(_overtime(), "commercio-confcommercio", "4")
     assert _overtime_paid(result) == Decimal("172.50")
     (issue,) = (i for i in result.issues if i.code == TIER_NOT_APPLIED)
     assert "OT_DIURNO_EXTRA (1.20)" in issue.message
@@ -184,7 +184,7 @@ def test_tiered_bands_apply_the_first_tier_provisionally() -> None:
 
 def test_explicit_multiplier_matching_a_higher_tier_raises_no_issue() -> None:
     """A caller 1.20 is the commercio OT_DIURNO_EXTRA tier: no difference."""
-    result = _run(_overtime(Decimal("1.20")), "commercio-confcommercio.json", "4")
+    result = _run(_overtime(Decimal("1.20")), "commercio-confcommercio", "4")
     assert CALLER_MULTIPLIER_DIFFERS not in _codes(result)
 
 
@@ -192,8 +192,8 @@ def test_explicit_multiplier_matching_a_higher_tier_raises_no_issue() -> None:
     ("slug", "kind"),
     [
         # Only bands beyond 40 weekly hours; LAVORO_NOTTURNO is ordinary work.
-        ("impianti-sportivi-sport.json", OvertimeKind.WEEKDAY),
-        ("impianti-sportivi-sport.json", OvertimeKind.NIGHT),
+        ("impianti-sportivi-sport", OvertimeKind.WEEKDAY),
+        ("impianti-sportivi-sport", OvertimeKind.NIGHT),
     ],
 )
 def test_bands_that_give_no_multiplier_fail_closed(

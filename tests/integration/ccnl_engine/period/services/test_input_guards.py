@@ -26,7 +26,7 @@ from tests.integration.ccnl_engine.period.builders import (
 )
 from tests.unit.ccnl_engine.builders import EMPLOYER_50
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _LEVEL = "C3"
 _YEAR = 2026
 _ZERO = Decimal(0)
@@ -50,7 +50,7 @@ class TestEventDateValidation:
             employer=EMPLOYER_50,
             period_id=PeriodId(year=2026, month=1),
             payment_date=date(2026, 1, 28),
-            ccnl_slug=_CCNL,
+            ccnl_id=_CCNL,
             level_code=_LEVEL,
             opening_state=PeriodState.zero(),
             events=(out_of_period,),
@@ -69,7 +69,7 @@ class TestEventDateValidation:
             employer=EMPLOYER_50,
             period_id=PeriodId(year=2026, month=1),
             payment_date=date(2026, 1, 28),
-            ccnl_slug=_CCNL,
+            ccnl_id=_CCNL,
             level_code=_LEVEL,
             opening_state=PeriodState.zero(),
             events=(past_arrears,),
@@ -88,7 +88,7 @@ class TestEventDateValidation:
             employer=EMPLOYER_50,
             period_id=PeriodId(year=2026, month=1),
             payment_date=date(2026, 1, 28),
-            ccnl_slug=_CCNL,
+            ccnl_id=_CCNL,
             level_code=_LEVEL,
             opening_state=PeriodState.zero(),
             events=(absence,),
@@ -135,7 +135,7 @@ class TestReconciliationFailureGuard:
             employer=EMPLOYER_50,
             period_id=PeriodId(year=2026, month=1),
             payment_date=date(2026, 1, 28),
-            ccnl_slug=_CCNL,
+            ccnl_id=_CCNL,
             level_code=_LEVEL,
             opening_state=PeriodState.zero(),
         )

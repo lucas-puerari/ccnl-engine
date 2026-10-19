@@ -18,8 +18,8 @@ from ccnl_engine.seniority.inputs import (
     SenioritySource,
 )
 
-_FISE = load_ccnl("servizi-postali-appalto-fise.json")
-_COMMERCIO = load_ccnl("commercio-confcommercio.json")
+_FISE = load_ccnl("servizi-postali-appalto-fise")
+_COMMERCIO = load_ccnl("commercio-confcommercio")
 _SIXTY_MONTHS = SeniorityFact(60, date(2026, 1, 1), SenioritySource.PAYSLIP)
 
 

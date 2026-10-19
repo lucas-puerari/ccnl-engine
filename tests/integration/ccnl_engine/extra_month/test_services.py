@@ -29,8 +29,8 @@ from tests.unit.ccnl_engine.builders import make_year_rules, year_plan
 if TYPE_CHECKING:
     from ccnl_engine.year.results import CompetenceYearResult
 
-_COMMERCIO = "commercio-confcommercio.json"
-_METALMECCANICO = "metalmeccanico-federmeccanica.json"
+_COMMERCIO = "commercio-confcommercio"
+_METALMECCANICO = "metalmeccanico-federmeccanica"
 _YEAR = 2026
 
 
@@ -150,7 +150,7 @@ class TestStandaloneExtraRun:
             ),
             period_id=PeriodId(year=_YEAR, month=run.month),
             payment_date=date(_YEAR, run.month, 28),
-            ccnl_slug=ccnl,
+            ccnl_id=ccnl,
             level_code=level,
             run=run,
             employment_period=employment,
@@ -162,9 +162,9 @@ class TestStandaloneExtraRun:
         """Cooperative Sociali grants 13.5 months: the 14th is half a month."""
         run = PayrollRun.fourteenth(_YEAR, 6)
         full = self._gross(
-            "cooperative-sociali.json", "D2", PayrollRun.regular(_YEAR, 6), None
+            "cooperative-sociali", "D2", PayrollRun.regular(_YEAR, 6), None
         )
-        half = self._gross("cooperative-sociali.json", "D2", run, None)
+        half = self._gross("cooperative-sociali", "D2", run, None)
         assert half == pytest.approx(full / 2, abs=Decimal("0.02"))
 
     def test_extra_month_absent_from_the_ccnl_counts_as_full(self) -> None:

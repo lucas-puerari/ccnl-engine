@@ -1,6 +1,6 @@
 {
   "_description": "dirigenza-istruzione-ricerca-aran — data checks 2026",
-  "ccnl_file": "dirigenza-istruzione-ricerca-aran.json",
+  "ccnl_id": "dirigenza-istruzione-ricerca-aran",
   "salary_checks": [
     {
       "level_code": "SECONDA_FASCIA",

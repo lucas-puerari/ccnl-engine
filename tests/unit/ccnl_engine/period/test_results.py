@@ -35,7 +35,7 @@ from tests.integration.ccnl_engine.withholding.builders import (
 _ZERO = Decimal(0)
 _PERIOD = PeriodId(year=2026, month=1)
 _DATE = date(2026, 1, 31)
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _LEVEL = "C3"
 
 
@@ -110,13 +110,13 @@ class TestPeriodCalculationRequest:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=2026, month=6),
             payment_date=date(2026, 6, 28),
-            ccnl_slug=_CCNL,
+            ccnl_id=_CCNL,
             level_code=_LEVEL,
             opening_state=state,
         )
         assert req.period_id == PeriodId(year=2026, month=6)
         assert req.payment_date == date(2026, 6, 28)
-        assert req.ccnl_slug == _CCNL
+        assert req.ccnl_id == _CCNL
         assert req.level_code == _LEVEL
         assert req.opening_state is state
 
@@ -126,7 +126,7 @@ class TestPeriodCalculationRequest:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=_PERIOD,
             payment_date=_DATE,
-            ccnl_slug=_CCNL,
+            ccnl_id=_CCNL,
             level_code=_LEVEL,
         )
         assert req.opening_state == PeriodState.zero()
@@ -137,7 +137,7 @@ class TestPeriodCalculationRequest:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=_PERIOD,
             payment_date=_DATE,
-            ccnl_slug=_CCNL,
+            ccnl_id=_CCNL,
             level_code=_LEVEL,
         )
         assert req.employer == EmployerProfile(headcount=Headcount(50))
@@ -148,7 +148,7 @@ class TestPeriodCalculationRequest:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=_PERIOD,
             payment_date=_DATE,
-            ccnl_slug=_CCNL,
+            ccnl_id=_CCNL,
             level_code=_LEVEL,
         )
         with pytest.raises(AttributeError):
@@ -166,7 +166,7 @@ class TestPeriodCalculationRequest:
                 employer=EmployerProfile(headcount=Headcount(50)),
                 period_id=PeriodId(year=2026, month=1),
                 payment_date=date(2026, 1, 31),
-                ccnl_slug=_CCNL,
+                ccnl_id=_CCNL,
                 level_code=_LEVEL,
                 opening_state=prior_year_state,
             )
@@ -178,7 +178,7 @@ class TestPeriodCalculationRequest:
                 employer=EmployerProfile(headcount=Headcount(50)),
                 period_id=PeriodId(year=2026, month=3),
                 payment_date=date(2026, 2, 28),
-                ccnl_slug=_CCNL,
+                ccnl_id=_CCNL,
                 level_code=_LEVEL,
             )
 
@@ -194,7 +194,7 @@ class TestPeriodCalculationRequest:
                 employer=EmployerProfile(headcount=Headcount(50)),
                 period_id=PeriodId(year=2026, month=12),
                 payment_date=date(2027, 1, 13),
-                ccnl_slug=_CCNL,
+                ccnl_id=_CCNL,
                 level_code=_LEVEL,
                 opening_state=state_2026,
             )
@@ -211,7 +211,7 @@ class TestPeriodCalculationRequest:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=2026, month=12),
             payment_date=date(2027, 1, 12),
-            ccnl_slug=_CCNL,
+            ccnl_id=_CCNL,
             level_code=_LEVEL,
             opening_state=state_2026,
         )
@@ -224,7 +224,7 @@ class TestPeriodCalculationRequest:
                 employer=EmployerProfile(headcount=Headcount(50)),
                 period_id=PeriodId(year=2026, month=12),
                 payment_date=date(2027, 1, 13),
-                ccnl_slug=_CCNL,
+                ccnl_id=_CCNL,
                 level_code=_LEVEL,
                 withholding_schedule=calendar_schedule(WorkCalendar(year=2026)),
             )
@@ -235,7 +235,7 @@ class TestPeriodCalculationRequest:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=_PERIOD,
             payment_date=_DATE,
-            ccnl_slug=_CCNL,
+            ccnl_id=_CCNL,
             level_code=_LEVEL,
             opening_state=PeriodState.zero(),
         )
@@ -252,7 +252,7 @@ class TestPeriodCalculationRequest:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=2026, month=6),
             payment_date=date(2026, 6, 28),
-            ccnl_slug=_CCNL,
+            ccnl_id=_CCNL,
             level_code=_LEVEL,
             opening_state=current_state,
         )

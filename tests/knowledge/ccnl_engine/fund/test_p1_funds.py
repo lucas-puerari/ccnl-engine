@@ -19,7 +19,7 @@ from ccnl_engine.catalog.loaders import load_ccnl
 
 def test_logistica_priamo() -> None:
     """1% of the employer, at least 1% of the worker."""
-    funds = load_ccnl("logistica-trasporto-confetra.json").parameters.employer_funds
+    funds = load_ccnl("logistica-trasporto-confetra").parameters.employer_funds
     (priamo,) = [f for f in funds if f.code == "PRIAMO"]
 
     assert priamo.rate.value_at(date(2026, 1, 1)) == Decimal("0.0100")
@@ -38,7 +38,7 @@ def test_logistica_priamo() -> None:
 )
 def test_health_and_bilateral_funds_are_declared(slug: str) -> None:
     """The contributions the engine does not compute are open limitations."""
-    ccnl = load_ccnl(f"{slug}.json")
+    ccnl = load_ccnl(slug)
     variants = {n.limitation.variant for n in ccnl.coverage.notes if n.limitation}
 
     assert "health_and_bilateral_funds" in variants

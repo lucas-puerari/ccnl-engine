@@ -1,6 +1,6 @@
 {
   "_description": "sanita-aran — data checks 2026",
-  "ccnl_file": "sanita-aran.json",
+  "ccnl_id": "sanita-aran",
   "salary_checks": [
     {
       "level_code": "SUPPORTO",

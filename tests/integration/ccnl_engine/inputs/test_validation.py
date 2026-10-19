@@ -85,7 +85,7 @@ _YEAR = 2026
 _DAY = date(_YEAR, 6, 10)
 _ONE = Decimal(1)
 _EMPLOYMENT = Employment(
-    ccnl_slug="metalmeccanico-federmeccanica.json",
+    ccnl_id="metalmeccanico-federmeccanica",
     level_code="C3",
     contract_type=Permanent(),
 )
@@ -132,7 +132,7 @@ _VALID: dict[type, dict[str, Any]] = {
         "separate_tax_rate": Decimal("0.2"),
     },
     Employment: {
-        "ccnl_slug": "metalmeccanico-federmeccanica.json",
+        "ccnl_id": "metalmeccanico-federmeccanica",
         "level_code": "C3",
         "contract_type": Permanent(),
     },

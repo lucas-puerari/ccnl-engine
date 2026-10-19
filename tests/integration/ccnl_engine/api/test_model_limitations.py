@@ -46,7 +46,7 @@ def _run(
             run=PayrollRun.regular(2026, 6),
             payment_date=date(2026, 6, 27),
             employment=Employment(
-                ccnl_slug=f"{slug}.json",
+                ccnl_id=slug,
                 level_code=level,
                 contract_type=contract_type,
                 seniority=None

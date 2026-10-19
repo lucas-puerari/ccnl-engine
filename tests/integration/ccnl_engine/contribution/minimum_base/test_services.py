@@ -28,7 +28,7 @@ from ccnl_engine.run.types import PeriodId
 if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
 
-_OPERAI = "operai-agricoli-florovivaisti.json"
+_OPERAI = "operai-agricoli-florovivaisti"
 
 
 def _run(ccnl: str, level: str, **kwargs: object) -> PeriodResult:
@@ -36,7 +36,7 @@ def _run(ccnl: str, level: str, **kwargs: object) -> PeriodResult:
         PeriodCalculationRequest(
             period_id=PeriodId(year=2026, month=3),
             payment_date=date(2026, 3, 27),
-            ccnl_slug=ccnl,
+            ccnl_id=ccnl,
             level_code=level,
             employer=EmployerProfile(headcount=Headcount(10)),
             opening_state=PeriodState.zero(),
@@ -69,16 +69,14 @@ def test_apprentice_operaio_has_no_open_floor() -> None:
 
 def test_impiegato_agricolo_keeps_the_minimum() -> None:
     """An impiegato is not excluded: no open floor."""
-    result = _run(
-        "impiegati-tecnici-agricoli.json", "1", category=WorkerCategory.IMPIEGATO
-    )
+    result = _run("impiegati-tecnici-agricoli", "1", category=WorkerCategory.IMPIEGATO)
     assert EXEMPT_CATEGORY_FLOOR not in _limitations(result)
 
 
 def test_sector_without_minimum_has_no_open_floor() -> None:
     """Domestic work has no ordinary INPS rules and no minimum."""
     result = _run(
-        "lavoro-domestico-convivente.json",
+        "lavoro-domestico-convivente",
         "A",
         weekly_hours=WeeklyHours(40),
         contributable_hours=ContributableHours(Decimal(173)),

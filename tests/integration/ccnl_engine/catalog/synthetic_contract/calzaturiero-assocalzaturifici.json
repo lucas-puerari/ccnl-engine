@@ -1,6 +1,6 @@
 {
   "_description": "calzaturiero-assocalzaturifici — data checks 2026",
-  "ccnl_file": "calzaturiero-assocalzaturifici.json",
+  "ccnl_id": "calzaturiero-assocalzaturifici",
   "salary_checks": [
     {
       "level_code": "1",

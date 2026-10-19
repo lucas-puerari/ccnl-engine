@@ -1,6 +1,6 @@
 {
   "_description": "agenzie-marittime-i481 — data checks 2026",
-  "ccnl_file": "agenzie-marittime-i481.json",
+  "ccnl_id": "agenzie-marittime-i481",
   "salary_checks": [
     {
       "level_code": "1",

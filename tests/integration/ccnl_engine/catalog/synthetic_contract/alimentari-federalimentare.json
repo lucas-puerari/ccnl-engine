@@ -1,6 +1,6 @@
 {
   "_description": "alimentari-federalimentare — data checks 2026",
-  "ccnl_file": "alimentari-federalimentare.json",
+  "ccnl_id": "alimentari-federalimentare",
   "salary_checks": [
     {
       "level_code": "6",

@@ -17,7 +17,7 @@ import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
 
-_CCNL = load_ccnl("bancari-abi.json")
+_CCNL = load_ccnl("bancari-abi")
 _TRANCHES = (date(2023, 7, 1), date(2024, 9, 1), date(2025, 6, 1), date(2026, 3, 1))
 _TABLE = (
     ("QD4", ("4911.48", "5045.85", "5113.03", "5160.06")),

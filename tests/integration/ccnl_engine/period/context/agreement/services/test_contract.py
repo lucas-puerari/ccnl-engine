@@ -52,7 +52,7 @@ def _ceiling(run: PayrollRun, paid_on: date) -> object:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=run.year, month=run.month),
             payment_date=paid_on,
-            ccnl_slug="commercio-confcommercio.json",
+            ccnl_id="commercio-confcommercio",
             level_code="4",
             run=run,
         ),
@@ -86,7 +86,7 @@ def test_rules_of_the_competence_year_are_returned_unchanged() -> None:
 class TestFlatPayDivisor:
     """A flat-pay regime divides its pay by the hours of the employment."""
 
-    _REDUCED = "lavoro-domestico-convivente-orario-ridotto.json"
+    _REDUCED = "lavoro-domestico-convivente-orario-ridotto"
 
     def test_divisor_of_the_weekly_hours(self) -> None:
         """20 weekly hours: 20 x 52 / 12 = 86.67 instead of the file's 130."""
@@ -102,5 +102,5 @@ class TestFlatPayDivisor:
 
     def test_unchanged_outside_a_flat_pay_regime(self) -> None:
         """Commercio is not a flat-pay regime."""
-        ccnl = load_ccnl("commercio-confcommercio.json")
+        ccnl = load_ccnl("commercio-confcommercio")
         assert flat_pay_divisor(ccnl, WeeklyHours(20)) is ccnl

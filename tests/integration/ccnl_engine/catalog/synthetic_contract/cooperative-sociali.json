@@ -1,6 +1,6 @@
 {
   "_description": "cooperative-sociali — data checks 2026",
-  "ccnl_file": "cooperative-sociali.json",
+  "ccnl_id": "cooperative-sociali",
   "salary_checks": [
     {
       "level_code": "A1",

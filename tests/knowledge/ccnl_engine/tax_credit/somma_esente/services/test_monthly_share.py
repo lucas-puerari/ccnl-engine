@@ -51,7 +51,7 @@ def test_july_pays_the_percentage_of_its_income() -> None:
             run=PayrollRun.regular(2026, 7),
             payment_date=date(2026, 7, 27),
             employment=Employment(
-                ccnl_slug="commercio-confcommercio.json",
+                ccnl_id="commercio-confcommercio",
                 level_code="4",
                 employment_period=EmploymentPeriod(started_on=_HIRED),
                 seniority=new_hire(2026),

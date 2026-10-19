@@ -39,14 +39,14 @@ def _by_feature(ccnl: CCNL) -> dict[str, tuple[CapabilityImplementation, bool]]:
 
 def test_without_notes_the_registry_applies() -> None:
     """Every capability keeps the implementation of the registry."""
-    rows = _by_feature(load_ccnl("energia-petrolio-confindustria.json"))
+    rows = _by_feature(load_ccnl("energia-petrolio-confindustria"))
     assert rows == {e.feature: (e.implementation, False) for e in _CATALOG.capabilities}
 
 
 def test_missing_note_lowers_its_capability() -> None:
     """A native or caller-supplied capability becomes partial; others stay."""
     ccnl = _with_missing(
-        load_ccnl("metalmeccanico-federmeccanica.json"),
+        load_ccnl("metalmeccanico-federmeccanica"),
         "base_salary",
         "overtime",
         "sickness",
@@ -63,19 +63,19 @@ def test_missing_note_lowers_its_capability() -> None:
 def test_bundled_missing_notes_and_limitations() -> None:
     """Missing notes and blocking limitations name the capabilities they limit."""
     limited = {
-        filename: sorted(
-            f for f, (_, named) in _by_feature(load_ccnl(filename)).items() if named
+        ccnl_id: sorted(
+            f for f, (_, named) in _by_feature(load_ccnl(ccnl_id)).items() if named
         )
-        for filename in (
-            "assicurazioni-ania.json",
-            "ced-assoced.json",
-            "ortofrutticoli-agrumari.json",
+        for ccnl_id in (
+            "assicurazioni-ania",
+            "ced-assoced",
+            "ortofrutticoli-agrumari",
         )
     }
     assert limited == {
-        "assicurazioni-ania.json": ["base_salary", "inps_employer", "seniority"],
-        "ced-assoced.json": ["base_salary", "inps_employer"],
-        "ortofrutticoli-agrumari.json": [
+        "assicurazioni-ania": ["base_salary", "inps_employer", "seniority"],
+        "ced-assoced": ["base_salary", "inps_employer"],
+        "ortofrutticoli-agrumari": [
             "base_salary",
             "leave",
             "seniority",
@@ -85,33 +85,33 @@ def test_bundled_missing_notes_and_limitations() -> None:
 
 
 @pytest.mark.parametrize(
-    ("filename", "features"),
+    ("ccnl_id", "features"),
     [
-        ("impianti-sportivi-sport.json", ("overtime", "sickness")),
-        ("concia-unic.json", ("overtime",)),
-        ("ortofrutticoli-agrumari.json", ("sickness",)),
+        ("impianti-sportivi-sport", ("overtime", "sickness")),
+        ("concia-unic", ("overtime",)),
+        ("ortofrutticoli-agrumari", ("sickness",)),
         (
-            "pulizia-artigianato-confartigianato.json",
+            "pulizia-artigianato-confartigianato",
             ("holiday_work", "night_work"),
         ),
     ],
 )
 def test_work_rules_partials_are_derived(
-    filename: str, features: tuple[str, ...]
+    ccnl_id: str, features: tuple[str, ...]
 ) -> None:
     """The work-rule gaps these files once declared as flags are partial."""
-    rows = _by_feature(load_ccnl(filename))
+    rows = _by_feature(load_ccnl(ccnl_id))
     assert all(rows[feature][0] is _IMPL.PARTIAL for feature in features)
 
 
 def test_leave_without_an_event_stays_unsupported() -> None:
     """A missing note on leave, which no event computes, keeps it unsupported."""
-    rows = _by_feature(load_ccnl("ortofrutticoli-agrumari.json"))
+    rows = _by_feature(load_ccnl("ortofrutticoli-agrumari"))
     assert rows["leave"] == (_IMPL.UNSUPPORTED, True)
 
 
 def test_unknown_capability_is_rejected() -> None:
     """A note naming a capability outside the registry is a data error."""
-    ccnl = _with_missing(load_ccnl("metalmeccanico-federmeccanica.json"), "ghost")
+    ccnl = _with_missing(load_ccnl("metalmeccanico-federmeccanica"), "ghost")
     with pytest.raises(DataIntegrityError, match=r"\['ghost'\]"):
         ccnl_capabilities(_CATALOG, ccnl)

@@ -40,7 +40,7 @@ def _run(worked: int | None, first: int = 9, last: int = 20) -> PeriodResult:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=2026, month=3),
             payment_date=date(2026, 3, 27),
-            ccnl_slug="metalmeccanico-federmeccanica.json",
+            ccnl_id="metalmeccanico-federmeccanica",
             level_code="C3",
             seniority=new_hire(),
             opening_state=PeriodState.zero(),

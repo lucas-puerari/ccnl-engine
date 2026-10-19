@@ -1,6 +1,6 @@
 {
   "_description": "autostrade-trafori — data checks 2026",
-  "ccnl_file": "autostrade-trafori.json",
+  "ccnl_id": "autostrade-trafori",
   "salary_checks": [
     {
       "level_code": "D",

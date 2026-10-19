@@ -1,6 +1,6 @@
 {
   "_description": "farmacie-municipalizzate-assofarm — data checks 2026",
-  "ccnl_file": "farmacie-municipalizzate-assofarm.json",
+  "ccnl_id": "farmacie-municipalizzate-assofarm",
   "salary_checks": [
     {
       "level_code": "1Q",

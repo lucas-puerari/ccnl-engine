@@ -47,12 +47,12 @@ from ccnl_engine.year.competence.services import (
 )
 from tests.unit.ccnl_engine.builders import year_plan
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _LEVEL = "C3"
 _YEAR = 2026
 # igiene-ambientale D1 has EDR and INDEMN_INT allowances with months_per_year=12,
 # so they are included in regular monthly runs but excluded from the tredicesima.
-_CCNL_WITH_ALLOWANCES = "igiene-ambientale-utilitalia.json"
+_CCNL_WITH_ALLOWANCES = "igiene-ambientale-utilitalia"
 _LEVEL_WITH_ALLOWANCES = "D1"
 
 
@@ -79,7 +79,7 @@ def test_regular_december_and_tredicesima_have_different_gross() -> None:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=pid,
             payment_date=date(2026, 12, 28),
-            ccnl_slug=_CCNL_WITH_ALLOWANCES,
+            ccnl_id=_CCNL_WITH_ALLOWANCES,
             level_code=_LEVEL_WITH_ALLOWANCES,
             opening_state=state,
         )
@@ -89,7 +89,7 @@ def test_regular_december_and_tredicesima_have_different_gross() -> None:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=pid,
             payment_date=date(2026, 12, 28),
-            ccnl_slug=_CCNL_WITH_ALLOWANCES,
+            ccnl_id=_CCNL_WITH_ALLOWANCES,
             level_code=_LEVEL_WITH_ALLOWANCES,
             opening_state=state,
             run=PayrollRun.thirteenth(2026, 12),

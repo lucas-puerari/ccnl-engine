@@ -17,7 +17,7 @@ import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
 
-_CCNL = load_ccnl("sanita-privata-aiop-aris.json")
+_CCNL = load_ccnl("sanita-privata-aiop-aris")
 #: Position, annual tabellare (column C), monthly tabellare (column D).
 _TABLE = (
     ("A", "19076.87", "1467.45"),

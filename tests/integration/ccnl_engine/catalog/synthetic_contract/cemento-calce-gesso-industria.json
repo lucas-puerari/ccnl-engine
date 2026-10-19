@@ -1,6 +1,6 @@
 {
   "_description": "cemento-calce-gesso-industria — data checks 2026",
-  "ccnl_file": "cemento-calce-gesso-industria.json",
+  "ccnl_id": "cemento-calce-gesso-industria",
   "salary_checks": [
     {
       "level_code": "AE1",

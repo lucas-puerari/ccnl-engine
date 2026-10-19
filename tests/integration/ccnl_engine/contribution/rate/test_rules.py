@@ -26,7 +26,7 @@ def _run(category: WorkerCategory | None = None) -> list[str]:
     request = PeriodCalculationRequest(
         period_id=PeriodId(year=2026, month=3),
         payment_date=date(2026, 3, 27),
-        ccnl_slug="metalmeccanico-artigianato.json",
+        ccnl_id="metalmeccanico-artigianato",
         level_code="5",
         employer=EmployerProfile(headcount=Headcount(10)),
         opening_state=PeriodState.zero(),

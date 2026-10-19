@@ -286,7 +286,7 @@ def _call(spec: ExampleSpec) -> str:
         The call statements, ending with a newline.
     """
     employment = [
-        "ccnl_slug=CCNL",
+        "ccnl_id=CCNL",
         "level_code=LEVEL",
         "contract_type=Permanent()",
         "seniority=SENIORITY",
@@ -326,7 +326,7 @@ def _call(spec: ExampleSpec) -> str:
 _REPORT = """\
 issues = ", ".join(sorted(issue.code for issue in result.issues)) or "none"
 blockers = ", ".join(sorted({b.code.value for b in result.blockers})) or "none"
-readiness = engine.inspect_ruleset(CCNL.removesuffix(".json")).readiness
+readiness = engine.inspect_ruleset(CCNL).readiness
 print(f"Gross:         {result.period_gross} EUR")
 print(f"Contributions: {result.contribution_breakdown.employee} EUR")
 print(f"IRPEF:         {result.tax_computation.ordinary_tax} EUR")
@@ -347,7 +347,7 @@ def render_example(spec: ExampleSpec) -> str:
         The full source, ending with a newline.
     """
     constants = (
-        f'CCNL = "{spec.slug}.json"\nLEVEL = "{spec.level_code}"\n'
+        f'CCNL = "{spec.slug}"\nLEVEL = "{spec.level_code}"\n'
         f"SENIORITY = SeniorityFact.since(date({YEAR}, {MONTH}, 1), "
         "SenioritySource.EMPLOYER_RECORDS)\n"
     )

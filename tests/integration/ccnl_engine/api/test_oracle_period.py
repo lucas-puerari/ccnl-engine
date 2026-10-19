@@ -38,7 +38,7 @@ from tests.knowledge.ccnl_engine.withholding.oracles import (
 
 engine = PayrollEngine.bundled()
 _C3 = Employment(
-    ccnl_slug="metalmeccanico-federmeccanica.json",
+    ccnl_id="metalmeccanico-federmeccanica",
     level_code="C3",
     category=WorkerCategory.IMPIEGATO,
     seniority=new_hire(),
@@ -180,7 +180,7 @@ def test_domestic_inps_non_convivente() -> None:
             run=PayrollRun.regular(year=2026, month=1),
             payment_date=date(2026, 1, 28),
             employment=Employment(
-                ccnl_slug="lavoro-domestico-non-convivente.json",
+                ccnl_id="lavoro-domestico-non-convivente",
                 level_code="B",
                 seniority=new_hire(),
                 weekly_hours=WeeklyHours(25),
@@ -273,7 +273,7 @@ def test_naspi_addizionale_fixed_term() -> None:
             run=PayrollRun.regular(year=2026, month=3),
             payment_date=date(2026, 3, 27),
             employment=Employment(
-                ccnl_slug="commercio-confcommercio.json",
+                ccnl_id="commercio-confcommercio",
                 level_code="4",
                 seniority=new_hire(),
                 contract_type=Permanent(),
@@ -286,7 +286,7 @@ def test_naspi_addizionale_fixed_term() -> None:
             run=PayrollRun.regular(year=2026, month=3),
             payment_date=date(2026, 3, 27),
             employment=Employment(
-                ccnl_slug="commercio-confcommercio.json",
+                ccnl_id="commercio-confcommercio",
                 level_code="4",
                 seniority=new_hire(),
                 contract_type=FixedTerm(

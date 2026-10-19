@@ -1,6 +1,6 @@
 {
   "_description": "edilizia-ance (operai) — data checks 2026",
-  "ccnl_file": "edilizia-ance.json",
+  "ccnl_id": "edilizia-ance",
   "salary_checks": [
     {
       "level_code": "1",

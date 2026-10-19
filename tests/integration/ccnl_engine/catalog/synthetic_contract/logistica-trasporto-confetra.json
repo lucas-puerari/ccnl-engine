@@ -1,6 +1,6 @@
 {
   "_description": "logistica-trasporto-confetra — data checks 2026",
-  "ccnl_file": "logistica-trasporto-confetra.json",
+  "ccnl_id": "logistica-trasporto-confetra",
   "salary_checks": [
     {
       "level_code": "6",

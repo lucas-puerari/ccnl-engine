@@ -32,10 +32,10 @@ _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 
 
 def _employment(
-    started: date, ended: date, slug: str = "commercio-confcommercio.json"
+    started: date, ended: date, slug: str = "commercio-confcommercio"
 ) -> Employment:
     return Employment(
-        ccnl_slug=slug,
+        ccnl_id=slug,
         level_code="4" if slug.startswith("commercio") else "C3",
         seniority=new_hire(),
         employment_period=EmploymentPeriod(started, ended),
@@ -136,7 +136,7 @@ def test_a_calendar_with_nothing_left_to_liquidate_names_nothing() -> None:
     liquidates no ratei and names no issue of them.
     """
     leaver = _employment(
-        date(2026, 1, 1), date(2026, 12, 31), "metalmeccanico-federmeccanica.json"
+        date(2026, 1, 1), date(2026, 12, 31), "metalmeccanico-federmeccanica"
     )
     runs = [PayrollRun.regular(2026, month) for month in range(1, 12)]
     december = _run(leaver, PayrollRun.regular(2026, 12), _chain(leaver, runs))

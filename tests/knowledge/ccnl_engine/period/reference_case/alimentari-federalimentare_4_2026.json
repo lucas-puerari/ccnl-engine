@@ -17,7 +17,7 @@
     "section": "Art. 51 lett. A - Minimi tabellari, column 'Nuovi minimi dal 1/01/2026', row 4"
   },
   "inputs": {
-    "ccnl_slug": "alimentari-federalimentare.json",
+    "ccnl_id": "alimentari-federalimentare",
     "level_code": "4",
     "year": 2026,
     "month": 6,

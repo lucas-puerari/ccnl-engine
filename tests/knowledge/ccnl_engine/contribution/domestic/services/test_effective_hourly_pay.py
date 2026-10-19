@@ -50,7 +50,7 @@ from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 pytestmark = pytest.mark.legal_scenario
 
 _ENGINE = PayrollEngine.bundled()
-_NON_CONVIVENTE = "lavoro-domestico-non-convivente.json"
+_NON_CONVIVENTE = "lavoro-domestico-non-convivente"
 _HOURS = Decimal(20 * 52) / 12
 
 
@@ -60,7 +60,7 @@ def _run(run: PayrollRun, level: str) -> PeriodResult:
             run=run,
             payment_date=date(run.year, run.month, 20),
             employment=Employment(
-                ccnl_slug=_NON_CONVIVENTE,
+                ccnl_id=_NON_CONVIVENTE,
                 level_code=level,
                 seniority=new_hire(),
                 weekly_hours=WeeklyHours(20),

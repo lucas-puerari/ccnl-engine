@@ -1,6 +1,6 @@
 {
   "_description": "impianti-sportivi-sport \u2014 data checks 2026",
-  "ccnl_file": "impianti-sportivi-sport.json",
+  "ccnl_id": "impianti-sportivi-sport",
   "salary_checks": [
     {
       "level_code": "VI",

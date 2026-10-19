@@ -54,7 +54,7 @@ def _employer_rate(components: tuple[ContributionComponent, ...]) -> Decimal:
 def test_metalmeccanica_impiegato_c3_june_2026() -> None:
     """Tabellare, scatti, INPS rate and TFR of the table."""
     employment = Employment(
-        ccnl_slug="metalmeccanico-federmeccanica.json",
+        ccnl_id="metalmeccanico-federmeccanica",
         level_code="C3",
         seniority=SeniorityFact.since(
             date(2020, 1, 1), SenioritySource.EMPLOYER_RECORDS
@@ -85,7 +85,7 @@ def test_metalmeccanica_impiegato_c3_june_2026() -> None:
 def test_edilizia_operaio_level_1() -> None:
     """Hourly elements, riposi annui, Cassa Edile accrual and INPS rate."""
     result = regular_period(
-        ccnl_slug="edilizia-ance.json",
+        ccnl_id="edilizia-ance",
         level_code="1",
         month=1,
         employer=replace(EMPLOYER, headcount=Headcount(30)),

@@ -90,7 +90,7 @@ def test_a_month_without_pay_tables_blocks_the_year_once() -> None:
     employment = replace(
         CONCIA_D2,
         category=None,
-        ccnl_slug="igiene-ambientale-utilitalia.json",
+        ccnl_id="igiene-ambientale-utilitalia",
         level_code="D1",
     )
     year = _ENGINE.calculate_competence_year(competence_year(employment=employment))

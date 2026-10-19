@@ -197,7 +197,7 @@ def _employment(inputs: dict[str, Any]) -> Employment:
     hours, full_time = inputs.get("weekly_hours"), inputs.get("full_time_weekly_hours")
     category, regime = inputs.get("category"), inputs.get("public_end_of_service")
     return Employment(
-        ccnl_slug=inputs["ccnl_slug"],
+        ccnl_id=inputs["ccnl_id"],
         level_code=inputs["level_code"],
         contract_type=FixedTerm()
         if inputs["contract_type"] == "fixed_term"
@@ -309,7 +309,7 @@ def _run(inputs: dict[str, Any]) -> PeriodResult:
 
 
 _EVERY_INPUT: dict[str, Any] = {
-    "ccnl_slug": "metalmeccanico-federmeccanica.json",
+    "ccnl_id": "metalmeccanico-federmeccanica",
     "level_code": "C3",
     "year": 2026,
     "month": 12,
@@ -550,15 +550,15 @@ def test_the_engine_reproduces_the_observed_values(pid: str) -> None:
 
 def test_the_replayable_records_cover_the_sectors_of_the_production_ccnls() -> None:
     """Payslips of 2026 of five CCNLs, private and public, are replayed."""
-    ccnls = {_RECORDS[pid]["replay"]["inputs"]["ccnl_slug"] for pid in _replayable()}
+    ccnls = {_RECORDS[pid]["replay"]["inputs"]["ccnl_id"] for pid in _replayable()}
 
     assert len(_replayable()) >= 11
     assert ccnls == {
-        "commercio-confcommercio.json",
-        "edilizia-ance.json",
-        "funzioni-locali-aran.json",
-        "industria-turistica-federturismo.json",
-        "metalmeccanico-federmeccanica.json",
+        "commercio-confcommercio",
+        "edilizia-ance",
+        "funzioni-locali-aran",
+        "industria-turistica-federturismo",
+        "metalmeccanico-federmeccanica",
     }
 
 

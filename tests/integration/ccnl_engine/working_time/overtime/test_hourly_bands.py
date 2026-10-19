@@ -24,7 +24,7 @@ from ccnl_engine.working_time.overtime.policies import (
     resolve_overtime_rate,
 )
 
-_IR = load_ccnl("istruzione-ricerca-aran.json")
+_IR = load_ccnl("istruzione-ricerca-aran")
 _DAY = date(2026, 3, 10)
 
 
@@ -77,7 +77,7 @@ def test_the_caller_multiplier_prevails() -> None:
 
 def test_dirigenza_hourly_band_is_paid() -> None:
     """A CCNL-wide band in EUR per hour applies to every level."""
-    ccnl = load_ccnl("dirigenza-sanitaria-area-sanita-aran.json")
+    ccnl = load_ccnl("dirigenza-sanitaria-area-sanita-aran")
     rate = resolve_overtime_rate(
         _event(OvertimeKind.WEEKDAY), CCNLOvertimeBands.of(ccnl, 2026)
     )

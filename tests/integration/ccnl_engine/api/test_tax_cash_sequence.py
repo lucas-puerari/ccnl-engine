@@ -22,7 +22,7 @@ from tests.integration.ccnl_engine.year.payment.sequence.builders import (
 )
 
 _COMMERCIO_L4 = Employment(
-    ccnl_slug="commercio-confcommercio.json", level_code="4", contract_type=Permanent()
+    ccnl_id="commercio-confcommercio", level_code="4", contract_type=Permanent()
 )
 
 

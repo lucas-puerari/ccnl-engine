@@ -21,7 +21,7 @@ result = engine.calculate_period(
         run=PayrollRun.regular(year=2026, month=1),
         payment_date=date(2026, 1, 28),
         employment=Employment(
-            ccnl_slug="metalmeccanico-federmeccanica.json",
+            ccnl_id="metalmeccanico-federmeccanica",
             level_code="C3",
             seniority=SeniorityFact(36, date(2026, 1, 1), SenioritySource.PAYSLIP),
             contract_type=Permanent(),

@@ -1,6 +1,6 @@
 {
   "_description": "tessile-smi — data checks 2026",
-  "ccnl_file": "tessile-smi.json",
+  "ccnl_id": "tessile-smi",
   "salary_checks": [
     {
       "level_code": "1",

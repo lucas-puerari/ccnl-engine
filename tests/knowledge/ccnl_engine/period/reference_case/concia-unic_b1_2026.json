@@ -16,7 +16,7 @@
     "section": "Allegato n. 1, Tabelle retributive, level B1 from 1 January 2026"
   },
   "inputs": {
-    "ccnl_slug": "concia-unic.json",
+    "ccnl_id": "concia-unic",
     "level_code": "B1",
     "year": 2026,
     "month": 1,

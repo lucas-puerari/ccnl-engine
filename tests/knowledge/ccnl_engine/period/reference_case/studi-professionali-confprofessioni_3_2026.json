@@ -17,7 +17,7 @@
     "section": "Art. 140 - Minimi tabellari, terza tranche di aumento, row 3°"
   },
   "inputs": {
-    "ccnl_slug": "studi-professionali-confprofessioni.json",
+    "ccnl_id": "studi-professionali-confprofessioni",
     "level_code": "3",
     "year": 2026,
     "month": 10,

@@ -1,6 +1,6 @@
 {
   "_description": "telecomunicazioni-asstel — data checks 2026",
-  "ccnl_file": "telecomunicazioni-asstel.json",
+  "ccnl_id": "telecomunicazioni-asstel",
   "salary_checks": [
     {
       "level_code": "A1",

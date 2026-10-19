@@ -47,7 +47,7 @@ from tests.knowledge.ccnl_engine.support import (
 pytestmark = pytest.mark.legal_scenario
 
 _JUNE = date(2026, 6, 1)
-_CONTOTERZISMO = "contoterzismo-caiagromec.json"
+_CONTOTERZISMO = "contoterzismo-caiagromec"
 _FISE_L2 = Decimal("1724.40")
 
 
@@ -67,7 +67,7 @@ def _june(employment: Employment) -> PeriodResult:
 def _postal(category: WorkerCategory, seniority: SeniorityFact | None) -> PeriodResult:
     return _june(
         Employment(
-            ccnl_slug=POSTAL_FISE,
+            ccnl_id=POSTAL_FISE,
             level_code="2",
             category=category,
             seniority=seniority,
@@ -139,7 +139,7 @@ def test_seniority_ages_to_each_run_of_the_year() -> None:
     is paid from July, when 24 months are complete on the first day.
     """
     employment = Employment(
-        ccnl_slug=POSTAL_FISE,
+        ccnl_id=POSTAL_FISE,
         level_code="2",
         category=WorkerCategory.OPERAIO,
         seniority=SeniorityFact.since(date(2024, 6, 15), SenioritySource.PAYSLIP),
@@ -165,7 +165,7 @@ def test_seniority_from_a_mid_month_hire_counts_zero_in_the_hire_month() -> None
     run of 2026 pays it.
     """
     employment = Employment(
-        ccnl_slug=POSTAL_FISE,
+        ccnl_id=POSTAL_FISE,
         level_code="2",
         category=WorkerCategory.OPERAIO,
         employment_period=EmploymentPeriod(started_on=date(2026, 3, 15)),
@@ -192,7 +192,7 @@ def test_contract_without_increments_needs_no_seniority() -> None:
     """
     result = _june(
         Employment(
-            ccnl_slug=PA_FUNZIONI_CENTRALI,
+            ccnl_id=PA_FUNZIONI_CENTRALI,
             level_code="FUNZIONARI",
             contract_type=Permanent(),
         )
@@ -222,7 +222,7 @@ def test_allowance_gated_by_service_needs_the_seniority(
     """
     result = _june(
         Employment(
-            ccnl_slug=_CONTOTERZISMO,
+            ccnl_id=_CONTOTERZISMO,
             level_code="6",
             seniority=seniority,
             contract_type=Permanent(),

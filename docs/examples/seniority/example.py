@@ -26,7 +26,7 @@ def seniority_reason(seniority: SeniorityFact | None) -> None:
             run=run,
             payment_date=payment,
             employment=Employment(
-                ccnl_slug="metalmeccanico-federmeccanica.json",
+                ccnl_id="metalmeccanico-federmeccanica",
                 level_code="C3",
                 seniority=seniority,
                 contract_type=Permanent(),
@@ -56,7 +56,7 @@ for category in (WorkerCategory.OPERAIO, WorkerCategory.IMPIEGATO):
             run=run,
             payment_date=payment,
             employment=Employment(
-                ccnl_slug="servizi-postali-appalto-fise.json",
+                ccnl_id="servizi-postali-appalto-fise",
                 level_code="2",
                 seniority=SeniorityFact(
                     60, date(2026, 1, 1), SenioritySource.EMPLOYER_RECORDS

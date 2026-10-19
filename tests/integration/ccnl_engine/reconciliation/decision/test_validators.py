@@ -49,7 +49,7 @@ def _run(*events: NightShiftEvent | BonusEvent, income: int = 20_000) -> PeriodR
             ),
             period_id=PeriodId(year=_YEAR, month=3),
             payment_date=date(_YEAR, 3, 27),
-            ccnl_slug="commercio-confcommercio.json",
+            ccnl_id="commercio-confcommercio",
             level_code="4",
             events=events,
             sector=EmploymentSector.PRIVATE,

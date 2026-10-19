@@ -38,7 +38,7 @@ pytestmark = pytest.mark.legal_scenario
 
 def _january(slug: str, level: str, fund: str) -> PeriodResult:
     employment = Employment(
-        ccnl_slug=slug,
+        ccnl_id=slug,
         level_code=level,
         seniority=new_hire(),
         pension_fund=PensionFundEnrolment(fund, Decimal("0.01"), tfr_to_fund=True),
@@ -59,13 +59,13 @@ def _entry(result: PeriodResult, account: str) -> Decimal:
     ("slug", "level", "fund", "each", "solidarity"),
     [
         (
-            "istruzione-ricerca-aran.json",
+            "istruzione-ricerca-aran",
             "DOCENTE_SECONDARIA",
             "ESPERO",
             "21.06",
             "2.11",
         ),
-        ("sanita-aran.json", "PROFESSIONISTI", "PERSEO_SIRIO", "20.77", "2.08"),
+        ("sanita-aran", "PROFESSIONISTI", "PERSEO_SIRIO", "20.77", "2.08"),
     ],
     ids=["espero", "perseo_sirio"],
 )
@@ -87,7 +87,7 @@ def test_one_percent_each_with_the_tfr_notional(
 @pytest.mark.parametrize("fund", ["ESPERO", "PERSEO_SIRIO"])
 def test_school_and_research_executives_name_their_fund(fund: str) -> None:
     """The dirigenza Istruzione e Ricerca holds both funds."""
-    result = _january("dirigenza-istruzione-ricerca-aran.json", "SECONDA_FASCIA", fund)
+    result = _january("dirigenza-istruzione-ricerca-aran", "SECONDA_FASCIA", fund)
     (decision,) = [
         d for d in result.decisions if d.capability == "pension_fund_contribution"
     ]

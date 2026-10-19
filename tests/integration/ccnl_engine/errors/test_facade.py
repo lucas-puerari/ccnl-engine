@@ -67,7 +67,7 @@ _ENGINE = PayrollEngine.bundled()
 _YEAR = 2026
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 _METAL = Employment(
-    ccnl_slug="metalmeccanico-federmeccanica.json",
+    ccnl_id="metalmeccanico-federmeccanica",
     level_code="C3",
     contract_type=Permanent(),
 )
@@ -137,15 +137,16 @@ def test_a_facade_argument_of_the_wrong_type_is_invalid_input(
 @pytest.mark.parametrize(
     ("slug", "level", "code"),
     [
-        ("no-such-ccnl.json", "C3", "unknown_ccnl"),
-        ("metalmeccanico-federmeccanica.json", "Z9", "unknown_level"),
+        ("no-such-ccnl", "C3", "unknown_ccnl"),
+        ("Z999", "C3", "unknown_ccnl"),
+        ("metalmeccanico-federmeccanica", "Z9", "unknown_level"),
     ],
 )
 def test_an_unknown_contract_is_a_public_error(
     slug: str, level: str, code: str
 ) -> None:
     """A slug or a level the bundle does not know is a typed error."""
-    employment = Employment(ccnl_slug=slug, level_code=level, contract_type=Permanent())
+    employment = Employment(ccnl_id=slug, level_code=level, contract_type=Permanent())
 
     error = _public_outcome(
         lambda: _ENGINE.calculate_period(_june(employment, PeriodFacts()))
@@ -156,13 +157,14 @@ def test_an_unknown_contract_is_a_public_error(
 
 
 @pytest.mark.parametrize(
-    "slug", ["../ccnl.json", "Metal.json", "metal.txt", "a/b.json"]
+    "slug",
+    ["../ccnl.json", "Metal.json", "metal.txt", "a/b.json", "metal.json", "N/A"],
 )
 def test_a_slug_that_is_not_a_ccnl_id_is_invalid_input(slug: str) -> None:
     """A path or another extension never reaches the bundle reader."""
     with pytest.raises(InvalidInputError) as raised:
-        Employment(ccnl_slug=slug, level_code="C3", contract_type=Permanent())
-    assert raised.value.field == "Employment.ccnl_slug"
+        Employment(ccnl_id=slug, level_code="C3", contract_type=Permanent())
+    assert raised.value.field == "Employment.ccnl_id"
 
 
 class TestSeniorityOnTheInput:
@@ -173,7 +175,7 @@ class TestSeniorityOnTheInput:
     def test_period_input_rejects_service_starting_after_the_run(self) -> None:
         """Service recognised from September cannot pay a June run."""
         employment = Employment(
-            ccnl_slug=_METAL.ccnl_slug,
+            ccnl_id=_METAL.ccnl_id,
             level_code="C3",
             seniority=self._LATE,
             contract_type=Permanent(),
@@ -198,7 +200,7 @@ class TestSeniorityOnTheInput:
     ) -> None:
         """The first run is in January, or in the hire month of the year."""
         employment = Employment(
-            ccnl_slug=_METAL.ccnl_slug,
+            ccnl_id=_METAL.ccnl_id,
             level_code="C3",
             seniority=self._LATE,
             employment_period=EmploymentPeriod.from_dates(started_on, None),
@@ -236,7 +238,7 @@ CCNL-2025-2027.pdf, "Tabella retributiva") start with the tranche of
         request = CompetenceYearPlan(
             year=_YEAR,
             employment=Employment(
-                ccnl_slug="anas.json", level_code="C1", contract_type=Permanent()
+                ccnl_id="anas", level_code="C1", contract_type=Permanent()
             ),
             employer=_EMPLOYER,
         )
@@ -265,7 +267,7 @@ CCNL-2025-2027.pdf, "Tabella retributiva") start with the tranche of
         """
         (level, *_) = _ENGINE.list_levels("grafica-editoria-aieg")
         employment = Employment(
-            ccnl_slug="grafica-editoria-aieg",
+            ccnl_id="grafica-editoria-aieg",
             level_code=level.code,
             seniority=SeniorityFact(36, date(_YEAR, 1, 1), SenioritySource.PAYSLIP),
             contract_type=Permanent(),
@@ -283,7 +285,7 @@ CCNL-2025-2027.pdf, "Tabella retributiva") start with the tranche of
     def test_a_year_with_no_run_in_force_raises(self) -> None:
         """Employed only in January and February: nothing to compute."""
         employment = Employment(
-            ccnl_slug="anas.json",
+            ccnl_id="anas",
             level_code="C1",
             employment_period=EmploymentPeriod(
                 started_on=date(_YEAR, 1, 1), ended_on=date(_YEAR, 2, 28)
@@ -301,7 +303,7 @@ CCNL-2025-2027.pdf, "Tabella retributiva") start with the tranche of
     def test_a_year_hired_after_the_start_is_computed(self) -> None:
         """A worker hired in April runs on the ANAS tables of March."""
         employment = Employment(
-            ccnl_slug="anas.json",
+            ccnl_id="anas",
             level_code="C1",
             employment_period=EmploymentPeriod(started_on=date(_YEAR, 4, 1)),
             contract_type=Permanent(),
@@ -387,9 +389,9 @@ def _events(month: int) -> st.SearchStrategy[list[object]]:
 
 
 _CONTRACTS = st.sampled_from([
-    ("metalmeccanico-federmeccanica.json", "C3"),
-    ("commercio-confcommercio.json", "4"),
-    ("lavoro-domestico-non-convivente.json", "BS"),
+    ("metalmeccanico-federmeccanica", "C3"),
+    ("commercio-confcommercio", "4"),
+    ("lavoro-domestico-non-convivente", "BS"),
 ])
 _DEPENDENTS = st.lists(
     st.builds(
@@ -411,7 +413,7 @@ def _employment(contract: tuple[str, str], weekly_hours: int | None) -> Employme
     slug, level = contract
     hours = None if weekly_hours is None else WeeklyHours(weekly_hours)
     return Employment(
-        ccnl_slug=slug, level_code=level, weekly_hours=hours, contract_type=Permanent()
+        ccnl_id=slug, level_code=level, weekly_hours=hours, contract_type=Permanent()
     )
 
 

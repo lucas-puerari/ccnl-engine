@@ -68,7 +68,7 @@ def _june(engine: PayrollEngine, slug: str, level: str) -> PeriodResult | None:
                 run=PayrollRun.regular(2026, 6),
                 payment_date=date(2026, 6, 27),
                 employment=Employment(
-                    ccnl_slug=slug,
+                    ccnl_id=slug,
                     level_code=level,
                     seniority=new_hire(),
                     roles=frozenset(),
@@ -93,8 +93,8 @@ def results() -> dict[str, PeriodResult]:
     """
     engine, repo = PayrollEngine.bundled(), BundledKnowledgeRepository()
     computed: dict[str, PeriodResult] = {}
-    for info in PayrollEngine.list_contracts():
-        slug = f"{info.ccnl_id}.json"
+    for info in PayrollEngine.bundled().list_contracts():
+        slug = info.ccnl_id
         result = _june(engine, slug, repo.load_ccnl(slug).levels[0].code)
         if result is not None:
             computed[info.ccnl_id] = result
@@ -219,7 +219,7 @@ def test_every_result_names_its_rulesets(results: dict[str, PeriodResult]) -> No
     for ccnl_id, result in results.items():
         ids = {ruleset.id for ruleset in result.rulesets}
         identities = [ruleset.identity for ruleset in result.rulesets]
-        assert repo.load_ccnl(f"{ccnl_id}.json").ruleset in identities
+        assert repo.load_ccnl(ccnl_id).ruleset in identities
         assert any(i.startswith("tax/2026/") for i in ids)
         assert _minimum_open(result) or any(i.startswith("inps/2026/") for i in ids)
 

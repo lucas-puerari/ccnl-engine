@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass
 from functools import cache
 from typing import TYPE_CHECKING, Any, NewType
 
-from ccnl_engine.agreement.facade import CCNL, CCNLVerification
+from ccnl_engine.agreement.facade import CCNL
 from ccnl_engine.agreement.validity.models import (
     ValidityWindow,
     model_window,
@@ -21,6 +22,8 @@ from ccnl_engine.errors import UnknownCcnlError
 from ccnl_engine.validators import require_str
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
+
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.provenance.ruleset.models import RulesetReadiness
 
@@ -28,10 +31,13 @@ if TYPE_CHECKING:
 #: Dataset of the CCNL files in the knowledge manifest.
 AGREEMENTS = "agreement"
 
+#: Shape of a CCNL slug: lower-case letters, digits and hyphens.
+SLUG = re.compile(r"[a-z0-9][a-z0-9-]*")
+
 
 @cache
-def load_ccnl(filename: str) -> CCNL:
-    """Load and validate a CCNL data file from the package bundle.
+def load_ccnl(ccnl_id: str) -> CCNL:
+    """Load and validate the CCNL with slug *ccnl_id* from the package bundle.
 
     The returned :class:`CCNL` instance is shared across all callers in the
     same process (the result is cached after the first load).  All models in
@@ -41,20 +47,23 @@ def load_ccnl(filename: str) -> CCNL:
     read-only.  Callers must not attempt to modify the returned object.
 
     Args:
-        filename: Name of the JSON data file bundled under
-            ``ccnl_engine/knowledge/agreement/``
-            (e.g. ``"metalmeccanico-federmeccanica.json"``).
+        ccnl_id: Slug of a bundled CCNL
+            (e.g. ``"metalmeccanico-federmeccanica"``).
 
     Returns:
         The validated, immutable CCNL instance.
 
     Raises:
-        UnknownCcnlError: When the bundle has no file ``filename``.
+        UnknownCcnlError: When *ccnl_id* is not a slug the bundle holds.
     """
+    require_str(ccnl_id, "ccnl_id", feature="catalog")
+    if not SLUG.fullmatch(ccnl_id):
+        raise UnknownCcnlError(ccnl_id)
+    filename = f"{ccnl_id}.json"
     try:
         raw = read_resource(f"{AGREEMENTS}/{filename}")
     except FileNotFoundError:
-        raise UnknownCcnlError(filename.removesuffix(".json")) from None
+        raise UnknownCcnlError(ccnl_id) from None
     payload = json.loads(raw)
     _verify_payload(payload, filename)
     return CCNL.model_validate(payload)
@@ -118,6 +127,25 @@ class LevelSummary:
     category: WorkerCategory | None
 
 
+def contract_summary(ccnl: CCNL) -> ContractSummary:
+    """Return the summary of *ccnl*: identity, readiness and validity.
+
+    Args:
+        ccnl: A validated CCNL, from the bundle or another repository.
+
+    Returns:
+        The :class:`ContractSummary` of *ccnl*.
+    """
+    meta = ccnl.meta
+    return ContractSummary(
+        ccnl_id=CcnlId(meta.ccnl_id),
+        name=meta.name,
+        cnel_code=meta.cnel_code,
+        readiness=ccnl.verification.readiness,
+        validity=model_window(ccnl),
+    )
+
+
 @cache
 def _load_all() -> tuple[ContractSummary, ...]:
     """Load the summary of every bundled CCNL file (result is cached).
@@ -125,21 +153,10 @@ def _load_all() -> tuple[ContractSummary, ...]:
     Returns:
         Tuple of :class:`ContractSummary` sorted by ccnl_id.
     """
-    items: list[ContractSummary] = []
-    for resource in resources(AGREEMENTS):
-        filename = resource.name
-        raw = json.loads(read_resource(resource.path))
-        meta = raw.get("meta", {})
-        verification = CCNLVerification.model_validate(raw.get("verification", {}))
-        items.append(
-            ContractSummary(
-                ccnl_id=CcnlId(meta["ccnl_id"]),
-                name=meta["name"],
-                cnel_code=meta["cnel_code"],
-                readiness=verification.readiness,
-                validity=model_window(load_ccnl(filename)),
-            )
-        )
+    items = (
+        contract_summary(load_ccnl(resource.name.removesuffix(".json")))
+        for resource in resources(AGREEMENTS)
+    )
     return tuple(sorted(items, key=lambda item: item.ccnl_id))
 
 
@@ -152,12 +169,15 @@ def list_contracts() -> tuple[ContractSummary, ...]:
     return _load_all()
 
 
-def get_ccnl(ccnl_id: str) -> ContractSummary:
-    """Resolve a CCNL by slug or CNEL code.
+def resolve_contract(
+    contracts: Iterable[ContractSummary], ccnl_id: str
+) -> ContractSummary:
+    """Resolve a CCNL among *contracts* by slug or CNEL code.
 
     Args:
-        ccnl_id: A slug (e.g. ``"metalmeccanico-federmeccanica"``, with or
-            without ``.json``) or CNEL code (e.g. ``"E042"``).
+        contracts: The contracts to search, e.g. those of a repository.
+        ccnl_id: A slug (e.g. ``"metalmeccanico-federmeccanica"``) or CNEL
+            code (e.g. ``"E042"``).
 
     Returns:
         The matching :class:`ContractSummary`.
@@ -165,16 +185,15 @@ def get_ccnl(ccnl_id: str) -> ContractSummary:
     Raises:
         UnknownCcnlError: When no CCNL matches *ccnl_id*, with up to five
             similar identifiers attached as suggestions, or when *ccnl_id*
-            is a CNEL code shared by several bundled CCNLs, with their slugs
-            as suggestions: a shared code does not name one contract.
+            is a CNEL code shared by several CCNLs, with their slugs as
+            suggestions: a shared code does not name one contract.
     """
     require_str(ccnl_id, "ccnl_id", feature="catalog")
-    key = ccnl_id.removesuffix(".json")
-    contracts = _load_all()
-    for info in contracts:
-        if key == info.ccnl_id:
+    candidates = tuple(contracts)
+    for info in candidates:
+        if ccnl_id == info.ccnl_id:
             return info
-    coded = tuple(info for info in contracts if key == info.cnel_code)
+    coded = tuple(info for info in candidates if ccnl_id == info.cnel_code)
     if len(coded) == 1:
         return coded[0]
     if coded:
@@ -182,10 +201,25 @@ def get_ccnl(ccnl_id: str) -> ContractSummary:
     query = ccnl_id.lower()
     suggestions = tuple(
         info.ccnl_id
-        for info in _load_all()
+        for info in candidates
         if query in info.ccnl_id.lower() or query in info.name.lower()
     )[:5]
     raise UnknownCcnlError(ccnl_id, suggestions)
+
+
+def get_ccnl(ccnl_id: str) -> ContractSummary:
+    """Resolve a bundled CCNL by slug or CNEL code.
+
+    See :func:`resolve_contract`.
+
+    Args:
+        ccnl_id: A slug (e.g. ``"metalmeccanico-federmeccanica"``) or CNEL
+            code (e.g. ``"E042"``).
+
+    Returns:
+        The matching :class:`ContractSummary`.
+    """
+    return resolve_contract(_load_all(), ccnl_id)
 
 
 def search_ccnls(query: str) -> tuple[ContractSummary, ...]:

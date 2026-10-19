@@ -38,7 +38,7 @@ if TYPE_CHECKING:
     from ccnl_engine.period.requests import PeriodCalculationRequest
     from ccnl_engine.period.results import PeriodResult
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _LEVEL = "C3"
 _YEAR = 2026
 
@@ -224,7 +224,7 @@ class TestEmploymentPeriodRuns:
         result = calculate_competence_year(
             year_plan(
                 _YEAR,
-                "vetro-meccanizzato-assovetro.json",
+                "vetro-meccanizzato-assovetro",
                 "C",
                 employment_period=EmploymentPeriod(date(_YEAR, 3, 15)),
             )
@@ -307,7 +307,7 @@ class TestEmploymentPeriodRuns:
         calculate_competence_year(
             year_plan(
                 _YEAR,
-                "commercio-confcommercio.json",
+                "commercio-confcommercio",
                 "4",
                 employment_period=EmploymentPeriod(date(_YEAR, 3, 10)),
             )
@@ -338,7 +338,7 @@ class TestCalendarOverride:
 
     def test_payment_month_override_keeps_the_annual_gross(self) -> None:
         """Commercio quattordicesima paid in July: same gross, later run."""
-        commercio = "commercio-confcommercio.json"
+        commercio = "commercio-confcommercio"
         override = CalendarOverride(
             calendar=WorkCalendar.from_additional_months(
                 _YEAR, 14, fourteenth_payment_month=7

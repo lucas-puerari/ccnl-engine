@@ -30,7 +30,7 @@ def _result() -> PeriodResult:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=2026, month=9),
             payment_date=date(2026, 9, 28),
-            ccnl_slug="commercio-confcommercio.json",
+            ccnl_id="commercio-confcommercio",
             level_code="4",
             opening_state=opening_with_2025_surtax("IT-25", "A001"),
             regione="IT-25",

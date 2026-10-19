@@ -1,6 +1,6 @@
 {
   "_description": "autorimesse-ic35 — data checks 2026",
-  "ccnl_file": "autorimesse-ic35.json",
+  "ccnl_id": "autorimesse-ic35",
   "salary_checks": [
     {
       "level_code": "C4",

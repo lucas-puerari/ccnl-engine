@@ -35,7 +35,7 @@ from tests.integration.ccnl_engine.surtax.builders import (
     opening_with_2025_surtax,
 )
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _LEVEL = "C3"
 _YEAR = 2026
 _MONTH = 3
@@ -49,7 +49,7 @@ def _req(*events: object) -> PeriodCalculationRequest:
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=_PID,
         payment_date=_PAYMENT,
-        ccnl_slug=_CCNL,
+        ccnl_id=_CCNL,
         level_code=_LEVEL,
         opening_state=PeriodState.zero(),
         events=tuple(events),  # type: ignore[arg-type]
@@ -143,7 +143,7 @@ def _req_surtax(*events: object) -> PeriodCalculationRequest:
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=_PID,
         payment_date=_PAYMENT,
-        ccnl_slug=_CCNL,
+        ccnl_id=_CCNL,
         level_code=_LEVEL,
         opening_state=opening_with_2025_surtax("IT-25", "A001"),
         events=tuple(events),  # type: ignore[arg-type]
@@ -164,7 +164,7 @@ def _req_family(*events: object) -> PeriodCalculationRequest:
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=_PID,
         payment_date=_PAYMENT,
-        ccnl_slug=_CCNL,
+        ccnl_id=_CCNL,
         level_code=_LEVEL,
         opening_state=PeriodState.zero(),
         events=tuple(events),  # type: ignore[arg-type]

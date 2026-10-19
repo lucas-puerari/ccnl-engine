@@ -1,6 +1,6 @@
 {
   "_description": "laterizi-industria-f021 — data checks 2026",
-  "ccnl_file": "laterizi-industria-f021.json",
+  "ccnl_id": "laterizi-industria-f021",
   "salary_checks": [
     {
       "level_code": "ASQ",

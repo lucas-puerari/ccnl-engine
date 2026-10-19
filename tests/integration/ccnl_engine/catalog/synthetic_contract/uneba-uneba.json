@@ -1,6 +1,6 @@
 {
   "_description": "uneba-uneba — data checks 2026",
-  "ccnl_file": "uneba-uneba.json",
+  "ccnl_id": "uneba-uneba",
   "salary_checks": [
     {
       "level_code": "6",

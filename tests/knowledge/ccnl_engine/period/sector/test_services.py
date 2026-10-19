@@ -518,7 +518,7 @@ def _year(name: str) -> CompetenceYearResult:
         CompetenceYearPlan(
             year=2026,
             employment=Employment(
-                ccnl_slug=f"{s.ccnl}.json",
+                ccnl_id=s.ccnl,
                 level_code=s.level,
                 category=s.category,
                 seniority=new_hire(),

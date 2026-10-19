@@ -35,7 +35,7 @@ _RULES = ComplementaryPensionRules(
 )
 _DAY = date(2026, 3, 1)
 _ENROLMENT = PensionFundEnrolment("ALIFOND", Decimal("0.01"), tfr_to_fund=True)
-_TABACCO = load_ccnl("tabacco-apti.json")
+_TABACCO = load_ccnl("tabacco-apti")
 
 
 def _terms() -> PensionFundTerms:
@@ -92,7 +92,7 @@ class TestResolveTerms:
 
     def test_ccnl_without_funds(self) -> None:
         """A CCNL with no fund rejects every enrolment."""
-        bancari = load_ccnl("bancari-abi.json")
+        bancari = load_ccnl("bancari-abi")
         with pytest.raises(InvalidInputError, match="its funds are \\[\\]"):
             resolve_terms(bancari, _ENROLMENT, None, _DAY, _RULES, apprentice=False)
 

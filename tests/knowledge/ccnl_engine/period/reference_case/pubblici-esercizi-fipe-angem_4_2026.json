@@ -20,7 +20,7 @@
     "section": "Tabella retributiva, Totale giu-26, level 4"
   },
   "inputs": {
-    "ccnl_slug": "pubblici-esercizi-fipe-angem.json",
+    "ccnl_id": "pubblici-esercizi-fipe-angem",
     "level_code": "4",
     "year": 2026,
     "month": 6,

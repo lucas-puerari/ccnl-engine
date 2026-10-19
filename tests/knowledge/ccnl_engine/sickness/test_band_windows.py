@@ -39,14 +39,14 @@ def _treatment(slug: str, months: int) -> CumulativeTreatment:
     ("slug", "months", "day", "rate"),
     [
         # Logistica up to 5 years: day 90 (31 March) in full, day 91 at half.
-        ("logistica-trasporto-confetra.json", 12, date(2026, 3, 31), "1"),
-        ("logistica-trasporto-confetra.json", 12, date(2026, 4, 1), "0.5"),
-        ("logistica-trasporto-confetra.json", 12, date(2026, 8, 29), "0"),
+        ("logistica-trasporto-confetra", 12, date(2026, 3, 31), "1"),
+        ("logistica-trasporto-confetra", 12, date(2026, 4, 1), "0.5"),
+        ("logistica-trasporto-confetra", 12, date(2026, 8, 29), "0"),
         # Above 5 years: day 151 (31 May) at half.
-        ("logistica-trasporto-confetra.json", 72, date(2026, 5, 31), "0.5"),
+        ("logistica-trasporto-confetra", 72, date(2026, 5, 31), "0.5"),
         # Funzioni Locali: day 271 (28 September) at 90%, day 361 at 50%.
-        ("funzioni-locali-aran.json", 12, date(2026, 9, 28), "0.9"),
-        ("funzioni-locali-aran.json", 12, date(2026, 12, 27), "0.5"),
+        ("funzioni-locali-aran", 12, date(2026, 9, 28), "0.9"),
+        ("funzioni-locali-aran", 12, date(2026, 12, 27), "0.5"),
     ],
 )
 def test_rate_of_the_day(slug: str, months: int, day: date, rate: str) -> None:

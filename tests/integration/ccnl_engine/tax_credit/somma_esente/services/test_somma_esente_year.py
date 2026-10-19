@@ -36,7 +36,7 @@ if TYPE_CHECKING:
 
 _YEAR = 2026
 # Low-income contract: somma esente of about 877 EUR a year.
-_CCNL = "autoscuole-unasca.json"
+_CCNL = "autoscuole-unasca"
 _LEVEL = "3"
 _YEAR_RESULT = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
 
@@ -59,7 +59,7 @@ def _last_run(opening: PeriodState) -> PeriodResult:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=12),
             payment_date=date(_YEAR, 12, 28),
-            ccnl_slug=_CCNL,
+            ccnl_id=_CCNL,
             level_code=_LEVEL,
             opening_state=opening,
             run=PayrollRun.thirteenth(_YEAR, 12),
@@ -195,7 +195,7 @@ class TestClosedRuns:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=month),
             payment_date=date(_YEAR, month, 28),
-            ccnl_slug=_CCNL,
+            ccnl_id=_CCNL,
             level_code=_LEVEL,
             opening_state=opening,
             run=PayrollRun.regular(_YEAR, month),

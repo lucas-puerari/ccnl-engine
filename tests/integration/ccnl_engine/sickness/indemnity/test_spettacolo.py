@@ -32,8 +32,8 @@ def test_the_regime_bands() -> None:
 def test_the_cinema_ccnls_name_it() -> None:
     """Film production and cinema exhibition staff are in the FPLS."""
     for slug in (
-        "cinema-audiovisivi-industria.json",
-        "esercizi-cinematografici-anec.json",
+        "cinema-audiovisivi-industria",
+        "esercizi-cinematografici-anec",
     ):
         work = load_ccnl(slug).work_rules
         assert work is not None
@@ -57,7 +57,7 @@ def _inps_share(contributions: int | None) -> Decimal:
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=2026, month=3),
             payment_date=date(2026, 3, 27),
-            ccnl_slug="cinema-audiovisivi-industria.json",
+            ccnl_id="cinema-audiovisivi-industria",
             level_code="4",
             category=WorkerCategory.IMPIEGATO,
             opening_state=PeriodState.zero(),

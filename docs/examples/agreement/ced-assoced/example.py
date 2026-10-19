@@ -28,7 +28,7 @@ from ccnl_engine.inputs import (
     SenioritySource,
 )
 
-CCNL = "ced-assoced.json"
+CCNL = "ced-assoced"
 LEVEL = "3S"
 SENIORITY = SeniorityFact.since(date(2026, 9, 1), SenioritySource.EMPLOYER_RECORDS)
 
@@ -38,7 +38,7 @@ result = engine.calculate_period(
         run=PayrollRun.regular(year=2026, month=9),
         payment_date=date(2026, 9, 25),
         employment=Employment(
-            ccnl_slug=CCNL,
+            ccnl_id=CCNL,
             level_code=LEVEL,
             contract_type=Permanent(),
             seniority=SENIORITY,
@@ -53,7 +53,7 @@ result = engine.calculate_period(
 
 issues = ", ".join(sorted(issue.code for issue in result.issues)) or "none"
 blockers = ", ".join(sorted({b.code.value for b in result.blockers})) or "none"
-readiness = engine.inspect_ruleset(CCNL.removesuffix(".json")).readiness
+readiness = engine.inspect_ruleset(CCNL).readiness
 print(f"Gross:         {result.period_gross} EUR")
 print(f"Contributions: {result.contribution_breakdown.employee} EUR")
 print(f"IRPEF:         {result.tax_computation.ordinary_tax} EUR")

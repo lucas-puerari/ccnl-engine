@@ -41,7 +41,7 @@ if TYPE_CHECKING:
     from pathlib import Path
 
 _ALL_CASES = sorted(CASES_DIR.glob("*.json"))
-_INPUT_KEYS = frozenset({"ccnl_slug", "level_code", "year", "month", "headcount"})
+_INPUT_KEYS = frozenset({"ccnl_id", "level_code", "year", "month", "headcount"})
 #: Inputs a case may add: the hours a domestic CCNL needs, the hours a CCNL
 #: paying by the hour pays.
 _OPTIONAL_INPUT_KEYS = frozenset({

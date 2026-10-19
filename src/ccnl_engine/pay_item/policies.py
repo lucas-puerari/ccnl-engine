@@ -88,7 +88,7 @@ class PolicyContext:
     Attributes:
         year: Tax year of the payroll calculation.
         as_of: Reference date for rule effective-range matching.
-        ccnl_slug: Identifies the applicable CCNL, or ``None`` if unknown.
+        ccnl_id: Slug of the applicable CCNL, or ``None`` if unknown.
         sector: Tax sector code, or ``None`` if not yet determined.
         gross_ytd: Year-to-date gross earnings for threshold checks.
         is_manager: Whether the worker is a dirigente.
@@ -96,7 +96,7 @@ class PolicyContext:
 
     year: int
     as_of: date
-    ccnl_slug: str | None = None
+    ccnl_id: str | None = None
     sector: str | None = None
     gross_ytd: Decimal = Decimal(0)
     is_manager: bool = False

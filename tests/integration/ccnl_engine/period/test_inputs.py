@@ -45,7 +45,7 @@ from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
 )
 
 _YEAR = 2026
-_METAL = "metalmeccanico-federmeccanica.json"
+_METAL = "metalmeccanico-federmeccanica"
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 _OVERTIME = OvertimeEvent(
     event_date=date(_YEAR, 6, 10), hours=Decimal(2), hourly_rate=Decimal(15)
@@ -54,7 +54,7 @@ _OVERTIME = OvertimeEvent(
 
 #: Request fields copied unchanged from :class:`Employment`.
 _EMPLOYMENT_FIELDS = (
-    "ccnl_slug",
+    "ccnl_id",
     "level_code",
     "contract_type",
     "category",
@@ -70,7 +70,7 @@ _EMPLOYMENT_FIELDS = (
 
 def _employment() -> Employment:
     return Employment(
-        ccnl_slug=_METAL,
+        ccnl_id=_METAL,
         level_code="C3",
         contract_type=FixedTerm(),
         category=WorkerCategory.OPERAIO,

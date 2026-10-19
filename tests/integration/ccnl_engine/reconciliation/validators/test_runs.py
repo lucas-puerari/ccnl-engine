@@ -51,7 +51,7 @@ if TYPE_CHECKING:
     from ccnl_engine.balance.cash.models import TaxCashState
     from ccnl_engine.period.results import PeriodResult
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _LEVEL = "C3"
 _YEAR = 2026
 _OPENING = PeriodState.zero()
@@ -67,7 +67,7 @@ def _run(
         PeriodCalculationRequest(
             period_id=PeriodId(year=_YEAR, month=month),
             payment_date=date(_YEAR, month, 27),
-            ccnl_slug=_CCNL,
+            ccnl_id=_CCNL,
             level_code=_LEVEL,
             employer=EmployerProfile(headcount=Headcount(50)),
             opening_state=opening,

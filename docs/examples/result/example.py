@@ -19,7 +19,7 @@ result = engine.calculate_period(
         run=PayrollRun.regular(year=2026, month=6),
         payment_date=date(2026, 6, 27),
         employment=Employment(
-            ccnl_slug="metalmeccanico-federmeccanica.json",
+            ccnl_id="metalmeccanico-federmeccanica",
             level_code="C3",
             contract_type=Permanent(),
         ),

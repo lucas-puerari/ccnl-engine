@@ -1,6 +1,6 @@
 {
   "_description": "portieri-fabbricati-confedilizia — data checks 2026",
-  "ccnl_file": "portieri-fabbricati-confedilizia.json",
+  "ccnl_id": "portieri-fabbricati-confedilizia",
   "salary_checks": [
     {
       "level_code": "B5",

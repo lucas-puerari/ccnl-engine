@@ -40,7 +40,7 @@ if TYPE_CHECKING:
     from ccnl_engine.decision.models import CalculationDecision
     from ccnl_engine.period.results import PeriodResult
 
-_METALMECCANICO = "metalmeccanico-federmeccanica.json"
+_METALMECCANICO = "metalmeccanico-federmeccanica"
 _DAY = date(2026, 3, 1)
 _BASE_STAGES = ("base_salary", "inps_employee", "inps_employer", "tfr", "irpef")
 
@@ -52,7 +52,7 @@ def _run(
         PeriodCalculationRequest(
             period_id=PeriodId(year=2026, month=3),
             payment_date=date(2026, 3, 27),
-            ccnl_slug=ccnl,
+            ccnl_id=ccnl,
             level_code=level,
             employer=EmployerProfile(headcount=Headcount(50)),
             opening_state=PeriodState.zero(),
@@ -239,7 +239,7 @@ def test_household_employer_takes_no_irpef_decision() -> None:
     so the worker pays 173 * 0.31 = 53.63.
     """
     result = _run(
-        "lavoro-domestico-convivente.json",
+        "lavoro-domestico-convivente",
         "A",
         weekly_hours=WeeklyHours(40),
         contributable_hours=ContributableHours(Decimal(173)),
@@ -258,7 +258,7 @@ def test_household_employer_takes_no_irpef_decision() -> None:
 def test_tfr_paid_to_the_pension_fund() -> None:
     """With the TFR paid to the fund, the decision names the fund account."""
     result = _run(
-        "tabacco-apti.json",
+        "tabacco-apti",
         "4A",
         pension_fund=PensionFundEnrolment("ALIFOND", Decimal("0.01"), tfr_to_fund=True),
     )

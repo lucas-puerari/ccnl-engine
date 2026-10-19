@@ -34,7 +34,7 @@ def _spec(key: str) -> dict[str, str]:
 
 
 _INPUTS = {
-    "ccnl_slug": "x.json",
+    "ccnl_id": "x",
     "level_code": "1",
     "year": 2026,
     "month": 3,

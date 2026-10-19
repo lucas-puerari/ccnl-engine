@@ -1,6 +1,6 @@
 {
   "_description": "dirigenza-funzioni-locali-aran — data checks 2026",
-  "ccnl_file": "dirigenza-funzioni-locali-aran.json",
+  "ccnl_id": "dirigenza-funzioni-locali-aran",
   "salary_checks": [
     {
       "level_code": "DIRIGENTE",

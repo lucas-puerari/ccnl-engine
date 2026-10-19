@@ -24,7 +24,7 @@ result = engine.calculate_period(
         run=PayrollRun.regular(year=2026, month=1),
         payment_date=date(2026, 1, 28),
         employment=Employment(
-            ccnl_slug="lavoro-domestico-non-convivente.json",
+            ccnl_id="lavoro-domestico-non-convivente",
             level_code="B",
             weekly_hours=WeeklyHours(25),
             full_time_weekly_hours=WeeklyHours(40),

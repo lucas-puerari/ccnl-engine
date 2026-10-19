@@ -96,7 +96,7 @@ def _run(
             run=PayrollRun.regular(year=_YEAR, month=month),
             payment_date=date(_YEAR, month, 27),
             employment=Employment(
-                ccnl_slug="metalmeccanico-federmeccanica.json",
+                ccnl_id="metalmeccanico-federmeccanica",
                 level_code="C3",
                 contract_type=Permanent(),
             ),

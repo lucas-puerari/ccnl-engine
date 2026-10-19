@@ -79,8 +79,8 @@ if TYPE_CHECKING:
 
 pytestmark = pytest.mark.legal_scenario
 
-_TABACCO = "tabacco-apti.json"
-_VETRO = "vetro-meccanizzato-assovetro.json"
+_TABACCO = "tabacco-apti"
+_VETRO = "vetro-meccanizzato-assovetro"
 _CAPABILITY = "pension_fund_contribution"
 _ALIFOND = PensionFundEnrolment("ALIFOND", Decimal("0.01"), tfr_to_fund=True)
 _FONCHIM = PensionFundEnrolment("FONCHIM", Decimal("0.015"), tfr_to_fund=True)
@@ -95,7 +95,7 @@ def _tabacco(
     pension: PensionFundEnrolment | NoPensionFund | None = _ALIFOND,
 ) -> Employment:
     return Employment(
-        ccnl_slug=_TABACCO,
+        ccnl_id=_TABACCO,
         level_code="4A",
         pension_fund=pension,
         contract_type=Permanent(),
@@ -207,7 +207,7 @@ class TestTfrToFund:
     def test_tfr_to_the_fund_is_net_of_the_additional_ivs(self) -> None:
         """Level 3A: 151.93 less 10.26 = 141.67 is paid to the fund."""
         employment = Employment(
-            ccnl_slug=_TABACCO,
+            ccnl_id=_TABACCO,
             level_code="3A",
             pension_fund=_ALIFOND,
             contract_type=Permanent(),
@@ -242,11 +242,11 @@ class TestVetroFonchim:
         points of D.L. 203/2005 art. 8 (6.62) in each of the 13 runs.
         """
         employment = Employment(
-            ccnl_slug=_VETRO, level_code="C", contract_type=Permanent()
+            ccnl_id=_VETRO, level_code="C", contract_type=Permanent()
         )
         enrolled = _year(
             Employment(
-                ccnl_slug=_VETRO,
+                ccnl_id=_VETRO,
                 level_code="C",
                 pension_fund=_FONCHIM,
                 contract_type=Permanent(),
@@ -262,7 +262,7 @@ class TestVetroFonchim:
         """The FONCHIM employee minimum of vetro, 1.50%, is in the decision."""
         result = regular_period(
             employment=Employment(
-                ccnl_slug=_VETRO,
+                ccnl_id=_VETRO,
                 level_code="C",
                 pension_fund=_FONCHIM,
                 contract_type=Permanent(),
@@ -362,7 +362,7 @@ class TestNotEnrolled:
         ``not_enrolled`` reading of no fund and names nothing.
         """
         employment = Employment(
-            ccnl_slug="commercio-confcommercio.json",
+            ccnl_id="commercio-confcommercio",
             level_code="4",
             seniority=new_hire(),
             tfr_fund=no_tfr_fund(2026),
@@ -380,7 +380,7 @@ class TestNotEnrolled:
     def test_enrolment_in_a_fund_the_ccnl_lacks_raises(self) -> None:
         """A fund code the CCNL does not declare is rejected."""
         employment = Employment(
-            ccnl_slug=_TABACCO,
+            ccnl_id=_TABACCO,
             level_code="4A",
             pension_fund=PensionFundEnrolment(
                 "FONCHIM", Decimal("0.01"), tfr_to_fund=False
@@ -400,11 +400,11 @@ class TestCommercioFonte:
     @staticmethod
     def _run(
         *events: BonusEvent,
-        ccnl_slug: str = "commercio-confcommercio.json",
+        ccnl_id: str = "commercio-confcommercio",
         contract_type: Permanent | Apprentice = _PERMANENT,
     ) -> PeriodResult:
         employment = Employment(
-            ccnl_slug=ccnl_slug,
+            ccnl_id=ccnl_id,
             level_code="4",
             seniority=new_hire(),
             pension_fund=PensionFundEnrolment(
@@ -440,7 +440,7 @@ class TestCommercioFonte:
 
     def test_turismo_employer_rate_is_lower(self) -> None:
         """Turismo Federalberghi level 4: 0.55% of 1660.69 = 9.13."""
-        result = self._run(ccnl_slug="turismo-federalberghi.json")
+        result = self._run(ccnl_id="turismo-federalberghi")
         assert _pension_decision(result).inputs["base"] == Decimal("1660.69")
         assert _entry(result, "pension_fund_employer") == Decimal("9.13")
         assert _pension_decision(result).inputs["solidarity"] == Decimal("0.91")

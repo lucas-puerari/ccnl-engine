@@ -23,7 +23,7 @@
     "section": "Row 'Operaio Comune liv. 1': retribuzione base mensile, indennità di contingenza, E.D.R.; notes on the riposi annui and the Cassa Edile percentages"
   },
   "inputs": {
-    "ccnl_slug": "edilizia-ance.json",
+    "ccnl_id": "edilizia-ance",
     "level_code": "1",
     "year": 2026,
     "month": 4,

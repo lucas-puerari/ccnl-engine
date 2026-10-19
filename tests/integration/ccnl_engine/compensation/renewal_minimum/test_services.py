@@ -37,7 +37,7 @@ _RENEWAL = "rinnovo_substitute_tax"
 
 
 def _june(
-    ccnl: str = "metalmeccanico-federmeccanica.json",
+    ccnl: str = "metalmeccanico-federmeccanica",
     level: str = "C3",
     *,
     year: int = 2026,
@@ -50,7 +50,7 @@ def _june(
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=year, month=6),
             payment_date=date(year, 6, 27),
-            ccnl_slug=ccnl,
+            ccnl_id=ccnl,
             level_code=level,
             seniority=new_hire(year),
             sector=EmploymentSector.PRIVATE,
@@ -94,13 +94,13 @@ def test_known_income_above_the_ceiling_rules_the_regime_out() -> None:
 
 def test_minimo_without_a_table_in_the_window_is_not_assessed() -> None:
     """Farmacie private: the last table of the minimo predates 2024."""
-    assert _renewal_decisions(_june("farmacie-private-h121.json", "1")) == []
+    assert _renewal_decisions(_june("farmacie-private-h121", "1")) == []
 
 
 def test_household_employer_is_not_assessed() -> None:
     """A household employer withholds no tax, so applies no substitute tax."""
     result = _june(
-        "lavoro-domestico-non-convivente.json",
+        "lavoro-domestico-non-convivente",
         "B",
         contributable_hours=ContributableHours(Decimal(100)),
         weekly_hours=WeeklyHours(25),

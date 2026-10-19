@@ -1,6 +1,6 @@
 {
   "_description": "servizi-postali-appalto-fise — data checks 2026",
-  "ccnl_file": "servizi-postali-appalto-fise.json",
+  "ccnl_id": "servizi-postali-appalto-fise",
   "salary_checks": [
     {
       "level_code": "1",

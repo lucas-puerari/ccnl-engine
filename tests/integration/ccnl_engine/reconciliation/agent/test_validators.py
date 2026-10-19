@@ -24,13 +24,13 @@ _INVARIANT = "non_agent_untaxed"
 _NOT_AGENT = RunFacts(withholding_agent=False)
 
 
-def _request(ccnl_slug: str, level_code: str) -> PeriodCalculationRequest:
-    domestic = ccnl_slug.startswith("lavoro-domestico")
+def _request(ccnl_id: str, level_code: str) -> PeriodCalculationRequest:
+    domestic = ccnl_id.startswith("lavoro-domestico")
     return PeriodCalculationRequest(
         employer=EmployerProfile(headcount=Headcount(1)),
         period_id=PeriodId(year=2026, month=9),
         payment_date=date(2026, 9, 28),
-        ccnl_slug=ccnl_slug,
+        ccnl_id=ccnl_id,
         level_code=level_code,
         opening_state=PeriodState.zero(),
         weekly_hours=WeeklyHours(40) if domestic else None,
@@ -40,21 +40,21 @@ def _request(ccnl_slug: str, level_code: str) -> PeriodCalculationRequest:
 
 def test_domestic_run_holds() -> None:
     """A domestic run posts no tax and pays gross less contributions."""
-    result = calculate_period(_request("lavoro-domestico-convivente.json", "A"))
+    result = calculate_period(_request("lavoro-domestico-convivente", "A"))
 
     assert check_non_agent_untaxed(result, _NOT_AGENT) == []
 
 
 def test_withholding_agent_is_not_checked() -> None:
     """The invariant does not apply to an employer that withholds tax."""
-    result = calculate_period(_request("commercio-confcommercio.json", "4"))
+    result = calculate_period(_request("commercio-confcommercio", "4"))
 
     assert check_non_agent_untaxed(result, RunFacts()) == []
 
 
 def test_tax_posted_by_a_non_agent_is_reported() -> None:
     """IRPEF posted for an employer that is not a withholding agent fails."""
-    result = calculate_period(_request("commercio-confcommercio.json", "4"))
+    result = calculate_period(_request("commercio-confcommercio", "4"))
 
     violations = check_non_agent_untaxed(result, _NOT_AGENT)
 
@@ -64,7 +64,7 @@ def test_tax_posted_by_a_non_agent_is_reported() -> None:
 
 def test_net_above_gross_is_reported() -> None:
     """A net one euro above the gross of a domestic run fails."""
-    result = calculate_period(_request("lavoro-domestico-convivente.json", "A"))
+    result = calculate_period(_request("lavoro-domestico-convivente", "A"))
     bad = replace(result, period_net=result.period_gross + 1)
 
     (violation,) = check_non_agent_untaxed(bad, _NOT_AGENT)

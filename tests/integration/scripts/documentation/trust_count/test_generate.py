@@ -91,7 +91,7 @@ def test_readiness_counts_follow_the_loader_default() -> None:
 
     assert len(reviewed) == int(counts["readiness-reviewed"])
     for ccnl_id in reviewed:
-        ccnl = load_ccnl(f"{ccnl_id.strip('`')}.json")
+        ccnl = load_ccnl(ccnl_id.strip("`"))
         assert ccnl.verification.readiness.value == "reviewed"
 
 

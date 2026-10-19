@@ -27,7 +27,7 @@ from ccnl_engine.inputs import Permanent
 
 engine = PayrollEngine.bundled()
 employment = Employment(
-    ccnl_slug="metalmeccanico-federmeccanica.json",
+    ccnl_id="metalmeccanico-federmeccanica",
     level_code="C3",
     contract_type=Permanent(),
 )
@@ -139,7 +139,7 @@ year instead, late payments of an earlier competence year included.
 from ccnl_engine import CompetenceYearPlan
 
 commercio = Employment(
-    ccnl_slug="commercio-confcommercio.json",
+    ccnl_id="commercio-confcommercio",
     level_code="4",
     contract_type=Permanent(),
 )
@@ -343,7 +343,7 @@ short = engine.calculate_competence_year(
     CompetenceYearPlan(
         year=2026,
         employment=Employment(
-            ccnl_slug="commercio-confcommercio.json",
+            ccnl_id="commercio-confcommercio",
             level_code="4",
             contract_type=Permanent(),
             employment_period=EmploymentPeriod(date(2026, 7, 1), date(2026, 9, 30)),

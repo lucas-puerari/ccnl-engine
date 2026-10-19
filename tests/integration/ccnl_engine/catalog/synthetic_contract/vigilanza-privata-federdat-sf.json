@@ -1,6 +1,6 @@
 {
   "_description": "vigilanza-privata-federdat-sf — data checks 2026",
-  "ccnl_file": "vigilanza-privata-federdat-sf.json",
+  "ccnl_id": "vigilanza-privata-federdat-sf",
   "salary_checks": [
     {
       "level_code": "E",

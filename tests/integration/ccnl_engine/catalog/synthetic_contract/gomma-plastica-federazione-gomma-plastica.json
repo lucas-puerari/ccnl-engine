@@ -1,6 +1,6 @@
 {
   "_description": "gomma-plastica-federazione-gomma-plastica — data checks 2026",
-  "ccnl_file": "gomma-plastica-federazione-gomma-plastica.json",
+  "ccnl_id": "gomma-plastica-federazione-gomma-plastica",
   "salary_checks": [
     {
       "level_code": "I",

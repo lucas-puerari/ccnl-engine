@@ -1,6 +1,6 @@
 {
   "_description": "trasporto-aereo-assaeroporti — data checks 2026",
-  "ccnl_file": "trasporto-aereo-assaeroporti.json",
+  "ccnl_id": "trasporto-aereo-assaeroporti",
   "salary_checks": [
     {
       "level_code": "9",

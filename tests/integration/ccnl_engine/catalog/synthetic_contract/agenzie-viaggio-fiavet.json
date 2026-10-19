@@ -1,6 +1,6 @@
 {
   "_description": "agenzie-viaggio-fiavet — data checks 2026",
-  "ccnl_file": "agenzie-viaggio-fiavet.json",
+  "ccnl_id": "agenzie-viaggio-fiavet",
   "salary_checks": [
     {
       "level_code": "QA",

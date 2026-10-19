@@ -107,7 +107,7 @@ def _conguaglio(
         CompetenceYearPlan(
             year=2026,
             employment=Employment(
-                ccnl_slug="commercio-confcommercio.json",
+                ccnl_id="commercio-confcommercio",
                 level_code="4",
                 seniority=new_hire(),
                 employment_period=EmploymentPeriod(date(2020, 1, 1), None),

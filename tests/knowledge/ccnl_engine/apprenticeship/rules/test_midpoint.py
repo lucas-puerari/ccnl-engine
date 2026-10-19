@@ -42,7 +42,7 @@ def _run(months_elapsed: int) -> PeriodResult:
     return regular_period(
         month=3,
         employment=Employment(
-            ccnl_slug="aziende-termali-federterme.json",
+            ccnl_id="aziende-termali-federterme",
             level_code="5",
             contract_type=Apprentice(months_elapsed=months_elapsed),
             seniority=new_hire(),

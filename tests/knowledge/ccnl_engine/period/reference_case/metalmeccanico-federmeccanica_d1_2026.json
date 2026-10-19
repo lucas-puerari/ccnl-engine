@@ -17,7 +17,7 @@
     "section": "Minimi contrattuali dal 1 giugno 2026, row D1"
   },
   "inputs": {
-    "ccnl_slug": "metalmeccanico-federmeccanica.json",
+    "ccnl_id": "metalmeccanico-federmeccanica",
     "level_code": "D1",
     "year": 2026,
     "month": 6,

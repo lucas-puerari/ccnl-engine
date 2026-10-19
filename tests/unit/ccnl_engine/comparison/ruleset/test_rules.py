@@ -13,7 +13,7 @@ def test_fund_rate_and_employee_minimum_are_walked() -> None:
     """ALIFOND yields its employer rate and its employee minimum."""
     rules = {
         rule.path: rule
-        for rule in dated_rules(load_ccnl("tabacco-apti.json"))
+        for rule in dated_rules(load_ccnl("tabacco-apti"))
         if "employer_funds" in rule.path
     }
     assert set(rules) == {

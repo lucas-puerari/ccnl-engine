@@ -1,6 +1,6 @@
 {
   "_description": "funzioni-centrali-aran — data checks 2026",
-  "ccnl_file": "funzioni-centrali-aran.json",
+  "ccnl_id": "funzioni-centrali-aran",
   "salary_checks": [
     {
       "level_code": "OPERATORI",

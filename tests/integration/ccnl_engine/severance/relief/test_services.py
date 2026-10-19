@@ -31,7 +31,7 @@ from ccnl_engine.severance.relief.services import (
 if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
 
-_METALMECCANICO = "metalmeccanico-federmeccanica.json"
+_METALMECCANICO = "metalmeccanico-federmeccanica"
 _APPRENTICE = Apprentice(months_elapsed=6, track="professionalizzante_36")
 
 
@@ -42,7 +42,7 @@ def _run(
         PeriodCalculationRequest(
             period_id=PeriodId(year=2026, month=3),
             payment_date=date(2026, 3, 27),
-            ccnl_slug=ccnl,
+            ccnl_id=ccnl,
             level_code=level,
             employer=EmployerProfile(headcount=Headcount(50)),
             opening_state=PeriodState.zero(),
@@ -108,7 +108,7 @@ def test_apprentice_keeping_the_tfr_takes_no_compensation() -> None:
 def test_agricoltura_has_no_compensation_rule() -> None:
     """Its rates by contract are not modelled: no exemption, no limitation."""
     result = _run(
-        "operai-agricoli-florovivaisti.json",
+        "operai-agricoli-florovivaisti",
         "Area1",
         contract_type=Apprentice(months_elapsed=6),
         tfr_treasury_fund=True,

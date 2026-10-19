@@ -1,6 +1,6 @@
 {
   "_description": "istituzioni-servizi-socio-assistenziali-anaste — data checks 2026",
-  "ccnl_file": "istituzioni-servizi-socio-assistenziali-anaste.json",
+  "ccnl_id": "istituzioni-servizi-socio-assistenziali-anaste",
   "salary_checks": [
     {
       "level_code": "Q",

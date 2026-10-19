@@ -60,7 +60,7 @@ _SPOUSE = FamilyComposition(
     dependents=(declared_dependent(relationship=DependentRelationship.SPOUSE),)
 )
 _EMPLOYMENT = Employment(
-    ccnl_slug="metalmeccanico-federmeccanica.json",
+    ccnl_id="metalmeccanico-federmeccanica",
     level_code="C3",
     seniority=new_hire(),
     contract_type=Permanent(),

@@ -17,7 +17,7 @@
     "section": "Art. 76 Minimi contrattuali conglobati mensili, row C1, column 10/2025"
   },
   "inputs": {
-    "ccnl_slug": "cooperative-sociali.json",
+    "ccnl_id": "cooperative-sociali",
     "level_code": "C1",
     "year": 2026,
     "month": 1,

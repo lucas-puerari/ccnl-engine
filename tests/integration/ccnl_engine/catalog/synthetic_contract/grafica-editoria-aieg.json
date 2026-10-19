@@ -1,6 +1,6 @@
 {
   "_description": "grafica-editoria-aieg — data checks 2026",
-  "ccnl_file": "grafica-editoria-aieg.json",
+  "ccnl_id": "grafica-editoria-aieg",
   "salary_checks": [
     {
       "level_code": "E",

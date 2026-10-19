@@ -123,7 +123,7 @@ def test_a_closed_list_leaves_no_surtax_blocker(
         CompetenceYearPlan(
             year=2026,
             employment=Employment(
-                ccnl_slug="chimica-farmaceutica-federchimica",
+                ccnl_id="chimica-farmaceutica-federchimica",
                 level_code="D1",
                 contract_type=Permanent(),
                 category=WorkerCategory.IMPIEGATO,

@@ -59,7 +59,7 @@ def _run(inputs: dict[str, Any]) -> PeriodResult:
             run=PayrollRun.regular(year=year, month=month),
             payment_date=date(year, month, 27),
             employment=Employment(
-                ccnl_slug=inputs["ccnl_slug"],
+                ccnl_id=inputs["ccnl_id"],
                 level_code=inputs["level_code"],
                 contract_type=Permanent(),
                 weekly_hours=None if weekly is None else WeeklyHours(int(weekly)),

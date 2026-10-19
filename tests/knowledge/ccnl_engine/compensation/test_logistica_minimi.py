@@ -16,7 +16,7 @@ import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
 
-_CCNL = load_ccnl("logistica-trasporto-confetra.json")
+_CCNL = load_ccnl("logistica-trasporto-confetra")
 _TRANCHES = (date(2025, 1, 1), date(2026, 1, 1), date(2027, 1, 1), date(2027, 6, 1))
 #: Level, (minimo, EPA) of each tranche, as printed.
 _TABLE = (

@@ -19,7 +19,7 @@ from ccnl_engine.catalog.loaders import load_ccnl
 
 def test_abi_bands_by_seniority() -> None:
     """Six bands over a four-year window, 30-day months."""
-    rules = load_ccnl("bancari-abi.json").work_rules
+    rules = load_ccnl("bancari-abi").work_rules
     assert rules is not None
     sickness = rules.sickness_rules
     assert sickness is not None
@@ -39,7 +39,7 @@ def test_abi_bands_by_seniority() -> None:
 
 def test_artisan_operai_sickness() -> None:
     """Net 100%, carenza only past 7 days, 150 days."""
-    rules = load_ccnl("metalmeccanico-artigianato.json").work_rules
+    rules = load_ccnl("metalmeccanico-artigianato").work_rules
     assert rules is not None
     sickness = rules.sickness_rules
     assert sickness is not None
@@ -52,7 +52,7 @@ def test_artisan_operai_sickness() -> None:
 
 def test_domestic_sickness_bands() -> None:
     """Art. 27 of the CCNL of 28 October 2025: 8/10, 10/45, 15/180 days."""
-    rules = load_ccnl("lavoro-domestico-non-convivente.json").work_rules
+    rules = load_ccnl("lavoro-domestico-non-convivente").work_rules
     assert rules is not None
     sickness = rules.sickness_rules
     assert sickness is not None

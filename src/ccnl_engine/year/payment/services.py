@@ -22,6 +22,7 @@ from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.balance.obligation.models import EmploymentObligations
 from ccnl_engine.calendar.payment.models import PaymentId
 from ccnl_engine.calendar.services import effective_calendar
+from ccnl_engine.catalog.services import resolve_ccnl
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.extra_month.qualification.services import month_accrual_rule
 from ccnl_engine.run.models import RunKind
@@ -120,7 +121,7 @@ def prepare_year(plan: CompetenceYearPlan, repo: KnowledgeRepository) -> Prepare
     Returns:
         The prepared year.
     """
-    ccnl = repo.load_ccnl(plan.employment.ccnl_slug)
+    ccnl = resolve_ccnl(repo, plan.employment.ccnl_id)
     calendar = effective_calendar(ccnl, plan.year, plan.calendar_override)
     year_plan = plan_year(plan, calendar, month_accrual_rule(ccnl))
     fractions = {e.kind.value: e.max_fraction for e in calendar.extra_months}

@@ -55,7 +55,7 @@ from tests.unit.ccnl_engine.builders import EMPLOYER_50, year_plan
 if TYPE_CHECKING:
     from ccnl_engine.year.results import CompetenceYearResult
 
-_CCNL = "metalmeccanico-federmeccanica.json"
+_CCNL = "metalmeccanico-federmeccanica"
 _ZERO = Decimal(0)
 _Q1 = EmploymentPeriod(started_on=date(2026, 1, 1), ended_on=date(2026, 3, 31))
 

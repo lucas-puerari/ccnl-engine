@@ -37,7 +37,7 @@ _OVERTIME_RATE = Decimal("12.50")
 
 def _part_time(weekly_hours: int) -> Employment:
     return Employment(
-        ccnl_slug=COMMERCIO,
+        ccnl_id=COMMERCIO,
         level_code="4",
         weekly_hours=WeeklyHours(weekly_hours),
         full_time_weekly_hours=WeeklyHours(_FULL_TIME),
@@ -62,7 +62,7 @@ def test_part_time_contributions_are_never_negative(weekly_hours: int) -> None:
 def test_domestic_contributions_are_never_negative(hours: Decimal) -> None:
     """Domestic INPS is an hourly flat rate times non-negative paid hours."""
     employment = Employment(
-        ccnl_slug=DOMESTIC,
+        ccnl_id=DOMESTIC,
         level_code="B",
         weekly_hours=WeeklyHours(25),
         contract_type=Permanent(),

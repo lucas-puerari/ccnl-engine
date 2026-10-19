@@ -1,6 +1,6 @@
 {
   "_description": "scuole-private-agidae — data checks 2026",
-  "ccnl_file": "scuole-private-agidae.json",
+  "ccnl_id": "scuole-private-agidae",
   "salary_checks": [
     {
       "level_code": "L1",

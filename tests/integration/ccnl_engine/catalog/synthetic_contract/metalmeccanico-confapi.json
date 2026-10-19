@@ -1,6 +1,6 @@
 {
   "_description": "metalmeccanico-confapi — data checks 2026",
-  "ccnl_file": "metalmeccanico-confapi.json",
+  "ccnl_id": "metalmeccanico-confapi",
   "salary_checks": [
     {
       "level_code": "1",

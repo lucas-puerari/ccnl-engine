@@ -31,7 +31,7 @@ from tests.integration.ccnl_engine.withholding.builders import (
 
 _YEAR = 2026
 _ZERO = Decimal(0)
-_CCNL_TRATT = "portieri-fabbricati-confedilizia.json"
+_CCNL_TRATT = "portieri-fabbricati-confedilizia"
 _LEVEL_TRATT = "B5"  # 1,264.51 EUR/month (terziario sector, trattamento integrativo)
 
 

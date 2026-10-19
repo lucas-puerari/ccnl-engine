@@ -33,7 +33,7 @@ _REGISTRY = (
 @pytest.mark.parametrize(("slug", "code", "start", "end"), _REGISTRY)
 def test_code_and_term(slug: str, code: str, start: date, end: date | None) -> None:
     """The CNEL code and the term the CCNL file declares."""
-    meta = load_ccnl(f"{slug}.json").meta
+    meta = load_ccnl(slug).meta
 
     assert meta.cnel_code == code
     assert meta.validity is not None
@@ -42,6 +42,6 @@ def test_code_and_term(slug: str, code: str, start: date, end: date | None) -> N
 
 def test_sanita_privata_signatories_are_those_of_the_text() -> None:
     """AIOP and ARIS with FP-CGIL, CISL-FPS and UIL-FPL (CCNL 8 October 2020)."""
-    meta = load_ccnl("sanita-privata-aiop-aris.json").meta
+    meta = load_ccnl("sanita-privata-aiop-aris").meta
 
     assert meta.signatories == ("AIOP", "ARIS", "FP-CGIL", "CISL-FPS", "UIL-FPL")
