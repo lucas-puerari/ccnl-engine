@@ -33,6 +33,7 @@ DATASETS: dict[str, tuple[str, bool]] = {
     "agreement": ("CCNL", False),
     "contribution": ("InpsRates", True),
     "sickness/indemnity": ("InpsSickPayRates", False),
+    "absence/insured": ("InsuredAbsenceRates", False),
     "sector": ("YearRulesRaw", True),
     "family": ("FamilyDeductionRules", False),
     "tax_credit/somma_esente": ("SommaEsenteRules", False),

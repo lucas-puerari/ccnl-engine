@@ -20,6 +20,7 @@ gross, net and employer cost according to its treatment; see
 ::: ccnl_engine.events.LeaveBucket
 
 ::: ccnl_engine.events.LeaveTakenEvent
+::: ccnl_engine.events.MaternityLeaveEvent
 
 ::: ccnl_engine.events.NightShiftEvent
 
@@ -48,3 +49,5 @@ gross, net and employer cost according to its treatment; see
 ::: ccnl_engine.events.WelfareEvent
 
 ::: ccnl_engine.events.WorkEvent
+
+::: ccnl_engine.events.WorkInjuryEvent

@@ -13,6 +13,7 @@ from ccnl_engine.pay_item.voce.models import VoceView
 
 __all__ = [
     "AbsenceDeduction",
+    "AbsenceIntegrationItem",
     "BaseSalaryEarning",
     "BonusEarning",
     "ContractRenewalArrears",
@@ -228,12 +229,21 @@ class MaternityItem(_PayItemBase):
     """Maternity leave indemnity (maternità INPS)."""
 
     kind: Literal["maternity_item"] = "maternity_item"
+    absence_days: Decimal = Field(default=Decimal(0), ge=Decimal(0))
 
 
 class WorkInjuryItem(_PayItemBase):
     """Work-injury indemnity (infortunio INAIL)."""
 
     kind: Literal["work_injury_item"] = "work_injury_item"
+    absence_days: Decimal = Field(default=Decimal(0), ge=Decimal(0))
+
+
+class AbsenceIntegrationItem(_PayItemBase):
+    """Employer pay of an insured absence: the CCNL top-up, the waiting period."""
+
+    kind: Literal["absence_integration_item"] = "absence_integration_item"
+    absence_days: Decimal = Field(default=Decimal(0), ge=Decimal(0))
 
 
 class EmployeeWithholdingItem(_PayItemBase):
@@ -302,6 +312,7 @@ PayItem = Annotated[
     | SicknessInpsItem
     | MaternityItem
     | WorkInjuryItem
+    | AbsenceIntegrationItem
     | EmployeeWithholdingItem
     | EmployerContributionItem
     | TerminationItem

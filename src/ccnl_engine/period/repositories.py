@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.absence.insured.loaders import load_insured_absence_rates
 from ccnl_engine.bundle.facade import __version__
 from ccnl_engine.capability.loaders import (
     load_capability_catalog,
@@ -17,6 +18,7 @@ from ccnl_engine.surtax.loaders import load_surtax_rules
 from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
 
 if TYPE_CHECKING:
+    from ccnl_engine.absence.insured.models import InsuredAbsenceRates
     from ccnl_engine.agreement.facade import CCNL, TaxSector
     from ccnl_engine.capability.registry.models import CapabilityCatalog
     from ccnl_engine.catalog.loaders import ContractSummary
@@ -120,3 +122,11 @@ class BundledKnowledgeRepository:
             The waiting period, bands, annual maximum and coverage rules.
         """
         return load_sick_pay_rates()
+
+    def load_insured_absence_rates(self) -> InsuredAbsenceRates:  # noqa: PLR6301
+        """Return the maternity and work-injury indemnities.
+
+        Returns:
+            The INPS maternity indemnity and the work-injury measures.
+        """
+        return load_insured_absence_rates()

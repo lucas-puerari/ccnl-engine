@@ -173,6 +173,10 @@ class MinimumBaseReason(StrEnum):
         MONTH_NOT_WORKED: The run would post the pay of a month the
             vertical part time does not work: no hour is paid, so the
             hourly minimum of D.Lgs. 81/2015 art. 11 c. 1 gives none.
+        INDEMNIFIED_MONTH: Every employed day of the month is a maternity
+            leave or a work-injury inability an insurer indemnifies: the
+            days are credited with figurative contributions and the
+            employer pays no day the daily minimum is counted on.
     """
 
     ABOVE_MINIMUM = "above_minimum"
@@ -186,6 +190,7 @@ class MinimumBaseReason(StrEnum):
     MONTHLY_DAYS_UNSOURCED = "monthly_days_unsourced"
     HOURLY_MINIMUM_UNSOURCED = "hourly_minimum_unsourced"
     MONTH_NOT_WORKED = "month_not_worked"
+    INDEMNIFIED_MONTH = "indemnified_month"
 
 
 #: Reasons whose minimum the bundle cannot determine.
@@ -221,6 +226,8 @@ class MonthPosition:
             when not stated (the worker then counts as full time).
         worked: Whether the worker works in the month; ``False`` for a
             month outside the months of a vertical part time.
+        indemnified: Every employed day of the month is a maternity leave
+            or a work-injury inability after the injury day.
     """
 
     month_pay: Decimal
@@ -232,6 +239,7 @@ class MonthPosition:
     weekly_hours: Decimal | None = None
     full_time_weekly_hours: Decimal | None = None
     worked: bool = True
+    indemnified: bool = False
 
     @property
     def part_time(self) -> tuple[Decimal, Decimal] | None:

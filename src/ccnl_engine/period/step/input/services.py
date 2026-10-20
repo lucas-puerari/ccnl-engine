@@ -12,6 +12,7 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.absence.insured.services import insured_terms
 from ccnl_engine.amount.types import PublicTerms, _AmountsInput
 from ccnl_engine.balance.obligation.models import (
     TRATTAMENTO_RECOVERY,
@@ -102,6 +103,7 @@ def variable_events(
         ),
         hourly=hourly_terms(ctx),
         sickness=sickness_terms(ctx),
+        insured=insured_terms(ctx),
         travel_allowance=var_pay.travel_allowance,
         standby=_standby_terms(ctx),
         ccnl_travel=_travel_terms(ctx),

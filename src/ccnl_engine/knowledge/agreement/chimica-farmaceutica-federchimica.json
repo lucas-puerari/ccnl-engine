@@ -261,6 +261,19 @@
       {
         "kind": "info",
         "text": "LEAVE AT TERMINATION (Art. 14): the indemnity is the 'retribuzione globale di fatto in atto al momento della liquidazione' for the days of ferie not taken; its daily divisor is not stated in the text read, so the engine pays no residual (termination_residual_leave incomplete). The ferie taken in excess are repaid (not modelled); Art. 13 sets no deadline for the residual ROL and ex festività."
+      },
+      {
+        "kind": "simplification",
+        "text": "INSURED ABSENCES: compulsory maternity leave (top-up to 100% of the gross retribuzione globale di fatto for five months, Art. 41) and work injury (full net pay with the INAIL indemnity advanced, Art. 40 C) as work_rules.insured_absence. The full pay of an injury lasts three, four or five months by seniority and halves after: the engine tops up every injury day to 100%.",
+        "capability": "workplace_injury",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "injury_full_pay_periods",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Count the injury days against the full-pay and half-pay periods of Art. 40 C, with the sickness of the same window."
+        }
       }
     ]
   },
@@ -4795,7 +4808,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "cf05497286ca4ffac1321726680f6630d29bb2a3f06d117b163bd5c533d8b7c4",
+    "source_hash": "525fc792f3e2f7607de50f7046228d5d3754b981514b2ac29dcc55029dbeb1cd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5592,6 +5605,71 @@
           "verification_status": "unverified"
         }
       }
+    },
+    "insured_absence": {
+      "maternity": {
+        "integration_rate": "1",
+        "integration_days": 150,
+        "net_basis": false,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-579-ccnl-chimica-2006",
+              "title": "CCNL industria chimica, chimico-farmaceutica, fibre chimiche e settori abrasivi, lubrificanti e GPL, testo definitivo 10 maggio 2006 (CNEL n. 579, file Word)",
+              "kind": "cnel",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+              "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+            },
+            "section": "Art. 41 - Trattamento per maternità e paternità",
+            "quote": "La lavoratrice in congedo di maternità o, in alternativa, il lavoratore in congedo di paternità riceverà inoltre un trattamento di assistenza, ad integrazione di quello di legge, fino a raggiungere il 100% della normale retribuzione globale di fatto per i primi cinque mesi di assenza."
+          },
+          "transformation": "Top-up to 100% of the normale retribuzione globale di fatto (gross) for the first five months of the leave (150 days); the INPS indemnity is advanced by the employer.",
+          "note": "CNEL 579 is a Word file: no page. Same article: 'sarà anticipato ai lavoratori il trattamento a carico dell'INPS'. Not modelled: the ratei of the extra months during the leave.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-20T16:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-20T16:00:00Z",
+            "review_id": "2026-10-20-ai-insured-absence",
+            "verification_status": "verified",
+            "effective_from": "2006-05-10"
+          }
+        }
+      },
+      "injury": {
+        "carenza_rate": "1",
+        "integration_rate": "1",
+        "net_basis": true,
+        "advanced": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-579-ccnl-chimica-2006",
+              "title": "CCNL industria chimica, chimico-farmaceutica, fibre chimiche e settori abrasivi, lubrificanti e GPL, testo definitivo 10 maggio 2006 (CNEL n. 579, file Word)",
+              "kind": "cnel",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+              "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+            },
+            "section": "Art. 40 C - Trattamento economico durante l'assenza",
+            "quote": "al lavoratore non in prova e non in Cassa Integrazione Guadagni, assente per malattia o infortunio o malattia professionale, viene assicurato un trattamento economico pari a: intera retribuzione netta per tre mesi e alla metà di essa per successivi cinque mesi"
+          },
+          "transformation": "Injury: full net pay, the waiting period included (carenza 100%), reached by topping up the INAIL indemnity on a net basis; the employer advances the indemnities ('quote anticipate sia per conto degli Istituti assicuratori').",
+          "note": "Not modelled: the end of the full pay after three, four or five months by seniority and the half pay after it, nor the cumulation with sickness; every injury day is topped up to 100%.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-20T16:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-20T16:00:00Z",
+            "review_id": "2026-10-20-ai-insured-absence",
+            "verification_status": "verified",
+            "effective_from": "2006-05-10"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -5712,6 +5790,23 @@
         "findings": [
           "Ipotesi of 15 April 2025, first tranche from 1 July 2025: parameters.renewals.",
           "p. 46: the July 2025 tranche also pays the last 20 EUR (D1) of the renewal of 13 June 2022, signed outside the window: the minimo before the renewal at D1 is 2239.26 + 20 = 2259.26. The 2022 tranche of the other categories is not printed in the 2025 text (its tables are announced, not attached): their increment stays unmeasured."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-insured-absence",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The treatment of the compulsory maternity leave and of a work injury.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+            "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+          }
+        ],
+        "findings": [
+          "work_rules.insured_absence added from the articles cited in its provenance; statutory measures in absence/insured/rates.json (D.Lgs. 151/2001 artt. 22-23, D.P.R. 1124/1965 artt. 68, 73, 116-117)."
         ]
       }
     ],

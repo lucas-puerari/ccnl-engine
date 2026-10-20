@@ -9,6 +9,8 @@ INPS decisions and an incomplete issue say that they are undetermined.
 
 from __future__ import annotations
 
+import calendar
+from datetime import date, timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -22,7 +24,12 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
 )
 from ccnl_engine.employment.inputs import Apprentice
-from ccnl_engine.event.facade import AbsenceEvent, SickLeaveEvent
+from ccnl_engine.event.facade import (
+    AbsenceEvent,
+    MaternityLeaveEvent,
+    SickLeaveEvent,
+    WorkInjuryEvent,
+)
 from ccnl_engine.run.models import RunKind
 
 if TYPE_CHECKING:
@@ -43,7 +50,7 @@ ISSUE_CODE = "inps_minimum_base_undetermined"
 _LEGAL_BASIS = "D.L. 463/1983 art. 7 c. 1; D.Lgs. 81/2015 art. 11 c. 1"
 #: Kinds of run that may post the monthly pay of their month.
 _PAYING_KINDS = frozenset({RunKind.REGULAR, RunKind.TERMINATION})
-_REDUCING_EVENTS = (AbsenceEvent, SickLeaveEvent)
+_REDUCING_EVENTS = (AbsenceEvent, SickLeaveEvent, MaternityLeaveEvent, WorkInjuryEvent)
 #: Fact of a sector that excludes a category the request leaves open.
 _CATEGORY = "category"
 #: Engine limitation of a worker whose category art. 7 c. 5 excludes.
@@ -52,6 +59,30 @@ EXEMPT_CATEGORY_FLOOR = "inps_minimum_base_exempt_category"
 
 def _hours(fact: WeeklyHours | None) -> Decimal | None:
     return None if fact is None else fact.value
+
+
+def _indemnified(ctx: RunContext) -> bool:
+    """Return whether an insurer indemnifies every employed day of the month.
+
+    Returns:
+        ``True`` when a maternity leave, or the inability after a work
+        injury of an earlier day, spans the employed days of the month.
+    """
+    year, month = ctx.cp.year, ctx.cp.month
+    first, last = ctx.proration.span or (
+        date(year, month, 1),
+        date(year, month, calendar.monthrange(year, month)[1]),
+    )
+    for event in ctx.request.events:
+        if isinstance(event, MaternityLeaveEvent):
+            start = event.started_on
+        elif isinstance(event, WorkInjuryEvent):
+            start = event.injury_on + timedelta(days=1)
+        else:
+            continue
+        if start <= first and event.ended_on >= last:
+            return True
+    return False
 
 
 def _position(ctx: RunContext) -> MonthPosition:
@@ -79,6 +110,7 @@ def _position(ctx: RunContext) -> MonthPosition:
         weekly_hours=_hours(request.weekly_hours),
         full_time_weekly_hours=_hours(request.full_time_weekly_hours),
         worked=not proration.idle,
+        indemnified=_indemnified(ctx),
     )
 
 

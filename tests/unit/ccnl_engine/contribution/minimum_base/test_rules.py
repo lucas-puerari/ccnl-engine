@@ -142,6 +142,21 @@ def test_art_7_c_5_exclusions_keep_the_pay(
     assert not minimum.undetermined
 
 
+def test_an_indemnified_month_keeps_the_pay() -> None:
+    """A month of maternity leave: only the 246.52 top-up is contributed.
+
+    The days are credited with figurative contributions (D.Lgs. 151/2001
+    art. 25): the employer pays no day the daily minimum is counted on,
+    even with an absence in the month.
+    """
+    position = replace(_FULL_TIME, absence=True, indemnified=True)
+    minimum = resolve_minimum_base(_PRIVATE, _D("246.52"), position)
+
+    assert minimum.reason is MinimumBaseReason.INDEMNIFIED_MONTH
+    assert minimum.base == _D("246.52")
+    assert not minimum.undetermined
+
+
 def test_impiegato_agricolo_keeps_the_minimum() -> None:
     """Art. 7 c. 5 excludes the operai only: 1,000.00 is raised to 1,511.38."""
     position = replace(_FULL_TIME, category=WorkerCategory.IMPIEGATO)

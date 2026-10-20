@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Protocol
 
 if TYPE_CHECKING:
+    from ccnl_engine.absence.insured.models import InsuredAbsenceRates
     from ccnl_engine.agreement.facade import CCNL, TaxSector
     from ccnl_engine.capability.registry.models import CapabilityCatalog
     from ccnl_engine.catalog.loaders import ContractSummary
@@ -70,4 +71,8 @@ class KnowledgeRepository(Protocol):  # pragma: no cover
 
     def load_sick_pay_rates(self) -> InpsSickPayRates:
         """Load and return the INPS sickness indemnity rules."""
+        ...
+
+    def load_insured_absence_rates(self) -> InsuredAbsenceRates:
+        """Load and return the maternity and work-injury indemnities."""
         ...

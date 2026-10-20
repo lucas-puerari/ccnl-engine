@@ -14,6 +14,7 @@ from typing import TYPE_CHECKING, Any
 
 import pytest
 
+from ccnl_engine.absence.insured.loaders import load_insured_absence_rates
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.capability.loaders import load_capability_catalog
 from ccnl_engine.catalog.loaders import load_ccnl
@@ -56,6 +57,7 @@ _LOADERS: dict[str, Callable[[dict[str, Any]], object]] = {
     "severance/revaluation": lambda r: load_tfr_revaluation_rules(r["year"]),
     "severance/settlement": lambda r: load_tfr_settlement_rules(r["year"]),
     "sickness/indemnity": lambda _: load_sick_pay_rates(),
+    "absence/insured": lambda _: load_insured_absence_rates(),
     "surtax/municipal": lambda r: load_surtax_rules(r["year"]),
     "surtax/regional": lambda r: load_surtax_rules(r["year"]),
     "tax_credit/somma_esente": lambda r: load_somma_esente_rules(r["year"]),

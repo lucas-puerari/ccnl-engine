@@ -13,6 +13,7 @@ from ccnl_engine.event.facade import (
     FringeEvent,
     HolidayWorkEvent,
     LeaveTakenEvent,
+    MaternityLeaveEvent,
     NightShiftEvent,
     OvertimeEvent,
     ShiftWorkEvent,
@@ -22,6 +23,7 @@ from ccnl_engine.event.facade import (
     TerminationTFREvent,
     TravelAllowanceEvent,
     WelfareEvent,
+    WorkInjuryEvent,
 )
 from ccnl_engine.pay_item.services import _ZERO
 from ccnl_engine.sickness.models import SicknessHistory
@@ -52,6 +54,8 @@ EVENT_FEATURES: dict[type, str] = {
     AbsenceEvent: "absence",
     SickLeaveEvent: "sickness",
     SicknessEpisode: "sickness",
+    MaternityLeaveEvent: "maternity_leave",
+    WorkInjuryEvent: "workplace_injury",
     FringeEvent: "fringe_benefit",
     TravelAllowanceEvent: "travel_allowance",
     WelfareEvent: "welfare",

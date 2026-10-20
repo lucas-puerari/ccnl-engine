@@ -455,6 +455,8 @@ Steps 7–9 are fiscal and can be parameterised heavily. See
 | `OvertimeEvent` | Overtime hours for a specific date |
 | `AbsenceEvent` | Unpaid absence in the period; `suspends_accrual` also stops the extra-month ratei |
 | `SicknessEpisode` | Sickness episode; the engine pays its days in each month it touches |
+| `MaternityLeaveEvent` | Maternity leave; the engine pays its days in each month it touches |
+| `WorkInjuryEvent` | Inability after a work injury; the engine pays its days in each month it touches |
 | `SickLeaveEvent` | Sick pay computed by the caller: an override, never payable |
 | `FringeEvent` | Fringe-benefit value; the annual threshold follows the children of `PeriodFacts.family_composition` |
 | `WelfareEvent` | Welfare benefit annual amount |

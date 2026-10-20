@@ -284,6 +284,20 @@
     "legal_basis": "Art. 51 TUIR"
   },
   {
+    "policy_id": "it/indemnity/absence_integration",
+    "policy_version": "2026.1",
+    "kinds": [
+      "absence_integration_item"
+    ],
+    "effective_from": "2000-01-01",
+    "effective_until": null,
+    "tax": "ordinary",
+    "contribution": "included",
+    "tfr": "excluded",
+    "cost": "employee_cash",
+    "legal_basis": "Art. 51 TUIR; D.P.R. 1124/1965 art. 73 (the injury day and the waiting period the employer pays); D.Lgs. 151/2001 art. 22 and the CCNL top-up: employer pay, in the INPS base; the TFR base keeps the pay of the absent days (art. 2120 c. 3 c.c.)"
+  },
+  {
     "policy_id": "it/indemnity/sickness_inps",
     "policy_version": "2026.1",
     "kinds": [

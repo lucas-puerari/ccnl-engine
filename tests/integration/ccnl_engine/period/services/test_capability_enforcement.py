@@ -104,7 +104,7 @@ class TestOrdinaryMonth:
             ("family_deductions", CapabilityScope.NOT_APPLICABLE),
             (_RESIDUAL_LEAVE, CapabilityScope.NOT_APPLICABLE),
             ("inail", CapabilityScope.OUTSIDE_INPUT),
-            ("maternity_leave", CapabilityScope.OUTSIDE_INPUT),
+            ("maternity_leave", CapabilityScope.NOT_APPLICABLE),
         ],
     )
     def test_scope_of_each_capability(
