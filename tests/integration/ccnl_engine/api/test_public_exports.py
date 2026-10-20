@@ -106,6 +106,8 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "WorkerCategory",
         "period_state_from_json",
         "period_state_to_json",
+        "request_from_json",
+        "request_to_json",
     }),
     "ccnl_engine.events": frozenset({
         "AbsenceEvent",
@@ -151,6 +153,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "ResultTotal",
         "UncoveredRun",
         "UnresolvedRequirement",
+        "result_to_json",
     }),
     "ccnl_engine.catalog": frozenset({
         "CapabilityCatalog",

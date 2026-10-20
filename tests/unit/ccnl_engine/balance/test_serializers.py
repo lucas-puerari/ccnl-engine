@@ -3,19 +3,14 @@
 from __future__ import annotations
 
 import dataclasses
-import importlib
 import json
-import pkgutil
-import sys
 import typing
 from datetime import date
 from decimal import Decimal
-from enum import Enum
-from types import UnionType
 
 import pytest
 
-import ccnl_engine as engine_package
+from ccnl_engine.balance import serializers
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.balance.serializers import (
     FIRST_SCHEMA_VERSION,
@@ -29,6 +24,7 @@ from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.run.models import PayrollRunId, RunKind
 from ccnl_engine.sickness.models import SicknessEpisode
+from tests.unit.ccnl_engine import support
 
 _VERSIONS = {"engine_version": "1.0.0", "bundle_version": "2026.1"}
 
@@ -185,6 +181,20 @@ def test_a_text_that_is_not_a_current_state_is_invalid_input(text: str) -> None:
         _read(text)
 
 
+def test_a_tree_a_migration_rejects_is_invalid_input(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A stored tree too malformed for a migration step is rejected input."""
+
+    def rejecting(_tree: object, _version: int) -> object:
+        msg = "no accrual"
+        raise KeyError(msg)
+
+    monkeypatch.setattr(serializers, "migrate_state", rejecting)
+    with pytest.raises(InvalidInputError, match="cannot be migrated"):
+        _read(_write(_state()))
+
+
 def test_writing_a_type_outside_the_registry_is_a_defect() -> None:
     """A state type the registry forgot fails loudly instead of being written."""
 
@@ -196,57 +206,10 @@ def test_writing_a_type_outside_the_registry_is_a_defect() -> None:
         period_state_to_json(Stray(Decimal(1)), **_VERSIONS)  # type: ignore[arg-type]
 
 
-def _domain_types() -> dict[str, type]:
-    names: dict[str, type] = {}
-    for module in pkgutil.walk_packages(
-        engine_package.__path__, f"{engine_package.__name__}."
-    ):
-        imported = importlib.import_module(module.name)
-        names.update({k: v for k, v in vars(imported).items() if isinstance(v, type)})
-    return names
-
-
-def _inner(hint: object, names: dict[str, type]) -> list[object]:
-    if typing.get_origin(hint) is not None or isinstance(hint, UnionType):
-        return list(typing.get_args(hint))
-    if isinstance(hint, typing.TypeAliasType):
-        return [hint.__value__]
-    if isinstance(hint, type) and dataclasses.is_dataclass(hint):
-        own = vars(sys.modules[hint.__module__])
-        hints = typing.get_type_hints(hint, localns={**names, **own})
-        return [hints[f.name] for f in dataclasses.fields(hint) if f.init]
-    return []
-
-
-def _is_state_type(hint: object) -> bool:
-    return isinstance(hint, type) and (
-        issubclass(hint, Enum) or dataclasses.is_dataclass(hint)
-    )
-
-
-def _reachable(root: type, names: dict[str, type]) -> set[type]:
-    found: set[type] = set()
-    seen: set[int] = set()
-    # Hints built on the fly are freed once popped; keeping each one alive
-    # stops a later hint from reusing its id and being skipped.
-    visited: list[object] = []
-    pending: list[object] = [root]
-    while pending:
-        hint = pending.pop()
-        if id(hint) in seen:
-            continue
-        seen.add(id(hint))
-        visited.append(hint)
-        if _is_state_type(hint):
-            found.add(typing.cast("type", hint))
-        pending.extend(_inner(hint, names))
-    return found
-
-
 def test_the_registry_holds_every_type_of_a_state() -> None:
     """Each dataclass and enum a PeriodState can hold has a tag, and only those."""
     registered = set(STATE_TYPES.values())
-    reachable = _reachable(PeriodState, _domain_types())
+    reachable = support.reachable((PeriodState,), support.domain_types())
     difference = sorted(
         f"{c.__module__}.{c.__qualname__}" for c in registered ^ reachable
     )

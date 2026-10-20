@@ -110,6 +110,7 @@ The subdomains of each concept are in
 | `bundle`, `sector` | Readers of the bundle: manifest, resources, hash and label checks; the rules of a tax sector and year |
 | `provenance`, `comparison` | Ruleset and source provenance; the rules diff of a CCNL |
 | `collection` | Validators of the public collections |
+| `codec`, `interchange` | The tagged JSON tree of engine values; the JSON forms of the public inputs and results |
 
 ## Technical roles
 
@@ -134,9 +135,9 @@ its own tier or of a lower one; cycles inside a tier are allowed.
 
 | Tier | Concepts |
 |---|---|
-| orchestration | `api`, `inputs`, `events`, `results`, `catalog`, `assurance`, `capability`, `comparison`, `default`, `period`, `reconciliation`, `year` |
+| orchestration | `api`, `inputs`, `events`, `results`, `catalog`, `assurance`, `capability`, `comparison`, `default`, `interchange`, `period`, `reconciliation`, `year` |
 | computation | `agreement`, `amount`, `bundle`, `calendar`, `decision`, `knowledge`, `sector`, `limitation`, `balance`, `absence`, `apprenticeship`, `compensation`, `contribution`, `employer`, `employment`, `end_of_service`, `event`, `extra_month`, `family`, `fund`, `irpef`, `ledger`, `pay_item`, `pension_fund`, `regime`, `seniority`, `severance`, `sickness`, `surtax`, `tax_credit`, `termination`, `variable_pay`, `withholding`, `working_time` |
-| norms | `types`, `validators`, `errors`, `version`, `collection`, `provenance`, `run` |
+| norms | `types`, `validators`, `errors`, `version`, `codec`, `collection`, `provenance`, `run` |
 
 A root module (`api.py`, `inputs.py`) is a concept of its own; the package
 root `__init__.py` holds the public namespace and has no tier. Imports under
