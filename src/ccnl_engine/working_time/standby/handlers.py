@@ -13,12 +13,12 @@ from ccnl_engine.ledger.models import AccountKind, PostingIntent
 from ccnl_engine.pay_item.facade import StandbyEarning
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.pay_item.services import _ZERO, _require_resolution
-from ccnl_engine.working_time.inputs import StandbyKind
+from ccnl_engine.working_time.standby.inputs import StandbyKind
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.validity.rules import TimeSeries
-    from ccnl_engine.working_time.inputs import StandbyEvent
-    from ccnl_engine.working_time.models import StandbyRates, StandbyRules
+    from ccnl_engine.working_time.standby.inputs import StandbyEvent
+    from ccnl_engine.working_time.standby.models import StandbyRates, StandbyRules
 
 __all__ = ["StandbyTerms", "_handle_standby"]
 

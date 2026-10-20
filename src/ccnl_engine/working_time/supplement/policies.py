@@ -41,13 +41,13 @@ from ccnl_engine.event.facade import (
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.working_time.hourly.policies import BASE_PATH, reject_underived
 from ccnl_engine.working_time.inputs import ShiftKind
-from ccnl_engine.working_time.models import SupplementWork
+from ccnl_engine.working_time.supplement.models import SupplementWork
 
 if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.working_time.hourly.policies import HourlyBase, HourlyTerms
-    from ccnl_engine.working_time.models import SupplementBand
+    from ccnl_engine.working_time.supplement.models import SupplementBand
 
 __all__ = [
     "HOURS_NOT_POSTED",

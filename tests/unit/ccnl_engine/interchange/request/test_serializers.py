@@ -89,9 +89,8 @@ from ccnl_engine.working_time.inputs import (
     OvertimeEvent,
     OvertimeKind,
     ShiftWorkEvent,
-    StandbyEvent,
-    StandbyKind,
 )
+from ccnl_engine.working_time.standby.inputs import StandbyEvent, StandbyKind
 from ccnl_engine.year.competence.inputs import CompetenceYearPlan
 from ccnl_engine.year.tax_year.inputs import TaxYearPlan
 from tests.unit.ccnl_engine import support

@@ -34,7 +34,7 @@ from typing import TYPE_CHECKING, NoReturn
 
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
-from ccnl_engine.working_time.models import HourlyBaseMethod
+from ccnl_engine.working_time.supplement.models import HourlyBaseMethod
 
 if TYPE_CHECKING:
     from datetime import date

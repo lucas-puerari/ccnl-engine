@@ -19,7 +19,7 @@ from ccnl_engine.event.facade import (
     ShiftWorkEvent,
 )
 from ccnl_engine.working_time.hourly.policies import HourlyTerms
-from ccnl_engine.working_time.models import SupplementBand, SupplementWork
+from ccnl_engine.working_time.supplement.models import SupplementBand, SupplementWork
 from ccnl_engine.working_time.supplement.policies import (
     HOURS_NOT_POSTED,
     resolve_supplement,

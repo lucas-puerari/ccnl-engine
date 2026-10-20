@@ -31,9 +31,8 @@ from ccnl_engine.working_time.inputs import (
     OvertimeKind,
     ShiftKind,
     ShiftWorkEvent,
-    StandbyEvent,
-    StandbyKind,
 )
+from ccnl_engine.working_time.standby.inputs import StandbyEvent, StandbyKind
 
 __all__ = [
     "WORK_EVENT_TYPES",

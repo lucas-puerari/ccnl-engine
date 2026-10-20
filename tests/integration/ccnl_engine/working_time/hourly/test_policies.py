@@ -11,7 +11,7 @@ from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.element.types import MonthlyPayChain
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.working_time.hourly.policies import HourlyTerms
-from ccnl_engine.working_time.models import HourlyBaseMethod
+from ccnl_engine.working_time.supplement.models import HourlyBaseMethod
 
 _COMMERCIO = load_ccnl("commercio-confcommercio")
 _DAY = date(2026, 3, 10)

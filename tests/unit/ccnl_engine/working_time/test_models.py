@@ -11,12 +11,11 @@ from ccnl_engine.provenance.source.rule.models import (
 )
 from ccnl_engine.working_time.models import (
     OvertimeBand,
-    SupplementBand,
-    SupplementWork,
     TimeSupplementKind,
     TimeSupplements,
     WorkKind,
 )
+from ccnl_engine.working_time.supplement.models import SupplementBand, SupplementWork
 from tests.unit.ccnl_engine.builders import _series
 
 
