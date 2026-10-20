@@ -12,7 +12,6 @@ from ccnl_engine.assurance.models import (
     Payability,
     ResultAssurance,
     ResultBlocker,
-    ResultTotal,
 )
 from ccnl_engine.assurance.policies import EngineMode
 from ccnl_engine.assurance.rules import (
@@ -33,6 +32,7 @@ from ccnl_engine.decision.models import (
     DecisionOrigin,
 )
 from ccnl_engine.limitation.models import ModelLimitation, MonetaryImpact
+from ccnl_engine.limitation.types import ResultTotal
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 from tests.unit.ccnl_engine.provenance.ruleset.builders import tax_ruleset
 

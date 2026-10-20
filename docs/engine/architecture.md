@@ -30,7 +30,10 @@ api -> application -> service -> domain
 - A concept imports only concepts of its own tier or of a lower one
   (orchestration, computation, norms: see
   [Dependency tiers](architecture-contract.md#dependency-tiers)); cycles
-  inside a tier are allowed.
+  inside a tier are allowed. `scripts/architecture/check.py` enforces
+  the tiers, with the upward imports the contract lists by module, and the
+  300-line limit of a module against a shrink-only baseline; `make check`
+  and CI run it.
 - `ccnl_engine.version` and the bundle version in `bundle/facade.py` are
   metadata: any layer except `domain` may import them. A package
   `__init__.py` holds a docstring only, except the package root and

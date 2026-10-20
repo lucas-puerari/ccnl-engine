@@ -138,12 +138,27 @@ its own tier or of a lower one; cycles inside a tier are allowed.
 | computation | `agreement`, `amount`, `bundle`, `calendar`, `decision`, `knowledge`, `sector`, `limitation`, `balance`, `absence`, `apprenticeship`, `compensation`, `contribution`, `employer`, `employment`, `end_of_service`, `event`, `extra_month`, `family`, `fund`, `irpef`, `ledger`, `pay_item`, `pension_fund`, `regime`, `seniority`, `severance`, `sickness`, `surtax`, `tax_credit`, `termination`, `variable_pay`, `withholding`, `working_time` |
 | norms | `types`, `validators`, `errors`, `version`, `collection`, `provenance`, `run` |
 
+A root module (`api.py`, `inputs.py`) is a concept of its own; the package
+root `__init__.py` holds the public namespace and has no tier. Imports under
+`if TYPE_CHECKING:` do not count.
+
 The migration resolved the imports from computation into orchestration by
 moving the shared helpers and types to the tier of their users
-(`pay_item/services.py`, `decision/rules.py`, `calendar/`, `amount/`). Two
-imports remain, by design: the INPS and
-seniority decisions cite the payable rules of the run through the capability
-rule lookup.
+(`pay_item/services.py`, `decision/rules.py`, `calendar/`, `amount/`,
+`limitation/types.py`). The upward imports that remain are listed here, by
+module; any other fails `scripts/architecture/check.py`, and so does a
+listed one that no longer exists.
+
+| Importer | Imported | Reason |
+|---|---|---|
+| `contribution/ceiling/services.py` | `capability/rule/services.py` | The INPS ceiling decision cites the payable rules of the run through the capability rule lookup |
+| `contribution/decision/services.py` | `capability/rule/services.py` | The INPS rate decision cites the payable rules of the run through the capability rule lookup |
+| `seniority/services.py` | `capability/rule/services.py` | The seniority decision cites the payable rules of the run through the capability rule lookup |
+
+A module under `src/ccnl_engine` holds at most 300 lines. The modules
+longer than that on 2026-10-19 are listed in
+`scripts/architecture/baseline.json`; each may only shrink, and a module
+leaves the list once it fits.
 
 Inside a concept the role direction holds:
 
