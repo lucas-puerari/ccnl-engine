@@ -16,9 +16,15 @@ from ccnl_engine.validators import (
     require_decimal,
     require_instance,
     require_int,
+    require_str,
 )
 
-__all__ = ["EarnedIncrements", "SeniorityFact", "SenioritySource"]
+__all__ = [
+    "EarnedIncrements",
+    "SeniorityFact",
+    "SeniorityPromotion",
+    "SenioritySource",
+]
 
 _REMEDIATION = "Compute only runs from the start of the recognised service."
 
@@ -72,6 +78,43 @@ class EarnedIncrements:
 
 
 @dataclass(frozen=True, slots=True)
+class SeniorityPromotion:
+    """The last change of level of the worker, for the increments it reprices.
+
+    Some CCNLs reprice the increments matured before a promotion at the
+    amounts of the new level only when the next increment matures
+    (Turismo art. 158 c. 6: "gli importi relativi agli scatti precedenti
+    saranno ricalcolati in base al nuovo valore al momento di maturazione
+    del nuovo scatto"); until then they keep the amount of the level they
+    were matured at.  A :class:`~ccnl_engine.CompetenceYearPlan` derives it
+    from an :class:`~ccnl_engine.inputs.EmploymentChange` of level; state it
+    for a promotion before the plan or for a single run.
+
+    Attributes:
+        effective_on: First day of the new level.
+        from_level: Level code before the change.
+
+    Raises:
+        InvalidInputError: When ``effective_on`` is not a date or
+            ``from_level`` is blank.
+    """
+
+    effective_on: date
+    from_level: str
+
+    def __post_init__(self) -> None:  # noqa: D105
+        require_date(
+            self.effective_on, "SeniorityPromotion.effective_on", feature=FEATURE
+        )
+        require_str(
+            self.from_level,
+            "SeniorityPromotion.from_level",
+            feature=FEATURE,
+            non_blank=True,
+        )
+
+
+@dataclass(frozen=True, slots=True)
 class SeniorityFact:
     """Recognised seniority of the worker, for seniority increments.
 
@@ -97,17 +140,23 @@ class SeniorityFact:
             and add only the increments matured after ``as_of``, priced by
             the CCNL table of the run, up to its maximum count.  ``None``
             prices every increment by that table.
+        promotion: The last change of level (:class:`SeniorityPromotion`),
+            read only by a CCNL that reprices the earlier increments at the
+            next increment; ``None`` when the level never changed or the
+            change is older than the last increment.
 
     Raises:
         InvalidInputError: When ``months`` is not a non-negative int,
-            ``as_of`` is not a date, ``source`` names no source or
-            ``earned`` is not :class:`EarnedIncrements`.
+            ``as_of`` is not a date, ``source`` names no source,
+            ``earned`` is not :class:`EarnedIncrements` or ``promotion``
+            is not :class:`SeniorityPromotion`.
     """
 
     months: int
     as_of: date
     source: SenioritySource
     earned: EarnedIncrements | None = None
+    promotion: SeniorityPromotion | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_int(self.months, "SeniorityFact.months", feature=FEATURE, minimum=0)
@@ -120,6 +169,13 @@ class SeniorityFact:
             self.earned,
             EarnedIncrements,
             "SeniorityFact.earned",
+            feature=FEATURE,
+            optional=True,
+        )
+        require_instance(
+            self.promotion,
+            SeniorityPromotion,
+            "SeniorityFact.promotion",
             feature=FEATURE,
             optional=True,
         )

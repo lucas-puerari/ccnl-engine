@@ -473,7 +473,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "ca864bb07efc66155680528be4170d3b159e119dffb60df586f37ea94d7ef43a",
+      "source_hash": "e10cea596a04f3b2dbe20124a7c7304d08dda91cf4176548ecfbc39f67a9a36f",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/commercio-confcommercio.json.gz"
@@ -1442,7 +1442,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-confapi",
       "ruleset_version": "2026.2",
-      "source_hash": "74e06d777c65f468d6a3e6d32514794fd3913bb097d969774e6cd5e6f3a1ff08",
+      "source_hash": "b0a16f200a25a49402e6b6937b14b2f5a44593b70dd81e4c7c4c20f39dd75e92",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-confapi.json.gz"
@@ -1476,7 +1476,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-federmeccanica",
       "ruleset_version": "2026.3",
-      "source_hash": "317fed33425cc76efeffd192d136d2113db7db7206b8951bdd2746138ed3f0b1",
+      "source_hash": "60ebad0b1dd035d6a87ef3e9048aa1c7d9d6f4abbbafbb78bccc11003d0c3ec2",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-federmeccanica.json.gz"
@@ -1731,7 +1731,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem",
       "ruleset_version": "2026.2",
-      "source_hash": "c3cdd26f74bb7b13ba0c95e6c744c77743aa7f579939433dc823faa01f7bbd17",
+      "source_hash": "d709a61567f80d0cfc91051922326289476b3568f39cb3810dd1b81b42264397",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem.json.gz"
@@ -1969,7 +1969,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/studi-professionali-confprofessioni",
       "ruleset_version": "2026.2",
-      "source_hash": "3afbf2b2dd6c47b57d69f1d7b00fc6b16d01c8f956e99f3efb55b3de910ef3ad",
+      "source_hash": "90c2085c72072e6665b5169447a88f3dfe526b0faf399966d4d9616dd5f5d8af",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/studi-professionali-confprofessioni.json.gz"
@@ -2020,7 +2020,7 @@
       "valid_to": "2027-03-31",
       "ruleset_id": "ccnl/terziario-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "57d2916e183f7a0ba121c9b2def982c30c5a5aac8e003398e6b104d207de67f7",
+      "source_hash": "e392841ce8f3bafebf12f7919c60531faf36af76f13b8e05b1d1bfc961547540",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/terziario-confesercenti.json.gz"
@@ -2139,7 +2139,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi",
       "ruleset_version": "2026.2",
-      "source_hash": "6dc900963be8f02f1537ddf2814d1447e0995969aa7d6ad5699c1a8c31ae6ca0",
+      "source_hash": "1321b0f35e6d3a8611e02afdaa3c8c816b8672db29559ba19577c761ac79eec5",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/turismo-federalberghi.json.gz"

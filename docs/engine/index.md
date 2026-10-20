@@ -201,7 +201,9 @@ of a month, in date order. The runs of a month price the employment in force
 on its first day. The extra months are paid on the pay in force when they are
 paid (the "retribuzione in atto" of the CCNLs), so a promotion raises the
 whole rateo; a change of hours does not: each stretch of the rateo is paid at
-the hours it was accrued at.
+the hours it was accrued at. A change of level is recorded on the seniority
+as its last promotion, for a CCNL that reprices the earlier increments only
+at the next one ([Pay components](pay-components.md)).
 
 ```python
 from datetime import date

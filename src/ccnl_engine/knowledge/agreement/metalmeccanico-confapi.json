@@ -446,6 +446,37 @@
           ]
         }
       },
+      "on_promotion": {
+        "at_next_increment": false,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-unionmeccanica-confapi-2017",
+              "title": "CCNL 3 luglio 2017 piccola e media industria metalmeccanica, orafa e installazione impianti (Unionmeccanica-Confapi, Fim-Cisl, Fiom-Cgil, Uilm-Uil), testo a stampa",
+              "kind": "associazione",
+              "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+              "published_on": "2017-07-03",
+              "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+            },
+            "page": "116",
+            "section": "Art. 41 - Aumenti periodici di anzianità",
+            "quote": "In caso di passaggio a categoria superiore il lavoratore conserva la anzianità di servizio ai fini degli aumenti periodici di anzianità, nonché il numero degli stessi, il cui valore sarà ragguagliato agli importi previsti per la categoria di arrivo."
+          },
+          "transformation": "at_next_increment = false: the increments take the amounts of the new level from the promotion.",
+          "note": "The increments take the amounts of the new category from the promotion.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-20T19:00:00Z",
+            "effective_from": "2021-06-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-20T19:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-20-ai-seniority-promotion"
+          }
+        }
+      },
       "provenance": {
         "status": "verified",
         "location": {
@@ -2986,7 +3017,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "74e06d777c65f468d6a3e6d32514794fd3913bb097d969774e6cd5e6f3a1ff08",
+    "source_hash": "b0a16f200a25a49402e6b6937b14b2f5a44593b70dd81e4c7c4c20f39dd75e92",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3600,6 +3631,23 @@
         ],
         "findings": [
           "The values stated are those of the quoted clauses; what the texts leave open (month fractions, termination divisors, schedules and shift patterns) is not modelled and is recorded in the coverage notes."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-seniority-promotion",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The pricing of the seniority increments matured before a change of level (Art. 41 - Aumenti periodici di anzianità).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          }
+        ],
+        "findings": [
+          "Art. 41 - Aumenti periodici di anzianità (p. 116): the earlier increments take the amounts of the new level from the change: seniority_increments.on_promotion."
         ]
       }
     ],

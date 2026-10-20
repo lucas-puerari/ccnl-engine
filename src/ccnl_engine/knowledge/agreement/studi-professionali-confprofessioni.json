@@ -396,6 +396,37 @@
           ]
         }
       },
+      "on_promotion": {
+        "at_next_increment": false,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-studi-professionali-2024-02-16",
+              "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+              "kind": "associazione",
+              "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+              "published_on": "2024-02-16",
+              "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+            },
+            "page": "69",
+            "section": "Art. 134 - Scatti di anzianità",
+            "quote": "Nel caso in cui, nel corso del triennio intercorrente tra l'uno e l'altro scatto intervengano passaggi di livello, da quel momento si applicherà il valore dello scatto del livello acquisito."
+          },
+          "transformation": "at_next_increment = false: the increments take the amounts of the new level from the promotion.",
+          "note": "The increments take the amount of the new level from the change.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-20T19:00:00Z",
+            "effective_from": "2024-02-16",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-20T19:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-20-ai-seniority-promotion"
+          }
+        }
+      },
       "provenance": {
         "status": "verified",
         "location": {
@@ -2380,7 +2411,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "3afbf2b2dd6c47b57d69f1d7b00fc6b16d01c8f956e99f3efb55b3de910ef3ad",
+    "source_hash": "90c2085c72072e6665b5169447a88f3dfe526b0faf399966d4d9616dd5f5d8af",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2987,6 +3018,23 @@
         "findings": [
           "Renewal signed on 2024-02-16, first tranche from 2024-03-01: parameters.renewals.",
           "Minimo before the renewal = the column 'Minimo tabellare in vigore al 29 febbraio 2024' of the first tranche (Q 2,133.31 to 5 1,315.12)."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-seniority-promotion",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The pricing of the seniority increments matured before a change of level (Art. 134 - Scatti di anzianità).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "Art. 134 - Scatti di anzianità (p. 69): the earlier increments take the amounts of the new level from the change: seniority_increments.on_promotion."
         ]
       }
     ],

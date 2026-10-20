@@ -30,7 +30,7 @@ from ccnl_engine.inputs import (
     SeniorityFact,
     SenioritySource,
 )
-from ccnl_engine.seniority.rules import earned_seniority
+from ccnl_engine.seniority.repricing.rules import earned_seniority
 
 
 def _seniority(month: int, year: int, earned: EarnedIncrements | None) -> Decimal:

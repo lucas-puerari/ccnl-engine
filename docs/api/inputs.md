@@ -32,6 +32,8 @@ state types.
 
 ::: ccnl_engine.inputs.SeniorityFact
 
+::: ccnl_engine.inputs.SeniorityPromotion
+
 ::: ccnl_engine.inputs.EarnedIncrements
 
 ::: ccnl_engine.inputs.SenioritySource

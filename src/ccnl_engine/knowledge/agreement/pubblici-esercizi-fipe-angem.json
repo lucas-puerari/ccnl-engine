@@ -374,6 +374,37 @@
           ]
         }
       },
+      "on_promotion": {
+        "at_next_increment": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "fipe-ccnl-2018-02-08",
+              "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+              "kind": "associazione",
+              "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+              "published_on": "2018-02-08",
+              "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+            },
+            "page": "127",
+            "section": "Art. 182 c. 5 - Scatti di anzianità",
+            "quote": "Nel caso in cui nel corso del quadriennio intercorrente tra l'uno e l'altro scatto siano intervenuti passaggi a livello superiore, gli importi relativi agli scatti precedenti saranno ricalcolati in base al nuovo valore al momento di maturazione del nuovo scatto senza liquidazione di arretrati per il periodo pregresso."
+          },
+          "transformation": "at_next_increment = true: the increments matured before a promotion keep the amount of the level they were matured at until the next increment matures, then every increment takes the amount of the new level.",
+          "note": "Read on the scanned page (printed page 125).",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-20T19:00:00Z",
+            "effective_from": "2020-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-20T19:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-20-ai-seniority-promotion"
+          }
+        }
+      },
       "provenance": {
         "status": "verified",
         "location": {
@@ -2710,7 +2741,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "c3cdd26f74bb7b13ba0c95e6c744c77743aa7f579939433dc823faa01f7bbd17",
+    "source_hash": "d709a61567f80d0cfc91051922326289476b3568f39cb3810dd1b81b42264397",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3465,6 +3496,23 @@
         "findings": [
           "Renewal signed on 2024-06-05, first tranche from 2024-06-01: parameters.renewals.",
           "Minimo before the renewal = paga base before the tranche of June 2024 plus the contingenza, unchanged by it (the Totale the bundle carries): e.g. level 3, 1,130.81 + 528.26 = 1,659.07. The paga base is the table of December 2021 of the CCNL of 8 February 2018 (p. 117, column 'dic-21', read by OCR)."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-seniority-promotion",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The pricing of the seniority increments matured before a change of level (Art. 182 c. 5 - Scatti di anzianità).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          }
+        ],
+        "findings": [
+          "Art. 182 c. 5 - Scatti di anzianità (p. 127): the earlier increments are repriced at the new level when the next one matures: seniority_increments.on_promotion."
         ]
       }
     ],

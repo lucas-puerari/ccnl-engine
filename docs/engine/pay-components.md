@@ -173,6 +173,17 @@ of that article, or increments kept on a transfer from another CCNL) go in
 of `as_of` prints them: the runs pay that amount and add only the increments
 matured after `as_of`, priced by the table, up to the maximum count.
 
+Some CCNLs reprice the increments matured before a promotion only when the
+next one matures (`seniority_increments.on_promotion.at_next_increment`):
+Turismo art. 158 c. 6, FIPE art. 182 c. 5, Commercio and Terziario art. 205.
+Until then the runs pay them at the amount of the level before the
+promotion; from the next increment every increment takes the amount of the
+new level. The promotion is `SeniorityFact.promotion`, a
+`SeniorityPromotion(effective_on, from_level)`: a `CompetenceYearPlan`
+records it from an `EmploymentChange` of level; state it for a promotion
+before the plan. Federmeccanica art. 6, Confapi art. 41 and Studi art. 134
+reprice at once, as a CCNL without the clause does.
+
 Every run records a `seniority` decision with one of four reasons:
 
 | Reason | When | Amount |

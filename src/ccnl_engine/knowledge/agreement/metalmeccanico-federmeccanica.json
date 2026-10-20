@@ -356,6 +356,37 @@
           ]
         }
       },
+      "on_promotion": {
+        "at_next_increment": false,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+              "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
+              "kind": "associazione",
+              "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+              "published_on": "2021-02-05",
+              "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+            },
+            "page": "176",
+            "section": "Sez. Quarta, Titolo IV, Art. 6 - Aumenti periodici di anzianità",
+            "quote": "A decorrere dal 1° febbraio 2008 in caso di passaggio a categoria superiore il lavoratore conserva l'anzianità di servizio ai fini degli aumenti periodici di anzianità nonché il numero degli stessi il cui valore sarà ragguagliato agli importi previsti per la categoria di arrivo."
+          },
+          "transformation": "at_next_increment = false: the increments take the amounts of the new level from the promotion.",
+          "note": "The increments take the amounts of the new category from the promotion: the engine's rule without the clause.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-20T19:00:00Z",
+            "effective_from": "2021-06-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-20T19:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-20-ai-seniority-promotion"
+          }
+        }
+      },
       "provenance": {
         "status": "verified",
         "location": {
@@ -3265,7 +3296,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "317fed33425cc76efeffd192d136d2113db7db7206b8951bdd2746138ed3f0b1",
+    "source_hash": "60ebad0b1dd035d6a87ef3e9048aa1c7d9d6f4abbbafbb78bccc11003d0c3ec2",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -5454,6 +5485,23 @@
         ],
         "findings": [
           "The values stated are those of the quoted clauses; what the texts leave open (month fractions, termination divisors, schedules and shift patterns) is not modelled and is recorded in the coverage notes."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-seniority-promotion",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The pricing of the seniority increments matured before a change of level (Sez. Quarta, Titolo IV, Art. 6 - Aumenti periodici di anzianità).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          }
+        ],
+        "findings": [
+          "Sez. Quarta, Titolo IV, Art. 6 - Aumenti periodici di anzianità (p. 176): the earlier increments take the amounts of the new level from the change: seniority_increments.on_promotion."
         ]
       }
     ],

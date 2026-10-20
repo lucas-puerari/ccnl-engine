@@ -72,6 +72,7 @@ from ccnl_engine.run.types import PeriodId
 from ccnl_engine.seniority.inputs import (
     EarnedIncrements,
     SeniorityFact,
+    SeniorityPromotion,
     SenioritySource,
 )
 from ccnl_engine.severance.provision.models import TfrFundBalance
@@ -175,6 +176,7 @@ def _employment(contract: Contract) -> Employment:
             date(2025, 12, 31),
             next(iter(SenioritySource)),
             EarnedIncrements(2, Decimal("40.00")),
+            SeniorityPromotion(date(2025, 7, 1), "C2"),
         ),
         roles=frozenset({"capo_squadra", "addetto_primo_soccorso"}),
         contribution_history=ContributionHistory(date(2001, 9, 1)),

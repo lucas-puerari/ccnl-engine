@@ -12,7 +12,11 @@ from ccnl_engine.compensation.element.rules import _level_chain
 from ccnl_engine.compensation.element.types import ApprenticeshipScaling
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.seniority.rules import _resolve_seniority_count, earned_seniority
+from ccnl_engine.seniority.repricing.rules import (
+    earned_seniority,
+    promoted_seniority,
+)
+from ccnl_engine.seniority.rules import _resolve_seniority_count
 
 if TYPE_CHECKING:
     from datetime import date
@@ -116,7 +120,10 @@ def _resolve_chain(
     cohort in service on a day (``in_service_on``) is kept only when
     ``hired_on`` is known and not later.  A qualified worker whose
     ``seniority`` states the increments earned is paid them as stated plus
-    the increments matured since (:func:`earned_seniority`).
+    the increments matured since (:func:`earned_seniority`); one whose
+    ``seniority`` states a promotion, under a CCNL that reprices the earlier
+    increments at the next one, is paid them at the level before it until
+    then (:func:`promoted_seniority`).
 
     Returns:
         :class:`~ccnl_engine.compensation.element.types.MonthlyPayChain` with each
@@ -146,6 +153,25 @@ def _resolve_chain(
                     level.code,
                     seniority.earned,
                     seniority.months,
+                    seniority_months,
+                    as_of,
+                    worker_category=worker_category,
+                )
+            chain = replace(chain, seniority=stated)
+        elif (
+            seniority is not None
+            and seniority.promotion is not None
+            and seniority_months is not None
+            and _reprices_at_next(ccnl)
+            and not isinstance(contract_type, Apprentice)
+        ):
+            promotion = seniority.promotion
+            with rule_scope(feature="seniority"):
+                stated = promoted_seniority(
+                    ccnl.parameters.seniority_increments,
+                    level.code,
+                    promotion.from_level,
+                    seniority.months_at(promotion.effective_on),
                     seniority_months,
                     as_of,
                     worker_category=worker_category,
@@ -198,3 +224,14 @@ def _contract_chain(
             seniority_months=seniority_months,
         )
     return chain, scaling
+
+
+def _reprices_at_next(ccnl: CCNL) -> bool:
+    """Return whether the CCNL reprices the increments at the next one.
+
+    Returns:
+        ``True`` when its seniority rules state so; a CCNL without the
+        clause reprices them at once.
+    """
+    rule = ccnl.parameters.seniority_increments.on_promotion
+    return rule is not None and rule.at_next_increment
