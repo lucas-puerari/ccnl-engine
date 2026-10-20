@@ -364,10 +364,14 @@ class ExtraMonthAccrual:
         undetermined: Whether absences that may suspend accrual, their
             suspension not stated, change ``months``: ``months`` counts
             them as accruing.
+        scale: Factor of the hours of the months accrued over the hours of
+            the run that pays them, ``1`` when the hours did not change in
+            the window (see
+            :func:`~ccnl_engine.employment.change.services.rateo_scale`).
 
     Raises:
-        ValueError: When ``months`` is outside ``[0, 12]`` or
-            ``max_fraction`` outside ``(0, 1]``.
+        ValueError: When ``months`` is outside ``[0, 12]``,
+            ``max_fraction`` outside ``(0, 1]`` or ``scale`` not above zero.
     """
 
     kind: ExtraMonthKind
@@ -379,6 +383,7 @@ class ExtraMonthAccrual:
     rule: MonthAccrualRule = DEFAULT_MONTH_ACCRUAL_RULE
     partial_months: int = 0
     undetermined: bool = False
+    scale: Decimal = field(default_factory=lambda: Decimal(1))
 
     def __post_init__(self) -> None:  # noqa: D105
         if not 0 <= self.months <= self.accrued <= _MONTHS_PER_WINDOW:
@@ -386,6 +391,9 @@ class ExtraMonthAccrual:
             raise ValueError(msg)
         if not Decimal(0) < self.max_fraction <= Decimal(1):
             msg = f"max_fraction must be in (0, 1]; got {self.max_fraction}"
+            raise ValueError(msg)
+        if self.scale <= 0:
+            msg = f"scale must be above zero; got {self.scale}"
             raise ValueError(msg)
 
     @property
@@ -395,8 +403,8 @@ class ExtraMonthAccrual:
 
     @property
     def fraction(self) -> Decimal:
-        """Share of a monthly pay due: ``accrued / 12 * max_fraction``."""
-        return self.accrued / _MONTHS_PER_WINDOW * self.max_fraction
+        """Share of a monthly pay due: ``accrued / 12 * max_fraction * scale``."""
+        return self.accrued / _MONTHS_PER_WINDOW * self.max_fraction * self.scale
 
     @classmethod
     def of(

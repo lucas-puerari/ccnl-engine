@@ -21,6 +21,8 @@ from ccnl_engine.collection.validators import (
     mapping_of,
 )
 from ccnl_engine.employer.inputs import EmployerProfile
+from ccnl_engine.employment.change.inputs import EmploymentChange, timeline
+from ccnl_engine.employment.change.services import Timeline, in_force_on
 from ccnl_engine.employment.inputs import Employment
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
@@ -99,6 +101,12 @@ class CompetenceYearPlan:
             January 2027; an employer that pays in arrears names every
             month.  A date before the first day of the run month is
             rejected.
+        employment_changes: Changes of level, weekly hours or category
+            during :attr:`year`, each from the first day of a month, in date
+            order (a list is accepted).  The runs of a month price the
+            employment in force on its first day; the extra months pay the
+            level in force when they are paid, and each stretch of their
+            rateo at the hours it was accrued at.
         opening_state: State the first run opens with, read by
             ``calculate_competence_year``.  ``None`` is the zero state, the
             fact only for an employment whose stated start falls in
@@ -114,7 +122,9 @@ class CompetenceYearPlan:
     Raises:
         InvalidInputError: When a field is not of its type, a key of
             :attr:`periods` or :attr:`payment_dates` is not a month or a
-            run id of :attr:`year`, two keys name the same run,
+            run id of :attr:`year`, two keys name the same run, an
+            employment change is not valid (see
+            :func:`~ccnl_engine.employment.change.inputs.timeline`),
             :attr:`default_facts` carries events, a payment date precedes
             its run month, or ``payment_day`` is outside 1-28.
     """
@@ -129,7 +139,9 @@ class CompetenceYearPlan:
     calendar_override: CalendarOverride | None = None
     payment_day: int = DEFAULT_PAYMENT_DAY
     payment_dates: RunKeyed[date] = field(default_factory=dict)
+    employment_changes: tuple[EmploymentChange, ...] = ()
     opening_state: PeriodState | None = None
+    _timeline: Timeline = field(init=False, repr=False, compare=False, default=())
     _facts_by_run: dict[str, PeriodFacts] = field(
         init=False, repr=False, compare=False, default_factory=dict
     )
@@ -180,6 +192,14 @@ class CompetenceYearPlan:
         for run_id, paid_on in dates.items():
             PaymentId(PayrollRunId.parse(run_id), paid_on)
         object.__setattr__(self, "_dates_by_run", FrozenDict(dates))
+        changes = timeline(
+            self.employment,
+            self.employment_changes,
+            self.year,
+            f"{_OWNER}.employment_changes",
+        )
+        object.__setattr__(self, "employment_changes", tuple(self.employment_changes))
+        object.__setattr__(self, "_timeline", ((date.min, self.employment), *changes))
         period = self.employment.employment_period
         if period is None or period.started_on.year < self.year:
             self.employment.check_seniority_in(self.year, 1)
@@ -235,6 +255,18 @@ class CompetenceYearPlan:
                 feature=_FEATURE,
             )
         return str(run_id)
+
+    @property
+    def timeline(self) -> Timeline:  # noqa: D102 - the employment from each date
+        return self._timeline
+
+    def employment_for(self, run: PayrollRun) -> Employment:
+        """Return the employment in force on the first day of ``run``'s month.
+
+        Returns:
+            :attr:`employment` with the changes dated on or before that day.
+        """
+        return in_force_on(self._timeline, date(run.year, run.month, 1))
 
     def facts_for(self, run: PayrollRun) -> PeriodFacts:
         """Return the facts of ``run``.

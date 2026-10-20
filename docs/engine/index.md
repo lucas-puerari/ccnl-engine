@@ -193,6 +193,30 @@ tenth = engine.calculate_competence_year(
 print(tenth.period_results[0].payment_date)  # 2026-01-10
 ```
 
+### Changes during the year
+
+`CompetenceYearPlan.employment_changes` lists the changes of level, weekly
+hours or category of the year, each an `EmploymentChange` from the first day
+of a month, in date order. The runs of a month price the employment in force
+on its first day. The extra months are paid on the pay in force when they are
+paid (the "retribuzione in atto" of the CCNLs), so a promotion raises the
+whole rateo; a change of hours does not: each stretch of the rateo is paid at
+the hours it was accrued at.
+
+```python
+from datetime import date
+from decimal import Decimal
+
+from ccnl_engine.inputs import EmploymentChange, WeeklyHours
+
+changes = (
+    EmploymentChange(date(2026, 7, 1), weekly_hours=WeeklyHours(Decimal(20))),
+)
+```
+
+A change on another day, outside the year or outside the employment period is
+rejected; a change of the day of hire belongs on the employment itself.
+
 ### Employment period
 
 `Employment.employment_period` selects the runs of the year:
@@ -418,7 +442,7 @@ Steps 7–9 are fiscal and can be parameterised heavily. See
 | Type | What it describes |
 |---|---|
 | `PeriodInput` | One run: `PayrollRun`, payment date, employment, employer, facts of the run, prior-year facts, opening state |
-| `CompetenceYearPlan` | Every run of a competence year: employment, employer, prior-year facts, `periods` and `default_facts`, calendar override, payment day and `payment_dates`, opening state |
+| `CompetenceYearPlan` | Every run of a competence year: employment, employer, prior-year facts, `periods` and `default_facts`, calendar override, payment day and `payment_dates`, employment changes, opening state |
 | `TaxYearPlan` | Every payment of a tax year: the competence years whose runs are paid in it and the opening state |
 | `OpeningBalances` | Totals, payments, competence runs and INPS bases of another provider, imported with `engine.import_opening_balances()` |
 | `Employment` | CCNL slug, level, contract type, category, `EmploymentPeriod`, `WeeklyHours`, `SeniorityFact`, roles, `ContributionHistory` and sector; impossible values are rejected on construction |

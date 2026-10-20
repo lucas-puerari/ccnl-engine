@@ -31,6 +31,7 @@ from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.contribution.zone.models import AgriculturalZone
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.change.inputs import EmploymentChange
 from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
     EmploymentPeriod,
@@ -142,6 +143,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             EmployerProfile,
             Employment,
             EarnedIncrements,
+            EmploymentChange,
             EmploymentPeriod,
             EmploymentSector,
             ExtraMonthKind,

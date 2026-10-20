@@ -109,7 +109,9 @@ def _apply_extra_month_policy(
         chain: Pay chain of a regular month.
         run_kind: Kind of the run; a regular run keeps ``chain`` unchanged.
         fraction: Share of a monthly pay due, the rateo times the
-            contractual fraction of the extra month.
+            contractual fraction of the extra month; above one when the
+            months were accrued at more hours than the run pays (see
+            :attr:`~ccnl_engine.extra_month.models.ExtraMonthAccrual.scale`).
 
     Returns:
         Adjusted :class:`~ccnl_engine.compensation.element.types.MonthlyPayChain`.
@@ -118,6 +120,6 @@ def _apply_extra_month_policy(
         return chain
     months_threshold = 14 if run_kind == "fourteenth" else 13
     chain = chain.for_extra_month(months_threshold)
-    if fraction < Decimal(1):
+    if fraction != Decimal(1):
         chain = chain.scaled(fraction)
     return chain
