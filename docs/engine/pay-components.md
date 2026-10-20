@@ -347,9 +347,14 @@ not pay them an *elemento distinto* instead. A CCNL that models them lists
 them in `parameters.health_funds`; the employer states the codes of the funds
 it pays in `EmployerProfile.contractual_funds` (an empty set for none):
 
+A fund the CCNL owes with no alternative element and no group (mètaSalute,
+EBM Salute, Qu.A.S., Quadrifor, the flexible benefits) is posted whatever the
+employer states: there is nothing to choose. The fact decides the funds with
+an element or a group:
+
 | Employer fact | Effect on the run (capability `contractual_funds`) |
 |---|---|
-| `None` | nothing posted, `missing_fact contractual_funds` blocker |
+| `None` | the owed funds posted, the others not, `missing_fact contractual_funds` blocker |
 | the fund is named | employer share to `bilateral_fund_employer`, INPS solidarity on it (10% for a health fund) to `employer_contributions`, worker share withheld to `bilateral_fund_employee` and, for a health fund, taken out of the IRPEF base (TUIR art. 51 c. 2 lett. a); on the extra months only when the CCNL says so |
 | the fund is not named | the elemento distinto as an earning in the INPS and IRPEF bases (and the TFR base when the CCNL says so), on the extra months when it is due "per 14 mensilità" |
 
@@ -362,7 +367,11 @@ alternative ways to meet one obligation share a `group` (the E.B.M. of
 Confapi: 5 EUR for a firm with an internal RLS, 6 EUR without): the employer
 names the one it pays, and naming none owes the element once. A fund may set
 a reduced employer share for a part-timer up to a number of weekly hours
-(`reduced_employer`, `reduced_up_to_weekly_hours`). A CCNL whose funds are not modelled
+(`reduced_employer`, `reduced_up_to_weekly_hours`). A yearly amount charged
+whole in one month (`charged_in_month`) is posted only on the regular run of
+that month; a `welfare` fund (the flexible benefits of Federmeccanica) posts
+the employer amount as a non-cash benefit, an employer cost outside the pay,
+its bases and the TFR. A CCNL whose funds are not modelled
 yet keeps its open limitation; for those, pass the amounts due in the period
 as a `BilateralFundEvent`. The employee portion
 reduces net pay; the employer portion increases employer cost. For the

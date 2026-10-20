@@ -158,6 +158,7 @@
   "breakdown.head.employer": "Employer cost",
   "breakdown.inps_employer": "Employer INPS contributions",
   "breakdown.bilateral_employer": "Bilateral and assistance funds (employer)",
+  "breakdown.welfare_employer": "Welfare made available (employer)",
   "breakdown.pension_employer": "Supplementary pension (employer)",
   "breakdown.tfr": "TFR accrued",
   "breakdown.cost": "Total employer cost",

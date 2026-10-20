@@ -79,7 +79,7 @@ KIND_CAPABILITIES: dict[str, frozenset[str]] = {
     "fringe_benefit_item": frozenset({"fringe_benefit"}),
     "travel_allowance_item": frozenset({"travel_allowance"}),
     "standby_earning": frozenset({"standby"}),
-    "welfare_item": frozenset({"welfare"}),
+    "welfare_item": frozenset({"welfare", "contractual_funds"}),
 }
 
 #: Capabilities that post to every other account.

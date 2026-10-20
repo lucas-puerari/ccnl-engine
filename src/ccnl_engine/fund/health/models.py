@@ -78,6 +78,12 @@ class ContractualFund(BaseModel):
         alternative_scaled: Whether the element follows the minimo of the
             run (part time, partial month) like the pay it belongs to;
             false when the CCNL owes it in full ("non riproporzionato").
+        charged_in_month: Month of the year the yearly amounts are charged
+            whole, by year (a value 1-12 from each ``valid_from``); ``None``
+            charges them a twelfth a month.
+        welfare: Whether the employer amount is a welfare benefit made
+            available to the worker (goods and services, outside the pay)
+            rather than a contribution to a fund.
         provenance: Source of the clause.
     """
 
@@ -100,4 +106,6 @@ class ContractualFund(BaseModel):
     alternative_extra_months: bool = False
     alternative_tfr: bool = False
     alternative_scaled: bool = True
+    charged_in_month: TimeSeries | None = None
+    welfare: bool = False
     provenance: RuleProvenance

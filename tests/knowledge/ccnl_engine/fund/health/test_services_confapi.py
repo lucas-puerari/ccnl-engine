@@ -99,10 +99,10 @@ def test_a_firm_that_adheres(funds: frozenset[str], employer: Decimal) -> None:
 
 
 def test_a_short_part_timer_pays_the_reduced_share() -> None:
-    """20 hours a week: 5.75 EUR to the EBM."""
+    """20 hours a week: 5.75 EUR to the EBM, plus the 8 EUR of EBM Salute."""
     result = _run(frozenset({"ebm"}), hours=20)
 
-    assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYER) == Decimal("5.75")
+    assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYER) == Decimal("13.75")
 
 
 def test_a_firm_that_does_not_adhere_owes_the_ear_once() -> None:

@@ -32,7 +32,6 @@ def test_logistica_priamo() -> None:
     [
         "logistica-trasporto-confetra",
         "commercio-confcommercio",
-        "metalmeccanico-federmeccanica",
         "metalmeccanico-artigianato",
     ],
 )
@@ -42,3 +41,15 @@ def test_health_and_bilateral_funds_are_declared(slug: str) -> None:
     variants = {n.limitation.variant for n in ccnl.coverage.notes if n.limitation}
 
     assert "health_and_bilateral_funds" in variants
+
+
+def test_federmeccanica_models_its_health_fund_and_benefits() -> None:
+    """mètaSalute and the flexible benefits are rules, no longer limitations."""
+    ccnl = load_ccnl("metalmeccanico-federmeccanica")
+    variants = {n.limitation.variant for n in ccnl.coverage.notes if n.limitation}
+
+    assert {f.code for f in ccnl.parameters.health_funds} == {
+        "metasalute",
+        "flexible_benefits",
+    }
+    assert not {"health_and_bilateral_funds", "flexible_benefits"} & variants

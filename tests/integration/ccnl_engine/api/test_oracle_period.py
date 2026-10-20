@@ -153,6 +153,7 @@ def test_employer_cost_counts_the_additional_ivs_once() -> None:
             for e in result.ledger_entries
             if e.account
             in {"non_cash_benefits", "bilateral_fund_employer", "pension_fund_employer"}
+            or e.entry_id.endswith("_solidarity")
         ),
         Decimal(0),
     )

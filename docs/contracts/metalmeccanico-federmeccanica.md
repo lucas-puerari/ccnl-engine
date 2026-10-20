@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority, welfare |
+| **Limits of this contract** | base_salary, overtime, seniority |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -149,26 +149,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: OvertimeKind.SUPPLEMENTARY selects the OT_SUPPLEMENTARE band of the CCNL rate (tests/integration/ccnl_engine/working_time/overtime/test_supplementary.py); the higher rate past the yearly limit is not modelled.
 
-!!! warning "metalmeccanico-federmeccanica/health_and_bilateral_funds · bilateral_funds · impact yes · open"
-    HEALTH FUND: mètaSalute, the health fund of the CCNL, is paid by the employer for every worker: 171,60 euro a year with the 10% INPS solidarity contribution, so 156 euro to the fund, in the cost table of the Ministry of Labour of June 2026 (DD 82 of 5 October 2026). Not modelled.
-
-    **Applies when:** `bilateral_funds` applies.
-
-    **Remediation:** Pass the contributions as bilateral fund events, or model them per worker.
-
 !!! warning "metalmeccanico-federmeccanica/elemento_perequativo · base_salary · impact yes · open"
     ELEMENTO PEREQUATIVO: the worker of a company without second-level bargaining is owed the elemento perequativo of 485 euro a year, paid with the June pay (Ministry of Labour cost table of June 2026, DD 82/2026, row A). The engine does not pay it: whether the company has second-level bargaining is not in the request.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Pass the elemento perequativo as a variable pay item, or add a fact for the second-level bargaining.
-
-!!! warning "metalmeccanico-federmeccanica/flexible_benefits · welfare · impact yes · open"
-    FLEXIBLE BENEFITS: every worker is owed flexible benefits of 250 euro a year (Ministry of Labour cost table of June 2026, DD 82/2026, row D), paid by the employer outside the net pay. Not modelled: the employer cost is short of them.
-
-    **Applies when:** `welfare` applies.
-
-    **Remediation:** Model the yearly flexible benefits per worker, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
