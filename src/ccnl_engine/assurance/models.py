@@ -30,6 +30,7 @@ from enum import StrEnum
 from typing import TYPE_CHECKING
 
 from ccnl_engine.decision.models import CalculationStatus
+from ccnl_engine.limitation.types import ALL_TOTALS, ResultTotal
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
@@ -45,7 +46,6 @@ __all__ = [
     "Payability",
     "ResultAssurance",
     "ResultBlocker",
-    "ResultTotal",
     "decide_payability",
 ]
 
@@ -106,22 +106,6 @@ class EvidenceStatus(StrEnum):
         """
         order = list(cls)
         return max(map(cls, statuses), key=order.index, default=cls.MISSING)
-
-
-class ResultTotal(StrEnum):
-    """A total of a result that a blocker leaves unreliable.
-
-    Attributes:
-        NET_PAY: The net pay of the worker.
-        EMPLOYER_COST: The employer cost of the result.
-    """
-
-    NET_PAY = "net_pay"
-    EMPLOYER_COST = "employer_cost"
-
-
-#: Both totals: what a blocker leaves unreliable unless it states otherwise.
-ALL_TOTALS: frozenset[ResultTotal] = frozenset(ResultTotal)
 
 
 class Payability(StrEnum):

@@ -25,7 +25,7 @@ from ccnl_engine.pay_item.policies import PolicyContext
 from ccnl_engine.pay_item.services import (
     _apply_extra_month_policy,
     _effective_resolver,
-    _int_value,
+    _hours_value,
 )
 from ccnl_engine.pension_fund.conversion.services import (
     kept_seniority_months,
@@ -83,8 +83,8 @@ def _base_chain(
         seniority_months=months,
         roles=request.roles or frozenset(),
         worker_category=worker_category,
-        weekly_hours=_int_value(request.weekly_hours),
-        full_time_weekly_hours=_int_value(request.full_time_weekly_hours),
+        weekly_hours=_hours_value(request.weekly_hours),
+        full_time_weekly_hours=_hours_value(request.full_time_weekly_hours),
         hired_on=(
             None
             if request.employment_period is None
@@ -121,6 +121,7 @@ def build_context(
         withholding.upcoming,
         request.employment_period,
         month_accrual_rule(contract.ccnl),
+        request.work_pattern,
     )
     accrual = run_accrual(request, contract.ccnl, competence)
     regular_chain = chain

@@ -12,6 +12,7 @@ from ccnl_engine.compensation.hourly.models import HourlyPay
 from ccnl_engine.compensation.renewal_minimum.models import RenewalAgreement
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.fund.assistance.models import AssistanceContribution
+from ccnl_engine.fund.health.models import ContractualFund
 from ccnl_engine.fund.models import (
     ContractualFundContribution,
     EmployerFund,
@@ -280,6 +281,9 @@ class CCNLParameters(BaseModel):
     ``renewals``: the renewals that raised the minimo, each with its signing
     date and the first day of its first tranche, read by the renewal regime
     of L. 199/2025 to measure the increment on the table before it.
+    ``health_funds``: the health and bilateral funds owed for every worker,
+    each with the elemento distinto owed instead when the employer does not
+    pay it (``EmployerProfile.contractual_funds``).
     ``hourly_pay``: the worker categories paid by the hour worked and the
     percentages on those hours (the operai of the CCNL edilizia).
     """
@@ -301,6 +305,7 @@ class CCNLParameters(BaseModel):
     solidarity_fund: SolidarityFund | None = None
     hourly_pay: HourlyPay | None = None
     renewals: tuple[RenewalAgreement, ...] = ()
+    health_funds: tuple[ContractualFund, ...] = ()
 
     @model_validator(mode="after")
     def _check_positive_params(self) -> Self:

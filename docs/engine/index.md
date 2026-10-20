@@ -240,6 +240,10 @@ adjustment run corrects a run already closed and never posts the monthly
 pay. A run that posts none has a `base_salary` decision with reason
 `monthly_pay_posted_by_another_run`, amount 0.00 and input
 `monthly_pay_posted_by` (the regular run id, or `corrected_run`).
+A regular or termination run of a month outside the months of a vertical
+part time (`Employment.work_pattern`) posts no monthly pay either: reason
+`vertical_part_time_month_not_worked`, amount 0.00 and input
+`month_worked=false`.
 Extra-month runs follow the accrual rule below.
 
 A CCNL whose data define no daily quota (no `absence_rules`, or `by_hourly`

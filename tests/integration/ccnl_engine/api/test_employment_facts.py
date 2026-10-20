@@ -59,8 +59,8 @@ def test_part_time_reduces_gross(engine: PayrollEngine) -> None:
     full = _run(engine)
     half = _run(
         engine,
-        weekly_hours=WeeklyHours(20),
-        full_time_weekly_hours=WeeklyHours(40),
+        weekly_hours=WeeklyHours(Decimal(20)),
+        full_time_weekly_hours=WeeklyHours(Decimal(40)),
     )
     assert half == full * Decimal("0.5")
 

@@ -152,10 +152,10 @@ def _dependent_pair(fact: str, dependent: Dependent) -> DefaultCase:
 #: Part time on a 40-hour week: the income of the year is within the
 #: 20,000 EUR limit of the somma esente (L. 207/2024 art. 1 c. 4), whose
 #: reddito complessivo reads the income beyond this employment.
-_PART_TIME = replace(CONCIA_D2, weekly_hours=WeeklyHours(20))
+_PART_TIME = replace(CONCIA_D2, weekly_hours=WeeklyHours(Decimal(20)))
 #: Hired on 1 January 2025: a run of 2026 needs the history of 2025.
 _SINCE_2025 = replace(CONCIA_D2, employment_period=EmploymentPeriod(date(2025, 1, 1)))
-_PART_TIME_SINCE_2025 = replace(_SINCE_2025, weekly_hours=WeeklyHours(20))
+_PART_TIME_SINCE_2025 = replace(_SINCE_2025, weekly_hours=WeeklyHours(Decimal(20)))
 #: A bonus above the IVS massimale of 2026 (L. 335/1995 art. 2 c. 18), whose
 #: application depends on the first enrolment of the worker.
 _LARGE_BONUS = BonusEvent(event_date=date(2026, 1, 15), amount=Decimal(150_000))

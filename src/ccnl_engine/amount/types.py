@@ -131,7 +131,7 @@ class _AmountsInput:
     family_composition: FamilyComposition | None = None
     family_deduction_rules: FamilyDeductionRules | None = None
     current_year: CurrentYearTaxFacts | None = None
-    weekly_hours: int | None = None
+    weekly_hours: Decimal | None = None
     contributable_hours: Decimal | None = None
     domestic_hourly_rate: Decimal | None = None
     eligible_work_days: int = DAYS_IN_YEAR

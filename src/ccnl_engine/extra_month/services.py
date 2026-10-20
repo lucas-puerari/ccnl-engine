@@ -39,7 +39,8 @@ def run_accrual(
             when given; otherwise an extra-month run counts its rateo from
             ``employment_period`` over the 12 months ending in the run month,
             with the CCNL fraction of that extra month and the CCNL
-            month-qualification rule.
+            month-qualification rule; the months its ``work_pattern`` does
+            not work accrue nothing.
         ccnl: The contract, whose standard calendar gives the fraction.
         competence: Date the CCNL entitlement is read at.
 
@@ -59,7 +60,11 @@ def run_accrual(
     )
     schedule = run_schedule(kind, run.month, max_fraction)
     return ExtraMonthAccrual.of(
-        schedule, run.year, request.employment_period, rule=month_accrual_rule(ccnl)
+        schedule,
+        run.year,
+        request.employment_period,
+        rule=month_accrual_rule(ccnl),
+        pattern=request.work_pattern,
     )
 
 

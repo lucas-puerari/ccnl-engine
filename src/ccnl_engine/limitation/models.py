@@ -35,7 +35,7 @@ from typing import Literal, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from ccnl_engine.assurance.models import ALL_TOTALS, ResultTotal
+from ccnl_engine.limitation.types import ALL_TOTALS, ResultTotal
 
 __all__ = [
     "LimitationFacts",

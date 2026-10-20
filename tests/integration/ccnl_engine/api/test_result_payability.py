@@ -339,7 +339,7 @@ def test_household_employer_needs_no_residence() -> None:
                 ccnl_id="lavoro-domestico-non-convivente",
                 level_code="B",
                 seniority=new_hire(),
-                weekly_hours=WeeklyHours(25),
+                weekly_hours=WeeklyHours(Decimal(25)),
                 contract_type=Permanent(),
                 pension_fund=NoPensionFund(),
             ),

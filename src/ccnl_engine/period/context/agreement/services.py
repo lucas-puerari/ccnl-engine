@@ -205,7 +205,7 @@ def flat_pay_divisor(ccnl: CCNL, weekly_hours: WeeklyHours | None) -> CCNL:
     params = ccnl.parameters
     if params.flat_pay_max_weekly_hours is None or weekly_hours is None:
         return ccnl
-    hours = (Decimal(weekly_hours.value) * _WEEKS_PER_MONTH).quantize(
+    hours = (weekly_hours.value * _WEEKS_PER_MONTH).quantize(
         _CENT, rounding=ROUND_HALF_UP
     )
     periods = tuple(

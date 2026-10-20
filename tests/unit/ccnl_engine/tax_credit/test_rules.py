@@ -241,6 +241,10 @@ class TestSommaEsente:
         """Zero income: benefit is zero."""
         assert somma_esente(Decimal(0), _SE_RULES) == Decimal(0)
 
+    def test_a_tax_year_without_a_day_of_employment_grants_nothing(self) -> None:
+        """Income paid in a year the employment no longer runs: not annualised."""
+        assert somma_esente(Decimal(5000), _SE_RULES, 0) == Decimal(0)
+
     def test_negative_income_returns_zero(self) -> None:
         """Negative income: benefit is zero."""
         assert somma_esente(Decimal(-1), _SE_RULES) == Decimal(0)

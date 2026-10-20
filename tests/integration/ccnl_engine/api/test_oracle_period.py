@@ -183,7 +183,7 @@ def test_domestic_inps_non_convivente() -> None:
                 ccnl_id="lavoro-domestico-non-convivente",
                 level_code="B",
                 seniority=new_hire(),
-                weekly_hours=WeeklyHours(25),
+                weekly_hours=WeeklyHours(Decimal(25)),
                 contract_type=Permanent(),
             ),
             employer=EmployerProfile(headcount=Headcount(1)),

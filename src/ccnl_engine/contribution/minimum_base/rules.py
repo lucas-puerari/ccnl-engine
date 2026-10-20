@@ -15,7 +15,8 @@ circ. 6/2026 par. 1):
   month (the weekly hours over a month of 26 days of a six-day week).
 
 Art. 7 c. 5 excludes apprentices and operai agricoli (domestic work has its
-own hourly contributions and no ordinary INPS rules).  The pay compared is
+own hourly contributions and no ordinary INPS rules).  A month a vertical
+part time does not work pays no hour, so it has no minimum.  The pay compared is
 the INPS base of the run that posts the monthly pay of a fully employed
 month.  The day count of a partial month, of a month with an absence or
 sick leave (whose reduced pay circ. 6/2026 par. 1 and the Uniemens element
@@ -111,12 +112,16 @@ def _bound(rule: MinimumBaseRule, position: MonthPosition) -> Decimal:
 def _exclusion(
     rule: MinimumBaseRule, position: MonthPosition
 ) -> MinimumBaseReason | None:
-    """Return why art. 7 c. 5 excludes the worker from the minimum, if it does.
+    """Return why the month of the worker has no minimum, if it has none.
 
     Returns:
-        :attr:`MinimumBaseReason.APPRENTICE` or
-        :attr:`MinimumBaseReason.EXEMPT_CATEGORY`, ``None`` otherwise.
+        :attr:`MinimumBaseReason.MONTH_NOT_WORKED` for a month a vertical
+        part time does not work; :attr:`MinimumBaseReason.APPRENTICE` or
+        :attr:`MinimumBaseReason.EXEMPT_CATEGORY` when art. 7 c. 5 excludes
+        the worker; ``None`` otherwise.
     """
+    if not position.worked:
+        return MinimumBaseReason.MONTH_NOT_WORKED
     if position.apprentice:
         return MinimumBaseReason.APPRENTICE
     if position.category in rule.exempt_categories:
