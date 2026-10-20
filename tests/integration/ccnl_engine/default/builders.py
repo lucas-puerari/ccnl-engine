@@ -31,6 +31,7 @@ from ccnl_engine.events import (
     BonusEvent,
     NightShiftEvent,
     PeriodId,
+    TerminationTFREvent,
 )
 from ccnl_engine.inputs import (
     CurrentYearTaxFacts,
@@ -45,6 +46,7 @@ from ccnl_engine.inputs import (
     PeriodState,
     PriorYearTaxFacts,
     TfrFundBalance,
+    TfrQuotaYtd,
     WeeklyHours,
 )
 from tests.integration.ccnl_engine.default.event.builders import (
@@ -228,6 +230,47 @@ def _imported(inps_base: InpsBaseYtd) -> PeriodState:
     )
 
 
+#: Hired on 1 January 2025 and out on 31 January 2026, with the TFR fund
+#: at 31 December 2025 stated in full: the January run settles the TFR.
+_LEAVING = replace(
+    _SINCE_2025,
+    employment_period=EmploymentPeriod(date(2025, 1, 1), date(2026, 1, 31)),
+    tfr_fund=TfrFundBalance(2025, Decimal(2_000), Decimal(0), Decimal(0)),
+)
+
+
+def _leaving(
+    employment: Employment = _LEAVING, opening: PeriodState | None = None
+) -> PeriodInput:
+    """Return the January run that settles the TFR of :data:`_LEAVING`.
+
+    Returns:
+        The request, opened with ``opening`` or the zero state.
+    """
+    return regular_run(
+        1,
+        employment=employment,
+        events=(TerminationTFREvent(date(2026, 1, 31)),),
+        opening_state=PeriodState.zero() if opening is None else opening,
+    )
+
+
+def _imported_quotas(quotas: tuple[TfrQuotaYtd, ...] | None) -> PeriodState:
+    return PayrollEngine.import_opening_balances(
+        OpeningBalances(
+            tax_year=2026,
+            inps_bases=(InpsBaseYtd(2026, Decimal(0), Decimal(0)),),
+            recoveries=(),
+            surtax_obligations=(),
+            tfr_quotas=quotas,
+        )
+    )
+
+
+def _fund_case(fund: TfrFundBalance, names: str) -> DefaultCase:
+    return DefaultCase(_leaving(), _leaving(replace(_LEAVING, tfr_fund=fund)), names)
+
+
 def _since_2025_january(opening: PeriodState) -> PeriodInput:
     request = regular_run(1, employment=_SINCE_2025, opening_state=opening)
     return replace(request, current_year=None)
@@ -383,6 +426,23 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
                 opening_state=fresh_tax_year(),
             ),
             "tfr_fund",
+        ),
+    ),
+    "TfrFundBalance.revaluations": (
+        _fund_case(
+            TfrFundBalance(2025, Decimal(2_000), advances=Decimal(0)), "revaluations"
+        ),
+    ),
+    "TfrFundBalance.advances": (
+        _fund_case(
+            TfrFundBalance(2025, Decimal(2_000), revaluations=Decimal(0)), "advances"
+        ),
+    ),
+    "OpeningBalances.tfr_quotas": (
+        DefaultCase(
+            _leaving(opening=_imported_quotas(())),
+            _leaving(opening=_imported_quotas(None)),
+            "tfr_quotas",
         ),
     ),
     "Employment.tfr_treasury_fund": (

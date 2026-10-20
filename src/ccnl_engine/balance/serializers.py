@@ -15,6 +15,7 @@ invariant of the state is checked again.
 
 from __future__ import annotations
 
+import copy
 import json
 from collections.abc import Callable, Mapping
 from types import MappingProxyType
@@ -41,6 +42,7 @@ from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.employment.spell.models import EmploymentSpell
 from ccnl_engine.run.models import PayrollRunId
 from ccnl_engine.run.types import RunKind
+from ccnl_engine.severance.provision.models import TfrQuotaYtd
 from ccnl_engine.sickness.models import SicknessEpisode
 from ccnl_engine.surtax.obligation.models import (
     SurtaxComponent,
@@ -62,6 +64,7 @@ __all__ = [
     "migrate_state",
     "period_state_from_json",
     "period_state_to_json",
+    "tfr_quotas_unknown",
 ]
 
 _FEATURE = "period_state"
@@ -93,6 +96,7 @@ STATE_TYPES: Mapping[str, type] = MappingProxyType({
         SurtaxObligation,
         TaxCashState,
         TaxYtd,
+        TfrQuotaYtd,
         TrattamentoAccount,
         UlterioreDetrazioneAccount,
         WithholdingShortfall,
@@ -108,11 +112,34 @@ type StateMigration = Callable[[object], object]
 #: written, states of earlier engines were not persisted.
 FIRST_SCHEMA_VERSION = 14
 
+
+def tfr_quotas_unknown(tree: object) -> object:
+    """Return a state tree of schema 14 as schema 15 reads it.
+
+    Schema 15 counts the TFR the runs accrue per competence year
+    (``EmploymentAccrualState.tfr_quotas``).  A state of schema 14 counted
+    none: the quotas of the years it closed runs of are not known, so they
+    are known from the year after the last of them.
+
+    Returns:
+        A copy of ``tree`` whose accrual state knows the quotas from the
+        year after its last closed run, or of every year without one.
+    """
+    migrated: Any = copy.deepcopy(tree)
+    accrual = migrated["fields"]["accrual"]["fields"]
+    runs = accrual["competence_runs"]["$tuple"]
+    years = [run["fields"]["year"] for run in runs]
+    accrual["tfr_quotas_known_from"] = max(years) + 1 if years else None
+    return migrated
+
+
 #: The step from each schema version to the next, keyed by the version it
 #: reads.  A bump of :attr:`PeriodState.SCHEMA_VERSION` comes with the step
 #: from the previous version, so a stored state stays readable; a test holds
 #: the registry to every version from :data:`FIRST_SCHEMA_VERSION`.
-STATE_MIGRATIONS: Mapping[int, StateMigration] = MappingProxyType({})
+STATE_MIGRATIONS: Mapping[int, StateMigration] = MappingProxyType({
+    14: tfr_quotas_unknown,
+})
 
 _NAMES: Mapping[type, str] = MappingProxyType({
     cls: name for name, cls in STATE_TYPES.items()

@@ -44,6 +44,8 @@ state types.
 
 ::: ccnl_engine.inputs.TfrFundBalance
 
+::: ccnl_engine.inputs.TfrQuotaYtd
+
 ::: ccnl_engine.inputs.EmployerActivity
 
 ::: ccnl_engine.inputs.AgriculturalZone

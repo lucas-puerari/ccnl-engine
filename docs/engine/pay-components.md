@@ -247,8 +247,8 @@ The engine never outputs the fund. Carry it to the next year yourself:
 `tfr_accrual` and `tfr_treasury_fund` postings of the year - the advances
 paid.
 
-Not computed: the revaluation for a fraction of the year at termination,
-the acconto of the substitute tax (90% by 16 December) and its saldo (16
+Not computed: the revaluation for a fraction of the year at termination
+(the TFR settlement leaves it out, see below), the acconto of the substitute tax (90% by 16 December) and its saldo (16
 February), the share of the revaluation the Fondo Tesoreria bears and the
 employer recovers, and the TFR of public employees, which INPS manages:
 `tfr_fund` is still required on their December runs.
@@ -286,6 +286,58 @@ result = engine.calculate_period(
 (revaluation,) = (d for d in result.decisions if d.capability == "tfr_revaluation")
 print(revaluation.reason_code)  # price_index_not_published until January 2027
 ```
+
+### Settlement at the termination
+
+A `TerminationTFREvent(event_date)` on the run that ends the employment
+asks the engine for the TFR it pays and its separate tax (artt. 17 c. 1
+lett. a and 19 c. 1 TUIR, text in force until 31 December 2026):
+
+- **TFR due** = `tfr_fund` of the year before + the quotas the runs of the
+  termination year accrued with the employer (counted per competence year
+  in `PeriodState.accrual.tfr_quotas`, the run's own quota included) + the
+  revaluation of the year net of its 17% tax. An employment that starts in
+  the year has no fund.
+- **Taxable** = TFR due - `tfr_fund.revaluations` (the revaluations of the
+  past years, already taxed at the substitute rate) - the revaluation of the
+  year.
+- **Reference income** = taxable x 12 / (months of service / 12), the
+  months counted from the employment period, a fraction of at least 15 days
+  being a whole month (art. 2120 c. 1 c.c.).
+- **Average rate** = gross IRPEF on the reference income at the brackets of
+  the termination year / reference income, not rounded. **Tax** = taxable x
+  rate, posted on `separate_tax` with the severance remittance code. The
+  offices reliquidate it later on the average rate of the five years
+  before: that is not a payroll amount.
+
+The run records two `termination_tfr` decisions, the payout (`tfr_due`)
+and the tax (`average_rate`), with the inputs above (`fund`,
+`quotas_before_run`, `run_quota`, `revaluation`, `months_of_service`,
+`years_of_service`, `taxable`, `reference_income`, `average_rate`,
+`brackets_year`). The
+revaluation for the fraction of the termination year (art. 2120 c. 5) is
+not computed, so a termination before 31 December with a fund pays the TFR
+without it: the payout decision is `revaluation_pending` and incomplete,
+with a `tfr_settlement_revaluation_pending` issue. The tax does not depend
+on it and stays final.
+
+| Gap | Payout | Tax |
+|---|---|---|
+| Public TFS or TFR at INPS (`tfr_at_inps`), Fondo Tesoreria (`treasury_fund_share`), unknown Fondo Tesoreria destination, pension fund TFR (`pension_fund_tfr`) | not computed | not computed |
+| No `employment_period`, no `tfr_fund` of the year before (an employment of the year without one has an empty fund), unknown quotas of the year (balances of that year imported without `tfr_quotas`, or a regular month of the year not closed) | not computed, `missing_fact` | not computed |
+| `tfr_fund.revaluations` not stated on a non-empty fund | posted | `missing_fact` `revaluations` |
+| `tfr_fund.advances` not stated, or advances paid (art. 19 c. 4, `advances_not_modelled`) | posted | not computed |
+| Fixed term of up to 24 months (art. 19 c. 1-ter, `fixed_term_deduction_not_modelled`) | posted | not computed |
+| A year without settlement rules (from 2027, D.Lgs. 117/2026), or a run paid in another tax year than the termination's (`rule_not_in_bundle`) | posted | not computed |
+
+Each gap leaves its decision `incomplete` and the run not payable.
+
+`separate_tax_rate` alone overrides the average rate on the taxable the
+engine computes (reason `caller_rate`). `amount` with `separate_tax_rate`
+posts the caller's payout and `amount x separate_tax_rate`, as before; an
+`amount` without its rate is rejected, since the engine cannot split a
+payout it did not compute into quotas and revaluations. Every value the
+caller gives is a `caller_override` decision.
 
 ## Bilateral funds (*fondi bilaterali*)
 

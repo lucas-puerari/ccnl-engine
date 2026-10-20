@@ -77,13 +77,21 @@ def _handle_bilateral_fund(
 def _handle_termination_tfr(
     event: TerminationTFREvent, ctx: _EventHandlerCtx
 ) -> EventEffect:
-    """Handle TFR settlement at cessazione.
+    """Handle a TFR settlement whose payout and rate the caller states.
+
+    A settlement without a caller payout is computed after the amounts of
+    the run, which accrue its last TFR quota
+    (:func:`~ccnl_engine.severance.settlement.services.tfr_settlement`):
+    this handler posts nothing for it.
 
     Returns:
-        Handler result with TFR item posted to TFR_SETTLEMENT and SEPARATE_TAX.
+        Handler result with TFR item posted to TFR_SETTLEMENT and
+        SEPARATE_TAX, or no effect for a computed settlement.
     """
-    gross = event.amount
-    sep_tax = money(gross * event.separate_tax_rate)
+    gross, rate = event.amount, event.separate_tax_rate
+    if gross is None or rate is None:
+        return EventEffect()
+    sep_tax = money(gross * rate)
     tfr_settle_resolution = _require_resolution(
         ctx.resolver, "tfr_settlement_item", ctx.context
     )

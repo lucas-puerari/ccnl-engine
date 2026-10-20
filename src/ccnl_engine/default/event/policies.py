@@ -71,6 +71,14 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
     "StandbyEvent.calls": absence_is_fact(
         "no call followed by an intervention; each is a fact of the standby log"
     ),
+    "TerminationTFREvent.amount": absence_is_fact(
+        "the engine computes the TFR due: the fund, the quotas of the year and "
+        "the revaluation (art. 2120 c.c.)"
+    ),
+    "TerminationTFREvent.separate_tax_rate": absence_is_fact(
+        "the engine computes the average rate of the reference income (art. 19 "
+        "c. 1 TUIR)"
+    ),
     "TravelAllowanceEvent.daily_amount": absence_is_fact(
         "the CCNL amount of the hours away; an amount of the employer's "
         "policy is a fact the event records"

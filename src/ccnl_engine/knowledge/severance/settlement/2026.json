@@ -1,0 +1,98 @@
+{
+  "year": 2026,
+  "description": "Tassazione separata del TFR liquidato alla cessazione nel 2026 (artt. 17 c. 1 lett. a e 19 c. 1 TUIR) e periodo di servizio in anni e mesi (art. 2120 c. 1 c.c.)",
+  "separate_taxation": {
+    "provenance": {
+      "status": "verified",
+      "location": {
+        "source_document": {
+          "document_id": "dpr-917-1986-art17",
+          "title": "D.P.R. 22 dicembre 1986 n. 917 (TUIR), art. 17",
+          "kind": "dpr",
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.presidente.repubblica:1986-12-22;917~art17!vig=2026-10-31",
+          "sha256": "2858ae2baf8e3bbc62512dcd097547e4cf9da6e066ba24faff5cae4d5c9bf0be"
+        },
+        "section": "art. 17 c. 1 lett. a)",
+        "quote": "L'imposta si applica separatamente sui seguenti redditi: a) trattamento di fine rapporto di cui all' articolo 2120 del codice civile e indennità equipollenti, comunque denominate, commisurate alla durata dei rapporti di lavoro dipendente"
+      },
+      "transformation": "The TFR paid at the termination is taxed apart from the ordinary IRPEF of the run: it enters neither the taxable income of the period nor the conguaglio, and its tax is posted on separate_tax with the remittance code of the severance withholding.",
+      "note": "Normattiva text of art. 17 TUIR in force from 18-6-2025 to 31-12-2026, read on 2026-10-19 at the url of the record (sha256 of the page as fetched); quote found in the page, whitespace normalised. From 1-1-2027 the TUIR articles on separate taxation are replaced by the testo unico of D.Lgs. 19 giugno 2026 n. 117 (Normattiva marks art. 19 TUIR 'abrogato dal D.Lgs. 19 giugno 2026, n. 117' in the text in force from 1-1-2027): do not copy this record to a later year without that text. Verified on 2026-10-19 by an AI review.",
+      "extraction": {
+        "method": "ai",
+        "model": "claude-opus-5-5",
+        "extraction_timestamp": "2026-10-19T08:10:00Z",
+        "effective_from": "2026-01-01",
+        "effective_until": "2026-12-31",
+        "verified_by": "claude-opus-5-5",
+        "verified_at": "2026-10-19T08:10:00Z",
+        "verification_status": "verified"
+      }
+    }
+  },
+  "reference_income": {
+    "multiplier": "12",
+    "provenance": {
+      "status": "verified",
+      "location": {
+        "source_document": {
+          "document_id": "dpr-917-1986-art19",
+          "title": "D.P.R. 22 dicembre 1986 n. 917 (TUIR), art. 19",
+          "kind": "dpr",
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.presidente.repubblica:1986-12-22;917~art19!vig=2026-10-31",
+          "sha256": "73946bb96eddc8f469aef7be455d4876d2f5436f78a0a747d4509d2f1177485a"
+        },
+        "section": "art. 19 c. 1",
+        "quote": "Il trattamento di fine rapporto costituisce reddito per un importo che si determina riducendo il suo ammontare delle rivalutazioni già assoggettate ad imposta sostitutiva. L'imposta è applicata con l'aliquota determinata con riferimento all'anno in cui è maturato il diritto alla percezione, corrispondente all'importo che risulta dividendo il suo ammontare, aumentato delle somme destinate alle forme pensionistiche di cui al decreto legislativo 21 aprile 1993, n. 124 e al netto delle rivalutazioni già assoggettate ad imposta sostitutiva, per il numero degli anni e frazione di anno preso a base di commisurazione, e moltiplicando il risultato per dodici."
+      },
+      "transformation": "multiplier = dodici = 12. Taxable = TFR paid - revaluations already taxed at the substitute rate. Reference income = taxable / (months of service / 12) x 12. Average rate = gross IRPEF on the reference income at the art. 11 brackets of the year of the termination / reference income, not rounded. Tax withheld = taxable x average rate, rounded to the cent.",
+      "note": "Normattiva text of art. 19 TUIR in force from 12-8-2006 to 31-12-2026, read on 2026-10-19 at the url of the record (sha256 of the page as fetched); quote found in the page, whitespace normalised. The rest of c. 1 has the offices reliquidate the tax on the average rate of the five years before: the employer withholds at the rate above, the reliquidation is not a payroll amount. C. 1-ter (lire 120 mila per year off the tax of a fixed-term employment of no more than two years) is not applied: the engine reports such a tax as not computed. C. 2-bis (lire 600.000 per year) reduces the 'indennità equipollenti', not the TFR, and is not applied. The 'somme destinate alle forme pensionistiche' of D.Lgs. 124/1993 are not known to the engine: a TFR paid to a pension fund is not computed. C. 4 (advances, salvo conguaglio) is not applied: a fund with advances is not computed. Verified on 2026-10-19 by an AI review.",
+      "extraction": {
+        "method": "ai",
+        "model": "claude-opus-5-5",
+        "extraction_timestamp": "2026-10-19T08:10:00Z",
+        "effective_from": "2026-01-01",
+        "effective_until": "2026-12-31",
+        "verified_by": "claude-opus-5-5",
+        "verified_at": "2026-10-19T08:10:00Z",
+        "verification_status": "verified"
+      }
+    }
+  },
+  "service_period": {
+    "month_minimum_days": 15,
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "brocardi-codice-civile-art2120",
+          "title": "Codice civile, art. 2120 (testo su Brocardi.it)",
+          "kind": "altro",
+          "url": "https://www.brocardi.it/codice-civile/libro-quinto/titolo-ii/capo-i/sezione-iii/art2120.html",
+          "sha256": "2b2e66f38533e5375a49dbf1a6a7006cb6d05ad72a47f2f51a9871e219f86327"
+        },
+        "section": "art. 2120 c. 1",
+        "quote": "Tale trattamento si calcola sommando per ciascun anno di servizio una quota pari e comunque non superiore all'importo della retribuzione dovuta per l'anno stesso divisa per 13,5. La quota è proporzionalmente ridotta per le frazioni di anno, computandosi come mese intero le frazioni di mese uguali o superiori a 15 giorni."
+      },
+      "transformation": "month_minimum_days = 15. The years and fraction of year art. 19 c. 1 TUIR divides by are those the TFR was accrued over: whole months of service from the start to the end of the employment, a fraction of month of at least 15 days counted as a whole month, divided by 12.",
+      "note": "Secondary transcription: Normattiva serves the text of the codice civile through a script the record could not fetch; the first sentence of the quote is the one the bundle cites from Normattiva for the accrual divisor (sector files, tfr, art. 2120 c. 1). Read on 2026-10-19 at the url of the record (sha256 of the page as fetched), quote found in the page, whitespace normalised. That art. 19 c. 1 counts the service in the months of art. 2120 c. 1 is the reading of the engine: art. 19 says only 'il numero degli anni e frazione di anno preso a base di commisurazione'.",
+      "extraction": {
+        "method": "ai",
+        "model": "claude-opus-5-5",
+        "extraction_timestamp": "2026-10-19T08:10:00Z",
+        "effective_from": "2026-01-01",
+        "effective_until": "2026-12-31"
+      }
+    }
+  },
+  "ruleset": {
+    "id": "tax/2026/tfr-settlement",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-10-19",
+    "source": "D.P.R. 917/1986 (TUIR) artt. 17 c. 1 lett. a and 19 c. 1; c.c. art. 2120 c. 1",
+    "source_type": "official_primary",
+    "verification_status": "unverified",
+    "source_hash": "c33cb6f984adb4d801d105cced17af0c1121a7ab92241b4f19ffd769cc35a7c8"
+  }
+}

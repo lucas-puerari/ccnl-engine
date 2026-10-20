@@ -1,5 +1,5 @@
 <!-- auto-generated -- run: uv run python scripts/documentation/coverage_matrix/generate.py -->
-<!-- generated: 2026-10-19 -->
+<!-- generated: 2026-10-20 -->
 
 # CCNL Coverage
 
@@ -53,7 +53,7 @@ on unverified sources, or be well sourced and not cleared for production.
 **Scenario features: computed when the request declares the event, the fact or the termination** (16):
 
 - 🔲 `termination_residual_leave` (unsupported)
-- 📝 `termination_tfr` (caller_supplied)
+- ✅ `termination_tfr` (native)
 - 📝 `contract_renewal_arrears` (caller_supplied)
 - ⚠️ `foreign_tax_credit` (partial)
 - 📝 `overtime` (caller_supplied)
