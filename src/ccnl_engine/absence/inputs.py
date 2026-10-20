@@ -30,7 +30,12 @@ class AbsenceEvent:
     Attributes:
         event_date: Start date (or sole date) of the absence.
         hours: Number of absent hours.  Must be > 0.
-        hourly_rate: Rate at which the pay is deducted in EUR.  Must be > 0.
+        hourly_rate: Rate at which the pay is deducted in EUR, above 0;
+            reported as caller-supplied.  ``None`` (the default) derives the
+            deduction from the CCNL absence rule when it is sourced: ``hours``
+            at the hourly quota of a ``by_hourly`` CCNL, ``working_days`` at
+            the daily quota of a CCNL with a daily divisor; otherwise the run
+            is rejected.
         end_date: Last day of the absence range.  ``None`` for single-day
             absences where ``event_date`` is both start and end.
             When set must be >= ``event_date``.
@@ -52,14 +57,19 @@ class AbsenceEvent:
             riduzione [...] in caso di giornate di sciopero").  ``None`` means
             not known: the days stay counted and a withholding run has a
             ``missing_fact`` blocker.
+        working_days: Whole working days of the absence, at least 1 and at
+            most its calendar days; a CCNL with a daily divisor (``by_26``)
+            deducts each at its daily quota.  ``None`` for an absence of
+            hours.
     """
 
     event_date: date
     hours: Decimal
-    hourly_rate: Decimal
+    hourly_rate: Decimal | None = None
     end_date: date | None = None
     suspends_accrual: bool | None = None
     no_pay_due: bool | None = None
+    working_days: int | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         feature = "absence"
@@ -68,7 +78,11 @@ class AbsenceEvent:
             self.hours, "AbsenceEvent.hours", feature=feature, positive=True
         )
         require_decimal(
-            self.hourly_rate, "AbsenceEvent.hourly_rate", feature=feature, positive=True
+            self.hourly_rate,
+            "AbsenceEvent.hourly_rate",
+            feature=feature,
+            positive=True,
+            optional=True,
         )
         require_date(
             self.end_date, "AbsenceEvent.end_date", feature=feature, optional=True
@@ -84,6 +98,14 @@ class AbsenceEvent:
                 f">= event_date ({self.event_date})"
             )
             raise InvalidInputError(msg, field="AbsenceEvent.end_date", feature=feature)
+        if self.working_days is not None:
+            require_int(
+                self.working_days,
+                "AbsenceEvent.working_days",
+                feature=feature,
+                minimum=1,
+                maximum=len(self.days),
+            )
 
     @property
     def days(self) -> tuple[date, ...]:

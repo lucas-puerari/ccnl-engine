@@ -83,7 +83,7 @@ does not report its gap as well.
 
 A `derived` rule (taken from a cited document location, with no recorded
 human check) lowers the evidence axis but does not block on its own. Only
-<!-- trust:rules-verified -->2469<!-- /trust:rules-verified --> payable rules of
+<!-- trust:rules-verified -->2499<!-- /trust:rules-verified --> payable rules of
 the bundle are `verified`, so requiring `verified` would block almost every
 result; the evidence axis keeps the difference visible instead.
 
@@ -321,7 +321,13 @@ caller-declared amounts do not appear.
 `caller_supplied` maps each capability that used a rate or an amount the
 caller supplied in place of a rule (an overtime hourly rate or explicit
 multiplier, a sickness integration rate) to the event fields it took; see
-[Decisions](decisions.md#caller-supplied-values).
+[Decisions](decisions.md#caller-supplied-values). A rate or supplement the
+engine derives from a verified CCNL rule (the hourly base and the supplement
+bands of the pilot CCNLs) is not caller-supplied: it is an engine decision,
+and its rules appear in `rule_sources` of `overtime`, `night_work`,
+`holiday_work`, `shift_work` or `absence`. The capabilities stay
+`caller_supplied` in the registry, since every other CCNL still takes the
+caller's value.
 
 ## Reading the assurance
 

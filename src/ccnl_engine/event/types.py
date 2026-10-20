@@ -21,8 +21,8 @@ from ccnl_engine.working_time.inputs import (
     NightShiftEvent,
     OvertimeEvent,
     ShiftWorkEvent,
-    StandbyEvent,
 )
+from ccnl_engine.working_time.standby.inputs import StandbyEvent
 
 __all__ = ["WORK_EVENT_TYPES", "WorkEvent"]
 

@@ -3167,6 +3167,10 @@
           },
           "remediation": "Add the worker's request of c. 20 to the request, pay 15% of the night and holiday overtime pay of the run as a credit, then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY RATE AND SUPPLEMENTS (artt. 148, 151, 216, 220 of the 2010 text): without a caller value the engine derives the hourly base (the art. 148 retribuzione over 172), the 25% on ordinary night hours from 24 to 6 (art. 216 c.1; 12% for the role qualifica_notturna, c.2: Employment.roles must be stated) and the 20% on the hours worked on a festività (art. 220). The night window of the lavoratori notturni (23:30-6:30, art. 218) only changes which hours the caller declares. Art. 220 also pays the festività hours themselves on top of the monthly pay: the engine posts the 20% only and the run is provisional. Not derived: the Sunday allowance of art. 126 (10% of the hourly paga base and contingenza: the bundle does not record that base_salary holds exactly those two voci), holiday overtime (art. 219 sets no rate), the divisors 190 and 192 of the 44- and 45-hour weeks (a stated full-time week other than 40 is not derived)."
       }
     ]
   },
@@ -3177,13 +3181,42 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "72d0a663622a08640e9579c993504e95bd46c9fb17d4248a8b2d0807b7fbf940",
+    "source_hash": "33605af42a93072087b2a10ddfe4fa29ff59ce422b5f351ff74f223e223b68c9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
       "hourly_base_method": "gross_incl_allowances",
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-turismo-2010",
+            "title": "CCNL Turismo 20 febbraio 2010, testo firmato (UILTuCS)",
+            "kind": "associazione",
+            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+            "published_on": "2010-02-20",
+            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+          },
+          "page": "135",
+          "section": "Art. 151 c.1 - Retribuzione oraria",
+          "quote": "La retribuzione oraria si ottiene dividendo la retribuzione per: - 192 per il personale con orario normale di quarantacinque ore settimanali; - 190 per il personale con orario normale di quarantaquattro ore settimanali; - 172 per il personale con orario normale di quaranta ore settimanali."
+        },
+        "transformation": "Art. 148 c.1 (p. 134) lists the voci of the retribuzione: paga base nazionale conglobata, trattamenti salariali integrativi of the parti generale and speciale, indennità di contingenza and scatti: the bundle base_salary, fixed allowances (the Quadri function allowance of art. 145, parte generale) and seniority. Only the divisor of the 40-hour week is modelled.",
+        "note": "Quote read on the OCR of the scanned page, recognition glitches corrected.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-19T09:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2010-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-19T09:00:00Z",
+          "review_id": "2026-10-19-ai-hourly-rates"
+        }
+      },
+      "hourly_divisor_weekly_hours": 40,
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -3315,6 +3348,139 @@
               "extraction_timestamp": "2026-10-13T07:33:05Z",
               "effective_from": "2010-01-01",
               "verification_status": "unverified"
+            }
+          }
+        }
+      ],
+      "supplement_bands": [
+        {
+          "code": "TUR_NOTTURNO",
+          "description": "Lavoro ordinario notturno dalle 24 alle 6 (art. 216 c.1)",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2010-01-01",
+                "valid_until": null,
+                "value": "0.25",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-turismo-2010",
+                "title": "CCNL Turismo 20 febbraio 2010, testo firmato (UILTuCS)",
+                "kind": "associazione",
+                "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+                "published_on": "2010-02-20",
+                "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+              },
+              "page": "181",
+              "section": "Art. 216 c.1 - Lavoro notturno",
+              "quote": "Le ore di lavoro notturno svolto dalle ore ventiquattro alle ore sei verranno retribuite con la retribuzione oraria maggiorata del 25 per cento, fatte salve le condizioni di miglior favore."
+            },
+            "note": "Quote read on the OCR of the scanned page, recognition glitches corrected.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T09:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2010-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T09:00:00Z",
+              "review_id": "2026-10-19-ai-hourly-rates"
+            }
+          }
+        },
+        {
+          "code": "TUR_NOTTURNO_QUALIFICA",
+          "description": "Lavoro notturno del personale con qualifica notturna (art. 216 c.2)",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2010-01-01",
+                "valid_until": null,
+                "value": "0.12",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "role": "qualifica_notturna",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-turismo-2010",
+                "title": "CCNL Turismo 20 febbraio 2010, testo firmato (UILTuCS)",
+                "kind": "associazione",
+                "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+                "published_on": "2010-02-20",
+                "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+              },
+              "page": "181",
+              "section": "Art. 216 c.2 - Lavoro notturno",
+              "quote": "A decorrere dal 1° giugno 1990, al personale con qualifica notturna la maggiorazione di cui sopra compete nella misura del 12 per cento"
+            },
+            "transformation": "Reserved to the role qualifica_notturna of Employment.roles.",
+            "note": "Quote read on the OCR of the scanned page, recognition glitches corrected.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T09:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2010-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T09:00:00Z",
+              "review_id": "2026-10-19-ai-hourly-rates"
+            }
+          }
+        },
+        {
+          "code": "TUR_FESTIVO",
+          "description": "Lavoro nelle festività dell'art. 127 (art. 220)",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2010-01-01",
+                "valid_until": null,
+                "value": "0.20",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-turismo-2010",
+                "title": "CCNL Turismo 20 febbraio 2010, testo firmato (UILTuCS)",
+                "kind": "associazione",
+                "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+                "published_on": "2010-02-20",
+                "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+              },
+              "page": "182",
+              "section": "Art. 220 - Lavoro festivo",
+              "quote": "Al personale che presta la propria opera nelle festività di cui all'articolo 127 è dovuta, oltre alla normale retribuzione, quella per le ore di servizio effettivamente prestate, con la maggiorazione del venti per cento per lavoro festivo."
+            },
+            "note": "Quote read on the OCR of the scanned page, recognition glitches corrected.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T09:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2010-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T09:00:00Z",
+              "review_id": "2026-10-19-ai-hourly-rates"
             }
           }
         }
@@ -3509,6 +3675,25 @@
           "Art. 158 c. 4 of the 2010 text (pp. 140-141): six scatti, A 40,80 to 7 30,47. Match. Hourly divisor 172 for a 40-hour week. Match.",
           "Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios turismo-year and turismo-june): a 4th level impiegato hired on 1 January 2026 by an employer with 10 employees, across the tranche of May 2026; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent.",
           "apprenticeship_durations_unsourced stays open: no signed or CNEL copy of the accord of 17 April 2012 as amended in 2014 was found in this review."
+        ]
+      },
+      {
+        "id": "2026-10-19-ai-hourly-rates",
+        "date": "2026-10-19",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base of the time supplements and the supplements of ordinary night, holiday, Sunday, rest-day and shift work, read in the cited articles of the national text (text layer, or OCR of the scanned pages). AI review only: the same model extracted and checked the values.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+          }
+        ],
+        "findings": [
+          "hourly_base_method gross_incl_allowances (was gross_incl_allowances), now verified: the engine reads it to derive the hourly rate of an event without one.",
+          "Supplement bands added: TUR_NOTTURNO, TUR_NOTTURNO_QUALIFICA, TUR_FESTIVO.",
+          "Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS."
         ]
       }
     ],

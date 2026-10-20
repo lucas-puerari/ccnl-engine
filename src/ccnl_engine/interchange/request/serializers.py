@@ -83,13 +83,14 @@ from ccnl_engine.variable_pay.inputs import (
 from ccnl_engine.withholding.deferral.inputs import ShortfallDeferralRequest
 from ccnl_engine.working_time.inputs import (
     HolidayWorkEvent,
+    HolidayWorkKind,
     NightShiftEvent,
     OvertimeEvent,
     OvertimeKind,
+    ShiftKind,
     ShiftWorkEvent,
-    StandbyEvent,
-    StandbyKind,
 )
+from ccnl_engine.working_time.standby.inputs import StandbyEvent, StandbyKind
 from ccnl_engine.year.competence.inputs import CompetenceYearPlan
 from ccnl_engine.year.tax_year.inputs import TaxYearPlan
 
@@ -154,6 +155,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             FringeEvent,
             Headcount,
             HolidayWorkEvent,
+            HolidayWorkKind,
             IncomeEstimateQuality,
             IndividualElement,
             NaspiExclusion,
@@ -171,6 +173,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             PublicEndOfService,
             SeniorityFact,
             SenioritySource,
+            ShiftKind,
             ShiftWorkEvent,
             ShortfallDeferralRequest,
             SickLeaveEvent,

@@ -223,6 +223,10 @@
           },
           "remediation": "Add a worker fact for extra months already paid."
         }
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY RATE AND SUPPLEMENTS (artt. 93-97, 135, 137 of the CCNL of 16 February 2024): without a caller value the engine derives the hourly base (the art. 135 normale retribuzione over 170) and the 30% on festività hours paid as straordinario festivo (art. 97 lett. E with art. 95); art. 97 also pays the hours themselves, which the engine does not post: the run is provisional. Not derived, the caller states the amount: ordinary night work, which art. 93 leaves to the Area Professionale or second-level bargaining (the 30% of art. 95 is a night overtime rate); work on the weekly rest day ('la relativa sola maggiorazione', art. 97 lett. F, names no percentage)."
       }
     ]
   },
@@ -2359,13 +2363,40 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "b9899dcad296a11864f1e1703f861eb2a7333101f11946c67eee0819656bbd38",
+    "source_hash": "efd2cc5050dc948ba699b788bf2473dfb97c4d562141b99de0b4f60bf531c262",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
       "hourly_base_method": "gross_incl_allowances",
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+            "kind": "associazione",
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          },
+          "page": "70",
+          "section": "Art. 137 - Quota oraria",
+          "quote": "La quota oraria della retribuzione si ottiene dividendo l'importo mensile per il divisore convenzionale 170 (centosettanta)."
+        },
+        "transformation": "Art. 135 (p. 69) normale retribuzione: the voci a)-d) (conglobated minimo with contingenza and EDR, scatti) and every other continuative element: base salary, seniority and fixed allowances (the ENAC of art. 141). Assegni ad personam and superminimi are individual elements the engine does not know.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-19T09:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-19T09:00:00Z",
+          "review_id": "2026-10-19-ai-hourly-rates"
+        }
+      },
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -2542,6 +2573,51 @@
               "verified_at": "2026-10-13T07:21:14Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        }
+      ],
+      "supplement_bands": [
+        {
+          "code": "STUDI_FESTIVO",
+          "description": "Lavoro nelle festività, come straordinario festivo (art. 97 lett. E)",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-02-16",
+                "valid_until": null,
+                "value": "0.30",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-studi-professionali-2024-02-16",
+                "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+                "kind": "associazione",
+                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                "published_on": "2024-02-16",
+                "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+              },
+              "page": "50",
+              "section": "Art. 97 lett. E - Festività",
+              "quote": "Le ore di lavoro, a qualsiasi titolo richieste, prestate nei giorni festivi indicati nel presente articolo, dovranno essere compensate come lavoro straordinario festivo nella misura e con le modalità previste agli articoli 94 e 95 del precedente Titolo XVI del presente contratto."
+            },
+            "transformation": "Art. 95 (p. 49) pays the straordinario festivo with the hourly normale retribuzione and superminimi and 30% on the hourly normale retribuzione: the band is the 30%; the hour itself is paid apart.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T09:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2024-02-16",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T09:00:00Z",
+              "review_id": "2026-10-19-ai-hourly-rates"
             }
           }
         }
@@ -2743,6 +2819,25 @@
           "Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios studi-year and studi-june): a 4th level impiegato hired on 1 January 2026 by an employer with 10 employees; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent.",
           "fsbap_rates_above_15 stays open: up to 15 employees the terziario rates equal the 0.80% of the solidarity fund (D.I. 21 May 2024 art. 6 c. 1 lett. b), above 15 they need a contribution sector of their own, an engine change outside this review.",
           "bilateral_contribution_or_element stays open: the per-worker amount of Art. 13 needs an employer fact for the alternative element; it remains an owed amount on every run."
+        ]
+      },
+      {
+        "id": "2026-10-19-ai-hourly-rates",
+        "date": "2026-10-19",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base of the time supplements and the supplements of ordinary night, holiday, Sunday, rest-day and shift work, read in the cited articles of the national text (text layer, or OCR of the scanned pages). AI review only: the same model extracted and checked the values.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "hourly_base_method gross_incl_allowances (was gross_incl_allowances), now verified: the engine reads it to derive the hourly rate of an event without one.",
+          "Supplement bands added: STUDI_FESTIVO.",
+          "Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS."
         ]
       },
       {

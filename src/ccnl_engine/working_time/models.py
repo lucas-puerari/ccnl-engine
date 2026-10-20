@@ -1,5 +1,6 @@
 """Working-time and leave rule models for CCNL contracts."""
 
+from collections.abc import Sequence
 from datetime import date
 from decimal import Decimal
 from enum import StrEnum
@@ -9,6 +10,11 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
+from ccnl_engine.working_time.supplement.models import (
+    HourlyBaseMethod,
+    SupplementBand,
+    SupplementWork,
+)
 
 
 class TimeSupplementKind(StrEnum):
@@ -73,22 +79,27 @@ class OvertimeBand(BaseModel):
 class TimeSupplements(BaseModel):
     """Layer 3 time-supplement rules (overtime, night work, holiday work).
 
-    ``hourly_base_method`` controls which base is used:
-
-    * ``minimo_tabellare``: the CCNL table minimum only (no allowances).
-    * ``gross_incl_allowances``: the full gross including fixed allowances.
+    ``hourly_base_method`` names the monthly pay elements divided by
+    ``parameters.hourly_divisor`` for the hourly rate of the CCNL
+    (:class:`HourlyBaseMethod`).  The engine derives an hourly rate from it
+    only when ``hourly_base_provenance`` is verified; otherwise the caller
+    states the rate.  ``hourly_divisor_weekly_hours``, when set, is the
+    full-time week the divisor belongs to: an employment whose full-time
+    week differs is not derived (the CCNL sets another divisor for it).
 
     ``overtime_bands`` is an ordered list of :class:`OvertimeBand` entries.
     All applicable bands accumulate (no "first match wins" truncation) unless
-    a CCNL-specific note says otherwise.
+    a CCNL-specific note says otherwise.  ``supplement_bands`` are the
+    supplements of ordinary night, holiday and shift work.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    hourly_base_method: Literal["minimo_tabellare", "gross_incl_allowances"] = (
-        "minimo_tabellare"
-    )
+    hourly_base_method: HourlyBaseMethod = HourlyBaseMethod.MINIMO_TABELLARE
+    hourly_base_provenance: RuleProvenance | None = None
+    hourly_divisor_weekly_hours: int | None = Field(default=None, ge=1)
     overtime_bands: tuple[OvertimeBand, ...] = Field(default=())
+    supplement_bands: tuple[SupplementBand, ...] = Field(default=())
 
     @field_validator("overtime_bands")
     @classmethod
@@ -135,8 +146,34 @@ class TimeSupplements(BaseModel):
             raise ValueError(msg)
         return bands
 
+    @field_validator("supplement_bands")
+    @classmethod
+    def _one_band_per_work(
+        cls, bands: tuple[SupplementBand, ...]
+    ) -> tuple[SupplementBand, ...]:
+        """Reject two bands of the same work and role for a level.
 
-def _levels_overlap(bands: list[OvertimeBand]) -> bool:
+        Returns:
+            The validated bands unchanged.
+
+        Raises:
+            ValueError: When two bands of one work and role share a level.
+        """
+        groups: dict[tuple[SupplementWork, str | None], list[SupplementBand]] = {}
+        for band in bands:
+            groups.setdefault((band.work, band.role), []).append(band)
+        clashes = [
+            f"{work}/{role}: {[b.code for b in found]}"
+            for (work, role), found in groups.items()
+            if _levels_overlap(found)
+        ]
+        if clashes:
+            msg = "Ambiguous SupplementBand collisions: " + "; ".join(sorted(clashes))
+            raise ValueError(msg)
+        return bands
+
+
+def _levels_overlap(bands: Sequence[OvertimeBand | SupplementBand]) -> bool:
     """Return whether two of ``bands`` can apply to the same level.
 
     Returns:
@@ -217,75 +254,6 @@ class LeaveRules(BaseModel):
         if not tiers:
             return self.default_annual_days
         return max(tiers, key=lambda t: t.service_months_min).annual_days
-
-
-class StandbyRates(BaseModel):
-    """Standby pay (indennità di reperibilità) of one band of levels.
-
-    Attributes:
-        worked_day: Day of 16 hours on a working day; the hourly rate is it
-            divided by :attr:`StandbyRules.hourly_divisor`.
-        rest_day: Day of 24 hours on a rest day.
-        holiday: Day of 24 hours on a public holiday.
-        week: Week of 6 days.
-        week_holiday: Week of 6 days with a public holiday.
-        week_holiday_rest_day: Week of 6 days with a public holiday and a
-            rest day.
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    worked_day: TimeSeries
-    rest_day: TimeSeries
-    holiday: TimeSeries
-    week: TimeSeries
-    week_holiday: TimeSeries
-    week_holiday_rest_day: TimeSeries
-
-
-class StandbyBand(BaseModel):
-    """The levels that share one set of standby rates.
-
-    Attributes:
-        levels: Level codes of the band.
-        rates: Their rates.
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    levels: tuple[str, ...] = Field(min_length=1)
-    rates: StandbyRates
-
-
-class StandbyRules(BaseModel):
-    """CCNL standby pay (reperibilità): rates per band, fee per call.
-
-    Attributes:
-        bands: Bands of levels with their rates; a level in none is not
-            entitled.
-        hourly_divisor: Hours the ``worked_day`` rate is divided by for an
-            hour of standby.
-        call_fee: Amount for each call followed by an intervention.
-        in_tfr_base: Whether the standby pay enters the TFR base (art. 2120
-            c. 2 c.c. lets the CCNL exclude it).
-        provenance: Source and status of the rules.
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    bands: tuple[StandbyBand, ...] = Field(min_length=1)
-    hourly_divisor: Decimal = Field(gt=Decimal(0))
-    call_fee: TimeSeries
-    in_tfr_base: bool
-    provenance: RuleProvenance | None = None
-
-    def band_of(self, level_code: str) -> StandbyBand | None:
-        """Return the band of a level.
-
-        Returns:
-            The band listing ``level_code``, ``None`` when none does.
-        """
-        return next((b for b in self.bands if level_code in b.levels), None)
 
 
 class TravelAllowanceBand(BaseModel):

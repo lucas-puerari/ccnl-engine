@@ -29,9 +29,9 @@ from ccnl_engine.sickness.integration.models import SicknessRules
 from ccnl_engine.working_time.models import (
     CcnlTravelAllowance,
     LeaveRules,
-    StandbyRules,
     TimeSupplements,
 )
+from ccnl_engine.working_time.standby.models import StandbyRules
 
 if TYPE_CHECKING:
     from collections.abc import Iterator, Sequence

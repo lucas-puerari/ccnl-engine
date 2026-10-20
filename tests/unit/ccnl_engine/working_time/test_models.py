@@ -5,12 +5,17 @@ from __future__ import annotations
 import pytest
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
+from ccnl_engine.provenance.source.rule.models import (
+    ProvenanceStatus,
+    RuleProvenance,
+)
 from ccnl_engine.working_time.models import (
     OvertimeBand,
     TimeSupplementKind,
     TimeSupplements,
     WorkKind,
 )
+from ccnl_engine.working_time.supplement.models import SupplementBand, SupplementWork
 from tests.unit.ccnl_engine.builders import _series
 
 
@@ -44,6 +49,22 @@ class TestMiscCoverageGaps:
         )
         with pytest.raises(ValueError, match="Ambiguous OvertimeBand collisions"):
             TimeSupplements(
-                hourly_base_method="minimo_tabellare",
                 overtime_bands=(band_a, band_b),
             )
+
+    def test_supplement_band_collision_raises(self) -> None:
+        """Two bands of one work and role for the same levels raise ValueError."""
+        provenance = RuleProvenance(status=ProvenanceStatus.MISSING)
+        bands = tuple(
+            SupplementBand(
+                code=code,
+                description=code,
+                work=SupplementWork.NIGHT,
+                rate=_time_series("0.15"),
+                hours_paid_apart=False,
+                provenance=provenance,
+            )
+            for code in ("A", "B")
+        )
+        with pytest.raises(ValueError, match="Ambiguous SupplementBand collisions"):
+            TimeSupplements(supplement_bands=bands)

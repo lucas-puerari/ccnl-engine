@@ -46,24 +46,30 @@ _BONUS_KINDS: dict[str, str] = {
 def _standard_event_gross(event: _CashEvent) -> Decimal:
     """Compute the gross amount for a standard work event.
 
-    An overtime event must carry the multiplier it is paid with, resolved
-    against the CCNL bands by
-    :func:`~ccnl_engine.working_time.overtime.policies.resolve_overtime_rate`.
+    A work-time event must carry the values it is paid with, resolved
+    against the CCNL by
+    :func:`~ccnl_engine.working_time.services.resolve_work_event`.
 
     Returns:
         Rounded gross amount in EUR (negative for absence deductions).
 
     Raises:
-        ValueError: When an overtime event has no multiplier.
+        ValueError: When a rate, multiplier or supplement is not resolved.
     """
     if isinstance(event, OvertimeEvent):
-        if event.multiplier is None:
-            msg = "the overtime multiplier must be resolved before the gross"
+        if event.multiplier is None or event.hourly_rate is None:
+            msg = "the overtime rate must be resolved before the gross"
             raise ValueError(msg)
         return money(event.hours * event.hourly_rate * event.multiplier)
     if isinstance(event, (NightShiftEvent, HolidayWorkEvent, ShiftWorkEvent)):
+        if event.supplement_amount is None:
+            msg = "the supplement must be resolved before the gross"
+            raise ValueError(msg)
         return event.supplement_amount
     if isinstance(event, AbsenceEvent):
+        if event.hourly_rate is None:
+            msg = "the absence rate must be resolved before the gross"
+            raise ValueError(msg)
         return -money(event.hours * event.hourly_rate)
     if isinstance(event, SickLeaveEvent):
         if event.waiting_period_days > 0:

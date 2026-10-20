@@ -85,13 +85,14 @@ from ccnl_engine.variable_pay.inputs import (
 )
 from ccnl_engine.working_time.inputs import (
     HolidayWorkEvent,
+    HolidayWorkKind,
     NightShiftEvent,
     OvertimeEvent,
     OvertimeKind,
+    ShiftKind,
     ShiftWorkEvent,
-    StandbyEvent,
-    StandbyKind,
 )
+from ccnl_engine.working_time.standby.inputs import StandbyEvent, StandbyKind
 from ccnl_engine.year.competence.inputs import CompetenceYearPlan
 from ccnl_engine.year.tax_year.inputs import TaxYearPlan
 from tests.unit.ccnl_engine import support
@@ -112,7 +113,7 @@ _EVENTS: dict[type, WorkEvent] = {
             _DAY, _AMOUNT, kind="contract_renewal", agreement_signed_on=date(2025, 1, 1)
         ),
         FringeEvent(_DAY, _AMOUNT),
-        HolidayWorkEvent(_DAY, _AMOUNT),
+        HolidayWorkEvent(_DAY, _AMOUNT, kind=HolidayWorkKind.HOLIDAY),
         NightShiftEvent(_DAY, _AMOUNT),
         OvertimeEvent(
             _DAY,
@@ -121,7 +122,7 @@ _EVENTS: dict[type, WorkEvent] = {
             Decimal("1.25"),
             list(OvertimeKind)[-1],
         ),
-        ShiftWorkEvent(_DAY, _AMOUNT),
+        ShiftWorkEvent(_DAY, _AMOUNT, kind=ShiftKind.NIGHT),
         SickLeaveEvent(_DAY, _AMOUNT, sick_days=3, waiting_period_days=3),
         SicknessEpisode(
             "E1",

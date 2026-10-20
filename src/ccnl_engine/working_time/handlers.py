@@ -37,11 +37,7 @@ from ccnl_engine.pay_item.treatment.models import EventTreatment
 from ccnl_engine.regime.handlers import (
     apply_preferential_regime,
 )
-from ccnl_engine.working_time.overtime.policies import (
-    band_decision,
-    overtime_issues,
-    resolve_overtime_rate,
-)
+from ccnl_engine.working_time.services import resolve_work_event
 
 
 def _pdr_ceiling_exceeded(
@@ -101,23 +97,19 @@ def _handle_standard(
 ) -> EventEffect:
     """Handle standard work-time and bonus events.
 
-    An overtime event is paid with its multiplier or, without one, with the
-    CCNL band of its kind (see
-    :mod:`~ccnl_engine.working_time.overtime.policies`).
+    A work-time event is paid with the caller's values or, without them,
+    with those the CCNL sets (see :mod:`~ccnl_engine.working_time.services`).
 
     Returns:
         Handler result with pay item, ledger entry, and INPS/TFR/IRPEF deltas.
     """
     decisions: list[CalculationDecision] = []
     issues: list[CalculationIssue] = []
-    if isinstance(event, OvertimeEvent):
-        rate = resolve_overtime_rate(event, ctx.overtime_bands)
-        event = rate.paid(event)
-        issues.extend(overtime_issues(event, rate))
-        decision = band_decision(
-            event, rate, ctx.overtime_bands, _standard_event_gross(event)
-        )
-        decisions.extend(() if decision is None else (decision,))
+    if not isinstance(event, (SickLeaveEvent, BonusEvent)):
+        resolved = resolve_work_event(event, ctx.overtime_bands, ctx.hourly)
+        event = resolved.event
+        decisions.extend(resolved.decisions)
+        issues.extend(resolved.issues)
     gross = _standard_event_gross(event)
     item, kind = _standard_event_item(
         event, gross, ctx.evt_id, ctx.cp, ctx.payment_date

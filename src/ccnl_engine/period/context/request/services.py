@@ -61,12 +61,15 @@ def _base_chain(
     request: PeriodCalculationRequest,
     contract: RunContract,
     worker_category: WorkerCategory | None,
+    *,
+    part_time: bool = True,
 ) -> tuple[MonthlyPayChain, ApprenticeshipScaling | None]:
     """Return the pay chain of a regular month for the worker.
 
     A worker who converted the seniority increments into fund
     contributions is paid only those matured by the request, frozen
-    (:mod:`._seniority_conversion`).
+    (:mod:`._seniority_conversion`).  ``part_time`` false leaves the chain
+    at full time whatever the weekly hours.
 
     Returns:
         The chain before any extra-month adjustment, and the apprenticeship
@@ -83,7 +86,7 @@ def _base_chain(
         seniority_months=months,
         roles=request.roles or frozenset(),
         worker_category=worker_category,
-        weekly_hours=_hours_value(request.weekly_hours),
+        weekly_hours=_hours_value(request.weekly_hours) if part_time else None,
         full_time_weekly_hours=_hours_value(request.full_time_weekly_hours),
         hired_on=(
             None
@@ -112,6 +115,7 @@ def build_context(
         contract.ccnl, contract.level, request.category, seniority=request.seniority
     )
     chain, apprenticeship = _base_chain(request, contract, worker_category)
+    full_time, _ = _base_chain(request, contract, worker_category, part_time=False)
     settlements = run_settlements(request, contract.ccnl)
     payment = resolve_payment(request)
     schedule = resolve_withholding_schedule(request, payment, contract.ccnl, competence)
@@ -161,4 +165,5 @@ def build_context(
         regular_chain=regular_chain,
         proration=proration,
         settlements=settlements,
+        full_time_chain=full_time,
     )

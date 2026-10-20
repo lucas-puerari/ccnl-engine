@@ -321,7 +321,9 @@ def band_decision(
             **paid,
             "multiplier": rate.multiplier,
             "hours": event.hours,
-            "hourly_rate": event.hourly_rate,
+            "hourly_rate": (
+                "not_stated" if event.hourly_rate is None else event.hourly_rate
+            ),
         },
         source=None if provenance is None else provenance.location,
         amount=amount,

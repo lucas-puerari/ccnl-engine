@@ -5,12 +5,21 @@ from __future__ import annotations
 from functools import partial
 from typing import TYPE_CHECKING
 
+from ccnl_engine.capability.rule.time.services import (
+    _absence_rules,
+    _overtime_rules,
+    _supplement_rules,
+)
 from ccnl_engine.compensation.hourly.services import percentage_rules
 from ccnl_engine.contribution.additional_ivs.services import (
     additional_ivs_rules,
 )
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm
-from ccnl_engine.event.facade import OvertimeEvent
+from ccnl_engine.event.facade import (
+    HolidayWorkEvent,
+    NightShiftEvent,
+    ShiftWorkEvent,
+)
 from ccnl_engine.extra_month.decision.services import accrual_rules
 from ccnl_engine.fund.assistance.policies import assistance_rules
 from ccnl_engine.fund.contractual.rules import contractual_rules
@@ -22,10 +31,6 @@ from ccnl_engine.severance.services import (
 )
 from ccnl_engine.sickness.services import sickness_rules
 from ccnl_engine.surtax.jurisdiction.types import region_table_name
-from ccnl_engine.working_time.overtime.policies import (
-    CCNLOvertimeBands,
-    resolve_overtime_rate,
-)
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -310,27 +315,6 @@ def _pension_rules(ctx: RunContext) -> tuple[Rule, ...]:
     return tuple(rules)
 
 
-def _overtime_rules(ctx: RunContext) -> tuple[Rule, ...]:
-    """Return the CCNL overtime bands the multipliers of the run came from.
-
-    Returns:
-        One entry per distinct band an overtime event without a caller
-        multiplier was paid with; empty when every multiplier is the caller's.
-    """
-    contract = ctx.contract
-    bands = CCNLOvertimeBands.of(
-        contract.ccnl, contract.tctx.competence.year, ctx.request.level_code
-    )
-    rules: dict[str, Rule] = {}
-    events = ctx.request.events
-    for event in (e for e in events if isinstance(e, OvertimeEvent)):
-        band = resolve_overtime_rate(event, bands).derived_band
-        if band is not None:
-            rule = bands.rule_of(band)
-            rules.setdefault(rule, (rule, band.provenance))
-    return tuple(rules.values())
-
-
 def _standby_rules(ctx: RunContext) -> tuple[Rule, ...]:
     """Return the CCNL standby rules the standby of the run was paid with.
 
@@ -350,6 +334,10 @@ def _standby_rules(ctx: RunContext) -> tuple[Rule, ...]:
 #: Capabilities whose rules need a load, done only when the capability ran.
 LOADED: dict[str, Callable[[RunContext], tuple[Rule, ...]]] = {
     "overtime": _overtime_rules,
+    "night_work": partial(_supplement_rules, event_type=NightShiftEvent),
+    "holiday_work": partial(_supplement_rules, event_type=HolidayWorkEvent),
+    "shift_work": partial(_supplement_rules, event_type=ShiftWorkEvent),
+    "absence": _absence_rules,
     "standby": _standby_rules,
     "addizionale_regionale": partial(_surtax_rules, regional=True),
     "addizionale_comunale": partial(_surtax_rules, regional=False),

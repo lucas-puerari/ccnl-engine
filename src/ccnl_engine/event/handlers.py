@@ -12,6 +12,7 @@ from ccnl_engine.pay_item.facade import CompetencePeriod, PayItem
 from ccnl_engine.pay_item.services import _ZERO
 from ccnl_engine.regime.eligibility.rules import RegimeFacts
 from ccnl_engine.sickness.term.rules import SicknessTerms
+from ccnl_engine.working_time.hourly.policies import HourlyTerms
 from ccnl_engine.working_time.overtime.policies import CCNLOvertimeBands
 
 if TYPE_CHECKING:
@@ -74,7 +75,9 @@ class _EventHandlerCtx:
     night, holiday or shift supplement.  ``worker_facts`` carries the
     prior-year income, the waivers, the sector and the employer activity
     every regime and the PdR read.  ``overtime_bands`` are the CCNL bands an
-    overtime event without a multiplier is paid with; ``sickness`` the rules
+    overtime event without a multiplier is paid with; ``hourly`` what the
+    CCNL hourly base, supplements and absence quota of a work-time event
+    without the caller's value are derived from; ``sickness`` the rules
     and the episodes a sickness episode is paid with, updated after each;
     ``travel_allowance`` the exempt caps a travel allowance is assessed with;
     ``standby`` the CCNL standby rates and the worker's level.
@@ -94,6 +97,7 @@ class _EventHandlerCtx:
     work_time_cap: RegimeCapAccount = field(default_factory=RegimeCapAccount)
     worker_facts: RegimeFacts = field(default_factory=RegimeFacts)
     overtime_bands: CCNLOvertimeBands = field(default_factory=CCNLOvertimeBands)
+    hourly: HourlyTerms = field(default_factory=HourlyTerms)
     sickness: SicknessTerms = field(default_factory=SicknessTerms)
     travel_allowance: TravelAllowanceRules | None = None
     standby: StandbyTerms | None = None

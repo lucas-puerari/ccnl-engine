@@ -249,6 +249,7 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
     yield from _hourly_rules(file, params.get("hourly_pay"))
     yield from _work_rules(file, data.get("work_rules"))
     yield from _overtime_rules(file, data.get("work_rules"))
+    yield from _supplement_rules(file, data.get("work_rules"))
     yield from _fund_rules(file, params.get("employer_funds"))
     yield from _contractual_rules(file, params.get("contractual_fund_contribution"))
     fund = params.get("solidarity_fund")
@@ -322,6 +323,52 @@ def _overtime_rules(file: str, work_rules: object) -> Iterator[PayableRule]:
         if isinstance(band, dict) and _is_first_tier(band):
             path = f"overtime_bands[{band.get('code')}]"
             yield _rule(file, path, ("overtime",), band.get("provenance"))
+
+
+#: Capability each supplement band work feeds.
+_SUPPLEMENT_CAPABILITIES: Final = {
+    "night": "night_work",
+    "holiday": "holiday_work",
+    "holiday_compensatory_rest": "holiday_work",
+    "sunday": "holiday_work",
+    "rest_day": "holiday_work",
+    "day_shift": "shift_work",
+    "night_shift": "shift_work",
+}
+#: Capabilities whose rate an event without the caller's can take from the
+#: hourly base of the CCNL.
+_HOURLY_BASE_CAPABILITIES: Final = (
+    "overtime",
+    "night_work",
+    "holiday_work",
+    "shift_work",
+    "absence",
+)
+
+
+def _supplement_rules(file: str, work_rules: object) -> Iterator[PayableRule]:
+    """Yield the sourced hourly base and the supplement bands of a CCNL.
+
+    Yields:
+        One rule for the hourly base when the CCNL records its source (the
+        engine reads it only then), one per supplement band.
+    """
+    rules = work_rules if isinstance(work_rules, dict) else {}
+    supplements = rules.get("time_supplements")
+    block = supplements if isinstance(supplements, dict) else {}
+    record = block.get("hourly_base_provenance")
+    if record is not None:
+        yield _rule(
+            file, "time_supplements.hourly_base", _HOURLY_BASE_CAPABILITIES, record
+        )
+    bands = block.get("supplement_bands")
+    for band in bands if isinstance(bands, list) else []:
+        if isinstance(band, dict):
+            capability = _SUPPLEMENT_CAPABILITIES.get(
+                str(band.get("work")), "holiday_work"
+            )
+            path = f"supplement_bands[{band.get('code')}]"
+            yield _rule(file, path, (capability,), band.get("provenance"))
 
 
 #: Rate series of an employer fund.

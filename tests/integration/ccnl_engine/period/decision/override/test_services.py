@@ -231,14 +231,30 @@ def test_fringe_benefit_keeps_its_own_decision() -> None:
     assert caller_supplied_decisions((FringeEvent(_DAY, Decimal(100)),), _CCNL) == ()
 
 
-def test_supplement_bands_match_their_work_kind() -> None:
-    """Night and holiday compare with their bands; shifts have none here."""
+def test_supplement_bands_match_their_work() -> None:
+    """Holiday compares with its supplement bands; night and shifts have none."""
     night = _only((NightShiftEvent(_DAY, Decimal(30)),))
     holiday = _only((HolidayWorkEvent(_DAY, Decimal(30)),))
     shift = _only((ShiftWorkEvent(_DAY, Decimal(12)),))
-    assert night.inputs["bundle_band[OT_NOTTURNO]"] == Decimal("0.50")
-    assert holiday.inputs["bundle_band[OT_FESTIVO]"] == Decimal("0.55")
+    assert night.inputs["bundle_band"] == NOT_IN_BUNDLE
+    assert holiday.inputs["bundle_band[FED_FESTIVO]"] == Decimal("0.50")
+    assert "bundle_band[OT_FESTIVO]" not in holiday.inputs
     assert shift.inputs["bundle_band"] == NOT_IN_BUNDLE
+
+
+def test_shift_without_kind_compares_with_every_shift_band() -> None:
+    """A chimica shift of no stated kind lists the day-shift band."""
+    chimica = load_ccnl("chimica-farmaceutica-federchimica")
+    shift = _only((ShiftWorkEvent(_DAY, Decimal(12)),), chimica)
+    assert shift.inputs["bundle_band[CHIM_TURNO_DIURNO]"] == Decimal("0.04")
+
+
+def test_values_left_to_the_ccnl_are_not_caller_supplied() -> None:
+    """Without a caller value no decision is listed; a multiplier alone is."""
+    derived = OvertimeEvent(_DAY, Decimal(2))
+    assert caller_supplied_decisions((derived,), _CCNL) == ()
+    holiday = HolidayWorkEvent(_DAY, hours=Decimal(8))
+    assert caller_supplied_decisions((holiday,), _CCNL) == ()
 
 
 def test_without_work_rules_nothing_is_in_the_bundle() -> None:

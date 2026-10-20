@@ -105,6 +105,22 @@ with an allowance restricted to a role in force, the run leaves the
 allowance out and has a `missing_fact` blocker for `roles`. A worker
 category, `QUADRO` included, does not unlock a role allowance.
 
+A role also selects a CCNL supplement band reserved to it (Turismo
+`qualifica_notturna`; Terziario `impianto_carburante_autostradale`): with
+such a band and `roles=None`, the supplement is not derived.
+
+## Hourly base
+
+The hourly rate a work event is paid with, when the caller does not state
+it, is the CCNL hourly base: the full-time monthly pay elements named by
+`work_rules.time_supplements.hourly_base_method` divided by
+`parameters.hourly_divisor`. A part-time worker's hourly base is the
+full-time one (the part-time chain over the full-time divisor would
+understate it); an apprentice's is reduced by the apprenticeship
+percentage. Only CCNLs whose `hourly_base_provenance` is verified are
+derived (the 8 pilots); individual elements such as superminimi are never
+in it. See [Work rules](work-rules.md#hourly-rate-supplements-and-absence-quota-from-the-ccnl).
+
 ## Individual elements (*superminimo*, *assegno ad personam*)
 
 Amounts agreed with the worker above the CCNL tables go in
@@ -131,7 +147,9 @@ superminimo = IndividualElement(
 )
 ```
 
-Overtime and absences keep the hourly rate the caller states on the event.
+The elements are not in the CCNL hourly base of overtime, supplements and
+absences ([Hourly base](#hourly-base)): a worker whose CCNL counts them
+states the hourly rate on the event.
 
 ## Seniority increments (*scatti di anzianità*)
 

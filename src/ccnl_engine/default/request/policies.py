@@ -187,7 +187,8 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "employment.roles",
         _REPORTED,
         "unknown roles: a run whose level has an allowance restricted to a role "
-        "in force leaves it out and has a missing_fact roles blocker; an empty "
+        "in force leaves it out and has a missing_fact roles blocker; a "
+        "supplement the CCNL pays apart for a role is not derived; an empty "
         "set states that the worker holds no role",
     ),
     "Employment.contribution_history": requires_fact(

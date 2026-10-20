@@ -16,6 +16,8 @@ gross, net and employer cost according to its treatment; see
 
 ::: ccnl_engine.events.HolidayWorkEvent
 
+::: ccnl_engine.events.HolidayWorkKind
+
 ::: ccnl_engine.events.NightShiftEvent
 
 ::: ccnl_engine.events.OvertimeEvent
@@ -23,6 +25,8 @@ gross, net and employer cost according to its treatment; see
 ::: ccnl_engine.events.OvertimeKind
 
 ::: ccnl_engine.events.PeriodId
+
+::: ccnl_engine.events.ShiftKind
 
 ::: ccnl_engine.events.ShiftWorkEvent
 

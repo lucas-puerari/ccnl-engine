@@ -24,7 +24,12 @@ from ccnl_engine.decision.models import (
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.event.facade import OvertimeEvent, OvertimeKind
+from ccnl_engine.event.facade import (
+    AbsenceEvent,
+    NightShiftEvent,
+    OvertimeEvent,
+    OvertimeKind,
+)
 from ccnl_engine.event.standard.handlers import (
     _standard_event_gross,
 )
@@ -233,3 +238,20 @@ def test_gross_needs_a_resolved_multiplier() -> None:
     """The gross of an overtime event is computed only once it has a multiplier."""
     with pytest.raises(ValueError, match="must be resolved"):
         _standard_event_gross(_overtime())
+
+
+@pytest.mark.parametrize(
+    "event",
+    [
+        OvertimeEvent(date(2026, 3, 10), Decimal(2), multiplier=Decimal("1.25")),
+        NightShiftEvent(date(2026, 3, 10), hours=Decimal(2)),
+        AbsenceEvent(date(2026, 3, 10), Decimal(2)),
+    ],
+    ids=["overtime_rate", "supplement", "absence_rate"],
+)
+def test_gross_needs_every_value_resolved(
+    event: OvertimeEvent | NightShiftEvent | AbsenceEvent,
+) -> None:
+    """A rate or supplement left to the CCNL must be resolved first."""
+    with pytest.raises(ValueError, match="must be resolved"):
+        _standard_event_gross(event)

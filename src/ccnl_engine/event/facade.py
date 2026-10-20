@@ -25,13 +25,14 @@ from ccnl_engine.variable_pay.inputs import (
 )
 from ccnl_engine.working_time.inputs import (
     HolidayWorkEvent,
+    HolidayWorkKind,
     NightShiftEvent,
     OvertimeEvent,
     OvertimeKind,
+    ShiftKind,
     ShiftWorkEvent,
-    StandbyEvent,
-    StandbyKind,
 )
+from ccnl_engine.working_time.standby.inputs import StandbyEvent, StandbyKind
 
 __all__ = [
     "WORK_EVENT_TYPES",
@@ -41,9 +42,11 @@ __all__ = [
     "BonusEvent",
     "FringeEvent",
     "HolidayWorkEvent",
+    "HolidayWorkKind",
     "NightShiftEvent",
     "OvertimeEvent",
     "OvertimeKind",
+    "ShiftKind",
     "ShiftWorkEvent",
     "SickLeaveEvent",
     "SicknessEpisode",
