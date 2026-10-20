@@ -26,6 +26,7 @@ from ccnl_engine.calendar.inputs import CalendarOverride, CalendarOverrideReason
 from ccnl_engine.calendar.models import WorkCalendar
 from ccnl_engine.codec.serializers import encode, loads, reject
 from ccnl_engine.codec.tree.serializers import read_tree
+from ccnl_engine.compensation.individual.inputs import IndividualElement
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.contribution.zone.models import AgriculturalZone
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
@@ -147,6 +148,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             Headcount,
             HolidayWorkEvent,
             IncomeEstimateQuality,
+            IndividualElement,
             NaspiExclusion,
             NightShiftEvent,
             NoPensionFund,

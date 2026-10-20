@@ -22,6 +22,7 @@ from ccnl_engine.calendar.inputs import (
 )
 from ccnl_engine.calendar.models import WorkCalendar
 from ccnl_engine.calendar.payment.models import PaymentId
+from ccnl_engine.compensation.individual.inputs import IndividualElement
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.employer.inputs import (
@@ -98,6 +99,7 @@ __all__ = [
     "FixedTerm",
     "ForeignTaxPaid",
     "IncomeEstimateQuality",
+    "IndividualElement",
     "InpsBaseYtd",
     "NaspiExclusion",
     "NoPensionFund",

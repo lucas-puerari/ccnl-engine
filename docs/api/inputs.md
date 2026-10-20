@@ -60,6 +60,8 @@ state types.
 
 ::: ccnl_engine.inputs.DependentRelationship
 
+::: ccnl_engine.inputs.IndividualElement
+
 ::: ccnl_engine.inputs.PriorYearTaxFacts
 
 ::: ccnl_engine.inputs.CurrentYearTaxFacts

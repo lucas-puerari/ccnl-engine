@@ -35,6 +35,7 @@ from ccnl_engine.validators import FieldSpec, require_instances
 
 if TYPE_CHECKING:
     from ccnl_engine.calendar.payment.models import PaymentId
+    from ccnl_engine.compensation.individual.inputs import IndividualElement
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.event.facade import WorkEvent
     from ccnl_engine.extra_month.models import ExtraMonthAccrual
@@ -109,6 +110,8 @@ class PeriodCalculationRequest:
             increments or service-gated allowances the run has a
             ``missing_fact`` blocker.
         roles: Role codes of the role-specific allowances, ``None`` unknown.
+        individual_elements: Pay elements agreed with the worker above the
+            CCNL minimum, paid as fixed allowances of the level.
         category: Worker category declared on the employment.  ``None``
             takes the category fixed by the level, if any.  Must match the
             level's category when the level fixes one, and is required when
@@ -171,6 +174,7 @@ class PeriodCalculationRequest:
     employment_period: EmploymentPeriod | None = None
     seniority: SeniorityFact | None = None
     roles: frozenset[str] | None = None
+    individual_elements: tuple[IndividualElement, ...] = ()
     category: WorkerCategory | None = None
     extra_month_accrual: ExtraMonthAccrual | None = None
     extra_month_settlements: tuple[ExtraMonthAccrual, ...] | None = None

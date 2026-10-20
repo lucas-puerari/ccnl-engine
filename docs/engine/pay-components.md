@@ -105,6 +105,34 @@ with an allowance restricted to a role in force, the run leaves the
 allowance out and has a `missing_fact` blocker for `roles`. A worker
 category, `QUADRO` included, does not unlock a role allowance.
 
+## Individual elements (*superminimo*, *assegno ad personam*)
+
+Amounts agreed with the worker above the CCNL tables go in
+`Employment.individual_elements`, one `IndividualElement` each with its own
+code. The engine pays each as a fixed allowance of the level: part time, a
+partial month and the ratei of an extra month scale it like the minimo, an
+apprentice gets it whole, and its flags decide whether it is paid on the
+extra months (`extra_months`, default true) and enters the TFR base
+(`tfr_relevant`, default true). An absorbable element (`absorbable=True`)
+needs the day its amount is stated (`as_of`): the increases of the minimo
+tabellare of the level from that day to the run reduce it, never below zero,
+and a cut of the minimo does not raise it. Each run records a `base_salary`
+decision per element, `individual_element_paid` or
+`individual_element_absorbed`, with the full-time monthly amount paid.
+
+```python
+from datetime import date
+from decimal import Decimal
+
+from ccnl_engine.inputs import IndividualElement
+
+superminimo = IndividualElement(
+    "superminimo", Decimal(200), absorbable=True, as_of=date(2026, 1, 1)
+)
+```
+
+Overtime and absences keep the hourly rate the caller states on the event.
+
 ## Seniority increments (*scatti di anzianità*)
 
 Pass the recognised seniority as `Employment.seniority`, a `SeniorityFact`:

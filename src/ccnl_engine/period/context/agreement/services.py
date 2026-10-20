@@ -12,6 +12,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.catalog.services import resolve_ccnl
+from ccnl_engine.compensation.individual.rules import with_individual_elements
 from ccnl_engine.compensation.provincial_element.services import (
     without_replaced_elements,
 )
@@ -140,6 +141,9 @@ def load_contract(
         request.level_code,
         request.employer.provincial_pay_element,
         tctx.competence,
+    )
+    ccnl = with_individual_elements(
+        ccnl, request.level_code, request.individual_elements, tctx.competence
     )
     try:
         level = ccnl.level_by_code(request.level_code)
