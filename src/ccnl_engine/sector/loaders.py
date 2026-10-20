@@ -94,7 +94,7 @@ def _load_year_rules_cached(
     raw["inps_sources"] = inps_sources
     raw["inps_extraction"] = inps_extraction
     rules = YearRulesRaw.model_validate(raw)
-    inps = _resolve_inps(rules.inps, num_employees)
+    inps = _resolve_inps(rules.inps, num_employees, rules.apprentice)
     apprentice = (
         _resolve_apprentice(rules.apprentice, num_employees)
         if rules.apprentice is not None

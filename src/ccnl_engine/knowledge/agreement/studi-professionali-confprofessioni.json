@@ -63,18 +63,8 @@
         "text": "APPRENTICESHIP (Artt. 28-31 and Allegato B CCNL 2024, read in the April 2026 testo ufficiale, PDF pp. 143-144): professionalizzante 70% months 1-12, 85% months 13-24, 93% after, of the minimo of the destination level, one table for every profile; 30 months for Q, 1, 2 (track professionalizzante_30) and 36 months for 3S, 3, 4S, 4 (professionalizzante_36); level 5 excluded (Art. 30 B). Primo livello (qualifica_diploma, every level): 45%, 55%, 65%. Alta formazione e ricerca (alta_formazione_ricerca, Q, 1, 2, 3S): 40%, 50%, 60%. The last band of each track is open-ended: the apprenticeship is prolonged by absences over 30 days (Art. 28 I). A level covered by several tracks needs Apprentice.track."
       },
       {
-        "kind": "simplification",
-        "text": "SOLIDARITY FUND: the studi professionali pay the Fondo di solidarietà bilaterale per le attività professionali (D.I. 21 May 2024 art. 6: 0.50% up to 5, 0.80% from 5 to 15, 1% above 15 employees, two thirds employer; INPS circ. 5/2025 cuts the 0.50% by 40% for employers without claims) instead of the FIS, and owe no CIGS (D.Lgs. 148/2015 art. 20 c. 3-bis). The engine uses the terziario 2026 rates (FIS and CIGS): up to 15 employees they coincide, above 15 employees they overcharge by 0.46 points the employer (30.11% instead of 29.65%) and by 0.24 points the worker (9.76% instead of 9.52%); for apprentices the fund share is 0.67% employer and 0.33% worker instead of 1.13% and 0.57%. Every run of an employer with more than 15 employees carries this limitation.",
-        "capability": "inps_employer",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "fsbap_rates_above_15",
-          "applies_when": {
-            "trigger": "run",
-            "headcount_from": 16
-          },
-          "remediation": "Add a studi-professionali contribution sector, or a headcount-tiered solidarity fund that replaces the FIS and the CIGS."
-        }
+        "kind": "info",
+        "text": "SOLIDARITY FUND: the studi professionali pay the Fondo di solidarietà bilaterale per le attività professionali (D.I. 21 May 2024 art. 6) in place of the FIS and owe no CIGS (D.Lgs. 148/2015 art. 20 c. 3-bis): parameters.solidarity_fund replaces the FIS and CIGS shares of the terziario rates with the thirds of 0.50%, 0.80% and 1% by headcount. Up to 15 employees the rates coincide; above 15 the employer pays 0.46 points and the worker 0.24 points less than the terziario rates."
       },
       {
         "kind": "info",
@@ -102,7 +92,7 @@
       },
       {
         "kind": "info",
-        "text": "BILATERAL CONTRIBUTION: EBIPRO and CADIPROF are paid with a unified contribution of EUR 29 a month for 12 months, EUR 2 of it by the worker (Art. 13), plus a CADIPROF enrolment of EUR 24 (Art. 16); the engine takes them as a caller BilateralFundEvent."
+        "text": "BILATERAL CONTRIBUTION: EBIPRO and CADIPROF are paid with a unified contribution of EUR 29 a month for 12 months, EUR 2 of it by the worker (Art. 13), modelled as the contractual funds cadiprof (20 EUR, health fund) and ebipro (7 + 2 EUR); an employer outside the bilateral system owes the worker 43 EUR for 14 months instead. The CADIPROF enrolment of EUR 24 (Art. 16) stays a caller BilateralFundEvent."
       },
       {
         "kind": "simplification",
@@ -232,19 +222,6 @@
             "trigger": "outside_input"
           },
           "remediation": "Add a worker fact for extra months already paid."
-        }
-      },
-      {
-        "kind": "simplification",
-        "text": "BILATERAL CONTRIBUTION: the employer pays the bilateral contribution of Art. 13 for every worker, or instead the elemento retributivo of EUR 43 x 14, in every institute including TFR. Neither is modelled: the employer cost, and with the elemento the net pay, are short of it.",
-        "capability": "bilateral_funds",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "bilateral_contribution_or_element",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "remediation": "Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note."
         }
       }
     ]
@@ -538,7 +515,170 @@
           }
         }
       }
-    ]
+    ],
+    "health_funds": [
+      {
+        "code": "cadiprof",
+        "description": "CADIPROF, Cassa di assistenza sanitaria supplementare per i dipendenti degli studi professionali, Art. 13",
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-03-01",
+                "valid_until": null,
+                "value": "20.0"
+              }
+            ]
+          }
+        },
+        "employee_deductible": true,
+        "solidarity_rate": "0.1",
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-03-01",
+                "valid_until": null,
+                "value": "43.0"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "alternative_scaled": false,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-studi-professionali-2024-02-16",
+              "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+              "kind": "associazione",
+              "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+              "published_on": "2024-02-16",
+              "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+            },
+            "page": "8",
+            "section": "Art. 13 - Contribuzione alla bilateralità di settore",
+            "quote": "A partire dalla mensilità di marzo 2024 il finanziamento di tutte le attività che vengono esercitate dagli enti bilaterali di settore (CADIPROF EBIPRO), come elencate dal presente Ccnl, viene effettuato mediante un contributo unificato mensile, per dodici mensilità, di 29 euro, di cui 2 euro a carico del lavoratore [...] Per i lavoratori assunti a tempo parziale i versamenti di cui sopra saranno comunque dovuti in misura intera. [...] 20 euro per 12 mensilità a CADIPROF. 9 euro di cui 2 euro a carico del lavoratore e 7 euro a carico del datore di lavoro, per 12 mensilità ad EBIPRO. In caso di mancata adesione al sistema della bilateralità e di omesso versamento del relativo contributo, il datore di lavoro è tenuto a corrispondere al lavoratore un importo pari ad euro 43 (quarantatre) corrisposto per 14 mensilità. [...] incide su tutti gli istituti retributivi di legge e contrattuali, compresi quelli indiretti o differiti, incluso il trattamento di fine rapporto. Per i lavoratori assunti con contratto di lavoro a tempo parziale il suddetto importo non è riproporzionabile."
+          },
+          "transformation": "CADIPROF 20 EUR a month of the employer, 12 months, in full for a part-time worker; health fund, so the employer owes the INPS solidarity contribution of 10% on it. An employer outside the bilateral system owes instead 43 EUR for 14 months, not reproportioned for part time, in the TFR base.",
+          "note": "The 43 EUR element replaces the whole unified contribution (CADIPROF and EBIPRO): it is carried by CADIPROF only, so an employer that states neither fund owes it once; stating EBIPRO alone owes it too. The reimbursement of the benefits a non-adhering employer owes on top of the element and the enrolment fee of Art. 16 are not modelled.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-20T10:40:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-20T10:40:00Z",
+            "verification_status": "verified",
+            "effective_from": "2024-03-01",
+            "review_id": "2026-10-20-ai-funds"
+          }
+        }
+      },
+      {
+        "code": "ebipro",
+        "description": "EBIPRO, Ente bilaterale nazionale per gli studi professionali, Art. 13",
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-03-01",
+                "valid_until": null,
+                "value": "7.0"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-03-01",
+                "valid_until": null,
+                "value": "2.0"
+              }
+            ]
+          }
+        },
+        "alternative_in": "cadiprof",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-studi-professionali-2024-02-16",
+              "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+              "kind": "associazione",
+              "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+              "published_on": "2024-02-16",
+              "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+            },
+            "page": "8",
+            "section": "Art. 13 - Contribuzione alla bilateralità di settore",
+            "quote": "A partire dalla mensilità di marzo 2024 il finanziamento di tutte le attività che vengono esercitate dagli enti bilaterali di settore (CADIPROF EBIPRO), come elencate dal presente Ccnl, viene effettuato mediante un contributo unificato mensile, per dodici mensilità, di 29 euro, di cui 2 euro a carico del lavoratore [...] Per i lavoratori assunti a tempo parziale i versamenti di cui sopra saranno comunque dovuti in misura intera. [...] 20 euro per 12 mensilità a CADIPROF. 9 euro di cui 2 euro a carico del lavoratore e 7 euro a carico del datore di lavoro, per 12 mensilità ad EBIPRO."
+          },
+          "transformation": "EBIPRO 7 EUR of the employer and 2 EUR of the worker a month, 12 months, in full for a part-time worker. A bilateral body, not a health fund: no solidarity contribution and the worker share stays in the IRPEF base.",
+          "note": "Paid with CADIPROF as one 29 EUR F24 line (causale ASSP). Its alternative is the element of CADIPROF.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-20T10:40:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-20T10:40:00Z",
+            "verification_status": "verified",
+            "effective_from": "2024-03-01",
+            "review_id": "2026-10-20-ai-funds"
+          }
+        }
+      }
+    ],
+    "solidarity_fund": {
+      "code": "FONDO_SOLIDARIETA_ATTIVITA_PROFESSIONALI",
+      "wage_integration_tiers": [
+        {
+          "max_employees": 5,
+          "employer_rate": "0.0033333",
+          "employee_rate": "0.0016667"
+        },
+        {
+          "max_employees": 15,
+          "employer_rate": "0.0053333",
+          "employee_rate": "0.0026667"
+        },
+        {
+          "max_employees": null,
+          "employer_rate": "0.0066667",
+          "employee_rate": "0.0033333"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "di-21-05-2024-attivita-professionali",
+            "title": "Decreto interministeriale 21 maggio 2024, Fondo di solidarietà bilaterale per le attività professionali",
+            "kind": "amministrazione",
+            "url": "https://www.lavoro.gov.it/sites/default/files/temi-e-priorita%2C%20ammortizzatori-sociali/normativa/Decreto-Interministeriale-del-%2021052024.pdf",
+            "sha256": "fd1d01d5444dff1cfdd2cf5d0a12ff5b2ee5c1fca8a64758e61f4a7bee9c9bbf"
+          },
+          "page": "6-7",
+          "section": "Art. 6 c. 1 lett. a-c (Finanziamento)",
+          "quote": "a) un contributo ordinario dello 0,50% di cui due terzi a carico del datore di lavoro e un terzo a carico del lavoratore, calcolato sulla retribuzione imponibile ai fini previdenziali, per i datori di lavoro che nel semestre precedente la data di presentazione della domanda abbiano occupato mediamente fino a cinque dipendenti; b) un contributo ordinario dello 0,80%, di cui due terzi a carico del datore di lavoro e un terzo a carico del lavoratore, [...] più di cinque dipendenti fino a quindici dipendenti; c) un contributo ordinario pari all'1% di cui due terzi a carico del datore di lavoro e un terzo a carico del lavoratore, calcolato sulla retribuzione imponibile ai fini previdenziali, per tutti i datori di lavoro che nel semestre precedente abbiano occupato mediamente più di quindici dipendenti"
+        },
+        "transformation": "Thirds of 0.50%, 0.80% and 1%: 0.33333/0.16667, 0.53333/0.26667 and 0.66667/0.33333, in place of the FIS and CIGS shares of the terziario rates (the same thirds up to 15 employees; above 15 the FIS 0.80% and the CIGS 0.90%, 1.13333/0.56667). The studi owe no CIGS (D.Lgs. 148/2015 art. 20 c. 3-bis).",
+        "note": "The 40% cut of the 0.50% for an employer without claims for 24 months (art. 6 c. 4; INPS circ. 5/2025 p. 3, https://ance.it/wp-content/uploads/allegati/INPS_Circolare-numero-5-del-20-01-2025.pdf, sha256 01d8fd32bc94bbcc676911786a222e50a89b73b4b1086641f559d0086a2b8237) equals the FIS cut of art. 29 c. 8-bis the terziario rates carry: EmployerProfile.fis_reduction states it for both. The fund covers every worker the sector rates apply to, apprentices included (INPS circ. 76/2022 par. 1). Only the ordinary contribution: the additional 4% on a benefit paid is not modelled.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-20T10:40:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-20T10:40:00Z",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01",
+          "review_id": "2026-10-20-ai-funds"
+        }
+      }
+    }
   },
   "levels": [
     {
@@ -2177,7 +2317,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "7acf1288f6b601ccb2ccdcbbf44af545c6296d32af30b898da7890f93733e621",
+    "source_hash": "0ac418c3efce40772643a0f22e6986434b059e4cfde5aef28de60c3633f0156a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2561,6 +2701,34 @@
           "Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios studi-year and studi-june): a 4th level impiegato hired on 1 January 2026 by an employer with 10 employees; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent.",
           "fsbap_rates_above_15 stays open: up to 15 employees the terziario rates equal the 0.80% of the solidarity fund (D.I. 21 May 2024 art. 6 c. 1 lett. b), above 15 they need a contribution sector of their own, an engine change outside this review.",
           "bilateral_contribution_or_element stays open: the per-worker amount of Art. 13 needs an employer fact for the alternative element; it remains an owed amount on every run."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-funds",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The bilateral contribution of Art. 13 (CADIPROF, EBIPRO and the element owed outside the bilateral system) against the CCNL of 16 February 2024, and the Fondo di solidarietà bilaterale per le attività professionali against the D.I. of 21 May 2024 art. 6 and INPS circ. 5/2025.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          },
+          {
+            "url": "https://www.lavoro.gov.it/sites/default/files/temi-e-priorita%2C%20ammortizzatori-sociali/normativa/Decreto-Interministeriale-del-%2021052024.pdf",
+            "sha256": "fd1d01d5444dff1cfdd2cf5d0a12ff5b2ee5c1fca8a64758e61f4a7bee9c9bbf"
+          },
+          {
+            "url": "https://ance.it/wp-content/uploads/allegati/INPS_Circolare-numero-5-del-20-01-2025.pdf",
+            "sha256": "01d8fd32bc94bbcc676911786a222e50a89b73b4b1086641f559d0086a2b8237"
+          }
+        ],
+        "findings": [
+          "Art. 13 (p. 8): from March 2024 a unified contribution of 29 EUR a month for 12 months, 2 EUR of the worker, in full for part time: 20 EUR to CADIPROF, 7 + 2 EUR to EBIPRO. Modelled as the contractual funds cadiprof (health fund, 10% INPS solidarity) and ebipro; the owed limitation bilateral_contribution_or_element removed.",
+          "Art. 13 (p. 8): an employer outside the bilateral system owes 43 EUR for 14 months, in every institute including the TFR, not reproportioned for part time. Modelled as the element of cadiprof, which ebipro shares (alternative_in).",
+          "D.I. 21 May 2024 art. 6 c. 1 (pp. 6-7): 0.50% up to 5, 0.80% from 6 to 15, 1% above 15 employees, two thirds employer, on the INPS taxable pay. Modelled as a solidarity fund whose tier replaces the FIS and CIGS shares of the terziario rates; up to 15 employees they coincide, above 15 the worker pays 9.52% and the employer 29.65%. The owed limitation fsbap_rates_above_15 removed.",
+          "Art. 6 c. 4 and INPS circ. 5/2025 p. 3: the 0.50% falls to 0.30% for an employer without claims for 24 months, the same cut the terziario rates carry for the FIS (EmployerProfile.fis_reduction)."
         ]
       }
     ],

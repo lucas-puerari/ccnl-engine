@@ -183,6 +183,10 @@ class InpsRates(BaseModel):
     flags rates of an employer that does not say its zone.
     ``sick_pay_supplements`` are the additional sickness contributions of
     the employers of an INPS sick-pay regime, by regime id.
+    ``wage_integration_employer_rate`` and ``wage_integration_employee_rate``
+    are the CIGO, CIGS or FIS shares the rates hold for the headcount, the
+    shares apprentices owe too (INPS circ. 76/2022 par. 1): a solidarity fund
+    in place of the FIS replaces them.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -192,6 +196,8 @@ class InpsRates(BaseModel):
     employer_rate: NonNegativeRate
     employer_ivs_rate: NonNegativeRate
     ceiling: PositiveCeiling | None
+    wage_integration_employer_rate: NonNegativeRate = Decimal(0)
+    wage_integration_employee_rate: NonNegativeRate = Decimal(0)
     employer_rate_by_category: dict[WorkerCategory, NonNegativeRate] = {}
     employee_additional: AdditionalIvsRule | None = None
     minimum_base: MinimumBaseRule | None = None

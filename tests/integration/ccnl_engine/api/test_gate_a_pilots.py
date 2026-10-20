@@ -67,6 +67,8 @@ _FUNDS_PAID: Final = frozenset({
     "ebm_salute",
     "metasalute",
     "flexible_benefits",
+    "cadiprof",
+    "ebipro",
 })
 
 #: Blockers of a worker eligible to the renewal regime: the increment paid
@@ -112,18 +114,7 @@ _SPECIFIC: Final[dict[str, frozenset[Blocker]]] = {
     "terziario-confesercenti": frozenset(),
     "metalmeccanico-confapi": frozenset(),
     "metalmeccanico-federmeccanica": frozenset(),
-    "studi-professionali-confprofessioni": frozenset({
-        _owed(
-            "studi-professionali-confprofessioni",
-            "bilateral_funds",
-            "bilateral_contribution_or_element",
-        ),
-        _owed(
-            "studi-professionali-confprofessioni",
-            "inps_employer",
-            "fsbap_rates_above_15",
-        ),
-    }),
+    "studi-professionali-confprofessioni": frozenset(),
     "commercio-confcommercio": frozenset(),
 }
 #: Pilots whose renewal increment cannot be measured yet: the CCNL does not

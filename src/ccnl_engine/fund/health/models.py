@@ -77,6 +77,9 @@ class ContractualFund(BaseModel):
             its share (10% for a health fund, L. 166/1991 art. 9-bis).
         alternative: Elemento distinto the worker is owed when the employer
             does not pay the fund, ``None`` when the CCNL grants none.
+        alternative_in: Code of the fund whose element also stands for this
+            one, when the CCNL owes a single element for several funds
+            (Studi professionali Art. 13: 43 EUR for CADIPROF and EBIPRO).
         alternative_extra_months: Whether the element is paid on the extra
             months too (e.g. "per 14 mensilità").
         alternative_tfr: Whether the element enters the TFR base.
@@ -109,6 +112,7 @@ class ContractualFund(BaseModel):
     employee_deductible: bool = False
     solidarity_rate: Decimal = Field(default=Decimal(0), ge=0, lt=1)
     alternative: FundAmount | None = None
+    alternative_in: str | None = None
     alternative_extra_months: bool = False
     alternative_tfr: bool = False
     alternative_scaled: bool = True

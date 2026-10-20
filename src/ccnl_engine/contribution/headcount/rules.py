@@ -76,8 +76,16 @@ def _resolve_tier[T: _Tier](tiers: list[T], num_employees: int, side: str) -> T:
     return sorted_tiers[-1]
 
 
-def _resolve_inps(raw: InpsRawRates | None, num_employees: int) -> InpsRates | None:
+def _resolve_inps(
+    raw: InpsRawRates | None,
+    num_employees: int,
+    apprentice: ApprenticeRawRates | None = None,
+) -> InpsRates | None:
     """Resolve INPS tiers by headcount; return None for domestic-model sectors.
+
+    The wage-integration shares of the headcount are those of the apprentice
+    block: apprentices owe the CIGO, CIGS or FIS of their employer like the
+    other workers (INPS circ. 76/2022 par. 1).
 
     Returns:
         Resolved InpsRates for standard sectors; None when raw is None
@@ -87,7 +95,14 @@ def _resolve_inps(raw: InpsRawRates | None, num_employees: int) -> InpsRates | N
         return None
     employer_tier = _resolve_tier(raw.employer_tiers, num_employees, "employer")
     employee_tier = _resolve_tier(raw.employee_tiers, num_employees, "employee")
+    shares = (
+        (Decimal(0), Decimal(0))
+        if apprentice is None
+        else _apprentice_shares(apprentice, num_employees)
+    )
     return InpsRates(
+        wage_integration_employer_rate=shares[0],
+        wage_integration_employee_rate=shares[1],
         employee_rate=employee_tier.rate,
         employee_ivs_rate=employee_tier.ivs_rate,
         employer_rate=employer_tier.rate,
