@@ -6,13 +6,15 @@ of the ISTAT FOI index; D.Lgs. 47/2000 art. 11 cc. 3-4 taxes the
 revaluation at 17%, charged to the fund.  Both change the TFR fund, not the
 pay of the run: the revaluation is a decision of the December regular run,
 never a ledger entry.  The run that ends the employment before 31 December
-revalues the fund for a fraction of the year (c. 5); the engine reports
-that revaluation as not computed.
+revalues the fund for a fraction of the year (c. 5): the fixed 1.5% for
+the months of service of the year, a fraction of 15 days or more counting
+as a whole month, and 75% of the increase of the index of the last month
+counted over December of the year before (the coefficient ISTAT publishes
+for a termination from the 15th of that month to the 14th of the next).
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -23,9 +25,15 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
 )
 from ccnl_engine.employment.fact.inputs import PublicEndOfService
-from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.run.models import RunKind
+from ccnl_engine.severance.revaluation.rules import (
+    TERMINATION,
+    YEAR_END,
+    TfrRevaluation,
+    not_computed,
+    revalue,
+)
 from ccnl_engine.severance.services import (
     revaluation_rule_name,
     revaluation_rules,
@@ -33,12 +41,10 @@ from ccnl_engine.severance.services import (
 
 if TYPE_CHECKING:
     from ccnl_engine.period.context.services import RunContext
-    from ccnl_engine.severance.revaluation.models import TfrRevaluationRules
 
 __all__ = [
     "NO_OPENING_FUND",
     "TFR_FUND_UNKNOWN_CODE",
-    "TfrRevaluation",
     "run_tfr_revaluation",
     "tfr_revaluation_decisions",
     "tfr_revaluation_issues",
@@ -49,43 +55,12 @@ TFR_FUND_UNKNOWN_CODE = "tfr_fund_unknown"
 #: Reason of a revaluation of an empty fund: nothing to revalue, no rule read.
 NO_OPENING_FUND = "no_opening_fund"
 
-_YEAR_END = "year_end"
-_TERMINATION = "termination"
 #: Regimes of a public employee whose TFR the employer does not hold.
 _AT_INPS = frozenset({PublicEndOfService.TFS, PublicEndOfService.TFR_INPS})
 _UNKNOWN = "unknown"
 _ZERO = Decimal(0)
 _NO_FUND = Decimal("0.00")
 _DECEMBER = 12
-
-
-@dataclass(frozen=True)
-class TfrRevaluation:
-    """The revaluation a run decided, and why.
-
-    Attributes:
-        moment: ``year_end`` on the December regular run, ``termination``
-            on the run that ends the employment before 31 December.
-        reason: Reason code of the decision.
-        status: Final when the amount is known, incomplete otherwise.
-        inputs: Normalized inputs of the decision.
-        amount: Revaluation of the fund, ``None`` when not computed.
-        missing_fund: The opening fund is not stated for the year.
-        substitute_tax: Substitute tax charged on :attr:`amount`.
-    """
-
-    moment: str
-    reason: str
-    status: CalculationStatus
-    inputs: dict[str, Decimal | str]
-    amount: Decimal | None = None
-    missing_fund: bool = False
-    substitute_tax: Decimal = _ZERO
-
-    @property
-    def net(self) -> Decimal | None:
-        """Revaluation credited to the fund, net of its tax; ``None`` if unknown."""
-        return None if self.amount is None else self.amount - self.substitute_tax
 
 
 def _moment(ctx: RunContext) -> str | None:
@@ -112,62 +87,10 @@ def _moment(ctx: RunContext) -> str | None:
         and (ended.year, ended.month) == (year, month)
     )
     if closes and ended != date(year, _DECEMBER, 31):
-        return _TERMINATION
+        return TERMINATION
     if kind is RunKind.REGULAR and month == _DECEMBER:
-        return _YEAR_END
+        return YEAR_END
     return None
-
-
-def _not_computed(
-    moment: str, reason: str, inputs: dict[str, Decimal | str], *, missing: bool
-) -> TfrRevaluation:
-    return TfrRevaluation(
-        moment, reason, CalculationStatus.INCOMPLETE, inputs, missing_fund=missing
-    )
-
-
-def _revalue(
-    moment: str, fund: Decimal, rules: TfrRevaluationRules | None, year: int
-) -> TfrRevaluation:
-    """Return the revaluation of a positive fund at 31 December of *year*.
-
-    Returns:
-        The final revaluation, or a not-computed one when the run ends the
-        employment, *year* has no rules or no December index, or the rate
-        is negative (no source says how a negative rate applies).
-    """
-    inputs: dict[str, Decimal | str] = {"moment": moment, "fund": fund}
-    if moment == _TERMINATION:
-        return _not_computed(moment, "termination_not_computed", inputs, missing=False)
-    rate = None if rules is None or rules.year != year else rules.annual_rate()
-    if rules is None or rate is None:
-        return _not_computed(moment, "price_index_not_published", inputs, missing=False)
-    index = rules.price_index
-    inputs |= {
-        "fixed_rate": rules.rate.fixed,
-        "index_share": rules.rate.index_share,
-        "previous_december_index": index.previous_december,
-        "december_index": index.december or _ZERO,
-        "link_coefficient": index.link_coefficient,
-        "rate": rate,
-    }
-    if rate < 0:
-        return _not_computed(moment, "negative_rate", inputs, missing=False)
-    amount = money(fund * rate)
-    tax = money(amount * rules.substitute_tax.rate)
-    inputs |= {
-        "substitute_tax_rate": rules.substitute_tax.rate,
-        "substitute_tax": tax,
-        "net_revaluation": amount - tax,
-    }
-    return TfrRevaluation(
-        moment,
-        "revalued",
-        CalculationStatus.FINAL,
-        inputs,
-        amount=amount,
-        substitute_tax=tax,
-    )
 
 
 def run_tfr_revaluation(ctx: RunContext) -> TfrRevaluation | None:
@@ -192,21 +115,25 @@ def run_tfr_revaluation(ctx: RunContext) -> TfrRevaluation | None:
     if stated is None:
         period = request.employment_period
         if period is None or period.started_on.year != year:
-            return _not_computed(moment, "required_fact_missing", inputs, missing=True)
+            return not_computed(moment, "required_fact_missing", inputs, missing=True)
         inputs["fund"] = _NO_FUND
         return TfrRevaluation(
             moment, NO_OPENING_FUND, CalculationStatus.FINAL, inputs, amount=_ZERO
         )
     if stated.year != year - 1:
         inputs["fund_year"] = str(stated.year)
-        return _not_computed(moment, "fund_of_another_year", inputs, missing=True)
+        return not_computed(moment, "fund_of_another_year", inputs, missing=True)
     if not stated.amount:
         inputs["fund"] = stated.amount
         return TfrRevaluation(
             moment, NO_OPENING_FUND, CalculationStatus.FINAL, inputs, amount=_ZERO
         )
     rules = ctx.contract.year_rules.tfr_revaluation
-    return _revalue(moment, stated.amount, rules, year)
+    period = request.employment_period
+    ended = None
+    if moment == TERMINATION:
+        ended = None if period is None else period.ended_on
+    return revalue(moment, stated.amount, rules, year, ended)
 
 
 def tfr_revaluation_decisions(ctx: RunContext) -> tuple[CalculationDecision, ...]:

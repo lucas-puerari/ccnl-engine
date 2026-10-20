@@ -87,9 +87,8 @@ def test_incomplete_coverage_is_not_payable() -> None:
     The final payslip must settle the residual leave, which the CCNL texts
     read give no divisor for: it applies to this run and is decided
     incomplete, so the report has an ``unresolved`` gap and the result is
-    not payable.  So must it revalue
-    the TFR fund at 31 December 2025 for January (art. 2120 c. 5 c.c.),
-    which the engine reports as not computed: an ``unresolved`` gap.
+    not payable.  The TFR fund at 31 December 2025 is revalued for January
+    (art. 2120 c. 5 c.c.) on the January index: no gap.
     ``base_salary`` cites the signed tables: no evidence blocker.  January
     is the only payment of the employment, so the year's income is one
     month of pay and the somma esente is due on an assumed income, an
@@ -120,21 +119,13 @@ def test_incomplete_coverage_is_not_payable() -> None:
     }
     assert [i.code for i in result.issues] == ["somma_esente_income_unknown"]
     assert result.is_payable is False
-    assert gaps == {
-        "termination_residual_leave": "unresolved",
-        "tfr_revaluation": "unresolved",
-    }
-    # Both gaps follow from their decisions: one blocker per cause.
+    assert gaps == {"termination_residual_leave": "unresolved"}
+    # The gap follows from its decision: one blocker per cause.
     assert blocked == set()
     assert (
         BlockerCode.CALCULATION_ISSUE,
         "termination_residual_leave",
         "termination_basis_not_sourced",
-    ) in (_blocker_keys(result))
-    assert (
-        BlockerCode.CALCULATION_ISSUE,
-        "tfr_revaluation",
-        "termination_not_computed",
     ) in (_blocker_keys(result))
     assert (BlockerCode.RULE_SOURCE_WEAK, "base_salary", "assumed") not in (
         _blocker_keys(result)

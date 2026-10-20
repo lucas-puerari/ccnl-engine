@@ -218,7 +218,10 @@ def test_a_reference_income_above_the_first_bracket_takes_its_average_rate() -> 
 
     The fund of EUR 20,000.00 holds EUR 500.00 of revaluations; the run
     accrues its own quota.  Taxable = 19,500.00 + quota; reference income
-    = taxable x 12 / (73 / 12), above EUR 28,000.
+    = taxable x 12 / (73 / 12), above EUR 28,000.  The fund is revalued
+    for January (art. 2120 c. 5): 0.015 / 12 + 0.75 x (100.4 x 1.214 /
+    121.5 - 1) = 0.00363025; 20,000.00 x 0.00363025 = 72.60, less the 17%
+    tax of 12.34: 60.26 paid, outside the taxable.
     """
     result = _run()
     due, separate = _settlement(result)
@@ -229,7 +232,8 @@ def test_a_reference_income_above_the_first_bracket_takes_its_average_rate() -> 
     rate = _irpef_2026(reference) / reference
 
     assert reference > Decimal(28000)
-    assert due.amount == Decimal("20000.00") + quota
+    assert due.amount == Decimal("20000.00") + quota + Decimal("60.26")
+    assert due.reason_code == "tfr_due"
     assert separate.inputs["months_of_service"] == "73"
     assert separate.amount == _money(taxable * rate)
 
@@ -263,7 +267,7 @@ def test_a_caller_rate_overrides_the_average_rate_on_the_taxable() -> None:
     )
     assert "average_rate" not in separate.inputs
     assert (caller.inputs["fields"], caller.amount) == ("separate_tax_rate", None)
-    assert due.status is CalculationStatus.INCOMPLETE
+    assert due.status is CalculationStatus.FINAL
 
 
 def test_a_caller_payout_is_posted_as_given() -> None:
@@ -416,7 +420,10 @@ def test_a_tax_the_engine_cannot_compute_leaves_the_payout_posted(
 
 
 def test_a_fund_carried_over_into_an_employment_of_the_year_is_paid() -> None:
-    """A transfer of undertaking (art. 2112 c.c.) states the fund it carries."""
+    """A transfer of undertaking (art. 2112 c.c.) states the fund it carries.
+
+    January revaluation: 3,000.00 x 0.00363025 = 10.89, less 1.85 of tax.
+    """
     result = _run(
         employment_period=EmploymentPeriod(date(2026, 1, 10), date(2026, 1, 31)),
         tfr_fund=TfrFundBalance(2025, Decimal("3000.00"), Decimal(0), Decimal(0)),
@@ -424,8 +431,8 @@ def test_a_fund_carried_over_into_an_employment_of_the_year_is_paid() -> None:
     due, separate = _settlement(result)
     quota = due.inputs["run_quota"]
     assert isinstance(quota, Decimal)
-    assert due.amount == Decimal("3000.00") + quota
-    assert due.reason_code == "revaluation_pending"
+    assert due.amount == Decimal("3000.00") + quota + Decimal("9.04")
+    assert due.reason_code == "tfr_due"
     assert separate.status is CalculationStatus.FINAL
 
 

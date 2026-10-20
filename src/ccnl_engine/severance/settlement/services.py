@@ -21,10 +21,9 @@ asks the engine for the TFR it pays and the tax it withholds:
 The yearly revaluation of the past years was taxed at the substitute rate
 when it was credited, so neither the payout nor the taxable counts it
 twice.  The revaluation of the termination year for a fraction of year
-(art. 2120 c. 5) is not computed (it needs the FOI index of the month of
-the termination, which the bundle does not hold): the TFR posted then
-leaves it out and its decision is incomplete, while the tax, which does
-not depend on it, stays final.
+(art. 2120 c. 5) needs the FOI index of the last month counted: until the
+bundle holds it the TFR posted leaves the revaluation out and its decision
+is incomplete, while the tax, which does not depend on it, stays final.
 
 Not computed, with an incomplete decision and the fact or the reason in
 an issue: a TFR at INPS (public TFS or TFR at INPS), paid to the Fondo
