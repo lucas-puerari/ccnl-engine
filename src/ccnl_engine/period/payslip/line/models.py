@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from decimal import Decimal
 
+from ccnl_engine.extra_month.progress.models import ExtraMonthProgress
 from ccnl_engine.pay_item.voce.rules import VoceUnit
 
 __all__ = ["PayslipLine", "Progressives"]
@@ -50,6 +51,11 @@ class Progressives:
         surtax: Regional and municipal surtax withheld in the tax year.
         inps_base: INPS base of the runs of this employment of the
             competence year of the run.
+        tfr_accrued: TFR the runs of the competence year accrued with the
+            employer, the run's own included; ``None`` for a year whose
+            quotas an import left unknown.
+        extra_months: Ratei maturati of each extra month by the end of the
+            month of the run.
     """
 
     tax_year: int | None
@@ -59,3 +65,5 @@ class Progressives:
     irpef: Decimal
     surtax: Decimal
     inps_base: Decimal
+    tfr_accrued: Decimal | None = None
+    extra_months: tuple[ExtraMonthProgress, ...] = ()

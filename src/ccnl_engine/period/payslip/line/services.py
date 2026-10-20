@@ -21,6 +21,7 @@ from ccnl_engine.period.payslip.line.models import PayslipLine, Progressives
 
 if TYPE_CHECKING:
     from ccnl_engine.balance.models import PeriodState
+    from ccnl_engine.extra_month.progress.models import ExtraMonthProgress
     from ccnl_engine.ledger.models import LedgerEntry
     from ccnl_engine.pay_item.models import PayItem
     from ccnl_engine.period.results import PeriodResult
@@ -108,17 +109,23 @@ def _line(
     )
 
 
-def progressives(state: PeriodState, competence_year: int) -> Progressives:
+def progressives(
+    state: PeriodState,
+    competence_year: int,
+    extra_months: tuple[ExtraMonthProgress, ...] = (),
+) -> Progressives:
     """Return the progressivi of the state a run closes with.
 
     Returns:
-        The cash amounts of the tax year of ``state`` and the INPS base of
-        this employment in ``competence_year``.
+        The cash amounts of the tax year of ``state``, the INPS base and
+        the TFR accrued of this employment in ``competence_year``, and the
+        ratei ``extra_months``.
     """
     cash = state.cash
     base = next(
         (b.own for b in state.accrual.inps_bases if b.year == competence_year), _ZERO
     )
+    quota = state.accrual.tfr_quota(competence_year)
     return Progressives(
         tax_year=cash.tax_year,
         gross=cash.earnings.gross,
@@ -127,4 +134,6 @@ def progressives(state: PeriodState, competence_year: int) -> Progressives:
         irpef=cash.tax.irpef,
         surtax=cash.tax.surtax,
         inps_base=base,
+        tfr_accrued=None if quota is None else quota.amount,
+        extra_months=extra_months,
     )

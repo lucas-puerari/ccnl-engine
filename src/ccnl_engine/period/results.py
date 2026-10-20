@@ -23,6 +23,7 @@ if TYPE_CHECKING:
     from ccnl_engine.assurance.models import ResultAssurance, ResultBlocker
     from ccnl_engine.capability.results import CapabilityReport
     from ccnl_engine.contribution.results import ContributionBreakdown
+    from ccnl_engine.extra_month.progress.models import ExtraMonthProgress
     from ccnl_engine.irpef.results import TaxComputation
     from ccnl_engine.leave.balance.models import LeaveBalance
     from ccnl_engine.ledger.models import LedgerEntry
@@ -89,6 +90,9 @@ class PeriodResult:
         limitations: Model limitations that concern the run (see
             :class:`~ccnl_engine.limitation.models.ModelLimitation`);
             an open one with a monetary impact blocks the amounts.
+        extra_months: Ratei maturati of each extra month by the end of the
+            month of a regular or termination run
+            (:class:`~ccnl_engine.extra_month.progress.models.ExtraMonthProgress`).
 
     Whether the amounts can be paid is :attr:`is_payable`: the net pay
     (:attr:`is_net_pay_payable`) and the employer cost
@@ -116,6 +120,7 @@ class PeriodResult:
     rulesets: tuple[RulesetAssurance, ...] = ()
     mode: EngineMode = EngineMode.SIMULATION
     limitations: tuple[ModelLimitation, ...] = ()
+    extra_months: tuple[ExtraMonthProgress, ...] = ()
 
     @property
     def assurance(self) -> ResultAssurance:
@@ -171,8 +176,8 @@ class PeriodResult:
 
     @property
     def progressives(self) -> Progressives:
-        """The progressivi of the tax year and the INPS base of the year."""
-        return progressives(self.closing_state, self.period_id.year)
+        """The progressivi of the tax year, the INPS base, TFR and ratei."""
+        return progressives(self.closing_state, self.period_id.year, self.extra_months)
 
     @property
     def is_payable(self) -> bool:

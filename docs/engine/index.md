@@ -487,7 +487,7 @@ result.pay_items            # all pay items produced
 result.ledger_entries       # full accounting ledger
 result.capability_report    # what the run executed against the capability registry
 result.payslip_lines(voci)  # the cedolino: one line per earning or deduction
-result.progressives         # progressivi of the tax year and the INPS base
+result.progressives         # progressivi: tax year, INPS base, TFR, ratei
 ```
 
 `payslip_lines()` turns the ledger into the lines of the payslip: each
@@ -500,7 +500,13 @@ IRPEF, surtax) is keyed by the account it posts to and has no quantity.
 Every pay item has the same voce properties (`voce_code`, `unit`,
 `voce_quantity`, `rate`, `side`). `progressives` gives the gross, taxable
 income, INPS employee contributions, IRPEF and surtax of the tax year and
-the INPS base of the competence year, as the run closes them.
+the INPS base of the competence year, as the run closes them, the TFR the
+runs of the competence year accrued with the employer (`tfr_accrued`) and,
+for a regular or termination run, the ratei maturati of each extra month by
+the end of its month (`extra_months`, one `ExtraMonthProgress` each: the
+months of the current window and the share of a monthly pay they are
+worth). The ratei count the absences of earlier runs that
+suspend accrual as accrued: the request does not hold them.
 
 `CompetenceYearResult` and `TaxYearResult` sum the runs (`annual_gross`,
 `annual_net`, `annual_employer_cost`), keep every `PeriodResult` in

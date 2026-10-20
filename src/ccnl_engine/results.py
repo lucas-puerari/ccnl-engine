@@ -26,6 +26,7 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
     DecisionOrigin,
 )
+from ccnl_engine.extra_month.progress.models import ExtraMonthProgress
 from ccnl_engine.interchange.result.serializers import result_to_json
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.ledger.remittance.models import (
@@ -54,6 +55,7 @@ __all__ = [
     "CoverageStatus",
     "DecisionOrigin",
     "EvidenceStatus",
+    "ExtraMonthProgress",
     "LimitationStatus",
     "ModelLimitation",
     "MonetaryImpact",
