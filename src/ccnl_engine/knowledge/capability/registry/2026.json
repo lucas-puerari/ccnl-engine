@@ -604,6 +604,19 @@
       "description": "Fondi bilaterali (importi dal chiamante)"
     },
     {
+      "feature": "contractual_funds",
+      "layer": "net",
+      "implementation": "native",
+      "applies_when": "decided",
+      "handler": "decision",
+      "evidence": "derived",
+      "variants": [],
+      "required_facts": [
+        "employer.contractual_funds"
+      ],
+      "description": "Fondi sanitari e bilaterali del CCNL, o l'elemento distinto dovuto al lavoratore in loro vece"
+    },
+    {
       "feature": "pension_fund_contribution",
       "layer": "net",
       "implementation": "partial",
