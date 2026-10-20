@@ -55,7 +55,15 @@ class ContractualFund(BaseModel):
         categories: Worker categories it covers, ``None`` for all.
         levels: Level codes it covers, ``None`` for all.
         permanent_only: Whether only permanent workers are covered.
+        group: Funds that are alternative ways to meet the same obligation
+            (e.g. the EBM contribution of a firm with or without an internal
+            RLS) share a group: the employer names the one it pays; naming
+            none owes the element of the first fund of the group once.
         employer: Employer share a month.
+        reduced_employer: Employer share of a part-timer working at most
+            ``reduced_up_to_weekly_hours`` a week, when the fund sets one.
+        reduced_up_to_weekly_hours: Weekly hours up to which the reduced
+            share applies.
         employee: Worker share a month, withheld from the pay.
         extra_months: Whether the shares are due on the extra months too.
         employee_deductible: Whether the worker share leaves the IRPEF base
@@ -80,7 +88,10 @@ class ContractualFund(BaseModel):
     categories: frozenset[WorkerCategory] | None = None
     levels: frozenset[str] | None = None
     permanent_only: bool = False
+    group: str | None = None
     employer: FundAmount
+    reduced_employer: FundAmount | None = None
+    reduced_up_to_weekly_hours: Decimal | None = Field(default=None, gt=0)
     employee: FundAmount | None = None
     extra_months: bool = False
     employee_deductible: bool = False

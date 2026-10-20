@@ -250,19 +250,6 @@
           },
           "remediation": "Model the IPCA top-up when the index is published."
         }
-      },
-      {
-        "kind": "simplification",
-        "text": "BILATERAL SYSTEM: a firm that adheres to the bilateral system pays its contributions for every worker, a firm that does not pays the worker an E.A.R. of 25 EUR x 13 (Art. 53). Neither is modelled: the employer cost, and with the E.A.R. the net pay, are short of it.",
-        "capability": "bilateral_funds",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "bilateral_system_or_ear",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "remediation": "Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note."
-        }
       }
     ]
   },
@@ -580,6 +567,167 @@
           "page": "5",
           "section": "Minimi tabellari - Livelli retributivi mensili, column 'minimo 01/06/2027', row 1",
           "quote": "per il biennio 2027-2028 l'aumento del minimo retributivo come da tabella. Per il biennio"
+        }
+      }
+    ],
+    "health_funds": [
+      {
+        "code": "ebm",
+        "description": "Sistema della bilateralità, E.B.M. Ente Bilaterale Metalmeccanici, Art. 53 (firm without an internal RLS)",
+        "group": "ebm",
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2013-11-01",
+                "valid_until": null,
+                "value": "6.0"
+              }
+            ]
+          }
+        },
+        "reduced_employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2013-11-01",
+                "valid_until": null,
+                "value": "5.75"
+              }
+            ]
+          }
+        },
+        "reduced_up_to_weekly_hours": "20",
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2013-07-29",
+                "valid_until": null,
+                "value": "25.0"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ebm_modalita",
+              "title": "E.B.M. Ente Bilaterale Metalmeccanici, 'Modalita di contribuzione' (fund's own sheet, uploaded 2026-02)",
+              "kind": "associazione",
+              "url": "https://www.entebilateralemetalmeccanici.it/wp-content/uploads/2026/02/MODALITA-CONTRIBUZIONE-E.B.M.pdf",
+              "sha256": "a5621016f9415595fe9235d83f77a0d434057c8939fa8e88266d4e1623e1db09"
+            },
+            "page": "1",
+            "quote": "AZIENDA CON RLS • PART TIME (FINO A 20 ORE/SETTIMANA): € 4,75/MESE • FULL TIME: € 5,00/MESE ... AZIENDA SENZA RLS • PART TIME (FINO A 20 ORE/SETTIMANA): € 5,75/MESE • FULL TIME: € 6,00/MESE"
+          },
+          "transformation": "Also: CCNL Unionmeccanica-Confapi 3 luglio 2017 (testo stampato, con Allegato 13 verbale EBM 15 novembre 2013), p. 131 (E.A.R. for a firm not adhering, 13 months, excluded from TFR, proportional to the hours): le imprese non aderenti al sistema della bilateralità dovranno corrispondere a ciascun lavoratore in busta paga un elemento retributivo aggiuntivo pari ad euro 25,00 lordi mensili per 13 mensilità. Tale importo, non è a nessun titolo assorbibile e rappresenta un elemento aggiuntivo della retribuzione (E.A.R.) che incide su tutti gli istituti retributivi di legge e contrattuali, compresi quelli indiretti o differiti, escluso il TFR.",
+          "note": "The EBM sheet is undated: valid_from 2013-11-01 is the first month of contributions to the E.B.M. under the verbale of 15 November 2013 (confapi2017 p. 240). The employer names `ebm_rls` when the firm has an internal RLS, `ebm` otherwise."
+        }
+      },
+      {
+        "code": "ebm_rls",
+        "description": "Sistema della bilateralità, E.B.M. Ente Bilaterale Metalmeccanici, Art. 53 (firm with an internal RLS)",
+        "group": "ebm",
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2013-11-01",
+                "valid_until": null,
+                "value": "5.0"
+              }
+            ]
+          }
+        },
+        "reduced_employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2013-11-01",
+                "valid_until": null,
+                "value": "4.75"
+              }
+            ]
+          }
+        },
+        "reduced_up_to_weekly_hours": "20",
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2013-07-29",
+                "valid_until": null,
+                "value": "25.0"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ebm_modalita",
+              "title": "E.B.M. Ente Bilaterale Metalmeccanici, 'Modalita di contribuzione' (fund's own sheet, uploaded 2026-02)",
+              "kind": "associazione",
+              "url": "https://www.entebilateralemetalmeccanici.it/wp-content/uploads/2026/02/MODALITA-CONTRIBUZIONE-E.B.M.pdf",
+              "sha256": "a5621016f9415595fe9235d83f77a0d434057c8939fa8e88266d4e1623e1db09"
+            },
+            "page": "1",
+            "quote": "AZIENDA CON RLS • PART TIME (FINO A 20 ORE/SETTIMANA): € 4,75/MESE • FULL TIME: € 5,00/MESE ... AZIENDA SENZA RLS • PART TIME (FINO A 20 ORE/SETTIMANA): € 5,75/MESE • FULL TIME: € 6,00/MESE"
+          },
+          "transformation": "Also: CCNL Unionmeccanica-Confapi 3 luglio 2017 (testo stampato, con Allegato 13 verbale EBM 15 novembre 2013), p. 131 (E.A.R. for a firm not adhering, 13 months, excluded from TFR, proportional to the hours): le imprese non aderenti al sistema della bilateralità dovranno corrispondere a ciascun lavoratore in busta paga un elemento retributivo aggiuntivo pari ad euro 25,00 lordi mensili per 13 mensilità. Tale importo, non è a nessun titolo assorbibile e rappresenta un elemento aggiuntivo della retribuzione (E.A.R.) che incide su tutti gli istituti retributivi di legge e contrattuali, compresi quelli indiretti o differiti, escluso il TFR.",
+          "note": "The EBM sheet is undated: valid_from 2013-11-01 is the first month of contributions to the E.B.M. under the verbale of 15 November 2013 (confapi2017 p. 240). The employer names `ebm_rls` when the firm has an internal RLS, `ebm` otherwise."
+        }
+      },
+      {
+        "code": "ebm_salute",
+        "description": "Sanita integrativa EBM Salute, Art. 51",
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2018-01-01",
+                "valid_until": "2022-01-01",
+                "value": "5.0"
+              },
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2027-01-01",
+                "value": "8.0"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": "2029-01-01",
+                "value": "10.0"
+              },
+              {
+                "valid_from": "2029-01-01",
+                "valid_until": null,
+                "value": "11.0"
+              }
+            ]
+          }
+        },
+        "solidarity_rate": "0.1",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "confapi2026",
+              "title": "CCNL Unionmeccanica-Confapi 2025-2028, accordo 4 giugno 2026 (scansione firmata)",
+              "kind": "associazione",
+              "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
+              "sha256": "ae59a64f408072c1438892143e2146eea350d7e2c3e5883fb8538f86ffc47f53"
+            },
+            "page": "22",
+            "quote": "a decorrere dal 1° gennaio 2022 una contribuzione pari a 96 euro annui (suddivisi in 12 quote mensili da 8 euro l'una) a totale carico dell'azienda ... a decorrere dal 1° gennaio 2027 una contribuzione pari a 120 euro annui (suddivisi in 12 quote mensili da 10 euro cadauna) ... a decorrere dal 1° gennaio 2029 una contribuzione pari a 132 euro annui (suddivisi in 12 quote mensili da 11 euro cadauna)"
+          },
+          "transformation": "Also: CCNL Unionmeccanica-Confapi 3 luglio 2017 (testo stampato, con Allegato 13 verbale EBM 15 novembre 2013), p. 125: Per i suddetti lavoratori è prevista a decorrere dal 1° gennaio 2018 una contribuzione pari a 60 euro annui (suddivisi in 12 quote mensili da 5 euro l'una) a totale carico dell'azienda",
+          "note": "Employer only, health fund (10% INPS solidarity). Covers permanent workers, apprentices and fixed terms of at least 5 months out of probation; the shorter fixed terms and the written renunciation are not modelled."
         }
       }
     ]
@@ -2804,7 +2952,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "90575c4c25c9d19bdaa46d001dfb15f511a6326505254e145d7bb441faf976c0",
+    "source_hash": "873aeac0172a6c75541302540e0634a2f6d13ac8b4182a6a34c17594be00f3af",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

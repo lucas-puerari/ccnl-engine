@@ -357,7 +357,12 @@ The shares are per capita: a fixed share is due in full whatever the part
 time, a share in percent follows the minimo of the run. The element is pay:
 part time, a partial month and the ratei of an extra month scale it, unless
 the CCNL owes it in full (`alternative_scaled: false`). A yearly amount
-(`annual`, e.g. Qu.A.S.) is charged a twelfth a month. A CCNL whose funds are not modelled
+(`annual`, e.g. Qu.A.S.) is charged a twelfth a month. Funds that are
+alternative ways to meet one obligation share a `group` (the E.B.M. of
+Confapi: 5 EUR for a firm with an internal RLS, 6 EUR without): the employer
+names the one it pays, and naming none owes the element once. A fund may set
+a reduced employer share for a part-timer up to a number of weekly hours
+(`reduced_employer`, `reduced_up_to_weekly_hours`). A CCNL whose funds are not modelled
 yet keeps its open limitation; for those, pass the amounts due in the period
 as a `BilateralFundEvent`. The employee portion
 reduces net pay; the employer portion increases employer cost. For the

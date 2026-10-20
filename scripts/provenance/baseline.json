@@ -1046,7 +1046,6 @@
     ],
     "agreement/metalmeccanico-confapi.json": [
       "metalmeccanico-confapi/apprentice_seniority_credit",
-      "metalmeccanico-confapi/bilateral_system_or_ear",
       "metalmeccanico-confapi/child_sickness_and_oncological_permits",
       "metalmeccanico-confapi/elemento_perequativo",
       "metalmeccanico-confapi/flexibility_and_hours_bank",

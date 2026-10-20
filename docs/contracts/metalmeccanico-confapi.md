@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, overtime, pension_fund_contribution, sickness |
+| **Limits of this contract** | base_salary, overtime, pension_fund_contribution, sickness |
 
-13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -190,13 +190,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the IPCA top-up when the index is published.
-
-!!! warning "metalmeccanico-confapi/bilateral_system_or_ear · bilateral_funds · impact yes · open"
-    BILATERAL SYSTEM: a firm that adheres to the bilateral system pays its contributions for every worker, a firm that does not pays the worker an E.A.R. of 25 EUR x 13 (Art. 53). Neither is modelled: the employer cost, and with the E.A.R. the net pay, are short of it.
-
-    **Applies when:** `bilateral_funds` applies.
-
-    **Remediation:** Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

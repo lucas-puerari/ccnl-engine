@@ -152,7 +152,7 @@ _ALIMENTARI_OWED = frozenset({f"{_ALIMENTARI}/health_and_bilateral_funds"})
 _DMO_OWED = frozenset({f"{_DMO}/health_and_bilateral_funds"})
 _FIPE_OWED = frozenset({"contractual_funds"})
 _RISTORAZIONE_OWED = frozenset({f"{_RISTORAZIONE}/health_and_bilateral_funds"})
-_CONFAPI_OWED = frozenset({f"{_CONFAPI}/bilateral_system_or_ear"})
+_CONFAPI_OWED = frozenset({"contractual_funds"})
 _EDILIZIA_IMPIEGATI_OWED = frozenset({
     f"{_EDILIZIA_IMPIEGATI}/provincial_production_premium"
 })
