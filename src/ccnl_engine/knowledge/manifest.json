@@ -421,7 +421,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/chimica-farmaceutica-federchimica",
       "ruleset_version": "2026.2",
-      "source_hash": "c86c2c113d0287c26dbd51297a7ab95a6efea134776f3262a4b57f529a93a350",
+      "source_hash": "dccfcfbbb235049c7d699d4d97444367d8f1d1b66bf00783148ffec2a822921e",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/chimica-farmaceutica-federchimica.json.gz"
@@ -455,7 +455,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "d7063e6245d2c8ac6b6a01ff91d8ac457ed6e28f72d7bad8f045f476a3b1d5c7",
+      "source_hash": "d1b2d708f7f64e72f3576f40f14355157991587d77d6ddcdc0520a108a8e847b",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/commercio-confcommercio.json.gz"
@@ -1713,7 +1713,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem",
       "ruleset_version": "2026.2",
-      "source_hash": "0d8adf24fabe793bd402ddae3ad2cae2e116d9b07887fd6f8609e4f768b7c7dd",
+      "source_hash": "9b68cb059571bb1982ca41268795baed4c47dcc67db5ead223a3f01e038db6f4",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem.json.gz"
@@ -1951,7 +1951,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/studi-professionali-confprofessioni",
       "ruleset_version": "2026.2",
-      "source_hash": "0ac418c3efce40772643a0f22e6986434b059e4cfde5aef28de60c3633f0156a",
+      "source_hash": "b9899dcad296a11864f1e1703f861eb2a7333101f11946c67eee0819656bbd38",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/studi-professionali-confprofessioni.json.gz"

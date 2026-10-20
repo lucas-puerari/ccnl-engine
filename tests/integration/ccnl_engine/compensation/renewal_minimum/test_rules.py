@@ -236,7 +236,7 @@ def test_the_minimo_before_the_earliest_qualifying_renewal() -> None:
     )
 
     assert pre_renewal_minimum(
-        _SERIES, renewals, _RINNOVO, date(2026, 1, 1)
+        _SERIES, renewals, _RINNOVO, date(2026, 1, 1), "D1"
     ) == Decimal(1500)
     assert qualifying_starts(renewals, _RINNOVO, date(2024, 6, 1)) == ()
 
@@ -245,7 +245,47 @@ def test_no_table_before_the_renewal_leaves_it_unmeasured() -> None:
     """A renewal whose first tranche opens the series cannot be measured."""
     renewals = (_renewal(date(2024, 1, 10), date(2023, 1, 1)),)
 
-    assert pre_renewal_minimum(_SERIES, renewals, _RINNOVO, date(2026, 1, 1)) is None
+    assert (
+        pre_renewal_minimum(_SERIES, renewals, _RINNOVO, date(2026, 1, 1), "D1") is None
+    )
+
+
+def test_a_stated_minimum_before_replaces_the_table() -> None:
+    """The renewal names the minimo before it; an omitted level is unmeasured."""
+    plain = _renewal(date(2024, 7, 5), date(2024, 7, 1))
+    stated = plain.model_copy(
+        update={
+            "minimum_before": {"D1": Decimal(1520)},
+            "minimum_before_source": plain.source,
+        }
+    )
+
+    assert pre_renewal_minimum(
+        _SERIES, (stated,), _RINNOVO, date(2026, 1, 1), "D1"
+    ) == Decimal(1520)
+    assert (
+        pre_renewal_minimum(_SERIES, (stated,), _RINNOVO, date(2026, 1, 1), "E1")
+        is None
+    )
+
+
+@pytest.mark.parametrize(
+    "fields",
+    [
+        {"minimum_before": {"D1": Decimal(1520)}},
+        {"minimum_before": {"D1": Decimal(0)}, "minimum_before_source": "source"},
+    ],
+)
+def test_a_minimum_before_needs_its_source_and_a_value(
+    fields: dict[str, object],
+) -> None:
+    """The values come with their source, each above zero."""
+    plain = _renewal(date(2024, 7, 5), date(2024, 7, 1))
+    data = {**plain.model_dump(), **fields}
+    if data.get("minimum_before_source") == "source":
+        data["minimum_before_source"] = plain.source.model_dump()
+    with pytest.raises(ValueError, match="minimum_before"):
+        RenewalAgreement.model_validate(data)
 
 
 def test_a_regime_without_a_signing_window_has_no_renewal() -> None:

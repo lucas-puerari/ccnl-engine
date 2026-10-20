@@ -6,7 +6,7 @@
   "src/ccnl_engine/capability/rule/services.py": 359,
   "src/ccnl_engine/compensation/models.py": 377,
   "src/ccnl_engine/compensation/proration/services.py": 466,
-  "src/ccnl_engine/compensation/renewal_minimum/rules.py": 325,
+  "src/ccnl_engine/compensation/renewal_minimum/rules.py": 332,
   "src/ccnl_engine/contribution/rate/models.py": 326,
   "src/ccnl_engine/contribution/services.py": 322,
   "src/ccnl_engine/employment/fact/inputs.py": 403,

@@ -700,6 +700,48 @@
           "note": "Unchanged by the 2024 renewal. No alternative element. Annual amounts charged a twelfth a month."
         }
       }
+    ],
+    "renewals": [
+      {
+        "signed_on": "2024-03-22",
+        "tables_from": "2024-04-01",
+        "source": {
+          "source_document": {
+            "document_id": "uiltucs-tds",
+            "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+            "published_on": "2024-03-28",
+            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+          },
+          "page": "64",
+          "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2024-04-01",
+          "quote": "Quadro                 2070,25       260,76          540,37        2871,38"
+        },
+        "minimum_before": {
+          "Q": "1948.72",
+          "1": "1755.41",
+          "2": "1518.42",
+          "3": "1297.84",
+          "4": "1122.46",
+          "5": "1014.11",
+          "6": "910.44",
+          "7": "779.47"
+        },
+        "minimum_before_source": {
+          "source_document": {
+            "document_id": "uiltucs-tds",
+            "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+            "published_on": "2024-03-28",
+            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+          },
+          "page": "64",
+          "section": "Accordo integrativo 28/03/2024, table 'Paga base dal 1/4/2023'",
+          "quote": "IV 1122,46 524,22 1646,68"
+        }
+      }
     ]
   },
   "levels": [
@@ -3022,7 +3064,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "d7063e6245d2c8ac6b6a01ff91d8ac457ed6e28f72d7bad8f045f476a3b1d5c7",
+    "source_hash": "d1b2d708f7f64e72f3576f40f14355157991587d77d6ddcdc0520a108a8e847b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3505,6 +3547,24 @@
           "Reference case commercio-confcommercio_3_2026_observed.json verified on the observed payslip p06 (sha256 9d1a08fccc56e5d1cf61ec795d7e6f6d0682d2ad997cab7fe69573f0efc45de8): paga base 1453,94 for level 3 in April 2026, a value the engine did not produce.",
           "Totals: gross, employee and employer contributions, tax, net pay, TFR and employer cost are compared with the hand oracles commercio-year and commercio-june (tests/knowledge/ccnl_engine/period/sector), level 4, 50 employees, a provincial element in force; base salary and gross with the reference cases. The oracles recompute the pipeline from the same sources: only the base salary has an independent output.",
           "Not modelled: the one-off enrolment fees of Fondo Est (30 EUR) and Qu.A.S.; the payment month of the annual Qu.A.S. and Quadrifor amounts, charged a twelfth a month."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-renewals",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The renewal within the window of L. 199/2025 art. 1 c. 7 and the minimo in force before its first tranche.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+          }
+        ],
+        "findings": [
+          "Renewal signed on 2024-03-22, first tranche from 2024-04-01: parameters.renewals.",
+          "Minimo before the renewal = the paga base of the table 'Paga base dal 1/4/2023' (read by OCR on the scan, p. 64); it holds the 30 EUR of April 2023 of the Protocollo of 12 December 2022, signed outside the window."
         ]
       }
     ],

@@ -117,14 +117,10 @@ _SPECIFIC: Final[dict[str, frozenset[Blocker]]] = {
     "studi-professionali-confprofessioni": frozenset(),
     "commercio-confcommercio": frozenset(),
 }
-#: Pilots whose renewal increment cannot be measured yet: the CCNL does not
-#: list its renewal (``parameters.renewals``) or lacks the table before it.
-_RENEWAL_UNMEASURED: Final = frozenset({
-    "chimica-farmaceutica-federchimica",
-    "pubblici-esercizi-fipe-angem",
-    "studi-professionali-confprofessioni",
-    "commercio-confcommercio",
-})
+#: Pilots whose renewal increment cannot be measured at the middle level:
+#: the CCNL does not list its renewal (``parameters.renewals``) or the
+#: minimo before it.
+_RENEWAL_UNMEASURED: Final[frozenset[str]] = frozenset()
 #: Pilots whose middle level stays under Milan's exemption threshold: the
 #: comunale is a final zero and only its source is weak.
 _UNDER_MILAN_THRESHOLD: Final = frozenset({
@@ -134,7 +130,10 @@ _UNDER_MILAN_THRESHOLD: Final = frozenset({
 })
 #: Pilots whose middle level drops under Milan's threshold once the renewal
 #: increment is taxed at 5% and leaves the IRPEF base.
-_UNDER_MILAN_THRESHOLD_TAXED: Final = frozenset({"terziario-confesercenti"})
+_UNDER_MILAN_THRESHOLD_TAXED: Final = frozenset({
+    "terziario-confesercenti",
+    "commercio-confcommercio",
+})
 _PROFILES: Final = [
     (income, comune)
     for income in (_ELIGIBLE, _EXCLUDED)
