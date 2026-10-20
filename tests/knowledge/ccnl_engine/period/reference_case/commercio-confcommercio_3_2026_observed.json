@@ -1,16 +1,22 @@
 {
-  "verification": "source_linked",
+  "verification": "verified",
   "axes": [
     "base_salary"
   ],
-  "_description": "Terziario level 3, April 2026: paga base 1.453,94 printed among the elementi della retribuzione.",
+  "_description": "Terziario Confcommercio (CNEL H011) level 3, April 2026: paga base 1.453,94 printed among the elementi della retribuzione.",
   "_notes": [
-    "Base salary only: the payslip's allowances and gross include provincial and individual items (elemento provinciale, superminimo) outside the national table."
+    "Base salary only: the payslip's allowances and gross include provincial and individual items (terzo elemento provinciale 7,23, superminimo 220,00) outside the national table.",
+    "Checked on 19 October 2026 by an AI review authorised by the owner of the ruleset: the observed payslip p06, headed 'Terziario Confcommercio', prints 'paga base' 1453.94 for level 3 in April 2026 (with contingenza 527.90), the base salary the engine computes from the tranche of 1 November 2025 (accordo integrativo 28 March 2024, p. 65, row III). The observed payslip p17 (level 3, January 2026, another employer) prints the same 1453.94."
   ],
   "source": {
+    "kind": "observed_payslip",
     "document": "Observed payslip p06",
     "path": "tests/knowledge/ccnl_engine/period/observed_payslip/p06.json",
-    "section": "pay_elements"
+    "sha256": "9d1a08fccc56e5d1cf61ec795d7e6f6d0682d2ad997cab7fe69573f0efc45de8",
+    "section": "pay_elements",
+    "verified_by": "claude-opus-5-5",
+    "verified_at": "2026-10-19",
+    "independence": "The payslip was issued by the payroll of the employer, anonymised and stored before the engine computed the run: its paga base is not an output of this engine."
   },
   "inputs": {
     "ccnl_id": "commercio-confcommercio",
@@ -21,5 +27,6 @@
   },
   "expected": {
     "base_salary": "1453.94"
-  }
+  },
+  "tolerance": "0.00"
 }

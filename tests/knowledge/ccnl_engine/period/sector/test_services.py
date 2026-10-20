@@ -54,6 +54,8 @@ from tests.knowledge.ccnl_engine.period.sector.oracles import (
     APPRENTICE_YEAR,
     CHIMICA_JUNE,
     CHIMICA_YEAR,
+    COMMERCIO_JUNE,
+    COMMERCIO_YEAR,
     CONFAPI_JUNE,
     CONFAPI_YEAR,
     DMO_JUNE,
@@ -127,6 +129,7 @@ class Scenario:
 
 _METAL = "metalmeccanico-federmeccanica"
 _TERZ = "terziario-confesercenti"
+_COMMERCIO = "commercio-confcommercio"
 _EDIL = "edilizia-ance"
 _EDILIZIA_IMPIEGATI = "edilizia-ance-impiegati"
 _CONFAPI = "metalmeccanico-confapi"
@@ -142,6 +145,8 @@ _STUDI = "studi-professionali-confprofessioni"
 #: as their oracles leave them out.
 _METAL_OWED: frozenset[str] = frozenset()
 _TERZ_OWED = frozenset({"contractual_funds"})
+#: Commercio models its funds too; the scenarios leave them unstated.
+_COMMERCIO_OWED = frozenset({"contractual_funds"})
 _STUDI_OWED = frozenset({f"{_STUDI}/bilateral_contribution_or_element"})
 #: The funds of Turismo and FIPE are modelled; the scenarios leave the
 #: employer's funds unstated, as their oracles leave the funds out: a missing
@@ -199,6 +204,27 @@ SCENARIOS = {
         50,
         TERZIARIO_JUNE,
         _TERZ_OWED,
+        net_pay_reliable=False,
+        terminated=True,
+        provincial_pay_element=True,
+    ),
+    "commercio-year": Scenario(
+        _COMMERCIO,
+        "4",
+        WorkerCategory.IMPIEGATO,
+        50,
+        COMMERCIO_YEAR,
+        _COMMERCIO_OWED,
+        net_pay_reliable=False,
+        provincial_pay_element=True,
+    ),
+    "commercio-june": Scenario(
+        _COMMERCIO,
+        "4",
+        WorkerCategory.IMPIEGATO,
+        50,
+        COMMERCIO_JUNE,
+        _COMMERCIO_OWED,
         net_pay_reliable=False,
         terminated=True,
         provincial_pay_element=True,

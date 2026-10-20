@@ -40,7 +40,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 
 | CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Owner | Next review |
 |---|---:|---|---:|---:|---:|---|---|---|
-| [`commercio-confcommercio`](../contracts/commercio-confcommercio.md) (anchor) | 800 000 | reviewed | 0 | 0 | 69 | party or official | maintainer | 2027-03-31 |
+| [`commercio-confcommercio`](../contracts/commercio-confcommercio.md) (anchor) | 800 000 | production | 0 | 0 | 69 | party or official | maintainer | 2027-03-31 |
 | [`multiservizi-anip`](../contracts/multiservizi-anip.md) | 580 000 | exploratory | 0 | 93 | 57 | party or official | none | none |
 | [`dmo-federdistribuzione`](../contracts/dmo-federdistribuzione.md) | 460 000 | production | 0 | 1 | 77 | party or official | maintainer | 2027-04-01 |
 | [`cooperative-sociali`](../contracts/cooperative-sociali.md) | 380 000 | reviewed | 0 | 1 | 62 | party or official | maintainer | 2027-01-31 |

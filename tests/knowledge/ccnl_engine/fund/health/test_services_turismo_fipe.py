@@ -208,3 +208,122 @@ def test_terziario_funds(
         sorted(i.amount for i in result.pay_items if "_element_" in i.item_id)
         == elements
     )
+
+
+#: Commercio Confcommercio 4th level from 1 November 2025, accordo
+#: integrativo 28 March 2024, p. 65: "IV 1257,46 524,22 1781,68".  The
+#: table lists the contingenza apart from the paga base: the EBT reads both
+#: (art. 23, "paga base e contingenza"), as the observed payslip p17 does
+#: ("retribuzione ente bilaterale commercio" 1981.84 for level 3).
+_COMMERCIO = Decimal("1257.46") + Decimal("524.22")
+
+
+@pytest.mark.parametrize(
+    ("funds", "employer", "employee", "elements"),
+    [
+        (
+            frozenset({"ebt", "fondo_est"}),
+            _pct("0.001", _COMMERCIO) + Decimal(13),
+            _pct("0.0005", _COMMERCIO) + Decimal(2),
+            [],
+        ),
+        (
+            frozenset({"ebt"}),
+            _pct("0.001", _COMMERCIO),
+            _pct("0.0005", _COMMERCIO),
+            [Decimal("16.00")],
+        ),
+        (
+            frozenset(),
+            Decimal(0),
+            Decimal(0),
+            sorted([_pct("0.003", _COMMERCIO), Decimal("16.00")]),
+        ),
+    ],
+)
+def test_commercio_funds(
+    funds: frozenset[str],
+    employer: Decimal,
+    employee: Decimal,
+    elements: list[Decimal],
+) -> None:
+    """Commercio Confcommercio 4, June 2026: 1.78 + 13 and 0.89 + 2 paid.
+
+    Paid: EBT 0.10% + 0.05% (art. 23, 2024 renewal p. 12) and Fondo Est 13 +
+    2 EUR from April 2025 (art. 104 as renewed, p. 17); not paid: the EBT
+    element of 0.30% (5.35, Testo Unico 2019 p. 49) and 16 EUR (p. 17).
+    """
+    result = _run("commercio-confcommercio", "4", funds)
+
+    assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYER) == employer
+    assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYEE) == employee
+    assert (
+        sorted(i.amount for i in result.pay_items if "_element_" in i.item_id)
+        == elements
+    )
+
+
+def test_commercio_fondo_est_carries_the_solidarity_contribution() -> None:
+    """10% INPS solidarity on the 13 EUR of the employer, none on the EBT."""
+    result = _run("commercio-confcommercio", "4", frozenset({"ebt", "fondo_est"}))
+
+    assert _entries(result, "fondo_est_") == {
+        "er": Decimal("13.00"),
+        "solidarity": Decimal("1.30"),
+        "emp": Decimal("2.00"),
+    }
+    assert "solidarity" not in _entries(result, "ebt_")
+
+
+def test_commercio_13th_pays_the_ebt_and_both_elements() -> None:
+    """The EBT and the two elements are due on 14 months, Fondo Est on 12.
+
+    December 2026 reads the tranche of 1 November 2026 (p. 65, "IV 1292,46
+    524,22 1816,68").
+    """
+    december = Decimal("1292.46") + Decimal("524.22")
+    paid = _run(
+        "commercio-confcommercio", "4", frozenset({"ebt", "fondo_est"}), thirteenth=True
+    )
+    unpaid = _run("commercio-confcommercio", "4", frozenset(), thirteenth=True)
+
+    assert _posted(paid, AccountKind.BILATERAL_FUND_EMPLOYER) == _pct("0.001", december)
+    assert _posted(paid, AccountKind.BILATERAL_FUND_EMPLOYEE) == _pct(
+        "0.0005", december
+    )
+    assert sorted(
+        i.amount for i in unpaid.pay_items if "_element_" in i.item_id
+    ) == sorted([_pct("0.003", december), Decimal("16.00")])
+
+
+def test_commercio_quadro_pays_quas_and_quadrifor_a_twelfth_a_month() -> None:
+    """Qu.A.S. 390 + 56 EUR a year from 2026 (p. 18), Quadrifor 50 + 25 (p. 19).
+
+    32.50 and 4.67 a month with 3.25 solidarity; 4.17 and 2.08 a month with
+    none (a training fund); Fondo Est does not cover the quadri.  The
+    employer states Quadrifor as paid, so the oracle holds whether or not a
+    fund without an element needs the fact.
+    """
+    result = _run(
+        "commercio-confcommercio", "Q", frozenset({"quas", "quadrifor", "fondo_est"})
+    )
+
+    assert _entries(result, "quas_") == {
+        "er": Decimal("32.50"),
+        "solidarity": Decimal("3.25"),
+        "emp": Decimal("4.67"),
+    }
+    assert _entries(result, "quadrifor_") == {
+        "er": Decimal("4.17"),
+        "emp": Decimal("2.08"),
+    }
+    assert not _entries(result, "fondo_est_")
+
+
+def test_commercio_quadro_without_quas_owes_37_eur() -> None:
+    """Qu.A.S. not paid: an element of 37 EUR (p. 18); Quadrifor owes none."""
+    result = _run("commercio-confcommercio", "Q", frozenset({"ebt", "quadrifor"}))
+
+    assert [i.amount for i in result.pay_items if "_element_" in i.item_id] == [
+        Decimal("37.00")
+    ]

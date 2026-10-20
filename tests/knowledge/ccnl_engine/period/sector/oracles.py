@@ -7,6 +7,8 @@ and a 2025 income of 40,000 EUR (no renewal substitute tax):
 - industria: Metalmeccanico Federmeccanica C3 impiegato, 50 employees, two
   hours of weekday overtime on 10 March;
 - terziario: Terziario Confesercenti IV, 50 employees, fourteen payments;
+- commercio: Terziario Confcommercio 4th level, 50 employees, fourteen
+  payments, a provincial element in force;
 - edilizia: ANCE operaio of the 1st level, 30 employees, 173 hours a month;
 - studi: Studi Professionali Confprofessioni 4th level, 10 employees,
   fourteen payments;
@@ -76,6 +78,8 @@ __all__ = [
     "APPRENTICE_YEAR",
     "CHIMICA_JUNE",
     "CHIMICA_YEAR",
+    "COMMERCIO_JUNE",
+    "COMMERCIO_YEAR",
     "CONFAPI_JUNE",
     "CONFAPI_YEAR",
     "DMO_JUNE",
@@ -901,6 +905,56 @@ def _dmo_june() -> tuple[Pay, ...]:
 
 DMO_YEAR = sector_year(_dmo_year(), _TERZIARIO, _FULL_YEAR, terminated=False)
 DMO_JUNE = sector_year(_dmo_june(), _TERZIARIO, _HALF_YEAR, terminated=True)
+
+
+# Commercio: Terziario Distribuzione e Servizi Confcommercio, 4th level.
+
+#: 4th level, paga base and contingenza, as the table lists them apart:
+#: accordo integrativo 28 March 2024, PDF p. 65 (sha256
+#: 980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001):
+#: "IV 1257,46 524,22 1781,68" from 1 November 2025, "IV 1292,46 524,22
+#: 1816,68" from 1 November 2026.  The terzo elemento nazionale (Art. 215)
+#: is not paid: a provincial element is in force.
+_COMMERCIO_CONTINGENZA = Decimal("524.22")
+_COMMERCIO_UNTIL_OCTOBER = (Decimal("1257.46"), _COMMERCIO_CONTINGENZA)
+_COMMERCIO_FROM_NOVEMBER = (Decimal("1292.46"), _COMMERCIO_CONTINGENZA)
+#: Quattordicesima of one month of the retribuzione "in atto al 30 giugno",
+#: paid on 1 July, in twelfths of the months from July to June: six for a
+#: hire on 1 January (Testo Unico 30 July 2019, Art. 221, PDF p. 201,
+#: sha256 76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016);
+#: tredicesima of one month at Christmas (Art. 220, p. 200).
+_COMMERCIO_FOURTEENTH = _twelfths(_COMMERCIO_UNTIL_OCTOBER, 6)
+
+
+def _commercio(month: int) -> Decimal:
+    items = _COMMERCIO_UNTIL_OCTOBER if month < 11 else _COMMERCIO_FROM_NOVEMBER
+    return sum(items, _ZERO)
+
+
+def _commercio_year() -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _commercio(m), _commercio(m)) for m in range(1, 13)]
+    fourteenth = _COMMERCIO_FOURTEENTH
+    pays.insert(6, Pay(_run(6, "fourteenth"), fourteenth, fourteenth))
+    pays.insert(12, Pay(_run(12, "thirteenth"), _commercio(12), _commercio(12)))
+    return tuple(pays)
+
+
+def _commercio_june() -> tuple[Pay, ...]:
+    pays = [Pay(_run(m), _commercio(m), _commercio(m)) for m in range(1, 6)]
+    #: Six twelfths of the tredicesima are paid with the last month.
+    june = _commercio(6) + _twelfths(_COMMERCIO_UNTIL_OCTOBER, 6)
+    fourteenth = _COMMERCIO_FOURTEENTH
+    return (
+        *pays,
+        Pay(_run(6), june, june),
+        Pay(_run(6, "fourteenth"), fourteenth, fourteenth),
+    )
+
+
+COMMERCIO_YEAR = sector_year(
+    _commercio_year(), _TERZIARIO, _FULL_YEAR, terminated=False
+)
+COMMERCIO_JUNE = sector_year(_commercio_june(), _TERZIARIO, _HALF_YEAR, terminated=True)
 
 
 # Pubblici Esercizi and Ristorazione Collettiva: 4th level, 10 employees.

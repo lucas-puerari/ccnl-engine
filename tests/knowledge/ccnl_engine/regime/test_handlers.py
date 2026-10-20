@@ -115,7 +115,10 @@ def _period(
         contract_type=Permanent(),
     )
     employer = EmployerProfile(
-        provincial_pay_element=False, headcount=Headcount(50), activity=worker.activity
+        provincial_pay_element=False,
+        headcount=Headcount(50),
+        activity=worker.activity,
+        contractual_funds=frozenset(),
     )
     prior_year = PriorYearTaxFacts(
         employment_income=worker.income, waived_regimes=waived

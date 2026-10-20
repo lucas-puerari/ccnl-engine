@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -42,6 +43,9 @@ if TYPE_CHECKING:
     from ccnl_engine.results import CalculationDecision
 
 _COMMERCIO_4 = Employment(ccnl_id=COMMERCIO, level_code="4", contract_type=Permanent())
+#: The employer states the contractual funds of commercio (none paid), so
+#: only the surtax decides whether the result is final.
+_FUNDS_STATED = replace(EMPLOYER, contractual_funds=frozenset())
 _SURTAXES = {
     "addizionale_regionale": "facts.regione",
     "addizionale_comunale": "facts.comune_belfiore",
@@ -93,6 +97,7 @@ def test_known_surtax_tables_are_withheld() -> None:
     the conguaglio, so both tables are only checked: final, amount 0.
     """
     result = regular_period(
+        employer=_FUNDS_STATED,
         regione="IT-45",
         comune_belfiore="F257",
         opening_state=opening_with_2025_surtax("IT-45", "F257"),
@@ -121,6 +126,7 @@ def test_unknown_surtax_tables_make_the_result_not_final() -> None:
     but the result is incomplete and names both unknown tables.
     """
     result = regular_period(
+        employer=_FUNDS_STATED,
         regione="IT-99",
         comune_belfiore="Z999",
         opening_state=fresh_tax_year(),

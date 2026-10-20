@@ -124,14 +124,7 @@ _SPECIFIC: Final[dict[str, frozenset[Blocker]]] = {
             "fsbap_rates_above_15",
         ),
     }),
-    "commercio-confcommercio": frozenset({
-        _owed(
-            "commercio-confcommercio",
-            "bilateral_funds",
-            "health_and_bilateral_funds",
-        ),
-        ("ruleset_not_production", "", "ccnl/commercio-confcommercio"),
-    }),
+    "commercio-confcommercio": frozenset(),
 }
 #: Pilots whose renewal increment cannot be measured yet: the CCNL does not
 #: list its renewal (``parameters.renewals``) or lacks the table before it.

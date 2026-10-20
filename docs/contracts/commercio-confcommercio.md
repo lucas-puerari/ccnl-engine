@@ -8,7 +8,7 @@
 | **Last renewal** | 2024-03-22 |
 | **Workers (est.)** | ~800k |
 | **Ruleset version** | `2026.2` |
-| **Readiness** | 👁 Reviewed |
+| **Readiness** | 🏭 Production |
 
 [← Contracts index](index.md)
 
@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | bilateral_funds, seniority, sickness |
+| **Limits of this contract** | seniority, sickness |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -42,14 +42,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
 | **Rule provenance** | 69 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
-| **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+| **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
 ## Freshness
 
 | | |
 |---|---|
 | **Last renewal** | 2024-03-22 |
-| **Last review** | 2026-10-15 |
+| **Last review** | 2026-10-19 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the pension, health and bilateral contributions of the file against the text read in the P1 review. | flagged | Fon.Te. verified in P1. The EBT (0,10% + 0,05%), Quadrifor (50 + 25 euro a year for the quadri), Fondo Est and Qu.A.S. contributions are not modelled: declared. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the amounts of the declared contributions, read on the full text published by a party. | confirmed | Fondo Est 10 + 2 euro a month (Art. 104, p. 101) and Qu.A.S. 350 + 56 euro a year (Art. 105, p. 103) read: the declared limitation now states every amount. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Closure of the difference on the annual deductions of the observed termination payslip p25 (Terziario level 3, August 2026), shared with every CCNL of the terziario tax sector. | corrected | p25 prints 1.621,58 of annual deductions, other_deductions 1.042,62 and 242 days (gg_detrazioni). The art. 13 deduction proportioned to 242 days is 977.62 or 977.63 (1.474,52 x 242 / 365 = 977.6267), the ulteriore detrazione 578.96, and the payroll adds the 65 euro of art. 13 c. 1.1 whole: circolare 4/E/2022, par. 1.2.1, p. 7, 'deve essere corrisposto [...] per intero nel corso dell'anno [...] senza effettuare alcun ragguaglio al periodo di lavoro nell'anno'. The engine proportioned the 65 euro to the days: corrected in irpef.deduction.rules.work_income_deduction.<br>Divergence (engine_bug): Annual deductions of p25: 1.621,58 printed against 1.606,30 computed by the engine before the fix (243 days, 65 euro proportioned). Cause: The engine proportioned the 65 euro of art. 13 c. 1.1 TUIR to the days of work; circolare AdE 4/E/2022 grants it whole.<br>Divergence (accepted_external_variance): Art. 13 deduction of p25 for 242 days: 977.62 printed against 977.63 computed (1.474,52 x 242 / 365 = 977.6267). Cause: No source states how the proportioned deduction is rounded: the payroll of p25 truncates, the engine rounds half-up. One cent. Two payslips printed by other payroll packages, p26 (969.4658 printed 969.47) and p27 (74.9863 printed 74.99), round half-up as the engine does: the rounding varies by package. |
+| 2026-10-19 | claude-opus-5-5 (ai) | Checklist 'reviewed -> production': the health and bilateral funds left declared on 2026-10-15, the L2 values, the reference cases and the evidence of every total of the definition of done. | corrected | Funds modelled as rules (parameters.health_funds), the owed limitation health_and_bilateral_funds removed: EBT 0,10% + 0,05% of paga base and contingenza for 14 months, or an element of 0,30% for 14 months (2024 text p. 12, 2019 text p. 49); Fondo Est 13 + 2 EUR a month from 1 April 2025 for the permanent workers of levels 1-7, or 16 EUR for 14 months (p. 17); Qu.A.S. 390 + 56 EUR a year from 2026 for the quadri, or 37 EUR for 14 months (p. 18); Quadrifor 50 + 25 EUR a year (p. 19). The 2015 declaration (10 + 2 EUR, 350 + 56 EUR) was stale for 2025-2026.<br>The fund records stay derived: pages 1-62 of the 2024 text are image-only and their quotes come from OCR, checked against the page image for Fondo Est and Qu.A.S. only. Two observed payslips agree: p17 (January 2026) withholds 0,05% of 'retribuzione ente bilaterale commercio' 1981,84 (paga base 1453,94 + contingenza 527,90) and prints Fondo Est 2,00 and 13,00 c/ditta; p04 and p70 print Fondo Est 2,00.<br>The EBT rate reads the contingenza, which the tables list apart from the paga base: ContractualFund.rate_allowances names the CONTINGENZA_EDR allowance.<br>L2: the INPS rates of the terziario are those the owner accepted on 2026-10-13 (allegato of INPS circ. 117/2022, FIS and CIGS of D.Lgs. 148/2015 arts. 29 and 23); the apprenticeship rules (Artt. 53, 62, 64) and every other payable rule were verified on 2026-10-11 and 2026-10-14; the TFR is statutory (art. 2120 c.c.).<br>Reference case commercio-confcommercio_3_2026_observed.json verified on the observed payslip p06 (sha256 9d1a08fccc56e5d1cf61ec795d7e6f6d0682d2ad997cab7fe69573f0efc45de8): paga base 1453,94 for level 3 in April 2026, a value the engine did not produce.<br>Totals: gross, employee and employer contributions, tax, net pay, TFR and employer cost are compared with the hand oracles commercio-year and commercio-june (tests/knowledge/ccnl_engine/period/sector), level 4, 50 employees, a provincial element in force; base salary and gross with the reference cases. The oracles recompute the pipeline from the same sources: only the base salary has an independent output.<br>Not modelled: the one-off enrolment fees of Fondo Est (30 EUR) and Qu.A.S.; the payment month of the annual Qu.A.S. and Quadrifor amounts, charged a twelfth a month. |
 
 ## Salary table
 
@@ -120,13 +121,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies.
 
     **Remediation:** Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 187, align the computation, then resolve this limitation.
-
-!!! warning "commercio-confcommercio/health_and_bilateral_funds · bilateral_funds · impact yes · open"
-    HEALTH AND BILATERAL FUNDS (testo unico 2019): Fondo Est (Art. 104, p. 101), for the permanent workers other than the quadri, 10 euro a month from the employer and 2 euro from the worker, or an elemento distinto of 16 euro for 14 months when the employer does not enrol them; Qu.A.S. (Art. 105, p. 103), for the quadri, 350 euro a year from the employer and 56 euro from the worker from June 2011, plus an enrolment fee; Quadrifor (p. 108), 50 euro a year from the employer and 25 from the quadro; Ente Bilaterale Territoriale (p. 48), 0,10% from the employer and 0,05% from the worker on paga base and contingenza. Not modelled: the worker's shares lower the net pay.
-
-    **Applies when:** `bilateral_funds` applies.
-
-    **Remediation:** Pass the contributions as bilateral fund events, or model them per worker.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

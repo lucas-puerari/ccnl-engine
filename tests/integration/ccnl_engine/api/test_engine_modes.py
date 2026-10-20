@@ -40,8 +40,8 @@ _OPERATIONAL = PayrollEngine.bundled(mode="operational")
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 _METALMECCANICO = "metalmeccanico-federmeccanica"
 #: A reviewed CCNL, not production: operational mode blocks it.
-_COMMERCIO = "commercio-confcommercio"
-_EMPLOYMENT = Employment(ccnl_id=_COMMERCIO, level_code="4", contract_type=Permanent())
+_REVIEWED = "concia-unic"
+_EMPLOYMENT = Employment(ccnl_id=_REVIEWED, level_code="D2", contract_type=Permanent())
 
 
 def _june(engine: PayrollEngine) -> PeriodResult:
@@ -74,7 +74,7 @@ def test_unknown_mode_is_invalid_input() -> None:
 def test_operational_adds_only_the_readiness_blocker() -> None:
     """Same amounts; one more blocker, naming the reviewed CCNL ruleset."""
     simulated, operational = _june(_SIMULATION), _june(_OPERATIONAL)
-    ccnl_id = f"ccnl/{_COMMERCIO}"
+    ccnl_id = f"ccnl/{_REVIEWED}"
 
     assert operational.period_net == simulated.period_net
     assert operational.period_gross == simulated.period_gross
@@ -93,10 +93,10 @@ def test_operational_adds_only_the_readiness_blocker() -> None:
 
 def test_run_reports_the_readiness_the_catalog_reports() -> None:
     """``inspect_ruleset`` before a run equals the CCNL entry of the run."""
-    inspected = _SIMULATION.inspect_ruleset(_COMMERCIO)
+    inspected = _SIMULATION.inspect_ruleset(_REVIEWED)
     (ccnl,) = [r for r in _june(_SIMULATION).rulesets if r.kind is RulesetKind.CCNL]
     (summary,) = [
-        s for s in PayrollEngine.bundled().list_contracts() if s.ccnl_id == _COMMERCIO
+        s for s in PayrollEngine.bundled().list_contracts() if s.ccnl_id == _REVIEWED
     ]
 
     assert ccnl == inspected
