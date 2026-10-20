@@ -18,6 +18,8 @@ state types.
 
 ::: ccnl_engine.inputs.WorkerCategory
 
+::: ccnl_engine.inputs.EmploymentChange
+
 ::: ccnl_engine.inputs.EmploymentPeriod
 
 ::: ccnl_engine.inputs.EmploymentSpell

@@ -21,6 +21,7 @@ from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.contribution.zone.models import AgriculturalZone
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.change.inputs import EmploymentChange
 from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
     EmploymentPeriod,
@@ -275,6 +276,7 @@ def _competence_year(opening_state: PeriodState | None = None) -> CompetenceYear
         calendar_override=_calendar_override(),
         payment_day=27,
         payment_dates={12: date(2027, 1, 10)},
+        employment_changes=(EmploymentChange(date(2026, 7, 1), level_code="C2"),),
         opening_state=opening_state,
     )
 

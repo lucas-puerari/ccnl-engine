@@ -72,6 +72,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "AgriculturalZone",
         "EmployerActivity",
         "EarnedIncrements",
+        "EmploymentChange",
         "EmploymentPeriod",
         "EmploymentSector",
         "EmploymentSpell",

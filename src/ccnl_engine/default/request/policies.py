@@ -60,6 +60,10 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
     "CompetenceYearPlan.prior_year": _CONTAINER,
     "CompetenceYearPlan.current_year": _CURRENT_YEAR,
     "CompetenceYearPlan.periods": absence_is_fact("every run takes default_facts"),
+    "CompetenceYearPlan.employment_changes": absence_is_fact("same terms all year"),
+    "EmploymentChange.level_code": absence_is_fact("the level is kept"),
+    "EmploymentChange.weekly_hours": absence_is_fact("the hours are kept"),
+    "EmploymentChange.category": absence_is_fact("the category is kept"),
     "CompetenceYearPlan.default_facts": _CONTAINER,
     "CompetenceYearPlan.calendar_override": absence_is_fact(
         "the standard calendar of the CCNL applies"

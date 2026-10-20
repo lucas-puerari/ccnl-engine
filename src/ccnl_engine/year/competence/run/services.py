@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import TYPE_CHECKING
 
 from ccnl_engine.calendar.schedule.models import PayrollSchedule
+from ccnl_engine.employment.change.services import rateo_scale
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.extra_month.models import (
     DEFAULT_MONTH_ACCRUAL_RULE,
@@ -149,10 +150,11 @@ def run_request(
     """
     period = plan.employment.employment_period
     extra_sched = year_plan.extra_months.get((run.run_kind, run.month))
+    employment = plan.employment_for(run)
     period_input = PeriodInput(
         run=run,
         payment_date=payment.payment_date,
-        employment=plan.employment,
+        employment=employment,
         employer=plan.employer,
         facts=plan.facts_for(run),
         prior_year=plan.prior_year,
@@ -160,21 +162,47 @@ def run_request(
         opening_state=state,
         planned_payments=planned_payments,
     )
+
+    def accrual(
+        schedule: ExtraMonthSchedule, year: int, outside: frozenset[date]
+    ) -> ExtraMonthAccrual:
+        return ExtraMonthAccrual.of(
+            schedule,
+            year,
+            period,
+            non_accruing_days=year_plan.non_accruing | outside,
+            rule=year_plan.accrual_rule,
+            unknown_days=year_plan.unknown_accrual,
+            pattern=plan.employment.work_pattern,
+        )
+
+    def scaled(schedule: ExtraMonthSchedule, year: int) -> ExtraMonthAccrual:
+        scale = rateo_scale(
+            lambda outside: accrual(schedule, year, outside), plan.timeline, employment
+        )
+        return replace(accrual(schedule, year, frozenset()), scale=scale)
+
+    def settled(s: ExtraMonthAccrual) -> ExtraMonthAccrual:
+        def counted(outside: frozenset[date]) -> ExtraMonthAccrual:
+            days = year_plan.non_accruing | outside
+            return replace(
+                s,
+                months=s.rule.qualifying_months(
+                    s.window, ended_on=s.ended_on, non_accruing_days=days
+                ),
+                day_units=s.rule.day_units(
+                    s.window, ended_on=s.ended_on, non_accruing_days=days
+                ),
+            )
+
+        return replace(s, scale=rateo_scale(counted, plan.timeline, employment))
+
+    settlements = tuple(settled(s) for s in year_plan.settlements.get(run.run_id, ()))
     return period_input.calculation_request(
         extra_month_accrual=(
-            ExtraMonthAccrual.of(
-                extra_sched,
-                plan.year,
-                period,
-                non_accruing_days=year_plan.non_accruing,
-                rule=year_plan.accrual_rule,
-                unknown_days=year_plan.unknown_accrual,
-                pattern=plan.employment.work_pattern,
-            )
-            if extra_sched is not None
-            else None
+            scaled(extra_sched, plan.year) if extra_sched is not None else None
         ),
-        extra_month_settlements=year_plan.settlements.get(run.run_id, ()),
+        extra_month_settlements=settlements,
         withholding_schedule=withholding_schedule,
         uncovered_runs=uncovered,
     )

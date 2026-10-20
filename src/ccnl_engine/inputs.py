@@ -31,6 +31,7 @@ from ccnl_engine.employer.inputs import (
     TaxSector,
 )
 from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.change.inputs import EmploymentChange
 from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
     EmploymentPeriod,
@@ -93,6 +94,7 @@ __all__ = [
     "DependentRelationship",
     "EarnedIncrements",
     "EmployerActivity",
+    "EmploymentChange",
     "EmploymentPeriod",
     "EmploymentSector",
     "EmploymentSpell",
