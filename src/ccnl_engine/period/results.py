@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
@@ -15,6 +16,7 @@ from ccnl_engine.decision.models import (
     CalculationIssue,
 )
 from ccnl_engine.ledger.remittance.models import remittance_summary
+from ccnl_engine.period.payslip.line.services import payslip_lines, progressives
 from ccnl_engine.run.types import PeriodId
 
 if TYPE_CHECKING:
@@ -26,6 +28,7 @@ if TYPE_CHECKING:
     from ccnl_engine.ledger.remittance.models import RemittanceLine
     from ccnl_engine.limitation.models import ModelLimitation
     from ccnl_engine.pay_item.facade import PayItem
+    from ccnl_engine.period.payslip.line.models import PayslipLine, Progressives
     from ccnl_engine.provenance.ruleset.assurance.models import RulesetAssurance
     from ccnl_engine.run.models import PayrollRun
     from ccnl_engine.variable_pay.benefit.results import BenefitBreakdown
@@ -139,6 +142,25 @@ class PeriodResult:
         the days not paid; this is what the payslip pays as gross.
         """
         return self.period_gross - self.unpaid_absence_deduction
+
+    def payslip_lines(
+        self, voci: Mapping[str, str] | None = None
+    ) -> tuple[PayslipLine, ...]:
+        """Return the payslip of the run as lines.
+
+        Args:
+            voci: The provider's voce code by engine code.
+
+        Returns:
+            One line per earning or deduction of the ledger: the competenze
+            less the trattenute are :attr:`period_net`.
+        """
+        return payslip_lines(self, voci)
+
+    @property
+    def progressives(self) -> Progressives:
+        """The progressivi of the tax year and the INPS base of the year."""
+        return progressives(self.closing_state, self.period_id.year)
 
     @property
     def is_payable(self) -> bool:

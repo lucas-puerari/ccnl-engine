@@ -8,10 +8,8 @@ from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ccnl_engine.pay_item.selection.policies import (
-    CompetencePeriod,
-    PolicyDecision,
-)
+from ccnl_engine.pay_item.selection.policies import CompetencePeriod, PolicyDecision
+from ccnl_engine.pay_item.voce.models import VoceView
 
 __all__ = [
     "AbsenceDeduction",
@@ -46,8 +44,8 @@ __all__ = [
 ]
 
 
-class _PayItemBase(BaseModel):
-    """Common fields shared by all PayItem variants."""
+class _PayItemBase(VoceView, BaseModel):
+    """Common fields shared by all PayItem variants, with their voce."""
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
