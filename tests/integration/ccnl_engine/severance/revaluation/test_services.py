@@ -26,6 +26,7 @@ from ccnl_engine.decision.models import (
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.inputs import NoPensionFund, TfrFundBalance
+from ccnl_engine.period.context.request.services import build_context
 from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
@@ -33,6 +34,10 @@ from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.services import calculate_period
 from ccnl_engine.run.models import PayrollRun, RunKind
 from ccnl_engine.run.types import PeriodId
+from ccnl_engine.severance.revaluation.services import (
+    TfrRevaluation,
+    run_tfr_revaluation,
+)
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 if TYPE_CHECKING:
@@ -278,3 +283,31 @@ def test_not_computed_revaluation_is_unresolved() -> None:
     result = _run(tfr_fund=_FUND)
     gaps = {gap.feature: gap.kind.value for gap in result.capability_report.gaps}
     assert gaps["tfr_revaluation"] == "unresolved"
+
+
+def test_the_revaluation_carries_its_tax_and_its_net() -> None:
+    """421.10 revalued, 71.59 of tax, 349.51 net; unknown amount, no net."""
+    repo = _with_december("103.7")
+    request = PeriodCalculationRequest(
+        period_id=PeriodId(year=2026, month=12),
+        payment_date=date(2026, 12, 27),
+        ccnl_id="metalmeccanico-federmeccanica",
+        level_code="C3",
+        employer=EmployerProfile(headcount=Headcount(50)),
+        seniority=new_hire(),
+        tfr_treasury_fund=False,
+        pension_fund=NoPensionFund(),
+        run=PayrollRun(run_kind=RunKind.REGULAR, month=12, year=2026),
+        employment_period=_HIRED_2020,
+        tfr_fund=_FUND,
+    )
+    revaluation = run_tfr_revaluation(build_context(request, repo, None))
+
+    assert revaluation is not None
+    assert (revaluation.amount, revaluation.substitute_tax, revaluation.net) == (
+        Decimal("421.10"),
+        Decimal("71.59"),
+        Decimal("349.51"),
+    )
+    unknown = TfrRevaluation("year_end", "x", CalculationStatus.INCOMPLETE, {})
+    assert (unknown.substitute_tax, unknown.net) == (Decimal(0), None)
