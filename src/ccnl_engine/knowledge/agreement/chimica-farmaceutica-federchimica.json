@@ -479,7 +479,42 @@
           "review_id": "2026-10-13-ai-production"
         }
       }
-    }
+    },
+    "renewals": [
+      {
+        "signed_on": "2025-04-15",
+        "tables_from": "2025-07-01",
+        "source": {
+          "source_document": {
+            "document_id": "ccnl-chimica-ipotesi-2025-04-15",
+            "title": "Ipotesi di accordo di rinnovo CCNL addetti industria chimica, chimico-farmaceutica, fibre chimiche, abrasivi, lubrificanti e GPL, 15 aprile 2025 (scansione firmata, FILCTEM-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
+            "published_on": "2025-04-15",
+            "sha256": "00f87d6fbef42494d47d90dab50146e353b31cbef4ca1f03d6f7ea37d97546ee"
+          },
+          "page": "48",
+          "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/07/2025, row D1",
+          "quote": "1.993,03 347,23"
+        },
+        "minimum_before": {
+          "D1": "2259.26"
+        },
+        "minimum_before_source": {
+          "source_document": {
+            "document_id": "ccnl-chimica-ipotesi-2025-04-15",
+            "title": "Ipotesi di accordo di rinnovo CCNL addetti industria chimica, chimico-farmaceutica, fibre chimiche, abrasivi, lubrificanti e GPL, 15 aprile 2025 (scansione firmata, FILCTEM-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
+            "published_on": "2025-04-15",
+            "sha256": "00f87d6fbef42494d47d90dab50146e353b31cbef4ca1f03d6f7ea37d97546ee"
+          },
+          "page": "46",
+          "section": "Trattamento economico minimo",
+          "quote": "L'ultima tranche di aumento del TEM di euro 20 (alla D1) prevista per il 2025 dall'Accordo di rinnovo del 13 giugno 2022 sarà erogata unitamente alle decorrenze economiche del presente Accordo da luglio 2025."
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -4739,7 +4774,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "c86c2c113d0287c26dbd51297a7ab95a6efea134776f3262a4b57f529a93a350",
+    "source_hash": "dccfcfbbb235049c7d699d4d97444367d8f1d1b66bf00783148ffec2a822921e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5392,6 +5427,24 @@
           "Allegato TEM (p. 48, scan read by OCR): the previgente minimo and IPO of the 15 categories plus the increments of July 2025, December 2025, July 2026, July 2027 and June 2028 rebuild the 75 amounts of the file; the A1 to A3 and B1 to B2 amounts add the EAR of 190 and 100 euro (art. 15 B 3), as their transformations state. Match.",
           "Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios chimica-year and chimica-june): a D1 impiegato hired on 1 January 2026 by an employer with 50 employees, across the tranche of July 2026; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. No owed amount blocks these runs.",
           "The 5 derived rules stay derived: each reads its value from a cited text through a stated transformation, and this review found no primary text that states them directly."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-renewals",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The renewal within the window of L. 199/2025 art. 1 c. 7 and the minimo before its first tranche.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
+            "sha256": "00f87d6fbef42494d47d90dab50146e353b31cbef4ca1f03d6f7ea37d97546ee"
+          }
+        ],
+        "findings": [
+          "Ipotesi of 15 April 2025, first tranche from 1 July 2025: parameters.renewals.",
+          "p. 46: the July 2025 tranche also pays the last 20 EUR (D1) of the renewal of 13 June 2022, signed outside the window: the minimo before the renewal at D1 is 2239.26 + 20 = 2259.26. The 2022 tranche of the other categories is not printed in the 2025 text (its tables are announced, not attached): their increment stays unmeasured."
         ]
       }
     ],

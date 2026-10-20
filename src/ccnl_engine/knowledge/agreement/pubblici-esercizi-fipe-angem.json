@@ -647,6 +647,50 @@
           "note": "Not in the repo coverage note. 340 valid_from set to CCNL 2018 start; it predates it."
         }
       }
+    ],
+    "renewals": [
+      {
+        "signed_on": "2024-06-05",
+        "tables_from": "2024-06-01",
+        "source": {
+          "source_document": {
+            "document_id": "fipe-accordo-integrativo-2024-06-26",
+            "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+            "published_on": "2024-06-26",
+            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+          },
+          "page": "1",
+          "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-24'",
+          "quote": "7 518,45 € 812,03 € 1.330,48 €"
+        },
+        "minimum_before": {
+          "Qa": "2249.19",
+          "Qb": "2078.57",
+          "1": "1932.79",
+          "2": "1762.19",
+          "3": "1659.07",
+          "4": "1562.69",
+          "5": "1462.34",
+          "6s": "1404.15",
+          "6": "1383.47",
+          "7": "1293.15"
+        },
+        "minimum_before_source": {
+          "source_document": {
+            "document_id": "fipe-accordo-integrativo-2024-06-26",
+            "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+            "published_on": "2024-06-26",
+            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+          },
+          "page": "1",
+          "section": "Articolo 161 - Paga base nazionale, column 'paga base' (before June 2024) and the table 'Contingenza'",
+          "quote": "3        1.130,81 €            54,48             43,59              43,59             32,69            43,59       217,93        1.348,74"
+        }
+      }
     ]
   },
   "levels": [
@@ -2645,7 +2689,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "0d8adf24fabe793bd402ddae3ad2cae2e116d9b07887fd6f8609e4f768b7c7dd",
+    "source_hash": "9b68cb059571bb1982ca41268795baed4c47dcc67db5ead223a3f01e038db6f4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3041,6 +3085,24 @@
           "Accordo integrativo of 26 June 2024 (pp. 1-3): the 50 totals of contingenza and paga base of the ten levels from June 2024 to December 2027 match the file, with the tranches of 2025 and 2026 in June.",
           "Art. 184 of the CCNL of 8 February 2018 (p. 128, scan read by OCR): quattordicesima of the pay in force on 30 June, paid with the July pay, in ratei of the twelve months before 1 July. Match.",
           "Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios fipe-year and fipe-june): a 4th level impiegato hired on 1 January 2026 by an employer with 10 employees, with the terziario rates up to 15 employees and the 0.77% sickness supplement of the pubblici esercizi taken apart; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-renewals",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The renewal within the window of L. 199/2025 art. 1 c. 7 and the minimo in force before its first tranche.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+          }
+        ],
+        "findings": [
+          "Renewal signed on 2024-06-05, first tranche from 2024-06-01: parameters.renewals.",
+          "Minimo before the renewal = paga base before the tranche of June 2024 plus the contingenza, unchanged by it (the Totale the bundle carries): e.g. level 3, 1,130.81 + 528.26 = 1,659.07. The paga base is the table of December 2021 of the CCNL of 8 February 2018 (p. 117, column 'dic-21', read by OCR)."
         ]
       }
     ],

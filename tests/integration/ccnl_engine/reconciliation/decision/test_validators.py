@@ -215,7 +215,11 @@ class TestSubstituteTaxEligibility:
         assert "no eligible amount" in violation.message
 
     def test_posting_without_decision_is_reported(self) -> None:
-        """SUBSTITUTE_TAX posted without a decision is a violation."""
+        """SUBSTITUTE_TAX posted without a decision is a violation.
+
+        The run may also tax the renewal increment of its minimo: the
+        posting left without its decision is the difference.
+        """
         result = _run(_night(500))
         decision = _regime_decision(result)
         bad = _with_decisions(
@@ -224,8 +228,9 @@ class TestSubstituteTaxEligibility:
 
         (violation,) = check_substitute_tax_eligibility(bad)
         assert violation.invariant_id == _ELIGIBILITY
-        assert violation.expected == Decimal(0)
-        assert violation.actual == decision.amount
+        assert violation.actual is not None
+        assert violation.expected is not None
+        assert violation.actual - violation.expected == decision.amount
 
 
 class TestDecisionProvenance:

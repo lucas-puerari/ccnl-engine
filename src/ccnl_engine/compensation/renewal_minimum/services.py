@@ -67,7 +67,7 @@ def renewal_minimum(ctx: RunContext) -> RenewalMinimumAssessment | None:
         renewals and not qualifying_starts(renewals, regime, competence)
     ):
         return None
-    pre = pre_renewal_minimum(series, renewals, regime, competence)
+    pre = pre_renewal_minimum(series, renewals, regime, competence, contract.level.code)
     return assess_renewal_minimum(
         regime,
         worker_facts_of(ctx.request, withholding_agent=True),

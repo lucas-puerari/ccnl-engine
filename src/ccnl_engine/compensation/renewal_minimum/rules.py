@@ -149,6 +149,7 @@ def pre_renewal_minimum(
     renewals: tuple[RenewalAgreement, ...],
     regime: PreferentialTaxRegime,
     competence: date,
+    level_code: str,
 ) -> Decimal | None:
     """Return the full-time minimo before the renewals the regime covers.
 
@@ -157,17 +158,23 @@ def pre_renewal_minimum(
         renewals: Renewals of the CCNL.
         regime: The renewal regime.
         competence: Competence date of the run.
+        level_code: Level of the run, read in ``minimum_before``.
 
     Returns:
-        The minimo in force the day before the first tranche of the earliest
-        renewal signed within the window, started by ``competence``; ``None``
-        without such a renewal, without a signing window or without a table
-        on that day.
+        The ``minimum_before`` of the level that the earliest renewal signed
+        within the window, started by ``competence``, states; else the
+        minimo in force the day before its first tranche.  ``None`` without
+        such a renewal, without a signing window, for a level its
+        ``minimum_before`` omits or without a table on that day.
     """
     starts = qualifying_starts(renewals, regime, competence)
     if not starts:
         return None
-    period = series.period_at(min(starts) - timedelta(days=1))
+    first = min(starts)
+    earliest = next(r for r in renewals if r.tables_from == first)
+    if earliest.minimum_before:
+        return earliest.minimum_before.get(level_code)
+    period = series.period_at(first - timedelta(days=1))
     return None if period is None else period.value
 
 

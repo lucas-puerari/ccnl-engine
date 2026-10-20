@@ -678,7 +678,49 @@
           "review_id": "2026-10-20-ai-funds"
         }
       }
-    }
+    },
+    "renewals": [
+      {
+        "signed_on": "2024-02-16",
+        "tables_from": "2024-03-01",
+        "source": {
+          "source_document": {
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+            "kind": "associazione",
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          },
+          "page": "71",
+          "section": "Art. 140 - Minimi tabellari, prima tranche",
+          "quote": "5°            1.315,12         91,36               1.406,48           -               -"
+        },
+        "minimum_before": {
+          "5": "1315.12",
+          "4": "1413.11",
+          "4S": "1465.62",
+          "3": "1511.37",
+          "3S": "1525.23",
+          "2": "1644.37",
+          "1": "1887.84",
+          "Q": "2133.31"
+        },
+        "minimum_before_source": {
+          "source_document": {
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+            "kind": "associazione",
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          },
+          "page": "71",
+          "section": "Art. 140 - Minimi tabellari, prima tranche, column 'Minimo tabellare in vigore al 29 febbraio 2024'",
+          "quote": "5°            1.315,12         91,36               1.406,48"
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -2317,7 +2359,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "0ac418c3efce40772643a0f22e6986434b059e4cfde5aef28de60c3633f0156a",
+    "source_hash": "b9899dcad296a11864f1e1703f861eb2a7333101f11946c67eee0819656bbd38",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2729,6 +2771,24 @@
           "Art. 13 (p. 8): an employer outside the bilateral system owes 43 EUR for 14 months, in every institute including the TFR, not reproportioned for part time. Modelled as the element of cadiprof, which ebipro shares (alternative_in).",
           "D.I. 21 May 2024 art. 6 c. 1 (pp. 6-7): 0.50% up to 5, 0.80% from 6 to 15, 1% above 15 employees, two thirds employer, on the INPS taxable pay. Modelled as a solidarity fund whose tier replaces the FIS and CIGS shares of the terziario rates; up to 15 employees they coincide, above 15 the worker pays 9.52% and the employer 29.65%. The owed limitation fsbap_rates_above_15 removed.",
           "Art. 6 c. 4 and INPS circ. 5/2025 p. 3: the 0.50% falls to 0.30% for an employer without claims for 24 months, the same cut the terziario rates carry for the FIS (EmployerProfile.fis_reduction)."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-renewals",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The renewal within the window of L. 199/2025 art. 1 c. 7 and the minimo in force before its first tranche.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "Renewal signed on 2024-02-16, first tranche from 2024-03-01: parameters.renewals.",
+          "Minimo before the renewal = the column 'Minimo tabellare in vigore al 29 febbraio 2024' of the first tranche (Q 2,133.31 to 5 1,315.12)."
         ]
       }
     ],
