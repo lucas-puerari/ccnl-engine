@@ -23,6 +23,7 @@ from ccnl_engine.provenance.source.models import SourceDocument
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.severance.models import TfrRules
 from ccnl_engine.severance.revaluation.models import TfrRevaluationRules
+from ccnl_engine.severance.settlement.models import TfrSettlementRules
 from ccnl_engine.tax_credit.models import (
     SommaEsenteRules,
     TrattamentoIntegrativoRules,
@@ -116,7 +117,9 @@ class YearRules(BaseModel):
     table instead.  Exactly one contribution model is present (enforced by
     the loader, which mirrors ``YearRulesRaw._check_contribution_model``).
     ``tfr_revaluation`` holds the revaluation of the TFR fund at 31
-    December of the year, ``None`` when the bundle has no rules for it.
+    December of the year, ``None`` when the bundle has no rules for it;
+    ``tfr_settlement`` the separate taxation of the TFR paid on a
+    termination in the year, ``None`` likewise.
     ``somma_esente`` comes from the year file shared by every sector and
     carries the identity of that file.
     """
@@ -137,6 +140,7 @@ class YearRules(BaseModel):
     domestic_contributions: DomesticInpsRates | None = None
     tfr: TfrRules
     tfr_revaluation: TfrRevaluationRules | None = None
+    tfr_settlement: TfrSettlementRules | None = None
     trattamento_integrativo: TrattamentoIntegrativoRules | None = None
     ulteriore_detrazione: UlterioreDetrazioneRules | None = None
     somma_esente: SommaEsenteRules | None = None

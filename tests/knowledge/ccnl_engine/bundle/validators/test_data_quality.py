@@ -323,6 +323,7 @@ def _reviewed(file: str, path: str) -> bool:
         "tax_credit/somma_esente/2026.json",
         "surtax/regional/2026.json",
         "severance/revaluation/2026.json",
+        "severance/settlement/2026.json",
     }
 
 

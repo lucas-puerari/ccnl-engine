@@ -17,6 +17,7 @@ from ccnl_engine.fund.contractual.rules import contractual_rules
 from ccnl_engine.pension_fund.inputs import PensionFundEnrolment
 from ccnl_engine.severance.services import (
     revaluation_rules,
+    settlement_rules,
     tfr_rules,
 )
 from ccnl_engine.sickness.services import sickness_rules
@@ -194,6 +195,11 @@ def tax_rules(ctx: RunContext) -> dict[str, tuple[Rule, ...]]:
         "tfr": tfr_rules(name, rules.tfr),
         "tfr_revaluation": revaluation_rules(
             rules.tfr_revaluation, ctx.contract.tctx.competence.year
+        ),
+        "termination_tfr": (
+            *tfr_rules(name, rules.tfr),
+            *settlement_rules(rules.tfr_settlement),
+            (f"{name}:irpef_brackets", rules.irpef_brackets_provenance),
         ),
         "trattamento_integrativo": (
             (

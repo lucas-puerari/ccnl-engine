@@ -21,7 +21,10 @@ from ccnl_engine.family.loaders import load_family_deduction_rules
 from ccnl_engine.limitation.loaders import load_engine_limitations
 from ccnl_engine.pay_item.loaders import load_policy_resolver
 from ccnl_engine.sector.loaders import load_year_rules
-from ccnl_engine.severance.loaders import load_tfr_revaluation_rules
+from ccnl_engine.severance.loaders import (
+    load_tfr_revaluation_rules,
+    load_tfr_settlement_rules,
+)
 from ccnl_engine.sickness.indemnity.loaders import load_sick_pay_rates
 from ccnl_engine.surtax.loaders import load_surtax_rules
 from ccnl_engine.tax_credit.somma_esente.loaders import load_somma_esente_rules
@@ -51,6 +54,7 @@ _LOADERS: dict[str, Callable[[dict[str, Any]], object]] = {
     "pay_item": lambda _: load_policy_resolver(),
     "sector": _year_rules,
     "severance/revaluation": lambda r: load_tfr_revaluation_rules(r["year"]),
+    "severance/settlement": lambda r: load_tfr_settlement_rules(r["year"]),
     "sickness/indemnity": lambda _: load_sick_pay_rates(),
     "surtax/municipal": lambda r: load_surtax_rules(r["year"]),
     "surtax/regional": lambda r: load_surtax_rules(r["year"]),

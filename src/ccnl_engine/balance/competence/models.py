@@ -16,7 +16,7 @@ toward the IVS massimale follows competence too
 (:mod:`~ccnl_engine.contribution.base.models`), so it is counted here per
 competence year.  The sickness episodes are counted over the employment
 too: a waiting period, an INPS band or a CCNL tier depends on the sick days
-before the run, whatever tax year paid them.
+before the run, whatever tax year paid them; the TFR quotas too.
 """
 
 from __future__ import annotations
@@ -30,6 +30,7 @@ from ccnl_engine.collection.validators import items_of_type, tuple_of
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.run.models import PayrollRunId, RunKind
+from ccnl_engine.severance.provision import models as tfr
 from ccnl_engine.sickness.models import SicknessEpisode
 from ccnl_engine.validators import require_date
 
@@ -39,6 +40,7 @@ _FEATURE = "accrual_state"
 _FIELD = "EmploymentAccrualState.competence_runs"
 _BASES = "EmploymentAccrualState.inps_bases"
 _SICKNESS = "EmploymentAccrualState.sickness_episodes"
+_TFR = "EmploymentAccrualState.tfr_quotas"
 _ZERO = Decimal(0)
 _EXTRA_MONTHS = frozenset({RunKind.THIRTEENTH, RunKind.FOURTEENTH})
 
@@ -72,19 +74,25 @@ class EmploymentAccrualState:
             all of them (a new employment, or an import that states so).
             A CCNL that counts the sickness of several episodes cannot
             count the days before it.
+        tfr_quotas: TFR accrued with the employer per competence year.
+        tfr_quotas_known_from: First competence year :attr:`tfr_quotas`
+            count in full (balances imported without them: the year after
+            the import); ``None`` for every year.
 
     Raises:
         InvalidInputError: When a run id is not a
             :class:`~ccnl_engine.run.models.PayrollRunId`, is
             repeated, is a regular month closing after a later regular month
             of its competence year, or closes after its termination run; or
-            when two INPS bases are of the same year or out of year order.
+            when two INPS bases (or TFR quotas) are of one year or unordered.
     """
 
     competence_runs: tuple[PayrollRunId, ...] = ()
     inps_bases: tuple[InpsBaseYtd, ...] = ()
     sickness_episodes: tuple[SicknessEpisode, ...] = ()
     sickness_known_from: date | None = None
+    tfr_quotas: tuple[tfr.TfrQuotaYtd, ...] = ()
+    tfr_quotas_known_from: int | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         runs = tuple_of(
@@ -108,6 +116,8 @@ class EmploymentAccrualState:
             msg = f"inps_bases must hold one base per year, in year order; got {years}"
             raise InvalidInputError(msg, field=_BASES, feature=_FEATURE)
         object.__setattr__(self, "sickness_episodes", _episodes(self, _SICKNESS))
+        quotas = tfr.checked_quotas(self.tfr_quotas, _TFR, self.tfr_quotas_known_from)
+        object.__setattr__(self, "tfr_quotas", quotas)
         require_date(
             self.sickness_known_from,
             "EmploymentAccrualState.sickness_known_from",
@@ -130,6 +140,7 @@ class EmploymentAccrualState:
         inps_base: Decimal = _ZERO,
         sickness_episodes: tuple[SicknessEpisode, ...] | None = None,
         additional_ivs: Decimal = _ZERO,
+        tfr_quota: Decimal = _ZERO,
     ) -> EmploymentAccrualState:
         """Return the state with ``run_id`` closed and its INPS base added.
 
@@ -141,6 +152,8 @@ class EmploymentAccrualState:
                 when the run processed none.
             additional_ivs: Additional 1% IVS the run withheld, added to
                 its competence year.
+            tfr_quota: TFR the run accrued with the employer, added to its
+                competence year.
 
         Returns:
             A new state with ``run_id`` appended; it is validated again.
@@ -158,7 +171,16 @@ class EmploymentAccrualState:
                 if sickness_episodes is None
                 else sickness_episodes
             ),
+            tfr_quotas=tfr.quotas_with(self.tfr_quotas, run_id.year, tfr_quota),
         )
+
+    def tfr_quota(self, year: int) -> tfr.TfrQuotaYtd | None:
+        """Return the TFR accrued with the employer in competence year ``year``.
+
+        Returns:
+            :func:`~ccnl_engine.severance.provision.models.quota_of` the year.
+        """
+        return tfr.quota_of(self.tfr_quotas, self.tfr_quotas_known_from, year)
 
     def with_inps_base(self, base: InpsBaseYtd) -> EmploymentAccrualState:
         """Return the state with ``base`` in place of the base of its year.

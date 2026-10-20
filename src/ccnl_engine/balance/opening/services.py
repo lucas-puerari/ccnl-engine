@@ -92,8 +92,10 @@ def _accrual(balances: OpeningBalances) -> EmploymentAccrualState:
     """Return the competence state of ``balances``.
 
     Returns:
-        The runs closed, the INPS bases and the sickness episodes, known
-        from 1 January of the tax year unless the balances state a day.
+        The runs closed, the INPS bases, the sickness episodes, known
+        from 1 January of the tax year unless the balances state a day, and
+        the TFR quotas, known from the year after the import unless the
+        balances state them.
     """
     return EmploymentAccrualState(
         competence_runs=(
@@ -102,6 +104,10 @@ def _accrual(balances: OpeningBalances) -> EmploymentAccrualState:
         ),
         inps_bases=balances.inps_bases,
         sickness_episodes=balances.sickness_episodes,
+        tfr_quotas=balances.tfr_quotas or (),
+        tfr_quotas_known_from=(
+            balances.tax_year + 1 if balances.tfr_quotas is None else None
+        ),
         sickness_known_from=(
             date(balances.tax_year, 1, 1)
             if balances.sickness_known_from is None

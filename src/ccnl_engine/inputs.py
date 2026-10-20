@@ -70,7 +70,7 @@ from ccnl_engine.seniority.inputs import (
     SeniorityFact,
     SenioritySource,
 )
-from ccnl_engine.severance.provision.models import TfrFundBalance
+from ccnl_engine.severance.provision.models import TfrFundBalance, TfrQuotaYtd
 from ccnl_engine.surtax.obligation.models import (
     SurtaxComponent,
     SurtaxObligation,
@@ -119,6 +119,7 @@ __all__ = [
     "SurtaxObligation",
     "TaxSector",
     "TfrFundBalance",
+    "TfrQuotaYtd",
     "WeeklyHours",
     "WorkCalendar",
     "WorkPattern",

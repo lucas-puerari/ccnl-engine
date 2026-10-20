@@ -8,7 +8,8 @@ and the formulas live in the collaborators they call.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.compensation.hourly.services import (
@@ -60,13 +61,16 @@ from ccnl_engine.severance.public.services import (
 from ccnl_engine.severance.revaluation.services import (
     tfr_revaluation_decisions,
 )
+from ccnl_engine.severance.settlement.services import (
+    settle_terminations,
+)
 from ccnl_engine.sickness.month.validators import (
     WITH_UNPAID_ABSENCE,
 )
 
-if TYPE_CHECKING:
-    from decimal import Decimal
+_NO_QUOTA = Decimal(0)
 
+if TYPE_CHECKING:
     from ccnl_engine.amount.types import _PeriodAmounts
     from ccnl_engine.contribution.minimum_base.models import MinimumBase
     from ccnl_engine.contribution.results import ContributionBreakdown
@@ -206,6 +210,36 @@ def run_amounts(ctx: RunContext, totals: _EventTotals) -> RunAmounts:
     )
     return RunAmounts(
         *computed, ivs_ceiling=ivs, minimum_base=minimum, whole_euro=whole_euro
+    )
+
+
+def run_tfr_settlement(
+    ctx: RunContext, events: RunEvents, run: RunAmounts
+) -> RunEvents:
+    """Add the TFR settlements the engine computes to the events of the run.
+
+    A settlement without a caller payout needs the TFR the run accrues, so
+    it follows the amounts; it changes none of them (the TFR is taxed
+    apart from the ordinary IRPEF of the run).
+
+    Returns:
+        ``events`` with the items, entries, decisions and issues of the
+        computed settlements; their decisions trace ``termination_tfr``.
+    """
+    tfr = run.amounts.tfr
+    quota = _NO_QUOTA if tfr.to_pension_fund else tfr.amount
+    effect = settle_terminations(ctx, quota, run_to_pension_fund=tfr.to_pension_fund)
+    if not effect.decisions:
+        return events
+    totals = events.totals
+    return RunEvents(
+        replace(
+            totals,
+            decisions=totals.decisions + effect.decisions,
+            issues=totals.issues + effect.issues,
+        ),
+        events.items + effect.items,
+        events.entries + effect.entries,
     )
 
 

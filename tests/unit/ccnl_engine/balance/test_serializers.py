@@ -19,6 +19,7 @@ from ccnl_engine.balance.serializers import (
     migrate_state,
     period_state_from_json,
     period_state_to_json,
+    tfr_quotas_unknown,
 )
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.errors import InvalidInputError
@@ -107,6 +108,27 @@ def test_the_migrations_apply_in_order_up_to_the_target() -> None:
 
     assert migrate_state([1], 1, migrations=steps, target=3) == [1, 2, 3]
     assert migrate_state([3], 3, migrations=steps, target=3) == [3]
+
+
+def test_a_state_of_schema_14_without_runs_knows_every_tfr_quota() -> None:
+    """Schema 14 counted no TFR quota: unknown only for the years it closed."""
+    tree: dict[str, typing.Any] = {
+        "fields": {"accrual": {"fields": {"competence_runs": {"$tuple": []}}}}
+    }
+
+    migrated = tfr_quotas_unknown(tree)
+
+    assert migrated == {
+        "fields": {
+            "accrual": {
+                "fields": {
+                    "competence_runs": {"$tuple": []},
+                    "tfr_quotas_known_from": None,
+                }
+            }
+        }
+    }
+    assert "tfr_quotas_known_from" not in tree["fields"]["accrual"]["fields"]
 
 
 def test_a_missing_migration_is_a_defect_of_the_registry() -> None:

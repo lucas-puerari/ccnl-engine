@@ -100,6 +100,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "SurtaxObligation",
         "TaxSector",
         "TfrFundBalance",
+        "TfrQuotaYtd",
         "WeeklyHours",
         "WorkCalendar",
         "WorkPattern",

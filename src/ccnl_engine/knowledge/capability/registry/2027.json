@@ -142,13 +142,13 @@
     {
       "feature": "termination_tfr",
       "layer": "net",
-      "implementation": "caller_supplied",
+      "implementation": "native",
       "applies_when": "event",
       "handler": "event",
       "evidence": "derived",
       "variants": [],
       "required_facts": [],
-      "description": "Liquidazione TFR a tassazione separata (importo e aliquota dal chiamante)"
+      "description": "Liquidazione TFR a tassazione separata (artt. 17 e 19 TUIR): fondo, quote dell'anno e aliquota media calcolati, importo e aliquota del chiamante come override"
     },
     {
       "feature": "contract_renewal_arrears",

@@ -11,6 +11,7 @@ from ccnl_engine.balance.competence.models import EmploymentAccrualState
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.run.models import PayrollRunId, RunKind
+from ccnl_engine.severance.provision.models import TfrQuotaYtd
 from ccnl_engine.sickness.models import SicknessEpisode
 
 _FIELD = "EmploymentAccrualState.competence_runs"
@@ -171,6 +172,45 @@ class TestInpsBases:
 
         with pytest.raises(InvalidInputError, match="already closed as"):
             state.check_next_run(PayrollRunId.parse("2026-07-fourteenth"))
+
+
+class TestTfrQuotas:
+    """The TFR accrued with the employer, per competence year."""
+
+    def test_a_run_adds_its_quota_to_its_competence_year(self) -> None:
+        """December 2026 adds to 2026 even after January 2027."""
+        state = (
+            EmploymentAccrualState()
+            .after(PayrollRunId.parse("2027-01-regular"), tfr_quota=Decimal(10))
+            .after(PayrollRunId.parse("2026-12-regular"), tfr_quota=Decimal(20))
+            .after(PayrollRunId.parse("2026-12-thirteenth"), tfr_quota=Decimal(5))
+        )
+
+        assert state.tfr_quotas == (
+            TfrQuotaYtd(2026, Decimal(25)),
+            TfrQuotaYtd(2027, Decimal(10)),
+        )
+        assert state.tfr_quota(2025) == TfrQuotaYtd(2025)
+
+    def test_quotas_are_unknown_before_the_year_they_are_known_from(self) -> None:
+        """Balances imported in 2026 without quotas know those of 2027."""
+        state = (
+            EmploymentAccrualState(tfr_quotas_known_from=2027)
+            .after(PayrollRunId.parse("2026-12-regular"), tfr_quota=Decimal(10))
+            .after(PayrollRunId.parse("2027-01-regular"), tfr_quota=Decimal(20))
+        )
+
+        assert state.tfr_quota(2026) is None
+        assert state.tfr_quota(2027) == TfrQuotaYtd(2027, Decimal(20))
+
+    @pytest.mark.parametrize("years", [(2027, 2026), (2026, 2026)])
+    def test_rejects_quotas_out_of_year_order(self, years: tuple[int, int]) -> None:
+        """One quota per year, in year order."""
+        quotas = tuple(TfrQuotaYtd(y) for y in years)
+        with pytest.raises(InvalidInputError, match="one quota per year") as info:
+            EmploymentAccrualState(tfr_quotas=quotas)
+
+        assert info.value.field == "EmploymentAccrualState.tfr_quotas"
 
 
 class TestSicknessEpisodes:

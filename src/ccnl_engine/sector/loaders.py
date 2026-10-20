@@ -16,7 +16,10 @@ from ccnl_engine.sector.raw.loaders import (
     read_inps_rules_raw,
     read_tax_rules_raw,
 )
-from ccnl_engine.severance.loaders import load_tfr_revaluation_rules
+from ccnl_engine.severance.loaders import (
+    load_tfr_revaluation_rules,
+    load_tfr_settlement_rules,
+)
 from ccnl_engine.tax_credit.somma_esente.loaders import load_somma_esente_rules
 
 if TYPE_CHECKING:
@@ -114,6 +117,7 @@ def _load_year_rules_cached(
         domestic_contributions=rules.domestic_contributions,
         tfr=rules.tfr,
         tfr_revaluation=load_tfr_revaluation_rules(year),
+        tfr_settlement=load_tfr_settlement_rules(year),
         trattamento_integrativo=rules.trattamento_integrativo,
         ulteriore_detrazione=rules.ulteriore_detrazione,
         somma_esente=load_somma_esente_rules(year),

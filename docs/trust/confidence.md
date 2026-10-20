@@ -83,7 +83,7 @@ does not report its gap as well.
 
 A `derived` rule (taken from a cited document location, with no recorded
 human check) lowers the evidence axis but does not block on its own. Only
-<!-- trust:rules-verified -->2466<!-- /trust:rules-verified --> payable rules of
+<!-- trust:rules-verified -->2468<!-- /trust:rules-verified --> payable rules of
 the bundle are `verified`, so requiring `verified` would block almost every
 result; the evidence axis keeps the difference visible instead.
 
@@ -160,7 +160,9 @@ without a classification, or on a classification without its field:
     whose start is stated, the INPS base of other employments when the INPS
     rules carry a massimale or a 1% threshold, the TFR fund at 31 December
     of the year before on a December run, the Fondo Tesoreria destination
-    of the TFR, the first day of the imported sickness history and the
+    of the TFR, the revaluations and the advances of the TFR fund and the
+    TFR quotas of imported balances when the engine settles the TFR at the
+    termination, the first day of the imported sickness history and the
     exemption of a short absence when a CCNL counting several sickness
     episodes needs them, the income beyond the employment when a somma
     esente is due, the full time of an employment whose weekly hours are

@@ -159,9 +159,24 @@ def _advance(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
             outcome.period_inps_base,
             outcome.events.sickness_episodes,
             outcome.additional_ivs,
+            _held_tfr(outcome.entries),
         ),
         cash=_closing_cash(opening.cash, outcome, obligations),
         history_known=outcome.history_known,
+    )
+
+
+def _held_tfr(entries: tuple[LedgerEntry, ...]) -> Decimal:
+    """Return the TFR the run accrued with the employer.
+
+    Returns:
+        The quota posted to the company accrual and to the Fondo Tesoreria
+        INPS, the two parts of the fund
+        (:class:`~ccnl_engine.severance.provision.models.TfrFundBalance`);
+        the TFR paid to a pension fund is left out.
+    """
+    return _sum_ledger(entries, AccountKind.TFR_ACCRUAL) + _sum_ledger(
+        entries, AccountKind.TFR_TREASURY_FUND
     )
 
 

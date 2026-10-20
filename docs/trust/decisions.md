@@ -80,7 +80,7 @@ one, the comparable bundled value.
 | `AbsenceEvent` | `absence` | `caller_supplied_rate` | `hourly_rate` | `bundle_hourly_divisor` |
 | `SickLeaveEvent` | `sickness` | `caller_override` | `amount` | None |
 | `ArrearsEvent` | `contract_renewal_arrears` | `caller_supplied_rate` | `separate_tax_rate` | None |
-| `TerminationTFREvent` | `termination_tfr` | `caller_supplied_rate` | `separate_tax_rate` | None |
+| `TerminationTFREvent` | `termination_tfr` | `caller_override` | `amount` and `separate_tax_rate`, those given | None |
 | `BilateralFundEvent` | `bilateral_funds` | `caller_supplied_amount` | `employee_amount`, `employer_amount` | None |
 | `BonusEvent` | `bonus` | `caller_declared_amount` | `amount` | None |
 | `WelfareEvent` | `welfare` | `caller_declared_amount` | `amount` | None |
@@ -90,8 +90,9 @@ multiplier, so an overtime decision also records `caller_supplement`. A
 comparable value missing from the bundle reads `not_in_bundle`. A bonus or
 welfare amount is a declared fact, not a rule: its decision attributes the
 amount and is not reported as caller-supplied. A sick pay amount
-(`caller_override`) overrides the native `sickness` capability: it is
-reported as caller-supplied and the result is never payable. A fringe
+(`caller_override`) overrides the native `sickness` capability, and a TFR
+payout or rate the native `termination_tfr` one: each is reported as
+caller-supplied and the result is never payable. A fringe
 benefit keeps its own `fringe_benefit` decision.
 
 The amounts always follow the caller's values; the bundled value is shown

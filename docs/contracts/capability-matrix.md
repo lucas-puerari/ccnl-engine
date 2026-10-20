@@ -56,7 +56,7 @@ formulas or caller-declared amounts.
 | Scope | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
 | core | 21 | 0 | 0 | 0 |
-| scenario | 4 | 9 | 2 | 1 |
+| scenario | 5 | 8 | 2 | 1 |
 | outside_input | 0 | 0 | 0 | 14 |
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
@@ -72,7 +72,7 @@ formulas or caller-declared amounts.
 | `maternity_leave` | Indennità maternità INPS | outside_input | work_rules | unsupported | outside_input | — | `facts.events[maternity_leave]` | — | unavailable | none bundled |
 | `workplace_injury` | Indennità infortunio INAIL | outside_input | work_rules | unsupported | outside_input | — | `facts.events[workplace_injury]` | — | unavailable | none bundled |
 | `termination_residual_leave` | Monetizzazione ferie e permessi residui alla cessazione | scenario | gross | unsupported | termination_run | — | `facts.residual_leave_hours` | — | unavailable | none bundled |
-| `termination_tfr` | Liquidazione TFR a tassazione separata (importo e aliquota dal chiamante) | scenario | net | caller_supplied | event | event | — | — | caller-supplied | none bundled |
+| `termination_tfr` | Liquidazione TFR a tassazione separata (artt. 17 e 19 TUIR): fondo, quote dell'anno e aliquota media calcolati, importo e aliquota del chiamante come override | scenario | net | native | event | event | — | — | implemented | 2 / 1 / 0 / 0 |
 | `contract_renewal_arrears` | Arretrati rinnovo contratto: tassazione separata se di anni precedenti (aliquota dal chiamante), ordinaria se dell'anno | scenario | gross | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `una_tantum` | Una tantum contrattuale | outside_input | gross | unsupported | outside_input | — | `facts.events[una_tantum]` | — | unavailable | none bundled |
 | `personal_withholdings` | Trattenute personali (pignoramenti, cessioni del quinto, prestiti) | outside_input | net | unsupported | outside_input | — | `facts.personal_withholdings` | — | unavailable | none bundled |

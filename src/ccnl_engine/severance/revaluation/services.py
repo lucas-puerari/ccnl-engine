@@ -71,6 +71,7 @@ class TfrRevaluation:
         inputs: Normalized inputs of the decision.
         amount: Revaluation of the fund, ``None`` when not computed.
         missing_fund: The opening fund is not stated for the year.
+        substitute_tax: Substitute tax charged on :attr:`amount`.
     """
 
     moment: str
@@ -79,6 +80,12 @@ class TfrRevaluation:
     inputs: dict[str, Decimal | str]
     amount: Decimal | None = None
     missing_fund: bool = False
+    substitute_tax: Decimal = _ZERO
+
+    @property
+    def net(self) -> Decimal | None:
+        """Revaluation credited to the fund, net of its tax; ``None`` if unknown."""
+        return None if self.amount is None else self.amount - self.substitute_tax
 
 
 def _moment(ctx: RunContext) -> str | None:
@@ -154,7 +161,12 @@ def _revalue(
         "net_revaluation": amount - tax,
     }
     return TfrRevaluation(
-        moment, "revalued", CalculationStatus.FINAL, inputs, amount=amount
+        moment,
+        "revalued",
+        CalculationStatus.FINAL,
+        inputs,
+        amount=amount,
+        substitute_tax=tax,
     )
 
 

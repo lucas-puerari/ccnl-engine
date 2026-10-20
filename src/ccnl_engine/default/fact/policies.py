@@ -210,6 +210,31 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
     ),
     **{f"OpeningBalances.{name}": _ACCOUNT for name in _ACCOUNTS},
     **{f"OpeningBalances.{name}": _NOT_COMPUTED for name in _LAST_COMPUTED},
+    "OpeningBalances.tfr_quotas": requires_fact(
+        "termination_tfr",
+        "opening_balances.tfr_quotas",
+        _REPORTED,
+        "unknown TFR accrued by the imported runs: a termination whose TFR the "
+        "engine computes has a missing_fact tfr_quotas blocker",
+    ),
+    "TfrQuotaYtd.amount": absence_is_fact(
+        "no TFR accrued with the employer in the competence year"
+    ),
+    "TfrFundBalance.revaluations": requires_fact(
+        "termination_tfr",
+        "employment.tfr_fund.revaluations",
+        _REPORTED,
+        "unknown revaluations in the fund: the separate tax of a TFR the "
+        "engine computes (art. 19 c. 1 TUIR) has a missing_fact revaluations "
+        "blocker",
+    ),
+    "TfrFundBalance.advances": requires_fact(
+        "termination_tfr",
+        "employment.tfr_fund.advances",
+        _REPORTED,
+        "unknown advances paid out of the fund: the separate tax of a TFR the "
+        "engine computes has a missing_fact advances blocker",
+    ),
     "OpeningBalances.employment_spells": absence_is_fact(
         "the totals hold no earlier employment of the tax year: the next run "
         "adds the days of its own"

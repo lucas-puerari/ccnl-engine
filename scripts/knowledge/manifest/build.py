@@ -38,6 +38,7 @@ DATASETS: dict[str, tuple[str, bool]] = {
     "tax_credit/somma_esente": ("SommaEsenteRules", False),
     "variable_pay": ("VariablePayRules", False),
     "severance/revaluation": ("TfrRevaluationRules", False),
+    "severance/settlement": ("TfrSettlementRules", False),
     "surtax/regional": ("RegionalSurtaxTable", False),
     "surtax/municipal": ("MunicipalSurtaxTable", False),
     "capability/registry": ("CapabilityCatalog", False),
