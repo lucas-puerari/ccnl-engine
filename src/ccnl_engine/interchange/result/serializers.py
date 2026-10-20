@@ -3,7 +3,7 @@
 A :class:`~ccnl_engine.PeriodResult`, a
 :class:`~ccnl_engine.CompetenceYearResult` or a
 :class:`~ccnl_engine.TaxYearResult` is written as the tagged tree of
-:mod:`ccnl_engine.interchange.serializers`, for a payroll system or an
+:mod:`ccnl_engine.codec.serializers`, for a payroll system or an
 archive that does not run Python.  The JSON is output only: a result is
 recomputed from its request, never read back, so its types need no
 registry and every dataclass, Pydantic model and enum is tagged by its
@@ -20,7 +20,7 @@ import json
 from types import MappingProxyType
 from typing import TYPE_CHECKING
 
-from ccnl_engine.interchange.serializers import encode
+from ccnl_engine.codec.serializers import encode
 from ccnl_engine.period.results import PeriodResult
 from ccnl_engine.version import __version__ as engine_version
 from ccnl_engine.year.results import CompetenceYearResult, TaxYearResult

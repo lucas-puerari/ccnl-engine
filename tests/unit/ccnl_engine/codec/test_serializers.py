@@ -13,8 +13,9 @@ from typing import TYPE_CHECKING
 import pytest
 from pydantic import BaseModel
 
+from ccnl_engine.codec.serializers import encode, loads, reject
+from ccnl_engine.codec.tree.serializers import read_tree
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.interchange.serializers import encode, loads, read_tree, reject
 
 if TYPE_CHECKING:
     from collections.abc import Mapping

@@ -3,7 +3,7 @@
 A :class:`~ccnl_engine.PeriodInput`, a
 :class:`~ccnl_engine.CompetenceYearPlan` or a
 :class:`~ccnl_engine.TaxYearPlan` is written as the tagged tree of
-:mod:`ccnl_engine.interchange.serializers`, in an envelope that carries
+:mod:`ccnl_engine.codec.serializers`, in an envelope that carries
 its schema version, and read back through the constructors of
 :data:`REQUEST_TYPES`, so a request read from JSON is validated like one
 built in Python.
@@ -24,6 +24,8 @@ from ccnl_engine.agreement.types import TaxSector
 from ccnl_engine.balance.serializers import STATE_TYPES
 from ccnl_engine.calendar.inputs import CalendarOverride, CalendarOverrideReason
 from ccnl_engine.calendar.models import WorkCalendar
+from ccnl_engine.codec.serializers import encode, loads, reject
+from ccnl_engine.codec.tree.serializers import read_tree
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.contribution.zone.models import AgriculturalZone
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
@@ -33,6 +35,7 @@ from ccnl_engine.employment.fact.inputs import (
     EmploymentPeriod,
     PublicEndOfService,
     WeeklyHours,
+    WorkPattern,
 )
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm, NaspiExclusion
 from ccnl_engine.employment.inputs import Apprentice, Employment, Permanent
@@ -45,7 +48,6 @@ from ccnl_engine.family.inputs import (
     DependentRelationship,
     FamilyComposition,
 )
-from ccnl_engine.interchange.serializers import encode, loads, read_tree, reject
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.irpef.other_income.inputs import (
     CurrentYearTaxFacts,
@@ -174,6 +176,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             WelfareEvent,
             WorkCalendar,
             WorkerCategory,
+            WorkPattern,
         )
     },
 })
