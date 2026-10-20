@@ -166,6 +166,11 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "a horizontal part time or a full time: every month is worked and "
         "weekly_hours alone sets the part-time ratio"
     ),
+    "Employment.individual_elements": absence_is_fact("no element above the minimo"),
+    "IndividualElement.absorbable": absence_is_fact("not absorbed by increases"),
+    "IndividualElement.as_of": absence_is_fact("read only when absorbable"),
+    "IndividualElement.extra_months": absence_is_fact("paid on the extra months"),
+    "IndividualElement.tfr_relevant": absence_is_fact("in the TFR base"),
     "Employment.seniority": requires_fact(
         "seniority",
         "employment.seniority",

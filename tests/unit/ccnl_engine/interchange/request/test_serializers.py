@@ -16,6 +16,7 @@ from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.balance.serializers import STATE_TYPES
 from ccnl_engine.calendar.inputs import CalendarOverride, CalendarOverrideReason
 from ccnl_engine.calendar.models import WorkCalendar
+from ccnl_engine.compensation.individual.inputs import IndividualElement
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.contribution.zone.models import AgriculturalZone
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
@@ -163,6 +164,11 @@ def _employment(contract: Contract) -> Employment:
         pension_fund=PensionFundEnrolment("cometa", Decimal("0.012"), True),
         tfr_fund=TfrFundBalance(2025, Decimal("8000.00")),
         tfr_treasury_fund=True,
+        individual_elements=(
+            IndividualElement(
+                "superminimo", Decimal(200), absorbable=True, as_of=date(2026, 1, 1)
+            ),
+        ),
         erc_amount=Decimal(0),
         public_end_of_service=None,
     )

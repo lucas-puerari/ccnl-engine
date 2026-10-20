@@ -229,7 +229,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     IPO VARIES BY TRANCHE: the IPO of each position takes its own increments at every tranche (2025 renewal p. 48); the table reconciles with the increments for all 15 levels.
     
-    SENIORITY INCREMENTS abolished from 1 January 2010 (renewal 18/12/2009 p. 37); the amounts accrued by 31/12/2009 are a frozen, non-absorbable personal element, passed to compute() as ad_personam_monthly. maximum_count=0 and amount_by_level={}.
+    SENIORITY INCREMENTS abolished from 1 January 2010 (renewal 18/12/2009 p. 37); the amounts accrued by 31/12/2009 are a frozen, non-absorbable personal element, passed as Employment.individual_elements (IndividualElement with absorbable false). maximum_count=0 and amount_by_level={}.
     
     HOURLY DIVISOR: 175 (art. 20 punto 4). The 173 divisor applies only to Ceramica e Abrasivi.
     

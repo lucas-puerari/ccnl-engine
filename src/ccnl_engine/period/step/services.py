@@ -16,6 +16,7 @@ from ccnl_engine.compensation.hourly.services import (
     percentage_decisions,
     percentage_settlement,
 )
+from ccnl_engine.compensation.individual.rules import individual_element_decisions
 from ccnl_engine.compensation.raccordo.services import erc_settlement
 from ccnl_engine.compensation.renewal_minimum.services import (
     renewal_minimum,
@@ -284,6 +285,7 @@ def run_decisions(
         + tfr_revaluation_decisions(ctx)
         + (() if renewal is None else (renewal.decision,))
         + contractual_funds(ctx).decisions
+        + individual_element_decisions(ctx)
         + totals.decisions
         + amounts.decisions
         + caller_supplied_decisions(request.events, contract.ccnl, request.level_code)

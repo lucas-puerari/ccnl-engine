@@ -273,6 +273,7 @@ class PeriodInput:
             employment_period=employment.employment_period,
             seniority=employment.seniority,
             roles=employment.roles,
+            individual_elements=employment.individual_elements,
             category=employment.category,
             sector=employment.sector,
             pension_fund=employment.pension_fund,

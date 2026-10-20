@@ -64,7 +64,7 @@
       },
       {
         "kind": "info",
-        "text": "SENIORITY INCREMENTS abolished from 1 January 2010 (renewal 18/12/2009 p. 37); the amounts accrued by 31/12/2009 are a frozen, non-absorbable personal element, passed to compute() as ad_personam_monthly. maximum_count=0 and amount_by_level={}."
+        "text": "SENIORITY INCREMENTS abolished from 1 January 2010 (renewal 18/12/2009 p. 37); the amounts accrued by 31/12/2009 are a frozen, non-absorbable personal element, passed as Employment.individual_elements (IndividualElement with absorbable false). maximum_count=0 and amount_by_level={}."
       },
       {
         "kind": "info",
@@ -334,7 +334,7 @@
           "section": "Art. 17 - Scatti di anzianità",
           "quote": "A decorrere dal 1.1.2010, l'art.17 - Scatti di anzianità del CCNL 10 maggio 2006 è abrogato."
         },
-        "transformation": "No scatti from 1 January 2010 (maximum_count 0); the amounts accrued by 31 December 2009 are a frozen personal element, passed as ad_personam_monthly.",
+        "transformation": "No scatti from 1 January 2010 (maximum_count 0); the amounts accrued by 31 December 2009 are a frozen personal element, passed as Employment.individual_elements (not absorbable).",
         "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/091218_p37.txt.",
         "extraction": {
           "method": "ai",
@@ -4739,7 +4739,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "ca26c3fb2cbe3d6ad47739cd50853e7cf28622965912683b3083dac7db843472",
+    "source_hash": "c86c2c113d0287c26dbd51297a7ab95a6efea134776f3262a4b57f529a93a350",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

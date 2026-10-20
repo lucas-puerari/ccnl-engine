@@ -8,6 +8,10 @@ from decimal import Decimal
 from typing import Literal
 
 from ccnl_engine.collection.validators import frozenset_of
+from ccnl_engine.compensation.individual.inputs import (
+    IndividualElement,
+    check_individual_elements,
+)
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.employment.category.models import (
     WorkerCategory,
@@ -198,13 +202,18 @@ class Employment:
             the run accrues the TFR.  ``None`` means not known: a run on a
             CCNL of the public administrations has a ``missing_fact``
             blocker.
+        individual_elements: Pay elements agreed with the worker above the
+            CCNL minimum (superminimo, assegno ad personam), each a
+            :class:`~ccnl_engine.compensation.individual.inputs.IndividualElement`
+            with its own code; a list is accepted and stored as a tuple.
+            Empty when the worker has none.
 
     Raises:
         InvalidInputError: When a field is not of its type, a role is not a
             non-blank string, ``weekly_hours`` exceeds
             ``full_time_weekly_hours`` or differs from the weekday hours of
-            ``work_pattern``, or ``category`` or ``sector`` names
-            no known value.
+            ``work_pattern``, ``category`` or ``sector`` names
+            no known value, or two individual elements share a code.
     """
 
     ccnl_id: str
@@ -224,6 +233,7 @@ class Employment:
     tfr_treasury_fund: bool | None = None
     erc_amount: Decimal | None = None
     public_end_of_service: PublicEndOfService | None = None
+    individual_elements: tuple[IndividualElement, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
         if not isinstance(self.ccnl_id, str) or not _CCNL_ID.fullmatch(self.ccnl_id):
@@ -257,6 +267,10 @@ class Employment:
             object.__setattr__(self, "public_end_of_service", regime)
         check_within_full_time(self.weekly_hours, self.full_time_weekly_hours)
         check_pattern_hours(self.weekly_hours, self.work_pattern)
+        elements = check_individual_elements(
+            self.individual_elements, "Employment.individual_elements"
+        )
+        object.__setattr__(self, "individual_elements", elements)
         require_decimal(
             self.erc_amount,
             "Employment.erc_amount",
