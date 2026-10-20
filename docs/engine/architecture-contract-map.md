@@ -285,6 +285,13 @@ inventory.
 | `tax/annual/models.py` | `sector/models.py` |
 | `bundle/validators.py` | `bundle/validators.py` |
 
+## leave
+
+| Today | Target |
+|---|---|
+| `working_time/models.py` (`LeaveRules`, `LeaveEntitlementTier`) | `leave/models.py` |
+| new | `leave/types.py` + `leave/inputs.py` + `leave/handlers.py` + `leave/services.py` + `leave/accrual/rules.py` + `leave/balance/models.py` + `leave/settlement/services.py` |
+
 ## ledger
 
 | Today | Target |

@@ -3378,6 +3378,32 @@
       {
         "kind": "info",
         "text": "HOURLY RATE AND SUPPLEMENTS (Testo Unico 12 December 2019, unchanged by the 2024 renewal, artt. 149-157, 206-211): without a caller value the engine derives the hourly base (the normale retribuzione of art. 206 over 168), the 15% on ordinary night hours from 22 to 6 (art. 151), the 30% on festività hours paid as straordinario festivo (art. 155 with art. 149), the 30% on ordinary Sunday hours (art. 153; 10% at the motorway fuel stations of art. 157, role impianto_carburante_autostradale: Employment.roles must be stated) and the 30% on the hours of the weekly rest day (art. 156). Art. 155 also pays the festività hours themselves: the engine posts the 30% only and the run is provisional. Second-level agreements may replace the Sunday and night rules (art. 153). Not derived: the divisors 182 and 195 of the 42- and 45-hour weeks; shift work, left to second-level bargaining."
+      },
+      {
+        "kind": "simplification",
+        "text": "LEAVE, WEEKLY SCHEDULE (Artt. 133-134): an employer on a 39-hour week absorbs 36 hours of ROL, on a 38-hour week 72 hours (16 of ex festività and 56 of ROL), and the grandi magazzini, supermercati, cash&carry and ipermercati on a 38-hour average absorb 72 hours of ROL. The engine accrues the hours of a 40-hour week (Art. 133 a).",
+        "capability": "leave",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "rol_schedule_absorption",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add an employer fact for the weekly schedule of Artt. 133-134 and absorb the hours it uses."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "LEAVE, DEADLINE (Art. 158): the permits not taken within the year of accrual lapse and are paid with the retribuzione di fatto, or are carried and taken by 30 June of the following year; the text leaves the choice open. The engine carries the balances and pays the residual only at the end of the employment.",
+        "capability": "leave",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "permit_deadline_payout",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add an employer fact for the alternative of Art. 158 and pay the residual permits at its deadline."
+        }
       }
     ]
   },
@@ -3886,6 +3912,180 @@
           "verification_status": "verified",
           "review_id": "2026-10-13-ai-production"
         }
+      },
+      "ferie_accrual": {
+        "month_credit": null,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "confesercenti-tu2019",
+              "title": "CCNL Terziario, Distribuzione e Servizi Confesercenti, Testo Unico 12 dicembre 2019",
+              "kind": "associazione",
+              "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+              "published_on": "2019-12-12",
+              "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+            },
+            "page": "128",
+            "section": "Art. 162 - Normativa per cessazione rapporto",
+            "quote": "In caso di licenziamento o di dimissioni, spetteranno al lavoratore tanti dodicesimi del periodo di ferie al quale ha diritto, quanti sono i mesi di effettivo servizio prestato per l’anno di competenza."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-19T08:50:55Z",
+            "effective_from": "2020-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-19T08:50:55Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-19-ai-leave"
+          },
+          "note": "Twelfths per month of effective service. The text does not say how a month served in part counts for the ferie (the 15-day rule of the file's accrual_rule comes from the tredicesima, Art. 204): month_credit is left open, so a partial month accrues nothing and the balance is marked inexact."
+        }
+      },
+      "permits": [
+        {
+          "bucket": "ex_festivita",
+          "annual_hours": [
+            {
+              "hours": "32"
+            }
+          ],
+          "month_credit": "whole_month",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "confesercenti-tu2019",
+                "title": "CCNL Terziario, Distribuzione e Servizi Confesercenti, Testo Unico 12 dicembre 2019",
+                "kind": "associazione",
+                "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+                "published_on": "2019-12-12",
+                "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+              },
+              "page": "125",
+              "section": "Art. 158 - Permessi retribuiti, comma 1",
+              "quote": "Gruppi di 4 o di 8 ore di permesso individuale retribuito, in sostituzione delle 4 festività abolite dal combinato disposto della legge 5 marzo 1977, n. 54 e del D.P.R. 28 dicembre 1985, n. 792, verranno fruiti dai lavoratori, a partire dal 1° gennaio 1980."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T08:50:55Z",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            },
+            "transformation": "32 hours = the 4 abolished festivities of comma 1 times a working day of 8 hours: the clause grants the hours in groups of 4 or 8 in place of the 4 festivities and states no total. Whole months only, Art. 158 (p. 126): 'un dodicesimo dei permessi di cui al presente articolo per ogni mese intero di servizio prestato'. Accrued in full by every worker, the hires after 1 March 2011 included."
+          }
+        },
+        {
+          "bucket": "rol",
+          "annual_hours": [
+            {
+              "hours": "56"
+            },
+            {
+              "hours": "72",
+              "headcount_above": 15
+            }
+          ],
+          "month_credit": "whole_month",
+          "ramp": {
+            "hired_after": "2011-03-01",
+            "steps": [
+              {
+                "service_months_min": 0,
+                "share": "0"
+              },
+              {
+                "service_months_min": 24,
+                "share": "0.5"
+              },
+              {
+                "service_months_min": 48,
+                "share": "1"
+              }
+            ],
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confesercenti-tu2019",
+                  "title": "CCNL Terziario, Distribuzione e Servizi Confesercenti, Testo Unico 12 dicembre 2019",
+                  "kind": "associazione",
+                  "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+                  "published_on": "2019-12-12",
+                  "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+                },
+                "page": "126",
+                "section": "Art. 158 - Permessi retribuiti, assunti dopo 1/3/2011",
+                "quote": "per tutti i lavoratori assunti successivamente alla data del 1° marzo 2011, fermo restando il godimento delle ore di permesso di cui al primo comma, le ulteriori ore di permesso di cui ai commi terzo e quarto, verranno riconosciute in misura pari al 50%, decorsi due anni dall’assunzione e in misura pari al 100% decorsi quattro anni dall’assunzione."
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-19T08:50:55Z",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              },
+              "transformation": "Share 0 for the first 24 months, 0.5 from 24 months, 1 from 48 months: the clause grants 50% after two years and 100% after four and nothing before two years. A month accrues at the share in force on its last day. The count from the first hire of an apprenticeship or a fixed term converted to open-ended is not modelled: the employment start is the hire."
+            }
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "confesercenti-tu2019",
+                "title": "CCNL Terziario, Distribuzione e Servizi Confesercenti, Testo Unico 12 dicembre 2019",
+                "kind": "associazione",
+                "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+                "published_on": "2019-12-12",
+                "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+              },
+              "page": "125",
+              "section": "Art. 158 - Permessi retribuiti, commi 3-4",
+              "quote": "per complessive 56 ore annuali [...] per le aziende fino a 15 dipendenti. Per le aziende con più di 15 dipendenti i permessi individuali retribuiti sono incrementati di 16 ore"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T08:50:55Z",
+              "effective_from": "2020-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T08:50:55Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-19-ai-leave"
+            },
+            "note": "56 hours a year up to 15 employees, 72 above (EmployerProfile.headcount). Whole months only (Art. 158, 'per ogni mese intero di servizio prestato'). Part time: the hours in proportion to the weekly hours (Art. 91 via Art. 86)."
+          }
+        }
+      ],
+      "termination": {
+        "ferie_divisor": "26",
+        "permits_hourly": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "confesercenti-tu2019",
+              "title": "CCNL Terziario, Distribuzione e Servizi Confesercenti, Testo Unico 12 dicembre 2019",
+              "kind": "associazione",
+              "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+              "published_on": "2019-12-12",
+              "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+            },
+            "page": "127",
+            "section": "Art. 159 - Chiarimento a verbale",
+            "quote": "Nella ipotesi di risoluzione del rapporto di lavoro, l’indennità sostitutiva delle ferie si calcola dividendo per ventisei la retribuzione mensile di fatto di cui all’art. 208."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-19T08:50:55Z",
+            "verification_status": "unverified",
+            "effective_from": "2020-01-01"
+          },
+          "transformation": "Ferie: residual days x monthly pay / 26, as quoted. Permits: residual hours x monthly pay / the hourly divisor of the file (168, Art. 211 quota oraria). The text pays the permits not taken at the deadline with the retribuzione di fatto of Art. 208 (Art. 158: 'I permessi non fruiti entro l’anno di maturazione decadranno e saranno pagati con la retribuzione di fatto di cui all’art. 208'); paying the residual hours at the end of the employment at the same hourly quota is the reading adopted, not a clause on termination. The monthly pay is the CCNL pay chain of the level (paga base, contingenza, scatti, CCNL allowances): an individual superminimo of the retribuzione di fatto is not an input."
+        }
       }
     },
     "sickness_rules": {
@@ -4013,6 +4213,23 @@
           "hourly_base_method gross_incl_allowances (was gross_incl_allowances), now verified: the engine reads it to derive the hourly rate of an event without one.",
           "Supplement bands added: CONF_NOTTURNO, CONF_FESTIVO, CONF_DOMENICA, CONF_DOMENICA_AUTOSTRADE, CONF_RIPOSO.",
           "Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS."
+        ]
+      },
+      {
+        "id": "2026-10-19-ai-leave",
+        "date": "2026-10-19",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Leave accrual: the ferie twelfths and month rule, the hours of each permit bucket (ROL, ex festività or the pooled PAR), the new-hire ramps and the basis of the indemnity for the residual leave at termination, read on the text cited by each rule. An AI review: the extractor is also the verifier.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+            "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+          }
+        ],
+        "findings": [
+          "The values stated are those of the quoted clauses; what the texts leave open (month fractions, termination divisors, schedules and shift patterns) is not modelled and is recorded in the coverage notes."
         ]
       }
     ],

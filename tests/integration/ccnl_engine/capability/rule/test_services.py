@@ -197,3 +197,36 @@ def test_no_regime_reads_no_supplement() -> None:
     """A CCNL that names no regime adds nothing to the employer rules."""
     names = _names(contract_rules(_ctx())["inps_employer"])
     assert not any("sick_pay_supplements" in name for name in names)
+
+
+def _leave_ctx(*, without_leave: bool = False) -> RunContext:
+    ccnl = load_ccnl("commercio-confcommercio")
+    if without_leave:
+        work = ccnl.work_rules.model_copy(update={"leave_rules": None})  # type: ignore[union-attr]
+        ccnl = ccnl.model_copy(update={"work_rules": work})
+    return cast("RunContext", SimpleNamespace(contract=SimpleNamespace(ccnl=ccnl)))
+
+
+def test_leave_rules_name_each_bucket_and_ramp() -> None:
+    """Commercio: the ferie accrual, the ex festività, the ROL and its ramp."""
+    rules = LOADED["termination_residual_leave"](_leave_ctx())
+    statuses = {
+        record.status for _, record in rules if isinstance(record, RuleProvenance)
+    }
+
+    assert _names(rules) == [
+        "work_rules.leave_rules",
+        "work_rules.leave_rules.ferie_accrual",
+        "work_rules.leave_rules.permits[ex_festivita]",
+        "work_rules.leave_rules.permits[rol]",
+        "work_rules.leave_rules.permits[rol].ramp",
+        "work_rules.leave_rules.termination",
+    ]
+    assert statuses == {ProvenanceStatus.VERIFIED, ProvenanceStatus.DERIVED}
+
+
+def test_leave_rules_without_rules_have_no_record() -> None:
+    """A CCNL without leave rules names the block with no record."""
+    rules = LOADED["termination_residual_leave"](_leave_ctx(without_leave=True))
+
+    assert [record for _, record in rules] == [None, None]

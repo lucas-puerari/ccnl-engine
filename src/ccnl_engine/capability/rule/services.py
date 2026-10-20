@@ -5,6 +5,10 @@ from __future__ import annotations
 from functools import partial
 from typing import TYPE_CHECKING
 
+from ccnl_engine.capability.rule.leave.services import (
+    _leave_rules,
+    _termination_leave_rules,
+)
 from ccnl_engine.capability.rule.time.services import (
     _absence_rules,
     _overtime_rules,
@@ -344,4 +348,6 @@ LOADED: dict[str, Callable[[RunContext], tuple[Rule, ...]]] = {
     "family_deductions": _family_rules,
     "pension_fund_contribution": _pension_rules,
     "sickness": sickness_rules,
+    "leave": _leave_rules,
+    "termination_residual_leave": _termination_leave_rules,
 }

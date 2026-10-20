@@ -13,10 +13,12 @@ from ccnl_engine.balance.competence.models import EmploymentAccrualState
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.balance.serializers import (
     FIRST_SCHEMA_VERSION,
+    STATE_MIGRATIONS,
     period_state_from_json,
 )
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.leave.balance.models import LeaveAccount
 from ccnl_engine.run.models import PayrollRunId, RunKind
 from ccnl_engine.sickness.models import SicknessEpisode
 
@@ -34,6 +36,7 @@ def _expected() -> PeriodState:
         sickness_episodes=(SicknessEpisode("A", date(2026, 1, 5), date(2026, 1, 9)),),
         sickness_known_from=date(2026, 1, 1),
         tfr_quotas_known_from=2027,
+        leave=LeaveAccount(known=False),
     )
     return PeriodState(
         accrual=accrual, cash=PeriodState.zero().cash, history_known=False
@@ -59,6 +62,20 @@ def test_a_state_of_an_earlier_release_reads_under_this_one(schema: int) -> None
         "2025.1",
     )
     assert period_state_from_json(_stored(schema)) == _expected()
+
+
+@pytest.mark.parametrize("schema", [14, 15])
+def test_a_state_before_schema_16_has_its_leave_unknown(schema: int) -> None:
+    """Written before the leave accrued, a state carries no known leave."""
+    state = period_state_from_json(_stored(schema))
+
+    assert state.accrual.leave == LeaveAccount(known=False)
+
+
+def test_a_migration_rejects_a_tree_that_is_not_a_state() -> None:
+    """A step reads only a tagged state tree."""
+    with pytest.raises(TypeError, match="tagged PeriodState"):
+        STATE_MIGRATIONS[15]([])
 
 
 def test_a_state_of_a_later_schema_is_rejected() -> None:

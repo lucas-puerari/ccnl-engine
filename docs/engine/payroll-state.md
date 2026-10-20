@@ -122,6 +122,22 @@ month), in payment-date order, with a `conguaglio` that is the last
 slot-consuming payment; a `PeriodState` rejects a payment whose
 run the accrual state has not closed.
 
+## Leave balances
+
+The competence state carries the leave of the employment
+(`EmploymentAccrualState.leave`, a `LeaveAccount`): one `LeaveBalance` per
+bucket (`ferie`, `rol`, `ex_festivita`) and year of accrual, with the days
+or hours accrued, taken and paid and the residual. The accrual and the
+leave taken are kept in twelfths (`accrued_twelfths`, `taken_twelfths`), so
+ten months of 26 days are exactly 260 twelfths: the residual is divided and
+rounded only when paid. The account is carried across tax years by
+`close_tax_year`; the leave of a year is taken before that of the next. The
+run that closes the employment settles every balance, so no residual is
+paid twice. Balances imported with `OpeningBalances.leave_balances` continue
+the chain; leaving it `None` marks the account unknown and the closing run
+pays no residual (`missing_fact leave_balances`). A state of schema 14,
+written before the leave accrued, reads with the leave unknown.
+
 ## Withholding schedule of the tax year
 
 The IRPEF projection and the conguaglio run on a `WithholdingSchedule`: one

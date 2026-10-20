@@ -22,6 +22,7 @@ if TYPE_CHECKING:
         CalculationDecision,
         CalculationIssue,
     )
+    from ccnl_engine.leave.handlers import LeaveTerms
     from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
     from ccnl_engine.pay_item.treatment.models import EventTreatment
     from ccnl_engine.provenance.source.models import SourceLocation
@@ -80,7 +81,8 @@ class _EventHandlerCtx:
     without the caller's value are derived from; ``sickness`` the rules
     and the episodes a sickness episode is paid with, updated after each;
     ``travel_allowance`` the exempt caps a travel allowance is assessed with;
-    ``standby`` the CCNL standby rates and the worker's level.
+    ``standby`` the CCNL standby rates and the worker's level; ``leave``
+    the CCNL leave rules a leave taken is decided with.
     """
 
     evt_id: str
@@ -102,6 +104,7 @@ class _EventHandlerCtx:
     travel_allowance: TravelAllowanceRules | None = None
     standby: StandbyTerms | None = None
     ccnl_travel: TravelTerms | None = None
+    leave: LeaveTerms | None = None
 
     @property
     def tax_year(self) -> int:

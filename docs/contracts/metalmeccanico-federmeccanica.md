@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, overtime, seniority |
+| **Limits of this contract** | base_salary, bilateral_funds, leave, overtime, seniority, welfare |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 88 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 88 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -69,7 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'confrontare lordo, netto e costo azienda con esempi indipendenti': a run of the engine against the cost table of the Ministry of Labour for the CCNL (D.Lgs. 36/2023 art. 41 c. 13). | corrected | Impiegato C3 with 3 scatti, June 2026, 51 employees: tabellare 2211.43 and scatti 88.92 a month equal the table (26.537,16 and 1.067,04 a year over 12); the employer INPS rate 29.36% and the tredicesima on tabellare and scatti match; the TFR of the month 158.90 is the table's (tabellare + scatti) / 13.5 less the 0.5% IVS contribution the employer offsets (art. 3 L. 297/1982), which the table does not deduct. Match.<br>Deviations, with cause and decision: INAIL 4.417% and the health fund (171,60 a year) are capabilities the engine does not compute (documented); Cometa at a 40% enrolment is the table's average, the engine pays it on enrolment; the elemento perequativo (485 euro) and the flexible benefits (250 euro) were neither modelled nor declared: declared. The stale INPS note (30.13/30.20/30.50%) is corrected. No independent net pay example: not compared. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova', re-read on the full text published by a party. | confirmed | Apprenticeship tracks 36, 30 and 24 months at 85/90/95% (p. 271) and their durations (pp. 267-268) match the three tracks of the file. |
 | 2026-10-17 | claude-opus-5-5 (ai) | The rate of the supplementary hours of the part-time workers. | corrected | Lavoro supplementare (Sez. Quarta, Titolo I, PDF p. 58): 10% onnicomprensiva up to 40 weekly hours and 50% of the yearly part-time hours, 20% beyond that yearly limit. The 10% band is added for OvertimeKind.SUPPLEMENTARY; the 20% past the yearly limit needs the yearly count of supplementary hours and is not modelled. |
-| 2026-10-19 | claude-opus-5-5 (ai) | Hourly base of the time supplements and the supplements of ordinary night, holiday, Sunday, rest-day and shift work, read in the cited articles of the national text (text layer, or OCR of the scanned pages). AI review only: the same model extracted and checked the values. | corrected | hourly_base_method gross_incl_allowances (was minimo_tabellare), now verified: the engine reads it to derive the hourly rate of an event without one.<br>Supplement bands added: FED_FESTIVO, FED_FESTIVO_RIPOSO.<br>Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS.<br>work_rules.absence_rules was verified on the 1/26 of art. 9, which pays a festività falling on a Sunday and sets no absence divisor: now derived, with the reading stated. |
+| 2026-10-19 | claude-opus-5-5 (ai) | Leave accrual: the ferie twelfths and month rule, the hours of each permit bucket (ROL, ex festività or the pooled PAR), the new-hire ramps and the basis of the indemnity for the residual leave at termination, read on the text cited by each rule. An AI review: the extractor is also the verifier. | confirmed | The values stated are those of the quoted clauses; what the texts leave open (month fractions, termination divisors, schedules and shift patterns) is not modelled and is recorded in the coverage notes. |
 
 ## Salary table
 
@@ -150,12 +150,40 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: OvertimeKind.SUPPLEMENTARY selects the OT_SUPPLEMENTARE band of the CCNL rate (tests/integration/ccnl_engine/working_time/overtime/test_supplementary.py); the higher rate past the yearly limit is not modelled.
 
+!!! warning "metalmeccanico-federmeccanica/health_and_bilateral_funds · bilateral_funds · impact yes · open"
+    HEALTH FUND: mètaSalute, the health fund of the CCNL, is paid by the employer for every worker: 171,60 euro a year with the 10% INPS solidarity contribution, so 156 euro to the fund, in the cost table of the Ministry of Labour of June 2026 (DD 82 of 5 October 2026). Not modelled.
+
+    **Applies when:** `bilateral_funds` applies.
+
+    **Remediation:** Pass the contributions as bilateral fund events, or model them per worker.
+
 !!! warning "metalmeccanico-federmeccanica/elemento_perequativo · base_salary · impact yes · open"
     ELEMENTO PEREQUATIVO: the worker of a company without second-level bargaining is owed the elemento perequativo of 485 euro a year, paid with the June pay (Ministry of Labour cost table of June 2026, DD 82/2026, row A). The engine does not pay it: whether the company has second-level bargaining is not in the request.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Pass the elemento perequativo as a variable pay item, or add a fact for the second-level bargaining.
+
+!!! warning "metalmeccanico-federmeccanica/flexible_benefits · welfare · impact yes · open"
+    FLEXIBLE BENEFITS: every worker is owed flexible benefits of 250 euro a year (Ministry of Labour cost table of June 2026, DD 82/2026, row D), paid by the employer outside the net pay. Not modelled: the employer cost is short of them.
+
+    **Applies when:** `welfare` applies.
+
+    **Remediation:** Model the yearly flexible benefits per worker, then remove this note.
+
+!!! warning "metalmeccanico-federmeccanica/par_sector_and_shift_hours · leave · impact yes · open"
+    LEAVE, PAR (Sez. Quarta, Titolo III, Art. 5): 124 hours in the settore siderurgico, 8 more hours for the turnisti on 15 or more shifts a week with night or weekend work and for the workers of the sottosettori of the accordo 1 September 1983 in force at 31 December 2012. The engine accrues the 104 hours of the generalità.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add employment facts for the settore siderurgico, the shift pattern and the sottosettori.
+
+!!! warning "metalmeccanico-federmeccanica/par_conto_ore_payout · leave · impact yes · open"
+    LEAVE, CONTO ORE (Art. 5): the PAR not taken in the year go to an individual conto ore for 24 more months and are then paid with the retribuzione in atto. The engine carries the balances and does not pay them at the end of the window.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pay the residual PAR of a year at the end of its 24-month conto ore window.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -227,7 +255,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     APPRENTICESHIP TRACKS (CCNL 5 February 2021, accordo sull'apprendistato, pp. 267-271): 36 months, reduced by 6 months for a diploma of level 4 QEQ or above (30), 24 for the D2 figures on assembly lines; each third at 85, 90 and 95% of the destination level.
     
-    HOURLY RATE AND SUPPLEMENTS (Art. 7 Sez. Quarta Tit. III of the CCNL of 5 February 2021, rates untouched by the renewal of 22 November 2025): without a caller value the engine derives the hourly base (minimi, scatti and fixed allowances over 173) and the supplements on holiday hours (50%) and on holiday hours with a compensatory rest (10%), equal in both columns. Whether those hours are also paid on top of the monthly pay is not settled: a derived holiday supplement is provisional. Not derived, the caller states the amount: ordinary night work (20% until 22 and 30% after; shift workers 15%, 20% from June 2013, 25% from 22 to 6 in the impiantistica), because its window starts 12 hours after the morning shift of each work group and its rate depends on the hour and on the shift column, facts the request does not carry; night holiday work and Sunday work. Individual elements (merito, superminimi, cottimi) are not in the hourly base. Absences: no clause sets the divisor of an absence deduction; the 1/26 of art. 9 (festività on a Sunday) is taken by analogy (work_rules.absence_rules derived, was verified on the wrong clause): the caller states AbsenceEvent.hourly_rate.
+    LEAVE AT TERMINATION (Art. 10): the indemnity of a day of ferie is the 'retribuzione giornaliera globale di fatto'; the texts read do not state its divisor of the monthly pay, so the engine pays no residual (termination_residual_leave incomplete, termination_basis_not_sourced).
     
 
 ## Raw data

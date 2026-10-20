@@ -41,6 +41,7 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.event.handlers import FringeThreshold
+    from ccnl_engine.leave.handlers import LeaveTerms
     from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
     from ccnl_engine.period.requests import PeriodCalculationRequest
     from ccnl_engine.regime.models import (
@@ -208,6 +209,7 @@ def _process_events(
     travel_allowance: TravelAllowanceRules | None = None,
     standby: StandbyTerms | None = None,
     ccnl_travel: TravelTerms | None = None,
+    leave: LeaveTerms | None = None,
 ) -> tuple[_EventTotals, tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
     """Translate variable work events into accounting entries and aggregated totals.
 
@@ -219,7 +221,8 @@ def _process_events(
     work-time event without the caller's rate or amount is derived from;
     without it such an event is rejected.  ``sickness`` holds the rules
     and recorded episodes a sickness episode is paid with; each episode and
-    its deducted units are recorded before the next event.
+    its deducted units are recorded before the next event.  ``leave`` holds
+    the leave rules a leave taken is decided with.
 
     Returns:
         Tuple of ``(_EventTotals, pay_items, ledger_entries)``.
@@ -250,6 +253,7 @@ def _process_events(
         travel_allowance=travel_allowance,
         standby=standby,
         ccnl_travel=ccnl_travel,
+        leave=leave,
     )
     _run_handlers(events, base_ctx, (tag, date_ctx), acc)
     return (

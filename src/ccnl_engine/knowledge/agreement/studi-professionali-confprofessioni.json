@@ -227,6 +227,23 @@
       {
         "kind": "info",
         "text": "HOURLY RATE AND SUPPLEMENTS (artt. 93-97, 135, 137 of the CCNL of 16 February 2024): without a caller value the engine derives the hourly base (the art. 135 normale retribuzione over 170) and the 30% on festività hours paid as straordinario festivo (art. 97 lett. E with art. 95); art. 97 also pays the hours themselves, which the engine does not post: the run is provisional. Not derived, the caller states the amount: ordinary night work, which art. 93 leaves to the Area Professionale or second-level bargaining (the 30% of art. 95 is a night overtime rate); work on the weekly rest day ('la relativa sola maggiorazione', art. 97 lett. F, names no percentage)."
+      },
+      {
+        "kind": "simplification",
+        "text": "LEAVE, ROL (Art. 91 cc.2-3): 40 hours a year on a five-day week, 66 on a six-day week, and for the hires under the 2024 CCNL 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the text is silent on the first twelve months. The weekly schedule is not an input and the first year is not sourced: the ROL is not accrued, and a leave taken from it is not decided.",
+        "capability": "leave",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "rol_not_accrued",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the weekly schedule as an employment fact and source the first twelve months of the new-hire ramp."
+        }
+      },
+      {
+        "kind": "info",
+        "text": "LEAVE AT TERMINATION (Art. 101): the ferie are paid at the 'normale retribuzione di fatto' during the leave; no clause states the basis of the indemnity at the end of the employment, so the engine pays no residual (termination_residual_leave incomplete)."
       }
     ]
   },
@@ -2687,7 +2704,76 @@
           "verification_status": "verified",
           "review_id": "2026-10-13-ai-production"
         }
-      }
+      },
+      "ferie_accrual": {
+        "month_credit": null,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-studi-professionali-2024-02-16",
+              "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+              "kind": "associazione",
+              "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+              "published_on": "2024-02-16",
+              "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+            },
+            "page": "51",
+            "section": "Art. 101 c.2",
+            "quote": "In caso di licenziamento o di dimissioni, spetteranno al lavoratore tanti dodicesimi del periodo di ferie al quale ha diritto quanti sono i mesi di effettivo servizio prestato per l’anno di competenza, così come previsto dall’articolo 120."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-19T08:50:55Z",
+            "effective_from": "2024-02-16",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-19T08:50:55Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-19-ai-leave"
+          },
+          "note": "Twelfths per month of effective service. The cross-reference to article 120 points to the comporto article and the month-fraction rule of the ferie is not stated: a partial month accrues nothing and the balance is marked inexact."
+        }
+      },
+      "permits": [
+        {
+          "bucket": "ex_festivita",
+          "annual_hours": [
+            {
+              "hours": "32"
+            }
+          ],
+          "month_credit": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-studi-professionali-2024-02-16",
+                "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+                "kind": "associazione",
+                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                "published_on": "2024-02-16",
+                "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+              },
+              "page": "51",
+              "section": "Art. 98 - Festività abolite",
+              "quote": "In sostituzione delle quattro festività abolite i lavoratori matureranno 32 ore di permessi retribuiti ogni anno da fruire in periodi da concordare con il datore di lavoro."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T08:50:55Z",
+              "effective_from": "2024-02-16",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T08:50:55Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-19-ai-leave"
+            },
+            "note": "32 hours a year, apart from the ROL. The month rule of Art. 91 (whole months) is stated for the ROL, not for these hours: a partial month accrues nothing and the balance is marked inexact."
+          }
+        }
+      ],
+      "termination": null
     },
     "sickness_rules": {
       "carenza_integration_rate": "1",
@@ -2838,6 +2924,23 @@
           "hourly_base_method gross_incl_allowances (was gross_incl_allowances), now verified: the engine reads it to derive the hourly rate of an event without one.",
           "Supplement bands added: STUDI_FESTIVO.",
           "Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS."
+        ]
+      },
+      {
+        "id": "2026-10-19-ai-leave",
+        "date": "2026-10-19",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Leave accrual: the ferie twelfths and month rule, the hours of each permit bucket (ROL, ex festività or the pooled PAR), the new-hire ramps and the basis of the indemnity for the residual leave at termination, read on the text cited by each rule. An AI review: the extractor is also the verifier.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "The values stated are those of the quoted clauses; what the texts leave open (month fractions, termination divisors, schedules and shift patterns) is not modelled and is recorded in the coverage notes."
         ]
       },
       {

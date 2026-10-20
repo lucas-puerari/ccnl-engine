@@ -16,6 +16,7 @@ from ccnl_engine.event.facade import (
     BonusEvent,
     FringeEvent,
     HolidayWorkEvent,
+    LeaveTakenEvent,
     NightShiftEvent,
     OvertimeEvent,
     ShiftWorkEvent,
@@ -30,6 +31,7 @@ from ccnl_engine.event.handlers import (
     EventEffect,
     _EventHandlerCtx,
 )
+from ccnl_engine.leave.handlers import _handle_leave_taken
 from ccnl_engine.sickness.handlers import (
     _handle_sickness_episode,
 )
@@ -66,4 +68,5 @@ _HANDLER_REGISTRY: dict[type, _EventHandlerFn] = {
     BilateralFundEvent: _handle_bilateral_fund,
     TerminationTFREvent: _handle_termination_tfr,
     SicknessEpisode: _handle_sickness_episode,
+    LeaveTakenEvent: _handle_leave_taken,
 }

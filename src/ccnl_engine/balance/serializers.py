@@ -40,6 +40,8 @@ from ccnl_engine.codec.serializers import encode, loads, reject
 from ccnl_engine.codec.tree.serializers import read_tree
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.employment.spell.models import EmploymentSpell
+from ccnl_engine.leave.balance.models import LeaveAccount, LeaveBalance
+from ccnl_engine.leave.types import LeaveBucket
 from ccnl_engine.run.models import PayrollRunId
 from ccnl_engine.run.types import RunKind
 from ccnl_engine.severance.provision.models import TfrQuotaYtd
@@ -83,6 +85,9 @@ STATE_TYPES: Mapping[str, type] = MappingProxyType({
         EmploymentSpell,
         FringeYtd,
         InpsBaseYtd,
+        LeaveAccount,
+        LeaveBalance,
+        LeaveBucket,
         PayrollRunId,
         PaymentId,
         PeriodState,
@@ -137,8 +142,39 @@ def tfr_quotas_unknown(tree: object) -> object:
 #: reads.  A bump of :attr:`PeriodState.SCHEMA_VERSION` comes with the step
 #: from the previous version, so a stored state stays readable; a test holds
 #: the registry to every version from :data:`FIRST_SCHEMA_VERSION`.
+def _leave_unknown(tree: object) -> object:
+    """Add the leave account to a schema 15 state: unknown, no balance.
+
+    Schema 16 carries the leave balances in the competence state.  A state
+    of schema 15 was written before the engine accrued leave, so the leave
+    of its employment is not known: the run that closes the employment pays
+    no residual and blocks, as for balances imported without it.
+
+    Returns:
+        The state tree of schema 16.
+
+    Raises:
+        TypeError: When the tree has not the shape of a persisted state.
+    """
+    if not isinstance(tree, dict):
+        msg = "a persisted state is a tagged PeriodState"
+        raise TypeError(msg)
+    accrual = tree["fields"]["accrual"]["fields"]
+    leave = {
+        "$type": "LeaveAccount",
+        "fields": {"balances": {"$tuple": []}, "known": False},
+    }
+    fields = {**tree["fields"]}
+    fields["accrual"] = {
+        **tree["fields"]["accrual"],
+        "fields": {**accrual, "leave": leave},
+    }
+    return {**tree, "fields": fields}
+
+
 STATE_MIGRATIONS: Mapping[int, StateMigration] = MappingProxyType({
     14: tfr_quotas_unknown,
+    15: _leave_unknown,
 })
 
 _NAMES: Mapping[type, str] = MappingProxyType({

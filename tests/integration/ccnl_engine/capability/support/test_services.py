@@ -104,10 +104,10 @@ def test_work_rules_partials_are_derived(
     assert all(rows[feature][0] is _IMPL.PARTIAL for feature in features)
 
 
-def test_leave_without_an_event_stays_unsupported() -> None:
-    """A missing note on leave, which no event computes, keeps it unsupported."""
+def test_a_missing_note_on_leave_lowers_it_to_partial() -> None:
+    """A missing note on leave lowers the native capability to partial."""
     rows = _by_feature(load_ccnl("ortofrutticoli-agrumari"))
-    assert rows["leave"] == (_IMPL.UNSUPPORTED, True)
+    assert rows["leave"] == (_IMPL.PARTIAL, True)
 
 
 def test_unknown_capability_is_rejected() -> None:

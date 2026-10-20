@@ -239,6 +239,22 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
         "the totals hold no earlier employment of the tax year: the next run "
         "adds the days of its own"
     ),
+    "OpeningBalances.leave_balances": requires_fact(
+        "termination_residual_leave",
+        "opening_balances.leave_balances",
+        _REPORTED,
+        "the leave of the previous provider is not known: the run that closes "
+        "the employment pays no residual leave and has a missing_fact "
+        "leave_balances blocker",
+    ),
+    "LeaveBalance.settled": absence_is_fact(
+        "the residual of the balance was not paid: a settled balance is the "
+        "one paid at the end of the employment"
+    ),
+    "LeaveBalance.exact": absence_is_fact(
+        "the balance was accrued from known facts and sourced rules; the "
+        "previous provider states an estimate"
+    ),
     "OpeningBalances.deferred_shortfall": absence_is_fact(
         "no written request to defer the shortfall (art. 23 c. 3 DPR 600/1973; "
         "art. 33 c. 4 D.Lgs. 33/2025 from 2027)"

@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     from ccnl_engine.capability.results import CapabilityReport
     from ccnl_engine.contribution.results import ContributionBreakdown
     from ccnl_engine.irpef.results import TaxComputation
+    from ccnl_engine.leave.balance.models import LeaveBalance
     from ccnl_engine.ledger.models import LedgerEntry
     from ccnl_engine.ledger.remittance.models import RemittanceLine
     from ccnl_engine.limitation.models import ModelLimitation
@@ -132,6 +133,17 @@ class PeriodResult:
             self.payment_date,
             self.limitations,
         )
+
+    @property
+    def leave_balances(self) -> tuple[LeaveBalance, ...]:
+        """Leave balances after the run, per bucket and year of accrual.
+
+        Each :class:`~ccnl_engine.leave.balance.models.LeaveBalance` gives
+        the days of ferie or the hours of a permit bucket accrued, taken,
+        paid and left (``accrued``, ``taken``, ``paid``, ``residual``); they
+        are those the closing state carries to the next run.
+        """
+        return self.closing_state.accrual.leave.balances
 
     @property
     def paid_gross(self) -> Decimal:

@@ -12,6 +12,7 @@ from ccnl_engine.event.facade import (
     BilateralFundEvent,
     FringeEvent,
     HolidayWorkEvent,
+    LeaveTakenEvent,
     NightShiftEvent,
     OvertimeEvent,
     ShiftWorkEvent,
@@ -35,6 +36,7 @@ if TYPE_CHECKING:
     )
     from ccnl_engine.event.facade import WorkEvent
     from ccnl_engine.event.handlers import EventEffect
+    from ccnl_engine.leave.balance.models import LeaveAccount
     from ccnl_engine.ledger.models import PostingIntent
     from ccnl_engine.pay_item.facade import PayItem
     from ccnl_engine.sickness.models import SicknessEpisode
@@ -56,6 +58,7 @@ EVENT_FEATURES: dict[type, str] = {
     ArrearsEvent: "contract_renewal_arrears",
     BilateralFundEvent: "bilateral_funds",
     TerminationTFREvent: "termination_tfr",
+    LeaveTakenEvent: "leave",
 }
 
 
@@ -75,7 +78,9 @@ class _EventTotals:
     ``executed_features`` are the catalog features of the events whose
     handler had an effect (see :func:`_has_effect`).  ``separate_irpef_base``
     is the part of ``irpef_base`` withheld apart from the pay of the period
-    (art. 23 c. 2 lett. b) DPR 600/1973).
+    (art. 23 c. 2 lett. b) DPR 600/1973).  ``leave`` is the leave account
+    after the run, set by :func:`~ccnl_engine.leave.services.run_leave`;
+    ``None`` leaves the account of the opening state unchanged.
     """
 
     inps_base: Decimal
@@ -92,6 +97,7 @@ class _EventTotals:
     executed_features: frozenset[str] = frozenset()
     sickness_episodes: tuple[SicknessEpisode, ...] | None = None
     limitations: frozenset[str] = frozenset()
+    leave: LeaveAccount | None = None
 
 
 @dataclass

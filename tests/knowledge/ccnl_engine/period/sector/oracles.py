@@ -636,10 +636,22 @@ def _terziario_year() -> tuple[Pay, ...]:
     return tuple(pays)
 
 
+#: Residual leave paid on the last regular run (Testo Unico 12 December
+#: 2019, sha256 18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0):
+#: six whole months of 26 days of ferie (Art. 159, p. 126), 13 days at the
+#: monthly pay over 26 (chiarimento a verbale, p. 127); six twelfths of the
+#: 32 hours of ex festività (Art. 158 c. 1, p. 125), 16 hours at the monthly
+#: pay over the hourly divisor 168; no ROL in the first two years of a
+#: worker hired after 1 March 2011 (Art. 158, p. 126).
+_TERZIARIO_LEAVE = _cents(Decimal(13) * _IV_UNTIL_OCTOBER / 26) + _cents(
+    Decimal(16) * _IV_UNTIL_OCTOBER / 168
+)
+
+
 def _terziario_june() -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _IV_UNTIL_OCTOBER, _IV_UNTIL_OCTOBER) for m in range(1, 6)]
     rateo = _cents(_IV_UNTIL_OCTOBER * 6 / 12)
-    june = _IV_UNTIL_OCTOBER + rateo
+    june = _IV_UNTIL_OCTOBER + rateo + _TERZIARIO_LEAVE
     return (
         *pays,
         Pay(_run(6), june, june),

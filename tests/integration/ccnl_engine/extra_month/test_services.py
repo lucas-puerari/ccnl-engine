@@ -68,10 +68,13 @@ class TestTerminationSettlement:
             if e.pay_item_kind == "extra_month_earning"
         }
         assert policies == {"it/earning/extra_month"}
-        assert september.period_gross == Decimal("2675.65")
-        # 1,784 + 1,784 + 2,676: each month to the whole euro (INPS circ. 208/2001).
+        # The residual leave of the three months is paid too (Art. 159):
+        # 6.5 days at 1,783.75 / 26 = 445.94 and 8 hours at / 168 = 84.94.
+        leave = Decimal("445.94") + Decimal("84.94")
+        assert september.period_gross == Decimal("2675.65") + leave
+        # 1,784 + 1,784 + 3,207: each month to the whole euro (INPS circ. 208/2001).
         assert september.closing_state.accrual.inps_base(_YEAR).own == Decimal(
-            "6244.00"
+            "6775.00"
         )
 
     def test_extra_run_in_the_termination_month_is_not_settled_again(self) -> None:

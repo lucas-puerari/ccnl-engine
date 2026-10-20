@@ -152,6 +152,24 @@ class RunContext:
         )
 
     @property
+    def closes_employment(self) -> bool:
+        """Whether the run closes the employment.
+
+        A termination run does, and so does the regular run of the month
+        the employment ends in; an extra-month or adjustment run of that
+        month does not.
+        """
+        period = self.request.employment_period
+        ended = None if period is None else period.ended_on
+        month = self.request.period_id
+        kind = self.run_kind
+        return kind is RunKind.TERMINATION or (
+            kind is RunKind.REGULAR
+            and ended is not None
+            and (ended.year, ended.month) == (month.year, month.month)
+        )
+
+    @property
     def conguaglio(self) -> bool:
         """Whether the run settles the tax year.
 

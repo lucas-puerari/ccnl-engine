@@ -87,9 +87,9 @@ Evidence:
   `PayrollEngine` and asserting, to the cent, the three values its cited
   salary table states: base salary, fixed allowances and period gross. They
   do not check net pay, contributions, taxes or employer cost.
-  <!-- trust:reference-cases-source-linked -->31<!-- /trust:reference-cases-source-linked -->
+  <!-- trust:reference-cases-source-linked -->32<!-- /trust:reference-cases-source-linked -->
   are `source_linked` (they cite the table they model) and
-  <!-- trust:reference-cases-verified -->4<!-- /trust:reference-cases-verified -->
+  <!-- trust:reference-cases-verified -->3<!-- /trust:reference-cases-verified -->
   are `verified` against an independent payslip or official worked example.
 - Release parity: `.github/workflows/quality-gates.yml` holds every gate
   of `main` (lint, types, complexity, the generated-document drift checks,
@@ -225,9 +225,9 @@ enforced; in `operational` mode a CCNL that is not `production` adds a
 `ruleset_not_production` blocker.
 
 Bundled CCNL rulesets at `production`:
-<!-- trust:readiness-production -->13<!-- /trust:readiness-production -->.
+<!-- trust:readiness-production -->12<!-- /trust:readiness-production -->.
 Payable rules with provenance status `verified`:
-<!-- trust:rules-verified -->2499<!-- /trust:rules-verified -->
+<!-- trust:rules-verified -->2484<!-- /trust:rules-verified -->
 (see [Provenance](provenance.md#current-counts)).
 See [Readiness](readiness.md) for promotion criteria and the current
 distribution.

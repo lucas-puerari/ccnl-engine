@@ -248,6 +248,7 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
         yield _rule(file, "raccordo_element", ("base_salary",), record)
     yield from _hourly_rules(file, params.get("hourly_pay"))
     yield from _work_rules(file, data.get("work_rules"))
+    yield from _leave_rules(file, data.get("work_rules"))
     yield from _overtime_rules(file, data.get("work_rules"))
     yield from _supplement_rules(file, data.get("work_rules"))
     yield from _fund_rules(file, params.get("employer_funds"))
@@ -291,6 +292,40 @@ def _work_rules(file: str, work_rules: object) -> Iterator[PayableRule]:
         if isinstance(block, dict):
             path = f"work_rules.{key}"
             yield _rule(file, path, capabilities, block.get("provenance"))
+
+
+def _leave_rules(file: str, work_rules: object) -> Iterator[PayableRule]:
+    """Yield the leave accrual rules and the residual basis of a CCNL.
+
+    The yearly ferie days alone pay nothing: only a CCNL that states how
+    its leave accrues, or the basis of the indemnity for the residual, holds
+    payable leave rules.
+
+    Yields:
+        One ``leave`` rule for the ferie accrual and for each permit bucket
+        and its new-hire ramp, and one ``termination_residual_leave`` rule
+        for the basis of the residual.
+    """
+    rules = work_rules if isinstance(work_rules, dict) else {}
+    leave = rules.get("leave_rules")
+    leave = leave if isinstance(leave, dict) else {}
+    prefix = "work_rules.leave_rules"
+    accrual = leave.get("ferie_accrual")
+    if isinstance(accrual, dict):
+        record = accrual.get("provenance")
+        yield _rule(file, f"{prefix}.ferie_accrual", ("leave",), record)
+    permits = leave.get("permits")
+    for permit in permits if isinstance(permits, list) else []:
+        path = f"{prefix}.permits[{permit.get('bucket')}]"
+        yield _rule(file, path, ("leave",), permit.get("provenance"))
+        ramp = permit.get("ramp")
+        if isinstance(ramp, dict):
+            yield _rule(file, f"{path}.ramp", ("leave",), ramp.get("provenance"))
+    basis = leave.get("termination")
+    if isinstance(basis, dict):
+        record = basis.get("provenance")
+        path = f"{prefix}.termination"
+        yield _rule(file, path, ("termination_residual_leave",), record)
 
 
 def _is_first_tier(band: dict[str, object]) -> bool:

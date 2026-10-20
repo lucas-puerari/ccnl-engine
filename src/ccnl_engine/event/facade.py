@@ -13,6 +13,8 @@ from ccnl_engine.absence.inputs import (
     SickLeaveEvent,
 )
 from ccnl_engine.event.types import WORK_EVENT_TYPES, WorkEvent
+from ccnl_engine.leave.inputs import LeaveTakenEvent
+from ccnl_engine.leave.types import LeaveBucket
 from ccnl_engine.sickness.models import SicknessEpisode
 from ccnl_engine.termination.inputs import TerminationTFREvent
 from ccnl_engine.variable_pay.inputs import (
@@ -43,6 +45,8 @@ __all__ = [
     "FringeEvent",
     "HolidayWorkEvent",
     "HolidayWorkKind",
+    "LeaveBucket",
+    "LeaveTakenEvent",
     "NightShiftEvent",
     "OvertimeEvent",
     "OvertimeKind",

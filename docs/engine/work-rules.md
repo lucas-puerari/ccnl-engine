@@ -41,6 +41,7 @@ amounts are `Decimal` values in EUR, validated on construction.
 | `BilateralFundEvent` | `employee_amount`, `employer_amount` | Bilateral or health fund contribution; see [Pay components](pay-components.md#bilateral-funds-fondi-bilaterali) |
 | `ArrearsEvent` | `amount`, `separate_tax_rate`, `reference_period` | Renewal arrears; see [Renewal arrears](#renewal-arrears) |
 | `TerminationTFREvent` | `amount`, `separate_tax_rate` (both optional) | TFR settlement at cessazione (art. 19 TUIR); see [TFR settlement](pay-components.md#settlement-at-the-termination) |
+| `LeaveTakenEvent` | `bucket` (`LeaveBucket`: `ferie`, `rol`, `ex_festivita`), `quantity` (days of ferie, hours of a permit) | Paid leave taken: no pay of its own (the monthly pay holds it), it consumes the balance of its bucket; see [Paid leave](#paid-leave-ferie-rol-and-ex-festivita) |
 
 ### Overtime multiplier
 
@@ -313,6 +314,60 @@ whole pay (sick 1 to 30 of a 31-day month by 30).
 `SickLeaveEvent` remains as an explicit override: an amount the caller
 computed. It records a caller-supplied `sickness` decision, so the result is
 never payable.
+
+### Paid leave: ferie, ROL and ex festività
+
+A CCNL whose leave clauses were read states, in `work_rules.leave_rules`,
+each bucket with its provenance: `ferie_accrual` (the twelfths of the
+yearly days of `entitlement_tiers` and how a month fraction counts),
+`permits` (the yearly hours of `rol` and `ex_festivita` by employer size,
+a single `rol` pool with `includes_ex_festivita` when the CCNL pools them,
+and a new-hire `ramp`) and `termination` (the basis of the indemnity for
+the residual leave). A CCNL without them accrues nothing.
+
+Every regular run credits its competence month: a twelfth of the yearly
+entitlement of each bucket, when the month counts under its rule
+(`whole_month`, or `more_than_half`: more than fifteen days). The days
+served are those of the employment in the month, less the days of the
+absences with `suspends_accrual`. The permit hours of a part-time worker are
+proportional to the weekly hours; a ramp applies the share in force on the
+last day of the month. What the request cannot tell is not guessed
+silently: a month fraction under a bucket whose rule the text leaves open
+accrues nothing, an unknown seniority takes the default days, an unknown
+hire date the first step of the ramp, an absence without `suspends_accrual`
+counts as served, and each marks the balance `exact = False`.
+
+A `LeaveTakenEvent` is decided by the `leave` capability: final, amount
+zero, when the CCNL accrues its bucket; incomplete
+(`leave_bucket_not_modelled`) otherwise. The leave is taken from the oldest
+balance with a residual first, then from the balance of the year, which may
+go negative (leave granted in advance). An unpaid absence stays an
+`AbsenceEvent`.
+
+The run that closes the employment pays every residual as a
+`leave_settlement_item` (ordinary IRPEF, INPS and TFR base) and decides
+`termination_residual_leave`: final, or provisional when a balance is
+inexact; incomplete with nothing paid when the CCNL accrues no leave
+(`leave_accrual_not_modelled`), gives no basis
+(`termination_basis_not_sourced`, `permit_basis_not_sourced`), a bucket is
+overdrawn (`leave_taken_beyond_accrual`: the recovery is not sourced) or
+imported balances miss the leave (`missing_fact leave_balances`).
+
+| CCNL | Ferie | Permits | Residual at termination |
+|---|---|---|---|
+| Commercio, Confesercenti | 26 days, month rule not stated | ex festività 32 h, ROL 56 h (72 above 15 employees; 0% / 50% / 100% at 0 / 24 / 48 months for hires after 1 March 2011), whole months | ferie: monthly pay / 26; permits: monthly pay / hourly divisor |
+| Turismo | 26 days, cumulated fractions not modelled | pool of 104 h with the ex festività | not sourced |
+| FIPE | 26 days, cumulated fractions not modelled | ex festività 32 h, ROL 72 h (0% / 50% / 100% for hires after 1 January 2018) | not sourced |
+| Metalmeccanici (Federmeccanica, Confapi) | 20 / 21 / 25 days, fraction > 15 days | PAR pool of 104 h | divisor not stated |
+| Studi professionali | 22 days, month rule not stated | ex festività 32 h; ROL not accrued (weekly schedule not an input) | not sourced |
+| Chimica | 20 / 25 days, fraction > 15 days | ROL 68 h (giornalieri, 2x5, 2x6), ex festività 40 h | divisor not stated |
+
+The balances are carried in the state and shown on the result
+(`PeriodResult.leave_balances`); see [Payroll state](payroll-state.md#leave-balances).
+Not modelled, each a limitation of its CCNL: the payout of the residual
+permits at the CCNL deadline (Commercio 30 June, Federmeccanica conto ore
+after 24 months), the hours absorbed by a 38- or 39-hour week, sector, shift
+and comparto hours, and vertical part time.
 
 ### Absences are bounded by the pay of the run
 
