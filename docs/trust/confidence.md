@@ -83,7 +83,7 @@ does not report its gap as well.
 
 A `derived` rule (taken from a cited document location, with no recorded
 human check) lowers the evidence axis but does not block on its own. Only
-<!-- trust:rules-verified -->2468<!-- /trust:rules-verified --> payable rules of
+<!-- trust:rules-verified -->2469<!-- /trust:rules-verified --> payable rules of
 the bundle are `verified`, so requiring `verified` would block almost every
 result; the evidence axis keeps the difference visible instead.
 
@@ -160,9 +160,7 @@ without a classification, or on a classification without its field:
     whose start is stated, the INPS base of other employments when the INPS
     rules carry a massimale or a 1% threshold, the TFR fund at 31 December
     of the year before on a December run, the Fondo Tesoreria destination
-    of the TFR, the revaluations and the advances of the TFR fund and the
-    TFR quotas of imported balances when the engine settles the TFR at the
-    termination, the first day of the imported sickness history and the
+    of the TFR, the first day of the imported sickness history and the
     exemption of a short absence when a CCNL counting several sickness
     episodes needs them, the income beyond the employment when a somma
     esente is due, the full time of an employment whose weekly hours are
@@ -202,7 +200,7 @@ is `False` on its closing state). See
 ## Model limitations
 
 A known simplification of the model is data, not a comment. The registry has
-<!-- trust:limitations-total -->441<!-- /trust:limitations-total --> `ModelLimitation`
+<!-- trust:limitations-total -->439<!-- /trust:limitations-total --> `ModelLimitation`
 entries: one per `simplification` note of a CCNL file that can move an
 amount, and <!-- trust:limitations-engine -->9<!-- /trust:limitations-engine -->
 engine limitations of code paths several CCNLs share
@@ -219,10 +217,10 @@ limits, the `rulesets` and dates it affects, a `monetary_impact` (`yes`,
 `no`, `unknown`), a `status` (`open`, `resolved`), its `source` and a
 `remediation`.
 
-The <!-- trust:simplification-notes -->498<!-- /trust:simplification-notes -->
+The <!-- trust:simplification-notes -->496<!-- /trust:simplification-notes -->
 simplification notes of the bundle each state their impact on what the engine
 computes from the bundle:
-<!-- trust:simplification-yes -->225<!-- /trust:simplification-yes --> `yes`,
+<!-- trust:simplification-yes -->223<!-- /trust:simplification-yes --> `yes`,
 <!-- trust:simplification-unknown -->207<!-- /trust:simplification-unknown --> `unknown`
 and <!-- trust:simplification-no -->66<!-- /trust:simplification-no --> `no` (the
 engine refuses the case, or takes the value from the caller). A file whose
@@ -232,7 +230,7 @@ bundle build fails on an unmapped note.
 A limitation applies to a run only when its predicate holds. Its trigger
 classifies it by obligation:
 
-- <!-- trust:limitations-owed -->24<!-- /trust:limitations-owed -->
+- <!-- trust:limitations-owed -->23<!-- /trust:limitations-owed -->
   limitations are `owed`: an amount the CCNL owes for every worker it scopes
   that the engine does not compute (a health or bilateral fund, a provincial
   element owed in every province). They apply to every run of the CCNL

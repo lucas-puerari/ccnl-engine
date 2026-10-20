@@ -1208,9 +1208,7 @@
     ],
     "agreement/studi-professionali-confprofessioni.json": [
       "studi-professionali-confprofessioni/apprentice_seniority",
-      "studi-professionali-confprofessioni/bilateral_contribution_or_element",
       "studi-professionali-confprofessioni/fourteenth_exclusion",
-      "studi-professionali-confprofessioni/fsbap_rates_above_15",
       "studi-professionali-confprofessioni/holiday_during_sickness",
       "studi-professionali-confprofessioni/injury_integration",
       "studi-professionali-confprofessioni/intermittent_availability",

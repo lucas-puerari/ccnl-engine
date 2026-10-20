@@ -23,6 +23,7 @@ from ccnl_engine.employment.context.models import (
     TemporalContext,
 )
 from ccnl_engine.errors import InvalidInputError, UnknownLevelError
+from ccnl_engine.fund.solidarity.models import with_solidarity_tiers
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL, TaxSector
@@ -151,11 +152,15 @@ def load_contract(
         period_id.year, period_id.month, tctx.payment
     )
     sector, headcount = ccnl.meta.tax_sector, request.employer.headcount.value
-    year_rules = with_competence_contributions(
-        repo,
-        repo.load_year_rules(tctx.fiscal_year, sector, headcount),
-        period_id.year,
-        sector,
+    year_rules = with_solidarity_tiers(
+        with_competence_contributions(
+            repo,
+            repo.load_year_rules(tctx.fiscal_year, sector, headcount),
+            period_id.year,
+            sector,
+            headcount,
+        ),
+        ccnl.parameters.solidarity_fund,
         headcount,
     )
     if year_rules.inps is not None:

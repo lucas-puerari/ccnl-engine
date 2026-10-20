@@ -53,17 +53,25 @@ def with_solidarity_fund(
     Returns:
         The breakdown with the employee and employer components added to
         their totals, and the employee rate; ``breakdown`` and zero when
-        the CCNL has no fund or the contract is a fixed term.
+        the CCNL has no fund on top of the sector rates or the contract is a
+        fixed term (a fund in place of the FIS sits in the sector rates,
+        :func:`~ccnl_engine.fund.solidarity.models.with_solidarity_tiers`).
     """
     fund = inp.solidarity_fund
-    if fund is None or isinstance(inp.contract_type, FixedTerm):
+    if (
+        fund is None
+        or fund.employee_rate is None
+        or fund.employer_rate is None
+        or isinstance(inp.contract_type, FixedTerm)
+    ):
         return breakdown, _ZERO
     base = _base(breakdown)
-    employee = money(base * fund.employee_rate)
-    employer = money(base * fund.employer_rate)
+    employee_rate, employer_rate = fund.employee_rate, fund.employer_rate
+    employee = money(base * employee_rate)
+    employer = money(base * employer_rate)
     components = (
-        ContributionComponent(EMPLOYEE_COMPONENT, base, fund.employee_rate, employee),
-        ContributionComponent(EMPLOYER_COMPONENT, base, fund.employer_rate, employer),
+        ContributionComponent(EMPLOYEE_COMPONENT, base, employee_rate, employee),
+        ContributionComponent(EMPLOYER_COMPONENT, base, employer_rate, employer),
     )
     added = replace(
         breakdown,
@@ -71,4 +79,4 @@ def with_solidarity_fund(
         employer=breakdown.employer + employer,
         components=(*breakdown.components, *components),
     )
-    return added, fund.employee_rate
+    return added, employee_rate

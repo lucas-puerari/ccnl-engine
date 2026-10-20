@@ -365,7 +365,11 @@ the CCNL owes it in full (`alternative_scaled: false`). A yearly amount
 (`annual`, e.g. Qu.A.S.) is charged a twelfth a month. Funds that are
 alternative ways to meet one obligation share a `group` (the E.B.M. of
 Confapi: 5 EUR for a firm with an internal RLS, 6 EUR without): the employer
-names the one it pays, and naming none owes the element once. A fund may set
+names the one it pays, and naming none owes the element once. Funds paid
+together with a single element share it through `alternative_in` (CADIPROF and
+EBIPRO of the Studi professionali: 43 EUR for 14 months for both): the fund
+that names another's element is a choice too, and not naming either owes the
+element once. A fund may set
 a reduced employer share for a part-timer up to a number of weekly hours
 (`reduced_employer`, `reduced_up_to_weekly_hours`). A yearly amount charged
 whole in one month (`charged_in_month`) is posted only on the regular run of

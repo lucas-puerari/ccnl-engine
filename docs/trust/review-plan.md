@@ -9,7 +9,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 208 | 186 | 0 | `funzioni-centrali-aran` |
-| terziario | 43 | 4 977 055 | 52 | 1540 | 773 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| terziario | 43 | 4 977 055 | 52 | 1540 | 774 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 48 | 4 946 900 | 151 | 2025 | 979 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 56 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 35 | 249 | 153 | 2 | `metalmeccanico-artigianato` |
@@ -46,7 +46,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`cooperative-sociali`](../contracts/cooperative-sociali.md) | 380 000 | reviewed | 0 | 1 | 62 | party or official | maintainer | 2027-01-31 |
 | [`pubblici-esercizi-fipe-angem`](../contracts/pubblici-esercizi-fipe-angem.md) | 350 000 | production | 0 | 2 | 61 | party or official | maintainer | 2027-06-01 |
 | [`pubblici-esercizi-fipe-angem-ristorazione-collettiva`](../contracts/pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | 350 000 | production | 0 | 2 | 61 | party or official | maintainer | 2027-06-01 |
-| [`studi-professionali-confprofessioni`](../contracts/studi-professionali-confprofessioni.md) | 350 000 | production | 0 | 0 | 46 | party or official | maintainer | 2027-04-30 |
+| [`studi-professionali-confprofessioni`](../contracts/studi-professionali-confprofessioni.md) | 350 000 | production | 0 | 0 | 47 | party or official | maintainer | 2027-04-30 |
 | [`terziario-confesercenti`](../contracts/terziario-confesercenti.md) | 230 000 | production | 0 | 0 | 75 | party or official | maintainer | 2027-03-31 |
 | [`turismo-federalberghi`](../contracts/turismo-federalberghi.md) | 220 000 | production | 0 | 1 | 71 | party or official | maintainer | 2027-04-30 |
 | [`sanita-privata-aiop-aris`](../contracts/sanita-privata-aiop-aris.md) (anchor) | 150 000 | exploratory | 0 | 1 | 36 | party or official | maintainer | 2027-06-30 |

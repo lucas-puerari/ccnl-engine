@@ -19,7 +19,7 @@ from ccnl_engine.contribution.results import (
     ContributionComponent,
 )
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
-from ccnl_engine.fund.solidarity.models import SolidarityFund
+from ccnl_engine.fund.solidarity.models import SolidarityFund, SolidarityTier
 from ccnl_engine.fund.solidarity.services import (
     EMPLOYEE_COMPONENT,
     EMPLOYER_COMPONENT,
@@ -102,3 +102,21 @@ def test_fixed_term_or_ccnl_without_fund_is_unchanged(inp: _AmountsInput) -> Non
     """The fund charges permanent contracts of the CCNLs that have one."""
     breakdown = _breakdown()
     assert with_solidarity_fund(inp, breakdown) == (breakdown, Decimal(0))
+
+
+def test_a_fund_in_place_of_the_fis_adds_no_component() -> None:
+    """The tiered fund sits in the sector rates (with_solidarity_tiers)."""
+    tiered = SolidarityFund(
+        code="FONDO_SOLIDARIETA_ATTIVITA_PROFESSIONALI",
+        wage_integration_tiers=(
+            SolidarityTier(
+                employer_rate=Decimal("0.0066667"), employee_rate=Decimal("0.0033333")
+            ),
+        ),
+        provenance=_FUND.provenance,
+    )
+    breakdown = _breakdown()
+    assert with_solidarity_fund(_input(Permanent(), tiered), breakdown) == (
+        breakdown,
+        Decimal(0),
+    )

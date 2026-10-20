@@ -147,7 +147,8 @@ _METAL_OWED: frozenset[str] = frozenset()
 _TERZ_OWED = frozenset({"contractual_funds"})
 #: Commercio models its funds too; the scenarios leave them unstated.
 _COMMERCIO_OWED = frozenset({"contractual_funds"})
-_STUDI_OWED = frozenset({f"{_STUDI}/bilateral_contribution_or_element"})
+#: Studi models CADIPROF and EBIPRO; the scenarios leave them unstated.
+_STUDI_OWED = frozenset({"contractual_funds"})
 #: The funds of Turismo and FIPE are modelled; the scenarios leave the
 #: employer's funds unstated, as their oracles leave the funds out: a missing
 #: fact, owed like an open limitation.

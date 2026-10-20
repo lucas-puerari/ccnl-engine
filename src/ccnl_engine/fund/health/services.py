@@ -105,14 +105,18 @@ def contractual_funds(ctx: RunContext) -> FundOutcome:
 def _a_choice(fund: ContractualFund) -> bool:
     """Whether the employer chooses between ``fund`` and something else.
 
-    A fund with an elemento distinto, or one way of a group, is a choice
-    the employer states; a fund the CCNL owes with no alternative is paid
-    whatever the employer states.
+    A fund with an elemento distinto, its own or another fund's, or one way
+    of a group, is a choice the employer states; a fund the CCNL owes with
+    no alternative is paid whatever the employer states.
 
     Returns:
         True when the fund needs ``EmployerProfile.contractual_funds``.
     """
-    return fund.alternative is not None or fund.group is not None
+    return (
+        fund.alternative is not None
+        or fund.alternative_in is not None
+        or fund.group is not None
+    )
 
 
 def _post(
