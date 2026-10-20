@@ -18,6 +18,7 @@ from typing import TYPE_CHECKING, Self
 
 from pydantic import BaseModel, ConfigDict, model_validator
 
+from ccnl_engine.absence.insured.models import InsuredAbsenceRules
 from ccnl_engine.absence.models import AbsenceRules
 from ccnl_engine.agreement.types import NoteKind
 from ccnl_engine.leave.models import LeaveRules
@@ -127,6 +128,7 @@ class CCNLWorkRules(BaseModel):
     absence_rules: AbsenceRules | None = None
     leave_rules: LeaveRules | None = None
     sickness_rules: SicknessRules | None = None
+    insured_absence: InsuredAbsenceRules | None = None
     standby_rules: StandbyRules | None = None
     travel_allowance: CcnlTravelAllowance | None = None
 

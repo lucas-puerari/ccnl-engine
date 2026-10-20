@@ -18,6 +18,7 @@ from ccnl_engine.period.repositories import (
 )
 
 if TYPE_CHECKING:
+    from ccnl_engine.absence.insured.models import InsuredAbsenceRates
     from ccnl_engine.agreement.facade import CCNL, TaxSector
     from ccnl_engine.capability.registry.models import CapabilityCatalog
     from ccnl_engine.catalog.loaders import ContractSummary
@@ -118,6 +119,14 @@ class NextYearRepository:
             The rules, not tied to a year.
         """
         return self._bundled.load_sick_pay_rates()
+
+    def load_insured_absence_rates(self) -> InsuredAbsenceRates:
+        """Return the bundled maternity and work-injury indemnities.
+
+        Returns:
+            The indemnities, not tied to a year.
+        """
+        return self._bundled.load_insured_absence_rates()
 
     def load_engine_limitations(self) -> tuple[ModelLimitation, ...]:
         """Return the bundled engine limitations.

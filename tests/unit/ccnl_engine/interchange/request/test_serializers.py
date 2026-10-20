@@ -11,6 +11,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.absence.inputs import AbsenceEvent, SickLeaveEvent
+from ccnl_engine.absence.insured.inputs import MaternityLeaveEvent, WorkInjuryEvent
 from ccnl_engine.agreement.types import TaxSector
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.balance.serializers import STATE_TYPES
@@ -117,6 +118,8 @@ _EVENTS: dict[type, WorkEvent] = {
         FringeEvent(_DAY, _AMOUNT),
         HolidayWorkEvent(_DAY, _AMOUNT, kind=HolidayWorkKind.HOLIDAY),
         LeaveTakenEvent(_DAY, next(iter(LeaveBucket)), Decimal(2)),
+        HolidayWorkEvent(_DAY, _AMOUNT),
+        MaternityLeaveEvent(_DAY, date(2026, 8, 7)),
         NightShiftEvent(_DAY, _AMOUNT),
         OvertimeEvent(
             _DAY,
@@ -139,6 +142,7 @@ _EVENTS: dict[type, WorkEvent] = {
             _DAY, 2, True, "one", daily_amount=Decimal("46.48"), tfr_base="whole"
         ),
         WelfareEvent(_DAY, _AMOUNT),
+        WorkInjuryEvent(_DAY, date(2026, 4, 20)),
     )
 }
 

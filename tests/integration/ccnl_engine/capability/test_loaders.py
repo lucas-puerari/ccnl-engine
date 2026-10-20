@@ -37,8 +37,6 @@ _UNSUPPORTED_2026 = {
     "inail": "outside_input",
     "contribution_exemption": "outside_input",
     "fiscal_adjustment": "outside_input",
-    "maternity_leave": "outside_input",
-    "workplace_injury": "outside_input",
     "una_tantum": "outside_input",
     "personal_withholdings": "outside_input",
     "additional_irpef_base": "outside_input",

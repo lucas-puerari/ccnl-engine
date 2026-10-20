@@ -33,6 +33,7 @@ from ccnl_engine.event.facade import (
     BonusEvent,
     HolidayWorkEvent,
     LeaveTakenEvent,
+    MaternityLeaveEvent,
     NightShiftEvent,
     OvertimeEvent,
     ShiftWorkEvent,
@@ -42,6 +43,7 @@ from ccnl_engine.event.facade import (
     TerminationTFREvent,
     TravelAllowanceEvent,
     WelfareEvent,
+    WorkInjuryEvent,
 )
 from ccnl_engine.event.standard.handlers import (
     _standard_event_gross,
@@ -168,7 +170,14 @@ def _amount(event: WorkEvent) -> Decimal | None:
     if isinstance(event, _CASH_EVENTS):
         return _standard_event_gross(event)
     if isinstance(
-        event, (SicknessEpisode, StandbyEvent, LeaveTakenEvent)
+        event,
+        (
+            SicknessEpisode,
+            StandbyEvent,
+            LeaveTakenEvent,
+            MaternityLeaveEvent,
+            WorkInjuryEvent,
+        ),
     ):  # pragma: no cover
         return Decimal(0)  # no caller rule: never asked
     return event.amount

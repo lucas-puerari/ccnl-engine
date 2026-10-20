@@ -16,7 +16,10 @@ circ. 6/2026 par. 1):
 
 Art. 7 c. 5 excludes apprentices and operai agricoli (domestic work has its
 own hourly contributions and no ordinary INPS rules).  A month a vertical
-part time does not work pays no hour, so it has no minimum.  The pay compared is
+part time does not work pays no hour, so it has no minimum; nor does a
+month whose employed days are all a maternity leave or a work-injury
+inability after the injury day, credited with figurative contributions
+(D.Lgs. 151/2001 art. 25; the injury day is paid by the employer).  The pay compared is
 the INPS base of the run that posts the monthly pay of a fully employed
 month.  The day count of a partial month, of a month with an absence or
 sick leave (whose reduced pay circ. 6/2026 par. 1 and the Uniemens element
@@ -116,12 +119,16 @@ def _exclusion(
 
     Returns:
         :attr:`MinimumBaseReason.MONTH_NOT_WORKED` for a month a vertical
-        part time does not work; :attr:`MinimumBaseReason.APPRENTICE` or
+        part time does not work; :attr:`MinimumBaseReason.INDEMNIFIED_MONTH`
+        for a month an insurer indemnifies in full;
+        :attr:`MinimumBaseReason.APPRENTICE` or
         :attr:`MinimumBaseReason.EXEMPT_CATEGORY` when art. 7 c. 5 excludes
         the worker; ``None`` otherwise.
     """
     if not position.worked:
         return MinimumBaseReason.MONTH_NOT_WORKED
+    if position.indemnified:
+        return MinimumBaseReason.INDEMNIFIED_MONTH
     if position.apprentice:
         return MinimumBaseReason.APPRENTICE
     if position.category in rule.exempt_categories:

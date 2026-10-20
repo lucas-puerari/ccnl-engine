@@ -125,6 +125,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "HolidayWorkKind",
         "LeaveBucket",
         "LeaveTakenEvent",
+        "MaternityLeaveEvent",
         "NightShiftEvent",
         "OvertimeEvent",
         "OvertimeKind",
@@ -139,6 +140,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "TravelAllowanceEvent",
         "WelfareEvent",
         "WorkEvent",
+        "WorkInjuryEvent",
     }),
     "ccnl_engine.results": frozenset({
         "PUBLIC_FACTS",

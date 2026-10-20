@@ -106,7 +106,7 @@ def test_unmapped_kind_is_reported() -> None:
     """An earnings kind no capability posts cannot be attributed."""
     result = _result()
     entries = tuple(
-        e.model_copy(update={"pay_item_kind": "maternity_item"})
+        e.model_copy(update={"pay_item_kind": "unmapped_item"})
         if e.pay_item_kind == "welfare_item"
         else e
         for e in result.ledger_entries

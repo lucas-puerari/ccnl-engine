@@ -15,6 +15,7 @@ from ccnl_engine.event.facade import (
     HolidayWorkKind,
     LeaveBucket,
     LeaveTakenEvent,
+    MaternityLeaveEvent,
     NightShiftEvent,
     OvertimeEvent,
     OvertimeKind,
@@ -28,6 +29,7 @@ from ccnl_engine.event.facade import (
     TravelAllowanceEvent,
     WelfareEvent,
     WorkEvent,
+    WorkInjuryEvent,
 )
 from ccnl_engine.run.types import PeriodId
 
@@ -41,6 +43,7 @@ __all__ = [
     "HolidayWorkKind",
     "LeaveBucket",
     "LeaveTakenEvent",
+    "MaternityLeaveEvent",
     "NightShiftEvent",
     "OvertimeEvent",
     "OvertimeKind",
@@ -55,4 +58,5 @@ __all__ = [
     "TravelAllowanceEvent",
     "WelfareEvent",
     "WorkEvent",
+    "WorkInjuryEvent",
 ]

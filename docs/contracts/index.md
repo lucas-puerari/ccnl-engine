@@ -50,8 +50,10 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `contractual_funds` (native)
 - ✅ `assistance_contribution` (native)
 
-**Scenario features: computed when the request declares the event, the fact or the termination** (17):
+**Scenario features: computed when the request declares the event, the fact or the termination** (19):
 
+- ✅ `maternity_leave` (native)
+- ✅ `workplace_injury` (native)
 - ✅ `termination_residual_leave` (native)
 - ✅ `termination_tfr` (native)
 - 📝 `contract_renewal_arrears` (caller_supplied)
@@ -70,13 +72,11 @@ on unverified sources, or be well sourced and not cleared for production.
 - 📝 `bilateral_funds` (caller_supplied)
 - ⚠️ `pension_fund_contribution` (partial)
 
-**Outside the input: the request has no field for the fact, so the engine does not compute them** (13):
+**Outside the input: the request has no field for the fact, so the engine does not compute them** (11):
 
 - 🔲 `inail` (unsupported)
 - 🔲 `contribution_exemption` (unsupported)
 - 🔲 `fiscal_adjustment` (unsupported)
-- 🔲 `maternity_leave` (unsupported)
-- 🔲 `workplace_injury` (unsupported)
 - 🔲 `una_tantum` (unsupported)
 - 🔲 `personal_withholdings` (unsupported)
 - 🔲 `additional_irpef_base` (unsupported)
@@ -163,7 +163,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 58 | K540 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | servizi ambientali | ~65k | 2025 | ⚠️ | inps_employer, pension_fund_contribution, seniority | 0 / 144 / 1 / 0 | 🧪 | 🤖 |
 | 59 | H077 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | impianti sportivi, palestre e attività sportive | 35533 | 2024 | ⚠️ | base_salary, overtime, sickness | 0 / 32 / 1 / 1 | 🧪 | 🤖 |
 | 60 | A021 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | agricoltura | ~80k | 2024 | ⚠️ | base_salary, bilateral_funds, inps_employer | 7 / 8 / 1 / 1 | 🧪 | 🤖 |
-| 61 | B011 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | chimica | ~210k | — | ⚠️ | base_salary, leave, overtime, sickness | 116 / 6 / 0 / 0 | 🏭 | 🧑 |
+| 61 | B011 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | chimica | ~210k | — | ⚠️ | base_salary, leave, overtime, sickness, workplace_injury | 116 / 6 / 0 / 0 | 🏭 | 🧑 |
 | 62 | H05B | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | turismo — alberghi, campeggi, villaggi e strutture ricettive | ~40k | 2025 | ⚠️ | seniority, trattamento_integrativo | 36 / 10 / 1 / 0 | 🧪 | 🤖 |
 | 63 | G111 | [CCNL Industrie Cineaudiovisive (ANICA)](cinema-audiovisivi-industria.md) | Cinema e audiovisivo | ~2.3k | 2025 | ⚠️ | bilateral_funds, inps_employer | 1 / 62 / 1 / 0 | 🧪 | 🤖 |
 | 64 | HV40 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (GPG)](vigilanza-privata-assiv.md) | vigilanza-privata | ~85k | 2023 | ⚠️ | inps_employer, seniority | 0 / 49 / 1 / 0 | 🧪 | 🤖 |

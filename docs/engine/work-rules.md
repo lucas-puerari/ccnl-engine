@@ -32,6 +32,8 @@ amounts are `Decimal` values in EUR, validated on construction.
 | `ShiftWorkEvent` | `supplement_amount` or `hours` and `kind` (`ShiftKind`) | Shift allowance; INPS and IRPEF, no TFR |
 | `AbsenceEvent` | `hours`, `hourly_rate` (default `None`: the CCNL quota), `working_days`, `end_date`, `suspends_accrual` | Unpaid absence deducted from pay; reduces the INPS and TFR base |
 | `SicknessEpisode` | `episode_id`, `started_on`, `ended_on`, `relapse_of`, `prior_worked_days` (fixed-term), `hospital_stays`, `serious_illness` | Sickness episode; the engine derives the deduction, INPS indemnity, CCNL integration and carenza pay of the days in the run's month; see [Sickness](#sickness) |
+| `MaternityLeaveEvent` | `started_on`, `ended_on` | Compulsory maternity leave; the engine derives the deduction, the INPS indemnity it advances and the CCNL top-up of the days in the run's month; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
+| `WorkInjuryEvent` | `injury_on`, `ended_on` | Temporary inability after a work injury; the engine derives the deduction, the waiting period, the INAIL indemnity (advanced or not) and the CCNL top-up; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
 | `SickLeaveEvent` | `amount`, `sick_days`, `waiting_period_days` | Sick pay the caller computed: an override of the engine, never payable; INPS and IRPEF, no TFR |
 | `FringeEvent` | `amount` | Fringe benefit (art. 51 c. 3 TUIR); exempt while the year total stays within the threshold, then the whole year total is taxable; see [Fringe benefits](#fringe-benefits) |
 | `WelfareEvent` | `amount` | Welfare benefit; exempt from INPS and IRPEF, no TFR |
@@ -368,6 +370,41 @@ Not modelled, each a limitation of its CCNL: the payout of the residual
 permits at the CCNL deadline (Commercio 30 June, Federmeccanica conto ore
 after 24 months), the hours absorbed by a 38- or 39-hour week, sector, shift
 and comparto hours, and vertical part time.
+
+### Maternity leave and work injury
+
+A `MaternityLeaveEvent` or a `WorkInjuryEvent` is one absence over its
+days, like a sickness episode: pass the same event to every regular run
+whose month it touches. The run deducts the days at the CCNL daily quota
+(a whole calendar month deducts the whole monthly pay) and posts:
+
+- maternity (D.Lgs. 151/2001 artt. 22-23): the INPS indemnity, 80% of the
+  monthly pay over thirty plus the daily rateo of the extra months, for
+  every calendar day (`maternity_item`, advanced by the employer, outside
+  the INPS and TFR bases), and the CCNL top-up of the days within its limit
+  (`absence_integration_item`);
+- work injury (D.P.R. 1124/1965 artt. 68, 73, 116-117): the injury day is
+  paid in full and never deducted, the three days after it at the CCNL
+  waiting-period rate (60% by law), from the fourth day the INAIL
+  indemnity, 60% of the daily base to the ninetieth day and 75% after it
+  (`work_injury_item` when the CCNL makes the employer advance it), and the
+  CCNL top-up.
+
+A top-up on the net pay grosses the insurer share up by the worker's INPS
+rate. A month whose employed days are all indemnified (after the injury
+day) has no INPS minimum base: the days are credited with figurative
+contributions. A month partly indemnified has an undetermined minimum when
+its base is below the bound, as for any other absence.
+
+The bundle holds the CCNL treatment of turismo Federalberghi (art. 179:
+100% of the net pay for five months; art. 172: INAIL advanced to permanent
+workers only) and chimica Federchimica (art. 41: 100% of the gross pay for
+five months; art. 40 C: waiting period in full, INAIL advanced and topped
+up to the net pay). Elsewhere the run pays the statutory amounts and is
+`provisional` with the issue `insured_absence_ccnl_not_modelled`; without a
+CCNL daily quota it posts nothing and is `incomplete`
+(`insured_absence_without_daily_quota`). The pay of the month before is the
+monthly pay of the run: its variable pay is not known.
 
 ### Absences are bounded by the pay of the run
 

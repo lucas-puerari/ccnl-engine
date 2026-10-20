@@ -3188,6 +3188,10 @@
       {
         "kind": "info",
         "text": "LEAVE AT TERMINATION: no clause of the texts read (2010, 2014 version, 2024 ipotesi) states the basis of the indemnity for the ferie and permits not taken; the engine accrues and carries the balances and pays no residual (termination_residual_leave incomplete, termination_basis_not_sourced)."
+      },
+      {
+        "kind": "info",
+        "text": "INSURED ABSENCES: compulsory maternity leave (INPS 80% advanced, top-up to 100% of the net daily pay for five months, Art. 179) and work injury (injury day in full, carenza at 60%, INAIL advanced to permanent workers, no top-up, Artt. 170 and 172) as work_rules.insured_absence."
       }
     ]
   },
@@ -3198,7 +3202,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "71aa749d0f8e6500185680172b14ee48beebb832f67d937dedcadc78a8343b23",
+    "source_hash": "6dc900963be8f02f1537ddf2814d1447e0995969aa7d6ad5699c1a8c31ae6ca0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3686,6 +3690,72 @@
           "review_id": "2026-10-13-ai-production"
         }
       }
+    },
+    "insured_absence": {
+      "maternity": {
+        "integration_rate": "1",
+        "integration_days": 150,
+        "net_basis": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-turismo-2010",
+              "title": "CCNL Turismo 20 febbraio 2010, testo firmato (UILTuCS)",
+              "kind": "associazione",
+              "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+            },
+            "page": "153",
+            "section": "Art. 179 - Integrazione",
+            "quote": "Durante l'astensione obbligatoria, la lavoratrice ha diritto, per un periodo di cinque mesi, ad un'integrazione dell'indennità a carico dell'INPS, da corrispondersi dal datore di lavoro, a proprio carico, in modo da raggiungere complessivamente la misura del cento per cento della retribuzione giornaliera netta"
+          },
+          "transformation": "Top-up to 100% of the net daily pay for five months of the compulsory leave (150 days from its first day), net basis: the INPS share, free of contributions, is grossed up by the worker's INPS rate.",
+          "note": "Read by OCR on the page image of the signed 2010 text (2026-10-20). Five months taken as 150 days. The 2024 renewal does not amend Art. 179.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-20T16:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-20T16:00:00Z",
+            "review_id": "2026-10-20-ai-insured-absence",
+            "verification_status": "verified",
+            "effective_from": "2003-08-01"
+          }
+        }
+      },
+      "injury": {
+        "carenza_rate": "0.60",
+        "advanced": true,
+        "advanced_permanent_only": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-turismo-2010",
+              "title": "CCNL Turismo 20 febbraio 2010, testo firmato (UILTuCS)",
+              "kind": "associazione",
+              "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+            },
+            "page": "149",
+            "section": "Art. 170 c. 3 and Art. 172 - Anticipazione indennità Inail",
+            "quote": "il datore di lavoro corrisponderà al lavoratore assunto a tempo indeterminato, a titolo di anticipazione, l'indennità per inabilità temporanea assoluta e ne chiederà il rimborso all'Istituto assicuratore"
+          },
+          "transformation": "Injury day in full and 60% for the three days of carenza (Art. 170 c. 3, as D.P.R. 1124/1965 art. 73); the employer advances the INAIL indemnity to permanent workers (Art. 172); no top-up in the general part nor in the part of the aziende alberghiere (Art. 229 concerns uninsured impiegati only).",
+          "note": "Art. 170 c. 3 (OCR, p. 149): 'il datore di lavoro è tenuto a corrispondere ai lavoratori soggetti all'obbligo assicurativo contro gli infortuni sul lavoro l'intera retribuzione per la giornata in cui avviene l'infortunio ed una indennità pari al sessanta per cento della normale retribuzione giornaliera per i tre giorni successivi (periodo di carenza)'. Art. 172 c. 5: the advance is subject to INAIL authorisation.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-20T16:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-20T16:00:00Z",
+            "review_id": "2026-10-20-ai-insured-absence",
+            "verification_status": "verified",
+            "effective_from": "2010-02-20"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -3798,6 +3868,23 @@
         ],
         "findings": [
           "The values stated are those of the quoted clauses; what the texts leave open (month fractions, termination divisors, schedules and shift patterns) is not modelled and is recorded in the coverage notes."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-insured-absence",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The treatment of the compulsory maternity leave and of a work injury.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+          }
+        ],
+        "findings": [
+          "work_rules.insured_absence added from the articles cited in its provenance; statutory measures in absence/insured/rates.json (D.Lgs. 151/2001 artt. 22-23, D.P.R. 1124/1965 artt. 68, 73, 116-117)."
         ]
       }
     ],

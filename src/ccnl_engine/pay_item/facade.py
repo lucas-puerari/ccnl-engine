@@ -2,6 +2,7 @@
 
 from ccnl_engine.pay_item.models import (
     AbsenceDeduction,
+    AbsenceIntegrationItem,
     BaseSalaryEarning,
     BonusEarning,
     ContractRenewalArrears,
@@ -45,6 +46,7 @@ from ccnl_engine.pay_item.selection.policies import (
 
 __all__ = [
     "AbsenceDeduction",
+    "AbsenceIntegrationItem",
     "BaseSalaryEarning",
     "BonusEarning",
     "CompetencePeriod",

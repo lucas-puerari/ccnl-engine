@@ -9,6 +9,10 @@ from __future__ import annotations
 from collections.abc import Callable
 from typing import Any
 
+from ccnl_engine.absence.insured.handlers import (
+    _handle_maternity_leave,
+    _handle_work_injury,
+)
 from ccnl_engine.event.facade import (
     AbsenceEvent,
     ArrearsEvent,
@@ -17,6 +21,7 @@ from ccnl_engine.event.facade import (
     FringeEvent,
     HolidayWorkEvent,
     LeaveTakenEvent,
+    MaternityLeaveEvent,
     NightShiftEvent,
     OvertimeEvent,
     ShiftWorkEvent,
@@ -26,6 +31,7 @@ from ccnl_engine.event.facade import (
     TerminationTFREvent,
     TravelAllowanceEvent,
     WelfareEvent,
+    WorkInjuryEvent,
 )
 from ccnl_engine.event.handlers import (
     EventEffect,
@@ -69,4 +75,6 @@ _HANDLER_REGISTRY: dict[type, _EventHandlerFn] = {
     TerminationTFREvent: _handle_termination_tfr,
     SicknessEpisode: _handle_sickness_episode,
     LeaveTakenEvent: _handle_leave_taken,
+    MaternityLeaveEvent: _handle_maternity_leave,
+    WorkInjuryEvent: _handle_work_injury,
 }

@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, leave, overtime, sickness |
+| **Limits of this contract** | base_salary, leave, overtime, sickness, workplace_injury |
 
-13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+14 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-19 | claude-opus-5-5 (ai) | Hourly base of the time supplements and the supplements of ordinary night, holiday, Sunday, rest-day and shift work, read in the cited articles of the national text (text layer, or OCR of the scanned pages). AI review only: the same model extracted and checked the values. | corrected | hourly_base_method minimo_e_anzianita (was minimo_tabellare), now verified: the engine reads it to derive the hourly rate of an event without one.<br>Supplement bands added: CHIM_FESTIVO, CHIM_TURNO_DIURNO.<br>Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS. |
 | 2026-10-19 | claude-opus-5-5 (ai) | Leave accrual: the ferie twelfths and month rule, the hours of each permit bucket (ROL, ex festività or the pooled PAR), the new-hire ramps and the basis of the indemnity for the residual leave at termination, read on the text cited by each rule. An AI review: the extractor is also the verifier. | confirmed | The values stated are those of the quoted clauses; what the texts leave open (month fractions, termination divisors, schedules and shift patterns) is not modelled and is recorded in the coverage notes. |
 | 2026-10-20 | claude-opus-5-5 (ai) | The renewal within the window of L. 199/2025 art. 1 c. 7 and the minimo before its first tranche. | corrected | Ipotesi of 15 April 2025, first tranche from 1 July 2025: parameters.renewals.<br>p. 46: the July 2025 tranche also pays the last 20 EUR (D1) of the renewal of 13 June 2022, signed outside the window: the minimo before the renewal at D1 is 2239.26 + 20 = 2259.26. The 2022 tranche of the other categories is not printed in the 2025 text (its tables are announced, not attached): their increment stays unmeasured. |
+| 2026-10-20 | claude-opus-5-5 (ai) | The treatment of the compulsory maternity leave and of a work injury. | corrected | work_rules.insured_absence added from the articles cited in its provenance; statutory measures in absence/insured/rates.json (D.Lgs. 151/2001 artt. 22-23, D.P.R. 1124/1965 artt. 68, 73, 116-117). |
 
 ## Salary table
 
@@ -185,6 +186,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Source the current hours of the turnisti 3x5 and 3x6 and add the shift pattern as an employment fact.
+
+!!! warning "chimica-farmaceutica-federchimica/injury_full_pay_periods · workplace_injury · impact yes · open"
+    INSURED ABSENCES: compulsory maternity leave (top-up to 100% of the gross retribuzione globale di fatto for five months, Art. 41) and work injury (full net pay with the INAIL indemnity advanced, Art. 40 C) as work_rules.insured_absence. The full pay of an injury lasts three, four or five months by seniority and halves after: the engine tops up every injury day to 100%.
+
+    **Applies when:** `workplace_injury` applies.
+
+    **Remediation:** Count the injury days against the full-pay and half-pay periods of Art. 40 C, with the sickness of the same window.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.

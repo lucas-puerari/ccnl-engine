@@ -12,7 +12,9 @@ from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import (
     AbsenceEvent,
     ArrearsEvent,
+    MaternityLeaveEvent,
     WorkEvent,
+    WorkInjuryEvent,
 )
 from ccnl_engine.event.registry.handlers import (
     _HANDLER_REGISTRY,
@@ -40,6 +42,7 @@ from ccnl_engine.working_time.overtime.policies import CCNLOvertimeBands
 if TYPE_CHECKING:
     from datetime import date
 
+    from ccnl_engine.absence.insured.services import InsuredTerms
     from ccnl_engine.event.handlers import FringeThreshold
     from ccnl_engine.leave.handlers import LeaveTerms
     from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
@@ -88,6 +91,14 @@ def _check_event_date(
         InvalidInputError: When any validation fails.
     """
     if isinstance(event, ArrearsEvent):
+        return
+    if isinstance(event, (MaternityLeaveEvent, WorkInjuryEvent)):
+        if event.within(date_ctx.period_start, date_ctx.period_end) is None:
+            msg = (
+                f"event {idx} ({type(event).__name__}) does not touch period "
+                f"[{date_ctx.period_start}, {date_ctx.period_end}]"
+            )
+            raise InvalidInputError(msg)
         return
     if isinstance(event, SicknessEpisode):
         if event.within(date_ctx.period_start, date_ctx.period_end) is None:
@@ -206,6 +217,7 @@ def _process_events(
     overtime_bands: CCNLOvertimeBands | None = None,
     hourly: HourlyTerms | None = None,
     sickness: SicknessTerms | None = None,
+    insured: InsuredTerms | None = None,
     travel_allowance: TravelAllowanceRules | None = None,
     standby: StandbyTerms | None = None,
     ccnl_travel: TravelTerms | None = None,
@@ -250,6 +262,7 @@ def _process_events(
         overtime_bands=overtime_bands or CCNLOvertimeBands(),
         hourly=hourly or HourlyTerms(),
         sickness=terms,
+        insured=insured,
         travel_allowance=travel_allowance,
         standby=standby,
         ccnl_travel=ccnl_travel,

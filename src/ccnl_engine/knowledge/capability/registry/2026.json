@@ -103,28 +103,31 @@
     {
       "feature": "maternity_leave",
       "layer": "work_rules",
-      "implementation": "unsupported",
-      "applies_when": "outside_input",
-      "handler": null,
+      "implementation": "native",
+      "applies_when": "event",
+      "handler": "event",
       "evidence": "derived",
-      "variants": [],
-      "required_facts": [
-        "facts.events[maternity_leave]"
+      "variants": [
+        "inps_indemnity",
+        "ccnl_top_up"
       ],
-      "description": "Indennità maternità INPS"
+      "required_facts": [],
+      "description": "Congedo di maternità: indennità INPS anticipata e integrazione CCNL"
     },
     {
       "feature": "workplace_injury",
       "layer": "work_rules",
-      "implementation": "unsupported",
-      "applies_when": "outside_input",
-      "handler": null,
+      "implementation": "native",
+      "applies_when": "event",
+      "handler": "event",
       "evidence": "derived",
-      "variants": [],
-      "required_facts": [
-        "facts.events[workplace_injury]"
+      "variants": [
+        "injury_day_and_carenza",
+        "inail_indemnity",
+        "ccnl_top_up"
       ],
-      "description": "Indennità infortunio INAIL"
+      "required_facts": [],
+      "description": "Infortunio sul lavoro: giorno dell'evento, carenza, indennità INAIL e integrazione CCNL"
     },
     {
       "feature": "termination_residual_leave",

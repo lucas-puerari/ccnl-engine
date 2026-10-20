@@ -56,8 +56,8 @@ formulas or caller-declared amounts.
 | Scope | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
 | core | 21 | 0 | 0 | 0 |
-| scenario | 7 | 8 | 2 | 0 |
-| outside_input | 0 | 0 | 0 | 13 |
+| scenario | 9 | 8 | 2 | 0 |
+| outside_input | 0 | 0 | 0 | 11 |
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -69,8 +69,8 @@ formulas or caller-declared amounts.
 | `inail` | Premio INAIL a carico azienda | outside_input | net | unsupported | outside_input | — | `employer.inail_tariff_rate` | — | unavailable | none bundled |
 | `contribution_exemption` | Esonero contributivo | outside_input | net | unsupported | outside_input | — | `employer.contribution_exemption` | — | unavailable | none bundled |
 | `fiscal_adjustment` | Conguaglio IRPEF da assistenza fiscale o periodo precedente | outside_input | net | unsupported | outside_input | — | `facts.fiscal_adjustment` | — | unavailable | none bundled |
-| `maternity_leave` | Indennità maternità INPS | outside_input | work_rules | unsupported | outside_input | — | `facts.events[maternity_leave]` | — | unavailable | none bundled |
-| `workplace_injury` | Indennità infortunio INAIL | outside_input | work_rules | unsupported | outside_input | — | `facts.events[workplace_injury]` | — | unavailable | none bundled |
+| `maternity_leave` | Congedo di maternità: indennità INPS anticipata e integrazione CCNL | scenario | work_rules | native | event | event | — | inps_indemnity, ccnl_top_up | implemented | none bundled |
+| `workplace_injury` | Infortunio sul lavoro: giorno dell'evento, carenza, indennità INAIL e integrazione CCNL | scenario | work_rules | native | event | event | — | injury_day_and_carenza, inail_indemnity, ccnl_top_up | implemented | none bundled |
 | `termination_residual_leave` | Indennità sostitutiva di ferie e permessi residui alla cessazione, sulla base del CCNL | scenario | gross | native | termination_run | decision | `employment.employment_period`, `opening_balances.leave_balances` | — | implemented | 0 / 2 / 0 / 0 |
 | `termination_tfr` | Liquidazione TFR a tassazione separata (artt. 17 e 19 TUIR): fondo, quote dell'anno e aliquota media calcolati, importo e aliquota del chiamante come override | scenario | net | native | event | event | — | — | implemented | 2 / 1 / 0 / 0 |
 | `contract_renewal_arrears` | Arretrati rinnovo contratto: tassazione separata se di anni precedenti (aliquota dal chiamante), ordinaria se dell'anno | scenario | gross | caller_supplied | event | event | — | — | caller-supplied | none bundled |
@@ -191,7 +191,7 @@ never grow.
 | 58 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | ⚠️ | inps_employer, pension_fund_contribution, seniority | 0 / 144 / 1 / 0 |
 | 59 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | ⚠️ | base_salary, overtime, sickness | 0 / 32 / 1 / 1 |
 | 60 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | ⚠️ | base_salary, bilateral_funds, inps_employer | 7 / 8 / 1 / 1 |
-| 61 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | ⚠️ | base_salary, leave, overtime, sickness | 116 / 6 / 0 / 0 |
+| 61 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | ⚠️ | base_salary, leave, overtime, sickness, workplace_injury | 116 / 6 / 0 / 0 |
 | 62 | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | ⚠️ | seniority, trattamento_integrativo | 36 / 10 / 1 / 0 |
 | 63 | [CCNL Industrie Cineaudiovisive (ANICA)](cinema-audiovisivi-industria.md) | ⚠️ | bilateral_funds, inps_employer | 1 / 62 / 1 / 0 |
 | 64 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (GPG)](vigilanza-privata-assiv.md) | ⚠️ | inps_employer, seniority | 0 / 49 / 1 / 0 |

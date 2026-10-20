@@ -18,6 +18,7 @@ from ccnl_engine.working_time.overtime.policies import CCNLOvertimeBands
 if TYPE_CHECKING:
     from datetime import date
 
+    from ccnl_engine.absence.insured.services import InsuredTerms
     from ccnl_engine.decision.models import (
         CalculationDecision,
         CalculationIssue,
@@ -101,6 +102,7 @@ class _EventHandlerCtx:
     overtime_bands: CCNLOvertimeBands = field(default_factory=CCNLOvertimeBands)
     hourly: HourlyTerms = field(default_factory=HourlyTerms)
     sickness: SicknessTerms = field(default_factory=SicknessTerms)
+    insured: InsuredTerms | None = None
     travel_allowance: TravelAllowanceRules | None = None
     standby: StandbyTerms | None = None
     ccnl_travel: TravelTerms | None = None

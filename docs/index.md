@@ -96,6 +96,7 @@ change gross, net and employer cost according to their treatment. See
 - Night, holiday and shift supplements, with the 2026 substitute tax:
   `NightShiftEvent`, `HolidayWorkEvent`, `ShiftWorkEvent`
 - Unpaid absences and sickness: `AbsenceEvent`, `SicknessEpisode`, `SickLeaveEvent` (override)
+- Maternity leave and work injury: `MaternityLeaveEvent`, `WorkInjuryEvent`
 - Bonuses (ordinary, *premio di risultato* with its flat tax, renewal
   increments): `BonusEvent`
 - Welfare and fringe benefits: `WelfareEvent`, `FringeEvent`
