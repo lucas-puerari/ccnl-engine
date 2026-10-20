@@ -62,8 +62,8 @@ def _year() -> CompetenceYearResult:
             2026,
             _CCNL,
             "C3",
-            weekly_hours=WeeklyHours(33),
-            full_time_weekly_hours=WeeklyHours(40),
+            weekly_hours=WeeklyHours(Decimal(33)),
+            full_time_weekly_hours=WeeklyHours(Decimal(40)),
             events={"2026-12-thirteenth": (_ABSENCE,)},
         )
     )
@@ -150,8 +150,8 @@ def _terminated() -> CompetenceYearResult:
             2026,
             _CCNL,
             "C3",
-            weekly_hours=WeeklyHours(38),
-            full_time_weekly_hours=WeeklyHours(40),
+            weekly_hours=WeeklyHours(Decimal(38)),
+            full_time_weekly_hours=WeeklyHours(Decimal(40)),
             employment_period=EmploymentPeriod(
                 started_on=date(2026, 1, 1), ended_on=date(2026, 11, 30)
             ),

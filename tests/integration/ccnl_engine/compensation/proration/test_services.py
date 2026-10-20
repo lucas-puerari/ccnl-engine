@@ -15,6 +15,7 @@ from ccnl_engine.compensation.element.types import MonthlyPayChain
 from ccnl_engine.compensation.proration.services import (
     FULL_MONTH,
     HOURS_UNKNOWN,
+    MONTH_NOT_WORKED,
     PAID_BY_THE_HOUR,
     POSTED_BY_ANOTHER_RUN,
     PRORATED,
@@ -27,6 +28,7 @@ from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
     EmploymentPeriod,
     WeeklyHours,
+    WorkPattern,
 )
 from ccnl_engine.run.models import PayrollRun, RunKind
 
@@ -48,17 +50,20 @@ def _request(
     year: int = 2026,
     month: int = 3,
     closed: tuple[PayrollRunId, ...] = (),
+    pattern: WorkPattern | None = None,
 ) -> PeriodCalculationRequest:
     """Return the fields of a request the proration reads.
 
     Returns:
         A request of ``year``-``month`` for an employment from ``started_on``,
-        opening on a state that closed the runs ``closed``.
+        opening on a state that closed the runs ``closed``, with the work
+        pattern ``pattern``.
     """
     fake = SimpleNamespace(
         employment_period=EmploymentPeriod(started_on=started_on),
         period_id=SimpleNamespace(year=year, month=month),
         opening_state=SimpleNamespace(accrual=SimpleNamespace(competence_runs=closed)),
+        work_pattern=pattern,
     )
     return cast("PeriodCalculationRequest", fake)
 
@@ -125,7 +130,9 @@ def test_adjustment_run_posts_no_monthly_pay() -> None:
 def test_untracked_employment_is_a_full_month() -> None:
     """Without an employment period every month is a full month."""
     fake = SimpleNamespace(
-        employment_period=None, period_id=SimpleNamespace(year=2026, month=3)
+        employment_period=None,
+        period_id=SimpleNamespace(year=2026, month=3),
+        work_pattern=None,
     )
     proration = run_proration(
         cast("PeriodCalculationRequest", fake),
@@ -229,9 +236,10 @@ def _hourly_request(
         period_id=SimpleNamespace(year=2026, month=3),
         opening_state=SimpleNamespace(accrual=SimpleNamespace(competence_runs=())),
         ordinary_hours_worked=None if hours is None else ContributableHours(hours),
-        weekly_hours=None if weekly is None else WeeklyHours(weekly),
-        full_time_weekly_hours=None if weekly is None else WeeklyHours(40),
+        weekly_hours=None if weekly is None else WeeklyHours(Decimal(weekly)),
+        full_time_weekly_hours=None if weekly is None else WeeklyHours(Decimal(40)),
         events=(),
+        work_pattern=None,
     )
     return cast("PeriodCalculationRequest", fake)
 
@@ -328,3 +336,36 @@ def test_other_workers_and_runs_are_paid_by_the_month(
     )
 
     assert proration is FULL_MONTH
+
+
+_JANUARY_TO_JUNE = WorkPattern(months=frozenset(range(1, 7)))
+
+
+@pytest.mark.parametrize("kind", [RunKind.REGULAR, RunKind.TERMINATION])
+def test_a_month_not_worked_posts_no_monthly_pay(kind: RunKind) -> None:
+    """A vertical part time worked January to June is paid nothing in July."""
+    request = _request(date(2026, 1, 1), month=7, pattern=_JANUARY_TO_JUNE)
+    proration = run_proration(request, load_ccnl(_FEDERMECCANICA), kind)
+
+    assert proration.idle
+    assert not proration.posts_pay
+    assert proration.reason == MONTH_NOT_WORKED
+    assert proration.inputs() == {"month_worked": "false"}
+    assert proration.issue() is None
+    assert not proration.missing
+    assert proration.apply(_CHAIN).base == Decimal("0.00")
+
+
+def test_a_month_worked_is_a_full_month() -> None:
+    """In a month of the pattern the monthly pay is posted in full."""
+    request = _request(date(2026, 1, 1), month=6, pattern=_JANUARY_TO_JUNE)
+    assert run_proration(request, load_ccnl(_FEDERMECCANICA), RunKind.REGULAR) == (
+        FULL_MONTH
+    )
+
+
+def test_an_extra_month_run_is_not_idle() -> None:
+    """The tredicesima paid in a month not worked keeps its own chain."""
+    request = _request(date(2026, 1, 1), month=12, pattern=_JANUARY_TO_JUNE)
+    proration = run_proration(request, load_ccnl(_FEDERMECCANICA), RunKind.THIRTEENTH)
+    assert proration == FULL_MONTH

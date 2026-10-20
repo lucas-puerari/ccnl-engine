@@ -44,6 +44,7 @@ demo/
     └── packages/                              the wheel the site installs
 
 scripts/
+├── architecture/  check.py  baseline.json
 ├── provenance/    check.py  assign.py  demote.py  rules.py  baseline.json
 │   ├── evidence/  check.py
 │   ├── fiscal/    rules.py

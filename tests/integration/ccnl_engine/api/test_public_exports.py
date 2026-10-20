@@ -102,6 +102,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "TfrFundBalance",
         "WeeklyHours",
         "WorkCalendar",
+        "WorkPattern",
         "WorkerCategory",
         "period_state_from_json",
         "period_state_to_json",

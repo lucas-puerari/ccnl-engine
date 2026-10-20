@@ -47,8 +47,8 @@ result = engine.calculate_period(
             level_code=LEVEL,
             contract_type=Permanent(),
             seniority=SENIORITY,
-            weekly_hours=WeeklyHours(40),
-            full_time_weekly_hours=WeeklyHours(40),
+            weekly_hours=WeeklyHours(Decimal(40)),
+            full_time_weekly_hours=WeeklyHours(Decimal(40)),
         ),
         employer=EmployerProfile(headcount=Headcount(1)),
         facts=PeriodFacts(

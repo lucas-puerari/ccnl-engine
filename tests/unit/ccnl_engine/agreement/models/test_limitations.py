@@ -8,8 +8,8 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.agreement.facade import CCNL, CoverageNote
-from ccnl_engine.assurance.models import ResultTotal
 from ccnl_engine.limitation.models import MonetaryImpact
+from ccnl_engine.limitation.types import ResultTotal
 from tests.unit.ccnl_engine.builders import make_ccnl_dict
 
 _SPEC: dict[str, Any] = {

@@ -1,4 +1,4 @@
-.PHONY: setup format check lint typecheck complexity test generate rehash docs demo
+.PHONY: setup format check lint typecheck complexity architecture test generate rehash docs demo
 
 SITE := demo/release/site
 PACKAGES := demo/release/packages
@@ -16,7 +16,7 @@ format:
 	uv run ruff format src tests scripts
 	uv run ruff check --fix src tests scripts
 
-check: lint typecheck complexity test
+check: lint typecheck complexity architecture test
 
 lint:
 	uv run ruff check src tests scripts
@@ -28,6 +28,9 @@ typecheck:
 
 complexity:
 	uv run complexipy src tests scripts
+
+architecture:
+	uv run python scripts/architecture/check.py
 
 test:
 	uv run pytest

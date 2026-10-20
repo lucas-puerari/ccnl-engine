@@ -35,6 +35,7 @@ from ccnl_engine.employment.fact.inputs import (
     EmploymentPeriod,
     PublicEndOfService,
     WeeklyHours,
+    WorkPattern,
 )
 from ccnl_engine.employment.fixed_term.inputs import NaspiExclusion
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
@@ -120,6 +121,7 @@ __all__ = [
     "TfrFundBalance",
     "WeeklyHours",
     "WorkCalendar",
+    "WorkPattern",
     "WorkerCategory",
     "period_state_from_json",
     "period_state_to_json",

@@ -206,7 +206,7 @@ def _hourly(spec: ContractualFundContribution, ctx: RunContext) -> ContractualRu
 
 
 def _pays_month(ctx: RunContext) -> bool:
-    return ctx.run_kind in _PAYING_KINDS and ctx.proration.posted_by is None
+    return ctx.run_kind in _PAYING_KINDS and ctx.proration.posts_pay
 
 
 def _series(

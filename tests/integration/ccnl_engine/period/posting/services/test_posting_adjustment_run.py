@@ -179,8 +179,8 @@ def _absence_year() -> CompetenceYearResult:
             2026,
             _CCNL,
             "C3",
-            weekly_hours=WeeklyHours(33),
-            full_time_weekly_hours=WeeklyHours(40),
+            weekly_hours=WeeklyHours(Decimal(33)),
+            full_time_weekly_hours=WeeklyHours(Decimal(40)),
             events={"2026-12-thirteenth": (absence,)},
         )
     )
@@ -194,8 +194,8 @@ def test_adjustment_restoring_the_deduction_closes_the_plan() -> None:
         2026,
         _CCNL,
         "C3",
-        weekly_hours=WeeklyHours(33),
-        full_time_weekly_hours=WeeklyHours(40),
+        weekly_hours=WeeklyHours(Decimal(33)),
+        full_time_weekly_hours=WeeklyHours(Decimal(40)),
     ).employment
     result = PayrollEngine().calculate_period(
         PeriodInput(

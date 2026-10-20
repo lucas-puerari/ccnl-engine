@@ -28,7 +28,7 @@ if TYPE_CHECKING:
 _ZERO = Decimal(0)
 
 
-def _int_value(fact: WeeklyHours | None) -> int | None:
+def _hours_value(fact: WeeklyHours | None) -> Decimal | None:
     return None if fact is None else fact.value
 
 

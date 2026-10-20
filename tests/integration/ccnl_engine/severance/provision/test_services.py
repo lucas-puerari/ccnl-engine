@@ -36,7 +36,7 @@ if TYPE_CHECKING:
 _DOMESTIC: dict[str, object] = {
     "ccnl_id": "lavoro-domestico-convivente",
     "level_code": "A",
-    "weekly_hours": WeeklyHours(40),
+    "weekly_hours": WeeklyHours(Decimal(40)),
     "contributable_hours": ContributableHours(Decimal(173)),
 }
 _PUBLIC: dict[str, object] = {

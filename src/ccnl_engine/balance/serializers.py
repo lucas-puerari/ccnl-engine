@@ -1,7 +1,7 @@
 """JSON form of a :class:`~ccnl_engine.balance.models.PeriodState`.
 
 A state persisted between runs is plain JSON: the tagged tree of
-:mod:`ccnl_engine.interchange.serializers`, where every value is written
+:mod:`ccnl_engine.codec.serializers`, where every value is written
 with a tag that names its type.  The envelope carries the schema
 version and the engine and knowledge-bundle versions that wrote it.  Reading
 checks only the schema: a state of an earlier schema, back to
@@ -35,9 +35,10 @@ from ccnl_engine.balance.obligation.models import (
     RecoveryObligation,
 )
 from ccnl_engine.calendar.payment.models import PaymentId
+from ccnl_engine.codec.serializers import encode, loads, reject
+from ccnl_engine.codec.tree.serializers import read_tree
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.employment.spell.models import EmploymentSpell
-from ccnl_engine.interchange.serializers import encode, loads, read_tree, reject
 from ccnl_engine.run.models import PayrollRunId
 from ccnl_engine.run.types import RunKind
 from ccnl_engine.sickness.models import SicknessEpisode

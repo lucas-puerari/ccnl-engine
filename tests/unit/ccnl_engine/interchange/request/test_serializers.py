@@ -25,6 +25,7 @@ from ccnl_engine.employment.fact.inputs import (
     EmploymentPeriod,
     PublicEndOfService,
     WeeklyHours,
+    WorkPattern,
 )
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm, NaspiExclusion
 from ccnl_engine.employment.inputs import Apprentice, Contract, Employment, Permanent
@@ -149,8 +150,12 @@ def _employment(contract: Contract) -> Employment:
         contract_type=contract,
         category=WorkerCategory.IMPIEGATO,
         employment_period=EmploymentPeriod(date(2020, 1, 1), date(2030, 12, 31)),
-        weekly_hours=WeeklyHours(30),
-        full_time_weekly_hours=WeeklyHours(40),
+        weekly_hours=WeeklyHours(Decimal(30)),
+        full_time_weekly_hours=WeeklyHours(Decimal(40)),
+        work_pattern=WorkPattern(
+            weekday_hours=(Decimal(6),) * 5 + (Decimal(0),) * 2,
+            months=frozenset(range(1, 12)),
+        ),
         seniority=SeniorityFact(60, date(2025, 12, 31), next(iter(SenioritySource))),
         roles=frozenset({"capo_squadra", "addetto_primo_soccorso"}),
         contribution_history=ContributionHistory(date(2001, 9, 1)),

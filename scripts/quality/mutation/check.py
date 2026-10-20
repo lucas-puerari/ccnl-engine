@@ -11,7 +11,7 @@ Two campaigns use it, both reading the per-mutant exit codes mutmut keeps in
   ``--changed-since REF`` then scores those modules alone.
 
 The core modules must reach ``--min-score`` together.  A module listed in
-``baseline.json`` (the event handlers that move money) entered the
+``baseline.json`` (the money-path modules added in October 2026) entered the
 perimeter below that minimum: it must keep its own floor, so its score
 cannot fall, and the floor is raised as tests kill its survivors.
 
@@ -48,7 +48,7 @@ _MUTANTS = Path("mutants")
 _RECORD_PATH = _MUTANTS / "mutation-score.json"
 #: Modules that entered the perimeter below the minimum, with their floor.
 BASELINE = Path(__file__).with_name("baseline.json")
-_DEFAULT_MIN_SCORE = 90.0
+_DEFAULT_MIN_SCORE = 93.0
 #: Exit codes of a mutant run that kill it (mutmut ``status_by_exit_code``).
 _KILLED = frozenset({1, 3})
 #: Exit code of a mutant that survived.

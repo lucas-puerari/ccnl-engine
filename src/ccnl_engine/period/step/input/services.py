@@ -34,7 +34,7 @@ from ccnl_engine.family.child.rules import (
 from ccnl_engine.family.inputs import DependentRelationship
 from ccnl_engine.fund.assistance.policies import assistance_terms
 from ccnl_engine.fund.contractual.rules import contractual_run
-from ccnl_engine.pay_item.services import _int_value
+from ccnl_engine.pay_item.services import _hours_value
 from ccnl_engine.pension_fund.decision.services import pension_terms
 from ccnl_engine.run.models import RunKind
 from ccnl_engine.severance.provision.services import (
@@ -240,7 +240,7 @@ def amounts_input(
         ivs_ceiling_applies=ivs_ceiling_applies,
         inps_minimum=inps_minimum,
         pdr_rules=ctx.var_pay_rules.pdr,
-        weekly_hours=_int_value(request.weekly_hours),
+        weekly_hours=_hours_value(request.weekly_hours),
         contributable_hours=_contributable_hours(request),
         domestic_hourly_rate=_domestic_rate(ctx),
         eligible_work_days=spell_days(ctx.employment_spells),
@@ -279,7 +279,7 @@ def _domestic_rate(ctx: RunContext) -> Decimal | None:
         contract.ccnl,
         contract.year_rules,
         ctx.regular_gross + ctx.regular_chain.in_kind_total,
-        _int_value(ctx.request.weekly_hours),
+        _hours_value(ctx.request.weekly_hours),
         contract.tctx.competence,
     )
 

@@ -12,6 +12,8 @@ from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
     EmploymentPeriod,
     WeeklyHours,
+    WorkPattern,
+    check_pattern_hours,
     check_within_full_time,
 )
 from ccnl_engine.employment.inputs import Employment, Permanent
@@ -28,27 +30,129 @@ _SENIORITY = SeniorityFact(36, _START, SenioritySource.PAYSLIP)
 
 
 class TestWeeklyHours:
-    """Weekly hours are strictly positive."""
+    """Weekly hours are a positive Decimal of at most two places, up to 168."""
 
-    def test_accepts_positive(self) -> None:
-        """Positive hours are valid."""
-        assert WeeklyHours(25).value == 25
+    @pytest.mark.parametrize("value", ["25", "37.5", "37.25", "168"])
+    def test_accepts_positive_hundredths(self, value: str) -> None:
+        """Whole, half and quarter hours up to a whole week are valid."""
+        assert WeeklyHours(Decimal(value)).value == Decimal(value)
 
-    @pytest.mark.parametrize("value", [0, -40])
-    def test_rejects_non_positive(self, value: int) -> None:
-        """Zero or negative weekly hours are impossible."""
+    @pytest.mark.parametrize("value", ["0", "-40", "168.01"])
+    def test_rejects_out_of_range(self, value: str) -> None:
+        """Zero, negative or more than a week of hours are impossible."""
         with pytest.raises(
-            InvalidInputError, match=r"WeeklyHours\.value must be an int >= 1"
+            InvalidInputError, match=r"WeeklyHours\.value must be a finite Decimal"
         ):
-            WeeklyHours(value)
+            WeeklyHours(Decimal(value))
 
-    @pytest.mark.parametrize("value", [True, 1.5, "3"])
-    def test_rejects_non_int(self, value: object) -> None:
-        """Bools, floats and strings are not silently coerced."""
+    def test_rejects_more_than_two_places(self) -> None:
+        """A thousandth of an hour is not a contracted hour."""
+        with pytest.raises(InvalidInputError, match="at most two decimal places"):
+            WeeklyHours(Decimal("37.125"))
+
+    def test_keeps_the_stated_exponent(self) -> None:
+        """Trailing zeros are allowed and the value is not re-quantized."""
+        assert str(WeeklyHours(Decimal("37.50")).value) == "37.50"
+
+    @pytest.mark.parametrize("value", [True, 40, 37.5, "3"])
+    def test_rejects_non_decimal(self, value: object) -> None:
+        """Bools, ints, floats and strings are not silently coerced."""
         with pytest.raises(
-            InvalidInputError, match=r"WeeklyHours\.value must be an int"
+            InvalidInputError, match=r"WeeklyHours\.value must be a finite Decimal"
         ):
             WeeklyHours(value)  # type: ignore[arg-type]
+
+
+_MON_WED = (Decimal(8), Decimal(8), Decimal(8), *(Decimal(0),) * 4)
+
+
+class TestWorkPattern:
+    """A pattern states the weekday hours, the months worked, or both."""
+
+    def test_weekday_hours_sum_to_the_week(self) -> None:
+        """Eight hours Monday to Wednesday are 24 hours a week."""
+        pattern = WorkPattern(weekday_hours=_MON_WED)
+        assert pattern.weekly_hours == Decimal(24)
+        assert pattern.works_in(8)
+
+    def test_a_list_of_days_is_stored_as_a_tuple(self) -> None:
+        """A list is accepted and normalised, as other public collections."""
+        pattern = WorkPattern(weekday_hours=list(_MON_WED))  # type: ignore[arg-type]
+        assert pattern.weekday_hours == _MON_WED
+
+    def test_months_without_days_state_no_weekly_hours(self) -> None:
+        """A vertical part time over the year leaves the week to weekly_hours."""
+        pattern = WorkPattern(months=frozenset(range(1, 7)))
+        assert pattern.weekly_hours is None
+        assert pattern.works_in(6)
+        assert not pattern.works_in(7)
+
+    def test_idle_days_are_the_days_of_the_months_not_worked(self) -> None:
+        """Only the days of months outside the pattern are idle."""
+        pattern = WorkPattern(months=frozenset({1}))
+        idle = pattern.idle_days(date(2026, 1, 30), date(2026, 2, 2))
+        assert idle == {date(2026, 2, 1), date(2026, 2, 2)}
+
+    def test_no_idle_day_without_months(self) -> None:
+        """A weekday pattern works every month."""
+        pattern = WorkPattern(weekday_hours=_MON_WED)
+        assert pattern.idle_days(date(2026, 1, 1), date(2026, 12, 31)) == frozenset()
+
+    def test_rejects_an_empty_pattern(self) -> None:
+        """A pattern stating nothing is a mistake, not a full time."""
+        with pytest.raises(InvalidInputError, match="weekday_hours, months or both"):
+            WorkPattern()
+
+    @pytest.mark.parametrize(
+        "days",
+        [
+            (Decimal(8),) * 6,
+            (Decimal(0),) * 7,
+            (Decimal(25), *(Decimal(0),) * 6),
+            (Decimal(-1), *(Decimal(8),) * 6),
+            (Decimal("7.125"), *(Decimal(0),) * 6),
+        ],
+    )
+    def test_rejects_invalid_weekday_hours(self, days: tuple[Decimal, ...]) -> None:
+        """Seven days of 0-24 hundredths of hours, at least one worked."""
+        with pytest.raises(InvalidInputError, match=r"WorkPattern\.weekday_hours"):
+            WorkPattern(weekday_hours=days)
+
+    @pytest.mark.parametrize("months", [frozenset(), frozenset({0}), frozenset({13})])
+    def test_rejects_invalid_months(self, months: frozenset[int]) -> None:
+        """At least one month, each from 1 to 12."""
+        with pytest.raises(InvalidInputError, match=r"WorkPattern\.months"):
+            WorkPattern(months=months)
+
+    def test_rejects_a_mutable_set_of_months(self) -> None:
+        """The input is immutable, as Employment.roles."""
+        with pytest.raises(InvalidInputError, match=r"WorkPattern\.months"):
+            WorkPattern(months={1, 2})  # type: ignore[arg-type]
+
+
+class TestCheckPatternHours:
+    """Weekday hours must sum to the contracted weekly hours."""
+
+    @pytest.mark.parametrize("pattern", [None, WorkPattern(months=frozenset({1}))])
+    def test_nothing_to_check_without_weekday_hours(
+        self, pattern: WorkPattern | None
+    ) -> None:
+        """Without days the weekly hours are not compared."""
+        check_pattern_hours(None, pattern)
+
+    def test_accepts_matching_hours(self) -> None:
+        """24 weekday hours match 24 weekly hours."""
+        check_pattern_hours(
+            WeeklyHours(Decimal(24)), WorkPattern(weekday_hours=_MON_WED)
+        )
+
+    @pytest.mark.parametrize("weekly", [None, WeeklyHours(Decimal(20))])
+    def test_rejects_missing_or_different_hours(
+        self, weekly: WeeklyHours | None
+    ) -> None:
+        """The weekly hours are the single source of the part-time ratio."""
+        with pytest.raises(InvalidInputError, match="sum to 24 hours a week"):
+            check_pattern_hours(weekly, WorkPattern(weekday_hours=_MON_WED))
 
 
 class TestContributableHours:
@@ -168,7 +272,11 @@ class TestWithinFullTime:
 
     @pytest.mark.parametrize(
         ("weekly", "full_time"),
-        [(None, None), (WeeklyHours(60), None), (None, WeeklyHours(40))],
+        [
+            (None, None),
+            (WeeklyHours(Decimal(60)), None),
+            (None, WeeklyHours(Decimal(40))),
+        ],
     )
     def test_accepts_missing_values(
         self, weekly: WeeklyHours | None, full_time: WeeklyHours | None
@@ -178,12 +286,12 @@ class TestWithinFullTime:
 
     def test_accepts_equal_hours(self) -> None:
         """Full-time hours equal to the contract hours are valid."""
-        check_within_full_time(WeeklyHours(40), WeeklyHours(40))
+        check_within_full_time(WeeklyHours(Decimal(40)), WeeklyHours(Decimal(40)))
 
     def test_rejects_hours_above_full_time(self) -> None:
         """Sixty hours on a forty-hour full time is impossible."""
         with pytest.raises(InvalidInputError, match="must not exceed"):
-            check_within_full_time(WeeklyHours(60), WeeklyHours(40))
+            check_within_full_time(WeeklyHours(Decimal(60)), WeeklyHours(Decimal(40)))
 
     def test_period_request_rejects_hours_above_full_time(self) -> None:
         """The internal request enforces the same rule as the public facts."""
@@ -194,8 +302,8 @@ class TestWithinFullTime:
                 payment_date=date(2026, 1, 27),
                 ccnl_id="commercio-confcommercio",
                 level_code="4",
-                weekly_hours=WeeklyHours(60),
-                full_time_weekly_hours=WeeklyHours(40),
+                weekly_hours=WeeklyHours(Decimal(60)),
+                full_time_weekly_hours=WeeklyHours(Decimal(40)),
             )
 
 
@@ -207,14 +315,14 @@ class TestEmploymentValidation:
         employment = Employment(
             ccnl_id="commercio-confcommercio",
             level_code="4",
-            weekly_hours=WeeklyHours(20),
-            full_time_weekly_hours=WeeklyHours(40),
+            weekly_hours=WeeklyHours(Decimal(20)),
+            full_time_weekly_hours=WeeklyHours(Decimal(40)),
             seniority=_SENIORITY,
             employment_period=EmploymentPeriod(started_on=_START),
             contract_type=Permanent(),
         )
-        assert employment.weekly_hours == WeeklyHours(20)
-        assert employment.full_time_weekly_hours == WeeklyHours(40)
+        assert employment.weekly_hours == WeeklyHours(Decimal(20))
+        assert employment.full_time_weekly_hours == WeeklyHours(Decimal(40))
         assert employment.seniority == _SENIORITY
         assert employment.employment_period == EmploymentPeriod(started_on=_START)
 

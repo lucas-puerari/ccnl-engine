@@ -1,3 +1,12 @@
 {
-  "floors": {}
+  "floors": {
+    "src/ccnl_engine/compensation/element/rules.py": 62.5,
+    "src/ccnl_engine/contribution/services.py": 83.1,
+    "src/ccnl_engine/irpef/taxable/services.py": 88.0,
+    "src/ccnl_engine/irpef/computation/services.py": 84.8,
+    "src/ccnl_engine/extra_month/settlement/services.py": 80.3,
+    "src/ccnl_engine/extra_month/liquidation/services.py": 65.2,
+    "src/ccnl_engine/severance/revaluation/services.py": 82.5,
+    "src/ccnl_engine/severance/provision/services.py": 75.0
+  }
 }

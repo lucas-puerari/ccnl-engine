@@ -14,11 +14,11 @@ from ccnl_engine.assurance.models import (
     Payability,
     ResultAssurance,
     ResultBlocker,
-    ResultTotal,
     decide_payability,
 )
 from ccnl_engine.assurance.policies import EngineMode
 from ccnl_engine.decision.models import CalculationStatus
+from ccnl_engine.limitation.types import ResultTotal
 from ccnl_engine.provenance.ruleset.models import VerificationStatus
 from tests.unit.ccnl_engine.provenance.ruleset.builders import tax_ruleset
 
