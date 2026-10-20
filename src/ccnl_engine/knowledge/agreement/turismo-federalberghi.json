@@ -345,6 +345,207 @@
           "quote": "A 2.309,93 2.366,94 2.416,82 2.466,71 2.495,22"
         }
       }
+    ],
+    "health_funds": [
+      {
+        "code": "ebnt",
+        "description": "Quota contrattuale di servizio Ente Bilaterale Nazionale (EBNT) ed Enti Bilaterali Territoriali del Turismo, Art. 23 (as replaced by the ipotesi 5 luglio 2024)",
+        "employer": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2010-02-20",
+                "valid_until": null,
+                "value": "0.002"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2010-02-20",
+                "valid_until": null,
+                "value": "0.002"
+              }
+            ]
+          }
+        },
+        "extra_months": true,
+        "alternative": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-05",
+                "valid_until": null,
+                "value": "0.006"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "turismo2024",
+              "title": "CCNL Turismo Federalberghi, Ipotesi di accordo 5 luglio 2024 (scansione firmata)",
+              "kind": "associazione",
+              "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+              "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+            },
+            "page": "13",
+            "quote": "la quota contrattuale di servizio per il relativo finanziamento è fissata nella misura globale dello 0,40 per cento di paga base, per quattordici mensilità, di cui lo 0,20 per cento a carico del datore di lavoro e lo 0,20 per cento a carico del lavoratore. [...] (3) Conseguentemente, il datore di lavoro che ometta il versamento della suddetta quota è tenuto a corrispondere al lavoratore, per quattordici mensilità, un elemento distinto della retribuzione non assorbibile, pari allo 0,60% della paga base conglobata di cui all'articolo 152 del presente Contratto, comprensiva della ex indennità di contingenza. Tale elemento è utile ai fini del calcolo di tutti gli istituti contrattuali e di legge, incluso il trattamento di fine rapporto."
+          },
+          "note": "Comma 1 (0.40% = 0.20 + 0.20, x14) is in roman type, i.e. carried over from Art. 23 CCNL 2010; its original valid_from was not confirmed (2010 scan OCR unreadable). Commi 2-3 (the 0.60% EDR) are in italics, i.e. new 2024 wording: valid_from set to the ipotesi date 2024-07-05, effective date not stated on the page. Paying the EDR does not release the employer from liability for lost EBT benefits (c. 4). valid_from floored at CCNL 2010 (Art. 23 of 2010 is the text replaced in 2024; the 2010 scan was unreadable). Unconfirmed: Origin date of the 0.20+0.20 rate not readable in the 2010 scan; EDR effective date not stated (ipotesi date used)."
+        }
+      },
+      {
+        "code": "fast",
+        "description": "Fondo FAST, assistenza sanitaria integrativa turismo, Art. 163 (as replaced 2014 and 2024)",
+        "levels": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "6s",
+          "7"
+        ],
+        "permanent_only": true,
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2008-07-01",
+                "valid_until": "2027-07-01",
+                "value": "10.0"
+              },
+              {
+                "valid_from": "2027-07-01",
+                "valid_until": null,
+                "value": "13.0"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2014-07-01",
+                "valid_until": "2015-07-01",
+                "value": "1.0"
+              },
+              {
+                "valid_from": "2015-07-01",
+                "valid_until": null,
+                "value": "2.0"
+              }
+            ]
+          }
+        },
+        "employee_deductible": true,
+        "solidarity_rate": "0.1",
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-05",
+                "valid_until": null,
+                "value": "14.0"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "turismo2024",
+              "title": "CCNL Turismo Federalberghi, Ipotesi di accordo 5 luglio 2024 (scansione firmata)",
+              "kind": "associazione",
+              "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+              "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+            },
+            "page": "47",
+            "quote": "A decorrere dal 1° luglio 2015, per il finanziamento del fondo è dovuto un contributo pari a 12,00 euro mensili per ciascun iscritto, di cui 10,00 euro a carico del datore di lavoro e 2,00 euro a carico del lavoratore. A decorrere dal 1° luglio 2027, per il finanziamento del fondo è dovuto un contributo pari a 15,00 euro mensili per ciascun iscritto, di cui 13,00 euro a carico del datore di lavoro e 2,00 euro a carico del lavoratore. [...] (10) Conseguentemente, il datore di lavoro che ometta il versamento della suddetta quota è tenuto a corrispondere al lavoratore, per quattordici mensilità, un elemento distinto della retribuzione, non assorbibile, pari a 14,00 euro lordi, che rientra nella retribuzione di cui all'articolo 148 del presente Contratto, fermo restando il diritto al lavoratore al risarcimento del maggior danno subito. Tale elemento è utile ai fini del calcolo di tutti gli istituti contrattuali e di legge, incluso il trattamento di fine rapporto."
+          },
+          "note": "Comma 10 is italic (new 2024 wording); before it the 2014 text only provided liability for lost benefits (turismo2014 p. 20, c. 9), no fixed EDR. EDR valid_from = ipotesi date, effective date not stated. Unconfirmed: Effective date of the new 14 EUR EDR not stated; ipotesi date 2024-07-05 used."
+        }
+      },
+      {
+        "code": "quas",
+        "description": "Cassa Qu.A.S. assistenza sanitaria quadri, Art. 144 (as replaced 2024)",
+        "levels": [
+          "A",
+          "B"
+        ],
+        "employer": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2005-01-01",
+                "valid_until": "2008-01-01",
+                "value": "302.0"
+              },
+              {
+                "valid_from": "2008-01-01",
+                "valid_until": "2025-01-01",
+                "value": "340.0"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2026-01-01",
+                "value": "360.0"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "380.0"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2005-01-01",
+                "valid_until": "2008-01-01",
+                "value": "42.0"
+              },
+              {
+                "valid_from": "2008-01-01",
+                "valid_until": null,
+                "value": "50.0"
+              }
+            ]
+          }
+        },
+        "employee_deductible": true,
+        "solidarity_rate": "0.1",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "turismo2024",
+              "title": "CCNL Turismo Federalberghi, Ipotesi di accordo 5 luglio 2024 (scansione firmata)",
+              "kind": "associazione",
+              "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+              "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+            },
+            "page": "48",
+            "quote": "A decorrere dal 1° gennaio 2025, la relativa quota contributiva annua è fissata in euro 360 a carico del datore di lavoro e in euro 50 a carico del Quadro. A decorrere dal 1° gennaio 2026, la relativa quota contributiva annua è fissata in euro 380 a carico del datore di lavoro e in euro 50 a carico del Quadro."
+          },
+          "note": "Not in the repo coverage note. Annual amount; payment schedule set by the QuAS regulation (not checked)."
+        }
+      }
     ]
   },
   "levels": [
@@ -2938,19 +3139,6 @@
       },
       {
         "kind": "simplification",
-        "text": "HEALTH AND BILATERAL FUNDS: the EBNT/EBT quota (art. 23, p. 13) and the Fondo FAST (art. 163, pp. 47-48) are owed for every worker; an employer that omits them owes the worker instead the EDR of 0.60% of the paga base x 14 and EUR 14 x 14. Neither is modelled: the employer cost, and with the EDR the net pay, are short of them.",
-        "capability": "bilateral_funds",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "health_and_bilateral_funds",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "remediation": "Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "APPRENTICESHIP DURATIONS: the durations of the professionalizzante come from the accord of 17 April 2012 as amended in 2014, of which no signed or CNEL copy was found (only aggregator copies); the percentages of art. 58 are verified. Every apprentice run carries this limitation.",
         "capability": "base_salary",
         "monetary_impact": "yes",
@@ -2989,7 +3177,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "a1d2408c3fd9901694d9549d52b08fd7f448780013312999a50738f860a31026",
+    "source_hash": "72d0a663622a08640e9579c993504e95bd46c9fb17d4248a8b2d0807b7fbf940",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

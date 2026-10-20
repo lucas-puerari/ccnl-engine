@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, seniority, sickness, trattamento_integrativo |
+| **Limits of this contract** | base_salary, seniority, sickness, trattamento_integrativo |
 
-13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -175,13 +175,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the 2016 ramp.
-
-!!! warning "turismo-federalberghi/health_and_bilateral_funds · bilateral_funds · impact yes · open"
-    HEALTH AND BILATERAL FUNDS: the EBNT/EBT quota (art. 23, p. 13) and the Fondo FAST (art. 163, pp. 47-48) are owed for every worker; an employer that omits them owes the worker instead the EDR of 0.60% of the paga base x 14 and EUR 14 x 14. Neither is modelled: the employer cost, and with the EDR the net pay, are short of them.
-
-    **Applies when:** `bilateral_funds` applies.
-
-    **Remediation:** Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note.
 
 !!! warning "turismo-federalberghi/apprenticeship_durations_unsourced · base_salary · impact yes · open"
     APPRENTICESHIP DURATIONS: the durations of the professionalizzante come from the accord of 17 April 2012 as amended in 2014, of which no signed or CNEL copy was found (only aggregator copies); the percentages of art. 58 are verified. Every apprentice run carries this limitation.

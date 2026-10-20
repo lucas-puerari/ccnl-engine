@@ -75,7 +75,9 @@ def _june(engine: PayrollEngine, slug: str, level: str) -> PeriodResult | None:
                     pension_fund=NoPensionFund(),
                     contract_type=Permanent(),
                 ),
-                employer=EmployerProfile(headcount=Headcount(50)),
+                employer=EmployerProfile(
+                    headcount=Headcount(50), contractual_funds=frozenset()
+                ),
                 facts=_FACTS,
                 prior_year=RENEWAL_WAIVED,
             )

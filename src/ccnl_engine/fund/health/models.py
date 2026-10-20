@@ -22,10 +22,11 @@ __all__ = ["ContractualFund", "FundAmount"]
 
 
 class FundAmount(BaseModel):
-    """A monthly amount: fixed, a rate of the minimo, or both.
+    """A monthly amount: fixed, yearly, a rate of the minimo, or a sum.
 
     Attributes:
         monthly: Fixed amount a month, in EUR.
+        annual: Fixed amount a year, in EUR, charged a twelfth a month.
         rate: Fraction of the monthly minimo the run pays (paga base and
             contingenza, as the CCNL table gives them).
     """
@@ -33,12 +34,13 @@ class FundAmount(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     monthly: TimeSeries | None = None
+    annual: TimeSeries | None = None
     rate: TimeSeries | None = None
 
     @model_validator(mode="after")
     def _check_some(self) -> Self:
-        if self.monthly is None and self.rate is None:
-            msg = "a fund amount needs a monthly amount or a rate"
+        if self.monthly is None and self.annual is None and self.rate is None:
+            msg = "a fund amount needs a monthly or annual amount or a rate"
             raise ValueError(msg)
         return self
 
@@ -65,6 +67,9 @@ class ContractualFund(BaseModel):
         alternative_extra_months: Whether the element is paid on the extra
             months too (e.g. "per 14 mensilità").
         alternative_tfr: Whether the element enters the TFR base.
+        alternative_scaled: Whether the element follows the minimo of the
+            run (part time, partial month) like the pay it belongs to;
+            false when the CCNL owes it in full ("non riproporzionato").
         provenance: Source of the clause.
     """
 
@@ -83,4 +88,5 @@ class ContractualFund(BaseModel):
     alternative: FundAmount | None = None
     alternative_extra_months: bool = False
     alternative_tfr: bool = False
+    alternative_scaled: bool = True
     provenance: RuleProvenance

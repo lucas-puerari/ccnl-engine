@@ -53,6 +53,9 @@ _ELIGIBLE: Final = Decimal(25000)
 _EXCLUDED: Final = Decimal(40000)
 _WITH_DELIBERA: Final = "A005"
 _MILAN: Final = "F205"
+#: The employer pays every contractual fund of the pilots (codes of other
+#: CCNLs are ignored).
+_FUNDS_PAID: Final = frozenset({"ebnt", "fast", "quas", "ebt", "fondo_est"})
 
 #: Blockers of a worker eligible to the renewal regime: the increment paid
 #: inside the minimo is not quantified (REVIEW A1).
@@ -92,16 +95,8 @@ def _owed(ccnl_id: str, feature: str, limitation: str) -> Blocker:
 #: Blockers of each pilot that no fact of the base case clears.
 _SPECIFIC: Final[dict[str, frozenset[Blocker]]] = {
     "chimica-farmaceutica-federchimica": frozenset(),
-    "turismo-federalberghi": frozenset({
-        _owed("turismo-federalberghi", "bilateral_funds", "health_and_bilateral_funds")
-    }),
-    "pubblici-esercizi-fipe-angem": frozenset({
-        _owed(
-            "pubblici-esercizi-fipe-angem",
-            "bilateral_funds",
-            "health_and_bilateral_funds",
-        )
-    }),
+    "turismo-federalberghi": frozenset(),
+    "pubblici-esercizi-fipe-angem": frozenset(),
     "terziario-confesercenti": frozenset({
         _owed(
             "terziario-confesercenti",
@@ -210,7 +205,9 @@ def _base_case(
                 tfr_treasury_fund=True,
             ),
             employer=EmployerProfile(
-                headcount=Headcount(60), provincial_pay_element=False
+                headcount=Headcount(60),
+                provincial_pay_element=False,
+                contractual_funds=_FUNDS_PAID,
             ),
             prior_year=PriorYearTaxFacts(employment_income=income),
             current_year=CurrentYearTaxFacts(
