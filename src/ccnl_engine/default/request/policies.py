@@ -162,6 +162,10 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "undetermined and the run has a missing_fact full_time_weekly_hours "
         "blocker; without weekly_hours it is not read",
     ),
+    "Employment.work_pattern": absence_is_fact(
+        "a horizontal part time or a full time: every month is worked and "
+        "weekly_hours alone sets the part-time ratio"
+    ),
     "Employment.seniority": requires_fact(
         "seniority",
         "employment.seniority",
@@ -223,6 +227,15 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "uses the 1.9% rate of a worker without it, a run paying the "
         "tredicesima leaves the ERC out, and the run has a missing_fact "
         "erc_amount blocker",
+    ),
+    "EmployerProfile.contractual_funds": requires_fact(
+        "contractual_funds",
+        "employer.contractual_funds",
+        _REPORTED,
+        "unknown funds: on a CCNL that owes health or bilateral funds for "
+        "every worker, their shares and the elemento distinto owed instead "
+        "are left out and the run has a missing_fact contractual_funds "
+        "blocker; an empty set states that the employer pays none",
     ),
     "Employment.pension_fund": requires_fact(
         "pension_fund_contribution",

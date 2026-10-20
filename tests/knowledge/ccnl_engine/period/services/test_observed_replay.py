@@ -209,8 +209,10 @@ def _employment(inputs: dict[str, Any]) -> Employment:
             date.fromisoformat(hired),
             None if ended is None else date.fromisoformat(ended),
         ),
-        weekly_hours=None if hours is None else WeeklyHours(hours),
-        full_time_weekly_hours=None if full_time is None else WeeklyHours(full_time),
+        weekly_hours=None if hours is None else WeeklyHours(Decimal(hours)),
+        full_time_weekly_hours=None
+        if full_time is None
+        else WeeklyHours(Decimal(full_time)),
         seniority=_seniority(inputs),
         pension_fund=_pension_fund(inputs),
         tfr_treasury_fund=inputs.get("tfr_treasury_fund"),
@@ -468,8 +470,8 @@ def test_every_input_of_the_checker_reaches_the_request() -> None:
         date(2024, 3, 1), date(2026, 12, 31)
     )
     assert (employment.weekly_hours, employment.full_time_weekly_hours) == (
-        WeeklyHours(30),
-        WeeklyHours(40),
+        WeeklyHours(Decimal(30)),
+        WeeklyHours(Decimal(40)),
     )
     assert employment.seniority == SeniorityFact(
         33, date(2026, 12, 1), SenioritySource.PAYSLIP

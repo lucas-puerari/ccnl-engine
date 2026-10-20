@@ -78,7 +78,11 @@ def run_settlements(
         return ()
     calendar = effective_calendar(ccnl, run_id.year, None)
     settled = termination_settlements(
-        calendar, period, non_accruing_days(request.events), month_accrual_rule(ccnl)
+        calendar,
+        period,
+        non_accruing_days(request.events),
+        month_accrual_rule(ccnl),
+        pattern=request.work_pattern,
     )
     regular = PayrollRun.regular(run_id.year, ended_on.month).identifier
     accruals = settled[str(regular)]
@@ -119,7 +123,11 @@ def settlement_issues(
     regular = PayrollRun.regular(year, ended_on.month).identifier
     calendar = effective_calendar(ccnl, year, None)
     settled = termination_settlements(
-        calendar, period, non_accruing_days(request.events), month_accrual_rule(ccnl)
+        calendar,
+        period,
+        non_accruing_days(request.events),
+        month_accrual_rule(ccnl),
+        pattern=request.work_pattern,
     ).get(str(regular), ())
     run_id = run_identifier(request.run, month.year, month.month)
     if not settled or not _pays_month(request, run_id, regular):

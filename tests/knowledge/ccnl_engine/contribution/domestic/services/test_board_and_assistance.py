@@ -60,8 +60,8 @@ def _employment(slug: str = _CONVIVENTE, weekly: int = 54) -> Employment:
         ccnl_id=slug,
         level_code="CS",
         seniority=new_hire(),
-        weekly_hours=WeeklyHours(weekly),
-        full_time_weekly_hours=WeeklyHours(54 if slug == _CONVIVENTE else 40),
+        weekly_hours=WeeklyHours(Decimal(weekly)),
+        full_time_weekly_hours=WeeklyHours(Decimal(54 if slug == _CONVIVENTE else 40)),
         contract_type=Permanent(),
     )
 
@@ -172,8 +172,8 @@ def test_termination_ratei_include_board_and_lodging() -> None:
                 ccnl_id=_CONVIVENTE,
                 level_code="CS",
                 seniority=new_hire(),
-                weekly_hours=WeeklyHours(54),
-                full_time_weekly_hours=WeeklyHours(54),
+                weekly_hours=WeeklyHours(Decimal(54)),
+                full_time_weekly_hours=WeeklyHours(Decimal(54)),
                 contract_type=Permanent(),
                 employment_period=EmploymentPeriod(date(2026, 1, 1), date(2026, 6, 30)),
             ),

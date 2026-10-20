@@ -62,7 +62,9 @@ def _run(inputs: dict[str, Any]) -> PeriodResult:
                 ccnl_id=inputs["ccnl_id"],
                 level_code=inputs["level_code"],
                 contract_type=Permanent(),
-                weekly_hours=None if weekly is None else WeeklyHours(int(weekly)),
+                weekly_hours=None
+                if weekly is None
+                else WeeklyHours(Decimal(str(weekly))),
             ),
             employer=EmployerProfile(
                 headcount=Headcount(int(inputs["headcount"])),

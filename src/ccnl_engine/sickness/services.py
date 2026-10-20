@@ -103,7 +103,7 @@ def _employed(ctx: RunContext) -> tuple[date, date] | None:
         The employed span of a partial month or the whole month; ``None``
         for a run that posts no monthly pay.
     """
-    if ctx.run_kind not in _PAYING_KINDS or ctx.proration.posted_by is not None:
+    if ctx.run_kind not in _PAYING_KINDS or not ctx.proration.posts_pay:
         return None
     if ctx.proration.span is not None:
         return ctx.proration.span

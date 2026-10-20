@@ -16,7 +16,6 @@ from ccnl_engine.assurance.models import (
     Payability,
     ResultAssurance,
     ResultBlocker,
-    ResultTotal,
 )
 from ccnl_engine.capability.requirement.rules import UnresolvedRequirement
 from ccnl_engine.capability.results import CapabilityGap, CapabilityScope
@@ -38,6 +37,7 @@ from ccnl_engine.limitation.models import (
     ModelLimitation,
     MonetaryImpact,
 )
+from ccnl_engine.limitation.types import ResultTotal
 from ccnl_engine.year.coverage.models import UncoveredRun
 
 __all__ = [

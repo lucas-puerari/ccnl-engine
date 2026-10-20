@@ -18,6 +18,8 @@ from ccnl_engine.employment.fact.inputs import (
     EmploymentPeriod,
     PublicEndOfService,
     WeeklyHours,
+    WorkPattern,
+    check_pattern_hours,
     check_within_full_time,
 )
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm
@@ -134,6 +136,11 @@ class Employment:
             scales the pay for part time.
         full_time_weekly_hours: Full-time weekly hours of the contract.
             ``weekly_hours`` must not exceed it.
+        work_pattern: Vertical or mixed part time: the hours of each day of
+            the week, whose sum must equal ``weekly_hours``, and the months
+            of the year the worker works.  A month not worked pays no
+            monthly pay and accrues no extra-month rateo.  ``None`` for a
+            horizontal part time or a full time worked every month.
         seniority: Recognised seniority, aged by the engine to each run.
             ``None`` means not known: a run whose level pays seniority
             increments or service-gated allowances then has a
@@ -195,7 +202,8 @@ class Employment:
     Raises:
         InvalidInputError: When a field is not of its type, a role is not a
             non-blank string, ``weekly_hours`` exceeds
-            ``full_time_weekly_hours``, or ``category`` or ``sector`` names
+            ``full_time_weekly_hours`` or differs from the weekday hours of
+            ``work_pattern``, or ``category`` or ``sector`` names
             no known value.
     """
 
@@ -206,6 +214,7 @@ class Employment:
     employment_period: EmploymentPeriod | None = None
     weekly_hours: WeeklyHours | None = None
     full_time_weekly_hours: WeeklyHours | None = None
+    work_pattern: WorkPattern | None = None
     seniority: SeniorityFact | None = None
     roles: frozenset[str] | None = None
     contribution_history: ContributionHistory | None = None
@@ -247,6 +256,7 @@ class Employment:
             )
             object.__setattr__(self, "public_end_of_service", regime)
         check_within_full_time(self.weekly_hours, self.full_time_weekly_hours)
+        check_pattern_hours(self.weekly_hours, self.work_pattern)
         require_decimal(
             self.erc_amount,
             "Employment.erc_amount",
@@ -281,6 +291,7 @@ class Employment:
             ("employment_period", self.employment_period, EmploymentPeriod, True),
             ("weekly_hours", self.weekly_hours, WeeklyHours, True),
             ("full_time_weekly_hours", self.full_time_weekly_hours, WeeklyHours, True),
+            ("work_pattern", self.work_pattern, WorkPattern, True),
             ("seniority", self.seniority, SeniorityFact, True),
             (
                 "contribution_history",

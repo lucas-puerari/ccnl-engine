@@ -447,7 +447,7 @@ a directory uses it.
 `term`, `total`, `trace`, `transition`, `trattamento_integrativo`,
 `treatment`, `ulteriore_detrazione`, `validity`, `zone`.
 
-**Operations** (`scripts`): `capability_matrix`, `contract_example`,
+**Operations** (`scripts`): `architecture`, `capability_matrix`, `contract_example`,
 `contract_page`, `coverage_matrix`, `distribution`, `documentation`,
 `evidence`, `fiscal`, `label`, `manifest`, `mutation`, `provenance`,
 `quality`, `smoke`, `trust_count`.

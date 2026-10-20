@@ -63,6 +63,17 @@ Evidence:
   start of a month. The baseline is empty: the five handlers count in the
   93% minimum of the core.  The core twelve scored 859 of
   917 (93.7%) that day.
+  On 19 October 2026 the perimeter grew to the money path of every run:
+  the pay chain elements and their proration, the contributions service,
+  the IRPEF taxable and computation services and the separate taxation,
+  the extra-month settlement and liquidation, the TFR revaluation and
+  provision. Proration (96.9%) and separate taxation (100%) count in the
+  93% of the core; the other eight entered below it and keep a floor in
+  `baseline.json` at their score that day (pay chain elements 62.5%,
+  extra-month liquidation 65.2%, TFR provision 75.0%, extra-month
+  settlement 80.3%, TFR revaluation 82.5%, contributions 83.1%, IRPEF
+  computation 84.8%, IRPEF taxable 88.0%). The checker's default minimum is
+  93%, the one the workflows enforce.
 - Validation matrix: [Validation matrix](validation-matrix.md), generated
   in CI from the reference cases, the observed payslip replay, the sector
   oracles and the review log, crosses for each CCNL the source,

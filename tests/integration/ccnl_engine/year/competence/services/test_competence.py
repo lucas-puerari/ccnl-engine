@@ -8,6 +8,14 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine import (
+    CompetenceYearPlan,
+    EmployerProfile,
+    Employment,
+    Headcount,
+    PayrollEngine,
+    PeriodFacts,
+)
 from ccnl_engine.assurance.models import BlockerCode
 from ccnl_engine.calendar.inputs import (
     CalendarOverride,
@@ -19,6 +27,12 @@ from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.employment.inputs import Permanent
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import AbsenceEvent
+from ccnl_engine.inputs import (
+    FamilyComposition,
+    NoPensionFund,
+    SeniorityFact,
+    SenioritySource,
+)
 from ccnl_engine.period.services import calculate_period
 from ccnl_engine.run.models import RunKind
 from ccnl_engine.year.competence.services import (
@@ -381,3 +395,36 @@ class TestCalendarOverride:
             calculate_competence_year(
                 year_plan(_YEAR, _CCNL, _LEVEL, calendar_override=override)
             )
+
+
+def test_a_december_paid_in_the_next_tax_year_after_the_end_computes() -> None:
+    """A December paid on 20 January 2027 for an employment ended in 2026.
+
+    The run opens tax year 2027, in which the employment has no day: the
+    somma esente cannot annualise its income and grants nothing, instead
+    of dividing by zero.
+    """
+    hired = date(2026, 1, 1)
+    year = PayrollEngine.bundled().calculate_competence_year(
+        CompetenceYearPlan(
+            year=2026,
+            employment=Employment(
+                ccnl_id="commercio-confcommercio",
+                level_code="6",
+                contract_type=Permanent(),
+                employment_period=EmploymentPeriod(hired, date(2026, 12, 31)),
+                seniority=SeniorityFact.since(hired, SenioritySource.EMPLOYER_RECORDS),
+                pension_fund=NoPensionFund(),
+            ),
+            employer=EmployerProfile(headcount=Headcount(10)),
+            payment_dates={12: date(2027, 1, 20)},
+            default_facts=PeriodFacts(family_composition=FamilyComposition()),
+        )
+    )
+
+    (december,) = [
+        r for r in year.period_results if r.run and r.run.run_id == "2026-12-regular"
+    ]
+    assert december.payment_date == date(2027, 1, 20)
+    somma = [d for d in december.decisions if d.capability == "somma_esente"]
+    assert all(d.amount == 0 for d in somma)

@@ -24,6 +24,8 @@ state types.
 
 ::: ccnl_engine.inputs.WeeklyHours
 
+::: ccnl_engine.inputs.WorkPattern
+
 ::: ccnl_engine.inputs.ContributableHours
 
 ::: ccnl_engine.inputs.SeniorityFact

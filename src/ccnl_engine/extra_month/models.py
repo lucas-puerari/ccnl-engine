@@ -8,7 +8,9 @@ from the number of payroll runs already closed:
 
 - the window starts at the hire date when the worker was hired inside it;
 - it stops at the termination date when the employment ends inside it;
-- days of an absence that suspends accrual are not accruing days;
+- days of an absence that suspends accrual are not accruing days, nor are
+  the days of the months a vertical part time does not work
+  (:attr:`~ccnl_engine.employment.fact.inputs.WorkPattern.months`);
 - a calendar month qualifies when its accruing days compare with
   :attr:`MonthAccrualRule.min_days` as :attr:`MonthAccrualRule.comparison`
   says: the CCNL clause when the bundle has one, otherwise the engine
@@ -35,7 +37,7 @@ from ccnl_engine.compensation.models import AccrualComparison
 if TYPE_CHECKING:
     from collections.abc import Iterator
 
-    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+    from ccnl_engine.employment.fact.inputs import EmploymentPeriod, WorkPattern
     from ccnl_engine.extra_month.schedule.models import (
         AccrualWindow,
         ExtraMonthKind,
@@ -406,6 +408,7 @@ class ExtraMonthAccrual:
         non_accruing_days: frozenset[date] = frozenset(),
         rule: MonthAccrualRule = DEFAULT_MONTH_ACCRUAL_RULE,
         unknown_days: frozenset[date] = frozenset(),
+        pattern: WorkPattern | None = None,
     ) -> ExtraMonthAccrual:
         """Count the rateo of ``schedule`` paid in ``payment_year``.
 
@@ -418,6 +421,8 @@ class ExtraMonthAccrual:
             rule: Month-qualification rule.
             unknown_days: Days of absences whose suspension of accrual is
                 not stated, counted as accruing.
+            pattern: Work pattern of a vertical part time, whose months not
+                worked accrue nothing; ``None`` for every month worked.
 
         Returns:
             The accrual, with the window clipped to the hire date and
@@ -428,6 +433,8 @@ class ExtraMonthAccrual:
         window = schedule.accrual_window(payment_year, started_on)
         if ended_on is not None and ended_on >= window.end:
             ended_on = None
+        if pattern is not None:
+            non_accruing_days |= pattern.idle_days(window.start, window.end)
         months = rule.qualifying_months(
             window, ended_on=ended_on, non_accruing_days=non_accruing_days
         )

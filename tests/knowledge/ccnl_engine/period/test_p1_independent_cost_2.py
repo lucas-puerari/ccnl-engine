@@ -86,8 +86,8 @@ def test_domestic_cs_contributions(
             level_code="CS",
             seniority=new_hire(),
             contract_type=Permanent(),
-            weekly_hours=WeeklyHours(weekly),
-            full_time_weekly_hours=WeeklyHours(40),
+            weekly_hours=WeeklyHours(Decimal(weekly)),
+            full_time_weekly_hours=WeeklyHours(Decimal(40)),
         ),
         contributable_hours=ContributableHours(Decimal(hours)),
     )
@@ -105,8 +105,8 @@ def test_domestic_cs_hourly_minimum() -> None:
             level_code="CS",
             seniority=new_hire(),
             contract_type=Permanent(),
-            weekly_hours=WeeklyHours(40),
-            full_time_weekly_hours=WeeklyHours(40),
+            weekly_hours=WeeklyHours(Decimal(40)),
+            full_time_weekly_hours=WeeklyHours(Decimal(40)),
         ),
         contributable_hours=ContributableHours(Decimal(173)),
     )

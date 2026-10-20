@@ -87,5 +87,5 @@ def test_domestic_part_time_states_the_hours(demo_app: types.ModuleType) -> None
         )
     )["code"]
 
-    assert "weekly_hours=WeeklyHours(25)" in code
-    assert "full_time_weekly_hours=WeeklyHours(40)" in code
+    assert "weekly_hours=WeeklyHours(Decimal(25))" in code
+    assert "full_time_weekly_hours=WeeklyHours(Decimal(40))" in code

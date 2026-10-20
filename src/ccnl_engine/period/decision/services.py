@@ -87,8 +87,11 @@ def _base_salary(ctx: RunContext) -> CalculationDecision:
     and carries no amount.
 
     Returns:
-        A decision with reason ``pay_chain_applied``, ``pay_chain_prorated``
-        or ``partial_month_rule_missing``, and the chain gross.
+        A decision with the reason of the proration (``pay_chain_prorated``,
+        ``partial_month_rule_missing``, ``monthly_pay_posted_by_another_run``,
+        ``vertical_part_time_month_not_worked``, or a reason of the pay by
+        the hour), ``pay_chain_applied`` for a full month, and the chain
+        gross.
     """
     contract, chain, proration = ctx.contract, ctx.chain, ctx.proration
     rules = contract_rules(ctx)["base_salary"]

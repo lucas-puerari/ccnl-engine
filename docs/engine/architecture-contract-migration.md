@@ -92,9 +92,9 @@ concepts. Decided with it:
 - test files are `test_<role>.py`; scripts are named after an action;
   the examples get one directory per theme.
 
-`scripts/structure/check.py` records every module and directory that breaks
-the naming rules (`role_files`, `domain_directories`) in its shrink-only
-baseline, and the tier rule skips the legacy roots until they empty.
+The structure tooling of the migration was removed once the roots emptied
+(#860). `scripts/architecture/check.py` now enforces the tiers and the
+module size (see [Dependency tiers](architecture-contract.md#dependency-tiers)).
 
 ### Earlier amendments
 

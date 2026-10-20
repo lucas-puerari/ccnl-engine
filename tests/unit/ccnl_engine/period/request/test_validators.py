@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import date
+from decimal import Decimal
 from typing import Any
 
 import pytest
@@ -62,9 +63,10 @@ class TestFieldTypes:
     def test_typed_values_are_accepted(self) -> None:
         """Value objects of the declared types construct the request."""
         request = _request(
-            weekly_hours=WeeklyHours(20), full_time_weekly_hours=WeeklyHours(40)
+            weekly_hours=WeeklyHours(Decimal(20)),
+            full_time_weekly_hours=WeeklyHours(Decimal(40)),
         )
-        assert request.weekly_hours == WeeklyHours(20)
+        assert request.weekly_hours == WeeklyHours(Decimal(20))
 
 
 class TestRegularRunInEmployment:
