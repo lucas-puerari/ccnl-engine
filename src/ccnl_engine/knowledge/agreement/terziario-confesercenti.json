@@ -399,6 +399,260 @@
           "quote": "Quadro 2070,25 260,76 540,37 2871,38"
         }
       }
+    ],
+    "health_funds": [
+      {
+        "code": "ebt",
+        "description": "Ente Bilaterale Territoriale del Terziario, Art. 23",
+        "employer": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2000-01-01",
+                "valid_until": null,
+                "value": "0.001"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2000-01-01",
+                "valid_until": null,
+                "value": "0.0005"
+              }
+            ]
+          }
+        },
+        "extra_months": true,
+        "alternative": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2000-01-01",
+                "valid_until": "2011-03-01",
+                "value": "0.001"
+              },
+              {
+                "valid_from": "2011-03-01",
+                "valid_until": null,
+                "value": "0.003"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "confes2024",
+              "title": "CCNL Terziario Confesercenti, Ipotesi di accordo 22 marzo 2024 (CNEL 20260, scansione firmata)",
+              "kind": "associazione",
+              "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20260.pdf",
+              "sha256": "3b40cf4b51935290efb18c1ff22b3d1a51f7cd09720dc204c0f4295d3cf26cd9"
+            },
+            "page": "12",
+            "quote": "il contributo da destinare in favore dell'Ente Bilaterale Territoriale è stabilito nella misura dello 0,10%, a carico dell'azienda e dello 0,05% a carico del lavoratore su paga base e contingenza, per quattordici mensilità. [...] Dal 1° marzo 2011, l'e.d.r. di cui al comma precedente è di importo pari allo 0,30% di paga base e contingenza, corrisposto per 14 mensilità e rientra nella retribuzione di fatto, di cui all'art. 195."
+          },
+          "transformation": "Also: CCNL Terziario Confesercenti, Testo Unico 12 dicembre 2019, p. 39: il contributo da destinare in favore dell'Ente Bilaterale Territoriale è stabilito nella misura dello 0,10%, a carico dell'azienda e dello 0,05% a carico del lavoratore su paga base e contingenza.",
+          "note": "Not in the repo coverage note. The EDR clause cross-refers to 'art. 195' (stale numbering; art. 195 is Tubercolosi in the 2019 text, retribuzione di fatto is art. 208)."
+        }
+      },
+      {
+        "code": "aster",
+        "description": "Fondo ASTER, assistenza sanitaria integrativa, Art. 104 (as renewed 2024)",
+        "levels": [
+          "I",
+          "II",
+          "III",
+          "IV",
+          "V",
+          "VI",
+          "VII"
+        ],
+        "permanent_only": true,
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2005-09-01",
+                "valid_until": "2025-04-01",
+                "value": "10.0"
+              },
+              {
+                "valid_from": "2025-04-01",
+                "valid_until": null,
+                "value": "13.0"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2011-06-01",
+                "valid_until": "2012-01-01",
+                "value": "1.0"
+              },
+              {
+                "valid_from": "2012-01-01",
+                "valid_until": null,
+                "value": "2.0"
+              }
+            ]
+          }
+        },
+        "employee_deductible": true,
+        "solidarity_rate": "0.1",
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2019-12-12",
+                "valid_until": null,
+                "value": "16.0"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "confes2024",
+              "title": "CCNL Terziario Confesercenti, Ipotesi di accordo 22 marzo 2024 (CNEL 20260, scansione firmata)",
+              "kind": "associazione",
+              "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20260.pdf",
+              "sha256": "3b40cf4b51935290efb18c1ff22b3d1a51f7cd09720dc204c0f4295d3cf26cd9"
+            },
+            "page": "17",
+            "quote": "A decorrere dal 1° aprile 2025 il contributo obbligatorio a favore del Fondo è incrementato di euro 3,00 mensile, a carico del datore di lavoro."
+          },
+          "transformation": "Also: CCNL Terziario Confesercenti, Testo Unico 12 dicembre 2019, p. 84: per il personale assunto a tempo pieno, 10 euro mensili per ciascun iscritto, con decorrenza dal 1° settembre 2005; CCNL Terziario Confesercenti, Testo Unico 12 dicembre 2019, p. 85: l'azienda che ometta il versamento delle suddette quote è tenuta ad erogare al lavoratore un elemento distinto della retribuzione non assorbibile di importo pari ad euro 16,00 lordi, da corrispondere per 14 mensilità e che rientra nella retribuzione di fatto, di cui all'art. 208.",
+          "note": "Repo note omits the +3 EUR employer increase from 2025-04-01. Alternative 'con decorrenza dal mese successivo alla data di sottoscrizione del presente CCNL' (start date of the originating CCNL not identified). Unconfirmed: Clause dates the EDR from the month after signature of an earlier CCNL, not identified."
+        }
+      },
+      {
+        "code": "quas",
+        "description": "Assistenza sanitaria quadri, Artt. 105-106 (Hygeia mutua sanitaria pending statutory harmonisation; Qu.A.S. via convention)",
+        "levels": [
+          "Q"
+        ],
+        "employer": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2011-06-01",
+                "valid_until": "2025-01-01",
+                "value": "350.0"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2026-01-01",
+                "value": "370.0"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "390.0"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2011-06-01",
+                "valid_until": null,
+                "value": "56.0"
+              }
+            ]
+          }
+        },
+        "employee_deductible": true,
+        "solidarity_rate": "0.1",
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2019-12-12",
+                "valid_until": null,
+                "value": "37.0"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "confes2024",
+              "title": "CCNL Terziario Confesercenti, Ipotesi di accordo 22 marzo 2024 (CNEL 20260, scansione firmata)",
+              "kind": "associazione",
+              "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20260.pdf",
+              "sha256": "3b40cf4b51935290efb18c1ff22b3d1a51f7cd09720dc204c0f4295d3cf26cd9"
+            },
+            "page": "18",
+            "quote": "A decorrere dall'1 gennaio 2025 il contributo obbligatorio annuo a favore della Cassa è incrementato di euro 20,00 a carico del datore di lavoro a favore della categoria dei Quadri. A decorrere dall'1 gennaio 2026 il contributo obbligatorio annuo a favore della Cassa è incrementato di euro 20,00 a carico del datore di lavoro a favore della categoria dei Quadri."
+          },
+          "transformation": "Also: CCNL Terziario Confesercenti, Testo Unico 12 dicembre 2019, p. 86: A decorrere dal 1° giugno 2011 il contributo obbligatorio annuo a favore della Cassa è pari a euro 350,00 a carico del datore di lavoro e di euro 56,00 a carico del lavoratore appartenente alla categoria dei Quadri.; CCNL Terziario Confesercenti, Testo Unico 12 dicembre 2019, p. 86: L'azienda che ometta il versamento dei suddetti contributi obbligatori è tenuta ad erogare al lavoratore un elemento distinto della retribuzione non assorbibile di importo pari ad euro 37,00 lordi, da corrispondere per 14 mensilità e che rientra nella retribuzione di fatto, di cui all'art. 208.",
+          "note": "Art. 105 (confes2019 p. 85) names 'Hygeia mutua sanitaria' as the provider pending harmonisation; quadri 'potranno' be enrolled in Qu.A.S. The code 'quas' is a modelling label; the payee may be Hygeia. Repo note's 350/56 is stale for 2025-2026."
+        }
+      },
+      {
+        "code": "quadrifor",
+        "description": "Quadrifor, formazione quadri, Art. 109",
+        "levels": [
+          "Q"
+        ],
+        "employer": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2019-12-12",
+                "valid_until": null,
+                "value": "50.0"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2019-12-12",
+                "valid_until": null,
+                "value": "25.0"
+              }
+            ]
+          }
+        },
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "confes2024",
+              "title": "CCNL Terziario Confesercenti, Ipotesi di accordo 22 marzo 2024 (CNEL 20260, scansione firmata)",
+              "kind": "associazione",
+              "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20260.pdf",
+              "sha256": "3b40cf4b51935290efb18c1ff22b3d1a51f7cd09720dc204c0f4295d3cf26cd9"
+            },
+            "page": "19",
+            "quote": "In attesa della suddetta armonizzazione statutaria il contributo obbligatorio annuo a favore di QUADRIFOR è pari a euro 75,00 (settantacinque/00), di cui euro 50,00 (cinquanta/00) a carico azienda ed euro 25,00 (venticinque/00) a carico del lavoratore appartenente alla categoria dei Quadri."
+          },
+          "note": "Not in the repo coverage note. No alternative element."
+        }
+      }
     ]
   },
   "levels": [
@@ -3120,19 +3374,6 @@
           },
           "remediation": "Add the 42 and 48 month tracks."
         }
-      },
-      {
-        "kind": "simplification",
-        "text": "HEALTH FUNDS: the Fondo ASTER (Art. 104 as renewed in 2024) and, for the quadri, the Cassa QuAS (Art. 106) are owed for every worker; an employer that does not pay them owes the worker instead an EDR of EUR 16.00 x 14 and EUR 37.00 x 14. Neither is modelled: the employer cost, and with the EDR the net pay, are short of them.",
-        "capability": "bilateral_funds",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "health_and_bilateral_funds",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "remediation": "Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note."
-        }
       }
     ]
   },
@@ -3143,7 +3384,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "3bb94264e7f44d5aa76976b0ab113006acc652a965477fc6b99f6755dfcd56f3",
+    "source_hash": "e763aa1f0c5ee888e3fd1fec5a268b90a9157f3e2b284999e0c43dc6593b86e5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

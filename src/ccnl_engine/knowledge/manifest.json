@@ -2002,7 +2002,7 @@
       "valid_to": "2027-03-31",
       "ruleset_id": "ccnl/terziario-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "3bb94264e7f44d5aa76976b0ab113006acc652a965477fc6b99f6755dfcd56f3",
+      "source_hash": "e763aa1f0c5ee888e3fd1fec5a268b90a9157f3e2b284999e0c43dc6593b86e5",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/terziario-confesercenti.json.gz"

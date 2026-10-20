@@ -167,3 +167,44 @@ def test_turismo_quadro_pays_quas_a_twelfth_a_month() -> None:
         "emp": Decimal("4.17"),
     }
     assert not _entries(result, "fast_")
+
+
+_TERZIARIO = Decimal("1781.68")
+
+
+@pytest.mark.parametrize(
+    ("funds", "employer", "employee", "elements"),
+    [
+        (
+            frozenset({"ebt", "aster"}),
+            _pct("0.001", _TERZIARIO) + Decimal(13),
+            _pct("0.0005", _TERZIARIO) + Decimal(2),
+            [],
+        ),
+        (
+            frozenset(),
+            Decimal(0),
+            Decimal(0),
+            sorted([_pct("0.003", _TERZIARIO), Decimal("16.00")]),
+        ),
+    ],
+)
+def test_terziario_funds(
+    funds: frozenset[str],
+    employer: Decimal,
+    employee: Decimal,
+    elements: list[Decimal],
+) -> None:
+    """Terziario Confesercenti IV, minimo 1,781.68 EUR from November 2025.
+
+    Paid: EBT 0.10% + 0.05% (art. 23) and ASTER 13 + 2 EUR from April 2025
+    (art. 104 as renewed on 22 March 2024, p. 17); not paid: 0.30% and 16 EUR.
+    """
+    result = _run("terziario-confesercenti", "IV", funds)
+
+    assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYER) == employer
+    assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYEE) == employee
+    assert (
+        sorted(i.amount for i in result.pay_items if "_element_" in i.item_id)
+        == elements
+    )
