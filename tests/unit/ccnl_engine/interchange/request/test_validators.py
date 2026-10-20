@@ -23,7 +23,7 @@ def _request() -> PeriodInput:
         run=PayrollRun.regular(2026, 3),
         payment_date=date(2026, 3, 27),
         employment=Employment(
-            ccnl_slug="metalmeccanico-federmeccanica.json",
+            ccnl_id="metalmeccanico-federmeccanica",
             level_code="C3",
             contract_type=Apprentice(months_elapsed=7),
         ),
