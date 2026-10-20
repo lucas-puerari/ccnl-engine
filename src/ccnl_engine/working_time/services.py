@@ -56,7 +56,7 @@ __all__ = ["HOURLY_RATE_DERIVED", "WorkResolution", "resolve_work_event"]
 #: Reason of the decision of an overtime hourly rate derived from the CCNL.
 HOURLY_RATE_DERIVED = "ccnl_hourly_rate_derived"
 
-type WorkEvent = (
+type TimeWorkEvent = (
     OvertimeEvent | NightShiftEvent | HolidayWorkEvent | ShiftWorkEvent | AbsenceEvent
 )
 
@@ -71,7 +71,7 @@ class WorkResolution:
         issues: Issues the derived values raise.
     """
 
-    event: WorkEvent
+    event: TimeWorkEvent
     decisions: tuple[CalculationDecision, ...] = ()
     issues: tuple[CalculationIssue, ...] = field(default=())
 
@@ -108,7 +108,7 @@ def _overtime(
 
 
 def resolve_work_event(
-    event: WorkEvent, bands: CCNLOvertimeBands, hourly: HourlyTerms
+    event: TimeWorkEvent, bands: CCNLOvertimeBands, hourly: HourlyTerms
 ) -> WorkResolution:
     """Return ``event`` with every value it is paid with.
 

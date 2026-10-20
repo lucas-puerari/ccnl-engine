@@ -3068,7 +3068,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "d1b2d708f7f64e72f3576f40f14355157991587d77d6ddcdc0520a108a8e847b",
+    "source_hash": "581eb544610ba5eec9ed1d0020b9e6416523d3cce0b707655dd8524b0665ba29",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3798,24 +3798,6 @@
         ]
       },
       {
-        "id": "2026-10-20-ai-renewals",
-        "date": "2026-10-20",
-        "reviewer": "claude-opus-5-5",
-        "reviewer_kind": "ai",
-        "scope": "The renewal within the window of L. 199/2025 art. 1 c. 7 and the minimo in force before its first tranche.",
-        "outcome": "corrected",
-        "sources": [
-          {
-            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
-            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
-          }
-        ],
-        "findings": [
-          "Renewal signed on 2024-03-22, first tranche from 2024-04-01: parameters.renewals.",
-          "Minimo before the renewal = the paga base of the table 'Paga base dal 1/4/2023' (read by OCR on the scan, p. 64); it holds the 30 EUR of April 2023 of the Protocollo of 12 December 2022, signed outside the window."
-        ]
-      },
-      {
         "id": "2026-10-19-ai-hourly-rates",
         "date": "2026-10-19",
         "reviewer": "claude-opus-5-5",
@@ -3832,6 +3814,24 @@
           "hourly_base_method gross_incl_allowances (was minimo_tabellare), now verified: the engine reads it to derive the hourly rate of an event without one.",
           "Supplement bands added: TDS_NOTTURNO, TDS_FESTIVO, TDS_DOMENICA, TDS_DOMENICA_AUTOSTRADE, TDS_RIPOSO.",
           "Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-renewals",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The renewal within the window of L. 199/2025 art. 1 c. 7 and the minimo in force before its first tranche.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+          }
+        ],
+        "findings": [
+          "Renewal signed on 2024-03-22, first tranche from 2024-04-01: parameters.renewals.",
+          "Minimo before the renewal = the paga base of the table 'Paga base dal 1/4/2023' (read by OCR on the scan, p. 64); it holds the 30 EUR of April 2023 of the Protocollo of 12 December 2022, signed outside the window."
         ]
       }
     ],

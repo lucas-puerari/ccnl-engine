@@ -2693,7 +2693,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "9b68cb059571bb1982ca41268795baed4c47dcc67db5ead223a3f01e038db6f4",
+    "source_hash": "f0945e89f5c1d8b0d2b0aaa32fb8ddfaa069eb64673719a9fe9af24ed436bf9d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3254,24 +3254,6 @@
         ]
       },
       {
-        "id": "2026-10-20-ai-renewals",
-        "date": "2026-10-20",
-        "reviewer": "claude-opus-5-5",
-        "reviewer_kind": "ai",
-        "scope": "The renewal within the window of L. 199/2025 art. 1 c. 7 and the minimo in force before its first tranche.",
-        "outcome": "corrected",
-        "sources": [
-          {
-            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
-            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
-          }
-        ],
-        "findings": [
-          "Renewal signed on 2024-06-05, first tranche from 2024-06-01: parameters.renewals.",
-          "Minimo before the renewal = paga base before the tranche of June 2024 plus the contingenza, unchanged by it (the Totale the bundle carries): e.g. level 3, 1,130.81 + 528.26 = 1,659.07. The paga base is the table of December 2021 of the CCNL of 8 February 2018 (p. 117, column 'dic-21', read by OCR)."
-        ]
-      },
-      {
         "id": "2026-10-19-ai-hourly-rates",
         "date": "2026-10-19",
         "reviewer": "claude-opus-5-5",
@@ -3288,6 +3270,24 @@
           "hourly_base_method gross_incl_allowances (was minimo_tabellare), now verified: the engine reads it to derive the hourly rate of an event without one.",
           "Supplement bands added: FIPE_NOTTURNO, FIPE_FESTIVO, FIPE_DOMENICA.",
           "Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-renewals",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The renewal within the window of L. 199/2025 art. 1 c. 7 and the minimo in force before its first tranche.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+          }
+        ],
+        "findings": [
+          "Renewal signed on 2024-06-05, first tranche from 2024-06-01: parameters.renewals.",
+          "Minimo before the renewal = paga base before the tranche of June 2024 plus the contingenza, unchanged by it (the Totale the bundle carries): e.g. level 3, 1,130.81 + 528.26 = 1,659.07. The paga base is the table of December 2021 of the CCNL of 8 February 2018 (p. 117, column 'dic-21', read by OCR)."
         ]
       }
     ],

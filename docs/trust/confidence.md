@@ -83,7 +83,7 @@ does not report its gap as well.
 
 A `derived` rule (taken from a cited document location, with no recorded
 human check) lowers the evidence axis but does not block on its own. Only
-<!-- trust:rules-verified -->2496<!-- /trust:rules-verified --> payable rules of
+<!-- trust:rules-verified -->2499<!-- /trust:rules-verified --> payable rules of
 the bundle are `verified`, so requiring `verified` would block almost every
 result; the evidence axis keeps the difference visible instead.
 
@@ -200,7 +200,7 @@ is `False` on its closing state). See
 ## Model limitations
 
 A known simplification of the model is data, not a comment. The registry has
-<!-- trust:limitations-total -->448<!-- /trust:limitations-total --> `ModelLimitation`
+<!-- trust:limitations-total -->439<!-- /trust:limitations-total --> `ModelLimitation`
 entries: one per `simplification` note of a CCNL file that can move an
 amount, and <!-- trust:limitations-engine -->9<!-- /trust:limitations-engine -->
 engine limitations of code paths several CCNLs share
@@ -217,10 +217,10 @@ limits, the `rulesets` and dates it affects, a `monetary_impact` (`yes`,
 `no`, `unknown`), a `status` (`open`, `resolved`), its `source` and a
 `remediation`.
 
-The <!-- trust:simplification-notes -->505<!-- /trust:simplification-notes -->
+The <!-- trust:simplification-notes -->496<!-- /trust:simplification-notes -->
 simplification notes of the bundle each state their impact on what the engine
 computes from the bundle:
-<!-- trust:simplification-yes -->232<!-- /trust:simplification-yes --> `yes`,
+<!-- trust:simplification-yes -->223<!-- /trust:simplification-yes --> `yes`,
 <!-- trust:simplification-unknown -->207<!-- /trust:simplification-unknown --> `unknown`
 and <!-- trust:simplification-no -->66<!-- /trust:simplification-no --> `no` (the
 engine refuses the case, or takes the value from the caller). A file whose
@@ -230,7 +230,7 @@ bundle build fails on an unmapped note.
 A limitation applies to a run only when its predicate holds. Its trigger
 classifies it by obligation:
 
-- <!-- trust:limitations-owed -->31<!-- /trust:limitations-owed -->
+- <!-- trust:limitations-owed -->23<!-- /trust:limitations-owed -->
   limitations are `owed`: an amount the CCNL owes for every worker it scopes
   that the engine does not compute (a health or bilateral fund, a provincial
   element owed in every province). They apply to every run of the CCNL

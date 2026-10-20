@@ -2363,7 +2363,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "b9899dcad296a11864f1e1703f861eb2a7333101f11946c67eee0819656bbd38",
+    "source_hash": "efd2cc5050dc948ba699b788bf2473dfb97c4d562141b99de0b4f60bf531c262",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2822,6 +2822,25 @@
         ]
       },
       {
+        "id": "2026-10-19-ai-hourly-rates",
+        "date": "2026-10-19",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base of the time supplements and the supplements of ordinary night, holiday, Sunday, rest-day and shift work, read in the cited articles of the national text (text layer, or OCR of the scanned pages). AI review only: the same model extracted and checked the values.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "hourly_base_method gross_incl_allowances (was gross_incl_allowances), now verified: the engine reads it to derive the hourly rate of an event without one.",
+          "Supplement bands added: STUDI_FESTIVO.",
+          "Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS."
+        ]
+      },
+      {
         "id": "2026-10-20-ai-funds",
         "date": "2026-10-20",
         "reviewer": "claude-opus-5-5",
@@ -2865,25 +2884,6 @@
         "findings": [
           "Renewal signed on 2024-02-16, first tranche from 2024-03-01: parameters.renewals.",
           "Minimo before the renewal = the column 'Minimo tabellare in vigore al 29 febbraio 2024' of the first tranche (Q 2,133.31 to 5 1,315.12)."
-        ]
-      },
-      {
-        "id": "2026-10-19-ai-hourly-rates",
-        "date": "2026-10-19",
-        "reviewer": "claude-opus-5-5",
-        "reviewer_kind": "ai",
-        "scope": "Hourly base of the time supplements and the supplements of ordinary night, holiday, Sunday, rest-day and shift work, read in the cited articles of the national text (text layer, or OCR of the scanned pages). AI review only: the same model extracted and checked the values.",
-        "outcome": "confirmed",
-        "sources": [
-          {
-            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
-            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
-          }
-        ],
-        "findings": [
-          "hourly_base_method gross_incl_allowances (was gross_incl_allowances), now verified: the engine reads it to derive the hourly rate of an event without one.",
-          "Supplement bands added: STUDI_FESTIVO.",
-          "Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS."
         ]
       }
     ],

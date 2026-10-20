@@ -4778,7 +4778,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "dccfcfbbb235049c7d699d4d97444367d8f1d1b66bf00783148ffec2a822921e",
+    "source_hash": "80bffc63b38f77c6faf5f1a063a0ad9bf0eb4f3f7a82cb60668aea8372d6416e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5545,24 +5545,6 @@
         ]
       },
       {
-        "id": "2026-10-20-ai-renewals",
-        "date": "2026-10-20",
-        "reviewer": "claude-opus-5-5",
-        "reviewer_kind": "ai",
-        "scope": "The renewal within the window of L. 199/2025 art. 1 c. 7 and the minimo before its first tranche.",
-        "outcome": "corrected",
-        "sources": [
-          {
-            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
-            "sha256": "00f87d6fbef42494d47d90dab50146e353b31cbef4ca1f03d6f7ea37d97546ee"
-          }
-        ],
-        "findings": [
-          "Ipotesi of 15 April 2025, first tranche from 1 July 2025: parameters.renewals.",
-          "p. 46: the July 2025 tranche also pays the last 20 EUR (D1) of the renewal of 13 June 2022, signed outside the window: the minimo before the renewal at D1 is 2239.26 + 20 = 2259.26. The 2022 tranche of the other categories is not printed in the 2025 text (its tables are announced, not attached): their increment stays unmeasured."
-        ]
-      },
-      {
         "id": "2026-10-19-ai-hourly-rates",
         "date": "2026-10-19",
         "reviewer": "claude-opus-5-5",
@@ -5579,6 +5561,24 @@
           "hourly_base_method minimo_e_anzianita (was minimo_tabellare), now verified: the engine reads it to derive the hourly rate of an event without one.",
           "Supplement bands added: CHIM_FESTIVO, CHIM_TURNO_DIURNO.",
           "Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-renewals",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The renewal within the window of L. 199/2025 art. 1 c. 7 and the minimo before its first tranche.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
+            "sha256": "00f87d6fbef42494d47d90dab50146e353b31cbef4ca1f03d6f7ea37d97546ee"
+          }
+        ],
+        "findings": [
+          "Ipotesi of 15 April 2025, first tranche from 1 July 2025: parameters.renewals.",
+          "p. 46: the July 2025 tranche also pays the last 20 EUR (D1) of the renewal of 13 June 2022, signed outside the window: the minimo before the renewal at D1 is 2239.26 + 20 = 2259.26. The 2022 tranche of the other categories is not printed in the 2025 text (its tables are announced, not attached): their increment stays unmeasured."
         ]
       }
     ],
