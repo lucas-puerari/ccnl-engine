@@ -3445,7 +3445,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "e392841ce8f3bafebf12f7919c60531faf36af76f13b8e05b1d1bfc961547540",
+    "source_hash": "b7345e6d25b6197c38787106fc3007eb2180c48ac632beea35ef7c40c5f52eeb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3477,6 +3477,36 @@
           "verified_by": "claude-opus-5-5",
           "verified_at": "2026-10-19T09:00:00Z",
           "review_id": "2026-10-19-ai-hourly-rates"
+        }
+      },
+      "individual_elements": {
+        "in_hourly_base": "hour_only",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "confesercenti-tu2019",
+              "title": "CCNL Terziario, Distribuzione e Servizi Confesercenti, Testo Unico 12 dicembre 2019",
+              "kind": "associazione",
+              "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+              "published_on": "2019-12-12",
+              "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+            },
+            "section": "Art. 149 - Maggiorazione lavoro straordinario; Artt. 206 and 208",
+            "quote": "le ore di lavoro straordinario, intendendosi come tali quelle eccedenti l'orario normale di lavoro previsto dall'art. 130 del presente contratto, verranno retribuite con la quota oraria della retribuzione di fatto di cui all'art. 208 e con le seguenti maggiorazioni da calcolare sulla quota oraria della normale retribuzione di cui all'art. 206",
+            "page": "120"
+          },
+          "transformation": "Same text as Commercio art. 149: the hour at the retribuzione di fatto (individual elements included), the maggiorazione on the normale retribuzione (without them).",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-20T21:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-20T21:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-20-ai-individual-hourly-base",
+            "effective_from": "2022-01-01"
+          }
         }
       },
       "hourly_divisor_weekly_hours": 40,
@@ -4278,6 +4308,23 @@
         ],
         "findings": [
           "Art. 205 - Scatti di anzianità (p. 153): the earlier increments are repriced at the new level when the next one matures: seniority_increments.on_promotion."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-individual-hourly-base",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Art. 149 - Maggiorazione lavoro straordinario; Artt. 206 and 208).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+            "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+          }
+        ],
+        "findings": [
+          "Art. 149 - Maggiorazione lavoro straordinario; Artt. 206 and 208: individual elements hour only in the hourly base: work_rules.time_supplements.individual_elements."
         ]
       }
     ],

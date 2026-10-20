@@ -208,7 +208,7 @@ def test_overtime_is_paid_at_the_ccnl_hourly_base(pilot: Pilot) -> None:
     decision = _decision(_run(pilot), "overtime", "ccnl_hourly_rate_derived")
 
     assert decision.amount == expected
-    assert decision.inputs["individual_elements"] == "not_included"
+    assert decision.inputs["individual_elements"] == "none"
     assert decision.source is not None
 
 

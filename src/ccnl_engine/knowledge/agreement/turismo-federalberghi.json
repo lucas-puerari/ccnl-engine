@@ -3233,7 +3233,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "1321b0f35e6d3a8611e02afdaa3c8c816b8672db29559ba19577c761ac79eec5",
+    "source_hash": "87c0e7af2d22a7ba59afea22bdb66a4d05df0fa60b5dbddb320d1109b570d3e2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3266,6 +3266,36 @@
           "verified_by": "claude-opus-5-5",
           "verified_at": "2026-10-19T09:00:00Z",
           "review_id": "2026-10-19-ai-hourly-rates"
+        }
+      },
+      "individual_elements": {
+        "in_hourly_base": "excluded",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-turismo-2010",
+              "title": "CCNL Turismo 20 febbraio 2010, testo firmato (UILTuCS)",
+              "kind": "associazione",
+              "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "published_on": "2010-02-20",
+              "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+            },
+            "section": "Art. 148 c. 1 - Elementi della retribuzione",
+            "quote": "(1) Di norma, la retribuzione del lavoratore è distinta nelle seguenti voci: a) paga base nazionale conglobata di cui all'articolo 152 comprensiva dell'indennità di caro pane prevista dalla legge; b) eventuali trattamenti salariali integrativi comunque denominati previsti per ciascun comparto nelle parti generale e speciale del presente Contratto; c) indennità di contingenza (allegato C); d) eventuali scatti di anzianità nelle misure e con le modalità previste sia nella parte generale che in quella relativa a ciascun comparto del presente Contratto;",
+            "page": "134"
+          },
+          "transformation": "The retribuzione art. 151 divides is the one of art. 148: the voci it lists are all collective (the integrativi are those 'previsti per ciascun comparto' of the Contratto), so a superminimo or an ad personam element is not in the hourly base. Read on the page image.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-20T21:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-20T21:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-20-ai-individual-hourly-base",
+            "effective_from": "2010-01-01"
+          }
         }
       },
       "hourly_divisor_weekly_hours": 40,
@@ -3933,6 +3963,23 @@
         ],
         "findings": [
           "Art. 158 c. 6 - Scatti di anzianità (p. 141): the earlier increments are repriced at the new level when the next one matures: seniority_increments.on_promotion."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-individual-hourly-base",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Art. 148 c. 1 - Elementi della retribuzione).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+          }
+        ],
+        "findings": [
+          "Art. 148 c. 1 - Elementi della retribuzione: individual elements excluded in the hourly base: work_rules.time_supplements.individual_elements."
         ]
       }
     ],

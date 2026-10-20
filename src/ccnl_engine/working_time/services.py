@@ -47,6 +47,9 @@ from ccnl_engine.working_time.supplement.policies import (
 )
 
 if TYPE_CHECKING:
+    from datetime import date
+    from decimal import Decimal
+
     from ccnl_engine.decision.models import CalculationIssue
     from ccnl_engine.working_time.hourly.policies import HourlyTerms
     from ccnl_engine.working_time.overtime.policies import CCNLOvertimeBands
@@ -76,6 +79,23 @@ class WorkResolution:
     issues: tuple[CalculationIssue, ...] = field(default=())
 
 
+def _restated(multiplier: Decimal, day: date, hourly: HourlyTerms) -> Decimal:
+    """Return ``multiplier`` restated on the rate of the hour.
+
+    Commercio art. 149 pays the hour at the retribuzione di fatto (the
+    individual elements included) and the maggiorazione on the normale
+    retribuzione (without them): ``hours x rate x restated`` is the hour
+    plus the maggiorazione on its own base.
+
+    Returns:
+        ``1 + (multiplier - 1) x normale / fatto``, unrounded.
+    """
+    field = "OvertimeEvent.hourly_rate"
+    hour = hourly.base(day, field, "overtime")
+    normale = hourly.base(day, field, "overtime", supplement=True)
+    return 1 + (multiplier - 1) * normale.rate / hour.rate
+
+
 def _overtime(
     event: OvertimeEvent, bands: CCNLOvertimeBands, hourly: HourlyTerms
 ) -> WorkResolution:
@@ -90,6 +110,12 @@ def _overtime(
     if paid.hourly_rate is None:
         base = hourly.base(event.event_date, "OvertimeEvent.hourly_rate", "overtime")
         paid = replace(paid, hourly_rate=base.rate)
+        inputs = {"hours": event.hours, **base.inputs()}
+        multiplier = paid.multiplier
+        if base.individual == "included" and hourly.hour_only and multiplier:
+            restated = _restated(multiplier, event.event_date, hourly)
+            paid = replace(paid, multiplier=restated)
+            inputs["multiplier_on_hour"] = restated
         decisions.append(
             CalculationDecision(
                 capability="overtime",
@@ -97,7 +123,7 @@ def _overtime(
                 reason_code=HOURLY_RATE_DERIVED,
                 rule=hourly.rule_of(BASE_PATH),
                 rule_version=hourly.version,
-                inputs={"hours": event.hours, **base.inputs()},
+                inputs=inputs,
                 source=hourly.base_source,
                 amount=_standard_event_gross(paid),
             )

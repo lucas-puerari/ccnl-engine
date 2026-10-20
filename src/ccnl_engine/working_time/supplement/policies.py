@@ -193,7 +193,7 @@ def resolve_supplement(event: SupplementEvent, terms: HourlyTerms) -> Supplement
     if isinstance(found, str):
         reject_underived(field, feature, day, found)
     band, rate = found
-    base = terms.base(day, field, feature, band.base)
+    base = terms.base(day, field, feature, band.base, supplement=True)
     # The event validation requires the hours when the amount is not stated.
     hours = event.hours or Decimal(0)
     return SupplementPay(money(hours * rate * base.rate), band, rate, hours, base)

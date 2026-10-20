@@ -3125,7 +3125,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "e10cea596a04f3b2dbe20124a7c7304d08dda91cf4176548ecfbc39f67a9a36f",
+    "source_hash": "3e346b7317cc38a6483742f283f416e8d21a1278d1fdbc621cfed96fd4eaf7a9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3157,6 +3157,36 @@
           "verified_by": "claude-opus-5-5",
           "verified_at": "2026-10-19T09:00:00Z",
           "review_id": "2026-10-19-ai-hourly-rates"
+        }
+      },
+      "individual_elements": {
+        "in_hourly_base": "hour_only",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "uiltucs-tu2019",
+              "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+              "published_on": "2019-07-30",
+              "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+            },
+            "section": "Art. 149 - Maggiorazione lavoro straordinario; Artt. 206 and 208",
+            "quote": "le ore di lavoro straordinario, intendendosi come tali quelle eccedenti l'orario normale di lavoro previsto dall'art. 130 del presente contratto, verranno retribuite con la quota oraria della retribuzione di fatto di cui all'art. 208 e con le seguenti maggiorazioni da calcolare sulla quota oraria della normale retribuzione di cui all'art. 206",
+            "page": "149"
+          },
+          "transformation": "The retribuzione di fatto of art. 208 holds 'tutti gli altri elementi retributivi aventi carattere continuativo', a superminimo included; the normale retribuzione of art. 206 lists paga base, contingenza, terzi elementi, scatti and the elements of collective bargaining only. The hour is paid with the individual elements, its maggiorazione without them.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-20T21:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-20T21:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-20-ai-individual-hourly-base",
+            "effective_from": "2024-03-22"
+          }
         }
       },
       "hourly_divisor_weekly_hours": 40,
@@ -4097,6 +4127,23 @@
         ],
         "findings": [
           "Art. 205 - Scatti di anzianità (p. 193): the earlier increments are repriced at the new level when the next one matures: seniority_increments.on_promotion."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-individual-hourly-base",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Art. 149 - Maggiorazione lavoro straordinario; Artt. 206 and 208).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          }
+        ],
+        "findings": [
+          "Art. 149 - Maggiorazione lavoro straordinario; Artt. 206 and 208: individual elements hour only in the hourly base: work_rules.time_supplements.individual_elements."
         ]
       }
     ],

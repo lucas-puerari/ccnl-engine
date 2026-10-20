@@ -116,10 +116,18 @@ pay (the CCNL divisor is a full-time divisor; an apprentice's chain is
 reduced by the percentage): `minimo_tabellare` (base salary),
 `minimo_e_anzianita` (base salary and seniority, chimica art. 15 punto 1)
 or `gross_incl_allowances` (base salary, seniority and every fixed
-allowance paid in cash). Individual elements (`Employment.individual_elements`: superminimi,
-merito, assegni ad personam) are not in the hourly base: every derived
-decision reports `individual_elements: not_included`, and a worker whose
-CCNL counts them states the rate. A CCNL that sets `hourly_divisor_weekly_hours` (Turismo, Pubblici
+allowance paid in cash). The individual elements of the worker
+(`Employment.individual_elements`: superminimi, merito, assegni ad
+personam) enter the base as `time_supplements.individual_elements` says:
+in the hour and its maggiorazioni (`included`: chimica art. 15 punto 1,
+Federmeccanica art. 3, Confapi art. 38, Studi artt. 95 and 135), in neither
+(`excluded`: Turismo art. 148, FIPE art. 157), or in the hour only
+(`hour_only`: Commercio and Terziario art. 149, the hour at the
+retribuzione di fatto, the maggiorazione on the normale retribuzione; the
+decision reports the restated `multiplier_on_hour`). Every derived decision
+reports `individual_elements` (`included`, `not_included` or `none`); a
+worker with individual elements under a CCNL without the verified rule has
+no derived rate. A CCNL that sets `hourly_divisor_weekly_hours` (Turismo, Pubblici
 Esercizi, Terziario: 40) derives nothing for an employment whose stated
 full-time week differs, whose divisor is not modelled.
 

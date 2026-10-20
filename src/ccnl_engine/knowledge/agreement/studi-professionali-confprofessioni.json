@@ -2411,7 +2411,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "90c2085c72072e6665b5169447a88f3dfe526b0faf399966d4d9616dd5f5d8af",
+    "source_hash": "7eb0c833beef7d2e4ec34ee34c7a03cace4d19764a5db2ba1c87f1363da97da3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2443,6 +2443,36 @@
           "verified_by": "claude-opus-5-5",
           "verified_at": "2026-10-19T09:00:00Z",
           "review_id": "2026-10-19-ai-hourly-rates"
+        }
+      },
+      "individual_elements": {
+        "in_hourly_base": "included",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-studi-professionali-2024-02-16",
+              "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+              "kind": "associazione",
+              "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+              "published_on": "2024-02-16",
+              "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+            },
+            "section": "Art. 135 - Normale retribuzione; Art. 95",
+            "quote": "La normale retribuzione del lavoratore è costituita dalle voci sottoindicate alle lettere a), b), c) e d) [...] a. Paga base tabellare conglobata [...] b. Eventuali scatti di anzianità [...] c. Eventuali assegni 'ad personam'. d. Eventuali Superminimi.",
+            "page": "69"
+          },
+          "transformation": "Art. 95 pays the overtime hour 'con la quota oraria della normale retribuzione [...] e di eventuali super-minimi' and computes the maggiorazioni 'sulla quota oraria della normale retribuzione', which art. 135 makes of assegni ad personam and superminimi too: included in both.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-20T21:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-20T21:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-20-ai-individual-hourly-base",
+            "effective_from": "2024-02-16"
+          }
         }
       },
       "overtime_bands": [
@@ -3035,6 +3065,23 @@
         ],
         "findings": [
           "Art. 134 - Scatti di anzianità (p. 69): the earlier increments take the amounts of the new level from the change: seniority_increments.on_promotion."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-individual-hourly-base",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Art. 135 - Normale retribuzione; Art. 95).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "Art. 135 - Normale retribuzione; Art. 95: individual elements included in the hourly base: work_rules.time_supplements.individual_elements."
         ]
       }
     ],

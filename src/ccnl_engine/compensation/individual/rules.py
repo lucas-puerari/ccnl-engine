@@ -106,6 +106,7 @@ def _with(level: Level, elements: tuple[IndividualElement, ...], day: date) -> L
             months_per_year=None if e.extra_months else _MONTHS,
             tfr_relevant=e.tfr_relevant,
             apprenticeship_pct_relevant=False,
+            individual=True,
         )
         for e in elements
     )

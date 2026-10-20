@@ -7,8 +7,10 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.agreement.validity.rules import TimeSeries, ValidityPeriod
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.element.types import MonthlyPayChain
+from ccnl_engine.compensation.models import Allowance
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.working_time.hourly.policies import HourlyTerms
 from ccnl_engine.working_time.supplement.models import HourlyBaseMethod
@@ -83,3 +85,51 @@ def test_minimo_e_anzianita_leaves_the_allowances_out() -> None:
 
     assert base.monthly == Decimal("2040.00")
     assert base.inputs()["hourly_base[seniority]"] == Decimal("40.00")
+
+
+def _with_superminimo() -> MonthlyPayChain:
+    element = Allowance(
+        code="superminimo",
+        description="individual element superminimo",
+        monthly=TimeSeries(
+            periods=(
+                ValidityPeriod(
+                    valid_from=date.min, valid_until=None, value=Decimal("168.00")
+                ),
+            )
+        ),
+        individual=True,
+    )
+    return MonthlyPayChain(
+        base=Decimal("1500.00"),
+        seniority=Decimal("50.00"),
+        allowances=((element, Decimal("168.00")),),
+    )
+
+
+def test_individual_elements_need_the_ccnl_rule() -> None:
+    """Without the CCNL rule the superminimo's place in the base is unknown."""
+    supplements = _COMMERCIO.work_rules.time_supplements  # type: ignore[union-attr]
+    stripped = supplements.model_copy(update={"individual_elements": None})  # type: ignore[union-attr]
+    rules = _COMMERCIO.work_rules.model_copy(update={"time_supplements": stripped})  # type: ignore[union-attr]
+    ccnl = _COMMERCIO.model_copy(update={"work_rules": rules})
+
+    message = _reject(_terms(ccnl=ccnl, chain=_with_superminimo()))
+
+    assert "individual elements of the worker" in message
+
+
+def test_commercio_counts_the_superminimo_in_the_hour_only() -> None:
+    """Art. 149: (1500 + 50 + 168) / 168 for the hour, 1550 / 168 for the 15%."""
+    terms = _terms(chain=_with_superminimo())
+    hour = terms.base(_DAY, "OvertimeEvent.hourly_rate", "overtime")
+    maggiorazione = terms.base(
+        _DAY, "OvertimeEvent.hourly_rate", "overtime", supplement=True
+    )
+
+    assert (hour.monthly, hour.individual) == (Decimal("1718.00"), "included")
+    assert (maggiorazione.monthly, maggiorazione.individual) == (
+        Decimal("1550.00"),
+        "not_included",
+    )
+    assert terms.hour_only
