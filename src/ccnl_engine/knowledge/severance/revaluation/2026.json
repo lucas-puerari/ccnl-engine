@@ -18,7 +18,7 @@
         "quote": "Il trattamento di cui al precedente primo comma, con esclusione della quota maturata nell'anno, è incrementato, su base composta, al 31 dicembre di ogni anno, con l'applicazione di un tasso costituito dall'1,5 per cento in misura fissa e dal 75 per cento dell'aumento dell'indice dei prezzi al consumo per le famiglie di operai ed impiegati, accertato dall'ISTAT, rispetto al mese di dicembre dell'anno precedente."
       },
       "transformation": "1,5 per cento = 0.015; 75 per cento = 0.75. Rate of the year = 0.015 + 0.75 x (December index / December index of the year before - 1), applied to the fund at 31 December of the year before, which excludes the quota accrued in the year.",
-      "note": "Normattiva snapshot of art. 2120 c.c. in force on 2026-10-10 (text in force from 11-4-1991); quote found in the page, whitespace normalised. Text in force from 11-4-1991 read on Normattiva on 2026-10-07. Revaluation for a fraction of year at termination (c. 5) is not computed by the engine. The rate is not rounded: the ISTAT release rounds its own variations to one decimal, and no primary source sets a rounding for this rate. Not checked by a named reviewer.",
+      "note": "Normattiva snapshot of art. 2120 c.c. in force on 2026-10-10 (text in force from 11-4-1991); quote found in the page, whitespace normalised. Text in force from 11-4-1991 read on Normattiva on 2026-10-07. A termination within the year revalues the fund for the months of service (c. 5): fixed 1,5% x months / 12 plus 75% of the increase of the index of the last month counted. The rate is not rounded: the ISTAT release rounds its own variations to one decimal, and no primary source sets a rounding for this rate. Not checked by a named reviewer.",
       "extraction": {
         "method": "ai",
         "model": "claude-opus-5-5",
@@ -35,22 +35,32 @@
     "previous_december": "121.5",
     "december": null,
     "link_coefficient": "1.214",
+    "monthly": [
+      "100.4",
+      "100.9",
+      "101.5",
+      "102.5",
+      "102.8",
+      "102.8",
+      "103.1",
+      "103.7",
+      "104.3"
+    ],
     "provenance": {
       "status": "derived",
       "location": {
         "source_document": {
-          "document_id": "istat-prezzi-al-consumo-serie-08-2026",
-          "title": "ISTAT, Prezzi al consumo, agosto 2026 (dati definitivi), serie storiche",
+          "document_id": "istat-prezzi-al-consumo-serie-09-2026",
+          "title": "ISTAT, Prezzi al consumo, settembre 2026 (dati definitivi), serie storiche",
           "kind": "amministrazione",
-          "url": "https://www.istat.it/wp-content/uploads/2026/09/serie08_2026.xlsx",
-          "published_on": "2026-09-16",
-          "sha256": "074b836b74328a0d3da22a0192d97583d4825c88063d7bae88665cfed9b1aa06"
+          "url": "https://www.istat.it/wp-content/uploads/2026/10/serie09_2026.xlsx",
+          "sha256": "c5cb04d3bb748db15592cf85ba96abd5f327ae84ce464b8a98dc43470c98888a"
         },
-        "section": "Tabella 10, Esclusi i tabacchi: base 2015=100, 2025 dicembre; Coefficiente di raccordo da base 2015 a base 2025",
-        "quote": "Tabella 10. Indice generale dei prezzi al consumo per le famiglie di operai e impiegati (FOI), con e senza tabacchi | Base 2015=100 | 2025 dicembre: Esclusi i tabacchi, Indici 121,5 | Base 2025=100 | Coefficiente di raccordo da base 2015 a base 2025: Esclusi i tabacchi 1,214"
+        "section": "Tabella 10, Esclusi i tabacchi: base 2015=100, 2025 dicembre; Coefficiente di raccordo da base 2015 a base 2025; base 2025=100, 2026 gennaio-settembre",
+        "quote": "Tabella 10. Indice generale dei prezzi al consumo per le famiglie di operai e impiegati (FOI), con e senza tabacchi | Base 2015=100 | 2025 dicembre: Esclusi i tabacchi, Indici 121,5 | Base 2025=100 | Coefficiente di raccordo da base 2015 a base 2025: Esclusi i tabacchi 1,214 | 2026 Esclusi i tabacchi: gennaio 100,4; febbraio 100,9; marzo 101,5; aprile 102,5; maggio 102,8; giugno 102,8; luglio 103,1; agosto 103,7; settembre 104,3"
       },
-      "transformation": "Index increase of the year = December 2026 index (base 2025=100) x 1.214 / 121.5 - 1, per the ISTAT rule for indexes in different bases (release of 16-9-2026, Nota metodologica, Calcolo delle variazioni degli indici: the ratio of the indexes multiplied by the link coefficients between contiguous bases). The index without tobacco is the one of L. 81/1992 art. 4 c. 1 (Normattiva: 'I tabacchi lavorati sono esclusi dall'elenco dei beni che rilevano ai fini della determinazione degli indici dei prezzi al consumo').",
-      "note": "december is null: the December 2026 index is not published (the latest definitive index read on 2026-10-07 is August 2026, 103,7 base 2025=100, released on 2026-09-16); ISTAT publishes the definitive December index by mid-January 2027. Add it here when published. Check of the method on the August index: 103,7 x 1,214 / 121,5 - 1 = 3,61465021%, the figure ANCE publishes for the August 2026 coefficient (secondary source). Not checked by a named reviewer."
+      "transformation": "Index increase of the year = December 2026 index (base 2025=100) x 1.214 / 121.5 - 1, per the ISTAT rule for indexes in different bases (release of 16-9-2026, Nota metodologica, Calcolo delle variazioni degli indici: the ratio of the indexes multiplied by the link coefficients between contiguous bases). The index without tobacco is the one of L. 81/1992 art. 4 c. 1 (Normattiva: 'I tabacchi lavorati sono esclusi dall'elenco dei beni che rilevano ai fini della determinazione degli indici dei prezzi al consumo'). At a termination within the year (art. 2120 c. 5 c.c.) the index is that of the last month counted, from monthly (January first), in place of the December one: increase = monthly index x 1.214 / 121.5 - 1.",
+      "note": "december is null: the December 2026 index is not published (the latest definitive index read on 2026-10-20 is September 2026, 104,3 base 2025=100, file serie09_2026.xlsx read on 2026-10-20); ISTAT publishes the definitive December index by mid-January 2027. Add each month here when published. Check of the method on the published TFR coefficients (secondary sources: ANCE, dottrinalavoro.it): April 102,5 x 1,214 / 121,5 - 1 = 2,415637%, coefficient 0,5 + 0,75 x 2,415637 = 2,311728; July 103,1 gives 3,136358; August 103,7 gives 3,61465021% and 3,710988, the figures published. Not checked by a named reviewer."
     }
   },
   "substitute_tax": {
@@ -73,13 +83,13 @@
   },
   "ruleset": {
     "id": "tax/2026/tfr-revaluation",
-    "version": "2026.1",
+    "version": "2026.2",
     "effective_from": "2026-01-01",
     "effective_until": "2026-12-31",
-    "published_at": "2026-10-07",
+    "published_at": "2026-10-20",
     "source": "Codice civile art. 2120 c. 4; D.Lgs. 47/2000 art. 11 cc. 3-4; ISTAT FOI senza tabacchi",
     "source_type": "official_primary",
     "verification_status": "unverified",
-    "source_hash": "740f9193751b301c9efdf5d3d97a27f918c4cbd221c466c33f9105a1de0e9d2e"
+    "source_hash": "19f81579fe54fae9e1862b9b15074bdb9f953231c586b9fd58a4166f74e7de3c"
   }
 }

@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 from decimal import Decimal
+from typing import Annotated
 
 from pydantic import BaseModel, ConfigDict, Field
 
 from ccnl_engine.provenance.ruleset.models import RulesetIdentity
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.types import PercentageRate
+
+_DECEMBER = 12
 
 __all__ = [
     "TfrPriceIndex",
@@ -47,6 +50,10 @@ class TfrPriceIndex(BaseModel):
             publishes it (mid-January of the next year).
         link_coefficient: Link coefficient between the bases of the two
             indexes, ``1`` when they share one.
+        monthly: Indexes of the months of the year ISTAT has published,
+            from January, in the base of :attr:`december`; a termination
+            within the year revalues the fund on the index of its month
+            (art. 2120 c. 5 c.c.).
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -54,7 +61,27 @@ class TfrPriceIndex(BaseModel):
     previous_december: Decimal = Field(gt=Decimal(0))
     december: Decimal | None = Field(default=None, gt=Decimal(0))
     link_coefficient: Decimal = Field(gt=Decimal(0))
+    monthly: tuple[Annotated[Decimal, Field(gt=Decimal(0))], ...] = Field(
+        default=(), max_length=12
+    )
     provenance: RuleProvenance | None = None
+
+    def month_increase(self, month: int) -> Decimal | None:
+        """Return the increase of the index of ``month`` over December before.
+
+        Returns:
+            ``index * link_coefficient / previous_december - 1``, unrounded,
+            the index of December being :attr:`december` when
+            :attr:`monthly` stops before it; ``None`` while the month is not
+            published.
+        """
+        if month <= len(self.monthly):
+            index: Decimal | None = self.monthly[month - 1]
+        else:
+            index = self.december if month == _DECEMBER else None
+        if index is None:
+            return None
+        return index * self.link_coefficient / self.previous_december - 1
 
     def increase(self) -> Decimal | None:
         """Return the yearly increase of the index, as a fraction.
@@ -115,3 +142,26 @@ class TfrRevaluationRules(BaseModel):
         if increase is None:
             return None
         return self.rate.fixed + self.rate.index_share * increase
+
+    def fraction_rate(self, months: int) -> Decimal | None:
+        """Return the rate of ``months`` of the year, at a termination.
+
+        Art. 2120 c. 5 c.c.: the index increase is that of the month of the
+        termination over December of the year before, and the fixed 1.5%
+        is due for the months of service of the year (a fraction of 15
+        days or more counts as a whole month).
+
+        Args:
+            months: Whole months of the year counted, 0 to 12.
+
+        Returns:
+            ``fixed * months / 12 + index_share * increase of the month``,
+            unrounded; zero for no month; ``None`` while the index of the
+            month is not published.
+        """
+        if months == 0:
+            return Decimal(0)
+        increase = self.price_index.month_increase(months)
+        if increase is None:
+            return None
+        return self.rate.fixed * months / _DECEMBER + self.rate.index_share * increase

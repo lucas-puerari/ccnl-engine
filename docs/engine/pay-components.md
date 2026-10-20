@@ -278,12 +278,12 @@ The run records a `tfr_revaluation` decision:
 
 | Reason | When | Amount |
 |---|---|---|
-| `revalued` | Fund of the year before stated, December index bundled | Revaluation; `substitute_tax` and `net_revaluation` in the inputs |
+| `revalued` | Fund of the year before stated, December index bundled (at a termination, the index of the last month counted) | Revaluation; `substitute_tax` and `net_revaluation` in the inputs |
 | `no_opening_fund` | A zero fund, or `tfr_fund=None` on an employment that starts in the year | `0` |
 | `required_fact_missing` | `tfr_fund=None` on an employment that started before the year or is not tracked | `None`, `missing_fact` `tfr_fund` |
 | `fund_of_another_year` | `tfr_fund.year` is not the year before the run | `None`, `missing_fact` `tfr_fund` |
-| `price_index_not_published` | The bundle has no December index of the year | `None` |
-| `termination_not_computed` | The run ends the employment before 31 December (art. 2120 c. 5: a fraction of the year) | `None` |
+| `price_index_not_published` | The bundle has no December index of the year, or at a termination no index of the last month counted | `None` |
+| `termination_not_computed` | A termination run of an employment without its last day | `None` |
 | `negative_rate` | The index fell enough to make the rate negative: no source says how it applies | `None` |
 
 Every reason but the first two leaves the decision `incomplete` and the run
@@ -368,12 +368,18 @@ The run records two `termination_tfr` decisions, the payout (`tfr_due`)
 and the tax (`average_rate`), with the inputs above (`fund`,
 `quotas_before_run`, `run_quota`, `revaluation`, `months_of_service`,
 `years_of_service`, `taxable`, `reference_income`, `average_rate`,
-`brackets_year`). The
-revaluation for the fraction of the termination year (art. 2120 c. 5) is
-not computed, so a termination before 31 December with a fund pays the TFR
-without it: the payout decision is `revaluation_pending` and incomplete,
-with a `tfr_settlement_revaluation_pending` issue. The tax does not depend
-on it and stays final.
+`brackets_year`). A
+termination before 31 December revalues the fund for the fraction of the
+year (art. 2120 c. 5): 1.5% times the months of service of the year over
+12 (a fraction of 15 days or more is a whole month) plus 75% of the
+increase of the FOI index of the last month counted over December of the
+year before, the coefficient ISTAT publishes for a termination from the
+15th of that month to the 14th of the next; the inputs add `months`,
+`ended_on` and `month_index`. Until ISTAT publishes the index of that
+month (mid of the next month) the payout leaves the revaluation out: the
+decision is `revaluation_pending` and incomplete, with a
+`tfr_settlement_revaluation_pending` issue. The tax does not depend on it
+and stays final.
 
 | Gap | Payout | Tax |
 |---|---|---|

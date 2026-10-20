@@ -34,8 +34,8 @@ from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.services import calculate_period
 from ccnl_engine.run.models import PayrollRun, RunKind
 from ccnl_engine.run.types import PeriodId
+from ccnl_engine.severance.revaluation.rules import TfrRevaluation
 from ccnl_engine.severance.revaluation.services import (
-    TfrRevaluation,
     run_tfr_revaluation,
 )
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
@@ -243,25 +243,58 @@ def test_fund_of_the_year_not_stated_is_a_missing_fact(
 
 
 @pytest.mark.parametrize(
-    ("month", "kind", "ended_on"),
+    ("month", "kind", "ended_on", "months", "amount"),
     [
-        (5, RunKind.REGULAR, date(2026, 5, 20)),
-        (5, RunKind.TERMINATION, date(2026, 5, 20)),
-        (12, RunKind.REGULAR, date(2026, 12, 15)),
-        (5, RunKind.TERMINATION, None),
+        (5, RunKind.REGULAR, date(2026, 5, 20), 5, "266.15"),
+        (5, RunKind.TERMINATION, date(2026, 5, 20), 5, "266.15"),
+        (10, RunKind.TERMINATION, date(2026, 10, 10), 9, "428.56"),
+        (1, RunKind.TERMINATION, date(2026, 1, 14), 0, "0.00"),
     ],
-    ids=["regular_last_month", "termination_run", "ends_mid_december", "no_end"],
+    ids=["regular_last_month", "termination_run", "early_october", "early_january"],
 )
-def test_termination_before_year_end_is_not_computed(
-    month: int, kind: RunKind, ended_on: date | None
+def test_termination_before_year_end_revalues_a_fraction(
+    month: int, kind: RunKind, ended_on: date, months: int, amount: str
 ) -> None:
-    """The revaluation of a fraction of the year (c. 5) is not computed."""
+    """Art. 2120 c. 5: the months of the year and the index of the last one.
+
+    Out on 20 May: five months (20 days of May count it whole), the May
+    index 102.8: 0.015 x 5 / 12 + 0.75 x (102.8 x 1.214 / 121.5 - 1) =
+    0.00625 + 0.02036543 = 0.02661543, the ISTAT coefficient for May;
+    10,000.00 x 0.02661543 = 266.15.  Out on 10 October: nine months, the
+    September index 104.3: 0.01125 + 0.75 x 0.04214156 = 0.04285617,
+    428.56.  Out on 14 January: no month, nothing to revalue.
+    """
     period = EmploymentPeriod(date(2020, 1, 1), ended_on)
     decision = _decision(
         _run(month, kind=kind, employment_period=period, tfr_fund=_FUND)
     )
     assert decision.inputs["moment"] == "termination"
-    assert decision.reason_code == "termination_not_computed"
+    assert decision.inputs["months"] == Decimal(months)
+    assert (decision.status, decision.reason_code, decision.amount) == (
+        CalculationStatus.FINAL,
+        "revalued",
+        Decimal(amount),
+    )
+
+
+@pytest.mark.parametrize(
+    ("month", "ended_on", "reason"),
+    [
+        (12, date(2026, 12, 15), "price_index_not_published"),
+        (5, None, "termination_not_computed"),
+    ],
+    ids=["ends_mid_december", "no_end"],
+)
+def test_termination_without_its_index_or_day_is_not_computed(
+    month: int, ended_on: date | None, reason: str
+) -> None:
+    """December is not published yet; a termination run needs its last day."""
+    period = EmploymentPeriod(date(2020, 1, 1), ended_on)
+    decision = _decision(
+        _run(month, kind=RunKind.TERMINATION, employment_period=period, tfr_fund=_FUND)
+    )
+    assert decision.inputs["moment"] == "termination"
+    assert decision.reason_code == reason
     assert decision.status is CalculationStatus.INCOMPLETE
 
 
