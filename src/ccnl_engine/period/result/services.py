@@ -40,6 +40,7 @@ from ccnl_engine.extra_month.decision.services import (
     run_accruals,
 )
 from ccnl_engine.extra_month.liquidation.services import settlement_issues
+from ccnl_engine.extra_month.progress.services import run_extra_month_progress
 from ccnl_engine.fund.health.services import contractual_funds
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.services import _sum_ledger
@@ -261,6 +262,7 @@ def _result(
         decisions=all_decisions,
         rulesets=run_rulesets(ctx, sources),
         limitations=run_limitations(ctx, report, events.totals),
+        extra_months=run_extra_month_progress(ctx),
     )
 
 
