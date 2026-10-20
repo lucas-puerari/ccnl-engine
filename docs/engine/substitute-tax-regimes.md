@@ -141,18 +141,34 @@ facts alone decide.
 
 A run of tax year 2026 by a withholding agent assesses the regime on its
 minimo when the level has a table dated within the signing window, on or
-before the competence date (Metalmeccanico C3: the tables of 1 June 2024,
-2025 and 2026). The run then records a `rinnovo_substitute_tax` decision
-with `paid_in="minimum"`, amount zero, and the date of the first such table
-in `table_from`:
+before the competence date. A CCNL that lists its renewals
+(`parameters.renewals`: signing date, first day of the first tranche, quoted
+source) is assessed only once a renewal signed within the window has
+started: its earlier tables in the window (e.g. the IPCA adjustments of
+Metalmeccanico in June 2024 and 2025) are not renewals. The run records a
+`rinnovo_substitute_tax` decision with `paid_in="minimum"` and the date of
+the first table in the window in `table_from`.
+
+Agenzia delle Entrate circ. 2/E of 24 February 2026 (par. 1) measures the
+increment on the table before the renewal: every tranche of a renewal signed
+in 2024-2026 and paid in 2026 is taxed, the ones started in 2024 and 2025
+too, on the direct pay (twelve months, 13th, 14th) and never on the
+seniority increments. The engine takes the increment of the full-time table
+(the minimo of the run's date less the minimo in force the day before the
+first tranche of the earliest qualifying renewal) and scales it like the
+minimo of the run (part time, proration, extra month). Like a renewal
+increment paid as an event, it is taxed at its gross.
 
 | Worker facts | Decision | Effect on the run |
 |---|---|---|
 | A known fact excludes the worker: public sector, 2025 income above 33,000, written waiver | `final`, the reason (e.g. `prior_income_above_ceiling`) | none |
 | Sector or 2025 income unknown | `provisional`, e.g. `prior_income_unknown` | one `rinnovo_eligibility_unknown` issue per missing fact: a `missing_fact` blocker naming `sector` or `employment_income` |
-| Every requirement met | `provisional`, `renewal_increment_in_minimum_unquantified` | issue `rinnovo_minimum_increment_unquantified`: a `calculation_issue` blocker, since the ordinary IRPEF on the whole minimo may be too high |
+| Every requirement met, the renewal and the table before it in the bundle | `final`, `renewal_increment_in_minimum_taxed`, amount the substitute tax; inputs `increment`, `pre_renewal_minimum`; source circ. 2/E | the increment leaves the ordinary IRPEF base and its 5% is posted as `substitute_tax` (codice tributo of the regime) |
+| Every requirement met, the CCNL lists no renewal or lacks the table before it | `provisional`, `renewal_increment_in_minimum_unquantified` | issue `rinnovo_minimum_increment_unquantified`: a `calculation_issue` blocker, since the ordinary IRPEF on the whole minimo may be too high |
 
-The signing date is not asked for on the minimo: no event carries it. A run
+Bundled renewals (October 2026): Turismo Federalberghi (5 July 2024),
+Terziario Confesercenti (22 March 2024), Metalmeccanico Federmeccanica (22
+November 2025), Metalmeccanico Confapi (24 July 2025 and 4 June 2026). A run
 whose minimo has no table dated within the window (e.g. Farmacie private,
 last table of 2021) takes no decision on it.
 

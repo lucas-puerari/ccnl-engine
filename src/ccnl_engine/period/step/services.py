@@ -16,7 +16,10 @@ from ccnl_engine.compensation.hourly.services import (
     percentage_settlement,
 )
 from ccnl_engine.compensation.raccordo.services import erc_settlement
-from ccnl_engine.compensation.renewal_minimum.services import renewal_minimum
+from ccnl_engine.compensation.renewal_minimum.services import (
+    renewal_minimum,
+    renewal_settlement,
+)
 from ccnl_engine.contribution.ceiling.services import (
     IvsCeiling,
     ivs_ceiling_decision,
@@ -29,6 +32,7 @@ from ccnl_engine.extra_month.settlement.services import (
     settle_extra_months,
 )
 from ccnl_engine.fund.assistance.policies import assistance_decision
+from ccnl_engine.fund.health.services import contractual_funds
 from ccnl_engine.pay_item.rounding.policies import contribution_base
 from ccnl_engine.pension_fund.decision.services import (
     pension_decision,
@@ -137,15 +141,24 @@ def run_events(ctx: RunContext) -> RunEvents:
         with_sickness=any(i.code == WITH_UNPAID_ABSENCE for i in events.totals.issues),
     )
     totals = reduction.added_to(erc.added_to(settlement.added_to(events.totals)))
-    totals = hourly.added_to(totals)
+    renewal = renewal_settlement(ctx)
+    funds = contractual_funds(ctx).settlement
+    totals = funds.added_to(renewal.added_to(hourly.added_to(totals)))
     return RunEvents(
         totals,
-        events.items + settlement.items + erc.items + reduction.items + hourly.items,
+        events.items
+        + settlement.items
+        + erc.items
+        + reduction.items
+        + hourly.items
+        + funds.items,
         events.entries
         + settlement.entries
         + erc.entries
         + reduction.entries
-        + hourly.entries,
+        + hourly.entries
+        + renewal.entries
+        + funds.entries,
     )
 
 
@@ -236,6 +249,7 @@ def run_decisions(
         + ((assistance,) if assistance is not None else ())
         + tfr_revaluation_decisions(ctx)
         + (() if renewal is None else (renewal.decision,))
+        + contractual_funds(ctx).decisions
         + totals.decisions
         + amounts.decisions
         + caller_supplied_decisions(request.events, contract.ccnl, request.level_code)

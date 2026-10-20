@@ -15,19 +15,28 @@ from datetime import date
 from decimal import Decimal
 
 import pytest
+from pydantic import ValidationError
 
 from ccnl_engine.agreement.validity.rules import (
     SalaryGapKind,
     TimeSeries,
     ValidityPeriod,
 )
+from ccnl_engine.compensation.renewal_minimum.models import RenewalAgreement
 from ccnl_engine.compensation.renewal_minimum.rules import (
     INCREMENT_UNQUANTIFIED,
     RenewalMinimum,
     assess_renewal_minimum,
+    pre_renewal_minimum,
+    qualifying_starts,
     renewal_table_from,
 )
 from ccnl_engine.decision.models import CalculationStatus
+from ccnl_engine.provenance.source.models import (
+    SourceDocument,
+    SourceKind,
+    SourceLocation,
+)
 from ccnl_engine.regime.models import EmploymentSector
 from ccnl_engine.regime.requirement.rules import RegimeFacts
 from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
@@ -188,3 +197,78 @@ class TestAssessRenewalMinimum:
             (ruleset.id, ruleset.version) if with_ruleset else ("rinnovo", "2026")
         )
         assert (decision.rule, decision.rule_version) == expected
+
+
+def _renewal(signed_on: date, tables_from: date) -> RenewalAgreement:
+    return RenewalAgreement(
+        signed_on=signed_on,
+        tables_from=tables_from,
+        source=SourceLocation(
+            source_document=SourceDocument(
+                document_id="ipotesi",
+                title="Ipotesi di accordo",
+                kind=SourceKind.ASSOCIAZIONE,
+            ),
+            quote="minimo dal 1 luglio",
+        ),
+    )
+
+
+_SERIES = TimeSeries(
+    periods=(
+        ValidityPeriod(
+            valid_from=date(2023, 1, 1),
+            valid_until=date(2024, 7, 1),
+            value=Decimal(1500),
+        ),
+        ValidityPeriod(
+            valid_from=date(2024, 7, 1), valid_until=None, value=Decimal(1600)
+        ),
+    )
+)
+
+
+def test_the_minimo_before_the_earliest_qualifying_renewal() -> None:
+    """The table the day before the first tranche of a 2024-2026 renewal."""
+    renewals = (
+        _renewal(date(2023, 6, 1), date(2023, 1, 1)),
+        _renewal(date(2024, 7, 5), date(2024, 7, 1)),
+    )
+
+    assert pre_renewal_minimum(
+        _SERIES, renewals, _RINNOVO, date(2026, 1, 1)
+    ) == Decimal(1500)
+    assert qualifying_starts(renewals, _RINNOVO, date(2024, 6, 1)) == ()
+
+
+def test_no_table_before_the_renewal_leaves_it_unmeasured() -> None:
+    """A renewal whose first tranche opens the series cannot be measured."""
+    renewals = (_renewal(date(2024, 1, 10), date(2023, 1, 1)),)
+
+    assert pre_renewal_minimum(_SERIES, renewals, _RINNOVO, date(2026, 1, 1)) is None
+
+
+def test_a_regime_without_a_signing_window_has_no_renewal() -> None:
+    """Without a window no renewal qualifies."""
+    regime = _RINNOVO.model_copy(
+        update={"agreements_signed_from": None, "agreements_signed_until": None}
+    )
+    renewals = (_renewal(date(2024, 7, 5), date(2024, 7, 1)),)
+
+    assert qualifying_starts(renewals, regime, date(2026, 1, 1)) == ()
+
+
+def test_a_renewal_quotes_its_first_tranche() -> None:
+    """A renewal without a quote is rejected."""
+    with pytest.raises(ValidationError, match="quote"):
+        RenewalAgreement(
+            signed_on=date(2024, 7, 5),
+            tables_from=date(2024, 7, 1),
+            source=SourceLocation(
+                source_document=SourceDocument(
+                    document_id="ipotesi",
+                    title="Ipotesi di accordo",
+                    kind=SourceKind.ASSOCIAZIONE,
+                )
+            ),
+        )

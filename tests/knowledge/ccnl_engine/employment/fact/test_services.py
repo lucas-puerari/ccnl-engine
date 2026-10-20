@@ -246,8 +246,8 @@ def _hours_above_full_time() -> None:
         employment=Employment(
             ccnl_id=COMMERCIO,
             level_code="4",
-            weekly_hours=WeeklyHours(60),
-            full_time_weekly_hours=WeeklyHours(40),
+            weekly_hours=WeeklyHours(Decimal(60)),
+            full_time_weekly_hours=WeeklyHours(Decimal(40)),
             contract_type=Permanent(),
         )
     )
@@ -258,7 +258,7 @@ def _negative_contributable_hours() -> None:
         employment=Employment(
             ccnl_id=DOMESTIC,
             level_code="B",
-            weekly_hours=WeeklyHours(25),
+            weekly_hours=WeeklyHours(Decimal(25)),
             contract_type=Permanent(),
         ),
         contributable_hours=ContributableHours(Decimal(-160)),

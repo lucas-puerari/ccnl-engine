@@ -111,7 +111,8 @@ weekly hours without it leave the part-time fraction unknown, with a
 `missing_fact` blocker.
 
 Both facts are value objects validated when they are built: `WeeklyHours` must
-be positive (and not above `full_time_weekly_hours` when that is given), and
+be a positive `Decimal` of at most two decimal places (and not above
+`full_time_weekly_hours` when that is given), and
 `ContributableHours` must be a non-negative `Decimal`. Impossible values raise
 `InvalidInputError` instead of producing negative
 contributions.

@@ -1424,7 +1424,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-confapi",
       "ruleset_version": "2026.2",
-      "source_hash": "274491b6e793856a32009d90095985af2fff83d17438369025f6fb7e27b3aff3",
+      "source_hash": "90575c4c25c9d19bdaa46d001dfb15f511a6326505254e145d7bb441faf976c0",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-confapi.json.gz"
@@ -1458,7 +1458,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-federmeccanica",
       "ruleset_version": "2026.3",
-      "source_hash": "900cae5ff8103459a6e4ade73e2b683c867dd58a5e7ee48d7b8ff0bd1f9d013a",
+      "source_hash": "c2c4e71e0caaa98191a632e084ee9f1a20e833bacdc59cb5c7325f32055c8734",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-federmeccanica.json.gz"
@@ -2002,7 +2002,7 @@
       "valid_to": "2027-03-31",
       "ruleset_id": "ccnl/terziario-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "24372b6e9e07a7c14027525d263b610a07d26ee2f9dd60065c8243a8a81038ad",
+      "source_hash": "3bb94264e7f44d5aa76976b0ab113006acc652a965477fc6b99f6755dfcd56f3",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/terziario-confesercenti.json.gz"
@@ -2121,7 +2121,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi",
       "ruleset_version": "2026.2",
-      "source_hash": "9a4058a68f9b28d8c177eabcc96e2cc68b0bea2964aca47ace524a82018a77d4",
+      "source_hash": "a1d2408c3fd9901694d9549d52b08fd7f448780013312999a50738f860a31026",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/turismo-federalberghi.json.gz"
@@ -2257,7 +2257,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "6ed168e6de2e20eabb035ab292518118c1a6827c8eadba31ce923d2b8320271b",
+      "source_hash": "d758dc012c67fb2d4e4ecbb47b5d4c3b52eaad476a210e84748f53bbf3942552",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "capability/registry/2026.json.gz",
@@ -2276,7 +2276,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "95c21334036835a3e5571cd3c3618b53549b08d9e7fc9f8201164fa1bbccab4d",
+      "source_hash": "fe9b3382ff1bdeec4ba1b3e52aba0d4c343eef2c4919c4062368fd7c6f4debfb",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "capability/registry/2027.json.gz",

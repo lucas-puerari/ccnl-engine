@@ -241,7 +241,7 @@ def test_household_employer_takes_no_irpef_decision() -> None:
     result = _run(
         "lavoro-domestico-convivente",
         "A",
-        weekly_hours=WeeklyHours(40),
+        weekly_hours=WeeklyHours(Decimal(40)),
         contributable_hours=ContributableHours(Decimal(173)),
     )
     employee = _decision(result, "inps_employee")
@@ -274,7 +274,10 @@ def test_low_part_time_pay_withholds_nothing() -> None:
     month, some 5,600 EUR a year over 14 slots: the work deduction of
     art. 13 TUIR exceeds the gross tax on it.
     """
-    result = _run(weekly_hours=WeeklyHours(8), full_time_weekly_hours=WeeklyHours(40))
+    result = _run(
+        weekly_hours=WeeklyHours(Decimal(8)),
+        full_time_weekly_hours=WeeklyHours(Decimal(40)),
+    )
     decision = _decision(result, "irpef")
     assert decision.reason_code == "nothing_due"
     assert decision.amount == Decimal(0)

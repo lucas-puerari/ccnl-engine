@@ -37,7 +37,7 @@ if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.calendar.models import WorkCalendar
     from ccnl_engine.compensation.element.types import MonthlyPayChain
-    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+    from ccnl_engine.employment.fact.inputs import EmploymentPeriod, WorkPattern
     from ccnl_engine.period.requests import PeriodCalculationRequest
     from ccnl_engine.run.models import PayrollRunId
     from ccnl_engine.withholding.schedule.models import WithholdingSlot
@@ -176,6 +176,7 @@ def upcoming_recurring_gross(
     upcoming: tuple[WithholdingSlot, ...],
     employment: EmploymentPeriod | None = None,
     rule: MonthAccrualRule = DEFAULT_MONTH_ACCRUAL_RULE,
+    pattern: WorkPattern | None = None,
 ) -> Decimal:
     """Project the recurring gross of the slots after the current one.
 
@@ -183,7 +184,8 @@ def upcoming_recurring_gross(
     the regular chain for a regular month, the extra-month chain scaled by
     the rateo the slot's run will pay for a tredicesima or quattordicesima.
     The rateo is counted on ``employment`` as the run will count it, so a
-    worker hired during the year is not projected at full accrual; absences
+    worker hired during the year is not projected at full accrual, and a
+    month a vertical part time does not work is projected at zero; absences
     still to come are unknown and settle at the conguaglio.
 
     Args:
@@ -194,6 +196,8 @@ def upcoming_recurring_gross(
         employment: Employment period, or ``None`` for a worker employed
             over every accrual window.
         rule: Month-qualification rule of the CCNL ratei.
+        pattern: Work pattern of a vertical part time, ``None`` for every
+            month worked.
 
     Returns:
         Sum of the projected gross of the upcoming slots, zero on the last.
@@ -201,26 +205,35 @@ def upcoming_recurring_gross(
     total = _ZERO
     for slot in upcoming:
         chain = _apply_extra_month_policy(
-            regular_chain, slot.run.run_kind, _slot_fraction(slot, employment, rule)
+            regular_chain,
+            slot.run.run_kind,
+            _slot_fraction(slot, employment, rule, pattern),
         )
         total += money(chain.base + chain.seniority + chain.allowances_total)
     return total
 
 
 def _slot_fraction(
-    slot: WithholdingSlot, employment: EmploymentPeriod | None, rule: MonthAccrualRule
+    slot: WithholdingSlot,
+    employment: EmploymentPeriod | None,
+    rule: MonthAccrualRule,
+    pattern: WorkPattern | None,
 ) -> Decimal:
     """Return the share of a monthly pay the run of ``slot`` will pay.
 
     Returns:
-        ``slot.pay_fraction`` for a regular run; for an extra-month run the
-        rateo accrued on ``employment`` up to its payment month.
+        ``slot.pay_fraction`` for a regular run, zero in a month ``pattern``
+        does not work; for an extra-month run the rateo accrued on
+        ``employment`` up to its payment month.
     """
     kind = slot.run.run_kind.value
     if kind not in {k.value for k in ExtraMonthKind}:
-        return slot.pay_fraction
+        idle = pattern is not None and not pattern.works_in(slot.run.month)
+        return _ZERO if idle else slot.pay_fraction
     extra = run_schedule(ExtraMonthKind(kind), slot.run.month, slot.pay_fraction)
-    return ExtraMonthAccrual.of(extra, slot.run.year, employment, rule=rule).fraction
+    return ExtraMonthAccrual.of(
+        extra, slot.run.year, employment, rule=rule, pattern=pattern
+    ).fraction
 
 
 def slot_share(annual: Decimal, slots: int) -> Decimal:

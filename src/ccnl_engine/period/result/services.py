@@ -40,6 +40,7 @@ from ccnl_engine.extra_month.decision.services import (
     run_accruals,
 )
 from ccnl_engine.extra_month.liquidation.services import settlement_issues
+from ccnl_engine.fund.health.services import contractual_funds
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.services import _sum_ledger
 from ccnl_engine.pension_fund.decision.services import (
@@ -200,6 +201,7 @@ def _input_issues(
         + settlement_issues(ctx.request, ctx.contract.ccnl, ctx.settlements)
         + tfr_revaluation_issues(ctx)
         + (() if renewal is None else renewal.issues)
+        + contractual_funds(ctx).issues
     )
 
 

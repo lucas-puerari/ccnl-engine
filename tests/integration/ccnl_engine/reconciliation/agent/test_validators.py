@@ -33,7 +33,7 @@ def _request(ccnl_id: str, level_code: str) -> PeriodCalculationRequest:
         ccnl_id=ccnl_id,
         level_code=level_code,
         opening_state=PeriodState.zero(),
-        weekly_hours=WeeklyHours(40) if domestic else None,
+        weekly_hours=WeeklyHours(Decimal(40)) if domestic else None,
         contributable_hours=(ContributableHours(Decimal(173)) if domestic else None),
     )
 

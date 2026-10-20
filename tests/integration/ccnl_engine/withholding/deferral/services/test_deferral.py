@@ -258,7 +258,7 @@ class TestOtherRuns:
                     employment=Employment(
                         ccnl_id="lavoro-domestico-convivente",
                         level_code="A",
-                        weekly_hours=WeeklyHours(40),
+                        weekly_hours=WeeklyHours(Decimal(40)),
                         contract_type=Permanent(),
                     ),
                     employer=EmployerProfile(headcount=Headcount(1)),

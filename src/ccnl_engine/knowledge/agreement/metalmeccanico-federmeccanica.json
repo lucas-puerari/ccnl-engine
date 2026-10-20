@@ -478,6 +478,25 @@
           "note": "Art. 15 is not amended by the ipotesi of 22 November 2025 (sha256 37152685..., which changes art. 17 Welfare only). The Cometa nota informativa in force from 31/07/2026 (https://www.cometafondo.it/parte-i-scheda-iii-i-destinatari-e-i-contributi) gives the same rates and the bases: Lavoratori occupati dopo il 28.04.1993 100% 1,2% 2%; (1) Il contributo a carico datore di lavoro è calcolato percentualmente sul valore dei minimi contrattuali del livello di inquadramento del lavoratore aderente. [...] per i lavoratori di nuova adesione dopo il 5 febbraio 2021 e con età inferiore ai 35 anni compiuti, prevede che la contribuzione a carico del datore di lavoro, a decorrere dal 1° g Verified on 2026-10-14: art. 15 re-read in the CCNL of 5 February 2021 (sha256 ff182dd8..., physical pp. 182-183): 'A decorrere dal 1° giugno 2017 [...] un'aliquota pari al 2% dei minimi contrattuali', the worker 'almeno pari all'1,2% del minimo contrattuale', and 2,2% from 1 June 2022 for members joining after 5 February 2021 under 35."
         }
       }
+    ],
+    "renewals": [
+      {
+        "signed_on": "2025-11-22",
+        "tables_from": "2026-06-01",
+        "source": {
+          "source_document": {
+            "document_id": "uilm-ipotesi-2025",
+            "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+            "kind": "associazione",
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+            "published_on": "2025-11-22",
+            "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+          },
+          "page": "2",
+          "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+          "quote": "D1 1.784,94 1.833,02 1.885,37"
+        }
+      }
     ]
   },
   "levels": [
@@ -3164,7 +3183,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "900cae5ff8103459a6e4ade73e2b683c867dd58a5e7ee48d7b8ff0bd1f9d013a",
+    "source_hash": "c2c4e71e0caaa98191a632e084ee9f1a20e833bacdc59cb5c7325f32055c8734",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },

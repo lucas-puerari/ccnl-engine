@@ -6,12 +6,12 @@ January 2026): increments paid in 2026 under renewals signed from 1 January
 2025 employment income not above 33,000 EUR, unless waived in writing.
 
 Scenario: Metalmeccanico C3, private sector, resident in Alghero, June 2026.
-The C3 minimo rises from 2,158.26 to 2,211.43 on 1 June 2026, and its
-tables of 1 June 2024 and 2025 also fall within the signing window (the
-bundle cites the tables of the renewal of 22 November 2025).  How much of
-the minimo counts as a renewal increment is not settled by the engine: it
-never posts the 5% on the minimo, and a worker who meets the requirements
-is blocked instead of being paid at ordinary rates in silence.
+The C3 minimo rises from 2,158.26 to 2,211.43 on 1 June 2026 with the first
+tranche of the renewal signed on 22 November 2025; its tables of 1 June 2024
+and 2025 are IPCA adjustments of the earlier CCNL, not renewals.  Agenzia
+delle Entrate circ. 2/E of 24 February 2026 (par. 1) measures the increment
+on the table before the renewal: 2,211.43 - 2,158.26 = 53.17 EUR, taxed at
+5% = 2.66 EUR for a worker who meets the requirements.
 """
 
 from __future__ import annotations
@@ -81,19 +81,19 @@ def _minimum_decision(result: PeriodResult) -> CalculationDecision:
     return decision
 
 
-def test_eligible_worker_is_blocked_not_taxed_in_silence() -> None:
-    """2025 income 20,000, private: the increment is not quantified."""
+def test_eligible_worker_pays_5_percent_on_the_increment() -> None:
+    """2025 income 20,000, private: 53.17 EUR taxed at 5% = 2.66 EUR."""
     result = _june(Decimal(20_000))
 
-    assert substitute_tax(result) == Decimal(0)
+    assert substitute_tax(result) == Decimal("2.66")
     decision = _minimum_decision(result)
-    assert decision.reason_code == "renewal_increment_in_minimum_unquantified"
-    assert decision.status is CalculationStatus.PROVISIONAL
-    assert (
-        BlockerCode.CALCULATION_ISSUE,
-        "rinnovo_minimum_increment_unquantified",
-    ) in {(b.code, b.detail) for b in result.blockers}
-    assert not result.is_payable
+    assert decision.reason_code == "renewal_increment_in_minimum_taxed"
+    assert decision.status is CalculationStatus.FINAL
+    assert decision.inputs["increment"] == Decimal("53.17")
+    assert decision.inputs["pre_renewal_minimum"] == Decimal("2158.26")
+    assert "rinnovo_minimum_increment_unquantified" not in {
+        b.detail for b in result.blockers
+    }
 
 
 def test_unknown_prior_income_names_the_income() -> None:

@@ -296,7 +296,7 @@ def _call(spec: ExampleSpec) -> str:
     if spec.category is not None:
         employment.append(f"category=WorkerCategory.{spec.category}")
     if spec.domestic:
-        hours = f"WeeklyHours({spec.weekly_hours})"
+        hours = f"WeeklyHours(Decimal({spec.weekly_hours}))"
         employment.extend((
             f"weekly_hours={hours}",
             f"full_time_weekly_hours={hours}",

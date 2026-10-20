@@ -151,8 +151,8 @@ def test_part_time_base_reaches_the_hourly_floor() -> None:
     """
     employment = replace(
         _AUTOSCUOLE_3,
-        weekly_hours=WeeklyHours(20),
-        full_time_weekly_hours=WeeklyHours(40),
+        weekly_hours=WeeklyHours(Decimal(20)),
+        full_time_weekly_hours=WeeklyHours(Decimal(40)),
     )
     result = ENGINE.calculate_period(regular_run(employment=employment))
     floor = (HOURLY_FLOOR_40_HOURS * 20 * 26 / 6).quantize(_CENT)
@@ -171,8 +171,8 @@ def test_part_time_of_an_unpublished_week_blocks_the_inps_amounts() -> None:
     """
     employment = replace(
         _AUTOSCUOLE_3,
-        weekly_hours=WeeklyHours(20),
-        full_time_weekly_hours=WeeklyHours(38),
+        weekly_hours=WeeklyHours(Decimal(20)),
+        full_time_weekly_hours=WeeklyHours(Decimal(38)),
     )
     result = ENGINE.calculate_period(regular_run(employment=employment))
     assert {"inps_employee", "inps_employer"} <= _issue_blocked(result)

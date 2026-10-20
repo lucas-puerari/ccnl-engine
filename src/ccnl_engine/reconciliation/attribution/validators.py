@@ -44,9 +44,9 @@ _SURTAX = frozenset({
     "withholding_shortfall",
 })
 _WORK_TIME = frozenset({"night_work", "holiday_work", "shift_work"})
-#: A bilateral fund the caller declares, or the assistance contribution the
-#: CCNL charges per paid hour.
-_FUNDS = frozenset({"bilateral_funds", "assistance_contribution"})
+#: A bilateral fund the caller declares, a contractual fund of the CCNL, or
+#: the assistance contribution the CCNL charges per paid hour.
+_FUNDS = frozenset({"bilateral_funds", "contractual_funds", "assistance_contribution"})
 #: The Cassa Edile accrual withheld from the pay is part of the pay chain of
 #: an hourly worker (``hourly_pay.percentages``).
 _WORKER_FUNDS = _FUNDS | {"base_salary"}
@@ -61,7 +61,7 @@ KIND_ACCOUNTS = frozenset({
 #: Capabilities that post an earnings, benefit or deduction pay-item kind.
 KIND_CAPABILITIES: dict[str, frozenset[str]] = {
     "base_salary_earning": frozenset({"base_salary"}),
-    "fixed_allowance_earning": frozenset({"base_salary"}),
+    "fixed_allowance_earning": frozenset({"base_salary", "contractual_funds"}),
     "extra_month_earning": frozenset({"base_salary"}),
     "raccordo_element_earning": frozenset({"base_salary"}),
     "hourly_percentage_earning": frozenset({"base_salary"}),
@@ -88,6 +88,7 @@ ACCOUNT_CAPABILITIES: dict[AccountKind, frozenset[str]] = {
     AccountKind.EMPLOYER_CONTRIBUTIONS: frozenset({
         "inps_employer",
         "pension_fund_contribution",
+        "contractual_funds",
     }),
     AccountKind.BILATERAL_FUND_EMPLOYEE: _WORKER_FUNDS,
     AccountKind.BILATERAL_FUND_EMPLOYER: _FUNDS,

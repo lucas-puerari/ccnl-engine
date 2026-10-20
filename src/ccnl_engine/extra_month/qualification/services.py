@@ -34,7 +34,7 @@ if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.calendar.models import WorkCalendar
     from ccnl_engine.compensation.models import ExtraMonthAccrualRule
-    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+    from ccnl_engine.employment.fact.inputs import EmploymentPeriod, WorkPattern
     from ccnl_engine.event.facade import WorkEvent
 
 
@@ -91,6 +91,7 @@ def termination_settlements(
     non_accruing_days: frozenset[date],
     rule: MonthAccrualRule = DEFAULT_MONTH_ACCRUAL_RULE,
     unknown_days: frozenset[date] = frozenset(),
+    pattern: WorkPattern | None = None,
 ) -> dict[str, tuple[ExtraMonthAccrual, ...]]:
     """Return the ratei the last run of an employment ending this year pays.
 
@@ -100,7 +101,8 @@ def termination_settlements(
     following year when the payment month precedes the termination month),
     clipped to the hire date and counted up to the termination date with
     ``rule``; the days of ``unknown_days`` count as accruing and mark
-    an accrual they change as undetermined.
+    an accrual they change as undetermined, and the months ``pattern``
+    does not work accrue nothing.
 
     Returns:
         The accruals keyed by the ``run_id`` of the termination month's
@@ -119,6 +121,7 @@ def termination_settlements(
             non_accruing_days=non_accruing_days,
             rule=rule,
             unknown_days=unknown_days,
+            pattern=pattern,
         )
         for extra in calendar.extra_months
         if extra.payment_month != ended_on.month

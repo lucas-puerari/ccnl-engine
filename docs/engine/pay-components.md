@@ -9,7 +9,9 @@ See [Domain: Components](../domain/components.md) for the legal background.
 ## Part-time
 
 Pass the contracted `weekly_hours` together with the CCNL
-`full_time_weekly_hours` on `Employment`, as `WeeklyHours`. The engine derives the
+`full_time_weekly_hours` on `Employment`, as `WeeklyHours`: a `Decimal` above
+zero, at most 168, with up to two decimal places (`Decimal("37.5")` for 37
+hours 30 minutes; an `int` is rejected). The engine derives the
 part-time fraction from the two and scales the contractual pay by it.
 `weekly_hours` must not exceed `full_time_weekly_hours`. The contracted hours
 alone never count as full time: without `full_time_weekly_hours` the run
@@ -22,6 +24,7 @@ tredicesima run charges no INPS hours of its own.
 
 ```python
 from datetime import date
+from decimal import Decimal
 
 from ccnl_engine import (
     EmployerProfile,
@@ -42,7 +45,7 @@ def gross(weekly_hours: WeeklyHours | None = None) -> str:
         level_code="C3",
         contract_type=Permanent(),
         weekly_hours=weekly_hours,
-        full_time_weekly_hours=WeeklyHours(40),
+        full_time_weekly_hours=WeeklyHours(Decimal(40)),
     )
     result = engine.calculate_period(
         PeriodInput(
@@ -56,8 +59,41 @@ def gross(weekly_hours: WeeklyHours | None = None) -> str:
 
 
 print("Full time:", gross())
-print("Half time:", gross(WeeklyHours(20)))
+print("Half time:", gross(WeeklyHours(Decimal(20))))
 ```
+
+### Vertical and mixed part time
+
+`Employment.work_pattern` states how the hours are spread, as a
+`WorkPattern`:
+
+- `weekday_hours`: the hours of the seven days of the week, Monday first,
+  e.g. 8 hours Monday to Wednesday. They must sum to `weekly_hours`, which
+  stays the single source of the part-time ratio: 24 hours on three days
+  pay the same month as 24 hours on five.
+- `months`: the calendar months worked, e.g. `frozenset(range(1, 7))` for a
+  vertical part time from January to June.
+
+In a month outside `months` the regular or termination run posts no
+monthly pay: its `base_salary` decision has the reason
+`vertical_part_time_month_not_worked` and the input `month_worked=false`,
+the INPS minimum reason is `month_not_worked`, no contractual fund amount
+of the month is owed, and the engine computes no sick pay on the month (an
+amount the caller states on a `SickLeaveEvent` is still paid). The months not worked accrue no
+extra-month rateo: a worker of January to June is paid half a tredicesima,
+on the pay of the payment month. The withholding projection of the
+upcoming runs counts those months at zero.
+
+Not modelled: a partial month (hire, termination, unpaid absence) is
+prorated on the CCNL daily quotas of the calendar, not on the days of
+`weekday_hours`; hours that change from month to month; the art. 13 TUIR
+deduction days of the months not worked (the calendar days of the
+relationship are counted); the contractual fund amount on the extra-month
+ratei settled by a termination run that falls in a month not worked (it is
+left out); the INPS weekly contribution minimum for pension credit, which
+the engine does not model for any worker; any CCNL clause that pays a
+vertical part time otherwise (e.g. an extra-month rateo on the hours of the
+year).
 
 ## Role allowances
 
@@ -254,8 +290,21 @@ print(revaluation.reason_code)  # price_index_not_published until January 2027
 ## Bilateral funds (*fondi bilaterali*)
 
 Many CCNLs require contributions to sector bilateral bodies (health funds,
-training funds). The engine does not derive them from the CCNL: pass the
-amounts due in the period as a `BilateralFundEvent`. The employee portion
+training funds) for every worker, and owe the worker of an employer that does
+not pay them an *elemento distinto* instead. A CCNL that models them lists
+them in `parameters.health_funds`; the employer states the codes of the funds
+it pays in `EmployerProfile.contractual_funds` (an empty set for none):
+
+| Employer fact | Effect on the run (capability `contractual_funds`) |
+|---|---|
+| `None` | nothing posted, `missing_fact contractual_funds` blocker |
+| the fund is named | employer share to `bilateral_fund_employer`, INPS solidarity on it (10% for a health fund) to `employer_contributions`, worker share withheld to `bilateral_fund_employee` and, for a health fund, taken out of the IRPEF base (TUIR art. 51 c. 2 lett. a); on the extra months only when the CCNL says so |
+| the fund is not named | the elemento distinto as an earning in the INPS and IRPEF bases (and the TFR base when the CCNL says so), on the extra months when it is due "per 14 mensilità" |
+
+Fixed amounts follow the minimo of the run: part time, a partial month and
+the ratei of an extra month scale them. A CCNL whose funds are not modelled
+yet keeps its open limitation; for those, pass the amounts due in the period
+as a `BilateralFundEvent`. The employee portion
 reduces net pay; the employer portion increases employer cost. For the
 pension fund of the CCNL use the enrolment described in
 [Pension funds](#pension-funds-previdenza-complementare) instead.  A CCNL that

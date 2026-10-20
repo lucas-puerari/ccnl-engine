@@ -63,8 +63,8 @@ def _run(run: PayrollRun, level: str) -> PeriodResult:
                 ccnl_id=_NON_CONVIVENTE,
                 level_code=level,
                 seniority=new_hire(),
-                weekly_hours=WeeklyHours(20),
-                full_time_weekly_hours=WeeklyHours(40),
+                weekly_hours=WeeklyHours(Decimal(20)),
+                full_time_weekly_hours=WeeklyHours(Decimal(40)),
                 contract_type=Permanent(),
             ),
             employer=EmployerProfile(headcount=Headcount(1)),
@@ -134,10 +134,12 @@ def test_the_band_of_the_published_quarters_of_a_signatory(
     rules = load_year_rules(2026, TaxSector.LAVORO_DOMESTICO, 1)
     assert rules.domestic_contributions is not None
     monthly = agreed * weekly * 52 / 12
-    effective = _domestic_hourly_rate(ccnl, rules, monthly, weekly, date(2026, 3, 1))
+    effective = _domestic_hourly_rate(
+        ccnl, rules, monthly, Decimal(weekly), date(2026, 3, 1)
+    )
     assert effective is not None
     employee, employer = _pick_domestic_per_hour(
-        rules.domestic_contributions, weekly, effective, surcharged=False
+        rules.domestic_contributions, Decimal(weekly), effective, surcharged=False
     )
     hours = Decimal(weekly * 13)
 

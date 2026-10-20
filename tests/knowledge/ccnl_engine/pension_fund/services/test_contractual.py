@@ -56,7 +56,7 @@ def _january(
         seniority=new_hire(),
         pension_fund=pension,
         weekly_hours=weekly,
-        full_time_weekly_hours=None if weekly is None else WeeklyHours(40),
+        full_time_weekly_hours=None if weekly is None else WeeklyHours(Decimal(40)),
         contract_type=Permanent(),
     )
     return regular_period(employment=employment, current_year=employment_only())
@@ -109,7 +109,7 @@ def test_owed_while_the_enrolment_is_unknown() -> None:
 
 def test_part_time_is_an_open_limitation() -> None:
     """The source gives no rule for part time: full amount, not payable."""
-    result = _january(NoPensionFund(), WeeklyHours(20))
+    result = _january(NoPensionFund(), WeeklyHours(Decimal(20)))
     assert _entry(result, "pension_fund_employer") == Decimal("6.80")
     assert _PARTIAL in {limitation.id for limitation in result.assurance.limitations}
     assert not result.is_payable
