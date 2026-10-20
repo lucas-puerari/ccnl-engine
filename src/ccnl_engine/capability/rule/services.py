@@ -163,6 +163,10 @@ def contract_rules(ctx: RunContext) -> dict[str, tuple[Rule, ...]]:
         "assistance_contribution": assistance_rules(
             ccnl, ctx.contract.tctx.competence.year
         ),
+        "contractual_funds": tuple(
+            (f"{name}:health_funds[{fund.code}]", fund.provenance)
+            for fund in ccnl.parameters.health_funds
+        ),
     }
 
 

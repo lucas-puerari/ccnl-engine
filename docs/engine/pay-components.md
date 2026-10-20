@@ -290,8 +290,21 @@ print(revaluation.reason_code)  # price_index_not_published until January 2027
 ## Bilateral funds (*fondi bilaterali*)
 
 Many CCNLs require contributions to sector bilateral bodies (health funds,
-training funds). The engine does not derive them from the CCNL: pass the
-amounts due in the period as a `BilateralFundEvent`. The employee portion
+training funds) for every worker, and owe the worker of an employer that does
+not pay them an *elemento distinto* instead. A CCNL that models them lists
+them in `parameters.health_funds`; the employer states the codes of the funds
+it pays in `EmployerProfile.contractual_funds` (an empty set for none):
+
+| Employer fact | Effect on the run (capability `contractual_funds`) |
+|---|---|
+| `None` | nothing posted, `missing_fact contractual_funds` blocker |
+| the fund is named | employer share to `bilateral_fund_employer`, INPS solidarity on it (10% for a health fund) to `employer_contributions`, worker share withheld to `bilateral_fund_employee` and, for a health fund, taken out of the IRPEF base (TUIR art. 51 c. 2 lett. a); on the extra months only when the CCNL says so |
+| the fund is not named | the elemento distinto as an earning in the INPS and IRPEF bases (and the TFR base when the CCNL says so), on the extra months when it is due "per 14 mensilità" |
+
+Fixed amounts follow the minimo of the run: part time, a partial month and
+the ratei of an extra month scale them. A CCNL whose funds are not modelled
+yet keeps its open limitation; for those, pass the amounts due in the period
+as a `BilateralFundEvent`. The employee portion
 reduces net pay; the employer portion increases employer cost. For the
 pension fund of the CCNL use the enrolment described in
 [Pension funds](#pension-funds-previdenza-complementare) instead.  A CCNL that

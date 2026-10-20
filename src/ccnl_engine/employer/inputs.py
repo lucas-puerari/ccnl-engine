@@ -6,6 +6,7 @@ from dataclasses import dataclass
 
 from ccnl_engine.agreement.types import TaxSector
 from ccnl_engine.contribution.zone.models import AgriculturalZone
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.regime.models import EmployerActivity
 from ccnl_engine.validators import (
     parse_enum,
@@ -98,6 +99,12 @@ class EmployerProfile:
             CCNL; when it lists more than one, the run has a
             ``missing_fact`` blocker.  A sector the CCNL does not list
             raises.
+        contractual_funds: Codes of the health and bilateral funds of the
+            CCNL the employer pays (``parameters.health_funds``, e.g.
+            ``"fondo_est"``); a fund of the CCNL not named owes the worker its
+            elemento distinto instead.  ``None`` means not known: a run on a
+            CCNL with such funds posts neither and has a ``missing_fact``
+            blocker; an empty set states that the employer pays none.
 
     Raises:
         InvalidInputError: When ``headcount`` is not a :class:`Headcount`,
@@ -116,6 +123,7 @@ class EmployerProfile:
     provincial_pay_element: bool | None = None
     agricultural_zone: AgriculturalZone | None = None
     inps_sector: TaxSector | None = None
+    contractual_funds: frozenset[str] | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_instance(
@@ -151,6 +159,19 @@ class EmployerProfile:
                 "EmployerProfile.public_life_insurance",
                 feature=_FEATURE,
             )
+        if self.contractual_funds is not None:
+            funds = self.contractual_funds
+            if not isinstance(funds, (set, frozenset)) or not all(
+                isinstance(code, str) for code in funds
+            ):
+                msg = (
+                    "EmployerProfile.contractual_funds must be a set of fund codes"
+                    f" (an empty set for none); got {funds!r}"
+                )
+                raise InvalidInputError(
+                    msg, field="EmployerProfile.contractual_funds", feature=_FEATURE
+                )
+            object.__setattr__(self, "contractual_funds", frozenset(funds))
         for name in ("fis_reduction", "provincial_pay_element", "cigs_indotto"):
             value = getattr(self, name)
             if value is not None:

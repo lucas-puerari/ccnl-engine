@@ -380,6 +380,25 @@
           }
         }
       }
+    ],
+    "renewals": [
+      {
+        "signed_on": "2024-03-22",
+        "tables_from": "2024-04-01",
+        "source": {
+          "source_document": {
+            "document_id": "cnel-20279",
+            "title": "Accordo integrativo 28 marzo 2024 al CCNL Terziario, Distribuzione e Servizi del 22 marzo 2024 (Confesercenti, Filcams, Fisascat, Uiltucs), tabelle retributive 2023-2027, CNEL 20279 (scansione firmata)",
+            "kind": "cnel",
+            "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20279.pdf",
+            "published_on": "2024-03-28",
+            "sha256": "31788db6977a060829e19b5f4a6f2ed5528d774a62c14be677e55cf2076b7870"
+          },
+          "page": "2",
+          "section": "Table 'Paga base dal 2024-04-01', row Q, column 'Totale mensile'",
+          "quote": "Quadro 2070,25 260,76 540,37 2871,38"
+        }
+      }
     ]
   },
   "levels": [
@@ -3124,7 +3143,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "24372b6e9e07a7c14027525d263b610a07d26ee2f9dd60065c8243a8a81038ad",
+    "source_hash": "3bb94264e7f44d5aa76976b0ab113006acc652a965477fc6b99f6755dfcd56f3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
