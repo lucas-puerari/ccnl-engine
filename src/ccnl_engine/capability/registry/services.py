@@ -46,7 +46,6 @@ from ccnl_engine.event.total.handlers import EVENT_FEATURES
 from ccnl_engine.period.decision.override.services import (
     CALLER_SUPPLIED_CAPABILITIES,
 )
-from ccnl_engine.run.models import RunKind
 
 if TYPE_CHECKING:
     from collections.abc import Iterable, Mapping
@@ -178,22 +177,13 @@ def case_facts(ctx: RunContext) -> CaseFacts:
         it), and the applicability facts the request left to their default.
     """
     request = ctx.request
-    period = request.employment_period
-    ended = None if period is None else period.ended_on
-    month = request.period_id
-    kind = ctx.run_kind
-    closes = kind is RunKind.TERMINATION or (
-        kind is RunKind.REGULAR
-        and ended is not None
-        and (ended.year, ended.month) == (month.year, month.month)
-    )
     return CaseFacts(
         event_features=frozenset(
             EVENT_FEATURES[type(event)]
             for event in request.events
             if type(event) in EVENT_FEATURES
         ),
-        closes_employment=closes,
+        closes_employment=ctx.closes_employment,
         absent_facts=absent_facts(request),
     )
 

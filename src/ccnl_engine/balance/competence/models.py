@@ -16,12 +16,13 @@ toward the IVS massimale follows competence too
 (:mod:`~ccnl_engine.contribution.base.models`), so it is counted here per
 competence year.  The sickness episodes are counted over the employment
 too: a waiting period, an INPS band or a CCNL tier depends on the sick days
-before the run, whatever tax year paid them; the TFR quotas too.
+before the run, whatever tax year paid them; the TFR quotas and the leave
+balances too.
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, field, replace
 from datetime import date
 from decimal import Decimal
 from typing import final
@@ -29,20 +30,26 @@ from typing import final
 from ccnl_engine.collection.validators import items_of_type, tuple_of
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.leave.balance.models import LeaveAccount
 from ccnl_engine.run.models import PayrollRunId, RunKind
 from ccnl_engine.severance.provision import models as tfr
 from ccnl_engine.sickness.models import SicknessEpisode
-from ccnl_engine.validators import require_date
+from ccnl_engine.validators import require_date, require_instance
 
 __all__ = ["EmploymentAccrualState"]
 
 _FEATURE = "accrual_state"
+_STATE = "EmploymentAccrualState"
 _FIELD = "EmploymentAccrualState.competence_runs"
 _BASES = "EmploymentAccrualState.inps_bases"
 _SICKNESS = "EmploymentAccrualState.sickness_episodes"
 _TFR = "EmploymentAccrualState.tfr_quotas"
 _ZERO = Decimal(0)
 _EXTRA_MONTHS = frozenset({RunKind.THIRTEENTH, RunKind.FOURTEENTH})
+
+
+def _items[T](value: object, path: str, cls: type[T]) -> tuple[T, ...]:
+    return tuple_of(value, path, items_of_type(cls, feature=_FEATURE), feature=_FEATURE)
 
 
 @final
@@ -78,6 +85,7 @@ class EmploymentAccrualState:
         tfr_quotas_known_from: First competence year :attr:`tfr_quotas`
             count in full (balances imported without them: the year after
             the import); ``None`` for every year.
+        leave: Ferie, ROL and ex festività balances, per bucket and year.
 
     Raises:
         InvalidInputError: When a run id is not a
@@ -93,23 +101,14 @@ class EmploymentAccrualState:
     sickness_known_from: date | None = None
     tfr_quotas: tuple[tfr.TfrQuotaYtd, ...] = ()
     tfr_quotas_known_from: int | None = None
+    leave: LeaveAccount = field(default_factory=LeaveAccount)
 
     def __post_init__(self) -> None:  # noqa: D105
-        runs = tuple_of(
-            self.competence_runs,
-            _FIELD,
-            items_of_type(PayrollRunId, feature=_FEATURE),
-            feature=_FEATURE,
-        )
+        runs = _items(self.competence_runs, _FIELD, PayrollRunId)
         object.__setattr__(self, "competence_runs", runs)
         for index, run_id in enumerate(runs):
             _check_next(runs[:index], run_id)
-        bases = tuple_of(
-            self.inps_bases,
-            _BASES,
-            items_of_type(InpsBaseYtd, feature=_FEATURE),
-            feature=_FEATURE,
-        )
+        bases = _items(self.inps_bases, _BASES, InpsBaseYtd)
         object.__setattr__(self, "inps_bases", bases)
         years = [b.year for b in bases]
         if years != sorted(set(years)):
@@ -124,6 +123,7 @@ class EmploymentAccrualState:
             feature=_FEATURE,
             optional=True,
         )
+        require_instance(self.leave, LeaveAccount, f"{_STATE}.leave", feature=_FEATURE)
 
     def check_next_run(self, run_id: PayrollRunId) -> None:
         """Check that ``run_id`` can close next.
@@ -141,6 +141,7 @@ class EmploymentAccrualState:
         sickness_episodes: tuple[SicknessEpisode, ...] | None = None,
         additional_ivs: Decimal = _ZERO,
         tfr_quota: Decimal = _ZERO,
+        leave: LeaveAccount | None = None,
     ) -> EmploymentAccrualState:
         """Return the state with ``run_id`` closed and its INPS base added.
 
@@ -154,6 +155,7 @@ class EmploymentAccrualState:
                 its competence year.
             tfr_quota: TFR the run accrued with the employer, added to its
                 competence year.
+            leave: Leave account after the run, ``None`` to keep the state's.
 
         Returns:
             A new state with ``run_id`` appended; it is validated again.
@@ -172,6 +174,7 @@ class EmploymentAccrualState:
                 else sickness_episodes
             ),
             tfr_quotas=tfr.quotas_with(self.tfr_quotas, run_id.year, tfr_quota),
+            leave=self.leave if leave is None else leave,
         )
 
     def tfr_quota(self, year: int) -> tfr.TfrQuotaYtd | None:

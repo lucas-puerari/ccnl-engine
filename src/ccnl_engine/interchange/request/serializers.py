@@ -55,6 +55,7 @@ from ccnl_engine.irpef.other_income.inputs import (
     CurrentYearTaxFacts,
     IncomeEstimateQuality,
 )
+from ccnl_engine.leave.inputs import LeaveTakenEvent
 from ccnl_engine.pension_fund.inputs import NoPensionFund, PensionFundEnrolment
 from ccnl_engine.period.inputs import PeriodFacts, PeriodInput
 from ccnl_engine.regime.models import (
@@ -158,6 +159,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             HolidayWorkKind,
             IncomeEstimateQuality,
             IndividualElement,
+            LeaveTakenEvent,
             NaspiExclusion,
             NightShiftEvent,
             NoPensionFund,

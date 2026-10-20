@@ -129,15 +129,16 @@
     {
       "feature": "termination_residual_leave",
       "layer": "gross",
-      "implementation": "unsupported",
+      "implementation": "native",
       "applies_when": "termination_run",
-      "handler": null,
+      "handler": "decision",
       "evidence": "derived",
       "variants": [],
       "required_facts": [
-        "facts.residual_leave_hours"
+        "employment.employment_period",
+        "opening_balances.leave_balances"
       ],
-      "description": "Monetizzazione ferie e permessi residui alla cessazione"
+      "description": "Indennità sostitutiva di ferie e permessi residui alla cessazione, sulla base del CCNL"
     },
     {
       "feature": "termination_tfr",
@@ -497,15 +498,13 @@
     {
       "feature": "leave",
       "layer": "work_rules",
-      "implementation": "unsupported",
-      "applies_when": "outside_input",
-      "handler": null,
+      "implementation": "native",
+      "applies_when": "event",
+      "handler": "event",
       "evidence": "derived",
       "variants": [],
-      "required_facts": [
-        "facts.events[leave]"
-      ],
-      "description": "Ferie e permessi ROL"
+      "required_facts": [],
+      "description": "Ferie, ROL ed ex festività godute: retribuite nella paga del mese, scalano il saldo maturato"
     },
     {
       "feature": "sickness",

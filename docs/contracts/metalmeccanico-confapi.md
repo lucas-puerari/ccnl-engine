@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, overtime, pension_fund_contribution, sickness |
+| **Limits of this contract** | base_salary, leave, overtime, pension_fund_contribution, sickness |
 
-12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+14 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 61 verified / 7 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 63 verified / 7 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule read in the signed texts: the CCNL of 3 July 2017, the verbali on the minimi of 11 June 2024, 19 June 2025 and 17 June 2026, the accordo of 24 July 2025 and the renewal of 4 June 2026, for the production tier. | corrected | 70 records verified, 8 derived; the salary tables and the work rules cited aggregator pages and now cite the signatories' texts. The scans have no text layer: their quotes are OCR.<br>September 2025 minimi: the file re-parametrised the tranche; the signed accordo of 24 July 2025 prints 1603.45, 1770.79, 1964.74, 2195.87, 2354.36, 3054.74 for levels 1, 2, 3, 5, 6, 9 (one to five cents above).<br>Added the June 2027 and June 2028 tranches of the renewal of 4 June 2026 (ratified 23 July 2026); June 2026 closed at 2027-06-01.<br>Left derived: level 1 June 2024 and levels 1, 2, 4, 5, 9 June 2025, where the verbale that set the tranche and the later restated tables differ by one to five cents; the daily divisor 1/26 (no clause on absences); the leave tiers, whose 'oltre 10 anni' and 'oltre i 18 anni' are read as 120 and 216 completed months.<br>Overtime per Art. 29 column 'non a turni': 20% day, 50% night, 55% holiday and rest day, 75% night holiday (were 15/40/50/60); the base is the retribuzione globale di fatto (gross_incl_allowances).<br>Leave per Art. 33: 20 days, 21 over 10 years, 25 over 18 years (was 22 flat); left derived for the reading of the seniority thresholds.<br>Sickness per Art. 55: full pay for 2/3/4 months and half for 4/6/8 more over a 3-year window, comporto 6/9/12 months, net basis (was 60%/75%/180 days).<br>Fondapi 2.0%/1.2% from 2021-06-01 (Art. 50), not 2026-01-01; hourly divisor 173 from 2021-06-01 (Art. 40).<br>Apprenticeship: the 30- and 24-month tracks of Art. 10 added (limitation apprenticeship_36_months_assumed closed); no seniority during the apprenticeship (Art. 10 p. 49, limitation apprentice_seniority closed).<br>Not modelled pay clauses gathered in the limitation confapi_unmodelled_pay_elements; fondapi_base_elements narrowed to the indennità di funzione of the quadri. |
 | 2026-10-17 | claude-opus-5-5 (ai) | The minimi of 2025 and 2026 against the accordo of 24 July 2025 and the verbale of 17 June 2026, the derived minimi of 2024 and 2025, and a year and a termination of a 5th level impiegato against a hand oracle. | confirmed | 5th level (scans read by OCR): 2.195,87 from 1 September 2025 and 2.245,87 from 1 June 2026 in both documents. Match.<br>The 6 derived minimi of June 2024 and June 2025 stay derived: for each the verbale that set the tranche and the later accordo and renewal print amounts one to five cents apart (for example 1.752,96 against 1.752,97 at the 2nd level); the file keeps the verbale in force for the months it covers and records both. The derived absence and leave rules state their transformation of a cited text. No primary states any of them directly.<br>Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios confapi-year and confapi-june): a 5th level impiegato hired on 1 January 2026 by an employer with 50 employees, across the tranche of June 2026; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done. |
 | 2026-10-19 | claude-opus-5-5 (ai) | Hourly base of the time supplements and the supplements of ordinary night, holiday, Sunday, rest-day and shift work, read in the cited articles of the national text (text layer, or OCR of the scanned pages). AI review only: the same model extracted and checked the values. | confirmed | hourly_base_method gross_incl_allowances (was gross_incl_allowances), now verified: the engine reads it to derive the hourly rate of an event without one.<br>Supplement bands added: CONFAPI_FESTIVO, CONFAPI_FESTIVO_RIPOSO.<br>Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS. |
+| 2026-10-19 | claude-opus-5-5 (ai) | Leave accrual: the ferie twelfths and month rule, the hours of each permit bucket (ROL, ex festività or the pooled PAR), the new-hire ramps and the basis of the indemnity for the residual leave at termination, read on the text cited by each rule. An AI review: the extractor is also the verifier. | confirmed | The values stated are those of the quoted clauses; what the texts leave open (month fractions, termination divisors, schedules and shift patterns) is not modelled and is recorded in the coverage notes. |
 
 ## Salary table
 
@@ -192,6 +193,20 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the IPCA top-up when the index is published.
 
+!!! warning "metalmeccanico-confapi/par_sector_shift_and_renewal_hours · leave · impact yes · open"
+    LEAVE, PAR (Artt. 21-22 and renewal of 4 June 2026, p. 18): 8 more hours in the sectors listed by Art. 21 and for the turnisti on 15 or more shifts a week; 4 more hours from 1 January 2027 to 31 December 2028 in the companies with at least 50 employees per unità produttiva and from 2029 in every company (the sentence is an insertion of the scan, read by OCR). The engine accrues the 104 hours of the generalità.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add employment facts for the sector, the shift pattern and the size of the unità produttiva, and the 2027 hours.
+
+!!! warning "metalmeccanico-confapi/par_conto_ore_payout · leave · impact yes · open"
+    LEAVE, CONTO ORE (Art. 22): the PAR not taken in the year go to an individual conto ore for 24 more months and are then paid with the retribuzione in atto. The engine carries the balances and does not pay them at the end of the window.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pay the residual PAR of a year at the end of its 24-month conto ore window.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -266,6 +281,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SICKNESS (Art. 55 pp. 136-139): integration up to the normal net pay, full for 2/3/4 months and half for 4/6/8 more by seniority, over the sickness of the three years before each episode; comporto breve 6/9/12 months. The INPS share is grossed up by the worker's INPS rate (net_basis), a payroll practice the CCNL does not spell out.
     
     HOURLY RATE AND SUPPLEMENTS (Art. 29 of the CCNL of 3 July 2017 (rates untouched by the renewals of 2021 and 2026)): without a caller value the engine derives the hourly base (minimi, scatti and fixed allowances over 173) and the supplements on holiday hours (55%) and on holiday hours with a compensatory rest (10%), equal in both columns. Whether those hours are also paid on top of the monthly pay is not settled: a derived holiday supplement is provisional. Not derived, the caller states the amount: ordinary night work (25% until 22 and 35% after (shift column 25%)), because its window starts 12 hours after the morning shift of each work group and its rate depends on the hour and on the shift column, facts the request does not carry; night holiday work and Sunday work. Individual elements (merito, superminimi, cottimi) are not in the hourly base. Absences: no clause sets the divisor of an absence deduction (work_rules.absence_rules is derived from the 1/26 of art. 32): the caller states AbsenceEvent.hourly_rate.
+    
+    LEAVE AT TERMINATION (Art. 33): each day of ferie is paid at the 'retribuzione giornaliera globale di fatto'; its divisor of the monthly pay is not stated in the texts read, so the engine pays no residual (termination_residual_leave incomplete).
     
 
 ## Raw data

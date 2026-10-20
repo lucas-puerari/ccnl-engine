@@ -39,7 +39,6 @@ _UNSUPPORTED_2026 = {
     "fiscal_adjustment": "outside_input",
     "maternity_leave": "outside_input",
     "workplace_injury": "outside_input",
-    "termination_residual_leave": "termination_run",
     "una_tantum": "outside_input",
     "personal_withholdings": "outside_input",
     "additional_irpef_base": "outside_input",
@@ -48,7 +47,6 @@ _UNSUPPORTED_2026 = {
     "territorial_supplement": "outside_input",
     "company_supplement": "outside_input",
     "art15_deductions": "outside_input",
-    "leave": "outside_input",
 }
 
 
@@ -73,7 +71,7 @@ class TestBundledRegistry:
         assert "spouse_increase_bands" in entry.variants
 
     def test_unsupported_capabilities_and_predicates(self) -> None:
-        """The fifteen unsupported capabilities name when they apply."""
+        """The thirteen unsupported capabilities name when they apply."""
         catalog = load_capability_catalog(2026)
         unsupported = {
             e.feature: e.applies_when.value

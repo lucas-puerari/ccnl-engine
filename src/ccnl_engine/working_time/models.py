@@ -1,7 +1,6 @@
 """Working-time and leave rule models for CCNL contracts."""
 
 from collections.abc import Sequence
-from datetime import date
 from decimal import Decimal
 from enum import StrEnum
 from typing import Literal
@@ -186,74 +185,6 @@ def _levels_overlap(bands: Sequence[OvertimeBand | SupplementBand]) -> bool:
             if set(band.levels) & set(other.levels):
                 return True
     return False
-
-
-class LeaveEntitlementTier(BaseModel):
-    """One seniority-gated leave entitlement tier.
-
-    When ``service_months_min`` months of service have elapsed, the worker
-    is entitled to ``annual_days`` paid leave days per year. Tiers are
-    evaluated in descending order of ``service_months_min``; the first
-    matching tier wins. Use :class:`LeaveRules.default_annual_days` as
-    the fallback when no tier matches or seniority is unknown.
-    ``valid_from`` and ``valid_until`` (exclusive) bound the dates a tier is
-    in force (Funzioni Centrali: the 26 days of the first three years end
-    on 31 December 2026); ``None`` leaves that side open.
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    service_months_min: int = Field(default=0, ge=0)
-    annual_days: Decimal = Field(gt=Decimal(0))
-    valid_from: date | None = None
-    valid_until: date | None = None
-
-    def in_force(self, day: date) -> bool:
-        """Return whether the tier applies on ``day``.
-
-        Returns:
-            ``True`` from ``valid_from`` up to ``valid_until`` (exclusive).
-        """
-        after = self.valid_from is None or self.valid_from <= day
-        return after and (self.valid_until is None or day < self.valid_until)
-
-
-class LeaveRules(BaseModel):
-    """Layer 3 rules for paid leave (ferie / permessi) accrual.
-
-    ``default_annual_days`` is the contractual entitlement when no
-    seniority-gated tier matches or when seniority is unknown.
-    ``entitlement_tiers`` (optional) list tiers in any order; the engine
-    selects the one with the highest ``service_months_min`` that the
-    worker has satisfied.
-
-    ``provenance`` links this rule to its CCNL article.
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    default_annual_days: Decimal = Field(gt=Decimal(0))
-    entitlement_tiers: tuple[LeaveEntitlementTier, ...] = Field(default=())
-    provenance: RuleProvenance | None = None
-
-    def annual_days(self, service_months: int | None, day: date) -> Decimal:
-        """Return the leave days of a year for a worker on ``day``.
-
-        Returns:
-            The days of the tier in force on ``day`` with the highest
-            ``service_months_min`` the worker reached, else
-            ``default_annual_days``.
-        """
-        if service_months is None:
-            return self.default_annual_days
-        tiers = [
-            t
-            for t in self.entitlement_tiers
-            if t.in_force(day) and t.service_months_min <= service_months
-        ]
-        if not tiers:
-            return self.default_annual_days
-        return max(tiers, key=lambda t: t.service_months_min).annual_days
 
 
 class TravelAllowanceBand(BaseModel):

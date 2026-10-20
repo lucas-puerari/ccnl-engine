@@ -119,7 +119,7 @@ class TestClosingRun:
     """A run that closes the employment needs residual leave settled."""
 
     def test_termination_run_is_incomplete(self) -> None:
-        """The unsupported capability applies: a gap and a blocker.
+        """The residual leave applies and has no basis: a gap and a blocker.
 
         The revaluation of the TFR fund for the fraction of the year (art.
         2120 c. 5 c.c.) is not computed either.
@@ -130,11 +130,11 @@ class TestClosingRun:
         )
         result = calculate_period(request)
         assert _gap_kinds(request) == {
-            _RESIDUAL_LEAVE: CapabilityGapKind.UNSUPPORTED,
+            _RESIDUAL_LEAVE: CapabilityGapKind.UNRESOLVED,
             _TFR_REVALUATION: CapabilityGapKind.UNRESOLVED,
         }
         assert result.assurance.coverage is CoverageStatus.INCOMPLETE
-        assert (BlockerCode.CAPABILITY_NOT_COMPUTED, _RESIDUAL_LEAVE) in {
+        assert (BlockerCode.CALCULATION_ISSUE, _RESIDUAL_LEAVE) in {
             (b.code, b.feature) for b in result.blockers
         }
         assert not result.is_payable
@@ -146,7 +146,7 @@ class TestClosingRun:
         )
         request = replace(_req(month=3), employment_period=period)
         assert _gap_kinds(request) == {
-            _RESIDUAL_LEAVE: CapabilityGapKind.UNSUPPORTED,
+            _RESIDUAL_LEAVE: CapabilityGapKind.UNRESOLVED,
             _TFR_REVALUATION: CapabilityGapKind.UNRESOLVED,
         }
 

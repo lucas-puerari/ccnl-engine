@@ -84,9 +84,10 @@ def _blocker_keys(result: PeriodResult) -> set[tuple[BlockerCode, str | None, st
 def test_incomplete_coverage_is_not_payable() -> None:
     """Metalmeccanico C3, last month of an employment ending on 30 January.
 
-    The final payslip must settle the residual leave, a capability the
-    engine does not compute: it applies to this run, so the report has an
-    ``unsupported`` gap and the result is not payable.  So must it revalue
+    The final payslip must settle the residual leave, which the CCNL texts
+    read give no divisor for: it applies to this run and is decided
+    incomplete, so the report has an ``unresolved`` gap and the result is
+    not payable.  So must it revalue
     the TFR fund at 31 December 2025 for January (art. 2120 c. 5 c.c.),
     which the engine reports as not computed: an ``unresolved`` gap.
     ``base_salary`` cites the signed tables: no evidence blocker.  January
@@ -120,11 +121,16 @@ def test_incomplete_coverage_is_not_payable() -> None:
     assert [i.code for i in result.issues] == ["somma_esente_income_unknown"]
     assert result.is_payable is False
     assert gaps == {
-        "termination_residual_leave": "unsupported",
+        "termination_residual_leave": "unresolved",
         "tfr_revaluation": "unresolved",
     }
-    # The revaluation gap follows from its decision: one blocker per cause.
-    assert blocked == {"termination_residual_leave"}
+    # Both gaps follow from their decisions: one blocker per cause.
+    assert blocked == set()
+    assert (
+        BlockerCode.CALCULATION_ISSUE,
+        "termination_residual_leave",
+        "termination_basis_not_sourced",
+    ) in (_blocker_keys(result))
     assert (
         BlockerCode.CALCULATION_ISSUE,
         "tfr_revaluation",

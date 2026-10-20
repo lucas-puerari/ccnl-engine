@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority, sickness, trattamento_integrativo |
+| **Limits of this contract** | base_salary, leave, seniority, sickness, trattamento_integrativo |
 
-12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 75 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 77 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-13 | claude-opus-5-5 (ai) | Scope of the declared limitations. | corrected | sickness_net_basis is recorded on every run with a sickness event (trigger run), not only documented.<br>The apprenticeship durations without a signed source are now a limitation on every apprentice run (apprenticeship_durations_unsourced); with every remaining gap flagged on the runs it concerns, the file moves to production. |
 | 2026-10-17 | claude-opus-5-5 (ai) | Periodic review due 2026-12-01: the paga base nazionale of every level and tranche from July 2024, the extra months against the ipotesi of 5 July 2024, the scatti and the hourly divisor against the CCNL of 20 February 2010, and a year and a termination of a 4th level worker against a hand oracle. | confirmed | Art. 152 c. 1 as replaced in 2024 (p. 42, scan read by OCR): the 50 amounts of the ten levels from July 2024 to November 2027 match the file.<br>Art. 160 (p. 45): tredicesima of one monthly pay at Christmas; art. 161 (p. 46): quattordicesima of the pay in force on 30 June, paid with the July pay, in twelfths of the twelve months before 1 July. Match with the fourteen payments of the file.<br>Art. 158 c. 4 of the 2010 text (pp. 140-141): six scatti, A 40,80 to 7 30,47. Match. Hourly divisor 172 for a 40-hour week. Match.<br>Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios turismo-year and turismo-june): a 4th level impiegato hired on 1 January 2026 by an employer with 10 employees, across the tranche of May 2026; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent.<br>apprenticeship_durations_unsourced stays open: no signed or CNEL copy of the accord of 17 April 2012 as amended in 2014 was found in this review. |
 | 2026-10-19 | claude-opus-5-5 (ai) | Hourly base of the time supplements and the supplements of ordinary night, holiday, Sunday, rest-day and shift work, read in the cited articles of the national text (text layer, or OCR of the scanned pages). AI review only: the same model extracted and checked the values. | confirmed | hourly_base_method gross_incl_allowances (was gross_incl_allowances), now verified: the engine reads it to derive the hourly rate of an event without one.<br>Supplement bands added: TUR_NOTTURNO, TUR_NOTTURNO_QUALIFICA, TUR_FESTIVO.<br>Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS. |
+| 2026-10-19 | claude-opus-5-5 (ai) | Leave accrual: the ferie twelfths and month rule, the hours of each permit bucket (ROL, ex festività or the pooled PAR), the new-hire ramps and the basis of the indemnity for the residual leave at termination, read on the text cited by each rule. An AI review: the extractor is also the verifier. | confirmed | The values stated are those of the quoted clauses; what the texts leave open (month fractions, termination divisors, schedules and shift patterns) is not modelled and is recorded in the coverage notes. |
 
 ## Salary table
 
@@ -191,6 +192,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add the worker's request of c. 20 to the request, pay 15% of the night and holiday overtime pay of the run as a credit, then remove this note.
 
+!!! warning "turismo-federalberghi/balneari_reduction_hours · leave · impact yes · open"
+    LEAVE, STABILIMENTI BALNEARI (Art. 111 c.2): 108 hours of reduction a year instead of 104. The engine accrues the 104 hours of alberghi, pubblici esercizi, campeggi, alberghi diurni and agenzie di viaggi.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add an employer fact for the comparto and accrue 108 hours for the stabilimenti balneari.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -245,6 +253,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     CNEL code H052 is shared with CCNL Agenzie di Viaggio Fiavet: the engine allows duplicates.
     
     HOURLY RATE AND SUPPLEMENTS (artt. 148, 151, 216, 220 of the 2010 text): without a caller value the engine derives the hourly base (the art. 148 retribuzione over 172), the 25% on ordinary night hours from 24 to 6 (art. 216 c.1; 12% for the role qualifica_notturna, c.2: Employment.roles must be stated) and the 20% on the hours worked on a festività (art. 220). The night window of the lavoratori notturni (23:30-6:30, art. 218) only changes which hours the caller declares. Art. 220 also pays the festività hours themselves on top of the monthly pay: the engine posts the 20% only and the run is provisional. Not derived: the Sunday allowance of art. 126 (10% of the hourly paga base and contingenza: the bundle does not record that base_salary holds exactly those two voci), holiday overtime (art. 219 sets no rate), the divisors 190 and 192 of the 44- and 45-hour weeks (a stated full-time week other than 40 is not derived).
+    
+    LEAVE AT TERMINATION: no clause of the texts read (2010, 2014 version, 2024 ipotesi) states the basis of the indemnity for the ferie and permits not taken; the engine accrues and carries the balances and pays no residual (termination_residual_leave incomplete, termination_basis_not_sourced).
     
     SALARY TABLES: the 1 April 2016 values from art. 152 c.1 of the renewal of 18 January 2014 (p. 17); the five tranches lug 2024, giu 2025, mag 2026, apr 2027 and nov 2027 from art. 152 c.1 of the ipotesi of 5 July 2024 (p. 42).
     

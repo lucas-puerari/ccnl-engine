@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, overtime, seniority, sickness |
+| **Limits of this contract** | base_salary, leave, overtime, seniority, sickness |
 
-11 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 49 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 51 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-13 | claude-opus-5-5 (ai) | Readiness of the file after the limitations gained a headcount scope. | confirmed | The INPS gap above 15 employees (fsbap_rates_above_15) is now recorded on every run of an employer with more than 15 employees (applies_when headcount_from 16): up to 15 employees the terziario rates coincide with the solidarity fund of the studi professionali, so the file moves to production. |
 | 2026-10-17 | claude-opus-5-5 (ai) | Periodic review due 2026-12-01: the minimi tabellari of every level and tranche, the scatti, the ENAC, the divisor and the extra months against the CCNL of 16 February 2024, the solidarity fund against the D.I. of 21 May 2024, and a year and a termination of a 4th level worker against a hand oracle. | confirmed | The 32 minimi of Art. 140 (eight levels, tranches of March 2024, October 2024, October 2025 and December 2026, pp. 71-72) match the file.<br>Scatti of Art. 134 (p. 68): eight triennial increments, Quadri 30, I 26, II 23, III Super and III 22, IV Super, IV and V 20. Match.<br>ENAC of Art. 141 (p. 73): 42,35 at the I, 102,53 at the II and 110,40 at the III Super level. Match.<br>Tredicesima at Christmas (Art. 142) and quattordicesima by 30 June of the pay in force on that date (Art. 143), both in twelfths for a hire within the year. Match with the fourteen payments of the file.<br>Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios studi-year and studi-june): a 4th level impiegato hired on 1 January 2026 by an employer with 10 employees; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent.<br>fsbap_rates_above_15 stays open: up to 15 employees the terziario rates equal the 0.80% of the solidarity fund (D.I. 21 May 2024 art. 6 c. 1 lett. b), above 15 they need a contribution sector of their own, an engine change outside this review.<br>bilateral_contribution_or_element stays open: the per-worker amount of Art. 13 needs an employer fact for the alternative element; it remains an owed amount on every run. |
 | 2026-10-19 | claude-opus-5-5 (ai) | Hourly base of the time supplements and the supplements of ordinary night, holiday, Sunday, rest-day and shift work, read in the cited articles of the national text (text layer, or OCR of the scanned pages). AI review only: the same model extracted and checked the values. | confirmed | hourly_base_method gross_incl_allowances (was gross_incl_allowances), now verified: the engine reads it to derive the hourly rate of an event without one.<br>Supplement bands added: STUDI_FESTIVO.<br>Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS. |
+| 2026-10-19 | claude-opus-5-5 (ai) | Leave accrual: the ferie twelfths and month rule, the hours of each permit bucket (ROL, ex festività or the pooled PAR), the new-hire ramps and the basis of the indemnity for the residual leave at termination, read on the text cited by each rule. An AI review: the extractor is also the verifier. | confirmed | The values stated are those of the quoted clauses; what the texts leave open (month fractions, termination divisors, schedules and shift patterns) is not modelled and is recorded in the coverage notes. |
 | 2026-10-20 | claude-opus-5-5 (ai) | The bilateral contribution of Art. 13 (CADIPROF, EBIPRO and the element owed outside the bilateral system) against the CCNL of 16 February 2024, and the Fondo di solidarietà bilaterale per le attività professionali against the D.I. of 21 May 2024 art. 6 and INPS circ. 5/2025. | corrected | Art. 13 (p. 8): from March 2024 a unified contribution of 29 EUR a month for 12 months, 2 EUR of the worker, in full for part time: 20 EUR to CADIPROF, 7 + 2 EUR to EBIPRO. Modelled as the contractual funds cadiprof (health fund, 10% INPS solidarity) and ebipro; the owed limitation bilateral_contribution_or_element removed.<br>Art. 13 (p. 8): an employer outside the bilateral system owes 43 EUR for 14 months, in every institute including the TFR, not reproportioned for part time. Modelled as the element of cadiprof, which ebipro shares (alternative_in).<br>D.I. 21 May 2024 art. 6 c. 1 (pp. 6-7): 0.50% up to 5, 0.80% from 6 to 15, 1% above 15 employees, two thirds employer, on the INPS taxable pay. Modelled as a solidarity fund whose tier replaces the FIS and CIGS shares of the terziario rates; up to 15 employees they coincide, above 15 the worker pays 9.52% and the employer 29.65%. The owed limitation fsbap_rates_above_15 removed.<br>Art. 6 c. 4 and INPS circ. 5/2025 p. 3: the 0.50% falls to 0.30% for an employer without claims for 24 months, the same cut the terziario rates carry for the FIS (EmployerProfile.fis_reduction). |
 | 2026-10-20 | claude-opus-5-5 (ai) | The renewal within the window of L. 199/2025 art. 1 c. 7 and the minimo in force before its first tranche. | corrected | Renewal signed on 2024-02-16, first tranche from 2024-03-01: parameters.renewals.<br>Minimo before the renewal = the column 'Minimo tabellare in vigore al 29 febbraio 2024' of the first tranche (Q 2,133.31 to 5 1,315.12). |
 
@@ -193,6 +194,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add a worker fact for extra months already paid.
 
+!!! warning "studi-professionali-confprofessioni/rol_not_accrued · leave · impact yes · open"
+    LEAVE, ROL (Art. 91 cc.2-3): 40 hours a year on a five-day week, 66 on a six-day week, and for the hires under the 2024 CCNL 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the text is silent on the first twelve months. The weekly schedule is not an input and the first year is not sourced: the ROL is not accrued, and a leave taken from it is not decided.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the weekly schedule as an employment fact and source the first twelve months of the new-hire ramp.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -273,6 +281,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     BILATERAL CONTRIBUTION: EBIPRO and CADIPROF are paid with a unified contribution of EUR 29 a month for 12 months, EUR 2 of it by the worker (Art. 13), modelled as the contractual funds cadiprof (20 EUR, health fund) and ebipro (7 + 2 EUR); an employer outside the bilateral system owes the worker 43 EUR for 14 months instead. The CADIPROF enrolment of EUR 24 (Art. 16) stays a caller BilateralFundEvent.
     
     HOURLY RATE AND SUPPLEMENTS (artt. 93-97, 135, 137 of the CCNL of 16 February 2024): without a caller value the engine derives the hourly base (the art. 135 normale retribuzione over 170) and the 30% on festività hours paid as straordinario festivo (art. 97 lett. E with art. 95); art. 97 also pays the hours themselves, which the engine does not post: the run is provisional. Not derived, the caller states the amount: ordinary night work, which art. 93 leaves to the Area Professionale or second-level bargaining (the 30% of art. 95 is a night overtime rate); work on the weekly rest day ('la relativa sola maggiorazione', art. 97 lett. F, names no percentage).
+    
+    LEAVE AT TERMINATION (Art. 101): the ferie are paid at the 'normale retribuzione di fatto' during the leave; no clause states the basis of the indemnity at the end of the employment, so the engine pays no residual (termination_residual_leave incomplete).
     
 
 ## Raw data

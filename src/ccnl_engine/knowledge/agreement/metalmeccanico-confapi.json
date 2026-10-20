@@ -254,6 +254,36 @@
       {
         "kind": "info",
         "text": "HOURLY RATE AND SUPPLEMENTS (Art. 29 of the CCNL of 3 July 2017 (rates untouched by the renewals of 2021 and 2026)): without a caller value the engine derives the hourly base (minimi, scatti and fixed allowances over 173) and the supplements on holiday hours (55%) and on holiday hours with a compensatory rest (10%), equal in both columns. Whether those hours are also paid on top of the monthly pay is not settled: a derived holiday supplement is provisional. Not derived, the caller states the amount: ordinary night work (25% until 22 and 35% after (shift column 25%)), because its window starts 12 hours after the morning shift of each work group and its rate depends on the hour and on the shift column, facts the request does not carry; night holiday work and Sunday work. Individual elements (merito, superminimi, cottimi) are not in the hourly base. Absences: no clause sets the divisor of an absence deduction (work_rules.absence_rules is derived from the 1/26 of art. 32): the caller states AbsenceEvent.hourly_rate."
+      },
+      {
+        "kind": "simplification",
+        "text": "LEAVE, PAR (Artt. 21-22 and renewal of 4 June 2026, p. 18): 8 more hours in the sectors listed by Art. 21 and for the turnisti on 15 or more shifts a week; 4 more hours from 1 January 2027 to 31 December 2028 in the companies with at least 50 employees per unità produttiva and from 2029 in every company (the sentence is an insertion of the scan, read by OCR). The engine accrues the 104 hours of the generalità.",
+        "capability": "leave",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "par_sector_shift_and_renewal_hours",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add employment facts for the sector, the shift pattern and the size of the unità produttiva, and the 2027 hours."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "LEAVE, CONTO ORE (Art. 22): the PAR not taken in the year go to an individual conto ore for 24 more months and are then paid with the retribuzione in atto. The engine carries the balances and does not pay them at the end of the window.",
+        "capability": "leave",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "par_conto_ore_payout",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pay the residual PAR of a year at the end of its 24-month conto ore window."
+        }
+      },
+      {
+        "kind": "info",
+        "text": "LEAVE AT TERMINATION (Art. 33): each day of ferie is paid at the 'retribuzione giornaliera globale di fatto'; its divisor of the monthly pay is not stated in the texts read, so the engine pays no residual (termination_residual_leave incomplete)."
       }
     ]
   },
@@ -2956,7 +2986,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "0fa26dcd124a290f055bd83e9583269173e1799326e9b7b598f79914ed179b76",
+    "source_hash": "74e06d777c65f468d6a3e6d32514794fd3913bb097d969774e6cd5e6f3a1ff08",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3334,7 +3364,77 @@
           "effective_from": "2021-06-01",
           "verification_status": "unverified"
         }
-      }
+      },
+      "ferie_accrual": {
+        "month_credit": "more_than_half",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-unionmeccanica-confapi-2017",
+              "title": "CCNL 3 luglio 2017 piccola e media industria metalmeccanica, orafa e installazione impianti (Unionmeccanica-Confapi, Fim-Cisl, Fiom-Cgil, Uilm-Uil), testo a stampa",
+              "kind": "associazione",
+              "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+              "published_on": "2017-07-03",
+              "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+            },
+            "page": "106",
+            "section": "Art. 33 - Ferie",
+            "quote": "La frazione di mese superiore ai 15 giorni sarà considerata, a questi effetti, come mese intero."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-19T08:50:55Z",
+            "effective_from": "2021-06-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-19T08:50:55Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-19-ai-leave"
+          },
+          "note": "One twelfth of the yearly ferie per month of service, a fraction of more than 15 days counting as a whole month; the days of the year are those of entitlement_tiers (5-day week)."
+        }
+      },
+      "permits": [
+        {
+          "bucket": "rol",
+          "annual_hours": [
+            {
+              "hours": "104"
+            }
+          ],
+          "includes_ex_festivita": true,
+          "month_credit": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-unionmeccanica-confapi-2017",
+                "title": "CCNL 3 luglio 2017 piccola e media industria metalmeccanica, orafa e installazione impianti (Unionmeccanica-Confapi, Fim-Cisl, Fiom-Cgil, Uilm-Uil), testo a stampa",
+                "kind": "associazione",
+                "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+                "published_on": "2017-07-03",
+                "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+              },
+              "page": "91",
+              "section": "Art. 21 - Permessi annui retribuiti",
+              "quote": "Dal 1° gennaio 2000 la riduzione di orario di lavoro è pari a complessive 104 ore retribuite su base annua, comprensive dei quattro gruppi di 8 ore in sostituzione delle festività abolite dalla legge 5 marzo 1977, n. 54."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T08:50:55Z",
+              "effective_from": "2021-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T08:50:55Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-19-ai-leave"
+            },
+            "note": "One PAR pool of 104 hours (72 of reduction and 32 of ex festività). The text reduces the hours 'proporzionalmente' for fractions of a year without a month rule: a partial month accrues nothing and the balance is marked inexact."
+          }
+        }
+      ],
+      "termination": null
     },
     "sickness_rules": {
       "carenza_integration_rate": "1",
@@ -3483,6 +3583,23 @@
           "hourly_base_method gross_incl_allowances (was gross_incl_allowances), now verified: the engine reads it to derive the hourly rate of an event without one.",
           "Supplement bands added: CONFAPI_FESTIVO, CONFAPI_FESTIVO_RIPOSO.",
           "Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS."
+        ]
+      },
+      {
+        "id": "2026-10-19-ai-leave",
+        "date": "2026-10-19",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Leave accrual: the ferie twelfths and month rule, the hours of each permit bucket (ROL, ex festività or the pooled PAR), the new-hire ramps and the basis of the indemnity for the residual leave at termination, read on the text cited by each rule. An AI review: the extractor is also the verifier.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          }
+        ],
+        "findings": [
+          "The values stated are those of the quoted clauses; what the texts leave open (month fractions, termination divisors, schedules and shift patterns) is not modelled and is recorded in the coverage notes."
         ]
       }
     ],

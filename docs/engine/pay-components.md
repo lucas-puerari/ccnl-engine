@@ -393,6 +393,17 @@ posts the caller's payout and `amount x separate_tax_rate`, as before; an
 payout it did not compute into quotas and revaluations. Every value the
 caller gives is a `caller_override` decision.
 
+## Residual leave at the termination
+
+The ferie and permits left when the employment ends are paid on the run
+that closes it as `leave_settlement_item` earnings (policy
+`it/leave/settlement`: ordinary IRPEF, INPS and TFR base), one per bucket,
+each rounded once: residual days times the monthly pay over the CCNL
+divisor (Commercio: 26), residual hours times the full-time monthly pay
+over the hourly divisor. The monthly pay is the CCNL pay chain of the level;
+an individual superminimo is not an input. Only the CCNLs whose basis is
+sourced pay it; see [Work rules](work-rules.md#paid-leave-ferie-rol-and-ex-festivita).
+
 ## Bilateral funds (*fondi bilaterali*)
 
 Many CCNLs require contributions to sector bilateral bodies (health funds,

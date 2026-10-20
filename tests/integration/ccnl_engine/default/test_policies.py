@@ -65,6 +65,12 @@ _NOT_EXERCISED: dict[str, str] = {
         "a child without it raises InvalidInputError, and no other dependant "
         "reads it: no result to compare"
     ),
+    "OpeningBalances.leave_balances": (
+        "read only by the run that closes an employment of a CCNL with a "
+        "sourced basis for the residual leave (Commercio), not the Concia D2 "
+        "of the cases; tests/integration/ccnl_engine/leave/settlement shows "
+        "its missing_fact"
+    ),
 }
 
 

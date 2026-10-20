@@ -514,6 +514,20 @@ SCENARIOS = {
 }
 
 
+#: Why the residual leave of a terminated scenario is not paid: the CCNL
+#: accrues no leave, or (any other pilot) gives no basis for the indemnity;
+#: ``None`` when it is paid.
+_RESIDUAL_LEAVE_UNPAID: dict[str, str | None] = {
+    _TERZ: None,
+    _COMMERCIO: None,
+    _EDIL: "leave_accrual_not_modelled",
+    _EDILIZIA_IMPIEGATI: "leave_accrual_not_modelled",
+    _ALIMENTARI: "leave_accrual_not_modelled",
+    _DMO: "leave_accrual_not_modelled",
+    _RISTORAZIONE: "leave_accrual_not_modelled",
+}
+
+
 def _contract(s: Scenario) -> Permanent | Apprentice | FixedTerm:
     if s.apprentice_track is not None:
         return Apprentice(months_elapsed=0, track=s.apprentice_track)
@@ -667,11 +681,12 @@ def test_only_the_stated_gaps_block_the_net_pay(name: str) -> None:
                 f"{_METAL}/overtime_exempt_quota_supplement",
             ),
         }
-    if s.terminated:
+    reason = _RESIDUAL_LEAVE_UNPAID.get(s.ccnl, "termination_basis_not_sourced")
+    if s.terminated and reason is not None:
         expected.add((
-            BlockerCode.CAPABILITY_NOT_COMPUTED,
+            BlockerCode.CALCULATION_ISSUE,
             "termination_residual_leave",
-            "unsupported",
+            reason,
         ))
     if s.ccnl in {_EDIL, _EDILIZIA_IMPIEGATI}:
         expected.add((

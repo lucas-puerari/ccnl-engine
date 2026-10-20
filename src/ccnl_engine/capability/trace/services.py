@@ -56,6 +56,8 @@ _DECISION_FEATURES: dict[str, TraceState] = {
     "assistance_contribution": TraceState.NOT_APPLICABLE,
     "contractual_funds": TraceState.NOT_APPLICABLE,
     "tfr_revaluation": TraceState.NOT_APPLICABLE,
+    # Decided on every run that closes the employment: no other run has it.
+    "termination_residual_leave": TraceState.NOT_APPLICABLE,
 }
 
 #: Capabilities a handler of the engine decides and traces: the registry

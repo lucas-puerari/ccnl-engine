@@ -30,6 +30,7 @@ from ccnl_engine.calendar.payment.models import PaymentId
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.employment.spell.models import EmploymentSpell
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.leave.balance.models import LeaveBalance
 from ccnl_engine.run.models import PayrollRunId
 from ccnl_engine.severance.provision.models import TfrQuotaYtd
 from ccnl_engine.sickness.models import SicknessEpisode
@@ -156,6 +157,12 @@ class OpeningBalances:
             ``tax_year`` or earlier whose TFR the engine computes then has a
             ``missing_fact tfr_quotas`` blocker; the runs of the next years
             count their own.
+        leave_balances: Balances of ferie, ROL and ex festività of the
+            employment the previous provider kept, per bucket and year of
+            accrual, in bucket then year order; ``()`` states that none is
+            left.  ``None`` means not known: the run that closes the
+            employment pays no residual leave and has a ``missing_fact``
+            blocker.
     """
 
     tax_year: int
@@ -197,6 +204,7 @@ class OpeningBalances:
     deferred_shortfall: DeferredShortfall | None = None
     employment_spells: tuple[EmploymentSpell, ...] = ()
     tfr_quotas: tuple[TfrQuotaYtd, ...] | None = None
+    leave_balances: tuple[LeaveBalance, ...] | None = None
 
     def __post_init__(self) -> None:
         """Validate every amount and the consistency of the totals.
@@ -227,6 +235,12 @@ class OpeningBalances:
         object.__setattr__(
             self, "recoveries", items(self.recoveries, "recoveries", RecoveryObligation)
         )
+        if self.leave_balances is not None:
+            object.__setattr__(
+                self,
+                "leave_balances",
+                items(self.leave_balances, "leave_balances", LeaveBalance),
+            )
         object.__setattr__(
             self,
             "surtax_obligations",

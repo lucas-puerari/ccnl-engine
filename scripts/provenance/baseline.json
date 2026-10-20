@@ -763,6 +763,7 @@
       "chimica-farmaceutica-federchimica/other_sector_tables",
       "chimica-farmaceutica-federchimica/overtime_base_and_categories",
       "chimica-farmaceutica-federchimica/participation_premiums",
+      "chimica-farmaceutica-federchimica/rol_shift_workers",
       "chimica-farmaceutica-federchimica/sickness_scales_and_comporto",
       "chimica-farmaceutica-federchimica/una_tantum_withholding_2025"
     ],
@@ -772,6 +773,8 @@
     ],
     "agreement/commercio-confcommercio.json": [
       "commercio-confcommercio/apprentice_seniority",
+      "commercio-confcommercio/permit_deadline_payout",
+      "commercio-confcommercio/rol_schedule_absorption",
       "commercio-confcommercio/sickness_net_basis"
     ],
     "agreement/comunicazione-artigianato-confartigianato.json": [
@@ -1051,6 +1054,8 @@
       "metalmeccanico-confapi/fondapi_base_elements",
       "metalmeccanico-confapi/ipca_top_up",
       "metalmeccanico-confapi/ordinary_hours_premiums",
+      "metalmeccanico-confapi/par_conto_ore_payout",
+      "metalmeccanico-confapi/par_sector_shift_and_renewal_hours",
       "metalmeccanico-confapi/quadri_allowance",
       "metalmeccanico-confapi/sickness_rules",
       "metalmeccanico-confapi/six_day_leave",
@@ -1064,6 +1069,8 @@
       "metalmeccanico-federmeccanica/apprentice_seniority",
       "metalmeccanico-federmeccanica/elemento_perequativo",
       "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement",
+      "metalmeccanico-federmeccanica/par_conto_ore_payout",
+      "metalmeccanico-federmeccanica/par_sector_and_shift_hours",
       "metalmeccanico-federmeccanica/shift_and_multiweek_premiums"
     ],
     "agreement/multiservizi-anip.json": [
@@ -1148,6 +1155,7 @@
     "agreement/pubblici-esercizi-fipe-angem.json": [
       "pubblici-esercizi-fipe-angem/apprentice_seniority",
       "pubblici-esercizi-fipe-angem/apprenticeship_long_profiles",
+      "pubblici-esercizi-fipe-angem/balneari_and_seasonal_hours",
       "pubblici-esercizi-fipe-angem/balneari_diurni_rules",
       "pubblici-esercizi-fipe-angem/contract_catering_tranche_dates",
       "pubblici-esercizi-fipe-angem/guarantee_premium_2027",
@@ -1215,6 +1223,7 @@
       "studi-professionali-confprofessioni/maternity_holiday_top_up",
       "studi-professionali-confprofessioni/part_time_supplementary",
       "studi-professionali-confprofessioni/reemployment_entry_pay",
+      "studi-professionali-confprofessioni/rol_not_accrued",
       "studi-professionali-confprofessioni/rolling_comporto_and_serious_illness",
       "studi-professionali-confprofessioni/travel_diaria",
       "studi-professionali-confprofessioni/unused_leave_hours"
@@ -1234,7 +1243,9 @@
       "terziario-confesercenti/long_apprenticeship_profiles",
       "terziario-confesercenti/long_week_divisors",
       "terziario-confesercenti/lump_sum_2024_2025",
+      "terziario-confesercenti/permit_deadline_payout",
       "terziario-confesercenti/provincial_third_elements",
+      "terziario-confesercenti/rol_schedule_absorption",
       "terziario-confesercenti/sales_operators",
       "terziario-confesercenti/sickness_net_basis",
       "terziario-confesercenti/sunday_overtime"
@@ -1271,6 +1282,7 @@
       "turismo-federalberghi/apprentice_net_cap",
       "turismo-federalberghi/apprentice_seniority",
       "turismo-federalberghi/apprenticeship_durations_unsourced",
+      "turismo-federalberghi/balneari_reduction_hours",
       "turismo-federalberghi/extra_months_during_leave",
       "turismo-federalberghi/extras_hourly_table",
       "turismo-federalberghi/first_scatto_from_18",

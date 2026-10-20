@@ -90,15 +90,20 @@ def test_three_month_employment_pays_the_accrued_extra_months() -> None:
       131.06 + 0.52 = 445.95.
 
     Expected: both ratei are paid on the September payslip, so the year
-    grosses 3 * 1,783.75 + 2 * 445.95 = 6,243.15, and September 2,675.65.
+    grosses 3 * 1,783.75 + 2 * 445.95 = 6,243.15, and September 2,675.65,
+    before the residual leave.  September also pays the leave of the three
+    whole months (Art. 158-159 of the Testo Unico 2019): 26 x 3 / 12 = 6.5
+    days of ferie at 1,783.75 / 26, 445.94, and 32 x 3 / 12 = 8 hours of ex
+    festività at 1,783.75 / 168, 84.94 (no ROL in the first two years).
 
     Observed on 26 September 2026 before the fix: 5,351.25, only the three
     regular months.
     """
     year = _three_month_year()
+    leave = Decimal("445.94") + Decimal("84.94")
 
-    assert year.annual_gross == Decimal("6243.15")
-    assert year.period_results[-1].period_gross == Decimal("2675.65")
+    assert year.annual_gross == Decimal("6243.15") + leave
+    assert year.period_results[-1].period_gross == Decimal("2675.65") + leave
 
 
 def test_hire_in_march_accrues_a_third_of_the_quattordicesima() -> None:
@@ -149,16 +154,31 @@ def test_three_month_employment_never_pays_a_full_year(hire_month: int) -> None:
     monthly = max(
         r.period_gross
         - sum(
-            (i.amount for i in r.pay_items if i.kind == "extra_month_earning"),
+            (
+                i.amount
+                for i in r.pay_items
+                if i.kind in {"extra_month_earning", "leave_settlement_item"}
+            ),
             Decimal(0),
         )
         for r in regular_runs
     )
 
+    leave = sum(
+        (
+            i.amount
+            for r in regular_runs
+            for i in r.pay_items
+            if i.kind == "leave_settlement_item"
+        ),
+        Decimal(0),
+    )
+    paid = year.annual_gross - leave
+
     assert len(regular_runs) == 3
     # Each rateo rounds its three components to cents: at most 0.03 above.
-    assert year.annual_gross <= monthly * Decimal("3.5") + Decimal("0.06")
-    assert year.annual_gross > monthly * 3
+    assert paid <= monthly * Decimal("3.5") + Decimal("0.06")
+    assert paid > monthly * 3
 
 
 # Servizi Postali in Appalto FISE, level 2, base 1,650.74 + allowances 63.33

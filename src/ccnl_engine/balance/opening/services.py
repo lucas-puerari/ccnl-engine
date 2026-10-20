@@ -21,6 +21,7 @@ from ccnl_engine.balance.cash.models import TaxCashState
 from ccnl_engine.balance.competence.models import EmploymentAccrualState
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.balance.obligation.models import EmploymentObligations
+from ccnl_engine.leave.balance.models import LeaveAccount
 from ccnl_engine.tax_credit.account.models import (
     SommaEsenteAccount,
     TrattamentoAccount,
@@ -95,6 +96,7 @@ def _accrual(balances: OpeningBalances) -> EmploymentAccrualState:
         The runs closed, the INPS bases, the sickness episodes, known
         from 1 January of the tax year unless the balances state a day, and
         the TFR quotas, known from the year after the import unless the
+        balances state them, and the leave balances, unknown unless the
         balances state them.
     """
     return EmploymentAccrualState(
@@ -112,6 +114,11 @@ def _accrual(balances: OpeningBalances) -> EmploymentAccrualState:
             date(balances.tax_year, 1, 1)
             if balances.sickness_known_from is None
             else balances.sickness_known_from
+        ),
+        leave=(
+            LeaveAccount(known=False)
+            if balances.leave_balances is None
+            else LeaveAccount(balances.leave_balances)
         ),
     )
 

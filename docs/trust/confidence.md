@@ -83,7 +83,7 @@ does not report its gap as well.
 
 A `derived` rule (taken from a cited document location, with no recorded
 human check) lowers the evidence axis but does not block on its own. Only
-<!-- trust:rules-verified -->2499<!-- /trust:rules-verified --> payable rules of
+<!-- trust:rules-verified -->2515<!-- /trust:rules-verified --> payable rules of
 the bundle are `verified`, so requiring `verified` would block almost every
 result; the evidence axis keeps the difference visible instead.
 
@@ -160,7 +160,9 @@ without a classification, or on a classification without its field:
     whose start is stated, the INPS base of other employments when the INPS
     rules carry a massimale or a 1% threshold, the TFR fund at 31 December
     of the year before on a December run, the Fondo Tesoreria destination
-    of the TFR, the first day of the imported sickness history and the
+    of the TFR, the revaluations and the advances of the TFR fund and the
+    TFR quotas of imported balances when the engine settles the TFR at the
+    termination, the first day of the imported sickness history and the
     exemption of a short absence when a CCNL counting several sickness
     episodes needs them, the income beyond the employment when a somma
     esente is due, the full time of an employment whose weekly hours are
@@ -200,7 +202,7 @@ is `False` on its closing state). See
 ## Model limitations
 
 A known simplification of the model is data, not a comment. The registry has
-<!-- trust:limitations-total -->439<!-- /trust:limitations-total --> `ModelLimitation`
+<!-- trust:limitations-total -->451<!-- /trust:limitations-total --> `ModelLimitation`
 entries: one per `simplification` note of a CCNL file that can move an
 amount, and <!-- trust:limitations-engine -->9<!-- /trust:limitations-engine -->
 engine limitations of code paths several CCNLs share
@@ -217,10 +219,10 @@ limits, the `rulesets` and dates it affects, a `monetary_impact` (`yes`,
 `no`, `unknown`), a `status` (`open`, `resolved`), its `source` and a
 `remediation`.
 
-The <!-- trust:simplification-notes -->496<!-- /trust:simplification-notes -->
+The <!-- trust:simplification-notes -->508<!-- /trust:simplification-notes -->
 simplification notes of the bundle each state their impact on what the engine
 computes from the bundle:
-<!-- trust:simplification-yes -->223<!-- /trust:simplification-yes --> `yes`,
+<!-- trust:simplification-yes -->235<!-- /trust:simplification-yes --> `yes`,
 <!-- trust:simplification-unknown -->207<!-- /trust:simplification-unknown --> `unknown`
 and <!-- trust:simplification-no -->66<!-- /trust:simplification-no --> `no` (the
 engine refuses the case, or takes the value from the caller). A file whose
@@ -243,7 +245,7 @@ classifies it by obligation:
 - an engine limitation applies only when the run takes its code path, and the
   run records the traversal (an apprentice in a midpoint period of a CCNL
   whose midpoint components are unsourced);
-- <!-- trust:limitations-outside-input -->151<!-- /trust:limitations-outside-input -->
+- <!-- trust:limitations-outside-input -->163<!-- /trust:limitations-outside-input -->
   limitations depend on a fact the request cannot express (a hire date before
   a transitional regime, a fund the worker joins, a sector section): they are
   documented on the contract page and never recorded on a run. An amount
@@ -321,13 +323,7 @@ caller-declared amounts do not appear.
 `caller_supplied` maps each capability that used a rate or an amount the
 caller supplied in place of a rule (an overtime hourly rate or explicit
 multiplier, a sickness integration rate) to the event fields it took; see
-[Decisions](decisions.md#caller-supplied-values). A rate or supplement the
-engine derives from a verified CCNL rule (the hourly base and the supplement
-bands of the pilot CCNLs) is not caller-supplied: it is an engine decision,
-and its rules appear in `rule_sources` of `overtime`, `night_work`,
-`holiday_work`, `shift_work` or `absence`. The capabilities stay
-`caller_supplied` in the registry, since every other CCNL still takes the
-caller's value.
+[Decisions](decisions.md#caller-supplied-values).
 
 ## Reading the assurance
 

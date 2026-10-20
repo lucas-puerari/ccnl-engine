@@ -20,6 +20,7 @@ from pydantic import BaseModel, ConfigDict, model_validator
 
 from ccnl_engine.absence.models import AbsenceRules
 from ccnl_engine.agreement.types import NoteKind
+from ccnl_engine.leave.models import LeaveRules
 from ccnl_engine.limitation.models import (
     ModelLimitation,
     MonetaryImpact,
@@ -28,7 +29,6 @@ from ccnl_engine.limitation.models import (
 from ccnl_engine.sickness.integration.models import SicknessRules
 from ccnl_engine.working_time.models import (
     CcnlTravelAllowance,
-    LeaveRules,
     TimeSupplements,
 )
 from ccnl_engine.working_time.standby.models import StandbyRules

@@ -3171,6 +3171,23 @@
       {
         "kind": "info",
         "text": "HOURLY RATE AND SUPPLEMENTS (artt. 148, 151, 216, 220 of the 2010 text): without a caller value the engine derives the hourly base (the art. 148 retribuzione over 172), the 25% on ordinary night hours from 24 to 6 (art. 216 c.1; 12% for the role qualifica_notturna, c.2: Employment.roles must be stated) and the 20% on the hours worked on a festività (art. 220). The night window of the lavoratori notturni (23:30-6:30, art. 218) only changes which hours the caller declares. Art. 220 also pays the festività hours themselves on top of the monthly pay: the engine posts the 20% only and the run is provisional. Not derived: the Sunday allowance of art. 126 (10% of the hourly paga base and contingenza: the bundle does not record that base_salary holds exactly those two voci), holiday overtime (art. 219 sets no rate), the divisors 190 and 192 of the 44- and 45-hour weeks (a stated full-time week other than 40 is not derived)."
+      },
+      {
+        "kind": "simplification",
+        "text": "LEAVE, STABILIMENTI BALNEARI (Art. 111 c.2): 108 hours of reduction a year instead of 104. The engine accrues the 104 hours of alberghi, pubblici esercizi, campeggi, alberghi diurni and agenzie di viaggi.",
+        "capability": "leave",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "balneari_reduction_hours",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add an employer fact for the comparto and accrue 108 hours for the stabilimenti balneari."
+        }
+      },
+      {
+        "kind": "info",
+        "text": "LEAVE AT TERMINATION: no clause of the texts read (2010, 2014 version, 2024 ipotesi) states the basis of the indemnity for the ferie and permits not taken; the engine accrues and carries the balances and pays no residual (termination_residual_leave incomplete, termination_basis_not_sourced)."
       }
     ]
   },
@@ -3181,7 +3198,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "33605af42a93072087b2a10ddfe4fa29ff59ce422b5f351ff74f223e223b68c9",
+    "source_hash": "71aa749d0f8e6500185680172b14ee48beebb832f67d937dedcadc78a8343b23",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3551,7 +3568,77 @@
           "verification_status": "verified",
           "review_id": "2026-10-13-ai-production"
         }
-      }
+      },
+      "ferie_accrual": {
+        "month_credit": null,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-turismo-2010",
+              "title": "CCNL Turismo 20 febbraio 2010, testo firmato (UILTuCS)",
+              "kind": "associazione",
+              "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "published_on": "2010-02-20",
+              "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+            },
+            "page": "125",
+            "section": "Art. 130 c.7",
+            "quote": "le frazioni di mese saranno cumulate. La somma così ottenuta comporterà la corresponsione di un rateo mensile per ogni trenta giorni di calendario, nonché per la eventuale frazione residua pari o superiore a quindici giorni."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-19T08:50:55Z",
+            "effective_from": "2010-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-19T08:50:55Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-19-ai-leave"
+          },
+          "note": "Twelfths of the 26 days. The month fractions are cumulated over the year (one rateo per 30 calendar days, a residue of 15 days or more counts), and in alberghi and campeggi the days worked in a partial month accrue in 26ths (Artt. 225 and 277): neither rule is modelled, so a partial month accrues nothing and the balance is marked inexact. Quote read on the OCR of the scan."
+        }
+      },
+      "permits": [
+        {
+          "bucket": "rol",
+          "annual_hours": [
+            {
+              "hours": "104"
+            }
+          ],
+          "includes_ex_festivita": true,
+          "month_credit": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-turismo-2010",
+                "title": "CCNL Turismo 20 febbraio 2010, testo firmato (UILTuCS)",
+                "kind": "associazione",
+                "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+                "published_on": "2010-02-20",
+                "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+              },
+              "page": "114",
+              "section": "Art. 111 cc.1-3 - Riduzione dell'orario",
+              "quote": "viene concordata una riduzione dell'orario annuale per Alberghi, Pubblici Esercizi, Campeggi, Alberghi diurni ed Agenzie di Viaggi pari a 104 ore. (2) Per gli Stabilimenti Balneari la riduzione dell'orario annuale sarà, invece pari a 108 ore. (3) Tali riduzioni sono comprensive delle 32 ore relative alle festività religiose abolite dalla legge n. 54 del 1977"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-19T08:50:55Z",
+              "effective_from": "2010-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-19T08:50:55Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-19-ai-leave"
+            },
+            "note": "One pool of 104 hours holding the 32 hours of the abolished festivities. The month fractions follow the cumulated rule of Art. 111 c.8, not modelled: a partial month accrues nothing and the balance is marked inexact. No new-hire ramp found in the 2010 text, the 2014 version and the 2024 ipotesi. Quote read on the OCR of the scan."
+          }
+        }
+      ],
+      "termination": null
     },
     "sickness_rules": {
       "carenza_integration_rate": "1",
@@ -3694,6 +3781,23 @@
           "hourly_base_method gross_incl_allowances (was gross_incl_allowances), now verified: the engine reads it to derive the hourly rate of an event without one.",
           "Supplement bands added: TUR_NOTTURNO, TUR_NOTTURNO_QUALIFICA, TUR_FESTIVO.",
           "Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS."
+        ]
+      },
+      {
+        "id": "2026-10-19-ai-leave",
+        "date": "2026-10-19",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Leave accrual: the ferie twelfths and month rule, the hours of each permit bucket (ROL, ex festività or the pooled PAR), the new-hire ramps and the basis of the indemnity for the residual leave at termination, read on the text cited by each rule. An AI review: the extractor is also the verifier.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+          }
+        ],
+        "findings": [
+          "The values stated are those of the quoted clauses; what the texts leave open (month fractions, termination divisors, schedules and shift patterns) is not modelled and is recorded in the coverage notes."
         ]
       }
     ],

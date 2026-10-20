@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, overtime, sickness |
+| **Limits of this contract** | base_salary, leave, overtime, sickness |
 
-12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 114 verified / 5 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 116 verified / 6 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule read again in the signed texts: the ipotesi di rinnovo of 15 April 2025, the Intesa of 8 January 2024, the testo definitivo of 10 May 2006 and the renewals of 18 December 2009 and 19 July 2018, for the production tier. | corrected | 134 records verified, 4 derived. The tables cited an aggregator re-typing; they now cite the signed scan (read by OCR and on the page images) and the Intesa of 8 January 2024.<br>The first table is the TEM of 1 July 2024 (Intesa 8/1/2024), not of 1 June 2025: valid_from 2024-07-01 for the 15 levels.<br>The EDR from 1 July 2027 was inside base_salary; it is now the allowance EDR, outside the TFR base (art. 15 B 2): base_salary 2027-07 and 2028-06 lowered by 18 to 39 EUR.<br>Overtime: night 50/60/75% (not 35%), weekday 35% beyond the 48th hour, holiday 70% from the 45th hour, the 25% band from the 45th hour (threshold 4, not 8); categories A and B excluded.<br>Absences are deducted at 1/175 an hour (art. 20), not by 26: by_hourly with an 8-hour day (derived).<br>Sickness: 100% of the net pay for 3/4/5 months and 50% after, comporto 8/10/12 months over 36, not a flat 100% for 365 days (derived: the 2022 and 2025 texts differ on the hospital restart day).<br>Apprenticeship: one category below then the destination, at the minimo without IPO: not expressible, track removed and declared.<br>Fonchim: employer 2.3% from 1 January 2027 (2025 renewal p. 47), 2.55% with the fund's insurance share (derived).<br>Hourly divisor and additional months from the 2006 text (valid_from 2006-05-10); payment day of the tredicesima added.<br>No renewal or inflation verification after 15 April 2025 through October 2026 (CNEL B011 listing). |
 | 2026-10-17 | claude-opus-5-5 (ai) | Periodic review due 2026-12-01: the trattamento economico minimo of every category and tranche of the renewal of 15 April 2025, and a year and a termination of a D1 impiegato against a hand oracle. | confirmed | Allegato TEM (p. 48, scan read by OCR): the previgente minimo and IPO of the 15 categories plus the increments of July 2025, December 2025, July 2026, July 2027 and June 2028 rebuild the 75 amounts of the file; the A1 to A3 and B1 to B2 amounts add the EAR of 190 and 100 euro (art. 15 B 3), as their transformations state. Match.<br>Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios chimica-year and chimica-june): a D1 impiegato hired on 1 January 2026 by an employer with 50 employees, across the tranche of July 2026; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. No owed amount blocks these runs.<br>The 5 derived rules stay derived: each reads its value from a cited text through a stated transformation, and this review found no primary text that states them directly. |
 | 2026-10-19 | claude-opus-5-5 (ai) | Hourly base of the time supplements and the supplements of ordinary night, holiday, Sunday, rest-day and shift work, read in the cited articles of the national text (text layer, or OCR of the scanned pages). AI review only: the same model extracted and checked the values. | corrected | hourly_base_method minimo_e_anzianita (was minimo_tabellare), now verified: the engine reads it to derive the hourly rate of an event without one.<br>Supplement bands added: CHIM_FESTIVO, CHIM_TURNO_DIURNO.<br>Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS. |
+| 2026-10-19 | claude-opus-5-5 (ai) | Leave accrual: the ferie twelfths and month rule, the hours of each permit bucket (ROL, ex festività or the pooled PAR), the new-hire ramps and the basis of the indemnity for the residual leave at termination, read on the text cited by each rule. An AI review: the extractor is also the verifier. | confirmed | The values stated are those of the quoted clauses; what the texts leave open (month fractions, termination divisors, schedules and shift patterns) is not modelled and is recorded in the coverage notes. |
 | 2026-10-20 | claude-opus-5-5 (ai) | The renewal within the window of L. 199/2025 art. 1 c. 7 and the minimo before its first tranche. | corrected | Ipotesi of 15 April 2025, first tranche from 1 July 2025: parameters.renewals.<br>p. 46: the July 2025 tranche also pays the last 20 EUR (D1) of the renewal of 13 June 2022, signed outside the window: the minimo before the renewal at D1 is 2239.26 + 20 = 2259.26. The 2022 tranche of the other categories is not printed in the 2025 text (its tables are announced, not attached): their increment stays unmeasured. |
 
 ## Salary table
@@ -178,6 +179,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add the tables of the other sectors.
 
+!!! warning "chimica-farmaceutica-federchimica/rol_shift_workers · leave · impact yes · open"
+    LEAVE, ROL OF THE TURNISTI (Art. 13 A): the turnisti 3x5 and 3x6 have 76 hours in the 2006 text (a secondary source states 88 under the current text, not verified on a primary text), the turnisti on a continuous cycle have no hour bucket (232.5 days a year) and the semicontinui on night shift 2 more rest days. The shift pattern is not an input: the engine accrues the 68 hours of the giornalieri and the turnisti 2x5 and 2x6.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Source the current hours of the turnisti 3x5 and 3x6 and add the shift pattern as an employment fact.
+
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
 
@@ -242,6 +250,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     FONCHIM: employer 2.35% of the TFR base (2.10% plus the 0.25% insurance contribution) and worker minimum 1.20%, from the fund's opuscolo 2026; from 1/1/2027 the employer rate is 2.3% (2025 renewal p. 47), 2.55% with the insurance share (derived).
     
     HOURLY RATE AND SUPPLEMENTS (artt. 9, 15 punto 1, 20 of the 2006 text): without a caller value the engine derives the hourly base (minimo + IPO + scatti over 175), the 50% on holiday hours (art. 9 punto 3) and the 4% on rotating day shifts (punto 5 a). Not derived, the caller states the amount: ordinary night work of non-shift workers (50%, punto 4), whose 9-hour window the company fixes between 20 and 8 (art. 8 H); Sunday work (50% with compensatory rest, 33% for 3x7 continuous cycles under punto 6, a fact the request does not carry); night shifts (34%, 46% for 3x7, punto 5 b-c), because the fixed amount per 8 hours of art. 9 H in force after the 2022 renewal is unconfirmed (6.50 EUR from 2007, 13.50 from 1 April 2019, 15.50 from 1 July 2027). Art. 9 does not say whether the holiday hours themselves are paid on top of the monthly pay: a derived holiday supplement is provisional. Not modelled: the 5% on hours 37h45m to 40 and the 30% beyond 2,024 annual hours (punti 1 and 11). Absences: art. 20 punti 2-3 deduct 1/175 of the same elements per hour, but work_rules.absence_rules stays derived (its 8-hour day is not in the text), so the engine derives no absence deduction: the caller states AbsenceEvent.hourly_rate.
+    
+    LEAVE AT TERMINATION (Art. 14): the indemnity is the 'retribuzione globale di fatto in atto al momento della liquidazione' for the days of ferie not taken; its daily divisor is not stated in the text read, so the engine pays no residual (termination_residual_leave incomplete). The ferie taken in excess are repaid (not modelled); Art. 13 sets no deadline for the residual ROL and ex festività.
     
 
 ## Raw data

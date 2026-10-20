@@ -100,6 +100,8 @@ state types.
 
 ::: ccnl_engine.inputs.InpsBaseYtd
 
+::: ccnl_engine.inputs.LeaveBalance
+
 ::: ccnl_engine.inputs.PaymentId
 
 ::: ccnl_engine.inputs.PayrollRunId

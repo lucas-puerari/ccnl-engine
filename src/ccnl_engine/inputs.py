@@ -62,6 +62,7 @@ from ccnl_engine.irpef.other_income.inputs import (
     CurrentYearTaxFacts,
     IncomeEstimateQuality,
 )
+from ccnl_engine.leave.balance.models import LeaveBalance
 from ccnl_engine.pension_fund.inputs import (
     NoPensionFund,
     PensionFundEnrolment,
@@ -105,6 +106,7 @@ __all__ = [
     "IncomeEstimateQuality",
     "IndividualElement",
     "InpsBaseYtd",
+    "LeaveBalance",
     "NaspiExclusion",
     "NoPensionFund",
     "OpeningBalances",

@@ -34,6 +34,7 @@ from ccnl_engine.family.child.rules import (
 from ccnl_engine.family.inputs import DependentRelationship
 from ccnl_engine.fund.assistance.policies import assistance_terms
 from ccnl_engine.fund.contractual.rules import contractual_run
+from ccnl_engine.leave.services import leave_terms
 from ccnl_engine.pay_item.services import _hours_value
 from ccnl_engine.pension_fund.decision.services import pension_terms
 from ccnl_engine.run.models import RunKind
@@ -104,6 +105,7 @@ def variable_events(
         travel_allowance=var_pay.travel_allowance,
         standby=_standby_terms(ctx),
         ccnl_travel=_travel_terms(ctx),
+        leave=leave_terms(ctx),
     )
 
 

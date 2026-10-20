@@ -35,6 +35,7 @@ from ccnl_engine.extra_month.settlement.services import (
 )
 from ccnl_engine.fund.assistance.policies import assistance_decision
 from ccnl_engine.fund.health.services import contractual_funds
+from ccnl_engine.leave.services import run_leave
 from ccnl_engine.pay_item.rounding.policies import contribution_base
 from ccnl_engine.pension_fund.decision.services import (
     pension_decision,
@@ -122,11 +123,12 @@ def run_events(ctx: RunContext) -> RunEvents:
     """Post the variable events and the extra-month settlements of the run.
 
     Unpaid absences that deduct more than the pay of the run are rejected
-    before the settlements are merged.
+    before the settlements are merged.  The leave of the run (accrual,
+    leave taken, indemnity of the residual on termination) merges last.
 
     Returns:
-        The event totals with the settled bases added, and the items and
-        entries of events and settlements.
+        The event totals with the settled bases and the leave account
+        added, and the items and entries of events and settlements.
     """
     events = RunEvents(*variable_events(ctx))
     settlement = settle_extra_months(
@@ -149,7 +151,8 @@ def run_events(ctx: RunContext) -> RunEvents:
     totals = reduction.added_to(erc.added_to(settlement.added_to(events.totals)))
     renewal = renewal_settlement(ctx)
     funds = contractual_funds(ctx).settlement
-    totals = funds.added_to(renewal.added_to(hourly.added_to(totals)))
+    leave = run_leave(ctx)
+    totals = leave.added_to(funds.added_to(renewal.added_to(hourly.added_to(totals))))
     return RunEvents(
         totals,
         events.items
@@ -157,14 +160,16 @@ def run_events(ctx: RunContext) -> RunEvents:
         + erc.items
         + reduction.items
         + hourly.items
-        + funds.items,
+        + funds.items
+        + leave.items,
         events.entries
         + settlement.entries
         + erc.entries
         + reduction.entries
         + hourly.entries
         + renewal.entries
-        + funds.entries,
+        + funds.entries
+        + leave.entries,
     )
 
 
