@@ -12,6 +12,25 @@ from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.types import FrozenDict
 
 
+class PromotionRepricing(BaseModel):
+    """When the increments matured before a promotion take the new amounts.
+
+    Attributes:
+        at_next_increment: ``True`` when the CCNL reprices them at the new
+            level only when the next increment matures (Turismo art. 158
+            c. 6, FIPE art. 182 c. 5); ``False`` when they take the new
+            amounts from the promotion (Federmeccanica art. 6: "il cui valore
+            sarà ragguagliato agli importi previsti per la categoria di
+            arrivo").
+        provenance: Source of the clause.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    at_next_increment: bool
+    provenance: RuleProvenance
+
+
 class SeniorityTier(BaseModel):
     """One cadence tier in a multi-tier seniority ladder (*scatti di anzianità*).
 
@@ -66,6 +85,8 @@ class SeniorityIncrements(BaseModel):
     ``excluded_from_extra_months`` lists the extra months the increments do
     not enter (Pubblici Esercizi FIPE art. 184: the quattordicesima is due
     "esclusi [...] gli scatti di anzianità maturati").
+    ``on_promotion`` states when the increments matured before a promotion
+    take the amounts of the new level; ``None`` reprices them at once.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -89,6 +110,7 @@ class SeniorityIncrements(BaseModel):
     first_cadence_months_by_category: Mapping[WorkerCategory, int] = Field(
         default_factory=dict
     )
+    on_promotion: PromotionRepricing | None = None
     provenance: RuleProvenance | None = None
 
     def requires_category(self, level_code: str) -> bool:

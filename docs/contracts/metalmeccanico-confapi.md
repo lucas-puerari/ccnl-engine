@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | 2026-10-19 |
+| **Last review** | 2026-10-20 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-17 | claude-opus-5-5 (ai) | The minimi of 2025 and 2026 against the accordo of 24 July 2025 and the verbale of 17 June 2026, the derived minimi of 2024 and 2025, and a year and a termination of a 5th level impiegato against a hand oracle. | confirmed | 5th level (scans read by OCR): 2.195,87 from 1 September 2025 and 2.245,87 from 1 June 2026 in both documents. Match.<br>The 6 derived minimi of June 2024 and June 2025 stay derived: for each the verbale that set the tranche and the later accordo and renewal print amounts one to five cents apart (for example 1.752,96 against 1.752,97 at the 2nd level); the file keeps the verbale in force for the months it covers and records both. The derived absence and leave rules state their transformation of a cited text. No primary states any of them directly.<br>Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios confapi-year and confapi-june): a 5th level impiegato hired on 1 January 2026 by an employer with 50 employees, across the tranche of June 2026; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done. |
 | 2026-10-19 | claude-opus-5-5 (ai) | Hourly base of the time supplements and the supplements of ordinary night, holiday, Sunday, rest-day and shift work, read in the cited articles of the national text (text layer, or OCR of the scanned pages). AI review only: the same model extracted and checked the values. | confirmed | hourly_base_method gross_incl_allowances (was gross_incl_allowances), now verified: the engine reads it to derive the hourly rate of an event without one.<br>Supplement bands added: CONFAPI_FESTIVO, CONFAPI_FESTIVO_RIPOSO.<br>Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS. |
 | 2026-10-19 | claude-opus-5-5 (ai) | Leave accrual: the ferie twelfths and month rule, the hours of each permit bucket (ROL, ex festività or the pooled PAR), the new-hire ramps and the basis of the indemnity for the residual leave at termination, read on the text cited by each rule. An AI review: the extractor is also the verifier. | confirmed | The values stated are those of the quoted clauses; what the texts leave open (month fractions, termination divisors, schedules and shift patterns) is not modelled and is recorded in the coverage notes. |
+| 2026-10-20 | claude-opus-5-5 (ai) | The pricing of the seniority increments matured before a change of level (Art. 41 - Aumenti periodici di anzianità). | corrected | Art. 41 - Aumenti periodici di anzianità (p. 116): the earlier increments take the amounts of the new level from the change: seniority_increments.on_promotion. |
 
 ## Salary table
 

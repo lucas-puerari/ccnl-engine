@@ -69,6 +69,7 @@ from ccnl_engine.run.types import PeriodId
 from ccnl_engine.seniority.inputs import (
     EarnedIncrements,
     SeniorityFact,
+    SeniorityPromotion,
     SenioritySource,
 )
 from ccnl_engine.severance.provision.models import TfrFundBalance
@@ -146,6 +147,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             EmployerProfile,
             Employment,
             EarnedIncrements,
+            SeniorityPromotion,
             EmploymentChange,
             EmploymentPeriod,
             EmploymentSector,

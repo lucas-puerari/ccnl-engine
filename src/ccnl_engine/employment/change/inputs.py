@@ -20,6 +20,7 @@ from ccnl_engine.employment.category.models import (
 )
 from ccnl_engine.employment.fact.inputs import WeeklyHours
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.seniority.inputs import SeniorityPromotion
 from ccnl_engine.validators import reject, require_instances, require_str
 
 if TYPE_CHECKING:
@@ -89,15 +90,25 @@ class EmploymentChange:
     def applied_to(self, employment: Employment) -> Employment:
         """Return ``employment`` with the terms this change states.
 
+        A change of level records it on the seniority as its last
+        promotion (:class:`~ccnl_engine.seniority.inputs.SeniorityPromotion`),
+        for a CCNL that reprices the earlier increments at the next one.
+
         Returns:
             A copy of ``employment``, validated again: weekly hours above
             the full-time hours raise ``InvalidInputError``.
         """
+        seniority = employment.seniority
+        level = self.level_code or employment.level_code
+        if seniority is not None and level != employment.level_code:
+            promotion = SeniorityPromotion(self.effective_on, employment.level_code)
+            seniority = replace(seniority, promotion=promotion)
         return replace(
             employment,
-            level_code=self.level_code or employment.level_code,
+            level_code=level,
             weekly_hours=self.weekly_hours or employment.weekly_hours,
             category=self.category or employment.category,
+            seniority=seniority,
         )
 
 

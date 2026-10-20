@@ -72,6 +72,7 @@ from ccnl_engine.run.models import PayrollRunId
 from ccnl_engine.seniority.inputs import (
     EarnedIncrements,
     SeniorityFact,
+    SeniorityPromotion,
     SenioritySource,
 )
 from ccnl_engine.severance.provision.models import TfrFundBalance, TfrQuotaYtd
@@ -120,6 +121,7 @@ __all__ = [
     "RecoveryObligation",
     "RecoveryPlan",
     "SeniorityFact",
+    "SeniorityPromotion",
     "SenioritySource",
     "ShortfallDeferralRequest",
     "SubstituteTaxRegime",

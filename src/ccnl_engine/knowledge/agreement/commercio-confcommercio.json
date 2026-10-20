@@ -296,6 +296,37 @@
           ]
         }
       },
+      "on_promotion": {
+        "at_next_increment": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "uiltucs-tu2019",
+              "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+              "published_on": "2019-07-30",
+              "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+            },
+            "page": "193",
+            "section": "Art. 205 - Scatti di anzianità",
+            "quote": "In occasione del nuovo scatto l'importo degli scatti maturati successivamente al 1° luglio 1973 è calcolato in base ai valori indicati nella tabella di cui al presente articolo senza liquidazione di arretrati per gli scatti maturati per il periodo pregresso."
+          },
+          "transformation": "at_next_increment = true: the increments matured before a promotion keep the amount of the level they were matured at until the next increment matures, then every increment takes the amount of the new level.",
+          "note": "The article has no clause on promotion: the amounts of the earlier scatti are recalculated on the table 'in occasione del nuovo scatto', so after a promotion they keep the amount of the level they were matured at until the next one. Same sentence as Turismo art. 158 c. 5, which c. 6 applies to a promotion in these terms; this is the reading recorded, not stated by the article itself.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-20T19:00:00Z",
+            "effective_from": "1993-11-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-20T19:00:00Z",
+            "verification_status": "unverified",
+            "review_id": "2026-10-20-ai-seniority-promotion"
+          }
+        }
+      },
       "provenance": {
         "status": "verified",
         "location": {
@@ -3094,7 +3125,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "ca864bb07efc66155680528be4170d3b159e119dffb60df586f37ea94d7ef43a",
+    "source_hash": "e10cea596a04f3b2dbe20124a7c7304d08dda91cf4176548ecfbc39f67a9a36f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4049,6 +4080,23 @@
         "findings": [
           "Renewal signed on 2024-03-22, first tranche from 2024-04-01: parameters.renewals.",
           "Minimo before the renewal = the paga base of the table 'Paga base dal 1/4/2023' (read by OCR on the scan, p. 64); it holds the 30 EUR of April 2023 of the Protocollo of 12 December 2022, signed outside the window."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-seniority-promotion",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The pricing of the seniority increments matured before a change of level (Art. 205 - Scatti di anzianità).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          }
+        ],
+        "findings": [
+          "Art. 205 - Scatti di anzianità (p. 193): the earlier increments are repriced at the new level when the next one matures: seniority_increments.on_promotion."
         ]
       }
     ],
