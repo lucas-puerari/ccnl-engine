@@ -47,13 +47,13 @@ def _employment(
     level: str = "C3",
     weekly_hours: int | None = None,
 ) -> Employment:
-    hours = None if weekly_hours is None else WeeklyHours(weekly_hours)
+    hours = None if weekly_hours is None else WeeklyHours(Decimal(weekly_hours))
     return Employment(
         ccnl_id=ccnl,
         level_code=level,
         employment_period=period,
         weekly_hours=hours,
-        full_time_weekly_hours=None if hours is None else WeeklyHours(40),
+        full_time_weekly_hours=None if hours is None else WeeklyHours(Decimal(40)),
         contract_type=Permanent(),
     )
 

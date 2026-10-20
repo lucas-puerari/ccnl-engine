@@ -106,7 +106,7 @@ def test_household_employer_is_not_assessed() -> None:
         "lavoro-domestico-non-convivente",
         "B",
         contributable_hours=ContributableHours(Decimal(100)),
-        weekly_hours=WeeklyHours(25),
+        weekly_hours=WeeklyHours(Decimal(25)),
     )
     assert _renewal_decisions(result) == []
 

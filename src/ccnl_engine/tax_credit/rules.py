@@ -240,9 +240,14 @@ def somma_esente(
             employment, zero when there is none or it is not known.
 
     Returns:
-        The somma esente amount (unrounded; full-year), zero when not due.
+        The somma esente amount (unrounded; full-year), zero when not due,
+        and zero for income of a tax year without a day of employment (a
+        December paid after 12 January of the next year, art. 51 c. 1 TUIR,
+        for an employment that ended in the year before): it cannot be
+        "rapportato all'intero anno", so the withholding agent grants
+        nothing and the tax return settles it.
     """
-    if taxable_income <= _ZERO:
+    if taxable_income <= _ZERO or eligible_work_days <= 0:
         return _ZERO
     if taxable_income + external_income > rules.bands[-1].up_to:
         return _ZERO

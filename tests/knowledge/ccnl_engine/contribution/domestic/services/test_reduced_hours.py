@@ -58,8 +58,10 @@ def _march(slug: str, level: str, weekly: int, full_time: int | None) -> PeriodR
         ccnl_id=slug,
         level_code=level,
         seniority=new_hire(),
-        weekly_hours=WeeklyHours(weekly),
-        full_time_weekly_hours=None if full_time is None else WeeklyHours(full_time),
+        weekly_hours=WeeklyHours(Decimal(weekly)),
+        full_time_weekly_hours=None
+        if full_time is None
+        else WeeklyHours(Decimal(full_time)),
         contract_type=Permanent(),
     )
     hours = ContributableHours(Decimal(weekly * 52) / 12)

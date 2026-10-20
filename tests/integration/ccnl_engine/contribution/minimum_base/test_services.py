@@ -78,7 +78,7 @@ def test_sector_without_minimum_has_no_open_floor() -> None:
     result = _run(
         "lavoro-domestico-convivente",
         "A",
-        weekly_hours=WeeklyHours(40),
+        weekly_hours=WeeklyHours(Decimal(40)),
         contributable_hours=ContributableHours(Decimal(173)),
     )
     assert EXEMPT_CATEGORY_FLOOR not in _limitations(result)

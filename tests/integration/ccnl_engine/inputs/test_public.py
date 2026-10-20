@@ -137,8 +137,8 @@ class TestEmployment:
             Employment(
                 ccnl_id=_METAL,
                 level_code="C3",
-                weekly_hours=WeeklyHours(41),
-                full_time_weekly_hours=WeeklyHours(40),
+                weekly_hours=WeeklyHours(Decimal(41)),
+                full_time_weekly_hours=WeeklyHours(Decimal(40)),
                 contract_type=Permanent(),
             )
 
@@ -260,7 +260,7 @@ class TestPeriodInput:
                 employment=Employment(
                     ccnl_id="lavoro-domestico-convivente",
                     level_code="BS",
-                    weekly_hours=WeeklyHours(30),
+                    weekly_hours=WeeklyHours(Decimal(30)),
                     contract_type=Permanent(),
                 ),
                 facts=PeriodFacts(contributable_hours=ContributableHours(Decimal(130))),

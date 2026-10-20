@@ -90,7 +90,7 @@ class TestFlatPayDivisor:
 
     def test_divisor_of_the_weekly_hours(self) -> None:
         """20 weekly hours: 20 x 52 / 12 = 86.67 instead of the file's 130."""
-        ccnl = flat_pay_divisor(load_ccnl(self._REDUCED), WeeklyHours(20))
+        ccnl = flat_pay_divisor(load_ccnl(self._REDUCED), WeeklyHours(Decimal(20)))
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 3, 1)) == Decimal(
             "86.67"
         )
@@ -103,4 +103,4 @@ class TestFlatPayDivisor:
     def test_unchanged_outside_a_flat_pay_regime(self) -> None:
         """Commercio is not a flat-pay regime."""
         ccnl = load_ccnl("commercio-confcommercio")
-        assert flat_pay_divisor(ccnl, WeeklyHours(20)) is ccnl
+        assert flat_pay_divisor(ccnl, WeeklyHours(Decimal(20))) is ccnl

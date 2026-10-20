@@ -282,8 +282,8 @@ def test_negative_net_is_out_of_scope_not_a_data_integrity_error() -> None:
         ccnl_id="commercio-confcommercio",
         level_code="7",
         seniority=new_hire(),
-        weekly_hours=WeeklyHours(20),
-        full_time_weekly_hours=WeeklyHours(40),
+        weekly_hours=WeeklyHours(Decimal(20)),
+        full_time_weekly_hours=WeeklyHours(Decimal(40)),
         contract_type=Permanent(),
     )
     fringe = FringeEvent(date(2026, 3, 10), Decimal(20_000))

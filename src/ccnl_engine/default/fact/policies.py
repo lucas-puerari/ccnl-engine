@@ -158,6 +158,11 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
         "residency_eligibility blocker",
     ),
     "EmploymentPeriod.ended_on": absence_is_fact("the employment has not ended"),
+    "WorkPattern.weekday_hours": absence_is_fact(
+        "the week is not split by day: weekly_hours alone sets the part-time "
+        "ratio of a month worked"
+    ),
+    "WorkPattern.months": absence_is_fact("every month of the year is worked"),
     "FamilyComposition.dependents": absence_is_fact(
         "a composition without dependants states that there is none"
     ),

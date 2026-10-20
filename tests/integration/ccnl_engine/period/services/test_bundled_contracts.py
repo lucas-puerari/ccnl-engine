@@ -60,9 +60,9 @@ _SLUGS = [info.ccnl_id for info in PayrollEngine.bundled().list_contracts()]
 #: weeks the bundle derives the monthly minimum from), the 30-hour ceiling
 #: of the reduced-hours conviventi.
 _DOMESTIC = {
-    "lavoro-domestico-convivente": WeeklyHours(54),
-    "lavoro-domestico-convivente-orario-ridotto": WeeklyHours(30),
-    "lavoro-domestico-non-convivente": WeeklyHours(40),
+    "lavoro-domestico-convivente": WeeklyHours(Decimal(54)),
+    "lavoro-domestico-convivente-orario-ridotto": WeeklyHours(Decimal(30)),
+    "lavoro-domestico-non-convivente": WeeklyHours(Decimal(40)),
 }
 _DOMESTIC_FACTS = PeriodFacts(contributable_hours=ContributableHours(Decimal(173)))
 #: Ordinary hours of a full month of a worker paid by the hour.

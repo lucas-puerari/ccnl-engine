@@ -34,7 +34,7 @@ if TYPE_CHECKING:
 
 def _pick_domestic_per_hour(
     dc: DomesticInpsRates,
-    weekly_hours: int,
+    weekly_hours: Decimal,
     domestic_hourly_rate: Decimal,
     *,
     surcharged: bool,
@@ -74,7 +74,7 @@ def _pick_domestic_per_hour(
 
 def compute_domestic_breakdown(
     rules: YearRules,
-    weekly_hours: int | None,
+    weekly_hours: Decimal | None,
     contributable_hours: Decimal | None,
     domestic_hourly_rate: Decimal | None,
     contract_type: Contract,
@@ -139,7 +139,7 @@ def _domestic_hourly_rate(
     ccnl: CCNL,
     year_rules: YearRules,
     monthly_pay: Decimal,
-    weekly_hours: int | None,
+    weekly_hours: Decimal | None,
     as_of: date,
 ) -> Decimal | None:
     """Return the effective hourly pay that bands domestic contributions.

@@ -19,6 +19,12 @@ chain posts nothing, the ``base_salary`` decision carries no amount and an
 incomplete issue makes the result not payable.  Extra-month runs keep their
 own chain, scaled by the ratei.
 
+A month outside the months of a vertical part time
+(:attr:`~ccnl_engine.employment.fact.inputs.WorkPattern.months`) is not
+worked: the run that would post its monthly pay posts nothing, whatever the
+CCNL rules (D.Lgs. 81/2015 art. 7 c. 1: the pay is proportioned to the work
+done).
+
 A worker of a category the CCNL pays by the hour (``parameters.hourly_pay``)
 is paid the chain over the hourly divisor times the ordinary hours worked
 (:class:`HourlyBasis`), whatever the days employed: the hours already leave
@@ -56,6 +62,7 @@ if TYPE_CHECKING:
 __all__ = [
     "FULL_MONTH",
     "HOURS_UNKNOWN",
+    "MONTH_NOT_WORKED",
     "PAID_BY_THE_HOUR",
     "POSTED_BY_ANOTHER_RUN",
     "PRORATED",
@@ -75,6 +82,9 @@ POSTED_BY_ANOTHER_RUN = "monthly_pay_posted_by_another_run"
 PAID_BY_THE_HOUR = "pay_chain_paid_by_the_hour"
 #: Reason of a ``base_salary`` decision paid by the hour without the hours.
 HOURS_UNKNOWN = "hourly_pay_hours_unknown"
+#: Reason of a ``base_salary`` decision of a month a vertical part time
+#: does not work.
+MONTH_NOT_WORKED = "vertical_part_time_month_not_worked"
 #: Who posts the monthly pay of an adjustment run's month.
 _CORRECTED_RUN = "corrected_run"
 _NONE = "none"
@@ -134,6 +144,8 @@ class RunProration:
             this run posts it.
         hourly: Hours of a worker paid by the hour, which replace the
             days of ``span``; ``None`` for a worker paid by the month.
+        idle: The run would post the monthly pay of a month the vertical
+            part time of the worker does not work: it posts nothing.
     """
 
     span: tuple[date, date] | None
@@ -142,6 +154,12 @@ class RunProration:
     source: SourceLocation | None = None
     posted_by: str | None = None
     hourly: HourlyBasis | None = None
+    idle: bool = False
+
+    @property
+    def posts_pay(self) -> bool:
+        """Whether the run posts a monthly pay: no other run, a worked month."""
+        return self.posted_by is None and not self.idle
 
     @property
     def partial(self) -> bool:
@@ -164,6 +182,8 @@ class RunProration:
         """Reason of the ``base_salary`` decision, ``None`` for a full month."""
         if self.posted_by is not None:
             return POSTED_BY_ANOTHER_RUN
+        if self.idle:
+            return MONTH_NOT_WORKED
         if self.hourly is not None:
             return HOURS_UNKNOWN if self.missing else PAID_BY_THE_HOUR
         if not self.partial:
@@ -176,10 +196,11 @@ class RunProration:
         Returns:
             ``chain`` for a full month or a span worth a monthly pay, the
             prorated chain for a shorter span, a zero chain without a rule
-            or when another run posts the monthly pay; the chain of the
-            hours worked of a worker paid by the hour.
+            or when another run posts the monthly pay or the month is not
+            worked; the chain of the hours worked of a worker paid by the
+            hour.
         """
-        if self.posted_by is not None:
+        if not self.posts_pay:
             return chain.scaled(Decimal(0))
         if self.hourly is not None:
             return self.hourly.apply(chain)
@@ -197,11 +218,14 @@ class RunProration:
 
         Returns:
             The employed span, the method, payable days and divisor; the run
-            that posts the monthly pay instead; the hours and divisor of a
-            run paid by the hour; empty for a full month.
+            that posts the monthly pay instead; that the month is not
+            worked; the hours and divisor of a run paid by the hour; empty
+            for a full month.
         """
         if self.posted_by is not None:
             return {"monthly_pay_posted_by": self.posted_by}
+        if self.idle:
+            return {"month_worked": "false"}
         hourly = self.hourly
         if hourly is not None:
             hours = _NONE if hourly.hours is None else hourly.hours
@@ -264,6 +288,39 @@ def _posted_by(request: PeriodCalculationRequest, run_kind: RunKind) -> str | No
     regular = PayrollRun.regular(month.year, month.month).identifier
     closed = request.opening_state.accrual.competence_runs
     return str(regular) if regular in closed else None
+
+
+def _unposted(
+    request: PeriodCalculationRequest, run_kind: RunKind
+) -> RunProration | None:
+    """Return the proration of a run that posts no monthly pay, if it is one.
+
+    Returns:
+        A proration naming the run that posts the monthly pay, or marking a
+        month not worked; ``None`` when the run may post it.
+    """
+    posted_by = _posted_by(request, run_kind)
+    if posted_by is not None:
+        return RunProration(span=None, posted_by=posted_by)
+    if _idle(request, run_kind):
+        return RunProration(span=None, idle=True)
+    return None
+
+
+def _idle(request: PeriodCalculationRequest, run_kind: RunKind) -> bool:
+    """Return whether the run would post the pay of a month not worked.
+
+    Returns:
+        ``True`` for a regular or termination run of a month outside the
+        months of the work pattern; ``False`` for an extra-month run, whose
+        rateo already leaves out the months not worked.
+    """
+    pattern = request.work_pattern
+    return (
+        run_kind in _PAYING_KINDS
+        and pattern is not None
+        and not pattern.works_in(request.period_id.month)
+    )
 
 
 def _partial_span(
@@ -342,7 +399,7 @@ def _hourly_basis(
         divisor = ccnl.parameters.hourly_divisor.value_at(day)
     weekly, full = request.weekly_hours, request.full_time_weekly_hours
     if weekly is not None and full is not None and weekly.value < full.value:
-        divisor = divisor * Decimal(weekly.value) / Decimal(full.value)
+        divisor = divisor * weekly.value / full.value
     stated = request.ordinary_hours_worked
     pay: Rule = (f"{name}:hourly_pay", spec.provenance)
     return RunProration(
@@ -362,14 +419,15 @@ def run_proration(
     """Return the proration of the run of ``request``.
 
     Returns:
-        A proration that posts no monthly pay when another run posts it;
+        A proration that posts no monthly pay when another run posts it or
+        the month is not worked;
         the hourly basis of a worker paid by the hour on a run that posts
         the monthly pay; :data:`FULL_MONTH` unless the run pays a partly
         employed month.
     """
-    posted_by = _posted_by(request, run_kind)
-    if posted_by is not None:
-        return RunProration(span=None, posted_by=posted_by)
+    unposted = _unposted(request, run_kind)
+    if unposted is not None:
+        return unposted
     span = _partial_span(request, run_kind)
     by_hour = (
         _hourly_basis(request, ccnl, span, worker_category)
