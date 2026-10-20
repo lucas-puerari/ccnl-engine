@@ -151,6 +151,8 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "ModelLimitation",
         "MonetaryImpact",
         "Payability",
+        "PayslipLine",
+        "Progressives",
         "RemittanceColumn",
         "RemittanceLine",
         "ResultAssurance",
@@ -158,6 +160,8 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "ResultTotal",
         "UncoveredRun",
         "UnresolvedRequirement",
+        "VoceSide",
+        "VoceUnit",
         "result_to_json",
     }),
     "ccnl_engine.catalog": frozenset({

@@ -38,6 +38,8 @@ from ccnl_engine.limitation.models import (
     MonetaryImpact,
 )
 from ccnl_engine.limitation.types import ResultTotal
+from ccnl_engine.pay_item.voce.rules import VoceSide, VoceUnit
+from ccnl_engine.period.payslip.line.models import PayslipLine, Progressives
 from ccnl_engine.year.coverage.models import UncoveredRun
 
 __all__ = [
@@ -56,6 +58,8 @@ __all__ = [
     "ModelLimitation",
     "MonetaryImpact",
     "Payability",
+    "PayslipLine",
+    "Progressives",
     "RemittanceColumn",
     "RemittanceLine",
     "ResultAssurance",
@@ -63,5 +67,7 @@ __all__ = [
     "ResultTotal",
     "UncoveredRun",
     "UnresolvedRequirement",
+    "VoceSide",
+    "VoceUnit",
     "result_to_json",
 ]

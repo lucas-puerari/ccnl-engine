@@ -482,7 +482,21 @@ result.closing_state        # accrual and tax cash state: opening_state of the n
 result.pay_items            # all pay items produced
 result.ledger_entries       # full accounting ledger
 result.capability_report    # what the run executed against the capability registry
+result.payslip_lines(voci)  # the cedolino: one line per earning or deduction
+result.progressives         # progressivi of the tax year and the INPS base
 ```
+
+`payslip_lines()` turns the ledger into the lines of the payslip: each
+`PayslipLine` has the voce (the provider's code when `voci` maps the engine
+code, e.g. `{"base_salary_earning": "0001"}`), its quantity, unit (hours,
+days or units) and unit rate, and the amount in the competenze or the
+trattenute column. The competenze less the trattenute are `period_net`, so
+the payslip needs no arithmetic of the caller. A statutory line (INPS,
+IRPEF, surtax) is keyed by the account it posts to and has no quantity.
+Every pay item has the same voce properties (`voce_code`, `unit`,
+`voce_quantity`, `rate`, `side`). `progressives` gives the gross, taxable
+income, INPS employee contributions, IRPEF and surtax of the tax year and
+the INPS base of the competence year, as the run closes them.
 
 `CompetenceYearResult` and `TaxYearResult` sum the runs (`annual_gross`,
 `annual_net`, `annual_employer_cost`), keep every `PeriodResult` in

@@ -92,6 +92,7 @@ def _work_time_item(
             payment_date=payment_date,
             quantity=event.hours,
             amount=gross,
+            hours=event.hours,
         )
         return overtime, "overtime_earning"
     if isinstance(event, AbsenceEvent):

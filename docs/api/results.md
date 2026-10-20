@@ -165,3 +165,11 @@ totals, which a reader outside Python could not compute. The JSON is output
 only: a result is recomputed from its request, not read back.
 
 ::: ccnl_engine.results.result_to_json
+
+::: ccnl_engine.results.PayslipLine
+
+::: ccnl_engine.results.Progressives
+
+::: ccnl_engine.results.VoceUnit
+
+::: ccnl_engine.results.VoceSide
