@@ -211,7 +211,8 @@ def test_commercio_oracle_accrual_balance_and_payout(engine: PayrollEngine) -> N
         ex_fest_left,
     )
     assert (rol.accrued, rol.taken, rol.residual) == (Decimal(0),) * 3
-    assert october.capability_report.gaps == ()
+    # The commercio funds are modelled and left unstated here: their gap only.
+    assert {g.feature for g in october.capability_report.gaps} == {"contractual_funds"}
 
 
 def test_commercio_balance_before_the_termination(engine: PayrollEngine) -> None:

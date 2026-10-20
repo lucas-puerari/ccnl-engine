@@ -953,8 +953,14 @@ def _commercio_year() -> tuple[Pay, ...]:
 
 def _commercio_june() -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _commercio(m), _commercio(m)) for m in range(1, 6)]
-    #: Six twelfths of the tredicesima are paid with the last month.
-    june = _commercio(6) + _twelfths(_COMMERCIO_UNTIL_OCTOBER, 6)
+    #: Six twelfths of the tredicesima are paid with the last month, and the
+    #: residual leave as for Terziario (Art. 158-159 of the Testo Unico): 13
+    #: days of ferie at the monthly pay over 26 and 16 hours of ex
+    #: festività at the monthly pay over 168, no ROL in the first two years.
+    leave = _cents(Decimal(13) * _commercio(6) / 26) + _cents(
+        Decimal(16) * _commercio(6) / 168
+    )
+    june = _commercio(6) + _twelfths(_COMMERCIO_UNTIL_OCTOBER, 6) + leave
     fourteenth = _COMMERCIO_FOURTEENTH
     return (
         *pays,

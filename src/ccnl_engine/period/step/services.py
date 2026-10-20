@@ -123,9 +123,8 @@ def run_events(ctx: RunContext) -> RunEvents:
     """Post the variable events and the extra-month settlements of the run.
 
     Unpaid absences that deduct more than the pay of the run are rejected
-    before the settlements are merged.  The leave of the run (its accrual,
-    the leave taken and the indemnity of the residual on the run that
-    closes the employment) is merged last.
+    before the settlements are merged.  The leave of the run (accrual,
+    leave taken, indemnity of the residual on termination) merges last.
 
     Returns:
         The event totals with the settled bases and the leave account

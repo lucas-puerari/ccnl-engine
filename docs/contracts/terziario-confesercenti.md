@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, leave, overtime, seniority, sickness, territorial_supplement, una_tantum |
+| **Limits of this contract** | base_salary, leave, overtime, seniority, sickness, territorial_supplement, una_tantum |
 
-15 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+14 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 77 verified / 3 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 83 verified / 3 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule of the file read again in the signed texts, for the production tier: the Testo Unico of 12 December 2019, the renewal of 22 March 2024, its accordo integrativo of 28 March 2024 and the Protocollo of 12 December 2022. | corrected | 86 records verified against the Testo Unico of 12 December 2019 (text layer) and the Accordo integrativo of 28 March 2024 (CNEL 20279, scan read on the page image; quotes are the OCR-verbatim fragments).<br>Corrected 17 base_salary periods (Q 6, I 4, II 6, VI 1) by 1-5 cents: the file carried the ipotesi increases of 22 March 2024, the accordo integrativo of 28 March 2024 fixed their rounding and printed the official tables.<br>Sickness: 75% for days 4-20 and 100% from day 21 of the net daily pay, carenza by event, comporto in the calendar year, apprentices excluded (Artt. 186-187), not a flat 75%.<br>Added the terzo elemento nazionale of EUR 2.07, gated by the provincial element (Art. 215), the payment days of the tredicesima and quattordicesima (Artt. 220-221) and Fon.Te. (Art. 107, 1.55% and 0.55%, apprentices 1.05% by Art. 57).<br>Overtime premiums are on the normale retribuzione of Art. 206 (hourly_base_method gross_incl_allowances, was minimo_tabellare).<br>Apprenticeship: the second period closes at 36 months (II-V) and 24 months (VI), as Art. 53 pays the destination level at the end.<br>The una tantum of 2024-2025 is owed at every level, not only at level IV: limitation lump_sum_2024_2025 rescoped to July 2024 and July 2025.<br>The source documents had three ids and a tabella_retributiva kind for the same Testo Unico URL: unified. The 22 March 2024 ipotesi and the twin UGL texts (CNEL 20270, 19968) agree with the tables.<br>No renewal after the accordo integrativo of 28 March 2024 changes pay through October 2026 (CNEL H012 deposits through 20522 of 4 November 2024, training profiles only). |
 | 2026-10-13 | claude-opus-5-5 (ai) | Scope of the declared limitations. | corrected | sickness_net_basis is recorded on every run with a sickness event (trigger run), not only documented. |
+| 2026-10-19 | claude-opus-5-5 (ai) | Hourly base of the time supplements and the supplements of ordinary night, holiday, Sunday, rest-day and shift work, read in the cited articles of the national text (text layer, or OCR of the scanned pages). AI review only: the same model extracted and checked the values. | confirmed | hourly_base_method gross_incl_allowances (was gross_incl_allowances), now verified: the engine reads it to derive the hourly rate of an event without one.<br>Supplement bands added: CONF_NOTTURNO, CONF_FESTIVO, CONF_DOMENICA, CONF_DOMENICA_AUTOSTRADE, CONF_RIPOSO.<br>Bands left out where the rate depends on facts the request does not carry or the text is unconfirmed; listed in the coverage note HOURLY RATE AND SUPPLEMENTS. |
 | 2026-10-19 | claude-opus-5-5 (ai) | Leave accrual: the ferie twelfths and month rule, the hours of each permit bucket (ROL, ex festività or the pooled PAR), the new-hire ramps and the basis of the indemnity for the residual leave at termination, read on the text cited by each rule. An AI review: the extractor is also the verifier. | confirmed | The values stated are those of the quoted clauses; what the texts leave open (month fractions, termination divisors, schedules and shift patterns) is not modelled and is recorded in the coverage notes. |
 
 ## Salary table
@@ -173,13 +174,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add the 42 and 48 month tracks.
 
-!!! warning "terziario-confesercenti/health_and_bilateral_funds · bilateral_funds · impact yes · open"
-    HEALTH FUNDS: the Fondo ASTER (Art. 104 as renewed in 2024) and, for the quadri, the Cassa QuAS (Art. 106) are owed for every worker; an employer that does not pay them owes the worker instead an EDR of EUR 16.00 x 14 and EUR 37.00 x 14. Neither is modelled: the employer cost, and with the EDR the net pay, are short of them.
-
-    **Applies when:** `bilateral_funds` applies.
-
-    **Remediation:** Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note.
-
 !!! warning "terziario-confesercenti/rol_schedule_absorption · leave · impact yes · open"
     LEAVE, WEEKLY SCHEDULE (Artt. 133-134): an employer on a 39-hour week absorbs 36 hours of ROL, on a 38-hour week 72 hours (16 of ex festività and 56 of ROL), and the grandi magazzini, supermercati, cash&carry and ipermercati on a 38-hour average absorb 72 hours of ROL. The engine accrues the hours of a 40-hour week (Art. 133 a).
 
@@ -257,6 +251,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Apprenticeship type b (professionalizzante). Durations (Art. 64): II-V 36 months, VI 24 months; half-period 18 and 12 months. The 42 and 48 month profiles of Art. 68 Tabella B are in the unmodelled note.
     
     TERZO ELEMENTO NAZIONALE (Art. 215, TU p. 157): EUR 2.07 a month due only in the provinces where no provincial third element is in force (Art. 214); paid when EmployerProfile.provincial_pay_element is false, left out with a missing_fact blocker when it is not stated.
+    
+    HOURLY RATE AND SUPPLEMENTS (Testo Unico 12 December 2019, unchanged by the 2024 renewal, artt. 149-157, 206-211): without a caller value the engine derives the hourly base (the normale retribuzione of art. 206 over 168), the 15% on ordinary night hours from 22 to 6 (art. 151), the 30% on festività hours paid as straordinario festivo (art. 155 with art. 149), the 30% on ordinary Sunday hours (art. 153; 10% at the motorway fuel stations of art. 157, role impianto_carburante_autostradale: Employment.roles must be stated) and the 30% on the hours of the weekly rest day (art. 156). Art. 155 also pays the festività hours themselves: the engine posts the 30% only and the run is provisional. Second-level agreements may replace the Sunday and night rules (art. 153). Not derived: the divisors 182 and 195 of the 42- and 45-hour weeks; shift work, left to second-level bargaining.
     
     Base salary table effective from 01.01.2020 (Table I, CCNL 12.12.2019, confesercenti.it PDF).
     

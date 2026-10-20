@@ -519,6 +519,7 @@ SCENARIOS = {
 #: ``None`` when it is paid.
 _RESIDUAL_LEAVE_UNPAID: dict[str, str | None] = {
     _TERZ: None,
+    _COMMERCIO: None,
     _EDIL: "leave_accrual_not_modelled",
     _EDILIZIA_IMPIEGATI: "leave_accrual_not_modelled",
     _ALIMENTARI: "leave_accrual_not_modelled",

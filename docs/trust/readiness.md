@@ -184,13 +184,13 @@ it drifts):
 | Readiness | CCNL rulesets |
 |---|---:|
 | `exploratory` | 109 |
-| `reviewed` | 11 |
-| `production` | 12 |
+| `reviewed` | 10 |
+| `production` | 13 |
 
 <!-- /trust:readiness-table -->
 
-The <!-- trust:readiness-reviewed -->11<!-- /trust:readiness-reviewed -->
-`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->`commercio-confcommercio`, `concia-unic`, `cooperative-sociali`, `funzioni-centrali-aran`, `funzioni-locali-aran`, `lavoro-domestico-convivente`, `lavoro-domestico-convivente-orario-ridotto`, `lavoro-domestico-non-convivente`, `logistica-trasporto-confetra`, `logistica-trasporto-confetra-viaggiante`, `sanita-aran`<!-- /trust:readiness-reviewed-list -->.
+The <!-- trust:readiness-reviewed -->10<!-- /trust:readiness-reviewed -->
+`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->`concia-unic`, `cooperative-sociali`, `funzioni-centrali-aran`, `funzioni-locali-aran`, `lavoro-domestico-convivente`, `lavoro-domestico-convivente-orario-ridotto`, `lavoro-domestico-non-convivente`, `logistica-trasporto-confetra`, `logistica-trasporto-confetra-viaggiante`, `sanita-aran`<!-- /trust:readiness-reviewed-list -->.
 Each [contract page](../contracts/index.md) shows its own tier.
 
 In October 2026 fifteen rulesets `reviewed` on a file-level review were
@@ -200,12 +200,12 @@ file-level review that promoted them; a ruleset returns to `reviewed` once its w
 confidence is `verified`, as the ones listed above did.
 
 `reviewed` records a file-level review, not a per-value one. Of the `reviewed`
-rulesets, <!-- trust:reviewed-with-reviewer -->11<!-- /trust:reviewed-with-reviewer -->
+rulesets, <!-- trust:reviewed-with-reviewer -->10<!-- /trust:reviewed-with-reviewer -->
 hold an entry in the review log, and
-<!-- trust:reviewed-confidence-verified -->11<!-- /trust:reviewed-confidence-verified -->
+<!-- trust:reviewed-confidence-verified -->10<!-- /trust:reviewed-confidence-verified -->
 set `verification.confidence = "verified"` (step 5 of the criteria above).
 A per-value review is recorded only by the provenance status `verified` of a
-payable rule, and <!-- trust:rules-verified -->2484<!-- /trust:rules-verified -->
+payable rule, and <!-- trust:rules-verified -->2515<!-- /trust:rules-verified -->
 payable rules of the bundle have it (see
 [Provenance](provenance.md#provenance-status)).
 
@@ -255,7 +255,7 @@ Both modes compute the same amounts.
 
 An operational engine returns the result with its blockers instead of
 refusing before the calculation, so the amounts and every other blocker stay
-inspectable. With <!-- trust:readiness-production -->12<!-- /trust:readiness-production -->
+inspectable. With <!-- trust:readiness-production -->13<!-- /trust:readiness-production -->
 `production` rulesets, only those CCNLs are payable in operational mode: the
 gate opens one CCNL at a time, as each is promoted.
 

@@ -3,7 +3,7 @@
   "src/ccnl_engine/api.py": 312,
   "src/ccnl_engine/assurance/models.py": 319,
   "src/ccnl_engine/assurance/rules.py": 315,
-  "src/ccnl_engine/capability/rule/services.py": 355,
+  "src/ccnl_engine/capability/rule/services.py": 353,
   "src/ccnl_engine/compensation/models.py": 377,
   "src/ccnl_engine/compensation/proration/services.py": 466,
   "src/ccnl_engine/compensation/renewal_minimum/rules.py": 332,
@@ -21,6 +21,5 @@
   "src/ccnl_engine/sickness/day/rules.py": 353,
   "src/ccnl_engine/sickness/integration/models.py": 421,
   "src/ccnl_engine/sickness/models.py": 318,
-  "src/ccnl_engine/working_time/models.py": 389,
   "src/ccnl_engine/working_time/overtime/policies.py": 330
 }

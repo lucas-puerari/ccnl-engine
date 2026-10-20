@@ -12,15 +12,13 @@ from __future__ import annotations
 
 from datetime import date  # noqa: TC003
 from decimal import Decimal
-from typing import TYPE_CHECKING, Self
+from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.leave.permit.models import PermitRules  # noqa: TC001
 from ccnl_engine.leave.types import LeaveBucket, MonthCredit
 from ccnl_engine.provenance.source.rule.models import RuleProvenance  # noqa: TC001
-
-if TYPE_CHECKING:
-    from ccnl_engine.leave.permit.models import PermitRules
 
 __all__ = [
     "FerieAccrual",
