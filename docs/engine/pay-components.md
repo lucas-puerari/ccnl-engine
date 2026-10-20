@@ -147,6 +147,14 @@ raises `InvalidInputError`. It derives
 the number of matured increments from the CCNL cadence and adds the amount
 the level earns.
 
+The table of the run prices every increment, so a promotion reprices them
+(Federmeccanica art. 6: "ragguagliato agli importi previsti per la categoria
+di arrivo"). Increments whose amount stays as matured (the norme transitorie
+of that article, or increments kept on a transfer from another CCNL) go in
+`SeniorityFact.earned`, an `EarnedIncrements(count, monthly)` as the payslip
+of `as_of` prints them: the runs pay that amount and add only the increments
+matured after `as_of`, priced by the table, up to the maximum count.
+
 Every run records a `seniority` decision with one of four reasons:
 
 | Reason | When | Amount |

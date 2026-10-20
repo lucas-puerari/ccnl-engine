@@ -65,7 +65,11 @@ from ccnl_engine.regime.models import (
 )
 from ccnl_engine.run.models import PayrollRun
 from ccnl_engine.run.types import PeriodId
-from ccnl_engine.seniority.inputs import SeniorityFact, SenioritySource
+from ccnl_engine.seniority.inputs import (
+    EarnedIncrements,
+    SeniorityFact,
+    SenioritySource,
+)
 from ccnl_engine.severance.provision.models import TfrFundBalance
 from ccnl_engine.sickness.models import SicknessEpisode
 from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
@@ -157,7 +161,12 @@ def _employment(contract: Contract) -> Employment:
             weekday_hours=(Decimal(6),) * 5 + (Decimal(0),) * 2,
             months=frozenset(range(1, 12)),
         ),
-        seniority=SeniorityFact(60, date(2025, 12, 31), next(iter(SenioritySource))),
+        seniority=SeniorityFact(
+            60,
+            date(2025, 12, 31),
+            next(iter(SenioritySource)),
+            EarnedIncrements(2, Decimal("40.00")),
+        ),
         roles=frozenset({"capo_squadra", "addetto_primo_soccorso"}),
         contribution_history=ContributionHistory(date(2001, 9, 1)),
         sector=next(iter(EmploymentSector)),

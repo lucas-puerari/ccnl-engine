@@ -12,7 +12,7 @@ from ccnl_engine.compensation.element.rules import _level_chain
 from ccnl_engine.compensation.element.types import ApprenticeshipScaling
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.seniority.rules import _resolve_seniority_count
+from ccnl_engine.seniority.rules import _resolve_seniority_count, earned_seniority
 
 if TYPE_CHECKING:
     from datetime import date
@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from ccnl_engine.compensation.element.types import MonthlyPayChain
     from ccnl_engine.compensation.models import Level
     from ccnl_engine.employment.category.models import WorkerCategory
+    from ccnl_engine.seniority.inputs import SeniorityFact
 
 
 def _seniority_count(
@@ -104,6 +105,7 @@ def _resolve_chain(
     weekly_hours: Decimal | None = None,
     full_time_weekly_hours: Decimal | None = None,
     hired_on: date | None = None,
+    seniority: SeniorityFact | None = None,
 ) -> tuple[MonthlyPayChain, ApprenticeshipScaling | None]:
     """Resolve the elementary pay chain for the period.
 
@@ -112,7 +114,9 @@ def _resolve_chain(
     the other allowances are paid in full.  Part-time scaling then applies
     when ``weekly_hours < full_time_weekly_hours``.  An allowance of a
     cohort in service on a day (``in_service_on``) is kept only when
-    ``hired_on`` is known and not later.
+    ``hired_on`` is known and not later.  A qualified worker whose
+    ``seniority`` states the increments earned is paid them as stated plus
+    the increments matured since (:func:`earned_seniority`).
 
     Returns:
         :class:`~ccnl_engine.compensation.element.types.MonthlyPayChain` with each
@@ -130,6 +134,23 @@ def _resolve_chain(
             roles=roles,
             worker_category=worker_category,
         )
+        if (
+            seniority is not None
+            and seniority.earned is not None
+            and seniority_months is not None
+            and not isinstance(contract_type, Apprentice)
+        ):
+            with rule_scope(feature="seniority"):
+                stated = earned_seniority(
+                    ccnl.parameters.seniority_increments,
+                    level.code,
+                    seniority.earned,
+                    seniority.months,
+                    seniority_months,
+                    as_of,
+                    worker_category=worker_category,
+                )
+            chain = replace(chain, seniority=stated)
     chain = chain.for_hire_date(hired_on)
     return _part_time(ccnl, chain, weekly_hours, full_time_weekly_hours), scaling
 

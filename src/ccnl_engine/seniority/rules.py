@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.employment.category.models import WorkerCategory
+    from ccnl_engine.seniority.inputs import EarnedIncrements
     from ccnl_engine.seniority.models import SeniorityIncrements
 
 _ZERO = Decimal(0)
@@ -229,3 +230,53 @@ def _seniority_amount(
         raw = seniority_rules.amount_by_level[level_code].value_at(as_of)
         return money(raw * count)
     return _ZERO
+
+
+def earned_seniority(
+    increments: SeniorityIncrements,
+    level_code: str,
+    earned: EarnedIncrements,
+    months_then: int,
+    months_now: int,
+    as_of: date,
+    *,
+    worker_category: WorkerCategory | None,
+) -> Decimal:
+    """Return the seniority of a worker who stated the increments matured.
+
+    Args:
+        increments: Seniority rules of the CCNL.
+        level_code: Level of the run.
+        earned: The increments matured and their amount on the fact date.
+        months_then: Months of service on the fact date.
+        months_now: Months of service on the run.
+        as_of: Date the CCNL amounts are read at.
+        worker_category: Category of the worker.
+
+    Returns:
+        The stated amount plus the CCNL amount of the increments matured
+        since the fact date, never beyond the maximum count of the level.
+    """
+    then = _resolve_seniority_count(
+        increments, level_code, None, months_then, worker_category=worker_category
+    )
+    now = _resolve_seniority_count(
+        increments, level_code, None, months_now, worker_category=worker_category
+    )
+    room = seniority_maximum(increments, level_code, worker_category) - earned.count
+    extra = max(0, min(now - then, room))
+    if not extra:
+        return earned.monthly
+
+    def priced(count: int) -> Decimal:
+        return _seniority_amount(
+            increments,
+            level_code,
+            count,
+            as_of,
+            worker_category=worker_category,
+            is_apprentice=False,
+            seniority_months=None,
+        )
+
+    return money(earned.monthly + priced(then + extra) - priced(then))

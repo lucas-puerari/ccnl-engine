@@ -68,6 +68,7 @@ from ccnl_engine.pension_fund.inputs import (
 from ccnl_engine.regime.models import EmploymentSector
 from ccnl_engine.run.models import PayrollRunId
 from ccnl_engine.seniority.inputs import (
+    EarnedIncrements,
     SeniorityFact,
     SenioritySource,
 )
@@ -90,6 +91,7 @@ __all__ = [
     "DeferredShortfall",
     "Dependent",
     "DependentRelationship",
+    "EarnedIncrements",
     "EmployerActivity",
     "EmploymentPeriod",
     "EmploymentSector",
