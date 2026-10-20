@@ -170,6 +170,9 @@ class MinimumBaseReason(StrEnum):
         MONTHLY_DAYS_UNSOURCED: The sector has no sourced monthly day count.
         HOURLY_MINIMUM_UNSOURCED: No hourly minimum is published for the
             full-time weekly hours of the part-time worker.
+        MONTH_NOT_WORKED: The run would post the pay of a month the
+            vertical part time does not work: no hour is paid, so the
+            hourly minimum of D.Lgs. 81/2015 art. 11 c. 1 gives none.
     """
 
     ABOVE_MINIMUM = "above_minimum"
@@ -182,6 +185,7 @@ class MinimumBaseReason(StrEnum):
     PAY_ADDED_TO_MONTH = "pay_added_to_month"
     MONTHLY_DAYS_UNSOURCED = "monthly_days_unsourced"
     HOURLY_MINIMUM_UNSOURCED = "hourly_minimum_unsourced"
+    MONTH_NOT_WORKED = "month_not_worked"
 
 
 #: Reasons whose minimum the bundle cannot determine.
@@ -215,6 +219,8 @@ class MonthPosition:
         weekly_hours: Contracted weekly hours, ``None`` for full time.
         full_time_weekly_hours: Full-time weekly hours of the CCNL, ``None``
             when not stated (the worker then counts as full time).
+        worked: Whether the worker works in the month; ``False`` for a
+            month outside the months of a vertical part time.
     """
 
     month_pay: Decimal
@@ -225,6 +231,7 @@ class MonthPosition:
     category: WorkerCategory | None = None
     weekly_hours: Decimal | None = None
     full_time_weekly_hours: Decimal | None = None
+    worked: bool = True
 
     @property
     def part_time(self) -> tuple[Decimal, Decimal] | None:

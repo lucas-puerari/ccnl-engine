@@ -26,8 +26,8 @@ result = engine.calculate_period(
         employment=Employment(
             ccnl_id="lavoro-domestico-non-convivente",
             level_code="B",
-            weekly_hours=WeeklyHours(25),
-            full_time_weekly_hours=WeeklyHours(40),
+            weekly_hours=WeeklyHours(Decimal(25)),
+            full_time_weekly_hours=WeeklyHours(Decimal(40)),
             contract_type=Permanent(),
         ),
         employer=EmployerProfile(headcount=Headcount(1)),

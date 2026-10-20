@@ -58,7 +58,9 @@ def period_request(
         level_code=level,
         opening_state=opening,
         events=events,  # type: ignore[arg-type]
-        weekly_hours=None if weekly_hours is None else WeeklyHours(weekly_hours),
+        weekly_hours=None
+        if weekly_hours is None
+        else WeeklyHours(Decimal(weekly_hours)),
         contributable_hours=(
             None
             if contributable_hours is None

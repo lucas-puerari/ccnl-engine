@@ -73,6 +73,7 @@ from ccnl_engine.inputs import (
     SurtaxObligation,
     WeeklyHours,
     WorkCalendar,
+    WorkPattern,
 )
 from tests.integration.ccnl_engine.family.builders import (
     declared_dependent,
@@ -139,7 +140,8 @@ _VALID: dict[type, dict[str, Any]] = {
     Apprentice: {"months_elapsed": 1},
     EmployerProfile: {"headcount": Headcount(5)},
     Headcount: {"value": 5},
-    WeeklyHours: {"value": 40},
+    WeeklyHours: {"value": Decimal(40)},
+    WorkPattern: {"months": frozenset({1})},
     ContributableHours: {"value": _ONE},
     EmploymentPeriod: {"started_on": _DAY},
     SeniorityFact: {"months": 1, "as_of": _DAY, "source": SenioritySource.PAYSLIP},

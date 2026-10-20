@@ -16,6 +16,8 @@ from ccnl_engine.employment.fact.inputs import (
     EmploymentPeriod,
     PublicEndOfService,
     WeeklyHours,
+    WorkPattern,
+    check_pattern_hours,
     check_within_full_time,
 )
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
@@ -92,6 +94,11 @@ class PeriodCalculationRequest:
             pays (operai edili) and the Prevedi operai amount is due on.
         full_time_weekly_hours: Full-time weekly hours of the contract,
             positive.  ``weekly_hours`` must not exceed it.
+        work_pattern: Vertical or mixed part time: weekday hours summing to
+            ``weekly_hours`` and the months worked.  A regular or
+            termination run of a month not worked posts no monthly pay, and
+            the months not worked accrue no extra-month rateo.  ``None``
+            for a horizontal part time or a full time.
         employment_period: Start and optional end of the employment.
             ``None`` when not tracked.
             :func:`~ccnl_engine.year.tax_year.services.calculate_tax_year`
@@ -160,6 +167,7 @@ class PeriodCalculationRequest:
     contributable_hours: ContributableHours | None = None
     ordinary_hours_worked: ContributableHours | None = None
     full_time_weekly_hours: WeeklyHours | None = None
+    work_pattern: WorkPattern | None = None
     employment_period: EmploymentPeriod | None = None
     seniority: SeniorityFact | None = None
     roles: frozenset[str] | None = None
@@ -203,6 +211,7 @@ class PeriodCalculationRequest:
         if gap is not None:
             raise InvalidInputError(gap, feature="employment_facts")
         check_within_full_time(self.weekly_hours, self.full_time_weekly_hours)
+        check_pattern_hours(self.weekly_hours, self.work_pattern)
         check_surtax_codes(self.regione, self.comune_belfiore)
         competence = date(self.period_id.year, self.period_id.month, 1)
         tax_year = TaxYearPolicy().attribute(competence, self.payment_date).tax_year
@@ -283,6 +292,7 @@ class PeriodCalculationRequest:
                 True,
             ),
             ("full_time_weekly_hours", self.full_time_weekly_hours, WeeklyHours, True),
+            ("work_pattern", self.work_pattern, WorkPattern, True),
             ("employment_period", self.employment_period, EmploymentPeriod, True),
             ("seniority", self.seniority, SeniorityFact, True),
             ("sector", self.sector, EmploymentSector, True),

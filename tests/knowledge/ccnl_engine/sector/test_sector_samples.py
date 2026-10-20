@@ -189,8 +189,8 @@ def test_part_time_scales_the_pay_and_keeps_the_rates() -> None:
         "C3",
         WorkerCategory.OPERAIO,
         Permanent(),
-        weekly_hours=WeeklyHours(20),
-        full_time_weekly_hours=WeeklyHours(40),
+        weekly_hours=WeeklyHours(Decimal(20)),
+        full_time_weekly_hours=WeeklyHours(Decimal(40)),
     )
 
     assert half.period_gross == _cents(full.period_gross / 2)
@@ -244,7 +244,7 @@ def test_domestic_hourly_contributions() -> None:
             level_code="B",
             seniority=new_hire(),
             contract_type=Permanent(),
-            weekly_hours=WeeklyHours(20),
+            weekly_hours=WeeklyHours(Decimal(20)),
         ),
         contributable_hours=ContributableHours(hours),
     )

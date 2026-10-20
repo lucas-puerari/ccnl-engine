@@ -411,7 +411,7 @@ _DEPENDENTS = st.lists(
 
 def _employment(contract: tuple[str, str], weekly_hours: int | None) -> Employment:
     slug, level = contract
-    hours = None if weekly_hours is None else WeeklyHours(weekly_hours)
+    hours = None if weekly_hours is None else WeeklyHours(Decimal(weekly_hours))
     return Employment(
         ccnl_id=slug, level_code=level, weekly_hours=hours, contract_type=Permanent()
     )

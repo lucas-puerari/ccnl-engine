@@ -117,7 +117,12 @@ def plan_year(
             (s.kind.value, s.payment_month): s for s in year_calendar.extra_months
         },
         settlements=termination_settlements(
-            year_calendar, period, non_accruing, accrual_rule, unknown_days
+            year_calendar,
+            period,
+            non_accruing,
+            accrual_rule,
+            unknown_days,
+            pattern=plan.employment.work_pattern,
         ),
         accrual_rule=accrual_rule,
         unknown_accrual=unknown_days,
@@ -164,6 +169,7 @@ def run_request(
                 non_accruing_days=year_plan.non_accruing,
                 rule=year_plan.accrual_rule,
                 unknown_days=year_plan.unknown_accrual,
+                pattern=plan.employment.work_pattern,
             )
             if extra_sched is not None
             else None

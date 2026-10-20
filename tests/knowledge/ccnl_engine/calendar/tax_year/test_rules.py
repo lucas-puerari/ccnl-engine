@@ -122,7 +122,7 @@ def test_domestic_run_of_2027_records_the_provisional_inps_rules() -> None:
         tfr_treasury_fund=False,
         contract_type=Permanent(),
         pension_fund=NoPensionFund(),
-        weekly_hours=WeeklyHours(20),
+        weekly_hours=WeeklyHours(Decimal(20)),
     )
     result = regular_period(
         employment=employment,

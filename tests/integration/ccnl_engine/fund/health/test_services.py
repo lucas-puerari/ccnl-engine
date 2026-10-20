@@ -138,7 +138,7 @@ def _run(
                 weekly_hours=weekly_hours,
                 full_time_weekly_hours=None
                 if weekly_hours is None
-                else WeeklyHours(40),
+                else WeeklyHours(Decimal(40)),
             ),
             employer=EmployerProfile(headcount=Headcount(60), contractual_funds=funds),
             facts=PeriodFacts(family_composition=FamilyComposition()),
@@ -209,7 +209,7 @@ def test_a_fund_covers_only_its_workers() -> None:
 
 def test_part_time_scales_the_fixed_amounts() -> None:
     """At 20 of 40 hours the element is half: 8 EUR."""
-    result = _run(frozenset(), weekly_hours=WeeklyHours(20))
+    result = _run(frozenset(), weekly_hours=WeeklyHours(Decimal(20)))
 
     items = [i for i in result.pay_items if i.item_id.startswith("fondo_test_element")]
     assert [i.amount for i in items] == [Decimal("8.00")]

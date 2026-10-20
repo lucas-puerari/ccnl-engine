@@ -99,8 +99,35 @@ The engine automatically detects which track the loaded CCNL uses.
 --8<-- "docs/examples/apprenticeship/example.py"
 ```
 
+## Part time (*tempo parziale*)
+
+Part time is not a contract type: any of the three above can be part time
+(Art. 4-12 D.Lgs. 81/2015). The contract states the reduced hours and how
+they are spread over the week, the month and the year (art. 5 c. 2), and the
+worker is paid in proportion to the work done (art. 7 c. 1).
+
+- **Horizontal** (*orizzontale*): fewer hours every working day. State
+  `Employment.weekly_hours` below `full_time_weekly_hours`, as a `Decimal`
+  with up to two places (`WeeklyHours(Decimal("37.5"))`): every month pays
+  `weekly_hours / full_time_weekly_hours` of the full-time pay.
+- **Vertical** (*verticale*): full days on some days of the week, or some
+  months of the year. State `Employment.work_pattern`, a `WorkPattern`: the
+  hours of the seven days of the week (Monday first, summing to
+  `weekly_hours`) and/or the `months` worked.
+- **Mixed** (*misto*): both, e.g. 8 hours Monday to Wednesday from January
+  to June.
+
+A month outside `WorkPattern.months` pays no monthly pay, has no INPS
+minimum (the hourly minimum of art. 11 c. 1 has no hour to count) and
+accrues no tredicesima or quattordicesima rateo; a month worked pays the
+weekly-hours ratio. The weekday hours are validated against
+`weekly_hours`, which alone sets the ratio. See
+[Pay components](../engine/pay-components.md#part-time) for what the
+engine does and does not model.
+
 **API reference:** [`Permanent`](../api/inputs.md), [`FixedTerm`](../api/inputs.md),
-[`Apprentice`](../api/inputs.md)
+[`Apprentice`](../api/inputs.md), [`WeeklyHours`](../api/inputs.md),
+[`WorkPattern`](../api/inputs.md)
 
 ---
 
