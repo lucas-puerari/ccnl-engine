@@ -39,6 +39,11 @@ class Allowance(BaseModel):
     percentage together with the base salary; a CCNL that lists the reduced
     elements exempts every allowance it does not list.
 
+    ``individual=True`` marks an element of the worker, not of the CCNL
+    (:class:`~ccnl_engine.compensation.individual.inputs.IndividualElement`):
+    the hourly base counts it as the CCNL says
+    (:class:`~ccnl_engine.working_time.supplement.models.IndividualElementsRule`).
+
     ``in_service_on`` limits the allowance to the workers in service on
     that day (Logistica Confetra art. 60 c. 8: the EDR of the workers "in
     servizio alla data del 26 gennaio 2011"): it is paid only when the
@@ -84,6 +89,7 @@ class Allowance(BaseModel):
     service_months_threshold: int | None = Field(default=None, ge=0)
     service_months_until: int | None = Field(default=None, ge=1)
     in_service_on: date | None = None
+    individual: bool = False
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")

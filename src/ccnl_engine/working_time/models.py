@@ -11,6 +11,7 @@ from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.working_time.supplement.models import (
     HourlyBaseMethod,
+    IndividualElementsRule,
     SupplementBand,
     SupplementWork,
 )
@@ -85,6 +86,8 @@ class TimeSupplements(BaseModel):
     states the rate.  ``hourly_divisor_weekly_hours``, when set, is the
     full-time week the divisor belongs to: an employment whose full-time
     week differs is not derived (the CCNL sets another divisor for it).
+    ``individual_elements`` says whether the worker's individual elements
+    enter the base (:class:`IndividualElementsRule`).
 
     ``overtime_bands`` is an ordered list of :class:`OvertimeBand` entries.
     All applicable bands accumulate (no "first match wins" truncation) unless
@@ -97,6 +100,7 @@ class TimeSupplements(BaseModel):
     hourly_base_method: HourlyBaseMethod = HourlyBaseMethod.MINIMO_TABELLARE
     hourly_base_provenance: RuleProvenance | None = None
     hourly_divisor_weekly_hours: int | None = Field(default=None, ge=1)
+    individual_elements: IndividualElementsRule | None = None
     overtime_bands: tuple[OvertimeBand, ...] = Field(default=())
     supplement_bands: tuple[SupplementBand, ...] = Field(default=())
 

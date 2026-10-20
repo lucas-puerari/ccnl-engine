@@ -2741,7 +2741,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "d709a61567f80d0cfc91051922326289476b3568f39cb3810dd1b81b42264397",
+    "source_hash": "254eade034acb6acbd3df2d46db248d4dcfaf6618990fc3e50c0f5ac173542eb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2774,6 +2774,36 @@
           "verified_by": "claude-opus-5-5",
           "verified_at": "2026-10-19T09:00:00Z",
           "review_id": "2026-10-19-ai-hourly-rates"
+        }
+      },
+      "individual_elements": {
+        "in_hourly_base": "excluded",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "fipe-ccnl-2018-02-08",
+              "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+              "kind": "associazione",
+              "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+              "published_on": "2018-02-08",
+              "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+            },
+            "section": "Art. 157 c. 1 - Elementi della retribuzione",
+            "quote": "(1) Di norma, la retribuzione del lavoratore è distinta nelle seguenti voci: a) paga base nazionale; b) eventuali trattamenti salariali integrativi comunque denominati previsti per ciascun comparto nelle parti generale e speciale del presente Contratto; c) indennità di contingenza; d) eventuali scatti di anzianità nelle misure e con le modalità previste all'articolo 182;",
+            "page": "116"
+          },
+          "transformation": "The retribuzione art. 160 divides is the one of art. 157, whose voci are all collective: individual elements are not in the hourly base. Read on the scanned page (printed page 114).",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-20T21:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-20T21:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-20-ai-individual-hourly-base",
+            "effective_from": "2024-06-01"
+          }
         }
       },
       "hourly_divisor_weekly_hours": 40,
@@ -3513,6 +3543,23 @@
         ],
         "findings": [
           "Art. 182 c. 5 - Scatti di anzianità (p. 127): the earlier increments are repriced at the new level when the next one matures: seniority_increments.on_promotion."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-individual-hourly-base",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Art. 157 c. 1 - Elementi della retribuzione).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          }
+        ],
+        "findings": [
+          "Art. 157 c. 1 - Elementi della retribuzione: individual elements excluded in the hourly base: work_rules.time_supplements.individual_elements."
         ]
       }
     ],

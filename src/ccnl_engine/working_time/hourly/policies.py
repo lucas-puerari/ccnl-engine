@@ -19,11 +19,14 @@ The engine derives it only from a sourced rule, never from a default:
 Otherwise the event needs the caller's value and the run is rejected with
 :class:`~ccnl_engine.errors.InvalidInputError` naming the reason.
 
-Individual elements (``Employment.individual_elements``: superminimi,
-aumenti di merito, assegni ad personam) never enter the hourly base, though
-some CCNLs count them (metalmeccanici, chimica art. 15 punto 1, terziario
-art. 208).  Every derived decision reports ``individual_elements``
-``not_included``: a worker who has them under such a CCNL states the rate.
+The individual elements of the worker (``Employment.individual_elements``:
+superminimi, aumenti di merito, assegni ad personam) enter the base as the
+CCNL ``time_supplements.individual_elements`` rule says: in the hour and in
+its supplements, in neither, or in the hour only (Commercio art. 149: the
+hour at the retribuzione di fatto, the maggiorazione on the normale
+retribuzione).  A worker with individual elements under a CCNL whose rule
+is not verified has no derived base.  Every derived decision reports
+``individual_elements``: ``included``, ``not_included`` or ``none``.
 """
 
 from __future__ import annotations
@@ -34,7 +37,10 @@ from typing import TYPE_CHECKING, NoReturn
 
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
-from ccnl_engine.working_time.supplement.models import HourlyBaseMethod
+from ccnl_engine.working_time.supplement.models import (
+    HourlyBaseMethod,
+    IndividualInBase,
+)
 
 if TYPE_CHECKING:
     from datetime import date
@@ -60,6 +66,9 @@ class HourlyBase:
         divisor: Hourly divisor of the CCNL in force on the day.
         method: The elements the CCNL names.
         components: Each element and its full-time monthly amount.
+        individual: ``included`` when the worker's individual elements
+            are among :attr:`components`, ``not_included`` when the CCNL
+            leaves them out, ``none`` without any.
     """
 
     rate: Decimal
@@ -67,6 +76,7 @@ class HourlyBase:
     divisor: Decimal
     method: HourlyBaseMethod
     components: tuple[tuple[str, Decimal], ...]
+    individual: str = "none"
 
     def inputs(self) -> dict[str, Decimal | str]:
         """Return the decision inputs that show how the rate was built.
@@ -81,7 +91,7 @@ class HourlyBase:
             "hourly_base_monthly": self.monthly,
             "hourly_divisor": self.divisor,
             "hourly_base_rate": self.rate,
-            "individual_elements": "not_included",
+            "individual_elements": self.individual,
         }
 
 
@@ -99,8 +109,21 @@ def _components(
         return tuple(found)
     found.append(("seniority", chain.seniority))
     if method is HourlyBaseMethod.GROSS_INCL_ALLOWANCES:
-        found.extend((a.code, v) for a, v in chain.allowances if not a.in_kind)
+        found.extend(
+            (a.code, v)
+            for a, v in chain.allowances
+            if not a.in_kind and not a.individual
+        )
     return tuple(found)
+
+
+def _individual(chain: MonthlyPayChain) -> tuple[tuple[str, Decimal], ...]:
+    """Return the individual elements of the worker in ``chain``.
+
+    Returns:
+        Each element and its full-time monthly amount.
+    """
+    return tuple((a.code, v) for a, v in chain.allowances if a.individual)
 
 
 @dataclass(frozen=True)
@@ -189,6 +212,8 @@ class HourlyTerms:
         field: str,
         feature: str,
         method: HourlyBaseMethod | None = None,
+        *,
+        supplement: bool = False,
     ) -> HourlyBase:
         """Return the hourly base on ``day``.
 
@@ -198,10 +223,14 @@ class HourlyTerms:
             feature: Capability of the event, named in the error.
             method: Elements of a band with its own base; ``None`` for the
                 hourly base of the CCNL.
+            supplement: Whether the base is that of a maggiorazione, which a
+                CCNL of :attr:`IndividualInBase.HOUR_ONLY` computes without
+                the individual elements.
 
         Returns:
             The hourly base; the event is rejected (``reject_underived``)
-            when it cannot be derived on ``day``.
+            when it cannot be derived on ``day``, or when the worker has
+            individual elements and the CCNL rule on them is not verified.
         """
         parts = self._parts(day)
         if isinstance(parts, str):
@@ -209,8 +238,33 @@ class HourlyTerms:
         _, chain, supplements, divisor = parts
         named = method or supplements.hourly_base_method
         components = _components(chain, named)
+        individual = _individual(chain)
+        state = "none"
+        if individual:
+            rule = supplements.individual_elements
+            if rule is None or rule.provenance.status is not ProvenanceStatus.VERIFIED:
+                reject_underived(
+                    field,
+                    feature,
+                    day,
+                    f"the CCNL ({self.ruleset}) does not say whether the "
+                    "individual elements of the worker enter the hourly base",
+                )
+            where = rule.in_hourly_base
+            included = where is IndividualInBase.INCLUDED or (
+                where is IndividualInBase.HOUR_ONLY and not supplement
+            )
+            state = "included" if included else "not_included"
+            components += individual if included else ()
         monthly = sum((v for _, v in components), Decimal(0))
-        return HourlyBase(monthly / divisor, monthly, divisor, named, components)
+        return HourlyBase(monthly / divisor, monthly, divisor, named, components, state)
+
+    @property
+    def hour_only(self) -> bool:
+        """Whether the maggiorazione leaves the individual elements out."""
+        supplements = self.supplements
+        rule = None if supplements is None else supplements.individual_elements
+        return rule is not None and rule.in_hourly_base is IndividualInBase.HOUR_ONLY
 
 
 def reject_underived(field: str, feature: str, day: date, reason: str) -> NoReturn:

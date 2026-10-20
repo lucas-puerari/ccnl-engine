@@ -147,9 +147,9 @@ superminimo = IndividualElement(
 )
 ```
 
-The elements are not in the CCNL hourly base of overtime, supplements and
-absences ([Hourly base](#hourly-base)): a worker whose CCNL counts them
-states the hourly rate on the event.
+The elements enter the CCNL hourly base of overtime, supplements and
+absences as the CCNL says ([Hourly base](#hourly-base)): included in the
+hour and its maggiorazioni, excluded, or in the hour only.
 
 ## Seniority increments (*scatti di anzianità*)
 

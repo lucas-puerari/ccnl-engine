@@ -11,9 +11,8 @@ from ccnl_engine.provenance.source.rule.models import RuleProvenance
 class HourlyBaseMethod(StrEnum):
     """Monthly pay elements the CCNL divides by its hourly divisor.
 
-    The engine knows the elements of the CCNL only: individual elements
-    (superminimi, aumenti di merito, assegni ad personam) are not facts of
-    a request and never enter the hourly base.
+    The individual elements of the worker (superminimi, aumenti di merito,
+    assegni ad personam) enter it as :class:`IndividualElementsRule` says.
 
     Attributes:
         MINIMO_TABELLARE: The base salary of the level only.
@@ -26,6 +25,40 @@ class HourlyBaseMethod(StrEnum):
     MINIMO_TABELLARE = "minimo_tabellare"
     MINIMO_E_ANZIANITA = "minimo_e_anzianita"
     GROSS_INCL_ALLOWANCES = "gross_incl_allowances"
+
+
+class IndividualInBase(StrEnum):
+    """Where the individual elements of the worker enter the hourly base.
+
+    Attributes:
+        INCLUDED: In the hourly rate of the hour and of every supplement
+            (Federmeccanica Sez. Quarta Titolo IV art. 3: "gli aumenti di
+            merito nonché gli altri compensi eventualmente fissati a mese").
+        EXCLUDED: In neither (the CCNL lists only collective elements).
+        HOUR_ONLY: In the rate of the hour, not in the base of its
+            maggiorazione (Commercio art. 149: the hour at the retribuzione
+            di fatto of art. 208, the maggiorazione on the normale
+            retribuzione of art. 206).
+    """
+
+    INCLUDED = "included"
+    EXCLUDED = "excluded"
+    HOUR_ONLY = "hour_only"
+
+
+class IndividualElementsRule(BaseModel):
+    """The CCNL rule on the individual elements in the hourly base.
+
+    Attributes:
+        in_hourly_base: Where the elements enter.
+        provenance: Source of the rule; the engine reads it only when
+            ``verified``.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    in_hourly_base: IndividualInBase
+    provenance: RuleProvenance
 
 
 class SupplementWork(StrEnum):

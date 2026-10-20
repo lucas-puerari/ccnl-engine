@@ -3017,7 +3017,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "b0a16f200a25a49402e6b6937b14b2f5a44593b70dd81e4c7c4c20f39dd75e92",
+    "source_hash": "bde8698657d1225eaec32eed3c75520e0160c9ae0055869ae239cef33f08f133",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3050,6 +3050,36 @@
           "verified_by": "claude-opus-5-5",
           "verified_at": "2026-10-19T09:00:00Z",
           "review_id": "2026-10-19-ai-hourly-rates"
+        }
+      },
+      "individual_elements": {
+        "in_hourly_base": "included",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-unionmeccanica-confapi-2017",
+              "title": "CCNL 3 luglio 2017 piccola e media industria metalmeccanica, orafa e installazione impianti (Unionmeccanica-Confapi, Fim-Cisl, Fiom-Cgil, Uilm-Uil), testo a stampa",
+              "kind": "associazione",
+              "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+              "published_on": "2017-07-03",
+              "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+            },
+            "section": "Art. 38 - Mensilizzazione",
+            "quote": "La retribuzione oraria dei lavoratori, ai fini dei vari istituti contrattuali, si determina dividendo per 173 i minimi tabellari conglobati della classificazione unica, gli aumenti periodici di anzianità, gli aumenti di merito nonché gli altri compensi già eventualmente fissati a mese",
+            "page": "112"
+          },
+          "transformation": "The hourly rate of every institute, overtime included, holds the aumenti di merito and the other monthly compensi: individual elements enter the hour and its maggiorazioni.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-20T21:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-20T21:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-20-ai-individual-hourly-base",
+            "effective_from": "2021-06-01"
+          }
         }
       },
       "overtime_bands": [
@@ -3648,6 +3678,23 @@
         ],
         "findings": [
           "Art. 41 - Aumenti periodici di anzianità (p. 116): the earlier increments take the amounts of the new level from the change: seniority_increments.on_promotion."
+        ]
+      },
+      {
+        "id": "2026-10-20-ai-individual-hourly-base",
+        "date": "2026-10-20",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Art. 38 - Mensilizzazione).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          }
+        ],
+        "findings": [
+          "Art. 38 - Mensilizzazione: individual elements included in the hourly base: work_rules.time_supplements.individual_elements."
         ]
       }
     ],
