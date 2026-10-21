@@ -1,0 +1,279 @@
+{
+  "id": "p75",
+  "period": "2026-01",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Terziario Confcommercio (Fondo EST, Fon.Te., level 1: paga base 1966.54 and contingenza 537.52 match the level 1 table)",
+  "level": "1",
+  "contract": {
+    "type": null,
+    "category": null,
+    "inps_weeks": "5",
+    "inps_days": "26",
+    "worked_days": "14",
+    "worked_hours": "112.00",
+    "hourly_rate": "24.38256"
+  },
+  "source": {
+    "publisher": "GitHub, repository marcomd/cedolini (test snapshot of a payslip parser)",
+    "url": "https://github.com/marcomd/cedolini/blob/4fe02bdfda1f8e5090873f276745d373f670fb4a/plugins/cedolini/tests/snapshots/cedolini_summary.csv",
+    "commit": "4fe02bdfda1f8e5090873f276745d373f670fb4a",
+    "files": {
+      "plugins/cedolini/tests/snapshots/cedolini_summary.csv": "c7a09f534b2096477ff61c97655e703296bf6858d73b6ab2580d6259bd04d743",
+      "plugins/cedolini/tests/snapshots/cedolini_voci.csv": "f45771a4503a00dfc6e932a8c946de96b02c5b5b589b1241eb4c94cbc29593b1"
+    },
+    "row": "anno 2026, mese 1 (formato zucchetti)"
+  },
+  "pay_elements": {
+    "paga_base": "1966.54",
+    "contingenza": "537.52",
+    "superminimo": "1548.50",
+    "terzo_elemento": "11.36",
+    "edr": "7.51",
+    "scatti": "24.84",
+    "total": "4096.27"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione ordinaria",
+      "qty_hours": "120.00000",
+      "rate": "24.38256",
+      "earning": "2925.91"
+    },
+    {
+      "desc": "permessi ROL goduti",
+      "qty_hours": "16.00000",
+      "rate": "24.38256",
+      "earning": "390.12"
+    },
+    {
+      "desc": "permessi ex festivita goduti",
+      "qty_hours": "32.00000",
+      "rate": "24.38256",
+      "earning": "780.24"
+    },
+    {
+      "desc": "festivita patrono non goduta",
+      "qty": "1.00000",
+      "rate": "157.54885",
+      "earning": "157.55"
+    },
+    {
+      "desc": "14ma mensilita (rateo)",
+      "qty_hours": "14.00000",
+      "rate": "24.38256",
+      "earning": "341.36"
+    },
+    {
+      "desc": "recupero anticipo festivita",
+      "deduction": "157.55"
+    },
+    {
+      "desc": "arrotondamento mese precedente",
+      "deduction": "0.24"
+    },
+    {
+      "desc": "TFR trasferito a Fon.Te.",
+      "figurative": "318.19"
+    },
+    {
+      "desc": "contributo fondo EST",
+      "deduction": "2.00"
+    },
+    {
+      "desc": "contributo IVS",
+      "base": "4438.00",
+      "rate_pct": "9.19000",
+      "deduction": "407.85"
+    },
+    {
+      "desc": "FIS D.Lgs. 148/2015 oltre",
+      "base": "4438.00",
+      "rate_pct": "0.26667",
+      "deduction": "11.83"
+    },
+    {
+      "desc": "contributo CIGS",
+      "base": "4438.00",
+      "rate_pct": "0.30000",
+      "deduction": "13.31"
+    },
+    {
+      "desc": "contributo base Fon.Te. su retribuzione TFR",
+      "base": "4595.18",
+      "rate_pct": "0.55000",
+      "deduction": "25.27"
+    },
+    {
+      "desc": "contributo base Fon.Te. c/ditta",
+      "figurative": "71.23"
+    },
+    {
+      "desc": "contributo volontario Fon.Te. su retribuzione TFR",
+      "base": "4595.18",
+      "rate_pct": "0.45000",
+      "deduction": "20.68"
+    },
+    {
+      "desc": "contributi previdenza complementare deducibili",
+      "figurative": "117.18"
+    },
+    {
+      "desc": "ritenute IRPEF",
+      "deduction": "1144.23"
+    },
+    {
+      "desc": "addizionale regionale",
+      "deduction": "71.54"
+    },
+    {
+      "desc": "addizionale comunale",
+      "deduction": "26.30"
+    }
+  ],
+  "inps": {
+    "base": "4438.00",
+    "ivs_rate": "0.0919",
+    "ivs": "407.85",
+    "fis_rate": "0.0026667",
+    "fis": "11.83",
+    "cigs_rate": "0.0030",
+    "cigs": "13.31",
+    "fondo_est": "2.00"
+  },
+  "irpef_month": {
+    "taxable": "3956.69",
+    "gross": "1144.23",
+    "deductions": null,
+    "net": "1144.23",
+    "deduction_days": "31"
+  },
+  "surtax": {
+    "regional_withheld_month": "71.54",
+    "municipal_withheld_month": "26.30"
+  },
+  "pension_fund": {
+    "fund": "Fon.Te.",
+    "employee_base": "25.27",
+    "employee_voluntary": "20.68",
+    "employer": "71.23",
+    "tfr": "318.19"
+  },
+  "year_totals": {
+    "inps_base": "4438.00",
+    "irpef_taxable": "3956.69",
+    "irpef_paid": "1144.23"
+  },
+  "tfr": {
+    "base": "4595.18",
+    "month_quota": "318.19"
+  },
+  "totals": {
+    "earnings": "4595.18",
+    "deductions": "1880.80",
+    "rounding": "0.62"
+  },
+  "net": "2715.00",
+  "legibility": "full",
+  "notes": [
+    "Transcribed from the parser's extraction of the payslip (summary and line CSVs of the cited commit), not from the PDF itself, which the repository does not publish; the values are the snapshot's as stored.",
+    "No name, tax code, employer, address or bank data is transcribed; the source file name, which names the employer, is not recorded.",
+    "Check: earnings 2925.91 + 390.12 + 780.24 + 157.55 + 341.36 = 4595.18 (matches); deductions 157.55 + 0.24 + 2.00 + 407.85 + 11.83 + 13.31 + 25.27 + 20.68 + 1144.23 + 71.54 + 26.30 = 1880.80 (matches); 4595.18 - 1880.80 + rounding 0.62 = 2715.00 = net. Exact.",
+    "IRPEF ritenuta equals IRPEF lorda: no work deduction printed in the month (income above the deduction range at this projection)."
+  ],
+  "replay": {
+    "replayability": "partial",
+    "reason": "The request cannot state every element the payslip pays; only the axes listed are compared.",
+    "inputs": {
+      "ccnl_id": "commercio-confcommercio",
+      "level_code": "1",
+      "year": 2026,
+      "month": 1,
+      "headcount": 60,
+      "contract_type": "permanent"
+    },
+    "unknown_inputs": [
+      {
+        "input": "superminimo, terzo elemento and EDR",
+        "affects": [
+          "gross",
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "tfr",
+          "employer_cost",
+          "fixed_allowances",
+          "contribution_base",
+          "taxable_income",
+          "gross_irpef",
+          "tax_deductions",
+          "tax_credits",
+          "tax_surcharges"
+        ]
+      },
+      {
+        "input": "the monthly rateo of the quattordicesima and the festivity lines",
+        "affects": [
+          "gross",
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "tfr",
+          "employer_cost",
+          "fixed_allowances",
+          "contribution_base",
+          "taxable_income",
+          "gross_irpef",
+          "tax_deductions",
+          "tax_credits",
+          "tax_surcharges"
+        ]
+      },
+      {
+        "input": "the Fon.Te. pension fund enrolment and its voluntary rate",
+        "affects": [
+          "tax",
+          "net",
+          "tfr",
+          "employer_cost",
+          "taxable_income",
+          "gross_irpef",
+          "employee_funds",
+          "employer_funds"
+        ]
+      },
+      {
+        "input": "headcount above 50, from the CIGS withheld",
+        "affects": [
+          "employee_contributions",
+          "employer_contributions",
+          "tax",
+          "net",
+          "employer_cost",
+          "taxable_income",
+          "gross_irpef",
+          "employee_inps_rate",
+          "employer_inps_rate"
+        ]
+      },
+      {
+        "input": "the surtax of the prior year withheld in January",
+        "affects": [
+          "tax",
+          "net",
+          "tax_surcharges"
+        ]
+      }
+    ],
+    "expected": {
+      "base_salary": {
+        "value": "1966.54",
+        "tolerance": "0.00",
+        "printed": "pay_elements.paga_base"
+      }
+    },
+    "known_differences": []
+  }
+}
