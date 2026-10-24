@@ -154,3 +154,55 @@ def test_the_credit_up_to_15000_follows_the_days_of_the_year() -> None:
     assert full == _D("1200.00")
     assert half is not None
     assert _D(0) < half < _D("1200.00")
+
+
+def test_the_decision_states_every_input_of_the_credit() -> None:
+    """Taxable, gross tax, both deductions, their sum, days, plan, period."""
+    period, component, _, decisions = resolve_trattamento(
+        _INCOME, _annual(_D(2500), _D(0)), _RULES, _D(0), 12, run=InstallmentRun()
+    )
+
+    assert dict(decisions[0].inputs) == {
+        "taxable_income": _INCOME,
+        "irpef_gross": _GROSS,
+        "work_deduction": _ART13,
+        "family_deductions": _D(2500),
+        "relevant_deductions": _ART13 + _D(2500),
+        "eligible_work_days": "365",
+        "recovery_in_progress": "false",
+        "period_amount": period,
+    }
+    assert component is not None
+    assert component.fonte == "Art. 1 D.L. 3/2020 (L. 207/2024)"
+
+
+def test_two_slots_left_share_the_credit_still_due() -> None:
+    """542.21 over the two slots left: 271.11 on this run."""
+    period, *_ = resolve_trattamento(
+        _INCOME, _annual(_D(2500), _D(0)), _RULES, _D(0), 2, run=InstallmentRun()
+    )
+
+    assert period == _D("271.11")
+
+
+@pytest.mark.parametrize(
+    ("paid", "period", "plan"),
+    [(_D("60.00"), _D("-60.00"), False), (_D("240.00"), _D("-30.00"), True)],
+)
+def test_an_overpayment_up_to_60_eur_is_recovered_at_once(
+    paid: Decimal, period: Decimal, *, plan: bool
+) -> None:
+    """D.L. 3/2020 art. 1 c. 3: eight installments only above 60 EUR."""
+    amount, _, next_plan, decisions = resolve_trattamento(
+        _INCOME, _annual(_D(0), _D(0)), _RULES, paid, 12, run=InstallmentRun()
+    )
+    recovery = decisions[1]
+
+    assert amount == period
+    assert (next_plan is not None) is plan
+    assert recovery.inputs["net_paid_before"] == paid
+    assert recovery.rule_version == (
+        str(_RULES.year) if _RULES.ruleset is None else _RULES.ruleset.version
+    )
+    if next_plan is not None:
+        assert next_plan.installments_total == 8

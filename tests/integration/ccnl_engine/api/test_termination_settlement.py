@@ -15,7 +15,10 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
+import pytest
+
 from ccnl_engine import (
+    CompetenceYearPlan,
     EmployerProfile,
     Employment,
     Headcount,
@@ -24,6 +27,9 @@ from ccnl_engine import (
     PeriodInput,
     PeriodResult,
 )
+from ccnl_engine.decision.models import CalculationIssue, CalculationStatus
+from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.extra_month.liquidation.services import _window_months
 from ccnl_engine.inputs import EmploymentPeriod, PayrollRunId, PeriodState, Permanent
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
@@ -143,3 +149,115 @@ def test_a_calendar_with_nothing_left_to_liquidate_names_nothing() -> None:
 
     assert not _ratei(december)
     assert "termination_window_absences_unknown" not in _codes(december)
+
+
+def _issue(result: PeriodResult, code: str) -> CalculationIssue:
+    return next(issue for issue in result.issues if issue.code == code)
+
+
+def test_the_residual_issue_names_its_extra_month_and_blocks() -> None:
+    """The paid-early issue is incomplete, on the base salary, and says which."""
+    runs = [PayrollRun.regular(2026, month) for month in range(3, 11)]
+    runs.append(PayrollRun.thirteenth(2026, 10))
+    november = _run(_LEAVER, PayrollRun.regular(2026, 11), _chain(_LEAVER, runs))
+    issue = _issue(november, "extra_month_paid_before_termination")
+
+    assert issue.capability == "base_salary"
+    assert issue.status is CalculationStatus.INCOMPLETE
+    assert issue.message.startswith("a thirteenth run closed earlier in the window")
+
+
+def test_the_absences_issue_is_provisional_on_the_base_salary() -> None:
+    """The earlier months of the window may hold absences the state lacks."""
+    runs = [PayrollRun.regular(2026, month) for month in range(3, 11)]
+    november = _run(_LEAVER, PayrollRun.regular(2026, 11), _chain(_LEAVER, runs))
+    issue = _issue(november, "termination_window_absences_unknown")
+
+    assert issue.capability == "base_salary"
+    assert issue.status is CalculationStatus.PROVISIONAL
+    assert issue.message.startswith(
+        "the ratei liquidated at the termination count the absences of this run"
+    )
+
+
+def test_a_termination_run_pays_the_ratei_its_month_has_not_paid() -> None:
+    """Without a closed regular run of November, the termination run pays."""
+    runs = [PayrollRun.regular(2026, month) for month in range(3, 11)]
+    termination = _run(
+        _LEAVER,
+        PayrollRun.of(PayrollRunId.parse("2026-11-termination")),
+        _chain(_LEAVER, runs),
+    )
+
+    assert _ratei(termination)
+
+
+def test_a_termination_run_after_its_regular_run_names_no_early_payment() -> None:
+    """A tredicesima paid in October is the regular run's issue, not again."""
+    runs = [PayrollRun.regular(2026, month) for month in range(3, 12)]
+    runs.insert(8, PayrollRun.thirteenth(2026, 10))
+    termination = _run(
+        _LEAVER,
+        PayrollRun.of(PayrollRunId.parse("2026-11-termination")),
+        _chain(_LEAVER, runs),
+    )
+
+    assert "extra_month_paid_before_termination" not in _codes(termination)
+
+
+@pytest.mark.parametrize("month", [11, 12])
+def test_an_extra_month_run_the_termination_liquidates_is_refused(month: int) -> None:
+    """A tredicesima in or after the month of leaving would pay it twice."""
+    runs = [PayrollRun.regular(2026, m) for m in range(3, 11)]
+    with pytest.raises(InvalidInputError, match="liquidates") as refused:
+        _run(_LEAVER, PayrollRun.thirteenth(2026, month), _chain(_LEAVER, runs))
+
+    assert refused.value.field == "PayrollRun.run_kind"
+    assert refused.value.feature == "payroll_run"
+
+
+def test_an_extra_month_paid_inside_the_employment_is_not_refused() -> None:
+    """Metalmeccanico leaving on 31 December pays its tredicesima as usual."""
+    leaver = _employment(
+        date(2026, 1, 1), date(2026, 12, 31), "metalmeccanico-federmeccanica"
+    )
+    runs = [PayrollRun.regular(2026, month) for month in range(1, 12)]
+    thirteenth = _run(leaver, PayrollRun.thirteenth(2026, 12), _chain(leaver, runs))
+
+    assert thirteenth.period_gross > 0
+
+
+def test_a_regular_run_of_the_year_before_is_no_earlier_month_of_the_window() -> None:
+    """Hired in December 2026, leaving in January: no 2027 month closed before."""
+    leaver = _employment(date(2026, 12, 1), date(2027, 1, 20))
+    year = _ENGINE.calculate_competence_year(
+        CompetenceYearPlan(year=2026, employment=leaver, employer=_EMPLOYER)
+    )
+    january = _ENGINE.calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(2027, 1),
+            payment_date=date(2027, 1, 28),
+            employment=leaver,
+            employer=_EMPLOYER,
+            opening_state=year.next_opening_state,
+        )
+    )
+
+    assert _ratei(january)
+    assert "termination_window_absences_unknown" not in _codes(january)
+
+
+@pytest.mark.parametrize(
+    ("payment_month", "ended_month", "months"),
+    [
+        (6, 11, range(7, 12)),
+        (11, 11, range(1, 12)),
+        (12, 11, range(1, 12)),
+        (12, 1, range(1, 2)),
+    ],
+)
+def test_the_window_runs_from_the_month_after_the_payment_to_the_leaving(
+    payment_month: int, ended_month: int, months: range
+) -> None:
+    """A payment before the leaving month opens the window the month after it."""
+    assert _window_months(payment_month, ended_month) == months
