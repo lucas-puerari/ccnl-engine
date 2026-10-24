@@ -53,16 +53,21 @@ gate reads those triples, so a packet is the way an output of a `production`
 CCNL leaves the `provider output` list of
 `scripts/provenance/readiness/baseline.json`.
 
-## The pilot packets
+## The packets of the production CCNLs
 
-The three pilot CCNLs (`commercio-confcommercio` level 4,
-`metalmeccanico-federmeccanica` C3, `edilizia-ance-impiegati` level 4) have
-a packet for each scenario: 21 input packets of an impiegato hired on 1
+Every `production` CCNL has a packet for each scenario: the three pilots
+(`commercio-confcommercio` level 4, `metalmeccanico-federmeccanica` C3,
+`edilizia-ance-impiegati` level 4) and
+`pubblici-esercizi-fipe-angem-ristorazione-collettiva` level 4, 28 input
+packets of an impiegato hired on 1
 January 2025, resident in IT-25 / A005, ready to hand to a payroll
 provider. The `employer_cost` packets enrol the worker in the pension fund
 of the CCNL with 60 employees and compare the employer side only. The
-`variable` packet of `edilizia-ance-impiegati` states the hourly rate of
-its overtime, since the bundle has no verified hourly base for that CCNL.
+`variable` packets of `edilizia-ance-impiegati` and of the ristorazione
+collettiva state the hourly rate of their overtime, since the bundle has no
+verified hourly base for those CCNLs. A test keeps the packets on the
+`production` tier: a CCNL promoted to it gets its packets in the same
+change.
 
 Until a provider computes them they are `engine_provisional`: valid, with
 `result` `pending`, covering nothing, and pinned to what the engine computes
