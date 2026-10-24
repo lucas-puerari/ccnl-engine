@@ -1,3 +1,131 @@
 {
-  "missing_outputs": {}
+  "any": {},
+  "provider output": {
+    "alimentari-federalimentare": [
+      "base_salary",
+      "employee_contributions",
+      "employer_contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "chimica-farmaceutica-federchimica": [
+      "base_salary",
+      "employee_contributions",
+      "employer_contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "commercio-confcommercio": [
+      "employee_contributions",
+      "employer_contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "dmo-federdistribuzione": [
+      "base_salary",
+      "employee_contributions",
+      "employer_contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "edilizia-ance": [
+      "base_salary",
+      "employee_contributions",
+      "employer_contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "edilizia-ance-impiegati": [
+      "employee_contributions",
+      "employer_contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "metalmeccanico-confapi": [
+      "base_salary",
+      "employee_contributions",
+      "employer_contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "metalmeccanico-federmeccanica": [
+      "employee_contributions",
+      "employer_contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "pubblici-esercizi-fipe-angem": [
+      "base_salary",
+      "employee_contributions",
+      "employer_contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "pubblici-esercizi-fipe-angem-ristorazione-collettiva": [
+      "employee_contributions",
+      "employer_contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "studi-professionali-confprofessioni": [
+      "base_salary",
+      "employee_contributions",
+      "employer_contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "terziario-confesercenti": [
+      "base_salary",
+      "employee_contributions",
+      "employer_contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "turismo-federalberghi": [
+      "base_salary",
+      "employee_contributions",
+      "employer_contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ]
+  }
 }
