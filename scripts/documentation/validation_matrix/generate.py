@@ -12,6 +12,8 @@ any evidence runs, the evidence the repository holds:
   only those valid under :mod:`scripts.provenance.replay.check`;
 - the hand oracles of a year and a termination per contribution sector
   (``tests/knowledge/ccnl_engine/period/sector/scenarios.json``);
+- the outputs each valid validation packet matched or explained
+  (:func:`scripts.provenance.validation_packet.check.coverage`);
 - the divergences of the review log, by decision, and the review dates.
 
 The columns follow the dimensions of the validation review: source,
@@ -61,6 +63,7 @@ from scripts.provenance.reference_case.check import (
 )
 from scripts.provenance.replay.check import credited_records
 from scripts.provenance.rules import KNOWLEDGE_DIR
+from scripts.provenance.validation_packet.check import coverage
 
 ROOT = Path(__file__).resolve().parents[3]
 PAGE = ROOT / "docs" / "trust" / "validation-matrix.md"
@@ -199,6 +202,14 @@ def _add_oracles(rows: dict[str, Row]) -> None:
         row.outcomes.add("match")
 
 
+def _add_packets(rows: dict[str, Row]) -> None:
+    for ccnl, output, independence in sorted(coverage()):
+        row = rows[ccnl]
+        row.sources.add("validation packet")
+        row.pin([output], independence)
+        row.outcomes.add("match")
+
+
 def matrix() -> dict[str, Row]:
     """Return the rows of the page, by CCNL id.
 
@@ -210,6 +221,7 @@ def matrix() -> dict[str, Row]:
     _add_reference_cases(rows)
     _add_payslips(rows)
     _add_oracles(rows)
+    _add_packets(rows)
     return {
         ccnl: row
         for ccnl, row in rows.items()

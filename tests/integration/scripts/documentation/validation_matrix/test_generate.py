@@ -141,6 +141,21 @@ def test_divergences_show_their_decision() -> None:
     ].outcomes
 
 
+def test_a_packet_pins_its_outputs_with_its_independence(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Each covered triple of a validation packet lands on its CCNL row."""
+    triple = ("commercio-confcommercio", "net", "provider output")
+    monkeypatch.setattr(
+        "scripts.documentation.validation_matrix.generate.coverage", lambda: {triple}
+    )
+
+    row = matrix()["commercio-confcommercio"]
+
+    assert row.covered("net", "provider output")
+    assert "validation packet" in row.sources
+
+
 def test_a_stale_page_fails_the_check(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:

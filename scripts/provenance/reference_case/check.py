@@ -27,12 +27,10 @@ CCNL to its cases, and :func:`production_errors` binds the readiness tier
 to its evidence in the gate, not by convention:
 
 - a ``production`` CCNL needs at least one valid case;
-- it needs a ``verified`` one too, unless :data:`BASELINE` lists it: the
-  CCNLs promoted before the rule.  The list only shrinks: an entry that
-  gained a ``verified`` case or left ``production`` is stale and fails, so
-  no new promotion goes without an independent output.  An entry whose CCNL
-  file is not in the knowledge directory scanned is ignored: it allows
-  nothing.
+- it needs a ``verified`` one too: no CCNL is exempt, so no promotion goes
+  without an independent output;
+- ``verification.verified_cases`` of every CCNL equals its ``verified``
+  cases (:func:`verified_count_errors`).
 
 The module reads raw JSON with the standard library only.
 """
