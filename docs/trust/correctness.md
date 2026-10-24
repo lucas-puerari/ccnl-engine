@@ -31,9 +31,16 @@ Evidence:
   modules in `mutants/mutation-score.json`, kept as a workflow artifact: a
   score without its perimeter and its date is not quoted.  A campaign of
   the whole perimeter also writes `scripts/quality/mutation/record.json`,
-  versioned with the code: on 24 October 2026, at commit `6cf7c1d5`, the
-  27 modules of the perimeter scored 96.4% for the core (1838 of 1907) and
-  each floored module at or above its floor.  The perimeter also
+  versioned with the code, with the score of every module.  Each module
+  must reach 93% on its own, or the floor `baseline.json` gives it: a
+  strong module never hides a weak one in the core.  Scored alone on 24
+  October 2026, the trattamento integrativo rules reached 77.4%, hidden
+  until then by the 96.4% of the core; they took a floor like the other
+  money-path modules below 93%.  A surviving mutant that changes nothing
+  the module computes is classified, with its reason, in
+  `scripts/quality/mutation/equivalent.json` and counts neither as killed
+  nor as survived.  A test keeps the record on the current perimeter and
+  on the minimum of the workflow.  The perimeter also
   holds the five event handlers that move money (overtime and work-time
   supplements, sick pay, travel allowances, arrears, termination funds and
   TFR).  They entered below 93%, so each keeps its own floor in

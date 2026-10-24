@@ -7,6 +7,7 @@
     "src/ccnl_engine/extra_month/settlement/services.py": 83.9,
     "src/ccnl_engine/extra_month/liquidation/services.py": 81.7,
     "src/ccnl_engine/severance/revaluation/services.py": 86.0,
-    "src/ccnl_engine/severance/provision/services.py": 75.0
+    "src/ccnl_engine/severance/provision/services.py": 75.0,
+    "src/ccnl_engine/tax_credit/trattamento_integrativo/rules.py": 77.4
   }
 }

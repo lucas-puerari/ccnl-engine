@@ -10,10 +10,16 @@ Two campaigns use it, both reading the per-mutant exit codes mutmut keeps in
   name patterns of those modules (nothing when none changed), and
   ``--changed-since REF`` then scores those modules alone.
 
-The core modules must reach ``--min-score`` together.  A module listed in
-``baseline.json`` (the money-path modules added in October 2026) entered the
-perimeter below that minimum: it must keep its own floor, so its score
-cannot fall, and the floor is raised as tests kill its survivors.
+Every module must reach ``--min-score`` on its own, and the core (the
+modules without a floor) together: a strong module never hides a weak one.
+A module listed in ``baseline.json`` entered the perimeter, or was first
+measured alone, below that minimum: it must keep its own floor, so its
+score cannot fall, and the floor is raised as tests kill its survivors.
+
+A surviving mutant that no test can kill, because it does not change what
+the module computes, is classified in ``equivalent.json`` with the reason:
+it counts neither as killed nor as survived.  Nothing else excuses a
+survivor.
 
 A score without its perimeter and its date misleads: every check writes
 ``mutants/mutation-score.json`` with the commit, the UTC date, the minimum,
@@ -53,6 +59,8 @@ _RECORD_PATH = _MUTANTS / "mutation-score.json"
 BASELINE = Path(__file__).with_name("baseline.json")
 #: The last campaign of the whole perimeter, versioned with the code.
 RECORD = Path(__file__).with_name("record.json")
+#: Surviving mutants that change nothing the module computes, with why.
+EQUIVALENT = Path(__file__).with_name("equivalent.json")
 _DEFAULT_MIN_SCORE = 93.0
 #: Exit codes of a mutant run that kill it (mutmut ``status_by_exit_code``).
 _KILLED = frozenset({1, 3})
@@ -109,18 +117,38 @@ def mutant_glob(module: str) -> str:
     return f"{dotted}.*"
 
 
-def module_stats(modules: tuple[str, ...], mutants: Path = _MUTANTS) -> dict[str, int]:
+def load_equivalent(path: Path = EQUIVALENT) -> dict[str, str]:
+    """Return the mutants classified as equivalent, with the reason of each.
+
+    Returns:
+        The reason by mutmut mutant name.
+    """
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return {str(name): str(reason) for name, reason in data["mutants"].items()}
+
+
+def module_stats(
+    modules: tuple[str, ...],
+    mutants: Path = _MUTANTS,
+    equivalent: frozenset[str] = frozenset(),
+) -> dict[str, int]:
     """Count the mutants of ``modules`` by outcome, from mutmut's results.
 
     Returns:
-        ``killed``, ``survived``, ``other`` (timeout, suspicious, no tests)
-        and ``not_checked``; ``total`` counts every mutant that ran.  A
-        module without results raises :class:`FileNotFoundError`.
+        ``killed``, ``survived``, ``other`` (timeout, suspicious, no tests),
+        ``not_checked`` and ``equivalent`` (classified, left out of the
+        rest); ``total`` counts every other mutant that ran.  A module
+        without results raises :class:`FileNotFoundError`.
     """
     codes: list[int | None] = []
+    skipped = 0
     for module in modules:
         meta = json.loads((mutants / f"{module}.meta").read_text(encoding="utf-8"))
-        codes.extend(meta["exit_code_by_key"].values())
+        for name, code in meta["exit_code_by_key"].items():
+            if name in equivalent:
+                skipped += 1
+            else:
+                codes.append(code)
     ran = [code for code in codes if code is not None]
     killed = sum(code in _KILLED for code in ran)
     survived = sum(code == _SURVIVED for code in ran)
@@ -129,6 +157,7 @@ def module_stats(modules: tuple[str, ...], mutants: Path = _MUTANTS) -> dict[str
         "survived": survived,
         "other": len(ran) - killed - survived,
         "not_checked": len(codes) - len(ran),
+        "equivalent": skipped,
         "total": len(ran),
     }
 
@@ -234,25 +263,27 @@ def evaluate(
     floors: dict[str, float],
     min_score: float,
     mutants: Path = _MUTANTS,
+    equivalent: frozenset[str] = frozenset(),
 ) -> tuple[dict[str, dict[str, float]], list[str]]:
-    """Score the perimeter: the core together, each floored module alone.
+    """Score the perimeter: the core together, and every module alone.
 
-    The modules without a floor must reach ``min_score`` together, as the
-    campaign always measured them.  A module listed in ``baseline.json``
-    entered the perimeter below that minimum: it must keep its floor, so
-    its score never falls; raise the floor as tests kill its survivors.
+    Each module must reach ``min_score``, or its floor when
+    ``baseline.json`` lists it; the modules without a floor must also reach
+    it together.  A module with no mutant scores nothing and is skipped.
 
     Returns:
-        The counts and score of the core and of each floored module, and
-        one message per failure.
+        The counts and score of the core and of each module, and one
+        message per failure.
     """
     scores: dict[str, dict[str, float]] = {}
     failures: list[str] = []
     core = tuple(m for m in perimeter if m not in floors)
     groups = [("core", core, min_score)] if core else []
-    groups += [(m, (m,), floors[m]) for m in perimeter if m in floors]
+    groups += [(m, (m,), floors.get(m, min_score)) for m in perimeter]
     for name, modules, minimum in groups:
-        stats = module_stats(modules, mutants)
+        stats = module_stats(modules, mutants, equivalent)
+        if not stats["total"]:
+            continue
         score = compute_score(stats)
         scores[name] = {**stats, "score": round(score, 1), "minimum": minimum}
         if score < minimum:
@@ -268,7 +299,12 @@ def main() -> None:
     args = _parser().parse_args()
     perimeter = _perimeter(args)
     try:
-        scores, failures = evaluate(perimeter, load_floors(), args.min_score)
+        scores, failures = evaluate(
+            perimeter,
+            load_floors(),
+            args.min_score,
+            equivalent=frozenset(load_equivalent()),
+        )
     except (FileNotFoundError, json.JSONDecodeError, KeyError) as exc:
         print(f"ERROR: cannot read the mutmut results: {exc}", file=sys.stderr)
         sys.exit(1)

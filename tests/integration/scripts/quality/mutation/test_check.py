@@ -3,23 +3,22 @@
 from __future__ import annotations
 
 import json
-from typing import TYPE_CHECKING
+from pathlib import Path
 
 import pytest
 
 from scripts.quality.mutation.check import (
+    RECORD,
     changed_modules,
     compute_score,
     evaluate,
+    load_equivalent,
     load_floors,
     module_stats,
     mutant_glob,
     record,
     source_paths,
 )
-
-if TYPE_CHECKING:
-    from pathlib import Path
 
 
 def test_the_perimeter_is_the_mutmut_source_paths() -> None:
@@ -58,6 +57,7 @@ def test_the_counts_come_from_each_mutant_of_the_modules(tmp_path: Path) -> None
         "survived": 1,
         "other": 1,
         "not_checked": 1,
+        "equivalent": 0,
         "total": 4,
     }
     assert compute_score(stats) == pytest.approx(50.0)
@@ -74,20 +74,41 @@ def test_no_mutant_scores_zero() -> None:
     assert not compute_score({"killed": 0, "total": 0})
 
 
-def test_the_core_scores_together_and_each_floored_module_alone(
+def test_the_core_scores_together_and_each_module_alone(
     tmp_path: Path,
 ) -> None:
-    """The core must reach the minimum; a floored module only its floor."""
-    _meta(tmp_path, "src/core.py", {"c__1": 1, "c__2": 1, "c__3": 1, "c__4": 0})
+    """A strong module never hides a weak one in the core.
+
+    The core reaches the minimum together, but ``src/weak.py`` misses it
+    alone; a floored module is held to its floor only.
+    """
+    _meta(tmp_path, "src/core.py", {f"c__{i}": 1 for i in range(9)})
+    _meta(tmp_path, "src/weak.py", {"w__1": 1, "w__2": 0})
     _meta(tmp_path, "src/handler.py", {"h__1": 1, "h__2": 0})
+    _meta(tmp_path, "src/models.py", {})
 
     scores, failures = evaluate(
-        ("src/core.py", "src/handler.py"), {"src/handler.py": 50.0}, 80.0, tmp_path
+        ("src/core.py", "src/weak.py", "src/handler.py", "src/models.py"),
+        {"src/handler.py": 50.0},
+        80.0,
+        tmp_path,
     )
 
-    assert scores["core"]["score"] == pytest.approx(75.0)
+    assert scores["core"]["score"] == pytest.approx(90.9)
     assert scores["src/handler.py"]["score"] == pytest.approx(50.0)
-    assert failures == ["core: 75.0% is below 80.0%"]
+    assert "src/models.py" not in scores
+    assert failures == ["src/weak.py: 50.0% is below 80.0%"]
+
+
+def test_an_equivalent_mutant_is_neither_killed_nor_survived(tmp_path: Path) -> None:
+    """A classified mutant leaves the counts; it is reported apart."""
+    _meta(tmp_path, "src/a.py", {"a__1": 1, "a__2": 0})
+
+    stats = module_stats(("src/a.py",), tmp_path, frozenset({"a__2"}))
+
+    assert stats["equivalent"] == 1
+    assert stats["survived"] == 0
+    assert compute_score(stats) == pytest.approx(100.0)
 
 
 def test_a_floored_module_cannot_fall(tmp_path: Path) -> None:
@@ -125,3 +146,24 @@ def test_a_full_campaign_writes_the_versioned_record(
     assert entry["min_score"] == pytest.approx(93.0)
     assert entry["perimeter"] == ["a.py"]
     assert versioned_path.exists() is versioned
+
+
+def test_every_equivalent_mutant_names_its_module_and_a_reason() -> None:
+    """A classification without a reason excuses nothing."""
+    globs = tuple(mutant_glob(m).removesuffix("*") for m in source_paths())
+    for name, reason in load_equivalent().items():
+        assert name.startswith(globs), name
+        assert len(reason.split()) >= 5, name
+
+
+def test_the_versioned_record_covers_the_current_perimeter() -> None:
+    """The record measured every module mutated today, at the minimum of CI."""
+    entry = json.loads(RECORD.read_text(encoding="utf-8"))
+    workflow = Path(".github/workflows/mutation.yml").read_text(encoding="utf-8")
+
+    assert entry["perimeter"] == list(source_paths())
+    assert entry["min_score"] == pytest.approx(93.0)
+    assert workflow.count("--min-score 93.0") == 2
+    assert set(entry["scores"]) == {"core"} | {
+        m for m in source_paths() if entry["scores"].get(m, {}).get("total")
+    }
