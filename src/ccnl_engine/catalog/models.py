@@ -9,15 +9,36 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.agreement.metadata.review.models import ReviewIndependence
 from ccnl_engine.provenance.ruleset.assurance.models import (
+    AssuranceAxes,
     RulesetAssurance,
     RulesetKind,
 )
+from ccnl_engine.provenance.ruleset.models import VerificationStatus
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
 
-__all__ = ["ccnl_ruleset_assurance"]
+__all__ = ["ccnl_axes", "ccnl_ruleset_assurance"]
+
+
+def ccnl_axes(ccnl: CCNL) -> AssuranceAxes:
+    """Return the separate kinds of evidence ``ccnl.verification`` records.
+
+    Returns:
+        The axes of the CCNL.
+    """
+    verification = ccnl.verification
+    reviews = verification.reviews
+    return AssuranceAxes(
+        source_checked=verification.confidence is VerificationStatus.VERIFIED
+        and any(review.sources for review in reviews),
+        externally_compared=verification.verified_cases > 0,
+        human_signed_off=any(
+            review.independence is ReviewIndependence.HUMAN for review in reviews
+        ),
+    )
 
 
 def ccnl_ruleset_assurance(ccnl: CCNL) -> RulesetAssurance | None:
@@ -38,4 +59,5 @@ def ccnl_ruleset_assurance(ccnl: CCNL) -> RulesetAssurance | None:
         readiness=ccnl.verification.readiness,
         confidence=ccnl.verification.confidence,
         review_due=ccnl.verification.review_due,
+        axes=ccnl_axes(ccnl),
     )

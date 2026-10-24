@@ -2399,7 +2399,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "770a9d8284c5b33b3878823c89423a314eff009f819e67cd03c864de6fc1c388",
+    "source_hash": "af087a1cad17092104e808d3624e328c6251cfcecd494493d5b021ef6ebc99cb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2685,7 +2685,7 @@
   "verification": {
     "confidence": "verified",
     "readiness": "production",
-    "verified_cases": 0,
+    "verified_cases": 1,
     "reviews": [
       {
         "id": "2026-10-13-ai-production",

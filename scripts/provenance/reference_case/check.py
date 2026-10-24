@@ -69,6 +69,7 @@ __all__ = [
     "load_case",
     "production_errors",
     "verification_errors",
+    "verified_count_errors",
 ]
 
 REPO_ROOT: Final = Path(__file__).resolve().parents[3]
@@ -347,6 +348,35 @@ def _evidence_errors(cases: tuple[CaseEvidence, ...]) -> Iterator[str]:
         yield "production without a valid reference case"
     if not any(case.verification == "verified" for case in cases):
         yield "production without a verified reference case"
+
+
+def verified_count_errors(
+    knowledge_dir: Path, cases_dir: Path = CASES_DIR
+) -> list[str]:
+    """Return the CCNLs whose ``verification.verified_cases`` is not the count.
+
+    The field is what the engine reports as externally compared
+    (:class:`~ccnl_engine.provenance.ruleset.assurance.models.AssuranceAxes`),
+    so it must equal the ``verified`` reference cases that run the CCNL.
+
+    Returns:
+        ``"agreement/<id>.json: ..."`` messages; empty when every count holds.
+    """
+    cases = index(cases_dir)
+    errors = []
+    for path in sorted((knowledge_dir / "agreement").glob("*.json")):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        verification = data.get("verification") if isinstance(data, dict) else None
+        if not isinstance(verification, dict):
+            continue
+        recorded = verification.get("verified_cases", 0)
+        actual = sum(c.verification == "verified" for c in cases.get(path.stem, ()))
+        if recorded != actual:
+            errors.append(
+                f"agreement/{path.name}: verification.verified_cases is "
+                f"{recorded}, the verified reference cases are {actual}"
+            )
+    return errors
 
 
 def production_errors(knowledge_dir: Path, cases_dir: Path = CASES_DIR) -> list[str]:

@@ -28,6 +28,7 @@ if not ruleset.is_production:
 | `is_production` | `production` and a confidence that agrees |
 | `review_due` | Day the next review of a CCNL is due (`verification.review_due`); `None` for the other kinds |
 | `review_overdue(day)` | `True` when `review_due` is before `day`; an `operational` run paid after it is blocked |
+| `axes` | `AssuranceAxes` of a CCNL (`source_checked`, `externally_compared`, `human_signed_off`); `None` for the other kinds |
 
 `ContractSummary.validity` is the `ValidityWindow` (`first_day`,
 `last_day`, both included, `last_day` `None` when open-ended) on which every
@@ -58,6 +59,8 @@ anas.validity.first_day  # → datetime.date(2026, 3, 1)
 ::: ccnl_engine.catalog.LevelSummary
 
 ::: ccnl_engine.catalog.RulesetAssurance
+
+::: ccnl_engine.catalog.AssuranceAxes
 
 ::: ccnl_engine.catalog.RulesetIdentity
 

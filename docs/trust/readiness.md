@@ -243,6 +243,7 @@ Readiness is part of the public contract, before and after a run:
 | Which contracts exist, and how far is each cleared? | `engine.list_contracts()`: `ContractSummary.readiness` |
 | From which date does the bundle hold every rule of a CCNL? | `ContractSummary.validity` (`first_day`, `last_day`) |
 | What exactly is the ruleset of one CCNL? | `engine.inspect_ruleset(ccnl_id)`: `RulesetAssurance` (identity, `source_hash`, `readiness`, `confidence`) |
+| Which kinds of evidence back it, apart? | `RulesetAssurance.axes`: `AssuranceAxes` (`source_checked`, `externally_compared`, `human_signed_off`) |
 | Which rulesets did this result read? | `result.rulesets`, one `RulesetAssurance` each |
 | Can the amounts of this computation be paid as computed? | `result.is_payable` and `result.blockers` |
 
@@ -267,6 +268,23 @@ identity as `confidence`; their evidence is the provenance of each rule (see
 schema gate rejects such a tier in the bundle, so the flag is `False` for
 every bundled ruleset. `RulesetAssurance.is_production` requires both the
 `production` tier and a confidence that agrees.
+
+### Assurance axes
+
+The tier summarises several kinds of evidence; `RulesetAssurance.axes`
+keeps them apart, so a caller can tell what a tier does not say:
+
+| Axis | True when |
+|---|---|
+| `source_checked` | `confidence` is `verified` and a review recorded the sources it read |
+| `externally_compared` | at least one `verified` reference case compares the engine with an output it did not produce (`verification.verified_cases`, kept equal to the cases by the schema gate) |
+| `human_signed_off` | a review records a person, independent of the extraction (`independence` `human`) |
+
+That the implementation is tested is a property of the release, not of a
+ruleset: the full suite, with 100% branch coverage, runs on the commit that
+builds the bundle. Today no CCNL has `human_signed_off`: every review of the
+bundle is an AI review. `axes` is `None` for the tax, INPS and surtax
+rulesets, which track no tier.
 
 ## Simulation and operational modes
 

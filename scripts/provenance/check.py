@@ -200,6 +200,7 @@ def check_rules(root: Path = payable_rules.KNOWLEDGE_DIR) -> bool:
         *provenance_labels.label_errors(root),
         *provenance_labels.readiness_errors(rules, root),
         *reference_cases.production_errors(root),
+        *reference_cases.verified_count_errors(root),
         *(
             [
                 *readiness_matrix.readiness_errors(),

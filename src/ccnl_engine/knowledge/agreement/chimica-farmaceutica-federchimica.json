@@ -4808,7 +4808,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "d7b24f9ccb8b77b7ec89f1fd1ec52653b2aabaa163395011fd1e8496bd52ccc7",
+    "source_hash": "570aa4165ff20032c0e7823eb96ba77e81b7f1f743dbdf92914b5bff3233e28f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5704,7 +5704,7 @@
   "verification": {
     "confidence": "verified",
     "readiness": "reviewed",
-    "verified_cases": 1,
+    "verified_cases": 0,
     "reviews": [
       {
         "id": "2026-10-13-ai-production",

@@ -174,6 +174,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "result_to_json",
     }),
     "ccnl_engine.catalog": frozenset({
+        "AssuranceAxes",
         "CapabilityCatalog",
         "CapabilityEntry",
         "CapabilityImplementation",

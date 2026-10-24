@@ -439,7 +439,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/chimica-farmaceutica-federchimica",
       "ruleset_version": "2026.2",
-      "source_hash": "d7b24f9ccb8b77b7ec89f1fd1ec52653b2aabaa163395011fd1e8496bd52ccc7",
+      "source_hash": "570aa4165ff20032c0e7823eb96ba77e81b7f1f743dbdf92914b5bff3233e28f",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/chimica-farmaceutica-federchimica.json.gz"
@@ -507,7 +507,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/concia-unic",
       "ruleset_version": "2026.1",
-      "source_hash": "8ced44795d4584fe29d817973c0c6c4dadcd6a250874eb757b3309d0dfe8f609",
+      "source_hash": "73861379f62add1be1f7a737df6defc109936ab713bd17451310891ae1063e70",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/concia-unic.json.gz"
@@ -728,7 +728,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-ance-impiegati",
       "ruleset_version": "2026.2",
-      "source_hash": "770a9d8284c5b33b3878823c89423a314eff009f819e67cd03c864de6fc1c388",
+      "source_hash": "af087a1cad17092104e808d3624e328c6251cfcecd494493d5b021ef6ebc99cb",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/edilizia-ance-impiegati.json.gz"
@@ -1442,7 +1442,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-confapi",
       "ruleset_version": "2026.2",
-      "source_hash": "49b394a39e71550e5160b7587698cf212f3658507ac34131712dc42ce890555d",
+      "source_hash": "91aa9b446956a6016588ee403c357250228bf80768e2601cac900ad82a5907ea",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-confapi.json.gz"
@@ -1714,7 +1714,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem-ristorazione-collettiva",
       "ruleset_version": "2026.2",
-      "source_hash": "8872f9a44d4761f10247e38b469021707058eb6fe67a16182c99aad5a9c4828f",
+      "source_hash": "ce32344d237023d29cb23d871efe45c7fc78c0c5af73d64b30313e088f6c8318",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva.json.gz"
@@ -1986,7 +1986,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tabacco-apti",
       "ruleset_version": "2026.2",
-      "source_hash": "89ca8ac43dd69ce80b76baffe90539e0e6fd7fea1d0dd6955464bbb4d0f53903",
+      "source_hash": "d2fefce5e9c0860a87603c59144e442013df171bfd3a7de258a736a17654e5b9",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tabacco-apti.json.gz"
@@ -2054,7 +2054,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tessile-pmi-uniontessile",
       "ruleset_version": "2026.2",
-      "source_hash": "5ef9af5ccda3542458be3982b38eeb690b8942d267bf665e1a46855f832cc794",
+      "source_hash": "e26f6c8309a128d9441c3cd884d12899ed99802742e8270ddeace335428311ca",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tessile-pmi-uniontessile.json.gz"

@@ -9,6 +9,12 @@ Only CCNL rulesets carry a readiness tier.  The tax, INPS and surtax files
 record provenance per rule and no tier, so their :attr:`RulesetAssurance\
 .readiness` is ``None``: not tracked, never assumed.
 
+A CCNL ruleset also reports three separate axes of evidence
+(:class:`AssuranceAxes`): whether its values were checked against their
+source, compared with an output the engine did not produce, and signed off
+by a person.  The tier summarises them; the axes keep them apart, so a
+``production`` tier never reads as a human sign-off it does not have.
+
 A CCNL ruleset also carries the date its next review is due.  The tier is a
 property of the file; whether the review is overdue depends on the day a
 run pays, so :meth:`RulesetAssurance.review_overdue` takes that day and the
@@ -30,7 +36,7 @@ from ccnl_engine.provenance.ruleset.models import (
 if TYPE_CHECKING:
     import datetime as dt
 
-__all__ = ["RulesetAssurance", "RulesetKind"]
+__all__ = ["AssuranceAxes", "RulesetAssurance", "RulesetKind"]
 
 
 class RulesetKind(StrEnum):
@@ -57,6 +63,30 @@ _CLEARED = frozenset({RulesetReadiness.REVIEWED, RulesetReadiness.PRODUCTION})
 
 
 @dataclass(frozen=True, slots=True)
+class AssuranceAxes:
+    """The separate kinds of evidence behind a CCNL ruleset.
+
+    That the implementation is tested is a property of the release (the
+    full suite runs on the commit that builds the bundle), not of one
+    ruleset, so it is no axis here.
+
+    Attributes:
+        source_checked: The values are ``verified`` and a review recorded
+            the sources it read.
+        externally_compared: At least one ``verified`` reference case
+            compares the engine with an output it did not produce (a
+            payslip, an official worked example).
+        human_signed_off: A review records a person as independent of the
+            extraction (``independence`` ``human``).  AI reviews never set
+            it.
+    """
+
+    source_checked: bool
+    externally_compared: bool
+    human_signed_off: bool
+
+
+@dataclass(frozen=True, slots=True)
 class RulesetAssurance:
     """Identity, readiness and confidence of one ruleset.
 
@@ -71,6 +101,8 @@ class RulesetAssurance:
         review_due: Day by which the next review is due, the CCNL
             ``verification.review_due``; ``None`` when the ruleset records
             none (every kind but :attr:`RulesetKind.CCNL`).
+        axes: The separate kinds of evidence of a CCNL ruleset; ``None``
+            for every other kind.
     """
 
     identity: RulesetIdentity
@@ -78,6 +110,7 @@ class RulesetAssurance:
     readiness: RulesetReadiness | None
     confidence: VerificationStatus
     review_due: dt.date | None = None
+    axes: AssuranceAxes | None = None
 
     @classmethod
     def without_tier(

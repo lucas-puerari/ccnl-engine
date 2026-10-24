@@ -36,8 +36,9 @@ class CCNLVerification(BaseModel):
             key values but still ``readiness=exploratory`` if it lacks an
             owner, reference cases, or an update-policy entry. Defaults to
             ``exploratory`` for all unclassified rulesets.
-        verified_cases: Number of end-to-end payroll scenarios manually
-            cross-checked against a reference payslip or official source.
+        verified_cases: Number of ``verified`` reference cases of the CCNL,
+            checked against an output the engine did not produce; the
+            schema gate keeps it equal to the cases.
         reviews: Review log, oldest first. An entry is appended for each
             review and never rewritten.
         owner: Identifier of the person accountable for keeping the
