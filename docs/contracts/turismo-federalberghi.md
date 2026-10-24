@@ -8,7 +8,7 @@
 | **Last renewal** | 2024-07-05 |
 | **Workers (est.)** | ~220k |
 | **Ruleset version** | `2026.2` |
-| **Readiness** | 👁 Reviewed |
+| **Readiness** | 🏭 Production |
 
 [← Contracts index](index.md)
 
@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
 | **Rule provenance** | 77 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
-| **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+| **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
 ## Freshness
 

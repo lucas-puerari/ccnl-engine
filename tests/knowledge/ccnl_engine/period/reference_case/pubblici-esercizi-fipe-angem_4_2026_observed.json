@@ -1,0 +1,32 @@
+{
+  "verification": "verified",
+  "axes": [
+    "base_salary"
+  ],
+  "_description": "Pubblici Esercizi FIPE (CNEL H05Y) level 4, July 2026: stipendio base 1.167,75 and contingenza 524,94, 1.692,69 together, the full-month rates printed among the elementi della retribuzione.",
+  "_notes": [
+    "Base salary only: the worker was hired on 20 July 2026 and paid for 11 days with unpaid leave, so the amounts paid and the INPS and IRPEF lines are not compared; the stipendio base and contingenza printed are the full-month rates of the level. The terzo elemento provinciale (12,32) is provincial and outside the national table.",
+    "Checked on 24 October 2026 by an AI review: the observed payslip p73 prints 'stipendio base' 1167.75 and 'contingenza' 524.94 for level 4 in July 2026; the engine computes a base salary of 1692.69 for pubblici-esercizi-fipe-angem level 4 on that day, their sum."
+  ],
+  "source": {
+    "kind": "observed_payslip",
+    "document": "Observed payslip p73",
+    "path": "tests/knowledge/ccnl_engine/period/observed_payslip/p73.json",
+    "sha256": "f9066ff4cf364314cd59b3a72fe6aeeaf44b5dceb3ee57b21cca23e48af5d49f",
+    "section": "pay_elements",
+    "verified_by": "claude-opus-5-5",
+    "verified_at": "2026-10-24",
+    "independence": "The payslip was issued by the payroll of the employer, anonymised and stored before the engine computed the run: its paga base is not an output of this engine."
+  },
+  "inputs": {
+    "ccnl_id": "pubblici-esercizi-fipe-angem",
+    "level_code": "4",
+    "year": 2026,
+    "month": 7,
+    "headcount": 20
+  },
+  "expected": {
+    "base_salary": "1692.69"
+  },
+  "tolerance": "0.00"
+}

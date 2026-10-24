@@ -58,8 +58,9 @@ CCNL leaves the `provider output` list of
 Every `production` CCNL has a packet for each scenario: the three pilots
 (`commercio-confcommercio` level 4, `metalmeccanico-federmeccanica` C3,
 `edilizia-ance-impiegati` level 4) and
-`pubblici-esercizi-fipe-angem-ristorazione-collettiva` level 4, 28 input
-packets of an impiegato hired on 1
+`pubblici-esercizi-fipe-angem-ristorazione-collettiva` level 4,
+`turismo-federalberghi` level 5 and `pubblici-esercizi-fipe-angem` level 4,
+42 input packets of an impiegato hired on 1
 January 2025, resident in IT-25 / A005, ready to hand to a payroll
 provider. The `employer_cost` packets enrol the worker in the pension fund
 of the CCNL with 60 employees and compare the employer side only. The

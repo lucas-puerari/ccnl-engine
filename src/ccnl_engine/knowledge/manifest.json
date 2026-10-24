@@ -1731,7 +1731,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem",
       "ruleset_version": "2026.2",
-      "source_hash": "d1358a9bd495c611057601016298b91aa3209c49f36a7eecd07f88360cd2b8db",
+      "source_hash": "2ed0bf82434925a3367e63dcfd579706b0ec7d73592551b82d64f8095c13d4eb",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem.json.gz"
@@ -2139,7 +2139,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi",
       "ruleset_version": "2026.2",
-      "source_hash": "699a3b359d88df7ebbc29b308a7d3da08c909bd34c75198777560b464d40fdd8",
+      "source_hash": "935f9fe5c29163200987c5d6dbd8d7d74882c8b950b99b3934887d77e37220fa",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/turismo-federalberghi.json.gz"
