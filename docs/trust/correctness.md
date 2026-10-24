@@ -225,7 +225,7 @@ enforced; in `operational` mode a CCNL that is not `production` adds a
 `ruleset_not_production` blocker.
 
 Bundled CCNL rulesets at `production`:
-<!-- trust:readiness-production -->13<!-- /trust:readiness-production -->.
+<!-- trust:readiness-production -->4<!-- /trust:readiness-production -->.
 Payable rules with provenance status `verified`:
 <!-- trust:rules-verified -->2515<!-- /trust:rules-verified -->
 (see [Provenance](provenance.md#current-counts)).

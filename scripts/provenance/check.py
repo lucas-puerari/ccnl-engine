@@ -27,9 +27,9 @@ case also names the independent output it was checked against (see
 :mod:`scripts.provenance.reference_case.check`). Expected values produced
 by the engine itself are not a status: they detect no systematic error, so
 such cases are rejected.  The schema gate also fails a ``production`` CCNL
-that no valid reference case runs, and one whose evidence in the validation
-matrix misses an output its readiness baseline does not list (see
-:mod:`scripts.provenance.readiness.check`).
+that no valid or no ``verified`` reference case runs, and one whose
+evidence in the validation matrix misses an output its readiness baseline
+does not list (see :mod:`scripts.provenance.readiness.check`).
 
 Modes:
 
