@@ -14,6 +14,7 @@ from scripts.quality.mutation.check import (
     load_floors,
     module_stats,
     mutant_glob,
+    record,
     source_paths,
 )
 
@@ -107,3 +108,20 @@ def test_every_floor_is_a_module_of_the_perimeter_below_the_minimum() -> None:
 
     assert set(floors) <= set(source_paths())
     assert all(floor < 93.0 for floor in floors.values())
+
+
+@pytest.mark.parametrize("versioned", [True, False])
+def test_a_full_campaign_writes_the_versioned_record(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, *, versioned: bool
+) -> None:
+    """The artifact always; the versioned record only for the whole perimeter."""
+    artifact, versioned_path = tmp_path / "m" / "score.json", tmp_path / "record.json"
+    monkeypatch.setattr("scripts.quality.mutation.check._RECORD_PATH", artifact)
+    monkeypatch.setattr("scripts.quality.mutation.check.RECORD", versioned_path)
+
+    entry = record({"core": {"score": 95.0}}, ("a.py",), 93.0, versioned=versioned)
+
+    assert json.loads(artifact.read_text(encoding="utf-8")) == entry
+    assert entry["min_score"] == pytest.approx(93.0)
+    assert entry["perimeter"] == ["a.py"]
+    assert versioned_path.exists() is versioned

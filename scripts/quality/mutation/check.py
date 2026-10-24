@@ -16,8 +16,11 @@ perimeter below that minimum: it must keep its own floor, so its score
 cannot fall, and the floor is raised as tests kill its survivors.
 
 A score without its perimeter and its date misleads: every check writes
-``mutants/mutation-score.json`` with the commit, the UTC date, the modules
-scored and the counts, and the workflows keep it as an artifact.
+``mutants/mutation-score.json`` with the commit, the UTC date, the minimum,
+the modules scored and the counts, and the workflows keep it as an
+artifact.  A check of the whole perimeter also writes the versioned record
+:data:`RECORD` (``scripts/quality/mutation/record.json``): the last full
+campaign the repository vouches for.
 
 Usage::
 
@@ -48,6 +51,8 @@ _MUTANTS = Path("mutants")
 _RECORD_PATH = _MUTANTS / "mutation-score.json"
 #: Modules that entered the perimeter below the minimum, with their floor.
 BASELINE = Path(__file__).with_name("baseline.json")
+#: The last campaign of the whole perimeter, versioned with the code.
+RECORD = Path(__file__).with_name("record.json")
 _DEFAULT_MIN_SCORE = 93.0
 #: Exit codes of a mutant run that kill it (mutmut ``status_by_exit_code``).
 _KILLED = frozenset({1, 3})
@@ -129,9 +134,20 @@ def module_stats(modules: tuple[str, ...], mutants: Path = _MUTANTS) -> dict[str
 
 
 def record(
-    scores: dict[str, dict[str, float]], perimeter: tuple[str, ...]
+    scores: dict[str, dict[str, float]],
+    perimeter: tuple[str, ...],
+    min_score: float,
+    *,
+    versioned: bool = False,
 ) -> dict[str, object]:
     """Write and return what the scores measured, when and where.
+
+    Args:
+        scores: The score of the core and of each module with a floor.
+        perimeter: The modules scored.
+        min_score: The minimum the core was held to.
+        versioned: Also write :data:`RECORD`, for a campaign of the whole
+            perimeter.
 
     Returns:
         The record written to ``mutants/mutation-score.json``.
@@ -146,11 +162,15 @@ def record(
     entry: dict[str, object] = {
         "commit": commit,
         "date": datetime.now(tz=UTC).date().isoformat(),
+        "min_score": min_score,
         "perimeter": list(perimeter),
         "scores": scores,
     }
+    text = json.dumps(entry, indent=2) + "\n"
     _RECORD_PATH.parent.mkdir(exist_ok=True)
-    _RECORD_PATH.write_text(json.dumps(entry, indent=2) + "\n", encoding="utf-8")
+    _RECORD_PATH.write_text(text, encoding="utf-8")
+    if versioned:
+        RECORD.write_text(text, encoding="utf-8")
     return entry
 
 
@@ -252,7 +272,9 @@ def main() -> None:
     except (FileNotFoundError, json.JSONDecodeError, KeyError) as exc:
         print(f"ERROR: cannot read the mutmut results: {exc}", file=sys.stderr)
         sys.exit(1)
-    entry = record(scores, perimeter)
+    entry = record(
+        scores, perimeter, args.min_score, versioned=args.changed_since is None
+    )
     for name, result in scores.items():
         print(
             f"{name}: {result['score']:.1f}% ({int(result['killed'])} killed / "

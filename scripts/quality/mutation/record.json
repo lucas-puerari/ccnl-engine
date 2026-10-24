@@ -1,0 +1,117 @@
+{
+  "commit": "6cf7c1d5e3dcb6bf9418f002d617c692bc46802a",
+  "date": "2026-10-24",
+  "min_score": 93.0,
+  "perimeter": [
+    "src/ccnl_engine/contribution/rules.py",
+    "src/ccnl_engine/irpef/rules.py",
+    "src/ccnl_engine/irpef/deduction/rules.py",
+    "src/ccnl_engine/ledger/models.py",
+    "src/ccnl_engine/pay_item/rounding/policies.py",
+    "src/ccnl_engine/assurance/rules.py",
+    "src/ccnl_engine/capability/requirement/rules.py",
+    "src/ccnl_engine/tax_credit/trattamento_integrativo/rules.py",
+    "src/ccnl_engine/irpef/net/rules.py",
+    "src/ccnl_engine/contribution/additional_ivs/rules.py",
+    "src/ccnl_engine/contribution/minimum_base/rules.py",
+    "src/ccnl_engine/withholding/rules.py",
+    "src/ccnl_engine/working_time/handlers.py",
+    "src/ccnl_engine/sickness/pay/handlers.py",
+    "src/ccnl_engine/variable_pay/travel/handlers.py",
+    "src/ccnl_engine/variable_pay/arrears/handlers.py",
+    "src/ccnl_engine/termination/handlers.py",
+    "src/ccnl_engine/compensation/element/rules.py",
+    "src/ccnl_engine/compensation/proration/rules.py",
+    "src/ccnl_engine/contribution/services.py",
+    "src/ccnl_engine/irpef/taxable/services.py",
+    "src/ccnl_engine/irpef/computation/services.py",
+    "src/ccnl_engine/irpef/separate/rules.py",
+    "src/ccnl_engine/extra_month/settlement/services.py",
+    "src/ccnl_engine/extra_month/liquidation/services.py",
+    "src/ccnl_engine/severance/revaluation/services.py",
+    "src/ccnl_engine/severance/provision/services.py"
+  ],
+  "scores": {
+    "core": {
+      "killed": 1838,
+      "survived": 69,
+      "other": 0,
+      "not_checked": 0,
+      "total": 1907,
+      "score": 96.4,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/compensation/element/rules.py": {
+      "killed": 50,
+      "survived": 30,
+      "other": 0,
+      "not_checked": 0,
+      "total": 80,
+      "score": 62.5,
+      "minimum": 62.5
+    },
+    "src/ccnl_engine/contribution/services.py": {
+      "killed": 148,
+      "survived": 30,
+      "other": 0,
+      "not_checked": 0,
+      "total": 178,
+      "score": 83.1,
+      "minimum": 83.1
+    },
+    "src/ccnl_engine/irpef/taxable/services.py": {
+      "killed": 66,
+      "survived": 9,
+      "other": 0,
+      "not_checked": 0,
+      "total": 75,
+      "score": 88.0,
+      "minimum": 88.0
+    },
+    "src/ccnl_engine/irpef/computation/services.py": {
+      "killed": 140,
+      "survived": 25,
+      "other": 0,
+      "not_checked": 0,
+      "total": 165,
+      "score": 84.8,
+      "minimum": 84.8
+    },
+    "src/ccnl_engine/extra_month/settlement/services.py": {
+      "killed": 94,
+      "survived": 18,
+      "other": 0,
+      "not_checked": 0,
+      "total": 112,
+      "score": 83.9,
+      "minimum": 83.9
+    },
+    "src/ccnl_engine/extra_month/liquidation/services.py": {
+      "killed": 175,
+      "survived": 39,
+      "other": 0,
+      "not_checked": 0,
+      "total": 214,
+      "score": 81.8,
+      "minimum": 81.7
+    },
+    "src/ccnl_engine/severance/revaluation/services.py": {
+      "killed": 160,
+      "survived": 26,
+      "other": 0,
+      "not_checked": 0,
+      "total": 186,
+      "score": 86.0,
+      "minimum": 86.0
+    },
+    "src/ccnl_engine/severance/provision/services.py": {
+      "killed": 12,
+      "survived": 4,
+      "other": 0,
+      "not_checked": 0,
+      "total": 16,
+      "score": 75.0,
+      "minimum": 75.0
+    }
+  }
+}
