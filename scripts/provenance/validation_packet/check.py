@@ -48,6 +48,7 @@ __all__ = [
     "INDEPENDENCE_OF",
     "PACKETS_DIR",
     "RESULTS",
+    "SCENARIOS",
     "check_all",
     "coverage",
     "packet_errors",
