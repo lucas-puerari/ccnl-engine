@@ -49,7 +49,7 @@ def missing_outputs(rows: dict[str, Row]) -> dict[str, frozenset[str]]:
         The missing outputs of each production CCNL that misses any.
     """
     found = {
-        ccnl: frozenset(AXES) - row.outputs
+        ccnl: frozenset(AXES) - row.outputs.keys()
         for ccnl, row in rows.items()
         if row.readiness == "production"
     }
