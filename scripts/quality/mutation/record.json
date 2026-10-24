@@ -1,5 +1,5 @@
 {
-  "commit": "6cf7c1d5e3dcb6bf9418f002d617c692bc46802a",
+  "commit": "e2b6e3bea85d25e0542832f129c711de80d6fb27",
   "date": "2026-10-24",
   "min_score": 93.0,
   "perimeter": [
@@ -33,12 +33,173 @@
   ],
   "scores": {
     "core": {
-      "killed": 1838,
-      "survived": 69,
+      "killed": 1711,
+      "survived": 32,
       "other": 0,
       "not_checked": 0,
-      "total": 1907,
-      "score": 96.4,
+      "equivalent": 0,
+      "total": 1743,
+      "score": 98.2,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/contribution/rules.py": {
+      "killed": 117,
+      "survived": 1,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 118,
+      "score": 99.2,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/irpef/rules.py": {
+      "killed": 41,
+      "survived": 2,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 43,
+      "score": 95.3,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/irpef/deduction/rules.py": {
+      "killed": 88,
+      "survived": 1,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 89,
+      "score": 98.9,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/pay_item/rounding/policies.py": {
+      "killed": 9,
+      "survived": 0,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 9,
+      "score": 100.0,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/assurance/rules.py": {
+      "killed": 191,
+      "survived": 10,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 201,
+      "score": 95.0,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/capability/requirement/rules.py": {
+      "killed": 7,
+      "survived": 0,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 7,
+      "score": 100.0,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/tax_credit/trattamento_integrativo/rules.py": {
+      "killed": 127,
+      "survived": 37,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 164,
+      "score": 77.4,
+      "minimum": 77.4
+    },
+    "src/ccnl_engine/irpef/net/rules.py": {
+      "killed": 56,
+      "survived": 1,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 57,
+      "score": 98.2,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/contribution/additional_ivs/rules.py": {
+      "killed": 84,
+      "survived": 2,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 86,
+      "score": 97.7,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/contribution/minimum_base/rules.py": {
+      "killed": 143,
+      "survived": 4,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 147,
+      "score": 97.3,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/withholding/rules.py": {
+      "killed": 50,
+      "survived": 2,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 52,
+      "score": 96.2,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/working_time/handlers.py": {
+      "killed": 118,
+      "survived": 3,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 121,
+      "score": 97.5,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/sickness/pay/handlers.py": {
+      "killed": 160,
+      "survived": 0,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 160,
+      "score": 100.0,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/variable_pay/travel/handlers.py": {
+      "killed": 219,
+      "survived": 0,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 219,
+      "score": 100.0,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/variable_pay/arrears/handlers.py": {
+      "killed": 164,
+      "survived": 2,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 166,
+      "score": 98.8,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/termination/handlers.py": {
+      "killed": 140,
+      "survived": 1,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 141,
+      "score": 99.3,
       "minimum": 93.0
     },
     "src/ccnl_engine/compensation/element/rules.py": {
@@ -46,15 +207,27 @@
       "survived": 30,
       "other": 0,
       "not_checked": 0,
+      "equivalent": 0,
       "total": 80,
       "score": 62.5,
       "minimum": 62.5
+    },
+    "src/ccnl_engine/compensation/proration/rules.py": {
+      "killed": 95,
+      "survived": 3,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 98,
+      "score": 96.9,
+      "minimum": 93.0
     },
     "src/ccnl_engine/contribution/services.py": {
       "killed": 148,
       "survived": 30,
       "other": 0,
       "not_checked": 0,
+      "equivalent": 0,
       "total": 178,
       "score": 83.1,
       "minimum": 83.1
@@ -64,6 +237,7 @@
       "survived": 9,
       "other": 0,
       "not_checked": 0,
+      "equivalent": 0,
       "total": 75,
       "score": 88.0,
       "minimum": 88.0
@@ -73,15 +247,27 @@
       "survived": 25,
       "other": 0,
       "not_checked": 0,
+      "equivalent": 0,
       "total": 165,
       "score": 84.8,
       "minimum": 84.8
+    },
+    "src/ccnl_engine/irpef/separate/rules.py": {
+      "killed": 29,
+      "survived": 0,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 29,
+      "score": 100.0,
+      "minimum": 93.0
     },
     "src/ccnl_engine/extra_month/settlement/services.py": {
       "killed": 94,
       "survived": 18,
       "other": 0,
       "not_checked": 0,
+      "equivalent": 0,
       "total": 112,
       "score": 83.9,
       "minimum": 83.9
@@ -91,6 +277,7 @@
       "survived": 39,
       "other": 0,
       "not_checked": 0,
+      "equivalent": 0,
       "total": 214,
       "score": 81.8,
       "minimum": 81.7
@@ -100,6 +287,7 @@
       "survived": 26,
       "other": 0,
       "not_checked": 0,
+      "equivalent": 0,
       "total": 186,
       "score": 86.0,
       "minimum": 86.0
@@ -109,6 +297,7 @@
       "survived": 4,
       "other": 0,
       "not_checked": 0,
+      "equivalent": 0,
       "total": 16,
       "score": 75.0,
       "minimum": 75.0
