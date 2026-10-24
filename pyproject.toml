@@ -337,6 +337,7 @@ pytest_add_cli_args_test_selection = [
     "tests/integration/ccnl_engine/contribution/naspi/test_services.py",
     "tests/integration/ccnl_engine/contribution/rate/test_rules.py",
     "tests/integration/ccnl_engine/contribution/test_sick_pay_supplement.py",
+    "tests/integration/ccnl_engine/api/test_termination_settlement.py",
     "tests/integration/ccnl_engine/extra_month/qualification/test_services.py",
     "tests/integration/ccnl_engine/extra_month/test_services.py",
     "tests/integration/ccnl_engine/severance/provision/test_services.py",

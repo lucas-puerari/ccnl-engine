@@ -27,9 +27,13 @@ Evidence:
   of those modules runs the same campaign on the modules it changes, with
   the same minimum, so a regression cannot merge before the next weekly
   run: 218 of 227 (96.0%) on the deduction and assessment rules changed on
-  15 October 2026.  Every campaign records its commit, date and modules in
-  `mutants/mutation-score.json`, kept as a workflow artifact: a score
-  without its perimeter and its date is not quoted.  The perimeter also
+  15 October 2026.  Every campaign records its commit, date, minimum and
+  modules in `mutants/mutation-score.json`, kept as a workflow artifact: a
+  score without its perimeter and its date is not quoted.  A campaign of
+  the whole perimeter also writes `scripts/quality/mutation/record.json`,
+  versioned with the code: on 24 October 2026, at commit `6cf7c1d5`, the
+  27 modules of the perimeter scored 96.4% for the core (1838 of 1907) and
+  each floored module at or above its floor.  The perimeter also
   holds the five event handlers that move money (overtime and work-time
   supplements, sick pay, travel allowances, arrears, termination funds and
   TFR).  They entered below 93%, so each keeps its own floor in
