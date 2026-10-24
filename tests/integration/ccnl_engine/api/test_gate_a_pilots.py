@@ -117,8 +117,8 @@ _SPECIFIC: Final[dict[str, frozenset[Blocker]]] = {
     "chimica-farmaceutica-federchimica": _not_production(
         "chimica-farmaceutica-federchimica"
     ),
-    "turismo-federalberghi": _not_production("turismo-federalberghi"),
-    "pubblici-esercizi-fipe-angem": _not_production("pubblici-esercizi-fipe-angem"),
+    "turismo-federalberghi": frozenset(),
+    "pubblici-esercizi-fipe-angem": frozenset(),
     "terziario-confesercenti": _not_production("terziario-confesercenti"),
     "metalmeccanico-confapi": _not_production("metalmeccanico-confapi"),
     "metalmeccanico-federmeccanica": frozenset(),

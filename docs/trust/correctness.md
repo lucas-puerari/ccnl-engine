@@ -97,14 +97,14 @@ Evidence:
   totals, components of a total and rates: only a compared total counts
   for readiness, so fixed allowances never stand for the gross and an
   INPS rate never for the amount of the contributions.
-- Reference table cases: <!-- trust:reference-cases -->35<!-- /trust:reference-cases -->
+- Reference table cases: <!-- trust:reference-cases -->37<!-- /trust:reference-cases -->
   cases in `tests/knowledge/ccnl_engine/period/reference_case/`, each running one regular period through
   `PayrollEngine` and asserting, to the cent, the three values its cited
   salary table states: base salary, fixed allowances and period gross. They
   do not check net pay, contributions, taxes or employer cost.
   <!-- trust:reference-cases-source-linked -->31<!-- /trust:reference-cases-source-linked -->
   are `source_linked` (they cite the table they model) and
-  <!-- trust:reference-cases-verified -->4<!-- /trust:reference-cases-verified -->
+  <!-- trust:reference-cases-verified -->6<!-- /trust:reference-cases-verified -->
   are `verified` against an independent payslip or official worked example.
 - Release parity: `.github/workflows/quality-gates.yml` holds every gate
   of `main` (lint, types, complexity, the generated-document drift checks,
@@ -262,7 +262,7 @@ enforced; in `operational` mode a CCNL that is not `production` adds a
 `ruleset_not_production` blocker.
 
 Bundled CCNL rulesets at `production`:
-<!-- trust:readiness-production -->4<!-- /trust:readiness-production -->.
+<!-- trust:readiness-production -->6<!-- /trust:readiness-production -->.
 Payable rules with provenance status `verified`:
 <!-- trust:rules-verified -->2515<!-- /trust:rules-verified -->
 (see [Provenance](provenance.md#current-counts)).

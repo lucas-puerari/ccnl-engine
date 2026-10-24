@@ -3233,7 +3233,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "699a3b359d88df7ebbc29b308a7d3da08c909bd34c75198777560b464d40fdd8",
+    "source_hash": "935f9fe5c29163200987c5d6dbd8d7d74882c8b950b99b3934887d77e37220fa",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3821,8 +3821,8 @@
   },
   "verification": {
     "confidence": "verified",
-    "readiness": "reviewed",
-    "verified_cases": 0,
+    "readiness": "production",
+    "verified_cases": 1,
     "reviews": [
       {
         "id": "2026-10-13-ai-production",

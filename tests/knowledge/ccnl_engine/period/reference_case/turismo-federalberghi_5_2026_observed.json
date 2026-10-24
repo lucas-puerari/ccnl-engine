@@ -1,0 +1,32 @@
+{
+  "verification": "verified",
+  "axes": [
+    "base_salary"
+  ],
+  "_description": "Turismo Federalberghi (CNEL H052) level 5, August 2026: paga base 1.590,27, the full-time monthly rate printed among the elementi della retribuzione.",
+  "_notes": [
+    "Base salary only: the worker is a 60% part-time fixed-term hire, so the amounts paid and the INPS and IRPEF lines are not compared; the paga base printed is the full-time monthly rate of the level, the value the engine computes for a full-time worker of level 5 in August 2026.",
+    "Checked on 24 October 2026 by an AI review: the observed payslip p72, headed 'Turismo Federalberghi (CNEL H052)', prints 'paga base' 1590.27 for level 5 in August 2026; the engine computes 1590.27 for turismo-federalberghi level 5 on that day."
+  ],
+  "source": {
+    "kind": "observed_payslip",
+    "document": "Observed payslip p72",
+    "path": "tests/knowledge/ccnl_engine/period/observed_payslip/p72.json",
+    "sha256": "b90aa5eaefb0341fb353e94c8dcf576243edb00114ece4ce722722685105b4d2",
+    "section": "pay_elements",
+    "verified_by": "claude-opus-5-5",
+    "verified_at": "2026-10-24",
+    "independence": "The payslip was issued by the payroll of the employer, anonymised and stored before the engine computed the run: its paga base is not an output of this engine."
+  },
+  "inputs": {
+    "ccnl_id": "turismo-federalberghi",
+    "level_code": "5",
+    "year": 2026,
+    "month": 8,
+    "headcount": 20
+  },
+  "expected": {
+    "base_salary": "1590.27"
+  },
+  "tolerance": "0.00"
+}

@@ -90,7 +90,10 @@ In addition to the `reviewed` criteria:
    without a `verified` case. No CCNL is exempt: the nine CCNLs promoted
    before the rule, whose cases were only `source_linked`, went back to
    `reviewed` on 24 October 2026, so `operational` mode no longer pays
-   them, until an independent output backs each one.
+   them, until an independent output backs each one. Turismo Federalberghi
+   and Pubblici Esercizi FIPE returned to `production` the same day, each
+   with a `verified` case from a real 2026 payslip (p72, p73) whose
+   full-time paga base the engine matches to the cent.
    `python scripts/provenance/check.py --index` prints the cases of each CCNL
    with its readiness, status and axes.
 3. Its evidence must cover every complete output of the definition of done
@@ -209,13 +212,13 @@ it drifts):
 | Readiness | CCNL rulesets |
 |---|---:|
 | `exploratory` | 109 |
-| `reviewed` | 19 |
-| `production` | 4 |
+| `reviewed` | 17 |
+| `production` | 6 |
 
 <!-- /trust:readiness-table -->
 
-The <!-- trust:readiness-reviewed -->19<!-- /trust:readiness-reviewed -->
-`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->`alimentari-federalimentare`, `chimica-farmaceutica-federchimica`, `concia-unic`, `cooperative-sociali`, `dmo-federdistribuzione`, `edilizia-ance`, `funzioni-centrali-aran`, `funzioni-locali-aran`, `lavoro-domestico-convivente`, `lavoro-domestico-convivente-orario-ridotto`, `lavoro-domestico-non-convivente`, `logistica-trasporto-confetra`, `logistica-trasporto-confetra-viaggiante`, `metalmeccanico-confapi`, `pubblici-esercizi-fipe-angem`, `sanita-aran`, `studi-professionali-confprofessioni`, `terziario-confesercenti`, `turismo-federalberghi`<!-- /trust:readiness-reviewed-list -->.
+The <!-- trust:readiness-reviewed -->17<!-- /trust:readiness-reviewed -->
+`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->`alimentari-federalimentare`, `chimica-farmaceutica-federchimica`, `concia-unic`, `cooperative-sociali`, `dmo-federdistribuzione`, `edilizia-ance`, `funzioni-centrali-aran`, `funzioni-locali-aran`, `lavoro-domestico-convivente`, `lavoro-domestico-convivente-orario-ridotto`, `lavoro-domestico-non-convivente`, `logistica-trasporto-confetra`, `logistica-trasporto-confetra-viaggiante`, `metalmeccanico-confapi`, `sanita-aran`, `studi-professionali-confprofessioni`, `terziario-confesercenti`<!-- /trust:readiness-reviewed-list -->.
 Each [contract page](../contracts/index.md) shows its own tier.
 
 In October 2026 fifteen rulesets `reviewed` on a file-level review were
@@ -225,9 +228,9 @@ file-level review that promoted them; a ruleset returns to `reviewed` once its w
 confidence is `verified`, as the ones listed above did.
 
 `reviewed` records a file-level review, not a per-value one. Of the `reviewed`
-rulesets, <!-- trust:reviewed-with-reviewer -->19<!-- /trust:reviewed-with-reviewer -->
+rulesets, <!-- trust:reviewed-with-reviewer -->17<!-- /trust:reviewed-with-reviewer -->
 hold an entry in the review log, and
-<!-- trust:reviewed-confidence-verified -->19<!-- /trust:reviewed-confidence-verified -->
+<!-- trust:reviewed-confidence-verified -->17<!-- /trust:reviewed-confidence-verified -->
 set `verification.confidence = "verified"` (step 5 of the criteria above).
 A per-value review is recorded only by the provenance status `verified` of a
 payable rule, and <!-- trust:rules-verified -->2515<!-- /trust:rules-verified -->
@@ -298,7 +301,7 @@ Both modes compute the same amounts.
 
 An operational engine returns the result with its blockers instead of
 refusing before the calculation, so the amounts and every other blocker stay
-inspectable. With <!-- trust:readiness-production -->4<!-- /trust:readiness-production -->
+inspectable. With <!-- trust:readiness-production -->6<!-- /trust:readiness-production -->
 `production` rulesets, only those CCNLs are payable in operational mode: the
 gate opens one CCNL at a time, as each is promoted.
 

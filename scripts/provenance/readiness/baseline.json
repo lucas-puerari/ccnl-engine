@@ -28,7 +28,25 @@
       "tax",
       "tfr"
     ],
+    "pubblici-esercizi-fipe-angem": [
+      "employee_contributions",
+      "employer_contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ],
     "pubblici-esercizi-fipe-angem-ristorazione-collettiva": [
+      "employee_contributions",
+      "employer_contributions",
+      "employer_cost",
+      "gross",
+      "net",
+      "tax",
+      "tfr"
+    ],
+    "turismo-federalberghi": [
       "employee_contributions",
       "employer_contributions",
       "employer_cost",

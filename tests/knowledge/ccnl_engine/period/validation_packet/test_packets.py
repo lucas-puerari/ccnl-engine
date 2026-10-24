@@ -1,6 +1,7 @@
 """The input packets of the production CCNLs, replayed through the engine.
 
-Each production CCNL (the three pilots and Ristorazione collettiva) has a
+Each production CCNL (the three pilots, Ristorazione collettiva, Turismo
+and Pubblici esercizi) has a
 packet for each scenario of the minimum set of the validation review, ready
 to hand to a payroll provider.  Until a provider
 computes them they are ``engine_provisional``: valid, covering nothing,
@@ -31,6 +32,8 @@ _PILOTS = (
     "metalmeccanico-federmeccanica",
     "edilizia-ance-impiegati",
     "pubblici-esercizi-fipe-angem-ristorazione-collettiva",
+    "turismo-federalberghi",
+    "pubblici-esercizi-fipe-angem",
 )
 _PACKETS: dict[str, dict[str, Any]] = {
     path.stem: json.loads(path.read_text(encoding="utf-8"))
@@ -39,7 +42,7 @@ _PACKETS: dict[str, dict[str, Any]] = {
 
 
 def test_every_production_ccnl_has_a_packet_for_every_scenario() -> None:
-    """4 production CCNLs by 7 scenarios, one file each, named after both."""
+    """6 production CCNLs by 7 scenarios, one file each, named after both."""
     assert set(_PACKETS) == {f"{c}_{s}" for c in _PILOTS for s in SCENARIOS}
     assert all(p["inputs"]["scenario"] in k for k, p in _PACKETS.items())
 

@@ -1,0 +1,111 @@
+{
+  "_description": "pubblici-esercizi-fipe-angem level 4, 2026: Termination on 30 June 2026 with TFR and residual extra months. Input packet for a payroll provider.",
+  "artifact": {
+    "id": "engine-provisional/pubblici-esercizi-fipe-angem/termination",
+    "kind": "engine_provisional",
+    "sha256": null
+  },
+  "provenance": {
+    "source": "Input packet written for an independent payroll provider; the values are computed by ccnl-engine while no provider output exists.",
+    "obtained_on": "2026-10-24",
+    "independence": "None yet: the values are an output of this engine, so the packet covers no output until a provider computes the same inputs.",
+    "anonymisation": "Synthetic worker and employer: no personal data.",
+    "retention": "Kept in the repository under its licence."
+  },
+  "inputs": {
+    "scenario": "termination",
+    "ccnl_id": "pubblici-esercizi-fipe-angem",
+    "level_code": "4",
+    "year": 2026,
+    "month": 6,
+    "headcount": 20,
+    "contract_type": "permanent",
+    "category": "impiegato",
+    "hired_on": "2025-01-01",
+    "weekly_hours": 40,
+    "full_time_weekly_hours": 40,
+    "regione": "IT-25",
+    "comune_belfiore": "A005",
+    "prior_year_employment_income": "30000.00",
+    "current_year_employment_only_on": "2026-01-01",
+    "tfr_treasury_fund": false,
+    "pension_fund": "none",
+    "terminated_on": "2026-06-30"
+  },
+  "outputs": [
+    {
+      "output": "base_salary",
+      "value": "1692.69",
+      "perimeter": "Paga base (minimo tabellare) of the month, before any other element",
+      "tolerance": "0.01",
+      "rounding": "half_up_cents",
+      "result": "pending"
+    },
+    {
+      "output": "gross",
+      "value": "2539.04",
+      "perimeter": "Gross pay of the run: every earning of the run before contributions and taxes",
+      "tolerance": "0.01",
+      "rounding": "half_up_cents",
+      "result": "pending"
+    },
+    {
+      "output": "employee_contributions",
+      "value": "247.72",
+      "perimeter": "INPS contributions withheld from the worker in the run",
+      "tolerance": "0.01",
+      "rounding": "half_up_cents",
+      "result": "pending"
+    },
+    {
+      "output": "employer_contributions",
+      "value": "784.13",
+      "perimeter": "INPS contributions due by the employer for the run (INAIL excluded)",
+      "tolerance": "0.01",
+      "rounding": "half_up_cents",
+      "result": "pending"
+    },
+    {
+      "output": "tax",
+      "value": "366.31",
+      "perimeter": "IRPEF and surtaxes withheld in the run net of refunds, before tax credits",
+      "tolerance": "0.01",
+      "rounding": "half_up_cents",
+      "result": "pending"
+    },
+    {
+      "output": "net",
+      "value": "2120.00",
+      "perimeter": "Net pay of the run, before advances and deductions unrelated to payroll",
+      "tolerance": "0.01",
+      "rounding": "half_up_cents",
+      "result": "pending"
+    },
+    {
+      "output": "tfr",
+      "value": "175.38",
+      "perimeter": "TFR accrued in the run, kept by the employer or paid to a fund",
+      "tolerance": "0.01",
+      "rounding": "half_up_cents",
+      "result": "pending"
+    },
+    {
+      "output": "employer_cost",
+      "value": "3498.55",
+      "perimeter": "Gross pay, employer contributions, TFR accrual and employer fund contributions of the run",
+      "tolerance": "0.01",
+      "rounding": "half_up_cents",
+      "result": "pending"
+    }
+  ],
+  "review": {
+    "reviewer": "claude-opus-5-5",
+    "date": "2026-10-24",
+    "owner": "maintainer",
+    "review_by": "2027-04-24"
+  },
+  "versions": {
+    "engine": "0.6.0",
+    "bundle": "bundled"
+  }
+}

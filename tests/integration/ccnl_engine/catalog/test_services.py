@@ -38,7 +38,7 @@ def test_every_listed_contract_can_be_inspected() -> None:
 def test_the_axes_keep_each_kind_of_evidence_apart() -> None:
     """Metalmeccanico is source-checked and externally compared, not signed.
 
-    A reviewed CCNL without a verified case is source-checked only; no CCNL
+    A reviewed CCNL without a verified case (Chimica) is source-checked only; no CCNL
     of the bundle has a human sign-off, every review is an AI review.
     """
     repo = BundledKnowledgeRepository()
@@ -46,7 +46,8 @@ def test_the_axes_keep_each_kind_of_evidence_apart() -> None:
     assert inspect_ruleset(repo, _METALMECCANICO).axes == AssuranceAxes(
         source_checked=True, externally_compared=True, human_signed_off=False
     )
-    assert inspect_ruleset(repo, "turismo-federalberghi").axes == AssuranceAxes(
+    chimica = inspect_ruleset(repo, "chimica-farmaceutica-federchimica")
+    assert chimica.axes == AssuranceAxes(
         source_checked=True, externally_compared=False, human_signed_off=False
     )
     assert not any(
