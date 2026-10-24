@@ -68,23 +68,28 @@ class RulesetReadiness(StrEnum):
     is cleared for a given use context.
 
     Values:
-        exploratory: Extracted and traced; no human review of key values.
-            Safe for demos, research, and prototyping.
-        reviewed: Key salary table values and primary sources verified by a
-            person. Suitable for product simulations with an explicit
-            disclaimer and ruleset-level scope.
-        production: Full review, at least one reference case from an
-            independent source, a named owner, and a tracked update policy.
-            Suitable for operational flows where figures are shown to end
-            users or used in decisions.
+        exploratory: Extracted and traced; key values not cleared by a
+            recorded review. Safe for demos, research, and prototyping.
+        reviewed: Key salary table values checked against the primary
+            source by a recorded review, which may be an AI review. Suitable
+            for product simulations with an explicit disclaimer and
+            ruleset-level scope.
+        production: Full review, at least one ``verified`` reference case
+            checked against an output the engine did not produce, an owner
+            role, and a review date. Suitable for operational flows where
+            figures are shown to end users or used in decisions.
+
+    ``verified`` means checked by the review process of the project, whose
+    entries record their reviewer kind: today they are AI reviews, not an
+    independent human sign-off.
 
     Promotion criteria:
-        exploratory → reviewed: a human has cross-checked at least L1 values
-            (base salary, seniority table, additional months) against the
-            primary CCNL source, and the source URL is recorded.
+        exploratory → reviewed: a recorded review has cross-checked at least
+            L1 values (base salary, seniority table, additional months)
+            against the primary CCNL source, and the source URL is recorded.
         reviewed → production: all L1+L2 values verified, at least one
-            reference case from an official source or real payslip
-            (anonymised), a named owner assigned, and an update-policy entry.
+            ``verified`` reference case from an official source or real
+            payslip (anonymised), an owner assigned, and a review date.
     """
 
     EXPLORATORY = "exploratory"

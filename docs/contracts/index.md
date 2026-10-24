@@ -94,8 +94,8 @@ on unverified sources, or be well sourced and not cleared for production.
 | | Readiness and extraction |
 |---|---|
 | 🧪 | Exploratory — demo, research, prototyping only |
-| 👁 | Reviewed — key values human-verified; use with disclaimer |
-| 🏭 | Production — full review, reference case, named owner |
+| 👁 | Reviewed — key values checked by a recorded review; use with disclaimer |
+| 🏭 | Production — full review, verified reference case, owner role |
 | 🤖 | Machine extracted |
 | 🧑 | Human reviewed |
 

@@ -223,8 +223,8 @@ a bug-free implementation of an outdated salary table is source-incorrect.
 
 | Readiness | What it means for source correctness |
 |---|---|
-| `exploratory` | Rules extracted from sources; key values not yet checked by a person |
-| `reviewed` | L1 values (base salary, seniority, additional months) human-verified against primary sources |
+| `exploratory` | Rules extracted from sources; key values not yet cleared by a recorded review |
+| `reviewed` | L1 values (base salary, seniority, additional months) checked against primary sources by a recorded review (AI or human) |
 | `production` | All L1+L2 values verified, at least one reference case from an independent source |
 
 Source correctness is ruleset-scoped, but today only the CCNL rulesets carry a

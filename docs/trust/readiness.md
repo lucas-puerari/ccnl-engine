@@ -14,8 +14,8 @@ tool and no human has checked them.
 
 ### `exploratory` 🧪
 
-The ruleset has been extracted and traced to a source, but no human has
-verified the key salary-table values against the primary document.
+The ruleset has been extracted and traced to a source, but no recorded
+review has cleared the key salary-table values against the primary document.
 
 **Safe for:** demos, research, prototyping, internal tooling where figures are
 clearly labelled as unverified estimates.
@@ -26,8 +26,10 @@ it were authoritative; any decision that relies on the figure being correct.
 ### `reviewed` 👁
 
 At least the L1 values (base salary per level, seniority table, additional
-months, hourly divisor) have been cross-checked by a person against the
-primary CCNL document, and the source URL is recorded in the JSON.
+months, hourly divisor) have been cross-checked against the primary CCNL
+document by a recorded review (an AI review today, see
+[What a review records](#what-a-review-records)), and the source URL is
+recorded in the JSON.
 
 The tier also requires `verification.confidence = "verified"` and no
 `assumed` or `missing` payable rule in the CCNL file (salary tables,
@@ -43,9 +45,9 @@ any context where the user cannot see the readiness tier.
 
 ### `production` 🏭
 
-Full review: all L1 and L2 values verified, at least one reference case from
-an independent source (official payslip or regulatory document, anonymised),
-a named owner assigned, and an entry in the update policy.
+Full review: all L1 and L2 values verified, at least one `verified`
+reference case from an independent source (official payslip or regulatory
+document, anonymised), an owner role assigned, and a review date.
 
 **Safe for:** operational flows where figures are shown to end users or used
 in decisions; integration into HR tools that do not add their own disclaimer.
@@ -129,6 +131,8 @@ fields:
 | `reviewer` | Role of the person (`maintainer`), or identifier of the model |
 | `reviewer_kind` | `human` or `ai` |
 | `scope` | What the review checked: the whole file, or which rules |
+| `independence` | `same_process` (the run that extracted the values), `separate_session`, `separate_model` or `human` |
+| `checked` | The fields or values compared with the sources, e.g. `levels[C3].base_salary 2026-06-01` |
 | `outcome` | `confirmed`, `corrected`, `flagged` (values left to re-check) or `demoted` |
 | `sources` | URL and sha256 of each document the review read |
 | `findings` | The differences the review found, or notes on its scope |
@@ -175,6 +179,23 @@ The schema gate (`scripts/provenance/check.py --schema`) rejects a
 `reviewed` or `production` ruleset with an `assumed` or `missing` payable
 rule in its file or without `confidence` `verified`, and a `production`
 ruleset without the fields above. These errors have no baseline.
+
+### What a review records
+
+`verified` means checked by the review process of the project, not
+checked by an independent person. Today every review of the bundle is an
+AI review (`reviewer_kind` `ai`, `claude-opus-5-5`), and the owner of every
+ruleset is the role `maintainer`. When the run that extracted a value also
+reviews it, an interpretation error shared by both survives the review;
+only an output the engine did not produce (a `verified` reference case,
+see the [validation matrix](validation-matrix.md)) breaks that dependency.
+
+So that the log says how far each review stands from the extraction, every
+entry of a `reviewed` or `production` CCNL dated from 24 October 2026 must
+record its `sources`, the fields or values it `checked` and its
+`independence`; for a `production` CCNL the independence cannot be
+`same_process`. Older entries predate the fields and do not state them:
+read their `scope` and `findings` instead.
 
 ## Current status
 

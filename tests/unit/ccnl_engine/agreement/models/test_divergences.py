@@ -8,7 +8,7 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.agreement.facade import CCNL
-from ccnl_engine.agreement.metadata.models import Divergence, DivergenceDecision
+from ccnl_engine.agreement.metadata.review.models import Divergence, DivergenceDecision
 from tests.unit.ccnl_engine.builders import make_ccnl_dict
 
 _BASE: dict[str, Any] = {

@@ -341,6 +341,62 @@ def test_production_ccnl_without_evidence_fails(
     assert schema_errors((), root) == [f"agreement/x.json: {e}" for e in expected]
 
 
+_RECORDED: dict[str, object] = {
+    "id": "r2",
+    "date": "2026-10-24",
+    "reviewer": "claude-opus-5-5",
+    "reviewer_kind": "ai",
+    "scope": "Base salaries",
+    "independence": "separate_session",
+    "checked": ["levels[A].base_salary 2026-01-01"],
+    "sources": [{"url": "https://example.org/a.pdf", "sha256": "a" * 64}],
+    "outcome": "confirmed",
+}
+
+
+@pytest.mark.parametrize(
+    ("tier", "review", "expected"),
+    [
+        ("production", _RECORDED, []),
+        ("reviewed", _RECORDED | {"independence": "same_process"}, []),
+        (
+            "production",
+            _RECORDED | {"independence": "same_process"},
+            ["review r2: production reviewed by the process that extracted it"],
+        ),
+        (
+            "reviewed",
+            {k: v for k, v in _RECORDED.items() if k not in {"checked", "sources"}},
+            ["review r2 without sources", "review r2 without checked"],
+        ),
+        (
+            "production",
+            {k: v for k, v in _RECORDED.items() if k != "independence"},
+            ["review r2 without independence"],
+        ),
+        (
+            "production",
+            {k: v for k, v in _RECORDED.items() if k != "checked"}
+            | {"date": "2026-10-23"},
+            [],
+        ),
+    ],
+)
+def test_a_new_review_records_what_it_checked_and_its_independence(
+    tmp_path: Path, tier: str, review: dict[str, object], expected: list[str]
+) -> None:
+    """From 24 October 2026 a review states its sources, checks and distance.
+
+    A production CCNL cannot be cleared by the run that extracted it;
+    entries written before the rule are read as they are.
+    """
+    reviews = [*_PRODUCTION["reviews"], review]  # type: ignore[misc]
+    verification = _PRODUCTION | {"readiness": tier, "reviews": reviews}
+    verification["review_due"] = "2027-06-01"
+    root = _knowledge(tmp_path, _ccnl(verification=verification))
+    assert schema_errors((), root) == [f"agreement/x.json: {e}" for e in expected]
+
+
 def test_ccnl_ruleset_id_carries_the_ccnl_prefix(tmp_path: Path) -> None:
     """A CCNL ruleset id is ``ccnl/<ccnl_id>``."""
     root = _knowledge(tmp_path, _ccnl(ruleset={"id": "x"}))
