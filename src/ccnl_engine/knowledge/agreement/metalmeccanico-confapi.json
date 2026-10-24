@@ -3017,7 +3017,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "49b394a39e71550e5160b7587698cf212f3658507ac34131712dc42ce890555d",
+    "source_hash": "91aa9b446956a6016588ee403c357250228bf80768e2601cac900ad82a5907ea",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3556,7 +3556,7 @@
   "verification": {
     "confidence": "verified",
     "readiness": "reviewed",
-    "verified_cases": 1,
+    "verified_cases": 0,
     "reviews": [
       {
         "id": "2026-10-13-ai-production",

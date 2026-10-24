@@ -11,6 +11,7 @@ from scripts.provenance.reference_case.check import (
     CaseEvidence,
     index,
     production_errors,
+    verified_count_errors,
 )
 from scripts.provenance.rules import KNOWLEDGE_DIR
 
@@ -113,6 +114,28 @@ def test_a_verified_case_clears_a_production_ccnl(tmp_path: Path) -> None:
     folder = _cases(tmp_path, a=_VERIFIED)
 
     assert production_errors(knowledge, folder) == []
+
+
+def test_verified_cases_counts_the_verified_reference_cases(tmp_path: Path) -> None:
+    """The field the engine reports as externally compared must hold."""
+    knowledge = _knowledge(tmp_path / "k", x="reviewed", y="reviewed")
+    folder = _cases(tmp_path, a=_VERIFIED, b=_CASE | {"inputs": {"ccnl_id": "y"}})
+    for ccnl_id, count in (("x", 0), ("y", 1)):
+        path = knowledge / "agreement" / f"{ccnl_id}.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        data["verification"]["verified_cases"] = count
+        path.write_text(json.dumps(data), encoding="utf-8")
+
+    field = "verification.verified_cases is"
+    assert verified_count_errors(knowledge, folder) == [
+        f"agreement/x.json: {field} 0, the verified reference cases are 1",
+        f"agreement/y.json: {field} 1, the verified reference cases are 0",
+    ]
+
+
+def test_the_bundle_counts_its_verified_cases() -> None:
+    """Every CCNL of the bundle records the verified cases it has."""
+    assert verified_count_errors(KNOWLEDGE_DIR) == []
 
 
 def test_the_bundle_binds_each_production_ccnl_to_a_case() -> None:

@@ -19,6 +19,7 @@ from ccnl_engine.catalog.loaders import (
     search_ccnls,
 )
 from ccnl_engine.provenance.ruleset.assurance.models import (
+    AssuranceAxes,
     RulesetAssurance,
     RulesetKind,
 )
@@ -30,6 +31,7 @@ from ccnl_engine.provenance.ruleset.models import (
 from ccnl_engine.sector.raw.loaders import supported_tax_years
 
 __all__ = [
+    "AssuranceAxes",
     "CapabilityCatalog",
     "CapabilityEntry",
     "CapabilityImplementation",

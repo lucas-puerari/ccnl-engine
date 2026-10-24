@@ -110,7 +110,7 @@
   },
   "verification": {
     "confidence": "needs_review",
-    "verified_cases": 1,
+    "verified_cases": 0,
     "reviews": [
       {
         "id": "2026-09-17-human",
@@ -1847,6 +1847,6 @@
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "5ef9af5ccda3542458be3982b38eeb690b8942d267bf665e1a46855f832cc794"
+    "source_hash": "e26f6c8309a128d9441c3cd884d12899ed99802742e8270ddeace335428311ca"
   }
 }

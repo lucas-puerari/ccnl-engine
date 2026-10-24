@@ -2482,7 +2482,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "8872f9a44d4761f10247e38b469021707058eb6fe67a16182c99aad5a9c4828f",
+    "source_hash": "ce32344d237023d29cb23d871efe45c7fc78c0c5af73d64b30313e088f6c8318",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2908,6 +2908,7 @@
     "confidence": "verified",
     "readiness": "production",
     "owner": "maintainer",
-    "review_due": "2027-06-01"
+    "review_due": "2027-06-01",
+    "verified_cases": 1
   }
 }

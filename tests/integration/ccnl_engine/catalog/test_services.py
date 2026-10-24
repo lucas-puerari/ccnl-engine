@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import pytest
 
+from ccnl_engine.agreement.metadata.review.models import ReviewIndependence
+from ccnl_engine.catalog.models import ccnl_axes
 from ccnl_engine.catalog.services import (
     inspect_ruleset,
     list_contracts,
@@ -13,7 +15,10 @@ from ccnl_engine.errors import DataIntegrityError, UnknownCcnlError
 from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.provenance.ruleset.assurance.models import RulesetKind
+from ccnl_engine.provenance.ruleset.assurance.models import (
+    AssuranceAxes,
+    RulesetKind,
+)
 from tests.integration.ccnl_engine.catalog.builders import (
     AnonymousCcnlRepository,
 )
@@ -28,6 +33,41 @@ def test_every_listed_contract_can_be_inspected() -> None:
         ruleset = inspect_ruleset(repo, summary.ccnl_id)
         assert ruleset.kind is RulesetKind.CCNL
         assert ruleset.readiness is summary.readiness
+
+
+def test_the_axes_keep_each_kind_of_evidence_apart() -> None:
+    """Metalmeccanico is source-checked and externally compared, not signed.
+
+    A reviewed CCNL without a verified case is source-checked only; no CCNL
+    of the bundle has a human sign-off, every review is an AI review.
+    """
+    repo = BundledKnowledgeRepository()
+
+    assert inspect_ruleset(repo, _METALMECCANICO).axes == AssuranceAxes(
+        source_checked=True, externally_compared=True, human_signed_off=False
+    )
+    assert inspect_ruleset(repo, "turismo-federalberghi").axes == AssuranceAxes(
+        source_checked=True, externally_compared=False, human_signed_off=False
+    )
+    assert not any(
+        inspect_ruleset(repo, s.ccnl_id).axes.human_signed_off  # type: ignore[union-attr]
+        for s in list_contracts(repo)
+    )
+
+
+def test_a_human_review_independent_of_the_extraction_signs_off() -> None:
+    """Only ``independence`` ``human`` sets the sign-off, not the reviewer kind."""
+    ccnl = BundledKnowledgeRepository().load_ccnl(_METALMECCANICO)
+    last = ccnl.verification.reviews[-1]
+    signed = last.model_copy(update={"independence": ReviewIndependence.HUMAN})
+    verification = ccnl.verification.model_copy(
+        update={"reviews": (*ccnl.verification.reviews[:-1], signed)}
+    )
+
+    assert not ccnl_axes(ccnl).human_signed_off
+    assert ccnl_axes(
+        ccnl.model_copy(update={"verification": verification})
+    ).human_signed_off
 
 
 def test_slug_and_cnel_code_name_the_same_ruleset() -> None:

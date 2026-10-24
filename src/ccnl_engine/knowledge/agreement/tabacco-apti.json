@@ -91,7 +91,7 @@
   },
   "verification": {
     "confidence": "needs_review",
-    "verified_cases": 1,
+    "verified_cases": 0,
     "reviews": [
       {
         "id": "2026-09-18-human",
@@ -2416,6 +2416,6 @@
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "89ca8ac43dd69ce80b76baffe90539e0e6fd7fea1d0dd6955464bbb4d0f53903"
+    "source_hash": "d2fefce5e9c0860a87603c59144e442013df171bfd3a7de258a736a17654e5b9"
   }
 }
