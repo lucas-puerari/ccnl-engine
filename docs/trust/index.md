@@ -26,9 +26,15 @@ classification that tells you whether a CCNL is cleared for a given use context.
 
 | Tier | Symbol | Meaning | Safe for |
 |---|:---:|---|---|
-| `exploratory` | 🧪 | Extracted and traced; no human review of key values | Demo, research, prototyping |
-| `reviewed` | 👁 | Key L1 values human-verified against primary sources | Product simulations with explicit disclaimer |
-| `production` | 🏭 | Full review, reference case, named owner, update policy | Operational flows |
+| `exploratory` | 🧪 | Extracted and traced; key values not cleared by a recorded review | Demo, research, prototyping |
+| `reviewed` | 👁 | Key L1 values checked against primary sources by a recorded review (AI or human) | Product simulations with explicit disclaimer |
+| `production` | 🏭 | Full review, `verified` reference case, owner role, review date | Operational flows |
+
+`verified` and `reviewed` mean checked by the review process of the
+project. Each review entry records its `reviewer_kind`: today the reviews
+of the bundle are AI reviews (`claude-opus-5-5`), and the owner is the
+role `maintainer`, not a named person. No tier implies an independent human
+sign-off; see [Readiness](readiness.md#what-a-review-records).
 
 The `readiness` tier of every CCNL is public: `engine.list_contracts()` lists it
 on each `ContractSummary`, `engine.inspect_ruleset(ccnl_id)` returns the full

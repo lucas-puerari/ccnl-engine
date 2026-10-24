@@ -396,6 +396,33 @@ def _owner_errors(tier: str, verification: Json) -> Iterator[str]:
         yield "verification.review_due is not after the last review"
 
 
+#: Day from which a review entry records what it checked and how independent it is.
+REVIEW_RECORD_SINCE: Final = date(2026, 10, 24)
+
+
+def _review_errors(tier: str, verification: Json) -> Iterator[str]:
+    """Yield what a review entry of a cleared CCNL fails to record.
+
+    From :data:`REVIEW_RECORD_SINCE`, an entry records the sources it read,
+    the fields or values it checked and its ``independence``; for a
+    ``production`` CCNL it must not be the run that extracted the values.
+
+    Yields:
+        One reason per incomplete entry.
+    """
+    reviews = verification.get("reviews")
+    for review in map(_as_dict, reviews if isinstance(reviews, list) else []):
+        day = _date(review.get("date"))
+        if day is None or day < REVIEW_RECORD_SINCE:
+            continue
+        entry = f"review {review.get('id')}"
+        for key in ("sources", "checked", "independence"):
+            if not review.get(key):
+                yield f"{entry} without {key}"
+        if tier == "production" and review.get("independence") == "same_process":
+            yield f"{entry}: production reviewed by the process that extracted it"
+
+
 def _production_errors(verification: Json) -> Iterator[str]:
     """Yield the evidence a ``production`` CCNL lacks beyond its owner.
 
@@ -431,6 +458,7 @@ def _ccnl_errors(file: str, data: Json) -> Iterator[str]:
     tier = verification.get("readiness")
     if tier in {"reviewed", "production"}:
         errors = list(_owner_errors(str(tier), verification))
+        errors += _review_errors(str(tier), verification)
         if tier == "production":
             errors += _production_errors(verification)
         yield from (f"{file}: {e}" for e in errors)
