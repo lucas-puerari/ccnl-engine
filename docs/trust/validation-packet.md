@@ -52,3 +52,27 @@ has computed while it waits for a provider) covers nothing. The readiness
 gate reads those triples, so a packet is the way an output of a `production`
 CCNL leaves the `provider output` list of
 `scripts/provenance/readiness/baseline.json`.
+
+## The pilot packets
+
+The three pilot CCNLs (`commercio-confcommercio` level 4,
+`metalmeccanico-federmeccanica` C3, `edilizia-ance-impiegati` level 4) have
+a packet for each scenario: 21 input packets of an impiegato hired on 1
+January 2025, resident in IT-25 / A005, ready to hand to a payroll
+provider. The `employer_cost` packets enrol the worker in the pension fund
+of the CCNL with 60 employees and compare the employer side only. The
+`variable` packet of `edilizia-ance-impiegati` states the hourly rate of
+its overtime, since the bundle has no verified hourly base for that CCNL.
+
+Until a provider computes them they are `engine_provisional`: valid, with
+`result` `pending`, covering nothing, and pinned to what the engine computes
+today by `tests/knowledge/ccnl_engine/period/validation_packet/test_packets.py`.
+After a change of the engine that is meant, rewrite their values with:
+
+```bash
+uv run python -m tests.knowledge.ccnl_engine.period.validation_packet.runner
+```
+
+When a provider output arrives, the packet takes its `artifact` (kind,
+`sha256`), `provenance`, `versions.provider`, the values of the provider and
+a `result` per output; only then does it cover anything.
