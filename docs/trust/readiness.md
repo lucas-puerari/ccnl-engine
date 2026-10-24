@@ -99,10 +99,14 @@ In addition to the `reviewed` criteria:
    diverge on the two sides. A component (fixed allowances, a taxable
    base, a tax credit) or a rate (an INPS rate, the hourly percentages)
    is listed in its own column and never covers the total it belongs to.
-   The schema gate fails a `production` CCNL that misses an output
-   `scripts/provenance/readiness/baseline.json` does not list for it; that
-   list holds what the CCNLs promoted before 15 October 2026 still miss, and
-   only shrinks.
+   The schema gate reads explicit `(CCNL, output, independence)` pairs at
+   two levels: any evidence, and a `provider output`, the only evidence
+   independent of the sources the bundle was read from (a hand oracle
+   recomputes the same sources). It fails a `production` CCNL that misses
+   an output, at either level, that
+   `scripts/provenance/readiness/baseline.json` does not list for it. The
+   list holds what each `production` CCNL still misses and only shrinks;
+   today no `production` CCNL covers every total with a provider output.
 4. An owner must be recorded in `verification.owner`, and the review in the
    [review log](#review-log).
 5. An update-policy entry must exist: who monitors CCNL renewals, and within
