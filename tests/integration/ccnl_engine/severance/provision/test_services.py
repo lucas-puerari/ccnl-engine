@@ -132,3 +132,4 @@ def test_excluded_sector_rejects_the_fondo(contract: dict[str, object]) -> None:
     with pytest.raises(InvalidInputError, match="Fondo Tesoreria") as raised:
         _run(contract, tfr_treasury_fund=True)
     assert raised.value.field == "Employment.tfr_treasury_fund"
+    assert raised.value.feature == "tfr"

@@ -1,5 +1,5 @@
 {
-  "commit": "e2b6e3bea85d25e0542832f129c711de80d6fb27",
+  "commit": "6a556b87e8fa789f4e667b3cd74802310dc56339",
   "date": "2026-10-24",
   "min_score": 93.0,
   "perimeter": [
@@ -33,13 +33,13 @@
   ],
   "scores": {
     "core": {
-      "killed": 1711,
-      "survived": 32,
+      "killed": 2916,
+      "survived": 68,
       "other": 0,
       "not_checked": 0,
-      "equivalent": 0,
-      "total": 1743,
-      "score": 98.2,
+      "equivalent": 7,
+      "total": 2984,
+      "score": 97.7,
       "minimum": 93.0
     },
     "src/ccnl_engine/contribution/rules.py": {
@@ -103,14 +103,14 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/tax_credit/trattamento_integrativo/rules.py": {
-      "killed": 127,
-      "survived": 37,
+      "killed": 169,
+      "survived": 2,
       "other": 0,
       "not_checked": 0,
-      "equivalent": 0,
-      "total": 164,
-      "score": 77.4,
-      "minimum": 77.4
+      "equivalent": 1,
+      "total": 171,
+      "score": 98.8,
+      "minimum": 93.0
     },
     "src/ccnl_engine/irpef/net/rules.py": {
       "killed": 56,
@@ -193,24 +193,24 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/termination/handlers.py": {
-      "killed": 140,
-      "survived": 1,
+      "killed": 141,
+      "survived": 0,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
       "total": 141,
-      "score": 99.3,
+      "score": 100.0,
       "minimum": 93.0
     },
     "src/ccnl_engine/compensation/element/rules.py": {
-      "killed": 50,
-      "survived": 30,
+      "killed": 112,
+      "survived": 0,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 80,
-      "score": 62.5,
-      "minimum": 62.5
+      "total": 112,
+      "score": 100.0,
+      "minimum": 93.0
     },
     "src/ccnl_engine/compensation/proration/rules.py": {
       "killed": 95,
@@ -223,34 +223,34 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/contribution/services.py": {
-      "killed": 148,
-      "survived": 30,
+      "killed": 170,
+      "survived": 8,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
       "total": 178,
-      "score": 83.1,
-      "minimum": 83.1
+      "score": 95.5,
+      "minimum": 93.0
     },
     "src/ccnl_engine/irpef/taxable/services.py": {
-      "killed": 66,
-      "survived": 9,
+      "killed": 75,
+      "survived": 0,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
       "total": 75,
-      "score": 88.0,
-      "minimum": 88.0
+      "score": 100.0,
+      "minimum": 93.0
     },
     "src/ccnl_engine/irpef/computation/services.py": {
-      "killed": 140,
-      "survived": 25,
+      "killed": 163,
+      "survived": 8,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 165,
-      "score": 84.8,
-      "minimum": 84.8
+      "total": 171,
+      "score": 95.3,
+      "minimum": 93.0
     },
     "src/ccnl_engine/irpef/separate/rules.py": {
       "killed": 29,
@@ -263,44 +263,44 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/extra_month/settlement/services.py": {
-      "killed": 94,
-      "survived": 18,
+      "killed": 110,
+      "survived": 0,
       "other": 0,
       "not_checked": 0,
-      "equivalent": 0,
-      "total": 112,
-      "score": 83.9,
-      "minimum": 83.9
+      "equivalent": 2,
+      "total": 110,
+      "score": 100.0,
+      "minimum": 93.0
     },
     "src/ccnl_engine/extra_month/liquidation/services.py": {
-      "killed": 175,
-      "survived": 39,
+      "killed": 211,
+      "survived": 11,
       "other": 0,
       "not_checked": 0,
-      "equivalent": 0,
-      "total": 214,
-      "score": 81.8,
-      "minimum": 81.7
+      "equivalent": 4,
+      "total": 222,
+      "score": 95.0,
+      "minimum": 93.0
     },
     "src/ccnl_engine/severance/revaluation/services.py": {
-      "killed": 160,
-      "survived": 26,
+      "killed": 178,
+      "survived": 8,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
       "total": 186,
-      "score": 86.0,
-      "minimum": 86.0
+      "score": 95.7,
+      "minimum": 93.0
     },
     "src/ccnl_engine/severance/provision/services.py": {
-      "killed": 12,
-      "survived": 4,
+      "killed": 16,
+      "survived": 0,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
       "total": 16,
-      "score": 75.0,
-      "minimum": 75.0
+      "score": 100.0,
+      "minimum": 93.0
     }
   }
 }

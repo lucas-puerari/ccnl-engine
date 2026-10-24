@@ -1,3 +1,11 @@
 {
-  "mutants": {}
+  "mutants": {
+    "ccnl_engine.extra_month.liquidation.services.x_settlement_issues__mutmut_25": "get(..., None) instead of (): a missing key only feeds the `not settled` guard, which treats None and () alike, and settled is read nowhere else on that path.",
+    "ccnl_engine.extra_month.liquidation.services.x_settlement_issues__mutmut_27": "get(...) without a default returns None for a missing key: the `not settled` guard treats None and () alike, and settled is read nowhere else on that path.",
+    "ccnl_engine.extra_month.liquidation.services.x_settlement_issues__mutmut_68": "sorted(paid, key=None) on ExtraMonthKind, a StrEnum: members compare as their string values, the same order as key=lambda k: k.value.",
+    "ccnl_engine.extra_month.liquidation.services.x_settlement_issues__mutmut_70": "sorted(paid) without a key on ExtraMonthKind, a StrEnum: members compare as their string values, the same order as key=lambda k: k.value.",
+    "ccnl_engine.extra_month.settlement.services.x_settle_extra_months__mutmut_64": "sum() without the Decimal start: the function has returned early when due is empty, and int 0 plus a Decimal is the same Decimal.",
+    "ccnl_engine.extra_month.settlement.services.x_settle_extra_months__mutmut_70": "sum() without the Decimal start: the function has returned early when due is empty, and int 0 plus a Decimal is the same Decimal.",
+    "ccnl_engine.tax_credit.trattamento_integrativo.rules.x__period_amount__mutmut_15": "money(tratt_due / remaining) with remaining == 1 is money(tratt_due): skipping the branch for one slot left changes no amount."
+  }
 }

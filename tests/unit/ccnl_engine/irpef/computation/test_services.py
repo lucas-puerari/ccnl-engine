@@ -131,3 +131,53 @@ class TestResolveTaxComputation:
         ).computation
         names = [c.name for c in tc.components]
         assert "somma_esente" in names
+
+
+def _minimum_reasons(*, days: int, fixed_term: bool | None = None) -> list[str]:
+    if fixed_term is None:
+        result = compute_tax(
+            Decimal(6000), make_year_rules(), remaining_slots=1, eligible_work_days=days
+        )
+    else:
+        result = compute_tax(
+            Decimal(6000),
+            make_year_rules(),
+            remaining_slots=1,
+            eligible_work_days=days,
+            fixed_term=fixed_term,
+        )
+    return [
+        d.reason_code
+        for d in result.decisions
+        if d.reason_code == "minimum_proportioned_to_days"
+    ]
+
+
+def test_a_minimum_left_to_the_tax_return_is_traced() -> None:
+    """100 days of 6,000 EUR: the whole minimum exceeds the proportioned one."""
+    assert _minimum_reasons(days=100) == ["minimum_proportioned_to_days"]
+
+
+def test_the_fixed_term_minimum_reaches_the_minimum_decision() -> None:
+    """At 200 days only a fixed-term employment leaves a minimum to the return.
+
+    The worker is open-ended unless the run says otherwise.
+    """
+    assert _minimum_reasons(days=200, fixed_term=True) == [
+        "minimum_proportioned_to_days"
+    ]
+    assert _minimum_reasons(days=200, fixed_term=False) == []
+    assert _minimum_reasons(days=200) == []
+
+
+def test_the_withholding_due_is_the_net_irpef_less_what_was_withheld() -> None:
+    """Positive while still owed: the annual net less the opening withholding."""
+    result = compute_tax(
+        Decimal(25000),
+        make_year_rules(),
+        opening_irpef_withheld=Decimal(500),
+        remaining_slots=1,
+    )
+
+    assert result.irpef_net > Decimal(500)
+    assert result.computation.withholding_due == result.irpef_net - Decimal(500)

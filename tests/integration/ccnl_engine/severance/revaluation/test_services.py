@@ -203,6 +203,7 @@ def test_hire_in_the_year_has_nothing_to_revalue() -> None:
     assert decision.reason_code == "no_opening_fund"
     assert decision.amount == Decimal(0)
     assert decision.inputs["fund"] == Decimal("0.00")
+    assert decision.inputs["moment"] == "year_end"
     assert "tfr_fund_unknown" not in _codes(result)
     assert "tfr_revaluation" not in {g.feature for g in result.capability_report.gaps}
     assert "tfr_revaluation" not in result.capability_report.rule_sources
@@ -212,6 +213,8 @@ def test_empty_fund_has_nothing_to_revalue() -> None:
     """A stated zero balance is revalued to zero, final."""
     decision = _decision(_run(tfr_fund=TfrFundBalance(2025, Decimal("0.00"))))
     assert (decision.reason_code, decision.amount) == ("no_opening_fund", Decimal(0))
+    assert decision.inputs["fund"] == Decimal("0.00")
+    assert decision.inputs["moment"] == "year_end"
 
 
 @pytest.mark.parametrize(
@@ -240,6 +243,17 @@ def test_fund_of_the_year_not_stated_is_a_missing_fact(
     assert ("missing_fact", "tfr_fund") in {
         (b.code.value, b.detail) for b in result.blockers
     }
+    assert decision.inputs["moment"] == "year_end"
+    assert decision.inputs["fund"] == "unknown"
+    assert decision.inputs.get("fund_year") == (
+        "2024" if reason == "fund_of_another_year" else None
+    )
+    (issue,) = (i for i in result.issues if i.code == "tfr_fund_unknown")
+    assert issue.capability == "tfr_revaluation"
+    assert issue.fact == "tfr_fund"
+    assert issue.message.startswith(
+        "tfr_revaluation: the TFR fund at 31 December 2025 is not stated"
+    )
 
 
 @pytest.mark.parametrize(

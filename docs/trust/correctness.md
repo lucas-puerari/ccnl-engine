@@ -36,7 +36,11 @@ Evidence:
   strong module never hides a weak one in the core.  Scored alone on 24
   October 2026, the trattamento integrativo rules reached 77.4%, hidden
   until then by the 96.4% of the core; they took a floor like the other
-  money-path modules below 93%.  A surviving mutant that changes nothing
+  money-path modules below 93%.  By 24 October 2026 every module of the
+  perimeter reached 93% alone and `baseline.json` holds no floor: tests
+  were added where a module's survivors showed an unchecked argument or
+  boundary, and the tests that already exercised a module but were not in
+  the mutmut selection joined it.  A surviving mutant that changes nothing
   the module computes is classified, with its reason, in
   `scripts/quality/mutation/equivalent.json` and counts neither as killed
   nor as survived.  A test keeps the record on the current perimeter and
