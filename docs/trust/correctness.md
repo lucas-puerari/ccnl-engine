@@ -115,6 +115,16 @@ Evidence:
   workflow; the release publishes the distribution it built and tested,
   and only after the full mutation campaign passes on the tagged commit
   (`.github/workflows/mutation.yml`, called by the release).
+- Validation dossier: each GitHub release attaches `dossier.json` and
+  `dossier.md` (`scripts/distribution/dossier/generate.py`), so the
+  evidence outlives the CI artifacts: commit, version and the hashes of
+  `uv.lock` and of the bundle manifest; the outcome of the gates; the
+  mutation campaign of the same commit (refused when it measured another
+  commit or perimeter); the output-by-independence coverage of each
+  `production` CCNL; the baselines and exceptions still open; the
+  deadlines and staleness of the next 60 days; the accepted variances with
+  owner and review date; the verified reference cases and the validation
+  packets with their provider; and who signed the CCNLs off.
   Both are blocked while `scripts/provenance/check.py --deadlines` finds a
   CCNL past its `review_due`, an accepted variance past its `review_by`
   or a divergence without an owner.
