@@ -45,6 +45,7 @@ __all__ = [
     "REPLAYABILITY",
     "REPLAY_KEYS",
     "credited_records",
+    "input_errors",
     "load_records",
     "record_errors",
     "replay_errors",
@@ -115,6 +116,17 @@ def _iso_date(value: object) -> date | None:
         return date.fromisoformat(value) if isinstance(value, str) else None
     except ValueError:
         return None
+
+
+def input_errors(inputs: object) -> list[str]:
+    """Return what the facts of a request lack, as a replay states them.
+
+    The validation packets state their inputs with the same keys.
+
+    Returns:
+        One reason per unknown, missing or invalid fact.
+    """
+    return list(_inputs_errors(inputs))
 
 
 def _inputs_errors(inputs: object) -> Iterator[str]:

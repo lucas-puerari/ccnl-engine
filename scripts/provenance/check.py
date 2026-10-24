@@ -26,10 +26,12 @@ non-empty ``source`` object and the ``axes`` it validates; a ``verified``
 case also names the independent output it was checked against (see
 :mod:`scripts.provenance.reference_case.check`). Expected values produced
 by the engine itself are not a status: they detect no systematic error, so
-such cases are rejected.  The schema gate also fails a ``production`` CCNL
-that no valid or no ``verified`` reference case runs, and one whose
-evidence in the validation matrix misses an output its readiness baseline
-does not list (see :mod:`scripts.provenance.readiness.check`).
+such cases are rejected.  Every validation packet
+(:mod:`scripts.provenance.validation_packet.check`) must be complete.  The
+schema gate also fails a ``production`` CCNL that no valid or no
+``verified`` reference case runs, and one whose evidence in the validation
+matrix misses an output its readiness baseline does not list (see
+:mod:`scripts.provenance.readiness.check`).
 
 Modes:
 
@@ -94,6 +96,7 @@ from scripts.provenance.reference_case.check import (
     verification_errors,
 )
 from scripts.provenance.replay import check as replays
+from scripts.provenance.validation_packet import check as validation_packets
 
 
 def _parse(text: str) -> dict[str, object] | None:
@@ -205,6 +208,7 @@ def check_rules(root: Path = payable_rules.KNOWLEDGE_DIR) -> bool:
             [
                 *readiness_matrix.readiness_errors(),
                 *replays.record_errors(datetime.now(tz=UTC).date()),
+                *validation_packets.check_all(),
             ]
             if root == payable_rules.KNOWLEDGE_DIR
             else ()
