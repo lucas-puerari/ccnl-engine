@@ -112,7 +112,9 @@ Evidence:
   3.13 and 3.14, docs build, security scan, provenance gates, public
   snippets, and the build of the wheel and sdist smoke-tested on Python
   3.12, 3.13 and 3.14). Pull requests and the release call the same
-  workflow; the release publishes the distribution it built and tested.
+  workflow; the release publishes the distribution it built and tested,
+  and only after the full mutation campaign passes on the tagged commit
+  (`.github/workflows/mutation.yml`, called by the release).
   Both are blocked while `scripts/provenance/check.py --deadlines` finds a
   CCNL past its `review_due`, an accepted variance past its `review_by`
   or a divergence without an owner.

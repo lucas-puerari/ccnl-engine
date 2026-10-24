@@ -46,10 +46,16 @@ jobs:
     needs: validate
     uses: ./.github/workflows/quality-gates.yml
 
+  # The full mutation campaign on the tagged commit: every money-path module
+  # at 93% alone, on the code published, not on an older weekly run.
+  mutation:
+    needs: validate
+    uses: ./.github/workflows/mutation.yml
+
   # ── 3. Publish to PyPI ───────────────────────────────────────────────────────
   publish-pypi:
     name: Publish to PyPI
-    needs: gates
+    needs: [gates, mutation]
     runs-on: ubuntu-latest
     permissions:
       contents: read

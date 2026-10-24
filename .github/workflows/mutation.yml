@@ -3,6 +3,8 @@ name: Mutation Testing
 # The weekly campaign mutates every money-moving module of
 # [tool.mutmut] source_paths; a pull request mutates only those it changes,
 # so a regression in them cannot merge before the next weekly campaign.
+# The release calls the full campaign on the tagged commit and publishes
+# only when it passes.
 # Every campaign records the commit, the date and the modules its score
 # covers (mutants/mutation-score.json).
 
@@ -11,6 +13,7 @@ on:
     # Every Monday at 03:00 UTC.
     - cron: "0 3 * * 1"
   workflow_dispatch:
+  workflow_call:
   pull_request:
     branches: [main]
     paths:
