@@ -42,8 +42,34 @@ def test_the_independence_of_each_kind_of_evidence_is_kept_apart() -> None:
 
     assert metal.independence == {"hand oracle", "provider output", "source-linked"}
     assert {"termination", "extra month"} <= metal.cycles
-    assert {"tfr", "employer_cost", "net"} <= metal.outputs
+    assert {"tfr", "employer_cost", "net"} <= metal.outputs.keys()
     assert autoscuole.independence == {"source-linked"}
+
+
+def test_an_output_keeps_the_independence_of_its_own_evidence() -> None:
+    """A provider output on the base salary lends nothing to the net.
+
+    Metalmeccanico holds a provider output on the base salary and hand
+    oracles on every total: only the base salary is independently covered.
+    """
+    metal = matrix()["metalmeccanico-federmeccanica"]
+
+    assert metal.covered("base_salary", "provider output")
+    assert metal.covered("net", "hand oracle")
+    assert not metal.covered("net", "provider output")
+
+
+def test_the_page_shows_the_strongest_independence_of_each_output() -> None:
+    """A row with a provider base salary and a hand-oracle net says so."""
+    row = _row()
+    row.pin(["base_salary", "net"], "hand oracle")
+    row.pin(["base_salary"], "provider output")
+    row.sources.add("primary")
+
+    page = build_page({"x": row})
+
+    assert "base_salary (provider output), net (hand oracle)" in page
+    assert "net (provider output)" not in page
 
 
 def _row() -> Row:
@@ -53,35 +79,41 @@ def _row() -> Row:
 def test_fixed_allowances_do_not_cover_the_gross() -> None:
     """The allowances are a component of the gross, listed apart from it."""
     row = _row()
-    row.pin(["base_salary", "fixed_allowances"])
+    row.pin(["base_salary", "fixed_allowances"], "provider output")
 
-    assert row.outputs == {"base_salary"}
-    assert row.components == {"fixed_allowances"}
+    assert row.outputs.keys() == {"base_salary"}
+    assert row.components.keys() == {"fixed_allowances"}
 
 
 def test_an_inps_rate_does_not_cover_the_contributions() -> None:
     """A rate fixes how contributions are computed, not their amount."""
     row = _row()
-    row.pin(["employee_inps_rate", "employer_inps_rate"])
+    row.pin(["employee_inps_rate", "employer_inps_rate"], "provider output")
 
-    assert row.outputs == set()
-    assert row.rules == {"employee_inps_rate", "employer_inps_rate"}
+    assert row.outputs == {}
+    assert row.rules.keys() == {"employee_inps_rate", "employer_inps_rate"}
 
 
 @pytest.mark.parametrize("axis", AXES)
 def test_each_complete_total_covers_its_output(axis: str) -> None:
     """A compared total lands in the totals, nowhere else."""
     row = _row()
-    row.pin([axis])
+    row.pin([axis], "hand oracle")
 
-    assert row.outputs == {axis}
-    assert row.components == row.rules == set()
+    assert row.outputs == {axis: {"hand oracle"}}
+    assert row.components == row.rules == {}
 
 
 def test_an_unknown_label_fails() -> None:
     """A label that is no total, component or rule is a typo, not evidence."""
     with pytest.raises(ValueError, match="'contributions'"):
-        _row().pin(["contributions"])
+        _row().pin(["contributions"], "hand oracle")
+
+
+def test_an_unknown_independence_fails() -> None:
+    """Independence is one of the three kinds, never free text."""
+    with pytest.raises(ValueError, match="'provider'"):
+        _row().pin(["net"], "provider")
 
 
 def test_the_replayed_components_and_rates_stay_apart_from_the_totals() -> None:
@@ -93,10 +125,10 @@ def test_the_replayed_components_and_rates_stay_apart_from_the_totals() -> None:
     row = _row()
     for replay in credited_records(datetime.now(tz=UTC).date()).values():
         if replay["inputs"]["ccnl_id"] == "commercio-confcommercio":
-            row.pin(AXIS_OF[key] for key in replay["expected"])
+            row.pin((AXIS_OF[key] for key in replay["expected"]), "provider output")
 
     assert "employee_inps_rate" in row.rules
-    assert not row.outputs & {"employee_contributions", "employer_contributions"}
+    assert not row.outputs.keys() & {"employee_contributions", "employer_contributions"}
 
 
 def test_divergences_show_their_decision() -> None:

@@ -15,11 +15,16 @@ any evidence runs, the evidence the repository holds:
 - the divergences of the review log, by decision, and the review dates.
 
 The columns follow the dimensions of the validation review: source,
-independence, cycle, relationship, variables, thresholds, outputs, outcome
-and freshness.  Outputs split in three columns: complete totals
+cycle, relationship, variables, thresholds, outputs, outcome and freshness.
+Outputs split in three columns: complete totals
 (:data:`~scripts.provenance.reference_case.check.AXES`), components of a
 total and rates or rules.  Only a total covers an output: fixed allowances
 never stand for the gross, an INPS rate never for the contributions.
+
+Each output keeps the independence of the evidence that pins it, as
+``(ccnl, output, independence)`` triples: a provider output that pins the
+base salary never lends its independence to the net a hand oracle pins.
+A cell shows each output with the strongest independence that covers it.
 Readiness depends on it: a ``production`` CCNL must cover every total of
 the definition of done, or list what it misses in the shrink-only baseline
 of :mod:`scripts.provenance.readiness.check`.
@@ -40,7 +45,7 @@ import sys
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Final
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
@@ -70,40 +75,66 @@ _OUTCOMES = {
 }
 
 
+#: The kinds of independence, weakest first.
+INDEPENDENCE: Final = ("source-linked", "hand oracle", "provider output")
+
+
 @dataclass
 class Row:
-    """The evidence of one CCNL, as sets of labels."""
+    """The evidence of one CCNL.
+
+    ``outputs``, ``components`` and ``rules`` map each label to the kinds
+    of independence of the evidence that pins it.
+    """
 
     readiness: str
     last_review: str
     review_due: str
     sources: set[str] = field(default_factory=set)
-    independence: set[str] = field(default_factory=set)
     cycles: set[str] = field(default_factory=set)
     relationships: set[str] = field(default_factory=set)
     variables: set[str] = field(default_factory=set)
     thresholds: set[str] = field(default_factory=set)
-    outputs: set[str] = field(default_factory=set)
-    components: set[str] = field(default_factory=set)
-    rules: set[str] = field(default_factory=set)
+    outputs: dict[str, set[str]] = field(default_factory=dict)
+    components: dict[str, set[str]] = field(default_factory=dict)
+    rules: dict[str, set[str]] = field(default_factory=dict)
     outcomes: set[str] = field(default_factory=set)
 
-    def pin(self, labels: Iterable[str]) -> None:
-        """Add each label to the totals, the components or the rules.
+    def pin(self, labels: Iterable[str], independence: str) -> None:
+        """Add each label, with the independence of its evidence.
 
         Raises:
-            ValueError: If a label is no total, component or rule.
+            ValueError: If a label is no total, component or rule, or the
+                independence is unknown.
         """
+        if independence not in INDEPENDENCE:
+            msg = f"unknown independence {independence!r}"
+            raise ValueError(msg)
         for label in labels:
             if label in AXES:
-                self.outputs.add(label)
+                target = self.outputs
             elif label in COMPONENTS:
-                self.components.add(label)
+                target = self.components
             elif label in RULES:
-                self.rules.add(label)
+                target = self.rules
             else:
                 msg = f"unknown output, component or rule {label!r}"
                 raise ValueError(msg)
+            target.setdefault(label, set()).add(independence)
+
+    def covered(self, output: str, independence: str) -> bool:
+        """Tell whether evidence of ``independence`` pins the total ``output``.
+
+        Returns:
+            True when such evidence pins it.
+        """
+        return independence in self.outputs.get(output, set())
+
+    @property
+    def independence(self) -> set[str]:
+        """Every kind of independence the evidence of the row holds."""
+        pinned = (self.outputs, self.components, self.rules)
+        return set().union(*(kinds for labels in pinned for kinds in labels.values()))
 
     @property
     def has_evidence(self) -> bool:
@@ -135,10 +166,10 @@ def _add_reference_cases(rows: dict[str, Row]) -> None:
         for case in cases:
             verified = case.verification == "verified"
             row.sources.add("payslip or official example" if verified else "primary")
-            row.independence.add("provider output" if verified else "source-linked")
             row.cycles.add("ordinary month")
             row.relationships.add("permanent, full time")
-            row.pin(case.axes + case.elements)
+            independence = "provider output" if verified else "source-linked"
+            row.pin(case.axes + case.elements, independence)
             row.outcomes.add("match")
 
 
@@ -147,11 +178,10 @@ def _add_payslips(rows: dict[str, Row]) -> None:
     for replay in credited_records(today).values():
         row = rows[replay["inputs"]["ccnl_id"]]
         row.sources.add("real payslip")
-        row.independence.add("provider output")
         row.cycles.add("ordinary month")
         row.relationships.add(f"{replay['inputs']['contract_type']}, hours not stated")
         row.thresholds.add(f"headcount {replay['inputs']['headcount']}")
-        row.pin(AXIS_OF[key] for key in replay["expected"])
+        row.pin((AXIS_OF[key] for key in replay["expected"]), "provider output")
         known = replay.get("known_differences") or []
         row.outcomes.add("explained variance" if known else "match")
 
@@ -161,12 +191,11 @@ def _add_oracles(rows: dict[str, Row]) -> None:
     for scenario in scenarios.values():
         row = rows[scenario["ccnl"]]
         row.sources.add("primary")
-        row.independence.add("hand oracle")
         row.cycles.update(scenario["cycles"])
         row.relationships.add(scenario["relationship"])
         row.variables.update(scenario["variables"])
         row.thresholds.update(scenario["thresholds"])
-        row.pin(scenario["outputs"])
+        row.pin(scenario["outputs"], "hand oracle")
         row.outcomes.add("match")
 
 
@@ -192,6 +221,21 @@ def _cell(labels: set[str]) -> str:
     return ", ".join(sorted(labels)) or "—"
 
 
+def _strongest(pinned: dict[str, set[str]]) -> str:
+    """Render each label with the strongest independence that pins it.
+
+    Returns:
+        The labels of the cell, or a dash when none.
+    """
+    return (
+        ", ".join(
+            f"{label} ({max(kinds, key=INDEPENDENCE.index)})"
+            for label, kinds in sorted(pinned.items())
+        )
+        or "—"
+    )
+
+
 def build_page(rows: dict[str, Row]) -> str:
     """Render the page.
 
@@ -199,7 +243,7 @@ def build_page(rows: dict[str, Row]) -> str:
         The Markdown of the page.
     """
     header = (
-        "| CCNL | Readiness | Source | Independence | Cycle | Relationship "
+        "| CCNL | Readiness | Source | Cycle | Relationship "
         "| Variables | Thresholds | Totals | Components | Rates and rules "
         "| Outcome | Last review | Review due |"
     )
@@ -221,20 +265,23 @@ def build_page(rows: dict[str, Row]) -> str:
         "`Totals` lists the complete outputs compared; `Components` the parts",
         "of a total (fixed allowances, bases, tax components) and `Rates and",
         "rules` the rates compared: neither covers the total it belongs to.",
+        "Each label shows the strongest independence of the evidence that",
+        "pins it: a provider output on the base salary says nothing of the",
+        "net a hand oracle pins on the same row.",
         "Readiness depends on the page: a `production` CCNL must cover every",
         "total (base salary, gross, employee and employer contributions, tax,",
         "net, TFR, employer cost), or list what it still misses in",
         "`scripts/provenance/readiness/baseline.json`, a list that only shrinks.",
         "",
         header,
-        "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|---|",
     ]
     lines.extend(
         f"| `{ccnl}` | {row.readiness} | {_cell(row.sources)} "
-        f"| {_cell(row.independence)} | {_cell(row.cycles)} "
+        f"| {_cell(row.cycles)} "
         f"| {_cell(row.relationships)} | {_cell(row.variables)} "
-        f"| {_cell(row.thresholds)} | {_cell(row.outputs)} "
-        f"| {_cell(row.components)} | {_cell(row.rules)} "
+        f"| {_cell(row.thresholds)} | {_strongest(row.outputs)} "
+        f"| {_strongest(row.components)} | {_strongest(row.rules)} "
         f"| {_cell(row.outcomes)} | {row.last_review} | {row.review_due} |"
         for ccnl, row in rows.items()
     )

@@ -14,7 +14,9 @@ _ALL = set(AXES)
 
 
 def _row(readiness: str, outputs: set[str]) -> Row:
-    return Row(readiness=readiness, last_review="—", review_due="—", outputs=outputs)
+    row = Row(readiness=readiness, last_review="—", review_due="—")
+    row.pin(outputs, "hand oracle")
+    return row
 
 
 def test_only_production_ccnls_must_cover_every_output() -> None:
@@ -31,7 +33,9 @@ def test_only_production_ccnls_must_cover_every_output() -> None:
 def test_components_and_rates_cover_no_output() -> None:
     """A row pinning every component and rate still misses every total."""
     row = _row("production", _ALL - {"gross", "employee_contributions"})
-    row.pin(["fixed_allowances", "employee_inps_rate", "contribution_base"])
+    row.pin(
+        ["fixed_allowances", "employee_inps_rate", "contribution_base"], "hand oracle"
+    )
 
     assert missing_outputs({"x": row}) == {
         "x": frozenset({"gross", "employee_contributions"})
