@@ -106,15 +106,25 @@ def _owed(ccnl_id: str, feature: str, limitation: str) -> Blocker:
     return ("open_limitation", feature, f"{ccnl_id}/{limitation}")
 
 
-#: Blockers of each pilot that no fact of the base case clears.
+def _not_production(ccnl_id: str) -> frozenset[Blocker]:
+    return frozenset({("ruleset_not_production", "", f"ccnl/{ccnl_id}")})
+
+
+#: Blockers of each pilot that no fact of the base case clears.  A pilot
+#: without a ``verified`` reference case is ``reviewed``, not production,
+#: so operational mode does not pay it until an independent output backs it.
 _SPECIFIC: Final[dict[str, frozenset[Blocker]]] = {
-    "chimica-farmaceutica-federchimica": frozenset(),
-    "turismo-federalberghi": frozenset(),
-    "pubblici-esercizi-fipe-angem": frozenset(),
-    "terziario-confesercenti": frozenset(),
-    "metalmeccanico-confapi": frozenset(),
+    "chimica-farmaceutica-federchimica": _not_production(
+        "chimica-farmaceutica-federchimica"
+    ),
+    "turismo-federalberghi": _not_production("turismo-federalberghi"),
+    "pubblici-esercizi-fipe-angem": _not_production("pubblici-esercizi-fipe-angem"),
+    "terziario-confesercenti": _not_production("terziario-confesercenti"),
+    "metalmeccanico-confapi": _not_production("metalmeccanico-confapi"),
     "metalmeccanico-federmeccanica": frozenset(),
-    "studi-professionali-confprofessioni": frozenset(),
+    "studi-professionali-confprofessioni": _not_production(
+        "studi-professionali-confprofessioni"
+    ),
     "commercio-confcommercio": frozenset(),
 }
 #: Pilots whose renewal increment cannot be measured at the middle level:

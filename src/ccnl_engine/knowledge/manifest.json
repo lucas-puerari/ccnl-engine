@@ -116,7 +116,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/alimentari-federalimentare",
       "ruleset_version": "2026.2",
-      "source_hash": "e5b29f684f4b47622f4c4da35d4354bd895e7e02c0540aeb8283993d8c8cb574",
+      "source_hash": "a54586c49bfdef9ce942143aed86354695a3145bd02eccdddde95f6b4eecc2a3",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/alimentari-federalimentare.json.gz"
@@ -439,7 +439,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/chimica-farmaceutica-federchimica",
       "ruleset_version": "2026.2",
-      "source_hash": "382e538d54ad01281e4fc7c7dc3b9dc7c6aa5acff80121f349f49b92a3946a95",
+      "source_hash": "d7b24f9ccb8b77b7ec89f1fd1ec52653b2aabaa163395011fd1e8496bd52ccc7",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/chimica-farmaceutica-federchimica.json.gz"
@@ -711,7 +711,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/dmo-federdistribuzione",
       "ruleset_version": "2026.2",
-      "source_hash": "2642ef74c4740ed5fb4a1817c6c64aac53f047eae571ad9fb35d9ea98ac02376",
+      "source_hash": "afb49d08d9a5ae0ec9a701844582fe863b893096bd69c39c9111d28b0c3a2fa1",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/dmo-federdistribuzione.json.gz"
@@ -745,7 +745,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-ance",
       "ruleset_version": "2026.2",
-      "source_hash": "96f295124a5f8bbb7ad387a4ebee6170bbab85e6b1f0d0bf9711596e824984be",
+      "source_hash": "a38680490b832eaaeb2be2e88fb7b1f0e8d32eadc33db3d1dea7756380741d65",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/edilizia-ance.json.gz"
@@ -1442,7 +1442,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-confapi",
       "ruleset_version": "2026.2",
-      "source_hash": "bde8698657d1225eaec32eed3c75520e0160c9ae0055869ae239cef33f08f133",
+      "source_hash": "49b394a39e71550e5160b7587698cf212f3658507ac34131712dc42ce890555d",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-confapi.json.gz"
@@ -1731,7 +1731,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem",
       "ruleset_version": "2026.2",
-      "source_hash": "254eade034acb6acbd3df2d46db248d4dcfaf6618990fc3e50c0f5ac173542eb",
+      "source_hash": "d1358a9bd495c611057601016298b91aa3209c49f36a7eecd07f88360cd2b8db",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem.json.gz"
@@ -1969,7 +1969,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/studi-professionali-confprofessioni",
       "ruleset_version": "2026.2",
-      "source_hash": "7eb0c833beef7d2e4ec34ee34c7a03cace4d19764a5db2ba1c87f1363da97da3",
+      "source_hash": "2680313de4b1b53cda3004c4fc7ee27cc8b85128a8c090ea97210af5f85a9ad0",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/studi-professionali-confprofessioni.json.gz"
@@ -2020,7 +2020,7 @@
       "valid_to": "2027-03-31",
       "ruleset_id": "ccnl/terziario-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "b7345e6d25b6197c38787106fc3007eb2180c48ac632beea35ef7c40c5f52eeb",
+      "source_hash": "722569b2d67220aa7c122e645ad9ef42534b286380f982005a8236f709806466",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/terziario-confesercenti.json.gz"
@@ -2139,7 +2139,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi",
       "ruleset_version": "2026.2",
-      "source_hash": "87c0e7af2d22a7ba59afea22bdb66a4d05df0fa60b5dbddb320d1109b570d3e2",
+      "source_hash": "699a3b359d88df7ebbc29b308a7d3da08c909bd34c75198777560b464d40fdd8",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/turismo-federalberghi.json.gz"

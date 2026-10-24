@@ -46,6 +46,7 @@ from ccnl_engine.inputs import (
     WeeklyHours,
 )
 from ccnl_engine.period.repositories import BundledKnowledgeRepository
+from ccnl_engine.provenance.ruleset.models import RulesetReadiness
 from ccnl_engine.provenance.source.models import (
     SourceDocument,
     SourceKind,
@@ -228,12 +229,21 @@ def test_a_fund_amount_needs_a_value() -> None:
 
 
 class _ChimicaFundRepository(BundledKnowledgeRepository):
-    """The bundle, with the health fund on Chimica (no open limitation)."""
+    """The bundle, with the health fund on Chimica (no open limitation).
+
+    Chimica is ``reviewed``; the stub reads it as ``production`` so that
+    only the stated funds decide whether the operational run pays.
+    """
 
     def load_ccnl(self, ccnl_id: str) -> CCNL:
         ccnl = super().load_ccnl(ccnl_id)
         parameters = ccnl.parameters.model_copy(update={"health_funds": (_HEALTH,)})
-        return ccnl.model_copy(update={"parameters": parameters})
+        verification = ccnl.verification.model_copy(
+            update={"readiness": RulesetReadiness.PRODUCTION}
+        )
+        return ccnl.model_copy(
+            update={"parameters": parameters, "verification": verification}
+        )
 
 
 @pytest.mark.parametrize(

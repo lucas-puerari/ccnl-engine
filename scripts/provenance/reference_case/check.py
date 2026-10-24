@@ -56,7 +56,6 @@ if TYPE_CHECKING:
 __all__ = [
     "AXES",
     "AXIS_OF",
-    "BASELINE",
     "CASES_DIR",
     "CASE_KEYS",
     "COMPONENTS",
@@ -74,8 +73,6 @@ __all__ = [
 
 REPO_ROOT: Final = Path(__file__).resolve().parents[3]
 CASES_DIR: Final = REPO_ROOT / "tests/knowledge/ccnl_engine/period/reference_case"
-#: ``production`` CCNLs allowed without a ``verified`` case, shrink only.
-BASELINE: Final = Path(__file__).with_name("baseline.json")
 
 STATUSES: Final = ("verified", "source_linked")
 #: Outputs the engine did not produce, the only sources of a ``verified`` case.
@@ -340,61 +337,38 @@ def index(cases_dir: Path = CASES_DIR) -> dict[str, tuple[CaseEvidence, ...]]:
     return {ccnl: tuple(found[ccnl]) for ccnl in sorted(found)}
 
 
-def load_baseline(path: Path = BASELINE) -> frozenset[str]:
-    """Read the ``production`` CCNLs allowed without a ``verified`` case.
-
-    Returns:
-        Their ids.
-    """
-    data = json.loads(path.read_text(encoding="utf-8"))
-    ids = (
-        data.get("production_without_verified_case") if isinstance(data, dict) else None
-    )
-    return frozenset(str(i) for i in ids) if isinstance(ids, list) else frozenset()
-
-
-def _evidence_errors(
-    ccnl_id: str, tier: str, cases: tuple[CaseEvidence, ...], allowed: bool
-) -> Iterator[str]:
-    """Yield what the evidence of one CCNL lacks or what its baseline entry outran.
+def _evidence_errors(cases: tuple[CaseEvidence, ...]) -> Iterator[str]:
+    """Yield what the evidence of one ``production`` CCNL lacks.
 
     Yields:
         One reason per failed rule.
     """
-    verified = any(case.verification == "verified" for case in cases)
-    if tier == "production" and not cases:
+    if not cases:
         yield "production without a valid reference case"
-    if tier == "production" and not verified and not allowed:
+    if not any(case.verification == "verified" for case in cases):
         yield "production without a verified reference case"
-    if allowed and (verified or tier != "production"):
-        yield f"stale entry of {BASELINE.name}: remove {ccnl_id}"
 
 
-def production_errors(
-    knowledge_dir: Path,
-    cases_dir: Path = CASES_DIR,
-    baseline: frozenset[str] | None = None,
-) -> list[str]:
+def production_errors(knowledge_dir: Path, cases_dir: Path = CASES_DIR) -> list[str]:
     """Return the evidence the ``production`` CCNLs lack.
+
+    A ``production`` CCNL needs a valid reference case and a ``verified``
+    one, checked against an output the engine did not produce.  No CCNL is
+    exempt.
 
     Args:
         knowledge_dir: Knowledge directory holding ``agreement/``.
         cases_dir: Directory of the reference cases.
-        baseline: CCNLs allowed without a ``verified`` case; read from
-            :data:`BASELINE` when ``None``.
 
     Returns:
         ``"agreement/<id>.json: ..."`` messages; empty when each
-        ``production`` CCNL has the cases it needs and the baseline is
-        not stale.
+        ``production`` CCNL has the cases it needs.
     """
     cases = index(cases_dir)
-    allowed = load_baseline() if baseline is None else baseline
     tiers = readiness_by_ccnl(knowledge_dir)
     return [
         f"agreement/{ccnl_id}.json: {reason}"
         for ccnl_id, tier in sorted(tiers.items())
-        for reason in _evidence_errors(
-            ccnl_id, tier, cases.get(ccnl_id, ()), ccnl_id in allowed
-        )
+        if tier == "production"
+        for reason in _evidence_errors(cases.get(ccnl_id, ()))
     ]

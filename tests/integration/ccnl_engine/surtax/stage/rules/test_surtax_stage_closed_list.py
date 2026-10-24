@@ -38,6 +38,7 @@ from ccnl_engine.inputs import (
     WorkerCategory,
 )
 from ccnl_engine.period.repositories import BundledKnowledgeRepository
+from ccnl_engine.provenance.ruleset.models import RulesetReadiness
 from ccnl_engine.provenance.source.models import (
     SourceDocument,
     SourceKind,
@@ -49,6 +50,7 @@ from ccnl_engine.provenance.source.rule.models import (
 )
 
 if TYPE_CHECKING:
+    from ccnl_engine.agreement.models import CCNL
     from ccnl_engine.surtax.models import SurtaxRules
 
 _HIRED = date(2026, 1, 1)
@@ -91,7 +93,18 @@ _CLOSED = RuleProvenance(
 
 
 class _ClosedListRepository(BundledKnowledgeRepository):
-    """The bundle, with the 2026 municipal list as if closed."""
+    """The bundle, with the 2026 municipal list as if closed.
+
+    Chimica is ``reviewed``; the stub reads it as ``production`` so that
+    only the surtax decides whether the operational run pays.
+    """
+
+    def load_ccnl(self, ccnl_id: str) -> CCNL:
+        ccnl = super().load_ccnl(ccnl_id)
+        verification = ccnl.verification.model_copy(
+            update={"readiness": RulesetReadiness.PRODUCTION}
+        )
+        return ccnl.model_copy(update={"verification": verification})
 
     def load_surtax_rules(self, year: int) -> SurtaxRules:
         rules = super().load_surtax_rules(year)

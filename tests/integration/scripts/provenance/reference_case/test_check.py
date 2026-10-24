@@ -92,41 +92,27 @@ _VERIFIED: dict[str, object] = _CASE | {
 
 
 def test_a_production_ccnl_needs_a_valid_and_a_verified_case(tmp_path: Path) -> None:
-    """A source-linked case is evidence, not an independent output."""
+    """A source-linked case is evidence, not an independent output.
+
+    No CCNL is exempt: the list of production CCNLs promoted before the
+    rule is gone, and a reviewed CCNL needs no case.
+    """
     knowledge = _knowledge(tmp_path / "k", x="production", y="production", z="reviewed")
     folder = _cases(tmp_path, a=_CASE, b=_VERIFIED | {"inputs": {"ccnl_id": "z"}})
 
-    assert production_errors(knowledge, folder, frozenset()) == [
+    assert production_errors(knowledge, folder) == [
         "agreement/x.json: production without a verified reference case",
         "agreement/y.json: production without a valid reference case",
         "agreement/y.json: production without a verified reference case",
     ]
 
 
-def test_the_baseline_allows_the_ccnls_promoted_before_the_rule(
-    tmp_path: Path,
-) -> None:
-    """A listed production CCNL may lack a verified case, never a valid one."""
-    knowledge = _knowledge(tmp_path / "k", x="production", y="production")
-    folder = _cases(tmp_path, a=_CASE)
-
-    assert production_errors(knowledge, folder, frozenset({"x", "y"})) == [
-        "agreement/y.json: production without a valid reference case"
-    ]
-
-
-def test_the_baseline_only_shrinks(tmp_path: Path) -> None:
-    """An entry that gained a verified case or left production is stale.
-
-    An entry with no CCNL file allows nothing and is ignored.
-    """
-    knowledge = _knowledge(tmp_path / "k", x="production", z="reviewed")
+def test_a_verified_case_clears_a_production_ccnl(tmp_path: Path) -> None:
+    """A production CCNL with a verified case has what it needs."""
+    knowledge = _knowledge(tmp_path / "k", x="production")
     folder = _cases(tmp_path, a=_VERIFIED)
 
-    assert production_errors(knowledge, folder, frozenset({"x", "z", "gone"})) == [
-        "agreement/x.json: stale entry of baseline.json: remove x",
-        "agreement/z.json: stale entry of baseline.json: remove z",
-    ]
+    assert production_errors(knowledge, folder) == []
 
 
 def test_the_bundle_binds_each_production_ccnl_to_a_case() -> None:
