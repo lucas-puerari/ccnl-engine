@@ -97,10 +97,20 @@ Evidence:
   3.13 and 3.14, docs build, security scan, provenance gates, public
   snippets, and the build of the wheel and sdist smoke-tested on Python
   3.12, 3.13 and 3.14). Pull requests and the release call the same
-  workflow; the release publishes the distribution it built and tested,
-  and is blocked while `scripts/provenance/check.py --deadlines` finds a
+  workflow; the release publishes the distribution it built and tested.
+  Both are blocked while `scripts/provenance/check.py --deadlines` finds a
   CCNL past its `review_due`, an accepted variance past its `review_by`
   or a divergence without an owner.
+- Freshness: `.github/workflows/freshness.yml` runs every week. It fails
+  on the deadlines of the next 60 days (`--deadlines --within 60`), so the
+  work opens before the date, and publishes two reports in the job
+  summary: the staleness of each ruleset
+  (`scripts/provenance/staleness/report.py`: reviews due, pay tranches
+  starting, pay tables running out, rulesets ending or provisional, yearly
+  data missing for the coming year, a municipal surtax file older than a
+  month) and the state of each source
+  (`scripts/provenance/source/check.py`: each URL fetched once, its
+  SHA-256 compared with the one on record, nothing written back).
 - Sector oracles: a year and a termination on 30 June of each contribution
   sector of the `production` CCNLs (industria: Metalmeccanico C3 with a
   weekday overtime; terziario: Terziario Confesercenti IV, fourteen

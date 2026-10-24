@@ -46,20 +46,10 @@ jobs:
     needs: validate
     uses: ./.github/workflows/quality-gates.yml
 
-  deadlines:
-    name: No overdue review, variance or unowned divergence
-    needs: validate
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
-
-      - name: Check the deadlines of the bundle
-        run: python scripts/provenance/check.py --deadlines
-
   # ── 3. Publish to PyPI ───────────────────────────────────────────────────────
   publish-pypi:
     name: Publish to PyPI
-    needs: [gates, deadlines]
+    needs: gates
     runs-on: ubuntu-latest
     permissions:
       contents: read

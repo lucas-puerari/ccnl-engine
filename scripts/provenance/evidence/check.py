@@ -33,7 +33,7 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 from typing import TYPE_CHECKING, Final
 
@@ -436,22 +436,24 @@ def _ccnl_errors(file: str, data: Json) -> Iterator[str]:
         yield from (f"{file}: {e}" for e in errors)
 
 
-def deadline_errors(root: Path, today: date) -> list[str]:
-    """Return the deadlines of the bundle that ``today`` has passed.
+def deadline_errors(root: Path, today: date, within: int = 0) -> list[str]:
+    """Return the deadlines of the bundle that ``today`` has passed or nears.
 
     A release is blocked while a CCNL file is past its ``review_due``,
     while an ``accepted_external_variance`` divergence is past its
     ``review_by``, or while a file that records divergences names no owner
-    to answer for them.  Run in the release workflow, not on every pull
-    request: a date passes without any change to the repository.
+    to answer for them.  ``within`` also reports the deadlines that fall in
+    the next ``within`` days: the scheduled job warns ahead of time, while
+    a date passes without any change to the repository.
 
     Returns:
-        ``"<file>: <reason>"`` messages; empty when nothing is overdue.
+        ``"<file>: <reason>"`` messages; empty when nothing is overdue or due.
     """
+    horizon = today + timedelta(days=within)
     return [
         f"{file}: {reason}"
         for file, data in _ccnl_files(root)
-        for reason in _overdue(_as_dict(data.get("verification")), today)
+        for reason in _overdue(_as_dict(data.get("verification")), today, horizon)
     ]
 
 
@@ -462,20 +464,26 @@ def _divergences(verification: Json) -> Iterator[Json]:
         yield from (_as_dict(d) for d in (found if isinstance(found, list) else []))
 
 
-def _overdue(verification: Json, today: date) -> Iterator[str]:
-    """Yield the deadlines of one CCNL file that ``today`` has passed.
+def _deadline(what: str, due: date | None, today: date, horizon: date) -> Iterator[str]:
+    if due is not None and due < today:
+        yield f"{what} overdue since {due}"
+    elif due is not None and due < horizon:
+        yield f"{what} due on {due}, in {(due - today).days} days"
+
+
+def _overdue(verification: Json, today: date, horizon: date) -> Iterator[str]:
+    """Yield the deadlines of one CCNL file that ``today`` has passed or nears.
 
     Yields:
-        One reason per overdue review, overdue variance or unowned
-        divergence.
+        One reason per overdue or due review, overdue or due variance, and
+        unowned divergence.
     """
-    due = _date(verification.get("review_due"))
-    if due is not None and due < today:
-        yield f"review overdue since {due}"
+    yield from _deadline(
+        "review", _date(verification.get("review_due")), today, horizon
+    )
     for divergence in _divergences(verification):
         by = _date(divergence.get("review_by"))
-        if by is not None and by < today:
-            yield f"accepted variance overdue since {by}"
+        yield from _deadline("accepted variance", by, today, horizon)
         if not verification.get("owner"):
             yield "divergence without verification.owner"
 

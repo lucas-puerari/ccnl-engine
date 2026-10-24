@@ -1,0 +1,39 @@
+name: Freshness
+
+# A date passes without any change to the repository: a review falls due,
+# a pay tranche starts, a publisher replaces a document.  Every week this
+# job fails on the deadlines of the next 60 days, so the work opens while
+# the deadline is still ahead (60, then about 30, 14 and 7 days before),
+# and publishes the staleness of each ruleset and the state of each source
+# in the job summary.
+
+on:
+  schedule:
+    # Every Monday at 06:00 UTC.
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deadlines:
+    name: No deadline in the next 60 days
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+
+      - name: Deadlines of the next 60 days
+        run: python scripts/provenance/check.py --deadlines --within 60
+
+  staleness:
+    name: Staleness and sources report
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+
+      - name: Staleness of each ruleset
+        run: python scripts/provenance/staleness/report.py --within 60 >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Reachability and hash of each source
+        run: python scripts/provenance/source/check.py >> "$GITHUB_STEP_SUMMARY"

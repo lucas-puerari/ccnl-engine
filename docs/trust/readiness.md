@@ -272,8 +272,9 @@ later than `review_due` does not count the CCNL as production: it gets the
 same `ruleset_not_production` blocker (detail: the ruleset id), with a
 remediation that names the review date and the payment date. The due day
 itself is still in time. An installed wheel therefore stops paying a CCNL
-whose review lapsed, even though the release workflow
-(`scripts/provenance/check.py --deadlines`) no longer runs against it.
+whose review lapsed, even though the deadline gate of CI and of the
+release (`scripts/provenance/check.py --deadlines`) no longer runs against
+it.
 
 `RulesetAssurance.is_production` stays a property of the file, so
 `inspect_ruleset` reports the tier before any run; use

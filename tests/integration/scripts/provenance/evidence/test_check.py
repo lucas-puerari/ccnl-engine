@@ -443,6 +443,32 @@ def test_a_release_waits_for_overdue_deadlines(
     assert deadline_errors(root, date(2026, 10, 15)) == expected
 
 
+@pytest.mark.parametrize(
+    ("verification", "expected"),
+    [
+        ({"owner": "maintainer", "review_due": "2026-12-14"}, []),
+        (
+            {"owner": "maintainer", "review_due": "2026-12-13"},
+            ["agreement/x.json: review due on 2026-12-13, in 59 days"],
+        ),
+        (
+            {"owner": "maintainer"} | _variance("2026-10-16"),
+            ["agreement/x.json: accepted variance due on 2026-10-16, in 1 days"],
+        ),
+        (
+            {"owner": "maintainer", "review_due": "2026-10-14"},
+            ["agreement/x.json: review overdue since 2026-10-14"],
+        ),
+    ],
+)
+def test_the_weekly_job_warns_ahead_of_each_deadline(
+    tmp_path: Path, verification: dict[str, object], expected: list[str]
+) -> None:
+    """``within`` reports the deadlines of the next days, the overdue ones too."""
+    root = _verification_file(tmp_path, verification)
+    assert deadline_errors(root, date(2026, 10, 15), within=60) == expected
+
+
 def test_the_bundle_has_no_overdue_deadline_today() -> None:
     """Every deadline of the bundle is still ahead on 15 October 2026."""
     assert deadline_errors(KNOWLEDGE_DIR, date(2026, 10, 15)) == []

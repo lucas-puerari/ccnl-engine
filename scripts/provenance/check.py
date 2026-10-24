@@ -46,7 +46,9 @@ Modes:
   readiness of the CCNL, its verification status and axes.
 - ``--deadlines``: fail when a CCNL is past its ``review_due``, an accepted
   variance past its ``review_by``, or a file with divergences has no
-  owner.  The release workflow runs it.
+  owner.  ``--within DAYS`` also fails on the deadlines of the next DAYS
+  days.  The quality gates of CI and of the release run it; the weekly
+  freshness job runs it with ``--within 60`` to warn ahead of time.
 
 Every case mode prints the number of checked cases per verification status.
 The script uses the standard library only, so CI can run it without
@@ -62,7 +64,7 @@ Usage::
     python scripts/provenance/check.py --all
     python scripts/provenance/check.py --update-baseline [--allow-growth]
     python scripts/provenance/check.py --index
-    python scripts/provenance/check.py --deadlines
+    python scripts/provenance/check.py --deadlines [--within DAYS]
 
 Exit codes:
     0   All checks pass.
@@ -309,18 +311,20 @@ def update_baseline(
 
 
 def check_deadlines(
-    root: Path = payable_rules.KNOWLEDGE_DIR, today: date | None = None
+    root: Path = payable_rules.KNOWLEDGE_DIR,
+    today: date | None = None,
+    within: int = 0,
 ) -> bool:
-    """Print the overdue deadlines of the bundle.
+    """Print the deadlines of the bundle that are overdue or due ``within`` days.
 
     Returns:
-        ``True`` when nothing is overdue.
+        ``True`` when nothing is overdue or due.
     """
     day = today or datetime.now(tz=UTC).date()
-    errors = provenance_evidence.deadline_errors(root, day)
+    errors = provenance_evidence.deadline_errors(root, day, within)
     for error in errors:
         print(f"  {error}", file=sys.stderr)
-    print(f"Deadlines checked on {day}: {len(errors)} overdue.")
+    print(f"Deadlines checked on {day} within {within} days: {len(errors)} found.")
     return not errors
 
 
@@ -395,6 +399,13 @@ def _parser() -> argparse.ArgumentParser:
         help="Rewrite the evidence baseline from the bundle (shrink only).",
     )
     parser.add_argument(
+        "--within",
+        type=int,
+        default=0,
+        metavar="DAYS",
+        help="With --deadlines, also fail on the deadlines of the next DAYS days.",
+    )
+    parser.add_argument(
         "--allow-growth",
         action="store_true",
         help="With --update-baseline, accept new weak evidence entries.",
@@ -465,7 +476,7 @@ def _report(args: argparse.Namespace) -> None:
     if args.index:
         print_index()
         raise SystemExit(0)
-    raise SystemExit(0 if check_deadlines() else 1)
+    raise SystemExit(0 if check_deadlines(within=args.within) else 1)
 
 
 def _case_paths(
@@ -489,6 +500,10 @@ def main() -> None:
     args = parser.parse_args()
     if args.allow_growth and not args.update_baseline:
         parser.error("--allow-growth requires --update-baseline")
+    if args.within and not args.deadlines:
+        parser.error("--within requires --deadlines")
+    if args.within < 0:
+        parser.error("--within must not be negative")
 
     if args.index or args.deadlines:
         _report(args)
