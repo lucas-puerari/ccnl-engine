@@ -76,7 +76,7 @@ jobs:
   # ── 4. GitHub Release ────────────────────────────────────────────────────────
   github-release:
     name: Create GitHub Release
-    needs: publish-pypi
+    needs: [gates, mutation, publish-pypi]
     runs-on: ubuntu-latest
     permissions:
       contents: write  # create GitHub Release
@@ -107,6 +107,23 @@ jobs:
           name: dist
           path: dist/
 
+      - name: Download the mutation campaign of the tagged commit
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131  # v7
+        with:
+          name: mutation-results
+          path: mutants/
+
+      # The dossier is attached to the release, so it outlives the CI
+      # artifacts it gathers.
+      - name: Build the validation dossier
+        env:
+          GATES: ${{ needs.gates.result }}
+          MUTATION: ${{ needs.mutation.result }}
+        run: >-
+          python scripts/distribution/dossier/generate.py
+          --gate "gates=$GATES" --gate "mutation=$MUTATION"
+          --mutation mutants/mutation-score.json --out dossier/
+
       - name: Generate rules diff since previous release
         id: diff
         run: |
@@ -124,5 +141,8 @@ jobs:
         with:
           generate_release_notes: true
           body_path: rules_diff.md
-          files: dist/*
+          files: |
+            dist/*
+            dossier/dossier.json
+            dossier/dossier.md
           fail_on_unmatched_files: true
