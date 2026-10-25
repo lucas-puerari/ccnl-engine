@@ -34,7 +34,11 @@ from ccnl_engine.event.facade import BonusEvent
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.models import PayrollRun
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.tax_credit.account.models import TrattamentoAccount
@@ -84,7 +88,9 @@ def test_productivity_bonus_ineligible_above_income_ceiling() -> None:
         opening_state=PeriodState.zero(),
         events=(bonus,),
     )
-    result = calculate_period(req)
+    result = calculate_period(
+        req, repo=bundled_repository(), resolver=bundled_policies()
+    )
 
     sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
     assert sub_tax == _ZERO, (
@@ -135,7 +141,9 @@ def test_trattamento_integrativo_recovery_uses_eight_installments() -> None:
         opening_state=opening,
         events=(bonus,),
     )
-    result = calculate_period(req)
+    result = calculate_period(
+        req, repo=bundled_repository(), resolver=bundled_policies()
+    )
 
     recovery = _sum_account(result, AccountKind.CREDIT_RECOVERIES)
     installment = Decimal("900.00") / 8
@@ -181,7 +189,9 @@ def test_trattamento_integrativo_small_recovery_taken_in_one_period() -> None:
         opening_state=opening,
         events=(bonus,),
     )
-    result = calculate_period(req)
+    result = calculate_period(
+        req, repo=bundled_repository(), resolver=bundled_policies()
+    )
 
     recovery = _sum_account(result, AccountKind.CREDIT_RECOVERIES)
     assert recovery == Decimal("50.00"), (

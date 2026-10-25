@@ -20,7 +20,11 @@ from ccnl_engine.employer.inputs import (
 )
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 
 if TYPE_CHECKING:
@@ -42,7 +46,9 @@ def _run(contract: tuple[str, str], zone: AgriculturalZone | None) -> PeriodResu
             employer=EmployerProfile(headcount=Headcount(10), agricultural_zone=zone),
             opening_state=PeriodState.zero(),
             tfr_treasury_fund=False,
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

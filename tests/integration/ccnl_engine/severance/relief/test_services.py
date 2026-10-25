@@ -20,7 +20,11 @@ from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.pension_fund.inputs import PensionFundEnrolment
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.severance.relief.services import (
     APPRENTICE_GUARANTEE_FUND,
@@ -47,7 +51,9 @@ def _run(
             employer=EmployerProfile(headcount=Headcount(50)),
             opening_state=PeriodState.zero(),
             **kwargs,  # type: ignore[arg-type]
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

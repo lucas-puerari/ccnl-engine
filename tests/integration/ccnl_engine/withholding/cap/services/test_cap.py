@@ -43,7 +43,11 @@ from ccnl_engine.event.facade import AbsenceEvent, FringeEvent
 from ccnl_engine.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.pay_item.facade import CompetencePeriod
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.sector.loaders import load_year_rules
 from ccnl_engine.withholding.cap.services import (
@@ -92,7 +96,9 @@ def _run(
             opening_state=opening,
             events=events,
             prior_year=RENEWAL_WAIVED,
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 
@@ -104,7 +110,9 @@ def _january() -> PeriodResult:
 @cache
 def _year() -> CompetenceYearResult:
     return calculate_competence_year(
-        year_plan(_YEAR, _CCNL, "C3", events={1: (_ABSENCE, _FRINGE)})
+        year_plan(_YEAR, _CCNL, "C3", events={1: (_ABSENCE, _FRINGE)}),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 
@@ -311,6 +319,10 @@ def test_absence_leaving_less_than_withholdings_caps_the_irpef() -> None:
     run (art. 23 c. 3 DPR 600/1973); the derivation is in the module
     docstring.
     """
-    result = calculate_period(period_request(events=(_ABSENCE, _FRINGE)))
+    result = calculate_period(
+        period_request(events=(_ABSENCE, _FRINGE)),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
     assert result.period_net == Decimal("0.00")
     assert result.closing_state.cash.shortfall.irpef == Decimal("136.02")

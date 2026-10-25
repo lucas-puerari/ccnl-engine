@@ -24,7 +24,7 @@ from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.period.repositories import BundledKnowledgeRepository
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import bundled_policies, calculate_period
 from ccnl_engine.regime.models import EmploymentSector
 from ccnl_engine.run.types import PeriodId
 from tests.integration.ccnl_engine.year.builders import (
@@ -63,6 +63,7 @@ def _june(
             prior_year=prior_year or PriorYearTaxFacts(),
         ),
         repo=NextYearRepository(),
+        resolver=bundled_policies(),
     )
 
 
@@ -142,6 +143,7 @@ def test_a_renewal_without_increment_posts_nothing() -> None:
             prior_year=PriorYearTaxFacts(employment_income=Decimal(20_000)),
         ),
         repo=_RenewalFromJuly2025(),
+        resolver=bundled_policies(),
     )
 
     (decision,) = [d for d in result.decisions if d.capability == _RENEWAL]

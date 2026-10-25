@@ -21,7 +21,11 @@ from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 from tests.integration.ccnl_engine.period.builders import (
     period_request,
@@ -92,9 +96,15 @@ class TestIvsCeilingApplies:
                 inps_bases=(InpsBaseYtd(2026, Decimal("121000.00")),),
             )
         )
-        r_capped = calculate_period(_req(month=11, opening=opening, history=_POST_1995))
+        r_capped = calculate_period(
+            _req(month=11, opening=opening, history=_POST_1995),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         r_uncapped = calculate_period(
-            _req(month=11, opening=opening, history=_NOT_APPLICABLE)
+            _req(month=11, opening=opening, history=_NOT_APPLICABLE),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         assert _ivs_employee(r_uncapped) > _ivs_employee(r_capped)
         assert (
@@ -109,17 +119,31 @@ class TestIvsCeilingApplies:
                 inps_bases=(InpsBaseYtd(2026, Decimal("130000.00")),),
             )
         )
-        r_capped = calculate_period(_req(month=12, opening=opening, history=_POST_1995))
+        r_capped = calculate_period(
+            _req(month=12, opening=opening, history=_POST_1995),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         r_uncapped = calculate_period(
-            _req(month=12, opening=opening, history=_NOT_APPLICABLE)
+            _req(month=12, opening=opening, history=_NOT_APPLICABLE),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         assert _ivs_employee(r_capped) == _ZERO
         assert _ivs_employee(r_uncapped) > _ZERO
 
     def test_true_and_false_identical_when_ytd_is_zero(self) -> None:
         """With no prior YTD, both modes give identical contributions."""
-        r_capped = calculate_period(_req(month=1, history=_POST_1995))
-        r_uncapped = calculate_period(_req(month=1, history=_NOT_APPLICABLE))
+        r_capped = calculate_period(
+            _req(month=1, history=_POST_1995),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
+        r_uncapped = calculate_period(
+            _req(month=1, history=_NOT_APPLICABLE),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _ivs_employee(r_capped) == _ivs_employee(r_uncapped)
         assert (
             r_capped.contribution_breakdown.employee
@@ -137,7 +161,11 @@ class TestMassimaleThreshold:
                 inps_bases=(InpsBaseYtd(2026, _MASSIMALE + Decimal("1000.00")),),
             )
         )
-        result = calculate_period(_req(month=12, opening=opening, history=_POST_1995))
+        result = calculate_period(
+            _req(month=12, opening=opening, history=_POST_1995),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _ivs_employee(result) == _ZERO
 
     def test_ivs_partial_when_crossing_massimale(self) -> None:
@@ -148,9 +176,15 @@ class TestMassimaleThreshold:
                 inps_bases=(InpsBaseYtd(2026, Decimal("121000.00")),),
             )
         )
-        r_capped = calculate_period(_req(month=11, opening=opening, history=_POST_1995))
+        r_capped = calculate_period(
+            _req(month=11, opening=opening, history=_POST_1995),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         r_uncapped = calculate_period(
-            _req(month=11, opening=opening, history=_NOT_APPLICABLE)
+            _req(month=11, opening=opening, history=_NOT_APPLICABLE),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         ivs_capped = _ivs_employee(r_capped)
         ivs_uncapped = _ivs_employee(r_uncapped)
@@ -158,7 +192,11 @@ class TestMassimaleThreshold:
 
     def test_ivs_positive_below_massimale(self) -> None:
         """IVS is positive when YTD is safely below the massimale."""
-        result = calculate_period(_req(month=1, history=_POST_1995))
+        result = calculate_period(
+            _req(month=1, history=_POST_1995),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _ivs_employee(result) > _ZERO
 
     def test_ivs_capped_at_headroom_when_period_overshoots(self) -> None:
@@ -169,9 +207,15 @@ class TestMassimaleThreshold:
                 inps_bases=(InpsBaseYtd(2026, _MASSIMALE - headroom),)
             )
         )
-        r_capped = calculate_period(_req(month=11, opening=opening, history=_POST_1995))
+        r_capped = calculate_period(
+            _req(month=11, opening=opening, history=_POST_1995),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         r_uncapped = calculate_period(
-            _req(month=11, opening=opening, history=_NOT_APPLICABLE)
+            _req(month=11, opening=opening, history=_NOT_APPLICABLE),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         ivs_comp = next(
             (
@@ -223,14 +267,20 @@ class TestAddizionale1Pct:
 
     def test_no_addizionale_in_january_with_zero_ytd(self) -> None:
         """Normal C3 January (YTD=0) produces no addizionale."""
-        result = calculate_period(_req(month=1, history=_POST_1995))
+        result = calculate_period(
+            _req(month=1, history=_POST_1995),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _addizionale(result) == _ZERO
         assert _settlement(result) is None
 
     def test_regular_month_ignores_the_annual_band(self) -> None:
         """July with YTD 70,000, above 56,224: still nothing until December."""
         result = calculate_period(
-            _req(month=7, opening=_opening(Decimal(70000)), history=_POST_1995)
+            _req(month=7, opening=_opening(Decimal(70000)), history=_POST_1995),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         assert _addizionale(result) == _ZERO
         assert _settlement(result) is None
@@ -242,7 +292,9 @@ class TestAddizionale1Pct:
         208/2001).  58,111 - 56,224 = 1,887; x 1% = 18.87 due.
         """
         result = calculate_period(
-            _req(month=12, opening=_opening(Decimal(55900)), history=_POST_1995)
+            _req(month=12, opening=_opening(Decimal(55900)), history=_POST_1995),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         settlement = _settlement(result)
         assert settlement is not None
@@ -253,7 +305,11 @@ class TestAddizionale1Pct:
     def test_december_gives_back_what_the_months_over_withheld(self) -> None:
         """Same year with 30.00 withheld by the months: 18.87 - 30.00 = -11.13."""
         opening = _opening(Decimal(55900), additional_ivs=Decimal("30.00"))
-        result = calculate_period(_req(month=12, opening=opening, history=_POST_1995))
+        result = calculate_period(
+            _req(month=12, opening=opening, history=_POST_1995),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         settlement = _settlement(result)
         assert settlement is not None
         assert settlement.amount == Decimal("-11.13")
@@ -268,7 +324,11 @@ class TestAddizionale1Pct:
         nothing to settle.
         """
         opening = _opening(Decimal(130000), additional_ivs=Decimal("660.71"))
-        result = calculate_period(_req(month=12, opening=opening, history=_POST_1995))
+        result = calculate_period(
+            _req(month=12, opening=opening, history=_POST_1995),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _settlement(result) is None
         assert _addizionale(result) == _ZERO
 
@@ -280,7 +340,9 @@ class TestAddizionale1Pct:
         """
         opening = _opening(Decimal(125000), additional_ivs=Decimal("660.71"))
         result = calculate_period(
-            _req(month=12, opening=opening, history=_NOT_APPLICABLE)
+            _req(month=12, opening=opening, history=_NOT_APPLICABLE),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         settlement = _settlement(result)
         assert settlement is not None
@@ -293,7 +355,9 @@ class TestAddizionale1Pct:
                 month=11,
                 opening=_opening(Decimal(130000)),
                 contribution_history=ContributionHistory(date(2001, 9, 1)),
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         assert _addizionale(result) == _ZERO
         assert _settlement(result) is None

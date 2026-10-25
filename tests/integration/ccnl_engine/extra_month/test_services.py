@@ -15,7 +15,11 @@ from ccnl_engine.event.facade import AbsenceEvent
 from ccnl_engine.irpef.computation.services import compute_tax
 from ccnl_engine.irpef.deduction.rules import work_income_deduction
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.models import PayrollRun, RunKind
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.year.competence.services import (
@@ -40,7 +44,9 @@ _YEAR = 2026
 
 def _commercio_year(employment: EmploymentPeriod) -> CompetenceYearResult:
     return calculate_competence_year(
-        year_plan(_YEAR, _COMMERCIO, "4", employment_period=employment)
+        year_plan(_YEAR, _COMMERCIO, "4", employment_period=employment),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 
@@ -117,7 +123,9 @@ class TestTerminationSettlement:
                 employment_period=EmploymentPeriod(
                     date(2020, 1, 1), date(_YEAR, 5, 31)
                 ),
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         assert list(_extra_items(result)) == ["extra_month_thirteenth_2026-05-regular"]
 
@@ -134,9 +142,15 @@ class TestSuspendingAbsences:
             end_date=date(_YEAR, 4, 20),
             suspends_accrual=True,
         )
-        full = calculate_competence_year(year_plan(_YEAR, _METALMECCANICO, "C3"))
+        full = calculate_competence_year(
+            year_plan(_YEAR, _METALMECCANICO, "C3"),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         reduced = calculate_competence_year(
-            year_plan(_YEAR, _METALMECCANICO, "C3", events={4: (absence,)})
+            year_plan(_YEAR, _METALMECCANICO, "C3", events={4: (absence,)}),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         assert reduced.period_results[-1].period_gross < (
             full.period_results[-1].period_gross
@@ -163,7 +177,9 @@ class TestStandaloneExtraRun:
             employment_period=employment,
             withholding_schedule=calendar_schedule(calendar),
         )
-        return calculate_period(request).period_gross
+        return calculate_period(
+            request, repo=bundled_repository(), resolver=bundled_policies()
+        ).period_gross
 
     def test_half_quattordicesima_takes_the_ccnl_fraction(self) -> None:
         """Cooperative Sociali grants 13.5 months: the 14th is half a month."""

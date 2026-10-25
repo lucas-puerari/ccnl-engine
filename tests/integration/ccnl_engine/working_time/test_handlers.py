@@ -21,7 +21,11 @@ from ccnl_engine.event.facade import BonusEvent, NightShiftEvent, OvertimeEvent
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation.decision.validators import (
     check_substitute_tax_plafond,
 )
@@ -55,7 +59,9 @@ def _night_run(amount: Decimal, opening: PeriodState) -> PeriodResult:
             level_code="4",
             opening_state=opening,
             events=(event,),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 
@@ -147,7 +153,9 @@ def _bonus_run(*events: object, income: Decimal = Decimal(25_000)) -> PeriodResu
             level_code="C3",
             opening_state=PeriodState.zero(),
             events=events,  # type: ignore[arg-type]
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

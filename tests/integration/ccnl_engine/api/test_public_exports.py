@@ -31,9 +31,23 @@ PUBLIC_NAMESPACES = frozenset({
     f"{ROOT_PACKAGE}.events",
     f"{ROOT_PACKAGE}.results",
     f"{ROOT_PACKAGE}.catalog",
+    f"{ROOT_PACKAGE}.repository",
 })
 
 EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
+    "ccnl_engine.repository": frozenset({
+        "CCNL",
+        "BundledKnowledgeRepository",
+        "FamilyDeductionRules",
+        "InpsSickPayRates",
+        "InsuredAbsenceRates",
+        "KnowledgeRepository",
+        "PolicyResolver",
+        "SurtaxRules",
+        "VariablePayRules",
+        "YearRules",
+        "bundled_policies",
+    }),
     "ccnl_engine": frozenset({
         "CcnlEngineError",
         "CompetenceYearPlan",

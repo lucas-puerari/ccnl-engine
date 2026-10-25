@@ -21,7 +21,11 @@ from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.severance.relief.services import (
     GUARANTEE_FUND_COMPONENT,
@@ -58,7 +62,9 @@ def _run(contract: dict[str, object], **kwargs: object) -> PeriodResult:
             seniority=new_hire(),
             **contract,  # type: ignore[arg-type]
             **kwargs,  # type: ignore[arg-type]
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

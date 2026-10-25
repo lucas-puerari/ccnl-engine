@@ -36,7 +36,10 @@ from ccnl_engine.pay_item.facade import CompetencePeriod
 from ccnl_engine.pay_item.loaders import load_policy_resolver
 from ccnl_engine.pay_item.policies import PolicyContext
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.variable_pay.benefit.handlers import fringe_threshold_of
 from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
@@ -83,7 +86,7 @@ def _run(
         opening_state=kwargs.pop("opening_state", PeriodState.zero()),  # type: ignore[arg-type]
         **kwargs,  # type: ignore[arg-type]
     )
-    return calculate_period(request, resolver=_RESOLVER)
+    return calculate_period(request, resolver=_RESOLVER, repo=bundled_repository())
 
 
 def _decisions(result: PeriodResult, capability: str) -> list[CalculationDecision]:
@@ -280,7 +283,9 @@ class TestYearDecisions:
     def test_year_decisions_concatenate_runs(self) -> None:
         """Year decisions are the run decisions in payment order."""
         year = calculate_competence_year(
-            year_plan(_YEAR, _METALMECCANICO, "C3"), resolver=_RESOLVER
+            year_plan(_YEAR, _METALMECCANICO, "C3"),
+            resolver=_RESOLVER,
+            repo=bundled_repository(),
         )
         runs = year.period_results
         assert year.decisions == tuple(d for r in runs for d in r.decisions)

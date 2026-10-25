@@ -18,7 +18,11 @@ from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.models import PayrollRun
 from ccnl_engine.run.types import PeriodId
 
@@ -64,7 +68,9 @@ def test_full_year_tredicesima_same_gross_june_vs_december() -> None:
             _LEVEL_C3,
             payment_month=6,
             run=PayrollRun.thirteenth(_YEAR, 6),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     ).period_gross
     gross_december = calculate_period(
         _extra_month_req(
@@ -72,7 +78,9 @@ def test_full_year_tredicesima_same_gross_june_vs_december() -> None:
             _LEVEL_C3,
             payment_month=12,
             run=PayrollRun.thirteenth(_YEAR, 12),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     ).period_gross
     assert gross_june == gross_december
 
@@ -89,7 +97,9 @@ def test_full_year_tredicesima_equals_monthly_gross() -> None:
             _LEVEL_C3,
             payment_month=6,
             run=PayrollRun.thirteenth(_YEAR, 6),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     ).period_gross
 
     regular_gross = calculate_period(
@@ -100,7 +110,9 @@ def test_full_year_tredicesima_equals_monthly_gross() -> None:
             ccnl_id=_CCNL_METALMECCANICO,
             level_code=_LEVEL_C3,
             opening_state=PeriodState(cash=TaxCashState()),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     ).period_gross
 
     assert thirteenth_gross == regular_gross
@@ -121,7 +133,9 @@ def test_six_month_employee_same_rateo_june_vs_december() -> None:
             payment_month=6,
             run=PayrollRun.thirteenth(_YEAR, 6),
             employment_period=six_months,
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     ).period_gross
     gross_december = calculate_period(
         _extra_month_req(
@@ -130,7 +144,9 @@ def test_six_month_employee_same_rateo_june_vs_december() -> None:
             payment_month=12,
             run=PayrollRun.thirteenth(_YEAR, 12),
             employment_period=six_months,
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     ).period_gross
     assert gross_june == gross_december
 
@@ -147,7 +163,9 @@ def test_commercio_level4_quattordicesima_full_year_at_june_rate() -> None:
             _LEVEL_4,
             payment_month=6,
             run=PayrollRun.fourteenth(_YEAR, 6),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     ).period_gross
 
     regular_june = calculate_period(
@@ -158,7 +176,9 @@ def test_commercio_level4_quattordicesima_full_year_at_june_rate() -> None:
             ccnl_id=_CCNL_COMMERCIO,
             level_code=_LEVEL_4,
             opening_state=PeriodState(cash=TaxCashState()),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     ).period_gross
 
     assert quattordicesima_june == regular_june

@@ -23,7 +23,7 @@ from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.period.repositories import BundledKnowledgeRepository
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import bundled_policies, calculate_period
 from ccnl_engine.run.types import PeriodId
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
@@ -59,7 +59,7 @@ def _march(
         opening_state=PeriodState.zero(),
         category=category,
     )
-    return calculate_period(request, repo=repo)
+    return calculate_period(request, repo=repo, resolver=bundled_policies())
 
 
 def test_the_employer_pays_the_supplement_on_the_taxable_pay() -> None:

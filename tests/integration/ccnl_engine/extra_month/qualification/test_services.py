@@ -34,7 +34,11 @@ from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.provenance.source.models import (
     SourceDocument,
     SourceKind,
@@ -104,7 +108,7 @@ def _tredicesima(
         employment_period=employment,
         withholding_schedule=calendar_schedule(calendar),
     )
-    return calculate_period(request, repo=_Repo(rule))
+    return calculate_period(request, repo=_Repo(rule), resolver=bundled_policies())
 
 
 def _ratei(result: PeriodResult) -> dict[str, object]:
@@ -173,6 +177,8 @@ def test_accrual_built_by_the_caller_is_reported_as_request() -> None:
         extra_month_accrual=accrual,
         withholding_schedule=calendar_schedule(calendar),
     )
-    result = calculate_period(request)
+    result = calculate_period(
+        request, repo=bundled_repository(), resolver=bundled_policies()
+    )
     assert _ratei(result)["rule_origin"] == "request"
     assert MISSING_SOURCE_CODE not in [i.code for i in result.issues]

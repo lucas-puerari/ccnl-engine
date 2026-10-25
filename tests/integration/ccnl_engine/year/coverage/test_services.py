@@ -16,6 +16,7 @@ from ccnl_engine.errors import UnknownLevelError
 from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
+from ccnl_engine.period.services import bundled_policies
 from ccnl_engine.year.competence.inputs import CompetenceYearPlan
 from ccnl_engine.year.payment.services import prepare_year
 from ccnl_engine.year.tax_year.inputs import TaxYearPlan
@@ -52,7 +53,9 @@ def test_an_unknown_level_is_rejected_before_any_run() -> None:
 def test_a_tax_year_lists_the_runs_it_left_out() -> None:
     """The tax year degrades like the competence year: partial, not payable."""
     result = calculate_tax_year(
-        TaxYearPlan(tax_year=2026, competence_years=(_plan(),)), repo=_REPO
+        TaxYearPlan(tax_year=2026, competence_years=(_plan(),)),
+        repo=_REPO,
+        resolver=bundled_policies(),
     )
 
     left_out = [str(u.payment.run_id) for u in result.uncovered_runs]

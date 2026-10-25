@@ -50,7 +50,11 @@ from ccnl_engine.inputs import (
 )
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.facade import FringeBenefitItem
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from tests.integration.ccnl_engine.family.builders import (
     declared_dependent,
 )
@@ -329,8 +333,14 @@ def test_cumulative_fringe_threshold() -> None:
     event_date = date(_YEAR, 1, 15)
     fringe_a = FringeEvent(event_date=event_date, amount=Decimal("600.00"))
     fringe_b = FringeEvent(event_date=event_date, amount=Decimal("600.00"))
-    result_with_fringe = calculate_period(period_request(events=(fringe_a, fringe_b)))
-    result_without = calculate_period(period_request())
+    result_with_fringe = calculate_period(
+        period_request(events=(fringe_a, fringe_b)),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
+    result_without = calculate_period(
+        period_request(), repo=bundled_repository(), resolver=bundled_policies()
+    )
 
     tax_with = account_total(result_with_fringe, AccountKind.ORDINARY_TAX)
     tax_without = account_total(result_without, AccountKind.ORDINARY_TAX)
@@ -368,7 +378,9 @@ def test_fringe_retroactive_on_threshold_crossing() -> None:
     )
     fringe = FringeEvent(event_date=date(_YEAR, 2, 15), amount=Decimal("600.00"))
     result = calculate_period(
-        period_request(month=2, opening=state_after_m1, events=(fringe,))
+        period_request(month=2, opening=state_after_m1, events=(fringe,)),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
     assert result.benefit_breakdown.irpef_base == Decimal("1200.00"), (

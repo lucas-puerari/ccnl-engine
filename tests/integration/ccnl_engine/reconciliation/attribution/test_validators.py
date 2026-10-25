@@ -13,7 +13,11 @@ from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.event.facade import OvertimeEvent, WelfareEvent
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation.attribution.validators import (
     ACCOUNT_CAPABILITIES,
     KIND_ACCOUNTS,
@@ -42,7 +46,9 @@ def _result() -> PeriodResult:
                 OvertimeEvent(_DAY, Decimal(4), Decimal("15.00")),
                 WelfareEvent(_DAY, Decimal(100)),
             ),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 
@@ -75,7 +81,9 @@ def test_carried_surtax_rests_on_the_cap_decision() -> None:
             ccnl_id="metalmeccanico-federmeccanica",
             level_code="C3",
             opening_state=opening,
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     surtax = [
         e.amount for e in result.ledger_entries if e.account is AccountKind.SURTAX

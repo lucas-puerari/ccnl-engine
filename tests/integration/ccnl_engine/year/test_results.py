@@ -10,6 +10,7 @@ from ccnl_engine.assurance.policies import EngineMode
 from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
+from ccnl_engine.period.services import bundled_policies, bundled_repository
 from ccnl_engine.year.competence.services import (
     calculate_competence_year,
 )
@@ -49,7 +50,9 @@ def test_a_ruleset_version_with_two_contents_blocks_the_year() -> None:
     """The year keeps both contents and is not payable."""
     repo = _RehashingRepository()
 
-    year = calculate_competence_year(competence_year(), repo=repo)
+    year = calculate_competence_year(
+        competence_year(), repo=repo, resolver=bundled_policies()
+    )
 
     conflicts = [b for b in year.blockers if b.code is BlockerCode.RULESET_CONFLICT]
     assert repo.reads > 1
@@ -61,7 +64,9 @@ def test_a_ruleset_version_with_two_contents_blocks_the_year() -> None:
 
 def test_a_repository_that_does_not_change_reports_no_conflict() -> None:
     """Identical rulesets read by every run are listed once."""
-    year = calculate_competence_year(competence_year())
+    year = calculate_competence_year(
+        competence_year(), repo=bundled_repository(), resolver=bundled_policies()
+    )
 
     names = [str(r) for r in year.rulesets]
     assert len(names) == len(set(names))
@@ -70,11 +75,16 @@ def test_a_repository_that_does_not_change_reports_no_conflict() -> None:
 
 def test_a_full_resume_is_not_payable_and_does_not_raise() -> None:
     """A plan resumed on its own closing state computed nothing to assess."""
-    closing = calculate_competence_year(competence_year()).closing_state
+    closing = calculate_competence_year(
+        competence_year(), repo=bundled_repository(), resolver=bundled_policies()
+    ).closing_state
 
     for mode in EngineMode:
         resumed = calculate_competence_year(
-            replace(competence_year(), opening_state=closing), mode=mode
+            replace(competence_year(), opening_state=closing),
+            mode=mode,
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
 
         assert resumed.period_results == ()
@@ -86,7 +96,9 @@ def test_a_full_resume_is_not_payable_and_does_not_raise() -> None:
 
 def test_a_year_assesses_exactly_the_payments_it_computed() -> None:
     """The assessed payments are those of the results, in payment order."""
-    year = calculate_competence_year(competence_year())
+    year = calculate_competence_year(
+        competence_year(), repo=bundled_repository(), resolver=bundled_policies()
+    )
 
     assert (
         year.assessed_payments

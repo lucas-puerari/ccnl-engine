@@ -23,7 +23,11 @@ from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.facade import SicknessItem
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.results import PeriodResult
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation.validators import reconcile
 from ccnl_engine.run.types import PeriodId
 
@@ -81,8 +85,12 @@ class TestNoEvents:
 
     def test_no_events_matches_base(self) -> None:
         """A request with no events produces the same gross as the base case."""
-        base = calculate_period(_base())
-        with_empty = calculate_period(_req())
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        with_empty = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert base.period_gross == with_empty.period_gross
         assert base.period_net == with_empty.period_net
 
@@ -100,8 +108,14 @@ class TestOvertimeEventAccounting:
 
     def test_gross_increases_by_overtime_amount(self) -> None:
         """period_gross increases by the overtime gross amount."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._overtime()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._overtime()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         overtime_gross = Decimal(8) * Decimal("12.50") * Decimal("1.25")
         assert result.period_gross == base.period_gross + overtime_gross.quantize(
             Decimal("0.01")
@@ -109,30 +123,54 @@ class TestOvertimeEventAccounting:
 
     def test_cash_earnings_equals_period_gross(self) -> None:
         """CASH_EARNINGS ledger sum equals period_gross (I13 invariant)."""
-        result = calculate_period(_req(self._overtime()))
+        result = calculate_period(
+            _req(self._overtime()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _cash(result) == result.period_gross
 
     def test_inps_increases_with_overtime(self) -> None:
         """INPS employee contributions increase when overtime is added."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._overtime()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._overtime()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _inps_employee(result) > _inps_employee(base)
 
     def test_employer_cost_increases_with_overtime(self) -> None:
         """Employer cost increases when overtime is added."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._overtime()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._overtime()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.period_employer_cost > base.period_employer_cost
 
     def test_overtime_pay_item_in_result(self) -> None:
         """An OvertimeEarning pay item appears in the result."""
-        result = calculate_period(_req(self._overtime()))
+        result = calculate_period(
+            _req(self._overtime()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         kinds = {pi.kind for pi in result.pay_items}
         assert "overtime_earning" in kinds
 
     def test_overtime_has_cash_earnings_entry(self) -> None:
         """The overtime event produces a CASH_EARNINGS ledger entry."""
-        result = calculate_period(_req(self._overtime()))
+        result = calculate_period(
+            _req(self._overtime()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         overtime_entries = [
             e
             for e in result.ledger_entries
@@ -143,7 +181,11 @@ class TestOvertimeEventAccounting:
 
     def test_reconcile_passes(self) -> None:
         """All reconciliation invariants hold for an overtime period."""
-        result = calculate_period(_req(self._overtime()))
+        result = calculate_period(
+            _req(self._overtime()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations
 
@@ -158,25 +200,37 @@ class TestNightShiftEventAccounting:
 
     def test_gross_increases(self) -> None:
         """period_gross increases by the night-shift supplement."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._night()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._night()), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert result.period_gross == base.period_gross + Decimal("80.00")
 
     def test_inps_increases(self) -> None:
         """INPS employee contributions increase for night-shift supplement."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._night()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._night()), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert _inps_employee(result) > _inps_employee(base)
 
     def test_night_shift_pay_item_present(self) -> None:
         """A night_holiday_shift_earning pay item is present."""
-        result = calculate_period(_req(self._night()))
+        result = calculate_period(
+            _req(self._night()), repo=bundled_repository(), resolver=bundled_policies()
+        )
         kinds = {pi.kind for pi in result.pay_items}
         assert "night_holiday_shift_earning" in kinds
 
     def test_reconcile_passes(self) -> None:
         """All reconciliation invariants hold for a night-shift period."""
-        result = calculate_period(_req(self._night()))
+        result = calculate_period(
+            _req(self._night()), repo=bundled_repository(), resolver=bundled_policies()
+        )
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations
 
@@ -191,25 +245,45 @@ class TestHolidayWorkEventAccounting:
 
     def test_gross_increases(self) -> None:
         """period_gross increases by the holiday supplement."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._holiday()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._holiday()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.period_gross == base.period_gross + Decimal("60.00")
 
     def test_inps_increases(self) -> None:
         """INPS increases for holiday supplement."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._holiday()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._holiday()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _inps_employee(result) > _inps_employee(base)
 
     def test_holiday_pay_item_present(self) -> None:
         """A night_holiday_shift_earning pay item is present."""
-        result = calculate_period(_req(self._holiday()))
+        result = calculate_period(
+            _req(self._holiday()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         kinds = {pi.kind for pi in result.pay_items}
         assert "night_holiday_shift_earning" in kinds
 
     def test_reconcile_passes(self) -> None:
         """All reconciliation invariants hold for a holiday-work period."""
-        result = calculate_period(_req(self._holiday()))
+        result = calculate_period(
+            _req(self._holiday()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations
 
@@ -226,19 +300,35 @@ class TestAbsenceEventAccounting:
 
     def test_gross_unchanged(self) -> None:
         """period_gross (contractual entitlement) is not reduced by absence."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._absence()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._absence()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.period_gross == base.period_gross
 
     def test_unpaid_absence_deduction_equals_deducted_amount(self) -> None:
         """unpaid_absence_deduction equals hours * hourly_rate."""
-        result = calculate_period(_req(self._absence()))
+        result = calculate_period(
+            _req(self._absence()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.unpaid_absence_deduction == Decimal("96.00")  # 8h * 12.00
 
     def test_employer_cost_reduced_by_absence(self) -> None:
         """period_employer_cost decreases by at least the absence wage."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._absence()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._absence()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.period_employer_cost < base.period_employer_cost
         absence_wage = Decimal("96.00")
         cost_delta = base.period_employer_cost - result.period_employer_cost
@@ -249,24 +339,42 @@ class TestAbsenceEventAccounting:
 
     def test_inps_decreases(self) -> None:
         """INPS employee contributions decrease when gross decreases."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._absence()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._absence()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _inps_employee(result) < _inps_employee(base)
 
     def test_absence_pay_item_present(self) -> None:
         """An absence_deduction pay item is present."""
-        result = calculate_period(_req(self._absence()))
+        result = calculate_period(
+            _req(self._absence()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         kinds = {pi.kind for pi in result.pay_items}
         assert "absence_deduction" in kinds
 
     def test_cash_earnings_equals_period_gross(self) -> None:
         """CASH_EARNINGS sum equals period_gross; absence is in EMPLOYEE_DEDUCTIONS."""
-        result = calculate_period(_req(self._absence()))
+        result = calculate_period(
+            _req(self._absence()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _cash(result) == result.period_gross
 
     def test_reconcile_passes(self) -> None:
         """All reconciliation invariants hold for an absence period."""
-        result = calculate_period(_req(self._absence()))
+        result = calculate_period(
+            _req(self._absence()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations
 
@@ -281,25 +389,37 @@ class TestSickLeaveEventAccounting:
 
     def test_gross_increases(self) -> None:
         """period_gross increases by the sick-leave employer amount."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._sick()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._sick()), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert result.period_gross == base.period_gross + Decimal("300.00")
 
     def test_inps_increases(self) -> None:
         """INPS increases for sick-leave employer portion."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._sick()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._sick()), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert _inps_employee(result) > _inps_employee(base)
 
     def test_sickness_pay_item_present(self) -> None:
         """A sickness_item pay item is present."""
-        result = calculate_period(_req(self._sick()))
+        result = calculate_period(
+            _req(self._sick()), repo=bundled_repository(), resolver=bundled_policies()
+        )
         kinds = {pi.kind for pi in result.pay_items}
         assert "sickness_item" in kinds
 
     def test_reconcile_passes(self) -> None:
         """All reconciliation invariants hold for a sick-leave period."""
-        result = calculate_period(_req(self._sick()))
+        result = calculate_period(
+            _req(self._sick()), repo=bundled_repository(), resolver=bundled_policies()
+        )
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations
 
@@ -311,8 +431,12 @@ class TestSickLeaveEventAccounting:
             sick_days=5,
             waiting_period_days=0,
         )
-        base = calculate_period(_base())
-        result = calculate_period(_req(sick))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(sick), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert result.period_gross == base.period_gross + Decimal("300.00")
 
     def test_waiting_period_reduces_gross(self) -> None:
@@ -329,8 +453,16 @@ class TestSickLeaveEventAccounting:
             sick_days=5,
             waiting_period_days=3,
         )
-        result_no = calculate_period(_req(sick_no_carenza))
-        result_with = calculate_period(_req(sick_with_carenza))
+        result_no = calculate_period(
+            _req(sick_no_carenza),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
+        result_with = calculate_period(
+            _req(sick_with_carenza),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result_with.period_gross < result_no.period_gross
 
     def test_sick_days_stored_in_pay_item(self) -> None:
@@ -340,7 +472,9 @@ class TestSickLeaveEventAccounting:
             amount=Decimal("300.00"),
             sick_days=7,
         )
-        result = calculate_period(_req(sick))
+        result = calculate_period(
+            _req(sick), repo=bundled_repository(), resolver=bundled_policies()
+        )
         sickness_items = [pi for pi in result.pay_items if isinstance(pi, SicknessItem)]
         assert sickness_items
         assert sickness_items[0].sick_days == Decimal(7)
@@ -354,30 +488,46 @@ class TestBonusEventAccounting:
 
     def test_gross_increases(self) -> None:
         """period_gross increases by the bonus amount."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._bonus()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._bonus()), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert result.period_gross == base.period_gross + Decimal("1200.00")
 
     def test_inps_increases(self) -> None:
         """INPS increases for bonus payment."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._bonus()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._bonus()), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert _inps_employee(result) > _inps_employee(base)
 
     def test_employer_cost_increases(self) -> None:
         """Employer cost increases with the bonus."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._bonus()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._bonus()), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert result.period_employer_cost > base.period_employer_cost
 
     def test_bonus_pay_item_present(self) -> None:
         """A bonus_earning pay item is present."""
-        result = calculate_period(_req(self._bonus()))
+        result = calculate_period(
+            _req(self._bonus()), repo=bundled_repository(), resolver=bundled_policies()
+        )
         kinds = {pi.kind for pi in result.pay_items}
         assert "bonus_earning" in kinds
 
     def test_reconcile_passes(self) -> None:
         """All reconciliation invariants hold for a bonus period."""
-        result = calculate_period(_req(self._bonus()))
+        result = calculate_period(
+            _req(self._bonus()), repo=bundled_repository(), resolver=bundled_policies()
+        )
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations

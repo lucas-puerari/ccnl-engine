@@ -61,6 +61,7 @@ nav = [
     { "ccnl_engine.events"  = "api/events.md" },
     { "ccnl_engine.results" = "api/results.md" },
     { "ccnl_engine.catalog" = "api/catalog.md" },
+    { "ccnl_engine.repository" = "api/repository.md" },
     { "Errors"              = "api/errors.md" },
     { "Data bundle"         = "api/knowledge.md" },
   ]},

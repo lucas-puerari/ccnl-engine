@@ -9,7 +9,11 @@ from ccnl_engine.contribution.naspi.services import ISSUE_CODE
 from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employment.fixed_term.inputs import NaspiExclusion
 from ccnl_engine.employment.inputs import FixedTerm, Permanent
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from tests.integration.ccnl_engine.period.builders import (
     period_request,
 )
@@ -20,7 +24,11 @@ if TYPE_CHECKING:
 
 
 def _run(contract: Permanent | FixedTerm) -> PeriodResult:
-    return calculate_period(period_request(contract_type=contract))
+    return calculate_period(
+        period_request(contract_type=contract),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
 
 
 def _employer(result: PeriodResult) -> CalculationDecision:

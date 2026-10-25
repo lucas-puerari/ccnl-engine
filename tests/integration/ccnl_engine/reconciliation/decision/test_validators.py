@@ -21,7 +21,11 @@ from ccnl_engine.employer.inputs import (
 from ccnl_engine.event.facade import BonusEvent, NightShiftEvent
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation.decision.validators import (
     check_decision_provenance,
     check_substitute_tax_eligibility,
@@ -54,7 +58,9 @@ def _run(*events: NightShiftEvent | BonusEvent, income: int = 20_000) -> PeriodR
             events=events,
             sector=EmploymentSector.PRIVATE,
             prior_year=PriorYearTaxFacts(employment_income=Decimal(income)),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

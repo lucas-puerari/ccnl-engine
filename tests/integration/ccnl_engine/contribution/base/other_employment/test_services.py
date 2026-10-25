@@ -17,7 +17,11 @@ from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.period.repositories import BundledKnowledgeRepository
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from tests.integration.ccnl_engine.period.builders import (
     period_request,
 )
@@ -46,7 +50,9 @@ def _facts(
         )
     )
     result = calculate_period(
-        period_request(1, opening=opening, contribution_history=history)
+        period_request(1, opening=opening, contribution_history=history),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     return {issue.code: issue.fact for issue in result.issues}
 
@@ -77,7 +83,9 @@ def test_a_domestic_run_reads_no_base_of_other_employments() -> None:
             level="B",
             weekly_hours=25,
             contributable_hours=Decimal(108),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
     assert _CODE not in {issue.code for issue in result.issues}
@@ -107,6 +115,7 @@ def test_rules_without_massimale_or_band_read_no_other_base() -> None:
     result = calculate_period(
         period_request(1, contribution_history=_AFTER_1996),
         repo=_NoBandRepository(),
+        resolver=bundled_policies(),
     )
     states = {
         d.inputs.get("ivs_ceiling")

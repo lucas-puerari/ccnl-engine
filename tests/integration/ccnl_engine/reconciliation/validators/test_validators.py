@@ -11,7 +11,11 @@ from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.event.facade import WelfareEvent
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation.validators import reconcile
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.tax_credit.account.models import TrattamentoAccount
@@ -45,7 +49,9 @@ def _real_result(
         level_code=_LEVEL,
         opening_state=op,
     )
-    return calculate_period(req), op
+    return calculate_period(
+        req, repo=bundled_repository(), resolver=bundled_policies()
+    ), op
 
 
 _OPENING = PeriodState.zero()
@@ -269,7 +275,11 @@ def test_sub_cent_event_amount_reconciles() -> None:
     welfare_subcent = WelfareEvent(
         event_date=date(_YEAR, 1, 15), amount=Decimal("100.001")
     )
-    result = calculate_period(period_request(events=(welfare_subcent,)))
+    result = calculate_period(
+        period_request(events=(welfare_subcent,)),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
     opening = PeriodState.zero()
 
     r = reconcile(result, opening)

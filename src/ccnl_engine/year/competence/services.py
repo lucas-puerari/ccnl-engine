@@ -9,9 +9,6 @@ from typing import TYPE_CHECKING
 from ccnl_engine.assurance.policies import EngineMode
 from ccnl_engine.calendar.services import standard_calendar
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.period.repositories import (
-    BundledKnowledgeRepository,
-)
 from ccnl_engine.withholding.plan.services import standard_payments
 from ccnl_engine.withholding.schedule.models import WithholdingSlot
 from ccnl_engine.year.payment.sequence.services import Engine, compute_payments
@@ -42,8 +39,8 @@ _ONE = Decimal(1)
 def calculate_competence_year(
     plan: CompetenceYearPlan,
     *,
-    repo: KnowledgeRepository | None = None,
-    resolver: PolicyResolver | None = None,
+    repo: KnowledgeRepository,
+    resolver: PolicyResolver,
     bundle_version: str | None = None,
     mode: EngineMode = EngineMode.SIMULATION,
 ) -> CompetenceYearResult:
@@ -87,8 +84,8 @@ def calculate_competence_year(
     Args:
         plan: Employment, employer, facts and payment dates of the runs, and
             the opening state.
-        repo: Knowledge repository; the bundled one when ``None``.
-        resolver: Pre-loaded policy resolver, or ``None``.
+        repo: Knowledge repository the runs read; the facade passes its own.
+        resolver: Policy resolver of the pay-item treatments.
         bundle_version: Knowledge-bundle version propagated to each result.
         mode: Payability policy of every run.
 
@@ -103,7 +100,7 @@ def calculate_competence_year(
     payment; :class:`~ccnl_engine.errors.MissingRuleError`
     when no run of the year has a base salary.
     """
-    effective_repo = repo if repo is not None else BundledKnowledgeRepository()
+    effective_repo = repo
     prepared = prepare_year(plan, effective_repo)
     tax_years = sorted({p.payment.tax_year for p in prepared.payments})
     state = plan.opening_state

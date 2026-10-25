@@ -44,7 +44,11 @@ from ccnl_engine.inputs import (
 )
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.models import PayrollRun, RunKind
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.year.competence.services import calculate_competence_year
@@ -131,7 +135,9 @@ def _run(month: int = 1, **kwargs: Any) -> PeriodResult:  # noqa: ANN401
             employer=EmployerProfile(headcount=Headcount(50)),
             seniority=new_hire(2020),
             **kwargs,
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 
@@ -186,7 +192,9 @@ def test_chimica_d1_terminated_in_october_2026_against_a_hand_oracle() -> None:
     rate = _irpef_2026(reference) / reference
     tax = _money(taxable * rate)
 
-    result = calculate_competence_year(plan).period_results[-1]
+    result = calculate_competence_year(
+        plan, repo=bundled_repository(), resolver=bundled_policies()
+    ).period_results[-1]
     due, separate = _settlement(result)
 
     assert (quotas, payout, tax) == (

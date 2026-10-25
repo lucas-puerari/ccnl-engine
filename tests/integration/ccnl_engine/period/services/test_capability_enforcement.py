@@ -26,7 +26,11 @@ from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.family.inputs import FamilyComposition
 from ccnl_engine.inputs import NoPensionFund
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.models import PayrollRun, RunKind
 from ccnl_engine.run.types import PeriodId
 from tests.integration.ccnl_engine.irpef.declaration.builders import (
@@ -75,7 +79,9 @@ def _req(month: int = 1) -> PeriodCalculationRequest:
 
 
 def _gap_kinds(request: PeriodCalculationRequest) -> dict[str, CapabilityGapKind]:
-    report = calculate_period(request).capability_report
+    report = calculate_period(
+        request, repo=bundled_repository(), resolver=bundled_policies()
+    ).capability_report
     return {gap.feature: gap.kind for gap in report.gaps}
 
 
@@ -85,7 +91,9 @@ class TestOrdinaryMonth:
     def test_report_is_complete(self) -> None:
         """With the residence and the family stated: complete, no blocker."""
         stated = replace(_req(), family_composition=FamilyComposition())
-        result = calculate_period(stated)
+        result = calculate_period(
+            stated, repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert isinstance(result.capability_report, CapabilityReport)
         assert result.capability_report.catalog_year == _YEAR
         assert result.capability_report.gaps == ()
@@ -111,7 +119,9 @@ class TestOrdinaryMonth:
         self, feature: str, scope: CapabilityScope
     ) -> None:
         """Core stages apply; events, unsupported and absent facts do not."""
-        report = calculate_period(_req()).capability_report
+        report = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        ).capability_report
         assert report.scope[feature] is scope
 
 
@@ -128,7 +138,9 @@ class TestClosingRun:
             _req(month=3),
             run=PayrollRun(run_kind=RunKind.TERMINATION, month=3, year=2026),
         )
-        result = calculate_period(request)
+        result = calculate_period(
+            request, repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert _gap_kinds(request) == {
             _RESIDUAL_LEAVE: CapabilityGapKind.UNRESOLVED,
             _TFR_REVALUATION: CapabilityGapKind.UNRESOLVED,
@@ -182,14 +194,18 @@ class TestNativeSickness:
             events=(march_sickness_episode(),),
             category=WorkerCategory.OPERAIO,
         )
-        result = calculate_period(request)
+        result = calculate_period(
+            request, repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert _gap_kinds(request) == {}
         assert result.capability_report.scope["sickness"] is CapabilityScope.APPLICABLE
 
     def test_unknown_cover_leaves_a_partial_result(self) -> None:
         """Without the category INPS cover is unknown: the result is partial."""
         request = replace(_req(month=3), events=(march_sickness_episode(),))
-        result = calculate_period(request)
+        result = calculate_period(
+            request, repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert _gap_kinds(request) == {"sickness": CapabilityGapKind.PARTIAL_RESULT}
         assert not result.is_payable
 
@@ -199,13 +215,19 @@ class TestReportValue:
 
     def test_report_is_frozen(self) -> None:
         """Assigning to capability_report raises FrozenInstanceError."""
-        result = calculate_period(_req())
+        result = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         with pytest.raises(FrozenInstanceError):
             result.capability_report = CapabilityReport.empty(_YEAR)  # type: ignore[misc]
 
     def test_same_request_same_report(self) -> None:
         """capability_report is deterministic for identical requests."""
         req = _req(month=3)
-        assert calculate_period(req).capability_report == (
-            calculate_period(req).capability_report
+        assert calculate_period(
+            req, repo=bundled_repository(), resolver=bundled_policies()
+        ).capability_report == (
+            calculate_period(
+                req, repo=bundled_repository(), resolver=bundled_policies()
+            ).capability_report
         )

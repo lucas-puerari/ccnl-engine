@@ -18,6 +18,7 @@ from ccnl_engine.family.inputs import (
     FamilyComposition,
 )
 from ccnl_engine.period.inputs import PeriodFacts
+from ccnl_engine.period.services import bundled_policies
 from ccnl_engine.year.competence.inputs import CompetenceYearPlan
 from ccnl_engine.year.competence.services import (
     calculate_competence_year,
@@ -73,7 +74,7 @@ def _late_year() -> CompetenceYearResult:
     Returns:
         The fourteen runs, the last one opening 2027.
     """
-    return calculate_competence_year(_plan(), repo=_REPO)
+    return calculate_competence_year(_plan(), repo=_REPO, resolver=bundled_policies())
 
 
 class TestCompetenceYearAcrossTaxYears:
@@ -91,7 +92,9 @@ class TestCompetenceYearAcrossTaxYears:
         """Every run of 2026 is already closed: nothing is computed again."""
         closing = _late_year().closing_state
 
-        resumed = calculate_competence_year(_plan(opening=closing), repo=_REPO)
+        resumed = calculate_competence_year(
+            _plan(opening=closing), repo=_REPO, resolver=bundled_policies()
+        )
 
         assert resumed.period_results == ()
         assert resumed.closing_state == closing
@@ -108,7 +111,9 @@ class TestCompetenceYearAcrossTaxYears:
         state = type(opened)(accrual=accrual, cash=opened.cash)
 
         with pytest.raises(InvalidInputError, match="is not closed") as info:
-            calculate_competence_year(_plan(opening=state), repo=_REPO)
+            calculate_competence_year(
+                _plan(opening=state), repo=_REPO, resolver=bundled_policies()
+            )
 
         assert info.value.field == "CompetenceYearPlan.opening_state"
 
@@ -120,7 +125,7 @@ class TestCompetenceYearAcrossTaxYears:
         )
 
         with pytest.raises(InvalidInputError, match="not a run of 2026") as info:
-            calculate_competence_year(plan, repo=_REPO)
+            calculate_competence_year(plan, repo=_REPO, resolver=bundled_policies())
 
         assert info.value.field == "CompetenceYearPlan.payment_dates"
 
@@ -132,7 +137,9 @@ class TestTaxYear:
         """The 2026 plan pays nothing in 2028."""
         with pytest.raises(InvalidInputError, match="is paid in tax year 2028"):
             calculate_tax_year(
-                TaxYearPlan(tax_year=2028, competence_years=(_plan(),)), repo=_REPO
+                TaxYearPlan(tax_year=2028, competence_years=(_plan(),)),
+                repo=_REPO,
+                resolver=bundled_policies(),
             )
 
     def test_a_tax_year_already_paid_computes_nothing(self) -> None:
@@ -144,6 +151,7 @@ class TestTaxYear:
                 tax_year=2027, competence_years=(_plan(),), opening_state=closing
             ),
             repo=_REPO,
+            resolver=bundled_policies(),
         )
 
         assert year.period_results == ()
@@ -162,7 +170,9 @@ class TestCurrentYearFacts:
     )
 
     def _december_decision(self, plan: TaxYearPlan) -> CalculationStatus:
-        (result,) = calculate_tax_year(plan, repo=_REPO).period_results
+        (result,) = calculate_tax_year(
+            plan, repo=_REPO, resolver=bundled_policies()
+        ).period_results
         (decision,) = [
             d for d in result.decisions if d.capability == "family_deductions"
         ]

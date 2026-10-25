@@ -33,7 +33,11 @@ from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.results import PeriodResult
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation.validators import reconcile
 from ccnl_engine.run.types import PeriodId
 from tests.integration.ccnl_engine.year.builders import (
@@ -108,7 +112,11 @@ class TestArrearsEventReferencePeriod:
 
     def test_earlier_year_is_taxed_separately(self) -> None:
         """2025 arrears paid in March 2026: 2,000.00 x 0.23 = 460.00 separate."""
-        result = calculate_period(_req(_arrears(PeriodId(year=2025, month=6))))
+        result = calculate_period(
+            _req(_arrears(PeriodId(year=2025, month=6))),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         decision = _arrears_decision(result)
 
         assert _account(result, AccountKind.SEPARATE_TAX) == Decimal("460.00")
@@ -131,7 +139,9 @@ class TestArrearsEventReferencePeriod:
             period_id=PeriodId(year=2026, month=12),
             payment_date=date(2027, 1, 13),
         )
-        result = calculate_period(request, repo=NextYearRepository())
+        result = calculate_period(
+            request, repo=NextYearRepository(), resolver=bundled_policies()
+        )
         decision = _arrears_decision(result)
 
         assert _account(result, AccountKind.SEPARATE_TAX) == Decimal("460.00")
@@ -144,8 +154,14 @@ class TestArrearsEventReferencePeriod:
         No separate tax; the taxable income grows by the arrears less the
         employee contributions they add (art. 51 c. 2 lett. a TUIR).
         """
-        base = calculate_period(_base())
-        result = calculate_period(_req(_arrears(PeriodId(year=_YEAR, month=1))))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(_arrears(PeriodId(year=_YEAR, month=1))),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         added_inps = _account(result, AccountKind.EMPLOYEE_CONTRIBUTIONS) - _account(
             base, AccountKind.EMPLOYEE_CONTRIBUTIONS
         )
@@ -162,7 +178,9 @@ class TestArrearsEventReferencePeriod:
 
     def test_unknown_year_blocks_the_run(self) -> None:
         """Without reference_period the taxation is undetermined: a blocker."""
-        result = calculate_period(_req(_arrears(None)))
+        result = calculate_period(
+            _req(_arrears(None)), repo=bundled_repository(), resolver=bundled_policies()
+        )
         decision = _arrears_decision(result)
 
         assert _account(result, AccountKind.SEPARATE_TAX) == Decimal("460.00")
@@ -177,7 +195,11 @@ class TestArrearsEventReferencePeriod:
     def test_later_year_is_rejected(self) -> None:
         """Arrears cannot refer to a year after the tax year of the run."""
         with pytest.raises(InvalidInputError, match="after the tax year 2026"):
-            calculate_period(_req(_arrears(PeriodId(year=2027, month=1))))
+            calculate_period(
+                _req(_arrears(PeriodId(year=2027, month=1))),
+                repo=bundled_repository(),
+                resolver=bundled_policies(),
+            )
 
 
 def _tfr(result: object) -> Decimal:
@@ -222,7 +244,9 @@ class TestEventTreatmentPolicy:
 
     def test_overtime_does_not_increase_tfr(self) -> None:
         """OvertimeEvent gross does not enter the TFR accrual base."""
-        base = calculate_period(_base())
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         result = calculate_period(
             _req(
                 OvertimeEvent(
@@ -231,38 +255,50 @@ class TestEventTreatmentPolicy:
                     hourly_rate=Decimal("12.50"),
                     multiplier=Decimal("1.25"),
                 )
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         _assert_event_out_of_tfr(result, base)
 
     def test_night_shift_does_not_increase_tfr(self) -> None:
         """NightShiftEvent supplement does not enter the TFR accrual base."""
-        base = calculate_period(_base())
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         result = calculate_period(
             _req(
                 NightShiftEvent(
                     event_date=date(_YEAR, _MONTH, 10),
                     supplement_amount=Decimal("80.00"),
                 )
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         _assert_event_out_of_tfr(result, base)
 
     def test_bonus_does_not_increase_tfr(self) -> None:
         """BonusEvent amount does not enter the TFR accrual base."""
-        base = calculate_period(_base())
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         result = calculate_period(
             _req(
                 BonusEvent(
                     event_date=date(_YEAR, _MONTH, 28), amount=Decimal("1000.00")
                 )
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         _assert_event_out_of_tfr(result, base)
 
     def test_absence_decreases_tfr(self) -> None:
         """AbsenceEvent deduction reduces the TFR accrual base."""
-        base = calculate_period(_base())
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         result = calculate_period(
             _req(
                 AbsenceEvent(
@@ -270,7 +306,9 @@ class TestEventTreatmentPolicy:
                     hours=Decimal(8),
                     hourly_rate=Decimal("12.00"),
                 )
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         assert _tfr(result) < _tfr(base)
 
@@ -280,7 +318,9 @@ class TestMultipleEvents:
 
     def test_two_events_gross_cumulates(self) -> None:
         """Gross from two events sums correctly with the base salary."""
-        base = calculate_period(_base())
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         overtime = OvertimeEvent(
             event_date=date(_YEAR, _MONTH, 5),
             hours=Decimal(4),
@@ -288,7 +328,11 @@ class TestMultipleEvents:
             multiplier=Decimal("1.25"),
         )
         bonus = BonusEvent(event_date=date(_YEAR, _MONTH, 28), amount=Decimal("500.00"))
-        result = calculate_period(_req(overtime, bonus))
+        result = calculate_period(
+            _req(overtime, bonus),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         overtime_gross = (Decimal(4) * Decimal("12.50") * Decimal("1.25")).quantize(
             Decimal("0.01")
         )
@@ -309,7 +353,9 @@ class TestMultipleEvents:
             ),
             WelfareEvent(event_date=date(_YEAR, _MONTH, 1), amount=Decimal("100.00")),
         )
-        result = calculate_period(_req(*events))
+        result = calculate_period(
+            _req(*events), repo=bundled_repository(), resolver=bundled_policies()
+        )
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations
 
@@ -319,9 +365,13 @@ class TestMultipleEvents:
             BonusEvent(event_date=date(_YEAR, _MONTH, 28), amount=Decimal("300.00")),
             WelfareEvent(event_date=date(_YEAR, _MONTH, 1), amount=Decimal("150.00")),
         )
-        result = calculate_period(_req(*events))
+        result = calculate_period(
+            _req(*events), repo=bundled_repository(), resolver=bundled_policies()
+        )
         # Base items: base_salary, inps_employee, irpef, inps_employer, tfr, tratt_integ
-        base_result = calculate_period(_base())
+        base_result = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert len(result.pay_items) == len(base_result.pay_items) + 2
 
     def test_ledger_entry_count_matches_events_plus_base(self) -> None:
@@ -332,6 +382,10 @@ class TestMultipleEvents:
                 event_date=date(_YEAR, _MONTH, 12), amount=Decimal("200.00")
             ),
         )
-        result = calculate_period(_req(*events))
-        base_result = calculate_period(_base())
+        result = calculate_period(
+            _req(*events), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        base_result = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert len(result.ledger_entries) == len(base_result.ledger_entries) + 2

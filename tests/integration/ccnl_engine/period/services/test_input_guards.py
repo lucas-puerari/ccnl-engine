@@ -14,7 +14,11 @@ from ccnl_engine.pay_item.loaders import load_policy_resolver
 from ccnl_engine.pay_item.policies import PolicyContext
 from ccnl_engine.pay_item.services import _require_resolution
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation import validators as _reconcile_mod
 from ccnl_engine.reconciliation.validators import (
     ReconciliationResult,
@@ -56,7 +60,9 @@ class TestEventDateValidation:
             events=(out_of_period,),
         )
         with pytest.raises(InvalidInputError, match="outside period"):
-            calculate_period(req)
+            calculate_period(
+                req, repo=bundled_repository(), resolver=bundled_policies()
+            )
 
     def test_arrears_event_outside_period_allowed(self) -> None:
         """ArrearsEvent may reference past periods without raising."""
@@ -74,7 +80,9 @@ class TestEventDateValidation:
             opening_state=PeriodState.zero(),
             events=(past_arrears,),
         )
-        result = calculate_period(req)
+        result = calculate_period(
+            req, repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert result.period_gross > _ZERO
 
     def test_absence_event_hours_above_max_raises(self) -> None:
@@ -94,7 +102,9 @@ class TestEventDateValidation:
             events=(absence,),
         )
         with pytest.raises(InvalidInputError, match="hours"):
-            calculate_period(req)
+            calculate_period(
+                req, repo=bundled_repository(), resolver=bundled_policies()
+            )
 
     def test_absence_event_hours_zero_raises(self) -> None:
         """AbsenceEvent with hours=0 raises InvalidInputError at construction."""
@@ -140,7 +150,9 @@ class TestReconciliationFailureGuard:
             opening_state=PeriodState.zero(),
         )
         with pytest.raises(DataIntegrityError, match="Period reconciliation failed"):
-            calculate_period(req)
+            calculate_period(
+                req, repo=bundled_repository(), resolver=bundled_policies()
+            )
 
 
 # ---------------------------------------------------------------------------
@@ -164,7 +176,11 @@ def test_large_absence_does_not_produce_negative_gross() -> None:
         hours=Decimal(80),
         hourly_rate=Decimal("12.50"),
     )
-    result = calculate_period(period_request(events=(absence,)))
+    result = calculate_period(
+        period_request(events=(absence,)),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
     assert result.period_gross > Decimal(0)
     assert result.period_net >= Decimal(0)
 
@@ -182,7 +198,11 @@ def test_absence_above_monthly_pay_is_invalid_input() -> None:
         hourly_rate=Decimal("12.50"),
     )
     with pytest.raises(InvalidInputError, match=r"more than the pay of the run"):
-        calculate_period(period_request(events=(absence,)))
+        calculate_period(
+            period_request(events=(absence,)),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -207,4 +227,8 @@ def test_absence_event_impossible_hours_raises() -> None:
         hourly_rate=Decimal("12.50"),
     )
     with pytest.raises(InvalidInputError):
-        calculate_period(period_request(events=(absence,)))
+        calculate_period(
+            period_request(events=(absence,)),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )

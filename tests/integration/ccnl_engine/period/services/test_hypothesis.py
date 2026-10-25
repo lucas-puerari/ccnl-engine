@@ -17,7 +17,11 @@ from ccnl_engine.balance.cash.models import TaxCashState
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 
 _CCNL = "metalmeccanico-federmeccanica"
@@ -55,14 +59,22 @@ class TestPeriodNonNegativity:
     @settings(max_examples=36)
     def test_gross_non_negative(self, level_code: str, month: int) -> None:
         """period_gross is >= 0 for every level and month combination."""
-        result = calculate_period(_req(level_code=level_code, month=month))
+        result = calculate_period(
+            _req(level_code=level_code, month=month),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.period_gross >= Decimal(0)
 
     @given(level_code=_LEVELS, month=_MONTHS)
     @settings(max_examples=36)
     def test_net_non_negative(self, level_code: str, month: int) -> None:
         """period_net is >= 0 for every level and month combination."""
-        result = calculate_period(_req(level_code=level_code, month=month))
+        result = calculate_period(
+            _req(level_code=level_code, month=month),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.period_net >= Decimal(0)
 
 
@@ -74,8 +86,12 @@ class TestPeriodDeterminism:
     def test_period_is_deterministic(self, level_code: str, month: int) -> None:
         """Two calls with identical inputs produce identical results."""
         req = _req(level_code=level_code, month=month)
-        first = calculate_period(req)
-        second = calculate_period(req)
+        first = calculate_period(
+            req, repo=bundled_repository(), resolver=bundled_policies()
+        )
+        second = calculate_period(
+            req, repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert first.period_gross == second.period_gross
         assert first.period_net == second.period_net
         assert first.closing_state == second.closing_state
@@ -88,5 +104,9 @@ class TestNetLeGross:
     @settings(max_examples=36)
     def test_net_le_gross(self, level_code: str, month: int) -> None:
         """Net pay is always <= gross pay (deductions and taxes reduce take-home)."""
-        result = calculate_period(_req(level_code=level_code, month=month))
+        result = calculate_period(
+            _req(level_code=level_code, month=month),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.period_net <= result.period_gross

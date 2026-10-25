@@ -17,7 +17,11 @@ from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.provenance.ruleset.assurance.models import RulesetKind
 from ccnl_engine.provenance.ruleset.models import RulesetReadiness
 from ccnl_engine.run.types import PeriodId
@@ -45,7 +49,12 @@ def _run(
         employer=EmployerProfile(headcount=Headcount(50)),
         opening_state=PeriodState.zero(),
     )
-    return calculate_period(request, repo=repo, mode=mode)
+    return calculate_period(
+        request,
+        repo=repo or bundled_repository(),
+        mode=mode,
+        resolver=bundled_policies(),
+    )
 
 
 def test_each_ruleset_is_tagged_by_the_loader_that_read_it() -> None:

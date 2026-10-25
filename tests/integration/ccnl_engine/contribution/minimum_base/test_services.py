@@ -22,7 +22,11 @@ from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.fact.inputs import ContributableHours, WeeklyHours
 from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 
 if TYPE_CHECKING:
@@ -42,7 +46,9 @@ def _run(ccnl: str, level: str, **kwargs: object) -> PeriodResult:
             opening_state=PeriodState.zero(),
             tfr_treasury_fund=False,
             **kwargs,  # type: ignore[arg-type]
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

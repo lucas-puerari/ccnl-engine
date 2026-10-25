@@ -14,7 +14,11 @@ import pytest
 from ccnl_engine.employment.fixed_term.inputs import NaspiExclusion
 from ccnl_engine.employment.inputs import FixedTerm, Permanent
 from ccnl_engine.errors import MissingRequiredFactError
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from tests.integration.ccnl_engine.period.builders import (
     period_request,
 )
@@ -45,7 +49,9 @@ def test_domestic_contributions_nonzero() -> None:
             level="BS",
             weekly_hours=30,
             contributable_hours=Decimal(130),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
     assert result.contribution_breakdown.employee > _ZERO, (
@@ -81,7 +87,9 @@ def test_domestic_work_no_type_error() -> None:
         weekly_hours=30,
         contributable_hours=Decimal(130),
     )
-    result = calculate_period(req)
+    result = calculate_period(
+        req, repo=bundled_repository(), resolver=bundled_policies()
+    )
     assert result.period_gross > _ZERO, (
         "calculate_period for lavoro-domestico-convivente.json must return a "
         f"valid result with period_gross > 0; got {result.period_gross}."
@@ -105,7 +113,9 @@ def test_domestic_missing_weekly_hours_raises() -> None:
                 ccnl="lavoro-domestico-convivente",
                 level="BS",
                 contributable_hours=Decimal(130),
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
 
 
@@ -122,7 +132,9 @@ def test_domestic_missing_contributable_hours_raises() -> None:
                 ccnl="lavoro-domestico-convivente",
                 level="BS",
                 weekly_hours=30,
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
 
 
@@ -140,7 +152,9 @@ def test_domestic_contributions_wage_bracket() -> None:
             level="BS",
             weekly_hours=20,
             contributable_hours=Decimal(86),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     assert result.contribution_breakdown.employee > _ZERO
     assert result.contribution_breakdown.employer > _ZERO
@@ -163,7 +177,9 @@ def test_domestic_contributions_fixed_term_hours_bracket() -> None:
             weekly_hours=30,
             contributable_hours=Decimal(130),
             contract_type=FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     assert result.contribution_breakdown.employer > _ZERO
 
@@ -182,7 +198,9 @@ def test_domestic_contributions_fixed_term_wage_bracket() -> None:
             weekly_hours=20,
             contributable_hours=Decimal(86),
             contract_type=FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     assert result.contribution_breakdown.employer > _ZERO
 
@@ -206,7 +224,9 @@ def test_domestic_replacement_worker_takes_the_permanent_hourly_rate(
                 weekly_hours=weekly_hours,
                 contributable_hours=Decimal(86),
                 contract_type=contract,
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         ).contribution_breakdown.employer
 
     replacement = FixedTerm(naspi_exclusion=NaspiExclusion.REPLACEMENT)

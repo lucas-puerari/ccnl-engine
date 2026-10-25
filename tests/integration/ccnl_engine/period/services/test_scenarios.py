@@ -20,7 +20,11 @@ from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.pay_item.facade import BaseSalaryEarning
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation.validators import reconcile
 from ccnl_engine.run.types import PeriodId
 
@@ -61,7 +65,11 @@ def _run(
         Tuple of the result and the opening state used.
     """
     op = opening or PeriodState.zero()
-    return calculate_period(_req(month=month, opening=op)), op
+    return calculate_period(
+        _req(month=month, opening=op),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    ), op
 
 
 class TestReconcileInvariantsOnRealResult:
@@ -93,15 +101,25 @@ class TestMultiPeriodChain:
         """Running Jan-Dec as a chain: every period satisfies reconcile."""
         opening = PeriodState.zero()
         for month in range(1, 13):
-            result = calculate_period(_req(month=month, opening=opening))
+            result = calculate_period(
+                _req(month=month, opening=opening),
+                repo=bundled_repository(),
+                resolver=bundled_policies(),
+            )
             r = reconcile(result, opening)
             assert r.ok, f"Month {month} violations: {r.violations}"
             opening = result.closing_state
 
     def test_second_period_irpef_includes_first_period(self) -> None:
         """February's irpef_withheld_ytd equals Jan + Feb IRPEF withheld."""
-        r1 = calculate_period(_req(month=1))
-        r2 = calculate_period(_req(month=2, opening=r1.closing_state))
+        r1 = calculate_period(
+            _req(month=1), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        r2 = calculate_period(
+            _req(month=2, opening=r1.closing_state),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         jan_irpef = sum(
             e.amount for e in r1.ledger_entries if e.account == AccountKind.ORDINARY_TAX
         )
@@ -115,7 +133,11 @@ class TestMultiPeriodChain:
         opening = PeriodState.zero()
         for expected_months in range(1, 4):
             month = expected_months
-            result = calculate_period(_req(month=month, opening=opening))
+            result = calculate_period(
+                _req(month=month, opening=opening),
+                repo=bundled_repository(),
+                resolver=bundled_policies(),
+            )
             assert result.closing_state.accrual.regular_months(_YEAR) == expected_months
             opening = result.closing_state
 
@@ -206,19 +228,25 @@ class TestOpeningStateSensitivity:
 
     def test_higher_gross_ytd_does_not_change_net(self) -> None:
         """gross_ytd alone does not affect net (IRPEF computation uses irpef_ytd)."""
-        r_zero = calculate_period(_req())
+        r_zero = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         r_high_gross = calculate_period(
             _req(
                 opening=PeriodState(
                     cash=TaxCashState(earnings=EarningsYtd(gross=Decimal("50000.00")))
                 )
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         assert r_zero.period_gross == r_high_gross.period_gross
 
     def test_higher_inps_ytd_does_not_affect_gross(self) -> None:
         """inps_employee_ytd in opening state does not change period gross."""
-        r_zero = calculate_period(_req())
+        r_zero = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         r_high_inps = calculate_period(
             _req(
                 opening=PeriodState(
@@ -226,6 +254,8 @@ class TestOpeningStateSensitivity:
                         earnings=EarningsYtd(inps_employee=Decimal("5000.00"))
                     )
                 )
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         assert r_zero.period_gross == r_high_inps.period_gross

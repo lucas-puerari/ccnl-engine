@@ -33,7 +33,11 @@ from ccnl_engine.inputs import (
     SeniorityFact,
     SenioritySource,
 )
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.models import RunKind
 from ccnl_engine.year.competence.services import (
     calculate_competence_year,
@@ -62,13 +66,21 @@ class TestYearResult:
 
     def test_frozen(self) -> None:
         """CompetenceYearResult is immutable."""
-        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(
+            year_plan(_YEAR, _CCNL, _LEVEL),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         with pytest.raises(AttributeError):
             result.year = 2025  # type: ignore[misc]
 
     def test_year_stored(self) -> None:
         """Year matches the requested year."""
-        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(
+            year_plan(_YEAR, _CCNL, _LEVEL),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.year == _YEAR
 
     def test_calendar_year_mismatch_raises(self) -> None:
@@ -80,7 +92,9 @@ class TestYearResult:
         )
         with pytest.raises(InvalidInputError, match="year 2025"):
             calculate_competence_year(
-                year_plan(_YEAR, _CCNL, _LEVEL, calendar_override=override)
+                year_plan(_YEAR, _CCNL, _LEVEL, calendar_override=override),
+                repo=bundled_repository(),
+                resolver=bundled_policies(),
             )
 
 
@@ -89,24 +103,40 @@ class TestCalculateYear:
 
     def test_produces_13_period_results(self) -> None:
         """Metalmeccanico grants a tredicesima: 12 regular runs plus one."""
-        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(
+            year_plan(_YEAR, _CCNL, _LEVEL),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert len(result.period_results) == 13
 
     def test_annual_gross_equals_sum_of_periods(self) -> None:
         """annual_gross is the exact sum of all period_gross values."""
-        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(
+            year_plan(_YEAR, _CCNL, _LEVEL),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         expected = sum((r.period_gross for r in result.period_results), Decimal(0))
         assert result.annual_gross == expected
 
     def test_annual_net_equals_sum_of_periods(self) -> None:
         """annual_net is the exact sum of all period_net values."""
-        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(
+            year_plan(_YEAR, _CCNL, _LEVEL),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         expected = sum((r.period_net for r in result.period_results), Decimal(0))
         assert result.annual_net == expected
 
     def test_annual_employer_cost_equals_sum_of_periods(self) -> None:
         """annual_employer_cost is the exact sum of all period_employer_cost values."""
-        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(
+            year_plan(_YEAR, _CCNL, _LEVEL),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         expected = sum(
             (r.period_employer_cost for r in result.period_results), Decimal(0)
         )
@@ -114,7 +144,11 @@ class TestCalculateYear:
 
     def test_state_threaded_across_periods(self) -> None:
         """Closing state of period N is the opening state of period N+1."""
-        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(
+            year_plan(_YEAR, _CCNL, _LEVEL),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         for i in range(1, 12):
             prev = result.period_results[i - 1]
             curr = result.period_results[i]
@@ -125,13 +159,19 @@ class TestCalculateYear:
     def test_regular_months_reach_12(self) -> None:
         """After the year twelve regular months are closed, extra runs aside."""
         closing = calculate_competence_year(
-            year_plan(_YEAR, _CCNL, _LEVEL)
+            year_plan(_YEAR, _CCNL, _LEVEL),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         ).closing_state
         assert closing.accrual.regular_months(_YEAR) == 12
 
     def test_period_ids_are_in_order(self) -> None:
         """Regular period results are ordered January to December."""
-        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(
+            year_plan(_YEAR, _CCNL, _LEVEL),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         regular = [
             r
             for r in result.period_results
@@ -144,7 +184,9 @@ class TestCalculateYear:
     def test_explicit_contract_type(self) -> None:
         """An explicitly supplied contract_type is used instead of the default."""
         result = calculate_competence_year(
-            year_plan(_YEAR, _CCNL, _LEVEL, contract_type=Permanent())
+            year_plan(_YEAR, _CCNL, _LEVEL, contract_type=Permanent()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         assert len(result.period_results) == 13
 
@@ -156,7 +198,9 @@ class TestCalculateYear:
             hourly_rate=Decimal("13.00"),
         )
         result = calculate_competence_year(
-            year_plan(_YEAR, _CCNL, _LEVEL, events={3: (absence,)})
+            year_plan(_YEAR, _CCNL, _LEVEL, events={3: (absence,)}),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         # March net must be lower than January net (absence in EMPLOYEE_DEDUCTIONS)
         jan_net = result.period_results[0].period_net
@@ -165,13 +209,21 @@ class TestCalculateYear:
 
     def test_all_period_gross_values_positive(self) -> None:
         """With no events every period_gross value is positive."""
-        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(
+            year_plan(_YEAR, _CCNL, _LEVEL),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         for r in result.period_results:
             assert r.period_gross > Decimal(0)
 
     def test_gross_ytd_accumulates_correctly(self) -> None:
         """gross_ytd in the last closing state equals annual_gross."""
-        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(
+            year_plan(_YEAR, _CCNL, _LEVEL),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         dec_state = result.period_results[-1].closing_state
         assert dec_state.cash.earnings.gross == result.annual_gross
 
@@ -181,7 +233,11 @@ class TestCalculateYear:
         metalmeccanico-federmeccanica has additional_months=13: one
         tredicesima paid in December.
         """
-        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(
+            year_plan(_YEAR, _CCNL, _LEVEL),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.calendar == WorkCalendar.from_additional_months(_YEAR, 13)
         assert result.calendar_override is None
 
@@ -197,7 +253,9 @@ class TestEmploymentPeriodRuns:
                 _CCNL,
                 _LEVEL,
                 employment_period=EmploymentPeriod(date(_YEAR, 3, 15)),
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         runs = [
             (r.period_id.month, r.run.run_kind) for r in result.period_results if r.run
@@ -221,7 +279,9 @@ class TestEmploymentPeriodRuns:
                 facts=resident(),
                 employment_period=EmploymentPeriod(date(_YEAR, 3, 15)),
                 current_year=employment_only(_YEAR),
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         march, april = result.period_results[0], result.period_results[1]
         assert march.period_gross == Decimal("1162.14")
@@ -241,7 +301,9 @@ class TestEmploymentPeriodRuns:
                 "vetro-meccanizzato-assovetro",
                 "C",
                 employment_period=EmploymentPeriod(date(_YEAR, 3, 15)),
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         march = result.period_results[0]
         partial = (
@@ -278,7 +340,9 @@ class TestEmploymentPeriodRuns:
                     date(2020, 1, 1), date(_YEAR, 5, 31)
                 ),
                 opening_state=fresh_tax_year(_YEAR),
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         assert [r.run.run_kind for r in result.period_results if r.run] == [
             RunKind.REGULAR
@@ -299,7 +363,9 @@ class TestEmploymentPeriodRuns:
                     employment_period=EmploymentPeriod(
                         date(2025, 1, 1), date(2025, 12, 31)
                     ),
-                )
+                ),
+                repo=bundled_repository(),
+                resolver=bundled_policies(),
             )
 
     def test_requests_carry_selected_slots_and_clipped_window(
@@ -324,7 +390,9 @@ class TestEmploymentPeriodRuns:
                 "commercio-confcommercio",
                 "4",
                 employment_period=EmploymentPeriod(date(_YEAR, 3, 10)),
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         schedule = requests[0].withholding_schedule
         assert schedule is not None
@@ -360,9 +428,15 @@ class TestCalendarOverride:
             reason=CalendarOverrideReason.PAYMENT_MONTH,
             note="quattordicesima paid with the July salary",
         )
-        standard = calculate_competence_year(year_plan(_YEAR, commercio, "4"))
+        standard = calculate_competence_year(
+            year_plan(_YEAR, commercio, "4"),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         moved = calculate_competence_year(
-            year_plan(_YEAR, commercio, "4", calendar_override=override)
+            year_plan(_YEAR, commercio, "4", calendar_override=override),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         run_ids = [r.run.run_id for r in moved.period_results if r.run is not None]
         assert run_ids[7] == f"{_YEAR}-07-fourteenth"
@@ -378,7 +452,9 @@ class TestCalendarOverride:
             note="company agreement grants a quattordicesima",
         )
         result = calculate_competence_year(
-            year_plan(_YEAR, _CCNL, _LEVEL, calendar_override=override)
+            year_plan(_YEAR, _CCNL, _LEVEL, calendar_override=override),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         assert len(result.period_results) == 14
         last = result.period_results[-1].closing_state
@@ -393,7 +469,9 @@ class TestCalendarOverride:
         )
         with pytest.raises(InvalidInputError, match="thirteenth"):
             calculate_competence_year(
-                year_plan(_YEAR, _CCNL, _LEVEL, calendar_override=override)
+                year_plan(_YEAR, _CCNL, _LEVEL, calendar_override=override),
+                repo=bundled_repository(),
+                resolver=bundled_policies(),
             )
 
 

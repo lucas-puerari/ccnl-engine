@@ -21,6 +21,7 @@ from ccnl_engine.irpef.declaration.inputs import (
     PriorYearTaxFacts,
 )
 from ccnl_engine.period.inputs import PeriodFacts
+from ccnl_engine.period.services import bundled_policies, bundled_repository
 from ccnl_engine.year.competence.services import (
     calculate_competence_year,
 )
@@ -46,7 +47,9 @@ def _year(*taxes: ForeignTaxPaid) -> CompetenceYearResult:
             "C3",
             facts=_FACTS,
             prior_year=PriorYearTaxFacts(foreign_taxes=taxes),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 
