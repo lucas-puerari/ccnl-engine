@@ -27,7 +27,7 @@ class TrattamentoIntegrativoRules(BaseModel):
     - RC > ``threshold_upper``: 0.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     threshold_mid: Decimal
     threshold_upper: Decimal
@@ -50,7 +50,7 @@ class UlterioreDetrazioneRules(BaseModel):
     Pro-rating to the actual work period is the caller's responsibility.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     threshold_low: Decimal
     threshold_mid: Decimal
@@ -71,7 +71,7 @@ class SommaEsenteBand(BaseModel):
     impossible.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     up_to: Decimal
     rate: PercentageRate
@@ -93,7 +93,7 @@ class SommaEsenteRules(BaseModel):
     ``bands`` must be non-empty and strictly ascending by ``up_to``.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     bands: list[SommaEsenteBand] = Field(min_length=1)
     provenance: RuleProvenance | None = None

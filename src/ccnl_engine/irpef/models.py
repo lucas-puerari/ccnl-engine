@@ -88,7 +88,7 @@ class SterilizzazioneDetrazioniRules(BaseModel):
     the reduction; the block records the statutory parameters only.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     threshold: Decimal
     reduction: Decimal

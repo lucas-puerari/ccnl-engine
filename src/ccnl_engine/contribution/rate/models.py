@@ -189,7 +189,7 @@ class InpsRates(BaseModel):
     in place of the FIS replaces them.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     employee_rate: NonNegativeRate
     employee_ivs_rate: NonNegativeRate
@@ -281,7 +281,7 @@ class ApprenticeRates(BaseModel):
     are non-IVS and must not be capped.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     employee_rate: NonNegativeRate
     employee_ivs_rate: NonNegativeRate

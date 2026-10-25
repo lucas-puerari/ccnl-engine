@@ -20,7 +20,7 @@ __all__ = [
 class TfrSeparateTaxation(BaseModel):
     """The TFR is taxed apart from the ordinary IRPEF (art. 17 c. 1 lett. a TUIR)."""
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     provenance: RuleProvenance | None = None
 
@@ -34,7 +34,7 @@ class TfrReferenceIncome(BaseModel):
             average IRPEF rate taxes the TFR.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     multiplier: Decimal = Field(gt=Decimal(0))
     provenance: RuleProvenance | None = None
@@ -48,7 +48,7 @@ class TfrServicePeriod(BaseModel):
             counts as a whole month of service.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     month_minimum_days: int = Field(ge=1, le=31)
     provenance: RuleProvenance | None = None
@@ -66,7 +66,7 @@ class TfrSettlementRules(BaseModel):
         ruleset: Identity of the data file.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     year: int
     separate_taxation: TfrSeparateTaxation

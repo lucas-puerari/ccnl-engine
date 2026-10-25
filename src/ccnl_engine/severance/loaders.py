@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from functools import cache
+
 from pydantic import ValidationError
 
 from ccnl_engine.errors import DataIntegrityError, UnsupportedTaxYearError
@@ -42,6 +44,7 @@ def _load_year_file[T: (TfrRevaluationRules, TfrSettlementRules)](
     return rules
 
 
+@cache
 def load_tfr_settlement_rules(year: int) -> TfrSettlementRules | None:
     """Load the separate taxation rules of the TFR paid on termination in *year*.
 
@@ -62,6 +65,7 @@ def load_tfr_settlement_rules(year: int) -> TfrSettlementRules | None:
     )
 
 
+@cache
 def load_tfr_revaluation_rules(year: int) -> TfrRevaluationRules | None:
     """Load the TFR revaluation rules at 31 December of *year*.
 

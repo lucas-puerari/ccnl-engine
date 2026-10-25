@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from functools import cache
 from typing import Any
 
 from pydantic import ValidationError
@@ -21,6 +22,7 @@ from ccnl_engine.sickness.indemnity.models import (
 _SICK_PAY_FILE = "sickness/indemnity/rates.json"
 
 
+@cache
 def load_sick_pay_rates() -> InpsSickPayRates:
     """Load INPS statutory sick-pay indemnity rates from the bundled data file.
 

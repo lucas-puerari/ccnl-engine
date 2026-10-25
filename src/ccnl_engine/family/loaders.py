@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from functools import cache
+
 from pydantic import ValidationError
 
 from ccnl_engine.errors import DataIntegrityError
@@ -9,6 +11,7 @@ from ccnl_engine.family.models import FamilyDeductionRules
 from ccnl_engine.sector.raw.loaders import _try_ruleset, read_year_json
 
 
+@cache
 def load_family_deduction_rules(year: int) -> FamilyDeductionRules:
     """Load Art. 12 TUIR family deduction rules for *year*.
 

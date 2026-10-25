@@ -7,6 +7,7 @@ from pathlib import Path
 
 import pydantic
 import pytest
+from pydantic import ValidationError
 
 from ccnl_engine.agreement.facade import CCNL, TaxSector
 from ccnl_engine.catalog.loaders import load_ccnl
@@ -147,29 +148,20 @@ class TestLoadYearRules:
         assert info.value.year == 1900
         assert info.value.sector == "terziario"
 
-    def test_load_year_rules_isolated(self) -> None:
-        """Two calls return independent YearRules copies (mutation isolation)."""
+    def test_load_year_rules_is_cached(self) -> None:
+        """Two calls with the same arguments return the same frozen object."""
         first = load_year_rules(2026, TaxSector.TERZIARIO, 50)
-        second = load_year_rules(2026, TaxSector.TERZIARIO, 50)
-        assert first is not second
+        assert load_year_rules(2026, TaxSector.TERZIARIO, 50) is first
 
-    def test_load_year_rules_irpef_brackets_mutation_isolated(self) -> None:
-        """Clearing irpef_brackets on one copy does not affect the next call."""
-        first = load_year_rules(2026, TaxSector.TERZIARIO, 50)
-        original_count = len(first.irpef_brackets)
-        first.irpef_brackets.clear()
-        second = load_year_rules(2026, TaxSector.TERZIARIO, 50)
-        assert len(second.irpef_brackets) == original_count
-
-    def test_load_year_rules_nested_field_mutation_isolated(self) -> None:
-        """Assigning to inps.employee_rate does not affect subsequent loads."""
-        first = load_year_rules(2026, TaxSector.TERZIARIO, 50)
-        assert first.inps is not None
-        original_rate = first.inps.employee_rate
-        first.inps.employee_rate = Decimal(0)
-        second = load_year_rules(2026, TaxSector.TERZIARIO, 50)
-        assert second.inps is not None
-        assert second.inps.employee_rate == original_rate
+    def test_load_year_rules_cannot_be_mutated(self) -> None:
+        """A field, a nested model and the brackets are all read-only."""
+        rules = load_year_rules(2026, TaxSector.TERZIARIO, 50)
+        assert rules.inps is not None
+        with pytest.raises(ValidationError):
+            rules.inps.employee_rate = Decimal(0)  # type: ignore[misc]
+        with pytest.raises(ValidationError):
+            rules.year = 2027  # type: ignore[misc]
+        assert isinstance(rules.irpef_brackets, tuple)
 
 
 # ---------------------------------------------------------------------------

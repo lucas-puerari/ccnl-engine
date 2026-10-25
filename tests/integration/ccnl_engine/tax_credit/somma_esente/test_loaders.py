@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from decimal import Decimal
-from typing import Any
+from typing import TYPE_CHECKING, Any
 from unittest.mock import patch
 
 import pytest
@@ -15,7 +15,21 @@ from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 from ccnl_engine.sector.loaders import load_year_rules
 from ccnl_engine.tax_credit.somma_esente.loaders import load_somma_esente_rules
 
+if TYPE_CHECKING:
+    from collections.abc import Iterator
+
 _READER = "ccnl_engine.tax_credit.somma_esente.loaders.read_year_json"
+_CACHED = (load_somma_esente_rules,)
+
+
+@pytest.fixture(autouse=True)
+def _fresh_loaders() -> Iterator[None]:
+    """Clear the loader caches, so a patched reader is read again."""
+    for loader in _CACHED:
+        loader.cache_clear()
+    yield
+    for loader in _CACHED:
+        loader.cache_clear()
 
 
 class TestBundled2026:

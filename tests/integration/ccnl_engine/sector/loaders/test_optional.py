@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from decimal import Decimal
+from typing import TYPE_CHECKING
 from unittest.mock import patch
 
 import pytest
@@ -19,6 +20,25 @@ from ccnl_engine.sector.models import YearRulesRaw
 from ccnl_engine.sector.raw.loaders import _try_ruleset
 from ccnl_engine.severance.loaders import load_tfr_revaluation_rules
 from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
+
+if TYPE_CHECKING:
+    from collections.abc import Iterator
+
+_CACHED = (
+    load_family_deduction_rules,
+    load_tfr_revaluation_rules,
+    load_variable_pay_rules,
+)
+
+
+@pytest.fixture(autouse=True)
+def _fresh_loaders() -> Iterator[None]:
+    """Clear the loader caches, so a patched reader is read again."""
+    for loader in _CACHED:
+        loader.cache_clear()
+    yield
+    for loader in _CACHED:
+        loader.cache_clear()
 
 
 def test_year_keyed_rules_of_unbundled_year_raise_domain_error() -> None:
@@ -100,6 +120,7 @@ class TestLoadTfrRevaluationRules:
         rules = load_tfr_revaluation_rules(2026)
         assert rules is not None
         raw = rules.model_dump(mode="json", exclude={"ruleset"}) | {"year": 2025}
+        load_tfr_revaluation_rules.cache_clear()
         with (
             patch(
                 "ccnl_engine.severance.loaders.read_year_json",

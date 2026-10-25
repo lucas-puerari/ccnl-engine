@@ -209,7 +209,7 @@ class InpsSickPayRates(BaseModel):
             resolved for (:meth:`for_regime`), ``None`` without one.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     description: str = ""
     carenza_days: int = Field(ge=0)
