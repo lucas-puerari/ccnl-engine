@@ -51,6 +51,9 @@ jobs:
       - name: Dependency tiers and module sizes
         run: uv run python scripts/architecture/check.py
 
+      - name: Test tree mirrors the code
+        run: uv run python scripts/quality/test_tree/check.py
+
       - name: Shrink-only baselines do not grow
         if: github.event_name == 'pull_request'
         env:

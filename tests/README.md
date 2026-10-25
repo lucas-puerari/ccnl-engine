@@ -21,10 +21,14 @@ tests/
 ```
 
 Under each category the path mirrors the code: a directory of
-`tests/<category>/ccnl_engine/` is a directory of `src/ccnl_engine/`, of
+`tests/<category>/ccnl_engine/` is a directory of `src/ccnl_engine/`, or
+the directory of one module (`period/services/` holds the tests of
+`period/services.py`); of
 `integration/scripts/` one of `scripts/`, of `integration/demo/` one of
 `demo/`. A dataset directory of JSON may sit right below one
-(`period/reference_case/`, `catalog/synthetic_contract/`).
+(`period/reference_case/`, `catalog/synthetic_contract/`). The few knowledge
+directories that group tests by theme are listed, with their reason, in
+`scripts/quality/test_tree/check.py`, which `make architecture` and CI run.
 
 A unit test, and an integration test below a mirror root directory, is
 named after the module it tests: `src/ccnl_engine/x/y/z.py` is tested by

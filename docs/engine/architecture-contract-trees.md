@@ -87,7 +87,9 @@ tests/
 - A category holds at most the mirror roots `ccnl_engine`, `demo` and
   `scripts`; an absent one is not created.
 - A directory under a mirror root is a directory of the code tree it
-  mirrors.
+  mirrors, or the directory of one of its modules; the knowledge
+  directories that group tests by theme are the exceptions
+  `scripts/quality/test_tree/check.py` lists.
 - A test module is `test_<role>.py` after the module it tests: the tests
   of `contribution/naspi/services.py` sit in
   `tests/<category>/ccnl_engine/contribution/naspi/test_services.py`.
