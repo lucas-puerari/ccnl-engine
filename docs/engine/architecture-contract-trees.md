@@ -59,7 +59,7 @@ scripts/
 └── distribution/  build.py                    the hatch build hook
 
 docs/examples/
-├── quickstart/  period/  result/  fixed_term/  family/  seniority/
+├── period/  result/  fixed_term/  family/  seniority/
 ├── apprenticeship/  surtax/  calendar/  balance/  domestic/
 ├── explanation/  event/  pension_fund/  tax_year/      example.py
 └── agreement/<slug>/example.py                generated, one per CCNL

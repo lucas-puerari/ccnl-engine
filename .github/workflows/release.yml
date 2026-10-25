@@ -124,6 +124,9 @@ jobs:
           --gate "gates=$GATES" --gate "mutation=$MUTATION"
           --mutation mutants/mutation-score.json --out dossier/
 
+      - name: Export the runtime dependencies (PEP 751)
+        run: uv export --locked --format pylock.toml --no-dev --no-emit-project --output-file pylock.toml
+
       - name: Generate rules diff since previous release
         id: diff
         run: |
@@ -145,4 +148,5 @@ jobs:
             dist/*
             dossier/dossier.json
             dossier/dossier.md
+            pylock.toml
           fail_on_unmatched_files: true

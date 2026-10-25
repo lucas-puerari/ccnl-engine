@@ -1,0 +1,24 @@
+name: Data error
+description: A value of a CCNL or of a statutory table is wrong or missing.
+labels: ["bug"]
+body:
+  - type: input
+    id: ccnl
+    attributes:
+      label: CCNL or table
+      description: The ccnl_id (e.g. commercio-confcommercio) or the statutory table (IRPEF, INPS, surtax) and the year.
+    validations:
+      required: true
+  - type: textarea
+    id: value
+    attributes:
+      label: Value in the bundle and correct value
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Authoritative source
+      description: A link to the CCNL text, the official table or the Gazzetta Ufficiale, with the page.
+    validations:
+      required: true
