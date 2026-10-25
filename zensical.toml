@@ -10,6 +10,7 @@ nav = [
     { "What is a CCNL"    = "domain/index.md" },
     { "Components"        = "domain/components.md" },
     { "Employment types"  = "domain/employment-types.md" },
+    { "Payroll terms"     = "domain/terms.md" },
     { "Glossary"          = "domain/glossary.md" },
   ]},
   { "Rules" = [
