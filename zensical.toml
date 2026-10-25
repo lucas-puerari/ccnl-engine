@@ -17,6 +17,7 @@ nav = [
   ]},
   { "Engine" = [
     { "Computing payroll" = "engine/index.md" },
+    { "Tracing a payslip line" = "engine/trace-a-line.md" },
     { "Payroll state"     = "engine/payroll-state.md" },
     { "Opening state and imported balances" = "engine/opening-state.md" },
     { "Work rules"        = "engine/work-rules.md" },
