@@ -265,7 +265,7 @@ def test_every_valid_input_constructs() -> None:
 @pytest.mark.parametrize(
     ("cls", "field"), _CASES, ids=lambda v: getattr(v, "__name__", v)
 )
-@pytest.mark.parametrize("value", _INVALID, ids=repr)
+@pytest.mark.parametrize("value", _INVALID)
 def test_an_invalid_scalar_is_rejected_with_its_field(
     cls: type, field: str, value: object
 ) -> None:

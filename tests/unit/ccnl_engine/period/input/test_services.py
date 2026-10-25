@@ -47,7 +47,7 @@ def test_unknown_mode_is_invalid_input() -> None:
         (closing_state, "closing_state"),
     ],
 )
-@pytest.mark.parametrize("value", [None, {}, "2026-01-regular", object()], ids=repr)
+@pytest.mark.parametrize("value", [None, {}, "2026-01-regular", object()])
 def test_facade_arguments_of_the_wrong_type_are_invalid_input(
     check: Callable[[object], object], field: str, value: object
 ) -> None:

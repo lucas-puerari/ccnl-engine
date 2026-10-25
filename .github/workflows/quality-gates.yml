@@ -67,7 +67,7 @@ jobs:
         run: uv run python scripts/documentation/validation_matrix/generate.py --check
 
       - name: Test (pytest, coverage 100%)
-        run: uv run pytest
+        run: uv run pytest -n auto
 
       - name: Upload coverage report (artifact)
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7
@@ -101,7 +101,7 @@ jobs:
 
       - name: API and knowledge tests
         run: >-
-          uv run --python ${{ matrix.python }} pytest --no-cov -q
+          uv run --python ${{ matrix.python }} pytest --no-cov -q -n auto
           tests/integration/ccnl_engine/api tests/knowledge
 
   docs-build:

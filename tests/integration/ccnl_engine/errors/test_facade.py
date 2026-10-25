@@ -124,7 +124,7 @@ def _june(employment: Employment, facts: PeriodFacts) -> PeriodInput:
     ],
     ids=["period", "year", "close", "inspect", "mode"],
 )
-@pytest.mark.parametrize("value", [None, 1, {"year": 2026}, object()], ids=repr)
+@pytest.mark.parametrize("value", [None, 1, {"year": 2026}, object()])
 def test_a_facade_argument_of_the_wrong_type_is_invalid_input(
     call: Callable[[object], object], value: object
 ) -> None:

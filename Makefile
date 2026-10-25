@@ -33,7 +33,7 @@ architecture:
 	uv run python scripts/architecture/check.py
 
 test:
-	uv run pytest
+	uv run pytest -n auto
 
 # Generated artefacts: knowledge manifest and documentation pages
 
