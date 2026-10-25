@@ -25,7 +25,7 @@ from ccnl_engine.catalog.loaders import (
 )
 from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.sector.loaders import (
-    _load_year_rules_cached,
+    _clear_year_rules,
     load_year_rules,
 )
 from ccnl_engine.sector.raw import loaders as tax_resource_reader_mod
@@ -49,7 +49,7 @@ def _clear_loader_caches() -> None:
     is returned and the patch has no effect.
     """
     load_ccnl_from_bundle.cache_clear()
-    _load_year_rules_cached.cache_clear()
+    _clear_year_rules()
     _load_surtax_rules_cached.cache_clear()
 
 

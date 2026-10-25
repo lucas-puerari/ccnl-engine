@@ -13,7 +13,8 @@ from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.errors import DataIntegrityError, UnsupportedTaxYearError
 from ccnl_engine.family.loaders import load_family_deduction_rules
 from ccnl_engine.sector.loaders import (
-    _load_year_rules_cached,
+    _assembled,
+    _clear_year_rules,
     load_year_rules,
 )
 from ccnl_engine.sector.models import YearRulesRaw
@@ -236,7 +237,7 @@ class TestResolveInpsAdditionalValidation:
             "inps": bad_inps,
             "apprentice": _BAD_APPRENTICE,
         }
-        _load_year_rules_cached.cache_clear()
+        _clear_year_rules()
         with (
             patch(
                 "ccnl_engine.sector.loaders.read_tax_rules_raw",
@@ -249,15 +250,15 @@ class TestResolveInpsAdditionalValidation:
             pytest.raises(ValidationError, match="must not exceed"),
         ):
             load_year_rules(2026, TaxSector.INDUSTRIA, 100)
-        _load_year_rules_cached.cache_clear()
+        _clear_year_rules()
 
 
 class TestLoadYearRulesIdentity:
-    """_load_year_rules_cached rejects mismatched year/sector in tax and INPS files."""
+    """The year rules reject mismatched year/sector in tax and INPS files."""
 
     def test_tax_year_mismatch_raises(self) -> None:
         """Tax file with wrong year raises ValueError before merge."""
-        _load_year_rules_cached.cache_clear()
+        _clear_year_rules()
         with (
             patch(
                 "ccnl_engine.sector.loaders.read_tax_rules_raw",
@@ -266,11 +267,11 @@ class TestLoadYearRulesIdentity:
             pytest.raises(DataIntegrityError, match="does not match requested year"),
         ):
             load_year_rules(2026, TaxSector.TERZIARIO, 50)
-        _load_year_rules_cached.cache_clear()
+        _clear_year_rules()
 
     def test_tax_sector_mismatch_raises(self) -> None:
         """Tax file with wrong sector raises ValueError before merge."""
-        _load_year_rules_cached.cache_clear()
+        _clear_year_rules()
         with (
             patch(
                 "ccnl_engine.sector.loaders.read_tax_rules_raw",
@@ -279,11 +280,11 @@ class TestLoadYearRulesIdentity:
             pytest.raises(DataIntegrityError, match="does not match requested sector"),
         ):
             load_year_rules(2026, TaxSector.TERZIARIO, 50)
-        _load_year_rules_cached.cache_clear()
+        _clear_year_rules()
 
     def test_inps_year_mismatch_raises(self) -> None:
         """INPS file with wrong year raises ValueError before merge."""
-        _load_year_rules_cached.cache_clear()
+        _clear_year_rules()
         with (
             patch(
                 "ccnl_engine.sector.loaders.read_tax_rules_raw",
@@ -296,11 +297,11 @@ class TestLoadYearRulesIdentity:
             pytest.raises(DataIntegrityError, match="does not match requested year"),
         ):
             load_year_rules(2026, TaxSector.TERZIARIO, 50)
-        _load_year_rules_cached.cache_clear()
+        _clear_year_rules()
 
     def test_inps_sector_mismatch_raises(self) -> None:
         """INPS file with wrong sector raises ValueError before merge."""
-        _load_year_rules_cached.cache_clear()
+        _clear_year_rules()
         with (
             patch(
                 "ccnl_engine.sector.loaders.read_tax_rules_raw",
@@ -313,7 +314,7 @@ class TestLoadYearRulesIdentity:
             pytest.raises(DataIntegrityError, match="does not match requested sector"),
         ):
             load_year_rules(2026, TaxSector.TERZIARIO, 50)
-        _load_year_rules_cached.cache_clear()
+        _clear_year_rules()
 
 
 class TestWorkDeductionPassthrough:
@@ -321,9 +322,9 @@ class TestWorkDeductionPassthrough:
 
     def test_default_work_deduction_detr_flat(self) -> None:
         """The loaded 2026 terziario rules carry detr_flat = 1955 from JSON."""
-        _load_year_rules_cached.cache_clear()
+        _clear_year_rules()
         rules = load_year_rules(2026, TaxSector.TERZIARIO, 50)
-        _load_year_rules_cached.cache_clear()
+        _clear_year_rules()
         assert rules.work_deduction.detr_flat == Decimal(1955)
 
     def test_a_sector_file_cannot_restate_the_constants(self) -> None:
@@ -344,16 +345,28 @@ class TestWorkDeductionPassthrough:
             TaxSector.PUBBLICA_AMMINISTRAZIONE,
         ]
         for sector in standard_sectors:
-            _load_year_rules_cached.cache_clear()
+            _clear_year_rules()
             rules = load_year_rules(2026, sector, 50)
             assert rules.work_deduction.detr_flat == Decimal(1955), (
                 f"sector {sector.value}: detr_flat mismatch"
             )
-        _load_year_rules_cached.cache_clear()
+        _clear_year_rules()
 
     def test_lavoro_domestico_has_explicit_work_deduction(self) -> None:
         """Lavoro domestico reads detr_flat = 1955 from the year file."""
-        _load_year_rules_cached.cache_clear()
+        _clear_year_rules()
         rules = load_year_rules(2026, TaxSector.LAVORO_DOMESTICO, 1)
-        _load_year_rules_cached.cache_clear()
+        _clear_year_rules()
         assert rules.work_deduction.detr_flat == Decimal(1955)
+
+
+def test_the_cache_holds_one_entry_per_tier_not_per_headcount() -> None:
+    """200 headcounts of the same tiers share a handful of year rules."""
+    _clear_year_rules()
+    for headcount in range(1, 201):
+        load_year_rules(2026, TaxSector.TERZIARIO, headcount)
+    assert _assembled.cache_info().currsize <= 5
+    assert load_year_rules(2026, TaxSector.TERZIARIO, 120) is load_year_rules(
+        2026, TaxSector.TERZIARIO, 180
+    )
+    _clear_year_rules()
