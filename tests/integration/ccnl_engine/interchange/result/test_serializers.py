@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from decimal import Decimal
 
-from ccnl_engine import PayrollEngine, TaxYearPlan
+from ccnl_engine import PayrollEngine, PeriodResult, TaxYearPlan
 from ccnl_engine.interchange.result.serializers import (
     RESULT_SCHEMA_VERSION,
     result_to_json,
@@ -59,3 +59,45 @@ def test_the_text_of_a_result_is_stable() -> None:
     first = _ENGINE.calculate_period(regular_run(1))
     second = _ENGINE.calculate_period(regular_run(1))
     assert result_to_json(first) == result_to_json(second)
+
+
+def test_a_period_carries_its_payslip_progressives_and_remittance() -> None:
+    """A reader outside Python rebuilds the payslip without the engine."""
+    result = _ENGINE.calculate_period(regular_run(1))
+    derived = json.loads(result_to_json(result))["derived"]
+    assert len(derived["payslip_lines"]["$tuple"]) == len(result.payslip_lines())
+    assert derived["progressives"]["$type"] == "Progressives"
+    assert len(derived["remittance_summary"]["$tuple"]) == len(
+        result.remittance_summary()
+    )
+
+
+#: The top-level shape of a period result: renaming a field of a result
+#: type changes it, and then RESULT_SCHEMA_VERSION must be bumped with it.
+_PERIOD_SHAPE_V1 = frozenset({
+    "derived",
+    "engine_version",
+    "result",
+    "schema_version",
+})
+
+
+def test_the_shape_of_a_period_result_is_pinned() -> None:
+    """An internal rename cannot change the JSON without a schema bump."""
+    result = _ENGINE.calculate_period(regular_run(1))
+    payload = json.loads(result_to_json(result))
+    assert set(payload) == _PERIOD_SHAPE_V1
+    assert RESULT_SCHEMA_VERSION == 1
+    assert sorted(payload["result"]["fields"]) == sorted(
+        f for f in PeriodResult.__dataclass_fields__ if not f.startswith("_")
+    )
+    assert set(payload["derived"]) == {
+        "blockers",
+        "is_employer_cost_complete",
+        "is_net_pay_payable",
+        "is_payable",
+        "paid_gross",
+        "payslip_lines",
+        "progressives",
+        "remittance_summary",
+    }
