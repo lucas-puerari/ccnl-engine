@@ -146,6 +146,10 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
     "ccnl_engine.results": frozenset({
         "ExtraMonthProgress",
         "PUBLIC_FACTS",
+        "TOTALS",
+        "TotalDifference",
+        "TotalsComparison",
+        "compare_totals",
         "AccountKind",
         "BlockerCode",
         "CalculationDecision",
