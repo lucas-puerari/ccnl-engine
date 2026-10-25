@@ -44,11 +44,10 @@ def verify_ruleset_hash(payload: dict[str, Any], filename: str = "<unknown>") ->
             msg,
             remediation=(
                 "Regenerate the source_hash of the modified file: run "
-                "scripts/docs/rehash_ccnl.py for the CCNL files, "
-                "scripts/data/assign_rule_provenance.py for the fiscal files "
-                "it lists, or set it to "
+                "make rehash (scripts/knowledge/update.py) for the CCNL files, "
+                "or set it to "
                 "ccnl_engine.provenance.ruleset.models.source_hash "
-                "of the payload."
+                "of the payload for the other files."
             ),
         )
 
@@ -127,8 +126,8 @@ def verify_provenance_labels(
         raise DataIntegrityError(
             msg,
             remediation=(
-                "Label the rule 'assumed' (scripts/data/demote_weak_labels.py) "
-                "or cite the article and the URL of the source it is read from."
+                "Label the rule 'assumed' or cite the article and the URL of the "
+                "source it is read from."
             ),
         )
 
