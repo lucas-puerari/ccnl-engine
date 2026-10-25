@@ -464,3 +464,14 @@ def test_a_sickness_episode_in_the_opening_state_reads_back() -> None:
         tax_year=2026, competence_years=(_competence_year(),), opening_state=state
     )
     assert request_from_json(request_to_json(plan), TaxYearPlan) == plan
+
+
+def test_an_old_schema_names_both_versions_and_what_to_do() -> None:
+    """No migration: the error says which schema it found and which it reads."""
+    with pytest.raises(InvalidInputError) as caught:
+        request_from_json(_envelope(schema_version=1), PeriodInput)
+    message = str(caught.value)
+    assert "schema_version 1" in message
+    assert repr(REQUEST_SCHEMA_VERSION) in message
+    assert caught.value.remediation is not None
+    assert "release that wrote it" in caught.value.remediation

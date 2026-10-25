@@ -43,3 +43,10 @@ public field to set (`seniority`, `contribution_history`, `sector`,
 ::: ccnl_engine.UnknownLevelError
 
 ::: ccnl_engine.UnsupportedTaxYearError
+
+A keyword the constructor of an input type does not know, or a missing
+required argument, raises the builtin `TypeError` of Python, before any
+validation of the engine: it is a programming error, not an input value.
+A stored request of another schema version raises `InvalidInputError`
+with a remediation: there is no migration, so read it with the release
+that wrote it or build it again.
