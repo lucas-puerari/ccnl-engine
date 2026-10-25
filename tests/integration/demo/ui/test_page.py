@@ -198,3 +198,14 @@ def test_readiness_shows_in_the_picker_and_the_compare_panel() -> None:
     assert 'id="cmp-readiness"' in _HTML
     for strings in _LANGS.values():
         assert {"form.ccnl.tiers", "compare.readiness"} <= strings.keys()
+
+
+def test_blocker_copy_separates_missing_facts_from_rule_limits() -> None:
+    """The page never blames the user for a limit no input can lift."""
+    sentences = _function("blockerSentences")
+    assert "reliability.blockers.facts" in sentences
+    assert "reliability.blockers.limits" in sentences
+    for strings in _LANGS.values():
+        assert "{n}" not in strings["reliability.estimate"]
+        assert "verificate" not in strings["reliability.ruleset.production"]
+        assert "are verified" not in strings["reliability.ruleset.production"]
