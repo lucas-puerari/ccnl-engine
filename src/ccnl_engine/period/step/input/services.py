@@ -23,7 +23,7 @@ from ccnl_engine.contribution.additional_ivs.services import (
 )
 from ccnl_engine.contribution.domestic.services import _domestic_hourly_rate
 from ccnl_engine.contribution.enam.services import enam_stipendio
-from ccnl_engine.employment.spell.models import spell_days
+from ccnl_engine.employment.spell.models import spell_days, unpaid_days_between
 from ccnl_engine.event.allocation.services import (
     _process_events,
     worker_facts_of,
@@ -304,8 +304,8 @@ def _period_days(ctx: RunContext) -> int:
     """Return the days of the pay period the deductions are proportioned to.
 
     Art. 23 c. 2 lett. a) DPR 600/1973 applies the art. 12 and 13 TUIR
-    deductions "rapportate al periodo stesso"; the days are the calendar
-    days of the month of a regular run the employment covers.
+    deductions "rapportate al periodo stesso": the days of the month of a
+    regular run the employment covers and pays, as the year counts them.
 
     Returns:
         Zero for a run that is not a regular month: it takes no deduction.
@@ -315,11 +315,11 @@ def _period_days(ctx: RunContext) -> int:
     year, month = ctx.request.period_id.year, ctx.request.period_id.month
     first = date(year, month, 1)
     last = date(year, month, calendar.monthrange(year, month)[1])
-    period = ctx.request.employment_period
+    period, spells = ctx.request.employment_period, ctx.employment_spells
     if period is not None:
         first = max(first, period.started_on)
         last = last if period.ended_on is None else min(last, period.ended_on)
-    return max(0, (last - first).days + 1)
+    return max(0, (last - first).days + 1 - unpaid_days_between(spells, first, last))
 
 
 def _deferred_irpef(ctx: RunContext) -> Decimal:
