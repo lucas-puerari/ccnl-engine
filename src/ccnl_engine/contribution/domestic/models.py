@@ -18,7 +18,7 @@ class DomesticInpsHoursBracket(BaseModel):
     ``DomesticInpsWageBracket`` entries when the hours condition is met.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     employee_per_hour: NonNegativeRate
     employer_per_hour: NonNegativeRate
@@ -32,7 +32,7 @@ class DomesticInpsWageBracket(BaseModel):
     unbounded (covers any wage above the preceding bracket's threshold).
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     hourly_rate_up_to: Decimal | None
     employee_per_hour: NonNegativeRate
@@ -54,7 +54,7 @@ class DomesticInpsRates(BaseModel):
     ``hourly_rate_up_to`` is ``None`` (the open-ended top bracket).
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     weekly_hours_threshold: int = Field(ge=0)
     hours_bracket: DomesticInpsHoursBracket

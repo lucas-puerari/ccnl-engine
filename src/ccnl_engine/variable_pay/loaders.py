@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from decimal import Decimal
+from functools import cache
 
 from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.regime.models import PreferentialTaxRegime
@@ -19,6 +20,7 @@ from ccnl_engine.variable_pay.models import (
 )
 
 
+@cache
 def load_variable_pay_rules(year: int) -> VariablePayRules:
     """Load statutory variable-pay rules for *year*.
 

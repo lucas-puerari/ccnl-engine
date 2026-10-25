@@ -123,12 +123,12 @@ class YearRules(BaseModel):
     carries the identity of that file.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     year: int
     ruleset: RulesetIdentity | None = None
     inps_ruleset: RulesetIdentity | None = None
-    irpef_brackets: list[IrpefBracket]
+    irpef_brackets: tuple[IrpefBracket, ...]
     irpef_brackets_provenance: RuleProvenance | None = None
     fixed_term_additional_rate: PercentageRate
     fixed_term_renewal_increment: PercentageRate
@@ -146,10 +146,10 @@ class YearRules(BaseModel):
     sterilizzazione_detrazioni: SterilizzazioneDetrazioniRules | None = None
     work_deduction: WorkDeductionRules
     complementary_pension: ComplementaryPensionRules | None = None
-    notes: list[str] = Field(default_factory=list)
-    sources: list[SourceDocument] = Field(default_factory=list)
+    notes: tuple[str, ...] = ()
+    sources: tuple[SourceDocument, ...] = ()
     extraction: ExtractionTrace | None = None
-    inps_sources: list[SourceDocument] = Field(default_factory=list)
+    inps_sources: tuple[SourceDocument, ...] = ()
     inps_extraction: ExtractionTrace | None = None
 
     @model_validator(mode="after")

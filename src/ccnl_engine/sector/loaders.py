@@ -49,9 +49,9 @@ def load_year_rules(
     against :class:`~ccnl_engine.sector.models.YearRulesRaw` before
     resolving tiers.
 
-    Each call returns an independent deep copy of the cached rules object, so
-    callers may freely mutate nested fields (e.g. ``irpef_brackets``) without
-    contaminating subsequent loads.
+    The rules are frozen and cached: every call for the same arguments
+    returns the same object, and a caller that needs other values builds
+    them with ``model_copy(update=...)``.
 
     Args:
         year: Tax year (e.g. ``2026``). Matching data files must exist in the
@@ -65,7 +65,7 @@ def load_year_rules(
         headcount. The ``inps`` field is ``None`` for domestic-work sectors,
         which use ``domestic_contributions`` instead.
     """
-    return _load_year_rules_cached(year, sector, num_employees).model_copy(deep=True)
+    return _load_year_rules_cached(year, sector, num_employees)
 
 
 @cache
@@ -105,7 +105,7 @@ def _load_year_rules_cached(
         year=rules.year,
         ruleset=_as_ruleset(tax_raw),
         inps_ruleset=_as_ruleset(inps_raw),
-        irpef_brackets=rules.irpef_brackets,
+        irpef_brackets=tuple(rules.irpef_brackets),
         irpef_brackets_provenance=rules.irpef_brackets_provenance,
         fixed_term_additional_rate=rules.fixed_term_additional_rate,
         fixed_term_renewal_increment=rules.fixed_term_renewal_increment,
@@ -125,10 +125,10 @@ def _load_year_rules_cached(
         sterilizzazione_detrazioni=rules.sterilizzazione_detrazioni,
         work_deduction=load_work_deduction_rules(year),
         complementary_pension=rules.complementary_pension,
-        notes=rules.notes,
-        sources=rules.sources,
+        notes=tuple(rules.notes),
+        sources=tuple(rules.sources),
         extraction=rules.extraction,
-        inps_sources=rules.inps_sources,
+        inps_sources=tuple(rules.inps_sources),
         inps_extraction=rules.inps_extraction,
     )
 

@@ -22,7 +22,7 @@ class TfrIvsDeduction(BaseModel):
     IVS rate of the INPS ruleset: the deduction only reduces the TFR.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     rate: PercentageRate
     provenance: RuleProvenance | None = None
@@ -40,7 +40,7 @@ class TfrCompensation(BaseModel):
     Tabella A).  Both rates apply to the INPS taxable base of the period.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     guarantee_fund_rate: PercentageRate
     guarantee_fund_rate_by_category: dict[WorkerCategory, PercentageRate] = {}
@@ -75,7 +75,7 @@ class TfrRules(BaseModel):
     rates by contract are not modelled).
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     accrual_divisor: Decimal = Field(gt=Decimal(0))
     additional_ivs: TfrIvsDeduction | None = None

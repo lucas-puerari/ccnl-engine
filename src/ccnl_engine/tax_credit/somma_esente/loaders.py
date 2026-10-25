@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from functools import cache
+
 from pydantic import ValidationError
 
 from ccnl_engine.errors import DataIntegrityError
@@ -9,6 +11,7 @@ from ccnl_engine.sector.raw.loaders import _as_ruleset, read_year_json
 from ccnl_engine.tax_credit.models import SommaEsenteRules
 
 
+@cache
 def load_somma_esente_rules(year: int) -> SommaEsenteRules:
     """Load the somma esente of L. 207/2024 art. 1 cc. 4-5 for *year*.
 

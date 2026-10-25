@@ -29,7 +29,7 @@ class TfrRevaluationRate(BaseModel):
         index_share: Share of the yearly increase of the price index, 75%.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     fixed: PercentageRate
     index_share: PercentageRate
@@ -56,7 +56,7 @@ class TfrPriceIndex(BaseModel):
             (art. 2120 c. 5 c.c.).
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     previous_december: Decimal = Field(gt=Decimal(0))
     december: Decimal | None = Field(default=None, gt=Decimal(0))
@@ -106,7 +106,7 @@ class TfrSubstituteTax(BaseModel):
         rate: Tax rate, 17%.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     rate: PercentageRate
     provenance: RuleProvenance | None = None
@@ -123,7 +123,7 @@ class TfrRevaluationRules(BaseModel):
         ruleset: Identity of the data file.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     year: int
     rate: TfrRevaluationRate

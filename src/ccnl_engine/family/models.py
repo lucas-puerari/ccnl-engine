@@ -165,7 +165,7 @@ class FamilyDeductionRules(BaseModel):
     formulas is taken to, discarding the rest (art. 12 c. 4).
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     year: int
     description: str = ""

@@ -129,7 +129,7 @@ class VariablePayRules(BaseModel):
         ruleset: Provenance of the statutory source.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     year: int
     description: str = ""
