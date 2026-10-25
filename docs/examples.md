@@ -86,9 +86,9 @@ Pass the `closing_state` of one run as the `opening_state` of the next, so progr
 --8<-- "docs/examples/balance/example.py"
 ```
 
-### Second-level bargaining (contrattazione di secondo livello)
+### Company calendar (calendar override)
 
-Territorial or company allowances on top of the CCNL minimums, with per-item contribution/TFR/apprenticeship control.
+A company agreement that pays an extra month at another time, or grants more than the CCNL, as a `CalendarOverride` with its reason. Second-level allowances are not an input of the engine yet: see [Second level](engine/second-level.md).
 
 ```python
 --8<-- "docs/examples/calendar/example.py"
