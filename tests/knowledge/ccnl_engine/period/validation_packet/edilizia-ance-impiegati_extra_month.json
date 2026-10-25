@@ -30,7 +30,20 @@
     "current_year_employment_only_on": "2026-01-01",
     "tfr_treasury_fund": false,
     "pension_fund": "none",
-    "run_kind": "thirteenth"
+    "run_kind": "thirteenth",
+    "seniority_months": 23,
+    "seniority_as_of": "2026-12-01",
+    "family_composition": "none",
+    "employment_sector": "private",
+    "contractual_funds": [],
+    "provincial_pay_element": false,
+    "tfr_fund": {
+      "year": 2025,
+      "amount": "2000.00",
+      "revaluations": "0.00",
+      "advances": "0.00"
+    },
+    "opening": "zero_balances_at_january"
   },
   "outputs": [
     {

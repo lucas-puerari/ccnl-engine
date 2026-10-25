@@ -32,13 +32,27 @@
     "pension_fund": {
       "fund_code": "FONTE",
       "employee_rate": "0.0055",
-      "tfr_to_fund": true
-    }
+      "tfr_to_fund": true,
+      "young_member": false
+    },
+    "seniority_months": 14,
+    "seniority_as_of": "2026-03-01",
+    "family_composition": "none",
+    "employment_sector": "private",
+    "contractual_funds": [],
+    "provincial_pay_element": false,
+    "tfr_fund": {
+      "year": 2025,
+      "amount": "2000.00",
+      "revaluations": "0.00",
+      "advances": "0.00"
+    },
+    "opening": "zero_balances_at_january"
   },
   "outputs": [
     {
       "output": "employer_contributions",
-      "value": "503.47",
+      "value": "511.39",
       "perimeter": "INPS contributions due by the employer for the run (INAIL excluded)",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -46,7 +60,7 @@
     },
     {
       "output": "tfr",
-      "value": "114.15",
+      "value": "115.94",
       "perimeter": "TFR accrued in the run, kept by the employer or paid to a fund",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -54,7 +68,7 @@
     },
     {
       "output": "employer_cost",
-      "value": "2279.40",
+      "value": "2315.17",
       "perimeter": "Gross pay, employer contributions, TFR accrual and employer fund contributions of the run",
       "tolerance": "0.01",
       "rounding": "half_up_cents",

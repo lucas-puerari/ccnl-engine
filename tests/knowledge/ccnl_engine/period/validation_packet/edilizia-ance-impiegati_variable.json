@@ -38,7 +38,20 @@
         "kind": "weekday",
         "hourly_rate": "12.11"
       }
-    ]
+    ],
+    "seniority_months": 14,
+    "seniority_as_of": "2026-03-01",
+    "family_composition": "none",
+    "employment_sector": "private",
+    "contractual_funds": [],
+    "provincial_pay_element": false,
+    "tfr_fund": {
+      "year": 2025,
+      "amount": "2000.00",
+      "revaluations": "0.00",
+      "advances": "0.00"
+    },
+    "opening": "zero_balances_at_january"
   },
   "outputs": [
     {
@@ -75,7 +88,7 @@
     },
     {
       "output": "tax",
-      "value": "193.54",
+      "value": "192.56",
       "perimeter": "IRPEF and surtaxes withheld in the run net of refunds, before tax credits",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -83,7 +96,7 @@
     },
     {
       "output": "net",
-      "value": "1792.23",
+      "value": "1793.21",
       "perimeter": "Net pay of the run, before advances and deductions unrelated to payroll",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
