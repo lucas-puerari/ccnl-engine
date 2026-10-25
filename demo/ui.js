@@ -344,6 +344,7 @@ function readForm() {
     ccnl: selectedCcnl(),
     level: document.getElementById("sel-level").value,
     contract: document.getElementById("sel-contract").value,
+    category: document.getElementById("sel-category").value,
     part_time_pct: parseInt(document.getElementById("inp-parttime").value, 10),
     apprentice_months: parseInt(document.getElementById("inp-apprentice-months").value, 10) || 0,
     track: document.getElementById("sel-apprentice-track").value,
