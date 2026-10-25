@@ -85,3 +85,13 @@ def test_human_verified_needs_a_human_review_that_records_its_values() -> None:
     assert {i for i, label in labels.items() if label == "Human verified"} <= human
     assert labels["commercio-confcommercio"] == "AI verified"
     assert labels["cooperative-sociali"] != "Human verified"
+
+
+def test_index_leads_with_the_readiness_split() -> None:
+    """The page states the tier counts before the total, from the data."""
+    year = latest_catalog_year()
+    report = build_coverage_report(year)
+    page = render_contracts_index(report, year)
+    production = sum(row.readiness == "production" for row in report.ccnl_rows)
+    split = page.index(f"**{production} production, ")
+    assert split < page.index("bundled contract configurations in all")
