@@ -5,7 +5,8 @@ name: Freshness
 # job fails on the deadlines of the next 60 days, so the work opens while
 # the deadline is still ahead (60, then about 30, 14 and 7 days before),
 # and publishes the staleness of each ruleset and the state of each source
-# in the job summary.
+# in the job summary.  From 1 December it also fails, and opens an issue,
+# while the statutory data of the next payroll year are still assumed.
 
 on:
   schedule:
@@ -25,6 +26,31 @@ jobs:
 
       - name: Deadlines of the next 60 days
         run: python scripts/provenance/check.py --deadlines --within 60
+
+  statutory:
+    name: Next year's statutory data sourced from 1 December
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+
+      - name: Statutory data of the next payroll year
+        id: statutory
+        run: |
+          set -o pipefail
+          python scripts/provenance/statutory/check.py | tee statutory.txt
+
+      - name: Open an issue on failure
+        if: failure() && steps.statutory.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Statutory data of next year still assumed"
+          if ! gh issue list --state open --search "$title in:title" --json number --jq '.[0].number' | grep -q .; then
+            gh issue create --title "$title" --body-file statutory.txt
+          fi
 
   staleness:
     name: Staleness and sources report
