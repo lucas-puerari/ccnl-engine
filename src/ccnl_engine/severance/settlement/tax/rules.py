@@ -26,6 +26,7 @@ if TYPE_CHECKING:
 from ccnl_engine.severance.settlement.gap.models import (
     _ADVANCES,
     _ADVANCES_UNKNOWN,
+    _BEFORE_2001,
     _NO_RULES,
     _REVALUATIONS_UNKNOWN,
     _SHORT_TERM,
@@ -38,6 +39,8 @@ _KIND = "tfr_settlement_item"
 _ZERO = Decimal(0)
 _MONTHS = 12
 _AT_INPS = frozenset({PublicEndOfService.TFS, PublicEndOfService.TFR_INPS})
+#: First day of the TFR taxed under D.Lgs. 47/2000 (art. 11 c. 1).
+_NEW_RULES_FROM = date(2001, 1, 1)
 #: Months of service up to which a fixed term takes the art. 19 c. 1-ter deduction.
 _SHORT_FIXED_TERM = 24
 _FINAL = CalculationStatus.FINAL
@@ -90,8 +93,12 @@ def _rate_gap(ctx: RunContext, fund: _Fund, months: int) -> _Gap | None:
     """Return why the engine does not compute the rate, ``None`` when it does.
 
     Returns:
-        The gap of unknown or paid advances or of a short fixed term.
+        The gap of an employment started before 2001, of unknown or paid
+        advances or of a short fixed term.
     """
+    period = ctx.request.employment_period
+    if period is not None and period.started_on < _NEW_RULES_FROM:
+        return _BEFORE_2001
     if fund.advances is None:
         return _ADVANCES_UNKNOWN
     if fund.advances:
