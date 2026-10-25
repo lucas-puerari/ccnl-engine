@@ -160,7 +160,9 @@ listed one that no longer exists.
 A module under `src/ccnl_engine` holds at most 300 lines. The modules
 longer than that on 2026-10-19 are listed in
 `scripts/architecture/baseline.json`; each may only shrink, and a module
-leaves the list once it fits.
+leaves the list once it fits. A pull request that adds a module to the
+list or raises a length fails `scripts/quality/baseline/check.py`, unless
+its body justifies it with an `allow-growth:` line.
 
 Inside a concept the role direction holds:
 

@@ -116,7 +116,9 @@ In addition to the `reviewed` criteria:
    recomputes the same sources). It fails a `production` CCNL that misses
    an output, at either level, that
    `scripts/provenance/readiness/baseline.json` does not list for it. The
-   list holds what each `production` CCNL still misses and only shrinks;
+   list holds what each `production` CCNL still misses and only shrinks:
+   `scripts/quality/baseline/check.py` fails a pull request that adds an
+   entry unless its body justifies it with an `allow-growth:` line;
    today no `production` CCNL covers every total with a provider output.
 4. An owner must be recorded in `verification.owner`, and the review in the
    [review log](#review-log).
