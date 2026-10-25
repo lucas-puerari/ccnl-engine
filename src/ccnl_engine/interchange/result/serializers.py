@@ -11,7 +11,8 @@ class name.
 
 Next to the fields, ``derived`` holds what the result computes from them
 and a reader outside Python could not: payability, the blockers and the
-totals.
+totals, and for a period the payslip lines, the progressivi and the
+remittance lines by codice tributo.
 """
 
 from __future__ import annotations
@@ -44,10 +45,26 @@ _YEAR = ("annual_gross", "annual_net", "annual_employer_cost", *_ASSESSMENT)
 
 #: Properties written under ``derived``, by result type.
 _DERIVED: Mapping[type, tuple[str, ...]] = MappingProxyType({
-    PeriodResult: ("paid_gross", *_ASSESSMENT),
+    PeriodResult: (
+        "paid_gross",
+        *_ASSESSMENT,
+        "payslip_lines",
+        "progressives",
+        "remittance_summary",
+    ),
     CompetenceYearResult: _YEAR,
     TaxYearResult: _YEAR,
 })
+
+
+def _value(result: object, name: str) -> object:
+    """Return the property ``name`` of ``result``, calling it when a method.
+
+    Returns:
+        The value to encode.
+    """
+    value = getattr(result, name)
+    return value() if callable(value) else value
 
 
 def result_to_json(
@@ -58,14 +75,16 @@ def result_to_json(
     Decimals are written as strings and dates in ISO 8601.  The JSON holds
     every field of the result under ``result`` and, under ``derived``,
     ``is_payable``, ``is_net_pay_payable``, ``is_employer_cost_complete``,
-    ``blockers`` and the totals: ``paid_gross`` for a period,
+    ``blockers`` and the totals: ``paid_gross``, ``payslip_lines``,
+    ``progressives`` and ``remittance_summary`` for a period,
     ``annual_gross``, ``annual_net`` and ``annual_employer_cost`` for a
-    year.  It is output only: there is no reader.
+    year.  It is output only: a stored result is read as JSON, and the
+    engine recomputes a result from its stored request.
 
     Returns:
         The JSON text of the result.
     """
-    derived = {name: encode(getattr(result, name)) for name in _DERIVED[type(result)]}
+    derived = {name: encode(_value(result, name)) for name in _DERIVED[type(result)]}
     payload = {
         "schema_version": RESULT_SCHEMA_VERSION,
         "engine_version": engine_version,
