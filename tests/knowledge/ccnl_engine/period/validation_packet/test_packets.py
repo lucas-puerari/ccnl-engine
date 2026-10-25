@@ -11,8 +11,9 @@ and pinned to what the engine computes today.
 from __future__ import annotations
 
 import json
+from datetime import date
 from decimal import Decimal
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import pytest
 
@@ -26,7 +27,11 @@ from tests.knowledge.ccnl_engine.period.validation_packet.runner import (
     FOLDER,
     compute,
     compute_result,
+    rewrite,
 )
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 _PILOTS = (
     "commercio-confcommercio",
@@ -71,8 +76,8 @@ def test_the_employer_cost_packets_compare_the_employer_side() -> None:
 def test_the_engine_reproduces_the_provisional_values(name: str) -> None:
     """Each value is what the engine computes today, within the tolerance.
 
-    A change of the engine that moves a value fails here; rewrite the
-    packets with the runner when the change is meant.
+    A change of the engine that moves a value fails here; when the change
+    is meant, rewrite the packets with the runner and its ``--reason``.
     """
     packet = _PACKETS[name]
     outputs = packet["outputs"]
@@ -103,3 +108,19 @@ def test_no_packet_misses_a_fact_its_inputs_can_state() -> None:
         found = compute_result(packet["inputs"])
         missing = {b.detail for b in found.blockers} & stateable
         assert not missing, (name, missing)
+
+
+def test_a_rewrite_needs_a_reason_and_records_it(tmp_path: Path) -> None:
+    """A moved value is accepted only with a reason, dated in the review."""
+    name = "commercio-confcommercio_ordinary_month"
+    packet = dict(_PACKETS[name])
+    packet["outputs"] = [{**o, "value": "0.00"} for o in packet["outputs"]]
+    (tmp_path / f"{name}.json").write_text(json.dumps(packet), encoding="utf-8")
+    with pytest.raises(ValueError, match="reason"):
+        rewrite(tmp_path, reason=" ", today=date(2026, 10, 25))
+
+    assert rewrite(tmp_path, reason="test", today=date(2026, 10, 25)) == [name]
+    written = json.loads((tmp_path / f"{name}.json").read_text(encoding="utf-8"))
+    assert written["review"]["rewritten_because"] == "test"
+    assert written["review"]["date"] == "2026-10-25"
+    assert rewrite(tmp_path, reason="again", today=date(2026, 10, 26)) == []
