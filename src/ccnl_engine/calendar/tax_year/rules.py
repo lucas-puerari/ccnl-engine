@@ -69,8 +69,9 @@ class TaxYearPolicy:
 
     No upper bound is set on the payment date: a run paid two years late is
     attributed to the payment year, and the tax tables bundled for that
-    year are the practical limit.  Separate taxation of arrears (TUIR
-    art. 17 c. 1 lett. b) is not modelled.
+    year are the practical limit.  Arrears of earlier years paid in the
+    year take separate taxation (TUIR art. 17 c. 1 lett. b), computed in
+    :mod:`ccnl_engine.irpef.separate`.
     """
 
     EXTENDED_CASH_LAST_DAY: ClassVar[tuple[int, int]] = (1, 12)
