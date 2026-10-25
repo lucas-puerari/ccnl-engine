@@ -9,6 +9,7 @@ from ccnl_engine.contribution.headcount.rules import (
     _resolve_apprentice,
     _resolve_inps,
 )
+from ccnl_engine.contribution.rate.models import ApprenticeRates, InpsRates
 from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.irpef.work_deduction.loaders import load_work_deduction_rules
 from ccnl_engine.sector.models import YearRules, YearRulesRaw
@@ -27,6 +28,7 @@ if TYPE_CHECKING:
     from collections.abc import Mapping
 
     from ccnl_engine.agreement.facade import TaxSector
+    from ccnl_engine.provenance.ruleset.models import RulesetIdentity
 
 
 def load_year_rules(
@@ -65,25 +67,38 @@ def load_year_rules(
         headcount. The ``inps`` field is ``None`` for domestic-work sectors,
         which use ``domestic_contributions`` instead.
     """
-    return _load_year_rules_cached(year, sector, num_employees)
+    raw, _, _ = _raw_rules(year, sector)
+    inps = _resolve_inps(raw.inps, num_employees, raw.apprentice)
+    apprentice = (
+        None
+        if raw.apprentice is None
+        else _resolve_apprentice(raw.apprentice, num_employees)
+    )
+    return _assembled(
+        year,
+        sector,
+        None if inps is None else inps.model_dump_json(),
+        None if apprentice is None else apprentice.model_dump_json(),
+    )
+
+
+def _clear_year_rules() -> None:
+    """Forget the parsed and the assembled year rules (tests patch the files)."""
+    _raw_rules.cache_clear()
+    _assembled.cache_clear()
 
 
 @cache
-def _load_year_rules_cached(
-    year: int,
-    sector: TaxSector,
-    num_employees: int,
-) -> YearRules:
-    """Parse, validate and cache tax rules for the given arguments (internal use only).
+def _raw_rules(
+    year: int, sector: TaxSector
+) -> tuple[YearRulesRaw, RulesetIdentity | None, RulesetIdentity | None]:
+    """Parse and validate the tax and INPS files of a year and sector, once.
 
-    Callers must use :func:`load_year_rules`, which returns a deep copy so
-    each caller gets an independent object that may be mutated freely.  A
-    tax or INPS file whose year or sector does not match the request raises
-    ``DataIntegrityError``.
+    A tax or INPS file whose year or sector does not match the request
+    raises ``DataIntegrityError``.
 
     Returns:
-        The shared :class:`~ccnl_engine.sector.models.YearRules`
-        object stored in the cache.
+        The merged raw rules with the ruleset of the tax and of the INPS file.
     """
     tax_raw = read_tax_rules_raw(year, sector)
     _check_identity("tax", tax_raw, year, sector)
@@ -94,17 +109,31 @@ def _load_year_rules_cached(
     raw = {**tax_raw, **inps_raw}
     raw["inps_sources"] = inps_sources
     raw["inps_extraction"] = inps_extraction
-    rules = YearRulesRaw.model_validate(raw)
-    inps = _resolve_inps(rules.inps, num_employees, rules.apprentice)
-    apprentice = (
-        _resolve_apprentice(rules.apprentice, num_employees)
-        if rules.apprentice is not None
-        else None
+    return (
+        YearRulesRaw.model_validate(raw),
+        _as_ruleset(tax_raw),
+        _as_ruleset(inps_raw),
     )
+
+
+@cache
+def _assembled(
+    year: int, sector: TaxSector, inps_json: str | None, apprentice_json: str | None
+) -> YearRules:
+    """Build the year rules once per set of resolved INPS rates.
+
+    The key is the rates the headcount resolves to, not the headcount: the
+    cache holds one entry per tier the files define, however many
+    headcounts the employers have.
+
+    Returns:
+        The frozen year rules, shared by every headcount of the same tier.
+    """
+    rules, tax_ruleset, inps_ruleset = _raw_rules(year, sector)
     return YearRules(
         year=rules.year,
-        ruleset=_as_ruleset(tax_raw),
-        inps_ruleset=_as_ruleset(inps_raw),
+        ruleset=tax_ruleset,
+        inps_ruleset=inps_ruleset,
         irpef_brackets=tuple(rules.irpef_brackets),
         irpef_brackets_provenance=rules.irpef_brackets_provenance,
         fixed_term_additional_rate=rules.fixed_term_additional_rate,
@@ -113,8 +142,10 @@ def _load_year_rules_cached(
         fixed_term_additional_rate_provenance=(
             rules.fixed_term_additional_rate_provenance
         ),
-        inps=inps,
-        apprentice=apprentice,
+        inps=None if inps_json is None else InpsRates.model_validate_json(inps_json),
+        apprentice=None
+        if apprentice_json is None
+        else ApprenticeRates.model_validate_json(apprentice_json),
         domestic_contributions=rules.domestic_contributions,
         tfr=rules.tfr,
         tfr_revaluation=load_tfr_revaluation_rules(year),
