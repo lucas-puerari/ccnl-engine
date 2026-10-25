@@ -13,8 +13,8 @@
   "source": {
     "publisher": "Reddit",
     "title": "Dubbio RAL netto",
-    "file": "dubbio-ral-netto-v0-hpwfqlwakoih1.webp",
-    "sha256": "8cfcbdff6b2fb3164fdd5bd994c5632d9cd3ec886bb33e2ab01696daa161acd0"
+    "url": "https://i.redd.it/hpwfqlwakoih1.jpeg",
+    "sha256": "3bf622d135dc11ae95639de25a0e441153009929b9e356db92ee254b96096733"
   },
   "pay_elements": {
     "stipendio_base": "1167.75",

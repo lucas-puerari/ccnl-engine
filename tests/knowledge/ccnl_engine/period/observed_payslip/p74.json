@@ -13,8 +13,8 @@
   "source": {
     "publisher": "Reddit",
     "title": "Pareri busta paga",
-    "file": "pareri-busta-paga-v0-eh3cdny01kih1.webp",
-    "sha256": "68aca46b1019d30dbbdf942183b526fa9c80a1a095d5f2e1b5ee63d0f1d68176"
+    "url": "https://i.redd.it/eh3cdny01kih1.jpg",
+    "sha256": "6f5d61bbd5bc6fcc195c0ee035ae730a8d5950c2423b6a9322ab99a2ebd55ef0"
   },
   "pay_elements": {
     "paga_base": "1916.96",

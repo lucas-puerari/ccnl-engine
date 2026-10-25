@@ -14,8 +14,8 @@
   "source": {
     "publisher": "Reddit",
     "title": "Aiuto check busta paga",
-    "file": "aiuto-check-busta-paga-v0-7aqqzvc3efeh1.webp",
-    "sha256": "f0efd898990b9917f71b030e0ce431219b496b552312554ba190e60fed890909"
+    "url": "https://i.redd.it/7aqqzvc3efeh1.jpeg",
+    "sha256": "4f176e3324bc42bba9a7128529b195e3187f45123a85682f67c5b165bfcef957"
   },
   "pay_elements": {
     "minimo": "1453.94",
