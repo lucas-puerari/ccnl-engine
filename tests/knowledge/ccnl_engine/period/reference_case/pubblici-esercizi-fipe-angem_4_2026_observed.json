@@ -12,7 +12,7 @@
     "kind": "observed_payslip",
     "document": "Observed payslip p73",
     "path": "tests/knowledge/ccnl_engine/period/observed_payslip/p73.json",
-    "sha256": "f9066ff4cf364314cd59b3a72fe6aeeaf44b5dceb3ee57b21cca23e48af5d49f",
+    "sha256": "ec558b2d6beb7d201d26b72cc33de5d85a7ca1e40439296e4edf8c6b6ace4ad9",
     "section": "pay_elements",
     "verified_by": "claude-opus-5-5",
     "verified_at": "2026-10-24",
