@@ -399,6 +399,20 @@ def test_a_tfr_paid_to_a_pension_fund_is_not_computed() -> None:
             "fixed_term_deduction_not_modelled",
             None,
         ),
+        # Hired in 1995: the TFR accrued up to 31 December 2000 keeps the
+        # rules before D.Lgs. 47/2000 (art. 11 c. 1), which are not modelled.
+        (
+            {
+                "employment_period": EmploymentPeriod(
+                    date(1995, 3, 1), date(2026, 1, 31)
+                ),
+                "tfr_fund": TfrFundBalance(
+                    2025, Decimal("40000.00"), Decimal(0), Decimal(0)
+                ),
+            },
+            "tfr_before_2001_not_modelled",
+            None,
+        ),
     ],
 )
 def test_a_tax_the_engine_cannot_compute_leaves_the_payout_posted(

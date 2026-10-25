@@ -98,6 +98,12 @@ _SHORT_TERM = _Gap(
     "a fixed term of up to two years takes the deduction of art. 19 c. 1-ter "
     "TUIR, which is not computed; state the rate",
 )
+_BEFORE_2001 = _Gap(
+    "tfr_before_2001_not_modelled",
+    "the employment started before 1 January 2001: the TFR accrued up to 31 "
+    "December 2000 keeps the rules before D.Lgs. 47/2000 (art. 11 c. 1), which "
+    "are not computed; state the rate",
+)
 _NO_RULES = _Gap(
     "rule_not_in_bundle",
     "the bundle has no separate taxation rules of the TFR for the year of the "

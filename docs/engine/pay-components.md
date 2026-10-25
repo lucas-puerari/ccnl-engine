@@ -399,6 +399,7 @@ and stays final.
 | `tfr_fund.revaluations` not stated on a non-empty fund | posted | `missing_fact` `revaluations` |
 | `tfr_fund.advances` not stated, or advances paid (art. 19 c. 4, `advances_not_modelled`) | posted | not computed |
 | Fixed term of up to 24 months (art. 19 c. 1-ter, `fixed_term_deduction_not_modelled`) | posted | not computed |
+| Employment started before 1 January 2001: the TFR accrued up to 2000 keeps the earlier rules (D.Lgs. 47/2000 art. 11 c. 1, `tfr_before_2001_not_modelled`) | posted | not computed |
 | A year without settlement rules (from 2027, D.Lgs. 117/2026), or a run paid in another tax year than the termination's (`rule_not_in_bundle`) | posted | not computed |
 
 Each gap leaves its decision `incomplete` and the run not payable.
