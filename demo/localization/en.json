@@ -8,7 +8,7 @@
   "loading.error": "The calculator could not be loaded. Check your connection and try again.",
   "loading.retry": "↺ Retry",
   "loading.details": "details ▾",
-  "header.sub": "Italian CCNL payroll engine",
+  "header.sub": "The open, auditable second opinion for Italian payroll",
   "header.theme": "Toggle theme",
   "hero.title": "Compute and explain an Italian payslip, according to the CCNL.",
   "hero.sub": "Gross, net and employer cost from versioned rules, with sources and explicit limits.",

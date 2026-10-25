@@ -1,8 +1,8 @@
 # ccnl-engine
 
-Python engine for auditable Italian payroll simulations: CCNL-aware gross-to-net and
-employer cost, versioned rules, provenance, and an explicit status on every result.
-Built for technical teams in HR, payroll, and compensation.
+The open, auditable second opinion for Italian payroll. CCNL-aware gross-to-net and
+employer cost, versioned rules, provenance, and an explicit status on every result,
+for payroll and HR teams that want to verify and explain a payslip.
 
 [**Demo**](../demo/) · [**GitHub**](https://github.com/lucas-puerari/ccnl-engine) · [**CCNL coverage**](contracts/index.md)
 
