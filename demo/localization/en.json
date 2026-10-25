@@ -182,6 +182,7 @@
   "footer.docs": "Documentation",
   "footer.contracts": "Covered agreements",
   "footer.disclaimer": "Estimates computed in the browser · Not tax or employment advice",
+  "footer.privacy": "What you enter stays in your browser. The page loads its fonts from Google Fonts and the Python runtime from jsDelivr.",
   "form.ccnl.tiers": "🏭 production · 👁 reviewed · 🧪 exploratory",
   "compare.readiness": "Compared agreement: {tier}, {payable}.",
   "compare.payable": "payable",

@@ -182,6 +182,7 @@
   "footer.docs": "Documentazione",
   "footer.contracts": "Contratti coperti",
   "footer.disclaimer": "Stime calcolate nel browser · Non è consulenza fiscale o del lavoro",
+  "footer.privacy": "I dati inseriti restano nel browser. La pagina carica i caratteri da Google Fonts e il runtime Python da jsDelivr.",
   "form.ccnl.tiers": "🏭 in produzione · 👁 revisionato · 🧪 esplorativo",
   "compare.readiness": "Contratto confrontato: {tier}, {payable}.",
   "compare.payable": "pagabile",
