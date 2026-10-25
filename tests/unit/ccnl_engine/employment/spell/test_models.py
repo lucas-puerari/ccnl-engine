@@ -17,6 +17,7 @@ from ccnl_engine.employment.spell.models import (
     spell_days,
     spells_of,
     spells_with,
+    unpaid_days_between,
 )
 from ccnl_engine.errors import InvalidInputError
 
@@ -219,3 +220,27 @@ class TestUnpaidDays:
         with pytest.raises(InvalidInputError) as caught:
             EmploymentSpell(date(2026, 1, 1), date(2026, 1, 31), False, days)
         assert caught.value.field == "EmploymentSpell.unpaid_days"
+
+
+class TestUnpaidDaysBetween:
+    """A month counts the days the year counts (AdE circ. 15/E/2007 1.5.1).
+
+    The art. 13 TUIR share of a run is its paid days over the paid days of
+    the year: a month must leave out the unpaid days the year leaves out,
+    or twelve runs apply more than the annual deduction.
+    """
+
+    def test_unpaid_days_of_the_month_leave_it(self) -> None:
+        """Ten unpaid days of March: 31 - 10 = 21 days paid."""
+        unpaid = tuple(date(2026, 3, day) for day in range(2, 12))
+        spell = EmploymentSpell(date(2026, 1, 1), date(2026, 12, 31), False, unpaid)
+        assert spell_days((spell,)) == 365 - 10
+        assert unpaid_days_between((spell,), date(2026, 3, 1), date(2026, 3, 31)) == 10
+        assert unpaid_days_between((spell,), date(2026, 4, 1), date(2026, 4, 30)) == 0
+
+    def test_a_day_another_spell_pays_stays(self) -> None:
+        """A day unpaid in one spell and paid by another counts, as in the year."""
+        day = date(2026, 3, 2)
+        unpaid = EmploymentSpell(date(2026, 3, 1), date(2026, 3, 31), False, (day,))
+        paid = _spell(date(2026, 3, 1), date(2026, 3, 15))
+        assert unpaid_days_between((unpaid, paid), day, day) == 0

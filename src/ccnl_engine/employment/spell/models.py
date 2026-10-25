@@ -194,3 +194,28 @@ def spell_days(spells: tuple[EmploymentSpell, ...]) -> int:
         days = (spell.first_day + _DAY * n for n in range(count))
         paid.update(d for d in days if d not in unpaid)
     return min(len(paid), _MAX_DAYS)
+
+
+def unpaid_days_between(
+    spells: tuple[EmploymentSpell, ...], first: date, last: date
+) -> int:
+    """Return the days from ``first`` to ``last`` that no spell pays.
+
+    The same rule as :func:`spell_days`: a day stated unpaid leaves the
+    count unless another spell that covers it pays it, so the days of a
+    month and of the year agree.
+
+    Returns:
+        The unpaid days of the interval, zero when none is stated.
+    """
+    unpaid = {
+        day for spell in spells for day in spell.unpaid_days if first <= day <= last
+    }
+    return sum(
+        1
+        for day in unpaid
+        if not any(
+            s.first_day <= day <= s.last_day and day not in s.unpaid_days
+            for s in spells
+        )
+    )
