@@ -62,6 +62,7 @@ from ccnl_engine.provenance.source.models import (
     SourceKind,
     SourceLocation,
 )
+from ccnl_engine.provenance.statute.rules import WITHHOLDING_CODE_FROM
 
 if TYPE_CHECKING:
     from ccnl_engine.irpef.net.rules import NetIrpef
@@ -153,9 +154,6 @@ def period_tax(period: PayPeriod, annual: NetIrpef, rules: YearRules) -> PeriodT
     return PeriodTax(withheld + separate, without + separate)
 
 
-#: First tax year of the testo unico of D.Lgs. 33/2025 (art. 243).
-_TESTO_UNICO_FROM = 2027
-
 _DPR_600 = SourceDocument(
     document_id="dpr-600-1973",
     title="D.P.R. 29 settembre 1973, n. 600",
@@ -216,7 +214,7 @@ def withholding_rule(topic: WithholdingTopic, tax_year: int) -> WithholdingRule:
         Art. 33 D.Lgs. 33/2025 from 2027, art. 23 D.P.R. 600/1973 before.
     """
     dpr_comma, dlgs_comma = _COMMA[topic]
-    if tax_year >= _TESTO_UNICO_FROM:
+    if tax_year >= WITHHOLDING_CODE_FROM:
         section = f"art. 33 c. {dlgs_comma}"
         return WithholdingRule(
             rule=f"dlgs33-2025-art33-c{dlgs_comma}",

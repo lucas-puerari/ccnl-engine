@@ -45,6 +45,7 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
 )
 from ccnl_engine.pay_item.rounding.policies import money
+from ccnl_engine.provenance.statute.rules import INCOME_TAX_CODE_FROM
 
 if TYPE_CHECKING:
     from ccnl_engine.irpef.net.rules import NetIrpef
@@ -54,8 +55,6 @@ if TYPE_CHECKING:
 __all__ = ["CAPABILITY", "ForeignCredit", "foreign_credit_rule", "foreign_tax_credit"]
 
 CAPABILITY = "foreign_tax_credit"
-#: First tax year of the testo unico of D.Lgs. 117/2026.
-_TESTO_UNICO_FROM = 2027
 _ZERO = Decimal(0)
 _ONE = Decimal(1)
 
@@ -66,7 +65,7 @@ def foreign_credit_rule(tax_year: int) -> tuple[str, str]:
     Returns:
         Art. 185 c. 1 D.Lgs. 117/2026 from 2027, art. 165 c. 1 TUIR before.
     """
-    if tax_year >= _TESTO_UNICO_FROM:
+    if tax_year >= INCOME_TAX_CODE_FROM:
         return "dlgs117-2026-art185-c1", "Art. 185 D.Lgs. 117/2026"
     return "tuir-art165-c1", "Art. 165 TUIR"
 
