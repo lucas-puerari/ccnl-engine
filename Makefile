@@ -6,7 +6,7 @@ PACKAGES := demo/release/packages
 # Setup
 
 setup:
-	uv sync --group dev
+	uv sync --locked --group dev
 	uv pip install -e .
 	git config core.hooksPath .githooks
 
