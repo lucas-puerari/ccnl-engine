@@ -42,6 +42,7 @@ from ccnl_engine.inputs import (
     SeniorityFact,
     SenioritySource,
     WeeklyHours,
+    WorkerCategory,
 )
 
 if TYPE_CHECKING:
@@ -237,6 +238,7 @@ def _employment(params: dict[str, Any], ccnl_id: str) -> Employment:
         ccnl_id=ccnl_id,
         level_code=str(params["level"]),
         contract_type=_contract(params),
+        category=WorkerCategory(params["category"]) if params.get("category") else None,
         seniority=seniority,
         contribution_history=history,
         weekly_hours=weekly,
