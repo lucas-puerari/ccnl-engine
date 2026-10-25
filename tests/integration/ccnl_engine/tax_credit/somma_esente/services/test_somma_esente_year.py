@@ -22,7 +22,11 @@ from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.models import PayrollRun, PayrollRunId
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
@@ -38,7 +42,11 @@ _YEAR = 2026
 # Low-income contract: somma esente of about 877 EUR a year.
 _CCNL = "autoscuole-unasca"
 _LEVEL = "3"
-_YEAR_RESULT = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+_YEAR_RESULT = calculate_competence_year(
+    year_plan(_YEAR, _CCNL, _LEVEL),
+    repo=bundled_repository(),
+    resolver=bundled_policies(),
+)
 
 
 def _somma(result: PeriodResult) -> Decimal:
@@ -63,7 +71,9 @@ def _last_run(opening: PeriodState) -> PeriodResult:
             level_code=_LEVEL,
             opening_state=opening,
             run=PayrollRun.thirteenth(_YEAR, 12),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 
@@ -170,7 +180,9 @@ class TestCarriedSommaEsenteRecovery:
         )
 
         with_plan = calculate_competence_year(
-            year_plan(_YEAR, _CCNL, _LEVEL, opening_state=opening)
+            year_plan(_YEAR, _CCNL, _LEVEL, opening_state=opening),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
 
         assert _YEAR_RESULT.annual_net - with_plan.annual_net == Decimal("45.00")
@@ -213,7 +225,11 @@ class TestClosedRuns:
         )
 
         with pytest.raises(InvalidInputError, match="out of order") as info:
-            calculate_period(self._request(2, opening))
+            calculate_period(
+                self._request(2, opening),
+                repo=bundled_repository(),
+                resolver=bundled_policies(),
+            )
 
         assert info.value.feature == "accrual_state"
 
@@ -222,7 +238,11 @@ class TestClosedRuns:
         opening = _YEAR_RESULT.period_results[2].closing_state
 
         with pytest.raises(InvalidInputError, match="already closed"):
-            calculate_period(self._request(3, opening))
+            calculate_period(
+                self._request(3, opening),
+                repo=bundled_repository(),
+                resolver=bundled_policies(),
+            )
 
     def test_closed_runs_are_recorded_in_payment_order(self) -> None:
         """The year closes its runs and payments, the tredicesima last."""

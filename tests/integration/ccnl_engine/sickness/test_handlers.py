@@ -34,7 +34,11 @@ from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 from ccnl_engine.run.models import PayrollRun, RunKind
 from ccnl_engine.run.types import PeriodId
@@ -99,7 +103,9 @@ class TestMultiPeriodEpisode:
         Carenza 2158.26 * 2 / 26 = 166.02; band 2158.26 * 6 / 26 = 498.06,
         INPS 249.03 and employer 249.03; deduction 664.08.
         """
-        result = calculate_period(_req(2, _FEB_TO_MAR))
+        result = calculate_period(
+            _req(2, _FEB_TO_MAR), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert _sick(result) == {
             "abs": Decimal("664.08"),
             "inps": Decimal("249.03"),
@@ -116,8 +122,14 @@ class TestMultiPeriodEpisode:
         9 days: 747.09, INPS 373.545 -> 373.55, employer 373.54; 2 days:
         166.02, INPS 166.02 * 0.6666 = 110.67, employer 55.35.
         """
-        february = calculate_period(_req(2, _FEB_TO_MAR))
-        march = calculate_period(_req(3, _FEB_TO_MAR, opening=february.closing_state))
+        february = calculate_period(
+            _req(2, _FEB_TO_MAR), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        march = calculate_period(
+            _req(3, _FEB_TO_MAR, opening=february.closing_state),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _sick(march) == {
             "abs": Decimal("913.11"),
             "inps": Decimal("484.22"),
@@ -130,7 +142,9 @@ class TestMultiPeriodEpisode:
 
     def test_inps_indemnity_stays_out_of_the_contribution_base(self) -> None:
         """The INPS base is the monthly pay less the INPS share."""
-        result = calculate_period(_req(2, _FEB_TO_MAR))
+        result = calculate_period(
+            _req(2, _FEB_TO_MAR), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert result.closing_state.accrual.inps_base(2026).own == contribution_base(
             Decimal("2158.26") - Decimal("249.03")
         )
@@ -145,7 +159,9 @@ class TestHireMonth:
             _req(3, _MARCH),
             employment_period=EmploymentPeriod(started_on=date(2026, 3, 4)),
         )
-        result = calculate_period(request)
+        result = calculate_period(
+            request, repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert _sick(result) == {
             "abs": Decimal("415.05"),
             "inps": Decimal("83.01"),
@@ -164,7 +180,9 @@ class TestHireMonth:
             employment_period=EmploymentPeriod(started_on=date(2026, 3, 16)),
         )
         with pytest.raises(InvalidInputError, match="within the employment"):
-            calculate_period(request)
+            calculate_period(
+                request, repo=bundled_repository(), resolver=bundled_policies()
+            )
 
 
 class TestRejectedRuns:
@@ -174,18 +192,28 @@ class TestRejectedRuns:
         """An adjustment run posts no monthly pay."""
         run = PayrollRun(run_kind=RunKind.ADJUSTMENT, month=3, year=2026)
         with pytest.raises(InvalidInputError, match="posts the monthly pay"):
-            calculate_period(replace(_req(3, _MARCH), run=run))
+            calculate_period(
+                replace(_req(3, _MARCH), run=run),
+                repo=bundled_repository(),
+                resolver=bundled_policies(),
+            )
 
     def test_episode_passed_twice_is_rejected(self) -> None:
         """The same episode twice in one run would pay its days twice."""
         with pytest.raises(InvalidInputError, match="already paid through"):
-            calculate_period(_req(3, _MARCH, _MARCH))
+            calculate_period(
+                _req(3, _MARCH, _MARCH),
+                repo=bundled_repository(),
+                resolver=bundled_policies(),
+            )
 
     def test_episode_outside_the_period_is_rejected(self) -> None:
         """An April episode does not touch March."""
         april = sickness_episode("a", date(2026, 4, 1), date(2026, 4, 3))
         with pytest.raises(InvalidInputError, match="does not touch period"):
-            calculate_period(_req(3, april))
+            calculate_period(
+                _req(3, april), repo=bundled_repository(), resolver=bundled_policies()
+            )
 
 
 class TestMissingRulesAndFacts:
@@ -194,7 +222,9 @@ class TestMissingRulesAndFacts:
     def test_ccnl_without_sickness_rule_is_incomplete(self) -> None:
         """Tabacco APTI defines no sickness rule."""
         result = calculate_period(
-            _req(3, _MARCH, slug="tabacco-apti", level="2", category=None)
+            _req(3, _MARCH, slug="tabacco-apti", level="2", category=None),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         assert _sick(result) == {}
         decision = _decision(result)
@@ -211,13 +241,19 @@ class TestMissingRulesAndFacts:
                 rules = ccnl.work_rules.model_copy(update={"absence_rules": None})
                 return ccnl.model_copy(update={"work_rules": rules})
 
-        result = calculate_period(_req(3, _MARCH), repo=_NoAbsence())
+        result = calculate_period(
+            _req(3, _MARCH), repo=_NoAbsence(), resolver=bundled_policies()
+        )
         assert _decision(result).reason_code == "sickness_daily_quota_missing"
         assert _sick(result) == {}
 
     def test_unknown_category_names_the_fact(self) -> None:
         """C3 does not fix the category: INPS cover is unknown."""
-        result = calculate_period(_req(3, _MARCH, category=None))
+        result = calculate_period(
+            _req(3, _MARCH, category=None),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         issue = next(
             i for i in result.issues if i.code == "sickness_inps_cover_unknown"
         )
@@ -234,7 +270,9 @@ class TestMissingRulesAndFacts:
         paid by the employer.  From 3 July the days are left out.
         """
         long = sickness_episode("a", date(2026, 1, 1), date(2026, 7, 31))
-        result = calculate_period(_req(7, long))
+        result = calculate_period(
+            _req(7, long), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert _decision(result).reason_code == "sickness_beyond_comporto"
         assert _sick(result) == {"abs": Decimal("170.11"), "intg": Decimal("136.09")}
 
@@ -251,7 +289,9 @@ def test_hourly_quota_counts_hours() -> None:
             slug="dirigenza-sanitaria-medico-veterinaria-aran",
             level="DIRIGENTE",
             category=None,
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     inputs = _decision(result).inputs
     assert inputs["divisor_method"] == "by_hourly"
@@ -282,7 +322,7 @@ def test_hourly_quota_without_daily_hours_is_missing() -> None:
         level="DIRIGENTE",
         category=None,
     )
-    result = calculate_period(request, repo=_NoHours())
+    result = calculate_period(request, repo=_NoHours(), resolver=bundled_policies())
     assert _decision(result).reason_code == "sickness_daily_quota_missing"
 
 
@@ -303,7 +343,9 @@ class _OneTwentyFifth(BundledKnowledgeRepository):
 def test_a_quota_of_one_25th_sets_no_daily_quota() -> None:
     """A CCNL that states 1/25 but not which days are payable pays no sick day."""
     request = _req(3, _MARCH, slug="concia-unic", level="D2")
-    result = calculate_period(request, repo=_OneTwentyFifth())
+    result = calculate_period(
+        request, repo=_OneTwentyFifth(), resolver=bundled_policies()
+    )
     assert _decision(result).reason_code == "sickness_daily_quota_missing"
     assert _sick(result) == {}
 
@@ -314,7 +356,11 @@ def test_month_hours_quota_counts_the_working_days_of_the_month() -> None:
     Carenza 9-11 March: 3 days; 12-13 March: 2 days, each 1/22 of the pay.
     """
     request = _req(3, _MARCH, slug="concia-unic", level="D2")
-    inputs = _decision(calculate_period(request)).inputs
+    inputs = _decision(
+        calculate_period(
+            request, repo=bundled_repository(), resolver=bundled_policies()
+        )
+    ).inputs
     assert inputs["divisor_method"] == "by_month_hours"
     segments = str(inputs["segments"])
     assert "carenza:index=1:units=3:" in segments
@@ -347,7 +393,9 @@ def test_a_regime_pays_its_inps_rate_on_every_day() -> None:
         level="4",
         category=WorkerCategory.IMPIEGATO,
     )
-    result = calculate_period(request, repo=_InpsRegime("pubblici_esercizi"))
+    result = calculate_period(
+        request, repo=_InpsRegime("pubblici_esercizi"), resolver=bundled_policies()
+    )
     segments = str(_decision(result).inputs["segments"])
     assert "indemnified:index=4:units=2:inps=0.80:" in segments
 
@@ -371,7 +419,9 @@ def test_a_regime_reports_its_own_provenance() -> None:
         level="4",
         category=WorkerCategory.IMPIEGATO,
     )
-    result = calculate_period(request, repo=_MissingRegime("pubblici_esercizi"))
+    result = calculate_period(
+        request, repo=_MissingRegime("pubblici_esercizi"), resolver=bundled_policies()
+    )
     assert result.capability_report.rule_sources["sickness"] is ProvenanceStatus.MISSING
 
 
@@ -385,7 +435,11 @@ def test_an_unknown_regime_is_a_data_error() -> None:
         category=WorkerCategory.IMPIEGATO,
     )
     with pytest.raises(DataIntegrityError, match="marittimi_imbarcati"):
-        calculate_period(request, repo=_InpsRegime("marittimi_imbarcati"))
+        calculate_period(
+            request,
+            repo=_InpsRegime("marittimi_imbarcati"),
+            resolver=bundled_policies(),
+        )
 
 
 class _CarenzaPastFiveDays(BundledKnowledgeRepository):
@@ -419,7 +473,11 @@ def test_carenza_paid_only_past_the_minimum_length(ended_on: date, paid: bool) -
         level="4",
         category=WorkerCategory.IMPIEGATO,
     )
-    inputs = _decision(calculate_period(request, repo=_CarenzaPastFiveDays())).inputs
+    inputs = _decision(
+        calculate_period(
+            request, repo=_CarenzaPastFiveDays(), resolver=bundled_policies()
+        )
+    ).inputs
     assert (inputs["carenza_pay"] != Decimal("0.00")) is paid
     assert "carenza:index=1:units=3:" in str(inputs["segments"])
 
@@ -448,7 +506,9 @@ def test_earlier_episode_outside_the_chain_is_a_limitation() -> None:
         slug="commercio-confcommercio",
         level="4",
     )
-    result = calculate_period(request)
+    result = calculate_period(
+        request, repo=bundled_repository(), resolver=bundled_policies()
+    )
     assert "sickness_cumulation_window" in {lim.id for lim in result.limitations}
 
 
@@ -459,7 +519,11 @@ def test_a_ccnl_counting_every_episode_has_no_window_limitation() -> None:
     the chain holds 3 + 3 + 2 days on 3 March.
     """
     relapse = sickness_episode("m", date(2026, 3, 2), date(2026, 3, 3), "f")
-    result = calculate_period(_req(3, relapse, opening=_after_january_and_february()))
+    result = calculate_period(
+        _req(3, relapse, opening=_after_january_and_february()),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
     assert "sickness_cumulation_window" not in {lim.id for lim in result.limitations}
     assert _decision(result).inputs["chain_days"] == Decimal(3 + 3 + 2)
 
@@ -467,7 +531,9 @@ def test_a_ccnl_counting_every_episode_has_no_window_limitation() -> None:
 def test_sick_pay_override_is_not_payable() -> None:
     """An amount the caller computed overrides the engine and blocks."""
     override = SickLeaveEvent(date(2026, 3, 9), Decimal("100.00"))
-    result = calculate_period(_req(3, override))
+    result = calculate_period(
+        _req(3, override), repo=bundled_repository(), resolver=bundled_policies()
+    )
     assert (BlockerCode.CALLER_SUPPLIED_RULE, "sickness") in {
         (b.code, b.feature) for b in result.blockers
     }
@@ -483,8 +549,12 @@ def test_indemnity_bands_report_their_provenance() -> None:
             record = RuleProvenance(status=ProvenanceStatus.MISSING)
             return rates.model_copy(update={"bands_provenance": record})
 
-    bundled = calculate_period(_req(3, _MARCH))
-    result = calculate_period(_req(3, _MARCH), repo=_MissingBands())
+    bundled = calculate_period(
+        _req(3, _MARCH), repo=bundled_repository(), resolver=bundled_policies()
+    )
+    result = calculate_period(
+        _req(3, _MARCH), repo=_MissingBands(), resolver=bundled_policies()
+    )
     sources = result.capability_report.rule_sources
     assert (
         bundled.capability_report.rule_sources["sickness"] is ProvenanceStatus.DERIVED
@@ -513,7 +583,11 @@ class TestCommercioNetBasis:
             level="4",
             category=WorkerCategory.IMPIEGATO,
         )
-        return calculate_period(replace(request, **kwargs))  # type: ignore[arg-type]
+        return calculate_period(
+            replace(request, **kwargs),  # type: ignore[arg-type]
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
 
     def test_integration_tops_up_the_grossed_up_indemnity(self) -> None:
         """Carenza 205.58, INPS 274.11, company integration 107.41."""
@@ -543,7 +617,11 @@ def test_a_carenza_left_on_a_sunday_does_not_stop_the_month() -> None:
     """
     episode = sickness_episode("2026-01-30", date(2026, 1, 30), date(2026, 2, 6))
 
-    assert _sick(calculate_period(_req(2, episode))) == {
+    assert _sick(
+        calculate_period(
+            _req(2, episode), repo=bundled_repository(), resolver=bundled_policies()
+        )
+    ) == {
         "abs": Decimal("415.05"),
         "inps": Decimal("207.53"),
         "intg": Decimal("207.52"),
@@ -552,7 +630,11 @@ def test_a_carenza_left_on_a_sunday_does_not_stop_the_month() -> None:
 
 def test_a_worker_paid_by_the_hour_has_no_sick_hours_deducted() -> None:
     """An operaio edile is paid the hours worked: the sick ones are not deducted."""
-    result = calculate_period(_req(3, _MARCH, slug="edilizia-ance", level="1"))
+    result = calculate_period(
+        _req(3, _MARCH, slug="edilizia-ance", level="1"),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
     sick = _sick(result)
 
     assert "abs" not in sick

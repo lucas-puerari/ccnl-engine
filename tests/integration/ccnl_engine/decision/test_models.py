@@ -14,6 +14,7 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
     DecisionOrigin,
 )
+from ccnl_engine.period.services import bundled_policies, bundled_repository
 from ccnl_engine.provenance.source.models import (
     SourceDocument,
     SourceKind,
@@ -84,7 +85,9 @@ def year_result() -> CompetenceYearResult:
             facts=resident(),
             opening_state=fresh_tax_year(2026),
             current_year=employment_only(2026),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

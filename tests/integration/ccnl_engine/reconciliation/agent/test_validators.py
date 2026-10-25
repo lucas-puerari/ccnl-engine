@@ -13,7 +13,11 @@ from ccnl_engine.employment.fact.inputs import (
     WeeklyHours,
 )
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation.agent.validators import (
     check_non_agent_untaxed,
 )
@@ -40,21 +44,33 @@ def _request(ccnl_id: str, level_code: str) -> PeriodCalculationRequest:
 
 def test_domestic_run_holds() -> None:
     """A domestic run posts no tax and pays gross less contributions."""
-    result = calculate_period(_request("lavoro-domestico-convivente", "A"))
+    result = calculate_period(
+        _request("lavoro-domestico-convivente", "A"),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
 
     assert check_non_agent_untaxed(result, _NOT_AGENT) == []
 
 
 def test_withholding_agent_is_not_checked() -> None:
     """The invariant does not apply to an employer that withholds tax."""
-    result = calculate_period(_request("commercio-confcommercio", "4"))
+    result = calculate_period(
+        _request("commercio-confcommercio", "4"),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
 
     assert check_non_agent_untaxed(result, RunFacts()) == []
 
 
 def test_tax_posted_by_a_non_agent_is_reported() -> None:
     """IRPEF posted for an employer that is not a withholding agent fails."""
-    result = calculate_period(_request("commercio-confcommercio", "4"))
+    result = calculate_period(
+        _request("commercio-confcommercio", "4"),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
 
     violations = check_non_agent_untaxed(result, _NOT_AGENT)
 
@@ -64,7 +80,11 @@ def test_tax_posted_by_a_non_agent_is_reported() -> None:
 
 def test_net_above_gross_is_reported() -> None:
     """A net one euro above the gross of a domestic run fails."""
-    result = calculate_period(_request("lavoro-domestico-convivente", "A"))
+    result = calculate_period(
+        _request("lavoro-domestico-convivente", "A"),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
     bad = replace(result, period_net=result.period_gross + 1)
 
     (violation,) = check_non_agent_untaxed(bad, _NOT_AGENT)

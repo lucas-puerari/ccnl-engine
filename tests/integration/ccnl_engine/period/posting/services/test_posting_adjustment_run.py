@@ -35,6 +35,7 @@ from ccnl_engine.employment.fact.inputs import WeeklyHours
 from ccnl_engine.event.facade import AbsenceEvent, BonusEvent, OvertimeEvent
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.period.inputs import PeriodFacts, PeriodInput
+from ccnl_engine.period.services import bundled_policies, bundled_repository
 from ccnl_engine.run.models import PayrollRun, RunKind
 from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
 from ccnl_engine.year.competence.services import (
@@ -80,7 +81,9 @@ def _bonus_year() -> CompetenceYearResult:
     """
     bonus = BonusEvent(event_date=date(2026, 12, 15), amount=Decimal(20000))
     return calculate_competence_year(
-        year_plan(2026, _CCNL, "C3", events={"2026-12-thirteenth": (bonus,)})
+        year_plan(2026, _CCNL, "C3", events={"2026-12-thirteenth": (bonus,)}),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 
@@ -182,7 +185,9 @@ def _absence_year() -> CompetenceYearResult:
             weekly_hours=WeeklyHours(Decimal(33)),
             full_time_weekly_hours=WeeklyHours(Decimal(40)),
             events={"2026-12-thirteenth": (absence,)},
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

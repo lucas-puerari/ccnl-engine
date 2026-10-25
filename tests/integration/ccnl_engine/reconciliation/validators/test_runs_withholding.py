@@ -19,7 +19,11 @@ from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.event.facade import BonusEvent
 from ccnl_engine.irpef.results import TaxComputation, TaxLineItem
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation.ceiling.validators import (
     check_irpef_annual_reconciliation,
     net_annual_irpef,
@@ -64,7 +68,9 @@ def _run(
             employer=EmployerProfile(headcount=Headcount(50)),
             opening_state=opening,
             **kwargs,  # type: ignore[arg-type]
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 
@@ -76,7 +82,11 @@ def _with_ytd(result: PeriodResult, **ytd: object) -> PeriodResult:
 
 @cache
 def _last_two() -> tuple[PeriodResult, PeriodResult]:
-    results = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL)).period_results
+    results = calculate_competence_year(
+        year_plan(_YEAR, _CCNL, _LEVEL),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    ).period_results
     return results[-2], results[-1]
 
 
@@ -166,7 +176,9 @@ class TestIrpefAnnualReconciliation:
         the conguaglio settles the IRPEF of the final taxable income.
         """
         results = calculate_competence_year(
-            year_plan(_YEAR, "bancari-abi", "QD4")
+            year_plan(_YEAR, "bancari-abi", "QD4"),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         ).period_results
         last = results[-1]
         assert last.closing_state.cash.tax.irpef == net_annual_irpef(
@@ -228,7 +240,9 @@ def test_large_bonus_leaves_every_net_non_negative() -> None:
     """
     bonus = BonusEvent(event_date=date(_YEAR, 11, 10), amount=Decimal(20_000))
     result = calculate_competence_year(
-        year_plan(_YEAR, _CCNL, _LEVEL, events={11: (bonus,)})
+        year_plan(_YEAR, _CCNL, _LEVEL, events={11: (bonus,)}),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     assert all(r.period_net >= 0 for r in result.period_results)
 
@@ -268,9 +282,15 @@ def test_large_bonus_is_withheld_on_the_payslip_that_pays_it() -> None:
     """
     bonus = BonusEvent(event_date=date(_YEAR, 11, 10), amount=Decimal(20_000))
     with_bonus = calculate_competence_year(
-        year_plan(_YEAR, _CCNL, _LEVEL, events={11: (bonus,)})
+        year_plan(_YEAR, _CCNL, _LEVEL, events={11: (bonus,)}),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
-    without = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+    without = calculate_competence_year(
+        year_plan(_YEAR, _CCNL, _LEVEL),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
 
     separate = extra_month_withholding(Decimal("18102.00"))
     regular = regular_month_withholding(Decimal("1826.35"), Decimal("43706.88"), 30)

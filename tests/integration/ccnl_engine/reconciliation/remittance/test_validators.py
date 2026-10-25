@@ -9,7 +9,11 @@ from typing import TYPE_CHECKING
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation.remittance.validators import (
     check_remittance_code_consistent,
 )
@@ -35,7 +39,9 @@ def _result() -> PeriodResult:
             opening_state=opening_with_2025_surtax("IT-25", "A001"),
             regione="IT-25",
             comune_belfiore="A001",
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

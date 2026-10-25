@@ -22,7 +22,11 @@ from ccnl_engine.fund.solidarity.services import (
     EMPLOYER_COMPONENT,
 )
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 
 if TYPE_CHECKING:
@@ -41,7 +45,9 @@ def _run(ccnl: str, **kwargs: object) -> PeriodResult:
             opening_state=PeriodState.zero(),
             tfr_treasury_fund=False,
             **kwargs,  # type: ignore[arg-type]
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

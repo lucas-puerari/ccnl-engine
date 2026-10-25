@@ -24,7 +24,6 @@ from ccnl_engine.pay_item.facade import CompetencePeriod
 from ccnl_engine.pay_item.policies import PolicyContext
 from ccnl_engine.pay_item.services import (
     _apply_extra_month_policy,
-    _effective_resolver,
     _hours_value,
 )
 from ccnl_engine.pension_fund.conversion.services import (
@@ -34,9 +33,6 @@ from ccnl_engine.pension_fund.conversion.services import (
 from ccnl_engine.period.context.agreement.services import load_contract
 from ccnl_engine.period.context.services import RunContext
 from ccnl_engine.period.payslip.services import resolve_payment
-from ccnl_engine.period.repositories import (
-    BundledKnowledgeRepository,
-)
 from ccnl_engine.seniority.services import seniority_months_at
 from ccnl_engine.withholding.plan.services import (
     resolve_withholding_schedule,
@@ -99,16 +95,15 @@ def _base_chain(
 
 def build_context(
     request: PeriodCalculationRequest,
-    repo: KnowledgeRepository | None,
-    resolver: PolicyResolver | None,
+    repo: KnowledgeRepository,
+    resolver: PolicyResolver,
 ) -> RunContext:
     """Normalise ``request`` into the context of its run.
 
     Returns:
         The run context.
     """
-    effective_repo = repo if repo is not None else BundledKnowledgeRepository()
-    effective_resolver = _effective_resolver(resolver)
+    effective_repo, effective_resolver = repo, resolver
     contract = load_contract(request, effective_repo)
     competence, fiscal_year = contract.tctx.competence, contract.tctx.fiscal_year
     worker_category = resolve_worker_category(

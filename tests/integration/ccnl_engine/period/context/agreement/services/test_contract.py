@@ -15,7 +15,7 @@ from ccnl_engine.period.context.agreement.services import (
     with_competence_contributions,
 )
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import bundled_policies, calculate_period
 from ccnl_engine.run.models import PayrollRun
 from ccnl_engine.run.types import PeriodId
 from tests.integration.ccnl_engine.year.builders import (
@@ -57,6 +57,7 @@ def _ceiling(run: PayrollRun, paid_on: date) -> object:
             run=run,
         ),
         repo=_Repository(),
+        resolver=bundled_policies(),
     )
     (decision,) = (
         d for d in result.decisions if d.capability == "ivs_ceiling_eligibility"

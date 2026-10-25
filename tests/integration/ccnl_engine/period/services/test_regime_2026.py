@@ -26,7 +26,11 @@ from ccnl_engine.event.facade import BonusEvent, NightShiftEvent
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.regime.models import EmploymentSector
 from ccnl_engine.run.types import PeriodId
 
@@ -77,7 +81,11 @@ class TestRinnovoContrattuale:
             kind="contract_renewal",
             agreement_signed_on=_SIGNED_ON,
         )
-        result = calculate_period(_req(events=(bonus,)))
+        result = calculate_period(
+            _req(events=(bonus,)),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
         assert sub_tax == Decimal("100.00"), (
             f"contract_renewal 2,000 EUR must post SUBSTITUTE_TAX=100.00 (5%); "
@@ -86,14 +94,20 @@ class TestRinnovoContrattuale:
 
     def test_contract_renewal_inps_included(self) -> None:
         """A rinnovo increment must increase the INPS contribution base."""
-        no_bonus = calculate_period(_req())
+        no_bonus = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         bonus = BonusEvent(
             event_date=date(_YEAR, 1, 15),
             amount=Decimal("2000.00"),
             kind="contract_renewal",
             agreement_signed_on=_SIGNED_ON,
         )
-        with_bonus = calculate_period(_req(events=(bonus,)))
+        with_bonus = calculate_period(
+            _req(events=(bonus,)),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         inps_no = _sum_account(no_bonus, AccountKind.EMPLOYEE_CONTRIBUTIONS)
         inps_with = _sum_account(with_bonus, AccountKind.EMPLOYEE_CONTRIBUTIONS)
         assert inps_with > inps_no, (
@@ -109,7 +123,11 @@ class TestRinnovoContrattuale:
             kind="contract_renewal",
             agreement_signed_on=_SIGNED_ON,
         )
-        result = calculate_period(_req(events=(bonus,)))
+        result = calculate_period(
+            _req(events=(bonus,)),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.closing_state.cash.fringe.pdr == _ZERO, (
             f"contract_renewal must not consume PdR plafond; "
             f"got fringe.pdr={result.closing_state.cash.fringe.pdr}."
@@ -129,7 +147,9 @@ class TestRinnovoContrattuale:
                         ),
                     ),
                     income=income,
-                )
+                ),
+                repo=bundled_repository(),
+                resolver=bundled_policies(),
             )
             for income in (_RENEWAL_ELIGIBLE_INCOME, Decimal("100000.00"))
         )
@@ -149,7 +169,11 @@ class TestNotteTurno:
             event_date=date(_YEAR, 1, 15),
             supplement_amount=Decimal("500.00"),
         )
-        result = calculate_period(_req(events=(shift,)))
+        result = calculate_period(
+            _req(events=(shift,)),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
         assert sub_tax == Decimal("75.00"), (
             f"Eligible NightShiftEvent 500 EUR must post SUBSTITUTE_TAX=75.00 (15%); "
@@ -166,8 +190,16 @@ class TestNotteTurno:
             event_date=date(_YEAR, 1, 15),
             supplement_amount=Decimal("500.00"),
         )
-        result_eligible = calculate_period(_req(events=(shift_eligible,)))
-        result_ordinary = calculate_period(_req(events=(shift_eligible,), income=None))
+        result_eligible = calculate_period(
+            _req(events=(shift_eligible,)),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
+        result_ordinary = calculate_period(
+            _req(events=(shift_eligible,), income=None),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         sub_tax_eligible = _sum_account(result_eligible, AccountKind.SUBSTITUTE_TAX)
         sub_tax_ordinary = _sum_account(result_ordinary, AccountKind.SUBSTITUTE_TAX)
         assert sub_tax_eligible == Decimal("75.00"), (
@@ -184,7 +216,11 @@ class TestNotteTurno:
             event_date=date(_YEAR, 1, 15),
             supplement_amount=Decimal("500.00"),
         )
-        result = calculate_period(_req(events=(shift,), income=Decimal("45000.00")))
+        result = calculate_period(
+            _req(events=(shift,), income=Decimal("45000.00")),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
         assert sub_tax == _ZERO, (
             f"NightShiftEvent with 2025 income 45,000 (> 40,000 ceiling) must "
@@ -197,7 +233,11 @@ class TestNotteTurno:
             event_date=date(_YEAR, 1, 15),
             supplement_amount=Decimal("500.00"),
         )
-        result = calculate_period(_req(events=(shift,), income=None))
+        result = calculate_period(
+            _req(events=(shift,), income=None),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
         assert sub_tax == _ZERO, (
             f"NightShiftEvent with unknown income must not get substitute rate; "

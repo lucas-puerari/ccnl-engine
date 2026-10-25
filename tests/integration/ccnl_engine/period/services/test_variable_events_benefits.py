@@ -18,7 +18,11 @@ from ccnl_engine.inputs import DependentRelationship, FamilyComposition
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.results import PeriodResult
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation.validators import reconcile
 from ccnl_engine.run.types import PeriodId
 from tests.integration.ccnl_engine.family.builders import (
@@ -109,45 +113,81 @@ class TestFringeEventAccounting:
 
     def test_exempt_fringe_does_not_increase_inps(self) -> None:
         """Fringe benefit below threshold does not affect INPS contributions."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._fringe_exempt()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._fringe_exempt()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _inps_employee(result) == _inps_employee(base)
 
     def test_exempt_fringe_in_non_cash_benefits(self) -> None:
         """Fringe benefit is posted to NON_CASH_BENEFITS, not CASH_EARNINGS."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._fringe_exempt()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._fringe_exempt()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _ncb(result) == Decimal("100.00")
         assert result.period_gross == base.period_gross
 
     def test_taxable_fringe_increases_inps(self) -> None:
         """Fringe benefit above threshold is subject to INPS."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._fringe_taxable()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._fringe_taxable()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _inps_employee(result) > _inps_employee(base)
 
     def test_taxable_fringe_in_non_cash_benefits(self) -> None:
         """Fringe benefit above threshold still posts to NON_CASH_BENEFITS."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._fringe_taxable()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._fringe_taxable()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _ncb(result) == Decimal("1100.00")
         assert result.period_gross == base.period_gross
 
     def test_fringe_pay_item_present(self) -> None:
         """A fringe_benefit_item pay item is present."""
-        result = calculate_period(_req(self._fringe_taxable()))
+        result = calculate_period(
+            _req(self._fringe_taxable()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         kinds = {pi.kind for pi in result.pay_items}
         assert "fringe_benefit_item" in kinds
 
     def test_reconcile_passes_exempt(self) -> None:
         """All reconciliation invariants hold for an exempt fringe period."""
-        result = calculate_period(_req(self._fringe_exempt()))
+        result = calculate_period(
+            _req(self._fringe_exempt()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations
 
     def test_reconcile_passes_taxable(self) -> None:
         """All reconciliation invariants hold for a taxable fringe period."""
-        result = calculate_period(_req(self._fringe_taxable()))
+        result = calculate_period(
+            _req(self._fringe_taxable()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations
 
@@ -157,7 +197,9 @@ class TestBenefitBreakdown:
 
     def test_no_fringe_zero_breakdown(self) -> None:
         """With no fringe events, benefit_breakdown is all zeros."""
-        result = calculate_period(_base())
+        result = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         bb = result.benefit_breakdown
         assert bb.value == Decimal(0)
         assert bb.irpef_base == Decimal(0)
@@ -167,7 +209,9 @@ class TestBenefitBreakdown:
     def test_exempt_fringe_value_nonzero_bases_zero(self) -> None:
         """Below-threshold fringe: value is set, irpef_base/inps_base are zero."""
         evt = FringeEvent(event_date=date(_YEAR, _MONTH, 1), amount=Decimal("100.00"))
-        result = calculate_period(_req(evt))
+        result = calculate_period(
+            _req(evt), repo=bundled_repository(), resolver=bundled_policies()
+        )
         bb = result.benefit_breakdown
         assert bb.value == Decimal("100.00")
         assert bb.irpef_base == Decimal(0)
@@ -177,7 +221,9 @@ class TestBenefitBreakdown:
     def test_taxable_fringe_all_axes_set(self) -> None:
         """Above-threshold fringe: value, irpef_base, inps_base are all nonzero."""
         evt = FringeEvent(event_date=date(_YEAR, _MONTH, 1), amount=Decimal("1100.00"))
-        result = calculate_period(_req(evt))
+        result = calculate_period(
+            _req(evt), repo=bundled_repository(), resolver=bundled_policies()
+        )
         bb = result.benefit_breakdown
         assert bb.value == Decimal("1100.00")
         assert bb.irpef_base == Decimal("1100.00")
@@ -190,7 +236,9 @@ class TestFringeYtdAccumulation:
 
     def test_fringe_ytd_zero_without_fringe(self) -> None:
         """No fringe events leaves fringe_ytd unchanged."""
-        result = calculate_period(_base())
+        result = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert result.closing_state.cash.fringe.value == Decimal(0)
 
     def test_fringe_ytd_accumulates(self) -> None:
@@ -208,13 +256,17 @@ class TestFringeYtdAccumulation:
             opening_state=opening,
             events=(evt,),
         )
-        result = calculate_period(req)
+        result = calculate_period(
+            req, repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert result.closing_state.cash.fringe.value == Decimal("800.00")
 
     def test_fringe_taxed_ytd_zero_without_crossing(self) -> None:
         """No threshold crossing: fringe_taxed_ytd stays zero."""
         evt = FringeEvent(event_date=date(_YEAR, _MONTH, 1), amount=Decimal("100.00"))
-        result = calculate_period(_req(evt))
+        result = calculate_period(
+            _req(evt), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert result.closing_state.cash.fringe.taxed == Decimal(0)
 
     def test_fringe_taxed_ytd_set_on_crossing(self) -> None:
@@ -233,7 +285,9 @@ class TestFringeYtdAccumulation:
             opening_state=opening,
             events=(evt,),
         )
-        result = calculate_period(req)
+        result = calculate_period(
+            req, repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert result.closing_state.cash.fringe.taxed == Decimal("1200.00")
 
     def test_ytd_fringe_triggers_taxability(self) -> None:
@@ -252,8 +306,12 @@ class TestFringeYtdAccumulation:
             opening_state=opening,
             events=(evt,),
         )
-        result = calculate_period(req)
-        base_result = calculate_period(_base())
+        result = calculate_period(
+            req, repo=bundled_repository(), resolver=bundled_policies()
+        )
+        base_result = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert _inps_employee(result) > _inps_employee(base_result)
 
 
@@ -288,8 +346,12 @@ class TestHasDependentChildrenThreshold:
                 )
             ),
         )
-        result_no_children = calculate_period(req_no_children)
-        result_with_children = calculate_period(req_with_children)
+        result_no_children = calculate_period(
+            req_no_children, repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result_with_children = calculate_period(
+            req_with_children, repo=bundled_repository(), resolver=bundled_policies()
+        )
         # Without children: 1500 > 1000 → taxable; with children: 1500 < 2000 → exempt
         assert _inps_employee(result_no_children) > _inps_employee(result_with_children)
 
@@ -302,38 +364,70 @@ class TestWelfareEventAccounting:
 
     def test_welfare_in_non_cash_benefits(self) -> None:
         """Welfare benefit is posted to NON_CASH_BENEFITS, not CASH_EARNINGS."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._welfare()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._welfare()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _ncb(result) == Decimal("200.00")
         assert result.period_gross == base.period_gross
 
     def test_inps_unchanged(self) -> None:
         """Welfare benefit does not increase INPS contributions."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._welfare()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._welfare()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _inps_employee(result) == _inps_employee(base)
 
     def test_employer_contributions_unchanged(self) -> None:
         """Employer INPS contributions are not affected by welfare."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._welfare()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._welfare()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _employer_contrib(result) == _employer_contrib(base)
 
     def test_welfare_pay_item_present(self) -> None:
         """A welfare_item pay item is present."""
-        result = calculate_period(_req(self._welfare()))
+        result = calculate_period(
+            _req(self._welfare()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         kinds = {pi.kind for pi in result.pay_items}
         assert "welfare_item" in kinds
 
     def test_welfare_does_not_change_net(self) -> None:
         """Welfare (non-cash) does not affect cash net pay."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._welfare()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._welfare()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.period_net == base.period_net
 
     def test_reconcile_passes(self) -> None:
         """All reconciliation invariants hold for a welfare period."""
-        result = calculate_period(_req(self._welfare()))
+        result = calculate_period(
+            _req(self._welfare()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations
 
@@ -351,8 +445,14 @@ def test_welfare_does_not_increase_cash_earnings() -> None:
     Currently welfare increases both by 100.
     """
     welfare = WelfareEvent(event_date=date(_YEAR, 1, 15), amount=Decimal("100.00"))
-    result_with = calculate_period(period_request(events=(welfare,)))
-    result_without = calculate_period(period_request())
+    result_with = calculate_period(
+        period_request(events=(welfare,)),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
+    result_without = calculate_period(
+        period_request(), repo=bundled_repository(), resolver=bundled_policies()
+    )
 
     assert result_with.period_gross == result_without.period_gross, (
         f"period_gross with welfare ({result_with.period_gross}) must equal "

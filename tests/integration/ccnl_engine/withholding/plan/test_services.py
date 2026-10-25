@@ -23,7 +23,11 @@ from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.models import PayrollRun
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.withholding.plan.services import (
@@ -262,7 +266,9 @@ def test_standalone_december_is_not_the_last_slot_with_half_fourteenth() -> None
             level_code="D2",
             opening_state=opening,
             run=PayrollRun.regular(_YEAR, 12),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     tax = result.tax_computation
     assert tax.withholding_due > 0

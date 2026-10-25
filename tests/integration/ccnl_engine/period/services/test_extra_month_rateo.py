@@ -9,7 +9,11 @@ from ccnl_engine.balance.cash.models import TaxCashState
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.models import PayrollRun
 from ccnl_engine.run.types import PeriodId
 from tests.unit.ccnl_engine.builders import EMPLOYER_50
@@ -43,7 +47,9 @@ class TestExtraMonthRateo:
             run=run,
             employment_period=employment_period,
         )
-        return calculate_period(req).period_gross
+        return calculate_period(
+            req, repo=bundled_repository(), resolver=bundled_policies()
+        ).period_gross
 
     def test_december_tredicesima_is_positive(self) -> None:
         """Tredicesima paid in December produces a positive gross."""
@@ -100,7 +106,9 @@ class TestExtraMonthRateo:
                 ccnl_id=_CCNL,
                 level_code=_LEVEL,
                 opening_state=PeriodState(cash=TaxCashState()),
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         ).period_gross
         regular_dec = calculate_period(
             PeriodCalculationRequest(
@@ -110,7 +118,9 @@ class TestExtraMonthRateo:
                 ccnl_id=_CCNL,
                 level_code=_LEVEL,
                 opening_state=PeriodState(cash=TaxCashState()),
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         ).period_gross
         assert jun_thirteenth == regular_june
         assert dec_thirteenth == regular_dec

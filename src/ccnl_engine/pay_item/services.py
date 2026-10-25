@@ -8,7 +8,6 @@ from typing import TYPE_CHECKING
 from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.pay_item.facade import CompetencePeriod
-from ccnl_engine.pay_item.loaders import load_policy_resolver
 from ccnl_engine.pay_item.policies import (
     ContributionAxis,
     PolicyContext,
@@ -30,10 +29,6 @@ _ZERO = Decimal(0)
 
 def _hours_value(fact: WeeklyHours | None) -> Decimal | None:
     return None if fact is None else fact.value
-
-
-def _effective_resolver(resolver: PolicyResolver | None) -> PolicyResolver:
-    return resolver if resolver is not None else load_policy_resolver()
 
 
 def _require_resolution(

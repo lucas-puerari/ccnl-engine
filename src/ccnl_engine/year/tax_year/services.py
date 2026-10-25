@@ -7,9 +7,6 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.assurance.policies import EngineMode
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.period.repositories import (
-    BundledKnowledgeRepository,
-)
 from ccnl_engine.year.payment.sequence.services import Engine, compute_payments
 from ccnl_engine.year.payment.services import (
     check_opening,
@@ -33,8 +30,8 @@ __all__ = ["calculate_tax_year"]
 def calculate_tax_year(
     plan: TaxYearPlan,
     *,
-    repo: KnowledgeRepository | None = None,
-    resolver: PolicyResolver | None = None,
+    repo: KnowledgeRepository,
+    resolver: PolicyResolver,
     bundle_version: str | None = None,
     mode: EngineMode = EngineMode.SIMULATION,
 ) -> TaxYearResult:
@@ -59,8 +56,8 @@ def calculate_tax_year(
 
     Args:
         plan: The tax year, its competence years and its opening state.
-        repo: Knowledge repository; the bundled one when ``None``.
-        resolver: Pre-loaded policy resolver, or ``None``.
+        repo: Knowledge repository the runs read; the facade passes its own.
+        resolver: Policy resolver of the pay-item treatments.
         bundle_version: Knowledge-bundle version propagated to each result.
         mode: Payability policy of every payment.
 
@@ -75,7 +72,7 @@ def calculate_tax_year(
             year, or a competence year is rejected (calendar override,
             employment, payment dates).
     """
-    effective_repo = repo if repo is not None else BundledKnowledgeRepository()
+    effective_repo = repo
     tax_year = plan.tax_year
     opening = check_opening(plan.opening_state, tax_year, "TaxYearPlan.opening_state")
     years = tuple(

@@ -29,7 +29,11 @@ from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 from ccnl_engine.run.types import PeriodId
 from tests.integration.ccnl_engine.family.builders import (
@@ -94,7 +98,9 @@ def _run(
         employment_period=EmploymentPeriod(date(2026, 3, 1)),
         **fields,  # type: ignore[arg-type]
     )
-    return calculate_period(request, repo=repo)
+    return calculate_period(
+        request, repo=repo or bundled_repository(), resolver=bundled_policies()
+    )
 
 
 class TestBundledRun:

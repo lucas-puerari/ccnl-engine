@@ -19,7 +19,11 @@ from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation.validators import reconcile
 from ccnl_engine.run.types import PeriodId
 
@@ -65,7 +69,9 @@ class TestReconcilePassesUnderHypothesis:
     def test_all_months_pass_reconcile(self, month: int) -> None:
         """Every calendar month for C3 satisfies all seven reconcile invariants."""
         opening = PeriodState.zero()
-        result = calculate_period(_req(month=month))
+        result = calculate_period(
+            _req(month=month), repo=bundled_repository(), resolver=bundled_policies()
+        )
         r = reconcile(result, opening)
         assert r.ok, f"Month {month}: {r.violations}"
 
@@ -76,7 +82,11 @@ class TestReconcilePassesUnderHypothesis:
     ) -> None:
         """Any non-negative irpef_withheld_ytd opening value passes reconcile."""
         opening = PeriodState(cash=TaxCashState(tax=TaxYtd(irpef=irpef_ytd)))
-        result = calculate_period(_req(month=month, irpef_ytd=irpef_ytd))
+        result = calculate_period(
+            _req(month=month, irpef_ytd=irpef_ytd),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         r = reconcile(result, opening)
         assert r.ok, f"Month {month}, ytd={irpef_ytd}: {r.violations}"
 
@@ -89,8 +99,12 @@ class TestDeterminism:
     def test_same_input_same_output(self, month: int, irpef_ytd: Decimal) -> None:
         """Two calls with identical inputs produce bit-for-bit identical results."""
         req = _req(month=month, irpef_ytd=irpef_ytd)
-        first = calculate_period(req)
-        second = calculate_period(req)
+        first = calculate_period(
+            req, repo=bundled_repository(), resolver=bundled_policies()
+        )
+        second = calculate_period(
+            req, repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert first.period_gross == second.period_gross
         assert first.period_net == second.period_net
         assert first.period_employer_cost == second.period_employer_cost
@@ -104,14 +118,22 @@ class TestNetNonNegative:
     @settings(max_examples=30)
     def test_gross_non_negative(self, month: int, irpef_ytd: Decimal) -> None:
         """period_gross is always >= 0."""
-        result = calculate_period(_req(month=month, irpef_ytd=irpef_ytd))
+        result = calculate_period(
+            _req(month=month, irpef_ytd=irpef_ytd),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.period_gross >= Decimal(0)
 
     @given(month=_MONTHS, irpef_ytd=_IRPEF_YTD)
     @settings(max_examples=30)
     def test_net_non_negative(self, month: int, irpef_ytd: Decimal) -> None:
         """period_net is always >= 0 (trattamento integrative can compensate)."""
-        result = calculate_period(_req(month=month, irpef_ytd=irpef_ytd))
+        result = calculate_period(
+            _req(month=month, irpef_ytd=irpef_ytd),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.period_net >= Decimal(0)
 
 
@@ -122,7 +144,9 @@ class TestSerializationLossless:
     @settings(max_examples=12)
     def test_all_ledger_entries_survive_json(self, month: int) -> None:
         """Every LedgerEntry in every month round-trips through JSON unchanged."""
-        result = calculate_period(_req(month=month))
+        result = calculate_period(
+            _req(month=month), repo=bundled_repository(), resolver=bundled_policies()
+        )
         for original in result.ledger_entries:
             restored = LedgerEntry.model_validate_json(original.model_dump_json())
             assert restored == original
@@ -131,7 +155,9 @@ class TestSerializationLossless:
     @settings(max_examples=12)
     def test_closing_state_fields_are_exact_decimal(self, month: int) -> None:
         """YTD accumulators in closing_state carry the exact Decimal amounts."""
-        result = calculate_period(_req(month=month))
+        result = calculate_period(
+            _req(month=month), repo=bundled_repository(), resolver=bundled_policies()
+        )
         irpef_from_ledger = sum(
             e.amount
             for e in result.ledger_entries
@@ -163,7 +189,9 @@ class TestOpeningPlusMovementsEqualsClosing:
             level_code=_LEVEL,
             opening_state=opening,
         )
-        result = calculate_period(req)
+        result = calculate_period(
+            req, repo=bundled_repository(), resolver=bundled_policies()
+        )
         cash = sum(
             e.amount
             for e in result.ledger_entries

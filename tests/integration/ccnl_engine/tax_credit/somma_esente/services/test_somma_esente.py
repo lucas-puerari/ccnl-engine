@@ -23,7 +23,11 @@ from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.facade import CompetencePeriod
 from ccnl_engine.pay_item.loaders import load_policy_resolver
 from ccnl_engine.pay_item.policies import PolicyContext
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.tax_credit.account.models import SommaEsenteAccount
 from ccnl_engine.tax_credit.models import SommaEsenteBand, SommaEsenteRules
 from ccnl_engine.tax_credit.recovery.models import (
@@ -419,7 +423,11 @@ def test_somma_esente_posted_to_credits() -> None:
     Expected: CREDITS > 0 in any period.
     """
     result = calculate_period(
-        period_request(month=6, ccnl="acconciatura-estetica-confartigianato", level="3")
+        period_request(
+            month=6, ccnl="acconciatura-estetica-confartigianato", level="3"
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     tax_credits = account_total(result, AccountKind.CREDITS)
     assert tax_credits > _ZERO, (

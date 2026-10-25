@@ -28,7 +28,11 @@ from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 from tests.unit.ccnl_engine.builders import EMPLOYER_50
 
@@ -71,12 +75,16 @@ class TestCalculatePeriodBasic:
 
     def test_period_gross_matches_salary_table(self) -> None:
         """Gross equals the CCNL salary-table value for C3 in January 2026."""
-        result = calculate_period(_req())
+        result = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert result.period_gross == _C3_GROSS_JAN
 
     def test_period_net_derived_from_payitems(self) -> None:
         """Net equals gross + credits - employee contributions - tax."""
-        result = calculate_period(_req())
+        result = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         gross = result.period_gross
         inps_emp = sum(
             e.amount
@@ -96,45 +104,60 @@ class TestCalculatePeriodBasic:
     def test_period_id_propagated(self) -> None:
         """The result carries the same period_id as the request."""
         req = _req(year=2026, month=3)
-        result = calculate_period(req)
+        result = calculate_period(
+            req, repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert result.period_id == PeriodId(year=2026, month=3)
 
     def test_payment_date_propagated(self) -> None:
         """The result carries the same payment_date as the request."""
         pdate = date(2026, 1, 31)
-        result = calculate_period(_req(payment_date=pdate))
+        result = calculate_period(
+            _req(payment_date=pdate),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.payment_date == pdate
 
     def test_payment_date_in_all_ledger_entries(self) -> None:
         """Every ledger entry carries the request payment_date."""
         pdate = date(2026, 1, 31)
-        result = calculate_period(_req(payment_date=pdate))
+        result = calculate_period(
+            _req(payment_date=pdate),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         for entry in result.ledger_entries:
             assert entry.payment_date == pdate
 
     def test_payment_date_in_all_pay_items(self) -> None:
         """Every pay item carries the request payment_date."""
         pdate = date(2026, 1, 31)
-        result = calculate_period(_req(payment_date=pdate))
+        result = calculate_period(
+            _req(payment_date=pdate),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         for item in result.pay_items:
             assert item.payment_date == pdate
 
     def test_period_id_governs_salary_lookup(self) -> None:
         """Salary table lookup uses period_id, not a fixed date."""
         # Salary increases to 2211.43 from 2026-06-01.
-        result_jan = calculate_period(_req(month=1))
-        result_jul = calculate_period(_req(month=7))
+        result_jan = calculate_period(
+            _req(month=1), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result_jul = calculate_period(
+            _req(month=7), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert result_jan.period_gross == _C3_GROSS_JAN
         assert result_jul.period_gross == _C3_GROSS_JUL
 
     def test_with_explicit_repo(self) -> None:
         """An explicit BundledKnowledgeRepository produces the correct gross."""
-        result = calculate_period(_req(), repo=BundledKnowledgeRepository())
-        assert result.period_gross == _C3_GROSS_JAN
-
-    def test_with_default_repo(self) -> None:
-        """repo=None falls back to BundledKnowledgeRepository."""
-        result = calculate_period(_req(), repo=None)
+        result = calculate_period(
+            _req(), repo=BundledKnowledgeRepository(), resolver=bundled_policies()
+        )
         assert result.period_gross == _C3_GROSS_JAN
 
 
@@ -147,9 +170,13 @@ class TestConguaglioDiscriminator:
         Before the last slot the withholding is the tax of the month, so
         what the year has withheld so far does not change it.
         """
-        result_zero = calculate_period(_req())
+        result_zero = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         result_with_ytd = calculate_period(
-            _req(opening_state=TaxCashState(tax=TaxYtd(irpef=Decimal("1000.00"))))
+            _req(opening_state=TaxCashState(tax=TaxYtd(irpef=Decimal("1000.00")))),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         assert result_zero.period_net == result_with_ytd.period_net
 
@@ -159,18 +186,26 @@ class TestConguaglioDiscriminator:
         With no payment planned after January, January is the conguaglio:
         more IRPEF already withheld leaves less to withhold.
         """
-        result_zero = calculate_period(_req(planned_payments=()))
+        result_zero = calculate_period(
+            _req(planned_payments=()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         result_with_ytd = calculate_period(
             _req(
                 opening_state=TaxCashState(tax=TaxYtd(irpef=Decimal("1000.00"))),
                 planned_payments=(),
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         assert result_with_ytd.period_net > result_zero.period_net
 
     def test_irpef_ytd_accumulates_in_closing(self) -> None:
         """closing_state.cash.tax.irpef equals the period IRPEF withheld."""
-        result = calculate_period(_req())
+        result = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         irpef_period = sum(
             e.amount
             for e in result.ledger_entries
@@ -185,7 +220,11 @@ class TestClosingStateTransitions:
     def test_run_closes_its_competence_and_its_payment(self) -> None:
         """The run closes once in the accrual state and once in the cash state."""
         opening = TaxCashState()
-        result = calculate_period(_req(opening_state=opening))
+        result = calculate_period(
+            _req(opening_state=opening),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         closing = result.closing_state
         assert closing.accrual.regular_months(2026) == 1
         assert [str(p) for p in closing.cash.payments] == ["2026-01-regular@2026-01-28"]
@@ -194,21 +233,37 @@ class TestClosingStateTransitions:
     def test_duplicate_run_id_raises(self) -> None:
         """Re-submitting an already-closed run_id raises InvalidInputError."""
         opening = PeriodState.zero()
-        result = calculate_period(_req(opening_state=opening))
+        result = calculate_period(
+            _req(opening_state=opening),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         with pytest.raises(InvalidInputError, match="already closed"):
-            calculate_period(_req(opening_state=result.closing_state))
+            calculate_period(
+                _req(opening_state=result.closing_state),
+                repo=bundled_repository(),
+                resolver=bundled_policies(),
+            )
 
     def test_gross_ytd_accumulates(self) -> None:
         """gross_ytd closing equals opening plus period gross."""
         opening = TaxCashState(earnings=EarningsYtd(gross=Decimal("10000.00")))
-        result = calculate_period(_req(opening_state=opening))
+        result = calculate_period(
+            _req(opening_state=opening),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         expected = Decimal("10000.00") + result.period_gross
         assert result.closing_state.cash.earnings.gross == expected
 
     def test_inps_employee_ytd_accumulates(self) -> None:
         """inps_employee_ytd closing equals opening plus period employee INPS."""
         opening = TaxCashState(earnings=EarningsYtd(inps_employee=Decimal("500.00")))
-        result = calculate_period(_req(opening_state=opening))
+        result = calculate_period(
+            _req(opening_state=opening),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         inps_period = sum(
             e.amount
             for e in result.ledger_entries
@@ -220,14 +275,22 @@ class TestClosingStateTransitions:
     def test_taxable_ytd_accumulates(self) -> None:
         """taxable_ytd closing equals opening plus period_taxable slice."""
         opening = TaxCashState(earnings=EarningsYtd(taxable=Decimal("2000.00")))
-        result = calculate_period(_req(opening_state=opening))
+        result = calculate_period(
+            _req(opening_state=opening),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         closing_taxable = result.closing_state.cash.earnings.taxable
         assert closing_taxable > Decimal("2000.00")
         assert closing_taxable == result.closing_state.cash.earnings.taxable
 
     def test_taxable_ytd_zero_on_first_period(self) -> None:
         """taxable_ytd starts from zero when opening is PeriodState.zero()."""
-        result = calculate_period(_req(opening_state=PeriodState.zero()))
+        result = calculate_period(
+            _req(opening_state=PeriodState.zero()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.closing_state.cash.earnings.taxable > _ZERO
 
     def test_inps_base_accumulates_by_competence_year(self) -> None:
@@ -237,7 +300,11 @@ class TestClosingStateTransitions:
                 inps_bases=(InpsBaseYtd(2026, own=Decimal("1000.00")),)
             )
         )
-        result = calculate_period(_req(opening_state=opening))
+        result = calculate_period(
+            _req(opening_state=opening),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         base = result.closing_state.accrual.inps_base(2026)
         assert base.own > Decimal("1000.00")
         assert base.other_employers is None
@@ -248,12 +315,16 @@ class TestPayItems:
 
     def test_base_salary_item_present(self) -> None:
         """A BaseSalaryEarning item must be in every pay-items tuple."""
-        result = calculate_period(_req())
+        result = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert any(isinstance(i, BaseSalaryEarning) for i in result.pay_items)
 
     def test_inps_employee_item_present(self) -> None:
         """Exactly one EmployeeWithholdingItem with 'inps' in its id."""
-        result = calculate_period(_req())
+        result = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         inps_items = [
             i
             for i in result.pay_items
@@ -263,7 +334,9 @@ class TestPayItems:
 
     def test_irpef_item_present(self) -> None:
         """Exactly one EmployeeWithholdingItem with 'irpef' in its id."""
-        result = calculate_period(_req())
+        result = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         irpef_items = [
             i
             for i in result.pay_items
@@ -273,18 +346,24 @@ class TestPayItems:
 
     def test_employer_contribution_item_present(self) -> None:
         """An EmployerContributionItem must be in every pay-items tuple."""
-        result = calculate_period(_req())
+        result = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert any(isinstance(i, EmployerContributionItem) for i in result.pay_items)
 
     def test_tfr_accrual_item_present(self) -> None:
         """A TfrAccrualItem must be in every pay-items tuple."""
-        result = calculate_period(_req())
+        result = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert any(isinstance(i, TfrAccrualItem) for i in result.pay_items)
 
     def test_competence_period_matches_period_id(self) -> None:
         """All pay items carry a competence_period matching the request period_id."""
         req = _req(year=2026, month=4)
-        result = calculate_period(req)
+        result = calculate_period(
+            req, repo=bundled_repository(), resolver=bundled_policies()
+        )
         for item in result.pay_items:
             assert item.competence_period.year == 2026
             assert item.competence_period.month == 4
@@ -295,38 +374,50 @@ class TestLedgerStructure:
 
     def test_cash_earnings_entry_present(self) -> None:
         """A CASH_EARNINGS entry must appear in every ledger."""
-        result = calculate_period(_req())
+        result = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         accounts = [e.account for e in result.ledger_entries]
         assert AccountKind.CASH_EARNINGS in accounts
 
     def test_employee_contributions_entry_present(self) -> None:
         """An EMPLOYEE_CONTRIBUTIONS entry must appear in every ledger."""
-        result = calculate_period(_req())
+        result = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         accounts = [e.account for e in result.ledger_entries]
         assert AccountKind.EMPLOYEE_CONTRIBUTIONS in accounts
 
     def test_ordinary_tax_entry_present(self) -> None:
         """An ORDINARY_TAX entry must appear in every ledger."""
-        result = calculate_period(_req())
+        result = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         accounts = [e.account for e in result.ledger_entries]
         assert AccountKind.ORDINARY_TAX in accounts
 
     def test_employer_contributions_entry_present(self) -> None:
         """An EMPLOYER_CONTRIBUTIONS entry must appear in every ledger."""
-        result = calculate_period(_req())
+        result = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         accounts = [e.account for e in result.ledger_entries]
         assert AccountKind.EMPLOYER_CONTRIBUTIONS in accounts
 
     def test_tfr_accrual_entry_present(self) -> None:
         """A TFR_ACCRUAL entry must appear in every ledger."""
-        result = calculate_period(_req())
+        result = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         accounts = [e.account for e in result.ledger_entries]
         assert AccountKind.TFR_ACCRUAL in accounts
 
     def test_competence_period_matches_period_id(self) -> None:
         """All ledger entries carry a competence_period matching the request."""
         req = _req(year=2026, month=6)
-        result = calculate_period(req)
+        result = calculate_period(
+            req, repo=bundled_repository(), resolver=bundled_policies()
+        )
         for entry in result.ledger_entries:
             assert entry.competence_period.year == 2026
             assert entry.competence_period.month == 6
@@ -337,12 +428,18 @@ class TestWithholdingDue:
 
     def test_withholding_due_present_in_tax_computation(self) -> None:
         """tax_computation.withholding_due is populated on every period."""
-        result = calculate_period(_req())
+        result = calculate_period(
+            _req(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert hasattr(result.tax_computation, "withholding_due")
 
     def test_withholding_due_positive_when_no_prior_withheld(self) -> None:
         """withholding_due is positive when no IRPEF has been withheld yet."""
-        result = calculate_period(_req(opening_state=PeriodState.zero()))
+        result = calculate_period(
+            _req(opening_state=PeriodState.zero()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.tax_computation.withholding_due > _ZERO
 
     def test_withholding_due_negative_final_period_excess(self) -> None:
@@ -351,7 +448,11 @@ class TestWithholdingDue:
         opening = TaxCashState(
             tax=TaxYtd(irpef=Decimal("5000.00")),
         )
-        result = calculate_period(_req(opening_state=opening))
+        result = calculate_period(
+            _req(opening_state=opening),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.tax_computation.withholding_due < _ZERO
 
     def test_ordinary_tax_negative_in_final_period_with_excess(self) -> None:
@@ -363,7 +464,9 @@ class TestWithholdingDue:
             tax=TaxYtd(irpef=Decimal("5000.00")),
         )
         result = calculate_period(
-            replace(_req(opening_state=opening), planned_payments=())
+            replace(_req(opening_state=opening), planned_payments=()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         assert result.tax_computation.ordinary_tax < _ZERO
 
@@ -372,7 +475,11 @@ class TestWithholdingDue:
         opening = TaxCashState(
             tax=TaxYtd(irpef=Decimal("5000.00")),
         )
-        result = calculate_period(_req(opening_state=opening))
+        result = calculate_period(
+            _req(opening_state=opening),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.tax_computation.ordinary_tax >= _ZERO
 
 
@@ -400,8 +507,12 @@ class TestContractTypeRouting:
             opening_state=PeriodState.zero(),
             contract_type=Apprentice(months_elapsed=6, track="professionalizzante_36"),
         )
-        perm_result = calculate_period(permanent_req)
-        appr_result = calculate_period(apprentice_req)
+        perm_result = calculate_period(
+            permanent_req, repo=bundled_repository(), resolver=bundled_policies()
+        )
+        appr_result = calculate_period(
+            apprentice_req, repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert appr_result.period_gross < perm_result.period_gross
 
     def test_fixed_term_same_gross_as_permanent(self) -> None:
@@ -418,6 +529,10 @@ class TestContractTypeRouting:
             permanent_req,
             contract_type=FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE),
         )
-        perm_result = calculate_period(permanent_req)
-        fixed_result = calculate_period(fixed_req)
+        perm_result = calculate_period(
+            permanent_req, repo=bundled_repository(), resolver=bundled_policies()
+        )
+        fixed_result = calculate_period(
+            fixed_req, repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert fixed_result.period_gross == perm_result.period_gross

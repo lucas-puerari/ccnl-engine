@@ -49,10 +49,10 @@ The contract has four pages:
 | Topic | Decision |
 |---|---|
 | Package root | `src/ccnl_engine/__init__.py` stays, with its docstring and its re-exports. |
-| Public API | The root and the namespaces `ccnl_engine.inputs`, `ccnl_engine.events`, `ccnl_engine.results` and `ccnl_engine.catalog` keep their import paths, as pinned by `tests/integration/ccnl_engine/api/test_public_exports.py`. |
+| Public API | The root and the namespaces `ccnl_engine.inputs`, `ccnl_engine.events`, `ccnl_engine.results`, `ccnl_engine.catalog` and `ccnl_engine.repository` keep their import paths, as pinned by `tests/integration/ccnl_engine/api/test_public_exports.py`. |
 | `catalog` | Becomes the package `catalog/`: its `__init__.py` holds the public namespace, like the package root, the only other `__init__.py` allowed to hold code; the catalog modules (`loaders`, `models`, `services`) sit next to it. |
 | Root modules | `api`, `inputs`, `results`, `events`, `errors`, `version`, plus the roles `types` (today `primitives`) and `validators` (today `validation`); `validation_collection` becomes `collection/validators.py`. No alias: nothing outside the package imports the old names. |
-| Deep imports | Paths below the five public modules are not public. Moves carry no shim and no deprecation alias. |
+| Deep imports | Paths below the six public modules (the root, `inputs`, `events`, `results`, `catalog`, `repository`) are not public. Moves carry no shim and no deprecation alias. |
 | Knowledge data | The JSON bundle stays in one tree, `knowledge/`, with its datasets named after the concepts that read them. |
 
 ## Production tree
@@ -135,7 +135,7 @@ its own tier or of a lower one; cycles inside a tier are allowed.
 
 | Tier | Concepts |
 |---|---|
-| orchestration | `api`, `inputs`, `events`, `results`, `catalog`, `assurance`, `capability`, `comparison`, `default`, `interchange`, `period`, `reconciliation`, `year` |
+| orchestration | `api`, `inputs`, `events`, `results`, `catalog`, `repository`, `assurance`, `capability`, `comparison`, `default`, `interchange`, `period`, `reconciliation`, `year` |
 | computation | `agreement`, `amount`, `bundle`, `calendar`, `decision`, `knowledge`, `sector`, `limitation`, `balance`, `absence`, `apprenticeship`, `compensation`, `contribution`, `employer`, `employment`, `end_of_service`, `event`, `extra_month`, `family`, `fund`, `irpef`, `ledger`, `pay_item`, `pension_fund`, `regime`, `seniority`, `severance`, `sickness`, `surtax`, `tax_credit`, `termination`, `variable_pay`, `withholding`, `working_time`, `leave` |
 | norms | `types`, `validators`, `errors`, `version`, `codec`, `collection`, `provenance`, `run` |
 

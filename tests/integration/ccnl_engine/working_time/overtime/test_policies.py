@@ -35,7 +35,11 @@ from ccnl_engine.event.standard.handlers import (
 )
 from ccnl_engine.inputs import NoPensionFund, WorkerCategory
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.working_time.overtime.policies import (
@@ -98,7 +102,9 @@ def _run(event: OvertimeEvent, slug: str = _METAL, level: str = "C3") -> PeriodR
             regione=REGIONE,
             comune_belfiore=COMUNE_BELFIORE,
             prior_year=RENEWAL_WAIVED,
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

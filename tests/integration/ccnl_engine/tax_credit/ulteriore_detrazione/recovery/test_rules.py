@@ -24,6 +24,7 @@ from ccnl_engine.balance.obligation.models import (
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod, WeeklyHours
 from ccnl_engine.event.facade import AbsenceEvent, WorkEvent
 from ccnl_engine.pay_item.rounding.policies import money
+from ccnl_engine.period.services import bundled_policies, bundled_repository
 from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
 from ccnl_engine.year.competence.services import (
     calculate_competence_year,
@@ -65,7 +66,9 @@ def _year() -> CompetenceYearResult:
             weekly_hours=WeeklyHours(Decimal(33)),
             full_time_weekly_hours=WeeklyHours(Decimal(40)),
             events={"2026-12-thirteenth": (_ABSENCE,)},
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 
@@ -156,7 +159,9 @@ def _terminated() -> CompetenceYearResult:
                 started_on=date(2026, 1, 1), ended_on=date(2026, 11, 30)
             ),
             events=absence,
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 
@@ -197,9 +202,15 @@ def test_installments_carried_into_the_next_year() -> None:
         cash=TaxCashState(obligations=EmploymentObligations(recoveries=(_carried(7),)))
     )
     with_plan = calculate_competence_year(
-        year_plan(2026, _CCNL, "C3", opening_state=opening)
+        year_plan(2026, _CCNL, "C3", opening_state=opening),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
-    without = calculate_competence_year(year_plan(2026, _CCNL, "C3"))
+    without = calculate_competence_year(
+        year_plan(2026, _CCNL, "C3"),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
     assert without.annual_net - with_plan.annual_net == Decimal("60.00")
     reasons = [
         d.reason_code

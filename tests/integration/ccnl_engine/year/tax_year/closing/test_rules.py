@@ -21,7 +21,11 @@ from ccnl_engine.calendar.payment.models import PaymentId
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation.transition.validators import (
     check_carried_recovery_advance,
 )
@@ -131,7 +135,9 @@ class TestCloseTaxYear:
                 _LEVEL,
                 facts=resident(),
                 opening_state=fresh_tax_year(2026),
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         closing = year.period_results[-1].closing_state
 
@@ -145,7 +151,11 @@ class TestCloseTaxYear:
 
     def test_a_year_without_its_history_opens_one_without_it(self) -> None:
         """A year opened from zero for an untracked employment taints the next."""
-        year = calculate_competence_year(year_plan(2026, _CCNL, _LEVEL))
+        year = calculate_competence_year(
+            year_plan(2026, _CCNL, _LEVEL),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
 
         opening = close_tax_year(year.period_results[-1].closing_state)
 
@@ -168,9 +178,15 @@ class TestCarriedRecoveryInAYear:
         )
 
         with_plan = calculate_competence_year(
-            year_plan(2026, _CCNL, _LEVEL, opening_state=opening)
+            year_plan(2026, _CCNL, _LEVEL, opening_state=opening),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
-        without_plan = calculate_competence_year(year_plan(2026, _CCNL, _LEVEL))
+        without_plan = calculate_competence_year(
+            year_plan(2026, _CCNL, _LEVEL),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
 
         assert without_plan.annual_net - with_plan.annual_net == Decimal("60.00")
         posted = [
@@ -206,7 +222,9 @@ class TestCarriedRecoveryInAYear:
 
         with pytest.raises(InvalidInputError, match="identify every payment"):
             calculate_competence_year(
-                year_plan(2026, _CCNL, _LEVEL, opening_state=opening)
+                year_plan(2026, _CCNL, _LEVEL, opening_state=opening),
+                repo=bundled_repository(),
+                resolver=bundled_policies(),
             )
 
     def test_rejects_a_run_before_the_origin_of_a_recovery(self) -> None:
@@ -269,7 +287,9 @@ class TestCurrentYearRecovery:
                 level_code=_LEVEL,
                 opening_state=opening,
                 planned_payments=(),
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
 
         assert result.closing_state.cash.obligations == EmploymentObligations()
@@ -286,7 +306,9 @@ class TestCarriedRecoveryInvariant:
             cash=TaxCashState(obligations=_carrying(_recovery(2025, 5)))
         )
         result = calculate_competence_year(
-            year_plan(2026, _CCNL, _LEVEL, opening_state=opening)
+            year_plan(2026, _CCNL, _LEVEL, opening_state=opening),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         ).period_results[0]
         tampered = replace(
             result,

@@ -35,7 +35,11 @@ from ccnl_engine.decision.models import (
 )
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 
 if TYPE_CHECKING:
@@ -65,7 +69,9 @@ def _june(ytd: Decimal, history: ContributionHistory | None) -> PeriodResult:
             level_code="C3",
             opening_state=opening,
             contribution_history=history,
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

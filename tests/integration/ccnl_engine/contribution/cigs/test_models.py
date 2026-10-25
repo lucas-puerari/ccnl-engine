@@ -16,7 +16,11 @@ from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 
 if TYPE_CHECKING:
@@ -34,7 +38,9 @@ def _run(headcount: int, indotto: bool | None) -> PeriodResult:
             ccnl_id="metalmeccanico-artigianato",
             level_code="3",
             opening_state=PeriodState.zero(),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

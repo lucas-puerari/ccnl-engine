@@ -16,7 +16,11 @@ import pytest
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.seniority.inputs import SeniorityFact, SenioritySource
 
@@ -31,7 +35,9 @@ def _seniority(level: str, months: int) -> Decimal:
             level_code=level,
             seniority=SeniorityFact(months, date(2026, 3, 1), SenioritySource.PAYSLIP),
             opening_state=PeriodState.zero(),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     return sum(
         (i.amount for i in result.pay_items if i.kind == "seniority_earning"),

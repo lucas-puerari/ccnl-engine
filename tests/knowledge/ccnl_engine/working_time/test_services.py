@@ -44,7 +44,11 @@ from ccnl_engine.event.facade import (
 )
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.results import PeriodResult
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 
 _CENT = Decimal("0.01")
@@ -178,7 +182,9 @@ def _run(pilot: Pilot) -> PeriodResult:
             OvertimeEvent(date(2026, 3, 10), _OVERTIME_HOURS),
             _night(pilot),
             HolidayWorkEvent(date(2026, 3, 19), hours=_HOLIDAY_HOURS),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     assert isinstance(result, PeriodResult)
     return result
@@ -248,7 +254,11 @@ def test_underived_night_work_stays_the_callers(pilot: Pilot) -> None:
 
     event = NightShiftEvent(date(2026, 3, 11), hours=_NIGHT_HOURS)
     with pytest.raises(InvalidInputError, match="no night supplement band"):
-        calculate_period(_request(pilot, event))
+        calculate_period(
+            _request(pilot, event),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
 
 
 def _pilot(slug: str) -> Pilot:
@@ -271,7 +281,9 @@ def test_absence_days_are_deducted_at_a_26th(slug: str) -> None:
     event = AbsenceEvent(
         date(2026, 3, 16), Decimal(16), end_date=date(2026, 3, 17), working_days=2
     )
-    result = calculate_period(_request(pilot, event))
+    result = calculate_period(
+        _request(pilot, event), repo=bundled_repository(), resolver=bundled_policies()
+    )
     assert isinstance(result, PeriodResult)
 
     decision = _decision(result, "absence", "ccnl_absence_quota_applied")
@@ -291,7 +303,11 @@ def test_absence_on_a_derived_rule_stays_the_callers(slug: str) -> None:
     """An absence rule not verified leaves the rate to the caller."""
     event = AbsenceEvent(date(2026, 3, 16), Decimal(8), working_days=1)
     with pytest.raises(InvalidInputError, match="absence rule is not verified"):
-        calculate_period(_request(_pilot(slug), event))
+        calculate_period(
+            _request(_pilot(slug), event),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
 
 
 def test_turismo_night_qualified_staff_take_twelve_percent() -> None:
@@ -300,7 +316,9 @@ def test_turismo_night_qualified_staff_take_twelve_percent() -> None:
     request = _request(pilot, NightShiftEvent(date(2026, 3, 11), hours=_NIGHT_HOURS))
     roles = replace(request, roles=frozenset({"qualifica_notturna"}))
 
-    result = calculate_period(roles)
+    result = calculate_period(
+        roles, repo=bundled_repository(), resolver=bundled_policies()
+    )
     assert isinstance(result, PeriodResult)
 
     decision = _decision(result, "night_work", "ccnl_supplement_applied")
@@ -313,7 +331,9 @@ def test_fipe_sunday_allowance_is_on_paga_base_and_contingenza() -> None:
     event = HolidayWorkEvent(
         date(2026, 3, 15), hours=_HOLIDAY_HOURS, kind=HolidayWorkKind.SUNDAY
     )
-    result = calculate_period(_request(pilot, event))
+    result = calculate_period(
+        _request(pilot, event), repo=bundled_repository(), resolver=bundled_policies()
+    )
     assert isinstance(result, PeriodResult)
 
     decision = _decision(result, "holiday_work", "ccnl_supplement_applied")
@@ -326,7 +346,9 @@ def test_chimica_day_shift_takes_four_percent() -> None:
     """Art. 9 punto 5 a): 4% of the hourly base on the shift hours."""
     pilot = _pilot("chimica-farmaceutica-federchimica")
     event = ShiftWorkEvent(date(2026, 3, 12), hours=Decimal(8), kind=ShiftKind.DAY)
-    result = calculate_period(_request(pilot, event))
+    result = calculate_period(
+        _request(pilot, event), repo=bundled_repository(), resolver=bundled_policies()
+    )
     assert isinstance(result, PeriodResult)
 
     decision = _decision(result, "shift_work", "ccnl_supplement_applied")

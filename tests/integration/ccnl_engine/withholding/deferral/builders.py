@@ -22,6 +22,7 @@ from ccnl_engine.irpef.declaration.inputs import (
     ShortfallDeferralRequest,
 )
 from ccnl_engine.ledger.models import AccountKind
+from ccnl_engine.period.services import bundled_policies, bundled_repository
 from ccnl_engine.withholding.deferral.inputs import DeferredShortfall
 from ccnl_engine.year.competence.services import (
     calculate_competence_year,
@@ -70,7 +71,9 @@ def year_n(
             events={12: (_FRINGE,)},
             prior_year=PriorYearTaxFacts(shortfall_deferral=request),
             employment_period=employment_period,
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 
@@ -147,7 +150,9 @@ def year_n1(
             events=events,
             opening_state=opening,
             employment_period=employment_period,
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

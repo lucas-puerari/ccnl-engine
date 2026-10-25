@@ -11,7 +11,11 @@ import pytest
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 
 if TYPE_CHECKING:
@@ -31,7 +35,9 @@ def _run(in_force: bool | None) -> PeriodResult:
                 headcount=Headcount(50), provincial_pay_element=in_force
             ),
             opening_state=PeriodState.zero(),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

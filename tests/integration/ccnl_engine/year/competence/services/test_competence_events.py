@@ -11,6 +11,7 @@ from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import AbsenceEvent, BonusEvent, WorkEvent
 from ccnl_engine.period.inputs import PeriodFacts
+from ccnl_engine.period.services import bundled_policies, bundled_repository
 from ccnl_engine.year.competence.services import (
     calculate_competence_year,
 )
@@ -38,9 +39,15 @@ class TestPerRunEventAllocation:
             hourly_rate=Decimal("13.00"),
         )
         run_id = f"{_YEAR}-05-regular"
-        result_no_event = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+        result_no_event = calculate_competence_year(
+            year_plan(_YEAR, _CCNL, _LEVEL),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         result_with_event = calculate_competence_year(
-            year_plan(_YEAR, _CCNL, _LEVEL, events={run_id: (absence,)})
+            year_plan(_YEAR, _CCNL, _LEVEL, events={run_id: (absence,)}),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         may_no = result_no_event.period_results[4].period_net
         may_with = result_with_event.period_results[4].period_net
@@ -55,7 +62,9 @@ class TestPerRunEventAllocation:
         )
         run_id = f"{_YEAR}-05-regular"
         result = calculate_competence_year(
-            year_plan(_YEAR, _CCNL, _LEVEL, events={run_id: (absence,)})
+            year_plan(_YEAR, _CCNL, _LEVEL, events={run_id: (absence,)}),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         may_gross = result.period_results[4].period_gross
         for i, pr in enumerate(result.period_results):
@@ -70,9 +79,15 @@ class TestPerRunEventAllocation:
             hourly_rate=Decimal("13.00"),
         )
         thirteenth_run_id = f"{_YEAR}-12-thirteenth"
-        result_no = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+        result_no = calculate_competence_year(
+            year_plan(_YEAR, _CCNL, _LEVEL),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         result_with = calculate_competence_year(
-            year_plan(_YEAR, _CCNL, _LEVEL, events={thirteenth_run_id: (absence,)})
+            year_plan(_YEAR, _CCNL, _LEVEL, events={thirteenth_run_id: (absence,)}),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         thirteenth_no = next(
             r
@@ -99,7 +114,9 @@ class TestPerRunEventAllocation:
         )
         thirteenth_run_id = f"{_YEAR}-12-thirteenth"
         result = calculate_competence_year(
-            year_plan(_YEAR, _CCNL, _LEVEL, events={thirteenth_run_id: (absence,)})
+            year_plan(_YEAR, _CCNL, _LEVEL, events={thirteenth_run_id: (absence,)}),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         regular_dec = next(
             r
@@ -107,7 +124,11 @@ class TestPerRunEventAllocation:
             if r.period_id.month == 12
             and (r.run is None or r.run.run_kind == "regular")
         )
-        result_no = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+        result_no = calculate_competence_year(
+            year_plan(_YEAR, _CCNL, _LEVEL),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         regular_dec_no = next(
             r
             for r in result_no.period_results
@@ -129,7 +150,11 @@ class TestPerRunEventAllocation:
             run_id: (absence,),
         }
         with pytest.raises(InvalidInputError, match=r"names run .* twice"):
-            calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL, events=events))
+            calculate_competence_year(
+                year_plan(_YEAR, _CCNL, _LEVEL, events=events),
+                repo=bundled_repository(),
+                resolver=bundled_policies(),
+            )
 
     def test_month_keyed_events_work_alone(self) -> None:
         """Month keys work without any run id key."""
@@ -139,7 +164,9 @@ class TestPerRunEventAllocation:
             hourly_rate=Decimal("13.00"),
         )
         result = calculate_competence_year(
-            year_plan(_YEAR, _CCNL, _LEVEL, events={6: (absence,)})
+            year_plan(_YEAR, _CCNL, _LEVEL, events={6: (absence,)}),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
         jun_net = result.period_results[5].period_net
         jan_net = result.period_results[0].period_net
@@ -161,7 +188,9 @@ class TestSurtaxStatus:
                 facts=PeriodFacts(comune_belfiore="Z999"),
                 opening_state=fresh_tax_year(_YEAR),
                 current_year=employment_only(_YEAR),
-            )
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
 
         assert {r.assurance.calculation for r in result.period_results} == {
@@ -174,7 +203,9 @@ class TestSurtaxStatus:
         """A region name instead of a region code is invalid input."""
         with pytest.raises(InvalidInputError, match="ISO 3166-2:IT"):
             calculate_competence_year(
-                year_plan(_YEAR, _CCNL, _LEVEL, facts=PeriodFacts(regione="Lombardia"))
+                year_plan(_YEAR, _CCNL, _LEVEL, facts=PeriodFacts(regione="Lombardia")),
+                repo=bundled_repository(),
+                resolver=bundled_policies(),
             )
 
 
@@ -196,9 +227,15 @@ def test_bonus_not_duplicated_in_extra_run() -> None:
     """
     bonus = BonusEvent(event_date=date(_YEAR, 12, 15), amount=Decimal("100.00"))
 
-    result_base = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+    result_base = calculate_competence_year(
+        year_plan(_YEAR, _CCNL, _LEVEL),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
     result_with = calculate_competence_year(
-        year_plan(_YEAR, _CCNL, _LEVEL, events={12: (bonus,)})
+        year_plan(_YEAR, _CCNL, _LEVEL, events={12: (bonus,)}),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
     diff = result_with.annual_gross - result_base.annual_gross
@@ -227,7 +264,11 @@ def test_calculate_year_extra_months() -> None:
     Fixed in feature/payroll-schedule: PayrollSchedule.from_calendar generates
     extra runs; the year iterates schedule.runs instead of range(1, 13).
     """
-    result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+    result = calculate_competence_year(
+        year_plan(_YEAR, _CCNL, _LEVEL),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
     assert len(result.period_results) == 13, (
         f"calculate_competence_year with tredicesima must produce 13 period results; "
         f"got {len(result.period_results)}.  "

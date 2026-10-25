@@ -15,7 +15,11 @@ from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.inputs import Apprentice, Permanent
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.sector.loaders import load_year_rules
 
@@ -32,7 +36,9 @@ def _run(category: WorkerCategory | None = None) -> list[str]:
         opening_state=PeriodState.zero(),
         category=category,
     )
-    result = calculate_period(request)
+    result = calculate_period(
+        request, repo=bundled_repository(), resolver=bundled_policies()
+    )
     return [i.code for i in result.issues if i.status is CalculationStatus.PROVISIONAL]
 
 

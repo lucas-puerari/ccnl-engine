@@ -16,6 +16,7 @@ on the application layer only, never on the concrete loaders.
 from __future__ import annotations
 
 from dataclasses import replace
+from functools import cache
 from typing import TYPE_CHECKING
 
 from ccnl_engine.assurance.policies import EngineMode
@@ -47,8 +48,8 @@ __all__ = [
 def calculate_period(
     request: PeriodCalculationRequest,
     *,
-    repo: KnowledgeRepository | None = None,
-    resolver: PolicyResolver | None = None,
+    repo: KnowledgeRepository,
+    resolver: PolicyResolver,
     bundle_version: str | None = None,
     mode: EngineMode = EngineMode.SIMULATION,
 ) -> PeriodResult:
@@ -57,14 +58,8 @@ def calculate_period(
     Args:
         request: Period calculation input: CCNL, level, period, YTD state and
             optional variable events.
-        repo: Optional knowledge repository. Uses
-            :class:`~ccnl_engine.period.repositories.BundledKnowledgeRepository` when
-            ``None``.
-        resolver: Optional pre-loaded
-        :class:`~ccnl_engine.pay_item.policies.PolicyResolver`.  When ``None``, the
-        bundled Italian ruleset is loaded on every
-            call.  Pass a cached instance (e.g. from :attr:`PayrollEngine._resolver`)
-            to avoid repeated JSON parsing.
+        repo: Knowledge repository the run reads; the facade passes its own.
+        resolver: Policy resolver of the pay-item treatments.
         bundle_version: Knowledge-bundle version string to embed in the result.
             ``None`` when called outside a :class:`PayrollEngine` context.
         mode: Payability policy recorded on the result; ``operational``
@@ -109,6 +104,7 @@ def bundled_repository() -> KnowledgeRepository:
     return BundledKnowledgeRepository()
 
 
+@cache
 def bundled_policies() -> PolicyResolver:
     """Return the pay-item policy resolver of the bundled Italian ruleset.
 

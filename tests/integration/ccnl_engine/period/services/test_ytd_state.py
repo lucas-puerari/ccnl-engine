@@ -18,7 +18,11 @@ from ccnl_engine.balance.cash.models import TaxCashState
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.event.facade import BilateralFundEvent, BonusEvent
 from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.models import PayrollRun
 from tests.integration.ccnl_engine.period.builders import (
     account_total,
@@ -55,8 +59,14 @@ def test_taxable_ytd_not_diluted_by_extra_months() -> None:
     """
     bonus = BonusEvent(event_date=date(_YEAR, 1, 15), amount=Decimal("1000.00"))
 
-    result_base = calculate_period(period_request(month=1))
-    result_with = calculate_period(period_request(month=1, events=(bonus,)))
+    result_base = calculate_period(
+        period_request(month=1), repo=bundled_repository(), resolver=bundled_policies()
+    )
+    result_with = calculate_period(
+        period_request(month=1, events=(bonus,)),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
 
     ytd_diff = (
         result_with.closing_state.cash.earnings.taxable
@@ -89,8 +99,14 @@ def test_bilateral_fund_excluded_from_inps_employee_ytd() -> None:
         employer_amount=Decimal("100.00"),
     )
 
-    result_base = calculate_period(period_request(month=1))
-    result_with = calculate_period(period_request(month=1, events=(fund,)))
+    result_base = calculate_period(
+        period_request(month=1), repo=bundled_repository(), resolver=bundled_policies()
+    )
+    result_with = calculate_period(
+        period_request(month=1, events=(fund,)),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
 
     base_ytd = result_base.closing_state.cash.earnings.inps_employee
     with_ytd = result_with.closing_state.cash.earnings.inps_employee
@@ -129,10 +145,14 @@ def test_taxable_ytd_affects_conguaglio() -> None:
     )
     # December is the last payment of the year: it settles the conguaglio.
     result_zero = calculate_period(
-        replace(period_request(month=12, opening=opening_zero), planned_payments=())
+        replace(period_request(month=12, opening=opening_zero), planned_payments=()),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     result_high = calculate_period(
-        replace(period_request(month=12, opening=opening_high), planned_payments=())
+        replace(period_request(month=12, opening=opening_high), planned_payments=()),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     assert result_zero.closing_state.cash.conguaglio is not None
 
@@ -166,7 +186,9 @@ def test_excess_ytd_produces_refund() -> None:
     )
     # No payment planned after December: it settles the conguaglio.
     result = calculate_period(
-        replace(period_request(month=12, opening=high_ytd), planned_payments=())
+        replace(period_request(month=12, opening=high_ytd), planned_payments=()),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
     # Refund appears as a positive TAX_REFUNDS entry (tax_refund_item), not as
@@ -193,7 +215,9 @@ def test_credit_recognized_in_january_recovered_in_february() -> None:
     """
     # Period 1: January — B5 portieri baseline, no events
     result1 = calculate_period(
-        period_request(month=1, ccnl=_CCNL_TRATT, level=_LEVEL_TRATT)
+        period_request(month=1, ccnl=_CCNL_TRATT, level=_LEVEL_TRATT),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     state1 = result1.closing_state
     assert state1.cash.trattamento.recognized > _ZERO, (
@@ -211,7 +235,9 @@ def test_credit_recognized_in_january_recovered_in_february() -> None:
             events=(bonus,),
             ccnl=_CCNL_TRATT,
             level=_LEVEL_TRATT,
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     state2 = result2.closing_state
 

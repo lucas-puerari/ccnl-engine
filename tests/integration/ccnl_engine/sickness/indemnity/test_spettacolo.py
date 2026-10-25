@@ -15,7 +15,11 @@ from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.events import SicknessEpisode
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.sickness.indemnity.loaders import load_sick_pay_rates
 
@@ -62,7 +66,9 @@ def _inps_share(contributions: int | None) -> Decimal:
             category=WorkerCategory.IMPIEGATO,
             opening_state=PeriodState.zero(),
             events=(episode,),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     return sum(
         (i.amount for i in result.pay_items if i.kind == "sickness_inps_item"),

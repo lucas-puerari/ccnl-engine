@@ -23,7 +23,11 @@ from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm, NaspiExclusion
 from ccnl_engine.events import SicknessEpisode
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
@@ -48,7 +52,9 @@ def _run(worked: int | None, first: int = 9, last: int = 20) -> PeriodResult:
             category=WorkerCategory.OPERAIO,
             contract_type=FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE),
             employment_period=EmploymentPeriod(date(2026, 1, 1)),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

@@ -25,7 +25,11 @@ from ccnl_engine.family.inputs import (
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.results import PeriodResult
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation.validators import reconcile
 from ccnl_engine.run.types import PeriodId
 from tests.integration.ccnl_engine.family.builders import (
@@ -190,13 +194,23 @@ class TestArrearsEventAccounting:
 
     def test_gross_increases(self) -> None:
         """period_gross increases by the arrears amount."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._arrears()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._arrears()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.period_gross == base.period_gross + Decimal("2000.00")
 
     def test_separate_tax_entry_posted(self) -> None:
         """A SEPARATE_TAX entry is posted for the computed tax."""
-        result = calculate_period(_req(self._arrears()))
+        result = calculate_period(
+            _req(self._arrears()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _sep_tax(result) > Decimal(0)
 
     def test_separate_tax_amount_correct(self) -> None:
@@ -205,26 +219,44 @@ class TestArrearsEventAccounting:
         1002 is "RITENUTE SU EMOLUMENTI ARRETRATI" (Allegato 1 to the AdE
         provvedimento of 31 January 2025).
         """
-        result = calculate_period(_req(self._arrears()))
+        result = calculate_period(
+            _req(self._arrears()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         expected = (Decimal("2000.00") * Decimal("0.23")).quantize(Decimal("0.01"))
         assert _sep_tax(result) == expected
         assert _codes(result, AccountKind.SEPARATE_TAX) == {"1002"}
 
     def test_inps_increases_with_arrears(self) -> None:
         """Arrears increment the INPS base when policy contribution is 'included'."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._arrears()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._arrears()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _inps_employee(result) > _inps_employee(base)
 
     def test_pay_item_present(self) -> None:
         """A contract_renewal_arrears pay item is present."""
-        result = calculate_period(_req(self._arrears()))
+        result = calculate_period(
+            _req(self._arrears()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         kinds = {pi.kind for pi in result.pay_items}
         assert "contract_renewal_arrears" in kinds
 
     def test_reconcile_passes(self) -> None:
         """All reconciliation invariants hold for an arrears period."""
-        result = calculate_period(_req(self._arrears()))
+        result = calculate_period(
+            _req(self._arrears()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations
 
@@ -241,13 +273,23 @@ class TestBilateralFundEventAccounting:
 
     def test_gross_unchanged(self) -> None:
         """period_gross is not affected by bilateral fund contributions."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._bilateral()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._bilateral()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.period_gross == base.period_gross
 
     def test_bilateral_fund_employee_account_posted(self) -> None:
         """BILATERAL_FUND_EMPLOYEE carries the employee bilateral amount."""
-        result = calculate_period(_req(self._bilateral()))
+        result = calculate_period(
+            _req(self._bilateral()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         total = sum(
             e.amount
             for e in result.ledger_entries
@@ -257,7 +299,11 @@ class TestBilateralFundEventAccounting:
 
     def test_bilateral_fund_employer_account_posted(self) -> None:
         """BILATERAL_FUND_EMPLOYER carries the employer bilateral amount."""
-        result = calculate_period(_req(self._bilateral()))
+        result = calculate_period(
+            _req(self._bilateral()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         total = sum(
             e.amount
             for e in result.ledger_entries
@@ -268,21 +314,37 @@ class TestBilateralFundEventAccounting:
 
     def test_net_reduced_by_employee_amount(self) -> None:
         """period_net decreases by the employee bilateral amount."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._bilateral()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._bilateral()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.period_net == base.period_net - Decimal("30.00")
 
     def test_employer_cost_increases_by_employer_amount(self) -> None:
         """period_employer_cost increases by the employer bilateral amount."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._bilateral()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._bilateral()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.period_employer_cost == base.period_employer_cost + Decimal(
             "50.00"
         )
 
     def test_each_entry_traces_to_one_unit_of_its_item_and_its_policy(self) -> None:
         """The worker share is a withholding, the employer share a contribution."""
-        result = calculate_period(_req(self._bilateral()))
+        result = calculate_period(
+            _req(self._bilateral()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
 
         assert _event_trail(
             result,
@@ -306,19 +368,35 @@ class TestBilateralFundEventAccounting:
 
     def test_two_pay_items_produced(self) -> None:
         """BilateralFundEvent produces two pay items (employee + employer)."""
-        base_result = calculate_period(_base())
-        result = calculate_period(_req(self._bilateral()))
+        base_result = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._bilateral()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert len(result.pay_items) == len(base_result.pay_items) + 2
 
     def test_two_ledger_entries_produced(self) -> None:
         """BilateralFundEvent produces two ledger entries."""
-        base_result = calculate_period(_base())
-        result = calculate_period(_req(self._bilateral()))
+        base_result = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._bilateral()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert len(result.ledger_entries) == len(base_result.ledger_entries) + 2
 
     def test_reconcile_passes(self) -> None:
         """All reconciliation invariants hold for a bilateral fund period."""
-        result = calculate_period(_req(self._bilateral()))
+        result = calculate_period(
+            _req(self._bilateral()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations
 
@@ -335,13 +413,23 @@ class TestTerminationTFREventAccounting:
 
     def test_gross_unchanged(self) -> None:
         """period_gross is not affected by TFR settlement."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._termination()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._termination()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.period_gross == base.period_gross
 
     def test_tfr_settlement_entry_posted(self) -> None:
         """A TFR_SETTLEMENT ledger entry is posted."""
-        result = calculate_period(_req(self._termination()))
+        result = calculate_period(
+            _req(self._termination()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert _tfr_settle(result) == Decimal("5000.00")
 
     def test_separate_tax_entry_posted(self) -> None:
@@ -351,21 +439,35 @@ class TestTerminationTFREventAccounting:
         RAPPORTO DI LAVORO" (Allegato 1 to the AdE provvedimento of 31
         January 2025).
         """
-        result = calculate_period(_req(self._termination()))
+        result = calculate_period(
+            _req(self._termination()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         expected = (Decimal("5000.00") * Decimal("0.20")).quantize(Decimal("0.01"))
         assert _sep_tax(result) == expected
         assert _codes(result, AccountKind.SEPARATE_TAX) == {"1012"}
 
     def test_net_increases_by_tfr_minus_tax(self) -> None:
         """period_net increases by TFR settlement minus its separate tax."""
-        base = calculate_period(_base())
-        result = calculate_period(_req(self._termination()))
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req(self._termination()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         sep = (Decimal("5000.00") * Decimal("0.20")).quantize(Decimal("0.01"))
         assert result.period_net == base.period_net + Decimal("5000.00") - sep
 
     def test_payout_and_tax_trace_to_one_settlement_under_its_policy(self) -> None:
         """The payout and its separate tax both trace to the one settlement."""
-        result = calculate_period(_req(self._termination()))
+        result = calculate_period(
+            _req(self._termination()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
 
         assert _event_trail(
             result, {AccountKind.TFR_SETTLEMENT, AccountKind.SEPARATE_TAX}
@@ -388,13 +490,21 @@ class TestTerminationTFREventAccounting:
 
     def test_pay_item_present(self) -> None:
         """A tfr_settlement_item pay item is present."""
-        result = calculate_period(_req(self._termination()))
+        result = calculate_period(
+            _req(self._termination()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         kinds = {pi.kind for pi in result.pay_items}
         assert "tfr_settlement_item" in kinds
 
     def test_reconcile_passes(self) -> None:
         """All reconciliation invariants hold for a termination TFR period."""
-        result = calculate_period(_req(self._termination()))
+        result = calculate_period(
+            _req(self._termination()),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations
 
@@ -404,31 +514,41 @@ class TestSurtaxAccounting:
 
     def test_surtax_entry_posted_when_regione_set(self) -> None:
         """A SURTAX ledger entry appears when regione is supplied."""
-        result = calculate_period(_req_surtax())
+        result = calculate_period(
+            _req_surtax(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert _surtax(result) > Decimal(0)
 
     def test_surtax_absent_without_regione(self) -> None:
         """No SURTAX entry when regione and comune_belfiore are not supplied."""
-        result = calculate_period(_base())
+        result = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert _surtax(result) == Decimal(0)
 
     def test_ordinary_tax_not_inflated_by_surtax(self) -> None:
         """ORDINARY_TAX total is the same with or without surtax supplied."""
         base_irpef = sum(
             e.amount
-            for e in calculate_period(_base()).ledger_entries
+            for e in calculate_period(
+                _base(), repo=bundled_repository(), resolver=bundled_policies()
+            ).ledger_entries
             if e.account == AccountKind.ORDINARY_TAX
         )
         surtax_irpef = sum(
             e.amount
-            for e in calculate_period(_req_surtax()).ledger_entries
+            for e in calculate_period(
+                _req_surtax(), repo=bundled_repository(), resolver=bundled_policies()
+            ).ledger_entries
             if e.account == AccountKind.ORDINARY_TAX
         )
         assert base_irpef == surtax_irpef
 
     def test_surtax_pay_items_present(self) -> None:
         """One item per surtax component due on the run."""
-        result = calculate_period(_req_surtax())
+        result = calculate_period(
+            _req_surtax(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         surtax_items = {
             pi.item_id.rsplit("_", 1)[0]: pi.amount
             for pi in result.pay_items
@@ -443,7 +563,9 @@ class TestSurtaxAccounting:
     def test_reconcile_passes(self) -> None:
         """All reconciliation invariants hold when addizionali are computed."""
         request = _req_surtax()
-        result = calculate_period(request)
+        result = calculate_period(
+            request, repo=bundled_repository(), resolver=bundled_policies()
+        )
         r = reconcile(result, request.opening_state)
         assert r.ok, r.violations
 
@@ -453,27 +575,37 @@ class TestFamilyDeductionsAccounting:
 
     def test_net_increases_with_spouse_deduction(self) -> None:
         """Declaring a dependent spouse increases period_net."""
-        base = calculate_period(_base())
-        result = calculate_period(_req_family())
+        base = calculate_period(
+            _base(), repo=bundled_repository(), resolver=bundled_policies()
+        )
+        result = calculate_period(
+            _req_family(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         assert result.period_net > base.period_net
 
     def test_ordinary_tax_decreases_with_spouse_deduction(self) -> None:
         """IRPEF withheld decreases when family deductions apply."""
         base_irpef = sum(
             e.amount
-            for e in calculate_period(_base()).ledger_entries
+            for e in calculate_period(
+                _base(), repo=bundled_repository(), resolver=bundled_policies()
+            ).ledger_entries
             if e.account == AccountKind.ORDINARY_TAX
         )
         family_irpef = sum(
             e.amount
-            for e in calculate_period(_req_family()).ledger_entries
+            for e in calculate_period(
+                _req_family(), repo=bundled_repository(), resolver=bundled_policies()
+            ).ledger_entries
             if e.account == AccountKind.ORDINARY_TAX
         )
         assert family_irpef < base_irpef
 
     def test_reconcile_passes(self) -> None:
         """All reconciliation invariants hold when family deductions are applied."""
-        result = calculate_period(_req_family())
+        result = calculate_period(
+            _req_family(), repo=bundled_repository(), resolver=bundled_policies()
+        )
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations
 
@@ -487,7 +619,9 @@ def _arrears_of(reference: PeriodId | None) -> PeriodResult:
                 separate_tax_rate=Decimal("0.23"),
                 reference_period=reference,
             )
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 
@@ -573,7 +707,9 @@ def test_arrears_trace_their_year_tax_and_policy(
 
 def test_arrears_of_the_year_are_ordinary_income_with_their_contributions() -> None:
     """All arrears bear INPS; only those of the year enter the IRPEF base."""
-    base = calculate_period(_base())
+    base = calculate_period(
+        _base(), repo=bundled_repository(), resolver=bundled_policies()
+    )
     this_year = _arrears_of(PeriodId(year=_YEAR, month=1))
     earlier = _arrears_of(PeriodId(year=_YEAR - 1, month=6))
 

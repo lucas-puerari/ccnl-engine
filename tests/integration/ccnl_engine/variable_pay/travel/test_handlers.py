@@ -28,7 +28,11 @@ from ccnl_engine.pay_item.facade import CompetencePeriod
 from ccnl_engine.pay_item.loaders import load_policy_resolver
 from ccnl_engine.pay_item.policies import PolicyContext
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation.validators import reconcile
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.variable_pay.benefit.handlers import fringe_threshold_of
@@ -146,7 +150,9 @@ def _run(*events: object) -> PeriodResult:
             level_code="C3",
             opening_state=PeriodState.zero(),
             events=tuple(events),  # type: ignore[arg-type]
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 
@@ -232,7 +238,9 @@ def _driver(*events: object) -> PeriodResult:
             level_code="B3",
             opening_state=PeriodState.zero(),
             events=tuple(events),  # type: ignore[arg-type]
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

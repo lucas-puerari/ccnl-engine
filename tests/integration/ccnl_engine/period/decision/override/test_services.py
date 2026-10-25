@@ -49,7 +49,11 @@ from ccnl_engine.period.decision.override.services import (
     caller_supplied_decisions,
 )
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 
 if TYPE_CHECKING:
@@ -80,7 +84,9 @@ class TestOvertimeRun:
             employer=EmployerProfile(headcount=Headcount(50)),
             opening_state=PeriodState.zero(),
             events=(_OVERTIME,),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
     def test_decision_flags_the_caller_fields(self) -> None:

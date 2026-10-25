@@ -37,7 +37,11 @@ from ccnl_engine.balance.obligation.models import (
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.period.inputs import PeriodInput
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.models import PayrollRun
 from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
 from ccnl_engine.withholding.schedule.models import (
@@ -86,7 +90,9 @@ def _year(
     opening: PeriodState | None = None, period: EmploymentPeriod = _Q1
 ) -> CompetenceYearResult:
     return calculate_competence_year(
-        year_plan(2026, _CCNL, "C3", employment_period=period, opening_state=opening)
+        year_plan(2026, _CCNL, "C3", employment_period=period, opening_state=opening),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 
@@ -262,7 +268,9 @@ def test_current_year_plan_is_settled_on_the_last_run(
     request = _march(_with_current_plan(plan)).calculation_request(
         withholding_schedule=_schedule()
     )
-    result = calculate_period(request)
+    result = calculate_period(
+        request, repo=bundled_repository(), resolver=bundled_policies()
+    )
     residual = plan.original_amount - plan.installment_amount * plan.installments_posted
     (line,) = (
         e.amount

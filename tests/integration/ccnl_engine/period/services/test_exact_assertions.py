@@ -39,7 +39,11 @@ from ccnl_engine.event.facade import (
     WelfareEvent,
 )
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.models import PayrollRun
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.year.competence.services import (
@@ -82,7 +86,9 @@ def test_regular_december_and_tredicesima_have_different_gross() -> None:
             ccnl_id=_CCNL_WITH_ALLOWANCES,
             level_code=_LEVEL_WITH_ALLOWANCES,
             opening_state=state,
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     thirteenth = calculate_period(
         PeriodCalculationRequest(
@@ -93,7 +99,9 @@ def test_regular_december_and_tredicesima_have_different_gross() -> None:
             level_code=_LEVEL_WITH_ALLOWANCES,
             opening_state=state,
             run=PayrollRun.thirteenth(2026, 12),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     regular_gross = regular.period_gross
     extra_gross = thirteenth.period_gross
@@ -114,7 +122,11 @@ def test_regular_december_and_tredicesima_have_distinct_ledger_ids() -> None:
     With 13 runs the year produces 65 entries, but only
     60 distinct IDs because the two December runs share entry IDs.
     """
-    result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+    result = calculate_competence_year(
+        year_plan(_YEAR, _CCNL, _LEVEL),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
 
     all_ids = [e.entry_id for r in result.period_results for e in r.ledger_entries]
     unique_ids = set(all_ids)

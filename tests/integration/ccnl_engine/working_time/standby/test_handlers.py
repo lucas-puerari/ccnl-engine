@@ -23,7 +23,11 @@ from ccnl_engine.errors import InvalidInputError, MissingRuleError
 from ccnl_engine.event.facade import BonusEvent, StandbyEvent, StandbyKind
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation.validators import reconcile
 from ccnl_engine.run.types import PeriodId
 
@@ -45,7 +49,9 @@ def _run(
             level_code=level,
             opening_state=PeriodState.zero(),
             events=tuple(events),  # type: ignore[arg-type]
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

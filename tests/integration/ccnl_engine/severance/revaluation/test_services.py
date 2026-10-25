@@ -31,7 +31,7 @@ from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import bundled_policies, calculate_period
 from ccnl_engine.run.models import PayrollRun, RunKind
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.severance.revaluation.rules import TfrRevaluation
@@ -102,6 +102,7 @@ def _run(
             **kwargs,  # type: ignore[arg-type]
         ),
         repo=repo,
+        resolver=bundled_policies(),
     )
 
 
@@ -348,7 +349,7 @@ def test_the_revaluation_carries_its_tax_and_its_net() -> None:
         employment_period=_HIRED_2020,
         tfr_fund=_FUND,
     )
-    revaluation = run_tfr_revaluation(build_context(request, repo, None))
+    revaluation = run_tfr_revaluation(build_context(request, repo, bundled_policies()))
 
     assert revaluation is not None
     assert (revaluation.amount, revaluation.substitute_tax, revaluation.net) == (

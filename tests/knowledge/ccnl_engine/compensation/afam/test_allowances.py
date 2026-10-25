@@ -15,7 +15,11 @@ import pytest
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.seniority.inputs import SeniorityFact, SenioritySource
 
@@ -30,7 +34,9 @@ def _allowances(level: str, months: int) -> dict[str, Decimal]:
             level_code=level,
             seniority=SeniorityFact(months, date(2026, 3, 1), SenioritySource.PAYSLIP),
             opening_state=PeriodState.zero(),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     return {
         i.item_id.rsplit("_", 1)[-1]: i.amount
@@ -73,7 +79,9 @@ def test_university_tecnologo_positions() -> None:
             level_code="TECNOLOGO",
             seniority=SeniorityFact(84, date(2026, 4, 1), SenioritySource.PAYSLIP),
             opening_state=PeriodState.zero(),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
     by_kind = {i.kind: i.amount for i in result.pay_items}
     assert by_kind["base_salary_earning"] == Decimal("2878.15")

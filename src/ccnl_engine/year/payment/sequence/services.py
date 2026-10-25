@@ -24,8 +24,8 @@ __all__ = ["Engine", "compute_payments"]
 class Engine:
     """How each payment is computed: knowledge, policies, version and mode."""
 
-    repo: KnowledgeRepository | None
-    resolver: PolicyResolver | None
+    repo: KnowledgeRepository
+    resolver: PolicyResolver
     bundle_version: str | None
     mode: EngineMode
 

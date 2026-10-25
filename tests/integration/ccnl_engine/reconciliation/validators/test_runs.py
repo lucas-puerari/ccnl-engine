@@ -28,7 +28,11 @@ from ccnl_engine.extra_month.schedule.models import (
 )
 from ccnl_engine.period.payslip.services import check_net_covered
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation.ceiling.validators import (
     check_contribution_ceiling,
 )
@@ -72,7 +76,9 @@ def _run(
             employer=EmployerProfile(headcount=Headcount(50)),
             opening_state=opening,
             **kwargs,  # type: ignore[arg-type]
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
 

@@ -32,7 +32,11 @@ from ccnl_engine.event.facade import BonusEvent
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.period.requests import PeriodCalculationRequest
-from ccnl_engine.period.services import calculate_period
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
 from ccnl_engine.reconciliation.validators import reconcile
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.tax_credit.account.models import TrattamentoAccount
@@ -104,7 +108,11 @@ class TestPdRExcessReturnsToIrpef:
             amount=Decimal("6000.00"),
             kind="productivity_bonus",
         )
-        result = calculate_period(_req_metal(1, events=(bonus,)))
+        result = calculate_period(
+            _req_metal(1, events=(bonus,)),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
         assert sub_tax == Decimal("50.00"), (
             f"Expected SUBSTITUTE_TAX=50.00 (5,000 * 1%); got {sub_tax}. "
@@ -118,7 +126,11 @@ class TestPdRExcessReturnsToIrpef:
             amount=Decimal("6000.00"),
             kind="productivity_bonus",
         )
-        result = calculate_period(_req_metal(1, events=(bonus,)))
+        result = calculate_period(
+            _req_metal(1, events=(bonus,)),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         assert result.closing_state.cash.fringe.pdr == Decimal("5000.00"), (
             f"pdr_ytd must be 5,000 (cap); got {result.closing_state.cash.fringe.pdr}."
         )
@@ -135,8 +147,16 @@ class TestPdRExcessReturnsToIrpef:
             amount=Decimal("6000.00"),
             kind="productivity_bonus",
         )
-        result_5k = calculate_period(_req_metal(1, events=(bonus_5k,)))
-        result_6k = calculate_period(_req_metal(1, events=(bonus_6k,)))
+        result_5k = calculate_period(
+            _req_metal(1, events=(bonus_5k,)),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
+        result_6k = calculate_period(
+            _req_metal(1, events=(bonus_6k,)),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         irpef_5k = _sum_account(result_5k, AccountKind.ORDINARY_TAX)
         irpef_6k = _sum_account(result_6k, AccountKind.ORDINARY_TAX)
         assert irpef_6k > irpef_5k, (
@@ -153,7 +173,11 @@ class TestPdRExcessReturnsToIrpef:
             kind="productivity_bonus",
         )
         opening = PeriodState.zero()
-        result = calculate_period(_req_metal(1, opening=opening, events=(bonus,)))
+        result = calculate_period(
+            _req_metal(1, opening=opening, events=(bonus,)),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         rec = reconcile(result, opening)
         assert rec.ok, f"Reconcile violated: {rec.violations}"
 
@@ -168,7 +192,11 @@ class TestSecondPdRPartialPlafond:
             amount=Decimal("3000.00"),
             kind="productivity_bonus",
         )
-        result = calculate_period(_req_metal(1, events=(bonus,)))
+        result = calculate_period(
+            _req_metal(1, events=(bonus,)),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
         assert sub_tax == Decimal("30.00")
         assert result.closing_state.cash.fringe.pdr == Decimal("3000.00")
@@ -180,14 +208,22 @@ class TestSecondPdRPartialPlafond:
             amount=Decimal("3000.00"),
             kind="productivity_bonus",
         )
-        r1 = calculate_period(_req_metal(1, events=(bonus1,)))
+        r1 = calculate_period(
+            _req_metal(1, events=(bonus1,)),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
 
         bonus2 = BonusEvent(
             event_date=date(_YEAR, 2, 15),
             amount=Decimal("3000.00"),
             kind="productivity_bonus",
         )
-        r2 = calculate_period(_req_metal(2, opening=r1.closing_state, events=(bonus2,)))
+        r2 = calculate_period(
+            _req_metal(2, opening=r1.closing_state, events=(bonus2,)),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         sub_tax = _sum_account(r2, AccountKind.SUBSTITUTE_TAX)
         assert sub_tax == Decimal("20.00"), (
             f"Expected 20.00 (2,000 EUR * 1%); got {sub_tax}. "
@@ -202,7 +238,11 @@ class TestSecondPdRPartialPlafond:
             amount=Decimal("3000.00"),
             kind="productivity_bonus",
         )
-        r1 = calculate_period(_req_metal(1, events=(bonus1,)))
+        r1 = calculate_period(
+            _req_metal(1, events=(bonus1,)),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
 
         bonus2 = BonusEvent(
             event_date=date(_YEAR, 2, 15),
@@ -210,9 +250,15 @@ class TestSecondPdRPartialPlafond:
             kind="productivity_bonus",
         )
         r2_with_bonus = calculate_period(
-            _req_metal(2, opening=r1.closing_state, events=(bonus2,))
+            _req_metal(2, opening=r1.closing_state, events=(bonus2,)),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
         )
-        r2_no_bonus = calculate_period(_req_metal(2, opening=r1.closing_state))
+        r2_no_bonus = calculate_period(
+            _req_metal(2, opening=r1.closing_state),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         irpef_bonus = _sum_account(r2_with_bonus, AccountKind.ORDINARY_TAX)
         irpef_plain = _sum_account(r2_no_bonus, AccountKind.ORDINARY_TAX)
         assert irpef_bonus > irpef_plain, (
@@ -241,7 +287,9 @@ class TestTrattamentoNoOverRecovery:
                     ),
                 )
             req = _req_portieri(month, opening=opening, events=events)
-            result = calculate_period(req)
+            result = calculate_period(
+                req, repo=bundled_repository(), resolver=bundled_policies()
+            )
             cs = result.closing_state
             assert cs.cash.trattamento.recovered <= cs.cash.trattamento.recognized, (
                 f"Month {month}: recovered {cs.cash.trattamento.recovered} > "
@@ -253,7 +301,9 @@ class TestTrattamentoNoOverRecovery:
 
     def test_january_credit_recognized(self) -> None:
         """Portieri B5 January must recognize trattamento integrativo = 92.31."""
-        result = calculate_period(_req_portieri(1))
+        result = calculate_period(
+            _req_portieri(1), repo=bundled_repository(), resolver=bundled_policies()
+        )
         tratt = result.tax_computation.trattamento_integrativo
         assert tratt == Decimal("92.31"), (
             f"Expected 92.31 trattamento integrativo in January for B5; got {tratt}."
@@ -302,7 +352,11 @@ class TestPdREligibilityFailClosed:
             amount=Decimal("1000.00"),
             kind="productivity_bonus",
         )
-        result = calculate_period(_req_metal(1, events=(bonus,), income=None))
+        result = calculate_period(
+            _req_metal(1, events=(bonus,), income=None),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
         sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
         assert sub_tax == _ZERO, (
             f"productivity_bonus with unknown prior-year income must not receive "
@@ -334,7 +388,9 @@ def test_pdr_bonus_substitute_tax() -> None:
         replace(
             period_request(events=(bonus,)),
             prior_year=PriorYearTaxFacts(employment_income=Decimal("25000.00")),
-        )
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
     )
 
     sub_tax = account_total(result, AccountKind.SUBSTITUTE_TAX)
