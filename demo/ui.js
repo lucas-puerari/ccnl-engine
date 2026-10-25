@@ -463,6 +463,20 @@ const MATERIAL_FACTS = {
   current_year: "other_income",
 };
 
+// Blockers a user clears by stating a fact; every other code is a limit of
+// the rules or the data that no input of the form can lift.
+const FACT_BLOCKERS = new Set(["missing_fact", "requirement_unresolved", "caller_supplied_rule"]);
+
+function blockerSentences(blockers) {
+  const facts = blockers.filter(b => FACT_BLOCKERS.has(b.code)).length;
+  const limits = blockers.length - facts;
+  return [
+    t("reliability.estimate"),
+    ...(facts ? [t("reliability.blockers.facts", { n: facts })] : []),
+    ...(limits ? [t("reliability.blockers.limits", { n: limits })] : []),
+  ];
+}
+
 function renderReliability(r) {
   const readiness = r.ruleset.readiness || "untracked";
   const box = document.getElementById("reliability");
@@ -470,9 +484,7 @@ function renderReliability(r) {
   document.getElementById("reliability-head").textContent = t(`reliability.head.${readiness}`);
   document.getElementById("reliability-text").textContent = [
     t(`reliability.ruleset.${readiness}`),
-    r.payability === "payable"
-      ? t("reliability.payable")
-      : t("reliability.estimate", { n: r.blockers.length }),
+    ...(r.payability === "payable" ? [t("reliability.payable")] : blockerSentences(r.blockers)),
   ].join(" ");
   const topics = new Set();
   for (const b of r.blockers) {
