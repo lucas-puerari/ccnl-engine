@@ -4,11 +4,7 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - "src/ccnl_engine/knowledge/contract/**"
-      - "src/ccnl_engine/knowledge/taxation/**"
-      - "src/ccnl_engine/knowledge/social_security/**"
-      - "src/ccnl_engine/knowledge/surtax/**"
-      - "src/ccnl_engine/knowledge/capability/**"
+      - "src/ccnl_engine/knowledge/**"
       - "scripts/provenance/rules.py"
       - "scripts/documentation/capability_matrix/generate.py"
       - "docs/contracts/capability-matrix.md"
