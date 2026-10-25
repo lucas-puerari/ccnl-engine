@@ -29,6 +29,12 @@ records a decision with capability `trattamento_integrativo_recovery`
 `last_installment_posted`, `installment_posted_adjustment_run` or
 `settled_at_termination`), amount the negative amount of the run.
 
+On the year-end conguaglio the engine compares the annual credit with what
+the year paid, net of the installments already recovered. A plan opened on
+a mid-year projection runs on only while its residual equals the excess
+still paid; otherwise it ends and the conguaglio settles the balance: it
+pays the credit still due, or opens a new recovery of the excess.
+
 ## Ulteriore detrazione recognized and recovered
 
 L. 207/2024 art. 1 c. 7: the employer recognizes the deduction of c. 6 "in

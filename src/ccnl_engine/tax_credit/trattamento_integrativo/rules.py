@@ -91,16 +91,24 @@ def _period_amount(
     """Return the signed amount of the run and the plan to carry forward.
 
     A plan in force takes its next installment, or its residual on the
-    final run.  Otherwise the balance still due is spread over the
+    final run.  On the year-end conguaglio (the last slot of an ordinary
+    run) the plan holds only while its residual is the excess still paid:
+    the credit that "in sede di conguaglio [...] si riveli non spettante"
+    is what D.L. 3/2020 art. 1 c. 3 recovers, so a plan opened on a
+    mid-year projection that no longer matches ends, and the run settles
+    the balance.  Otherwise the balance still due is spread over the
     remaining slots, or an excess already paid opens a recovery.
 
     Returns:
         The amount, negative for a recovery, with the plan and reason.
     """
-    if existing_plan is not None:
+    tratt_due = annual_tratt - opening_tratt_ytd
+    conguaglio = remaining == 1 and not run.final and not run.adjustment
+    if existing_plan is not None and (
+        not conguaglio or existing_plan.residual == -tratt_due
+    ):
         posted = existing_plan.post(run)
         return _Period(-posted.amount, posted.remaining, posted.reason)
-    tratt_due = annual_tratt - opening_tratt_ytd
     if tratt_due >= _ZERO:
         period = money(tratt_due) if remaining == 1 else money(tratt_due / remaining)
         return _Period(period)
