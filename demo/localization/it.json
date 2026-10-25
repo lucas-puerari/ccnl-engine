@@ -193,5 +193,16 @@
   "compare.readiness": "Contratto confrontato: {tier}, {payable}.",
   "compare.payable": "pagabile",
   "compare.not_payable": "non pagabile",
-  "readiness.untracked": "livello non registrato"
+  "readiness.untracked": "livello non registrato",
+  "months.title": "Mese per mese",
+  "months.note": "Ogni busta paga dell'anno, nell'ordine in cui è pagata.",
+  "months.run": "Busta paga",
+  "months.gross": "Lordo",
+  "months.net": "Netto",
+  "months.cost": "Costo azienda",
+  "months.kind.regular": "Mese {month}",
+  "months.kind.thirteenth": "Tredicesima",
+  "months.kind.fourteenth": "Quattordicesima",
+  "months.kind.adjustment": "Conguaglio {month}",
+  "months.kind.termination": "Cessazione"
 }
