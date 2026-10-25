@@ -10,7 +10,7 @@ for payroll and HR teams that want to verify and explain a payslip.
     These pages document the `main` branch. The package installed from PyPI
     may be an earlier release with a different API: compare
     `ccnl_engine.engine_version` with the
-    [changelog](https://github.com/lucas-puerari/ccnl-engine/blob/main/CHANGELOG.md).
+    [release notes](https://github.com/lucas-puerari/ccnl-engine/releases).
 
 ---
 

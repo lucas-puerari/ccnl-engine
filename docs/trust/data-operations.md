@@ -184,10 +184,10 @@ INPS) that affects many contracts says so in the title.
 ## Versioning and support
 
 The package is in **alpha**: a minor release (0.6 to 0.7) may break the
-public API, and the [changelog](https://github.com/lucas-puerari/ccnl-engine/blob/main/CHANGELOG.md)
-lists its breaking changes first. A patch release (0.6.0 to 0.6.1) does not
+public API; the [release notes](https://github.com/lucas-puerari/ccnl-engine/releases) list the pull requests
+of each release by their conventional titles. A patch release (0.6.0 to 0.6.1) does not
 break it. There is no migration guide and no deprecation period: pin an
-exact version and read the changelog before an upgrade.
+exact version and read the release notes before an upgrade.
 
 **Bundle version.** `ccnl_engine.bundle_version` is the release series
 (`2026.3`) plus a digest of the manifest. Every `PeriodResult` and

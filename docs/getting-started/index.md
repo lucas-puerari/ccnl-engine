@@ -10,7 +10,7 @@ pip install ccnl-engine
     These pages document the `main` branch. The package installed from PyPI
     may be an earlier release with a different API: compare
     `ccnl_engine.engine_version` with the
-    [changelog](https://github.com/lucas-puerari/ccnl-engine/blob/main/CHANGELOG.md).
+    [release notes](https://github.com/lucas-puerari/ccnl-engine/releases).
 
 Requires Python 3.12+. Every pull request and every release run the API and
 knowledge tests on Python 3.12, 3.13 and 3.14, and smoke-test the built

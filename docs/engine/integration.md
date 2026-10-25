@@ -62,7 +62,7 @@ read back; recompute it from its request.
 
 The package is in alpha (see
 [Versioning and support](../trust/data-operations.md#versioning-and-support)):
-pin an exact version, read the changelog, and before you switch replay a
+pin an exact version, read the [release notes](https://github.com/lucas-puerari/ccnl-engine/releases), and before you switch replay a
 sample of your archived requests with the new version and compare the
 totals with your own payslips (`ccnl_engine.results.compare_totals`). A
 difference is a change of the engine or of the bundle; the
