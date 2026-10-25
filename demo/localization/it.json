@@ -72,7 +72,7 @@
   "results.error": "Il calcolo non è riuscito: {msg}",
   "results.part_time": " · part-time {pct}%",
   "results.year": "Anno {year}",
-  "results.engine": "Dati {version}",
+  "results.engine": "Motore {engine} · dati {bundle}",
   "kpi.gross": "Lordo mensile",
   "kpi.gross_sub": "{annual} nell'anno, {runs} mensilità",
   "kpi.net": "Netto medio stimato",

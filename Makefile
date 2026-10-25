@@ -58,10 +58,10 @@ docs: generate
 demo:
 	rm -rf $(SITE) $(PACKAGES)
 	uv build --wheel --out-dir $(PACKAGES) --quiet
-	mkdir -p $(SITE)/wheels $(SITE)/i18n
+	mkdir -p $(SITE)/wheels/local $(SITE)/i18n
 	sed "s/WHEEL_VERSION/$$(uv version --short)/g" demo/index.html > $(SITE)/index.html
-	sed "s/WHEEL_VERSION/$$(uv version --short)/g" demo/ui.js > $(SITE)/ui.js
+	sed -e "s/WHEEL_VERSION/$$(uv version --short)/g" -e "s/WHEEL_BUILD/local/g" demo/ui.js > $(SITE)/ui.js
 	cp demo/app.py demo/style.css $(SITE)/
-	cp $(PACKAGES)/*.whl $(SITE)/wheels/
+	cp $(PACKAGES)/*.whl $(SITE)/wheels/local/
 	cp demo/localization/*.json $(SITE)/i18n/
 	python3 -m http.server 8080 --directory $(SITE) --bind 127.0.0.1

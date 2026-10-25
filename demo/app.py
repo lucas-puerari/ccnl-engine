@@ -24,6 +24,7 @@ from ccnl_engine import (
     Headcount,
     PayrollEngine,
     PeriodFacts,
+    engine_version,
 )
 from ccnl_engine.bundle.loaders import read_resource
 from ccnl_engine.catalog import RulesetKind
@@ -447,7 +448,8 @@ def _payload(
         "contract": params.get("contract", "permanent"),
         "part_time_pct": int(params.get("part_time_pct") or 100),
         "year": _DEFAULT_YEAR,
-        "engine_version": year.bundle_version or "",
+        "engine_version": engine_version,
+        "bundle_version": year.bundle_version or "",
         "runs": runs,
         "monthly_gross": float(month.period_gross),
         "trace": _trace(month),

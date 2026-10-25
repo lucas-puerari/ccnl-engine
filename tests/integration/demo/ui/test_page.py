@@ -209,3 +209,15 @@ def test_blocker_copy_separates_missing_facts_from_rule_limits() -> None:
         assert "{n}" not in strings["reliability.estimate"]
         assert "verificate" not in strings["reliability.ruleset.production"]
         assert "are verified" not in strings["reliability.ruleset.production"]
+
+
+def test_the_page_names_both_versions_and_a_per_deploy_wheel() -> None:
+    """The scenario shows engine and data versions; a deploy never reuses a wheel."""
+    assert "r.engine_version" in _JS
+    assert "r.bundle_version" in _JS
+    assert "./wheels/WHEEL_BUILD/" in _JS
+    assert "./app.py?build=WHEEL_BUILD" in _JS
+    for strings in _LANGS.values():
+        assert {"{engine}", "{bundle}"} <= set(
+            re.findall(r"\{\w+\}", strings["results.engine"])
+        )
