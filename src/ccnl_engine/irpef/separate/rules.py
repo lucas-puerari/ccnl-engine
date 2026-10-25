@@ -15,10 +15,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-__all__ = ["SeparateTaxRule", "separate_tax_rule"]
+from ccnl_engine.provenance.statute.rules import INCOME_TAX_CODE_FROM
 
-#: First tax year of the testo unico of D.Lgs. 117/2026.
-_TESTO_UNICO_FROM = 2027
+__all__ = ["SeparateTaxRule", "separate_tax_rule"]
 
 
 @dataclass(frozen=True)
@@ -44,7 +43,7 @@ def separate_tax_rule(tax_year: int) -> SeparateTaxRule:
         Art. 19 c. 1 lett. b of the testo unico of D.Lgs. 117/2026 from
         2027, art. 17 c. 1 lett. b TUIR before.
     """
-    if tax_year >= _TESTO_UNICO_FROM:
+    if tax_year >= INCOME_TAX_CODE_FROM:
         return SeparateTaxRule(
             rule="dlgs117-2026-art19-c1-b",
             citation="art. 19 c. 1 lett. b D.Lgs. 117/2026",

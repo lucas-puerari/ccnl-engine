@@ -443,7 +443,7 @@ a directory uses it.
 `revaluation`, `rounding`, `rule`, `rule_source`, `ruleset`, `schedule`,
 `sector`, `selection`, `separate`, `sequence`, `settlement`, `sign`,
 `solidarity`, `somma_esente`, `source`, `spell`, `spouse`, `stage`,
-`standard`, `step`, `support`, `table`, `tax`, `tax_year`, `taxable`,
+`standard`, `statute`, `step`, `support`, `table`, `tax`, `tax_year`, `taxable`,
 `term`, `total`, `trace`, `transition`, `trattamento_integrativo`,
 `treatment`, `ulteriore_detrazione`, `validity`, `zone`.
 

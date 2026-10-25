@@ -41,6 +41,7 @@ from typing import final
 
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.pay_item.rounding.policies import money
+from ccnl_engine.provenance.statute.rules import WITHHOLDING_CODE_FROM
 from ccnl_engine.validators import (
     reject,
     require_date,
@@ -64,8 +65,6 @@ _ZERO = Decimal(0)
 _CENT = Decimal("0.01")
 _MIN_TAX_YEAR = 2020
 _FEATURE = "shortfall_deferral"
-#: First tax year of the testo unico of D.Lgs. 33/2025 (art. 243).
-_TESTO_UNICO_FROM = 2027
 
 
 def _conguaglio_rule(tax_year: int) -> str:
@@ -75,7 +74,7 @@ def _conguaglio_rule(tax_year: int) -> str:
         Art. 33 c. 4 D.Lgs. 33/2025 from 2027, art. 23 c. 3 DPR 600/1973
         before.
     """
-    if tax_year >= _TESTO_UNICO_FROM:
+    if tax_year >= WITHHOLDING_CODE_FROM:
         return "art. 33 c. 4 D.Lgs. 33/2025"
     return "art. 23 c. 3 DPR 600/1973"
 
