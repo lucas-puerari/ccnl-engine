@@ -12,16 +12,20 @@ installment), and each run opens with the closing state of the one before.
 
 The pilot packets are ``engine_provisional``: their values are what the
 engine computes today, waiting for a payroll provider to compute the same
-inputs.  They cover nothing, but they detect a change of the engine: run
-this module to rewrite them after a change you meant::
+inputs.  They cover nothing, but they detect a change of the engine.  A
+change you meant is accepted with a reason, which the rewritten packets
+record with the day, so a moved value is never re-blessed silently::
 
-    uv run python -m tests.knowledge.ccnl_engine.period.validation_packet.runner
+    uv run python -m tests.knowledge.ccnl_engine.period.validation_packet.runner \
+        --reason "why the values move"
 """
 
 from __future__ import annotations
 
+import argparse
 import json
 from dataclasses import replace
+from datetime import UTC, date, datetime, timedelta
 from decimal import Decimal
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, Final
@@ -53,6 +57,8 @@ READER_OF: Final = {
 _YEARLY: Final = frozenset({"annual_conguaglio", "termination"})
 _ENGINE: Final = PayrollEngine.bundled()
 _CENT: Final = Decimal("0.01")
+#: Days until a rewritten packet is due for review again.
+_REVIEW_DAYS: Final = 182
 
 
 def compute_result(inputs: dict[str, Any]) -> PeriodResult:
@@ -106,18 +112,47 @@ def compute(inputs: dict[str, Any], outputs: list[str]) -> dict[str, Decimal]:
     }
 
 
-def rewrite(folder: Path = FOLDER) -> None:
-    """Rewrite the values of every ``engine_provisional`` packet of ``folder``."""
+def rewrite(folder: Path, *, reason: str, today: date) -> list[str]:
+    """Rewrite the ``engine_provisional`` packets whose values the engine moved.
+
+    A rewritten packet records ``reason`` and the day in its review, and is
+    due for review again; a packet whose values hold is left untouched.
+
+    Returns:
+        The names of the packets rewritten.
+
+    Raises:
+        ValueError: When ``reason`` is blank.
+    """
+    if not reason.strip():
+        msg = "a rewrite needs the reason the values move"
+        raise ValueError(msg)
+    rewritten = []
     for path in sorted(folder.glob("*.json")):
         packet = json.loads(path.read_text(encoding="utf-8"))
         if packet["artifact"]["kind"] != "engine_provisional":
             continue
-        names = [o["output"] for o in packet["outputs"]]
-        values = compute(packet["inputs"], names)
-        for output in packet["outputs"]:
+        values = compute(packet["inputs"], [o["output"] for o in packet["outputs"]])
+        moved = [
+            o for o in packet["outputs"] if Decimal(o["value"]) != values[o["output"]]
+        ]
+        if not moved:
+            continue
+        for output in moved:
             output["value"] = str(values[output["output"]])
+        packet["review"].update(
+            date=today.isoformat(),
+            review_by=(today + timedelta(days=_REVIEW_DAYS)).isoformat(),
+            rewritten_because=reason,
+        )
         path.write_text(json.dumps(packet, indent=2) + "\n", encoding="utf-8")
+        rewritten.append(path.stem)
+    return rewritten
 
 
 if __name__ == "__main__":
-    rewrite()
+    parser = argparse.ArgumentParser(description="Accept moved packet values.")
+    parser.add_argument("--reason", required=True, help="why the values move")
+    args = parser.parse_args()
+    names = rewrite(FOLDER, reason=args.reason, today=datetime.now(tz=UTC).date())
+    print("\n".join(names) or "no packet moved")  # noqa: T201

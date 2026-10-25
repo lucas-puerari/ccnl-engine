@@ -82,10 +82,13 @@ change.
 Until a provider computes them they are `engine_provisional`: valid, with
 `result` `pending`, covering nothing, and pinned to what the engine computes
 today by `tests/knowledge/ccnl_engine/period/validation_packet/test_packets.py`.
-After a change of the engine that is meant, rewrite their values with:
+After a change of the engine that is meant, rewrite their values with the
+reason they move; each rewritten packet records it with the day in its
+`review` (`rewritten_because`), and a packet whose values hold is untouched:
 
 ```bash
-uv run python -m tests.knowledge.ccnl_engine.period.validation_packet.runner
+uv run python -m tests.knowledge.ccnl_engine.period.validation_packet.runner \
+    --reason "why the values move"
 ```
 
 When a provider output arrives, the packet takes its `artifact` (kind,
