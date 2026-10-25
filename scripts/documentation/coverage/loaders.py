@@ -296,7 +296,11 @@ def build_coverage_report(year: int) -> CoverageReport:
 _CONTRACTS_PREAMBLE_TEMPLATE = """\
 # CCNL Coverage
 
-{count} bundled contract configurations, private and public sector,
+**{production} production, {reviewed} reviewed, {exploratory} exploratory.**
+Only a `production` contract is paid in `operational` mode; the others
+are for simulation (see [Readiness](../trust/readiness.md)).
+
+{count} bundled contract configurations in all, private and public sector,
 including ARAN public-sector agreements and one Presidential Decree
 (DPR 53/2025[^2]). The table is generated from the data: search it, or use
 `search_ccnls()` from Python.
@@ -358,8 +362,12 @@ def render_contracts_index(report: CoverageReport, year: int) -> str:
         " -- run: uv run python scripts/documentation/coverage_matrix/generate.py -->\n"
         f"<!-- generated: {report.generated_at} -->\n"
     )
+    tiers = Counter(row.readiness for row in report.ccnl_rows)
     preamble = _CONTRACTS_PREAMBLE_TEMPLATE.format(
         count=len(report.ccnl_rows),
+        production=tiers[RulesetReadiness.PRODUCTION],
+        reviewed=tiers[RulesetReadiness.REVIEWED],
+        exploratory=tiers[RulesetReadiness.EXPLORATORY],
         year=year,
         scopes="\n".join(report.registry),
         legend=IMPLEMENTATION_LEGEND,

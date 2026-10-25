@@ -3,7 +3,11 @@
 
 # CCNL Coverage
 
-132 bundled contract configurations, private and public sector,
+**6 production, 17 reviewed, 109 exploratory.**
+Only a `production` contract is paid in `operational` mode; the others
+are for simulation (see [Readiness](../trust/readiness.md)).
+
+132 bundled contract configurations in all, private and public sector,
 including ARAN public-sector agreements and one Presidential Decree
 (DPR 53/2025[^2]). The table is generated from the data: search it, or use
 `search_ccnls()` from Python.
