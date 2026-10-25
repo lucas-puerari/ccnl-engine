@@ -1,6 +1,6 @@
 <!-- auto-generated; run: uv run python scripts/documentation/capability_matrix/generate.py -->
 
-<!-- generated: 2026-10-24 -->
+<!-- generated: 2026-10-25 -->
 
 # Capability Matrix
 
@@ -83,7 +83,7 @@ formulas or caller-declared amounts.
 | `company_supplement` | Integrazione da contratto aziendale | outside_input | gross | unsupported | outside_input | — | `employment.company_agreement` | — | unavailable | none bundled |
 | `tfr` | Trattamento di Fine Rapporto | core | net | native | always | pipeline | `employment.tfr_treasury_fund` | — | simplified | 18 / 0 / 18 / 0 |
 | `tfr_revaluation` | Rivalutazione del fondo TFR al 31 dicembre e imposta sostitutiva (art. 2120 c. 4 c.c.) | core | net | native | decided | decision | `employment.tfr_fund` | — | implemented | 1 / 2 / 0 / 0 |
-| `irpef` | IRPEF (sostituto d'imposta) | core | net | native | always | pipeline | — | — | simplified | 24 / 0 / 24 / 0 |
+| `irpef` | IRPEF (sostituto d'imposta) | core | net | native | always | pipeline | — | — | simplified | 10 / 0 / 10 / 0 |
 | `trattamento_integrativo` | Trattamento integrativo (ex bonus 80€) | core | net | native | decided | decision | — | — | simplified | 8 / 0 / 8 / 0 |
 | `ulteriore_detrazione_lavoro` | Ulteriore detrazione lavoro dipendente | core | net | native | decided | decision | — | — | simplified | 8 / 0 / 8 / 0 |
 | `somma_esente` | Somma esente L. 207/2024 art. 1 c. 4 | core | net | native | decided | decision | — | — | simplified | 1 / 0 / 1 / 0 |

@@ -40,6 +40,7 @@ def test_every_kind_of_year_file_is_checked() -> None:
     assert datasets == {
         "contribution",
         "family",
+        "irpef",
         "sector",
         "severance",
         "surtax",

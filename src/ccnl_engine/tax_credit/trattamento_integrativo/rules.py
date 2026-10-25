@@ -197,6 +197,7 @@ def resolve_trattamento(
         relevant_deductions,
         rules.trattamento_integrativo,
         eligible_work_days=eligible_work_days,
+        constants=rules.work_deduction,
     )
     annual_tratt = outcome.amount
     period = _period_amount(

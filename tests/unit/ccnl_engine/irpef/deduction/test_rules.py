@@ -31,8 +31,8 @@ from ccnl_engine.irpef.deduction.rules import (
 )
 from ccnl_engine.irpef.models import (
     WorkDeductionMinimum,
-    WorkDeductionRules,
 )
+from tests.unit.ccnl_engine.builders import WORK_DEDUCTION_2026
 
 _FLAT_BAND = Decimal(10_000)
 
@@ -61,7 +61,9 @@ def test_flat_band_proportions_the_floor_to_the_days(
     With the 2026 amounts the floor for the days never exceeds 1,955 for the
     days, so the withholding deducts 1,955 x days / 365.
     """
-    deduction = work_income_deduction(_FLAT_BAND, days, fixed_term=fixed_term)
+    deduction = work_income_deduction(
+        _FLAT_BAND, days, fixed_term=fixed_term, constants=WORK_DEDUCTION_2026
+    )
     assert deduction == expected
 
 
@@ -71,7 +73,9 @@ def test_floor_is_not_applied_above_the_flat_band() -> None:
     1,910 + 1,190 * 0.6153 (8,000 / 13,000 truncated) = 2,642.21 for the
     year; * 30 / 365 = 217.1679..., 217.17.
     """
-    deduction = work_income_deduction(Decimal(20_000), 30, fixed_term=True)
+    deduction = work_income_deduction(
+        Decimal(20_000), 30, fixed_term=True, constants=WORK_DEDUCTION_2026
+    )
     assert deduction == Decimal("217.17")
 
 
@@ -84,8 +88,12 @@ def test_floor_is_not_applied_above_the_flat_band() -> None:
 )
 def test_no_floor_without_income_or_days(income: Decimal, days: int) -> None:
     """Without employment income or days of work no deduction is due."""
-    assert work_income_deduction(income, days, fixed_term=True) == Decimal(0)
-    assert minimum_left_to_tax_return(income, days, fixed_term=True) == Decimal(0)
+    assert work_income_deduction(
+        income, days, fixed_term=True, constants=WORK_DEDUCTION_2026
+    ) == Decimal(0)
+    assert minimum_left_to_tax_return(
+        income, days, fixed_term=True, constants=WORK_DEDUCTION_2026
+    ) == Decimal(0)
 
 
 def test_floor_comes_from_the_rules() -> None:
@@ -94,11 +102,15 @@ def test_floor_comes_from_the_rules() -> None:
     Minimum 2,000 for 92 days: 2,000 * 92 / 365 = 504.109..., 504.11, above
     492.77; 2,400 for a fixed term: 2,400 * 92 / 365 = 604.931..., 604.93.
     """
-    rules = WorkDeductionRules(
-        minimum=WorkDeductionMinimum(open_ended=Decimal(2000), fixed_term=Decimal(2400))
+    rules = WORK_DEDUCTION_2026.model_copy(
+        update={
+            "minimum": WorkDeductionMinimum(
+                open_ended=Decimal(2000), fixed_term=Decimal(2400)
+            )
+        }
     )
-    open_ended = work_income_deduction(_FLAT_BAND, 92, rules)
-    fixed_term = work_income_deduction(_FLAT_BAND, 92, rules, fixed_term=True)
+    open_ended = work_income_deduction(_FLAT_BAND, 92, constants=rules)
+    fixed_term = work_income_deduction(_FLAT_BAND, 92, fixed_term=True, constants=rules)
     assert (open_ended, fixed_term) == (Decimal("504.11"), Decimal("604.93"))
 
 
@@ -123,27 +135,43 @@ def test_minimum_left_to_tax_return(
     income: Decimal, days: int, *, fixed_term: bool, expected: Decimal
 ) -> None:
     """The whole minimum less the deduction of the withholding, at least 0."""
-    balance = minimum_left_to_tax_return(income, days, fixed_term=fixed_term)
+    balance = minimum_left_to_tax_return(
+        income, days, fixed_term=fixed_term, constants=WORK_DEDUCTION_2026
+    )
     assert balance == expected
 
 
 def test_an_open_ended_employment_is_the_default() -> None:
     """Without ``fixed_term`` the open-ended minimum of 690 applies."""
-    assert work_income_deduction(_FLAT_BAND, 92) == Decimal("492.77")
-    assert minimum_left_to_tax_return(_FLAT_BAND, 92) == Decimal("197.23")
+    assert work_income_deduction(
+        _FLAT_BAND, 92, constants=WORK_DEDUCTION_2026
+    ) == Decimal("492.77")
+    assert minimum_left_to_tax_return(
+        _FLAT_BAND, 92, constants=WORK_DEDUCTION_2026
+    ) == Decimal("197.23")
 
 
 def test_one_day_of_work_is_a_period_of_work() -> None:
     """One day: 1,955 * 1 / 365 = 5.356..., 5.36; balance 690 - 5.36."""
-    assert work_income_deduction(_FLAT_BAND, 1) == Decimal("5.36")
-    assert minimum_left_to_tax_return(_FLAT_BAND, 1) == Decimal("684.64")
+    assert work_income_deduction(
+        _FLAT_BAND, 1, constants=WORK_DEDUCTION_2026
+    ) == Decimal("5.36")
+    assert minimum_left_to_tax_return(
+        _FLAT_BAND, 1, constants=WORK_DEDUCTION_2026
+    ) == Decimal("684.64")
 
 
 def test_balance_reads_the_minimum_of_the_rules() -> None:
     """Minimum 2,000 / 2,400 for 92 days: 2,000 - 504.11 and 2,400 - 604.93."""
-    rules = WorkDeductionRules(
-        minimum=WorkDeductionMinimum(open_ended=Decimal(2000), fixed_term=Decimal(2400))
+    rules = WORK_DEDUCTION_2026.model_copy(
+        update={
+            "minimum": WorkDeductionMinimum(
+                open_ended=Decimal(2000), fixed_term=Decimal(2400)
+            )
+        }
     )
-    open_ended = minimum_left_to_tax_return(_FLAT_BAND, 92, rules)
-    fixed_term = minimum_left_to_tax_return(_FLAT_BAND, 92, rules, fixed_term=True)
+    open_ended = minimum_left_to_tax_return(_FLAT_BAND, 92, constants=rules)
+    fixed_term = minimum_left_to_tax_return(
+        _FLAT_BAND, 92, fixed_term=True, constants=rules
+    )
     assert (open_ended, fixed_term) == (Decimal("1495.89"), Decimal("1795.07"))

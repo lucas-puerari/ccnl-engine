@@ -75,7 +75,6 @@ type _Blocks = tuple[tuple[str, tuple[str, ...], bool], ...]
 #: Blocks of a ``sector/<year>/<sector>.json`` file.
 _TAX_BLOCKS: Final[_Blocks] = (
     ("irpef_brackets", ("irpef",), True),
-    ("work_deduction", ("irpef",), False),
     ("fixed_term_additional_rate", ("inps_employer",), True),
     ("tfr", ("tfr",), False),
     ("trattamento_integrativo", ("trattamento_integrativo",), False),
@@ -99,6 +98,7 @@ _NAMED_BLOCKS: Final[dict[str, _Blocks]] = {
         ("pdr", ("bonus_pdr",), False),
     ),
     "tax_credit/somma_esente/": (("somma_esente", ("somma_esente",), False),),
+    "irpef/work_deduction/": (("work_deduction", ("irpef",), False),),
     "severance/revaluation/": (
         ("rate", ("tfr_revaluation",), False),
         ("price_index", ("tfr_revaluation",), False),
@@ -579,6 +579,7 @@ def _sick_pay_regimes(file: str, data: Mapping[str, object]) -> Iterator[Payable
 #: Datasets of the fiscal rules, in the order the inventory lists them.
 FISCAL_DATASETS = (
     "sector",
+    "irpef",
     "tax_credit",
     "family",
     "severance",

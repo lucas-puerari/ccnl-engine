@@ -35,7 +35,7 @@ from ccnl_engine.tax_credit.rules import (
     trattamento_integrativo,
     ulteriore_detrazione_lavoro,
 )
-from tests.unit.ccnl_engine.builders import make_year_rules
+from tests.unit.ccnl_engine.builders import WORK_DEDUCTION_2026, make_year_rules
 
 # ---------------------------------------------------------------------------
 # 2026 IRPEF bracket schedule (Art. 11 TUIR as amended by D.Lgs. 216/2023)
@@ -162,7 +162,7 @@ class TestWorkDeductionBoundaryOracles:
 
     def test_oracle(self, rc: Decimal, expected: Decimal) -> None:
         """Assert work_income_deduction returns the statutory expected value."""
-        assert work_income_deduction(rc) == expected
+        assert work_income_deduction(rc, constants=WORK_DEDUCTION_2026) == expected
 
 
 # ---------------------------------------------------------------------------
@@ -182,7 +182,9 @@ class TestWorkDeductionProrataOracles:
           full_year = 1 955 (flat band, RC <= 15 000)
           result    = money(1 955 * 182 / 365) = money(974.8219...) = 974.82
         """
-        result = work_income_deduction(Decimal(10000), eligible_work_days=182)
+        result = work_income_deduction(
+            Decimal(10000), eligible_work_days=182, constants=WORK_DEDUCTION_2026
+        )
         assert result == Decimal("974.82")
 
     def test_flat_band_full_year_returns_exact_flat(self) -> None:
@@ -193,7 +195,9 @@ class TestWorkDeductionProrataOracles:
           prorata path skipped (eligible_work_days == 365)
           result = money(1 955) = 1 955.00
         """
-        result = work_income_deduction(Decimal(10000), eligible_work_days=365)
+        result = work_income_deduction(
+            Decimal(10000), eligible_work_days=365, constants=WORK_DEDUCTION_2026
+        )
         assert result == Decimal("1955.00")
 
     def test_mid_band_182_days_exact(self) -> None:
@@ -204,7 +208,9 @@ class TestWorkDeductionProrataOracles:
           full_year = 1 910 + 1 190 * 0.6153 = 2 642.207, in cents 2 642.21
           result    = money(2 642.21 * 182 / 365) = money(1 317.4887...) = 1 317.49
         """
-        result = work_income_deduction(Decimal(20000), eligible_work_days=182)
+        result = work_income_deduction(
+            Decimal(20000), eligible_work_days=182, constants=WORK_DEDUCTION_2026
+        )
         assert result == Decimal("1317.49")
 
 
@@ -233,6 +239,7 @@ class TestTrattamentoIntegrativoOracles:
             Decimal("974.82"),
             _TI_RULES,
             eligible_work_days=182,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result == Decimal("598.36")
 
@@ -251,6 +258,7 @@ class TestTrattamentoIntegrativoOracles:
             Decimal(1000),
             Decimal(8000),
             _TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result == Decimal("1200.00")
 
@@ -268,6 +276,7 @@ class TestTrattamentoIntegrativoOracles:
             Decimal(1000),
             Decimal(2000),
             _TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result == Decimal("1200.00")
 
@@ -284,6 +293,7 @@ class TestTrattamentoIntegrativoOracles:
             Decimal(900),
             Decimal(1700),
             _TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result == Decimal("700.00")
 

@@ -10,6 +10,7 @@ from ccnl_engine.contribution.headcount.rules import (
     _resolve_inps,
 )
 from ccnl_engine.errors import DataIntegrityError
+from ccnl_engine.irpef.work_deduction.loaders import load_work_deduction_rules
 from ccnl_engine.sector.models import YearRules, YearRulesRaw
 from ccnl_engine.sector.raw.loaders import (
     _as_ruleset,
@@ -122,7 +123,7 @@ def _load_year_rules_cached(
         ulteriore_detrazione=rules.ulteriore_detrazione,
         somma_esente=load_somma_esente_rules(year),
         sterilizzazione_detrazioni=rules.sterilizzazione_detrazioni,
-        work_deduction=rules.work_deduction,
+        work_deduction=load_work_deduction_rules(year),
         complementary_pension=rules.complementary_pension,
         notes=rules.notes,
         sources=rules.sources,

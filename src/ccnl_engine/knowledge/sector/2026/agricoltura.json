@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "D.P.R. 917/1986 (TUIR) artt. 11 and 13; D.L. 3/2020 art. 1; L. 207/2024 art. 1 c. 6; L. 199/2025 art. 1; c.c. art. 2120",
     "verification_status": "unverified",
-    "source_hash": "d13e943713ae4003dfa9867fd5fec7b83cf431a84bf2430e8d737db10d2f1781",
+    "source_hash": "038f4755bedf7de28238b26744877795d2bb178a2bb6b0061ef54b663ddea490",
     "source_type": "official_primary"
   },
   "irpef_brackets": [
@@ -141,75 +141,6 @@
       },
       "transformation": "threshold 200,000 EUR and reduction 440 EUR as written in art. 16-ter c. 5-bis TUIR. The reduction lowers only the deduction for the oneri of lett. a)-c): the 19% oneri except the spese sanitarie, the donations to political parties and the catastrophe insurance premiums. The payroll computes none of them, so it does not apply the block: the art. 12 and art. 13 TUIR deductions and the ulteriore detrazione (L. 207/2024 art. 1 c. 6) are not reduced.",
       "note": "Quote checked on 2026-10-07 against the Gazzetta Ufficiale text of L. 199/2025 art. 1 at the url of the record, whitespace normalised; the Gazzetta text writes accented vowels as vowel and apostrophe (e' for è). Not checked by a named reviewer. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026.",
-      "extraction": {
-        "method": "ai",
-        "model": "claude-opus-5-5",
-        "extraction_timestamp": "2026-10-12T08:12:31Z",
-        "effective_from": "2026-01-01",
-        "effective_until": "2026-12-31",
-        "verified_by": "claude-opus-5-5",
-        "verified_at": "2026-10-12T08:12:31Z",
-        "verification_status": "verified"
-      }
-    }
-  },
-  "work_deduction": {
-    "detr_flat": "1955",
-    "detr_a": "1910",
-    "detr_b_coeff": "1190",
-    "detr_b_span": "13000",
-    "detr_c_span": "22000",
-    "detr_lo": "15000",
-    "detr_mid": "28000",
-    "detr_high": "50000",
-    "detr_increment": "65",
-    "increment_lo": "25000",
-    "increment_hi": "35000",
-    "seventy_five": "75",
-    "minimum": {
-      "open_ended": "690",
-      "fixed_term": "1380",
-      "provenance": {
-        "status": "verified",
-        "location": {
-          "source_document": {
-            "document_id": "dpr-917-1986",
-            "title": "D.P.R. 22 dicembre 1986 n. 917 (TUIR)",
-            "kind": "dpr",
-            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art13!vig=2026-10-12",
-            "sha256": "6e42ff87ba544afbcd7a4cdce617a44a40b18ea05620e591c55b35ca1e515735"
-          },
-          "section": "art. 13 c. 1 lett. a)",
-          "quote": "1.955 euro, se il reddito complessivo non supera 15.000 euro. L'ammontare della detrazione effettivamente spettante non può essere inferiore a 690 euro. Per i rapporti di lavoro a tempo determinato, l'ammontare della detrazione effettivamente spettante non può essere inferiore a 1.380 euro"
-        },
-        "note": "open_ended applies to every contract except a fixed term, apprenticeship included (D.Lgs. 81/2015 art. 41 c. 1: 'L'apprendistato è un contratto di lavoro a tempo indeterminato'). Applied up to 15,000 EUR only (lett. a). The withholding agent proportions it to the days of work, the larger of the two amounts for the days being due: Agenzia delle Entrate, istruzioni per la compilazione della Certificazione Unica 2026, aggiornate al 24 febbraio 2026, punto 367, p. 33, https://www.agenziaentrate.gov.it/portale/documents/20143/9602395/CU_istr_2026_agg+24+02.pdf/4184818b-05a3-acce-5956-70811c7d2233, sha256 a6ccf7cf53edcbd0d084c2266868649f8d17c348644401b540efd5e3fc95e841: 'Nel caso di rapporti di lavoro a tempo determinato o a tempo indeterminato di durata inferiore all'anno (inizio o cessazione del rapporto di lavoro nel corso dell'anno), limitatamente ai redditi di cui ai punti 1 e 2, il sostituto deve ragguagliare anche la detrazione minima al periodo di lavoro', apostrophes normalised to U+0027, the worker being told with code AN (Tabella F, p. 93) that the tax return grants the deduction for the whole year. Those instructions certify 2025 income; the rule is read as unchanged for the 2026 withholding. The whole minimum on the worker's request (punto 367, 'su richiesta del percipiente'; punto 473 code B, p. 40) is not modelled. The tax return grants it whole: Allegato C to the 730/2026 instructions (Agenzia delle Entrate, provvedimento 27 febbraio 2026, 'Circolare per la liquidazione ed il controllo del mod. 730/2026'), par. 19.9.1, p. 339, https://www.agenziaentrate.gov.it/portale/documents/20143/9772565/Allegato+C+-+Circolare+di+liquidazione+mod+730+2026.pdf/2e2b18aa-3d7d-f192-8a84-669f76c8b6c6, sha256 7bd481daa0cb0fbbd4e35358c64cf9453625ebe441b52060f576ec3a8106f7a1: 'Si precisa che l’importo della detrazione minima come sopra determinata non deve essere rapportata ai giorni di lavoro dipendente', the deduction due being 'il maggiore importo tra quello della Detrazione-LavDip-Rapportata-Giorni e quello della Detrazione minima-LavDip'. Quote checked on 2026-10-07 against the Normattiva text of art. 13 in force on that date (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art13!vig=2026-10-07), whitespace normalised, the '((' '))' amendment markers around '1.955 euro' and the footnote mark '(229)' removed: identical. Not checked by a named reviewer. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026.",
-        "extraction": {
-          "method": "ai",
-          "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T08:12:31Z",
-          "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31",
-          "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T08:12:31Z",
-          "verification_status": "verified"
-        }
-      }
-    },
-    "provenance": {
-      "status": "verified",
-      "location": {
-        "source_document": {
-          "document_id": "dpr-917-1986",
-          "title": "D.P.R. 22 dicembre 1986 n. 917 (TUIR)",
-          "kind": "dpr",
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art13!vig=2026-10-12",
-          "sha256": "6e42ff87ba544afbcd7a4cdce617a44a40b18ea05620e591c55b35ca1e515735"
-        },
-        "section": "art. 13 cc. 1 and 1.1",
-        "quote": "b) 1.910 euro, aumentata del prodotto tra 1.190 euro e l'importo corrispondente al rapporto tra 28.000 euro, diminuito del reddito complessivo, e 13.000 euro, se l'ammontare del reddito complessivo è superiore a 15.000 euro ma non a 28.000 euro; c) 1.910 euro, se il reddito complessivo è superiore a 28.000 euro ma non a 50.000 euro; la detrazione spetta per la parte corrispondente al rapporto tra l'importo di 50.000 euro, diminuito del reddito complessivo, e l'importo di 22.000 euro. 1.1. La detrazione spettante ai sensi del comma 1 è aumentata di un importo pari a 65 euro, se il reddito complessivo è superiore a 25.000 euro ma non a 35.000 euro."
-      },
-      "transformation": "detr_flat 1.955 and detr_lo 15.000 (lett. a); detr_a 1.910, detr_b_coeff 1.190, detr_mid 28.000, detr_b_span 13.000 (lett. b); detr_high 50.000, detr_c_span 22.000 (lett. c); detr_increment 65, increment_lo 25.000, increment_hi 35.000 (c. 1.1). seventy_five is the 75 EUR of D.L. 3/2020 art. 1 c. 1 (trattamento_integrativo record).",
-      "note": "Quote checked on 2026-10-10 against the text in force at the url of the record, whitespace normalised. Not checked by a named reviewer. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026.",
       "extraction": {
         "method": "ai",
         "model": "claude-opus-5-5",

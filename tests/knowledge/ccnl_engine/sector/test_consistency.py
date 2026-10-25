@@ -24,7 +24,6 @@ _NATIONAL = (
     "trattamento_integrativo",
     "ulteriore_detrazione",
     "sterilizzazione_detrazioni",
-    "work_deduction",
     "complementary_pension",
 )
 #: Surcharge and renewal increment of L. 92/2012 art. 2 c. 28: c. 29 lett. d)

@@ -85,7 +85,7 @@ def test_annual_deductions_match_the_conguaglio_of_p25() -> None:
     rules = load_year_rules(2026, TaxSector.TERZIARIO, 10)
     taxable = Decimal("33014.13")
     assert rules.ulteriore_detrazione is not None
-    work = work_income_deduction(taxable, 242, rules.work_deduction)
+    work = work_income_deduction(taxable, 242, constants=rules.work_deduction)
     ulteriore = ulteriore_detrazione_lavoro(taxable, rules.ulteriore_detrazione, 242)
 
     assert work == Decimal("1042.63")
@@ -117,6 +117,6 @@ def test_other_payrolls_round_the_proportioned_deduction_half_up(
     """
     rules = load_year_rules(2026, TaxSector.INDUSTRIA, 10)
 
-    assert work_income_deduction(Decimal(taxable), days, rules.work_deduction) == (
-        Decimal(printed)
-    ), payslip
+    assert work_income_deduction(
+        Decimal(taxable), days, constants=rules.work_deduction
+    ) == (Decimal(printed)), payslip

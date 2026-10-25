@@ -28,6 +28,7 @@ from ccnl_engine.tax_credit.models import TrattamentoIntegrativoRules
 from ccnl_engine.tax_credit.rules import (
     trattamento_integrativo,
 )
+from tests.unit.ccnl_engine.builders import WORK_DEDUCTION_2026
 
 _ZERO = Decimal(0)
 
@@ -76,7 +77,7 @@ class TestTrunc4TruncatesNotRounds:
           full_year = 1910 + 1190 * 0.6154 = 1910 + 732.326 = 2642.326
           money(2642.326) = 2642.33
         """
-        result = work_income_deduction(Decimal(20000))
+        result = work_income_deduction(Decimal(20000), constants=WORK_DEDUCTION_2026)
         assert result == Decimal("2642.21")
 
     def test_trunc4_does_not_round_up_fifth_digit(self) -> None:
@@ -105,7 +106,7 @@ class TestWorkIncomeDeductionBoundaries:
           ratio = trunc4((28000-15000)/13000) = trunc4(1.0) = 1.0000
           full_year = 1910 + 1190 * 1 = 3100 ≠ 1955.  Test catches mutation.
         """
-        result = work_income_deduction(Decimal(15000))
+        result = work_income_deduction(Decimal(15000), constants=WORK_DEDUCTION_2026)
         assert result == Decimal("1955.00")
 
     def test_at_15001_uses_mid_band(self) -> None:
@@ -118,7 +119,7 @@ class TestWorkIncomeDeductionBoundaries:
           No EUR-65 increment (15001 <= 25000 is True, 15001 > 25000 is False).
           money(3099.881) = 3099.88
         """
-        result = work_income_deduction(Decimal(15001))
+        result = work_income_deduction(Decimal(15001), constants=WORK_DEDUCTION_2026)
         assert result == Decimal("3099.88")
 
     def test_at_50000_exactly_is_nonzero(self) -> None:
@@ -132,21 +133,27 @@ class TestWorkIncomeDeductionBoundaries:
           ratio = trunc4(15001/22000) = trunc4(0.68186…) = 0.6818
           full_year = 1910 * 0.6818 + 65 = 1302.238 + 65 = 1367.238 → money = 1367.24
         """
-        result = work_income_deduction(Decimal(34999))
+        result = work_income_deduction(Decimal(34999), constants=WORK_DEDUCTION_2026)
         assert result == Decimal("1367.24")
 
     def test_above_50000_returns_zero(self) -> None:
         """RC > 50 000: deduction is exactly 0 (no partial value)."""
-        assert work_income_deduction(Decimal(50001)) == _ZERO
+        assert (
+            work_income_deduction(Decimal(50001), constants=WORK_DEDUCTION_2026)
+            == _ZERO
+        )
 
     def test_zero_income_returns_zero(self) -> None:
         """RC=0: deduction is 0, not flat amount."""
-        assert work_income_deduction(_ZERO) == _ZERO
+        assert work_income_deduction(_ZERO, constants=WORK_DEDUCTION_2026) == _ZERO
 
     def test_deduction_never_negative(self) -> None:
         """Deduction is never negative; signs in the formula cannot be flipped."""
         for income in [0, 15000, 28000, 40000, 50000, 100000]:
-            assert work_income_deduction(Decimal(income)) >= _ZERO
+            assert (
+                work_income_deduction(Decimal(income), constants=WORK_DEDUCTION_2026)
+                >= _ZERO
+            )
 
 
 # ---------------------------------------------------------------------------
@@ -175,6 +182,7 @@ class TestTrattamentoIntegrativoBoundaries:
             work_deduction=Decimal(1000),
             relevant_deductions=Decimal(8000),
             rules=_TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result == Decimal("1200.00")
 
@@ -186,6 +194,7 @@ class TestTrattamentoIntegrativoBoundaries:
             work_deduction=Decimal(1000),
             relevant_deductions=Decimal(8000),
             rules=_TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result == _ZERO
 
@@ -201,6 +210,7 @@ class TestTrattamentoIntegrativoBoundaries:
             work_deduction=Decimal(1955),
             relevant_deductions=Decimal(3000),
             rules=_TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result == Decimal("1200.00")
 
@@ -215,6 +225,7 @@ class TestTrattamentoIntegrativoBoundaries:
             work_deduction=Decimal(900),
             relevant_deductions=Decimal(1800),
             rules=_TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result == Decimal("800.00")
 
@@ -248,10 +259,14 @@ class TestNetFormulaDirectionality:
             work_deduction=Decimal(1955),
             relevant_deductions=Decimal(3000),
             rules=_TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result >= _ZERO
 
     @pytest.mark.parametrize("income", [5000, 14999, 15000, 20000, 27999, 28000])
     def test_work_deduction_always_non_negative(self, income: int) -> None:
         """work_income_deduction is always >= 0; no sign error in formula."""
-        assert work_income_deduction(Decimal(income)) >= _ZERO
+        assert (
+            work_income_deduction(Decimal(income), constants=WORK_DEDUCTION_2026)
+            >= _ZERO
+        )

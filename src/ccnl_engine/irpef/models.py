@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from decimal import Decimal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
 
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.types import Bracket
@@ -21,14 +21,14 @@ class WorkDeductionMinimum(BaseModel):
     determinato, [...] non può essere inferiore a 1.380 euro".  The
     withholding agent proportions it to the days of work (istruzioni CU
     2026, punto 367); the tax return grants it whole (Allegato C to the
-    730/2026 instructions, par. 19.9.1).  Defaults encode the 2026 values.
+    730/2026 instructions, par. 19.9.1).  The bundle states it for each year.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    open_ended: Decimal = Decimal(690)
+    open_ended: Decimal
     """Minimum for an open-ended employment, apprenticeship included (EUR)."""
-    fixed_term: Decimal = Decimal(1380)
+    fixed_term: Decimal
     """Minimum for a fixed-term employment (EUR)."""
     provenance: RuleProvenance | None = None
     """Source and status of the minimum."""
@@ -37,38 +37,38 @@ class WorkDeductionMinimum(BaseModel):
 class WorkDeductionRules(BaseModel):
     """Art. 13 co. 1 TUIR work-income deduction constants for a fiscal year.
 
-    These values are statutory and sector-agnostic. They are versioned here
-    so a future year can update the schedule without touching irpef.py.
-    Defaults encode the 2026 values (circolare AdE 4/E/2025, p. 6).
+    These values are statutory and sector-agnostic: one bundle file per
+    year states them (``irpef/work_deduction/<year>.json``), every field
+    required, so a year cannot fall back on the values of another.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    detr_flat: Decimal = Decimal(1955)
+    detr_flat: Decimal
     """Flat deduction for reddito complessivo <= detr_lo (EUR)."""
-    detr_a: Decimal = Decimal(1910)
+    detr_a: Decimal
     """Base coefficient for reddito complessivo > detr_lo (EUR)."""
-    detr_b_coeff: Decimal = Decimal(1190)
+    detr_b_coeff: Decimal
     """Variable coefficient for detr_lo < RC <= detr_mid band (EUR)."""
-    detr_b_span: Decimal = Decimal(13000)
+    detr_b_span: Decimal
     """Width of the middle band: detr_mid - detr_lo (EUR)."""
-    detr_c_span: Decimal = Decimal(22000)
+    detr_c_span: Decimal
     """Width of the upper band: detr_high - detr_mid (EUR)."""
-    detr_lo: Decimal = Decimal(15000)
+    detr_lo: Decimal
     """Lower income threshold; flat deduction applies at or below (EUR)."""
-    detr_mid: Decimal = Decimal(28000)
+    detr_mid: Decimal
     """Mid income threshold; separates middle and upper bands (EUR)."""
-    detr_high: Decimal = Decimal(50000)
+    detr_high: Decimal
     """Upper income threshold; deduction is zero above this (EUR)."""
-    detr_increment: Decimal = Decimal(65)
+    detr_increment: Decimal
     """Art. 13 co. 1 lett. b-bis EUR 65 increment (applies in increment range)."""
-    increment_lo: Decimal = Decimal(25000)
+    increment_lo: Decimal
     """Lower bound of the EUR 65 increment range (exclusive, EUR)."""
-    increment_hi: Decimal = Decimal(35000)
+    increment_hi: Decimal
     """Upper bound of the EUR 65 increment range (inclusive, EUR)."""
-    seventy_five: Decimal = Decimal(75)
+    seventy_five: Decimal
     """Trattamento integrativo corrective (Art. 1 co. 3 L. 207/2024, EUR)."""
-    minimum: WorkDeductionMinimum = Field(default_factory=WorkDeductionMinimum)
+    minimum: WorkDeductionMinimum
     """Minimum of the deduction up to detr_lo, proportioned in the withholding."""
     provenance: RuleProvenance | None = None
     """Source and status of the constants."""

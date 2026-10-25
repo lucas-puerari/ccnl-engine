@@ -19,6 +19,7 @@ from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.capability.loaders import load_capability_catalog
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.family.loaders import load_family_deduction_rules
+from ccnl_engine.irpef.work_deduction.loaders import load_work_deduction_rules
 from ccnl_engine.limitation.loaders import load_engine_limitations
 from ccnl_engine.pay_item.loaders import load_policy_resolver
 from ccnl_engine.sector.loaders import load_year_rules
@@ -61,6 +62,7 @@ _LOADERS: dict[str, Callable[[dict[str, Any]], object]] = {
     "surtax/municipal": lambda r: load_surtax_rules(r["year"]),
     "surtax/regional": lambda r: load_surtax_rules(r["year"]),
     "tax_credit/somma_esente": lambda r: load_somma_esente_rules(r["year"]),
+    "irpef/work_deduction": lambda r: load_work_deduction_rules(r["year"]),
     "variable_pay": lambda r: load_variable_pay_rules(r["year"]),
 }
 

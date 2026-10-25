@@ -88,7 +88,7 @@ def minimum_decision(
     """
     constants = rules.work_deduction
     balance = minimum_left_to_tax_return(
-        taxable, days, constants, fixed_term=fixed_term
+        taxable, days, constants=constants, fixed_term=fixed_term
     )
     if balance <= _ZERO:
         return None
