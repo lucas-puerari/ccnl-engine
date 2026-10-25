@@ -29,7 +29,10 @@
     "src/ccnl_engine/extra_month/settlement/services.py",
     "src/ccnl_engine/extra_month/liquidation/services.py",
     "src/ccnl_engine/severance/revaluation/services.py",
-    "src/ccnl_engine/severance/provision/services.py"
+    "src/ccnl_engine/severance/provision/services.py",
+    "src/ccnl_engine/surtax/conguaglio/rules.py",
+    "src/ccnl_engine/tax_credit/recovery/models.py",
+    "src/ccnl_engine/withholding/deferral/inputs.py"
   ],
   "scores": {
     "core": {
@@ -301,6 +304,36 @@
       "total": 16,
       "score": 100.0,
       "minimum": 93.0
+    },
+    "src/ccnl_engine/surtax/conguaglio/rules.py": {
+      "killed": 165,
+      "survived": 56,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 221,
+      "score": 74.7,
+      "minimum": 74.6
+    },
+    "src/ccnl_engine/tax_credit/recovery/models.py": {
+      "killed": 101,
+      "survived": 17,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 118,
+      "score": 85.6,
+      "minimum": 85.5
+    },
+    "src/ccnl_engine/withholding/deferral/inputs.py": {
+      "killed": 139,
+      "survived": 20,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 159,
+      "score": 87.4,
+      "minimum": 87.4
     }
   }
 }

@@ -273,6 +273,10 @@ source_paths = [
     "src/ccnl_engine/extra_month/liquidation/services.py",
     "src/ccnl_engine/severance/revaluation/services.py",
     "src/ccnl_engine/severance/provision/services.py",
+    # The year-end conguaglio and the recoveries carried into the next year.
+    "src/ccnl_engine/surtax/conguaglio/rules.py",
+    "src/ccnl_engine/tax_credit/recovery/models.py",
+    "src/ccnl_engine/withholding/deferral/inputs.py",
 ]
 # Limit collection to the tests of the mutated payroll modules; copy full src
 # so imports resolve. Hypothesis tests are left out: they use multiple
@@ -405,6 +409,9 @@ pytest_add_cli_args_test_selection = [
     "tests/unit/ccnl_engine/severance/relief/test_services.py",
     "tests/unit/ccnl_engine/severance/revaluation/test_models.py",
     "tests/unit/ccnl_engine/severance/test_models.py",
+    "tests/unit/ccnl_engine/surtax/conguaglio/test_rules.py",
+    "tests/unit/ccnl_engine/tax_credit/recovery/test_models.py",
+    "tests/unit/ccnl_engine/withholding/deferral/test_inputs.py",
 ]
 pytest_add_cli_args = ["--no-cov"]
 mutate_only_covered_lines = true
