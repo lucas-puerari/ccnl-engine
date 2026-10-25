@@ -72,7 +72,6 @@ class YearRulesRaw(BaseModel):
     trattamento_integrativo: TrattamentoIntegrativoRules | None = None
     ulteriore_detrazione: UlterioreDetrazioneRules | None = None
     sterilizzazione_detrazioni: SterilizzazioneDetrazioniRules | None = None
-    work_deduction: WorkDeductionRules = Field(default_factory=WorkDeductionRules)
     complementary_pension: ComplementaryPensionRules | None = None
     notes: list[str] = Field(default_factory=list)
     sources: list[SourceDocument] = Field(default_factory=list)
@@ -145,7 +144,7 @@ class YearRules(BaseModel):
     ulteriore_detrazione: UlterioreDetrazioneRules | None = None
     somma_esente: SommaEsenteRules | None = None
     sterilizzazione_detrazioni: SterilizzazioneDetrazioniRules | None = None
-    work_deduction: WorkDeductionRules = Field(default_factory=WorkDeductionRules)
+    work_deduction: WorkDeductionRules
     complementary_pension: ComplementaryPensionRules | None = None
     notes: list[str] = Field(default_factory=list)
     sources: list[SourceDocument] = Field(default_factory=list)

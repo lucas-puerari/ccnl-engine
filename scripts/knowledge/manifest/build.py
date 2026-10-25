@@ -37,6 +37,7 @@ DATASETS: dict[str, tuple[str, bool]] = {
     "sector": ("YearRulesRaw", True),
     "family": ("FamilyDeductionRules", False),
     "tax_credit/somma_esente": ("SommaEsenteRules", False),
+    "irpef/work_deduction": ("WorkDeductionRules", False),
     "variable_pay": ("VariablePayRules", False),
     "severance/revaluation": ("TfrRevaluationRules", False),
     "severance/settlement": ("TfrSettlementRules", False),

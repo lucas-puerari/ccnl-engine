@@ -24,7 +24,11 @@ from ccnl_engine.year.competence.services import (
 from tests.integration.ccnl_engine.withholding.builders import (
     calendar_schedule,
 )
-from tests.unit.ccnl_engine.builders import make_year_rules, year_plan
+from tests.unit.ccnl_engine.builders import (
+    WORK_DEDUCTION_2026,
+    make_year_rules,
+    year_plan,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.year.results import CompetenceYearResult
@@ -185,8 +189,12 @@ def test_employment_days_reach_the_work_deduction() -> None:
     last = result.period_results[-1]
     components = {c.name: c.amount for c in last.tax_computation.components}
     taxable = last.closing_state.cash.earnings.taxable
-    assert components["work_deduction"] == work_income_deduction(taxable, 92)
-    assert components["work_deduction"] < work_income_deduction(taxable)
+    assert components["work_deduction"] == work_income_deduction(
+        taxable, 92, constants=WORK_DEDUCTION_2026
+    )
+    assert components["work_deduction"] < work_income_deduction(
+        taxable, constants=WORK_DEDUCTION_2026
+    )
 
 
 def test_employment_days_are_capped_at_365() -> None:

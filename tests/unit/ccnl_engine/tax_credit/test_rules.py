@@ -18,6 +18,7 @@ from ccnl_engine.tax_credit.rules import (
     trattamento_integrativo,
     ulteriore_detrazione_lavoro,
 )
+from tests.unit.ccnl_engine.builders import WORK_DEDUCTION_2026
 
 # ---------------------------------------------------------------------------
 # Fixture helpers
@@ -48,6 +49,7 @@ class TestTrattamentoIntegrativo:
             Decimal(1800),
             Decimal(1800),
             _TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result == Decimal("0.00")
 
@@ -64,6 +66,7 @@ class TestTrattamentoIntegrativo:
             Decimal(1955),
             Decimal(1955),
             _TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result == Decimal("1200.00")
 
@@ -75,6 +78,7 @@ class TestTrattamentoIntegrativo:
             Decimal(1955),
             Decimal(1955),
             _TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result == Decimal("0.00")
 
@@ -86,6 +90,7 @@ class TestTrattamentoIntegrativo:
             Decimal(1955),
             Decimal(1955),
             _TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result == Decimal("0.00")
 
@@ -97,6 +102,7 @@ class TestTrattamentoIntegrativo:
             Decimal(1955),
             Decimal(1955),
             _TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result == Decimal("1200.00")
 
@@ -113,6 +119,7 @@ class TestTrattamentoIntegrativo:
             Decimal("2642.21"),
             Decimal("2642.21"),
             _TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result == Decimal("0.00")
 
@@ -124,6 +131,7 @@ class TestTrattamentoIntegrativo:
             Decimal(2500),
             Decimal(3000),
             _TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result == Decimal("1200.00")
 
@@ -135,6 +143,7 @@ class TestTrattamentoIntegrativo:
             Decimal(2500),
             Decimal(2500),
             _TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result == Decimal("500.00")
 
@@ -147,6 +156,7 @@ class TestTrattamentoIntegrativo:
             Decimal(1955),
             Decimal(1955),
             _TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result == Decimal("1200.00")
 
@@ -158,6 +168,7 @@ class TestTrattamentoIntegrativo:
             Decimal(2000),
             Decimal(2000),
             _TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         assert result == Decimal("0.00")
 
@@ -336,7 +347,12 @@ class TestTrattamentoIntegrativoProrata:
         irpef_gross (2300) > 940.61 → scaled max_amount (≈598).
         """
         full = trattamento_integrativo(
-            Decimal(10000), Decimal(2300), Decimal(1955), Decimal(1955), _TI_RULES
+            Decimal(10000),
+            Decimal(2300),
+            Decimal(1955),
+            Decimal(1955),
+            _TI_RULES,
+            constants=WORK_DEDUCTION_2026,
         )
         part = trattamento_integrativo(
             Decimal(10000),
@@ -345,6 +361,7 @@ class TestTrattamentoIntegrativoProrata:
             Decimal(978),
             _TI_RULES,
             eligible_work_days=182,
+            constants=WORK_DEDUCTION_2026,
         )
         assert full == Decimal(1200)
         assert part < full
@@ -359,6 +376,7 @@ class TestTrattamentoIntegrativoProrata:
             Decimal(2000),
             _TI_RULES,
             eligible_work_days=182,
+            constants=WORK_DEDUCTION_2026,
         )
         assert part > Decimal(0)
         assert part <= Decimal(1200)

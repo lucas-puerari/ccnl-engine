@@ -15,7 +15,6 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.irpef.deduction.rules import (
-    DEFAULT_WORK_DEDUCTION,
     for_days,
 )
 from ccnl_engine.irpef.rules import DAYS_IN_YEAR
@@ -53,7 +52,8 @@ def trattamento_integrativo(
     relevant_deductions: Decimal,
     rules: TrattamentoIntegrativoRules,
     eligible_work_days: int = DAYS_IN_YEAR,
-    constants: WorkDeductionRules | None = None,
+    *,
+    constants: WorkDeductionRules,
 ) -> Decimal:
     """Compute the trattamento integrativo bonus (Art. 1 D.L. 3/2020).
 
@@ -104,7 +104,7 @@ def trattamento_integrativo(
         relevant_deductions,
         rules,
         eligible_work_days,
-        constants,
+        constants=constants,
     ).amount
 
 
@@ -115,7 +115,8 @@ def trattamento_integrativo_outcome(
     relevant_deductions: Decimal,
     rules: TrattamentoIntegrativoRules,
     eligible_work_days: int = DAYS_IN_YEAR,
-    constants: WorkDeductionRules | None = None,
+    *,
+    constants: WorkDeductionRules,
 ) -> CreditOutcome:
     """Compute the trattamento integrativo and the reason for its amount.
 
@@ -127,7 +128,7 @@ def trattamento_integrativo_outcome(
         ``threshold_mid``), ``deductions_above_irpef`` or
         ``deductions_not_above_irpef`` (income up to ``threshold_upper``).
     """
-    c = constants if constants is not None else DEFAULT_WORK_DEDUCTION
+    c = constants
     if gross_annual > rules.threshold_upper:
         return CreditOutcome(_ZERO, "income_above_upper_threshold")
     seventy_five = for_days(c.seventy_five, eligible_work_days)

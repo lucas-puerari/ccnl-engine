@@ -11,11 +11,10 @@ from decimal import Decimal
 from typing import Any
 
 from ccnl_engine.irpef.deduction.rules import work_income_deduction
-from ccnl_engine.irpef.models import WorkDeductionRules
 from ccnl_engine.irpef.rules import irpef_gross, surtax_from_brackets
 from ccnl_engine.sector.models import YearRules
 from ccnl_engine.surtax.table.models import SurtaxBracket
-from tests.unit.ccnl_engine.builders import make_year_rules
+from tests.unit.ccnl_engine.builders import WORK_DEDUCTION_2026, make_year_rules
 
 # ---------------------------------------------------------------------------
 # Fixture helpers
@@ -101,19 +100,27 @@ class TestWorkIncomeDeduction:
 
     def test_zero_income(self) -> None:
         """Zero income returns zero deduction (early return branch)."""
-        assert work_income_deduction(Decimal(0)) == Decimal("0.00")
+        assert work_income_deduction(
+            Decimal(0), constants=WORK_DEDUCTION_2026
+        ) == Decimal("0.00")
 
     def test_negative_income(self) -> None:
         """Negative income returns zero deduction."""
-        assert work_income_deduction(Decimal(-1)) == Decimal("0.00")
+        assert work_income_deduction(
+            Decimal(-1), constants=WORK_DEDUCTION_2026
+        ) == Decimal("0.00")
 
     def test_income_below_lo_threshold(self) -> None:
         """Income < 15 000: flat deduction of EUR 1 955."""
-        assert work_income_deduction(Decimal(10000)) == Decimal("1955.00")
+        assert work_income_deduction(
+            Decimal(10000), constants=WORK_DEDUCTION_2026
+        ) == Decimal("1955.00")
 
     def test_income_at_lo_threshold(self) -> None:
         """Income exactly at 15 000: flat deduction EUR 1 955."""
-        assert work_income_deduction(Decimal(15000)) == Decimal("1955.00")
+        assert work_income_deduction(
+            Decimal(15000), constants=WORK_DEDUCTION_2026
+        ) == Decimal("1955.00")
 
     def test_income_in_mid_band_no_increment(self) -> None:
         """Income 20 000 in 15 000-28 000 band, no 65 EUR increment.
@@ -122,7 +129,9 @@ class TestWorkIncomeDeduction:
         deduction = 1910 + 1190 * 0.6153 = 1910 + 732.207 = 2642.21
         Expected 2642.21.
         """
-        assert work_income_deduction(Decimal(20000)) == Decimal("2642.21")
+        assert work_income_deduction(
+            Decimal(20000), constants=WORK_DEDUCTION_2026
+        ) == Decimal("2642.21")
 
     def test_income_at_mid_threshold_with_increment(self) -> None:
         """Income exactly at 28 000 (mid boundary): 1910 + 0 + 65 = 1975.
@@ -130,7 +139,9 @@ class TestWorkIncomeDeduction:
         28 000 falls in 25 001-35 000 so the 65 EUR increment applies.
         Expected 1975.00.
         """
-        assert work_income_deduction(Decimal(28000)) == Decimal("1975.00")
+        assert work_income_deduction(
+            Decimal(28000), constants=WORK_DEDUCTION_2026
+        ) == Decimal("1975.00")
 
     def test_income_in_upper_band_with_increment(self) -> None:
         """Income 30 000 in 28 000-50 000 band, 65 EUR increment applies.
@@ -139,7 +150,9 @@ class TestWorkIncomeDeduction:
         deduction = 1910 * 0.9090 = 1736.19; +65 = 1801.19
         Expected 1801.19.
         """
-        assert work_income_deduction(Decimal(30000)) == Decimal("1801.19")
+        assert work_income_deduction(
+            Decimal(30000), constants=WORK_DEDUCTION_2026
+        ) == Decimal("1801.19")
 
     def test_income_in_upper_band_no_increment(self) -> None:
         """Income 40 000 in 28 000-50 000 band, beyond 35 000 (no increment).
@@ -147,41 +160,55 @@ class TestWorkIncomeDeduction:
         ratio = trunc4((50000-40000)/22000) = trunc4(0.454545...) = 0.4545
         deduction = 1910 * 0.4545 = 868.095 → 868.10 (rounded to 2 dp).
         """
-        assert work_income_deduction(Decimal(40000)) == Decimal("868.10")
+        assert work_income_deduction(
+            Decimal(40000), constants=WORK_DEDUCTION_2026
+        ) == Decimal("868.10")
 
     def test_income_at_high_threshold(self) -> None:
         """Income exactly at 50 000: deduction is zero (boundary on _DETR_HIGH)."""
-        assert work_income_deduction(Decimal(50000)) == Decimal("0.00")
+        assert work_income_deduction(
+            Decimal(50000), constants=WORK_DEDUCTION_2026
+        ) == Decimal("0.00")
 
     def test_income_above_high_threshold(self) -> None:
         """Income > 50 000: zero deduction."""
-        assert work_income_deduction(Decimal(55000)) == Decimal("0.00")
+        assert work_income_deduction(
+            Decimal(55000), constants=WORK_DEDUCTION_2026
+        ) == Decimal("0.00")
 
     def test_increment_lower_boundary(self) -> None:
         """Income exactly at 25 000 is NOT in increment range (must be > 25 000)."""
         # ratio = trunc4((28000-25000)/13000) = trunc4(0.230769...) = 0.2307
         # deduction = 1910 + 1190 * 0.2307 = 1910 + 274.533 = 2184.53
-        assert work_income_deduction(Decimal(25000)) == Decimal("2184.53")
+        assert work_income_deduction(
+            Decimal(25000), constants=WORK_DEDUCTION_2026
+        ) == Decimal("2184.53")
 
     def test_increment_just_above_lower_boundary(self) -> None:
         """Income 25 001 is in increment range: 65 EUR added."""
         # ratio = trunc4((28000-25001)/13000) = trunc4(0.230692...) = 0.2306
         # deduction = 1910 + 1190 * 0.2306 + 65 = 1910 + 274.414 + 65 = 2249.41
-        assert work_income_deduction(Decimal(25001)) == Decimal("2249.41")
+        assert work_income_deduction(
+            Decimal(25001), constants=WORK_DEDUCTION_2026
+        ) == Decimal("2249.41")
 
     def test_increment_upper_boundary(self) -> None:
         """Income exactly at 35 000 is in increment range (inclusive)."""
         # In 28 000-50 000 band: ratio = trunc4((50000-35000)/22000)
         # = trunc4(0.681818...) = 0.6818
         # deduction = 1910 * 0.6818 + 65 = 1302.238 + 65 = 1367.24
-        assert work_income_deduction(Decimal(35000)) == Decimal("1367.24")
+        assert work_income_deduction(
+            Decimal(35000), constants=WORK_DEDUCTION_2026
+        ) == Decimal("1367.24")
 
     def test_increment_just_above_upper_boundary(self) -> None:
         """Income 35 001 is NOT in increment range: no 65 EUR."""
         # In 28 000-50 000 band: ratio = trunc4((50000-35001)/22000)
         # = trunc4(0.681772...) = 0.6817
         # deduction = 1910 * 0.6817 = 1302.047 → 1302.05
-        assert work_income_deduction(Decimal(35001)) == Decimal("1302.05")
+        assert work_income_deduction(
+            Decimal(35001), constants=WORK_DEDUCTION_2026
+        ) == Decimal("1302.05")
 
     def test_year_constants_replace_the_default_schedule(self) -> None:
         """The constants passed for a year are used instead of the 2026 ones.
@@ -190,7 +217,7 @@ class TestWorkIncomeDeduction:
         RC <= 15 000 (EUR 1 955 from 2024): at RC 10 000 the deduction is
         1 880.00, not the default 1 955.00.
         """
-        constants = WorkDeductionRules(detr_flat=Decimal(1880))
+        constants = WORK_DEDUCTION_2026.model_copy(update={"detr_flat": Decimal(1880)})
         assert work_income_deduction(Decimal(10000), constants=constants) == Decimal(
             "1880.00"
         )
@@ -296,20 +323,26 @@ class TestWorkIncomeDeductionProrata:
 
     def test_half_year_scales_flat_band(self) -> None:
         """RC <= 15000: full_year=1955, pro-rata 182/365=0.4986, result ~974.73."""
-        result = work_income_deduction(Decimal(10000), eligible_work_days=182)
+        result = work_income_deduction(
+            Decimal(10000), eligible_work_days=182, constants=WORK_DEDUCTION_2026
+        )
         assert result > Decimal(0)
         assert result < Decimal(1955)
 
     def test_mid_band_prorata(self) -> None:
         """RC in (15000, 28000]: result is less than full-year amount."""
-        full = work_income_deduction(Decimal(20000))
-        part = work_income_deduction(Decimal(20000), eligible_work_days=182)
+        full = work_income_deduction(Decimal(20000), constants=WORK_DEDUCTION_2026)
+        part = work_income_deduction(
+            Decimal(20000), eligible_work_days=182, constants=WORK_DEDUCTION_2026
+        )
         assert part < full
         assert part > Decimal(0)
 
     def test_upper_band_prorata(self) -> None:
         """RC in (28000, 50000]: result is less than full-year amount."""
-        full = work_income_deduction(Decimal(40000))
-        part = work_income_deduction(Decimal(40000), eligible_work_days=180)
+        full = work_income_deduction(Decimal(40000), constants=WORK_DEDUCTION_2026)
+        part = work_income_deduction(
+            Decimal(40000), eligible_work_days=180, constants=WORK_DEDUCTION_2026
+        )
         assert part < full
         assert part > Decimal(0)

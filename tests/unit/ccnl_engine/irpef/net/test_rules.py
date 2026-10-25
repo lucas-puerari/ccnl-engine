@@ -21,9 +21,9 @@ from __future__ import annotations
 
 from decimal import Decimal
 
-from ccnl_engine.irpef.models import WorkDeductionMinimum, WorkDeductionRules
+from ccnl_engine.irpef.models import WorkDeductionMinimum
 from ccnl_engine.irpef.net.rules import net_irpef
-from tests.unit.ccnl_engine.builders import make_year_rules
+from tests.unit.ccnl_engine.builders import WORK_DEDUCTION_2026, make_year_rules
 
 #: The rules carry the 16-ter block, so the test fails if the engine uses it.
 _RULES = make_year_rules(
@@ -64,10 +64,12 @@ def test_the_art13_minimum_of_the_rules_reaches_the_net() -> None:
     """
     rules = make_year_rules().model_copy(
         update={
-            "work_deduction": WorkDeductionRules(
-                minimum=WorkDeductionMinimum(
-                    open_ended=Decimal(2000), fixed_term=Decimal(2400)
-                )
+            "work_deduction": WORK_DEDUCTION_2026.model_copy(
+                update={
+                    "minimum": WorkDeductionMinimum(
+                        open_ended=Decimal(2000), fixed_term=Decimal(2400)
+                    )
+                }
             )
         }
     )

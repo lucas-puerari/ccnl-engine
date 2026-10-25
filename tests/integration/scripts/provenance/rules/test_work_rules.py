@@ -152,7 +152,7 @@ def test_every_nested_record_of_a_block_is_a_rule() -> None:
     employee_additional = {"provenance": _RECORD}
     inps = {"inps": {"provenance": _RECORD, "employee_additional": employee_additional}}
     found = [
-        *fiscal_rules("sector/2026/industria.json", tax),
+        *fiscal_rules("irpef/work_deduction/2026.json", tax),
         *fiscal_rules("contribution/2026/industria.json", inps),
     ]
     both = ("inps_employee", "inps_employer")

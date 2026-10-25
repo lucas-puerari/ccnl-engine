@@ -529,15 +529,17 @@
       "spouse": "assumed",
       "spouse_increases": "assumed"
     },
+    "irpef/work_deduction/2027.json": {
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
+    },
     "sector/2027/agricoltura.json": {
       "complementary_pension": "assumed",
       "fixed_term_additional_rate": "assumed",
       "irpef_brackets": "assumed",
       "tfr": "assumed",
       "trattamento_integrativo": "assumed",
-      "ulteriore_detrazione": "assumed",
-      "work_deduction": "assumed",
-      "work_deduction.minimum": "assumed"
+      "ulteriore_detrazione": "assumed"
     },
     "sector/2027/artigianato.json": {
       "complementary_pension": "assumed",
@@ -547,9 +549,7 @@
       "tfr.additional_ivs": "assumed",
       "tfr.compensation": "assumed",
       "trattamento_integrativo": "assumed",
-      "ulteriore_detrazione": "assumed",
-      "work_deduction": "assumed",
-      "work_deduction.minimum": "assumed"
+      "ulteriore_detrazione": "assumed"
     },
     "sector/2027/credito.json": {
       "complementary_pension": "assumed",
@@ -559,9 +559,7 @@
       "tfr.additional_ivs": "assumed",
       "tfr.compensation": "assumed",
       "trattamento_integrativo": "assumed",
-      "ulteriore_detrazione": "assumed",
-      "work_deduction": "assumed",
-      "work_deduction.minimum": "assumed"
+      "ulteriore_detrazione": "assumed"
     },
     "sector/2027/edilizia.json": {
       "complementary_pension": "assumed",
@@ -571,9 +569,7 @@
       "tfr.additional_ivs": "assumed",
       "tfr.compensation": "assumed",
       "trattamento_integrativo": "assumed",
-      "ulteriore_detrazione": "assumed",
-      "work_deduction": "assumed",
-      "work_deduction.minimum": "assumed"
+      "ulteriore_detrazione": "assumed"
     },
     "sector/2027/industria.json": {
       "complementary_pension": "assumed",
@@ -583,9 +579,7 @@
       "tfr.additional_ivs": "assumed",
       "tfr.compensation": "assumed",
       "trattamento_integrativo": "assumed",
-      "ulteriore_detrazione": "assumed",
-      "work_deduction": "assumed",
-      "work_deduction.minimum": "assumed"
+      "ulteriore_detrazione": "assumed"
     },
     "sector/2027/lavoro-domestico.json": {
       "complementary_pension": "assumed",
@@ -593,9 +587,7 @@
       "irpef_brackets": "assumed",
       "tfr": "assumed",
       "trattamento_integrativo": "assumed",
-      "ulteriore_detrazione": "assumed",
-      "work_deduction": "assumed",
-      "work_deduction.minimum": "assumed"
+      "ulteriore_detrazione": "assumed"
     },
     "sector/2027/pubblica-amministrazione.json": {
       "complementary_pension": "assumed",
@@ -603,9 +595,7 @@
       "irpef_brackets": "assumed",
       "tfr": "assumed",
       "trattamento_integrativo": "assumed",
-      "ulteriore_detrazione": "assumed",
-      "work_deduction": "assumed",
-      "work_deduction.minimum": "assumed"
+      "ulteriore_detrazione": "assumed"
     },
     "sector/2027/terziario.json": {
       "complementary_pension": "assumed",
@@ -615,9 +605,7 @@
       "tfr.additional_ivs": "assumed",
       "tfr.compensation": "assumed",
       "trattamento_integrativo": "assumed",
-      "ulteriore_detrazione": "assumed",
-      "work_deduction": "assumed",
-      "work_deduction.minimum": "assumed"
+      "ulteriore_detrazione": "assumed"
     },
     "surtax/municipal/2027.json": {
       "rates": "assumed"

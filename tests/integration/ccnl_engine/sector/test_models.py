@@ -29,6 +29,7 @@ from ccnl_engine.severance.models import TfrRules
 from tests.unit.ccnl_engine.builders import (
     DOMESTIC_CONTRIBUTIONS,
     IRPEF_BRACKETS_2026,
+    WORK_DEDUCTION_2026,
 )
 
 # ---------------------------------------------------------------------------
@@ -75,6 +76,7 @@ def _year_rules(overrides: dict[str, Any] | None = None) -> dict[str, Any]:
         "inps": _VALID_INPS,
         "apprentice": _VALID_APPRENTICE,
         "tfr": {"accrual_divisor": "13.5"},
+        "work_deduction": WORK_DEDUCTION_2026,
     }
     if overrides:
         base.update(overrides)

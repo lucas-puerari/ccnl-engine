@@ -25,7 +25,7 @@ from ccnl_engine.tax_credit.rules import (
     trattamento_integrativo_outcome,
     ulteriore_detrazione_outcome,
 )
-from tests.unit.ccnl_engine.builders import make_year_rules
+from tests.unit.ccnl_engine.builders import WORK_DEDUCTION_2026, make_year_rules
 
 _D = Decimal
 _TI = TrattamentoIntegrativoRules(
@@ -88,7 +88,7 @@ class TestTrattamentoOutcome:
     ) -> None:
         """The outcome pairs the amount with the branch that produced it."""
         outcome = trattamento_integrativo_outcome(
-            income, irpef, deductions, deductions, _TI
+            income, irpef, deductions, deductions, _TI, constants=WORK_DEDUCTION_2026
         )
         assert outcome == expected
 

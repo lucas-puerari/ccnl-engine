@@ -269,8 +269,6 @@ def test_payable_statuses_cover_every_rule() -> None:
 #: Paths of the shared 2026 tax tables reviewed on 2026-10-12, per file.
 _SECTOR_REVIEWED = {
     "irpef_brackets",
-    "work_deduction",
-    "work_deduction.minimum",
     "trattamento_integrativo",
     "ulteriore_detrazione",
     "sterilizzazione_detrazioni",
@@ -321,6 +319,7 @@ def _reviewed(file: str, path: str) -> bool:
         "contribution/2026/lavoro-domestico.json",
         "family/2026.json",
         "tax_credit/somma_esente/2026.json",
+        "irpef/work_deduction/2026.json",
         "surtax/regional/2026.json",
         "severance/revaluation/2026.json",
         "severance/settlement/2026.json",

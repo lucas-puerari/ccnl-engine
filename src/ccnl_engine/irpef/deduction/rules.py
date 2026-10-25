@@ -22,9 +22,6 @@ from ccnl_engine.pay_item.rounding.policies import money
 _ZERO = Decimal(0)
 _TEN_THOUSAND = Decimal(10000)
 
-#: Default Art. 13 constants (2026). Callers may pass rules.work_deduction instead.
-DEFAULT_WORK_DEDUCTION = WorkDeductionRules()
-
 
 def _trunc4(ratio: Decimal) -> Decimal:
     """Truncate an income ratio of art. 13 TUIR to four decimal places.
@@ -77,8 +74,8 @@ def _minimum(constants: WorkDeductionRules, *, fixed_term: bool) -> Decimal:
 def minimum_left_to_tax_return(
     gross_income: Decimal,
     eligible_work_days: int,
-    constants: WorkDeductionRules | None = None,
     *,
+    constants: WorkDeductionRules,
     fixed_term: bool = False,
 ) -> Decimal:
     """Return the part of the lett. a) minimum the withholding leaves out.
@@ -101,11 +98,11 @@ def minimum_left_to_tax_return(
         The whole minimum less the deduction of the withholding when the
         income is in lett. a) and the minimum is larger, otherwise zero.
     """
-    c = constants if constants is not None else DEFAULT_WORK_DEDUCTION
+    c = constants
     if not _ZERO < gross_income <= c.detr_lo or eligible_work_days <= 0:
         return _ZERO
     withheld = work_income_deduction(
-        gross_income, eligible_work_days, c, fixed_term=fixed_term
+        gross_income, eligible_work_days, constants=c, fixed_term=fixed_term
     )
     return max(_ZERO, _minimum(c, fixed_term=fixed_term) - withheld)
 
@@ -113,8 +110,8 @@ def minimum_left_to_tax_return(
 def work_income_deduction(
     gross_income: Decimal,
     eligible_work_days: int = DAYS_IN_YEAR,
-    constants: WorkDeductionRules | None = None,
     *,
+    constants: WorkDeductionRules,
     fixed_term: bool = False,
 ) -> Decimal:
     """Compute the Art. 13 co. 1 TUIR work-income deduction.
@@ -164,7 +161,7 @@ def work_income_deduction(
     Returns:
         The applicable deduction, rounded to two decimal places.
     """
-    c = constants if constants is not None else DEFAULT_WORK_DEDUCTION
+    c = constants
     if gross_income <= _ZERO or eligible_work_days <= 0:
         return _ZERO
     if gross_income <= c.detr_lo:

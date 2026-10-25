@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import copy
 from dataclasses import replace
+from decimal import Decimal
 from typing import TYPE_CHECKING, Any
 
 from ccnl_engine.agreement.facade import CCNL
@@ -15,6 +16,7 @@ from ccnl_engine.calendar.tax_year.rules import DEFAULT_PAYMENT_DAY
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.inputs import Employment, Permanent
+from ccnl_engine.irpef.models import WorkDeductionMinimum, WorkDeductionRules
 from ccnl_engine.pension_fund.inputs import NoPensionFund
 from ccnl_engine.period.inputs import PeriodFacts
 from ccnl_engine.sector.models import YearRules
@@ -182,6 +184,25 @@ def _level(code: str, order: int, salary: str) -> dict[str, Any]:
     }
 
 
+#: Art. 13 TUIR constants of 2026 (``irpef/work_deduction/2026.json``),
+#: without provenance: the model has no default, so tests state them.
+WORK_DEDUCTION_2026 = WorkDeductionRules(
+    detr_flat=Decimal(1955),
+    detr_a=Decimal(1910),
+    detr_b_coeff=Decimal(1190),
+    detr_b_span=Decimal(13000),
+    detr_c_span=Decimal(22000),
+    detr_lo=Decimal(15000),
+    detr_mid=Decimal(28000),
+    detr_high=Decimal(50000),
+    detr_increment=Decimal(65),
+    increment_lo=Decimal(25000),
+    increment_hi=Decimal(35000),
+    seventy_five=Decimal(75),
+    minimum=WorkDeductionMinimum(open_ended=Decimal(690), fixed_term=Decimal(1380)),
+)
+
+
 def make_year_rules(
     brackets: list[dict[str, Any]] | None = None,
     inps: dict[str, Any] | None = None,
@@ -221,6 +242,7 @@ def make_year_rules(
         "inps": inps or INPS_RATES_TERZIARIO,
         "apprentice": apprentice or APPRENTICE_RATES_LARGE_FIRM,
         "tfr": {"accrual_divisor": "13.5"},
+        "work_deduction": WORK_DEDUCTION_2026,
     }
     if ruleset is not None:
         raw["ruleset"] = ruleset
@@ -246,6 +268,7 @@ def make_domestic_year_rules() -> YearRules:
         "fixed_term_renewal_increment": "0.005",
         "domestic_contributions": DOMESTIC_CONTRIBUTIONS,
         "tfr": {"accrual_divisor": "13.5"},
+        "work_deduction": WORK_DEDUCTION_2026,
     })
 
 
