@@ -1,11 +1,20 @@
 version: 2
 updates:
+  # Titles are conventional: ci(deps) for the workflows, build(deps) for
+  # the packages.
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
   - package-ecosystem: "uv"
     directory: "/"
     schedule:
       interval: "monthly"
     open-pull-requests-limit: 5
+    commit-message:
+      prefix: "build"
+      prefix-development: "build"
+      include: "scope"
