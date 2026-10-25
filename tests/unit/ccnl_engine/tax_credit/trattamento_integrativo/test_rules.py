@@ -32,7 +32,10 @@ from ccnl_engine.tax_credit.recovery.models import (
     RecoveryPlan,
 )
 from ccnl_engine.tax_credit.rules import CreditOutcome
-from ccnl_engine.tax_credit.trattamento_integrativo.rules import resolve_trattamento
+from ccnl_engine.tax_credit.trattamento_integrativo.rules import (
+    increment_reading_open,
+    resolve_trattamento,
+)
 from tests.unit.ccnl_engine.builders import make_year_rules
 
 _D = Decimal
@@ -263,3 +266,42 @@ def test_the_conguaglio_keeps_a_plan_that_matches_the_excess() -> None:
     assert period == _D("-62.50")
     assert next_plan is not None
     assert next_plan.installments_posted == 3
+
+
+@pytest.mark.parametrize(
+    ("income", "family", "open_reading"),
+    [
+        # 26,000 EUR: in the 65 EUR band and in the 15,000-28,000 band.
+        # 2,642.21 stands in for art. 13 here; with 1,980.00 of art. 12 the
+        # excess over 4,600.00 is 22.21, which the 65.00 alone produces.
+        (_D(26_000), _D(1980), True),
+        # The excess of 1,542.21 is capped at 1,200.00 with or without 65.00.
+        (_D(26_000), _D(3500), False),
+        # No excess with or without the 65.00.
+        (_D(26_000), _D(0), False),
+        # 20,000 EUR is below the 25,000 EUR band of art. 13 c. 1.1.
+        (_D(20_000), _D(1980), False),
+    ],
+)
+def test_the_65_eur_increment_is_an_open_reading_only_when_it_decides(
+    income: Decimal, family: Decimal, *, open_reading: bool
+) -> None:
+    """D.L. 3/2020 art. 1 c. 1 lists "articoli 12, 13, comma 1".
+
+    Whether the 65 EUR of art. 13 c. 1.1 TUIR count in that sum is not
+    settled by a source the bundle cites: the run is incomplete only when
+    leaving them out would change the credit.
+    """
+    _, _, _, decisions = resolve_trattamento(
+        income, _annual(family, _D(0)), _RULES, _D(0), 12, run=InstallmentRun()
+    )
+    assert increment_reading_open(decisions[0], _RULES) is open_reading
+
+
+def test_without_the_credit_in_force_no_reading_is_open() -> None:
+    """A year without the trattamento integrativo has nothing to read."""
+    _, _, _, decisions = resolve_trattamento(
+        _D(26_000), _annual(_D(1980), _D(0)), _RULES, _D(0), 12, run=InstallmentRun()
+    )
+    without = _RULES.model_copy(update={"trattamento_integrativo": None})
+    assert increment_reading_open(decisions[0], without) is False

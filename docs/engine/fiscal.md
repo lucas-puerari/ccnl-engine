@@ -55,6 +55,11 @@ trattamento integrativo in [Tax credits](tax-credits.md).
      for loans taken out up to 31 December 2021 and the instalments of
      expenses incurred up to that date; payroll does not know them, so the
      credit of the run can only be lower than the one of the tax return.
+     The engine counts the 65 EUR increment of art. 13 c. 1.1 (25,000 to
+     35,000 EUR) in the art. 13 deduction; the decree names art. 13
+     comma 1 only and no cited source settles it, so a run whose credit
+     the increment decides has the issue
+     `trattamento_increment_reading_open` and is not payable.
    - RC > €28,000: zero.
 
    RC is this employment plus the income `current_year` states beyond it,

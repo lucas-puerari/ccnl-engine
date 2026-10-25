@@ -20,6 +20,7 @@ from ccnl_engine.end_of_service.services import (
 )
 from ccnl_engine.fund.assistance.rules import run_assistance
 from ccnl_engine.irpef.services import (
+    trattamento_issues,
     ulteriore_issues,
     withhold_irpef,
 )
@@ -95,6 +96,7 @@ def _issues(inp: _AmountsInput, irpef: _Irpef) -> tuple[CalculationIssue, ...]:
     return (
         family
         + ulteriore_issues(inp, irpef)
+        + trattamento_issues(inp, irpef)
         + (() if contractual is None else (contractual,))
         + ((YOUNG_MEMBER_UNKNOWN,) if young else ())
         + ((ERC_UNKNOWN,) if erc else ())
