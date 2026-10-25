@@ -1,6 +1,6 @@
 """Repository contract tests: identical behavior for source and wheel layouts.
 
-Verifies that BundledResourceStore and read_bundled behave identically under
+Verifies that read_bundled behaves identically under
 the editable-install layout (plain ``.json``) and the wheel layout
 (``.json.gz``), and that all error scenarios (missing resource, corrupted
 archive, invalid JSON, unsupported resource) propagate with consistent
@@ -21,7 +21,7 @@ from unittest.mock import patch
 import pytest
 
 import ccnl_engine.catalog.loaders as contract_loaders
-from ccnl_engine.bundle.loaders import BundledResourceStore, read_bundled
+from ccnl_engine.bundle.loaders import read_bundled
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.errors import UnknownCcnlError
 
@@ -71,64 +71,6 @@ def store_dir(request: pytest.FixtureRequest, tmp_path: Path) -> Path:
     if request.param == "source":
         return _make_source_dir(tmp_path)
     return _make_wheel_dir(tmp_path)
-
-
-@pytest.fixture(params=["source", "wheel"])
-def populated_store(
-    request: pytest.FixtureRequest, tmp_path: Path
-) -> BundledResourceStore:
-    """Parametric fixture: BundledResourceStore over source or wheel layout.
-
-    Returns:
-        A :class:`BundledResourceStore` bound to the selected layout.
-    """
-    if request.param == "source":
-        return BundledResourceStore(_make_source_dir(tmp_path))
-    return BundledResourceStore(_make_wheel_dir(tmp_path))
-
-
-# ---------------------------------------------------------------------------
-# BundledResourceStore contract: list_json
-# ---------------------------------------------------------------------------
-
-
-class TestListJsonContract:
-    """list_json returns the same .json names regardless of storage format."""
-
-    def test_lists_all_files(self, populated_store: BundledResourceStore) -> None:
-        """All resource names appear in list_json output for both layouts."""
-        result = populated_store.list_json()
-        assert set(result) == {"alpha.json", "beta.json"}
-
-    def test_sorted_output(self, populated_store: BundledResourceStore) -> None:
-        """list_json output is alphabetically sorted in both layouts."""
-        result = populated_store.list_json()
-        assert result == sorted(result)
-
-    def test_names_have_json_extension(
-        self, populated_store: BundledResourceStore
-    ) -> None:
-        """Names end with .json (not .json.gz) in both layouts."""
-        for name in populated_store.list_json():
-            assert name.endswith(".json"), f"Expected .json suffix, got: {name}"
-            assert not name.endswith(".gz")
-
-
-# ---------------------------------------------------------------------------
-# BundledResourceStore contract: read_json
-# ---------------------------------------------------------------------------
-
-
-class TestReadJsonContract:
-    """read_json returns identical content regardless of storage format."""
-
-    def test_reads_alpha(self, populated_store: BundledResourceStore) -> None:
-        """alpha.json content is the same for source and wheel layouts."""
-        assert populated_store.read_json("alpha.json") == _ALPHA_CONTENT
-
-    def test_reads_beta(self, populated_store: BundledResourceStore) -> None:
-        """beta.json content is the same for source and wheel layouts."""
-        assert populated_store.read_json("beta.json") == _BETA_CONTENT
 
 
 # ---------------------------------------------------------------------------
