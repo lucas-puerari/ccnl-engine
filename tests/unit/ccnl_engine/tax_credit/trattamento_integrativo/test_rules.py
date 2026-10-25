@@ -206,3 +206,60 @@ def test_an_overpayment_up_to_60_eur_is_recovered_at_once(
     )
     if next_plan is not None:
         assert next_plan.installments_total == 8
+
+
+def _plan_of_500() -> RecoveryPlan:
+    """Return a mid-year recovery of 500.00 at 62.50 a run.
+
+    Returns:
+        The plan with two of its eight installments posted.
+    """
+    return RecoveryPlan(
+        kind="trattamento_integrativo",
+        original_amount=_D("500.00"),
+        installment_amount=_D("62.50"),
+        installments_total=8,
+        installments_posted=2,
+    )
+
+
+def test_the_conguaglio_pays_the_credit_a_running_plan_no_longer_owes() -> None:
+    """Entitlement 1,200.00, net paid 375.00: the conguaglio pays 825.00.
+
+    D.L. 3/2020 art. 1 c. 3 recovers the credit that "in sede di conguaglio
+    [...] si riveli non spettante": the conguaglio compares the annual
+    entitlement with what was paid, so a plan opened on a mid-year
+    projection ends there instead of carrying 312.50 into the next year.
+    Income 12,000.00 is below 15,000: the full 1,200.00 is due when the
+    gross tax exceeds the art. 13 deduction less 75.00.
+    """
+    low = NetIrpef(
+        gross=_D("2760.00"),
+        work_deduction=_D("1955.00"),
+        family_deductions=_D(0),
+        ulteriore=None,
+    )
+    period, _, next_plan, decisions = resolve_trattamento(
+        _D(12_000), low, _RULES, _D("375.00"), 1, _plan_of_500(), run=InstallmentRun()
+    )
+
+    assert decisions[0].amount == _D("1200.00")
+    assert period == _D("825.00")
+    assert next_plan is None
+
+
+def test_the_conguaglio_keeps_a_plan_that_matches_the_excess() -> None:
+    """Paid 1,575.00 against 1,200.00: the 375.00 left is the plan's residual."""
+    low = NetIrpef(
+        gross=_D("2760.00"),
+        work_deduction=_D("1955.00"),
+        family_deductions=_D(0),
+        ulteriore=None,
+    )
+    period, _, next_plan, _ = resolve_trattamento(
+        _D(12_000), low, _RULES, _D("1575.00"), 1, _plan_of_500(), run=InstallmentRun()
+    )
+
+    assert period == _D("-62.50")
+    assert next_plan is not None
+    assert next_plan.installments_posted == 3
