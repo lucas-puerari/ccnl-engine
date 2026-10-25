@@ -49,8 +49,14 @@ Full review: all L1 and L2 values verified, at least one `verified`
 reference case from an independent source (official payslip or regulatory
 document, anonymised), an owner role assigned, and a review date.
 
-**Safe for:** operational flows where figures are shown to end users or used
-in decisions; integration into HR tools that do not add their own disclaimer.
+**Safe for:** operational flows that gate payment on `is_payable` and show
+the readiness and review date next to the figures; a second opinion next to
+a payroll provider's own calculation.
+
+**Not certified:** production does not mean a person signed the values (the
+reviews are AI reviews), nor that every total was matched against an
+independent provider output (see criterion 3 below: today none is). Keep
+your own disclaimer and verify the amounts before paying them.
 
 ## Promotion criteria
 

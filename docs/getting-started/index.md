@@ -41,7 +41,7 @@ their readiness (`result.rulesets`). `engine.list_contracts()` and
 `engine.inspect_ruleset(ccnl_id)` report readiness before any run.
 `PayrollEngine.bundled()` simulates; `PayrollEngine.bundled(mode="operational")`
 computes the same amounts but blocks payment unless the CCNL ruleset is
-`production`, which only Metalmeccanico Federmeccanica is. See
+`production`: the [catalogue](../contracts/index.md) lists them. See
 [Readiness](../trust/readiness.md#simulation-and-operational-modes).
 
 ## A full year

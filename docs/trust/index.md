@@ -28,7 +28,7 @@ classification that tells you whether a CCNL is cleared for a given use context.
 |---|:---:|---|---|
 | `exploratory` | 🧪 | Extracted and traced; key values not cleared by a recorded review | Demo, research, prototyping |
 | `reviewed` | 👁 | Key L1 values checked against primary sources by a recorded review (AI or human) | Product simulations with explicit disclaimer |
-| `production` | 🏭 | Full review, `verified` reference case, owner role, review date | Operational flows |
+| `production` | 🏭 | Full review, `verified` reference case, owner role, review date | Operational flows gated on `is_payable`, with your own disclaimer |
 
 `verified` and `reviewed` mean checked by the review process of the
 project. Each review entry records its `reviewer_kind`: today the reviews
