@@ -20,9 +20,9 @@ The errors are exported at the root and described together in
 [Errors](errors.md). [Data bundle](knowledge.md) describes the data the
 engine reads and `bundle_version`.
 
-Any module below these five is internal and may change without notice,
-including the loaders, the CCNL models and `REGION_CODES` named in the
-guides. CI checks that each page documents every name of its namespace and
+Any module below these namespaces (the root, `inputs`, `events`,
+`results`, `catalog` and `repository`) is internal and may change without
+notice, including the loaders. CI checks that each page documents every name of its namespace and
 no internal module.
 
 ## Guide cross-references

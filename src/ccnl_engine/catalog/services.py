@@ -101,6 +101,13 @@ def list_levels(repo: KnowledgeRepository, ccnl_id: str) -> tuple[LevelSummary, 
     """
     ccnl = resolve_ccnl(repo, ccnl_id)
     levels = sorted(ccnl.levels, key=lambda level: level.order)
+    tracks = ccnl.apprenticeship
     return tuple(
-        LevelSummary(level.code, level.description, level.category) for level in levels
+        LevelSummary(
+            level.code,
+            level.description,
+            level.category,
+            tuple(t.name for t in tracks if level.code in t.destination_levels),
+        )
+        for level in levels
     )

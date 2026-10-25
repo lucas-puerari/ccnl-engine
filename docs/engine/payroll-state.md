@@ -100,15 +100,15 @@ engine version (`ccnl_engine.engine_version`) and the knowledge-bundle version
 that computed the state. Reading checks only the schema version: the engine
 and bundle versions stay in the JSON for audit, so a release of the engine or
 of the bundle does not invalidate the stored states. A state of an earlier
-schema is brought to the current one by `STATE_MIGRATIONS`, one step per
-version from `FIRST_SCHEMA_VERSION`, before it is decoded; a schema bump ships
+schema is brought to the current one, one step per version (an internal
+table of migrations), before it is decoded; a schema bump ships
 with its step, and a test fails the build when one is missing. Schema 15
 added the TFR quotas: a state of schema 14 counted none, so its quotas are
 known from the year after its last closed run. A state of a
 newer schema than the engine, or older than the first one persisted, is
 rejected: it is recomputed, or its totals are imported with
 `OpeningBalances`. Each value is tagged with the name of its
-type in an explicit registry (`STATE_TYPES`), never with a module path, and
+type in an explicit internal registry, never with a module path, and
 rebuilt through its constructor; any malformed or foreign payload raises
 `InvalidInputError`.
 

@@ -19,6 +19,8 @@ from ccnl_engine.bundle.validators import (
     verify_ruleset_hash,
 )
 from ccnl_engine.errors import UnknownCcnlError
+from ccnl_engine.surtax.jurisdiction.types import REGION_CODES
+from ccnl_engine.surtax.loaders import load_surtax_rules
 from ccnl_engine.validators import require_str
 
 if TYPE_CHECKING:
@@ -26,6 +28,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.provenance.ruleset.models import RulesetReadiness
+    from ccnl_engine.provenance.source.models import SourceDocument
 
 
 #: Dataset of the CCNL files in the knowledge manifest.
@@ -102,6 +105,9 @@ class ContractSummary:
             force on its date, and a competence year skips the runs before
             the base salary of the level starts.  ``None`` when no date
             covers every rule.
+        withholding_agent: Whether the employer of the CCNL withholds
+            IRPEF as sostituto d'imposta (``False`` for domestic work).
+        sources: The documents the CCNL file cites, in its order.
     """
 
     ccnl_id: CcnlId
@@ -109,6 +115,8 @@ class ContractSummary:
     cnel_code: str
     readiness: RulesetReadiness
     validity: ValidityWindow | None
+    withholding_agent: bool = True
+    sources: tuple[SourceDocument, ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -120,11 +128,14 @@ class LevelSummary:
         description: Label of the level in the CCNL data.
         category: Worker category the level is restricted to, ``None``
             when the level admits any.
+        apprenticeship_tracks: Names of the apprenticeship tracks that lead
+            to the level, the ``Apprentice.track`` a run may state.
     """
 
     code: str
     description: str
     category: WorkerCategory | None
+    apprenticeship_tracks: tuple[str, ...] = ()
 
 
 def contract_summary(ccnl: CCNL) -> ContractSummary:
@@ -143,6 +154,8 @@ def contract_summary(ccnl: CCNL) -> ContractSummary:
         cnel_code=meta.cnel_code,
         readiness=ccnl.verification.readiness,
         validity=model_window(ccnl),
+        withholding_agent=meta.withholding_agent,
+        sources=tuple(meta.sources),
     )
 
 
@@ -241,3 +254,39 @@ def search_ccnls(query: str) -> tuple[ContractSummary, ...]:
         for info in _load_all()
         if q in info.ccnl_id.lower() or q in info.name.lower()
     )
+
+
+@dataclass(frozen=True, slots=True)
+class Jurisdiction:
+    """A region or a comune a run can name, as the surtax tables hold it.
+
+    Attributes:
+        code: The code a run states: ``PeriodFacts.regione`` (``IT-25``) or
+            ``PeriodFacts.comune_belfiore`` (``F205``).
+        name: Its name.
+    """
+
+    code: str
+    name: str
+
+
+def regions(year: int) -> tuple[Jurisdiction, ...]:
+    """Return the regions with a regional surtax table for ``year``.
+
+    Returns:
+        One per region, ordered by name.
+    """
+    tables = load_surtax_rules(year).regionale
+    found = (Jurisdiction(c, n) for c, n in REGION_CODES.items() if n in tables)
+    return tuple(sorted(found, key=lambda j: j.name))
+
+
+def municipalities(year: int) -> tuple[Jurisdiction, ...]:
+    """Return the comuni with a municipal surtax rate for ``year``.
+
+    Returns:
+        One per comune, ordered by name.
+    """
+    rows = load_surtax_rules(year).comunale.items()
+    found = (Jurisdiction(code, row.nome) for code, row in rows)
+    return tuple(sorted(found, key=lambda j: j.name))

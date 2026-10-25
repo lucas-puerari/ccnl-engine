@@ -77,3 +77,20 @@ anas.validity.first_day  # → datetime.date(2026, 3, 1)
 ::: ccnl_engine.catalog.search_ccnls
 
 ::: ccnl_engine.catalog.supported_tax_years
+
+## Places and sources
+
+`regions(year)` and `municipalities(year)` list the codes a run states in
+`PeriodFacts.regione` and `PeriodFacts.comune_belfiore`, with their names;
+`ContractSummary.sources` lists the documents a CCNL file cites and
+`ContractSummary.withholding_agent` whether its employer withholds IRPEF;
+`LevelSummary.apprenticeship_tracks` names the tracks that lead to a level.
+
+::: ccnl_engine.catalog.regions
+
+::: ccnl_engine.catalog.municipalities
+
+::: ccnl_engine.catalog.Jurisdiction
+
+::: ccnl_engine.catalog.SourceDocument
+
