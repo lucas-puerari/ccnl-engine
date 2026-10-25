@@ -15,16 +15,20 @@
     ],
     "sources": [
       {
+        "document_id": "filleacgil-net-images-organizzazione-contratti_e_tabelle-edilizia-ccnl-20_aniem_",
+        "title": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+        "kind": "altro",
         "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
-        "type": "primary",
-        "agreement_date": "2025-04-15"
+        "pages": [],
+        "published_on": "2025-04-15"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-18",
-      "human_reviewed": true
+      "extraction_timestamp": "2026-09-18",
+      "verification_status": "verified",
+      "effective_from": null
     },
     "workers_estimate": "~70000"
   },
@@ -1729,7 +1733,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "b400fff3bd7c2798644ca524ca76cd5d06024f8e9b31d5f1679522380e262b47",
+    "source_hash": "1b74833a71d6912b36c2f99cebfdfabc6b83a9b53933647415643ac423a17116",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

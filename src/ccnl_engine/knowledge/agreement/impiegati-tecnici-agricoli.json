@@ -17,23 +17,28 @@
     ],
     "sources": [
       {
+        "document_id": "contratticcnl-it-ccnl-a021",
+        "title": "CNEL code A021, agreement date 18/06/2024, effective 01/07/2024. Contract covers impiegati, tecnici and quadri in agricultural sector. Expiry 31/12/2027.",
+        "kind": "altro",
         "url": "https://www.contratticcnl.it/ccnl/a021/",
-        "type": "web",
-        "agreement_date": "2024-06-18",
-        "notes": "CNEL code A021, agreement date 18/06/2024, effective 01/07/2024. Contract covers impiegati, tecnici and quadri in agricultural sector. Expiry 31/12/2027."
+        "pages": [],
+        "published_on": "2024-06-18"
       },
       {
+        "document_id": "lavoro-economia-it-ccnl-ccnl-aspx-c-3",
+        "title": "Salary levels: 1Q=1888.38 (base 1788.38 + IND_FUN 100.00), 1=1686.76, 2=1541.41, 3=1417.89, 4=1335.93, 5=1278.60, 6=1217.23. Hourly divisor 169. Daily divisor 26. Additional months 14 (tredicesima + quattordicesima). Seniority: biennale (24 months), 12 scatti, per-level amounts confirmed. Level 1Q listed as 1888.38 'with function allowance'; confirmed base 1788.38 + IND_FUN 100.00.",
+        "kind": "tabella_retributiva",
         "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=3",
-        "type": "table",
-        "agreement_date": "2024-06-18",
-        "notes": "Salary levels: 1Q=1888.38 (base 1788.38 + IND_FUN 100.00), 1=1686.76, 2=1541.41, 3=1417.89, 4=1335.93, 5=1278.60, 6=1217.23. Hourly divisor 169. Daily divisor 26. Additional months 14 (tredicesima + quattordicesima). Seniority: biennale (24 months), 12 scatti, per-level amounts confirmed. Level 1Q listed as 1888.38 'with function allowance'; confirmed base 1788.38 + IND_FUN 100.00."
+        "pages": [],
+        "published_on": "2024-06-18"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-04T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-04T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": "2024-07-01"
     },
     "agreement_date": "2024-06-18",
     "validity": {
@@ -740,7 +745,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "f71f0c5fee716796a19fca9cc1e5652aa7282ba6b60746e1e2521154311e1b64",
+    "source_hash": "623fa9168610c2689be8f885dcb09fdd8ca996554e64159a51462ce19a4470cb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

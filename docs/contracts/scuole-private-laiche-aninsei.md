@@ -5,7 +5,7 @@
 | **CNEL code** | `T231` |
 | **Sector** | istruzione privata laica |
 | **Tax sector** | `terziario` |
-| **Last renewal** | — |
+| **Last renewal** | 2024-06-15 |
 | **Workers (est.)** | ~25k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2024-06-15 |
 | **Last review** | — |
 | **Latest salary tranche** | 2027-01-01 |
 
@@ -153,7 +153,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-06-15 | [↗](https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf) |
+| https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf | altro | 2024-06-15 | [↗](https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf) |
 
 ??? note "Coverage notes"
     RENEWAL: CCNL signed 2024-06-15 by ANINSEI and Assoscuola with UIL Scuola RUA, CONFSAL-SNALS and ANIEF. Validity 01/01/2024-31/12/2027. Economic effects from 01/01/2025.

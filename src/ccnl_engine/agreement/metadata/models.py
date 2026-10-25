@@ -3,16 +3,12 @@
 from __future__ import annotations
 
 import datetime as dt
-from typing import Any, Self
+from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.agreement.metadata.review.models import CCNLReview
 from ccnl_engine.agreement.types import PublicPensionFund, TaxSector
-from ccnl_engine.agreement.validators import (
-    _coerce_legacy_extraction,
-    _coerce_legacy_source,
-)
 from ccnl_engine.provenance.ruleset.models import (
     RulesetReadiness,
     VerificationStatus,
@@ -168,18 +164,3 @@ class CCNLMeta(BaseModel):
             msg = f"inps_sectors must include the tax_sector {self.tax_sector}"
             raise ValueError(msg)
         return self
-
-    @model_validator(mode="before")
-    @classmethod
-    def _coerce_legacy_meta(cls, data: Any) -> Any:  # noqa: ANN401
-        if not isinstance(data, dict):
-            return data
-        sources = data.get("sources")
-        if isinstance(sources, list) and any(
-            isinstance(s, dict) and "document_id" not in s for s in sources
-        ):
-            data = {**data, "sources": [_coerce_legacy_source(s) for s in sources]}
-        extraction = data.get("extraction")
-        if isinstance(extraction, dict) and "extraction_timestamp" not in extraction:
-            data = {**data, "extraction": _coerce_legacy_extraction(extraction, data)}
-        return data

@@ -15,21 +15,28 @@
     ],
     "sources": [
       {
+        "document_id": "consulenza-it-contenuti-scadenziario-scadenza-19851-lapidei-industria",
+        "title": "https://www.consulenza.it/Contenuti/Scadenziario/Scadenza/19851/lapidei-industria",
+        "kind": "altro",
         "url": "https://www.consulenza.it/Contenuti/Scadenziario/Scadenza/19851/lapidei-industria",
-        "type": "web",
-        "agreement_date": "2022-11-24"
+        "pages": [],
+        "published_on": "2022-11-24"
       },
       {
+        "document_id": "cdltorino-it-ccnl-lapidei-industria-con-ladeguamento-ipca-in-arrivo-nuovi-minimi",
+        "title": "https://www.cdltorino.it/ccnl-lapidei-industria-con-ladeguamento-ipca-in-arrivo-nuovi-minimi/",
+        "kind": "altro",
         "url": "https://www.cdltorino.it/ccnl-lapidei-industria-con-ladeguamento-ipca-in-arrivo-nuovi-minimi/",
-        "type": "web",
-        "agreement_date": "2025-07-15"
+        "pages": [],
+        "published_on": "2025-07-15"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-06T00:00:00",
-      "human_reviewed": true
+      "extraction_timestamp": "2026-09-06T00:00:00",
+      "verification_status": "verified",
+      "effective_from": null
     },
     "workers_estimate": "~18k"
   },
@@ -2307,7 +2314,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/Scadenziario/Scadenza/19851/lapidei-industria",
     "verification_status": "verified",
-    "source_hash": "ea2b019d3f76ef49b76fdd7cbfbcf2b901498be1329c51ebbe2e53c0a6f09e6c",
+    "source_hash": "bb8e35f7f2e25e096327cc35246f0caebac3020146070f2fd1617a7bd9c33411",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

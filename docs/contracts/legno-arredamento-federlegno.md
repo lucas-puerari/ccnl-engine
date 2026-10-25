@@ -5,7 +5,7 @@
 | **CNEL code** | `F051` |
 | **Sector** | industria |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2023-06-20 |
 | **Workers (est.)** | ~90k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2023-06-20 |
 | **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2025-01-01 |
 
@@ -208,9 +208,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2023-06-20 | [↗](https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf) |
-| — | — | — | [↗](https://www.lexplain.it/ccnl-legno-arredamento-industria/) |
-| — | — | — | [↗](https://www.previdenza-professionisti.it/ccnl-legno-industria-scatti-anzianita/) |
+| https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf | altro | 2023-06-20 | [↗](https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf) |
+| https://www.lexplain.it/ccnl-legno-arredamento-industria/ | tabella_retributiva | — | [↗](https://www.lexplain.it/ccnl-legno-arredamento-industria/) |
+| https://www.previdenza-professionisti.it/ccnl-legno-industria-scatti-anzianita/ | tabella_retributiva | — | [↗](https://www.previdenza-professionisti.it/ccnl-legno-industria-scatti-anzianita/) |
 
 ??? note "Coverage notes"
     SALARY MODEL: split (paga base + contingenza + EDR). Base pay varies by tranche (Jul 2023, Jan 2024, Jan 2025). Contingenza frozen from 31/07/1992 (values from CNEL F051 PDF). EDR fixed at EUR 10.33 for all levels (Agreement 31/07/1992). Table sources: CNEL F051 PDF (renewal 20/06/2023); Jan 2024 tranche confirmed by lexplain.it; Jan 2025 tranche derived from the difference between the total from dottrinalavoro.it and contingenza+EDR.

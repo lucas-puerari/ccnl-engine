@@ -15,16 +15,20 @@
     ],
     "sources": [
       {
+        "document_id": "uilposte-it-wp-content-uploads-2025-01-ccnl-posteitaliane-uilposte2024-pdf",
+        "title": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
+        "kind": "altro",
         "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
-        "type": "text",
-        "agreement_date": "2024-07-23"
+        "pages": [],
+        "published_on": "2024-07-23"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-05",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-05",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~117k"
   },
@@ -1587,7 +1591,7 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "eb2d7ae4b87cfcce611c3f00bf3f21567d81b0ccd50956688a3afe8e566bdbc8",
+    "source_hash": "d152fa036db402ef69869d7dc7f8d5eb0c6f1417e5db6078a9d719d5d3dd1558",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

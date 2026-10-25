@@ -177,8 +177,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2023-01-19 | [↗](https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf) |
-| — | — | 2026-03-26 | [↗](https://www.kitech.it/) |
+| https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf | altro | 2023-01-19 | [↗](https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf) |
+| https://www.kitech.it/ | tabella_retributiva | 2026-03-26 | [↗](https://www.kitech.it/) |
 
 ??? note "Coverage notes"
     CCNL OO.SS. signed 19/01/2023 by UNSIC/CONFSAL. Valid 01/01/2023-31/12/2025; renewed 26/03/2026 for 01/01/2026-31/12/2028.

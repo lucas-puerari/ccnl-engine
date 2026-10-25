@@ -149,9 +149,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-11-06 | [↗](https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf) |
-| — | — | 2024-11-06 | [↗](https://cislfp.it/wp-content/uploads/2024/11/Tabelle-economiche-CCNL-Federcasa-2022-2024.pdf) |
-| — | — | 2024-11-06 | [↗](https://ilccnl.it/ccnl/federcasa/federcasa/tabelleretributive) |
+| https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf | altro | 2024-11-06 | [↗](https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf) |
+| https://cislfp.it/wp-content/uploads/2024/11/Tabelle-economiche-CCNL-Federcasa-2022-2024.pdf | altro | 2024-11-06 | [↗](https://cislfp.it/wp-content/uploads/2024/11/Tabelle-economiche-CCNL-Federcasa-2022-2024.pdf) |
+| https://ilccnl.it/ccnl/federcasa/federcasa/tabelleretributive | altro | 2024-11-06 | [↗](https://ilccnl.it/ccnl/federcasa/federcasa/tabelleretributive) |
 
 ??? note "Coverage notes"
     Salary model: conglobated. Art. 71 (p.63): retribuzione base = minimi tabellari. Art. 72 (p.64): single importo column, no contingenza or EDR columns. Confirmed by ilccnl.it (A1, A2, A3, As, B1 at 01/12/2024).

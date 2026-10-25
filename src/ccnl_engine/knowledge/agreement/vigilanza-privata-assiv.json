@@ -20,31 +20,44 @@
     "agreement_date": "2023-05-30",
     "sources": [
       {
+        "document_id": "olympus-uniurb-it-index-php-option-com_content-view-article-id-30121-vigilanza45",
+        "title": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30121:vigilanza452023&catid=257&Itemid=139",
+        "kind": "altro",
         "url": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30121:vigilanza452023&catid=257&Itemid=139",
-        "type": "contract",
-        "agreement_date": "2023-05-30"
+        "pages": [],
+        "published_on": "2023-05-30"
       },
       {
+        "document_id": "olympus-uniurb-it-index-php-option-com_content-view-article-id-33337-servizi-vig",
+        "title": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=33337:servizi-vigilanza-privata-e-servizi-fiduciari-ccnl,-21-novembre-2024&catid=262&Itemid=139",
+        "kind": "altro",
         "url": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=33337:servizi-vigilanza-privata-e-servizi-fiduciari-ccnl,-21-novembre-2024&catid=262&Itemid=139",
-        "type": "contract",
-        "agreement_date": "2024-11-21"
+        "pages": [],
+        "published_on": "2024-11-21"
       },
       {
+        "document_id": "univigilanza-it-263-codice-alfanumerico-unico-dei-ccnl--html",
+        "title": "https://www.univigilanza.it/263/CODICE-ALFANUMERICO-UNICO-DEI-CCNL-.html",
+        "kind": "altro",
         "url": "https://www.univigilanza.it/263/CODICE-ALFANUMERICO-UNICO-DEI-CCNL-.html",
-        "type": "reference",
-        "agreement_date": "2024-11-21"
+        "pages": [],
+        "published_on": "2024-11-21"
       },
       {
+        "document_id": "olympus-uniurb-it-index-php-option-com_content-view-article-id-30385-vigilanza-p",
+        "title": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30385:vigilanza-privata19723&catid=257&Itemid=139",
+        "kind": "altro",
         "url": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30385:vigilanza-privata19723&catid=257&Itemid=139",
-        "type": "renewal_summary",
-        "agreement_date": "2023-07-19"
+        "pages": [],
+        "published_on": "2023-07-19"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-02T10:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-02T10:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~85k"
   },
@@ -1736,7 +1749,7 @@
     "effective_until": null,
     "source": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
     "verification_status": "unverified",
-    "source_hash": "a8ce584b60acff905f4f2366c0cceb26246d3481d48ede805795b18fde293639",
+    "source_hash": "610a67ba7fcf8bc30e2936314d7fbe7d7793d1b40847f27c0e5692e1ad16c8e1",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

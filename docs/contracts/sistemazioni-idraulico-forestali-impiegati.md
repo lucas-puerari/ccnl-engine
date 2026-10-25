@@ -195,8 +195,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-12-04 | [↗](https://www.lavoro-economia.it/?c=9) |
-| — | — | 2021-01-01 | not available |
+| Tabella retributiva impiegati CCNL A181 rinnovo 04/12/2025. Tranches 01/01/2026, 01/01/2027, 01/01/2028. Conglobato. Parametri Art. 35 CCNL 2021: L1=100, L2=108, L3=115, L4=122, L5=133, L6=152. Pre-2026 amounts not modelled: table not available in machine-readable form. | tabella_retributiva | 2025-12-04 | [↗](https://www.lavoro-economia.it/?c=9) |
+| CCNL previgente 2021: Art. 35 parametri impiegati, Art. 41 scatti anzianita, Art. 7 apprendistato sotto-inquadramento, Art. 36 IND_FUNZIONE quadri, Art. 52 modello conglobato div=169. Structural rules carried forward to 2025 rinnovo (2025 PDF image-only; full text unavailable). | altro | 2021-01-01 | not available |
 
 ??? note "Coverage notes"
     CCNL A181 — Sistemazioni Idraulico-Forestali (Impiegati). Split from operai contract: salary bands overlap, requiring separate files for correct engine ordering and under-classification apprenticeship. 7 livelli impiegati (I1-I6, I6Q). Conglobated model. Divisore 169, 14 mensilita.

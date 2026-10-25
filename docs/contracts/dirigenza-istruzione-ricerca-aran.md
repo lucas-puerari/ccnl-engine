@@ -108,9 +108,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2026-08-06 | [↗](https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/) |
-| — | — | 2024-08-07 | [↗](https://m.flcgil.it/contratti/documenti/istruzione-e-ricerca/ccnl-personale-area-dirigenza-istruzione-e-ricerca-2019-2021-del-7-agosto-2024.flc) |
-| — | — | 2026-08-06 | [↗](https://www.flcgil.it/scuola/dirigenti/dirigenti-scolastici-siglato-in-via-definitiva-ccnl-area-istruzione-e-ricerca-2022-2024.flc) |
+| Tabelle retributive CCNL Area Dirigenza Istruzione e Ricerca 2022-2024. Seconda fascia: 47.015,73 → 50.005,73€/anno da 1/1/2024 (+230€/mese). Prima fascia: 60.102,87 → 63.807,87€/anno (+285€/mese). Firma definitiva 6 agosto 2026. | altro | 2026-08-06 | [↗](https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/) |
+| CCNL Area Dirigenza Istruzione e Ricerca 2019-2021, firmato 7 agosto 2024. Stabilisce il tabellare previgente di 47.015,73€/anno per 13 mensilità. Retribuzione di posizione fissa 13.345,11€/anno. Incremento +230€/mese decorre da 1/1/2024 per il CCNL 2022-2024. | altro | 2024-08-07 | [↗](https://m.flcgil.it/contratti/documenti/istruzione-e-ricerca/ccnl-personale-area-dirigenza-istruzione-e-ricerca-2019-2021-del-7-agosto-2024.flc) |
+| Conferma firma definitiva 6 agosto 2026. Signatari: ANP, FLC CGIL, CISL FSUR, Dirigenti Scuola, UIL Scuola RUA. ANCODIS non ha firmato. | altro | 2026-08-06 | [↗](https://www.flcgil.it/scuola/dirigenti/dirigenti-scolastici-siglato-in-via-definitiva-ccnl-area-istruzione-e-ricerca-2022-2024.flc) |
 
 ??? note "Coverage notes"
     Retribuzione di posizione parte fissa: seconda fascia 14.515,11€/anno (+1.170€/anno da 1/1/2024, era 13.345,11). Prima fascia 42.598,20€/anno. Variabile per incarico. Non modellata (SIMPLIFICATION).

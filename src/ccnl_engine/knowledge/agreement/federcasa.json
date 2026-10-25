@@ -16,26 +16,36 @@
     ],
     "sources": [
       {
+        "document_id": "cislfp-it-wp-content-uploads-2024-11-ccnl-federcasa-2022-2024-pdf",
+        "title": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
+        "kind": "altro",
         "url": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
-        "type": "text",
-        "agreement_date": "2024-11-06"
+        "pages": [],
+        "published_on": "2024-11-06"
       },
       {
+        "document_id": "cislfp-it-wp-content-uploads-2024-11-tabelle-economiche-ccnl-federcasa-2022-2024",
+        "title": "https://cislfp.it/wp-content/uploads/2024/11/Tabelle-economiche-CCNL-Federcasa-2022-2024.pdf",
+        "kind": "altro",
         "url": "https://cislfp.it/wp-content/uploads/2024/11/Tabelle-economiche-CCNL-Federcasa-2022-2024.pdf",
-        "type": "text",
-        "agreement_date": "2024-11-06"
+        "pages": [],
+        "published_on": "2024-11-06"
       },
       {
+        "document_id": "ilccnl-it-ccnl-federcasa-federcasa-tabelleretributive",
+        "title": "https://ilccnl.it/ccnl/federcasa/federcasa/tabelleretributive",
+        "kind": "altro",
         "url": "https://ilccnl.it/ccnl/federcasa/federcasa/tabelleretributive",
-        "type": "text",
-        "agreement_date": "2024-11-06"
+        "pages": [],
+        "published_on": "2024-11-06"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-05",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-05",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~6k"
   },
@@ -1170,7 +1180,7 @@
     "effective_until": null,
     "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "26380e47adf395ae4194633af6c2081f5be938fc46503cbcafe8523f9e73dd07",
+    "source_hash": "83e16af95c6ff678f2fdc3caecba16dcde63cc8dd96cda68af70188567e04034",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

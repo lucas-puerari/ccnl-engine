@@ -204,8 +204,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2023-11-23 | [↗](https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/) |
-| — | — | — | [↗](https://www.ccnlbancari.it/) |
+| https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/ | altro | 2023-11-23 | [↗](https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/) |
+| https://www.ccnlbancari.it/ | tabella_retributiva | — | [↗](https://www.ccnlbancari.it/) |
 
 ??? note "Coverage notes"
     Hourly divisor 207,69 for the 37.5h/week period (2023-11-23 to 2024-06-30) and 204,92 from 2024-07-01 (37h/week): 360 x daily hours / 13 (Art. 114 c. 15, Art. 108).

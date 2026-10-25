@@ -5,7 +5,7 @@
 | **CNEL code** | `F015` |
 | **Sector** | edilizia |
 | **Tax sector** | `artigianato` |
-| **Last renewal** | — |
+| **Last renewal** | 2025-05-20 |
 | **Workers (est.)** | ~350k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2025-05-20 |
 | **Last review** | 2026-09-18 |
 | **Latest salary tranche** | 2028-01-01 |
 
@@ -219,10 +219,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-05-20 | [↗](https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/) |
-| — | — | 2025-05-20 | [↗](https://www.ilccnl.it/ccnl-edilizia-artigianato/) |
-| — | — | 2026-01-01 | [↗](https://www.kitech.it/ccnl/edilizia-artigianato) |
-| — | — | 2023-07-01 | [↗](https://lexplain.it/ccnl-edilizia-artigianato-tabelle-retributive/) |
+| Apprenticeship Allegato D — semester percentages by group, standard professionalizzante and specialistico tracks | altro | 2025-05-20 | [↗](https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/) |
+| Hourly divisor 173, additional months 13 (tredicesima 173 ore), salary tranches | altro | 2025-05-20 | [↗](https://www.ilccnl.it/ccnl-edilizia-artigianato/) |
+| January 2026 paga base per level and seniority (scatti) amounts | altro | 2026-01-01 | [↗](https://www.kitech.it/ccnl/edilizia-artigianato) |
+| Contingenza frozen values per level | altro | 2023-07-01 | [↗](https://lexplain.it/ccnl-edilizia-artigianato-tabelle-retributive/) |
 
 ??? note "Coverage notes"
     Split salary model: paga base (TimeSeries, 4 tranches May 2025/Jan 2026/Jan 2027/Jan 2028) + contingenza (frozen since July 1992 Protocol) + EDR (frozen EUR 10.33 since 1992).

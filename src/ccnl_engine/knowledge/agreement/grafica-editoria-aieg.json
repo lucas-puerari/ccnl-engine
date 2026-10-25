@@ -15,21 +15,28 @@
     ],
     "sources": [
       {
+        "document_id": "lexplain-it-tabelle-retributive-grafici-editoriali-industria-2024-2026",
+        "title": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/",
+        "kind": "tabella_retributiva",
         "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/",
-        "type": "table",
-        "agreement_date": "2024-12-20"
+        "pages": [],
+        "published_on": "2024-12-20"
       },
       {
+        "document_id": "kitech-it-retribuzione-stipendio-ccnl-aspx-codicecateg-156",
+        "title": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=156",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=156",
-        "type": "table",
-        "agreement_date": "2026-07-01"
+        "pages": [],
+        "published_on": "2026-07-01"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-02T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-02T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~70k"
   },
@@ -2588,7 +2595,7 @@
     "effective_until": null,
     "source": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
     "verification_status": "unverified",
-    "source_hash": "63826e5ce625f1cc063a3849c8e702249e8b3555f93708e68d4e04cd6dfd7139",
+    "source_hash": "02f577e1df21aaeec4ade8e775e26c719069d388f6ff72c9996538aebfb4f4cb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

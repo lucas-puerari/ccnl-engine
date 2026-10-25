@@ -16,31 +16,44 @@
     ],
     "sources": [
       {
+        "document_id": "filctemcgil-it-images-download-contratti-chimico_farmaceutico-250415-_chimico-fa",
+        "title": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
+        "kind": "altro",
         "url": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
-        "type": "text",
-        "agreement_date": "2025-04-15"
+        "pages": [],
+        "published_on": "2025-04-15"
       },
       {
+        "document_id": "archiviocontrattiapi-cnel-it-cne-cne-sa-0002-ricerca-api-ricerca-pubblica-accord",
+        "title": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/178786",
+        "kind": "cnel",
         "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/178786",
-        "type": "cnel",
-        "agreement_date": "2024-01-08"
+        "pages": [],
+        "published_on": "2024-01-08"
       },
       {
+        "document_id": "filctemcgil-it-images-download-contratti-chimico_farmaceutico-180719_chimico-far",
+        "title": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/180719_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%202019-GIUGNO%202022.pdf",
+        "kind": "altro",
         "url": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/180719_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%202019-GIUGNO%202022.pdf",
-        "type": "text",
-        "agreement_date": "2018-07-19"
+        "pages": [],
+        "published_on": "2018-07-19"
       },
       {
+        "document_id": "archiviocontrattiapi-cnel-it-cne-cne-sa-0002-ricerca-api-ricerca-pubblica-accord",
+        "title": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+        "kind": "cnel",
         "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
-        "type": "cnel",
-        "agreement_date": "2006-05-10"
+        "pages": [],
+        "published_on": "2006-05-10"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-08-31T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-08-31T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~210k"
   },
@@ -4808,7 +4821,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "570aa4165ff20032c0e7823eb96ba77e81b7f1f743dbdf92914b5bff3233e28f",
+    "source_hash": "c45d8ea92b82f7f524e902923993e41f2d018e4a68c96c0b6e703e0650966c8b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

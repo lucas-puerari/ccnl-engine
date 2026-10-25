@@ -5,7 +5,7 @@
 | **CNEL code** | `T241` |
 | **Sector** | istruzione privata |
 | **Tax sector** | `terziario` |
-| **Last renewal** | — |
+| **Last renewal** | 2024-07-03 |
 | **Workers (est.)** | ~50k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2024-07-03 |
 | **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2027-12-01 |
 
@@ -133,9 +133,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-07-03 | [↗](https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf) |
-| — | — | 2024-07-03 | [↗](https://www.terrazzini.it/wp-content/uploads/19bis-2026.pdf) |
-| — | — | 2024-07-03 | [↗](https://ilccnl.it/ccnl/scuole-private-religiose/scuole-private-religiose---agidae-dal-010794) |
+| https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf | associazione | 2024-07-03 | [↗](https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf) |
+| https://www.terrazzini.it/wp-content/uploads/19bis-2026.pdf | associazione | 2024-07-03 | [↗](https://www.terrazzini.it/wp-content/uploads/19bis-2026.pdf) |
+| https://ilccnl.it/ccnl/scuole-private-religiose/scuole-private-religiose---agidae-dal-010794 | associazione | 2024-07-03 | [↗](https://ilccnl.it/ccnl/scuole-private-religiose/scuole-private-religiose---agidae-dal-010794) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated (retribuzione tabellare comprensiva dell'indennità di contingenza maturata al 30/11/1991, per Art. 29 CCNL 2024). All base_salary values are the conglobated tabular minimums. Contingenza and EDR are fully absorbed. Source: Terrazzini & Partners circular 14bis/2024 (tranches 01/09/2024 and 01/09/2025) and circular 19bis/2026 (tranches 01/09/2026 through 01/12/2027).

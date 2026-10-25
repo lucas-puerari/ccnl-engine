@@ -177,8 +177,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2021-07-30 | [↗](https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf) |
-| — | — | 2024-09-13 | [↗](https://www.zhrexpert.it/ccnl/i481-agenzie-marittime.html) |
+| https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf | altro | 2021-07-30 | [↗](https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf) |
+| https://www.zhrexpert.it/ccnl/i481-agenzie-marittime.html | altro | 2024-09-13 | [↗](https://www.zhrexpert.it/ccnl/i481-agenzie-marittime.html) |
 
 ??? note "Coverage notes"
     Salary model: conglobated (Art. 21: 'paga base, contingenza ed EDR'). Source: 2021 CCNL primary text (FILT-CGIL PDF, signed 30/07/2021).

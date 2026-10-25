@@ -140,7 +140,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-07-23 | [↗](https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf) |
+| https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf | altro | 2024-07-23 | [↗](https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf) |
 
 ??? note "Coverage notes"
     Salary model: split. base_salary = minimo tabellare (Allegato 9, changes each tranche); fixed_allowances = contingenza (per-level, frozen) + indennità di funzione for A1/A2 (months_per_year=12).

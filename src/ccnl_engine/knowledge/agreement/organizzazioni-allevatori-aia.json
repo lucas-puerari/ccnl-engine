@@ -16,31 +16,44 @@
     ],
     "sources": [
       {
+        "document_id": "wolterskluwer-it",
+        "title": "https://www.wolterskluwer.it/",
+        "kind": "tabella_retributiva",
         "url": "https://www.wolterskluwer.it/",
-        "type": "table",
-        "agreement_date": "2024-12-12"
+        "pages": [],
+        "published_on": "2024-12-12"
       },
       {
+        "document_id": "kitech-it",
+        "title": "https://www.kitech.it/",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/",
-        "type": "table",
-        "agreement_date": "2024-12-12"
+        "pages": [],
+        "published_on": "2024-12-12"
       },
       {
+        "document_id": "confederdia-it-2023-11-30-ipotesi-di-accordo-rinnovo-ccnl-dipendenti-dalle-organ",
+        "title": "https://www.confederdia.it/2023/11/30/ipotesi-di-accordo-rinnovo-ccnl-dipendenti-dalle-organizzazioni-degli-allevatori-consorzi-ed-enti-zootecnici/",
+        "kind": "altro",
         "url": "https://www.confederdia.it/2023/11/30/ipotesi-di-accordo-rinnovo-ccnl-dipendenti-dalle-organizzazioni-degli-allevatori-consorzi-ed-enti-zootecnici/",
-        "type": "text",
-        "agreement_date": "2023-11-14"
+        "pages": [],
+        "published_on": "2023-11-14"
       },
       {
+        "document_id": "lavoro-economia-it",
+        "title": "https://www.lavoro-economia.it/",
+        "kind": "altro",
         "url": "https://www.lavoro-economia.it/",
-        "type": "info",
-        "agreement_date": "2024-12-12"
+        "pages": [],
+        "published_on": "2024-12-12"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-05",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-05",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~2k"
   },
@@ -1019,7 +1032,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "b9eacc92907b23035b77183820be925f6f07f978a41dea0c3840053aa7139b42",
+    "source_hash": "54bbac2755d5a2ec845a36260a2bd8556fb149fc437af18e35b1b13e09b4a6fb",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

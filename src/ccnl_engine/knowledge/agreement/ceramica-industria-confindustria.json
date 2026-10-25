@@ -14,16 +14,20 @@
     ],
     "sources": [
       {
+        "document_id": "filctemcgil-it-images-download-contratti-ceramica_piastrelle-240722_ceramiche_ri",
+        "title": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+        "kind": "tabella_retributiva",
         "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
-        "type": "table",
-        "agreement_date": "2024-07-22"
+        "pages": [],
+        "published_on": "2024-07-22"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-02T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-02T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~23k"
   },
@@ -1998,7 +2002,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
     "verification_status": "unverified",
-    "source_hash": "23d60ef0a50fdf2d7eb282019ee1b530afa7bab25d470683cbb83dc39eeb2634",
+    "source_hash": "b474639e157df570bf4dccbc4fceadb914593782196dfa465a13af42ea4b62f3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

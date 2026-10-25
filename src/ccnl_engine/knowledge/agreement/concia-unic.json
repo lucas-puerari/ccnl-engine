@@ -7,7 +7,7 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "73861379f62add1be1f7a737df6defc109936ab713bd17451310891ae1063e70",
+    "source_hash": "a3955b9c005e54608d4f99f17e9ed883e82fd2cfd262c30ad938d7218b6652f6",
     "verification_status": "verified",
     "source_type": "contracting_party"
   },
@@ -25,21 +25,28 @@
     ],
     "sources": [
       {
+        "document_id": "filctemcgil-it-images-download-contratti-concia-240307_concia_rinnovo-20ccnl-202",
+        "title": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+        "kind": "altro",
         "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-        "type": "text",
-        "agreement_date": "2024-03-07"
+        "pages": [],
+        "published_on": "2024-03-07"
       },
       {
+        "document_id": "az-apim-cne-sa-0002-lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-sc",
+        "title": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+        "kind": "altro",
         "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
-        "type": "text",
-        "agreement_date": "2021-01-21"
+        "pages": [],
+        "published_on": "2021-01-21"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-11",
-      "human_reviewed": true
+      "extraction_timestamp": "2026-09-11",
+      "verification_status": "verified",
+      "effective_from": null
     },
     "workers_estimate": "~22.6k"
   },

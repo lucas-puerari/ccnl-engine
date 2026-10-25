@@ -5,7 +5,7 @@
 | **CNEL code** | `C016` |
 | **Sector** | metalmeccanico cooperativo |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2025-07-22 |
 | **Workers (est.)** | ~28k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2025-07-22 |
 | **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2028-06-01 |
 
@@ -170,9 +170,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-07-22 | [↗](https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/) |
-| — | — | — | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=48) |
-| — | — | 2025-07-22 | [↗](https://www.fiom-cgil.it/net/cooperative/trattativa-coop/11211-ccnl-cooperative-incrementi-salariali-e-nuovi-minimi-retributivi) |
+| https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/ | tabella_retributiva | 2025-07-22 | [↗](https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/) |
+| https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=48 | tabella_retributiva | — | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=48) |
+| https://www.fiom-cgil.it/net/cooperative/trattativa-coop/11211-ccnl-cooperative-incrementi-salariali-e-nuovi-minimi-retributivi | tabella_retributiva | 2025-07-22 | [↗](https://www.fiom-cgil.it/net/cooperative/trattativa-coop/11211-ccnl-cooperative-incrementi-salariali-e-nuovi-minimi-retributivi) |
 
 ??? note "Coverage notes"
     RENEWAL: CCNL signed 2025-07-22 by Legacoop Produzione e Servizi, Confcooperative Lavoro e Servizi, AGI Produzione e Lavoro with FIM-CISL, FIOM-CGIL and UILM-UIL. Validity 17/06/2025-30/06/2028. First tranche retroactive to 2025-06-01.

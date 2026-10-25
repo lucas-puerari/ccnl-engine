@@ -16,17 +16,20 @@
     ],
     "sources": [
       {
+        "document_id": "assipan-it-contratto-collettivo-nazionale-lavoro",
+        "title": "Testo Unico CCNL Panificazione e Settori Affini Industria, signed 26 Feb 2025. Economic provisions effective from Feb 1, 2024 (AFAC advance). Art. 50 bis (retribuzione), Art. 51 (scatti di anzianita), Art. 52 (mensilita aggiuntive), Art. 28 (apprendistato).",
+        "kind": "altro",
         "url": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
-        "type": "pdf",
-        "agreement_date": "2025-02-26",
-        "notes": "Testo Unico CCNL Panificazione e Settori Affini Industria, signed 26 Feb 2025. Economic provisions effective from Feb 1, 2024 (AFAC advance). Art. 50 bis (retribuzione), Art. 51 (scatti di anzianita), Art. 52 (mensilita aggiuntive), Art. 28 (apprendistato)."
+        "pages": [],
+        "published_on": "2025-02-26"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-04T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-04T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": "2023-01-01"
     },
     "agreement_date": "2025-02-26",
     "validity": {
@@ -1587,7 +1590,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
     "verification_status": "unverified",
-    "source_hash": "84715a9844637fc49539dff9cc46c7a580be68b97d0acc44c8c96fa29fcf9b8e",
+    "source_hash": "1ea23ac61d9276a7c6dbf7cbae3db71a1ade472b8e13eb69b8c951e18bd7a206",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

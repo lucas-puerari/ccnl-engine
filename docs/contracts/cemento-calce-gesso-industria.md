@@ -5,7 +5,7 @@
 | **CNEL code** | `F032` |
 | **Sector** | industria del cemento calce e gesso |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2025-05-08 |
 | **Workers (est.)** | ~25k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2025-05-08 |
 | **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2027-10-01 |
 
@@ -174,7 +174,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-05-08 | [↗](https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf) |
+| https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf | altro | 2025-05-08 | [↗](https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf) |
 
 ??? note "Coverage notes"
     CCNL signed 08/05/2025, valid 01/01/2025-31/12/2027 (Federbeton+FILLEA-CGIL+FILCA-CISL+FENEAL-UIL). Source: official PDF 248 pages.

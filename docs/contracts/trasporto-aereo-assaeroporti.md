@@ -195,8 +195,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-06-04 | [↗](https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf) |
-| — | — | 2025-06-04 | [↗](https://assaeroporti.com/ccnl-del-trasporto-aereo/) |
+| CCNL Trasporto Aereo — Parte Specifica Gestori Aeroportuali. Salary tables Art. G20–G22, seniority Art. G23, hourly divisor Art. G28, additional months Art. G29–G30, apprenticeship Art. G14. | altro | 2025-06-04 | [↗](https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf) |
+| Assaeroporti CCNL landing page confirming CNEL code I810 and contract scope (Quadri, Impiegati, Operai delle Aziende di Gestione Aeroportuale). | altro | 2025-06-04 | [↗](https://assaeroporti.com/ccnl-del-trasporto-aereo/) |
 
 ??? note "Coverage notes"
     APPRENTICESHIP TRACKS. Art. G14 §16 defines three professionalising tracks (18m, 24m, 36m) with percentage tables by semester. All three are implemented. Art. G14 does not restrict which track applies per destination level; employers and workers choose the duration per PFI. When calling compute() with Apprentice for any covered level, set Apprentice.track to 'professionalizzante_18m', 'professionalizzante_24m', or 'professionalizzante_36m'. Source: CCNL Parte Specifica Gestori Aeroportuali (assaeroporti.com, 04/06/2025), Art. G14 §16 table.

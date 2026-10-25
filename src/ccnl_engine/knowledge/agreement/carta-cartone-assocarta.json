@@ -17,31 +17,44 @@
     "agreement_date": "2026-02-10",
     "sources": [
       {
+        "document_id": "lexplain-it-tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti",
+        "title": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/",
+        "kind": "tabella_retributiva",
         "url": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/",
-        "type": "table",
-        "agreement_date": "2024-07-01"
+        "pages": [],
+        "published_on": "2024-07-01"
       },
       {
+        "document_id": "kitech-it-retribuzione-stipendio-ccnl-aspx",
+        "title": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx",
-        "type": "table",
-        "agreement_date": "2026-04-01"
+        "pages": [],
+        "published_on": "2026-04-01"
       },
       {
+        "document_id": "pisacaneboxes-com-wp-content-uploads-2022-02-ccnl-carta-industria2022-pdf",
+        "title": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+        "kind": "altro",
         "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
-        "type": "contract",
-        "agreement_date": "2021-07-28"
+        "pages": [],
+        "published_on": "2021-07-28"
       },
       {
+        "document_id": "zetaservice-com-wp-content-uploads-2026-02-rinnovo-ccnl-carta-aziende-industrial",
+        "title": "https://www.zetaservice.com/wp-content/uploads/2026/02/RINNOVO-CCNL-CARTA-AZIENDE-INDUSTRIALI-G022.pdf",
+        "kind": "altro",
         "url": "https://www.zetaservice.com/wp-content/uploads/2026/02/RINNOVO-CCNL-CARTA-AZIENDE-INDUSTRIALI-G022.pdf",
-        "type": "renewal_summary",
-        "agreement_date": "2026-02-10"
+        "pages": [],
+        "published_on": "2026-02-10"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-02T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-02T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~35k"
   },
@@ -2773,7 +2786,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
     "verification_status": "unverified",
-    "source_hash": "2668fc7713b2a457fbf6eb5d88dce8df9eb2c3f38319aecaba5dd5b21b121d9d",
+    "source_hash": "0eacd0aad99c944623e1d715f43acecc78ab383eca349bd05e4611c6146f0868",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

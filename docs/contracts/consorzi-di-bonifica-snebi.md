@@ -157,9 +157,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-05-21 | [↗](https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/) |
-| — | — | 2025-05-21 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=286) |
-| — | — | 2025-05-21 | [↗](https://ilccnl.it/contratto/ccnl/consorzi-di-bonifica) |
+| https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/ | tabella_retributiva | 2025-05-21 | [↗](https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/) |
+| https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=286 | tabella_retributiva | 2025-05-21 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=286) |
+| https://ilccnl.it/contratto/ccnl/consorzi-di-bonifica | altro | 2025-05-21 | [↗](https://ilccnl.it/contratto/ccnl/consorzi-di-bonifica) |
 
 ??? note "Coverage notes"
     Salary model: split (paga base + contingenza) per ilccnl.it, contingenza frozen at EUR 0.00, terzo elemento 0.00 (confirmed via ilccnl.it for D100, D104, D107). base_salary is the full minimo tabellare. Note: ilccnl.it tabelle show the pre-2000 cohort (e.g. D100 Jan2026=1513.09); post-2000 values (D100 Jan2026=1534.16) are sourced from redigo.info and kitech=286.

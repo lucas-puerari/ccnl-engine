@@ -14,21 +14,28 @@
     ],
     "sources": [
       {
+        "document_id": "confprofessioni-eu-wp-content-uploads-2025-11-ccnl-studi-2024-integrale-definiti",
+        "title": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+        "kind": "altro",
         "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
-        "type": "text",
-        "agreement_date": "2024-02-16"
+        "pages": [],
+        "published_on": "2024-02-16"
       },
       {
+        "document_id": "confprofessioni-eu-wp-content-uploads-2026-07-00274046_ccnl_studi_professionali_",
+        "title": "https://www.confprofessioni.eu/wp-content/uploads/2026/07/00274046_CCNL_Studi_Professionali_2026.04.10_completo.pdf",
+        "kind": "altro",
         "url": "https://www.confprofessioni.eu/wp-content/uploads/2026/07/00274046_CCNL_Studi_Professionali_2026.04.10_completo.pdf",
-        "type": "text",
-        "agreement_date": "2024-02-16"
+        "pages": [],
+        "published_on": "2024-02-16"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-01T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-01T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~350k"
   },
@@ -2411,7 +2418,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "2680313de4b1b53cda3004c4fc7ee27cc8b85128a8c090ea97210af5f85a9ad0",
+    "source_hash": "1ae846f1e991df0b7f810a85c25d45b51c8ba3d2601b4706b0b49161941d1327",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -17,26 +17,36 @@
     ],
     "sources": [
       {
+        "document_id": "confcommerciomilano-it-export-sites-unione-doc-contratti_lavoro-contrattazione_c",
+        "title": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+        "kind": "tabella_retributiva",
         "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
-        "type": "table",
-        "agreement_date": "2024-06-26"
+        "pages": [],
+        "published_on": "2024-06-26"
       },
       {
+        "document_id": "fipe-it-wp-content-uploads-2024-06-contratto-ccnl-05_06_24-pdf",
+        "title": "https://www.fipe.it/wp-content/uploads/2024/06/Contratto-CCNL-05_06_24.pdf",
+        "kind": "altro",
         "url": "https://www.fipe.it/wp-content/uploads/2024/06/Contratto-CCNL-05_06_24.pdf",
-        "type": "text",
-        "agreement_date": "2024-06-05"
+        "pages": [],
+        "published_on": "2024-06-05"
       },
       {
+        "document_id": "confcommerciomilano-it-export-sites-unione-doc-contratti_lavoro-contrattazione_c",
+        "title": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+        "kind": "altro",
         "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
-        "type": "text",
-        "agreement_date": "2018-02-08"
+        "pages": [],
+        "published_on": "2018-02-08"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-03T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-03T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~350k"
   },
@@ -2482,7 +2492,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "ce32344d237023d29cb23d871efe45c7fc78c0c5af73d64b30313e088f6c8318",
+    "source_hash": "8cfe854ace698127c97e36f538682b92defe8e981dd2bd176d185ebec026d6fd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

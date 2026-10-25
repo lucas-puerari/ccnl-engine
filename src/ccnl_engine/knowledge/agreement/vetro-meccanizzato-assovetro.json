@@ -46,8 +46,10 @@
     ],
     "extraction": {
       "method": "manual",
-      "timestamp": "2026-09-17T00:00:00",
-      "human_reviewed": true
+      "model": null,
+      "extraction_timestamp": "2026-09-17T00:00:00",
+      "verification_status": "verified",
+      "effective_from": "2026-01-01"
     }
   },
   "levels": [
@@ -1388,6 +1390,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "f59115d99b1d7672910a29aeee7e61860b9dda1ba87173e9fc37cc830cec8b13"
+    "source_hash": "d8fdd51cfb3e0040b0d2f2b1bef9f3765bcbc7b0e306f14cd6a31cc397d323d0"
   }
 }

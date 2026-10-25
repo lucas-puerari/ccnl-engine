@@ -5,7 +5,7 @@
 | **CNEL code** | `E015` |
 | **Sector** | panificazione e alimentazione artigianato |
 | **Tax sector** | `artigianato` |
-| **Last renewal** | — |
+| **Last renewal** | 2024-06-06 |
 | **Workers (est.)** | ~90k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2024-06-06 |
 | **Last review** | 2026-10-15 |
 | **Latest salary tranche** | 2026-04-01 |
 
@@ -208,8 +208,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-06-06 | [↗](https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf) |
-| — | — | — | [↗](https://www.artser.it/approfondimenti/accordo-di-rinnovo-del-ccnl-area-alimentazione-e-panificazione.html) |
+| https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf | altro | 2024-06-06 | [↗](https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf) |
+| https://www.artser.it/approfondimenti/accordo-di-rinnovo-del-ccnl-area-alimentazione-e-panificazione.html | tabella_retributiva | — | [↗](https://www.artser.it/approfondimenti/accordo-di-rinnovo-del-ccnl-area-alimentazione-e-panificazione.html) |
 
 ??? note "Coverage notes"
     SALARY MODEL: unified TOTALE as base_salary. Each level's TOTALE = Tabellare conglobato (contingenza+EDR absorbed, per Art. 32 + conglobamento clause) + Indennità Speciale per Panificazione (Art. 33, fixed per level since Aug 1995) + ERR (0.44 EUR/month, fixed). Ind.Speciale confirmed from Art. 33 table in UILA CCNL PDF: A1S=94.77, A1=88.06, A2=82.63, A3=75.92, A4=72.05, B1=92.19, B2=76.44, B3S=74.87, B3=72.56, B4=68.69. ERR=0.44. All folded into base_salary; fixed_allowances=[] for all levels. Cross-verified: artser.it tabellare A2 Apr 2024 = 1705.54; 1705.54 + 82.63 + 0.44 = 1788.61 exact match across all 4 tranches (diff constant 83.07 EUR). Art. 31 confirms hourly divisor 173.

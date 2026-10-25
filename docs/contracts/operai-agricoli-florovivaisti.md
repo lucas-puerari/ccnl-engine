@@ -258,10 +258,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2026-05-28 | [↗](https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/) |
-| — | — | 2026-01-01 | [↗](https://ciatreviso.it/contributi-inps-inail-2026-agricoli-aliquote-e-le-scadenze-per-operai-otd-e-oti/) |
-| — | — | 2024-11-13 | [↗](https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2024/11/Circolare_14697/Allegati/15379_Circolare-numero-94-del-13-11-2024_Allegato-n-1.pdf) |
-| — | — | 2025-01-01 | [↗](https://www.dottrinalavoro.it/wp-content/uploads/2024/12/Retribuzioni-al-1_1_2025.pdf) |
+| https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/ | tabella_retributiva | 2026-05-28 | [↗](https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/) |
+| https://ciatreviso.it/contributi-inps-inail-2026-agricoli-aliquote-e-le-scadenze-per-operai-otd-e-oti/ | inps_circolare | 2026-01-01 | [↗](https://ciatreviso.it/contributi-inps-inail-2026-agricoli-aliquote-e-le-scadenze-per-operai-otd-e-oti/) |
+| INPS Circolare n. 94 del 13/11/2024 — Allegato 1: minimi salariali mensili di area in vigore dall'1.1.2023 (Area1=1389.15, Area2=1266.90, Area3=944.62). Fonte primaria per periodi 2022-2025. | inps_circolare | 2024-11-13 | [↗](https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2024/11/Circolare_14697/Allegati/15379_Circolare-numero-94-del-13-11-2024_Allegato-n-1.pdf) |
+| Dottrinalavoro — Retribuzioni al 1° gennaio 2025: minimi OTI agricoltura (Area1=1458.61, Area2=1330.25, Area3=991.85). Confermato coerente con +5% su valori INPS Jan 2023. | tabella_retributiva | 2025-01-01 | [↗](https://www.dottrinalavoro.it/wp-content/uploads/2024/12/Retribuzioni-al-1_1_2025.pdf) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated retribuzione tabellare minima (paga base + contingenza + EDR merged since 01/01/2009). Contingenza = 0.00 and EDR = 0.00 per ilccnl.it table. Single base_salary per area per period. Source: contratticcnl.it tabelle retributive, confirmed by research from ilccnl.it showing zero contingenza columns.

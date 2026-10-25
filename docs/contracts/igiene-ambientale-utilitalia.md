@@ -205,9 +205,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-12-09 | [↗](https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551) |
-| — | — | 2025-12-09 | [↗](https://www.leggeinchiaro.it/ccnl/K540) |
-| — | — | 2025-12-09 | [↗](https://www.wolterskluwer.com/it-it/solutions/oneline-lavoro) |
+| Salary tables at 01/02/2026, seniority increments and max counts for all 16 levels, hourly divisor 169. Retrieved 2026-09-04. | altro | 2025-12-09 | [↗](https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551) |
+| Salary tables at 01/02/2026 cross-checked. Level amounts confirmed. Retrieved 2026-09-04. | altro | 2025-12-09 | [↗](https://www.leggeinchiaro.it/ccnl/K540) |
+| Full CCNL text (Wolters Kluwer One Lavoro). Art. 14 apprenticeship table, Art. 28 hourly divisor 169, Art. 30 seniority (triennale), Art. 31 tredicesima + quattordicesima, Art. 32 allowances (EDR EUR 10.33, indennita integrativa EUR 50.00). Retrieved 2026-09-04. | altro | 2025-12-09 | [↗](https://www.wolterskluwer.com/it-it/solutions/oneline-lavoro) |
 
 ??? note "Coverage notes"
     CONGLOBATED SALARY. Salary amounts are modelled as a single conglobated figure (paga base parametrale inclusive of contingenza). No official hourly-rate column is published for K540 by the available sources; lavoro-economia.it returns a single Minimo column (not split Base/Contingenza as it does for contracts with split components). The conglobated model is consistent with the source format.

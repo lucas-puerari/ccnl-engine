@@ -106,9 +106,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2026-02-23 | [↗](https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/) |
-| — | — | 2026-02-23 | [↗](https://www.logospa.it/contratto-dirigenza-funzioni-locali-2022-2024-tutte-le-novita-su-stipendi-e-normativa/) |
-| — | — | — | [↗](https://ilccnl.it/ccnl/dirigenti---funzioni-locali/dirigenti---enti-locali-dal-010195) |
+| Riepilogo CCNL Area Dirigenza Funzioni Locali 2022-2024. Conferma tabellare 50.005,77€/anno per dirigenti e segretari fascia A/B, incremento +230€/mese da 1/1/2024, signatari. | altro | 2026-02-23 | [↗](https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/) |
+| Dettaglio incrementi: dirigenti RAL +491€/mese totale, segretari +400€, dirigenti PTA +377€ (comprensivi di tabellare + posizione). | altro | 2026-02-23 | [↗](https://www.logospa.it/contratto-dirigenza-funzioni-locali-2022-2024-tutte-le-novita-su-stipendi-e-normativa/) |
+| SIMPLIFICATION: codice CNEL S125 da fonte secondaria (ilccnl.it). Non riportato nel testo ufficiale ARAN. | altro | — | [↗](https://ilccnl.it/ccnl/dirigenti---funzioni-locali/dirigenti---enti-locali-dal-010195) |
 
 ??? note "Coverage notes"
     Retribuzione di posizione: variabile per tipo incarico e ente, non modellata (SIMPLIFICATION). Totale mensile medio include posizione: +491€ RAL, +400€ segretari, +377€ PTA (include tabellare + posizione + altro).

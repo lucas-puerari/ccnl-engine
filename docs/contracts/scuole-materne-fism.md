@@ -5,7 +5,7 @@
 | **CNEL code** | `T271` |
 | **Sector** | istruzione privata cattolica per l'infanzia |
 | **Tax sector** | `terziario` |
-| **Last renewal** | — |
+| **Last renewal** | 2025-05-28 |
 | **Workers (est.)** | ~30k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2025-05-28 |
 | **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2027-09-01 |
 
@@ -167,8 +167,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-05-28 | [↗](https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf) |
-| — | — | 2026-07-07 | [↗](https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf) |
+| https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf | altro | 2025-05-28 | [↗](https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf) |
+| https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf | altro | 2026-07-07 | [↗](https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf) |
 
 ??? note "Coverage notes"
     CCNL FISM signed 28/05/2025 (sede ASI). Validity 01/09/2023-31/08/2027. Economic accord for 2026-2027 signed 07/07/2026.

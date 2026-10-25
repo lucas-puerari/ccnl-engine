@@ -15,21 +15,28 @@
     "agreement_date": "2025-10-30",
     "sources": [
       {
+        "document_id": "confedilizia-it-retribuzioni-dipendenti-da-proprietari-di-fabbricati",
+        "title": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
+        "kind": "tabella_retributiva",
         "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
-        "type": "table",
-        "agreement_date": "2025-10-30"
+        "pages": [],
+        "published_on": "2025-10-30"
       },
       {
+        "document_id": "lexplain-it-ccnl-dipendenti-portieri-fabbricati-aumenti-stipendio",
+        "title": "https://lexplain.it/ccnl-dipendenti-portieri-fabbricati-aumenti-stipendio/",
+        "kind": "tabella_retributiva",
         "url": "https://lexplain.it/ccnl-dipendenti-portieri-fabbricati-aumenti-stipendio/",
-        "type": "table",
-        "agreement_date": null
+        "pages": [],
+        "published_on": null
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-06T00:00:00",
-      "human_reviewed": true
+      "extraction_timestamp": "2026-09-06T00:00:00",
+      "verification_status": "verified",
+      "effective_from": null
     },
     "workers_estimate": "~40k"
   },
@@ -1383,7 +1390,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "682701f0b079e21acbaa1679b3e8fad9b41c8d6d54fe9c4cc984729628bb1a2c",
+    "source_hash": "a9a37f2466b764544a07b12a4d2c805ad7ff008beb60376ae505a89e938cc11b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

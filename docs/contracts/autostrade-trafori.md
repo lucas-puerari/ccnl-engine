@@ -163,7 +163,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2023-01-01 | [↗](https://www.aiscat.it/contratto-collettivo-autostrade-trafori) |
+| 2023 CCNL: tranches 01/01/2023, 01/06/2023, 01/01/2024, 01/01/2025. 2026 CCNL renewal: tranches 01/08/2026, 01/01/2027, 01/08/2027, 01/01/2028. Fixed components: contingenza (frozen 1991), EDR 1991 (13m), EDR 1997 (frozen), IDR 2021 (from 01/08/2023). Research via AI-assisted extraction from AISCAT/CCNL sources. | tabella_retributiva | 2023-01-01 | [↗](https://www.aiscat.it/contratto-collettivo-autostrade-trafori) |
 
 ??? note "Coverage notes"
     CCNL I192 — Autostrade e Trafori Concessionari. Split model: paga base (minimo tabellare) + CONTINGENZA (frozen, 14m) + EDR 1991 (13m, EUR 10.33 uniform) + EDR 1997 (frozen, 14m, per-level) + IDR 2021 (14m, 2 tranches). AQ level has additional Indennità di Funzione EUR 72.30/month (14m). Seniority: 9 biennali.

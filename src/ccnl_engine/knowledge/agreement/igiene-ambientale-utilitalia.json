@@ -24,29 +24,36 @@
     ],
     "sources": [
       {
+        "document_id": "lavoro-economia-it-ccnl-ccnl-aspx-c-551",
+        "title": "Salary tables at 01/02/2026, seniority increments and max counts for all 16 levels, hourly divisor 169. Retrieved 2026-09-04.",
+        "kind": "altro",
         "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
-        "type": "web",
-        "agreement_date": "2025-12-09",
-        "notes": "Salary tables at 01/02/2026, seniority increments and max counts for all 16 levels, hourly divisor 169. Retrieved 2026-09-04."
+        "pages": [],
+        "published_on": "2025-12-09"
       },
       {
+        "document_id": "leggeinchiaro-it-ccnl-k540",
+        "title": "Salary tables at 01/02/2026 cross-checked. Level amounts confirmed. Retrieved 2026-09-04.",
+        "kind": "altro",
         "url": "https://www.leggeinchiaro.it/ccnl/K540",
-        "type": "web",
-        "agreement_date": "2025-12-09",
-        "notes": "Salary tables at 01/02/2026 cross-checked. Level amounts confirmed. Retrieved 2026-09-04."
+        "pages": [],
+        "published_on": "2025-12-09"
       },
       {
+        "document_id": "wolterskluwer-com-it-it-solutions-oneline-lavoro",
+        "title": "Full CCNL text (Wolters Kluwer One Lavoro). Art. 14 apprenticeship table, Art. 28 hourly divisor 169, Art. 30 seniority (triennale), Art. 31 tredicesima + quattordicesima, Art. 32 allowances (EDR EUR 10.33, indennita integrativa EUR 50.00). Retrieved 2026-09-04.",
+        "kind": "altro",
         "url": "https://www.wolterskluwer.com/it-it/solutions/oneline-lavoro",
-        "type": "official_pdf",
-        "agreement_date": "2025-12-09",
-        "notes": "Full CCNL text (Wolters Kluwer One Lavoro). Art. 14 apprenticeship table, Art. 28 hourly divisor 169, Art. 30 seniority (triennale), Art. 31 tredicesima + quattordicesima, Art. 32 allowances (EDR EUR 10.33, indennita integrativa EUR 50.00). Retrieved 2026-09-04."
+        "pages": [],
+        "published_on": "2025-12-09"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-04T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-04T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": "2025-01-01"
     },
     "workers_estimate": "~65k"
   },
@@ -4238,7 +4245,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "7c9a71722df5e53ca95cc25e25f5af243b5986dcaedef7aafeb58539a42b2dcd",
+    "source_hash": "6bfb966c50a77c58ebf3411dbc8d3c2b0c880c2390bf245511f42d39ee4106a7",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

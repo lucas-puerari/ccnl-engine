@@ -15,16 +15,20 @@
     ],
     "sources": [
       {
+        "document_id": "cdcpcnelblg01sa-blob-core-windows-net-archivio-2023--20098-pdf",
+        "title": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+        "kind": "altro",
         "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
-        "type": "text",
-        "agreement_date": "2023-05-26"
+        "pages": [],
+        "published_on": "2023-05-26"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-03",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-03",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~17k"
   },
@@ -1197,7 +1201,7 @@
     "effective_until": null,
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
     "verification_status": "unverified",
-    "source_hash": "115ed82d500def7ee8b9bcf95b8b08cdb3d78252138281cb1cb39b0b78279d66",
+    "source_hash": "cd205fde8943ecfdfc7281fbf73c084df055326fad181ecb462d7b3113a0f0f1",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

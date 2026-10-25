@@ -15,17 +15,20 @@
     "agreement_date": "2023-01-01",
     "sources": [
       {
+        "document_id": "aiscat-it-contratto-collettivo-autostrade-trafori",
+        "title": "2023 CCNL: tranches 01/01/2023, 01/06/2023, 01/01/2024, 01/01/2025. 2026 CCNL renewal: tranches 01/08/2026, 01/01/2027, 01/08/2027, 01/01/2028. Fixed components: contingenza (frozen 1991), EDR 1991 (13m), EDR 1997 (frozen), IDR 2021 (from 01/08/2023). Research via AI-assisted extraction from AISCAT/CCNL sources.",
+        "kind": "tabella_retributiva",
         "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori",
-        "type": "tabella_retributiva",
-        "agreement_date": "2023-01-01",
-        "notes": "2023 CCNL: tranches 01/01/2023, 01/06/2023, 01/01/2024, 01/01/2025. 2026 CCNL renewal: tranches 01/08/2026, 01/01/2027, 01/08/2027, 01/01/2028. Fixed components: contingenza (frozen 1991), EDR 1991 (13m), EDR 1997 (frozen), IDR 2021 (from 01/08/2023). Research via AI-assisted extraction from AISCAT/CCNL sources."
+        "pages": [],
+        "published_on": "2023-01-01"
       }
     ],
     "extraction": {
-      "timestamp": "2026-09-06",
-      "human_reviewed": false,
       "method": "ai",
-      "model": "claude-sonnet-4-6"
+      "model": "claude-sonnet-4-6",
+      "extraction_timestamp": "2026-09-06",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~15k"
   },
@@ -4149,7 +4152,7 @@
     "effective_until": null,
     "source": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori",
     "verification_status": "unverified",
-    "source_hash": "3da9e2d7fa688298b7a0616351a5b34b6c5168b54299911dbb5a59f6e45d7abe",
+    "source_hash": "6e0ca27924043a7e11a84bf763d67b456702654e67bd4107700e871992c48678",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

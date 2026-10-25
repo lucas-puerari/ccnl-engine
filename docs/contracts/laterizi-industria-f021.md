@@ -5,7 +5,7 @@
 | **CNEL code** | `F021` |
 | **Sector** | industria |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2022-05-31 |
 | **Workers (est.)** | ~17k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2022-05-31 |
 | **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2028-07-01 |
 
@@ -177,11 +177,11 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2022-05-31 | [↗](https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf) |
-| — | — | 2025-10-31 | [↗](https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LATERIZI/Ipotesi_di_Accordo_Rinnovo_CCNL_Laterizi_e_manufatti_31.10.2025.pdf) |
-| — | — | 2022-05-31 | [↗](https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/Tabella-retributiva-CCNL-Laterizi-INDUSTRIA-DA-FEBBRAIO-2025.pdf) |
-| — | — | 2020-02-12 | [↗](https://lawinsider.com/it/contracts/euRWxUzbye9) |
-| — | — | — | [↗](https://www.thaler.it/assets/files/Transparenzdekret/Laterizi_-_Aziende_industriali.pdf) |
+| https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf | altro | 2022-05-31 | [↗](https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf) |
+| https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LATERIZI/Ipotesi_di_Accordo_Rinnovo_CCNL_Laterizi_e_manufatti_31.10.2025.pdf | altro | 2025-10-31 | [↗](https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LATERIZI/Ipotesi_di_Accordo_Rinnovo_CCNL_Laterizi_e_manufatti_31.10.2025.pdf) |
+| https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/Tabella-retributiva-CCNL-Laterizi-INDUSTRIA-DA-FEBBRAIO-2025.pdf | tabella_retributiva | 2022-05-31 | [↗](https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/Tabella-retributiva-CCNL-Laterizi-INDUSTRIA-DA-FEBBRAIO-2025.pdf) |
+| https://lawinsider.com/it/contracts/euRWxUzbye9 | altro | 2020-02-12 | [↗](https://lawinsider.com/it/contracts/euRWxUzbye9) |
+| https://www.thaler.it/assets/files/Transparenzdekret/Laterizi_-_Aziende_industriali.pdf | tabella_retributiva | — | [↗](https://www.thaler.it/assets/files/Transparenzdekret/Laterizi_-_Aziende_industriali.pdf) |
 
 ??? note "Coverage notes"
     SALARY MODEL: split. base_salary = paga tabellare (TEM), varying by level and tranche. fixed_allowances per level: CONTINGENZA (frozen since 1993 Protocol) + EDR (10.33 EUR, all levels). Level AS also carries Indennita di funzione quadri (51.65 EUR) — applied to ASQ level only. Source: FILCA-CISL tabella retributiva (2022 and 2025 renewals); thaler.it parametri contrattuali.

@@ -5,7 +5,7 @@
 | **CNEL code** | `T131` |
 | **Sector** | servizi socio-assistenziali |
 | **Tax sector** | `terziario` |
-| **Last renewal** | — |
+| **Last renewal** | 2025-07-23 |
 | **Workers (est.)** | ~120k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2025-07-23 |
 | **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2025-08-01 |
 
@@ -167,7 +167,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-07-23 | [↗](https://snalv.it/docs/anaste25/pdf6.pdf) |
+| https://snalv.it/docs/anaste25/pdf6.pdf | altro | 2025-07-23 | [↗](https://snalv.it/docs/anaste25/pdf6.pdf) |
 
 ??? note "Coverage notes"
     RENEWAL: CCNL signed 2025-07-23, triennio 2023-2025. Economic effects from 2025-08-01. Una tantum non modelled (non-recurring).

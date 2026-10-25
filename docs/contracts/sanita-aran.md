@@ -125,8 +125,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-10-27 | [↗](https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf) |
-| — | — | 2022-11-02 | [↗](https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf) |
+| CCNL Comparto Sanità 2022-2024 signed definitively on 27 October 2025 (FP CGIL and UIL FPL did not sign). Tabella 2a (p. 107), art. 59 (divisors), art. 60 (tredicesima), art. 35 (ferie), art. 40 (malattia). | altro | 2025-10-27 | [↗](https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf) |
+| CCNL 2019-2021. Tabella D (p. 167), art. 99 (classification from 1.1.2023), art. 100 (elevata qualificazione), art. 47 (straordinario). | altro | 2022-11-02 | [↗](https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf) |
 
 ??? note "Coverage notes"
     Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.

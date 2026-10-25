@@ -17,21 +17,28 @@
     ],
     "sources": [
       {
+        "document_id": "uila-eu-web-wp-content-uploads-2022-04-2024-06-06-ccnl-area-alimentazione-artigi",
+        "title": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+        "kind": "altro",
         "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
-        "type": "official_contract",
-        "agreement_date": "2024-06-06"
+        "pages": [],
+        "published_on": "2024-06-06"
       },
       {
+        "document_id": "artser-it-approfondimenti-accordo-di-rinnovo-del-ccnl-area-alimentazione-e-panif",
+        "title": "https://www.artser.it/approfondimenti/accordo-di-rinnovo-del-ccnl-area-alimentazione-e-panificazione.html",
+        "kind": "tabella_retributiva",
         "url": "https://www.artser.it/approfondimenti/accordo-di-rinnovo-del-ccnl-area-alimentazione-e-panificazione.html",
-        "type": "table",
-        "agreement_date": null
+        "pages": [],
+        "published_on": null
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-02T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-02T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~90k"
   },
@@ -1997,7 +2004,7 @@
     "effective_until": null,
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "dda4a5e37516dab593e31ed8fdfcc6fc11b88207535e16ed180e041d183934c3",
+    "source_hash": "63de83e9c81d63f6918c68b4181b0bf9a403ce721ae5dd603a0a04996ae29da1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

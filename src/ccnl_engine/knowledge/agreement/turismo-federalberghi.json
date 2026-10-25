@@ -20,29 +20,36 @@
     },
     "sources": [
       {
+        "document_id": "intranet-federalberghi-it-pubblicazioni-ccnl-20turismo-ccnl-20turismo-205-20lugl",
+        "title": "Ipotesi di accordo 5 luglio 2024 (scan, also CNEL id 194291): art. 152 tranches lug 2024 - nov 2027, artt. 48, 160, 161, 199.",
+        "kind": "altro",
         "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-        "type": "accordo_di_rinnovo",
-        "agreement_date": "2024-07-05",
-        "notes": "Ipotesi di accordo 5 luglio 2024 (scan, also CNEL id 194291): art. 152 tranches lug 2024 - nov 2027, artt. 48, 160, 161, 199."
+        "pages": [],
+        "published_on": "2024-07-05"
       },
       {
+        "document_id": "intranet-federalberghi-it-pubblicazioni-ccnl-20turismo-ccnl-20turismo-2018-20gen",
+        "title": "Renewal of 18 January 2014 (also CNEL id 20): art. 152 table in force from 1 April 2016; art. 14 bis of the apprenticeship accord.",
+        "kind": "altro",
         "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%2018%20gennaio%202014/ccnl%20turismo%2018%2001%2014%20versione%20guida.pdf",
-        "type": "accordo_di_rinnovo",
-        "agreement_date": "2014-01-18",
-        "notes": "Renewal of 18 January 2014 (also CNEL id 20): art. 152 table in force from 1 April 2016; art. 14 bis of the apprenticeship accord."
+        "pages": [],
+        "published_on": "2014-01-18"
       },
       {
+        "document_id": "uiltucs-it-pdf-turismo-ccnl_turismo_confcommercio_2010-pdf",
+        "title": "CCNL Turismo 20 febbraio 2010: the articles not replaced in 2014 and 2024 (58, 129, 145, 150, 151, 158, 162, 219, 220, 228).",
+        "kind": "altro",
         "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
-        "type": "testo_unico_ccnl",
-        "agreement_date": "2010-02-20",
-        "notes": "CCNL Turismo 20 febbraio 2010: the articles not replaced in 2014 and 2024 (58, 129, 145, 150, 151, 158, 162, 219, 220, 228)."
+        "pages": [],
+        "published_on": "2010-02-20"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-03",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-03",
+      "verification_status": "unverified",
+      "effective_from": "2024-07-01"
     },
     "workers_estimate": "~220k"
   },
@@ -3233,7 +3240,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "935f9fe5c29163200987c5d6dbd8d7d74882c8b950b99b3934887d77e37220fa",
+    "source_hash": "4c501c03552fa41d94440ac27ecc2fefe940d5aca5cc2fe6aa639cfb2a14c331",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

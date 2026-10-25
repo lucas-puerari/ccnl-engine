@@ -18,35 +18,44 @@
     "agreement_date": "2026-07-01",
     "sources": [
       {
+        "document_id": "aranagenzia-it-wp-content-uploads-2026-07-2026_07_01_ccnl_c_ir_2025-2027-pdf",
+        "title": "CCNL 2025-2027 sui principali aspetti del trattamento economico, signed definitively on 1 July 2026 by ARAN and every union of the comparto. Tabella A2 (pp. 18-19): tabellare from 1.1.2025, 1.1.2026, 1.1.2027.",
+        "kind": "altro",
         "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
-        "type": "fonte_primaria",
-        "agreement_date": "2026-07-01",
-        "notes": "CCNL 2025-2027 sui principali aspetti del trattamento economico, signed definitively on 1 July 2026 by ARAN and every union of the comparto. Tabella A2 (pp. 18-19): tabellare from 1.1.2025, 1.1.2026, 1.1.2027."
+        "pages": [],
+        "published_on": "2026-07-01"
       },
       {
+        "document_id": "aranagenzia-it-wp-content-uploads-2025-12-2025_12_23_comp-ir_2022-2024-pdf",
+        "title": "CCNL 2022-2024 (FLC CGIL did not sign). Tabella A2 (pp. 50-51): tabellare from 1.1.2024.",
+        "kind": "altro",
         "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
-        "type": "fonte_primaria",
-        "agreement_date": "2025-12-23",
-        "notes": "CCNL 2022-2024 (FLC CGIL did not sign). Tabella A2 (pp. 50-51): tabellare from 1.1.2024."
+        "pages": [],
+        "published_on": "2025-12-23"
       },
       {
+        "document_id": "aranagenzia-it-wp-content-uploads-2024-01-2024_01_18_comp-ir_2019-2021-pdf",
+        "title": "CCNL 2019-2021. Tabelle C1 and E1.5 (pp. 246, 256): tabellare from 1.2.2023.",
+        "kind": "altro",
         "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
-        "type": "fonte_primaria",
-        "agreement_date": "2024-01-18",
-        "notes": "CCNL 2019-2021. Tabelle C1 and E1.5 (pp. 246, 256): tabellare from 1.2.2023."
+        "pages": [],
+        "published_on": "2024-01-18"
       },
       {
+        "document_id": "aranagenzia-it-wp-content-uploads-2024-07-ccnl-scuola-2006-2009-pdf",
+        "title": "CCNL Scuola 2006-2009, still in force for ferie (art. 13), malattia (art. 17) and tredicesima (art. 80).",
+        "kind": "altro",
         "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf",
-        "type": "fonte_primaria",
-        "agreement_date": "2007-11-29",
-        "notes": "CCNL Scuola 2006-2009, still in force for ferie (art. 13), malattia (art. 17) and tredicesima (art. 80)."
+        "pages": [],
+        "published_on": "2007-11-29"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-03",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-03",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~1,2M",
     "public_pension_fund": "ctps",
@@ -1193,7 +1202,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "7e2589641b59e07851a96a0e44242bfed05e26d183623c6ef45ab4b4194f071c",
+    "source_hash": "ce78f17c39291046465cfec1a8b41aef49509537db61d5046dc184ff3bd6d6a2",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

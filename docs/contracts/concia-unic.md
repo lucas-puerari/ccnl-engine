@@ -5,7 +5,7 @@
 | **CNEL code** | `B101` |
 | **Sector** | industria |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2024-03-07 |
 | **Workers (est.)** | ~22.6k |
 | **Ruleset version** | `2026.1` |
 | **Readiness** | 👁 Reviewed |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2024-03-07 |
 | **Last review** | 2026-10-12 |
 | **Latest salary tranche** | 2026-01-01 |
 
@@ -192,8 +192,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-03-07 | [↗](https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf) |
-| — | — | 2021-01-21 | [↗](https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617) |
+| https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf | altro | 2024-03-07 | [↗](https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf) |
+| https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617 | altro | 2021-01-21 | [↗](https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617) |
 
 ??? note "Coverage notes"
     SALARY MODEL: split. base_salary = minimo tabellare (Allegato n. 1, CCNL 07/03/2024). EDR = 10.33 EUR (Accordo 31/07/1992, all levels). IPO = Indennità di posizione organizzativa, level-specific time series per tranche (levels B1, C1, D1, E1, E2). IND_FUNZIONE = 25.82 EUR (level A only, Indennità di funzione, art. 47 CCNL 2017). Back-calculation: D1 total 01/01/2026 = 2041.99+123.67+10.33 = 2175.99; kitech confirms 2176.00 (rounding). B1 total = 2494.04+222.01+10.33 = 2726.38; kitech confirms 2726.38. A total = 2937.60+25.82+10.33 = 2973.75; kitech confirms 2973.75.

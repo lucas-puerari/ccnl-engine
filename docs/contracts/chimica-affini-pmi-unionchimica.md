@@ -166,7 +166,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2026-02-23 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=181) |
+| Jan 2026 tabelle retributive for CNEL B018 Unionchimica Confapi | tabella_retributiva | 2026-02-23 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=181) |
 
 ??? note "Coverage notes"
     SALARY MODEL: split. base_salary = minimum contractual (minimo tabellare). Levels H, G, F, E carry fixed_allowances: H has indennità di funzione (IND_FUN, EUR 160.00); G, F, E have aggiunta personale (AGG_PERSONALE, EUR 25.82 / 15.49 / 5.16). All allowances are TFR-relevant and contribution-relevant (default).

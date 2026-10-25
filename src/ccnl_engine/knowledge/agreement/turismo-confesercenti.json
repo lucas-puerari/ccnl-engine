@@ -20,29 +20,36 @@
     "agreement_date": "2024-07-22",
     "sources": [
       {
+        "document_id": "lavoro-economia-it-ccnl-ccnl-aspx-c-257",
+        "title": "Full alberghi sector table, all 5 tranches. Jul 2024 - Nov 2027.",
+        "kind": "tabella_retributiva",
         "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
-        "type": "tabella_retributiva",
-        "agreement_date": "2024-07-22",
-        "notes": "Full alberghi sector table, all 5 tranches. Jul 2024 - Nov 2027."
+        "pages": [],
+        "published_on": "2024-07-22"
       },
       {
+        "document_id": "kitech-it-retribuzione-stipendio-ccnl-aspx-codicecateg-82",
+        "title": "Confirms alberghi table at 01/05/2026.",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=82",
-        "type": "tabella_retributiva",
-        "agreement_date": "2024-07-22",
-        "notes": "Confirms alberghi table at 01/05/2026."
+        "pages": [],
+        "published_on": "2024-07-22"
       },
       {
+        "document_id": "redigo-info-2024-07-24-ccnl-turismo-confesercenti-il-rinnovo-consolida-il-contra",
+        "title": "Tranche schedule and seniority cadence confirmed.",
+        "kind": "altro",
         "url": "https://www.redigo.info/2024/07/24/ccnl-turismo-confesercenti-il-rinnovo-consolida-il-contratto-unico/",
-        "type": "comunicato",
-        "agreement_date": "2024-07-22",
-        "notes": "Tranche schedule and seniority cadence confirmed."
+        "pages": [],
+        "published_on": "2024-07-22"
       }
     ],
     "extraction": {
-      "timestamp": "2026-09-06",
-      "human_reviewed": false,
       "method": "ai",
-      "model": "claude-sonnet-4-6"
+      "model": "claude-sonnet-4-6",
+      "extraction_timestamp": "2026-09-06",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "—"
   },
@@ -1727,7 +1734,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "84e06493677bcb776fa8d6e99ee720c716c0111825a93eea49605768e43d87e7",
+    "source_hash": "c357b19f3fe19feae84d0e1ce1e39212826dc36da045144fb2ea8fe51cc35b0e",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

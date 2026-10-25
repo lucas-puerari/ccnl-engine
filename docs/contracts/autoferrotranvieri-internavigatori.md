@@ -218,11 +218,11 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-12-11 | [↗](https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf) |
-| — | — | 2024-12-11 | [↗](https://www.lavoro-economia.it/contratti/autoferrotranvieri) |
-| — | — | 2024-12-11 | [↗](https://www.agens.it/wp-content/uploads/2025/03/Inf.-002_25.pdf) |
-| — | — | 2024-12-11 | [↗](https://www.thaler.it/assets/files/Transparenzdekret/Autolinien_-_Autoferrotranvieri.pdf) |
-| — | — | 2024-12-11 | [↗](https://www.lexplain.it/contratto-autoferrotranvieri-parametri-livelli-e-mansioni-come-orientarsi/) |
+| https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf | tabella_retributiva | 2024-12-11 | [↗](https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf) |
+| https://www.lavoro-economia.it/contratti/autoferrotranvieri | altro | 2024-12-11 | [↗](https://www.lavoro-economia.it/contratti/autoferrotranvieri) |
+| https://www.agens.it/wp-content/uploads/2025/03/Inf.-002_25.pdf | inps_circolare | 2024-12-11 | [↗](https://www.agens.it/wp-content/uploads/2025/03/Inf.-002_25.pdf) |
+| https://www.thaler.it/assets/files/Transparenzdekret/Autolinien_-_Autoferrotranvieri.pdf | altro | 2024-12-11 | [↗](https://www.thaler.it/assets/files/Transparenzdekret/Autolinien_-_Autoferrotranvieri.pdf) |
+| https://www.lexplain.it/contratto-autoferrotranvieri-parametri-livelli-e-mansioni-come-orientarsi/ | altro | 2024-12-11 | [↗](https://www.lexplain.it/contratto-autoferrotranvieri-parametri-livelli-e-mansioni-come-orientarsi/) |
 
 ??? note "Coverage notes"
     CNEL CODE: I022 confirmed from CNEL archivio contratti (www.cnel.it/Contratti-Collettivi) for the Autoferrotranvieri e Internavigatori sector.

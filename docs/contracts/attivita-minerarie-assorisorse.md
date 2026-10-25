@@ -133,7 +133,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2022-07-13 | [↗](https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf) |
+| https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf | associazione | 2022-07-13 | [↗](https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated. Art. 17 shows Minimi di Retribuzione as a single total amount per level with no separate contingenza column. base_salary = total monthly minimum; fixed_allowances = [] for all levels.

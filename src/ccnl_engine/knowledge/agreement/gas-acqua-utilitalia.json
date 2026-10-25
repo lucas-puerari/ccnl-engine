@@ -18,26 +18,36 @@
     "agreement_date": "2025-05-08",
     "sources": [
       {
+        "document_id": "sosvavsrl-it-media-attachments-2024-05-24-ccnl-pdf",
+        "title": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
+        "kind": "altro",
         "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
-        "type": "contract",
-        "agreement_date": "2022-09-30"
+        "pages": [],
+        "published_on": "2022-09-30"
       },
       {
+        "document_id": "ilccnl-it-contratto-ccnl-gas-e-acqua---aziende-private-dal-010102",
+        "title": "https://ilccnl.it/contratto/ccnl/gas-e-acqua---aziende-private-dal-010102",
+        "kind": "altro",
         "url": "https://ilccnl.it/contratto/ccnl/gas-e-acqua---aziende-private-dal-010102",
-        "type": "tabelle_retributive",
-        "agreement_date": "2025-05-08"
+        "pages": [],
+        "published_on": "2025-05-08"
       },
       {
+        "document_id": "filctemcgil-it-index-php-notiziario-news-gas-acqua",
+        "title": "https://www.filctemcgil.it/index.php/notiziario/news/gas-acqua",
+        "kind": "altro",
         "url": "https://www.filctemcgil.it/index.php/notiziario/news/gas-acqua",
-        "type": "renewal_summary",
-        "agreement_date": "2025-05-08"
+        "pages": [],
+        "published_on": "2025-05-08"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-02T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-02T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~65k"
   },
@@ -1962,7 +1972,7 @@
     "effective_until": null,
     "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
     "verification_status": "unverified",
-    "source_hash": "a3f4fbba5d33e24dd7db854b6f749e427a2623e98427be371d87954800d914fb",
+    "source_hash": "abf98abee5311d5b4cdc2826fdc905ba840da00af9a29e728c3286f4e6b512e4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

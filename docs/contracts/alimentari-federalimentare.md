@@ -5,7 +5,7 @@
 | **CNEL code** | `E012` |
 | **Sector** | industria |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2024-03-01 |
 | **Workers (est.)** | ~145k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 👁 Reviewed |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2024-03-01 |
 | **Last review** | 2026-10-17 |
 | **Latest salary tranche** | 2027-01-01 |
 
@@ -211,7 +211,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-03-01 | [↗](https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf) |
+| https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf | altro | 2024-03-01 | [↗](https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf) |
 
 ??? note "Coverage notes"
     SALARY MODEL: split, as the CCNL of 1 March 2024 (FLAI-CGIL text). Minimo tabellare (T.E.M.) by level and tranche, Art. 51 lett. A (1/12/2023, 1/9/2024, 1/1/2025, 1/1/2026, 1/1/2027); ex contingenza frozen at 1 November 1991 and EDR EUR 10.33 for 13 months (Art. 52); I.A.R. of Art. 51 lett. D, which bears only on the tredicesima, the quattordicesima and the TFR, as separate allowances.

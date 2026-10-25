@@ -61,10 +61,11 @@
       }
     ],
     "extraction": {
-      "timestamp": "2026-09-11",
-      "human_reviewed": true,
       "method": "ai",
-      "model": "claude-sonnet-4-6"
+      "model": "claude-sonnet-4-6",
+      "extraction_timestamp": "2026-09-11",
+      "verification_status": "verified",
+      "effective_from": null
     },
     "workers_estimate": "~60000"
   },
@@ -2146,7 +2147,7 @@
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "4e31c21ce3e85646181b27a204c191b35bbccd239987c5902111968b5c9c8125",
+    "source_hash": "f868316d3f55bd482e22c1c8c36b9550a72f719e6c70f6335b0ed67353ac2c88",
     "source_type": "contracting_party"
   },
   "work_rules": {

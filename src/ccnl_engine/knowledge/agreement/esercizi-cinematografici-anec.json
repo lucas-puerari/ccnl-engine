@@ -13,16 +13,20 @@
     ],
     "sources": [
       {
+        "document_id": "fistelcisl-it-wp-content-uploads-2025-10-ccnl-esercizi-cinematografici-2023-2026",
+        "title": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+        "kind": "altro",
         "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
-        "type": "text",
-        "agreement_date": "2025-10-16"
+        "pages": [],
+        "published_on": "2025-10-16"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-05T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-05T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~6k"
   },
@@ -1892,7 +1896,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "8d9854b25b08d0dfdbe745af6ec747c143c016751f9bc89cb5b7cf24d47edfc4",
+    "source_hash": "ef45bda1f93c807715ae0d71d3533c2283fba7443585a1ae5a23bdf932119834",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

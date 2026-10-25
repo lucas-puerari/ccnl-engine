@@ -166,9 +166,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-07-22 | [↗](https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257) |
-| — | — | 2024-07-22 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=82) |
-| — | — | 2024-07-22 | [↗](https://www.redigo.info/2024/07/24/ccnl-turismo-confesercenti-il-rinnovo-consolida-il-contratto-unico/) |
+| Full alberghi sector table, all 5 tranches. Jul 2024 - Nov 2027. | tabella_retributiva | 2024-07-22 | [↗](https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257) |
+| Confirms alberghi table at 01/05/2026. | tabella_retributiva | 2024-07-22 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=82) |
+| Tranche schedule and seniority cadence confirmed. | altro | 2024-07-22 | [↗](https://www.redigo.info/2024/07/24/ccnl-turismo-confesercenti-il-rinnovo-consolida-il-contratto-unico/) |
 
 ??? note "Coverage notes"
     CCNL H058 — Assoturismo-Confesercenti. Conglobated. 10 levels: 7-6-6S-5-4-3-2-1-QB-QA. Divisor 172, 14 months. Seniority 36-month cadence, max 6. 5 tranches: Jul-2024 to Nov-2027.

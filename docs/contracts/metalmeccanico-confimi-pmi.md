@@ -5,7 +5,7 @@
 | **CNEL code** | `C01A` |
 | **Sector** | metalmeccanico |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2025-10-28 |
 | **Workers (est.)** | ~100k |
 | **Ruleset version** | `2025.1` |
 | **Readiness** | 🧪 Exploratory |
@@ -47,7 +47,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2025-10-28 |
 | **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2028-06-01 |
 
@@ -147,10 +147,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-10-28 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445) |
-| — | — | 2025-10-28 | [↗](https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028) |
-| — | — | 2025-10-28 | [↗](https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/) |
-| — | — | — | [↗](https://www.direzionelavoro.it/sites/default/files/files_pubblici/Accordo%20C01A%20CONFIMI.pdf) |
+| https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445 | tabella_retributiva | 2025-10-28 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445) |
+| https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028 | tabella_retributiva | 2025-10-28 | [↗](https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028) |
+| https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/ | altro | 2025-10-28 | [↗](https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/) |
+| https://www.direzionelavoro.it/sites/default/files/files_pubblici/Accordo%20C01A%20CONFIMI.pdf | altro | — | [↗](https://www.direzionelavoro.it/sites/default/files/files_pubblici/Accordo%20C01A%20CONFIMI.pdf) |
 
 ??? note "Coverage notes"
     CONGLOBATED MODEL (levels 2-7): base_salary = total minimo tabellare per the CONFIMI table (paga base + contingenza + EDR all consolidated). fixed_allowances is empty for levels 2-7.

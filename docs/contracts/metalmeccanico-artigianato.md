@@ -197,10 +197,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2021-12-17 | [↗](https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf) |
-| — | — | 2024-11-19 | [↗](https://www.kitech.it/tabelle-retributive-metalmeccanici-artigianato/) |
-| — | — | — | [↗](https://www.eblart.it/scheda-ccnl-artigianato-metalmeccanici/) |
-| — | — | — | [↗](https://www.direzionelavoro.it/ccnl-metalmeccanici-artigianato-tabelle-retributive/) |
+| https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf | altro | 2021-12-17 | [↗](https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf) |
+| https://www.kitech.it/tabelle-retributive-metalmeccanici-artigianato/ | tabella_retributiva | 2024-11-19 | [↗](https://www.kitech.it/tabelle-retributive-metalmeccanici-artigianato/) |
+| https://www.eblart.it/scheda-ccnl-artigianato-metalmeccanici/ | tabella_retributiva | — | [↗](https://www.eblart.it/scheda-ccnl-artigianato-metalmeccanici/) |
+| https://www.direzionelavoro.it/ccnl-metalmeccanici-artigianato-tabelle-retributive/ | tabella_retributiva | — | [↗](https://www.direzionelavoro.it/ccnl-metalmeccanici-artigianato-tabelle-retributive/) |
 
 ??? note "Coverage notes"
     CONGLOBATED MINIMUMS: base_salary values are conglobated minimum pay figures, incorporating base pay, contingenza and EDR in a single amount. Conglobation confirmed in force from 16.06.2011 (source: EBNA CCNL 17.12.2021, Art. 28 and attached tables). fixed_allowances is empty for all levels.

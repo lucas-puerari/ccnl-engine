@@ -15,16 +15,20 @@
     ],
     "sources": [
       {
+        "document_id": "fenealuil-it-wp-content-uploads-2026-02-ccnl_materialicostruzione_testo-completo",
+        "title": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+        "kind": "associazione",
         "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
-        "type": "associazione",
-        "agreement_date": "2025-09-09"
+        "pages": [],
+        "published_on": "2025-09-09"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-18",
-      "human_reviewed": true
+      "extraction_timestamp": "2026-09-18",
+      "verification_status": "verified",
+      "effective_from": null
     },
     "workers_estimate": "~5000"
   },
@@ -2404,6 +2408,6 @@
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "cb45d0a09c40434a8a3fde6b471de26531bccc2cd9d948ee298f8723e1a5ee68"
+    "source_hash": "ad602c3e4b106116d913d720a417ec554256435d20742cc53e68a6391a262095"
   }
 }

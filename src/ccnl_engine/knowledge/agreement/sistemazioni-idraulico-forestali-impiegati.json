@@ -19,23 +19,28 @@
     "agreement_date": "2025-12-04",
     "sources": [
       {
+        "document_id": "lavoro-economia-it--c-9",
+        "title": "Tabella retributiva impiegati CCNL A181 rinnovo 04/12/2025. Tranches 01/01/2026, 01/01/2027, 01/01/2028. Conglobato. Parametri Art. 35 CCNL 2021: L1=100, L2=108, L3=115, L4=122, L5=133, L6=152. Pre-2026 amounts not modelled: table not available in machine-readable form.",
+        "kind": "tabella_retributiva",
         "url": "https://www.lavoro-economia.it/?c=9",
-        "type": "tabella_retributiva",
-        "agreement_date": "2025-12-04",
-        "notes": "Tabella retributiva impiegati CCNL A181 rinnovo 04/12/2025. Tranches 01/01/2026, 01/01/2027, 01/01/2028. Conglobato. Parametri Art. 35 CCNL 2021: L1=100, L2=108, L3=115, L4=122, L5=133, L6=152. Pre-2026 amounts not modelled: table not available in machine-readable form."
+        "pages": [],
+        "published_on": "2025-12-04"
       },
       {
+        "document_id": "file-ccnl-idraulico-forestali-2021-txt",
+        "title": "CCNL previgente 2021: Art. 35 parametri impiegati, Art. 41 scatti anzianita, Art. 7 apprendistato sotto-inquadramento, Art. 36 IND_FUNZIONE quadri, Art. 52 modello conglobato div=169. Structural rules carried forward to 2025 rinnovo (2025 PDF image-only; full text unavailable).",
+        "kind": "altro",
         "url": "file:ccnl-idraulico-forestali-2021.txt",
-        "type": "contratto",
-        "agreement_date": "2021-01-01",
-        "notes": "CCNL previgente 2021: Art. 35 parametri impiegati, Art. 41 scatti anzianita, Art. 7 apprendistato sotto-inquadramento, Art. 36 IND_FUNZIONE quadri, Art. 52 modello conglobato div=169. Structural rules carried forward to 2025 rinnovo (2025 PDF image-only; full text unavailable)."
+        "pages": [],
+        "published_on": "2021-01-01"
       }
     ],
     "extraction": {
-      "timestamp": "2026-09-11",
-      "human_reviewed": true,
       "method": "ai",
-      "model": "claude-sonnet-4-6"
+      "model": "claude-sonnet-4-6",
+      "extraction_timestamp": "2026-09-11",
+      "verification_status": "verified",
+      "effective_from": null
     },
     "workers_estimate": "~430 (impiegati subset)"
   },
@@ -1108,7 +1113,7 @@
     "source": "https://www.lavoro-economia.it/?c=9",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "455bc4463033cd5872710430ee9b0344f5d0fdd624601758a6922b10697ce8f9",
+    "source_hash": "39bae03da7c107ad3e46fc239167f58f8062d48df527baf1ff5c0adfb7332ae4",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

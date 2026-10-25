@@ -154,8 +154,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-06-18 | [↗](https://www.contratticcnl.it/ccnl/a021/) |
-| — | — | 2024-06-18 | [↗](https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=3) |
+| CNEL code A021, agreement date 18/06/2024, effective 01/07/2024. Contract covers impiegati, tecnici and quadri in agricultural sector. Expiry 31/12/2027. | altro | 2024-06-18 | [↗](https://www.contratticcnl.it/ccnl/a021/) |
+| Salary levels: 1Q=1888.38 (base 1788.38 + IND_FUN 100.00), 1=1686.76, 2=1541.41, 3=1417.89, 4=1335.93, 5=1278.60, 6=1217.23. Hourly divisor 169. Daily divisor 26. Additional months 14 (tredicesima + quattordicesima). Seniority: biennale (24 months), 12 scatti, per-level amounts confirmed. Level 1Q listed as 1888.38 'with function allowance'; confirmed base 1788.38 + IND_FUN 100.00. | tabella_retributiva | 2024-06-18 | [↗](https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=3) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated retribuzione tabellare minima (levels 1-6). Single base_salary per level with no separate contingenza or EDR columns in the lavoro-economia.it table (consistent with A011 agricultural model). Level 1Q additionally carries an indennità di funzione of 100.00 EUR/month, additive to the base tabellare (source: lavoro-economia.it/ccnl/ccnl.aspx?c=3 showing 1Q total=1888.38 'with function allowance', decomposed as base 1788.38 + IND_FUN 100.00).

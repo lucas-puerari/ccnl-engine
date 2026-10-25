@@ -5,7 +5,7 @@
 | **CNEL code** | `J271` |
 | **Sector** | credito |
 | **Tax sector** | `credito` |
-| **Last renewal** | — |
+| **Last renewal** | 2024-07-09 |
 | **Workers (est.)** | ~33k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2024-07-09 |
 | **Last review** | 2026-10-14 |
 | **Latest salary tranche** | 2026-01-01 |
 
@@ -173,9 +173,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-07-09 | [↗](https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download) |
-| — | — | 2024-07-09 | [↗](https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf) |
-| — | — | 2024-07-09 | [↗](https://www.kitech.it/tabelle-retributive/banche-credito-cooperativo/) |
+| https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download | altro | 2024-07-09 | [↗](https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download) |
+| https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf | altro | 2024-07-09 | [↗](https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf) |
+| https://www.kitech.it/tabelle-retributive/banche-credito-cooperativo/ | tabella_retributiva | 2024-07-09 | [↗](https://www.kitech.it/tabelle-retributive/banche-credito-cooperativo/) |
 
 ??? note "Coverage notes"
     Salary model is conglobated (stipendio per Art. 112 replaces paga base + scala mobile + EDR + other components). Modelled as base_salary with fixed_allowances: [].

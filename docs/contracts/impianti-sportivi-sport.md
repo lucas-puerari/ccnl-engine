@@ -185,9 +185,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-01-12 | [↗](https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/) |
-| — | — | 2024-01-12 | [↗](https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf) |
-| — | — | 2024-01-12 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13) |
+| Tabella retributiva completa 4 tranche (01/01/2024, 01/07/2024, 01/07/2025, 01/07/2026). Livelli Q–VI. Retribuzione conglobata (contingenza=0, terzo elemento=0). 13 mensilità (tredicesima). Modello confermato da ilccnl.it e kitech.it. | tabella_retributiva | 2024-01-12 | [↗](https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/) |
+| CUSI PDF 2024-2026. Art. 116: retribuzione normale conglobata (componente a). Art. 119: divisore giornaliero 26. Art. 120: divisore orario 173 (40h settimanali) o 195 (45h settimanali) — solo 173 modellato. Art. 121: tabella livelli I–VI più quadro Q. Art. 125: tredicesima mensilità. Art. 30: apprendistato sotto-inquadramento (2 livelli primo semestre, 1 livello secondo semestre). Art. 37: durate apprendistato II–VI. Art. 83: straordinario 15%/20%/30%/50%. Art. 84: notturno ordinario 10%. Art. 85: ferie 26 giorni lavorativi. Art. 102: comporto 180 giorni. Art. 103: integrazione malattia 100%/75%/100%. | altro | 2024-01-12 | [↗](https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf) |
+| Kitech tabella 01/07/2026: conferma IND_FUN Q = EUR 60.00 (13 mensilità). Scatto anzianità da EUR 21.69 (VI) a EUR 28.92 (Q) — transitional amounts ante-22/12/2015; no new scatti under 2024 CCNL. | tabella_retributiva | 2024-01-12 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13) |
 
 ??? note "Coverage notes"
     CCNL H077 Impianti Sportivi e Palestre, rinnovo 12/01/2024 (vigenza 01/01/2024-31/12/2026). 7 livelli: Q (quadro) + livelli I-VI. Art. 121 CCNL dice 'sei livelli' perche Q e categoria quadro sopra la scala ordinaria. Conglobato confermato da ilccnl.it (contingenza=0.00, terzo elemento=0.00 su 4 livelli). Divisore orario 173 da Art. 120 (40h settimanali).

@@ -159,9 +159,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2023-03-30 | [↗](https://www.ccnlportatili.it/ccnl/fiori-recisi/) |
-| — | — | 2023-03-30 | [↗](https://www.redigo.info/tabelle-retributive/fiori-recisi-ancef) |
-| — | — | 2023-03-30 | [↗](https://olympus.uniurb.it/index.php?option=com_content&view=article&id=29864) |
+| https://www.ccnlportatili.it/ccnl/fiori-recisi/ | altro | 2023-03-30 | [↗](https://www.ccnlportatili.it/ccnl/fiori-recisi/) |
+| https://www.redigo.info/tabelle-retributive/fiori-recisi-ancef | tabella_retributiva | 2023-03-30 | [↗](https://www.redigo.info/tabelle-retributive/fiori-recisi-ancef) |
+| https://olympus.uniurb.it/index.php?option=com_content&view=article&id=29864 | altro | 2023-03-30 | [↗](https://olympus.uniurb.it/index.php?option=com_content&view=article&id=29864) |
 
 ??? note "Coverage notes"
     CCNL signed 30/03/2023 by ANCEF, FLAI-CGIL, FISASCAT-CISL, UIL Tucs. Valid 01/01/2023-31/12/2026.

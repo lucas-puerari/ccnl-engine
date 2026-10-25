@@ -19,23 +19,28 @@
     "agreement_date": "2025-12-04",
     "sources": [
       {
+        "document_id": "redigo-info",
+        "title": "Tabella retributiva operai OTI CCNL A181 rinnovo 04/12/2025. Tranches 01/01/2026, 01/01/2027, 01/01/2028. Conglobato. Parametri Art. 49 CCNL 2021: L1=100, L2=108, L3=111, L4=116, L5=123.",
+        "kind": "tabella_retributiva",
         "url": "https://redigo.info/",
-        "type": "tabella_retributiva",
-        "agreement_date": "2025-12-04",
-        "notes": "Tabella retributiva operai OTI CCNL A181 rinnovo 04/12/2025. Tranches 01/01/2026, 01/01/2027, 01/01/2028. Conglobato. Parametri Art. 49 CCNL 2021: L1=100, L2=108, L3=111, L4=116, L5=123."
+        "pages": [],
+        "published_on": "2025-12-04"
       },
       {
+        "document_id": "file-ccnl-idraulico-forestali-2021-txt",
+        "title": "CCNL previgente 2021: Art. 49 parametri operai, Art. 7 apprendistato sotto-inquadramento, Art. 52 modello conglobato div=169. Structural rules carried forward to 2025 rinnovo (2025 PDF image-only; full text unavailable).",
+        "kind": "altro",
         "url": "file:ccnl-idraulico-forestali-2021.txt",
-        "type": "contratto",
-        "agreement_date": "2021-01-01",
-        "notes": "CCNL previgente 2021: Art. 49 parametri operai, Art. 7 apprendistato sotto-inquadramento, Art. 52 modello conglobato div=169. Structural rules carried forward to 2025 rinnovo (2025 PDF image-only; full text unavailable)."
+        "pages": [],
+        "published_on": "2021-01-01"
       }
     ],
     "extraction": {
-      "timestamp": "2026-09-11",
-      "human_reviewed": true,
       "method": "ai",
-      "model": "claude-sonnet-4-6"
+      "model": "claude-sonnet-4-6",
+      "extraction_timestamp": "2026-09-11",
+      "verification_status": "verified",
+      "effective_from": null
     },
     "workers_estimate": "~430 (operai OTI subset)"
   },
@@ -832,7 +837,7 @@
     "source": "https://redigo.info/",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "482a5c0f64dc0dc52addf5981d8ced9c18bc4b5bf1365f79465669a00d1a1769",
+    "source_hash": "d51efc8e2bb07d2a6cfce0eec8fccef81c8e66c32869483211049d86d367f9ad",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

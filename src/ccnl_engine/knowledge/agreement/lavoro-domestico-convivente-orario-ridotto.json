@@ -17,16 +17,20 @@
     ],
     "sources": [
       {
+        "document_id": "lavorodomestico-assindatcolf-it-wp-content-uploads-2026-04-ccnl-pdf",
+        "title": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+        "kind": "altro",
         "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
-        "type": "contract",
-        "agreement_date": "2025-10-28"
+        "pages": [],
+        "published_on": "2025-10-28"
       }
     ],
     "extraction": {
       "method": "manual",
       "model": null,
-      "timestamp": "2026-10-08T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-10-08T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     }
   },
   "coverage": {
@@ -761,7 +765,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "3907978ce2a1cf85154b67cc98acf6524dd78905fdb63a759c7250884857f79a",
+    "source_hash": "f65ba27a74c5a3e970a41ab95c7941978f1d70080cfc26eeea673ea1d5f9281f",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },

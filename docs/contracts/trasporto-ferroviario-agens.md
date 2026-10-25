@@ -166,11 +166,11 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-05-22 | [↗](https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive) |
-| — | — | 2025-05-22 | [↗](https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=299) |
-| — | — | 2025-05-22 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx) |
-| — | — | 2025-05-22 | [↗](https://www.redigo.info/2025/05/ccnl-ferrovie-rinnovo-2025) |
-| — | — | 2025-05-22 | [↗](https://www.leggeinchiaro.it/ccnl-ferrovie) |
+| Tabelle retributive I320. Three tranches: 01/06/2025, 01/11/2025, 01/06/2026. Hourly divisor 160. Contingenza=0.00, terzo elemento=0.00 for all levels confirming conglobated model. | altro | 2025-05-22 | [↗](https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive) |
+| Seniority increments confirmed: 7 scatti biennali (24 months cadence), per-level EUR amounts from current table. Additional months 14 (tredicesima + quattordicesima) confirmed. | altro | 2025-05-22 | [↗](https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=299) |
+| Cross-confirmation of function allowances Q1=250.00, Q2=130.00 additive to base tabellare. Seniority per-level amounts cross-confirmed with lavoro-economia.it. | altro | 2025-05-22 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx) |
+| Una tantum for Jan 2024-May 2025 gap explicitly stated as non-reflective on any contractual institute. Three salary tranches Jun 2025 / Nov 2025 / Jun 2026 confirmed. Additional months 14 cross-confirmed. | altro | 2025-05-22 | [↗](https://www.redigo.info/2025/05/ccnl-ferrovie-rinnovo-2025) |
+| Apprenticeship: apprendistato professionalizzante max 36 months. Pay rates are defined in the Piano Formativo Individuale (PFI) per worker, not as a contract-level table. Source of MISSING coverage determination. | altro | 2025-05-22 | [↗](https://www.leggeinchiaro.it/ccnl-ferrovie) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated. ilccnl.it salary table shows contingenza=0.00 and terzo elemento=0.00 for all 16 levels. kitech.it confirms additive structure: Q1 base tabellare=2826.07 + IND_FUN=250.00 total, Q2 base=2483.02 + IND_FUN=130.00 total. Two aggregator sources (ilccnl.it, kitech.it) agree on the decomposition, establishing the function allowances are additive to the conglobated base. Primary CCNL text (AGENS/FILT-CGIL) was not directly retrieved; all parameters derive from aggregator tables.

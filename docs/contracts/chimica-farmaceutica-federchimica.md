@@ -5,7 +5,7 @@
 | **CNEL code** | `B011` |
 | **Sector** | chimica |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2025-04-15 |
 | **Workers (est.)** | ~210k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 👁 Reviewed |
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2025-04-15 |
 | **Last review** | 2026-10-20 |
 | **Latest salary tranche** | 2028-06-01 |
 
@@ -234,10 +234,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-04-15 | [↗](https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf) |
-| — | — | 2024-01-08 | [↗](https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/178786) |
-| — | — | 2018-07-19 | [↗](https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/180719_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%202019-GIUGNO%202022.pdf) |
-| — | — | 2006-05-10 | [↗](https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579) |
+| https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf | altro | 2025-04-15 | [↗](https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf) |
+| https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/178786 | cnel | 2024-01-08 | [↗](https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/178786) |
+| https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/180719_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%202019-GIUGNO%202022.pdf | altro | 2018-07-19 | [↗](https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/180719_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%202019-GIUGNO%202022.pdf) |
+| https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579 | cnel | 2006-05-10 | [↗](https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579) |
 
 ??? note "Coverage notes"
     SALARY MODEL: base_salary is the Trattamento Economico Minimo (minimo contrattuale + IPO of the position, art. 15 punto 1) plus, for categories A and B, the Elemento Aggiuntivo della Retribuzione (EUR 190 for A, EUR 100 for B since 1/7/2010, art. 15 B 3, renewal 19/7/2018 p. 14), which is in the TFR base. The Elemento Distinto della Retribuzione (art. 15 B 2) is the fixed allowance EDR from 1/7/2027 (A1 39, A2 34, A3 33, B1 32, B2 30, C1 28, C2 27, D1 26, D2 25, D3 24, E1 22, E2 20, E3 19, E4 19, F 18; 2025 renewal p. 49), outside the TFR base ('ivi compreso il Trattamento di fine rapporto').

@@ -46,8 +46,10 @@
     ],
     "extraction": {
       "method": "manual",
-      "timestamp": "2026-09-17T00:00:00",
-      "human_reviewed": true
+      "model": null,
+      "extraction_timestamp": "2026-09-17T00:00:00",
+      "verification_status": "verified",
+      "effective_from": "2024-04-01"
     }
   },
   "coverage": {
@@ -1847,6 +1849,6 @@
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "e26f6c8309a128d9441c3cd884d12899ed99802742e8270ddeace335428311ca"
+    "source_hash": "6f3a89122892cc9fd7060bee70e5187aeac860e24460bb060600a46d31e18104"
   }
 }

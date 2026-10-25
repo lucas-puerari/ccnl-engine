@@ -167,10 +167,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2023-12-12 | [↗](https://www.wolterskluwer.it/) |
-| — | — | 2023-12-12 | [↗](https://www.kitech.it/) |
-| — | — | 2023-12-12 | [↗](https://www.flai.it/) |
-| — | — | 2023-12-12 | [↗](https://ilccnl.it/contratto/ccnl/consorzi-agrari) |
+| https://www.wolterskluwer.it/ | tabella_retributiva | 2023-12-12 | [↗](https://www.wolterskluwer.it/) |
+| https://www.kitech.it/ | tabella_retributiva | 2023-12-12 | [↗](https://www.kitech.it/) |
+| https://www.flai.it/ | altro | 2023-12-12 | [↗](https://www.flai.it/) |
+| https://ilccnl.it/contratto/ccnl/consorzi-agrari | altro | 2023-12-12 | [↗](https://ilccnl.it/contratto/ccnl/consorzi-agrari) |
 
 ??? note "Coverage notes"
     Salary model: split (paga base + contingenza) confirmed from ilccnl.it tables showing separate paga base, contingenza, and terzo elemento (0.00) columns.

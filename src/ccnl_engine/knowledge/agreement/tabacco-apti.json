@@ -34,8 +34,10 @@
     ],
     "extraction": {
       "method": "manual",
-      "timestamp": "2026-09-18T00:00:00",
-      "human_reviewed": true
+      "model": null,
+      "extraction_timestamp": "2026-09-18T00:00:00",
+      "verification_status": "verified",
+      "effective_from": "2025-01-01"
     }
   },
   "coverage": {
@@ -2416,6 +2418,6 @@
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "d2fefce5e9c0860a87603c59144e442013df171bfd3a7de258a736a17654e5b9"
+    "source_hash": "c85de82b3ff9638cd6d2b7c9c79b88e1d6d4c25842acaead7945d68102c8e1ec"
   }
 }

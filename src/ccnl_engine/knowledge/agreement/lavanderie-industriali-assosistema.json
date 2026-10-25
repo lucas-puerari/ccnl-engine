@@ -14,31 +14,44 @@
     ],
     "sources": [
       {
+        "document_id": "assosistema-it-11527-2",
+        "title": "https://www.assosistema.it/11527-2/",
+        "kind": "altro",
         "url": "https://www.assosistema.it/11527-2/",
-        "type": "text",
-        "agreement_date": "2026-05-19"
+        "pages": [],
+        "published_on": "2026-05-19"
       },
       {
+        "document_id": "ilccnl-it-contratto-ccnl-lavanderie---industria",
+        "title": "https://ilccnl.it/contratto/ccnl/lavanderie---industria",
+        "kind": "tabella_retributiva",
         "url": "https://ilccnl.it/contratto/ccnl/lavanderie---industria",
-        "type": "table",
-        "agreement_date": "2026-05-19"
+        "pages": [],
+        "published_on": "2026-05-19"
       },
       {
+        "document_id": "iqnotizie-it-notizia-iq47433",
+        "title": "https://www.iqnotizie.it/notizia/IQ47433/",
+        "kind": "tabella_retributiva",
         "url": "https://www.iqnotizie.it/notizia/IQ47433/",
-        "type": "table",
-        "agreement_date": "2026-05-19"
+        "pages": [],
+        "published_on": "2026-05-19"
       },
       {
+        "document_id": "previdenza-professionisti-it",
+        "title": "https://previdenza-professionisti.it/",
+        "kind": "tabella_retributiva",
         "url": "https://previdenza-professionisti.it/",
-        "type": "table",
-        "agreement_date": "2026-05-19"
+        "pages": [],
+        "published_on": "2026-05-19"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-05T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-05T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~17k"
   },
@@ -1374,7 +1387,7 @@
     "effective_until": null,
     "source": "https://www.assosistema.it/11527-2/",
     "verification_status": "unverified",
-    "source_hash": "733d130180e404377a93d565c59fb08be337c1c213c82174a15b948e7ce41f04",
+    "source_hash": "eb361e066d0fc9ed96a9606d19b0b0b5d2eb34be3c0591126f62595dba6e8b8b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

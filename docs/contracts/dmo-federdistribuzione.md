@@ -5,7 +5,7 @@
 | **CNEL code** | `H008` |
 | **Sector** | terziario |
 | **Tax sector** | `terziario` |
-| **Last renewal** | — |
+| **Last renewal** | 2025-09-29 |
 | **Workers (est.)** | ~460k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 👁 Reviewed |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2025-09-29 |
 | **Last review** | 2026-10-17 |
 | **Latest salary tranche** | 2027-02-01 |
 
@@ -213,7 +213,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-09-29 | [↗](https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf) |
+| https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf | altro | 2025-09-29 | [↗](https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf) |
 
 ??? note "Coverage notes"
     Salary tables: 6 tranches from 01/04/2023 through 01/02/2027, Allegato 11 (PDF p. 98) of the Testo Unico CCNL DMO of 29/09/2025 (Federdistribuzione), Art. 196 for the tranche dates. Level IV on 01/04/2023 is printed 1112,46 in the PDF itself: the total 1646,68 less the contingenza 524,22, and 1192,46 less the 70,00 of Art. 196, give 1122.46, the value kept.

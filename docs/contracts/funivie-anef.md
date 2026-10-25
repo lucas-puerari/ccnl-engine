@@ -150,7 +150,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-05-16 | [↗](https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf) |
+| https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf | altro | 2025-05-16 | [↗](https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf) |
 
 ??? note "Coverage notes"
     Salary model: split. base_salary = paga base (Allegato 1). fixed_allowances = contingenza (per-level, Allegato 2). No EDR: ilccnl.it Oct-2025 table shows Terzo Elemento = 0.00; totals confirm base + contingenza only (e.g. 2179.27 + 528.67 = 2707.94).

@@ -181,8 +181,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-12-09 | [↗](https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf) |
-| — | — | 2019-10-23 | [↗](https://www.comuneportofinomare.it/wp-content/uploads/CCNL-Autorimesse.pdf) |
+| https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf | altro | 2025-12-09 | [↗](https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf) |
+| https://www.comuneportofinomare.it/wp-content/uploads/CCNL-Autorimesse.pdf | altro | 2019-10-23 | [↗](https://www.comuneportofinomare.it/wp-content/uploads/CCNL-Autorimesse.pdf) |
 
 ??? note "Coverage notes"
     Salary model: split. base_salary = retribuzione tabellare (Allegato 1 of 2025-12-09 verbale); fixed_allowances = CONTINGENZA (per-level, frozen) + EDR (10.33 all levels, frozen since Protocollo Intesa 1992) + EAR (per-level, frozen; Art. 41 vigente CCNL; labeled 'E.A.S. CCNL 23/10/2019' in Allegato 1).

@@ -14,16 +14,20 @@
     ],
     "sources": [
       {
+        "document_id": "filtcgil-it-images-contratti-mare-15_-_sezione_personale_di_terra-pdf",
+        "title": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+        "kind": "altro",
         "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
-        "type": "pdf",
-        "agreement_date": "2024-07-11"
+        "pages": [],
+        "published_on": "2024-07-11"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-06T00:00:00",
-      "human_reviewed": true
+      "extraction_timestamp": "2026-09-06T00:00:00",
+      "verification_status": "verified",
+      "effective_from": null
     },
     "workers_estimate": "~15k"
   },
@@ -1463,7 +1467,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "e5583289ac72b1cb8bbd3eb4253051c807eac2b3a10620cb6e934f9db0ab82ac",
+    "source_hash": "a9cb985d40415da5bce0c58120f985a889191117c84afd1a23cdcca8976ecfc2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -169,10 +169,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-12-12 | [↗](https://www.wolterskluwer.it/) |
-| — | — | 2024-12-12 | [↗](https://www.kitech.it/) |
-| — | — | 2023-11-14 | [↗](https://www.confederdia.it/2023/11/30/ipotesi-di-accordo-rinnovo-ccnl-dipendenti-dalle-organizzazioni-degli-allevatori-consorzi-ed-enti-zootecnici/) |
-| — | — | 2024-12-12 | [↗](https://www.lavoro-economia.it/) |
+| https://www.wolterskluwer.it/ | tabella_retributiva | 2024-12-12 | [↗](https://www.wolterskluwer.it/) |
+| https://www.kitech.it/ | tabella_retributiva | 2024-12-12 | [↗](https://www.kitech.it/) |
+| https://www.confederdia.it/2023/11/30/ipotesi-di-accordo-rinnovo-ccnl-dipendenti-dalle-organizzazioni-degli-allevatori-consorzi-ed-enti-zootecnici/ | altro | 2023-11-14 | [↗](https://www.confederdia.it/2023/11/30/ipotesi-di-accordo-rinnovo-ccnl-dipendenti-dalle-organizzazioni-degli-allevatori-consorzi-ed-enti-zootecnici/) |
+| https://www.lavoro-economia.it/ | altro | 2024-12-12 | [↗](https://www.lavoro-economia.it/) |
 
 ??? note "Coverage notes"
     Salary model: conglobated. Wolters Kluwer tables show Minimo = Totale with no separate contingenza column. fixed_allowances = [] for all levels.

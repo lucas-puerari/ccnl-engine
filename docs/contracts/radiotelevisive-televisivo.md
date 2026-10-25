@@ -151,7 +151,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2026-01-08 | [↗](https://www.confindustriaradiotv.it/) |
+| https://www.confindustriaradiotv.it/ | associazione | 2026-01-08 | [↗](https://www.confindustriaradiotv.it/) |
 
 ??? note "Coverage notes"
     CCNL Radiotelevisivo 2026 signed 08/01/2026 in Roma. Employer: Confindustria Radio Televisioni (pres. Antonio Marano) and ANICA (pres. Alessandro Usai). Unions: SLC-CGIL (Sindacato Lavoratori della Comunicazione), FISTEL-CISL (Federazione Informazioni Spettacolo e Telecomunicazioni), UIL-COM (UIL Comunicazione). Signatories sourced from Art. 1, page 7 of CCNL PDF.

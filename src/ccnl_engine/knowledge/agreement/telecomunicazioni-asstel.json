@@ -15,21 +15,28 @@
     "agreement_date": "2025-11-11",
     "sources": [
       {
+        "document_id": "asstel-it-lavoro-e-relazioni-industriali-ccnl-tlc",
+        "title": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
+        "kind": "altro",
         "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
-        "type": "renewal_summary",
-        "agreement_date": "2025-11-11"
+        "pages": [],
+        "published_on": "2025-11-11"
       },
       {
+        "document_id": "asstel-it-wp-content-uploads-2023-05-ccnl-tlc-slc-cgil-fistel-cisl-uilcom-uil-12",
+        "title": "https://www.asstel.it/wp-content/uploads/2023/05/CCNL-TLC-Slc-Cgil-Fistel-Cisl-Uilcom-Uil-12-novembre-2020-nuovo.pdf",
+        "kind": "altro",
         "url": "https://www.asstel.it/wp-content/uploads/2023/05/CCNL-TLC-Slc-Cgil-Fistel-Cisl-Uilcom-Uil-12-novembre-2020-nuovo.pdf",
-        "type": "contract",
-        "agreement_date": "2020-11-12"
+        "pages": [],
+        "published_on": "2020-11-12"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-02T08:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-02T08:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~110k"
   },
@@ -1466,7 +1473,7 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "534afbccad643e9df34a3d0ec2e7ebcb513a43df7d2ed7991565163cbe98dc2c",
+    "source_hash": "dc6e260564cc4f4e459499db6bd15be724bff8767c12fc3f5de5b1d6c658b2d2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

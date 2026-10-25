@@ -5,7 +5,7 @@
 | **CNEL code** | `G011` |
 | **Sector** | grafica-editoria |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2024-12-20 |
 | **Workers (est.)** | ~70k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2024-12-20 |
 | **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2026-07-01 |
 
@@ -180,8 +180,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-12-20 | [↗](https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/) |
-| — | — | 2026-07-01 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=156) |
+| https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/ | tabella_retributiva | 2024-12-20 | [↗](https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/) |
+| https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=156 | tabella_retributiva | 2026-07-01 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=156) |
 
 ??? note "Coverage notes"
     SALARY MODEL: the CCNL Grafica e Editoria Industria (G011) uses a split model with separate paga base (TEM), contingenza (frozen since 1992 per Prot. 31/07/1992), and EDR (10.33 EUR, all levels). The base_salary values in this file are the TOTAL (paga base + contingenza + EDR) per level and tranche, sourced from the official lexplain.it table (all 5 tranches) and kitech.it (July 2026 breakdown). Modeling the total as base_salary produces the same gross_monthly as the split representation. fixed_allowances is empty for all levels (no additional fixed components).

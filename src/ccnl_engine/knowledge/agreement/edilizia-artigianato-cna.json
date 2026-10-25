@@ -21,33 +21,42 @@
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-02",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-02",
+      "verification_status": "unverified",
+      "effective_from": "2025-05-01"
     },
     "sources": [
       {
+        "document_id": "ediltecnico-it-ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classif",
+        "title": "Apprenticeship Allegato D — semester percentages by group, standard professionalizzante and specialistico tracks",
+        "kind": "altro",
         "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
-        "type": "sector_association",
-        "agreement_date": "2025-05-20",
-        "notes": "Apprenticeship Allegato D — semester percentages by group, standard professionalizzante and specialistico tracks"
+        "pages": [],
+        "published_on": "2025-05-20"
       },
       {
+        "document_id": "ilccnl-it-ccnl-edilizia-artigianato",
+        "title": "Hourly divisor 173, additional months 13 (tredicesima 173 ore), salary tranches",
+        "kind": "altro",
         "url": "https://www.ilccnl.it/ccnl-edilizia-artigianato/",
-        "type": "sector_association",
-        "agreement_date": "2025-05-20",
-        "notes": "Hourly divisor 173, additional months 13 (tredicesima 173 ore), salary tranches"
+        "pages": [],
+        "published_on": "2025-05-20"
       },
       {
+        "document_id": "kitech-it-ccnl-edilizia-artigianato",
+        "title": "January 2026 paga base per level and seniority (scatti) amounts",
+        "kind": "altro",
         "url": "https://www.kitech.it/ccnl/edilizia-artigianato",
-        "type": "payroll_reference",
-        "agreement_date": "2026-01-01",
-        "notes": "January 2026 paga base per level and seniority (scatti) amounts"
+        "pages": [],
+        "published_on": "2026-01-01"
       },
       {
+        "document_id": "lexplain-it-ccnl-edilizia-artigianato-tabelle-retributive",
+        "title": "Contingenza frozen values per level",
+        "kind": "altro",
         "url": "https://lexplain.it/ccnl-edilizia-artigianato-tabelle-retributive/",
-        "type": "payroll_reference",
-        "agreement_date": "2023-07-01",
-        "notes": "Contingenza frozen values per level"
+        "pages": [],
+        "published_on": "2023-07-01"
       }
     ],
     "workers_estimate": "~350k"
@@ -2266,7 +2275,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "9d401dc96f99bdc3f0a4126974b2ad93ddf53d39b92365bf1ce3b5a2c3dde433",
+    "source_hash": "30619f3154e6810f34a6258c9136abde20c7ff0e698a2bf1b42ebe34b77c77ed",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

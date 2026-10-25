@@ -156,8 +156,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-10-30 | [↗](https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/) |
-| — | — | — | [↗](https://lexplain.it/ccnl-dipendenti-portieri-fabbricati-aumenti-stipendio/) |
+| https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/ | tabella_retributiva | 2025-10-30 | [↗](https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/) |
+| https://lexplain.it/ccnl-dipendenti-portieri-fabbricati-aumenti-stipendio/ | tabella_retributiva | — | [↗](https://lexplain.it/ccnl-dipendenti-portieri-fabbricati-aumenti-stipendio/) |
 
 ??? note "Coverage notes"
     RENEWAL 2025: CCNL signed 2025-10-30. Normative provisions from 2025-11-01; economic provisions (salary tranches) from 2026-01-01. Contract expiry 2028-10-31. Signatories: Confedilizia + FILCAMS-CGIL, FISASCAT-CISL, UILTuCS.

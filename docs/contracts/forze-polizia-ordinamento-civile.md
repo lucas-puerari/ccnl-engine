@@ -149,8 +149,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-03-24 | [↗](https://www.normattiva.it/atto/caricaDettaglioAtto?atto.dataPubblicazioneGazzetta=2025-04-18&atto.codiceRedazionale=25G00046&atto.articolo.numero=0&atto.articolo.sottoArticolo=1&atto.articolo.sottoArticolo1=0&qId=1ede7c71-4666-4c74-b496-2391fce88e7f) |
-| — | — | 2024-12-18 | [↗](https://nazionale.autonomidipolizia.it/wp-content/uploads/2024/12/ipotesi-accordo-18-12-2024.pdf) |
+| DPR 24 marzo 2025 n. 53, GU n. 91 del 18/04/2025 SO n. 12. Recepimento accordi sindacali triennio 2022-2024 per personale Forze di polizia ad ordinamento civile e militare. In vigore dal 03/05/2025. Testo normativo di riferimento; tavole retributive Art. 6 non direttamente estratte da questo atto — verificare allegati DPR per conferma. I valori sono stati estratti dall'ipotesi di accordo 18/12/2024 (seconda fonte). | altro | 2025-03-24 | [↗](https://www.normattiva.it/atto/caricaDettaglioAtto?atto.dataPubblicazioneGazzetta=2025-04-18&atto.codiceRedazionale=25G00046&atto.articolo.numero=0&atto.articolo.sottoArticolo=1&atto.articolo.sottoArticolo1=0&qId=1ede7c71-4666-4c74-b496-2391fce88e7f) |
+| Ipotesi di accordo sindacale Forze di Polizia ad ordinamento civile triennio 2022/2024 sottoscritta il 18/12/2024 (fonte Autonomi di Polizia). Tavole retributive Art. 6 usate per estrazione dei parametri e valori mensili. | altro | 2024-12-18 | [↗](https://nazionale.autonomidipolizia.it/wp-content/uploads/2024/12/ipotesi-accordo-18-12-2024.pdf) |
 
 ??? note "Coverage notes"
     Primo accordo DPR-based nel repository. Il Comparto Sicurezza-Difesa è disciplinato dal D.Lgs. 195/1995 — non da ARAN né da CCNL. Gli accordi sindacali sono recepiti con DPR (non con CCNL). DPR 53/2025 copre Polizia di Stato (97.931 effettivi, fonte poliziadistato.it 2024) e Corpo di Polizia Penitenziaria (~31.000 effettivi, fonte Rapporto Antigone 2025 / DAP): totale ~129.000 dipendenti.

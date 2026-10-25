@@ -19,23 +19,28 @@
     },
     "sources": [
       {
+        "document_id": "aranagenzia-it-wp-content-uploads-2026-02-ccnl-comparto-2022-2024-23-02-26-pdf",
+        "title": "CCNL Comparto Funzioni Locali triennio 2022-2024, firmato 23 febbraio 2026. Art. 56 (incrementi stipendi tabellari), Art. 60 (parziale conglobamento indennità di comparto), Tabella A (incrementi mensili per 13 mensilità), Tabella B (retribuzione tabellare annua per 12 mensilità + 13^). Orario settimanale 36h, divisore orario 156 da Art. 74 CCNL 16.11.2022. FP CGIL non firmatario.",
+        "kind": "altro",
         "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
-        "type": "testo_ccnl",
-        "agreement_date": "2026-02-23",
-        "notes": "CCNL Comparto Funzioni Locali triennio 2022-2024, firmato 23 febbraio 2026. Art. 56 (incrementi stipendi tabellari), Art. 60 (parziale conglobamento indennità di comparto), Tabella A (incrementi mensili per 13 mensilità), Tabella B (retribuzione tabellare annua per 12 mensilità + 13^). Orario settimanale 36h, divisore orario 156 da Art. 74 CCNL 16.11.2022. FP CGIL non firmatario."
+        "pages": [],
+        "published_on": "2026-02-23"
       },
       {
+        "document_id": "lavoro-economia-it-ccnl-ccnl-aspx-c-396",
+        "title": "SIMPLIFICATION: conferma codice CNEL S105 per CCNL Comparto Funzioni Locali (fonte secondaria lavoro-economia.it).",
+        "kind": "altro",
         "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=396",
-        "type": "fonte_secondaria",
-        "agreement_date": null,
-        "notes": "SIMPLIFICATION: conferma codice CNEL S105 per CCNL Comparto Funzioni Locali (fonte secondaria lavoro-economia.it)."
+        "pages": [],
+        "published_on": null
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-03",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-03",
+      "verification_status": "unverified",
+      "effective_from": "2022-01-01"
     },
     "workers_estimate": "~400k",
     "public_pension_fund": "cpdel"
@@ -959,7 +964,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "071309ec2662dbd9b5ceb5b674398ea3bdd36c9fcfa373a5dc4dae706272b790",
+    "source_hash": "02dd8fc2e7f8595f94fe6d517388f8ee578082024174f2b4a3a452d3547a4349",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

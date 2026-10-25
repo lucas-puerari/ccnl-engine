@@ -5,7 +5,7 @@
 | **CNEL code** | `G211` |
 | **Sector** | cinema |
 | **Tax sector** | `terziario` |
-| **Last renewal** | — |
+| **Last renewal** | 2025-10-16 |
 | **Workers (est.)** | ~6k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -47,7 +47,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2025-10-16 |
 | **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2025-07-01 |
 
@@ -172,7 +172,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-10-16 | [↗](https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf) |
+| https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf | altro | 2025-10-16 | [↗](https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf) |
 
 ??? note "Coverage notes"
     Two parallel level systems in the same contract (one CNEL code G211): Monosala/Multisala (7 levels: 1,2,3,4,5,5S,Q with parametri 100/112/132/159/176/185/220) and Multiplex/Megaplex (8 levels: A,B,C,D,E,F,QB,QA with parametri 100/122/140/150/165/185/220/240). The 15 levels are interleaved by salary for ordering (non-decreasing constraint). Levels 1 and A share identical salaries (parametro 100), as do 5S and F (parametro 185) and Q and QB (parametro 220). Level QA (parametro 240) is Multiplex/Megaplex only. The 'order' field is a global salary rank across both classification scales and is not a promotion ladder.

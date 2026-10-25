@@ -16,16 +16,20 @@
     ],
     "sources": [
       {
+        "document_id": "funiviearabba-it-wp-content-uploads-2025-12-sintesi-ccnl-anef-pdf",
+        "title": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
+        "kind": "altro",
         "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
-        "type": "text",
-        "agreement_date": "2025-05-16"
+        "pages": [],
+        "published_on": "2025-05-16"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-05",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-05",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~15k"
   },
@@ -1465,7 +1469,7 @@
     "effective_until": null,
     "source": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
     "verification_status": "unverified",
-    "source_hash": "820ea22e93365aeb671b027f7e2a17c24c93d257e4d21f4c2afff1bfa0deacc8",
+    "source_hash": "59c62734580d6a2b241b36729de42aa598a2d637f6b90df94e7959927bfba729",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

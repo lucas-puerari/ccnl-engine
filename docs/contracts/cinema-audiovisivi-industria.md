@@ -157,7 +157,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-07-23 | [↗](https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153) |
+| https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153 | altro | 2025-07-23 | [↗](https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153) |
 
 ??? note "Coverage notes"
     Salary model: conglobated (paga base unica, nessuna contingenza/EDR separata). Source: lavoro-economia.it c=153 (CNEL G111), tabella Jul 2026.

@@ -5,7 +5,7 @@
 | **CNEL code** | `B122` |
 | **Sector** | ceramica |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2024-07-22 |
 | **Workers (est.)** | ~23k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2024-07-22 |
 | **Last review** | — |
 | **Latest salary tranche** | 2027-06-01 |
 
@@ -172,7 +172,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-07-22 | [↗](https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf) |
+| https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf | tabella_retributiva | 2024-07-22 | [↗](https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated tabular minimum (single base pay absorbing contingency and EDR) + IPO (Organisational Position Allowance) as a separate fixed_allowance for the levels that receive it. Source: official FILCTEM-CGIL tables (PDF signed 22/07/2024, PIASTRELLE sub-sector). REFRACTORY MATERIALS has tables identical to PIASTRELLE.

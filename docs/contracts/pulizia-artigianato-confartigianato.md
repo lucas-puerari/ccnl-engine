@@ -220,8 +220,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2022-10-27 | [↗](https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf) |
-| — | — | 2025-12-17 | [↗](https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf) |
+| https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf | tabella_retributiva | 2022-10-27 | [↗](https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf) |
+| https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf | tabella_retributiva | 2025-12-17 | [↗](https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf) |
 
 ??? note "Coverage notes"
     Salary model: CONGLOBATO. Contingenza=0 e EDR=0 conglobati dal 1.10.2014. Confermato da ilccnl.it luglio 2026: Paga Base 1693.84 | Contingenza 0 | Terzo Elemento 0 | Totale 1693.84 per livello 1.

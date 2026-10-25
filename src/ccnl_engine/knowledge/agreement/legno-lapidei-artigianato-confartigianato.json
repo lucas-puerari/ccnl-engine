@@ -20,29 +20,36 @@
     ],
     "sources": [
       {
+        "document_id": "direzionelavoro-it-files-ccnl_legno_lapidei_artigianato_2022-pdf",
+        "title": "SOURCE: Direzionelavoro.it — Base CCNL 2022. Tables: salary base values by level (Sep 2022), hourly divisor 174, seniority amounts pre-Jan-2025, apprenticeship percentages (3 gruppi), mensilita=13, conglobated model confirmed ('Contingenza: conglobata nei minimi retributivi').",
+        "kind": "altro",
         "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf",
-        "type": "official_contract",
-        "agreement_date": "2022-09-01",
-        "notes": "SOURCE: Direzionelavoro.it — Base CCNL 2022. Tables: salary base values by level (Sep 2022), hourly divisor 174, seniority amounts pre-Jan-2025, apprenticeship percentages (3 gruppi), mensilita=13, conglobated model confirmed ('Contingenza: conglobata nei minimi retributivi')."
+        "pages": [],
+        "published_on": "2022-09-01"
       },
       {
+        "document_id": "studiodalmaschio-it-rinnovo-ccnl-legno-lapidei-artigianato-2024",
+        "title": "SOURCE: StudioDalmaschio.it — 2024 rinnovo summary (signed 5 marzo 2024). Agreement date, salary increases per tranche (Mar 2024, Jan 2025, Jan 2026, Oct 2026), new seniority amounts from Jan 2025 per level, new apprentice seniority EUR 8.00 from Jan 2025, signatories confirmed.",
+        "kind": "altro",
         "url": "https://www.studiodalmaschio.it/rinnovo-ccnl-legno-lapidei-artigianato-2024",
-        "type": "renewal_summary",
-        "agreement_date": "2024-03-05",
-        "notes": "SOURCE: StudioDalmaschio.it — 2024 rinnovo summary (signed 5 marzo 2024). Agreement date, salary increases per tranche (Mar 2024, Jan 2025, Jan 2026, Oct 2026), new seniority amounts from Jan 2025 per level, new apprentice seniority EUR 8.00 from Jan 2025, signatories confirmed."
+        "pages": [],
+        "published_on": "2024-03-05"
       },
       {
+        "document_id": "kitech-it-ccnl-legno-arredo-artigianato",
+        "title": "SOURCE: Kitech.it — CNEL code F060 confirmed. Jan 2026 salary table cross-validated: AS=2230.81, A=2079.31, B=1900.65, CS=1818.04, C=1734.61, D=1639.71, E=1552.82, F=1458.99. All 8 levels match computed values exactly.",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/ccnl/legno-arredo-artigianato",
-        "type": "table",
-        "agreement_date": "2024-03-05",
-        "notes": "SOURCE: Kitech.it — CNEL code F060 confirmed. Jan 2026 salary table cross-validated: AS=2230.81, A=2079.31, B=1900.65, CS=1818.04, C=1734.61, D=1639.71, E=1552.82, F=1458.99. All 8 levels match computed values exactly."
+        "pages": [],
+        "published_on": "2024-03-05"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-02T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-02T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~95k"
   },
@@ -1816,7 +1823,7 @@
     "effective_until": null,
     "source": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
     "verification_status": "unverified",
-    "source_hash": "06daa8ceec6e5fb12d238352aa739d6d049b1c931f0beca89b7438419d58a67f",
+    "source_hash": "3a3ac0d15158dcf3688f7f562c7ad033dfaad547a78a8f1c31c3745b54994bd3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

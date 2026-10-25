@@ -5,7 +5,7 @@
 | **CNEL code** | `D111` |
 | **Sector** | industria |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2023-05-26 |
 | **Workers (est.)** | ~17k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2023-05-26 |
 | **Last review** | — |
 | **Latest salary tranche** | 2025-12-01 |
 
@@ -170,7 +170,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2023-05-26 | [↗](https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf) |
+| https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf | altro | 2023-05-26 | [↗](https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobato (table pay inclusive of base pay, former contingenza, E.d.r.). Art. 32 CCNL (CNEL PDF): 'Sono conglobati in un unica voce denominata Retribuzione tabellare i seguenti istituti: paga base, ex indennita di contingenza, E.d.r.' PELLETTERIA table with 7 levels and 4 tranches (Apr 2023, Dec 2023, Dec 2024, Dec 2025) from primary source CNEL PDF Art. 32.

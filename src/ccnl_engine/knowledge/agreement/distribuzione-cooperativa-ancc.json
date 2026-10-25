@@ -16,26 +16,36 @@
     ],
     "sources": [
       {
+        "document_id": "kitech-it-retribuzione-stipendio-ccnl-aspx-codicecateg-h016",
+        "title": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016",
-        "type": "table",
-        "agreement_date": "2024-03-29"
+        "pages": [],
+        "published_on": "2024-03-29"
       },
       {
+        "document_id": "olympus-uniurb-it-index-php-option-com_content-view-article-id-31717-coop29324-c",
+        "title": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=31717:coop29324&catid=262&Itemid=139",
+        "kind": "altro",
         "url": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=31717:coop29324&catid=262&Itemid=139",
-        "type": "text",
-        "agreement_date": "2024-03-29"
+        "pages": [],
+        "published_on": "2024-03-29"
       },
       {
+        "document_id": "ilccnl-it-contratto-ccnl-cooperative-di-consumo",
+        "title": "https://ilccnl.it/contratto/ccnl/cooperative-di-consumo",
+        "kind": "tabella_retributiva",
         "url": "https://ilccnl.it/contratto/ccnl/cooperative-di-consumo",
-        "type": "table",
-        "agreement_date": "2024-03-29"
+        "pages": [],
+        "published_on": "2024-03-29"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-05T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-05T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~63k"
   },
@@ -2271,7 +2281,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
     "verification_status": "unverified",
-    "source_hash": "4d24b9d841fc85a006956af4d06d426a99c3cb6d691c33cc46fc80135d640d91",
+    "source_hash": "2bc4590f4903b950e67944d85dade0f1e3a2fed8110eb9f58ecb17a659fb2833",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

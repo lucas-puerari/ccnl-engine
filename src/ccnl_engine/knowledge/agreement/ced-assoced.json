@@ -15,26 +15,36 @@
     ],
     "sources": [
       {
+        "document_id": "fondoeasi-it-fondo-easi-ccnl-ced-ced-ict-professioni-digitali-e-stp-stesura-ccnl",
+        "title": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+        "kind": "altro",
         "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
-        "type": "text",
-        "agreement_date": "2022-03-09"
+        "pages": [],
+        "published_on": "2022-03-09"
       },
       {
+        "document_id": "redigo-info-ccnl-ced-ict-professioni-digitali-stp",
+        "title": "https://www.redigo.info/ccnl-ced-ict-professioni-digitali-stp",
+        "kind": "tabella_retributiva",
         "url": "https://www.redigo.info/ccnl-ced-ict-professioni-digitali-stp",
-        "type": "table",
-        "agreement_date": "2025-07-28"
+        "pages": [],
+        "published_on": "2025-07-28"
       },
       {
+        "document_id": "kitech-it-retribuzione-stipendio-ccnl-aspx-codicecateg-62",
+        "title": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=62",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=62",
-        "type": "table",
-        "agreement_date": "2025-07-28"
+        "pages": [],
+        "published_on": "2025-07-28"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-05",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-05",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~22k"
   },
@@ -1362,7 +1372,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "5a750d0608b1ffe4ecb6e9e8bb7df72ae32d34c21b8b5ee9419beee7cb89781f",
+    "source_hash": "12b5d13264cb0ae1e3dbbe78902e054db4a3795ea7f70059b56c1f71a7f8ad20",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

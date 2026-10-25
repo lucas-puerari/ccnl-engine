@@ -5,7 +5,7 @@
 | **CNEL code** | `D0L1` |
 | **Sector** | lavanderie-industriali |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2026-05-19 |
 | **Workers (est.)** | ~17k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2026-05-19 |
 | **Last review** | — |
 | **Latest salary tranche** | 2026-12-01 |
 
@@ -156,10 +156,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2026-05-19 | [↗](https://www.assosistema.it/11527-2/) |
-| — | — | 2026-05-19 | [↗](https://ilccnl.it/contratto/ccnl/lavanderie---industria) |
-| — | — | 2026-05-19 | [↗](https://www.iqnotizie.it/notizia/IQ47433/) |
-| — | — | 2026-05-19 | [↗](https://previdenza-professionisti.it/) |
+| https://www.assosistema.it/11527-2/ | altro | 2026-05-19 | [↗](https://www.assosistema.it/11527-2/) |
+| https://ilccnl.it/contratto/ccnl/lavanderie---industria | tabella_retributiva | 2026-05-19 | [↗](https://ilccnl.it/contratto/ccnl/lavanderie---industria) |
+| https://www.iqnotizie.it/notizia/IQ47433/ | tabella_retributiva | 2026-05-19 | [↗](https://www.iqnotizie.it/notizia/IQ47433/) |
+| https://previdenza-professionisti.it/ | tabella_retributiva | 2026-05-19 | [↗](https://previdenza-professionisti.it/) |
 
 ??? note "Coverage notes"
     SECTOR SCOPE: both turismo and sanitario comparti. Pre-2026 the two sectors had distinct tranche dates (sanitario ~9 months behind turismo), but converged to identical minimi by Apr 2025 (sanitario) / Oct 2025 (turismo). The 2026-2028 rinnovo (19 May 2026) applies a single undifferentiated table labelled SANITARIO_TURISMO by Assosistema — confirmed by Assosistema circular title 'Costo medio orario CCNL Lavanderie industriali SANITARIO_TURISMO Aree ABCD tranche 2026'. This contract covers workers in both comparti from 2026-05-01.

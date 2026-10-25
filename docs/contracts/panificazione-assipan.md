@@ -163,7 +163,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-02-26 | [↗](https://www.assipan.it/contratto-collettivo-nazionale-lavoro/) |
+| Testo Unico CCNL Panificazione e Settori Affini Industria, signed 26 Feb 2025. Economic provisions effective from Feb 1, 2024 (AFAC advance). Art. 50 bis (retribuzione), Art. 51 (scatti di anzianita), Art. 52 (mensilita aggiuntive), Art. 28 (apprendistato). | altro | 2025-02-26 | [↗](https://www.assipan.it/contratto-collettivo-nazionale-lavoro/) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated. Art. 50 bis states the minimo tabellare is the conglobated figure (paga base + contingenza frozen 1 Nov 1991 + EDR) and that the quota oraria is obtained by dividing it by 173. The premio di produzione nazionale is articled separately in Art. 50 ter as a distinct element outside the conglobated minimum, therefore modelled as fixed_allowance per level.

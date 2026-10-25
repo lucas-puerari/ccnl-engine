@@ -13,31 +13,44 @@
     ],
     "sources": [
       {
+        "document_id": "kitech-it-retribuzione-stipendio-ccnl-aspx-codicecateg-445",
+        "title": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445",
-        "type": "table",
-        "agreement_date": "2025-10-28"
+        "pages": [],
+        "published_on": "2025-10-28"
       },
       {
+        "document_id": "consulentidellavoro-ts-it-index-php-circolari-e-news-172-tabelle-stipendi-ccnl-m",
+        "title": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028",
+        "kind": "tabella_retributiva",
         "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028",
-        "type": "table",
-        "agreement_date": "2025-10-28"
+        "pages": [],
+        "published_on": "2025-10-28"
       },
       {
+        "document_id": "fim-cisl-it-2025-10-29-metalmeccanica-piccola-industria-firmato-il-rinnovo-del-c",
+        "title": "https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/",
+        "kind": "altro",
         "url": "https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/",
-        "type": "agreement",
-        "agreement_date": "2025-10-28"
+        "pages": [],
+        "published_on": "2025-10-28"
       },
       {
+        "document_id": "direzionelavoro-it-sites-default-files-files_pubblici-accordo-20c01a-20confimi-p",
+        "title": "https://www.direzionelavoro.it/sites/default/files/files_pubblici/Accordo%20C01A%20CONFIMI.pdf",
+        "kind": "altro",
         "url": "https://www.direzionelavoro.it/sites/default/files/files_pubblici/Accordo%20C01A%20CONFIMI.pdf",
-        "type": "official_ccnl",
-        "agreement_date": null
+        "pages": [],
+        "published_on": null
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-18T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-18T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~100k"
   },
@@ -1492,7 +1505,7 @@
     "effective_until": null,
     "source": "https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/",
     "verification_status": "unverified",
-    "source_hash": "66d6bb7f352167d2f3c649f734788684d1470fa8165e5fdb58e0ff5733175bce",
+    "source_hash": "bb70f7b8a2ff5a76c97d343b6a549ebbdfbf86fab10bd4f630eff63c3bea22a9",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

@@ -14,26 +14,36 @@
     ],
     "sources": [
       {
+        "document_id": "terrazzini-it-wp-content-uploads-14bis-2024-pdf",
+        "title": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf",
+        "kind": "associazione",
         "url": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf",
-        "type": "aggregator",
-        "agreement_date": "2024-07-03"
+        "pages": [],
+        "published_on": "2024-07-03"
       },
       {
+        "document_id": "terrazzini-it-wp-content-uploads-19bis-2026-pdf",
+        "title": "https://www.terrazzini.it/wp-content/uploads/19bis-2026.pdf",
+        "kind": "associazione",
         "url": "https://www.terrazzini.it/wp-content/uploads/19bis-2026.pdf",
-        "type": "aggregator",
-        "agreement_date": "2024-07-03"
+        "pages": [],
+        "published_on": "2024-07-03"
       },
       {
+        "document_id": "ilccnl-it-ccnl-scuole-private-religiose-scuole-private-religiose---agidae-dal-01",
+        "title": "https://ilccnl.it/ccnl/scuole-private-religiose/scuole-private-religiose---agidae-dal-010794",
+        "kind": "associazione",
         "url": "https://ilccnl.it/ccnl/scuole-private-religiose/scuole-private-religiose---agidae-dal-010794",
-        "type": "aggregator",
-        "agreement_date": "2024-07-03"
+        "pages": [],
+        "published_on": "2024-07-03"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-04T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-04T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~50k"
   },
@@ -1239,7 +1249,7 @@
     "effective_until": null,
     "source": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "270e97471d74ca9d0bde8f6176824852ff9184714021123cb4416097af4e8863",
+    "source_hash": "29a8d9fb64c915ddd5520cf8a353265659ccd8ea0e695f2bea74031f6fd0961a",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

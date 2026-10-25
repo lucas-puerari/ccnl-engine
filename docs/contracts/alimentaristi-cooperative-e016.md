@@ -173,7 +173,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-05-14 | [↗](https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016) |
+| Paga base confirmed for all 8 levels at all 5 tranches. Contingenza and EDR confirmed as frozen per standard interconfederal protocol. | tabella_retributiva | 2024-05-14 | [↗](https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016) |
 
 ??? note "Coverage notes"
     CCNL E016 renewed 14/05/2024, valid 01/12/2023-30/11/2027. Signatories: Fedagripesca-Confcooperative, Legacoop Agroalimentare, AGCI-Agrital + FLAI-CGIL/FAI-CISL/UILA-UIL.

@@ -14,17 +14,20 @@
     ],
     "sources": [
       {
+        "document_id": "kitech-it-retribuzione-stipendio-ccnl-aspx-codicecateg-181",
+        "title": "Jan 2026 tabelle retributive for CNEL B018 Unionchimica Confapi",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=181",
-        "type": "table",
-        "agreement_date": "2026-02-23",
-        "notes": "Jan 2026 tabelle retributive for CNEL B018 Unionchimica Confapi"
+        "pages": [],
+        "published_on": "2026-02-23"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-04T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-04T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": "2026-01-01"
     },
     "agreement_date": "2026-02-23",
     "validity": {
@@ -969,7 +972,7 @@
     "effective_until": "2028-12-31",
     "source": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "9b0a4720ff0b13d0f76afecfa8beb51202fd5dea38cf000b614d13dd12368047",
+    "source_hash": "1f5483636377b97cce2a2d2a63f1a5e0528248720c22f64658b054e603d461ee",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

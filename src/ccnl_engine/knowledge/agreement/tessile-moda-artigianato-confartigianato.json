@@ -23,35 +23,44 @@
     ],
     "sources": [
       {
+        "document_id": "kitech-it-ccnl-tessile-abbigliamento-artigianato",
+        "title": "SOURCE: kitech.it cited as accessible URL proxy; primary source is FEMCA CISL Bergamo salary sheet (local PDF, 4 tranches Jul 2024–Oct 2026) against which all values were verified.",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato",
-        "type": "table",
-        "agreement_date": "2024-07-16",
-        "notes": "SOURCE: kitech.it cited as accessible URL proxy; primary source is FEMCA CISL Bergamo salary sheet (local PDF, 4 tranches Jul 2024–Oct 2026) against which all values were verified."
+        "pages": [],
+        "published_on": "2024-07-16"
       },
       {
+        "document_id": "eber-org",
+        "title": "SOURCE: EBER Allegato 2 'Sintesi codifica contratti INPS e CNEL' — CNEL code V751, INPS code 003. Cross-validated: acconciatura H515 matches repo.",
+        "kind": "altro",
         "url": "https://www.eber.org",
-        "type": "official_codification",
-        "agreement_date": null,
-        "notes": "SOURCE: EBER Allegato 2 'Sintesi codifica contratti INPS e CNEL' — CNEL code V751, INPS code 003. Cross-validated: acconciatura H515 matches repo."
+        "pages": [],
+        "published_on": null
       },
       {
+        "document_id": "olympus-uniurb-it",
+        "title": "SOURCE: Rinnovo signed 16 luglio 2024. Confirms Art. 68 Section 7 retribution 'Omissis' (unchanged from 2017 base). Apprentice seniority raised to 6.00 from 2025-01-01 for hires after 17 Jul 2024.",
+        "kind": "altro",
         "url": "https://olympus.uniurb.it",
-        "type": "renewal_summary",
-        "agreement_date": "2024-07-16",
-        "notes": "SOURCE: Rinnovo signed 16 luglio 2024. Confirms Art. 68 Section 7 retribution 'Omissis' (unchanged from 2017 base). Apprentice seniority raised to 6.00 from 2025-01-01 for hires after 17 Jul 2024."
+        "pages": [],
+        "published_on": "2024-07-16"
       },
       {
+        "document_id": "cna-it",
+        "title": "SOURCE: CNA PDF base CCNL 2017-12-14 — Art. 67 seniority amounts (per-level), Art. 68 apprenticeship percentages (3 gruppi, unchanged in 2024 rinnovo). Signatories from signature page.",
+        "kind": "altro",
         "url": "https://www.cna.it",
-        "type": "official_contract",
-        "agreement_date": "2017-12-14",
-        "notes": "SOURCE: CNA PDF base CCNL 2017-12-14 — Art. 67 seniority amounts (per-level), Art. 68 apprenticeship percentages (3 gruppi, unchanged in 2024 rinnovo). Signatories from signature page."
+        "pages": [],
+        "published_on": "2017-12-14"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-02T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-02T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~120k"
   },
@@ -1568,7 +1577,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
     "verification_status": "unverified",
-    "source_hash": "97bf9fed97d20ae3aac0ffec0dfa107d49b09dbda724a2d2fa774f81229fdf76",
+    "source_hash": "3c9a652e29e248ef0236219f4b6dfec1b8c74d1be51e16f2fbf66e9fc3431000",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
