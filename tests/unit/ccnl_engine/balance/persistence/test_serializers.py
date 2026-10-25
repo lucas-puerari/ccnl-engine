@@ -11,7 +11,7 @@ from ccnl_engine.balance.persistence.serializers import (
     period_state_from_json,
     period_state_to_json,
 )
-from ccnl_engine.bundle.facade import __version__ as bundle_version
+from ccnl_engine.bundle.loaders import bundle_version
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.version import __version__ as engine_version
 
@@ -23,7 +23,7 @@ def test_a_state_carries_this_engine_and_bundle() -> None:
 
     assert (payload["engine_version"], payload["bundle_version"]) == (
         engine_version,
-        bundle_version,
+        bundle_version(),
     )
     assert period_state_from_json(text) == PeriodState.zero()
 

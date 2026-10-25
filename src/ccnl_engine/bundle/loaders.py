@@ -13,10 +13,13 @@ from __future__ import annotations
 
 import functools
 import gzip
+import hashlib
 import importlib.resources
 import json
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
+
+from ccnl_engine.bundle.facade import SERIES
 
 if TYPE_CHECKING:
     from importlib.resources.abc import Traversable
@@ -25,6 +28,7 @@ if TYPE_CHECKING:
 __all__ = [
     "MANIFEST",
     "Resource",
+    "bundle_version",
     "read_resource",
     "resource_dir",
     "resources",
@@ -108,6 +112,22 @@ def _manifest() -> dict[str, Resource]:
         )
         for entry in raw["resources"]
     }
+
+
+@functools.cache
+def bundle_version() -> str:
+    """Return the version of the bundled data: its series and manifest digest.
+
+    The manifest records the content hash of every resource, so any change
+    to a resource changes the digest, and a stale manifest fails CI.
+
+    Returns:
+        ``<series>+<first 12 hex digits of the manifest digest>``.
+    """
+    raw = json.loads(read_bundled(_root(), MANIFEST))
+    canonical = json.dumps(raw["resources"], sort_keys=True, separators=(",", ":"))
+    digest = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+    return f"{SERIES}+{digest[:12]}"
 
 
 def resources(dataset: str) -> tuple[Resource, ...]:

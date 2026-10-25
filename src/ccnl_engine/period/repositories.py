@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.insured.loaders import load_insured_absence_rates
-from ccnl_engine.bundle.facade import __version__
+from ccnl_engine.bundle.loaders import bundle_version as _bundle_version
 from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
@@ -43,7 +43,7 @@ class BundledKnowledgeRepository:
     @property
     def bundle_version(self) -> str:
         """Version of the package-bundled datasets."""
-        return __version__
+        return _bundle_version()
 
     def load_contracts(self) -> tuple[ContractSummary, ...]:  # noqa: PLR6301
         """Return the summary of every bundled CCNL, sorted by ``ccnl_id``.

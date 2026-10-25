@@ -56,7 +56,6 @@ ruleset that is not ``production``; :meth:`~PayrollEngine.list_contracts` and
 from __future__ import annotations
 
 from ccnl_engine.api import PayrollEngine
-from ccnl_engine.bundle.facade import __version__ as bundle_version
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.inputs import Employment
 from ccnl_engine.errors import (
@@ -73,6 +72,7 @@ from ccnl_engine.errors import (
 from ccnl_engine.period.inputs import PeriodFacts, PeriodInput
 from ccnl_engine.period.results import PeriodResult
 from ccnl_engine.run.models import PayrollRun
+from ccnl_engine.version import __bundle_version__ as bundle_version
 from ccnl_engine.version import __version__ as engine_version
 from ccnl_engine.year.competence.inputs import CompetenceYearPlan
 from ccnl_engine.year.results import (
