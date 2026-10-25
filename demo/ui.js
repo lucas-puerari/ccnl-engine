@@ -225,7 +225,7 @@ const EXAMPLES = [
     key: "apprentice",
     params: {
       ccnl: "metalmeccanico-federmeccanica", level: "C1", contract: "apprentice",
-      apprentice_months: 18, track: "professionalizzante_36",
+      apprentice_months: 12, track: "professionalizzante_36",
       part_time_pct: 100, seniority_months: 18, headcount: 200,
       regione: "IT-25", comune: "F205",
     },
