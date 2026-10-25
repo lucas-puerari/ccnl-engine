@@ -11,7 +11,7 @@ Every CCNL ruleset is classified by two orthogonal signals:
 
 | Signal | Field | Values | Meaning |
 |---|---|---|---|
-| Readiness | `verification.readiness` | `exploratory` / `reviewed` / `production` | Whether the ruleset has been human-reviewed for a given use context; public as `RulesetAssurance.readiness`, enforced in `operational` mode |
+| Readiness | `verification.readiness` | `exploratory` / `reviewed` / `production` | The use context a recorded review clears the ruleset for (the reviews are AI reviews today); public as `RulesetAssurance.readiness`, enforced in `operational` mode |
 | Verification | `verification.confidence` | `unverified` / `verified` / `needs_review` | File-level review state; public as `RulesetAssurance.confidence`, which flags a `reviewed` or `production` tier without `verified` confidence |
 | Rule provenance | `provenance.status` on each payable rule | `verified` / `derived` / `assumed` / `missing` | How far each value is backed by its source; `assumed` or `missing` makes a result that reads it not payable, `missing` also `incomplete` (see [Provenance](provenance.md)) |
 
