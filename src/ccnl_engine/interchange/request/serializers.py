@@ -42,6 +42,7 @@ from ccnl_engine.employment.fact.inputs import (
 )
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm, NaspiExclusion
 from ccnl_engine.employment.inputs import Apprentice, Employment, Permanent
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.extra_month.schedule.models import (
     ExtraMonthKind,
     ExtraMonthSchedule,
@@ -100,7 +101,6 @@ from ccnl_engine.year.tax_year.inputs import TaxYearPlan
 if TYPE_CHECKING:
     from collections.abc import Mapping
 
-    from ccnl_engine.errors import InvalidInputError
 
 __all__ = [
     "REQUEST_SCHEMA_VERSION",
@@ -115,6 +115,11 @@ __all__ = [
 #: type is renamed, removed or changes meaning.  Version 2 names the CCNL of
 #: an ``Employment`` by ``ccnl_id`` (version 1: ``ccnl_slug``, never merged).
 REQUEST_SCHEMA_VERSION = 2
+#: What to do with a request of another schema: there is no migration.
+_OLD_SCHEMA = (
+    "a stored request is read by the release that wrote it: install that "
+    "release to replay it, or build the request again with the input types"
+)
 
 _FEATURE = "request_json"
 _SUBJECT = "the request"
@@ -261,15 +266,19 @@ def read_request[R: (PeriodInput, CompetenceYearPlan, TaxYearPlan)](
     Returns:
         The request, meaningless when there is an error, and one error per
         rejected value, each with its path as field.
+
+    Raises:
+        InvalidInputError: When the request is of another schema version;
+            there is no migration, the remediation says what to do.
     """
     payload = loads(text, subject=_SUBJECT, feature=_FEATURE)
     version = payload.get("schema_version")
     if version != REQUEST_SCHEMA_VERSION:
-        reject(
-            _SUBJECT,
-            f"schema_version {version!r}, expected {REQUEST_SCHEMA_VERSION!r}",
-            feature=_FEATURE,
+        msg = (
+            f"{_SUBJECT}: schema_version {version!r} is not the "
+            f"{REQUEST_SCHEMA_VERSION!r} this engine reads"
         )
+        raise InvalidInputError(msg, feature=_FEATURE, remediation=_OLD_SCHEMA)
     tree = payload.get("request")
     if not isinstance(tree, dict) or tree.get("$type") != kind.__name__:
         reject(_SUBJECT, f"not a {kind.__name__}", feature=_FEATURE)
