@@ -122,9 +122,9 @@ def resolve_contributions(
         rules: Year-specific tax and contribution rules.
         contract_type: Employment type (Permanent, FixedTerm, Apprentice).
         category: Level category for employer rate lookup, or None.
-        ytd_inps_base: Total INPS base already accumulated this tax year
-            (from ``TaxCashState.earnings.inps_base``). Used to enforce the
-            annual IVS ceiling across periods.
+        ytd_inps_base: INPS base of the competence year before the run,
+            all employers (``RunContext.ytd_inps_base``, from the accrual
+            state). Used to enforce the annual IVS ceiling across periods.
         ivs_ceiling_applies: Whether the massimale applies to the worker.
             When False all contributions are applied to the full base.
         additional: Position of the run toward the additional 1% IVS
