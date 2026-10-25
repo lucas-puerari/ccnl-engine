@@ -175,3 +175,30 @@ only: a result is recomputed from its request, not read back.
 ::: ccnl_engine.results.VoceUnit
 
 ::: ccnl_engine.results.VoceSide
+
+## Comparing with another payroll
+
+`compare_totals` compares the eight totals of a run with the payslip of
+another payroll computed from the same facts: build the request with
+`request_from_json` or the input types, run it, pass the other payroll's
+totals by name (`TOTALS`), and read one `TotalDifference` per total and
+whether the run is payable. The perimeter of each total is the one of the
+[validation packets](../trust/validation-packet.md).
+
+```python
+from decimal import Decimal
+
+from ccnl_engine.results import compare_totals
+
+comparison = compare_totals(result, {"net": Decimal("1527.84")})
+for difference in comparison.differences:
+    print(difference.total, difference.engine, difference.difference)
+```
+
+::: ccnl_engine.results.compare_totals
+
+::: ccnl_engine.results.TOTALS
+
+::: ccnl_engine.results.TotalsComparison
+
+::: ccnl_engine.results.TotalDifference

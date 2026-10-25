@@ -2,7 +2,8 @@
 
 Assurance and blockers, decisions and issues, model limitations, capability
 gaps, unresolved requirements, runs a year left out and the remittance lines;
-:func:`result_to_json` writes a whole result as JSON.
+:func:`result_to_json` writes a whole result as JSON, and
+:func:`compare_totals` compares the totals of a run with another payroll.
 :data:`PUBLIC_FACTS` maps the detail of a ``missing_fact`` blocker to the
 public field that supplies it.
 """
@@ -19,6 +20,12 @@ from ccnl_engine.assurance.models import (
 )
 from ccnl_engine.capability.requirement.rules import UnresolvedRequirement
 from ccnl_engine.capability.results import CapabilityGap, CapabilityScope
+from ccnl_engine.comparison.totals.models import (
+    TOTALS,
+    TotalDifference,
+    TotalsComparison,
+)
+from ccnl_engine.comparison.totals.services import compare_totals
 from ccnl_engine.decision.models import (
     PUBLIC_FACTS,
     CalculationDecision,
@@ -45,6 +52,7 @@ from ccnl_engine.year.coverage.models import UncoveredRun
 
 __all__ = [
     "PUBLIC_FACTS",
+    "TOTALS",
     "AccountKind",
     "BlockerCode",
     "CalculationDecision",
@@ -67,9 +75,12 @@ __all__ = [
     "ResultAssurance",
     "ResultBlocker",
     "ResultTotal",
+    "TotalDifference",
+    "TotalsComparison",
     "UncoveredRun",
     "UnresolvedRequirement",
     "VoceSide",
     "VoceUnit",
+    "compare_totals",
     "result_to_json",
 ]
