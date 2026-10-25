@@ -231,3 +231,32 @@ def resolve_trattamento(
     )
     recovery = _recovery_decision(period, rules, opening_tratt_ytd)
     return period_tratt, component, period.plan, (decision, *recovery)
+
+
+def increment_reading_open(decision: CalculationDecision, rules: YearRules) -> bool:
+    """Return whether the 65 EUR of art. 13 c. 1.1 TUIR decide the credit.
+
+    D.L. 3/2020 art. 1 c. 1 compares the gross tax with the deductions "di
+    cui agli articoli 12, 13, comma 1"; the increment of c. 1.1 raises the
+    deduction of c. 1 between 25,000 and 35,000 EUR, and no source the
+    bundle cites says whether it counts.  The engine counts it, and the
+    reading is open when leaving it out would lower the credit.
+
+    Returns:
+        ``True`` when the income is in both bands and the credit without
+        the increment would be lower.
+    """
+    tratt = rules.trattamento_integrativo
+    if tratt is None:
+        return False
+    work = rules.work_deduction
+    income, deductions, gross = (
+        Decimal(str(decision.inputs[key]))
+        for key in ("taxable_income", "relevant_deductions", "irpef_gross")
+    )
+    in_bands = (
+        tratt.threshold_mid < income <= tratt.threshold_upper
+        and work.increment_lo < income <= work.increment_hi
+    )
+    without = max(_ZERO, deductions - work.detr_increment - gross)
+    return in_bands and (decision.amount or _ZERO) > without

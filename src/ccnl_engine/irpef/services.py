@@ -16,6 +16,9 @@ from ccnl_engine.irpef.computation.services import (
     compute_tax,
 )
 from ccnl_engine.pay_item.services import _ZERO
+from ccnl_engine.tax_credit.trattamento_integrativo.rules import (
+    increment_reading_open,
+)
 from ccnl_engine.withholding.rules import PayPeriod
 
 if TYPE_CHECKING:
@@ -69,6 +72,37 @@ def ulteriore_issues(inp: _AmountsInput, irpef: _Irpef) -> tuple[CalculationIssu
     if not due or (facts is not None and facts.tax_year == inp.rules.year):
         return ()
     return (ULTERIORE_INCOME_UNKNOWN,)
+
+
+#: D.L. 3/2020 art. 1 c. 1 names "articoli 12, 13, comma 1": whether the
+#: 65 EUR of art. 13 c. 1.1 TUIR count is not settled by a cited source.
+TRATTAMENTO_INCREMENT_OPEN = CalculationIssue(
+    code="trattamento_increment_reading_open",
+    capability="trattamento_integrativo",
+    message=(
+        "trattamento_integrativo: the credit counts the 65 EUR increment of "
+        "art. 13 c. 1.1 TUIR among the deductions of D.L. 3/2020 art. 1 c. 1, "
+        "which name art. 13 comma 1 only, and without it the credit would be "
+        "lower: no cited source settles the reading"
+    ),
+    status=CalculationStatus.INCOMPLETE,
+)
+
+
+def trattamento_issues(
+    inp: _AmountsInput, irpef: _Irpef
+) -> tuple[CalculationIssue, ...]:
+    """Return the open reading of the 65 EUR increment, when it decides the credit.
+
+    Returns:
+        :data:`TRATTAMENTO_INCREMENT_OPEN` or nothing.
+    """
+    return tuple(
+        TRATTAMENTO_INCREMENT_OPEN
+        for d in irpef.tax.decisions
+        if d.capability == "trattamento_integrativo"
+        and increment_reading_open(d, inp.rules)
+    )
 
 
 def _external_income(inp: _AmountsInput) -> Decimal:
