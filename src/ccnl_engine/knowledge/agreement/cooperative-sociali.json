@@ -59,8 +59,9 @@
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-01T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-01T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~380k"
   },
@@ -2940,7 +2941,7 @@
     "effective_until": null,
     "source": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
     "verification_status": "unverified",
-    "source_hash": "828f655c1416a8962d733c437b8e0a0c224f521929fd833666758a16fac53da7",
+    "source_hash": "3631cd3c29db5539b2ad02a1f816fa120288c3dcc73dd7a08865e170beaef91c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -15,26 +15,36 @@
     ],
     "sources": [
       {
+        "document_id": "cdltorino-it-ccnl-informatica-piccola-industria-rettifica-tabelle-retributive",
+        "title": "https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/",
+        "kind": "tabella_retributiva",
         "url": "https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/",
-        "type": "table",
-        "agreement_date": "2025-04-14"
+        "pages": [],
+        "published_on": "2025-04-14"
       },
       {
+        "document_id": "kitech-it-retribuzione-stipendio-ccnl-aspx-codicecateg-302",
+        "title": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=302",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=302",
-        "type": "table",
-        "agreement_date": "2025-04-14"
+        "pages": [],
+        "published_on": "2025-04-14"
       },
       {
+        "document_id": "slc-cgil-it-ccnl-20210309-ccnl_confapi_unigec_unimatica-pdf",
+        "title": "https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf",
+        "kind": "altro",
         "url": "https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf",
-        "type": "full_text",
-        "agreement_date": "2021-03-09"
+        "pages": [],
+        "published_on": "2021-03-09"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-04T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-04T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~20k"
   },
@@ -1459,7 +1469,7 @@
     "effective_until": null,
     "source": "https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "bfc0e283cb9ab15e1b972ee42e3d40ef6c6f8779ede72ce624971a1a5c25a843",
+    "source_hash": "08f130d94089f07f58008f54b304e0cb0ae2e51458928ee9d5c8e06034165ba3",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

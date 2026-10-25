@@ -170,8 +170,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2019-07-11 | [↗](https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf) |
-| — | — | 2024-07-26 | [↗](https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20108.pdf) |
+| Base CCNL 2019 — Art. 146 (hourly divisor 172), Art. 64 (apprendistato 80/85/90%), Art. 156 (scatti di anzianita triennali) | altro | 2019-07-11 | [↗](https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf) |
+| Rinnovo 2024 — tabelle retributive tutti i livelli e tutte le tranche 2024-2027, Art. 157 tredicesima, Art. 158 quattordicesima | altro | 2024-07-26 | [↗](https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20108.pdf) |
 
 ??? note "Coverage notes"
     Salary tables 2024-2027 from CCNL renewal of 26 July 2024 (CNEL PDF). Six tranches: Jun-24, Jul-24, Sep-25, Sep-26, Jun-27, Dec-27.

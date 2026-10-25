@@ -177,8 +177,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-12-04 | [↗](https://redigo.info/) |
-| — | — | 2021-01-01 | not available |
+| Tabella retributiva operai OTI CCNL A181 rinnovo 04/12/2025. Tranches 01/01/2026, 01/01/2027, 01/01/2028. Conglobato. Parametri Art. 49 CCNL 2021: L1=100, L2=108, L3=111, L4=116, L5=123. | tabella_retributiva | 2025-12-04 | [↗](https://redigo.info/) |
+| CCNL previgente 2021: Art. 49 parametri operai, Art. 7 apprendistato sotto-inquadramento, Art. 52 modello conglobato div=169. Structural rules carried forward to 2025 rinnovo (2025 PDF image-only; full text unavailable). | altro | 2021-01-01 | not available |
 
 ??? note "Coverage notes"
     CCNL A181 — Sistemazioni Idraulico-Forestali (Operai OTI). Split from impiegati contract: salary bands overlap, requiring separate files for correct engine ordering and under-classification apprenticeship. 5 livelli operai (O1-O5). Conglobato. Divisore 169, 14 mensilita.

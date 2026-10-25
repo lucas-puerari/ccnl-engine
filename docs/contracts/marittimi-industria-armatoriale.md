@@ -5,7 +5,7 @@
 | **CNEL code** | `I391` |
 | **Sector** | navigazione marittima — personale di terra |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2024-07-11 |
 | **Workers (est.)** | ~15k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2024-07-11 |
 | **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2026-07-01 |
 
@@ -164,7 +164,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-07-11 | [↗](https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf) |
+| https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf | altro | 2024-07-11 | [↗](https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf) |
 
 ??? note "Coverage notes"
     CCNL 2024-2026 (CONFITARMA/FILT-CGIL/FIT-CISL/UILTRASPORTI), signed 11/07/2024, valid 01/07/2024-31/12/2026. Personale di terra (shore-based staff), Sezione 15 — Allegati 1 and 1bis.

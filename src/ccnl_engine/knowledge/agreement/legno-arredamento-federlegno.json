@@ -14,26 +14,36 @@
     ],
     "sources": [
       {
+        "document_id": "direzionelavoro-it-wp-content-uploads-2023-07-legno-industria-cnel-f051-pdf",
+        "title": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf",
+        "kind": "altro",
         "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf",
-        "type": "text",
-        "agreement_date": "2023-06-20"
+        "pages": [],
+        "published_on": "2023-06-20"
       },
       {
+        "document_id": "lexplain-it-ccnl-legno-arredamento-industria",
+        "title": "https://www.lexplain.it/ccnl-legno-arredamento-industria/",
+        "kind": "tabella_retributiva",
         "url": "https://www.lexplain.it/ccnl-legno-arredamento-industria/",
-        "type": "table",
-        "agreement_date": null
+        "pages": [],
+        "published_on": null
       },
       {
+        "document_id": "previdenza-professionisti-it-ccnl-legno-industria-scatti-anzianita",
+        "title": "https://www.previdenza-professionisti.it/ccnl-legno-industria-scatti-anzianita/",
+        "kind": "tabella_retributiva",
         "url": "https://www.previdenza-professionisti.it/ccnl-legno-industria-scatti-anzianita/",
-        "type": "table",
-        "agreement_date": null
+        "pages": [],
+        "published_on": null
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-02",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-02",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~90k"
   },
@@ -3484,7 +3494,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "e1e48d3e018664e7f94c0e86d74007e594d2e9965d3b051de17a8ac86c0bce54",
+    "source_hash": "f87731de27d7b330a0cb7b0026303a1804cfc533e885df482fe2df1b7baba3da",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

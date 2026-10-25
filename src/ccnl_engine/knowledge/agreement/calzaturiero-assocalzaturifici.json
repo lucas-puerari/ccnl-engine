@@ -14,26 +14,36 @@
     ],
     "sources": [
       {
+        "document_id": "consulenza-it-contenuti-news-news-9409-calzaturieri-industria-e-minimi-retributi",
+        "title": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
+        "kind": "tabella_retributiva",
         "url": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
-        "type": "table",
-        "agreement_date": "2024-07-17"
+        "pages": [],
+        "published_on": "2024-07-17"
       },
       {
+        "document_id": "kitech-it-retribuzione-stipendio-ccnl-aspx-codicecateg-173",
+        "title": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=173",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=173",
-        "type": "table",
-        "agreement_date": "2024-07-17"
+        "pages": [],
+        "published_on": "2024-07-17"
       },
       {
+        "document_id": "businessonline-it-articoli-scatti-anzianita-contratto-calzaturiero-tabella-ogni-",
+        "title": "https://www.businessonline.it/articoli/scatti-anzianita-contratto-calzaturiero-tabella-ogni-quanto-ci-sono-e-stipendio-di-quanto-aumenta.html",
+        "kind": "tabella_retributiva",
         "url": "https://www.businessonline.it/articoli/scatti-anzianita-contratto-calzaturiero-tabella-ogni-quanto-ci-sono-e-stipendio-di-quanto-aumenta.html",
-        "type": "table",
-        "agreement_date": "2024-07-17"
+        "pages": [],
+        "published_on": "2024-07-17"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-02",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-02",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~75k"
   },
@@ -1312,7 +1322,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
     "verification_status": "unverified",
-    "source_hash": "97c1af82f64c98266f933ce928eec27344db1be00e7702aafb6e4a2c15be3b51",
+    "source_hash": "fcce05bb2f12809a3e769b1e35cfc6c45f21db18a8a4b6e792c9bb24c828790d",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

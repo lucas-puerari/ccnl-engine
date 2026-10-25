@@ -18,35 +18,44 @@
     ],
     "sources": [
       {
+        "document_id": "redigo-info-ccnl-comunicazione-artigianato",
+        "title": "SOURCE: Redigo.info — Verbale integrativo sottoscritto il 25 novembre 2024 (accordo siglato 18 novembre 2024). Salary tables for aziende artigiane (Art. 33): 8 tranches starting Dec 2024. All 8 level values confirmed. Level 1A total includes indennita di funzione 51.65 EUR.",
+        "kind": "tabella_retributiva",
         "url": "https://www.redigo.info/ccnl/comunicazione-artigianato",
-        "type": "table",
-        "agreement_date": "2024-11-18",
-        "notes": "SOURCE: Redigo.info — Verbale integrativo sottoscritto il 25 novembre 2024 (accordo siglato 18 novembre 2024). Salary tables for aziende artigiane (Art. 33): 8 tranches starting Dec 2024. All 8 level values confirmed. Level 1A total includes indennita di funzione 51.65 EUR."
+        "pages": [],
+        "published_on": "2024-11-18"
       },
       {
+        "document_id": "kitech-it-ccnl-comunicazione-artigianato",
+        "title": "SOURCE: Kitech.it — CNEL code G016 confirmed. Mar 2026 salary table cross-validated: 1A base 2490.07 + indennita funzione 51.65 = 2541.72 total. Hourly divisor 173 confirmed. Seniority amounts per level confirmed: 1A=16.01, 1B=16.01, 2=14.20, 3=13.43, 4=12.65, 5bis=11.88, 5=11.36, 6=10.33. Cadence 24m, max 5 scatti.",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/ccnl/comunicazione-artigianato",
-        "type": "table",
-        "agreement_date": "2024-11-18",
-        "notes": "SOURCE: Kitech.it — CNEL code G016 confirmed. Mar 2026 salary table cross-validated: 1A base 2490.07 + indennita funzione 51.65 = 2541.72 total. Hourly divisor 173 confirmed. Seniority amounts per level confirmed: 1A=16.01, 1B=16.01, 2=14.20, 3=13.43, 4=12.65, 5bis=11.88, 5=11.36, 6=10.33. Cadence 24m, max 5 scatti."
+        "pages": [],
+        "published_on": "2024-11-18"
       },
       {
+        "document_id": "lavoro-economia-it-ccnl-ccnl-aspx-c-155",
+        "title": "SOURCE: Lavoro-Economia.it — Aggregator showing CCNL text. Per-level seniority amounts independently match kitech.it: 1A=16.01, 1B=16.01, 2=14.20, 3=13.43, 4=12.65, 5bis=11.88, 5=11.36, 6=10.33. Hourly divisor 173 confirmed (40h/week table). Page reflects pre-2024 CCNL base text; amounts not changed by 2024 rinnovo. NOTE: aggregator source, not verified against CCNL PDF.",
+        "kind": "tabella_retributiva",
         "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=155",
-        "type": "table",
-        "agreement_date": "2024-11-18",
-        "notes": "SOURCE: Lavoro-Economia.it — Aggregator showing CCNL text. Per-level seniority amounts independently match kitech.it: 1A=16.01, 1B=16.01, 2=14.20, 3=13.43, 4=12.65, 5bis=11.88, 5=11.36, 6=10.33. Hourly divisor 173 confirmed (40h/week table). Page reflects pre-2024 CCNL base text; amounts not changed by 2024 rinnovo. NOTE: aggregator source, not verified against CCNL PDF."
+        "pages": [],
+        "published_on": "2024-11-18"
       },
       {
+        "document_id": "farecontrattazione-adapt-it-per-una-storia-della-contrattazione-collettiva-in-it",
+        "title": "SOURCE: ADAPT Farecontrattazione.it — Academic analysis of the Nov 2024 rinnovo. Confirms: aziende artigiane total increase EUR 200 over 4 tranches (Dec 2024, Jul 2025, Mar 2026, Nov 2026). Apprenticeship new rules: operai/tecnici 5 years max, amministrativi 3 years, centraliniste 2 years. Apprentice seniority accrual improved in rinnovo. CNEL G016, INPS ARTIGIANATO sector.",
+        "kind": "altro",
         "url": "https://farecontrattazione.adapt.it/per-una-storia-della-contrattazione-collettiva-in-italia-247-il-nuovo-ccnl-artigianato-area-comunicazione-un-rinnovo-contrattuale-al-passo-con-i-tempi/",
-        "type": "renewal_summary",
-        "agreement_date": "2024-11-18",
-        "notes": "SOURCE: ADAPT Farecontrattazione.it — Academic analysis of the Nov 2024 rinnovo. Confirms: aziende artigiane total increase EUR 200 over 4 tranches (Dec 2024, Jul 2025, Mar 2026, Nov 2026). Apprenticeship new rules: operai/tecnici 5 years max, amministrativi 3 years, centraliniste 2 years. Apprentice seniority accrual improved in rinnovo. CNEL G016, INPS ARTIGIANATO sector."
+        "pages": [],
+        "published_on": "2024-11-18"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-02T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-02T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~60k"
   },
@@ -1437,7 +1446,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "98a6655bd9836e237dad5bef0984ff95284248cf76c14f0fa9a009b22e2e648d",
+    "source_hash": "5545ea940c2dbbc303dabcced64480b96b085e805476e728abde482047f29a24",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

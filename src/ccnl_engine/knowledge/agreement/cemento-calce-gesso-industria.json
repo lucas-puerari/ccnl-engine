@@ -14,16 +14,20 @@
     ],
     "sources": [
       {
+        "document_id": "fenealuil-it-wp-content-uploads-2026-02-cemento_stampa-ccnl_2025-no-ugl-pdf",
+        "title": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
+        "kind": "altro",
         "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
-        "type": "pdf",
-        "agreement_date": "2025-05-08"
+        "pages": [],
+        "published_on": "2025-05-08"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-06T00:00:00",
-      "human_reviewed": true
+      "extraction_timestamp": "2026-09-06T00:00:00",
+      "verification_status": "verified",
+      "effective_from": null
     },
     "workers_estimate": "~25k"
   },
@@ -2595,7 +2599,7 @@
     "effective_until": null,
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
     "verification_status": "verified",
-    "source_hash": "cdfb014e3b0e34a7770c8aeec95fd2bd1717b922b84e4928c59a517b8d82ad6d",
+    "source_hash": "79e623033feb71da20cf3b94ae1eb1d3e6171bfc2fc79e58e5e59040c81164d8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

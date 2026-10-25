@@ -158,7 +158,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-12-18 | [↗](https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf) |
+| https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf | altro | 2025-12-18 | [↗](https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf) |
 
 ??? note "Coverage notes"
     Split model: minimo tabellare + IIS (Indennita Integrativa Speciale, frozen). 7 levels C1-C-B2-B1-B-A1-A. Divisor 156, 13 months. 4 tranches: 01/03/2026, 01/09/2026, 01/03/2027, 01/07/2027.

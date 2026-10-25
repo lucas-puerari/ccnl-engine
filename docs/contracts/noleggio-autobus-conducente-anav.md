@@ -185,10 +185,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-05-23 | [↗](https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf) |
-| — | — | 2022-10-06 | [↗](https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf) |
-| — | — | 2025-05-23 | [↗](https://www.redigo.info/2025/05/27/ccnl-noleggio-autobus-con-conducente-laccordo-di-rinnovo-2024-2026/) |
-| — | — | 2025-05-23 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548) |
+| https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf | altro | 2025-05-23 | [↗](https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf) |
+| https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf | tabella_retributiva | 2022-10-06 | [↗](https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf) |
+| https://www.redigo.info/2025/05/27/ccnl-noleggio-autobus-con-conducente-laccordo-di-rinnovo-2024-2026/ | altro | 2025-05-23 | [↗](https://www.redigo.info/2025/05/27/ccnl-noleggio-autobus-con-conducente-laccordo-di-rinnovo-2024-2026/) |
+| https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548 | tabella_retributiva | 2025-05-23 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548) |
 
 ??? note "Coverage notes"
     SALARY MODEL: split. base_salary = retribuzione tabellare; fixed_allowances per level: CONTINGENZA (frozen) + EDR (10.33, frozen since Protocollo 1992) + EDR_RINNOVO (new EDR from 2025-07-01, per level, 14 mensilita) + INDENNITA_FUNZIONE (Q1=67.00, Q2=51.00 only).

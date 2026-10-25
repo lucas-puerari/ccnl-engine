@@ -18,31 +18,44 @@
     ],
     "sources": [
       {
+        "document_id": "archiviocontrattiapi-cnel-it-cne-cne-sa-0002-ricerca-api-ricerca-pubblica-accord",
+        "title": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+        "kind": "cnel",
         "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
-        "type": "cnel",
-        "agreement_date": "2021-06-08"
+        "pages": [],
+        "published_on": "2021-06-08"
       },
       {
+        "document_id": "archiviocontrattiapi-cnel-it-cne-cne-sa-0002-ricerca-api-ricerca-pubblica-accord",
+        "title": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+        "kind": "cnel",
         "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
-        "type": "cnel",
-        "agreement_date": "2011-05-31"
+        "pages": [],
+        "published_on": "2011-05-31"
       },
       {
+        "document_id": "archiviocontrattiapi-cnel-it-cne-cne-sa-0002-ricerca-api-ricerca-pubblica-accord",
+        "title": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234754",
+        "kind": "cnel",
         "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234754",
-        "type": "cnel",
-        "agreement_date": "2025-06-13"
+        "pages": [],
+        "published_on": "2025-06-13"
       },
       {
+        "document_id": "archiviocontrattiapi-cnel-it-cne-cne-sa-0002-ricerca-api-ricerca-pubblica-accord",
+        "title": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
+        "kind": "cnel",
         "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-        "type": "cnel",
-        "agreement_date": "2025-08-06"
+        "pages": [],
+        "published_on": "2025-08-06"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-01",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-01",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~580k"
   },
@@ -5424,7 +5437,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "337db92a2be42637567bbbe9290e6207365a7dec9dc6fef854cc31bf173f512c",
+    "source_hash": "f15d64456c4efc073f8713936c3619d7b67192134cd332f67eae43b01c2896d8",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

@@ -5,7 +5,7 @@
 | **CNEL code** | `C018` |
 | **Sector** | metalmeccanico |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2017-07-03 |
 | **Workers (est.)** | ~350k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 👁 Reviewed |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2017-07-03 |
 | **Last review** | 2026-10-20 |
 | **Latest salary tranche** | 2028-06-01 |
 
@@ -255,13 +255,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2017-07-03 | [↗](https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf) |
-| — | — | 2021-05-26 | [↗](https://www.fim-cisl.it/wp-content/uploads/2021/03/Ipotesi-CCNL-TESTO-firme-accordo-26-maggio-2021.pdf) |
-| — | — | 2024-06-11 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2024/06/20240611-UNIONMECCANICA-Verbale-accordo-minimi-2024.pdf) |
-| — | — | 2025-06-19 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250619-Unionmeccanica-Confapi-Verbale-di-accordo-adeguamento-IPCA-2024.pdf) |
-| — | — | 2025-07-24 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2025/07/2025-07-24-CCNL-Unionmeccanica-accordo-aumenti-minini-2025-26.pdf) |
-| — | — | 2026-06-04 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf) |
-| — | — | 2026-06-17 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260617-Unionmeccanica-Confapi-Verbale-accordo-minimi-1-giugno-2026-IPCA-signed.pdf) |
+| https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf | altro | 2017-07-03 | [↗](https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf) |
+| https://www.fim-cisl.it/wp-content/uploads/2021/03/Ipotesi-CCNL-TESTO-firme-accordo-26-maggio-2021.pdf | altro | 2021-05-26 | [↗](https://www.fim-cisl.it/wp-content/uploads/2021/03/Ipotesi-CCNL-TESTO-firme-accordo-26-maggio-2021.pdf) |
+| https://www.uilmnazionale.it/wp-content/uploads/2024/06/20240611-UNIONMECCANICA-Verbale-accordo-minimi-2024.pdf | tabella_retributiva | 2024-06-11 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2024/06/20240611-UNIONMECCANICA-Verbale-accordo-minimi-2024.pdf) |
+| https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250619-Unionmeccanica-Confapi-Verbale-di-accordo-adeguamento-IPCA-2024.pdf | tabella_retributiva | 2025-06-19 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250619-Unionmeccanica-Confapi-Verbale-di-accordo-adeguamento-IPCA-2024.pdf) |
+| https://www.uilmnazionale.it/wp-content/uploads/2025/07/2025-07-24-CCNL-Unionmeccanica-accordo-aumenti-minini-2025-26.pdf | altro | 2025-07-24 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2025/07/2025-07-24-CCNL-Unionmeccanica-accordo-aumenti-minini-2025-26.pdf) |
+| https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf | altro | 2026-06-04 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf) |
+| https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260617-Unionmeccanica-Confapi-Verbale-accordo-minimi-1-giugno-2026-IPCA-signed.pdf | tabella_retributiva | 2026-06-17 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260617-Unionmeccanica-Confapi-Verbale-accordo-minimi-1-giugno-2026-IPCA-signed.pdf) |
 
 ??? note "Coverage notes"
     CONSOLIDATED MINIMUMS: base_salary holds the 'minimi tabellari conglobati della classificazione unica' (Art. 38 p. 112 and Art. 40 p. 113 of the CCNL of 3 July 2017), which absorb paga base, contingenza and EDR; fixed_allowances is empty for all levels.

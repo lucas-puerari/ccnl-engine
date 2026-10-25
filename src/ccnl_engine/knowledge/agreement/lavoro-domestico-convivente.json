@@ -17,16 +17,20 @@
     ],
     "sources": [
       {
+        "document_id": "associazionedomina-it-wp-content-uploads-2026-02-tabella-minimi-retributivi-2026",
+        "title": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
+        "kind": "tabella_retributiva",
         "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
-        "type": "table",
-        "agreement_date": "2026-01-01"
+        "pages": [],
+        "published_on": "2026-01-01"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-04T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-04T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~900k"
   },
@@ -1408,7 +1412,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "cb98133c0c562a6cc7b298fcef932f4a9cd4fffdfe2ad721e132dbc03889d541",
+    "source_hash": "c485d288d3c52dbcf0d41af6593cd2b75ba4b162493fbed99dc128aa74513b28",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },

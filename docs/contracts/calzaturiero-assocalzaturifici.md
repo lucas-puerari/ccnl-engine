@@ -5,7 +5,7 @@
 | **CNEL code** | `D121` |
 | **Sector** | industria |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2024-07-17 |
 | **Workers (est.)** | ~75k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2024-07-17 |
 | **Last review** | — |
 | **Latest salary tranche** | 2026-08-01 |
 
@@ -169,9 +169,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-07-17 | [↗](https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi) |
-| — | — | 2024-07-17 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=173) |
-| — | — | 2024-07-17 | [↗](https://www.businessonline.it/articoli/scatti-anzianita-contratto-calzaturiero-tabella-ogni-quanto-ci-sono-e-stipendio-di-quanto-aumenta.html) |
+| https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi | tabella_retributiva | 2024-07-17 | [↗](https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi) |
+| https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=173 | tabella_retributiva | 2024-07-17 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=173) |
+| https://www.businessonline.it/articoli/scatti-anzianita-contratto-calzaturiero-tabella-ogni-quanto-ci-sono-e-stipendio-di-quanto-aumenta.html | tabella_retributiva | 2024-07-17 | [↗](https://www.businessonline.it/articoli/scatti-anzianita-contratto-calzaturiero-tabella-ogni-quanto-ci-sono-e-stipendio-di-quanto-aumenta.html) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated (minimi retributivi include paga base, contingenza, and EDR). Modeled as base_salary with fixed_allowances: [] for all levels except level 8 (IND_FUN for quadri). Confirmed by stable coefficient ratios across all tranche dates.

@@ -20,29 +20,36 @@
     },
     "sources": [
       {
+        "document_id": "truenumbers-it-ccnl-dirigenti-enti-locali-aumenti-arretrati",
+        "title": "Riepilogo CCNL Area Dirigenza Funzioni Locali 2022-2024. Conferma tabellare 50.005,77€/anno per dirigenti e segretari fascia A/B, incremento +230€/mese da 1/1/2024, signatari.",
+        "kind": "altro",
         "url": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/",
-        "type": "fonte_secondaria",
-        "agreement_date": "2026-02-23",
-        "notes": "Riepilogo CCNL Area Dirigenza Funzioni Locali 2022-2024. Conferma tabellare 50.005,77€/anno per dirigenti e segretari fascia A/B, incremento +230€/mese da 1/1/2024, signatari."
+        "pages": [],
+        "published_on": "2026-02-23"
       },
       {
+        "document_id": "logospa-it-contratto-dirigenza-funzioni-locali-2022-2024-tutte-le-novita-su-stip",
+        "title": "Dettaglio incrementi: dirigenti RAL +491€/mese totale, segretari +400€, dirigenti PTA +377€ (comprensivi di tabellare + posizione).",
+        "kind": "altro",
         "url": "https://www.logospa.it/contratto-dirigenza-funzioni-locali-2022-2024-tutte-le-novita-su-stipendi-e-normativa/",
-        "type": "fonte_secondaria",
-        "agreement_date": "2026-02-23",
-        "notes": "Dettaglio incrementi: dirigenti RAL +491€/mese totale, segretari +400€, dirigenti PTA +377€ (comprensivi di tabellare + posizione)."
+        "pages": [],
+        "published_on": "2026-02-23"
       },
       {
+        "document_id": "ilccnl-it-ccnl-dirigenti---funzioni-locali-dirigenti---enti-locali-dal-010195",
+        "title": "SIMPLIFICATION: codice CNEL S125 da fonte secondaria (ilccnl.it). Non riportato nel testo ufficiale ARAN.",
+        "kind": "altro",
         "url": "https://ilccnl.it/ccnl/dirigenti---funzioni-locali/dirigenti---enti-locali-dal-010195",
-        "type": "fonte_secondaria",
-        "agreement_date": null,
-        "notes": "SIMPLIFICATION: codice CNEL S125 da fonte secondaria (ilccnl.it). Non riportato nel testo ufficiale ARAN."
+        "pages": [],
+        "published_on": null
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-03",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-03",
+      "verification_status": "unverified",
+      "effective_from": "2022-01-01"
     },
     "workers_estimate": "~13k",
     "public_pension_fund": "cpdel"
@@ -334,7 +341,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/",
     "verification_status": "unverified",
-    "source_hash": "73058acb61ca90c776fe17bf2a391f619f32be9cd780af7cceee5ed0bfedc6ee",
+    "source_hash": "6ed2771ae62c32c4b0c2f8cf0e75a50caeb8c40387f260941b14a152f1f4f814",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

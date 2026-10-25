@@ -65,7 +65,8 @@ class ExtractionTrace(BaseModel):
         review_id: Entry of the CCNL review log (``verification.reviews``)
             that records the check; ``None`` outside CCNL files.
         verification_status: Confidence level (defaults to ``unverified``).
-        effective_from: First date the extracted value applies.
+        effective_from: First date the extracted value applies; ``None``
+            when the source states none.
         effective_until: Last date it applies; ``None`` when open-ended.
         back_calculation: Steps of a ``back_calculation`` extraction.
     """
@@ -79,7 +80,7 @@ class ExtractionTrace(BaseModel):
     verified_at: datetime | None = None
     review_id: str | None = None
     verification_status: VerificationStatus = VerificationStatus.UNVERIFIED
-    effective_from: date
+    effective_from: date | None = None
     effective_until: date | None = None
     back_calculation: tuple[BackCalculationStep, ...] | None = Field(
         default=None,

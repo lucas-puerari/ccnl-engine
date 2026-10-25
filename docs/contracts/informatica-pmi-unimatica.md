@@ -5,7 +5,7 @@
 | **CNEL code** | `G029` |
 | **Sector** | informatica-servizi-innovativi |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2025-04-14 |
 | **Workers (est.)** | ~20k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2025-04-14 |
 | **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2027-01-01 |
 
@@ -173,9 +173,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-04-14 | [↗](https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/) |
-| — | — | 2025-04-14 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=302) |
-| — | — | 2021-03-09 | [↗](https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf) |
+| https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/ | tabella_retributiva | 2025-04-14 | [↗](https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/) |
+| https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=302 | tabella_retributiva | 2025-04-14 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=302) |
+| https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf | altro | 2021-03-09 | [↗](https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf) |
 
 ??? note "Coverage notes"
     SCOPE: models the SETTORE INFORMATICO E SERVIZI INNOVATIVI sub-sector of G029 only (levels Q, 1–10). The SETTORE GRAFICO-EDITORIALE and SETTORE CARTARIO-CARTOTECNICO sub-sectors of G029 are NOT modelled here. Applicable to ICT companies covered by Art. 1 of the CCNL.

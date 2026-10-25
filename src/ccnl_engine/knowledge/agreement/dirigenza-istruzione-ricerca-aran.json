@@ -21,29 +21,36 @@
     },
     "sources": [
       {
+        "document_id": "quifinanza-it-lavoro-ccnl-istruzione-ricerca-2022-2024-tabelle-retributive-10116",
+        "title": "Tabelle retributive CCNL Area Dirigenza Istruzione e Ricerca 2022-2024. Seconda fascia: 47.015,73 → 50.005,73€/anno da 1/1/2024 (+230€/mese). Prima fascia: 60.102,87 → 63.807,87€/anno (+285€/mese). Firma definitiva 6 agosto 2026.",
+        "kind": "altro",
         "url": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
-        "type": "fonte_secondaria",
-        "agreement_date": "2026-08-06",
-        "notes": "Tabelle retributive CCNL Area Dirigenza Istruzione e Ricerca 2022-2024. Seconda fascia: 47.015,73 → 50.005,73€/anno da 1/1/2024 (+230€/mese). Prima fascia: 60.102,87 → 63.807,87€/anno (+285€/mese). Firma definitiva 6 agosto 2026."
+        "pages": [],
+        "published_on": "2026-08-06"
       },
       {
+        "document_id": "m-flcgil-it-contratti-documenti-istruzione-e-ricerca-ccnl-personale-area-dirigen",
+        "title": "CCNL Area Dirigenza Istruzione e Ricerca 2019-2021, firmato 7 agosto 2024. Stabilisce il tabellare previgente di 47.015,73€/anno per 13 mensilità. Retribuzione di posizione fissa 13.345,11€/anno. Incremento +230€/mese decorre da 1/1/2024 per il CCNL 2022-2024.",
+        "kind": "altro",
         "url": "https://m.flcgil.it/contratti/documenti/istruzione-e-ricerca/ccnl-personale-area-dirigenza-istruzione-e-ricerca-2019-2021-del-7-agosto-2024.flc",
-        "type": "fonte_secondaria",
-        "agreement_date": "2024-08-07",
-        "notes": "CCNL Area Dirigenza Istruzione e Ricerca 2019-2021, firmato 7 agosto 2024. Stabilisce il tabellare previgente di 47.015,73€/anno per 13 mensilità. Retribuzione di posizione fissa 13.345,11€/anno. Incremento +230€/mese decorre da 1/1/2024 per il CCNL 2022-2024."
+        "pages": [],
+        "published_on": "2024-08-07"
       },
       {
+        "document_id": "flcgil-it-scuola-dirigenti-dirigenti-scolastici-siglato-in-via-definitiva-ccnl-a",
+        "title": "Conferma firma definitiva 6 agosto 2026. Signatari: ANP, FLC CGIL, CISL FSUR, Dirigenti Scuola, UIL Scuola RUA. ANCODIS non ha firmato.",
+        "kind": "altro",
         "url": "https://www.flcgil.it/scuola/dirigenti/dirigenti-scolastici-siglato-in-via-definitiva-ccnl-area-istruzione-e-ricerca-2022-2024.flc",
-        "type": "fonte_secondaria",
-        "agreement_date": "2026-08-06",
-        "notes": "Conferma firma definitiva 6 agosto 2026. Signatari: ANP, FLC CGIL, CISL FSUR, Dirigenti Scuola, UIL Scuola RUA. ANCODIS non ha firmato."
+        "pages": [],
+        "published_on": "2026-08-06"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-03",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-03",
+      "verification_status": "unverified",
+      "effective_from": "2022-01-01"
     },
     "workers_estimate": "~8k",
     "public_pension_fund": "ctps"
@@ -447,7 +454,7 @@
     "effective_until": "2024-12-31",
     "source": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
     "verification_status": "unverified",
-    "source_hash": "59e45e131ae7500689fa2d06539189bb07f1d9335ac122350cc516111003cb5c",
+    "source_hash": "51db976e8fe787f0541c315e3aefa19f96490c65b2b8be8c74683de51ed60362",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

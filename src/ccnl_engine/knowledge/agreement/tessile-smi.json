@@ -14,26 +14,36 @@
     ],
     "sources": [
       {
+        "document_id": "sistemamodaitalia-com",
+        "title": "https://www.sistemamodaitalia.com/",
+        "kind": "altro",
         "url": "https://www.sistemamodaitalia.com/",
-        "type": "text",
-        "agreement_date": "2024-11-11"
+        "pages": [],
+        "published_on": "2024-11-11"
       },
       {
+        "document_id": "lexplain-it-tabelle-retributive-ccnl-tessile-abbigliamento-smi",
+        "title": "https://www.lexplain.it/tabelle-retributive-ccnl-tessile-abbigliamento-smi/",
+        "kind": "tabella_retributiva",
         "url": "https://www.lexplain.it/tabelle-retributive-ccnl-tessile-abbigliamento-smi/",
-        "type": "table",
-        "agreement_date": null
+        "pages": [],
+        "published_on": null
       },
       {
+        "document_id": "kitech-it-tabelle-retributive-tessile-abbigliamento",
+        "title": "https://www.kitech.it/tabelle-retributive-tessile-abbigliamento",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/tabelle-retributive-tessile-abbigliamento",
-        "type": "table",
-        "agreement_date": null
+        "pages": [],
+        "published_on": null
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-01",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-01",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~160k"
   },
@@ -1627,7 +1637,7 @@
     "effective_until": null,
     "source": "https://www.sistemamodaitalia.com/",
     "verification_status": "unverified",
-    "source_hash": "2b367bba4b0d30f762f3559ddea1dc35164ec98505d409941fd3a818642a3fb7",
+    "source_hash": "80beb7776a058fcde81bc06f78dece2a656ff20579ca4f875b3803d16b20ed1d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

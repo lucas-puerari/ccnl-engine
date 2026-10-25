@@ -14,16 +14,20 @@
     ],
     "sources": [
       {
+        "document_id": "snalv-it-docs-anaste25-pdf6-pdf",
+        "title": "https://snalv.it/docs/anaste25/pdf6.pdf",
+        "kind": "altro",
         "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
-        "type": "pdf",
-        "agreement_date": "2025-07-23"
+        "pages": [],
+        "published_on": "2025-07-23"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-06T00:00:00",
-      "human_reviewed": true
+      "extraction_timestamp": "2026-09-06T00:00:00",
+      "verification_status": "verified",
+      "effective_from": null
     },
     "workers_estimate": "~120k"
   },
@@ -1233,7 +1237,7 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "d288cdf8f5df4ed2d22847bfe757e1a04127a76a49f7ca7a1afb5df31712ae6a",
+    "source_hash": "8e61ed5871327a09ba164f6acfb62685f53f732dfe2e0615e28e6f3a9d96dd67",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

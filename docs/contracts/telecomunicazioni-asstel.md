@@ -165,8 +165,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-11-11 | [↗](https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/) |
-| — | — | 2020-11-12 | [↗](https://www.asstel.it/wp-content/uploads/2023/05/CCNL-TLC-Slc-Cgil-Fistel-Cisl-Uilcom-Uil-12-novembre-2020-nuovo.pdf) |
+| https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/ | altro | 2025-11-11 | [↗](https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/) |
+| https://www.asstel.it/wp-content/uploads/2023/05/CCNL-TLC-Slc-Cgil-Fistel-Cisl-Uilcom-Uil-12-novembre-2020-nuovo.pdf | altro | 2020-11-12 | [↗](https://www.asstel.it/wp-content/uploads/2023/05/CCNL-TLC-Slc-Cgil-Fistel-Cisl-Uilcom-Uil-12-novembre-2020-nuovo.pdf) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated (TEM = minimo tabellare + ex-contingenza + EDR + Elemento Retributivo di Settore), confirmed by footnote in rinnovo PDF (11/11/2025), tabelle retributive p.99-100. Back-calculation: C1(01/01/2026)=1988.73/173=11.50 EUR/h; A1=1399.68/173=8.09 EUR/h; C3=2317.44/173=13.39 EUR/h — all consistent with divisor 173. base_salary = TEM; fixed_allowances=[] for levels A1-C3.

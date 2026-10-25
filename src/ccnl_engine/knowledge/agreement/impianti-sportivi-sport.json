@@ -15,29 +15,36 @@
     "agreement_date": "2024-01-12",
     "sources": [
       {
+        "document_id": "sindacato-it-il-ccnl-impianti-sportivi-o-lavoratori-dello-sport",
+        "title": "Tabella retributiva completa 4 tranche (01/01/2024, 01/07/2024, 01/07/2025, 01/07/2026). Livelli Q–VI. Retribuzione conglobata (contingenza=0, terzo elemento=0). 13 mensilità (tredicesima). Modello confermato da ilccnl.it e kitech.it.",
+        "kind": "tabella_retributiva",
         "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/",
-        "type": "tabella_retributiva",
-        "agreement_date": "2024-01-12",
-        "notes": "Tabella retributiva completa 4 tranche (01/01/2024, 01/07/2024, 01/07/2025, 01/07/2026). Livelli Q–VI. Retribuzione conglobata (contingenza=0, terzo elemento=0). 13 mensilità (tredicesima). Modello confermato da ilccnl.it e kitech.it."
+        "pages": [],
+        "published_on": "2024-01-12"
       },
       {
+        "document_id": "cusi-it-wp-content-uploads-2024-02-ccnl-sport-2024-2026-pdf",
+        "title": "CUSI PDF 2024-2026. Art. 116: retribuzione normale conglobata (componente a). Art. 119: divisore giornaliero 26. Art. 120: divisore orario 173 (40h settimanali) o 195 (45h settimanali) — solo 173 modellato. Art. 121: tabella livelli I–VI più quadro Q. Art. 125: tredicesima mensilità. Art. 30: apprendistato sotto-inquadramento (2 livelli primo semestre, 1 livello secondo semestre). Art. 37: durate apprendistato II–VI. Art. 83: straordinario 15%/20%/30%/50%. Art. 84: notturno ordinario 10%. Art. 85: ferie 26 giorni lavorativi. Art. 102: comporto 180 giorni. Art. 103: integrazione malattia 100%/75%/100%.",
+        "kind": "altro",
         "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
-        "type": "contratto",
-        "agreement_date": "2024-01-12",
-        "notes": "CUSI PDF 2024-2026. Art. 116: retribuzione normale conglobata (componente a). Art. 119: divisore giornaliero 26. Art. 120: divisore orario 173 (40h settimanali) o 195 (45h settimanali) — solo 173 modellato. Art. 121: tabella livelli I–VI più quadro Q. Art. 125: tredicesima mensilità. Art. 30: apprendistato sotto-inquadramento (2 livelli primo semestre, 1 livello secondo semestre). Art. 37: durate apprendistato II–VI. Art. 83: straordinario 15%/20%/30%/50%. Art. 84: notturno ordinario 10%. Art. 85: ferie 26 giorni lavorativi. Art. 102: comporto 180 giorni. Art. 103: integrazione malattia 100%/75%/100%."
+        "pages": [],
+        "published_on": "2024-01-12"
       },
       {
+        "document_id": "kitech-it-retribuzione-stipendio-ccnl-aspx-codicecateg-13",
+        "title": "Kitech tabella 01/07/2026: conferma IND_FUN Q = EUR 60.00 (13 mensilità). Scatto anzianità da EUR 21.69 (VI) a EUR 28.92 (Q) — transitional amounts ante-22/12/2015; no new scatti under 2024 CCNL.",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13",
-        "type": "tabella_retributiva",
-        "agreement_date": "2024-01-12",
-        "notes": "Kitech tabella 01/07/2026: conferma IND_FUN Q = EUR 60.00 (13 mensilità). Scatto anzianità da EUR 21.69 (VI) a EUR 28.92 (Q) — transitional amounts ante-22/12/2015; no new scatti under 2024 CCNL."
+        "pages": [],
+        "published_on": "2024-01-12"
       }
     ],
     "extraction": {
-      "timestamp": "2026-09-11",
-      "human_reviewed": true,
       "method": "ai",
-      "model": "claude-sonnet-4-6"
+      "model": "claude-sonnet-4-6",
+      "extraction_timestamp": "2026-09-11",
+      "verification_status": "verified",
+      "effective_from": null
     },
     "workers_estimate": "35533"
   },
@@ -1203,7 +1210,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "96b6f1e98c29c8072ffff567f139ef587d117aad91b082cde429b4c42ec0ccf7",
+    "source_hash": "a7a2a503bd137d574623ca30f2d32c77984e5bcafcc9eecefe29a832c32a48be",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

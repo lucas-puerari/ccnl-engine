@@ -17,26 +17,36 @@
     ],
     "sources": [
       {
+        "document_id": "confartigianatomarcatrevigiana-it-wp-content-uploads-2024-09-ccnl-benessere-app-",
+        "title": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
+        "kind": "altro",
         "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
-        "type": "official_contract",
-        "agreement_date": "2024-05-20"
+        "pages": [],
+        "published_on": "2024-05-20"
       },
       {
+        "document_id": "studiomion-it-tabelle-retributive-tabelle-retributive-acconciatura-estetica",
+        "title": "https://www.studiomion.it/tabelle-retributive/tabelle-retributive-acconciatura-estetica/",
+        "kind": "tabella_retributiva",
         "url": "https://www.studiomion.it/tabelle-retributive/tabelle-retributive-acconciatura-estetica/",
-        "type": "table",
-        "agreement_date": "2024-05-20"
+        "pages": [],
+        "published_on": "2024-05-20"
       },
       {
+        "document_id": "ilccnl-it-contratto-acconciatura-estetica",
+        "title": "https://www.ilccnl.it/contratto/acconciatura-estetica/",
+        "kind": "tabella_retributiva",
         "url": "https://www.ilccnl.it/contratto/acconciatura-estetica/",
-        "type": "table",
-        "agreement_date": null
+        "pages": [],
+        "published_on": null
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-02T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-02T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~95k"
   },
@@ -1036,7 +1046,7 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "ce9e96d506976503c581e4dbcc2889892c0895492990a3ed65604f49b488eade",
+    "source_hash": "261990e69f040fa6867773a0c5db5e2772e3c7461b12103581598267c27cba63",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -27,16 +27,20 @@
     "agreement_date": "2024-12-06",
     "sources": [
       {
+        "document_id": "confetra-com-wp-content-uploads-nuovo-testo-unico-del-ccnl-logistica-trasporto-e",
+        "title": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+        "kind": "altro",
         "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
-        "type": "testo_unico",
-        "agreement_date": "2024-12-06"
+        "pages": [],
+        "published_on": "2024-12-06"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-opus-5-5",
-      "timestamp": "2026-10-12T11:23:51Z",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-10-12T11:23:51Z",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~430k"
   },
@@ -3352,7 +3356,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "6087b11a82b153d03854cecec100e7bc4f8fa0e200726d751fe82d54e2ae5802",
+    "source_hash": "a4bb27df3e3f3e8296d98d6b24d8b21d3c1afe0f68fa3535a6bec44c6a190376",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

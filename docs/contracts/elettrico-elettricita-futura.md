@@ -5,7 +5,7 @@
 | **CNEL code** | `K051` |
 | **Sector** | industria |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2025-02-11 |
 | **Workers (est.)** | ~60k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2025-02-11 |
 | **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2027-10-01 |
 
@@ -185,8 +185,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-02-11 | [↗](https://www.contratticcnl.it/elettrico/tabelle-retributive/) |
-| — | — | 2025-02-11 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=92) |
+| https://www.contratticcnl.it/elettrico/tabelle-retributive/ | tabella_retributiva | 2025-02-11 | [↗](https://www.contratticcnl.it/elettrico/tabelle-retributive/) |
+| https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=92 | tabella_retributiva | 2025-02-11 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=92) |
 
 ??? note "Coverage notes"
     Salary model is split. base_salary = paga base (time-series, 4 tranches from the 2025-02-11 renewal); fixed_allowances = EDR (Elemento Distinto della Retribuzione) frozen at EUR 10.33/month since 1988, same for all levels.

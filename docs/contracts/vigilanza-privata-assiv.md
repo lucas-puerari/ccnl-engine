@@ -162,10 +162,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2023-05-30 | [↗](https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30121:vigilanza452023&catid=257&Itemid=139) |
-| — | — | 2024-11-21 | [↗](https://olympus.uniurb.it/index.php?option=com_content&view=article&id=33337:servizi-vigilanza-privata-e-servizi-fiduciari-ccnl,-21-novembre-2024&catid=262&Itemid=139) |
-| — | — | 2024-11-21 | [↗](https://www.univigilanza.it/263/CODICE-ALFANUMERICO-UNICO-DEI-CCNL-.html) |
-| — | — | 2023-07-19 | [↗](https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30385:vigilanza-privata19723&catid=257&Itemid=139) |
+| https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30121:vigilanza452023&catid=257&Itemid=139 | altro | 2023-05-30 | [↗](https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30121:vigilanza452023&catid=257&Itemid=139) |
+| https://olympus.uniurb.it/index.php?option=com_content&view=article&id=33337:servizi-vigilanza-privata-e-servizi-fiduciari-ccnl,-21-novembre-2024&catid=262&Itemid=139 | altro | 2024-11-21 | [↗](https://olympus.uniurb.it/index.php?option=com_content&view=article&id=33337:servizi-vigilanza-privata-e-servizi-fiduciari-ccnl,-21-novembre-2024&catid=262&Itemid=139) |
+| https://www.univigilanza.it/263/CODICE-ALFANUMERICO-UNICO-DEI-CCNL-.html | altro | 2024-11-21 | [↗](https://www.univigilanza.it/263/CODICE-ALFANUMERICO-UNICO-DEI-CCNL-.html) |
+| https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30385:vigilanza-privata19723&catid=257&Itemid=139 | altro | 2023-07-19 | [↗](https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30385:vigilanza-privata19723&catid=257&Itemid=139) |
 
 ??? note "Coverage notes"
     SCOPE: GPG section only (Guardie Particolari Giurate, livelli Q e 1-6). The Servizi Fiduciari/Sicurezza section (livelli A-E, 9 tranches from 01/08/2022) is a distinct salary table and would be a separate data file.

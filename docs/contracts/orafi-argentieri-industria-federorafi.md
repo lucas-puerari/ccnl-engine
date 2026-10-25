@@ -5,7 +5,7 @@
 | **CNEL code** | `C021` |
 | **Sector** | industria |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2021-12-23 |
 | **Workers (est.)** | ~18k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2021-12-23 |
 | **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2025-06-01 |
 
@@ -159,9 +159,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2021-12-23 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf) |
-| — | — | 2017-05-18 | [↗](https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf) |
-| — | — | — | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=51) |
+| https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf | altro | 2021-12-23 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf) |
+| https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf | altro | 2017-05-18 | [↗](https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf) |
+| https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=51 | tabella_retributiva | — | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=51) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated (table minimum inclusive of contingenza and EDR). Source: CCNL 2021 PDF (UILM, signed 23/12/2021), pay tables pp. 4-5. Three tranches from primary source (Jun 2022, Jun 2023, Dec 2024); fourth tranche (Jun 2025) from kitech.it (secondary).

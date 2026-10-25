@@ -15,16 +15,20 @@
     ],
     "sources": [
       {
+        "document_id": "foe-it-files-2024-07-ccnl-aninsei_2024-2027cd-pdf",
+        "title": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+        "kind": "altro",
         "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
-        "type": "pdf",
-        "agreement_date": "2024-06-15"
+        "pages": [],
+        "published_on": "2024-06-15"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-06T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-06T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~25k"
   },
@@ -1362,7 +1366,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "68018fd00df63d425c38fdf6fdb5e7c0d119126ffdd250472730fa0fe77a3a4e",
+    "source_hash": "a0a65eaf20b93714b07fdf0d875ea9c69eb0f33d73d971c5e7bb78bd211035a8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

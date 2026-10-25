@@ -19,16 +19,20 @@
     ],
     "sources": [
       {
+        "document_id": "cislscuola-it-download-ccnl-formazione-professionale-2024-2027",
+        "title": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
+        "kind": "altro",
         "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
-        "type": "pdf",
-        "agreement_date": "2024-03-01"
+        "pages": [],
+        "published_on": "2024-03-01"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-11T00:00:00",
-      "human_reviewed": true
+      "extraction_timestamp": "2026-09-11T00:00:00",
+      "verification_status": "verified",
+      "effective_from": null
     },
     "workers_estimate": "~19.8k"
   },
@@ -1097,7 +1101,7 @@
     "effective_until": null,
     "source": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
     "verification_status": "verified",
-    "source_hash": "9587d12c33e0e3266aa5944352bc3ed27d160da61bf3dfb665d260cd20c044fd",
+    "source_hash": "ee5e9e344e5a3a738b62548c546d7cbf6b49f95be54b9476d36881721f07fa5a",
     "published_at": "2026-09-11",
     "source_type": "contracting_party"
   },

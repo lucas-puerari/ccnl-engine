@@ -127,10 +127,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2026-08-06 | [↗](https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf) |
-| — | — | 2025-01-27 | [↗](https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf) |
-| — | — | 2022-05-09 | [↗](https://www.aranagenzia.it/wp-content/uploads/2023/05/Frontespizio-e-CCNL-Comparto-Funzioni-Centrali-2019-2021-1.pdf) |
-| — | — | 2018-02-12 | [↗](https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf) |
+| CCNL Comparto Funzioni Centrali 2025-2027, signed definitively on 6 August 2026. Tabella 3 (p. 66): tabellare from 1.1.2025, 1.1.2026, 1.1.2027. | altro | 2026-08-06 | [↗](https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf) |
+| CCNL 2022-2024 signed on 27 January 2025 (UIL PA and UIL adhered on 4 November 2025). Tabella 2 (p. 55), art. 29 (divisors), art. 21 (ferie), art. 24 (malattia). | altro | 2025-01-27 | [↗](https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf) |
+| CCNL 2019-2021. Tabella H (p. 104), art. 18 (classification in force from 1.11.2022), art. 53 (elevate professionalità). | altro | 2022-05-09 | [↗](https://www.aranagenzia.it/wp-content/uploads/2023/05/Frontespizio-e-CCNL-Comparto-Funzioni-Centrali-2019-2021-1.pdf) |
+| CCNL 2016-2018. Art. 25 (straordinario), art. 72 (tredicesima). | altro | 2018-02-12 | [↗](https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf) |
 
 ??? note "Coverage notes"
     Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.

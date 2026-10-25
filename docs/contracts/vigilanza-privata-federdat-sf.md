@@ -144,7 +144,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-02-16 | [↗](https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf) |
+| Tabelle retributive GPG e SF, 2023-2026. SF: 14a mensilita introdotta dal 01/01/2024 (ipotesi accordo 16/02/2024). 8 tranches: 01/06/2023, 01/01/2024, 01/07/2024, 01/10/2024, 01/01/2025, 01/07/2025, 01/12/2025, 01/04/2026. | tabella_retributiva | 2024-02-16 | [↗](https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf) |
 
 ??? note "Coverage notes"
     CCNL HV17 FEDERDAT SF (Servizi Fiduciari) section. Conglobated, divisor 173. 5 levels (A-E). 14a mensilita from 01/01/2024; before that 13 months. 8 tranches, last at 01/04/2026 (SF schedule). Level F absent from tables (may be entry/apprenticeship only; verify base CCNL 2013).

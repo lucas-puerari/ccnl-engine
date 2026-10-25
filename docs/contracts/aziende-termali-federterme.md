@@ -5,7 +5,7 @@
 | **CNEL code** | `K461` |
 | **Sector** | turismo termale |
 | **Tax sector** | `terziario` |
-| **Last renewal** | — |
+| **Last renewal** | 2024-10-08 |
 | **Workers (est.)** | — |
 | **Ruleset version** | `2024.1` |
 | **Readiness** | 🧪 Exploratory |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2024-10-08 |
 | **Last review** | — |
 | **Latest salary tranche** | 2026-12-01 |
 
@@ -189,9 +189,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-10-08 | [↗](https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf) |
-| — | — | 2024-10-08 | [↗](https://www.filcams.cgil.it/page/aziende_termali) |
-| — | — | — | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=91) |
+| https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf | altro | 2024-10-08 | [↗](https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf) |
+| https://www.filcams.cgil.it/page/aziende_termali | tabella_retributiva | 2024-10-08 | [↗](https://www.filcams.cgil.it/page/aziende_termali) |
+| https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=91 | tabella_retributiva | — | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=91) |
 
 ??? note "Coverage notes"
     Salary model: SPLIT. Paga base (minimo tabellare) is a time series with 5 tranches (Oct 2024, Jun 2025, Dec 2025, Jun 2026, Dec 2026). Contingenza and EDR are frozen fixed_allowances. Source: AziendeTermali_CCNL_2024_2027 PDF Art. 82 (minimi tabellari) and Art. 83 (contingenza). Cross-verified with filcams.cgil.it/page/aziende_termali and kitech CodiceCateg=91.

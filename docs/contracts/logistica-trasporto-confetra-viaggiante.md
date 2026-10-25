@@ -199,7 +199,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-12-06 | [↗](https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf) |
+| https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf | altro | 2024-12-06 | [↗](https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf) |
 
 ??? note "Coverage notes"
     STAFF: travelling staff (personale viaggiante) of the CCNL Logistica: drivers of qualifiche 3 (C, B, A), 2 (F, E, D) and 1 (H, G) and riders of letters I (bicycle) and L (moped or motorcycle), art. 2 pp. 25-26, tables pp. 81-82. The non-travelling staff is logistica-trasporto-confetra. Every level is an operaio.

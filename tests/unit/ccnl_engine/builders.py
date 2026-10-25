@@ -295,12 +295,21 @@ def make_ccnl_dict(*, app_type: str = "percentage") -> dict[str, Any]:
             "sector": "test",
             "tax_sector": "terziario",
             "signatories": ["A", "B"],
-            "sources": [{"url": "https://example.com", "type": "ccnl"}],
+            "sources": [
+                {
+                    "document_id": "example-com",
+                    "title": "https://example.com",
+                    "kind": "altro",
+                    "url": "https://example.com",
+                    "pages": [],
+                    "published_on": None,
+                }
+            ],
             "extraction": {
                 "method": "manual",
                 "model": None,
-                "timestamp": "2026-01-01T00:00:00Z",
-                "human_reviewed": True,
+                "extraction_timestamp": "2026-01-01T00:00:00Z",
+                "verification_status": "verified",
             },
         },
         "coverage": {

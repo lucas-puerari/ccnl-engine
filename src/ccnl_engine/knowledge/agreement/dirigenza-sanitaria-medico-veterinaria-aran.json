@@ -23,29 +23,36 @@
     },
     "sources": [
       {
+        "document_id": "aranagenzia-it-wp-content-uploads-2026-02-2026-02-27-ccnl-area-sanita-2022-2024-",
+        "title": "CCNL Area Sanità 2022-2024 (27.02.2026). Art. 11 (incrementi stipendio tabellare: +230€/mese da 1/1/2024, valore a regime 50.005,77€/anno per 13 mensilità). Art. 15 (indennità specificità medico-veterinaria rideterminata in 9.466,00€/anno per 13 mensilità dal 31/12/2024). Art. 14 (retribuzione di posizione). Campo di applicazione: dirigenti medici, sanitari, veterinari e professioni sanitarie SSN.",
+        "kind": "altro",
         "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
-        "type": "ccnl_definitivo",
-        "agreement_date": "2026-02-27",
-        "notes": "CCNL Area Sanità 2022-2024 (27.02.2026). Art. 11 (incrementi stipendio tabellare: +230€/mese da 1/1/2024, valore a regime 50.005,77€/anno per 13 mensilità). Art. 15 (indennità specificità medico-veterinaria rideterminata in 9.466,00€/anno per 13 mensilità dal 31/12/2024). Art. 14 (retribuzione di posizione). Campo di applicazione: dirigenti medici, sanitari, veterinari e professioni sanitarie SSN."
+        "pages": [],
+        "published_on": "2026-02-27"
       },
       {
+        "document_id": "openssn-marcopingitore-it-ccnl-dirigenza-sanitaria-2022-2024-2026-02-28-9222",
+        "title": "Riepilogo economico del CCNL Area Sanità 2022-2024. Conferma importi tabellari e indennità.",
+        "kind": "altro",
         "url": "https://openssn.marcopingitore.it/ccnl-dirigenza-sanitaria-2022-2024/2026/02/28/9222/",
-        "type": "fonte_secondaria",
-        "agreement_date": "2026-02-28",
-        "notes": "Riepilogo economico del CCNL Area Sanità 2022-2024. Conferma importi tabellari e indennità."
+        "pages": [],
+        "published_on": "2026-02-28"
       },
       {
+        "document_id": "ilccnl-it-ccnl-dirigenti---dirigenza-medica-e-veterinaria-dirigenti---sanita-med",
+        "title": "SIMPLIFICATION: codice CNEL S225 da fonte secondaria (ilccnl.it). Non riportato nel testo ufficiale ARAN.",
+        "kind": "altro",
         "url": "https://ilccnl.it/ccnl/dirigenti---dirigenza-medica-e-veterinaria/dirigenti---sanita-medici-e-veterinari-dal-010195",
-        "type": "fonte_secondaria",
-        "agreement_date": null,
-        "notes": "SIMPLIFICATION: codice CNEL S225 da fonte secondaria (ilccnl.it). Non riportato nel testo ufficiale ARAN."
+        "pages": [],
+        "published_on": null
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-03",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-03",
+      "verification_status": "unverified",
+      "effective_from": "2022-01-01"
     },
     "workers_estimate": "~100k",
     "public_pension_fund": "cps"
@@ -368,7 +375,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "defe3633fac62a32c0fc07d0d7b2df0a5dfab2aafce13a3e75dbed0ea25b5d30",
+    "source_hash": "3618bfcb6ddebe4a54cb60c560d14dc006538d1d8e97adfe50b6cb7eac987724",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

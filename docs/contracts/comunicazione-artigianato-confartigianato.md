@@ -204,10 +204,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-11-18 | [↗](https://www.redigo.info/ccnl/comunicazione-artigianato) |
-| — | — | 2024-11-18 | [↗](https://www.kitech.it/ccnl/comunicazione-artigianato) |
-| — | — | 2024-11-18 | [↗](https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=155) |
-| — | — | 2024-11-18 | [↗](https://farecontrattazione.adapt.it/per-una-storia-della-contrattazione-collettiva-in-italia-247-il-nuovo-ccnl-artigianato-area-comunicazione-un-rinnovo-contrattuale-al-passo-con-i-tempi/) |
+| SOURCE: Redigo.info — Verbale integrativo sottoscritto il 25 novembre 2024 (accordo siglato 18 novembre 2024). Salary tables for aziende artigiane (Art. 33): 8 tranches starting Dec 2024. All 8 level values confirmed. Level 1A total includes indennita di funzione 51.65 EUR. | tabella_retributiva | 2024-11-18 | [↗](https://www.redigo.info/ccnl/comunicazione-artigianato) |
+| SOURCE: Kitech.it — CNEL code G016 confirmed. Mar 2026 salary table cross-validated: 1A base 2490.07 + indennita funzione 51.65 = 2541.72 total. Hourly divisor 173 confirmed. Seniority amounts per level confirmed: 1A=16.01, 1B=16.01, 2=14.20, 3=13.43, 4=12.65, 5bis=11.88, 5=11.36, 6=10.33. Cadence 24m, max 5 scatti. | tabella_retributiva | 2024-11-18 | [↗](https://www.kitech.it/ccnl/comunicazione-artigianato) |
+| SOURCE: Lavoro-Economia.it — Aggregator showing CCNL text. Per-level seniority amounts independently match kitech.it: 1A=16.01, 1B=16.01, 2=14.20, 3=13.43, 4=12.65, 5bis=11.88, 5=11.36, 6=10.33. Hourly divisor 173 confirmed (40h/week table). Page reflects pre-2024 CCNL base text; amounts not changed by 2024 rinnovo. NOTE: aggregator source, not verified against CCNL PDF. | tabella_retributiva | 2024-11-18 | [↗](https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=155) |
+| SOURCE: ADAPT Farecontrattazione.it — Academic analysis of the Nov 2024 rinnovo. Confirms: aziende artigiane total increase EUR 200 over 4 tranches (Dec 2024, Jul 2025, Mar 2026, Nov 2026). Apprenticeship new rules: operai/tecnici 5 years max, amministrativi 3 years, centraliniste 2 years. Apprentice seniority accrual improved in rinnovo. CNEL G016, INPS ARTIGIANATO sector. | altro | 2024-11-18 | [↗](https://farecontrattazione.adapt.it/per-una-storia-della-contrattazione-collettiva-in-italia-247-il-nuovo-ccnl-artigianato-area-comunicazione-un-rinnovo-contrattuale-al-passo-con-i-tempi/) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated (minimi tabellari conglobati). Confirmed: ilccnl.it shows contingenza=0.00 for all levels. Back-calculation at Jul 2025: livello 4=1763.56/173=10.194 EUR/h, livello 1B=2160.15/173=12.487 EUR/h, livello 6=1452.42/173=8.394 EUR/h — all values divide to proportional hourly rates consistent with divisor 173, confirming conglobated model.

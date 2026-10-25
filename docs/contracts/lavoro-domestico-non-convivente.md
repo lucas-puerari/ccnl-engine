@@ -182,7 +182,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2026-01-01 | [↗](https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf) |
+| https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf | tabella_retributiva | 2026-01-01 | [↗](https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated retribuzione globale (TABELLA C - Lavoratori Non Conviventi, Art. 14 c. 1 lett. b CCNL 28/10/2025). Hourly rates from the official Domina salary table PDF (TABELLA-minimi-retributivi-2026.pdf, effective 01/01/2026). Monthly base_salary = hourly rate x 40 x 52 / 12 (chiarimento a verbale 1). Source is signatory employer association - primary source.

@@ -148,7 +148,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-02-16 | [↗](https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf) |
+| Tabelle retributive GPG e SF, 2023-2026. Accordo di rinnovo 04/05/2023 (tranche 01/06/2023) + Ipotesi di accordo 16/02/2024 (tranches 01/06/2024 - 01/12/2026). | tabella_retributiva | 2024-02-16 | [↗](https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf) |
 
 ??? note "Coverage notes"
     CCNL HV17 FEDERDAT GPG section. Conglobated, 14 months, divisor 173. 7 levels. 6 tranches: 01/06/2023, 01/06/2024, 01/06/2025, 01/12/2025, 01/04/2026, 01/12/2026. Contract validity: 01/06/2023-31/12/2026.

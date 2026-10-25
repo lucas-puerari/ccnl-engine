@@ -5,7 +5,7 @@
 | **CNEL code** | `H515` |
 | **Sector** | acconciatura ed estetica |
 | **Tax sector** | `artigianato` |
-| **Last renewal** | — |
+| **Last renewal** | 2024-05-20 |
 | **Workers (est.)** | ~95k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2024-05-20 |
 | **Last review** | — |
 | **Latest salary tranche** | 2026-10-01 |
 
@@ -181,9 +181,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-05-20 | [↗](https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf) |
-| — | — | 2024-05-20 | [↗](https://www.studiomion.it/tabelle-retributive/tabelle-retributive-acconciatura-estetica/) |
-| — | — | — | [↗](https://www.ilccnl.it/contratto/acconciatura-estetica/) |
+| https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf | altro | 2024-05-20 | [↗](https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf) |
+| https://www.studiomion.it/tabelle-retributive/tabelle-retributive-acconciatura-estetica/ | tabella_retributiva | 2024-05-20 | [↗](https://www.studiomion.it/tabelle-retributive/tabelle-retributive-acconciatura-estetica/) |
+| https://www.ilccnl.it/contratto/acconciatura-estetica/ | tabella_retributiva | — | [↗](https://www.ilccnl.it/contratto/acconciatura-estetica/) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated (minimi tabellari conglobati — contingenza and EDR fully absorbed). Back-calculation: May 2024 L3=1379.00/173=7.97 EUR/h; L2=1454.58/173=8.41 EUR/h; L1=1592.29/173=9.20 EUR/h — consistent divisor confirms conglobated model (lexplain.it + ilccnl.it).

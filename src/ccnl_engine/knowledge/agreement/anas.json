@@ -16,16 +16,20 @@
     "agreement_date": "2025-12-18",
     "sources": [
       {
+        "document_id": "stradeanas-it-sites-default-files-azienda-lavora_con_noi-ccnl-2025-2027-pdf",
+        "title": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+        "kind": "altro",
         "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
-        "type": "ccnl_pdf",
-        "agreement_date": "2025-12-18"
+        "pages": [],
+        "published_on": "2025-12-18"
       }
     ],
     "extraction": {
-      "timestamp": "2026-09-06",
-      "human_reviewed": false,
       "method": "ai",
-      "model": "claude-sonnet-4-6"
+      "model": "claude-sonnet-4-6",
+      "extraction_timestamp": "2026-09-06",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~7k"
   },
@@ -1354,7 +1358,7 @@
     "effective_until": null,
     "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "e80c56f4b7cc3c051bb21b9cc0a4553ee3d89b12c59cf56f66857527db39d884",
+    "source_hash": "424f5fd0e65de9301b4e6d6e529080ba41fd6a8f6ce8b9eb6e6644407b252828",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

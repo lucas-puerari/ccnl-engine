@@ -14,21 +14,28 @@
     ],
     "sources": [
       {
+        "document_id": "uneba-org-wp-content-uploads-2025-01-contratto-uneba-2025-testo-firmato-pdf",
+        "title": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+        "kind": "altro",
         "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
-        "type": "official_contract",
-        "agreement_date": "2025-01-24"
+        "pages": [],
+        "published_on": "2025-01-24"
       },
       {
+        "document_id": "olympus-uniurb-it-index-php-itemid-139-catid-242-id-21943-3a2020uneba-option-com",
+        "title": "https://olympus.uniurb.it/index.php?Itemid=139&catid=242&id=21943%3A2020uneba&option=com_content&view=article",
+        "kind": "altro",
         "url": "https://olympus.uniurb.it/index.php?Itemid=139&catid=242&id=21943%3A2020uneba&option=com_content&view=article",
-        "type": "official_contract",
-        "agreement_date": "2020-01-20"
+        "pages": [],
+        "published_on": "2020-01-20"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-02T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-02T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~130k"
   },
@@ -1522,7 +1529,7 @@
     "effective_until": null,
     "source": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "d8cba51417b976d2ac689cee7458729f0fac45d4eb0b571299ddc4a689ade5a9",
+    "source_hash": "9bdd8863e34bc767d15ff62ba5ac7da93e8b7ad0dcbdb466faa648ad274f22b5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

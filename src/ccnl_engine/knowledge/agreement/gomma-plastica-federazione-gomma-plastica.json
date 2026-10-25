@@ -14,26 +14,36 @@
     ],
     "sources": [
       {
+        "document_id": "lexplain-it-tabelle-retributive-gomma-plastica",
+        "title": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/",
+        "kind": "tabella_retributiva",
         "url": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/",
-        "type": "table",
-        "agreement_date": null
+        "pages": [],
+        "published_on": null
       },
       {
+        "document_id": "contratticcnl-it-gomma-plastica-tabelle-retributive",
+        "title": "https://www.contratticcnl.it/gomma-plastica/tabelle-retributive/",
+        "kind": "tabella_retributiva",
         "url": "https://www.contratticcnl.it/gomma-plastica/tabelle-retributive/",
-        "type": "table",
-        "agreement_date": "2025-12-10"
+        "pages": [],
+        "published_on": "2025-12-10"
       },
       {
+        "document_id": "kitech-it-retribuzione-stipendio-ccnl-aspx-codicecateg-156",
+        "title": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=156",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=156",
-        "type": "table",
-        "agreement_date": "2026-01-01"
+        "pages": [],
+        "published_on": "2026-01-01"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-01T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-01T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~90k"
   },
@@ -2880,7 +2890,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
     "verification_status": "unverified",
-    "source_hash": "26c3702a6c11200f893d76d9e7b6d826a80db2a6fa1c2dfe9676ce90fddea600",
+    "source_hash": "d53fe923a8e67a5fc35b04a46b3844f3d37000f98e0560faa21f1c7ce69cf283",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

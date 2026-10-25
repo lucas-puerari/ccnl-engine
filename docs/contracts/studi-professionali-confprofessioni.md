@@ -5,7 +5,7 @@
 | **CNEL code** | `H442` |
 | **Sector** | terziario |
 | **Tax sector** | `terziario` |
-| **Last renewal** | — |
+| **Last renewal** | 2024-02-16 |
 | **Workers (est.)** | ~350k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 👁 Reviewed |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2024-02-16 |
 | **Last review** | 2026-10-20 |
 | **Latest salary tranche** | 2026-12-01 |
 
@@ -256,8 +256,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-02-16 | [↗](https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf) |
-| — | — | 2024-02-16 | [↗](https://www.confprofessioni.eu/wp-content/uploads/2026/07/00274046_CCNL_Studi_Professionali_2026.04.10_completo.pdf) |
+| https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf | altro | 2024-02-16 | [↗](https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf) |
+| https://www.confprofessioni.eu/wp-content/uploads/2026/07/00274046_CCNL_Studi_Professionali_2026.04.10_completo.pdf | altro | 2024-02-16 | [↗](https://www.confprofessioni.eu/wp-content/uploads/2026/07/00274046_CCNL_Studi_Professionali_2026.04.10_completo.pdf) |
 
 ??? note "Coverage notes"
     CONGLOBATED MINIMUMS: the minimo tabellare includes the contingenza (up to 01/05/1992) and the EDR (Interconfederal Agreement 31/07/1992), merged under CCNL 10/12/1992 and reaffirmed by Art. 138 CCNL 2024. The only fixed allowance is the ENAC of levels 1, 2 and 3S (Art. 141), gated by a role.

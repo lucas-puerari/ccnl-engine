@@ -194,10 +194,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-07-16 | [↗](https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato) |
-| — | — | — | [↗](https://www.eber.org) |
-| — | — | 2024-07-16 | [↗](https://olympus.uniurb.it) |
-| — | — | 2017-12-14 | [↗](https://www.cna.it) |
+| SOURCE: kitech.it cited as accessible URL proxy; primary source is FEMCA CISL Bergamo salary sheet (local PDF, 4 tranches Jul 2024–Oct 2026) against which all values were verified. | tabella_retributiva | 2024-07-16 | [↗](https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato) |
+| SOURCE: EBER Allegato 2 'Sintesi codifica contratti INPS e CNEL' — CNEL code V751, INPS code 003. Cross-validated: acconciatura H515 matches repo. | altro | — | [↗](https://www.eber.org) |
+| SOURCE: Rinnovo signed 16 luglio 2024. Confirms Art. 68 Section 7 retribution 'Omissis' (unchanged from 2017 base). Apprentice seniority raised to 6.00 from 2025-01-01 for hires after 17 Jul 2024. | altro | 2024-07-16 | [↗](https://olympus.uniurb.it) |
+| SOURCE: CNA PDF base CCNL 2017-12-14 — Art. 67 seniority amounts (per-level), Art. 68 apprenticeship percentages (3 gruppi, unchanged in 2024 rinnovo). Signatories from signature page. | altro | 2017-12-14 | [↗](https://www.cna.it) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated (minimi tabellari conglobati). Back-calculation: L3 Jan 2025 = 1502.03/173 = 8.68 EUR/h; L4 Jan 2025 = 1566.69/173 = 9.05 EUR/h; L6 Jan 2025 = 1849.57/173 = 10.69 EUR/h — consistent divisor 173 across levels confirms conglobated model.

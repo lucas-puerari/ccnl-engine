@@ -168,7 +168,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2022-07-07 | [↗](https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf) |
+| https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf | altro | 2022-07-07 | [↗](https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf) |
 
 ??? note "Coverage notes"
     Salary model: conglobated. Allegato B shows unified retribuzione di base with no separate contingenza or EDR columns. Back-calculation: L1=2109.97/173=12.20 EUR/h, L3=1777.29/173=10.27 EUR/h, L6=1421.48/173=8.22 EUR/h (all consistent with divisor 173).

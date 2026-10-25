@@ -5,7 +5,7 @@
 | **CNEL code** | `D271` |
 | **Sector** | industria occhialeria e ottica |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2023-12-04 |
 | **Workers (est.)** | ~20k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2023-12-04 |
 | **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2028-11-01 |
 
@@ -170,8 +170,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2023-12-04 | [↗](https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive) |
-| — | — | 2026-01-30 | [↗](https://www.cisl.it/ccnl-occhiali-sindacati-sottoscritta-ipotesi-accordo-per-rinnovo-contratto-204e-laumento-del-complessivo-triennio-2026-2028/) |
+| https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive | altro | 2023-12-04 | [↗](https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive) |
+| https://www.cisl.it/ccnl-occhiali-sindacati-sottoscritta-ipotesi-accordo-per-rinnovo-contratto-204e-laumento-del-complessivo-triennio-2026-2028/ | altro | 2026-01-30 | [↗](https://www.cisl.it/ccnl-occhiali-sindacati-sottoscritta-ipotesi-accordo-per-rinnovo-contratto-204e-laumento-del-complessivo-triennio-2026-2028/) |
 
 ??? note "Coverage notes"
     CCNL signed 04/12/2023 valid 01/01/2023-31/12/2025; renewed 30/01/2026 valid 01/01/2026-31/12/2028 (ANFAO+Filctem-CGIL+Femca-CISL+UilTEC-UIL).

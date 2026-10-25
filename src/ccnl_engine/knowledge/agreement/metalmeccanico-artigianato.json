@@ -17,31 +17,44 @@
     ],
     "sources": [
       {
+        "document_id": "ebna-it-wp-content-uploads-2022-01-ccnl-artigianato-metalmeccanico-2021-pdf",
+        "title": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
+        "kind": "altro",
         "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
-        "type": "agreement",
-        "agreement_date": "2021-12-17"
+        "pages": [],
+        "published_on": "2021-12-17"
       },
       {
+        "document_id": "kitech-it-tabelle-retributive-metalmeccanici-artigianato",
+        "title": "https://www.kitech.it/tabelle-retributive-metalmeccanici-artigianato/",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/tabelle-retributive-metalmeccanici-artigianato/",
-        "type": "table",
-        "agreement_date": "2024-11-19"
+        "pages": [],
+        "published_on": "2024-11-19"
       },
       {
+        "document_id": "eblart-it-scheda-ccnl-artigianato-metalmeccanici",
+        "title": "https://www.eblart.it/scheda-ccnl-artigianato-metalmeccanici/",
+        "kind": "tabella_retributiva",
         "url": "https://www.eblart.it/scheda-ccnl-artigianato-metalmeccanici/",
-        "type": "table",
-        "agreement_date": null
+        "pages": [],
+        "published_on": null
       },
       {
+        "document_id": "direzionelavoro-it-ccnl-metalmeccanici-artigianato-tabelle-retributive",
+        "title": "https://www.direzionelavoro.it/ccnl-metalmeccanici-artigianato-tabelle-retributive/",
+        "kind": "tabella_retributiva",
         "url": "https://www.direzionelavoro.it/ccnl-metalmeccanici-artigianato-tabelle-retributive/",
-        "type": "table",
-        "agreement_date": null
+        "pages": [],
+        "published_on": null
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-01T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-01T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": "2023-01-01"
     },
     "workers_estimate": "~350k",
     "agreement_date": "2024-11-19",
@@ -2602,7 +2615,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "d9766865ac8cc247d306d1c9f79291b26b9ccb447cc5332fd40e4e565683dab8",
+    "source_hash": "6739bd0b05e4207f87a32c39ee28c3e646a68de542fa3085207eb1b0b9769a73",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

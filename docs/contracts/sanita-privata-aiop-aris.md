@@ -176,8 +176,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2020-10-08 | [↗](https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf) |
-| — | — | — | [↗](https://www.contratticcnl.it/ccnl/t011/) |
+| Official CCNL text signed 2020-10-08; salary tables in Tabella 1 effective 2020-07-01 per Art. 51; values conglobated (EADR included per Art. 55) | altro | 2020-10-08 | [↗](https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf) |
+| CNEL registry entry confirming code T011, 146585 employees, ARIS/AIOP signatories | cnel | — | [↗](https://www.contratticcnl.it/ccnl/t011/) |
 
 ??? note "Coverage notes"
     CCNL signed 2020-10-08; nominally covers 2016-2018 (Art. 4). Applied in ultrattività from 2019 onwards. Salary tables (Tabella 1) effective 2020-07-01 per Art. 51. No renewal signed as of 2026-09-09. Confirmed 2026-09-09: preintesa June 2020 is the last event; all 2023-2025 bridge agreements found refer to the separate AIOP RSA contract (different CNEL code). The AIOP-ARIS ospedaliero (T011) T011 remains in pure ultrattività.

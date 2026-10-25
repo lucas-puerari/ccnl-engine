@@ -110,7 +110,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-10-28 | [↗](https://trasparenza.lavoro.gov.it/archiviofile/minlavoro/2025_10_28_CCNL_A_FC_2022-2024_Pubblicazione-1%20vigente.pdf) |
+| Testo ufficiale CCNL Area Funzioni Centrali 2022-2024. Art. 23: stipendio tabellare dirigenti I fascia = 63.807,87€/anno da 1/1/2024 (prev. 60.102,87€). Art. 26: stipendio tabellare dirigenti II fascia = 50.005,77€/anno da 1/1/2024 (prev. 47.015,77€, CCNL 16/11/2023). Firma 28/10/2025 — firmatari: CISL FP, ANMI ASSOMED SIVEMP FPM, CIDA FC, FLEPAR, UIL PA, UNADIS, DIRSTAT FIALP UNSA. FP CGIL non ha firmato. | altro | 2025-10-28 | [↗](https://trasparenza.lavoro.gov.it/archiviofile/minlavoro/2025_10_28_CCNL_A_FC_2022-2024_Pubblicazione-1%20vigente.pdf) |
 
 ??? note "Coverage notes"
     Retribuzione di posizione parte fissa: prima fascia 42.598,20€/anno (Art. 23 c.5); seconda fascia 14.515,11€/anno (Art. 26 c.5). Variabile per incarico, non modellata (SIMPLIFICATION).

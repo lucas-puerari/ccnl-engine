@@ -177,9 +177,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2022-09-30 | [↗](https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf) |
-| — | — | 2025-05-08 | [↗](https://ilccnl.it/contratto/ccnl/gas-e-acqua---aziende-private-dal-010102) |
-| — | — | 2025-05-08 | [↗](https://www.filctemcgil.it/index.php/notiziario/news/gas-acqua) |
+| https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf | altro | 2022-09-30 | [↗](https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf) |
+| https://ilccnl.it/contratto/ccnl/gas-e-acqua---aziende-private-dal-010102 | altro | 2025-05-08 | [↗](https://ilccnl.it/contratto/ccnl/gas-e-acqua---aziende-private-dal-010102) |
+| https://www.filctemcgil.it/index.php/notiziario/news/gas-acqua | altro | 2025-05-08 | [↗](https://www.filctemcgil.it/index.php/notiziario/news/gas-acqua) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated contingenza ('minimi tabellari integrati') with EDR 10.33 shown separately. Confirmed from scheda riassuntiva PDF (CCNL 30/09/2022, sosvavsrl.it), section heading 'Minimi tabellari integrati'. EDR is a fixed statutory element (frozen since 1997, Accordo interconfederale) shown as a distinct line in all salary tables; modelled as fixed_allowance for each level.

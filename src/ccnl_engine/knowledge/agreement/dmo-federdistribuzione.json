@@ -14,16 +14,20 @@
     ],
     "sources": [
       {
+        "document_id": "federdistribuzione-it-app-uploads-2026-04-testo-unico-ccnl-dmo-pdf",
+        "title": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+        "kind": "altro",
         "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
-        "type": "official_ccnl",
-        "agreement_date": "2025-09-29"
+        "pages": [],
+        "published_on": "2025-09-29"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-01T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-01T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~460k"
   },
@@ -3074,7 +3078,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "afb49d08d9a5ae0ec9a701844582fe863b893096bd69c39c9111d28b0c3a2fa1",
+    "source_hash": "fc421380095566be46ae816344e1b004a2201745b880a4dd43b4d28256c86593",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

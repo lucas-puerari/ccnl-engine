@@ -119,8 +119,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2026-02-23 | [↗](https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf) |
-| — | — | — | [↗](https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=396) |
+| CCNL Comparto Funzioni Locali triennio 2022-2024, firmato 23 febbraio 2026. Art. 56 (incrementi stipendi tabellari), Art. 60 (parziale conglobamento indennità di comparto), Tabella A (incrementi mensili per 13 mensilità), Tabella B (retribuzione tabellare annua per 12 mensilità + 13^). Orario settimanale 36h, divisore orario 156 da Art. 74 CCNL 16.11.2022. FP CGIL non firmatario. | altro | 2026-02-23 | [↗](https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf) |
+| SIMPLIFICATION: conferma codice CNEL S105 per CCNL Comparto Funzioni Locali (fonte secondaria lavoro-economia.it). | altro | — | [↗](https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=396) |
 
 ??? note "Coverage notes"
     Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.

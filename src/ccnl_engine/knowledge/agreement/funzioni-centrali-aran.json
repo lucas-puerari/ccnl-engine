@@ -26,35 +26,44 @@
     ],
     "sources": [
       {
+        "document_id": "aranagenzia-it-wp-content-uploads-2026-08-2026_08_06_ccnl_cfc_2025-2027-1-pdf",
+        "title": "CCNL Comparto Funzioni Centrali 2025-2027, signed definitively on 6 August 2026. Tabella 3 (p. 66): tabellare from 1.1.2025, 1.1.2026, 1.1.2027.",
+        "kind": "altro",
         "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
-        "type": "ccnl_pdf",
-        "agreement_date": "2026-08-06",
-        "notes": "CCNL Comparto Funzioni Centrali 2025-2027, signed definitively on 6 August 2026. Tabella 3 (p. 66): tabellare from 1.1.2025, 1.1.2026, 1.1.2027."
+        "pages": [],
+        "published_on": "2026-08-06"
       },
       {
+        "document_id": "aranagenzia-it-wp-content-uploads-2025-01-ccnl_l_c_fc_2022_2024-pdf",
+        "title": "CCNL 2022-2024 signed on 27 January 2025 (UIL PA and UIL adhered on 4 November 2025). Tabella 2 (p. 55), art. 29 (divisors), art. 21 (ferie), art. 24 (malattia).",
+        "kind": "altro",
         "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
-        "type": "ccnl_pdf",
-        "agreement_date": "2025-01-27",
-        "notes": "CCNL 2022-2024 signed on 27 January 2025 (UIL PA and UIL adhered on 4 November 2025). Tabella 2 (p. 55), art. 29 (divisors), art. 21 (ferie), art. 24 (malattia)."
+        "pages": [],
+        "published_on": "2025-01-27"
       },
       {
+        "document_id": "aranagenzia-it-wp-content-uploads-2023-05-frontespizio-e-ccnl-comparto-funzioni-",
+        "title": "CCNL 2019-2021. Tabella H (p. 104), art. 18 (classification in force from 1.11.2022), art. 53 (elevate professionalità).",
+        "kind": "altro",
         "url": "https://www.aranagenzia.it/wp-content/uploads/2023/05/Frontespizio-e-CCNL-Comparto-Funzioni-Centrali-2019-2021-1.pdf",
-        "type": "ccnl_pdf",
-        "agreement_date": "2022-05-09",
-        "notes": "CCNL 2019-2021. Tabella H (p. 104), art. 18 (classification in force from 1.11.2022), art. 53 (elevate professionalità)."
+        "pages": [],
+        "published_on": "2022-05-09"
       },
       {
+        "document_id": "aranagenzia-it-wp-content-uploads-2025-01-ccnl-definitivo-funzioni-centrali-trie",
+        "title": "CCNL 2016-2018. Art. 25 (straordinario), art. 72 (tredicesima).",
+        "kind": "altro",
         "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf",
-        "type": "ccnl_pdf",
-        "agreement_date": "2018-02-12",
-        "notes": "CCNL 2016-2018. Art. 25 (straordinario), art. 72 (tredicesima)."
+        "pages": [],
+        "published_on": "2018-02-12"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-03",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-03",
+      "verification_status": "unverified",
+      "effective_from": "2025-01-01"
     },
     "workers_estimate": "~250k",
     "public_pension_fund": "ctps"
@@ -1040,7 +1049,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "95c643fdb77d5989ce4ff15eaed982aed875dbc05990db1ac75861b2b48324bf",
+    "source_hash": "423061b7a3df721a46501fb1db12b830b88344c7d9fa03345079e14e5a7df035",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

@@ -24,23 +24,28 @@
     },
     "sources": [
       {
+        "document_id": "aranagenzia-it-wp-content-uploads-2025-10-2025_10_27_comp-sanita_2022-2024-pdf",
+        "title": "CCNL Comparto Sanità 2022-2024 signed definitively on 27 October 2025 (FP CGIL and UIL FPL did not sign). Tabella 2a (p. 107), art. 59 (divisors), art. 60 (tredicesima), art. 35 (ferie), art. 40 (malattia).",
+        "kind": "altro",
         "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
-        "type": "testo_ccnl",
-        "agreement_date": "2025-10-27",
-        "notes": "CCNL Comparto Sanità 2022-2024 signed definitively on 27 October 2025 (FP CGIL and UIL FPL did not sign). Tabella 2a (p. 107), art. 59 (divisors), art. 60 (tredicesima), art. 35 (ferie), art. 40 (malattia)."
+        "pages": [],
+        "published_on": "2025-10-27"
       },
       {
+        "document_id": "aranagenzia-it-wp-content-uploads-2022-11-2022_11_02_comp-sanita_2019-2021-pdf",
+        "title": "CCNL 2019-2021. Tabella D (p. 167), art. 99 (classification from 1.1.2023), art. 100 (elevata qualificazione), art. 47 (straordinario).",
+        "kind": "altro",
         "url": "https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf",
-        "type": "testo_ccnl",
-        "agreement_date": "2022-11-02",
-        "notes": "CCNL 2019-2021. Tabella D (p. 167), art. 99 (classification from 1.1.2023), art. 100 (elevata qualificazione), art. 47 (straordinario)."
+        "pages": [],
+        "published_on": "2022-11-02"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-03",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-03",
+      "verification_status": "unverified",
+      "effective_from": "2022-01-01"
     },
     "workers_estimate": "~580k",
     "public_pension_fund": "cpdel"
@@ -728,7 +733,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "acf48a171b6679212a2c3a6e92f6d1b880d6b80794f6e4420c7d4401af33245b",
+    "source_hash": "7887c448fd2037fd78238f839b50b99b643a1e4038d5be34c7cc602beb822b8c",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

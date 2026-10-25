@@ -4,16 +4,13 @@ Covers extra-key rejection, schema 0.4 meta coercion, schema 0.5 provenance
 completeness and positive constraints on CCNLParameters.
 """
 
-from datetime import date
 from typing import Any
 
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.agreement.facade import CCNL, CCNLMeta
+from ccnl_engine.agreement.facade import CCNL
 from ccnl_engine.compensation.models import CCNLParameters
-from ccnl_engine.provenance.source.extraction.models import ExtractionTrace
-from ccnl_engine.provenance.source.models import SourceKind
 from tests.unit.ccnl_engine.builders import TEST_PROV, make_ccnl_dict
 
 _SERIES = {"periods": [{"valid_from": "2020-01-01", "valid_until": None, "value": "1"}]}
@@ -52,11 +49,10 @@ class TestStrictSchema:
             _validate(data)
 
     def test_optional_metadata_accepted(self) -> None:
-        """agreement_date, validity and source notes are modelled."""
+        """agreement_date and validity are modelled."""
         data = make_ccnl_dict()
         data["meta"]["agreement_date"] = "2024-03-22"
         data["meta"]["validity"] = {"valid_from": "2024-04-01", "valid_until": None}
-        data["meta"]["sources"][0]["notes"] = "salary tables"
         ccnl = _validate(data)
         assert ccnl.meta.validity is not None
         assert ccnl.meta.validity.valid_until is None
@@ -99,71 +95,33 @@ class TestStrictSchema:
 # ---------------------------------------------------------------------------
 
 
-class TestMetaLegacyCoercion:
-    """meta.sources/extraction are coerced from schema 0.4 to StructuredProvenance."""
+class TestMetaLegacySchema:
+    """Schema 0.4 metadata is rejected: the bundle was migrated, no coercion."""
 
-    def test_non_dict_input_passes_through(self) -> None:
-        """A non-dict value is returned untouched by the before-validator."""
-        with pytest.raises(ValidationError):
-            CCNLMeta.model_validate("not-a-dict")
-
-    def test_structured_sources_are_not_coerced(self) -> None:
-        """Sources already carrying a document_id pass through unchanged."""
+    def test_a_legacy_source_is_rejected(self) -> None:
+        """A source with ``url`` and ``type`` only is not a SourceDocument."""
         data = make_ccnl_dict()
-        data["meta"]["sources"] = [
-            {
-                "document_id": "doc-1",
-                "title": "T",
-                "kind": "gazzetta",
-                "url": "https://example.com",
-            }
-        ]
-        ccnl = _validate(data)
-        assert ccnl.meta.sources[0].document_id == "doc-1"
-        assert ccnl.meta.sources[0].kind == SourceKind.GAZZETTA
-        assert isinstance(ccnl.meta.extraction, ExtractionTrace)
+        data["meta"]["sources"] = [{"url": "https://example.com", "type": "cnel"}]
+        with pytest.raises(ValidationError, match="document_id"):
+            _validate(data)
 
-    def test_structured_extraction_is_not_coerced(self) -> None:
-        """Extraction traces already carrying a timestamp pass through."""
+    def test_a_legacy_extraction_is_rejected(self) -> None:
+        """An extraction with ``timestamp`` and ``human_reviewed`` is rejected."""
         data = make_ccnl_dict()
         data["meta"]["extraction"] = {
-            "method": "manual",
-            "model": None,
-            "extraction_timestamp": "2026-01-01T00:00:00",
-            "effective_from": "2026-01-01",
-            "verification_status": "unverified",
+            "method": "ai",
+            "timestamp": "2026-09-02",
+            "human_reviewed": False,
         }
-        ccnl = _validate(data)
-        assert ccnl.meta.extraction.method.value == "manual"
-        assert ccnl.meta.extraction.effective_from == date(2026, 1, 1)
+        with pytest.raises(ValidationError, match="extraction_timestamp"):
+            _validate(data)
 
-    @pytest.mark.parametrize(
-        ("source_type", "expected"),
-        [
-            ("tabella retributiva", SourceKind.TABELLA_RETRIBUTIVA),
-            ("gazzetta ufficiale", SourceKind.GAZZETTA),
-            ("cnel", SourceKind.CNEL),
-            ("circolare inps", SourceKind.INPS_CIRCOLARE),
-            ("legge 81", SourceKind.LEGGE),
-            ("dpr", SourceKind.DPR),
-            ("decreto", SourceKind.DL),
-            ("associazione", SourceKind.ASSOCIAZIONE),
-            ("ccnl", SourceKind.ALTRO),
-        ],
-    )
-    def test_legacy_source_type_casts_to_kind(
-        self, source_type: str, expected: SourceKind
-    ) -> None:
-        """Legacy 0.4 source type strings map to the matching SourceKind."""
+    def test_an_extraction_may_state_no_effective_date(self) -> None:
+        """A source without a date leaves ``effective_from`` unknown."""
         data = make_ccnl_dict()
-        data["meta"]["sources"] = [{"url": "https://example.com", "type": source_type}]
-        ccnl = _validate(data)
-        assert ccnl.meta.sources[0].kind == expected
+        data["meta"]["extraction"].pop("effective_from", None)
+        assert _validate(data).meta.extraction.effective_from is None
 
-
-# ---------------------------------------------------------------------------
-# Schema 0.5 provenance completeness
-# ---------------------------------------------------------------------------
 
 _PROV = TEST_PROV
 

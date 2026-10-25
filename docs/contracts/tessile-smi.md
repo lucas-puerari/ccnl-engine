@@ -5,7 +5,7 @@
 | **CNEL code** | `D014` |
 | **Sector** | industria |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2024-11-11 |
 | **Workers (est.)** | ~160k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2024-11-11 |
 | **Last review** | — |
 | **Latest salary tranche** | 2027-01-01 |
 
@@ -171,9 +171,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-11-11 | [↗](https://www.sistemamodaitalia.com/) |
-| — | — | — | [↗](https://www.lexplain.it/tabelle-retributive-ccnl-tessile-abbigliamento-smi/) |
-| — | — | — | [↗](https://www.kitech.it/tabelle-retributive-tessile-abbigliamento) |
+| https://www.sistemamodaitalia.com/ | altro | 2024-11-11 | [↗](https://www.sistemamodaitalia.com/) |
+| https://www.lexplain.it/tabelle-retributive-ccnl-tessile-abbigliamento-smi/ | tabella_retributiva | — | [↗](https://www.lexplain.it/tabelle-retributive-ccnl-tessile-abbigliamento-smi/) |
+| https://www.kitech.it/tabelle-retributive-tessile-abbigliamento | tabella_retributiva | — | [↗](https://www.kitech.it/tabelle-retributive-tessile-abbigliamento) |
 
 ??? note "Coverage notes"
     December 2024 tranche (01/12/2024): per-level values derived proportionally from the +EUR 95 increase at grade 4 (2024 SMI renewal, source filctemcgil.it). Rationale: Dec-2024 increment = 95/152 = 5/8 of the total increase Nov-2024→Jan-2026; verified by exact closure on all levels against Jan-2026 values from kitech.it.

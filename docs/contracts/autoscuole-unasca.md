@@ -160,8 +160,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2023-02-28 | [↗](https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf) |
-| — | — | 2023-03-14 | [↗](https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf) |
+| https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf | altro | 2023-02-28 | [↗](https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf) |
+| https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf | tabella_retributiva | 2023-03-14 | [↗](https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf) |
 
 ??? note "Coverage notes"
     Salary model: SPLIT. Paga base (minimo tabellare) is a time series with 3 tranches (2021-01-01, 2021-09-01, 2022-02-01). Contingenza (frozen) and EDR (10.33) are fixed_allowances per level. Q level additionally carries indennità di funzione 25.82 EUR (Art. 6). Source: verbale di rettifica 14/03/2023 (authoritative; annuls salary table in main CCNL).

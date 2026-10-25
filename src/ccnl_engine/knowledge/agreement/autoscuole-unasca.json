@@ -16,21 +16,28 @@
     ],
     "sources": [
       {
+        "document_id": "unasca-it-pdf-ccnl-ccnl_autoscuole_-_scuole_nautiche_-_studi_di_consulenza_autom",
+        "title": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+        "kind": "altro",
         "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
-        "type": "ccnl_text",
-        "agreement_date": "2023-02-28"
+        "pages": [],
+        "published_on": "2023-02-28"
       },
       {
+        "document_id": "unasca-it-pdf-ccnl-verbale_di_accordo_rettifica_tabelle14-03-2023-pdf",
+        "title": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
+        "kind": "tabella_retributiva",
         "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
-        "type": "wage_tables",
-        "agreement_date": "2023-03-14"
+        "pages": [],
+        "published_on": "2023-03-14"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-12",
-      "human_reviewed": true
+      "extraction_timestamp": "2026-09-12",
+      "verification_status": "verified",
+      "effective_from": null
     }
   },
   "coverage": {
@@ -1395,7 +1402,7 @@
     "effective_until": null,
     "source": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
     "verification_status": "unverified",
-    "source_hash": "7d5264643efd1de70d614e263a8af8d746e72afde90d3fc4a01265288767ac11",
+    "source_hash": "aeee77451b37388339e78e90f97020e7a2268fdefe09efb81d2506e5003d6200",
     "published_at": "2026-09-12",
     "source_type": "contracting_party"
   },

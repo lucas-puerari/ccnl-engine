@@ -14,46 +14,68 @@
     ],
     "sources": [
       {
+        "document_id": "fim-cisl-it-wp-content-uploads-2021-03-ccnl-unionmeccanica-pdf",
+        "title": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+        "kind": "altro",
         "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
-        "type": "text",
-        "agreement_date": "2017-07-03"
+        "pages": [],
+        "published_on": "2017-07-03"
       },
       {
+        "document_id": "fim-cisl-it-wp-content-uploads-2021-03-ipotesi-ccnl-testo-firme-accordo-26-maggi",
+        "title": "https://www.fim-cisl.it/wp-content/uploads/2021/03/Ipotesi-CCNL-TESTO-firme-accordo-26-maggio-2021.pdf",
+        "kind": "altro",
         "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/Ipotesi-CCNL-TESTO-firme-accordo-26-maggio-2021.pdf",
-        "type": "text",
-        "agreement_date": "2021-05-26"
+        "pages": [],
+        "published_on": "2021-05-26"
       },
       {
+        "document_id": "uilmnazionale-it-wp-content-uploads-2024-06-20240611-unionmeccanica-verbale-acco",
+        "title": "https://www.uilmnazionale.it/wp-content/uploads/2024/06/20240611-UNIONMECCANICA-Verbale-accordo-minimi-2024.pdf",
+        "kind": "tabella_retributiva",
         "url": "https://www.uilmnazionale.it/wp-content/uploads/2024/06/20240611-UNIONMECCANICA-Verbale-accordo-minimi-2024.pdf",
-        "type": "table",
-        "agreement_date": "2024-06-11"
+        "pages": [],
+        "published_on": "2024-06-11"
       },
       {
+        "document_id": "uilmnazionale-it-wp-content-uploads-2025-06-20250619-unionmeccanica-confapi-verb",
+        "title": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250619-Unionmeccanica-Confapi-Verbale-di-accordo-adeguamento-IPCA-2024.pdf",
+        "kind": "tabella_retributiva",
         "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250619-Unionmeccanica-Confapi-Verbale-di-accordo-adeguamento-IPCA-2024.pdf",
-        "type": "table",
-        "agreement_date": "2025-06-19"
+        "pages": [],
+        "published_on": "2025-06-19"
       },
       {
+        "document_id": "uilmnazionale-it-wp-content-uploads-2025-07-2025-07-24-ccnl-unionmeccanica-accor",
+        "title": "https://www.uilmnazionale.it/wp-content/uploads/2025/07/2025-07-24-CCNL-Unionmeccanica-accordo-aumenti-minini-2025-26.pdf",
+        "kind": "altro",
         "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/07/2025-07-24-CCNL-Unionmeccanica-accordo-aumenti-minini-2025-26.pdf",
-        "type": "text",
-        "agreement_date": "2025-07-24"
+        "pages": [],
+        "published_on": "2025-07-24"
       },
       {
+        "document_id": "uilmnazionale-it-wp-content-uploads-2026-06-20260604-ccnl-unionmeccanica-confapi",
+        "title": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
+        "kind": "altro",
         "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
-        "type": "text",
-        "agreement_date": "2026-06-04"
+        "pages": [],
+        "published_on": "2026-06-04"
       },
       {
+        "document_id": "uilmnazionale-it-wp-content-uploads-2026-06-20260617-unionmeccanica-confapi-verb",
+        "title": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260617-Unionmeccanica-Confapi-Verbale-accordo-minimi-1-giugno-2026-IPCA-signed.pdf",
+        "kind": "tabella_retributiva",
         "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260617-Unionmeccanica-Confapi-Verbale-accordo-minimi-1-giugno-2026-IPCA-signed.pdf",
-        "type": "table",
-        "agreement_date": "2026-06-17"
+        "pages": [],
+        "published_on": "2026-06-17"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-08-31T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-08-31T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~350k"
   },
@@ -3017,7 +3039,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "91aa9b446956a6016588ee403c357250228bf80768e2601cac900ad82a5907ea",
+    "source_hash": "daf3843f6655e774ce7692922abcb069f68233fa89fcb5979a042795752cf134",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

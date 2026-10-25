@@ -137,9 +137,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2022-03-09 | [↗](https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf) |
-| — | — | 2025-07-28 | [↗](https://www.redigo.info/ccnl-ced-ict-professioni-digitali-stp) |
-| — | — | 2025-07-28 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=62) |
+| https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf | altro | 2022-03-09 | [↗](https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf) |
+| https://www.redigo.info/ccnl-ced-ict-professioni-digitali-stp | tabella_retributiva | 2025-07-28 | [↗](https://www.redigo.info/ccnl-ced-ict-professioni-digitali-stp) |
+| https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=62 | tabella_retributiva | 2025-07-28 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=62) |
 
 ??? note "Coverage notes"
     Salary model: paga base nazionale conglobata (Art. 172, 2022 stesura). Single TimeSeries per level, no separate contingenza or EDR.

@@ -162,9 +162,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | — | [↗](https://www.lexplain.it/tabelle-retributive-gomma-plastica/) |
-| — | — | 2025-12-10 | [↗](https://www.contratticcnl.it/gomma-plastica/tabelle-retributive/) |
-| — | — | 2026-01-01 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=156) |
+| https://www.lexplain.it/tabelle-retributive-gomma-plastica/ | tabella_retributiva | — | [↗](https://www.lexplain.it/tabelle-retributive-gomma-plastica/) |
+| https://www.contratticcnl.it/gomma-plastica/tabelle-retributive/ | tabella_retributiva | 2025-12-10 | [↗](https://www.contratticcnl.it/gomma-plastica/tabelle-retributive/) |
+| https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=156 | tabella_retributiva | 2026-01-01 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=156) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated (TEM — Trattamento Economico Minimo). All base_salary values incorporate paga base, contingenza, and EDR in a single figure. Evidence: the F/level coefficient ratio is stable to 4 decimal places across all 4 tranches (2023-2026), which is only possible in a fully parametric (conglobated) system. fixed_allowances is empty for all levels except Q.

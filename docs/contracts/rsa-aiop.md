@@ -161,8 +161,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2012-03-22 | [↗](https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf) |
-| — | — | 2023-10-03 | [↗](https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf) |
+| Original CCNL signed 22/03/2012, effective 01/04/2012. Art. 49 salary table, Art. 51 hourly divisor, Art. 54 tredicesima. | altro | 2012-03-22 | [↗](https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf) |
+| Accordo ponte 03/10/2023, effective 01/10/2023, valid to 30/06/2024. Full salary table confirmed. | altro | 2023-10-03 | [↗](https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf) |
 
 ??? note "Coverage notes"
     CCNL T091 — AIOP RSA. Conglobated. 12 levels: A-B-C-D1-D2-D3-E1-E2-E3-F-G-H. Divisor 165, 13 months. Original 2012 contract, updated by accordo ponte Oct 2023.

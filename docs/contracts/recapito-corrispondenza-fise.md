@@ -135,8 +135,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2023-11-14 | [↗](https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/) |
-| — | — | 2023-11-14 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=26) |
+| https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/ | tabella_retributiva | 2023-11-14 | [↗](https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/) |
+| https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=26 | tabella_retributiva | 2023-11-14 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=26) |
 
 ??? note "Coverage notes"
     CCNL Recapito Corrispondenza (FISE-ARE) signed 14/11/2023 by FISE-ARE, SLC-CGIL, SLP-CISL, UILPOSTE-UIL.

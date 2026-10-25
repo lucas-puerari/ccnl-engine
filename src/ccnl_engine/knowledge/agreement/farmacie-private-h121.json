@@ -15,16 +15,20 @@
     ],
     "sources": [
       {
+        "document_id": "mnlf-it-documenti-contrattocollettivonazionaledilavorodeidipendentidafarmaciapri",
+        "title": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+        "kind": "altro",
         "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
-        "type": "text",
-        "agreement_date": "2021-09-07"
+        "pages": [],
+        "published_on": "2021-09-07"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-05",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-05",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~60k"
   },
@@ -1444,7 +1448,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "cdf26e6b1b5c156644c9d8ca16a6a2142a065ecc5cd9e75f5a49b7a2c1a96003",
+    "source_hash": "9b12f527ed0ccdf540f8ae5bdb8896feac72cdd3189f2f08d02917ae07f81deb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

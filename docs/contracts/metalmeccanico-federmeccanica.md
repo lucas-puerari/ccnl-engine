@@ -213,9 +213,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-11-22 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf) |
-| — | — | 2026-06-16 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf) |
-| — | — | 2021-02-05 | [↗](https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf) |
+| https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf | altro | 2025-11-22 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf) |
+| https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf | altro | 2026-06-16 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf) |
+| https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf | altro | 2021-02-05 | [↗](https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf) |
 
 ??? note "Coverage notes"
     CONSOLIDATED MINIMUMS: the values in base_salary are the 'consolidated table minimums' of the CCNL Federmeccanica-Assistal, which incorporate base pay, contingenza, and EDR into a single figure (Federmeccanica practice since 2001). For this reason fixed_allowances is empty for all levels.

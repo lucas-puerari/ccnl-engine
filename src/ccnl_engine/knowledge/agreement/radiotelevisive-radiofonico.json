@@ -16,16 +16,20 @@
     "agreement_date": "2026-01-08",
     "sources": [
       {
+        "document_id": "confindustriaradiotv-it",
+        "title": "https://www.confindustriaradiotv.it/",
+        "kind": "associazione",
         "url": "https://www.confindustriaradiotv.it/",
-        "type": "associazione",
-        "agreement_date": "2026-01-08"
+        "pages": [],
+        "published_on": "2026-01-08"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-12T00:00:00",
-      "human_reviewed": true
+      "extraction_timestamp": "2026-09-12T00:00:00",
+      "verification_status": "verified",
+      "effective_from": null
     },
     "workers_estimate": ""
   },
@@ -1359,6 +1363,6 @@
     "source": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "9c96405a9a5eff58439337fa08351bbb5c09aa69f70c79b036707237ecbfa85b"
+    "source_hash": "3b448dc5e511daba661b536b0f0c7c49233c807a195fd48e21f22fa3117e90a5"
   }
 }

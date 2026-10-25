@@ -17,21 +17,28 @@
     ],
     "sources": [
       {
+        "document_id": "first-cisl-it",
+        "title": "https://www.first-cisl.it/",
+        "kind": "tabella_retributiva",
         "url": "https://www.first-cisl.it/",
-        "type": "table",
-        "agreement_date": "2026-05-13"
+        "pages": [],
+        "published_on": "2026-05-13"
       },
       {
+        "document_id": "contratticcnl-it",
+        "title": "https://www.contratticcnl.it/",
+        "kind": "altro",
         "url": "https://www.contratticcnl.it/",
-        "type": "text",
-        "agreement_date": null
+        "pages": [],
+        "published_on": null
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-05",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-05",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~45k"
   },
@@ -1184,7 +1191,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "979c5cea3cf3f31e6b6837e1296430c7b23e8716c910fe8b9ce2b8fa5a3c4d90",
+    "source_hash": "6744b26708fd6558f0d8b5b68ea301ec2311ca66bc3784fbc6afaad1b2934b31",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -15,23 +15,28 @@
     ],
     "sources": [
       {
+        "document_id": "fondazionerimed-eu-wp-content-uploads-2023-12-ccnl-case-di-cura-private-08-10-20",
+        "title": "Official CCNL text signed 2020-10-08; salary tables in Tabella 1 effective 2020-07-01 per Art. 51; values conglobated (EADR included per Art. 55)",
+        "kind": "altro",
         "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
-        "type": "ccnl_pdf",
-        "agreement_date": "2020-10-08",
-        "notes": "Official CCNL text signed 2020-10-08; salary tables in Tabella 1 effective 2020-07-01 per Art. 51; values conglobated (EADR included per Art. 55)"
+        "pages": [],
+        "published_on": "2020-10-08"
       },
       {
+        "document_id": "contratticcnl-it-ccnl-t011",
+        "title": "CNEL registry entry confirming code T011, 146585 employees, ARIS/AIOP signatories",
+        "kind": "cnel",
         "url": "https://www.contratticcnl.it/ccnl/t011/",
-        "type": "cnel_registry",
-        "agreement_date": null,
-        "notes": "CNEL registry entry confirming code T011, 146585 employees, ARIS/AIOP signatories"
+        "pages": [],
+        "published_on": null
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-03",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-03",
+      "verification_status": "unverified",
+      "effective_from": "2016-01-01"
     },
     "agreement_date": "2020-10-08",
     "validity": {
@@ -1946,7 +1951,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "61cce5d26da627a45e66c66a26ac5ca6f76080847ed689130949f47c3f6192d8",
+    "source_hash": "bb6a09bd93a795dbe064a3ba6d6d295a82f3882e8b4be79157e6d0ff5fe7c354",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

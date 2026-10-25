@@ -5,7 +5,7 @@
 | **CNEL code** | `T261` |
 | **Sector** | formazione professionale |
 | **Tax sector** | `terziario` |
-| **Last renewal** | — |
+| **Last renewal** | 2024-03-01 |
 | **Workers (est.)** | ~19.8k |
 | **Ruleset version** | `2026.1` |
 | **Readiness** | 🧪 Exploratory |
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2024-03-01 |
 | **Last review** | — |
 | **Latest salary tranche** | 2025-09-01 |
 
@@ -137,7 +137,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-03-01 | [↗](https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/) |
+| https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/ | altro | 2024-03-01 | [↗](https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/) |
 
 ??? note "Coverage notes"
     RENEWAL: CCNL signed 2024-03-01 (CNEL-registered). Original text drafted 18/12/2023. Validity 01/01/2024-31/12/2027. Biennio economico 01/01/2024-31/12/2025.

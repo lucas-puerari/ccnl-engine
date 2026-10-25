@@ -5,7 +5,7 @@
 | **CNEL code** | `H501` |
 | **Sector** | lavoro domestico |
 | **Tax sector** | `lavoro-domestico` |
-| **Last renewal** | — |
+| **Last renewal** | 2026-01-01 |
 | **Workers (est.)** | ~900k |
 | **Ruleset version** | `2026.3` |
 | **Readiness** | 👁 Reviewed |
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2026-01-01 |
 | **Last review** | 2026-10-16 |
 | **Latest salary tranche** | 2026-01-01 |
 
@@ -193,7 +193,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2026-01-01 | [↗](https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf) |
+| https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf | tabella_retributiva | 2026-01-01 | [↗](https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated retribuzione globale (TABELLA A — Lavoratori Conviventi, Art. 14 Co.1 lett. a CCNL). Values confirmed from official Domina salary table PDF (TABELLA-minimi-retributivi-2026.pdf, effective 01/01/2026, ISTAT +1.00%). Source is signatory employer association — primary source.

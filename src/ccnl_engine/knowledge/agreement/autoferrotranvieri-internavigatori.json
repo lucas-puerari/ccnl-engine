@@ -19,36 +19,52 @@
     "agreement_date": "2024-12-11",
     "sources": [
       {
+        "document_id": "uiltrasporti-it-wp-content-uploads-2025-03-tabella-autoferro-pdf",
+        "title": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
+        "kind": "tabella_retributiva",
         "url": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
-        "type": "salary_table",
-        "agreement_date": "2024-12-11"
+        "pages": [],
+        "published_on": "2024-12-11"
       },
       {
+        "document_id": "lavoro-economia-it-contratti-autoferrotranvieri",
+        "title": "https://www.lavoro-economia.it/contratti/autoferrotranvieri",
+        "kind": "altro",
         "url": "https://www.lavoro-economia.it/contratti/autoferrotranvieri",
-        "type": "reference",
-        "agreement_date": "2024-12-11"
+        "pages": [],
+        "published_on": "2024-12-11"
       },
       {
+        "document_id": "agens-it-wp-content-uploads-2025-03-inf--002_25-pdf",
+        "title": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-002_25.pdf",
+        "kind": "inps_circolare",
         "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-002_25.pdf",
-        "type": "circular",
-        "agreement_date": "2024-12-11"
+        "pages": [],
+        "published_on": "2024-12-11"
       },
       {
+        "document_id": "thaler-it-assets-files-transparenzdekret-autolinien_-_autoferrotranvieri-pdf",
+        "title": "https://www.thaler.it/assets/files/Transparenzdekret/Autolinien_-_Autoferrotranvieri.pdf",
+        "kind": "altro",
         "url": "https://www.thaler.it/assets/files/Transparenzdekret/Autolinien_-_Autoferrotranvieri.pdf",
-        "type": "ccnl_text",
-        "agreement_date": "2024-12-11"
+        "pages": [],
+        "published_on": "2024-12-11"
       },
       {
+        "document_id": "lexplain-it-contratto-autoferrotranvieri-parametri-livelli-e-mansioni-come-orien",
+        "title": "https://www.lexplain.it/contratto-autoferrotranvieri-parametri-livelli-e-mansioni-come-orientarsi/",
+        "kind": "altro",
         "url": "https://www.lexplain.it/contratto-autoferrotranvieri-parametri-livelli-e-mansioni-come-orientarsi/",
-        "type": "reference",
-        "agreement_date": "2024-12-11"
+        "pages": [],
+        "published_on": "2024-12-11"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-02T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-02T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~120k"
   },
@@ -5179,7 +5195,7 @@
     "effective_until": null,
     "source": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
     "verification_status": "unverified",
-    "source_hash": "28baad050437acb4a56fae4bbd810e4357ecb77ef9183c5d58f0ac5df68ecf3d",
+    "source_hash": "5f386b53374f4e4b7e2ffe567455e925905c9cc01524567ae21961646c2bbe58",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

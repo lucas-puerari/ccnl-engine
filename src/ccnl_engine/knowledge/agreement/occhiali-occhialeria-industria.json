@@ -14,21 +14,28 @@
     ],
     "sources": [
       {
+        "document_id": "italpaghe-ilccnl-it-ccnl-occhiali---industria-occhiali---industria-tabelleretrib",
+        "title": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive",
+        "kind": "altro",
         "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive",
-        "type": "web",
-        "agreement_date": "2023-12-04"
+        "pages": [],
+        "published_on": "2023-12-04"
       },
       {
+        "document_id": "cisl-it-ccnl-occhiali-sindacati-sottoscritta-ipotesi-accordo-per-rinnovo-contrat",
+        "title": "https://www.cisl.it/ccnl-occhiali-sindacati-sottoscritta-ipotesi-accordo-per-rinnovo-contratto-204e-laumento-del-complessivo-triennio-2026-2028/",
+        "kind": "altro",
         "url": "https://www.cisl.it/ccnl-occhiali-sindacati-sottoscritta-ipotesi-accordo-per-rinnovo-contratto-204e-laumento-del-complessivo-triennio-2026-2028/",
-        "type": "web",
-        "agreement_date": "2026-01-30"
+        "pages": [],
+        "published_on": "2026-01-30"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-06T00:00:00",
-      "human_reviewed": true
+      "extraction_timestamp": "2026-09-06T00:00:00",
+      "verification_status": "verified",
+      "effective_from": null
     },
     "workers_estimate": "~20k"
   },
@@ -3155,7 +3162,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
     "verification_status": "verified",
-    "source_hash": "99c987c1f9611584912ea2ceb57aa0c72805ff5da2c6e04a17e6fa283d1eaec4",
+    "source_hash": "3686ea98ca96b1d9fbd5cb0a9d9ebdf37742b74dcce73c7fb1e36d9f07571228",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

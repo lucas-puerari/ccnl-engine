@@ -5,7 +5,7 @@
 | **CNEL code** | `H501` |
 | **Sector** | lavoro domestico |
 | **Tax sector** | `lavoro-domestico` |
-| **Last renewal** | — |
+| **Last renewal** | 2025-10-28 |
 | **Workers (est.)** | — |
 | **Ruleset version** | `2026.3` |
 | **Readiness** | 👁 Reviewed |
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2025-10-28 |
 | **Last review** | 2026-10-16 |
 | **Latest salary tranche** | 2026-01-01 |
 
@@ -155,7 +155,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-10-28 | [↗](https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf) |
+| https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf | altro | 2025-10-28 | [↗](https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf) |
 
 ??? note "Coverage notes"
     SALARY MODEL: TABELLA B of the CCNL of 28/10/2025, conviventi hired under art. 14 c. 2 (levels C, B and B super, up to 30 weekly hours, written act of c. 3). The monthly minimum is paid 'qualunque sia l'orario di lavoro osservato nel limite massimo delle 30 ore settimanali', so it is not proportioned to the hours and more than 30 weekly hours are rejected; board and lodging are due in full ('fermo restando l'obbligo di corresponsione dell'intera retribuzione in natura'). Values of 2026: B 702,25 (the signed text prints 702,35, the DOMINA and Commissione tables 702,25), BS 737,39, C 814,60.

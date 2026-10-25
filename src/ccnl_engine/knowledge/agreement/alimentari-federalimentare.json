@@ -14,16 +14,20 @@
     ],
     "sources": [
       {
+        "document_id": "flai-it-wp-content-uploads-2018-11-ccnl-industria-alimentare-2023-2027-pdf",
+        "title": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+        "kind": "altro",
         "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
-        "type": "official_ccnl",
-        "agreement_date": "2024-03-01"
+        "pages": [],
+        "published_on": "2024-03-01"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-01",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-01",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~145k"
   },
@@ -3254,7 +3258,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "a54586c49bfdef9ce942143aed86354695a3145bd02eccdddde95f6b4eecc2a3",
+    "source_hash": "f2d8f6f4026a83f71ba6abb27ea24b398432f1b74121bb7602ed5ad22a06e52b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

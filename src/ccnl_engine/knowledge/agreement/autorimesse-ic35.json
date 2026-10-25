@@ -15,21 +15,28 @@
     ],
     "sources": [
       {
+        "document_id": "filtcgil-it-images-contratti-mobilita-ic35-verbale-accordo-09122025-pdf",
+        "title": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
+        "kind": "altro",
         "url": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
-        "type": "scanned",
-        "agreement_date": "2025-12-09"
+        "pages": [],
+        "published_on": "2025-12-09"
       },
       {
+        "document_id": "comuneportofinomare-it-wp-content-uploads-ccnl-autorimesse-pdf",
+        "title": "https://www.comuneportofinomare.it/wp-content/uploads/CCNL-Autorimesse.pdf",
+        "kind": "altro",
         "url": "https://www.comuneportofinomare.it/wp-content/uploads/CCNL-Autorimesse.pdf",
-        "type": "text",
-        "agreement_date": "2019-10-23"
+        "pages": [],
+        "published_on": "2019-10-23"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-05",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-05",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~41k"
   },
@@ -2916,7 +2923,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "96c1f2db9102639bfe48e5faa5061383e4784bff9aa0643aeedbc3117179ddc6",
+    "source_hash": "2134fc6f0efabcc37da9bea7d712e723597095b0b51dd65d05b5a653a2adb194",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

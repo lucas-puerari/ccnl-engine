@@ -116,9 +116,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2026-02-27 | [↗](https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf) |
-| — | — | 2026-02-28 | [↗](https://openssn.marcopingitore.it/ccnl-dirigenza-sanitaria-2022-2024/2026/02/28/9222/) |
-| — | — | — | [↗](https://ilccnl.it/ccnl/dirigenti---dirigenza-medica-e-veterinaria/dirigenti---sanita-medici-e-veterinari-dal-010195) |
+| CCNL Area Sanità 2022-2024 (27.02.2026). Art. 11 (tabellare: +230€/mese da 1/1/2024, valore 50.005,77€/anno per 13 mensilità). Art. 15 comma 3 (indennità specificità sanitaria rideterminata in 1.614,46€/anno per 13 mensilità dal 31/12/2024). Campo di applicazione: dirigenti sanitari non medici (psicologi, farmacisti, biologi, fisici, chimici, dirigenti professioni sanitarie). | altro | 2026-02-27 | [↗](https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf) |
+| Riepilogo economico del CCNL Area Sanità 2022-2024. | altro | 2026-02-28 | [↗](https://openssn.marcopingitore.it/ccnl-dirigenza-sanitaria-2022-2024/2026/02/28/9222/) |
+| SIMPLIFICATION: codice CNEL S225 da fonte secondaria (ilccnl.it). Non riportato nel testo ufficiale ARAN. | altro | — | [↗](https://ilccnl.it/ccnl/dirigenti---dirigenza-medica-e-veterinaria/dirigenti---sanita-medici-e-veterinari-dal-010195) |
 
 ??? note "Coverage notes"
     Retribuzione di posizione (Art. 14): obbligatoria ma variabile per tipo incarico. Non modellata — out_of_scope.

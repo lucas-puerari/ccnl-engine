@@ -179,8 +179,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2026-05-13 | [↗](https://www.first-cisl.it/) |
-| — | — | — | [↗](https://www.contratticcnl.it/) |
+| https://www.first-cisl.it/ | tabella_retributiva | 2026-05-13 | [↗](https://www.first-cisl.it/) |
+| https://www.contratticcnl.it/ | altro | — | [↗](https://www.contratticcnl.it/) |
 
 ??? note "Coverage notes"
     Covers personale amministrativo assunto dal 18/12/1999 (Allegato 2/B — tabella omnicomprensiva). Pre-1999 hires (Allegato 2/A) are out of scope.

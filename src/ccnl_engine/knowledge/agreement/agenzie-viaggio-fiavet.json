@@ -15,23 +15,28 @@
     ],
     "sources": [
       {
+        "document_id": "cdcpcnelblg01sa-blob-core-windows-net-archivio-2019--20108-pdf",
+        "title": "Base CCNL 2019 — Art. 146 (hourly divisor 172), Art. 64 (apprendistato 80/85/90%), Art. 156 (scatti di anzianita triennali)",
+        "kind": "altro",
         "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
-        "type": "ccnl_pdf",
-        "agreement_date": "2019-07-11",
-        "notes": "Base CCNL 2019 — Art. 146 (hourly divisor 172), Art. 64 (apprendistato 80/85/90%), Art. 156 (scatti di anzianita triennali)"
+        "pages": [],
+        "published_on": "2019-07-11"
       },
       {
+        "document_id": "cdcpcnelblg01sa-blob-core-windows-net-archivio-2024--20108-pdf",
+        "title": "Rinnovo 2024 — tabelle retributive tutti i livelli e tutte le tranche 2024-2027, Art. 157 tredicesima, Art. 158 quattordicesima",
+        "kind": "altro",
         "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20108.pdf",
-        "type": "ccnl_pdf",
-        "agreement_date": "2024-07-26",
-        "notes": "Rinnovo 2024 — tabelle retributive tutti i livelli e tutte le tranche 2024-2027, Art. 157 tredicesima, Art. 158 quattordicesima"
+        "pages": [],
+        "published_on": "2024-07-26"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-03",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-03",
+      "verification_status": "unverified",
+      "effective_from": "2024-07-01"
     },
     "agreement_date": "2024-07-26",
     "validity": {
@@ -2029,7 +2034,7 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "0c59ce2165fe9d12746f0415f59298965517f28d669320755d8ebbdf94db4a9d",
+    "source_hash": "8aa603a2f9763be7151f8de0c81d285a38a97293771185b69f1bb1486417039e",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

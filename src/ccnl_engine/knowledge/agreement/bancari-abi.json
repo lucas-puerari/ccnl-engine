@@ -16,21 +16,28 @@
     ],
     "sources": [
       {
+        "document_id": "first-cisl-it-rinnovo-ccnl-bancari-2023",
+        "title": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
+        "kind": "altro",
         "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
-        "type": "text",
-        "agreement_date": "2023-11-23"
+        "pages": [],
+        "published_on": "2023-11-23"
       },
       {
+        "document_id": "ccnlbancari-it",
+        "title": "https://www.ccnlbancari.it/",
+        "kind": "tabella_retributiva",
         "url": "https://www.ccnlbancari.it/",
-        "type": "table",
-        "agreement_date": null
+        "pages": [],
+        "published_on": null
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-01",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-01",
+      "verification_status": "unverified",
+      "effective_from": "2023-07-01"
     },
     "workers_estimate": "~270k",
     "agreement_date": "2023-11-23",
@@ -1825,7 +1832,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "8e8a6e802c91d15dc5b706a6b0d37dfdf6a81618e22d413378879bdc97ce3467",
+    "source_hash": "587db5412bd4dfd7cecd15aca5285d694fabe491fada9491f9b8a5d6a99b7887",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

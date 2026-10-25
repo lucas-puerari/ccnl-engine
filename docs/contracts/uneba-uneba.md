@@ -5,7 +5,7 @@
 | **CNEL code** | `T141` |
 | **Sector** | servizi socio-assistenziali |
 | **Tax sector** | `terziario` |
-| **Last renewal** | — |
+| **Last renewal** | 2025-01-24 |
 | **Workers (est.)** | ~130k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2025-01-24 |
 | **Last review** | 2026-10-18 |
 | **Latest salary tranche** | 2026-03-01 |
 
@@ -177,8 +177,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-01-24 | [↗](https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf) |
-| — | — | 2020-01-20 | [↗](https://olympus.uniurb.it/index.php?Itemid=139&catid=242&id=21943%3A2020uneba&option=com_content&view=article) |
+| https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf | altro | 2025-01-24 | [↗](https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf) |
+| https://olympus.uniurb.it/index.php?Itemid=139&catid=242&id=21943%3A2020uneba&option=com_content&view=article | altro | 2020-01-20 | [↗](https://olympus.uniurb.it/index.php?Itemid=139&catid=242&id=21943%3A2020uneba&option=com_content&view=article) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated (minimi retributivi mensili conglobati per Art. 43 CCNL Jan 2025). All base_salary values are the conglobated tabular minimums; contingenza and EDR are fully absorbed. Back-calculation: Oct 2024 level 4S = 1467.86 / 164 = 8.95 EUR/h; level 2 = 1735.81 / 164 = 10.58 EUR/h; level Q = 1957.15 / 164 = 11.93 EUR/h — consistent across all levels, confirming divisor 164 and conglobated model.

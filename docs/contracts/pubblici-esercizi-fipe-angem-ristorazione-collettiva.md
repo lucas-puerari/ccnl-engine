@@ -5,7 +5,7 @@
 | **CNEL code** | `H05Y` |
 | **Sector** | turismo |
 | **Tax sector** | `terziario` |
-| **Last renewal** | — |
+| **Last renewal** | 2024-06-26 |
 | **Workers (est.)** | ~350k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🏭 Production |
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2024-06-26 |
 | **Last review** | 2026-10-17 |
 | **Latest salary tranche** | 2027-12-01 |
 
@@ -211,9 +211,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-06-26 | [↗](https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf) |
-| — | — | 2024-06-05 | [↗](https://www.fipe.it/wp-content/uploads/2024/06/Contratto-CCNL-05_06_24.pdf) |
-| — | — | 2018-02-08 | [↗](https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf) |
+| https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf | tabella_retributiva | 2024-06-26 | [↗](https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf) |
+| https://www.fipe.it/wp-content/uploads/2024/06/Contratto-CCNL-05_06_24.pdf | altro | 2024-06-05 | [↗](https://www.fipe.it/wp-content/uploads/2024/06/Contratto-CCNL-05_06_24.pdf) |
+| https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf | altro | 2018-02-08 | [↗](https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf) |
 
 ??? note "Coverage notes"
     SUB-SECTOR: collective catering companies of art. 1 c. 1 par. II (ristorazione collettiva). Same rules as pubblici-esercizi-fipe-angem; the 2025 and 2026 tranches apply from 1 September (accordo integrativo 26 June 2024, p. 3: 'Per le aziende di cui all'art. 1 comma 1 paragrafo II, le Parti stabiliscono incrementi dei valori di paga base nazionale mensile nelle modalità di seguito indicate').

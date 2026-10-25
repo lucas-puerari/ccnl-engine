@@ -141,7 +141,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-09-09 | [↗](https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf) |
+| https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf | associazione | 2025-09-09 | [↗](https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf) |
 
 ??? note "Coverage notes"
     SCOPE: Lapidei subsector only. Laterizi and Cemento subsectors have different level codes and salary structures; not modelled in this file.

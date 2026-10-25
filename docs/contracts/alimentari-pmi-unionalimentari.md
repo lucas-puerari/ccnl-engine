@@ -153,8 +153,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-05-28 | [↗](https://www.unionalimentari.com/) |
-| — | — | 2021-04-01 | [↗](https://www.lavorofacile.it/) |
+| https://www.unionalimentari.com/ | tabella_retributiva | 2025-05-28 | [↗](https://www.unionalimentari.com/) |
+| https://www.lavorofacile.it/ | altro | 2021-04-01 | [↗](https://www.lavorofacile.it/) |
 
 ??? note "Coverage notes"
     Salary model: split. base_salary = paga base (changes each tranche); fixed_allowances = contingenza (per-level, frozen since 1993 Protocol) + EDR 10.33 (all levels, per Protocol 31/07/1992 Art. 1.1).

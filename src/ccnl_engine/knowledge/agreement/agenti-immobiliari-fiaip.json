@@ -15,16 +15,20 @@
     ],
     "sources": [
       {
+        "document_id": "ebnaip-it",
+        "title": "https://www.ebnaip.it/",
+        "kind": "altro",
         "url": "https://www.ebnaip.it/",
-        "type": "ccnl_text",
-        "agreement_date": "2025-05-19"
+        "pages": [],
+        "published_on": "2025-05-19"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-12",
-      "human_reviewed": true
+      "extraction_timestamp": "2026-09-12",
+      "verification_status": "verified",
+      "effective_from": null
     }
   },
   "coverage": {
@@ -1521,6 +1525,6 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "1cb8af050eaa86ed724c33e376f3284eea38aa5cebf02887dc5c6e196c31601c"
+    "source_hash": "7b362ce427aa65fe296b62801e744e57e3b5aba43ee2a117a86bc50cff8d2eb0"
   }
 }

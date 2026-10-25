@@ -15,16 +15,20 @@
     ],
     "sources": [
       {
+        "document_id": "filctemcgil-it-images-download-contratti-miniere-220713_attivita-20minerarie_rin",
+        "title": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf",
+        "kind": "associazione",
         "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf",
-        "type": "associazione",
-        "agreement_date": "2022-07-13"
+        "pages": [],
+        "published_on": "2022-07-13"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-18",
-      "human_reviewed": true
+      "extraction_timestamp": "2026-09-18",
+      "verification_status": "verified",
+      "effective_from": null
     },
     "workers_estimate": "~3000"
   },
@@ -1612,7 +1616,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "f8bed547140695b59830107cb8379c684b9ffc2f830892e0a6bb08cd5475e344",
+    "source_hash": "9be7c09262504a9a8512aef8874c09f530287b44a2c7177508dec2fb80ed8096",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

@@ -17,31 +17,44 @@
     ],
     "sources": [
       {
+        "document_id": "ance-it-wp-content-uploads-allegati-tabella_nuovi_minimi_orari-_ccnl_2025-pdf",
+        "title": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
+        "kind": "tabella_retributiva",
         "url": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
-        "type": "table",
-        "agreement_date": "2025-02-21"
+        "pages": [],
+        "published_on": "2025-02-21"
       },
       {
+        "document_id": "ance-it-wp-content-uploads-allegati-20250221_verbale_accordo_rinnovo_ccnl_firmat",
+        "title": "https://ance.it/wp-content/uploads/allegati/20250221_Verbale_accordo_rinnovo_CCNL_firmato.pdf",
+        "kind": "altro",
         "url": "https://ance.it/wp-content/uploads/allegati/20250221_Verbale_accordo_rinnovo_CCNL_firmato.pdf",
-        "type": "text",
-        "agreement_date": "2025-02-21"
+        "pages": [],
+        "published_on": "2025-02-21"
       },
       {
+        "document_id": "filleacgil-net-images-organizzazione-contratti_e_tabelle-edilizia-ccnl_edilizia_",
+        "title": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+        "kind": "altro",
         "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
-        "type": "text",
-        "agreement_date": "2010-04-19"
+        "pages": [],
+        "published_on": "2010-04-19"
       },
       {
+        "document_id": "ance-it-wp-content-uploads-archive-37937-art-20-2092-20apprendistato-nota-20a-20",
+        "title": "https://ance.it/wp-content/uploads/archive/37937-Art%20%2092%20Apprendistato-Nota%20a%20verbale.pdf",
+        "kind": "altro",
         "url": "https://ance.it/wp-content/uploads/archive/37937-Art%20%2092%20Apprendistato-Nota%20a%20verbale.pdf",
-        "type": "text",
-        "agreement_date": "2019-04-04"
+        "pages": [],
+        "published_on": "2019-04-04"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-opus-5-5",
-      "timestamp": "2026-10-13T07:47:58Z",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-10-13T07:47:58Z",
+      "verification_status": "unverified",
+      "effective_from": null
     }
   },
   "coverage": {
@@ -2399,7 +2412,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "af087a1cad17092104e808d3624e328c6251cfcecd494493d5b021ef6ebc99cb",
+    "source_hash": "ff81cffe5d4983ae59114386187f074d43b3144be79604bcc102bebbcc61abcb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

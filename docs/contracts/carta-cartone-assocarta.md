@@ -168,10 +168,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-07-01 | [↗](https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/) |
-| — | — | 2026-04-01 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx) |
-| — | — | 2021-07-28 | [↗](https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf) |
-| — | — | 2026-02-10 | [↗](https://www.zetaservice.com/wp-content/uploads/2026/02/RINNOVO-CCNL-CARTA-AZIENDE-INDUSTRIALI-G022.pdf) |
+| https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/ | tabella_retributiva | 2024-07-01 | [↗](https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/) |
+| https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx | tabella_retributiva | 2026-04-01 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx) |
+| https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf | altro | 2021-07-28 | [↗](https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf) |
+| https://www.zetaservice.com/wp-content/uploads/2026/02/RINNOVO-CCNL-CARTA-AZIENDE-INDUSTRIALI-G022.pdf | altro | 2026-02-10 | [↗](https://www.zetaservice.com/wp-content/uploads/2026/02/RINNOVO-CCNL-CARTA-AZIENDE-INDUSTRIALI-G022.pdf) |
 
 ??? note "Coverage notes"
     SALARY MODEL: base_salary is the stipendio of Art. 49, TEM + EMC (Elemento di Modernizzazione Contrattuale, EUR 20.00 at C1, parametrised). 2024-07-01: column 'Minimi dal 1.7.2024' of the ipotesi of 28/07/2021 (CNEL G022, deposit 138131, p. 46), which already includes the EMC. 2026-04-01 to 2028-09-01: previous minimo + the C1 increments of the ipotesi of 10/02/2026 (CNEL deposit 246200, p. 8: 125, 45, 45, 60) reparametrised by level parameter / 153 (Art. 48 table, p. 3). The 2026 ipotesi neither abolishes nor conglobates the EMC (Art. 100 bis) and keeps Art. 49 in force, so the EMC stays in base_salary; fixed_allowances=[] for all levels.

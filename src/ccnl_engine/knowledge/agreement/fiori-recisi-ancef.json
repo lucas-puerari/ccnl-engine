@@ -15,26 +15,36 @@
     ],
     "sources": [
       {
+        "document_id": "ccnlportatili-it-ccnl-fiori-recisi",
+        "title": "https://www.ccnlportatili.it/ccnl/fiori-recisi/",
+        "kind": "altro",
         "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/",
-        "type": "text",
-        "agreement_date": "2023-03-30"
+        "pages": [],
+        "published_on": "2023-03-30"
       },
       {
+        "document_id": "redigo-info-tabelle-retributive-fiori-recisi-ancef",
+        "title": "https://www.redigo.info/tabelle-retributive/fiori-recisi-ancef",
+        "kind": "tabella_retributiva",
         "url": "https://www.redigo.info/tabelle-retributive/fiori-recisi-ancef",
-        "type": "salary_table",
-        "agreement_date": "2023-03-30"
+        "pages": [],
+        "published_on": "2023-03-30"
       },
       {
+        "document_id": "olympus-uniurb-it-index-php-option-com_content-view-article-id-29864",
+        "title": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=29864",
+        "kind": "altro",
         "url": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=29864",
-        "type": "text",
-        "agreement_date": "2023-03-30"
+        "pages": [],
+        "published_on": "2023-03-30"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-05",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-05",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~1.3k"
   },
@@ -1308,7 +1318,7 @@
     "effective_until": null,
     "source": "https://www.ccnlportatili.it/ccnl/fiori-recisi/",
     "verification_status": "unverified",
-    "source_hash": "efe78a2d249d8e23f4934d3671214175f0d1839fb0675d65e6417a4e9019cf56",
+    "source_hash": "0304d941c59c79cc08c6bd835fb6f82954434e6eae276dabc31124a4b29bb4d6",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

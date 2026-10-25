@@ -248,9 +248,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-07-05 | [↗](https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf) |
-| — | — | 2014-01-18 | [↗](https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%2018%20gennaio%202014/ccnl%20turismo%2018%2001%2014%20versione%20guida.pdf) |
-| — | — | 2010-02-20 | [↗](http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf) |
+| Ipotesi di accordo 5 luglio 2024 (scan, also CNEL id 194291): art. 152 tranches lug 2024 - nov 2027, artt. 48, 160, 161, 199. | altro | 2024-07-05 | [↗](https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf) |
+| Renewal of 18 January 2014 (also CNEL id 20): art. 152 table in force from 1 April 2016; art. 14 bis of the apprenticeship accord. | altro | 2014-01-18 | [↗](https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%2018%20gennaio%202014/ccnl%20turismo%2018%2001%2014%20versione%20guida.pdf) |
+| CCNL Turismo 20 febbraio 2010: the articles not replaced in 2014 and 2024 (58, 129, 145, 150, 151, 158, 162, 219, 220, 228). | altro | 2010-02-20 | [↗](http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf) |
 
 ??? note "Coverage notes"
     CNEL code H052 is shared with CCNL Agenzie di Viaggio Fiavet: the engine allows duplicates.

@@ -15,26 +15,36 @@
     ],
     "sources": [
       {
+        "document_id": "redigo-info-2024-07-02-ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadrienni",
+        "title": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/",
+        "kind": "tabella_retributiva",
         "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/",
-        "type": "table",
-        "agreement_date": "2024-06-18"
+        "pages": [],
+        "published_on": "2024-06-18"
       },
       {
+        "document_id": "ilccnl-it-contratto-ccnl-agricoltura---contoterzisti",
+        "title": "https://ilccnl.it/contratto/ccnl/agricoltura---contoterzisti",
+        "kind": "tabella_retributiva",
         "url": "https://ilccnl.it/contratto/ccnl/agricoltura---contoterzisti",
-        "type": "table",
-        "agreement_date": "2024-06-18"
+        "pages": [],
+        "published_on": "2024-06-18"
       },
       {
+        "document_id": "lavoro-economia-it-ccnl-ccnl-aspx-c-1",
+        "title": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=1",
+        "kind": "tabella_retributiva",
         "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=1",
-        "type": "table",
-        "agreement_date": "2024-06-18"
+        "pages": [],
+        "published_on": "2024-06-18"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-05",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-05",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~4k"
   },
@@ -1526,7 +1536,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/",
     "verification_status": "unverified",
-    "source_hash": "c4435a36897310f8449f3ce6de1baaeea1c7179cf3040c169dccbaf3d2e07b8d",
+    "source_hash": "c8fc5807df05a68a20c0b3915400280fafe37f2d7204c071c7a3fe5501a6c6ca",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

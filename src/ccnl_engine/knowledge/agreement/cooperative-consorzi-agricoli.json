@@ -17,17 +17,20 @@
     "agreement_date": "2024-07-19",
     "sources": [
       {
+        "document_id": "flai-it-wp-content-uploads-2018-11-ccnl-cooperative-e-consorzi-agricoli-2024-202",
+        "title": "Verbale di accordo 19/07/2024 All. n.1: tabelle retributive conglobate per 8 livelli (1-7+np), 4 tranches 2024-2027. Seniority: Art. 61 (operai) e Art. 49 (impiegati). Indennità funzione quadri Art. 45 rivisitata dal 01/08/2024.",
+        "kind": "tabella_retributiva",
         "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
-        "type": "tabella_retributiva",
-        "agreement_date": "2024-07-19",
-        "notes": "Verbale di accordo 19/07/2024 All. n.1: tabelle retributive conglobate per 8 livelli (1-7+np), 4 tranches 2024-2027. Seniority: Art. 61 (operai) e Art. 49 (impiegati). Indennità funzione quadri Art. 45 rivisitata dal 01/08/2024."
+        "pages": [],
+        "published_on": "2024-07-19"
       }
     ],
     "extraction": {
-      "timestamp": "2026-09-06",
-      "human_reviewed": false,
       "method": "ai",
-      "model": "claude-sonnet-4-6"
+      "model": "claude-sonnet-4-6",
+      "extraction_timestamp": "2026-09-06",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~60k"
   },
@@ -1618,7 +1621,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "c2b3fe8baff126c7a42bcf416d2de89a28a2e8101246557e22a57f3022b77ce2",
+    "source_hash": "96f97a2142fbed155f60625fad4f9f7cd4340bef71a540d2faf3039eda547d89",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

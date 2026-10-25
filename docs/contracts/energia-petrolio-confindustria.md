@@ -5,7 +5,7 @@
 | **CNEL code** | `B254` |
 | **Sector** | energia |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2025-04-16 |
 | **Workers (est.)** | ~38k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2025-04-16 |
 | **Last review** | — |
 | **Latest salary tranche** | 2027-07-01 |
 
@@ -153,9 +153,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-04-16 | [↗](https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/) |
-| — | — | 2025-04-16 | [↗](https://www.previdenza-professionisti.it/diritto-del-lavoro/ccnl-energia-e-petrolio---scheda.html) |
-| — | — | 2026-07-01 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=B254) |
+| https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/ | tabella_retributiva | 2025-04-16 | [↗](https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/) |
+| https://www.previdenza-professionisti.it/diritto-del-lavoro/ccnl-energia-e-petrolio---scheda.html | altro | 2025-04-16 | [↗](https://www.previdenza-professionisti.it/diritto-del-lavoro/ccnl-energia-e-petrolio---scheda.html) |
+| https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=B254 | tabella_retributiva | 2026-07-01 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=B254) |
 
 ??? note "Coverage notes"
     SALARY MODEL: split. base_salary = paga_base (minimi tabellari) only. fixed_allowances per level include: (1) EDR_IPCA — Elemento Distinto della Retribuzione, group-specific TimeSeries from Jul 2025; (2) INDENNITA_FUNZIONE — level-specific function allowance (constant for groups 2-6, TimeSeries Jul 2025=190/Jan 2027=200 for group 1 quadri); (3) CREA — level-specific, constant, group 1 only. Total paga tabellare = base_salary + INDENNITA_FUNZIONE + CREA; verified against kitech at Jul 2026 (exact match 23/23 levels).

@@ -28,23 +28,28 @@
     ],
     "sources": [
       {
+        "document_id": "normattiva-it-atto-caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18",
+        "title": "DPR 24 marzo 2025 n. 53, GU n. 91 del 18/04/2025 SO n. 12. Recepimento accordi sindacali triennio 2022-2024 per personale Forze di polizia ad ordinamento civile e militare. In vigore dal 03/05/2025. Testo normativo di riferimento; tavole retributive Art. 6 non direttamente estratte da questo atto — verificare allegati DPR per conferma. I valori sono stati estratti dall'ipotesi di accordo 18/12/2024 (seconda fonte).",
+        "kind": "altro",
         "url": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.dataPubblicazioneGazzetta=2025-04-18&atto.codiceRedazionale=25G00046&atto.articolo.numero=0&atto.articolo.sottoArticolo=1&atto.articolo.sottoArticolo1=0&qId=1ede7c71-4666-4c74-b496-2391fce88e7f",
-        "type": "ccnl_pdf",
-        "agreement_date": "2025-03-24",
-        "notes": "DPR 24 marzo 2025 n. 53, GU n. 91 del 18/04/2025 SO n. 12. Recepimento accordi sindacali triennio 2022-2024 per personale Forze di polizia ad ordinamento civile e militare. In vigore dal 03/05/2025. Testo normativo di riferimento; tavole retributive Art. 6 non direttamente estratte da questo atto — verificare allegati DPR per conferma. I valori sono stati estratti dall'ipotesi di accordo 18/12/2024 (seconda fonte)."
+        "pages": [],
+        "published_on": "2025-03-24"
       },
       {
+        "document_id": "nazionale-autonomidipolizia-it-wp-content-uploads-2024-12-ipotesi-accordo-18-12-",
+        "title": "Ipotesi di accordo sindacale Forze di Polizia ad ordinamento civile triennio 2022/2024 sottoscritta il 18/12/2024 (fonte Autonomi di Polizia). Tavole retributive Art. 6 usate per estrazione dei parametri e valori mensili.",
+        "kind": "altro",
         "url": "https://nazionale.autonomidipolizia.it/wp-content/uploads/2024/12/ipotesi-accordo-18-12-2024.pdf",
-        "type": "ccnl_pdf",
-        "agreement_date": "2024-12-18",
-        "notes": "Ipotesi di accordo sindacale Forze di Polizia ad ordinamento civile triennio 2022/2024 sottoscritta il 18/12/2024 (fonte Autonomi di Polizia). Tavole retributive Art. 6 usate per estrazione dei parametri e valori mensili."
+        "pages": [],
+        "published_on": "2024-12-18"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-04",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-04",
+      "verification_status": "unverified",
+      "effective_from": "2022-01-01"
     },
     "workers_estimate": "~130k",
     "public_pension_fund": "ctps",
@@ -2243,7 +2248,7 @@
     "effective_until": null,
     "source": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.dataPubblicazioneGazzetta=2025-04-18&atto.codiceRedazionale=25G00046&atto.articolo.numero=0&atto.articolo.sottoArticolo=1&atto.articolo.sottoArticolo1=0&qId=1ede7c71-4666-4c74-b496-2391fce88e7f",
     "verification_status": "unverified",
-    "source_hash": "0852ab2a125a34e7a66ff63c5215ea6beb43d3bd56d7ec3eff899d3aa9362d12",
+    "source_hash": "55c7a15ca6ecfe3027fbb49ae8202ce5bddecd09fb07934bf35bbff4522245d2",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

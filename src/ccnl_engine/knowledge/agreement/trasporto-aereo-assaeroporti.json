@@ -20,23 +20,28 @@
     ],
     "sources": [
       {
+        "document_id": "assaeroporti-com-wp-content-uploads-2025-06-ccnl-parte-specifica-versione-access",
+        "title": "CCNL Trasporto Aereo — Parte Specifica Gestori Aeroportuali. Salary tables Art. G20–G22, seniority Art. G23, hourly divisor Art. G28, additional months Art. G29–G30, apprenticeship Art. G14.",
+        "kind": "altro",
         "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
-        "type": "official_pdf",
-        "agreement_date": "2025-06-04",
-        "notes": "CCNL Trasporto Aereo — Parte Specifica Gestori Aeroportuali. Salary tables Art. G20–G22, seniority Art. G23, hourly divisor Art. G28, additional months Art. G29–G30, apprenticeship Art. G14."
+        "pages": [],
+        "published_on": "2025-06-04"
       },
       {
+        "document_id": "assaeroporti-com-ccnl-del-trasporto-aereo",
+        "title": "Assaeroporti CCNL landing page confirming CNEL code I810 and contract scope (Quadri, Impiegati, Operai delle Aziende di Gestione Aeroportuale).",
+        "kind": "altro",
         "url": "https://assaeroporti.com/ccnl-del-trasporto-aereo/",
-        "type": "web",
-        "agreement_date": "2025-06-04",
-        "notes": "Assaeroporti CCNL landing page confirming CNEL code I810 and contract scope (Quadri, Impiegati, Operai delle Aziende di Gestione Aeroportuale)."
+        "pages": [],
+        "published_on": "2025-06-04"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-04T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-04T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": "2025-01-01"
     },
     "workers_estimate": "~40k"
   },
@@ -2476,7 +2481,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "b45bd1fa3ff3251bc9be7d2236ffff8d07ad1ea0193a24221780160f33b19b7a",
+    "source_hash": "071102de9b5f7957b9029f53fdfd21121825d596f00fbd3e262df82cea67562b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

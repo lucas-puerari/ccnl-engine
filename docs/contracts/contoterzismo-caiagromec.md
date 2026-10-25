@@ -126,9 +126,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-06-18 | [↗](https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/) |
-| — | — | 2024-06-18 | [↗](https://ilccnl.it/contratto/ccnl/agricoltura---contoterzisti) |
-| — | — | 2024-06-18 | [↗](https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=1) |
+| https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/ | tabella_retributiva | 2024-06-18 | [↗](https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/) |
+| https://ilccnl.it/contratto/ccnl/agricoltura---contoterzisti | tabella_retributiva | 2024-06-18 | [↗](https://ilccnl.it/contratto/ccnl/agricoltura---contoterzisti) |
+| https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=1 | tabella_retributiva | 2024-06-18 | [↗](https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=1) |
 
 ??? note "Coverage notes"
     Salary model: paga base nazionale conglobata (contingenza absorbed since 2009 in agriculture sector). Single TimeSeries per level, no separate contingenza or EDR. Back-check: L3 Jun2026 2014.03/169=11.92, L4 1827.82/169=10.82, L5 1720.14/169=10.18 — all match redigo.info hourly rates.

@@ -14,26 +14,36 @@
     ],
     "sources": [
       {
+        "document_id": "redigo-info-2025-08-06-tabelle-retributive-ccnl-energia-e-petrolio",
+        "title": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
+        "kind": "tabella_retributiva",
         "url": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
-        "type": "table",
-        "agreement_date": "2025-04-16"
+        "pages": [],
+        "published_on": "2025-04-16"
       },
       {
+        "document_id": "previdenza-professionisti-it-diritto-del-lavoro-ccnl-energia-e-petrolio---scheda",
+        "title": "https://www.previdenza-professionisti.it/diritto-del-lavoro/ccnl-energia-e-petrolio---scheda.html",
+        "kind": "altro",
         "url": "https://www.previdenza-professionisti.it/diritto-del-lavoro/ccnl-energia-e-petrolio---scheda.html",
-        "type": "text",
-        "agreement_date": "2025-04-16"
+        "pages": [],
+        "published_on": "2025-04-16"
       },
       {
+        "document_id": "kitech-it-retribuzione-stipendio-ccnl-aspx-codicecateg-b254",
+        "title": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=B254",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=B254",
-        "type": "table",
-        "agreement_date": "2026-07-01"
+        "pages": [],
+        "published_on": "2026-07-01"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-05T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-05T00:00:00",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~38k"
   },
@@ -5281,7 +5291,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
     "verification_status": "unverified",
-    "source_hash": "e310c7497befb4a1ab147431c9fec5d7a1859ab090750357f6eab77e318eba11",
+    "source_hash": "3a8ce28e1509dd01f61fab2407bc4dfd441d65323e046f86adff239811155faa",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

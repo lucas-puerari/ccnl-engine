@@ -201,9 +201,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2022-09-01 | [↗](https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf) |
-| — | — | 2024-03-05 | [↗](https://www.studiodalmaschio.it/rinnovo-ccnl-legno-lapidei-artigianato-2024) |
-| — | — | 2024-03-05 | [↗](https://www.kitech.it/ccnl/legno-arredo-artigianato) |
+| SOURCE: Direzionelavoro.it — Base CCNL 2022. Tables: salary base values by level (Sep 2022), hourly divisor 174, seniority amounts pre-Jan-2025, apprenticeship percentages (3 gruppi), mensilita=13, conglobated model confirmed ('Contingenza: conglobata nei minimi retributivi'). | altro | 2022-09-01 | [↗](https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf) |
+| SOURCE: StudioDalmaschio.it — 2024 rinnovo summary (signed 5 marzo 2024). Agreement date, salary increases per tranche (Mar 2024, Jan 2025, Jan 2026, Oct 2026), new seniority amounts from Jan 2025 per level, new apprentice seniority EUR 8.00 from Jan 2025, signatories confirmed. | altro | 2024-03-05 | [↗](https://www.studiodalmaschio.it/rinnovo-ccnl-legno-lapidei-artigianato-2024) |
+| SOURCE: Kitech.it — CNEL code F060 confirmed. Jan 2026 salary table cross-validated: AS=2230.81, A=2079.31, B=1900.65, CS=1818.04, C=1734.61, D=1639.71, E=1552.82, F=1458.99. All 8 levels match computed values exactly. | tabella_retributiva | 2024-03-05 | [↗](https://www.kitech.it/ccnl/legno-arredo-artigianato) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated (minimi tabellari conglobati). Confirmed by primary source ('Contingenza: conglobata nei minimi retributivi'). Back-calculation at Jan 2025: AS=2176.39/174=12.508 EUR/h, D=1599.71/174=9.194 EUR/h, F=1423.40/174=8.180 EUR/h — all consistent with hourly divisor 174, confirming conglobated model.

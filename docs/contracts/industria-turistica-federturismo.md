@@ -175,7 +175,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-01-01 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B) |
+| A1 and D2 confirmed at 01/05/2026. Intermediate levels derived via parametric ratio and independently verified to <EUR 0.02. | tabella_retributiva | 2025-01-01 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B) |
 
 ??? note "Coverage notes"
     CCNL H05B — Federturismo Confindustria. Conglobated model. 9 levels: D2-D1-C3-C2-C1-B2-B1-A2-A1. Divisor 172, 14 months. Function allowances: A1+75 EUR, A2+70 EUR (14 months). Seniority 36-month cadence, max 6.

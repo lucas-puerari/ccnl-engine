@@ -15,16 +15,20 @@
     ],
     "sources": [
       {
+        "document_id": "lavoro-economia-it-contratti-collettivi-ccnl-aspx-c-153",
+        "title": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153",
+        "kind": "altro",
         "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153",
-        "type": "proxy",
-        "agreement_date": "2025-07-23"
+        "pages": [],
+        "published_on": "2025-07-23"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-18",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-18",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~2.3k"
   },
@@ -1875,7 +1879,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153",
     "verification_status": "unverified",
-    "source_hash": "83ae39823efd09485894126e95c20b463d59b46d69d3f462ff6387591c5452e6",
+    "source_hash": "52101d8db9fa7ede020914c62f78e11cafd08882c222a108433d67ef04d9d435",
     "published_at": "2026-09-18",
     "source_type": "commercial_secondary"
   },

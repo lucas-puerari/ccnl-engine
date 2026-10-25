@@ -174,8 +174,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2023-12-21 | [↗](https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf) |
-| — | — | 2023-12-21 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=K721) |
+| https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf | altro | 2023-12-21 | [↗](https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf) |
+| https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=K721 | tabella_retributiva | 2023-12-21 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=K721) |
 
 ??? note "Coverage notes"
     CCNL Servizi Postali in Appalto signed 21/12/2023. Salary model: split — base_salary = paga tabellare + contingenza; fixed_allowances = indennità integrativa Art. 34 (frozen Dec 2013) + EDR 10.33. Verified: L1 Dec2025 (1875.95+75.62+10.33)/173=1961.90/173=11.34 EUR/h ✓.

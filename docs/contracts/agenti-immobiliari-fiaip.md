@@ -184,7 +184,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-05-19 | [↗](https://www.ebnaip.it/) |
+| https://www.ebnaip.it/ | altro | 2025-05-19 | [↗](https://www.ebnaip.it/) |
 
 ??? note "Coverage notes"
     Salary model: CONGLOBATED. Art. 158 explicitly lists the composition: paga base nazionale conglobata comprising paga base + contingenza ex art. 98 CCNL 11/6/97 + EDR accordo interconfederale 21/07/92 + elemento economico di 2° livello ex art. 95 CCNL 11/6/97. Art. 162 title: 'Paga base nazionale conglobata'. Modelled as base_salary (TimeSeries per level) with fixed_allowances: [] for all levels.

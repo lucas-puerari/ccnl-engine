@@ -244,10 +244,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2019-12-12 | [↗](https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf) |
-| — | — | 2024-03-22 | [↗](https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20260.pdf) |
-| — | — | 2024-03-28 | [↗](https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20279.pdf) |
-| — | — | 2022-12-12 | [↗](https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2022//19967.pdf) |
+| Testo Unico 12 dicembre 2019 (sha256 18a2f10c...). Art. 53, 57, 64 (apprendistato), Art. 107 (Fon.Te), Artt. 186-187 (malattia), Art. 205 (scatti), Art. 210-211 (quote giornaliera e oraria), Art. 215 (terzo elemento), Artt. 220-221 (tredicesima e quattordicesima), Tabella I (p. 347) vigente dal 01.01.2020. | altro | 2019-12-12 | [↗](https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf) |
+| Ipotesi di accordo 22 marzo 2024 (CNEL 20260, scansione firmata), validità 2023-04-01/2027-03-31. Art. 213 aumenti in 6 tranche (01/04/2023, 01/04/2024, 01/03/2025, 01/11/2025, 01/11/2026, 01/02/2027). Una tantum EUR 350 at level IV, reparametrised for every level, paid 175+175 with the July 2024 and July 2025 pay: not modelled. | altro | 2024-03-22 | [↗](https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20260.pdf) |
+| Accordo integrativo 28 marzo 2024 (CNEL 20279, scansione firmata): Art. 213 increases with the rounding fixed and the official tabelle retributive 2023-2027 (pp. 2-3), the source of every 2023-2027 base_salary period. | altro | 2024-03-28 | [↗](https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20279.pdf) |
+| Protocollo straordinario 12 dicembre 2022 (CNEL 19967): acconto EUR 30 at level IV from 1 April 2023 (first 2023-2027 tranche) and una tantum EUR 350 at level IV (January and March 2023), not modelled. | altro | 2022-12-12 | [↗](https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2022//19967.pdf) |
 
 ??? note "Coverage notes"
     Apprenticeship type b (professionalizzante). Durations (Art. 64): II-V 36 months, VI 24 months; half-period 18 and 12 months. The 42 and 48 month profiles of Art. 68 Tabella B are in the unmodelled note.

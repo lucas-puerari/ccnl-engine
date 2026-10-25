@@ -15,26 +15,36 @@
     ],
     "sources": [
       {
+        "document_id": "redigo-info-2026-03-06-ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiorna",
+        "title": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
+        "kind": "tabella_retributiva",
         "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
-        "type": "table",
-        "agreement_date": "2025-05-21"
+        "pages": [],
+        "published_on": "2025-05-21"
       },
       {
+        "document_id": "kitech-it-retribuzione-stipendio-ccnl-aspx-codicecateg-286",
+        "title": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=286",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=286",
-        "type": "table",
-        "agreement_date": "2025-05-21"
+        "pages": [],
+        "published_on": "2025-05-21"
       },
       {
+        "document_id": "ilccnl-it-contratto-ccnl-consorzi-di-bonifica",
+        "title": "https://ilccnl.it/contratto/ccnl/consorzi-di-bonifica",
+        "kind": "altro",
         "url": "https://ilccnl.it/contratto/ccnl/consorzi-di-bonifica",
-        "type": "info",
-        "agreement_date": "2025-05-21"
+        "pages": [],
+        "published_on": "2025-05-21"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-05",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-05",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~4k"
   },
@@ -2749,7 +2759,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "b7dfec12fa3ee80f56e31c58f34ce8a0df341bec97a2db5efa32b62b1625fa28",
+    "source_hash": "8a021e19d9d9a6bf994d76c15b0d65c712301c5cf7fd6aef9121b060b1d9c015",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

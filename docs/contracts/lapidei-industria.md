@@ -5,7 +5,7 @@
 | **CNEL code** | `F041` |
 | **Sector** | industria lapidea e delle cave |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2022-11-24 |
 | **Workers (est.)** | ~18k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | — |
+| **Last renewal** | 2022-11-24 |
 | **Last review** | — |
 | **Latest salary tranche** | 2027-07-01 |
 
@@ -177,8 +177,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2022-11-24 | [↗](https://www.consulenza.it/Contenuti/Scadenziario/Scadenza/19851/lapidei-industria) |
-| — | — | 2025-07-15 | [↗](https://www.cdltorino.it/ccnl-lapidei-industria-con-ladeguamento-ipca-in-arrivo-nuovi-minimi/) |
+| https://www.consulenza.it/Contenuti/Scadenziario/Scadenza/19851/lapidei-industria | altro | 2022-11-24 | [↗](https://www.consulenza.it/Contenuti/Scadenziario/Scadenza/19851/lapidei-industria) |
+| https://www.cdltorino.it/ccnl-lapidei-industria-con-ladeguamento-ipca-in-arrivo-nuovi-minimi/ | altro | 2025-07-15 | [↗](https://www.cdltorino.it/ccnl-lapidei-industria-con-ladeguamento-ipca-in-arrivo-nuovi-minimi/) |
 
 ??? note "Coverage notes"
     CCNL 2022-2025 signed 24/11/2022 (valid 01/04/2022-31/03/2025). CCNL 2025-2028 signed 15/07/2025 (valid 01/04/2025-31/03/2028). Signatories: Confindustria Marmomacchine+ANEPLA+FENEAL-UIL+FILCA-CISL+FILLEA-CGIL.

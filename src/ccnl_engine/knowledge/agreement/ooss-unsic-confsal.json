@@ -22,21 +22,28 @@
     ],
     "sources": [
       {
+        "document_id": "unsic-it-wp-content-uploads-2023-02-ccnl-ooss-pdf",
+        "title": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
+        "kind": "altro",
         "url": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
-        "type": "text",
-        "agreement_date": "2023-01-19"
+        "pages": [],
+        "published_on": "2023-01-19"
       },
       {
+        "document_id": "kitech-it",
+        "title": "https://www.kitech.it/",
+        "kind": "tabella_retributiva",
         "url": "https://www.kitech.it/",
-        "type": "salary_table",
-        "agreement_date": "2026-03-26"
+        "pages": [],
+        "published_on": "2026-03-26"
       }
     ],
     "extraction": {
       "method": "ai",
       "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-05",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-09-05",
+      "verification_status": "unverified",
+      "effective_from": null
     },
     "workers_estimate": "~7k"
   },
@@ -823,7 +830,7 @@
     "effective_until": null,
     "source": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
     "verification_status": "unverified",
-    "source_hash": "3752bee58156059c0002e5be532ccd8a447d8a49ce94644e1192fabb60afdaaf",
+    "source_hash": "13ce54c189bcb1cb0b76f15389426a709d5b1cde1da4281489cd374f6f83b6f0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
