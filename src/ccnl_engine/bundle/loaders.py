@@ -20,6 +20,8 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from ccnl_engine.bundle.facade import SERIES
+from ccnl_engine.errors import DataIntegrityError
+from ccnl_engine.provenance.ruleset.models import source_hash
 
 if TYPE_CHECKING:
     from importlib.resources.abc import Traversable
@@ -81,12 +83,14 @@ class Resource:
         year: Year of the resource, ``None`` when it has none.
         scope: Last dimension of the path (sector, slug, ...), ``None`` when
             the year is the last one.
+        source_hash: Digest of the resource the manifest records.
     """
 
     path: str
     dataset: str
     year: int | None
     scope: str | None
+    source_hash: str = ""
 
     @property
     def name(self) -> str:
@@ -108,7 +112,11 @@ def _manifest() -> dict[str, Resource]:
     raw = json.loads(read_bundled(_root(), MANIFEST))
     return {
         entry["path"]: Resource(
-            entry["path"], entry["dataset"], entry["year"], entry["scope"]
+            entry["path"],
+            entry["dataset"],
+            entry["year"],
+            entry["scope"],
+            entry["source_hash"],
         )
         for entry in raw["resources"]
     }
@@ -158,56 +166,49 @@ def read_resource(path: str) -> str:
 
     Raises:
         FileNotFoundError: When the manifest does not list ``path``.
+        DataIntegrityError: When the manifest lists ``path`` and the
+            resource is missing, unreadable, not JSON, or not the content
+            whose hash the manifest records.
     """
-    if path not in _manifest():
+    resource = _manifest().get(path)
+    if resource is None:
         msg = f"the knowledge manifest lists no resource {path!r}"
         raise FileNotFoundError(msg)
-    return read_bundled(resource_dir(path), path.rsplit("/", 1)[-1])
+    try:
+        text = read_bundled(resource_dir(path), resource.name)
+    except FileNotFoundError as exc:
+        msg = f"{path}: the manifest lists it but the bundle does not hold it"
+        raise DataIntegrityError(msg, remediation=_REINSTALL) from exc
+    except (OSError, EOFError, UnicodeDecodeError) as exc:
+        msg = f"{path}: the bundled resource cannot be read: {exc}"
+        raise DataIntegrityError(msg, remediation=_REINSTALL) from exc
+    _verify(resource, text)
+    return text
 
 
-class BundledResourceStore:
-    """Read JSON resources from a package data directory.
+#: How to recover a damaged bundle.
+_REINSTALL = "reinstall ccnl-engine: the bundled knowledge is damaged"
 
-    Handles both the editable-install layout (``.json``) and the wheel layout
-    (``.json.gz``), so callers never need to know which form is present.
 
-    Args:
-        pkg: A :class:`~importlib.resources.abc.Traversable` pointing to the
-            package data directory, e.g. the result of
-            a directory of the knowledge bundle, e.g.
-            ``importlib.resources.files("ccnl_engine.knowledge")``.
+#: Resources whose content matched the manifest hash in this process.
+_VERIFIED: set[tuple[str, str]] = set()
+
+
+def _verify(resource: Resource, text: str) -> None:
+    """Check ``text`` against the hash the manifest records, once per resource.
+
+    Raises:
+        DataIntegrityError: When the text is not JSON or its hash differs.
     """
-
-    def __init__(self, pkg: Traversable) -> None:
-        """Initialise the store bound to *pkg*."""
-        self._pkg = pkg
-
-    def list_json(self) -> list[str]:
-        """Return a sorted list of available JSON filenames.
-
-        Both ``.json`` (editable install) and ``.json.gz`` (wheel) entries are
-        included; compressed entries are normalised to their ``.json`` name.
-        When both forms exist for the same file, the name appears once.
-
-        Returns:
-            Sorted list of ``.json`` filenames present in the package.
-        """
-        seen: set[str] = set()
-        for resource in self._pkg.iterdir():
-            name = resource.name
-            if name.endswith(".json.gz"):
-                seen.add(name[:-3])
-            elif name.endswith(".json"):
-                seen.add(name)
-        return sorted(seen)
-
-    def read_json(self, filename: str) -> str:
-        """Read a JSON file, preferring the compressed variant when available.
-
-        Args:
-            filename: The ``.json`` filename to read (without ``.gz`` suffix).
-
-        Returns:
-            File content decoded as UTF-8.
-        """
-        return read_bundled(self._pkg, filename)
+    key = (resource.path, resource.source_hash)
+    if key in _VERIFIED:
+        return
+    try:
+        payload = json.loads(text)
+    except json.JSONDecodeError as exc:
+        msg = f"{resource.path}: the bundled resource is not valid JSON: {exc}"
+        raise DataIntegrityError(msg, remediation=_REINSTALL) from exc
+    if source_hash(payload) != resource.source_hash:
+        msg = f"{resource.path}: the content does not match the manifest hash"
+        raise DataIntegrityError(msg, remediation=_REINSTALL)
+    _VERIFIED.add(key)

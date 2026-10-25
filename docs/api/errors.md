@@ -15,7 +15,7 @@ one of its subclasses.
 | `MissingRequiredFactError` | `missing_required_fact` | A computation path needs a fact the caller did not supply |
 | `UnsupportedTaxYearError` | `unsupported_tax_year` | The bundle has no tax tables for the tax year of the payment |
 | `OutOfScopeError` | `out_of_scope` | The engine does not model the requested computation |
-| `DataIntegrityError` | `data_integrity` | A bundled file fails an integrity check, or a run breaks a state invariant |
+| `DataIntegrityError` | `data_integrity` | A bundled file is missing, unreadable, not JSON or not the content its manifest hash records (checked once per resource), or a run breaks a state invariant: reinstall the package |
 
 Inputs are frozen dataclasses validated on construction by shared
 validators: scalars by type and range (`Decimal` amounts finite and below
