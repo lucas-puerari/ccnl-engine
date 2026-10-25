@@ -110,6 +110,8 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "PublicEndOfService",
         "RecoveryObligation",
         "RecoveryPlan",
+        "SecondLevelAgreement",
+        "SecondLevelElement",
         "SeniorityFact",
         "SeniorityPromotion",
         "SenioritySource",

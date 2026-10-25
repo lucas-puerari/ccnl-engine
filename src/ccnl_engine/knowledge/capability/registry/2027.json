@@ -233,28 +233,24 @@
     {
       "feature": "territorial_supplement",
       "layer": "gross",
-      "implementation": "unsupported",
-      "applies_when": "outside_input",
-      "handler": null,
+      "implementation": "caller_supplied",
+      "applies_when": "decided",
+      "handler": "decision",
       "evidence": "derived",
       "variants": [],
-      "required_facts": [
-        "employment.territorial_agreement"
-      ],
-      "description": "Integrazione da contratto territoriale"
+      "required_facts": [],
+      "description": "Integrazione da contratto territoriale (EmployerProfile.second_level_elements)"
     },
     {
       "feature": "company_supplement",
       "layer": "gross",
-      "implementation": "unsupported",
-      "applies_when": "outside_input",
-      "handler": null,
+      "implementation": "caller_supplied",
+      "applies_when": "decided",
+      "handler": "decision",
       "evidence": "derived",
       "variants": [],
-      "required_facts": [
-        "employment.company_agreement"
-      ],
-      "description": "Integrazione da contratto aziendale"
+      "required_facts": [],
+      "description": "Integrazione da contratto aziendale (EmployerProfile.second_level_elements)"
     },
     {
       "feature": "tfr",

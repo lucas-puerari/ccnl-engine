@@ -21,9 +21,7 @@ _REQUIREMENT = FactEnforcement.REQUIREMENT
 _REPORTED = FactEnforcement.REPORTED
 _PENDING = FactEnforcement.PENDING
 
-_CONTAINER = absence_is_fact(
-    "an empty container: each of its own fields is classified on its own"
-)
+_CONTAINER = absence_is_fact("an empty container: its fields are classified")
 _CURRENT_YEAR = requires_fact(
     "family_deductions",
     "current_year",
@@ -240,6 +238,11 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "tredicesima leaves the ERC out, and the run has a missing_fact "
         "erc_amount blocker",
     ),
+    "EmployerProfile.second_level_elements": absence_is_fact("none agreed"),
+    "SecondLevelElement.valid_until": absence_is_fact("in force, no end"),
+    "SecondLevelElement.levels": absence_is_fact("every level"),
+    "SecondLevelElement.extra_months": absence_is_fact("paid on the extra months"),
+    "SecondLevelElement.tfr_relevant": absence_is_fact("in the TFR base"),
     "EmployerProfile.contractual_funds": requires_fact(
         "contractual_funds",
         "employer.contractual_funds",

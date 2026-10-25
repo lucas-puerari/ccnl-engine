@@ -56,6 +56,9 @@ _DECISION_FEATURES: dict[str, TraceState] = {
     "assistance_contribution": TraceState.NOT_APPLICABLE,
     "contractual_funds": TraceState.NOT_APPLICABLE,
     "tfr_revaluation": TraceState.NOT_APPLICABLE,
+    # Caller-supplied on every run that pays one: the trace leaves them out.
+    "company_supplement": TraceState.NOT_APPLICABLE,
+    "territorial_supplement": TraceState.NOT_APPLICABLE,
     # Decided on every run that closes the employment: no other run has it.
     "termination_residual_leave": TraceState.NOT_APPLICABLE,
 }

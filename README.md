@@ -76,8 +76,8 @@ and the [examples](https://lucas-puerari.github.io/ccnl-engine/docs/examples/).
 
 - It is not legal or tax advice, and it does not replace a payroll provider.
 - It files nothing: no F24, UniEmens or Certificazione Unica.
-- Second-level (company or territorial) agreements are not bundled, and
-  their supplements are not an input yet.
+- Second-level (company or territorial) agreements are not bundled: their
+  monthly elements are a caller input (`SecondLevelElement`), not data.
 - Not computed: the INAIL premium, contribution exemptions and hiring
   incentives, supplementary health funds, contractual una tantum, personal
   withholdings (garnishments, salary-backed loans), the conguaglio of a

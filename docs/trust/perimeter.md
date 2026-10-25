@@ -25,12 +25,16 @@ provider's figures, or adds them to the engine's, before comparing:
 | INAIL premium | Employer cost |
 | Contribution exemptions and hiring incentives | Employer contributions, employer cost |
 | Supplementary health funds | Gross or net (employee share), employer cost |
-| Company and territorial supplements (second level) | Every total; state them as events until they are an input |
 | Contractual una tantum | Gross, contributions, tax, net |
 | Personal withholdings (garnishments, salary-backed loans) | Net only |
 | Conguaglio of a 730 or of other withholding agents | Tax, net |
 | Art. 15 TUIR deductions | Tax, net |
 | Rounding of the net to the euro | Net only |
+
+Company and territorial elements are not in that list: state them as
+`SecondLevelElement` on the employer (see
+[Second-level bargaining](../engine/second-level.md)) and the engine pays
+them; their amounts rest on the adopter.
 
 ## Tolerance
 

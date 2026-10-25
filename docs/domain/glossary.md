@@ -444,11 +444,11 @@ a directory uses it.
 `rate`, `raw`, `recovery`, `registry`, `relief`, `remittance`,
 `renewal_minimum`, `repricing`, `request`, `requirement`, `residence`,
 `result`, `revaluation`, `review`, `rounding`, `rule`, `rule_source`,
-`ruleset`, `schedule`, `sector`, `selection`, `separate`, `sequence`,
-`settlement`, `sick_pay_supplement`, `sign`, `solidarity`, `somma_esente`,
-`source`, `spell`, `spouse`, `stage`, `standard`, `standby`, `statute`,
-`step`, `supplement`, `support`, `table`, `tax`, `tax_year`, `taxable`,
-`term`, `time`, `total`, `totals`, `trace`, `transition`,
+`ruleset`, `schedule`, `second_level`, `sector`, `selection`, `separate`,
+`sequence`, `settlement`, `sick_pay_supplement`, `sign`, `solidarity`,
+`somma_esente`, `source`, `spell`, `spouse`, `stage`, `standard`, `standby`,
+`statute`, `step`, `supplement`, `support`, `table`, `tax`, `tax_year`,
+`taxable`, `term`, `time`, `total`, `totals`, `trace`, `transition`,
 `trattamento_integrativo`, `travel`, `treatment`, `tree`,
 `ulteriore_detrazione`, `validity`, `voce`, `work_deduction`, `zone`.
 

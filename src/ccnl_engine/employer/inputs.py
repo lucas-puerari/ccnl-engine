@@ -5,6 +5,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from ccnl_engine.agreement.types import TaxSector
+from ccnl_engine.compensation.second_level.inputs import (
+    SecondLevelElement,
+    check_second_level_elements,
+)
 from ccnl_engine.contribution.zone.models import AgriculturalZone
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.regime.models import EmployerActivity
@@ -124,6 +128,7 @@ class EmployerProfile:
     agricultural_zone: AgriculturalZone | None = None
     inps_sector: TaxSector | None = None
     contractual_funds: frozenset[str] | None = None
+    second_level_elements: tuple[SecondLevelElement, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
         require_instance(
@@ -172,6 +177,13 @@ class EmployerProfile:
                     msg, field="EmployerProfile.contractual_funds", feature=_FEATURE
                 )
             object.__setattr__(self, "contractual_funds", frozenset(funds))
+        object.__setattr__(
+            self,
+            "second_level_elements",
+            check_second_level_elements(
+                self.second_level_elements, "EmployerProfile.second_level_elements"
+            ),
+        )
         for name in ("fis_reduction", "provincial_pay_element", "cigs_indotto"):
             value = getattr(self, name)
             if value is not None:

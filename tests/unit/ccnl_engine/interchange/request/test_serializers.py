@@ -18,6 +18,10 @@ from ccnl_engine.balance.serializers import STATE_TYPES
 from ccnl_engine.calendar.inputs import CalendarOverride, CalendarOverrideReason
 from ccnl_engine.calendar.models import WorkCalendar
 from ccnl_engine.compensation.individual.inputs import IndividualElement
+from ccnl_engine.compensation.second_level.inputs import (
+    SecondLevelAgreement,
+    SecondLevelElement,
+)
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.contribution.zone.models import AgriculturalZone
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
@@ -200,6 +204,18 @@ def _employer() -> EmployerProfile:
         activity=next(iter(EmployerActivity)),
         agricultural_zone=next(iter(AgriculturalZone)),
         inps_sector=next(iter(TaxSector)),
+        second_level_elements=(
+            SecondLevelElement(
+                "premio_presenza",
+                Decimal("50.00"),
+                SecondLevelAgreement.TERRITORIAL,
+                date(2026, 1, 1),
+                date(2026, 12, 31),
+                levels=("C3",),
+                extra_months=False,
+                tfr_relevant=False,
+            ),
+        ),
     )
 
 
