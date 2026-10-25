@@ -25,6 +25,7 @@ from scripts.provenance.validation_packet.check import (
 from tests.knowledge.ccnl_engine.period.validation_packet.runner import (
     FOLDER,
     compute,
+    compute_result,
 )
 
 _PILOTS = (
@@ -87,3 +88,18 @@ def test_the_packets_cover_every_production_ccnl() -> None:
     rows = matrix()
 
     assert {c for c, r in rows.items() if r.readiness == "production"} == set(_PILOTS)
+
+
+def test_no_packet_misses_a_fact_its_inputs_can_state() -> None:
+    """D1: a packet blocks only on what the engine does not compute yet.
+
+    The inputs state seniority, the family, the sector, the funds, the
+    provincial element, the TFR fund and the opening of the year; what
+    still blocks a packet is a limitation or an issue of the engine.
+    """
+    stateable = {"seniority", "opening_state", "facts.family_composition", "sector"}
+    stateable |= {"contractual_funds", "tfr_fund", "provincial_pay_element"}
+    for name, packet in _PACKETS.items():
+        found = compute_result(packet["inputs"])
+        missing = {b.detail for b in found.blockers} & stateable
+        assert not missing, (name, missing)

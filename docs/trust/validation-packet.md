@@ -21,6 +21,15 @@ one. Packets live in
 `scenario` is one of `ordinary_month`, `partial_month`, `variable`,
 `extra_month`, `annual_conguaglio`, `termination` and `employer_cost`.
 
+The inputs also state the facts a payable case needs beyond the payslip:
+`family_composition` (`none`), `employment_sector`, `contractual_funds`,
+`provincial_pay_element`, `tfr_fund` (fund, revaluations and advances at
+31 December of the year before), the seniority, and `opening`
+(`zero_balances_at_january`: the tax year opens with imported balances that
+carry nothing from the year before, and the months before the run are
+computed on the same facts). A packet then blocks only on what the engine
+does not compute yet: 14 of the 42 pilot packets are payable.
+
 ## Each output on its own
 
 `output` is one of the eight totals of the definition of done: `base_salary`,

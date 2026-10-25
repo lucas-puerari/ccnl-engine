@@ -30,12 +30,25 @@
     "current_year_employment_only_on": "2026-01-01",
     "tfr_treasury_fund": false,
     "pension_fund": "none",
-    "run_kind": "thirteenth"
+    "run_kind": "thirteenth",
+    "seniority_months": 23,
+    "seniority_as_of": "2026-12-01",
+    "family_composition": "none",
+    "employment_sector": "private",
+    "contractual_funds": [],
+    "provincial_pay_element": false,
+    "tfr_fund": {
+      "year": 2025,
+      "amount": "2000.00",
+      "revaluations": "0.00",
+      "advances": "0.00"
+    },
+    "opening": "zero_balances_at_january"
   },
   "outputs": [
     {
       "output": "gross",
-      "value": "1590.27",
+      "value": "1613.81",
       "perimeter": "Gross pay of the run: every earning of the run before contributions and taxes",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -43,7 +56,7 @@
     },
     {
       "output": "employee_contributions",
-      "value": "155.13",
+      "value": "157.48",
       "perimeter": "INPS contributions withheld from the worker in the run",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -51,7 +64,7 @@
     },
     {
       "output": "employer_contributions",
-      "value": "478.80",
+      "value": "486.03",
       "perimeter": "INPS contributions due by the employer for the run (INAIL excluded)",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -59,7 +72,7 @@
     },
     {
       "output": "tax",
-      "value": "330.08",
+      "value": "247.53",
       "perimeter": "IRPEF and surtaxes withheld in the run net of refunds, before tax credits",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -67,7 +80,7 @@
     },
     {
       "output": "net",
-      "value": "1105.06",
+      "value": "1272.15",
       "perimeter": "Net pay of the run, before advances and deductions unrelated to payroll",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -75,7 +88,7 @@
     },
     {
       "output": "tfr",
-      "value": "109.85",
+      "value": "111.47",
       "perimeter": "TFR accrued in the run, kept by the employer or paid to a fund",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -83,7 +96,7 @@
     },
     {
       "output": "employer_cost",
-      "value": "2178.92",
+      "value": "2211.31",
       "perimeter": "Gross pay, employer contributions, TFR accrual and employer fund contributions of the run",
       "tolerance": "0.01",
       "rounding": "half_up_cents",

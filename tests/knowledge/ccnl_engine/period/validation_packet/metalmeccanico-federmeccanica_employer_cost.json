@@ -32,8 +32,22 @@
     "pension_fund": {
       "fund_code": "COMETA",
       "employee_rate": "0.012",
-      "tfr_to_fund": true
-    }
+      "tfr_to_fund": true,
+      "young_member": false
+    },
+    "seniority_months": 14,
+    "seniority_as_of": "2026-03-01",
+    "family_composition": "none",
+    "employment_sector": "private",
+    "contractual_funds": [],
+    "provincial_pay_element": false,
+    "tfr_fund": {
+      "year": 2025,
+      "amount": "2000.00",
+      "revaluations": "0.00",
+      "advances": "0.00"
+    },
+    "opening": "zero_balances_at_january"
   },
   "outputs": [
     {

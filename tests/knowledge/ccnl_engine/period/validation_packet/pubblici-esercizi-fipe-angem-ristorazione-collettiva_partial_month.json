@@ -29,7 +29,20 @@
     "prior_year_employment_income": "30000.00",
     "current_year_employment_only_on": "2026-01-01",
     "tfr_treasury_fund": false,
-    "pension_fund": "none"
+    "pension_fund": "none",
+    "seniority_months": 14,
+    "seniority_as_of": "2026-03-01",
+    "family_composition": "none",
+    "employment_sector": "private",
+    "contractual_funds": [],
+    "provincial_pay_element": false,
+    "tfr_fund": {
+      "year": 2025,
+      "amount": "2000.00",
+      "revaluations": "0.00",
+      "advances": "0.00"
+    },
+    "opening": "zero_balances_at_january"
   },
   "outputs": [
     {
@@ -74,7 +87,7 @@
     },
     {
       "output": "net",
-      "value": "988.20",
+      "value": "988.21",
       "perimeter": "Net pay of the run, before advances and deductions unrelated to payroll",
       "tolerance": "0.01",
       "rounding": "half_up_cents",

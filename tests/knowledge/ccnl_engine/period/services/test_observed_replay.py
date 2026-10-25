@@ -38,6 +38,8 @@ from ccnl_engine.event.facade import OvertimeKind, StandbyKind
 from ccnl_engine.inputs import (
     CurrentYearTaxFacts,
     EmploymentPeriod,
+    EmploymentSector,
+    FamilyComposition,
     FixedTerm,
     NoPensionFund,
     PensionFundEnrolment,
@@ -46,6 +48,7 @@ from ccnl_engine.inputs import (
     PublicEndOfService,
     SeniorityFact,
     SenioritySource,
+    TfrFundBalance,
     WeeklyHours,
     WorkerCategory,
 )
@@ -189,6 +192,19 @@ def _pension_fund(
         fund_code=fund["fund_code"],
         employee_rate=Decimal(fund["employee_rate"]),
         tfr_to_fund=bool(fund["tfr_to_fund"]),
+        young_member=fund.get("young_member"),
+    )
+
+
+def _tfr_fund(inputs: dict[str, Any]) -> TfrFundBalance | None:
+    fund = inputs.get("tfr_fund")
+    if fund is None:
+        return None
+    return TfrFundBalance(
+        int(fund["year"]),
+        Decimal(fund["amount"]),
+        Decimal(fund["revaluations"]),
+        Decimal(fund["advances"]),
     )
 
 
@@ -214,7 +230,11 @@ def _employment(inputs: dict[str, Any]) -> Employment:
         if full_time is None
         else WeeklyHours(Decimal(full_time)),
         seniority=_seniority(inputs),
+        sector=None
+        if inputs.get("employment_sector") is None
+        else EmploymentSector(inputs["employment_sector"]),
         pension_fund=_pension_fund(inputs),
+        tfr_fund=_tfr_fund(inputs),
         tfr_treasury_fund=inputs.get("tfr_treasury_fund"),
         public_end_of_service=None if regime is None else PublicEndOfService(regime),
     )
@@ -291,11 +311,18 @@ def _request(inputs: dict[str, Any]) -> PeriodInput:
         employer=EmployerProfile(
             headcount=Headcount(int(inputs["headcount"])),
             public_life_insurance=inputs.get("public_life_insurance"),
+            provincial_pay_element=inputs.get("provincial_pay_element"),
+            contractual_funds=None
+            if inputs.get("contractual_funds") is None
+            else frozenset(inputs["contractual_funds"]),
         ),
         facts=PeriodFacts(
             regione=inputs.get("regione"),
             comune_belfiore=inputs.get("comune_belfiore"),
             events=tuple(_event(e) for e in inputs.get("events", [])),  # type: ignore[misc]
+            family_composition=None
+            if inputs.get("family_composition") is None
+            else FamilyComposition(),
         ),
         prior_year=PriorYearTaxFacts(
             employment_income=None if income is None else Decimal(income)
@@ -337,6 +364,17 @@ _EVERY_INPUT: dict[str, Any] = {
         "tfr_to_fund": False,
     },
     "current_year_employment_only_on": "2026-12-01",
+    "family_composition": "none",
+    "employment_sector": "private",
+    "contractual_funds": ["fon_te"],
+    "provincial_pay_element": True,
+    "tfr_fund": {
+        "year": 2025,
+        "amount": "3000.00",
+        "revaluations": "0.00",
+        "advances": "0.00",
+    },
+    "opening": "zero_balances_at_january",
     "events": [
         {
             "type": "OvertimeEvent",
@@ -483,6 +521,13 @@ def test_every_input_of_the_checker_reaches_the_request() -> None:
     assert employment.public_end_of_service is PublicEndOfService.TFR_EMPLOYER
     assert request.employer.headcount == Headcount(20)
     assert request.employer.public_life_insurance is False
+    assert request.employer.provincial_pay_element is True
+    assert request.employer.contractual_funds == frozenset({"fon_te"})
+    assert request.facts.family_composition == FamilyComposition()
+    assert employment.sector is EmploymentSector.PRIVATE
+    assert employment.tfr_fund == TfrFundBalance(
+        2025, Decimal("3000.00"), Decimal("0.00"), Decimal("0.00")
+    )
     assert (request.facts.regione, request.facts.comune_belfiore) == ("IT-34", "L736")
     assert request.prior_year.employment_income == Decimal("28000.00")
     assert request.current_year == CurrentYearTaxFacts.employment_only(

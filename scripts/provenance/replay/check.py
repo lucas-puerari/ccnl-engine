@@ -83,6 +83,12 @@ INPUT_KEYS: Final = frozenset({
     "pension_fund",
     "current_year_employment_only_on",
     "events",
+    "family_composition",
+    "employment_sector",
+    "contractual_funds",
+    "provincial_pay_element",
+    "tfr_fund",
+    "opening",
 })
 #: Events a record may state, each a line the payslip prints.  A sick pay
 #: override (``SickLeaveEvent``) and a TFR payout (``TerminationTFREvent``)
@@ -154,8 +160,40 @@ def _typed_inputs_errors(inputs: Mapping[str, object]) -> Iterator[str]:
         yield "'current_year_employment_only_on' must be an ISO date"
     yield from _events_errors(inputs.get("events", []))
     fund = inputs.get("pension_fund", "none")
-    if fund != "none" and not (isinstance(fund, dict) and set(fund) == _FUND_FIELDS):
+    if fund != "none" and not (
+        isinstance(fund, dict)
+        and _FUND_FIELDS <= set(fund) <= _FUND_FIELDS | {"young_member"}
+    ):
         yield "'pension_fund' is \"none\" or states " + ", ".join(sorted(_FUND_FIELDS))
+    yield from _payable_facts_errors(inputs)
+
+
+#: Keys of a TFR fund balance at 31 December of the year before.
+_TFR_FUND_FIELDS: Final = frozenset({"year", "amount", "revaluations", "advances"})
+
+
+def _payable_facts_errors(inputs: Mapping[str, object]) -> Iterator[str]:
+    """Check the facts a payable case states beyond the payslip.
+
+    Yields:
+        One reason per fact stated in a form the runner cannot read.
+    """
+    if inputs.get("family_composition", "none") != "none":
+        yield "'family_composition' is \"none\": dependants are not stated yet"
+    if inputs.get("employment_sector", "private") not in {"private", "public"}:
+        yield '\'employment_sector\' must be "private" or "public"'
+    funds = inputs.get("contractual_funds", [])
+    if not (isinstance(funds, list) and all(isinstance(f, str) for f in funds)):
+        yield "'contractual_funds' must be a list of fund codes"
+    if not isinstance(inputs.get("provincial_pay_element", False), bool):
+        yield "'provincial_pay_element' must be true or false"
+    fund = inputs.get("tfr_fund")
+    if fund is not None and not (
+        isinstance(fund, dict) and set(fund) == _TFR_FUND_FIELDS
+    ):
+        yield "'tfr_fund' states " + ", ".join(sorted(_TFR_FUND_FIELDS))
+    if inputs.get("opening", "zero_balances_at_january") != "zero_balances_at_january":
+        yield "'opening' is \"zero_balances_at_january\""
 
 
 def _events_errors(events: object) -> Iterator[str]:
