@@ -98,16 +98,19 @@ def net_irpef(
         fixed_term: Whether an employment of the year is fixed-term, which
             raises the minimum of the art. 13 deduction (c. 1 lett. a) TUIR),
             proportioned to the days in the withholding.
-        other_income: Reddito complessivo beyond this employment, which
-            the ulteriore detrazione reads with it (L. 207/2024 art. 1 c. 6),
-            the exempt share of c. 9 included.
+        other_income: Reddito complessivo beyond this employment, stated
+            by the worker, which the art. 13 TUIR deduction and the
+            ulteriore detrazione (L. 207/2024 art. 1 c. 6, the exempt share
+            of c. 9 included) read with it: the withholding agent measures
+            them on its own pay only without another indication of the
+            worker (AdE circ. 15/E/2007 par. 2.1).
 
     Returns:
         The net IRPEF and its components.
     """
     gross = irpef_gross(taxable, rules)
     work = work_income_deduction(
-        taxable,
+        taxable + other_income,
         eligible_work_days,
         constants=rules.work_deduction,
         fixed_term=fixed_term,

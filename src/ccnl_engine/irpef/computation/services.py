@@ -154,8 +154,10 @@ def compute_tax(
             690 (c. 1 lett. a) TUIR), proportioned to the days on the
             projection and on the conguaglio alike.
         external_income: Reddito complessivo of the tax year beyond this
-            employment, for the somma esente and the ulteriore detrazione
-            (L. 207/2024 art. 1 c. 4, 6 and 9); zero when none is known.
+            employment, stated by the worker: the art. 13 TUIR deduction,
+            the trattamento integrativo (D.L. 3/2020 art. 1 c. 1), the
+            somma esente and the ulteriore detrazione (L. 207/2024 art. 1
+            c. 4, 6 and 9) all read it; zero when none is known.
 
     Returns:
         The IRPEF computation with all components, the updated recovery plan
@@ -188,8 +190,9 @@ def compute_tax(
     if ulteriore is not None:
         decisions.extend(ulteriore.decisions(rules))
 
+    income = taxable + external_income
     period_tratt, next_recovery_plan, tratt_items, tratt_decisions = _trattamento(
-        taxable, annual, rules, opening_tratt_ytd, remaining, recovery_plan, days, run
+        income, annual, rules, opening_tratt_ytd, remaining, recovery_plan, days, run
     )
     components.extend(tratt_items)
     decisions.extend(tratt_decisions)
@@ -250,7 +253,7 @@ def _annual(
 
 
 def _trattamento(
-    taxable: Decimal,
+    income: Decimal,
     annual: NetIrpef,
     rules: YearRules,
     opening_tratt_ytd: Decimal,
@@ -266,13 +269,16 @@ def _trattamento(
 ]:
     """Return the trattamento integrativo of the run with its trace.
 
+    ``income`` is the reddito complessivo of the thresholds (D.L. 3/2020
+    art. 1 c. 1): this employment plus the other income stated.
+
     Returns:
         ``(period_tratt, next_plan, components, decisions)``: the signed
         amount of the run, the recovery plan to carry forward, and the line
         item and decision of the credit, each only when there is one.
     """
     period_tratt, component, next_plan, decisions = resolve_trattamento(
-        taxable,
+        income,
         annual,
         rules,
         opening_tratt_ytd,

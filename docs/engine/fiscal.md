@@ -26,7 +26,9 @@ trattamento integrativo in [Tax credits](tax-credits.md).
    ratios are truncated to four decimals (art. 13 c. 6 TUIR). Up to €15,000
    it is at least €690, or €1,380 for a fixed-term employment (c. 1
    lett. a), proportioned to the days in the withholding; apprenticeship
-   is open-ended (D.Lgs. 81/2015 art. 41 c. 1).
+   is open-ended (D.Lgs. 81/2015 art. 41 c. 1). Its bands read the reddito
+   complessivo: this employment alone, unless `current_year` states the
+   income beyond it (AdE circ. 15/E/2007 par. 2.1).
 4. **Ulteriore detrazione lavoro** (Art. 1 c. 6 L. 207/2024): additional credit
    of up to €1,000/year for taxable income between €20,000 and €40,000.
    Flat €1,000 from €20,001 to €32,000; linear taper to zero from €32,001 to €40,000.
@@ -54,6 +56,9 @@ trattamento integrativo in [Tax credits](tax-credits.md).
      expenses incurred up to that date; payroll does not know them, so the
      credit of the run can only be lower than the one of the tax return.
    - RC > €28,000: zero.
+
+   RC is this employment plus the income `current_year` states beyond it,
+   the same reddito complessivo as the ulteriore detrazione.
 
 For a part-year employment the work deduction, the ulteriore detrazione and
 the trattamento integrativo (with its €75 corrective) are "rapportata al
