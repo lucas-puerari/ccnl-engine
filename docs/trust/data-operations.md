@@ -173,42 +173,29 @@ CCNL with the rules diff of the engine.
 
 ## Reporting errors
 
-To report a data error (wrong salary value, missing allowance, incorrect rate):
-
-1. Open a GitHub issue with the label `data-error`.
-2. Include: the CCNL name, the CNEL code, the incorrect value, the correct
-   value, and a link to the authoritative source (CCNL text, official table,
-   or Gazzetta Ufficiale).
-3. Critical corrections (value wrong by more than 5%) are prioritised over
-   the standard update window.
-
-For errors in statutory rates (IRPEF, INPS) that affect many contracts,
-open an issue with the label `statutory-rate-error`.
+To report a data error (wrong salary value, missing allowance, incorrect
+rate), open a GitHub issue with the CCNL name, the CNEL code, the incorrect
+value, the correct value and a link to the authoritative source (CCNL text,
+official table or Gazzetta Ufficiale). An error in a statutory rate (IRPEF,
+INPS) that affects many contracts says so in the title.
 
 ---
 
-## Deprecation and version compatibility
+## Versioning and support
 
-**Knowledge-base versions** follow `YYYY.N` (e.g. `2026.2`). Every
-`PeriodResult` and `CompetenceYearResult` records the version of the engine's
-repository (`KnowledgeRepository.bundle_version`) in `bundle_version`, and
-each decision names the ruleset it applied (`rule`, `rule_version`), so any
-figure can be reproduced by pinning that version.
+The package is in **alpha**: a minor release (0.6 to 0.7) may break the
+public API, and the [changelog](https://github.com/lucas-puerari/ccnl-engine/blob/main/CHANGELOG.md)
+lists its breaking changes first. A patch release (0.6.0 to 0.6.1) does not
+break it. There is no migration guide and no deprecation period: pin an
+exact version and read the changelog before an upgrade.
 
-**Deprecation policy:**
+**Bundle version.** `ccnl_engine.bundle_version` is the release series
+(`2026.3`) plus a digest of the manifest. Every `PeriodResult` and
+`CompetenceYearResult` records it in `bundle_version`, and each decision
+names the ruleset it applied (`rule`, `rule_version`), so a figure is
+reproduced by installing the same package version.
 
-- A knowledge-base version is supported for as long as the matching
-  `ccnl-engine` package release is on PyPI.
-- When a CCNL is removed (contract terminated or superseded), it is marked
-  `effective_until` in its last dataset version and absent from the next.
-- No breaking changes to the JSON schema are introduced within a minor
-  knowledge-base release. Schema changes are announced in the release notes
-  and in a GitHub discussion at least 30 days before they take effect.
-
-**Engine API compatibility:**
-
-The Python API follows semantic versioning. Patch releases are backwards
-compatible. Minor releases may add fields to `PeriodResult` or new values
-to existing enums (callers must handle unknown values defensively). Major
-releases may break the public API and will be announced with a migration
-guide.
+**Support.** ccnl-engine is an open project with one maintainer. It comes
+with no support, no service level and no warranty (see the MIT licence):
+issues are read and fixed on a best-effort basis. An adopter pins a
+version, owns its upgrades and verifies the amounts before paying them.
