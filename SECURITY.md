@@ -18,7 +18,7 @@ it and what you observed.
 The project has one maintainer and offers no service level (see the
 [versioning and support policy](https://lucas-puerari.github.io/ccnl-engine/docs/trust/data-operations/#versioning-and-support)).
 Reports are read and fixed on a best-effort basis; a fix ships as a patch
-release with a changelog entry, and the report is credited unless you ask
+release, and the report is credited unless you ask
 otherwise.
 
 ## Releases

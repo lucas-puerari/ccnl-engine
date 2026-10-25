@@ -13,7 +13,7 @@ verify and explain a payslip. Every result says whether its amounts can be
 paid as they are.
 
 > **Alpha.** The API can change between minor versions: pin a version and
-> read the [changelog](CHANGELOG.md). No support, service level or warranty
+> read the [release notes](https://github.com/lucas-puerari/ccnl-engine/releases). No support, service level or warranty
 > ([policy](https://lucas-puerari.github.io/ccnl-engine/docs/trust/data-operations/#versioning-and-support)).
 > Most bundled CCNLs are extracted and not yet reviewed: use the amounts for
 > simulation unless a result says `is_payable`.
