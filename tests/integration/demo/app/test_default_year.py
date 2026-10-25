@@ -55,15 +55,12 @@ class TestDemoDefaultYear:
     def test_latest_bundled_year_raises_when_no_data_found(
         self, demo_app: types.ModuleType
     ) -> None:
-        """RuntimeError is raised when no bundled year exists before the 2020 floor."""
+        """RuntimeError is raised when no bundled year is up to the current one."""
         old_now = MagicMock()
         old_now.year = 2020
-        with (
-            patch.object(demo_app, "datetime") as mock_dt,
-            patch.object(demo_app, "read_resource", side_effect=FileNotFoundError),
-        ):
+        with patch.object(demo_app, "datetime") as mock_dt:
             mock_dt.now.return_value = old_now
-            with pytest.raises(RuntimeError, match="No complete bundled data"):
+            with pytest.raises(RuntimeError, match="No bundled tax year"):
                 demo_app._latest_bundled_year()
 
     def test_list_regioni_returns_all_regions(self, demo_app: types.ModuleType) -> None:

@@ -1,8 +1,8 @@
 # Errors
 
 Every error the engine raises for an input, a data gap or a bundle defect
-is a `CcnlEngineError` exported at the root, with a stable `code` (one of
-`ccnl_engine.errors.PUBLIC_ERROR_CODES`), the `feature` and the `ruleset` it concerns and a
+is a `CcnlEngineError` exported at the root, with a stable `code` (listed
+in the table below), the `feature` and the `ruleset` it concerns and a
 `remediation`. None of them is a `ValueError`: catch `CcnlEngineError`, or
 one of its subclasses.
 

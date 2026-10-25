@@ -26,9 +26,13 @@ from ccnl_engine import (
     PeriodFacts,
     engine_version,
 )
-from ccnl_engine.bundle.loaders import read_resource
-from ccnl_engine.catalog import RulesetKind
-from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.catalog import (
+    RulesetKind,
+    get_ccnl,
+    municipalities,
+    regions,
+    supported_tax_years,
+)
 from ccnl_engine.inputs import (
     Apprentice,
     ContributableHours,
@@ -39,8 +43,6 @@ from ccnl_engine.inputs import (
     SenioritySource,
     WeeklyHours,
 )
-from ccnl_engine.surtax.jurisdiction.types import REGION_CODES
-from ccnl_engine.surtax.loaders import load_surtax_rules
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult
@@ -73,32 +75,23 @@ _EARNINGS = {
 
 
 def _latest_bundled_year() -> int:
-    """Return the most recent year fully covered by all knowledge families.
+    """Return the most recent bundled tax year up to the current one.
 
-    Walks back from the current calendar year until it finds a year for which
-    tax, INPS, and surtax data all exist in the bundle.  This prevents the
-    demo from attempting a calculation with, e.g., surtax data for year N+1
-    while tax and INPS data only go up to N.
+    The catalogue lists the tax years the bundle holds; a year after the
+    current one is not offered, so the demo never computes on data of a
+    year still to come.
 
     Returns:
-        The latest year covered by all three rule families.
+        The latest bundled tax year that is not in the future.
 
     Raises:
-        RuntimeError: If no complete year is found >= 2020.
+        RuntimeError: If no bundled tax year is up to the current one.
     """
-    year = datetime.now(UTC).year
-    while True:
-        try:
-            read_resource(f"sector/{year}/industria.json")
-            read_resource(f"contribution/{year}/industria.json")
-            read_resource(f"surtax/regional/{year}.json")
-        except FileNotFoundError:
-            year -= 1
-            if year < 2020:
-                msg = "No complete bundled data found for any year >= 2020"
-                raise RuntimeError(msg) from None
-        else:
-            return year
+    years = [y for y in supported_tax_years() if y <= datetime.now(UTC).year]
+    if not years:
+        msg = "No bundled tax year up to the current one"
+        raise RuntimeError(msg)
+    return max(years)
 
 
 _DEFAULT_YEAR = _latest_bundled_year()
@@ -112,16 +105,9 @@ def list_regioni() -> str:
         JSON-encoded list of ``{code, name}`` dicts ordered by name, where
         ``code`` is the region code the engine expects.
     """
-    surtax = load_surtax_rules(_DEFAULT_YEAR)
-    result = sorted(
-        [
-            {"code": code, "name": name}
-            for code, name in REGION_CODES.items()
-            if name in surtax.regionale
-        ],
-        key=operator.itemgetter("name"),
-    )
-    return json.dumps(result)
+    return json.dumps([
+        {"code": r.code, "name": r.name} for r in regions(_DEFAULT_YEAR)
+    ])
 
 
 def list_comuni() -> str:
@@ -131,12 +117,9 @@ def list_comuni() -> str:
         JSON-encoded sorted list of ``{code, name}`` dicts, one per comune
         that has a rate in the current year's data, ordered by name.
     """
-    surtax = load_surtax_rules(_DEFAULT_YEAR)
-    result = sorted(
-        [{"code": code, "name": info.nome} for code, info in surtax.comunale.items()],
-        key=operator.itemgetter("name"),
-    )
-    return json.dumps(result)
+    return json.dumps([
+        {"code": c.code, "name": c.name} for c in municipalities(_DEFAULT_YEAR)
+    ])
 
 
 def list_ccnls() -> str:
@@ -180,12 +163,13 @@ def load_level_tracks(ccnl_id: str, level_code: str) -> str:
     Returns:
         JSON-encoded list of track names, ``[]`` when none exist.
     """
-    ccnl = load_ccnl(ccnl_id)
-    return json.dumps([
-        track.name
-        for track in ccnl.apprenticeship or []
-        if level_code in track.destination_levels
-    ])
+    levels = _ENGINE.list_levels(ccnl_id)
+    return json.dumps(
+        next(
+            (list(lv.apprenticeship_tracks) for lv in levels if lv.code == level_code),
+            [],
+        )
+    )
 
 
 def _contract(params: dict[str, Any]) -> Permanent | FixedTerm | Apprentice:
@@ -354,7 +338,7 @@ def _sources(ccnl_id: str) -> list[dict[str, Any]]:
         One ``{title, url, kind, date}`` per source; ``url`` is ``None``
         unless it is a public HTTP address.
     """
-    meta = load_ccnl(ccnl_id).meta
+    summary = get_ccnl(ccnl_id)
     return [
         {
             "title": source.title,
@@ -364,7 +348,7 @@ def _sources(ccnl_id: str) -> list[dict[str, Any]]:
             "kind": str(source.kind),
             "date": source.published_on.isoformat() if source.published_on else None,
         }
-        for source in meta.sources
+        for source in summary.sources
     ]
 
 
@@ -409,8 +393,7 @@ def compute_salary(params_json: str) -> str:
     try:
         params: dict[str, Any] = json.loads(params_json)
         ccnl_id = str(params["ccnl"])
-        ccnl = load_ccnl(ccnl_id)
-        params["domestic"] = not ccnl.meta.withholding_agent
+        params["domestic"] = not get_ccnl(ccnl_id).withholding_agent
         employment = _employment(params, ccnl_id)
         year = _ENGINE.calculate_competence_year(
             CompetenceYearPlan(
@@ -424,7 +407,7 @@ def compute_salary(params_json: str) -> str:
         )
     except Exception as exc:  # noqa: BLE001
         return json.dumps({"error": str(exc)})
-    return json.dumps(_payload(params, ccnl_id, ccnl.meta.name, year))
+    return json.dumps(_payload(params, ccnl_id, get_ccnl(ccnl_id).name, year))
 
 
 def _payload(
@@ -493,7 +476,7 @@ def scenario_snippet(params_json: str) -> str:
     """
     params: dict[str, Any] = json.loads(params_json)
     ccnl_id = str(params["ccnl"])
-    params["domestic"] = not load_ccnl(ccnl_id).meta.withholding_agent
+    params["domestic"] = not get_ccnl(ccnl_id).withholding_agent
     employment = _employment(params, ccnl_id)
     facts = _facts(params, employment)
     inputs = {"Permanent", "FixedTerm", "Apprentice"} & {

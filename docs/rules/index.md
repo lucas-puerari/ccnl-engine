@@ -37,16 +37,15 @@ e.g. `"2026.2"`). It is bumped whenever any data file changes.
 
 Every CCNL JSON additionally carries a per-contract `ruleset.version` and a
 `ruleset.source_hash` (SHA-256 of the file content). The loaders verify the
-hash at load time and raise `ValueError` on mismatch — tampered or
-accidentally edited files are caught before any computation.
+hash at load time and raise `DataIntegrityError` on mismatch: tampered or
+accidentally edited files are caught before any computation. The identity
+of each ruleset is public through the engine:
 
 ```python
-from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine import PayrollEngine
 
-ccnl = load_ccnl("metalmeccanico-federmeccanica")
-print(ccnl.ruleset.id)  # "ccnl/metalmeccanico-federmeccanica"
-print(ccnl.ruleset.version)  # "2026.2"
-print(ccnl.ruleset.source_hash)  # "4a7b..."
+ruleset = PayrollEngine.bundled().inspect_ruleset("metalmeccanico-federmeccanica")
+print(ruleset.id, ruleset.version, ruleset.readiness)
 ```
 
 The ruleset identity is propagated into every `Calculation` so a payroll
@@ -137,10 +136,10 @@ appropriate INPS rate tier (based on `num_employees`) and applies the
 correct IRPEF bracket schedule:
 
 ```python
-from ccnl_engine.agreement.facade import TaxSector
-from ccnl_engine.sector.loaders import load_year_rules
+from ccnl_engine.inputs import TaxSector
+from ccnl_engine.repository import BundledKnowledgeRepository
 
-rules = load_year_rules(2026, TaxSector.INDUSTRIA, num_employees=50)
+rules = BundledKnowledgeRepository().load_year_rules(2026, TaxSector.INDUSTRIA, 50)
 ```
 
 The sector must match the CCNL's `meta.tax_sector`. Valid values:
@@ -155,9 +154,9 @@ year. The caller selects them with `regione` and `comune_belfiore` on the
 skipped. See [Fiscal computation](../engine/surtax.md#surtax-decisions).
 
 ```python
-from ccnl_engine.surtax.loaders import load_surtax_rules
+from ccnl_engine.catalog import municipalities, regions
 
-surtax = load_surtax_rules(2026)
+print(len(regions(2026)), len(municipalities(2026)))
 ```
 
 The `SurtaxRules` object covers all Italian regions and ~7 000 comuni

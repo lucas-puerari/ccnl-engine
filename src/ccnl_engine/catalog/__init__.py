@@ -14,8 +14,11 @@ from ccnl_engine.capability.registry.models import (
 from ccnl_engine.catalog.loaders import (
     CcnlId,
     ContractSummary,
+    Jurisdiction,
     LevelSummary,
     get_ccnl,
+    municipalities,
+    regions,
     search_ccnls,
 )
 from ccnl_engine.provenance.ruleset.assurance.models import (
@@ -28,6 +31,7 @@ from ccnl_engine.provenance.ruleset.models import (
     RulesetReadiness,
     VerificationStatus,
 )
+from ccnl_engine.provenance.source.models import SourceDocument
 from ccnl_engine.sector.raw.loaders import supported_tax_years
 
 __all__ = [
@@ -37,14 +41,18 @@ __all__ = [
     "CapabilityImplementation",
     "CcnlId",
     "ContractSummary",
+    "Jurisdiction",
     "LevelSummary",
     "RulesetAssurance",
     "RulesetIdentity",
     "RulesetKind",
     "RulesetReadiness",
+    "SourceDocument",
     "ValidityWindow",
     "VerificationStatus",
     "get_ccnl",
+    "municipalities",
+    "regions",
     "search_ccnls",
     "supported_tax_years",
 ]
