@@ -72,7 +72,7 @@
   "results.error": "The calculation failed: {msg}",
   "results.part_time": " · part time {pct}%",
   "results.year": "Year {year}",
-  "results.engine": "Data {version}",
+  "results.engine": "Engine {engine} · data {bundle}",
   "kpi.gross": "Monthly gross",
   "kpi.gross_sub": "{annual} in the year, {runs} monthly payments",
   "kpi.net": "Estimated average net",

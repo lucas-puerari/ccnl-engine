@@ -35,12 +35,13 @@ jobs:
       - name: "Demo: assemble"
         run: |
           WHEEL_VERSION=$(uv version --short)
-          mkdir -p docs/_build/demo/wheels docs/_build/demo/i18n
+          WHEEL_BUILD=${GITHUB_SHA::12}
+          mkdir -p "docs/_build/demo/wheels/${WHEEL_BUILD}" docs/_build/demo/i18n
           sed "s/WHEEL_VERSION/${WHEEL_VERSION}/g" demo/index.html > docs/_build/demo/index.html
           cp demo/app.py       docs/_build/demo/app.py
           cp demo/style.css    docs/_build/demo/style.css
-          sed "s/WHEEL_VERSION/${WHEEL_VERSION}/g" demo/ui.js > docs/_build/demo/ui.js
-          cp demo/release/packages/*.whl docs/_build/demo/wheels/
+          sed -e "s/WHEEL_VERSION/${WHEEL_VERSION}/g" -e "s/WHEEL_BUILD/${WHEEL_BUILD}/g" demo/ui.js > docs/_build/demo/ui.js
+          cp demo/release/packages/*.whl "docs/_build/demo/wheels/${WHEEL_BUILD}/"
           cp demo/localization/*.json  docs/_build/demo/i18n/
           cp docs/_build/demo/index.html docs/_build/index.html  # root redirect placeholder replaced below
           touch docs/_build/.nojekyll

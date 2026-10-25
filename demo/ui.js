@@ -443,7 +443,7 @@ function renderScenario(r) {
     t("form.level.option", { code: r.level_code }),
     t(`contract.${r.contract}`) + pt,
     t("results.year", { year: r.year }),
-    t("results.engine", { version: r.engine_version }),
+    t("results.engine", { engine: r.engine_version, bundle: r.bundle_version }),
   ];
   document.getElementById("scenario-strip").innerHTML =
     items.map(v => `<span class="s-chip"><span class="val">${esc(v)}</span></span>`).join("");
@@ -750,10 +750,11 @@ async function main() {
     setProgress(60, "loading.engine");
     const micropip = pyodide.pyimport("micropip");
     // WHEEL_VERSION is replaced at build time (Makefile and pages.yml).
-    const wheelUrl = new URL("./wheels/ccnl_engine-WHEEL_VERSION-py3-none-any.whl", window.location.href).href;
+    // WHEEL_BUILD names the deploy, so a cached wheel is never reused.
+    const wheelUrl = new URL("./wheels/WHEEL_BUILD/ccnl_engine-WHEEL_VERSION-py3-none-any.whl", window.location.href).href;
     await micropip.install(wheelUrl);
     setProgress(80, "loading.app");
-    const resp = await fetch("./app.py");
+    const resp = await fetch("./app.py?build=WHEEL_BUILD");
     if (!resp.ok) throw new Error(`app.py: ${resp.status}`);
     pyodide.runPython(await resp.text());
     _pyodide = pyodide;
