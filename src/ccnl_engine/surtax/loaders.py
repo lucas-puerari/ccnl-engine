@@ -18,6 +18,7 @@ from ccnl_engine.surtax.models import (
     RegionaleRaw,
     SurtaxRules,
 )
+from ccnl_engine.surtax.table.models import ComunaleEntry
 
 
 def load_surtax_rules(year: int) -> SurtaxRules:
@@ -50,6 +51,7 @@ def load_surtax_rules(year: int) -> SurtaxRules:
         update={
             "regionale": dict(cached.regionale),
             "comunale": dict(cached.comunale),
+            "comunale_next": dict(cached.comunale_next),
         }
     )
 
@@ -94,6 +96,7 @@ def _load_surtax_rules_cached(year: int) -> SurtaxRules:
     reg = RegionaleRaw.model_validate(reg_payload)
     com = ComunaleRaw.model_validate(com_payload)
     return SurtaxRules(
+        comunale_next=_resolved_next_year(year),
         year=year,
         regional_ruleset=reg.ruleset,
         municipal_ruleset=com.ruleset,
@@ -104,6 +107,25 @@ def _load_surtax_rules_cached(year: int) -> SurtaxRules:
         comunale_rates_are_advance=com.rates_are_advance,
         comunale_advance_fraction=com.advance_fraction,
     )
+
+
+def _resolved_next_year(year: int) -> dict[str, ComunaleEntry]:
+    """Return the rows of the municipal table of ``year + 1`` resolved for it.
+
+    A row carried over from an earlier year leaves the acconto at the rate
+    of ``year``; without a table of the next year nothing is resolved.
+
+    Returns:
+        The rows whose rates are of ``year + 1``, keyed by codice catastale.
+    """
+    name = f"surtax/municipal/{year + 1}.json"
+    try:
+        payload = json.loads(read_resource(name))
+    except FileNotFoundError:
+        return {}
+    _verify_payload(payload, name)
+    rates = ComunaleRaw.model_validate(payload).rates
+    return {code: e for code, e in rates.items() if e.rates_year == year + 1}
 
 
 def _verify_payload(payload: dict[str, Any], filename: str) -> None:

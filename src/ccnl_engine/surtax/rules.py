@@ -23,6 +23,7 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.irpef.rules import surtax_from_brackets
 from ccnl_engine.surtax.conguaglio.rules import (
     ConguaglioSurtax,
     conguaglio_surtax,
@@ -47,6 +48,7 @@ if TYPE_CHECKING:
         CalculationIssue,
     )
     from ccnl_engine.surtax.obligation.models import SurtaxObligation
+    from ccnl_engine.surtax.table.models import ComunaleEntry
 
 __all__ = ["RunSurtax", "run_surtax"]
 
@@ -178,6 +180,22 @@ def _installments(
     return parts, remaining, decisions
 
 
+def next_year_municipal(
+    taxable: Decimal, entry: ComunaleEntry | None, irpef_due: Decimal
+) -> Decimal | None:
+    """Return the municipal surtax of ``taxable`` at a delibera of the next year.
+
+    Returns:
+        ``None`` without a delibera of the next year; zero when no IRPEF is
+        due or the income is within its exemption threshold.
+    """
+    if entry is None:
+        return None
+    if irpef_due == _ZERO or taxable <= entry.exemption_threshold:
+        return _ZERO
+    return surtax_from_brackets(taxable, entry.brackets, entry.exemption_threshold)
+
+
 def run_surtax(inp: _AmountsInput, taxable: Decimal, irpef_due: Decimal) -> RunSurtax:
     """Return the surtax the run withholds and determines.
 
@@ -226,6 +244,11 @@ def run_surtax(inp: _AmountsInput, taxable: Decimal, irpef_due: Decimal) -> RunS
         inp.opening.tax,
         final=inp.installment_run.final,
         fraction=inp.surtax_rules.comunale_advance_fraction,
+        advance_base=next_year_municipal(
+            taxable,
+            inp.surtax_rules.comunale_next.get(inp.comune_belfiore or ""),
+            irpef_due,
+        ),
     )
     return RunSurtax(
         annual,

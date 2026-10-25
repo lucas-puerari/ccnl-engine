@@ -111,3 +111,25 @@ def test_refund_above_the_saldo_comes_from_the_acconto() -> None:
         Decimal(-10),
         Decimal(40),
     )
+
+
+def test_a_next_year_delibera_sets_the_acconto() -> None:
+    """D.Lgs. 360/1998 art. 1 c. 4: the acconto of N+1 takes the N+1 rate.
+
+    The rate of the year of the acconto applies when its delibera is
+    published by 20 December of N; the municipal surtax of N at the N+1
+    rate is 250.00, so the acconto is 30% of it, 75.00, not 30% of 200.00.
+    """
+    out = conguaglio_surtax(
+        _annual("300", "200"),
+        2026,
+        TaxYtd(),
+        final=False,
+        fraction=_FRACTION,
+        advance_base=Decimal(250),
+    )
+
+    advance = [
+        o for o in out.obligations if o.component is SurtaxComponent.MUNICIPAL_ADVANCE
+    ]
+    assert [o.plan.original_amount for o in advance] == [Decimal("75.00")]

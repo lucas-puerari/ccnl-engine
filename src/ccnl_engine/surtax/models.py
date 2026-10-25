@@ -80,3 +80,7 @@ class SurtaxRules(BaseModel):
     """True when comunale rates are from a prior year (advance only)."""
     comunale_advance_fraction: Decimal = Decimal("0.30")
     """Fraction of the bracket sum used as the current-year advance."""
+    comunale_next: dict[str, ComunaleEntry] = Field(default_factory=dict)
+    """Rows of the next year's municipal table resolved for that year: their
+    rate and threshold set the acconto of the next year (D.Lgs. 360/1998
+    art. 1 c. 4, delibera published by 20 December)."""

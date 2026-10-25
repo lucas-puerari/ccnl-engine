@@ -10,8 +10,10 @@ The conguaglio of tax year N takes the annual surtax of N
   withheld above the surtax due is given back now;
 - municipal acconto of N+1: 30% (``SurtaxRules.comunale_advance_fraction``)
   of the municipal surtax computed on the taxable income of N with the
-  rate and threshold in force in N (art. 1 c. 4), deferred to nine
-  installments from March of N+1 (art. 1 c. 5).
+  rate and threshold in force in N, or with those of N+1 when the bundle
+  holds a delibera of N+1, which the MEF list carries once published by
+  20 December of N (art. 1 c. 4), deferred to nine installments from
+  March of N+1 (art. 1 c. 5).
 
 On the last run of the employment nothing is deferred: the regional
 surtax and the municipal saldo are withheld on the run and no acconto of
@@ -143,7 +145,13 @@ class _Component:
 
 
 def _components(
-    annual: SurtaxOutcome, year: int, tax: TaxYtd, *, final: bool, fraction: Decimal
+    annual: SurtaxOutcome,
+    year: int,
+    tax: TaxYtd,
+    *,
+    final: bool,
+    fraction: Decimal,
+    advance_base: Decimal | None,
 ) -> list[_Component]:
     """Return the components the conguaglio still has to settle.
 
@@ -180,7 +188,8 @@ def _components(
         _Component(SurtaxComponent.MUNICIPAL_BALANCE, status, year, comune, balance)
     )
     if not final:
-        advance = money(annual.municipal * fraction)
+        base = annual.municipal if advance_base is None else advance_base
+        advance = money(base * fraction)
         components.append(
             _Component(SurtaxComponent.MUNICIPAL_ADVANCE, status, year, comune, advance)
         )
@@ -228,6 +237,7 @@ def conguaglio_surtax(
     *,
     final: bool,
     fraction: Decimal,
+    advance_base: Decimal | None = None,
 ) -> ConguaglioSurtax:
     """Withhold, defer or refund the annual surtax determined by the run.
 
@@ -238,6 +248,8 @@ def conguaglio_surtax(
         final: Whether the run is the last one of the employment.
         fraction: Share of the municipal surtax due as the acconto of the
             next tax year.
+        advance_base: Municipal surtax of the year at the rate and
+            threshold of a delibera of the next year, ``None`` without one.
 
     Returns:
         On the last run of the employment the regional surtax and the
@@ -246,7 +258,10 @@ def conguaglio_surtax(
         in both cases, the municipal one from the saldo withheld first.
     """
     out = _Settlement(tax)
-    for c in _components(annual, year, tax, final=final, fraction=fraction):
+    components = _components(
+        annual, year, tax, final=final, fraction=fraction, advance_base=advance_base
+    )
+    for c in components:
         extra = (
             {"advance_withheld": tax.municipal_advance}
             if c.component is SurtaxComponent.MUNICIPAL_BALANCE
