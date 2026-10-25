@@ -6,9 +6,11 @@
 [![Coverage](https://lucas-puerari.github.io/ccnl-engine/coverage-badge.svg)](https://github.com/lucas-puerari/ccnl-engine/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/lucas-puerari/ccnl-engine/blob/main/LICENSE)
 
-A Python engine for auditable Italian payroll. It computes gross, net and
-employer cost according to the CCNL from versioned rules with cited sources,
-and every result says whether its amounts can be paid as they are.
+The open, auditable second opinion for Italian payroll. A Python engine
+that computes gross, net and employer cost according to the CCNL from
+versioned rules with cited sources, for payroll and HR teams that want to
+verify and explain a payslip. Every result says whether its amounts can be
+paid as they are.
 
 > **Alpha.** The API can change between minor versions. Most bundled CCNLs
 > are extracted and not yet reviewed: use the amounts for simulation unless a
@@ -72,7 +74,14 @@ and the [examples](https://lucas-puerari.github.io/ccnl-engine/docs/examples/).
 
 - It is not legal or tax advice, and it does not replace a payroll provider.
 - It files nothing: no F24, UniEmens or Certificazione Unica.
-- Second-level (company or territorial) agreements are not bundled.
+- Second-level (company or territorial) agreements are not bundled, and
+  their supplements are not an input yet.
+- Not computed: the INAIL premium, contribution exemptions and hiring
+  incentives, supplementary health funds, contractual una tantum, personal
+  withholdings (garnishments, salary-backed loans), the conguaglio of a
+  730 or of other withholding agents, and Art. 15 TUIR deductions. The
+  [capability matrix](https://lucas-puerari.github.io/ccnl-engine/docs/contracts/capability-matrix/)
+  lists every gap.
 - It does not guess facts: an unstated fact that changes an amount blocks
   payment instead of taking a default.
 
