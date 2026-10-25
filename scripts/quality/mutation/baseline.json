@@ -1,3 +1,7 @@
 {
-  "floors": {}
+  "floors": {
+    "src/ccnl_engine/surtax/conguaglio/rules.py": 74.6,
+    "src/ccnl_engine/tax_credit/recovery/models.py": 85.5,
+    "src/ccnl_engine/withholding/deferral/inputs.py": 87.4
+  }
 }
