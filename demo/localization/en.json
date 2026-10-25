@@ -193,5 +193,16 @@
   "compare.readiness": "Compared agreement: {tier}, {payable}.",
   "compare.payable": "payable",
   "compare.not_payable": "not payable",
-  "readiness.untracked": "tier not recorded"
+  "readiness.untracked": "tier not recorded",
+  "months.title": "Month by month",
+  "months.note": "Every payslip of the year, in the order it is paid.",
+  "months.run": "Payslip",
+  "months.gross": "Gross",
+  "months.net": "Net",
+  "months.cost": "Employer cost",
+  "months.kind.regular": "Month {month}",
+  "months.kind.thirteenth": "Thirteenth month",
+  "months.kind.fourteenth": "Fourteenth month",
+  "months.kind.adjustment": "Adjustment {month}",
+  "months.kind.termination": "Termination"
 }

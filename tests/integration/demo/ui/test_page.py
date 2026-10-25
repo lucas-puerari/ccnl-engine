@@ -230,3 +230,13 @@ def test_every_cdn_asset_is_pinned_with_integrity() -> None:
     for tag in tags:
         assert 'integrity="sha384-' in tag, tag
         assert "@5/" not in tag, tag
+
+
+def test_the_year_is_shown_month_by_month() -> None:
+    """Every run of the year has a row, with a label in each language."""
+    assert "renderMonths(r)" in _JS
+    assert 'id="months-body"' in _HTML
+    for strings in _LANGS.values():
+        assert {
+            f"months.kind.{k}" for k in ("regular", "thirteenth", "fourteenth")
+        } <= (strings.keys())

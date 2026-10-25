@@ -437,6 +437,18 @@ def _payload(
         "bundle_version": year.bundle_version or "",
         "runs": runs,
         "monthly_gross": float(month.period_gross),
+        "months": [
+            {
+                "month": result.run.month if result.run is not None else 0,
+                "kind": str(result.run.run_kind)
+                if result.run is not None
+                else "regular",
+                "gross": float(result.period_gross),
+                "net": float(result.period_net),
+                "employer_cost": float(result.period_employer_cost),
+            }
+            for result in year.period_results
+        ],
         "trace": _trace(month),
         "annual_gross": float(year.annual_gross),
         "annual_net": annual_net,

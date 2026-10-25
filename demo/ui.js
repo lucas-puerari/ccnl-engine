@@ -429,6 +429,7 @@ function renderResult(r, example) {
   );
 
   renderReliability(r);
+  renderMonths(r);
   renderTrace(r);
   renderSources(r);
   renderBlockers(r);
@@ -500,6 +501,13 @@ function renderReliability(r) {
     ? `<li class="omissions-title">${esc(t("reliability.omissions"))}</li>` +
       [...topics].map(k => `<li>${esc(t(`reliability.omission.${k}`))}</li>`).join("")
     : "";
+}
+
+function renderMonths(r) {
+  document.getElementById("months-body").innerHTML = r.months.map(m =>
+    `<tr><td>${esc(t(`months.kind.${m.kind}`, { month: m.month }))}</td>` +
+    `<td>${fmt(m.gross)}</td><td>${fmt(m.net)}</td><td>${fmt(m.employer_cost)}</td></tr>`,
+  ).join("");
 }
 
 function renderTrace(r) {
