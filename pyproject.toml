@@ -216,7 +216,8 @@ warn_required_dynamic_aliases = true
 # ---------------------------------------------------------------------------
 [tool.hatch.build.targets.wheel]
 packages = ["src/ccnl_engine"]
-# Plain .json files are excluded from the wheel; the build hook (hatch_build.py)
+# Plain .json files are excluded from the wheel; the build hook of
+# [tool.hatch.build.hooks.custom] (scripts/distribution/build.py)
 # injects compressed .json.gz variants instead. Editable installs read .json
 # directly via the fallback path in read_bundled().
 exclude = [
