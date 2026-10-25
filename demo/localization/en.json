@@ -179,5 +179,10 @@
   "compare.delta": "against the scenario",
   "footer.docs": "Documentation",
   "footer.contracts": "Covered agreements",
-  "footer.disclaimer": "Estimates computed in the browser · Not tax or employment advice"
+  "footer.disclaimer": "Estimates computed in the browser · Not tax or employment advice",
+  "form.ccnl.tiers": "🏭 production · 👁 reviewed · 🧪 exploratory",
+  "compare.readiness": "Compared agreement: {tier}, {payable}.",
+  "compare.payable": "payable",
+  "compare.not_payable": "not payable",
+  "readiness.untracked": "tier not recorded"
 }

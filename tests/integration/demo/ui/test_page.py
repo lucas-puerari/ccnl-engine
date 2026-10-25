@@ -187,3 +187,14 @@ def test_compare_errors_stay_in_the_compare_panel() -> None:
     assert "clearCompareError(" in _function("clearCompare")
     compare = _HTML.index('id="compare"')
     assert compare < _HTML.index('id="compare-error"')
+
+
+def test_readiness_shows_in_the_picker_and_the_compare_panel() -> None:
+    """A tier is visible before calculating and for the compared contract."""
+    assert "TIER_SYMBOL[c.readiness]" in _JS
+    compare = _function("initCompare")
+    assert 'getElementById("cmp-readiness")' in compare
+    assert "r.ruleset.readiness" in compare
+    assert 'id="cmp-readiness"' in _HTML
+    for strings in _LANGS.values():
+        assert {"form.ccnl.tiers", "compare.readiness"} <= strings.keys()

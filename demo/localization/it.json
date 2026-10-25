@@ -179,5 +179,10 @@
   "compare.delta": "rispetto allo scenario",
   "footer.docs": "Documentazione",
   "footer.contracts": "Contratti coperti",
-  "footer.disclaimer": "Stime calcolate nel browser · Non è consulenza fiscale o del lavoro"
+  "footer.disclaimer": "Stime calcolate nel browser · Non è consulenza fiscale o del lavoro",
+  "form.ccnl.tiers": "🏭 in produzione · 👁 revisionato · 🧪 esplorativo",
+  "compare.readiness": "Contratto confrontato: {tier}, {payable}.",
+  "compare.payable": "pagabile",
+  "compare.not_payable": "non pagabile",
+  "readiness.untracked": "livello non registrato"
 }

@@ -663,11 +663,19 @@ function initCompare() {
     setDelta("cmp-gross-delta", r.monthly_gross, base.monthly_gross, 2);
     setDelta("cmp-net-delta", r.net_average, base.net_average, 2);
     setDelta("cmp-cost-delta", r.annual_employer_cost, base.annual_employer_cost, 0);
+    const tier = r.ruleset.readiness;
+    document.getElementById("cmp-readiness").textContent = t("compare.readiness", {
+      tier: tier ? t(`readiness.${tier}`) : t("readiness.untracked"),
+      payable: t(r.payability === "payable" ? "compare.payable" : "compare.not_payable"),
+    });
     show("compare-kpis", true);
   });
 }
 
 // ── Boot ────────────────────────────────────────────────────────────────────
+
+// Same symbols as the documentation catalogue.
+const TIER_SYMBOL = { production: "🏭", reviewed: "👁", exploratory: "🧪" };
 
 function populate(selectId, items, label) {
   const sel = document.getElementById(selectId);
@@ -737,7 +745,7 @@ async function main() {
     if (!resp.ok) throw new Error(`app.py: ${resp.status}`);
     pyodide.runPython(await resp.text());
     _pyodide = pyodide;
-    populate("sel-ccnl", py("list_ccnls"), c => c.name);
+    populate("sel-ccnl", py("list_ccnls"), c => `${c.name} ${TIER_SYMBOL[c.readiness] ?? ""}`.trim());
     populate("sel-regione", py("list_regioni"), r => r.name);
     populate("sel-comune", py("list_comuni"), c => `${c.name} (${c.code})`);
     wireForm();
