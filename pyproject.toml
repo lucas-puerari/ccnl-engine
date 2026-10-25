@@ -30,6 +30,8 @@ dependencies = [
 Homepage = "https://github.com/lucas-puerari/ccnl-engine"
 Repository = "https://github.com/lucas-puerari/ccnl-engine"
 "Bug Tracker" = "https://github.com/lucas-puerari/ccnl-engine/issues"
+Documentation = "https://lucas-puerari.github.io/ccnl-engine/docs/"
+Changelog = "https://github.com/lucas-puerari/ccnl-engine/blob/main/CHANGELOG.md"
 
 [dependency-groups]
 docs = [
