@@ -65,3 +65,23 @@ def test_every_capability_has_one_scope_listed_once() -> None:
         assert capability_scope(entry) in SCOPES
         assert page.count(f"`{entry.feature}` ({entry.implementation.value})") == 1
     assert {capability_scope(e) for e in catalog.capabilities} == set(SCOPES)
+
+
+def test_human_verified_needs_a_human_review_that_records_its_values() -> None:
+    """A verified file without such a review is AI verified, never human."""
+    year = latest_catalog_year()
+    labels = {
+        row.ccnl_id: row.verification_label
+        for row in build_coverage_report(year).ccnl_rows
+    }
+    human = {
+        ccnl.meta.ccnl_id
+        for ccnl in bundled_ccnls()
+        if any(
+            review.reviewer_kind == "human" and review.checked
+            for review in ccnl.verification.reviews
+        )
+    }
+    assert {i for i, label in labels.items() if label == "Human verified"} <= human
+    assert labels["commercio-confcommercio"] == "AI verified"
+    assert labels["cooperative-sociali"] != "Human verified"

@@ -21,6 +21,7 @@ from dataclasses import dataclass
 from datetime import UTC, date, datetime
 from typing import TYPE_CHECKING
 
+from ccnl_engine.agreement.metadata.review.models import ReviewerKind
 from ccnl_engine.bundle.loaders import resources
 from ccnl_engine.capability.loaders import (
     load_capability_catalog,
@@ -35,7 +36,6 @@ from ccnl_engine.provenance.ruleset.models import (
     RulesetReadiness,
     VerificationStatus,
 )
-from ccnl_engine.provenance.source.extraction.models import ExtractionMethod
 from scripts.provenance.rules import inventory
 
 if TYPE_CHECKING:
@@ -79,8 +79,8 @@ _STATUSES = ("verified", "derived", "assumed", "missing")
 
 _VERIFICATION_EMOJI = {
     "Machine extracted": "🤖",
+    "AI verified": "🤖✓",
     "Human verified": "🧑",
-    "Expert verified": "🧑✓",
     "Needs review": "🔍",
 }
 
@@ -232,11 +232,22 @@ class CoverageReport:
 
 
 def _verification_label(ccnl: CCNL) -> str:
+    """Name who verified the file, from its review log, not its confidence.
+
+    Only a human review that records the values it checked makes a file
+    human verified: a log entry without ``checked`` proves no value.
+
+    Returns:
+        A key of the verification symbols.
+    """
     vs = ccnl.verification.confidence
     if vs == VerificationStatus.VERIFIED:
-        if ccnl.meta.extraction.method == ExtractionMethod.MANUAL:
-            return "Expert verified"
-        return "Human verified"
+        if any(
+            review.reviewer_kind == ReviewerKind.HUMAN and review.checked
+            for review in ccnl.verification.reviews
+        ):
+            return "Human verified"
+        return "AI verified"
     if vs == VerificationStatus.NEEDS_REVIEW:
         return "Needs review"
     return "Machine extracted"
@@ -316,7 +327,9 @@ on unverified sources, or be well sourced and not cleared for production.
 | 👁 | Reviewed — key values checked by a recorded review; use with disclaimer |
 | 🏭 | Production — full review, verified reference case, owner role |
 | 🤖 | Machine extracted |
-| 🧑 | Human reviewed |
+| 🤖✓ | AI verified: no human review records the values it checked |
+| 🧑 | Human verified: a human review records the values it checked |
+| 🔍 | Needs review |
 
 ## Matrix
 """
