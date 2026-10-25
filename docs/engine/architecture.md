@@ -102,4 +102,5 @@ module under test and a test file is named after its role:
 `src/ccnl_engine/contribution/naspi/services.py` and
 `tests/unit/ccnl_engine/contribution/naspi/test_services.py`; see
 [Target trees](architecture-contract-trees.md#test-tree). `tests/README.md`
-holds the ownership of each level and the role of each data folder.
+holds the rule, the ownership of each level and the role of each data
+folder; `scripts/quality/test_tree/check.py` enforces the mirror.

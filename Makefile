@@ -31,6 +31,7 @@ complexity:
 
 architecture:
 	uv run python scripts/architecture/check.py
+	uv run python scripts/quality/test_tree/check.py
 
 test:
 	uv run pytest -n auto
