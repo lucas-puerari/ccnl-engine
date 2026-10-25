@@ -221,3 +221,12 @@ def test_the_page_names_both_versions_and_a_per_deploy_wheel() -> None:
         assert {"{engine}", "{bundle}"} <= set(
             re.findall(r"\{\w+\}", strings["results.engine"])
         )
+
+
+def test_every_cdn_asset_is_pinned_with_integrity() -> None:
+    """An exact version and a sha384 for every script and stylesheet of a CDN."""
+    tags = re.findall(r"<(?:script|link)[^>]*cdn\.jsdelivr\.net[^>]*>", _HTML)
+    assert tags
+    for tag in tags:
+        assert 'integrity="sha384-' in tag, tag
+        assert "@5/" not in tag, tag

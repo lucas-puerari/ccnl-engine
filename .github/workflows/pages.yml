@@ -32,6 +32,13 @@ jobs:
       - name: "Demo: build wheel"
         run: uv build --wheel --out-dir demo/release/packages/
 
+      # The browser runs the demo in Pyodide: load it there before deploying.
+      - name: "Demo: smoke test in Pyodide"
+        run: |
+          npm install --no-save --prefix demo/release pyodide@0.27.0
+          cp demo/smoke.mjs demo/release/smoke.mjs
+          node demo/release/smoke.mjs demo/release/packages/*.whl demo/app.py
+
       - name: "Demo: assemble"
         run: |
           WHEEL_VERSION=$(uv version --short)
