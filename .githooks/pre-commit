@@ -17,7 +17,7 @@ uv run mypy $STAGED
 echo "Lint passed."
 
 echo "pytest (coverage 100%)..."
-uv run pytest
+uv run pytest -n auto
 
 echo "Tests passed."
 
