@@ -27,6 +27,7 @@ nav = [
     { "Tax credits"       = "engine/tax-credits.md" },
     { "Substitute-tax regimes" = "engine/substitute-tax-regimes.md" },
     { "Domestic work"     = "engine/domestic-work.md" },
+    { "Integrating the engine" = "engine/integration.md" },
     { "Architecture rules" = "engine/architecture.md" },
     { "Architecture contract" = "engine/architecture-contract.md" },
     { "Architecture target trees" = "engine/architecture-contract-trees.md" },
