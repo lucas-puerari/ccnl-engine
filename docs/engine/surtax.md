@@ -42,7 +42,7 @@ The surtax of tax year N is **determined by the conguaglio of N** and
 |---|---|---|---|---|
 | Regional surtax of N | conguaglio of N | up to 11 installments, January to November of N+1 | 3802 | D.Lgs. 446/1997 art. 50 c. 4 |
 | Municipal saldo of N | conguaglio of N: municipal surtax of N less the acconto withheld in N | up to 11 installments, January to November of N+1 | 3848 | D.Lgs. 360/1998 art. 1 c. 5 |
-| Municipal acconto of N+1 | conguaglio of N: 30% of the municipal surtax on the income of N, rate and threshold of N | up to 9 installments, March to November of N+1 | 3847 | D.Lgs. 360/1998 art. 1 cc. 4-5 |
+| Municipal acconto of N+1 | conguaglio of N: 30% of the municipal surtax on the income of N, rate and threshold of N, or of N+1 when the bundle holds a delibera of N+1 (published by 20 December of N) | up to 9 installments, March to November of N+1 | 3847 | D.Lgs. 360/1998 art. 1 cc. 4-5 |
 
 Art. 50 c. 4 reads "trattenuto in un numero massimo di undici rate, a
 partire dal periodo di paga successivo a quello in cui le stesse sono
