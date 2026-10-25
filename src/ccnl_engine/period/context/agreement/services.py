@@ -16,6 +16,7 @@ from ccnl_engine.compensation.individual.rules import with_individual_elements
 from ccnl_engine.compensation.provincial_element.services import (
     without_replaced_elements,
 )
+from ccnl_engine.compensation.second_level.rules import with_second_level_elements
 from ccnl_engine.contribution.cigs.models import with_cigs_indotto
 from ccnl_engine.contribution.fis.models import with_fis_reduction
 from ccnl_engine.contribution.zone.models import with_zone_reduction
@@ -144,6 +145,12 @@ def load_contract(
     )
     ccnl = with_individual_elements(
         ccnl, request.level_code, request.individual_elements, tctx.competence
+    )
+    ccnl = with_second_level_elements(
+        ccnl,
+        request.level_code,
+        request.employer.second_level_elements,
+        tctx.competence,
     )
     try:
         level = ccnl.level_by_code(request.level_code)

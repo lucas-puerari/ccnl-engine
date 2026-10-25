@@ -21,6 +21,9 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.compensation.second_level.rules import (
+    CAPABILITY as SECOND_LEVEL_CAPABILITY,
+)
 from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationStatus,
@@ -128,12 +131,16 @@ _RULES: dict[type, _CallerRule] = {
 
 #: Capabilities whose amounts can rest on a caller value that stands in for
 #: a rule; a declared bonus or welfare amount is a fact, not a rule, and an
-#: override replaces what a native capability computes.
-CALLER_SUPPLIED_CAPABILITIES = frozenset(
-    rule.capability
-    for rule in _RULES.values()
-    if rule.reason_code not in {CALLER_DECLARED_AMOUNT, CALLER_OVERRIDE}
-)
+#: override replaces what a native capability computes.  A second-level
+#: element is an amount of an agreement the bundle does not hold.
+CALLER_SUPPLIED_CAPABILITIES = frozenset({
+    *(
+        rule.capability
+        for rule in _RULES.values()
+        if rule.reason_code not in {CALLER_DECLARED_AMOUNT, CALLER_OVERRIDE}
+    ),
+    *SECOND_LEVEL_CAPABILITY.values(),
+})
 
 _CASH_EVENTS = (
     OvertimeEvent,

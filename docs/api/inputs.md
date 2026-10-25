@@ -30,6 +30,10 @@ state types.
 
 ::: ccnl_engine.inputs.ContributableHours
 
+::: ccnl_engine.inputs.SecondLevelAgreement
+
+::: ccnl_engine.inputs.SecondLevelElement
+
 ::: ccnl_engine.inputs.SeniorityFact
 
 ::: ccnl_engine.inputs.SeniorityPromotion

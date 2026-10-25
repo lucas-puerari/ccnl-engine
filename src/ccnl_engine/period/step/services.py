@@ -22,6 +22,7 @@ from ccnl_engine.compensation.renewal_minimum.services import (
     renewal_minimum,
     renewal_settlement,
 )
+from ccnl_engine.compensation.second_level.rules import second_level_decisions
 from ccnl_engine.contribution.ceiling.services import (
     IvsCeiling,
     ivs_ceiling_decision,
@@ -30,9 +31,7 @@ from ccnl_engine.contribution.ceiling.services import (
 from ccnl_engine.contribution.minimum_base.services import run_minimum_base
 from ccnl_engine.decision.rules import contract_decisions
 from ccnl_engine.extra_month.decision.services import accrual_decisions
-from ccnl_engine.extra_month.settlement.services import (
-    settle_extra_months,
-)
+from ccnl_engine.extra_month.settlement.services import settle_extra_months
 from ccnl_engine.fund.assistance.policies import assistance_decision
 from ccnl_engine.fund.health.services import contractual_funds
 from ccnl_engine.leave.services import run_leave
@@ -45,9 +44,7 @@ from ccnl_engine.period.amount.services import _compute_amounts
 from ccnl_engine.period.decision.override.services import (
     caller_supplied_decisions,
 )
-from ccnl_engine.period.decision.services import (
-    base_stage_decisions,
-)
+from ccnl_engine.period.decision.services import base_stage_decisions
 from ccnl_engine.period.payslip.services import check_absences_within_pay
 from ccnl_engine.period.step.input.services import (
     amounts_input,
@@ -292,6 +289,7 @@ def run_decisions(
         + (() if renewal is None else (renewal.decision,))
         + contractual_funds(ctx).decisions
         + individual_element_decisions(ctx)
+        + second_level_decisions(ctx)
         + totals.decisions
         + amounts.decisions
         + caller_supplied_decisions(

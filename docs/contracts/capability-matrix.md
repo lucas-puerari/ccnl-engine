@@ -56,8 +56,8 @@ formulas or caller-declared amounts.
 | Scope | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
 | core | 21 | 0 | 0 | 0 |
-| scenario | 9 | 8 | 2 | 0 |
-| outside_input | 0 | 0 | 0 | 11 |
+| scenario | 9 | 10 | 2 | 0 |
+| outside_input | 0 | 0 | 0 | 9 |
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -79,8 +79,8 @@ formulas or caller-declared amounts.
 | `additional_irpef_base` | Redditi di altri sostituti nella base IRPEF del conguaglio | outside_input | net | unsupported | outside_input | — | `facts.other_withholding_agents_income` | — | unavailable | none bundled |
 | `health_fund_employee` | Fondo sanitario integrativo a carico dipendente | outside_input | net | unsupported | outside_input | — | `employment.health_fund` | — | unavailable | none bundled |
 | `health_fund_employer` | Fondo sanitario integrativo a carico azienda | outside_input | net | unsupported | outside_input | — | `employment.health_fund` | — | unavailable | none bundled |
-| `territorial_supplement` | Integrazione da contratto territoriale | outside_input | gross | unsupported | outside_input | — | `employment.territorial_agreement` | — | unavailable | none bundled |
-| `company_supplement` | Integrazione da contratto aziendale | outside_input | gross | unsupported | outside_input | — | `employment.company_agreement` | — | unavailable | none bundled |
+| `territorial_supplement` | Integrazione da contratto territoriale (EmployerProfile.second_level_elements) | scenario | gross | caller_supplied | decided | decision | — | — | caller-supplied | none bundled |
+| `company_supplement` | Integrazione da contratto aziendale (EmployerProfile.second_level_elements) | scenario | gross | caller_supplied | decided | decision | — | — | caller-supplied | none bundled |
 | `tfr` | Trattamento di Fine Rapporto | core | net | native | always | pipeline | `employment.tfr_treasury_fund` | — | simplified | 18 / 0 / 18 / 0 |
 | `tfr_revaluation` | Rivalutazione del fondo TFR al 31 dicembre e imposta sostitutiva (art. 2120 c. 4 c.c.) | core | net | native | decided | decision | `employment.tfr_fund` | — | implemented | 1 / 2 / 0 / 0 |
 | `irpef` | IRPEF (sostituto d'imposta) | core | net | native | always | pipeline | — | — | simplified | 10 / 0 / 10 / 0 |
