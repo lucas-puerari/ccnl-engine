@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from ccnl_engine.balance import serializers as state_codec
 from ccnl_engine.balance.models import PeriodState
-from ccnl_engine.bundle.facade import __version__ as bundle_version
+from ccnl_engine.bundle.loaders import bundle_version
 from ccnl_engine.version import __version__ as engine_version
 
 __all__ = ["period_state_from_json", "period_state_to_json"]
@@ -23,7 +23,7 @@ def period_state_to_json(state: PeriodState) -> str:
         The JSON text of the state.
     """
     return state_codec.period_state_to_json(
-        state, engine_version=engine_version, bundle_version=bundle_version
+        state, engine_version=engine_version, bundle_version=bundle_version()
     )
 
 

@@ -1,11 +1,11 @@
 """Tests for the knowledge base version metadata."""
 
-from ccnl_engine.bundle.facade import __version__
+from ccnl_engine.bundle.facade import SERIES
 
 
 class TestKnowledgeVersion:
-    """The knowledge base must export a stable data-set version."""
+    """The knowledge base exports the release series of its data."""
 
-    def test_version_exported(self) -> None:
-        """__version__ is exposed at ccnl_engine.knowledge level."""
-        assert __version__ == "2026.3"
+    def test_series_exported(self) -> None:
+        """SERIES names the year and the release of the bundled data."""
+        assert SERIES == "2026.3"

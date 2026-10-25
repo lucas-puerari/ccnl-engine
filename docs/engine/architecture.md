@@ -34,8 +34,8 @@ api -> application -> service -> domain
   the tiers, with the upward imports the contract lists by module, and the
   300-line limit of a module against a shrink-only baseline; `make check`
   and CI run it.
-- `ccnl_engine.version` and the bundle version in `bundle/facade.py` are
-  metadata: any layer except `domain` may import them. A package
+- `ccnl_engine.version`, which holds the engine and bundle versions, and
+  the bundle series in `bundle/facade.py` are metadata: any layer except `domain` may import them. A package
   `__init__.py` holds a docstring only, except the package root and
   `ccnl_engine.catalog`, which hold the public namespaces.
 

@@ -4,8 +4,11 @@ The versioned dataset bundle consumed by the loaders. Every file here is pure
 JSON data plus version metadata — the knowledge base carries no Python logic,
 so it can be updated or redistributed independently of the engine.
 
-`ccnl_engine.bundle_version` identifies the bundled data set (e.g.
-`"2026.3"`). It is independent of the library version in `pyproject.toml`.
+`ccnl_engine.bundle_version` identifies the bundled data set: its release
+series and a digest of the manifest (e.g. `"2026.3+5d69b5708cfb"`). The
+manifest records the content hash of every resource, so two bundles that
+differ in any file never share a version. It is independent of the library
+version in `pyproject.toml`.
 
 ## Layout
 

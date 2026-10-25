@@ -155,6 +155,7 @@ listed one that no longer exists.
 | `contribution/ceiling/services.py` | `capability/rule/services.py` | The INPS ceiling decision cites the payable rules of the run through the capability rule lookup |
 | `contribution/decision/services.py` | `capability/rule/services.py` | The INPS rate decision cites the payable rules of the run through the capability rule lookup |
 | `seniority/services.py` | `capability/rule/services.py` | The seniority decision cites the payable rules of the run through the capability rule lookup |
+| `version.py` | `bundle/loaders.py` | The bundle version is the series plus the digest of the manifest, which only the bundle loader reads |
 
 A module under `src/ccnl_engine` holds at most 300 lines. The modules
 longer than that on 2026-10-19 are listed in

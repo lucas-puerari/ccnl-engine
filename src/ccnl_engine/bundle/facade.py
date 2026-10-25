@@ -18,9 +18,12 @@ Datasets:
 - ``capability/registry/<year>.json``, ``limitation/engine.json``,
   ``pay_item/italy.json``.
 
-Current data set version: :data:`__version__`.
+The version of the bundled data is :data:`SERIES` followed by a digest of
+the manifest (:func:`ccnl_engine.bundle.loaders.bundle_version`): two
+bundles that differ in any resource never share a version.
 """
 
-#: Knowledge base version. Bumped when the bundled datasets change (new year,
-#: new CCNL, rate updates); independent of the library version.
-__version__ = "2026.3"
+#: Release series of the knowledge base, bumped by hand for a new tax year or
+#: a schema change; the digest of the manifest tells the bundles of a series
+#: apart.
+SERIES = "2026.3"
