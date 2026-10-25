@@ -181,3 +181,38 @@ def test_the_withholding_due_is_the_net_irpef_less_what_was_withheld() -> None:
 
     assert result.irpef_net > Decimal(500)
     assert result.computation.withholding_due == result.irpef_net - Decimal(500)
+
+
+class TestStatedOtherIncome:
+    """Every credit reads the same reddito complessivo once it is stated."""
+
+    @staticmethod
+    def _annual(external: Decimal) -> dict[str, Decimal]:
+        ti = TrattamentoIntegrativoRules(
+            threshold_mid=Decimal(15000),
+            threshold_upper=Decimal(28000),
+            max_amount=Decimal(1200),
+        )
+        rules = make_year_rules().model_copy(update={"trattamento_integrativo": ti})
+        components = compute_tax(
+            Decimal(14000),
+            rules,
+            remaining_slots=1,
+            external_income=external,
+        ).computation.components
+        return {c.name: c.amount for c in components}
+
+    def test_other_income_above_the_upper_threshold_removes_the_trattamento(
+        self,
+    ) -> None:
+        """14,000 here plus 20,000 elsewhere is 34,000: above 28,000 (D.L. 3/2020).
+
+        Without other income the 14,000 alone earns the full 1,200.
+        """
+        assert self._annual(_ZERO)["trattamento_integrativo"] == Decimal(1200)
+        assert "trattamento_integrativo" not in self._annual(Decimal(20000))
+
+    def test_other_income_lowers_the_art_13_deduction(self) -> None:
+        """Art. 13 TUIR measures the deduction on the reddito complessivo."""
+        alone = self._annual(_ZERO)["work_deduction"]
+        assert self._annual(Decimal(20000))["work_deduction"] < alone
