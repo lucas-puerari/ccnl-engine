@@ -45,6 +45,9 @@ nav = [
     { "Validation matrix" = "trust/validation-matrix.md" },
     { "Validation packets" = "trust/validation-packet.md" },
     { "Perimeter and tolerance" = "trust/perimeter.md" },
+
+
+    { "Comparison scope" = "trust/comparison-scope.md" },
   ]},
   { "Examples"   = "examples.md" },
   { "Contracts"  = [
