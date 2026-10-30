@@ -13,6 +13,7 @@ from ccnl_engine.event.facade import (
     AbsenceEvent,
     ArrearsEvent,
     MaternityLeaveEvent,
+    PaternityLeaveEvent,
     WorkEvent,
     WorkInjuryEvent,
 )
@@ -92,7 +93,7 @@ def _check_event_date(
     """
     if isinstance(event, ArrearsEvent):
         return
-    if isinstance(event, (MaternityLeaveEvent, WorkInjuryEvent)):
+    if isinstance(event, (MaternityLeaveEvent, PaternityLeaveEvent, WorkInjuryEvent)):
         if event.within(date_ctx.period_start, date_ctx.period_end) is None:
             msg = (
                 f"event {idx} ({type(event).__name__}) does not touch period "

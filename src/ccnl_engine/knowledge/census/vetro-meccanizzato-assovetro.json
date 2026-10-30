@@ -7,8 +7,8 @@
       "institute": "maternity_leave",
       "variant": "all",
       "discriminant": "applies_when.trigger = path",
-      "rule": "The INPS maternity indemnity of an operaia, or of a leave whose month before was not worked in full, is 80% of the pay of the run over 30 with the rateo of the extra months, not of the pay of the month before the leave: art. 23 c. 5 D.Lgs. 151/2001 divides the pay of an operaia by the days worked or paid (or by the hours, when fewer than the contract), and the divisor of her daily rateo of the 13th is not settled by a primary source. The base of another worker over a whole month is computed from MaternityLeaveEvent.base_pay.",
-      "calculation": "ccnl_engine.absence.insured.rules.maternity_daily_base; D.Lgs. 151/2001 art. 23 (Normattiva, text in force on 2026-10-30, page sha256 f5d5e1ff3028f8249597c78f9371063f0de7790676054b5f0207c974bc50bc04)",
+      "rule": "The INPS maternity indemnity of an operaia, or of a leave whose month before was not worked in full, is computed on the pay of the run over 30 with the rateo of the extra months, not on the pay of the month before the leave: art. 23 c. 5 D.Lgs. 151/2001 divides the pay of an operaia by the days worked or paid (or by the hours, when fewer than the contract), and the divisor of her daily rateo of the 13th is not settled by a primary source. The base of another worker over a whole month is computed from MaternityLeaveEvent.maternity_base_pay.",
+      "calculation": "ccnl_engine.absence.insured.base.rules.leave_base; D.Lgs. 151/2001 art. 23 (Normattiva, text in force on 2026-10-30, page sha256 f5d5e1ff3028f8249597c78f9371063f0de7790676054b5f0207c974bc50bc04)",
       "state": "unverified",
       "remediation": "Source the daily rateo of an operaia (an INPS circular on art. 23 c. 5) and compute her base and that of a month not worked in full, then resolve this limitation.",
       "origin": "seeded",
@@ -31,6 +31,22 @@
       "links": {
         "limitations": [
           "vetro-meccanizzato-assovetro/other_subsectors_tables"
+        ]
+      }
+    },
+    {
+      "id": "paternity_daily_base",
+      "institute": "paternity_leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The INPS indemnity of the compulsory paternity leave of an operaio, or of a leave whose month before was not worked in full, is computed on the pay of the run over 30 with the rateo of the extra months, not on the pay of the month before the leave: art. 29 D.Lgs. 151/2001 applies art. 23, whose c. 5 divides the pay of a manual worker by the days worked or paid (or by the hours) with a daily rateo no primary source settles. The base of another worker over a whole month is computed from PaternityLeaveEvent.paternity_base_pay.",
+      "calculation": "ccnl_engine.absence.insured.base.rules.leave_base; D.Lgs. 151/2001 artt. 23 and 29 (Normattiva, text in force on 2026-10-30, page sha256 f5d5e1ff3028f8249597c78f9371063f0de7790676054b5f0207c974bc50bc04 and 3bfcc58c0e6f305f8971925b355d864c9bdf203e187fe40503c0df2aeca8a94a)",
+      "state": "unverified",
+      "remediation": "Source the daily rateo of a manual worker under art. 23 c. 5 and compute his base and that of a month not worked in full, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "paternity_daily_base"
         ]
       }
     },

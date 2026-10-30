@@ -28,6 +28,8 @@ gross, net and employer cost according to its treatment; see
 
 ::: ccnl_engine.events.OvertimeKind
 
+::: ccnl_engine.events.PaternityLeaveEvent
+
 ::: ccnl_engine.events.PeriodId
 
 ::: ccnl_engine.events.ShiftKind

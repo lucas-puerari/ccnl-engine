@@ -27,6 +27,7 @@ from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.event.facade import (
     AbsenceEvent,
     MaternityLeaveEvent,
+    PaternityLeaveEvent,
     SickLeaveEvent,
     WorkInjuryEvent,
 )
@@ -50,7 +51,13 @@ ISSUE_CODE = "inps_minimum_base_undetermined"
 _LEGAL_BASIS = "D.L. 463/1983 art. 7 c. 1; D.Lgs. 81/2015 art. 11 c. 1"
 #: Kinds of run that may post the monthly pay of their month.
 _PAYING_KINDS = frozenset({RunKind.REGULAR, RunKind.TERMINATION})
-_REDUCING_EVENTS = (AbsenceEvent, SickLeaveEvent, MaternityLeaveEvent, WorkInjuryEvent)
+_REDUCING_EVENTS = (
+    AbsenceEvent,
+    SickLeaveEvent,
+    MaternityLeaveEvent,
+    PaternityLeaveEvent,
+    WorkInjuryEvent,
+)
 #: Fact of a sector that excludes a category the request leaves open.
 _CATEGORY = "category"
 #: Engine limitation of a worker whose category art. 7 c. 5 excludes.

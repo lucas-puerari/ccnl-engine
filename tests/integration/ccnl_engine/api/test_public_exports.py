@@ -147,6 +147,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "NightShiftEvent",
         "OvertimeEvent",
         "OvertimeKind",
+        "PaternityLeaveEvent",
         "PeriodId",
         "ShiftKind",
         "ShiftWorkEvent",

@@ -159,13 +159,20 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "the pay of a whole month, so without it the INPS share is computed "
         "on the CCNL daily quota, with a missing_fact inps_base blocker",
     ),
-    "MaternityLeaveEvent.base_pay": requires_fact(
+    "MaternityLeaveEvent.maternity_base_pay": requires_fact(
         "maternity_leave",
-        "event.base_pay",
+        "event.maternity_base_pay",
         FactEnforcement.REPORTED,
         "unknown pay of the month before the leave: the indemnity is computed "
-        "on the pay of the run, with a missing_fact base_pay "
+        "on the pay of the run, with a missing_fact maternity_base_pay "
         "blocker",
+    ),
+    "PaternityLeaveEvent.paternity_base_pay": requires_fact(
+        "paternity_leave",
+        "event.paternity_base_pay",
+        FactEnforcement.REPORTED,
+        "unknown pay of the month before the leave: the indemnity is computed "
+        "on the pay of the run, with a missing_fact paternity_base_pay blocker",
     ),
     "SicknessEpisode.periodic_check": absence_is_fact(
         "an ordinary sickness absence; a periodic check is a fact of the "

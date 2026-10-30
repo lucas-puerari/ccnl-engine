@@ -16,7 +16,12 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
 )
-from ccnl_engine.events import InpsSicknessBase, MaternityLeaveEvent, SicknessEpisode
+from ccnl_engine.events import (
+    InpsSicknessBase,
+    MaternityLeaveEvent,
+    PaternityLeaveEvent,
+    SicknessEpisode,
+)
 from ccnl_engine.inputs import (
     ContributableHours,
     EmploymentPeriod,
@@ -479,7 +484,22 @@ def _maternity(base: InpsSicknessBase | None) -> PeriodInput:
     Returns:
         The March run; the indemnity needs the pay of the month before.
     """
-    leave = MaternityLeaveEvent(date(2026, 3, 2), date(2026, 3, 31), base_pay=base)
+    leave = MaternityLeaveEvent(
+        date(2026, 3, 2), date(2026, 3, 31), maternity_base_pay=base
+    )
+    run = _march(PeriodState.zero())
+    employment = replace(_EMPLOYMENT, category=WorkerCategory.IMPIEGATO)
+    return replace(run, employment=employment, facts=PeriodFacts(events=(leave,)))
+
+
+def _paternity(base: InpsSicknessBase | None) -> PeriodInput:
+    """Return ten days of paternity leave in March of an impiegato.
+
+    Returns:
+        The March run; the indemnity needs the pay of the month before.
+    """
+    days = tuple(date(2026, 3, d) for d in (2, 3, 4, 5, 6, 9, 10, 11, 12, 13))
+    leave = PaternityLeaveEvent(days, paternity_base_pay=base)
     run = _march(PeriodState.zero())
     employment = replace(_EMPLOYMENT, category=WorkerCategory.IMPIEGATO)
     return replace(run, employment=employment, facts=PeriodFacts(events=(leave,)))
@@ -536,11 +556,18 @@ def sickness_cases[C](
                 "inps_base",
             ),
         ),
-        "MaternityLeaveEvent.base_pay": (
+        "MaternityLeaveEvent.maternity_base_pay": (
             case(
                 _maternity(InpsSicknessBase(Decimal("2158.26"), Decimal(0))),
                 _maternity(None),
-                "base_pay",
+                "maternity_base_pay",
+            ),
+        ),
+        "PaternityLeaveEvent.paternity_base_pay": (
+            case(
+                _paternity(InpsSicknessBase(Decimal("2158.26"), Decimal(0))),
+                _paternity(None),
+                "paternity_base_pay",
             ),
         ),
         "SicknessEpisode.prior_worked_days": (

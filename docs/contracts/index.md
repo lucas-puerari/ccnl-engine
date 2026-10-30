@@ -54,9 +54,10 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `contractual_funds` (native)
 - ✅ `assistance_contribution` (native)
 
-**Scenario features: computed when the request declares the event, the fact or the termination** (21):
+**Scenario features: computed when the request declares the event, the fact or the termination** (22):
 
 - ✅ `maternity_leave` (native)
+- ✅ `paternity_leave` (native)
 - ✅ `workplace_injury` (native)
 - ✅ `termination_residual_leave` (native)
 - ✅ `termination_tfr` (native)
