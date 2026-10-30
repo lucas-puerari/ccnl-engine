@@ -11,6 +11,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.absence.inputs import AbsenceEvent, SickLeaveEvent
+from ccnl_engine.absence.insured.extraordinary.inputs import ExtraordinaryLeaveEvent
 from ccnl_engine.absence.insured.inputs import (
     MaternityLeaveEvent,
     PaternityLeaveEvent,
@@ -136,6 +137,7 @@ _EVENTS: dict[type, WorkEvent] = {
         MaternityLeaveEvent(_DAY, date(2026, 8, 7)),
         PaternityLeaveEvent((_DAY,)),
         DisabilityPermitEvent((_DAY,)),
+        ExtraordinaryLeaveEvent(_DAY, _DAY, Decimal("2000.00")),
         ParentalLeaveEvent(
             _DAY,
             _DAY,

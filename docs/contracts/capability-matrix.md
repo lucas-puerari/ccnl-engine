@@ -56,7 +56,7 @@ formulas or caller-declared amounts.
 | Scope | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
 | core | 21 | 0 | 0 | 0 |
-| scenario | 12 | 10 | 2 | 0 |
+| scenario | 13 | 10 | 2 | 0 |
 | outside_input | 0 | 0 | 0 | 7 |
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
@@ -73,6 +73,7 @@ formulas or caller-declared amounts.
 | `paternity_leave` | Congedo di paternità obbligatorio: indennità INPS al 100% anticipata dal datore | scenario | work_rules | native | event | event | — | inps_indemnity | implemented | none bundled |
 | `parental_leave` | Congedo parentale: indennità INPS al 30% o all'80% anticipata dal datore | scenario | work_rules | native | event | event | — | inps_indemnity | implemented | none bundled |
 | `disability_permits` | Permessi L. 104/1992: indennità INPS pari all'intera retribuzione dei giorni, anticipata dal datore | scenario | work_rules | native | event | event | — | inps_indemnity | implemented | none bundled |
+| `extraordinary_leave` | Congedo straordinario art. 42 c. 5 D.Lgs. 151/2001: indennità INPS sull'ultima retribuzione entro il massimale annuo, anticipata dal datore | scenario | work_rules | native | event | event | — | inps_indemnity | implemented | none bundled |
 | `workplace_injury` | Infortunio sul lavoro: giorno dell'evento, carenza, indennità INAIL e integrazione CCNL | scenario | work_rules | native | event | event | — | injury_day_and_carenza, inail_indemnity, ccnl_top_up | implemented | none bundled |
 | `termination_residual_leave` | Indennità sostitutiva di ferie e permessi residui alla cessazione, sulla base del CCNL | scenario | gross | native | termination_run | decision | `employment.employment_period`, `opening_balances.leave_balances` | — | implemented | 0 / 2 / 0 / 0 |
 | `termination_tfr` | Liquidazione TFR a tassazione separata (artt. 17 e 19 TUIR): fondo, quote dell'anno e aliquota media calcolati, importo e aliquota del chiamante come override | scenario | net | native | event | event | — | — | implemented | 2 / 1 / 0 / 0 |

@@ -15,9 +15,10 @@ window accrued for part of its days, reports the rule as unsourced.
 
 from __future__ import annotations
 
+from datetime import timedelta
 from typing import TYPE_CHECKING
 
-from ccnl_engine.event.facade import AbsenceEvent
+from ccnl_engine.event.facade import AbsenceEvent, ExtraordinaryLeaveEvent
 from ccnl_engine.extra_month.models import (
     DEFAULT_MONTH_ACCRUAL_RULE,
     ExtraMonthAccrual,
@@ -56,9 +57,16 @@ def non_accruing_days(events: Iterable[WorkEvent]) -> frozenset[date]:
 
     Returns:
         Every calendar day of an :class:`AbsenceEvent` with
-        ``suspends_accrual`` set.
+        ``suspends_accrual`` set, and of an extraordinary leave, which
+        accrues no 13th (art. 42 c. 5-quinquies D.Lgs. 151/2001).
     """
-    return _absence_days(events, suspends=True)
+    leave = {
+        event.started_on + timedelta(days=i)
+        for event in events
+        if isinstance(event, ExtraordinaryLeaveEvent)
+        for i in range((event.ended_on - event.started_on).days + 1)
+    }
+    return _absence_days(events, suspends=True) | leave
 
 
 def unknown_accrual_days(events: Iterable[WorkEvent]) -> frozenset[date]:

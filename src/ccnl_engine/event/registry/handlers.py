@@ -9,6 +9,9 @@ from __future__ import annotations
 from collections.abc import Callable
 from typing import Any
 
+from ccnl_engine.absence.insured.extraordinary.handlers import (
+    _handle_extraordinary_leave,
+)
 from ccnl_engine.absence.insured.handlers import (
     _handle_maternity_leave,
     _handle_work_injury,
@@ -22,6 +25,7 @@ from ccnl_engine.event.facade import (
     BilateralFundEvent,
     BonusEvent,
     DisabilityPermitEvent,
+    ExtraordinaryLeaveEvent,
     FringeEvent,
     HolidayWorkEvent,
     LeaveTakenEvent,
@@ -85,5 +89,6 @@ _HANDLER_REGISTRY: dict[type, _EventHandlerFn] = {
     PaternityLeaveEvent: _handle_paternity_leave,
     ParentalLeaveEvent: _handle_parental_leave,
     DisabilityPermitEvent: _handle_disability_permit,
+    ExtraordinaryLeaveEvent: _handle_extraordinary_leave,
     WorkInjuryEvent: _handle_work_injury,
 }

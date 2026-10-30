@@ -196,6 +196,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the TFR treatment of the permit days (an INPS or Ministry ruling, or case law of the Cassazione) and apply it, then resolve this limitation.
 
+!!! warning "extraordinary_leave_daily_base · extraordinary_leave · impact unknown · open"
+    The daily indemnity of the extraordinary leave is the last monthly pay of fixed and continuous items times the monthly payments of a year over 365: art. 42 c. 5-ter D.Lgs. 151/2001 and INPS messaggio 30/2024 set the pay and its rateo of the extra months, and the INPS table of the yearly maximum divides it by 365 (2026: 43,486.00 / 365 = 119.14), but no source read states the divisor of the worker's own pay.
+
+    **Applies when:** `extraordinary_leave` applies; the run takes the engine code path.
+
+    **Remediation:** Source the daily divisor INPS applies to the last pay (circ. INPS 64/2001 or 32/2012) and apply it, then resolve this limitation.
+
 ### Without monetary impact
 
 !!! note ""

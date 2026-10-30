@@ -15,6 +15,9 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import PayrollEngine
+from ccnl_engine.absence.insured.extraordinary.handlers import (
+    EXTRAORDINARY_BASE_LIMITATION,
+)
 from ccnl_engine.absence.insured.handlers import MATERNITY_BASE_LIMITATION
 from ccnl_engine.absence.insured.parental.handlers import (
     PARENTAL_BASE_LIMITATION,
@@ -127,6 +130,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         PARENTAL_SPLIT_LIMITATION,
         PARENTAL_EXTRA_MONTH_LIMITATION,
         PERMIT_TFR_LIMITATION,
+        EXTRAORDINARY_BASE_LIMITATION,
     }
     assert by_status[LimitationStatus.RESOLVED] == {
         _MIDPOINT,

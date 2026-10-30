@@ -12,6 +12,7 @@ from ccnl_engine.absence.inputs import (
     AbsenceEvent,
     SickLeaveEvent,
 )
+from ccnl_engine.absence.insured.extraordinary.inputs import ExtraordinaryLeaveEvent
 from ccnl_engine.absence.insured.inputs import (
     MaternityLeaveEvent,
     PaternityLeaveEvent,
@@ -53,6 +54,7 @@ __all__ = [
     "BilateralFundEvent",
     "BonusEvent",
     "DisabilityPermitEvent",
+    "ExtraordinaryLeaveEvent",
     "FringeEvent",
     "HolidayWorkEvent",
     "HolidayWorkKind",

@@ -18,10 +18,12 @@ residual is paid once, since the settlement settles the balances.
 from __future__ import annotations
 
 from dataclasses import dataclass, replace
+from datetime import timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.inputs import AbsenceEvent
+from ccnl_engine.absence.insured.extraordinary.inputs import ExtraordinaryLeaveEvent
 from ccnl_engine.leave.accrual.rules import AccrualFacts, accrue_month, month_service
 from ccnl_engine.leave.handlers import LeaveTerms
 from ccnl_engine.leave.inputs import LeaveTakenEvent
@@ -129,8 +131,14 @@ def _accrual_facts(ctx: RunContext) -> AccrualFacts:
     """
     request = ctx.request
     absences = [e for e in request.events if isinstance(e, AbsenceEvent)]
+    # An extraordinary leave accrues no leave (art. 42 c. 5-quinquies).
+    leave = [e for e in request.events if isinstance(e, ExtraordinaryLeaveEvent)]
     suspended = frozenset(
         day for event in absences if event.suspends_accrual for day in event.days
+    ) | frozenset(
+        event.started_on + timedelta(days=i)
+        for event in leave
+        for i in range((event.ended_on - event.started_on).days + 1)
     )
     month = request.period_id
     period = request.employment_period

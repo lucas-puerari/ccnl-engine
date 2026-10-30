@@ -17,6 +17,7 @@ from ccnl_engine import (
     PeriodInput,
 )
 from ccnl_engine.events import (
+    ExtraordinaryLeaveEvent,
     InpsSicknessBase,
     MaternityLeaveEvent,
     ParentalLeaveEvent,
@@ -534,6 +535,18 @@ def _parental(base: InpsSicknessBase | None, ended: date | None) -> PeriodInput:
     return replace(run, employment=employment, facts=PeriodFacts(events=(leave,)))
 
 
+def _extraordinary(last_pay: Decimal | None) -> PeriodInput:
+    """Return two weeks of extraordinary leave in March of an impiegato.
+
+    Returns:
+        The March run; the indemnity needs the last pay before the leave.
+    """
+    leave = ExtraordinaryLeaveEvent(date(2026, 3, 2), date(2026, 3, 15), last_pay)
+    run = _march(PeriodState.zero())
+    employment = replace(_EMPLOYMENT, category=WorkerCategory.IMPIEGATO)
+    return replace(run, employment=employment, facts=PeriodFacts(events=(leave,)))
+
+
 def sickness_cases[C](
     case: Callable[[PeriodInput, PeriodInput, str], C],
 ) -> Mapping[str, tuple[C, ...]]:
@@ -611,6 +624,13 @@ def sickness_cases[C](
                 _parental(_FEBRUARY_PAY, _MATERNITY_END),
                 _parental(_FEBRUARY_PAY, None),
                 "protection_ended_on",
+            ),
+        ),
+        "ExtraordinaryLeaveEvent.last_fixed_pay": (
+            case(
+                _extraordinary(Decimal("2158.26")),
+                _extraordinary(None),
+                "last_fixed_pay",
             ),
         ),
         "SicknessEpisode.prior_worked_days": (

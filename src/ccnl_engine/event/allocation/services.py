@@ -13,6 +13,7 @@ from ccnl_engine.event.facade import (
     AbsenceEvent,
     ArrearsEvent,
     DisabilityPermitEvent,
+    ExtraordinaryLeaveEvent,
     MaternityLeaveEvent,
     ParentalLeaveEvent,
     PaternityLeaveEvent,
@@ -102,6 +103,7 @@ def _check_event_date(
             PaternityLeaveEvent,
             ParentalLeaveEvent,
             DisabilityPermitEvent,
+            ExtraordinaryLeaveEvent,
             WorkInjuryEvent,
         ),
     ):

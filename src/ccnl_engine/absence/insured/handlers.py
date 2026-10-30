@@ -39,6 +39,9 @@ from ccnl_engine.pay_item.services import _ZERO
 if TYPE_CHECKING:
     from datetime import date
 
+    from ccnl_engine.absence.insured.extraordinary.inputs import (
+        ExtraordinaryLeaveEvent,
+    )
     from ccnl_engine.absence.insured.parental.inputs import ParentalLeaveEvent
     from ccnl_engine.absence.insured.permit.inputs import DisabilityPermitEvent
     from ccnl_engine.absence.insured.services import InsuredTerms
@@ -69,6 +72,7 @@ def _span(
     | PaternityLeaveEvent
     | ParentalLeaveEvent
     | DisabilityPermitEvent
+    | ExtraordinaryLeaveEvent
     | WorkInjuryEvent,
     terms: InsuredTerms | None,
     feature: str,
