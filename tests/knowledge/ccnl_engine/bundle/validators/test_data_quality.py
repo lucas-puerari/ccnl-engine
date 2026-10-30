@@ -302,6 +302,7 @@ _REVIEWED_PATHS = {
         "inps.public_funds.cpdel",
         *_CIRCULAR_6_REVIEWED,
     },
+    "absence/insured/rates.json": {"maternity", "injury"},
 }
 
 
@@ -342,10 +343,12 @@ def test_verified_fiscal_rules_are_the_reviewed_tables() -> None:
     INPS circ. 9/2026 and the shared 2026 tax tables (IRPEF, work deduction,
     trattamento integrativo, ulteriore detrazione, family deductions, somma
     esente, regional surtax), the TFR divisor and revaluation of art. 2120
-    c.c. (L. 297/1982 art. 1).  Each names its reviewer and date
-    (``RuleProvenance`` rejects a verified record without them, so the
-    bundle would not load otherwise). Verified CCNL rules point to their
-    review log instead, which the evidence gate checks.
+    c.c. (L. 297/1982 art. 1), the INPS maternity indemnity (D.Lgs. 151/2001
+    artt. 22-23) and the INAIL injury indemnity (D.P.R. 1124/1965).  Each
+    names its reviewer and date (``RuleProvenance`` rejects a verified
+    record without them, so the bundle would not load otherwise).  Verified
+    CCNL rules point to their review log instead, which the evidence gate
+    checks.
     """
     verified = [
         (r.file, r.path)
