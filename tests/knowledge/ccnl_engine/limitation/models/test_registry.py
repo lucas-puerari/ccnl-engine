@@ -23,6 +23,7 @@ from ccnl_engine.absence.insured.parental.handlers import (
     PARENTAL_SPLIT_LIMITATION,
 )
 from ccnl_engine.absence.insured.paternity.handlers import PATERNITY_BASE_LIMITATION
+from ccnl_engine.absence.insured.permit.handlers import PERMIT_TFR_LIMITATION
 from ccnl_engine.agreement.facade import NoteKind
 from ccnl_engine.apprenticeship.models import (
     ApprenticeshipPercentage,
@@ -125,6 +126,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         PARENTAL_INCOME_LIMITATION,
         PARENTAL_SPLIT_LIMITATION,
         PARENTAL_EXTRA_MONTH_LIMITATION,
+        PERMIT_TFR_LIMITATION,
     }
     assert by_status[LimitationStatus.RESOLVED] == {
         _MIDPOINT,

@@ -49,6 +49,7 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "parental_income_condition",
         "parental_month_split",
         "parental_extra_month_share",
+        "disability_permit_tfr",
     }
     assert {lim.id for lim in limitations} - blocking == {
         "apprenticeship_midpoint_allowances",

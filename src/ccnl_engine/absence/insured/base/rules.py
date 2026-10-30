@@ -11,18 +11,20 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import date, timedelta
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.insured.rules import maternity_daily_base
 from ccnl_engine.decision.models import CalculationIssue, CalculationStatus
 
 if TYPE_CHECKING:
-    from decimal import Decimal
-
+    from ccnl_engine.absence.insured.rules import MonthPay
     from ccnl_engine.absence.insured.services import InsuredTerms
     from ccnl_engine.sickness.base.inputs import InpsSicknessBase
 
-__all__ = ["LeaveBase", "leave_base"]
+__all__ = ["LeaveBase", "leave_base", "run_daily_base"]
+
+_MONTHS = 12
 
 
 @dataclass(frozen=True)
@@ -97,3 +99,14 @@ def leave_base(
         fact=field.rsplit(".", 1)[-1],
     )
     return LeaveBase(None, issues=(issue,))
+
+
+def run_daily_base(pay: MonthPay, divisor: int) -> Decimal:
+    """Return the daily base on the pay of the run, with the extra months.
+
+    Returns:
+        The monthly pay over ``divisor`` plus its daily rateo of the extra
+        months, unrounded.
+    """
+    monthly, days = pay.monthly, Decimal(divisor)
+    return monthly / days + monthly * pay.extra_months / (_MONTHS * days)

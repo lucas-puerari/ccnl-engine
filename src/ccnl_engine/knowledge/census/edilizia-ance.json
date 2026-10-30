@@ -67,6 +67,22 @@
       }
     },
     {
+      "id": "disability_permit_tfr",
+      "institute": "disability_permits",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The days of permit under L. 104/1992 art. 33 c. 3 keep the TFR base, as payroll practice holds; art. 2120 c. 3 c.c. keeps in the TFR base only the absences of art. 2110 c.c. and the wage integration, and no primary source read says the permits are among them, so the TFR quota of a month with permits may be overstated.",
+      "calculation": "ccnl_engine.absence.insured.permit.handlers._handle_disability_permit; D.Lgs. 151/2001 artt. 43-44 (Normattiva, text in force on 2026-10-30, page sha256 6bd9b8071e8c852ec96f3cdfdd2ee236d75a9bbb9ea0ef5d058d9315dd9c7888); art. 2120 c. 3 c.c.",
+      "state": "unverified",
+      "remediation": "Source the TFR treatment of the permit days (an INPS or Ministry ruling, or case law of the Cassazione) and apply it, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "disability_permit_tfr"
+        ]
+      }
+    },
+    {
       "id": "edilizia_operai_sickness",
       "institute": "sickness",
       "variant": "all",

@@ -15,18 +15,14 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.absence.insured.base.rules import leave_base
+from ccnl_engine.absence.insured.base.rules import leave_base, run_daily_base
 from ccnl_engine.absence.insured.handlers import (
     _decision,
     _no_quota,
     _not_modelled,
     _span,
 )
-from ccnl_engine.absence.insured.parental.rules import (
-    allocate,
-    indemnity,
-    run_daily_base,
-)
+from ccnl_engine.absence.insured.parental.rules import allocate, indemnity
 from ccnl_engine.absence.insured.posting.services import post_lines
 from ccnl_engine.absence.insured.rules import InsuredPay
 from ccnl_engine.decision.models import CalculationIssue, CalculationStatus

@@ -32,9 +32,8 @@ if TYPE_CHECKING:
 
     from ccnl_engine.absence.insured.parental.inputs import ParentalLeaveEvent
     from ccnl_engine.absence.insured.parental.models import ParentalRates
-    from ccnl_engine.absence.insured.rules import MonthPay
 
-__all__ = ["ParentalDays", "allocate", "indemnity", "run_daily_base"]
+__all__ = ["ParentalDays", "allocate", "indemnity"]
 
 _ZERO = Decimal(0)
 _MONTHS = 12
@@ -182,17 +181,6 @@ def _take_block(
         result.rates[day] = rate
     if whole and len(block) != counters.month_days and len(seen) > 1:
         result.split.update(block)
-
-
-def run_daily_base(pay: MonthPay, divisor: int) -> Decimal:
-    """Return the daily base on the pay of the run, with the extra months.
-
-    Returns:
-        The monthly pay over ``divisor`` plus its daily rateo of the extra
-        months, unrounded.
-    """
-    monthly, days = pay.monthly, Decimal(divisor)
-    return monthly / days + monthly * pay.extra_months / (_MONTHS * days)
 
 
 def indemnity(days: ParentalDays, first: date, last: date, daily: Decimal) -> Decimal:

@@ -40,6 +40,7 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.absence.insured.parental.inputs import ParentalLeaveEvent
+    from ccnl_engine.absence.insured.permit.inputs import DisabilityPermitEvent
     from ccnl_engine.absence.insured.services import InsuredTerms
 
 __all__ = [
@@ -67,6 +68,7 @@ def _span(
     event: MaternityLeaveEvent
     | PaternityLeaveEvent
     | ParentalLeaveEvent
+    | DisabilityPermitEvent
     | WorkInjuryEvent,
     terms: InsuredTerms | None,
     feature: str,

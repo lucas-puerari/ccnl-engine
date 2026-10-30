@@ -27,6 +27,7 @@ def load_insured_absence_rates() -> InsuredAbsenceRates:
         "maternity": raw["maternity"],
         "paternity": raw["paternity"],
         "parental": raw["parental"],
+        "disability_permit": raw["disability_permit"],
         "injury": raw["injury"],
         "ruleset": _as_ruleset(raw),
     })
