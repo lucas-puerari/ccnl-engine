@@ -15,7 +15,6 @@ from decimal import Decimal
 from itertools import pairwise
 from typing import TYPE_CHECKING
 
-import pytest
 from pydantic import BaseModel
 
 from ccnl_engine.agreement.validity.rules import (
@@ -97,20 +96,24 @@ def _violations(path: str, series: TimeSeries) -> Iterator[str]:
             yield f"{path} on {day}: {found!r}, expected {expected!r}"
 
 
-@pytest.mark.parametrize("ccnl", _ALL_CCNL, ids=lambda c: c.meta.ccnl_id)
-def test_every_series_honours_its_dates(ccnl: CCNL) -> None:
+def _all_series() -> list[tuple[str, TimeSeries]]:
+    return [s for c in _ALL_CCNL for s in _series_of(c, c.meta.ccnl_id)]
+
+
+def test_every_series_honours_its_dates() -> None:
     """First date, tranche boundaries, gaps and later dates of each series."""
-    found = list(_series_of(ccnl, ccnl.meta.ccnl_id))
-    assert found, "a CCNL has at least its base salary series"
-    assert [v for path, s in found for v in _violations(path, s)] == []
+    without = [
+        c.meta.ccnl_id for c in _ALL_CCNL if not any(_series_of(c, c.meta.ccnl_id))
+    ]
+    assert without == [], "a CCNL has at least its base salary series"
+    assert [v for path, s in _all_series() for v in _violations(path, s)] == []
 
 
-@pytest.mark.parametrize("ccnl", _ALL_CCNL, ids=lambda c: c.meta.ccnl_id)
-def test_every_series_has_a_supported_date(ccnl: CCNL) -> None:
+def test_every_series_has_a_supported_date() -> None:
     """No series of the bundle is made of gaps only."""
     empty = [
         path
-        for path, series in _series_of(ccnl, ccnl.meta.ccnl_id)
+        for path, series in _all_series()
         if all(period.is_gap for period in series.periods)
     ]
     assert empty == []

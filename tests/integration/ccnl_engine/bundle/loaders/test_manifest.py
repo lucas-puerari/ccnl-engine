@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import operator
 from pathlib import Path
 
 import pytest
@@ -33,34 +32,52 @@ def test_every_json_file_is_listed_once_and_exists() -> None:
     assert len(ids) == len(set(ids))
 
 
-@pytest.mark.parametrize("entry", _ENTRIES, ids=operator.itemgetter("path"))
-def test_every_entry_has_integrity_and_explains_optional_metadata(
-    entry: dict[str, object],
-) -> None:
-    """Every resource has a hash; absent metadata is explicitly explained."""
-    assert len(str(entry["source_hash"])) == 64
-    assert entry["schema_version"] is not None or entry.get("schema_note")
+def _integrity_gaps(entry: dict[str, object]) -> list[str]:
+    """Return what an entry lacks.
+
+    Returns:
+        The names of the missing hash or notes of absent metadata.
+    """
     has_ruleset = all(
         entry[field] is not None
         for field in ("ruleset_id", "ruleset_version", "source_type")
     )
-    assert has_ruleset or entry.get("ruleset_note")
-    assert entry["source_type"] is not None or entry.get("source_note")
+    checks = {
+        "source_hash": len(str(entry["source_hash"])) == 64,
+        "schema_note": entry["schema_version"] is not None
+        or bool(entry.get("schema_note")),
+        "ruleset_note": has_ruleset or bool(entry.get("ruleset_note")),
+        "source_note": entry["source_type"] is not None
+        or bool(entry.get("source_note")),
+        "validity_note": entry["valid_from"] is not None
+        or bool(entry.get("validity_note")),
+    }
+    return [name for name, ok in checks.items() if not ok]
 
 
-@pytest.mark.parametrize("entry", _ENTRIES, ids=operator.itemgetter("path"))
-def test_the_path_states_the_dataset_year_and_scope(entry: dict[str, object]) -> None:
+def test_every_entry_has_integrity_and_explains_optional_metadata() -> None:
+    """Every resource has a hash; absent metadata is explicitly explained."""
+    wrong = {e["path"]: gaps for e in _ENTRIES if (gaps := _integrity_gaps(e))}
+    assert wrong == {}
+
+
+def test_the_path_states_the_dataset_year_and_scope() -> None:
     """``domain/dataset/year/scope.json``: no dimension repeated or hidden."""
-    path = str(entry["path"])
-    expected = "/".join(
-        str(part)
-        for part in (entry["dataset"], entry["year"], entry["scope"])
-        if part is not None
-    )
-    assert path == f"{expected}.json"
-    assert entry["dataset_id"] == expected
-    assert entry["wheel_resource"] == f"{path}.gz"
-    assert entry["valid_from"] is not None or entry.get("validity_note")
+    wrong = []
+    for entry in _ENTRIES:
+        path = str(entry["path"])
+        expected = "/".join(
+            str(part)
+            for part in (entry["dataset"], entry["year"], entry["scope"])
+            if part is not None
+        )
+        if (path, entry["dataset_id"], entry["wheel_resource"]) != (
+            f"{expected}.json",
+            expected,
+            f"{path}.gz",
+        ):
+            wrong.append(path)
+    assert wrong == []
 
 
 def test_a_dataset_lists_its_resources_in_path_order() -> None:

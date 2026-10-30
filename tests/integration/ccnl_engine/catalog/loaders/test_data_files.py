@@ -1,9 +1,7 @@
 """Tests for CCNL data loaders and bundled data files."""
 
-import importlib.resources
 from datetime import date
 from decimal import Decimal
-from pathlib import Path
 
 import pydantic
 import pytest
@@ -14,45 +12,6 @@ from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.errors import UnsupportedTaxYearError
 from ccnl_engine.sector.loaders import load_year_rules
 from ccnl_engine.sector.models import YearRules
-
-# ---------------------------------------------------------------------------
-# Parametrised: every JSON in ccnl_engine/knowledge/agreement must validate
-# ---------------------------------------------------------------------------
-
-# Use importlib.resources so the path is correct for both editable installs
-# (plain .json) and installed wheels (.json.gz), and does not depend on the
-# number of parent directories from this test file.
-_DATA_PKG = importlib.resources.files("ccnl_engine.knowledge").joinpath("agreement")
-_JSON_FILES = sorted(
-    (entry for entry in _DATA_PKG.iterdir() if entry.name.endswith(".json")),
-    key=lambda e: e.name,
-)
-
-
-class TestCCNLDataFilesValidate:
-    """Every JSON file in the data bundle must parse as a valid CCNL."""
-
-    def test_data_dir_is_non_empty(self) -> None:
-        """The data package must contain at least one JSON file.
-
-        A path typo or packaging mistake (e.g. wrong directory name in the
-        build hook) would silently produce an empty list and make the
-        parametrised test below run zero times without failing.  This sentinel
-        catches that class of bug early.
-        """
-        assert len(_JSON_FILES) > 0, (
-            "No .json files found in ccnl_engine/knowledge/agreement — "
-            "check the build hook data paths and the package structure."
-        )
-
-    @pytest.mark.parametrize("json_file", _JSON_FILES, ids=lambda p: p.name)
-    def test_file_validates(self, json_file: Path) -> None:
-        """Each data file must deserialise into a valid CCNL without errors."""
-        ccnl = CCNL.model_validate_json(
-            _DATA_PKG.joinpath(json_file.name).read_text(encoding="utf-8")
-        )
-        assert ccnl.meta.ccnl_id
-
 
 # ---------------------------------------------------------------------------
 # load_ccnl helper
@@ -167,32 +126,6 @@ class TestLoadYearRules:
 # ---------------------------------------------------------------------------
 # CCNL Metalmeccanico Federmeccanica
 # ---------------------------------------------------------------------------
-
-
-class TestOvertimeBandInvariants:
-    """Parametric invariants over all 125 bundled CCNL JSON files.
-
-    Every CCNL must satisfy the no-ambiguous-collision invariant: two or more
-    bands for the same WorkKind without a threshold or conditional predicate
-    cannot be applied deterministically.
-
-    This test validates that the bundle validator in TimeSupplements is in sync
-    with the actual data — i.e. no file triggers the validator at load time.
-    """
-
-    @pytest.mark.parametrize("entry", _JSON_FILES, ids=lambda e: e.name)
-    def test_no_ambiguous_band_collisions(self, entry: object) -> None:
-        """Loading every CCNL file must not raise DataIntegrityError or ValueError.
-
-        The TimeSupplements.no_ambiguous_collisions validator rejects ambiguous
-        band layouts.  Passing here proves all 125 files are collision-free.
-        """
-        ccnl = load_ccnl(getattr(entry, "name", str(entry)).removesuffix(".json"))
-        wr = ccnl.work_rules
-        if wr is None or wr.time_supplements is None:
-            return
-        # Validator already ran during load_ccnl; reaching here means it passed.
-        assert wr.time_supplements is not None
 
 
 @pytest.mark.parametrize(

@@ -262,25 +262,39 @@ def test_every_valid_input_constructs() -> None:
         assert isinstance(cls(**kwargs), cls)
 
 
+def _scalar_failure(cls: type, field: str, value: object) -> str | None:
+    """Return how ``cls`` mishandles ``value`` in ``field``.
+
+    Returns:
+        The failure, ``None`` when the value is kept as valid or rejected
+        with an ``InvalidInputError`` naming the input.
+    """
+    try:
+        outcome = _build(cls, field, value)
+    except Exception as error:  # noqa: BLE001 - any other error is the failure
+        return f"{value!r}: raised {type(error).__name__}"
+    if isinstance(outcome, InvalidInputError):
+        named = outcome.field is not None and (
+            outcome.field.split(".")[0] == cls.__name__
+        )
+        if not named or outcome.remediation is None:
+            return f"{value!r}: rejected as {outcome.field!r} without remediation"
+        return None
+    if getattr(outcome, field) == value or value in {None, True}:
+        return None
+    return f"{value!r}: accepted as {getattr(outcome, field)!r}"
+
+
 @pytest.mark.parametrize(
     ("cls", "field"), _CASES, ids=lambda v: getattr(v, "__name__", v)
 )
-@pytest.mark.parametrize("value", _INVALID)
-def test_an_invalid_scalar_is_rejected_with_its_field(
-    cls: type, field: str, value: object
-) -> None:
-    """Either the value is a valid one for the field, or the input names it.
+def test_an_invalid_scalar_is_rejected_with_its_field(cls: type, field: str) -> None:
+    """Each invalid scalar is a valid value of the field, or the input names it.
 
     No other exception than ``InvalidInputError`` is ever raised.
     """
-    outcome = _build(cls, field, value)
-
-    if isinstance(outcome, InvalidInputError):
-        assert outcome.field is not None
-        assert outcome.field.split(".")[0] == cls.__name__
-        assert outcome.remediation is not None
-    else:
-        assert getattr(outcome, field) == value or value in {None, True}
+    failures = [f for v in _INVALID if (f := _scalar_failure(cls, field, v))]
+    assert failures == []
 
 
 def _positions(size: int) -> st.SearchStrategy[int]:

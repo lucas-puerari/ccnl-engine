@@ -11,8 +11,6 @@ from collections import Counter
 from datetime import date
 from typing import TYPE_CHECKING
 
-import pytest
-
 from ccnl_engine.agreement.coverage.models import required_series
 from ccnl_engine.agreement.validity.rules import SalaryGapKind, SeriesGapError
 from ccnl_engine.catalog.loaders import list_contracts, load_ccnl
@@ -51,16 +49,16 @@ def _gaps(ccnl: CCNL) -> Counter[tuple[str, SalaryGapKind, date]]:
     return found
 
 
-@pytest.mark.parametrize("ccnl", _ALL_CCNL, ids=lambda c: c.meta.ccnl_id)
-def test_required_series_cover_their_pay_table(ccnl: CCNL) -> None:
+def test_required_series_cover_their_pay_table() -> None:
     """On its first date each required series has a value or a declared gap."""
     starting_late = []
-    for path, start, series in required_series(ccnl.levels, ccnl.parameters):
-        try:
-            series.value_at(start)
-        except SeriesGapError as gap:
-            if gap.gap_kind is None:
-                starting_late.append(f"{path} from {start}")
+    for ccnl in _ALL_CCNL:
+        for path, start, series in required_series(ccnl.levels, ccnl.parameters):
+            try:
+                series.value_at(start)
+            except SeriesGapError as gap:
+                if gap.gap_kind is None:
+                    starting_late.append(f"{ccnl.meta.ccnl_id}/{path} from {start}")
     assert starting_late == []
 
 
