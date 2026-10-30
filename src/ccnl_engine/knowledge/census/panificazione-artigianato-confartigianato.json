@@ -243,6 +243,22 @@
       }
     },
     {
+      "id": "sickness_net_basis",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SICKNESS (Art. 46): the CCNL integrates up to 100% of the normal pay net of the worker's deductions without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.",
+      "calculation": "ccnl/panificazione-artigianato-confartigianato:coverage.notes",
+      "state": "unverified",
+      "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 46, align the computation, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "panificazione-artigianato-confartigianato/sickness_net_basis"
+        ]
+      }
+    },
+    {
       "id": "special_allowance_in_base",
       "institute": "base_salary",
       "variant": "all",

@@ -159,6 +159,16 @@
           },
           "remediation": "Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS (Art. 46): the CCNL integrates up to 100% of the normal pay net of the worker's deductions without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.",
+        "capability": "sickness",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "sickness_net_basis",
+          "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 46, align the computation, then resolve this limitation."
+        }
       }
     ]
   },
@@ -2023,7 +2033,7 @@
     "effective_until": null,
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "0cbd80c4c069137bbb57083400abef08b9bac6e915bc8f19544cc079378341fe",
+    "source_hash": "96c3579353bf0708f3c645fe31238a93c9989c6781096f648ff9785560cc56c9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2194,6 +2204,8 @@
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
+      "carenza_min_days": 6,
+      "net_basis": true,
       "provenance": {
         "status": "derived",
         "location": {
@@ -2201,16 +2213,19 @@
             "document_id": "ccnl-alimentazione-panificazione-artigianato-2023",
             "title": "CCNL Area Alimentazione e Panificazione — Artigianato (CNA / Confartigianato) 2023-2026",
             "kind": "tabella_retributiva",
-            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+            "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
           },
-          "section": "Art. malattia — integrazione al 100% per 180 giorni"
+          "section": "Parte comune, Art. 46",
+          "quote": "in caso di malattia o infortunio non sul lavoro superiore a 6 giorni le aziende garantiranno ai lavoratori un’integrazione economica fino al raggiungimento del 100% a partire dal 1° giorno e fino al 180° giorno; - in caso di malattia di durata inferiore o pari a 6 giorni viene riconosciuta al lavoratore una integrazione economica a carico dell'azienda fino al raggiungimento del 100% della retribuzione a partire dal 4° giorno."
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2023-01-01"
-        }
+        },
+        "transformation": "Art. 46: the top-up reaches 100% of the normal pay net of the worker's deductions ('calcolata sulla normale retribuzione di fatto al netto delle ritenute a carico del lavoratore') up to the 180th day; the three days of carenza are paid only when the illness lasts more than 6 days (carenza_min_days 6). The comporto of 12 months, over 24 months for several absences, is not counted across episodes. The text is a scan: the quote is from an OCR of the PDF, read on 2026-10-30."
       }
     }
   },
