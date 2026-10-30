@@ -47,6 +47,7 @@ nav = [
     { "Review plan"       = "trust/review-plan.md" },
     { "Validation matrix" = "trust/validation-matrix.md" },
     { "Model completeness" = "trust/completeness.md" },
+    { "Limitation reconciliation" = "trust/limitation-reconciliation.md" },
     { "Validation packets" = "trust/validation-packet.md" },
     { "Perimeter and tolerance" = "trust/perimeter.md" },
 

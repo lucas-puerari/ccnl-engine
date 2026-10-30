@@ -196,7 +196,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add a fact for an oncological illness and raise the periods by 50%."
+          "remediation": "Resolved as a duplicate of lavoro-domestico-non-convivente/oncological_comporto, which stays open (review of 2026-10-30): both track the 50% longer comporto of Art. 27 c. 6 for an oncological illness.",
+          "status": "resolved"
         }
       }
     ]
@@ -996,7 +997,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "ec0e1a5a9d594b197cef632ca94a8d871d786f33705a1e847d23d9a242d4a554",
+    "source_hash": "3d155aed458fa7028403d9e5715acf85cb5832cc89ca7d2c5307732385efc966",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },

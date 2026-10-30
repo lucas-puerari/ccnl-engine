@@ -3,24 +3,6 @@
   "ccnl_id": "forze-polizia-ordinamento-civile",
   "requirements": [
     {
-      "id": "ctps_rates_proxy",
-      "institute": "inps_employer",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "aliquote INPS/CTPS — dipendente 8,80%, datore 24,20% — proxy dal file 2026-pubblica-amministrazione.json già presente; verificare circolare INPS annuale per valori esatti (regime CTPS ex-INPDAP, identico a PA ordinaria).",
-      "calculation": "ccnl/forze-polizia-ordinamento-civile:coverage.notes",
-      "state": "unverified",
-      "work": [
-        "T04.01"
-      ],
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "forze-polizia-ordinamento-civile/ctps_rates_proxy"
-        ]
-      }
-    },
-    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

@@ -68,7 +68,8 @@
               "apprentice"
             ]
           },
-          "remediation": "Verify Arts. 80-82 of the July 2024 rinnovo for the apprentice seniority amount."
+          "remediation": "Resolved as a duplicate of ceramica-industria-confindustria/apprentice_seniority, which stays open (review of 2026-10-30): both track the missing parameters.seniority_increments.apprentice_amount, which makes seniority_first_cadence pay apprentices no increment.",
+          "status": "resolved"
         }
       },
       {
@@ -2009,7 +2010,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
     "verification_status": "unverified",
-    "source_hash": "208b52de001be7c536729486878b8ee82b94899372fe602be3815993b9a9951e",
+    "source_hash": "a204ac9effdd7ecd7bc4fd5b497f99dbea544fccbfc4a56e8c19418312210e93",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

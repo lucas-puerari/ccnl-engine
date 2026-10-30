@@ -21,24 +21,6 @@
       }
     },
     {
-      "id": "apprentice_seniority_amount",
-      "institute": "seniority",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "APPRENTICE INCREMENT: apprentice_amount=null. No confirmation from any accessible primary source for B122 industria. The EUR 6 value is confirmed only for CCNL Ceramica Artigianato (V751), not B122. Italian CCNLs frequently exclude apprentices from seniority accrual during the training period (D.Lgs 81/2015 Art. 47), so null may be the correct answer rather than a gap. Verification requires full CCNL text (Arts. 80-82 of the July 2024 rinnovo), which is not publicly machine-readable.",
-      "calculation": "ccnl/ceramica-industria-confindustria:coverage.notes",
-      "state": "unverified",
-      "work": [
-        "T02.01"
-      ],
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "ceramica-industria-confindustria/apprentice_seniority_amount"
-        ]
-      }
-    },
-    {
       "id": "apprenticeship_pct_undeclared_components",
       "institute": "base_salary",
       "variant": "apprentice",

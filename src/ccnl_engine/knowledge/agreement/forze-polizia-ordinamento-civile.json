@@ -2227,7 +2227,8 @@
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "ctps_rates_proxy",
-          "remediation": "Verify the CTPS rates against the annual INPS circular."
+          "remediation": "Resolved (review of 2026-10-30): the CTPS rates of the bundle (employer 24.20%, employee 8.80%) are read from the INPS page 'I contributi dei dipendenti pubblici' (contribution/2026/pubblica-amministrazione.json, inps.provenance, verified, checked on 2026-10-09 and 2026-10-17), as for funzioni-centrali-aran/ctps_rates_proxy.",
+          "status": "resolved"
         }
       },
       {
@@ -2253,7 +2254,7 @@
     "effective_until": null,
     "source": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.dataPubblicazioneGazzetta=2025-04-18&atto.codiceRedazionale=25G00046&atto.articolo.numero=0&atto.articolo.sottoArticolo=1&atto.articolo.sottoArticolo1=0&qId=1ede7c71-4666-4c74-b496-2391fce88e7f",
     "verification_status": "unverified",
-    "source_hash": "537dcff732df2174d18dab9828880d24efc51fc1a84d55301e531e95a452ae2f",
+    "source_hash": "1fac2ec3a244c65436ef4fe7e8598779263788e8f611b2291c8789953e95aac0",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

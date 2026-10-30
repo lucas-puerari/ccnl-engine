@@ -68,7 +68,8 @@
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "inps_credit_rate_unverified",
-          "remediation": "Verify the 26.76% employer rate and the solidarity fund share against the annual INPS circular."
+          "remediation": "Resolved as a duplicate of bancari-abi/inps_sector_rates_unsourced, which stays open (review of 2026-10-30): both say the credito employer rate is not confirmed by a 2026 INPS source. contribution/2026/credito.json now takes 26.76 from the INPS 2012 table and keeps the Fondo di solidarietà out of the totals, in parameters.solidarity_fund.",
+          "status": "resolved"
         }
       },
       {
@@ -1837,7 +1838,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "645100fc2d3eb8b8e5124a069f78903bef1564e01b1e0bce4aee98d6129d1cd0",
+    "source_hash": "03d61d8493f4c3bab61d47e637233acb77c6f8914b16ae125594bc826b1952d8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

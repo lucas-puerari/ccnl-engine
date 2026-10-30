@@ -674,7 +674,6 @@
     ],
     "agreement/assicurazioni-ania.json": [
       "assicurazioni-ania/apprentice_seniority",
-      "assicurazioni-ania/inps_credit_rate_unverified",
       "assicurazioni-ania/inps_sector_rates_unsourced",
       "assicurazioni-ania/seniority_modal_class_difference"
     ],
@@ -709,7 +708,6 @@
       "bancari-abi/abi_sickness_counting",
       "bancari-abi/apprentice_seniority",
       "bancari-abi/ex_ristrutturazione_amount",
-      "bancari-abi/inps_credit_rate_unverified",
       "bancari-abi/inps_sector_rates_unsourced",
       "bancari-abi/scatti_freeze_2013_2014"
     ],
@@ -733,8 +731,7 @@
       "cemento-calce-gesso-industria/apprenticeship_full_pay_passthrough"
     ],
     "agreement/ceramica-industria-confindustria.json": [
-      "ceramica-industria-confindustria/apprentice_seniority",
-      "ceramica-industria-confindustria/apprentice_seniority_amount"
+      "ceramica-industria-confindustria/apprentice_seniority"
     ],
     "agreement/chimica-affini-pmi-unionchimica.json": [
       "chimica-affini-pmi-unionchimica/apprentice_seniority",
@@ -896,9 +893,6 @@
     "agreement/fiori-recisi-ancef.json": [
       "fiori-recisi-ancef/apprentice_seniority"
     ],
-    "agreement/forze-polizia-ordinamento-civile.json": [
-      "forze-polizia-ordinamento-civile/ctps_rates_proxy"
-    ],
     "agreement/funivie-anef.json": [
       "funivie-anef/apprentice_seniority"
     ],
@@ -989,7 +983,6 @@
     ],
     "agreement/lavoro-domestico-non-convivente.json": [
       "lavoro-domestico-non-convivente/annual_minimi_not_updated",
-      "lavoro-domestico-non-convivente/domestic_oncological_comporto",
       "lavoro-domestico-non-convivente/extra_month_hours",
       "lavoro-domestico-non-convivente/meal_indennity",
       "lavoro-domestico-non-convivente/oncological_comporto",
@@ -1005,8 +998,7 @@
       "legno-lapidei-artigianato-confartigianato/cigo_rate_by_activity",
       "legno-lapidei-artigianato-confartigianato/impiegati_apprenticeship_duration",
       "legno-lapidei-artigianato-confartigianato/inps_sector_rates_unsourced",
-      "legno-lapidei-artigianato-confartigianato/lapidei_tables_not_modelled",
-      "legno-lapidei-artigianato-confartigianato/null_category_operaio_rate"
+      "legno-lapidei-artigianato-confartigianato/lapidei_tables_not_modelled"
     ],
     "agreement/logistica-trasporto-confetra-viaggiante.json": [
       "logistica-trasporto-confetra-viaggiante/apprentice_seniority",
@@ -1095,7 +1087,6 @@
       "operai-agricoli-florovivaisti/florovivaisti_tables",
       "operai-agricoli-florovivaisti/inail_agricultural_premium",
       "operai-agricoli-florovivaisti/inps_on_actual_not_conventional_pay",
-      "operai-agricoli-florovivaisti/mountain_zone_reductions",
       "operai-agricoli-florovivaisti/otd_terzo_elemento",
       "operai-agricoli-florovivaisti/provincial_supplement",
       "operai-agricoli-florovivaisti/super_profile_scatti"

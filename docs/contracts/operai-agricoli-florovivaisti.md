@@ -152,12 +152,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Pass the provincial EBAN, FISA and Agrifondo contributions as bilateral fund events.
 
-!!! warning "operai-agricoli-florovivaisti/mountain_zone_reductions · inps_employer · impact yes · open"
+!!! note "operai-agricoli-florovivaisti/mountain_zone_reductions · inps_employer · impact yes · resolved"
     TERRITORIAL REDUCTIONS. INPS reductions for mountain/disadvantaged zones (75%/68%) are not modelled.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the INPS reductions for mountain and disadvantaged zones.
+    **Remediation:** Resolved (review of 2026-10-30): EmployerProfile.agricultural_zone and contribution/zone/models.py with_zone_reduction apply the mountain and disadvantaged zone cuts of INPS circ. 43/2026 par. 7 (zone_reduction in contribution/2026/agricoltura.json); an unknown zone blocks the run. Tests: tests/integration/ccnl_engine/period/context/agreement/services/test_contract_agricultural_zone.py::test_mountain_zone_cuts_the_employer_contributions, ::test_unknown_zone_charges_the_full_rates_and_blocks.
 
 !!! warning "operai-agricoli-florovivaisti/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.

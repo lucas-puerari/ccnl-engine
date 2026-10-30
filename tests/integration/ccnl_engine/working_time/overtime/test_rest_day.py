@@ -3,7 +3,9 @@
 - logistica-trasporto-confetra-viaggiante (art. 13 c. 6): the travelling
   staff's Sunday overtime is paid 30% (OT_RIPOSO), the festività 65%;
 - metalmeccanico-federmeccanica has no rest-day band: Sunday overtime is
-  straordinario festivo, OT_FESTIVO 0.55.
+  straordinario festivo, OT_FESTIVO 0.55;
+- terziario-confesercenti (art. 149) has no rest-day band either: Sunday
+  overtime takes OT_FESTIVO, the 30% the article pays.
 """
 
 from __future__ import annotations
@@ -24,6 +26,7 @@ from ccnl_engine.working_time.overtime.policies import (
 _SUNDAY = date(2026, 3, 8)
 _DRIVERS = "logistica-trasporto-confetra-viaggiante"
 _METAL = "metalmeccanico-federmeccanica"
+_TERZIARIO = "terziario-confesercenti"
 
 
 def _overtime(kind: OvertimeKind, multiplier: Decimal | None = None) -> OvertimeEvent:
@@ -36,8 +39,14 @@ def _overtime(kind: OvertimeKind, multiplier: Decimal | None = None) -> Overtime
         (_DRIVERS, OvertimeKind.REST_DAY, "OT_RIPOSO", "1.3"),
         (_DRIVERS, OvertimeKind.HOLIDAY, "OT_FESTIVO", "1.65"),
         (_METAL, OvertimeKind.REST_DAY, "OT_FESTIVO", "1.55"),
+        (_TERZIARIO, OvertimeKind.REST_DAY, "OT_FESTIVO", "1.3"),
     ],
-    ids=["drivers_sunday", "drivers_festivita", "metal_falls_back_on_holiday"],
+    ids=[
+        "drivers_sunday",
+        "drivers_festivita",
+        "metal_falls_back_on_holiday",
+        "terziario_sunday_30",
+    ],
 )
 def test_rest_day_band(
     slug: str, kind: OvertimeKind, code: str, multiplier: str

@@ -156,12 +156,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Pick the divisor by the weekly hours.
 
-!!! warning "terziario-confesercenti/sunday_overtime · overtime · impact yes · open"
-    Art. 149: the 30% on Sunday overtime (OT_FESTIVO covers public holidays only).
+!!! warning "terziario-confesercenti/sunday_overtime · overtime · impact unknown · open"
+    Art. 149: the 30% on Sunday overtime. Overtime declared as OvertimeKind.REST_DAY takes OT_FESTIVO, 30% (working_time/overtime/policies.py, tests/integration/ccnl_engine/working_time/overtime/test_rest_day.py::test_rest_day_band[terziario_sunday_30]); Sunday overtime of a worker whose weekly rest falls on another day is weekday overtime, 15%, and whether Art. 149 pays it 30% is not confirmed (review of 2026-10-30).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add a rest-day band of 30%.
+    **Remediation:** Read Art. 149 on Sunday overtime of a worker whose weekly rest is not Sunday; if it pays 30%, add a Sunday band, else resolve this limitation.
 
 !!! warning "terziario-confesercenti/apprentice_sickness · sickness · impact yes · open"
     Art. 54: the apprentice sickness, 60% of the gross pay for the three days of carenza of six events a year and for hospital stays, while the file pays apprentices no integration.

@@ -107,7 +107,8 @@
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "inps_credit_rate_unverified",
-          "remediation": "Verify the 26.76% employer rate against the annual INPS circular for the credit and insurance sector."
+          "remediation": "Resolved as a duplicate of assicurazioni-ania/inps_sector_rates_unsourced, which stays open (review of 2026-10-30): both say the credito employer rate is not confirmed by a 2026 INPS source. contribution/2026/credito.json now takes 26.76 from the INPS 2012 table and keeps the Fondo di solidarietà out of the totals, in parameters.solidarity_fund.",
+          "status": "resolved"
         }
       },
       {
@@ -1196,7 +1197,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "161f7c258b725223f9947228b4cbb85b901cd636dcf55af4cdd253e71c450b0f",
+    "source_hash": "e91995b948c92fab4215b3dce5a3acb7dacfd98d3cf3f19572c79a277c66bda0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

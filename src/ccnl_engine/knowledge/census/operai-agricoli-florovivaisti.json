@@ -219,24 +219,6 @@
       }
     },
     {
-      "id": "mountain_zone_reductions",
-      "institute": "inps_employer",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "TERRITORIAL REDUCTIONS. INPS reductions for mountain/disadvantaged zones (75%/68%) are not modelled.",
-      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
-      "state": "absent",
-      "work": [
-        "T04.01"
-      ],
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "operai-agricoli-florovivaisti/mountain_zone_reductions"
-        ]
-      }
-    },
-    {
       "id": "otd_terzo_elemento",
       "institute": "base_salary",
       "variant": "all",
