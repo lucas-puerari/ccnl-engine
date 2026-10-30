@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "universita-tecnologi-aran",
     "name": "CCNL Comparto Istruzione e Ricerca 2025-2027 (trattamento economico) - ARAN, Università, tecnologi a tempo indeterminato",
     "cnel_code": "S305",
     "sector": "Pubblica Amministrazione",
+    "family": {
+      "id": "pubblico-impiego",
+      "reason": "Education and research sector, university technologists.",
+      "related": []
+    },
     "tax_sector": "pubblica-amministrazione",
     "signatories": [
       "ARAN",
@@ -648,7 +653,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "596dca9691752b6ad245638a0e197c9ecb358a65d4139e5f5de122c551fbd359",
+    "source_hash": "d7902c1d5aa13d0bc65ac0ced9619a20124da965d843c0cb10bc860e7e9c2e06",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

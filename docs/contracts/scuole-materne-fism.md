@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `T271` |
 | **Sector** | istruzione privata cattolica per l'infanzia |
+| **Family** | `istruzione-formazione` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2025-05-28 |
 | **Workers (est.)** | ~30k |

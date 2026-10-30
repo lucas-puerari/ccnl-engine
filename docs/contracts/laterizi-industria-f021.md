@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `F021` |
 | **Sector** | industria |
+| **Family** | `materiali-estrattive` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2022-05-31 |
 | **Workers (est.)** | ~17k |

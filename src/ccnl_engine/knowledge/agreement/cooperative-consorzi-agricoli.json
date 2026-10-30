@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "cooperative-consorzi-agricoli",
     "cnel_code": "A016",
     "name": "CCNL Cooperative e Consorzi Agricoli",
     "sector": "cooperative e consorzi agricoli — impiegati e operai agricoli",
+    "family": {
+      "id": "agricoltura",
+      "reason": "Agricultural cooperatives and consortia, clerical and manual workers.",
+      "related": []
+    },
     "tax_sector": "agricoltura",
     "signatories": [
       "AGCI-Agrital",
@@ -1621,7 +1626,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "96f97a2142fbed155f60625fad4f9f7cd4340bef71a540d2faf3039eda547d89",
+    "source_hash": "76e055533827fe216c20b60601b89df84d35f514c012ab848bfd73def9c0b2bf",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

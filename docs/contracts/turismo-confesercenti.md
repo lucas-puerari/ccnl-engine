@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H058` |
 | **Sector** | turismo — alberghi, campeggi, pubblici esercizi, agenzie di viaggi |
+| **Family** | `turismo` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2024-07-22 |
 | **Workers (est.)** | — |

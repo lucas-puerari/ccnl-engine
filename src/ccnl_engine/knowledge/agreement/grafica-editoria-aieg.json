@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "grafica-editoria-aieg",
     "name": "CCNL Grafica e Editoria Industria (AIEG-Acigraf)",
     "cnel_code": "G011",
     "sector": "grafica-editoria",
+    "family": {
+      "id": "carta-grafica",
+      "reason": "Graphics and publishing industry.",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "AIEG",
@@ -2595,7 +2600,7 @@
     "effective_until": null,
     "source": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
     "verification_status": "unverified",
-    "source_hash": "02f577e1df21aaeec4ade8e775e26c719069d388f6ff72c9996538aebfb4f4cb",
+    "source_hash": "8212b84d14807a3d0ef8020fd40dc07bf27e6d70238e9ca1fbc9683feaa423b5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

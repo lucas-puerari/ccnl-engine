@@ -1,0 +1,331 @@
+{
+  "schema_version": 1,
+  "families": [
+    {
+      "id": "agricoltura",
+      "name": "Agriculture",
+      "description": "Farming, agricultural cooperatives and consortia, agricultural contracting and livestock organisations.",
+      "criteria": "The employer grows crops or raises livestock, or serves farms directly.",
+      "groups": [
+        "G14"
+      ]
+    },
+    {
+      "id": "alimentare",
+      "name": "Food and tobacco",
+      "description": "Food industry, bakeries and first processing of tobacco leaf.",
+      "criteria": "The employer processes food or agricultural products for consumption.",
+      "groups": [
+        "G09",
+        "G11"
+      ]
+    },
+    {
+      "id": "assicurazioni",
+      "name": "Insurance",
+      "description": "Insurance companies.",
+      "criteria": "The employer is an insurance company.",
+      "groups": [
+        "G16"
+      ]
+    },
+    {
+      "id": "bonifica-forestazione",
+      "name": "Land reclamation and forestry",
+      "description": "Land reclamation and irrigation consortia, hydraulic and forestry works.",
+      "criteria": "The employer maintains land, waterways and forests.",
+      "groups": [
+        "G14"
+      ]
+    },
+    {
+      "id": "carta-grafica",
+      "name": "Paper, printing and publishing",
+      "description": "Paper and board manufacturing, printing, publishing and graphic communication.",
+      "criteria": "The employer makes paper or prints and publishes.",
+      "groups": [
+        "G10",
+        "G11"
+      ]
+    },
+    {
+      "id": "chimica",
+      "name": "Chemicals, rubber, glass and ceramics",
+      "description": "Chemical, pharmaceutical, rubber and plastics, glass and ceramics industries.",
+      "criteria": "The employer transforms materials through chemical or high-temperature processes.",
+      "groups": [
+        "G07"
+      ]
+    },
+    {
+      "id": "commercio",
+      "name": "Commerce and distribution",
+      "description": "Wholesale and retail trade of goods, including cooperative and import-export distribution.",
+      "criteria": "The employer buys and sells goods; the agreement is signed by a trade association.",
+      "groups": [
+        "G01"
+      ]
+    },
+    {
+      "id": "credito",
+      "name": "Banking",
+      "description": "Banks and cooperative credit banks.",
+      "criteria": "The employer is a bank.",
+      "groups": [
+        "G16"
+      ]
+    },
+    {
+      "id": "dirigenza-pubblica",
+      "name": "Public administration, managers",
+      "description": "Managers of the public administration bargaining areas negotiated by ARAN.",
+      "criteria": "The employer is a public administration and the staff are managers or health executives.",
+      "groups": [
+        "G15"
+      ]
+    },
+    {
+      "id": "edilizia",
+      "name": "Construction",
+      "description": "Building and civil engineering, whatever the size or legal form of the employer.",
+      "criteria": "The employer builds, renovates or maintains buildings and civil works and enrols in a Cassa Edile.",
+      "groups": [
+        "G13"
+      ]
+    },
+    {
+      "id": "energia-utilities",
+      "name": "Energy and public utilities",
+      "description": "Oil and energy, electricity, gas and water, waste and environmental services.",
+      "criteria": "The employer produces or distributes energy or water, or runs environmental public services.",
+      "groups": [
+        "G07"
+      ]
+    },
+    {
+      "id": "farmacie",
+      "name": "Pharmacies",
+      "description": "Private and municipal pharmacies.",
+      "criteria": "The employer runs a community pharmacy.",
+      "groups": [
+        "G03"
+      ]
+    },
+    {
+      "id": "forze-polizia",
+      "name": "Police forces",
+      "description": "Police forces with a civil status, under a public-law regime negotiated outside ARAN.",
+      "criteria": "The staff belong to a police force whose pay is set by public-law agreements (D.Lgs. 195/1995).",
+      "groups": [
+        "G15"
+      ]
+    },
+    {
+      "id": "ict-telecomunicazioni",
+      "name": "Telecommunications and IT",
+      "description": "Telecommunications operators and IT services companies.",
+      "criteria": "The employer runs networks or builds and operates software and IT services.",
+      "groups": [
+        "G10"
+      ]
+    },
+    {
+      "id": "istruzione-formazione",
+      "name": "Private education and training",
+      "description": "Private schools and vocational training bodies.",
+      "criteria": "The employer teaches or trains outside the public administration.",
+      "groups": [
+        "G05"
+      ]
+    },
+    {
+      "id": "lavoro-domestico",
+      "name": "Domestic work",
+      "description": "Domestic workers and carers employed by households.",
+      "criteria": "The employer is a household, not a business.",
+      "groups": [
+        "G17"
+      ]
+    },
+    {
+      "id": "legno-arredamento",
+      "name": "Wood and furniture",
+      "description": "Wood working and furniture manufacturing.",
+      "criteria": "The employer works wood or makes furniture.",
+      "groups": [
+        "G08",
+        "G11"
+      ]
+    },
+    {
+      "id": "materiali-estrattive",
+      "name": "Building materials and extraction",
+      "description": "Cement, lime, plaster, bricks, stone and quarrying, mining.",
+      "criteria": "The employer extracts minerals or produces building materials from them.",
+      "groups": [
+        "G07"
+      ]
+    },
+    {
+      "id": "metalmeccanica",
+      "name": "Metalworking",
+      "description": "Metalworking, engineering and plant installation, including jewellery and goldsmith manufacturing.",
+      "criteria": "The employer works metals or builds machines and installations, whatever its size or legal form.",
+      "groups": [
+        "G06",
+        "G08",
+        "G11"
+      ]
+    },
+    {
+      "id": "organizzazioni-associative",
+      "name": "Associations and trade unions",
+      "description": "Staff of trade unions and representative associations.",
+      "criteria": "The employer is an association representing workers or businesses.",
+      "groups": [
+        "G03"
+      ]
+    },
+    {
+      "id": "pelli-calzature",
+      "name": "Leather and footwear",
+      "description": "Tanning, leather goods and footwear manufacturing.",
+      "criteria": "The employer tans hides or makes leather goods or footwear.",
+      "groups": [
+        "G08"
+      ]
+    },
+    {
+      "id": "pubblico-impiego",
+      "name": "Public administration, non-managerial staff",
+      "description": "Non-managerial staff of the public administration bargaining sectors negotiated by ARAN.",
+      "criteria": "The employer is a public administration under D.Lgs. 165/2001 and the staff are not managers.",
+      "groups": [
+        "G15"
+      ]
+    },
+    {
+      "id": "pulizia-multiservizi",
+      "name": "Cleaning and integrated services",
+      "description": "Cleaning, sanitation, integrated facility services and industrial laundries.",
+      "criteria": "The employer cleans, sanitises or maintains premises and textiles of other businesses.",
+      "groups": [
+        "G03",
+        "G08",
+        "G11"
+      ]
+    },
+    {
+      "id": "servizi-automobilistici",
+      "name": "Motoring services",
+      "description": "Driving schools, motoring consultancy, garages and vehicle rental.",
+      "criteria": "The employer provides services to motorists, not passenger or goods transport.",
+      "groups": [
+        "G03",
+        "G12"
+      ]
+    },
+    {
+      "id": "servizi-immobiliari",
+      "name": "Real estate and building management",
+      "description": "Real estate brokerage, building caretaking and public housing bodies.",
+      "criteria": "The employer brokers, manages or keeps residential buildings.",
+      "groups": [
+        "G01",
+        "G03"
+      ]
+    },
+    {
+      "id": "servizi-persona",
+      "name": "Personal care services",
+      "description": "Hairdressing and beauty.",
+      "criteria": "The employer provides personal care services to consumers.",
+      "groups": [
+        "G11"
+      ]
+    },
+    {
+      "id": "servizi-postali",
+      "name": "Postal services",
+      "description": "Universal postal service, mail delivery and courier services.",
+      "criteria": "The employer collects and delivers mail or parcels.",
+      "groups": [
+        "G12"
+      ]
+    },
+    {
+      "id": "servizi-professionali",
+      "name": "Professional and business services",
+      "description": "Professional offices and data-processing service centres.",
+      "criteria": "The employer sells intellectual or administrative services to businesses or professionals.",
+      "groups": [
+        "G01"
+      ]
+    },
+    {
+      "id": "socio-sanitario",
+      "name": "Private health and social care",
+      "description": "Private hospitals, nursing homes and social-care institutions, including social cooperatives.",
+      "criteria": "The employer delivers health, care or social-assistance services.",
+      "groups": [
+        "G04"
+      ]
+    },
+    {
+      "id": "spettacolo-media",
+      "name": "Entertainment and broadcasting",
+      "description": "Film production, cinemas and radio and television broadcasting.",
+      "criteria": "The employer produces, distributes or shows audiovisual content.",
+      "groups": [
+        "G03",
+        "G10"
+      ]
+    },
+    {
+      "id": "sport",
+      "name": "Sport facilities",
+      "description": "Sport facilities, gyms and sport associations.",
+      "criteria": "The employer runs sport facilities or organises sport activities.",
+      "groups": [
+        "G02"
+      ]
+    },
+    {
+      "id": "tessile-moda",
+      "name": "Textiles and fashion",
+      "description": "Textile, clothing and fashion accessories manufacturing, including eyewear.",
+      "criteria": "The employer manufactures textiles, clothing or fashion accessories.",
+      "groups": [
+        "G08",
+        "G11"
+      ]
+    },
+    {
+      "id": "trasporti-logistica",
+      "name": "Transport, logistics and transport infrastructure",
+      "description": "Goods and passenger transport by road, rail, sea, air and cable, logistics, shipping agencies and road infrastructure operators.",
+      "criteria": "The employer moves goods or people, or operates the infrastructure they travel on.",
+      "groups": [
+        "G12"
+      ]
+    },
+    {
+      "id": "turismo",
+      "name": "Tourism and hospitality",
+      "description": "Hotels, campsites, restaurants and bars, collective catering, spas and travel agencies.",
+      "criteria": "The employer hosts, feeds or organises the travel of customers.",
+      "groups": [
+        "G02"
+      ]
+    },
+    {
+      "id": "vigilanza",
+      "name": "Private security",
+      "description": "Armed private security guards and unarmed fiduciary services.",
+      "criteria": "The employer provides guarding, surveillance or fiduciary security services.",
+      "groups": [
+        "G03"
+      ]
+    }
+  ]
+}

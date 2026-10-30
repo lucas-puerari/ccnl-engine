@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H501` |
 | **Sector** | lavoro domestico |
+| **Family** | `lavoro-domestico` |
 | **Tax sector** | `lavoro-domestico` |
 | **Last renewal** | 2025-10-28 |
 | **Workers (est.)** | — |

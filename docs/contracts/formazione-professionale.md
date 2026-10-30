@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `T261` |
 | **Sector** | formazione professionale |
+| **Family** | `istruzione-formazione` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2024-03-01 |
 | **Workers (est.)** | ~19.8k |

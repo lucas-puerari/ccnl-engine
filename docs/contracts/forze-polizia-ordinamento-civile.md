@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `N/A` |
 | **Sector** | Pubblica Sicurezza — Forze di Polizia ad ordinamento civile |
+| **Family** | `forze-polizia` |
 | **Tax sector** | `pubblica-amministrazione` |
 | **Last renewal** | 2025-03-24 |
 | **Workers (est.)** | ~130k |

@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "trasporto-ferroviario-agens",
     "name": "CCNL Attività Ferroviarie — AGENS",
     "cnel_code": "I320",
     "sector": "trasporto",
+    "family": {
+      "id": "trasporti-logistica",
+      "reason": "Rail transport and services (Agens).",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "AGENS — Aziende Aderenti alla Sezione Ferroviaria di Conftrasporto",
@@ -2427,7 +2432,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "94de1176ceee7429909d5829e4ad7f8ad0fe09cb735f60e979b2ae3c61914b2c",
+    "source_hash": "9e8935c9edbe77ba6f9c93151e5ac621a18716e7ebe38b69d5ee8027cadd622a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

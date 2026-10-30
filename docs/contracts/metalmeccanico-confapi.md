@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `C018` |
 | **Sector** | metalmeccanico |
+| **Family** | `metalmeccanica` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2017-07-03 |
 | **Workers (est.)** | ~350k |

@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "tessile-smi",
     "name": "CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)",
     "cnel_code": "D014",
     "sector": "industria",
+    "family": {
+      "id": "tessile-moda",
+      "reason": "Textile and clothing industry (SMI).",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "SMI",
@@ -1637,7 +1642,7 @@
     "effective_until": null,
     "source": "https://www.sistemamodaitalia.com/",
     "verification_status": "unverified",
-    "source_hash": "80beb7776a058fcde81bc06f78dece2a656ff20579ca4f875b3803d16b20ed1d",
+    "source_hash": "e7d72f54264c3a22a82595fc5aaff53b27471cd3098be72300b4b84995151d07",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

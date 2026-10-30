@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `G091` |
 | **Sector** | radiotelevisione — settore radiofonico |
+| **Family** | `spettacolo-media` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2026-01-08 |
 | **Workers (est.)** |  |

@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `B011` |
 | **Sector** | chimica |
+| **Family** | `chimica` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-04-15 |
 | **Workers (est.)** | ~210k |

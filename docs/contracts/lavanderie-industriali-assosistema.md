@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `D0L1` |
 | **Sector** | lavanderie-industriali |
+| **Family** | `pulizia-multiservizi` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2026-05-19 |
 | **Workers (est.)** | ~17k |

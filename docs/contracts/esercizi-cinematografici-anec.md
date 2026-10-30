@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `G211` |
 | **Sector** | cinema |
+| **Family** | `spettacolo-media` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2025-10-16 |
 | **Workers (est.)** | ~6k |

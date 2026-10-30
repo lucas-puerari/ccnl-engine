@@ -54,11 +54,11 @@ figure can be reproduced exactly from any historical snapshot. See
 
 ## CCNL JSON schema
 
-Each CCNL file follows schema version `0.5`. The top-level keys:
+Each CCNL file follows schema version `0.6`. The top-level keys:
 
 | Key | Type | Description |
 |---|---|---|
-| `schema_version` | string | Schema revision (e.g. `"0.5"`) |
+| `schema_version` | string | Schema revision (e.g. `"0.6"`) |
 | `meta` | object | Identity: CNEL code, name, sector, signatories, sources, extraction metadata |
 | `coverage` | object | Implementation status: `gross`, `net`, `work_rules`, plus `notes` |
 | `parameters` | object | Contract-wide parameters: hourly divisor, additional months, seniority |
@@ -66,6 +66,30 @@ Each CCNL file follows schema version `0.5`. The top-level keys:
 | `apprenticeship` | array | Apprenticeship tracks (under-classification or percentage) |
 | `ruleset` | object | Identity for integrity verification: `id`, `version`, `source_hash`, `verification_status` |
 | `work_rules` | object | Time supplements, absence, leave, and sickness rules |
+
+### `meta.family`
+
+The contract family of the CCNL, an id of the central catalog
+`knowledge/agreement/family/catalog.json`, with the reason of the
+assignment and, for a multi-sector text, the related families:
+
+```json
+{
+  "id": "metalmeccanica",
+  "reason": "Metalworking and installation crafts: same production, craft employers.",
+  "related": []
+}
+```
+
+A family groups the CCNLs of one productive sector across employer size,
+legal form and signatories; the catalog states for each family its
+assignment criteria and the work groups G01-G17 of the roadmap that hold
+it. The family is descriptive: no rule, rate or contribution regime is
+inherited from it, and it is independent of `tax_sector` and of the CNEL
+code. An id the catalog does not hold is rejected when the file loads, in
+the bundle and in a custom repository alike. Schema `0.6` made the field
+required; a file of an earlier schema is rejected and needs `meta.family`
+and `"schema_version": "0.6"`.
 
 ### `meta.sources`
 

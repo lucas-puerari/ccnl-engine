@@ -31,6 +31,7 @@ DEFAULT_OWNER = "ccnl-engine maintainers"
 #: Dataset -> (model the loader validates it with, has a year directory).
 DATASETS: dict[str, tuple[str, bool]] = {
     "agreement": ("CCNL", False),
+    "agreement/family": ("FamilyCatalog", False),
     "contribution": ("InpsRates", True),
     "sickness/indemnity": ("InpsSickPayRates", False),
     "absence/insured": ("InsuredAbsenceRates", False),
@@ -49,6 +50,7 @@ DATASETS: dict[str, tuple[str, bool]] = {
 }
 #: Why a resource with no year and no ruleset validity has none.
 NO_VALIDITY = {
+    "agreement/family": "contract families describe the CCNLs, not a period",
     "limitation": "engine limitations follow the engine, not a period",
     "pay_item": "the pay item policy applies to every year the bundle holds",
     "sickness/indemnity": (
@@ -58,6 +60,9 @@ NO_VALIDITY = {
 }
 #: Why an engine-maintained resource carries no enclosing ruleset identity.
 NO_RULESET = {
+    "agreement/family": (
+        "the catalog is engine metadata; each CCNL states the reason of its family"
+    ),
     "capability/registry": (
         "the registry describes engine capabilities for its year; each capability "
         "declares its own evidence"

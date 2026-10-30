@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "metalmeccanico-confapi",
     "name": "CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)",
     "cnel_code": "C018",
     "sector": "metalmeccanico",
+    "family": {
+      "id": "metalmeccanica",
+      "reason": "Metalworking small and medium industry (Unionmeccanica-Confapi).",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Unionmeccanica-Confapi",
@@ -3039,7 +3044,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "daf3843f6655e774ce7692922abcb069f68233fa89fcb5979a042795752cf134",
+    "source_hash": "b9cbbe425284fd808f6f805a8d2807c19e8697922294d086e6f8d02d73ded008",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

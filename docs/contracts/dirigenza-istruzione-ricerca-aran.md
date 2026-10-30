@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `S325` |
 | **Sector** | Pubblica Amministrazione |
+| **Family** | `dirigenza-pubblica` |
 | **Tax sector** | `pubblica-amministrazione` |
 | **Last renewal** | 2026-08-06 |
 | **Workers (est.)** | ~8k |

@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `A011` |
 | **Sector** | agricoltura |
+| **Family** | `agricoltura` |
 | **Tax sector** | `agricoltura` |
 | **Last renewal** | 2026-05-28 |
 | **Workers (est.)** | ~600k |

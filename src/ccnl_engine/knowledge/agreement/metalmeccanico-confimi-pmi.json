@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "metalmeccanico-confimi-pmi",
     "name": "CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)",
     "cnel_code": "C01A",
     "sector": "metalmeccanico",
+    "family": {
+      "id": "metalmeccanica",
+      "reason": "Metalworking small and medium industry (Confimi).",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "CONFIMI IMPRESA MECCANICA",
@@ -1505,7 +1510,7 @@
     "effective_until": null,
     "source": "https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/",
     "verification_status": "unverified",
-    "source_hash": "bb70f7b8a2ff5a76c97d343b6a549ebbdfbf86fab10bd4f630eff63c3bea22a9",
+    "source_hash": "abdebce73e5a9f1eaee714b9cf7d7959f41dd65d40bb3d1b98477ea77ba61b3f",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

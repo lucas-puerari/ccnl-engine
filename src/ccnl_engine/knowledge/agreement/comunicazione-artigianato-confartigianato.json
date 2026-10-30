@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "comunicazione-artigianato-confartigianato",
     "name": "CCNL Area Comunicazione — Artigianato",
     "cnel_code": "G016",
     "sector": "comunicazione grafica editoria stampa artigianato",
+    "family": {
+      "id": "carta-grafica",
+      "reason": "Craft graphic communication, printing and publishing businesses.",
+      "related": []
+    },
     "tax_sector": "artigianato",
     "agreement_date": "2024-11-18",
     "signatories": [
@@ -1446,7 +1451,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "5545ea940c2dbbc303dabcced64480b96b085e805476e728abde482047f29a24",
+    "source_hash": "2721ee8cc0f73d67a4b6a0cd9fd7c57990fffec58455ed3dda1e8a6c06bba561",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

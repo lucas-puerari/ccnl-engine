@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "contoterzismo-caiagromec",
     "name": "CCNL Attivita Agromeccaniche (Contoterzismo) CAI Agromec-FAI-FLAI-UILA",
     "cnel_code": "A051",
     "sector": "Agricoltura",
+    "family": {
+      "id": "agricoltura",
+      "reason": "Agricultural contracting (CAI Agromec).",
+      "related": []
+    },
     "tax_sector": "agricoltura",
     "agreement_date": "2024-06-18",
     "signatories": [
@@ -1536,7 +1541,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/",
     "verification_status": "unverified",
-    "source_hash": "c8fc5807df05a68a20c0b3915400280fafe37f2d7204c071c7a3fe5501a6c6ca",
+    "source_hash": "63d939de4a96a64388ee4dba613f3156783dc6267d2e8e16cb47b237691ab5a9",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

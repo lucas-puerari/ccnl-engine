@@ -1,10 +1,17 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "cooperative-sociali",
     "name": "CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)",
     "cnel_code": "T151",
     "sector": "servizi socio-assistenziali",
+    "family": {
+      "id": "socio-sanitario",
+      "reason": "Social cooperatives delivering social, health and educational services.",
+      "related": [
+        "istruzione-formazione"
+      ]
+    },
     "tax_sector": "terziario",
     "signatories": [
       "Confcooperative-Federsolidarietà",
@@ -2941,7 +2948,7 @@
     "effective_until": null,
     "source": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
     "verification_status": "unverified",
-    "source_hash": "3631cd3c29db5539b2ad02a1f816fa120288c3dcc73dd7a08865e170beaef91c",
+    "source_hash": "0daf27869821905e69b1bd0ced35ad4dc8b7115b62cac7822623abf8eeeaf656",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

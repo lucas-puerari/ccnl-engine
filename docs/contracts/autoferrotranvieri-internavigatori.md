@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `I022` |
 | **Sector** | trasporti |
+| **Family** | `trasporti-logistica` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2024-12-11 |
 | **Workers (est.)** | ~120k |

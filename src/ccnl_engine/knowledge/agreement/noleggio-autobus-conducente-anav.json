@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "noleggio-autobus-conducente-anav",
     "name": "CCNL Noleggio Autobus con Conducente (ANAV)",
     "cnel_code": "IC36",
     "sector": "Trasporti - Noleggio autobus con conducente",
+    "family": {
+      "id": "trasporti-logistica",
+      "reason": "Coach hire with driver (ANAV).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "agreement_date": "2025-05-23",
     "signatories": [
@@ -3707,7 +3712,7 @@
     "effective_until": "2026-12-31",
     "source": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "80337e8e5732a7719d122a321ede8ea5c06aa618241f4dd05784c3ee83aa4f14",
+    "source_hash": "e8830d220bf2ab5f81167cde37f7961fb25966040309cbc1d44d2717b4730483",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

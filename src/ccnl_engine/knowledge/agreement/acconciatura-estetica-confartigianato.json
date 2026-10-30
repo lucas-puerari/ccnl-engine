@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "acconciatura-estetica-confartigianato",
     "name": "CCNL Acconciatura ed Estetica — Confartigianato/CNA",
     "cnel_code": "H515",
     "sector": "acconciatura ed estetica",
+    "family": {
+      "id": "servizi-persona",
+      "reason": "Hairdressing and beauty crafts.",
+      "related": []
+    },
     "tax_sector": "artigianato",
     "signatories": [
       "Confartigianato Benessere-Acconciatori",
@@ -1046,7 +1051,7 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "261990e69f040fa6867773a0c5db5e2772e3c7461b12103581598267c27cba63",
+    "source_hash": "064246f1b95ed01403c80e01ad8bd2b091e38c144aa93a4ccbef32cc30fb8707",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

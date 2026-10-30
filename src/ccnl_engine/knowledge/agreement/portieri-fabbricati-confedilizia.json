@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "portieri-fabbricati-confedilizia",
     "name": "CCNL Dipendenti da Proprietari di Fabbricati (Confedilizia)",
     "cnel_code": "H401",
     "sector": "portieri e custodi di condominio",
+    "family": {
+      "id": "servizi-immobiliari",
+      "reason": "Caretakers and porters of residential buildings employed by owners and condominiums (Confedilizia).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "Confedilizia",
@@ -1390,7 +1395,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "a9a37f2466b764544a07b12a4d2c805ad7ff008beb60376ae505a89e938cc11b",
+    "source_hash": "8ed0fc8dcf7c5991ceca6252bce1f63828497a07a6ee0f2aef5d6d73a3b4ab3c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

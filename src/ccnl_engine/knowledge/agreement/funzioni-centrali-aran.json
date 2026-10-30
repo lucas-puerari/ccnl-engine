@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "funzioni-centrali-aran",
     "name": "CCNL Comparto Funzioni Centrali — Triennio 2022-2024",
     "cnel_code": "S005",
     "sector": "Pubblica Amministrazione — Comparto Funzioni Centrali",
+    "family": {
+      "id": "pubblico-impiego",
+      "reason": "Central functions sector (ministries, agencies, non-economic public bodies).",
+      "related": []
+    },
     "tax_sector": "pubblica-amministrazione",
     "agreement_date": "2026-08-06",
     "validity": {
@@ -1049,7 +1054,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "423061b7a3df721a46501fb1db12b830b88344c7d9fa03345079e14e5a7df035",
+    "source_hash": "ad98cc44ed6a8adc54849b7532cb261f176c2c45dae3a5bfb30fde4a7e94d3c5",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

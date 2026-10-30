@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `A016` |
 | **Sector** | cooperative e consorzi agricoli — impiegati e operai agricoli |
+| **Family** | `agricoltura` |
 | **Tax sector** | `agricoltura` |
 | **Last renewal** | 2024-07-19 |
 | **Workers (est.)** | ~60k |

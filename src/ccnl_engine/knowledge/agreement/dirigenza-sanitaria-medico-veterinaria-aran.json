@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "dirigenza-sanitaria-medico-veterinaria-aran",
     "name": "CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Medici e Veterinari SSN)",
     "cnel_code": "S225",
     "sector": "Pubblica Amministrazione",
+    "family": {
+      "id": "dirigenza-pubblica",
+      "reason": "Health area, medical and veterinary managers.",
+      "related": []
+    },
     "tax_sector": "pubblica-amministrazione",
     "signatories": [
       "ARAN",
@@ -375,7 +380,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "3618bfcb6ddebe4a54cb60c560d14dc006538d1d8e97adfe50b6cb7eac987724",
+    "source_hash": "c6fadc488e40e9bffed3d8eaacca9fb82b7399996cb764dea174fbe615edd695",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

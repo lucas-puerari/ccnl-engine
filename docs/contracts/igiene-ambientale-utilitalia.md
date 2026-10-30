@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `K540` |
 | **Sector** | servizi ambientali |
+| **Family** | `energia-utilities` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-12-09 |
 | **Workers (est.)** | ~65k |

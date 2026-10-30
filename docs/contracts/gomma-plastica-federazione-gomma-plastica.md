@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `B371` |
 | **Sector** | gomma-plastica |
+| **Family** | `chimica` |
 | **Tax sector** | `industria` |
 | **Last renewal** | — |
 | **Workers (est.)** | ~90k |

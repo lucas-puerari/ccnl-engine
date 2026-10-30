@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "elettrico-elettricita-futura",
     "name": "CCNL per i lavoratori delle imprese produttrici, distributrici di energia elettrica (Elettricita Futura)",
     "cnel_code": "K051",
     "sector": "industria",
+    "family": {
+      "id": "energia-utilities",
+      "reason": "Electricity sector (Elettricità Futura).",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Elettricita Futura",
@@ -3020,7 +3025,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
     "verification_status": "unverified",
-    "source_hash": "11a6699d85a818ada5be8ab27cf06a97a3544acb0b53f6e9558b5023c97db827",
+    "source_hash": "19a4479f9312b0828bfb0127302d1c22f6a90e801338c949a90ca89569232073",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

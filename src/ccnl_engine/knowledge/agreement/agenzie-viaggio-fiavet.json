@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "agenzie-viaggio-fiavet",
     "name": "CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio",
     "cnel_code": "H052",
     "sector": "Turismo (agenzie di viaggio)",
+    "family": {
+      "id": "turismo",
+      "reason": "Travel agencies and tour operators (FIAVET).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "Fiavet (Federazione Italiana Associazioni Imprese Viaggi e Turismo)",
@@ -2034,7 +2039,7 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "8aa603a2f9763be7151f8de0c81d285a38a97293771185b69f1bb1486417039e",
+    "source_hash": "58c644c36d1d82b518f251bfac1bd9abe4c518e6e38a814c5a0fa37f2495afb7",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

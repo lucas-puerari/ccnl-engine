@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `I320` |
 | **Sector** | trasporto |
+| **Family** | `trasporti-logistica` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-05-22 |
 | **Workers (est.)** | ~75k |

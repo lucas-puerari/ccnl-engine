@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "metalmeccanico-artigianato",
     "name": "CCNL Metalmeccanica e Installazione di Impianti — Artigianato",
     "cnel_code": "C030",
     "sector": "metalmeccanico",
+    "family": {
+      "id": "metalmeccanica",
+      "reason": "Metalworking and installation crafts: same production, craft employers.",
+      "related": []
+    },
     "tax_sector": "artigianato",
     "signatories": [
       "Confartigianato Imprese",
@@ -2615,7 +2620,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "6739bd0b05e4207f87a32c39ee28c3e646a68de542fa3085207eb1b0b9769a73",
+    "source_hash": "98c97eb00b281b7e4eb57d09826aa29520bfb96e0bc0fc02baa46456dc1578b1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

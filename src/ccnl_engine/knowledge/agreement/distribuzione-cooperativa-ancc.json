@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "distribuzione-cooperativa-ancc",
     "name": "CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)",
     "cnel_code": "H016",
     "sector": "distribuzione-cooperativa",
+    "family": {
+      "id": "commercio",
+      "reason": "Agreement of the cooperative retail chains (ANCC-Coop): trade carried out by cooperatives.",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "ANCC-Coop",
@@ -2281,7 +2286,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
     "verification_status": "unverified",
-    "source_hash": "2bc4590f4903b950e67944d85dade0f1e3a2fed8110eb9f58ecb17a659fb2833",
+    "source_hash": "ac1bc8300e4198f2435f368f59548b9eac4bafc23cd71be898735aa6c50d1fc3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

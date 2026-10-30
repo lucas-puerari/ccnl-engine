@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "carta-cartone-assocarta",
     "name": "CCNL Carta e Cartone — Aziende Industriali (Assocarta)",
     "cnel_code": "G022",
     "sector": "carta-cartone",
+    "family": {
+      "id": "carta-grafica",
+      "reason": "Paper and board industry (Assocarta).",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Assocarta",
@@ -2786,7 +2791,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
     "verification_status": "unverified",
-    "source_hash": "0eacd0aad99c944623e1d715f43acecc78ab383eca349bd05e4611c6146f0868",
+    "source_hash": "2bfcd25e292ce74e647741070d73749737ba8249f4b923ae44a18b17f09b23e5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

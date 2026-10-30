@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "dirigenza-funzioni-locali-aran",
     "name": "CCNL Area Dirigenza Funzioni Locali 2022-2024 — ARAN",
     "cnel_code": "S125",
     "sector": "Pubblica Amministrazione",
+    "family": {
+      "id": "dirigenza-pubblica",
+      "reason": "Managers, local functions area.",
+      "related": []
+    },
     "tax_sector": "pubblica-amministrazione",
     "signatories": [
       "ARAN",
@@ -341,7 +346,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/",
     "verification_status": "unverified",
-    "source_hash": "6ed2771ae62c32c4b0c2f8cf0e75a50caeb8c40387f260941b14a152f1f4f814",
+    "source_hash": "90888087c7a8e89593ec981c79497d7371c877fa9bfb05575bd8ea021c918504",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

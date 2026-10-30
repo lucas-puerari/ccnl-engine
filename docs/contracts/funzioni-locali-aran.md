@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `S105` |
 | **Sector** | Pubblica Amministrazione |
+| **Family** | `pubblico-impiego` |
 | **Tax sector** | `pubblica-amministrazione` |
 | **Last renewal** | 2026-02-23 |
 | **Workers (est.)** | ~400k |

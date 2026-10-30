@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "logistica-trasporto-confetra",
     "name": "CCNL Logistica, Trasporto Merci e Spedizione (Confetra)",
     "cnel_code": "I100",
     "sector": "logistica",
+    "family": {
+      "id": "trasporti-logistica",
+      "reason": "Logistics, freight transport and shipping (Confetra).",
+      "related": []
+    },
     "tax_sector": "industria",
     "inps_sectors": [
       "industria",
@@ -2598,7 +2603,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "d9a314dc7ea6b1c49e2a6c8ef3d5e8d74240e1fcfe54b7eb9a44d52802725c1d",
+    "source_hash": "bfc0ad12db30ebc9a087c905fa92f35a1be93df7398e8631e0a129afb3868d2e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "gomma-plastica-federazione-gomma-plastica",
     "name": "CCNL Gomma e Plastica Industria (Federazione Gomma Plastica)",
     "cnel_code": "B371",
     "sector": "gomma-plastica",
+    "family": {
+      "id": "chimica",
+      "reason": "Rubber, cables and plastics industry.",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Federazione Gomma Plastica",
@@ -2890,7 +2895,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
     "verification_status": "unverified",
-    "source_hash": "d53fe923a8e67a5fc35b04a46b3844f3d37000f98e0560faa21f1c7ce69cf283",
+    "source_hash": "61dd5858f6c94b03b557513584eecb1eb0236f1d9d213874b93e270a35ce24ba",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -1,10 +1,17 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "ced-assoced",
     "name": "CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)",
     "cnel_code": "H601",
     "sector": "Terziario",
+    "family": {
+      "id": "servizi-professionali",
+      "reason": "Data-processing and payroll service centres (CED) working for businesses.",
+      "related": [
+        "ict-telecomunicazioni"
+      ]
+    },
     "tax_sector": "terziario",
     "agreement_date": "2025-07-28",
     "signatories": [
@@ -1372,7 +1379,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "12b5d13264cb0ae1e3dbbe78902e054db4a3795ea7f70059b56c1f71a7f8ad20",
+    "source_hash": "0db7c0ca07e4484a232ce519ac05da96ebe5cd69ef9cbcc4eb97efa29738200a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

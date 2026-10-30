@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H052` |
 | **Sector** | Turismo (agenzie di viaggio) |
+| **Family** | `turismo` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2024-07-26 |
 | **Workers (est.)** | ~25k |

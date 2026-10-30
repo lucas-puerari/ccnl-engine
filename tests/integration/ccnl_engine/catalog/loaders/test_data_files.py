@@ -102,7 +102,7 @@ class TestLoadCcnl:
         """Mutating a field on the returned CCNL raises ValidationError."""
         ccnl = load_ccnl("commercio-confcommercio")
         with pytest.raises(pydantic.ValidationError):
-            ccnl.schema_version = "0.5"  # type: ignore[misc]
+            ccnl.schema_version = "0.6"  # type: ignore[misc]
 
 
 # ---------------------------------------------------------------------------

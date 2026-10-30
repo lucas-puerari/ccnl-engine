@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "vigilanza-privata-federdat-gpg",
     "cnel_code": "HV17",
     "name": "CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG",
     "sector": "vigilanza privata — guardie particolari giurate (GPG)",
+    "family": {
+      "id": "vigilanza",
+      "reason": "Private security, sworn guards section (Federdat).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "FEDERDAT",
@@ -1373,7 +1378,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "1ab2b0eaee6d21c320119b127f366873153a29b07dec6d5fee5e4f32e852ed93",
+    "source_hash": "93df076739338787f3aadf981f7069f45e0c3e73b6940eb363d6b33bf38d757f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

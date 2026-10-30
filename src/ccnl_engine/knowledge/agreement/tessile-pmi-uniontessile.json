@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "tessile-pmi-uniontessile",
     "name": "CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)",
     "cnel_code": "D018",
     "sector": "tessile abbigliamento moda PMI",
+    "family": {
+      "id": "tessile-moda",
+      "reason": "Textile, clothing and fashion small and medium industry (Uniontessile).",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Uniontessile-Confapi",
@@ -1849,6 +1854,6 @@
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "6f3a89122892cc9fd7060bee70e5187aeac860e24460bb060600a46d31e18104"
+    "source_hash": "77bd2a89c021bd8daa8983da48e0f5c299641ccf8b0771611e17745e049084a2"
   }
 }

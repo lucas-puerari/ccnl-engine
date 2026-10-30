@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "informatica-pmi-unimatica",
     "name": "CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico",
     "cnel_code": "G029",
     "sector": "informatica-servizi-innovativi",
+    "family": {
+      "id": "ict-telecomunicazioni",
+      "reason": "IT and innovative services small and medium businesses (Unimatica).",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Unigec Confapi",
@@ -1469,7 +1474,7 @@
     "effective_until": null,
     "source": "https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "08f130d94089f07f58008f54b304e0cb0ae2e51458928ee9d5c8e06034165ba3",
+    "source_hash": "5d8a6654884a9a4363f3e0ccd85beef0f1b24ec535cf043260be96f1c6b3b021",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

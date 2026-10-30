@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "metalmeccanico-federmeccanica",
     "name": "CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)",
     "cnel_code": "C011",
     "sector": "metalmeccanico",
+    "family": {
+      "id": "metalmeccanica",
+      "reason": "Federmeccanica/Assistal agreement for the metalworking industry, the reference text of the family.",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Federmeccanica",
@@ -3306,7 +3311,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "df58a5d711d6a206292b61789bf4639781ece6db2f31fd52443b65b4680e9dce",
+    "source_hash": "5906c13ddb876af9b870405b329583d51892689981173affbb309c450fa8f4ee",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },

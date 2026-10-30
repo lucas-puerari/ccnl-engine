@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `I911` |
 | **Sector** | Trasporto a fune |
+| **Family** | `trasporti-logistica` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-05-16 |
 | **Workers (est.)** | ~15k |

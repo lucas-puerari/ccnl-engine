@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "autoscuole-unasca",
     "name": "CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica",
     "cnel_code": "IC91",
     "sector": "autoscuole e consulenza automobilistica",
+    "family": {
+      "id": "servizi-automobilistici",
+      "reason": "Driving schools and motoring consultancy (UNASCA).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "agreement_date": "2023-02-28",
     "signatories": [
@@ -1402,7 +1407,7 @@
     "effective_until": null,
     "source": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
     "verification_status": "unverified",
-    "source_hash": "aeee77451b37388339e78e90f97020e7a2268fdefe09efb81d2506e5003d6200",
+    "source_hash": "b132199a55e7ccf2e02e47d5585066b82a26d9ed890a01c640b27f880d7213fa",
     "published_at": "2026-09-12",
     "source_type": "contracting_party"
   },

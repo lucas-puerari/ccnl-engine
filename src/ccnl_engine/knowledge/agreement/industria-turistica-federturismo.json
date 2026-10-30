@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "industria-turistica-federturismo",
     "cnel_code": "H05B",
     "name": "CCNL Industria Turistica (Federturismo Confindustria)",
     "sector": "turismo — alberghi, campeggi, villaggi e strutture ricettive",
+    "family": {
+      "id": "turismo",
+      "reason": "Federturismo agreement for the tourism industry: hotels, campsites and holiday villages.",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "Federturismo Confindustria",
@@ -1784,7 +1789,7 @@
     "effective_until": null,
     "source": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
     "verification_status": "unverified",
-    "source_hash": "fb6870ac3f3660c058f2d7ed1c0576aa6892c09d994735b18a6746211cf27813",
+    "source_hash": "f53bd9257fcb64d9efb43f8da5df475809cbe8e60a19ab4698763bef8d757adb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

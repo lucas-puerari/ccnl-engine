@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `J241` |
 | **Sector** | credito |
+| **Family** | `credito` |
 | **Tax sector** | `credito` |
 | **Last renewal** | 2023-11-23 |
 | **Workers (est.)** | ~270k |

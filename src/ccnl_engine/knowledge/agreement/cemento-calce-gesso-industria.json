@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "cemento-calce-gesso-industria",
     "name": "CCNL Cemento, Calce e Gesso — Industria (Federbeton)",
     "cnel_code": "F032",
     "sector": "industria del cemento calce e gesso",
+    "family": {
+      "id": "materiali-estrattive",
+      "reason": "Cement, lime and plaster industry.",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Federbeton",
@@ -2599,7 +2604,7 @@
     "effective_until": null,
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
     "verification_status": "verified",
-    "source_hash": "79e623033feb71da20cf3b94ae1eb1d3e6171bfc2fc79e58e5e59040c81164d8",
+    "source_hash": "b989d48bfd0fefe4c86650d3363d99ffab0b7b467e79ecb4c90d4fce124d1545",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

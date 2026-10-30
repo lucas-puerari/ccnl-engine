@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `C021` |
 | **Sector** | industria |
+| **Family** | `metalmeccanica` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2021-12-23 |
 | **Workers (est.)** | ~18k |

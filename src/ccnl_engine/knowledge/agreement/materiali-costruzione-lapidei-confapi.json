@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "materiali-costruzione-lapidei-confapi",
     "name": "CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)",
     "cnel_code": "F020",
     "sector": "Industria materiali da costruzione — Lapidei piccola industria",
+    "family": {
+      "id": "materiali-estrattive",
+      "reason": "Building materials and stone, small industry (Confapi).",
+      "related": []
+    },
     "tax_sector": "industria",
     "agreement_date": "2025-09-09",
     "signatories": [
@@ -2408,6 +2413,6 @@
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "ad602c3e4b106116d913d720a417ec554256435d20742cc53e68a6391a262095"
+    "source_hash": "d701f7d01dec9078e6aa8ac092e9d48891606986fb56bb6c27685c33b60ff59b"
   }
 }

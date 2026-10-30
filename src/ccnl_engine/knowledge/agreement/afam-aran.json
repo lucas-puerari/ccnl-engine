@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "afam-aran",
     "name": "CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN, AFAM (Alta formazione artistica, musicale e coreutica)",
     "cnel_code": "S305",
     "sector": "Pubblica Amministrazione",
+    "family": {
+      "id": "pubblico-impiego",
+      "reason": "Education and research sector, higher art and music education (AFAM).",
+      "related": []
+    },
     "tax_sector": "pubblica-amministrazione",
     "signatories": [
       "ARAN",
@@ -6044,7 +6049,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "1c7f3552d5f395511795bc9e5e853f0c57be4af96bfaa71aac9ced92055a441b",
+    "source_hash": "92ff06b7c0487425f443d4bda11a389b7530bc22335fd7e9f4ef7fa20ed23600",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

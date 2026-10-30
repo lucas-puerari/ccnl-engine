@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `B282` |
 | **Sector** | Industria estrattiva - Miniere, cave, saline, metallurgia estrattiva |
+| **Family** | `materiali-estrattive` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2022-07-13 |
 | **Workers (est.)** | ~3000 |

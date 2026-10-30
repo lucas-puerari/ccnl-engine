@@ -1,10 +1,17 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "sistemazioni-idraulico-forestali-operai",
     "cnel_code": "A181",
     "name": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)",
     "sector": "sistemazioni idraulico-forestali e idraulico-agrarie — operai a tempo indeterminato",
+    "family": {
+      "id": "bonifica-forestazione",
+      "reason": "Hydraulic and forestry works, manual workers.",
+      "related": [
+        "agricoltura"
+      ]
+    },
     "tax_sector": "agricoltura",
     "signatories": [
       "AGCI-Agrital",
@@ -837,7 +844,7 @@
     "source": "https://redigo.info/",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "d51efc8e2bb07d2a6cfce0eec8fccef81c8e66c32869483211049d86d367f9ad",
+    "source_hash": "a47dc85d073de9951ec998ef49bdccc0b044aaf1ab48b5428ff32ba05b452c67",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

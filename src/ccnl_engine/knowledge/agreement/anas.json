@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "anas",
     "cnel_code": "T511",
     "name": "CCNL Gruppo ANAS",
     "sector": "anas spa - personale non dirigente",
+    "family": {
+      "id": "trasporti-logistica",
+      "reason": "ANAS, the State road company: road infrastructure operator.",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "ANAS SpA",
@@ -1358,7 +1363,7 @@
     "effective_until": null,
     "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "424f5fd0e65de9301b4e6d6e529080ba41fd6a8f6ce8b9eb6e6644407b252828",
+    "source_hash": "e250c0cca22b37d6abbc4d27080f0823e2436d10b0f143cf38a7810a9d2f4ebd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

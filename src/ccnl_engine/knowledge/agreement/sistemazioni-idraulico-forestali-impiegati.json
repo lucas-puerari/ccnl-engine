@@ -1,10 +1,17 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "sistemazioni-idraulico-forestali-impiegati",
     "cnel_code": "A181",
     "name": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)",
     "sector": "sistemazioni idraulico-forestali e idraulico-agrarie — impiegati",
+    "family": {
+      "id": "bonifica-forestazione",
+      "reason": "Hydraulic and forestry works, clerical staff.",
+      "related": [
+        "agricoltura"
+      ]
+    },
     "tax_sector": "agricoltura",
     "signatories": [
       "AGCI-Agrital",
@@ -1113,7 +1120,7 @@
     "source": "https://www.lavoro-economia.it/?c=9",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "39bae03da7c107ad3e46fc239167f58f8062d48df527baf1ff5c0adfb7332ae4",
+    "source_hash": "8e3269f83967cf55e60dec3e4940aa08fa68c557cdd281e84acefb308b37810e",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

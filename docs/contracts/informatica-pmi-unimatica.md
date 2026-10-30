@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `G029` |
 | **Sector** | informatica-servizi-innovativi |
+| **Family** | `ict-telecomunicazioni` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-04-14 |
 | **Workers (est.)** | ~20k |

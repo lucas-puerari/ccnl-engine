@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `F060` |
 | **Sector** | legno arredamento lapidei artigianato |
+| **Family** | `legno-arredamento` |
 | **Tax sector** | `artigianato` |
 | **Last renewal** | 2024-03-05 |
 | **Workers (est.)** | ~95k |

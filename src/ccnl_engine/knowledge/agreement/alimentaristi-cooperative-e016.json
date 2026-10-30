@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "alimentaristi-cooperative-e016",
     "cnel_code": "E016",
     "name": "CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)",
     "sector": "industria alimentare — cooperative di produzione e lavoro",
+    "family": {
+      "id": "alimentare",
+      "reason": "Food-processing cooperatives.",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Fedagripesca-Confcooperative",
@@ -2262,7 +2267,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
     "verification_status": "unverified",
-    "source_hash": "acf65bb6c754b21c5209038245ead5fb5caa1dc64fd643f8004c57190469b2dd",
+    "source_hash": "f30702612f52a9302d1c735f1b7ee3ab92a1f9e143d0d6a52089902ebb4005ec",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

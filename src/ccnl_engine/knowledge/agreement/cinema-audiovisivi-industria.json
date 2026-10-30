@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "cinema-audiovisivi-industria",
     "name": "CCNL Industrie Cineaudiovisive (ANICA)",
     "cnel_code": "G111",
     "sector": "Cinema e audiovisivo",
+    "family": {
+      "id": "spettacolo-media",
+      "reason": "Film and audiovisual production industry.",
+      "related": []
+    },
     "tax_sector": "industria",
     "agreement_date": "2025-07-23",
     "signatories": [
@@ -1879,7 +1884,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153",
     "verification_status": "unverified",
-    "source_hash": "52101d8db9fa7ede020914c62f78e11cafd08882c222a108433d67ef04d9d435",
+    "source_hash": "2bc43b890ece7074062b99666816ef0ad0dfb60f3a371ee83d421189b04bb13a",
     "published_at": "2026-09-18",
     "source_type": "commercial_secondary"
   },

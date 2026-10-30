@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `B122` |
 | **Sector** | ceramica |
+| **Family** | `chimica` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2024-07-22 |
 | **Workers (est.)** | ~23k |

@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `V925` |
 | **Sector** | Organizzazioni sindacali nazionali e territoriali |
+| **Family** | `organizzazioni-associative` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2023-01-19 |
 | **Workers (est.)** | ~7k |

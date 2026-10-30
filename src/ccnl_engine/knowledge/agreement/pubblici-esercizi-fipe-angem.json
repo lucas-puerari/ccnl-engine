@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "pubblici-esercizi-fipe-angem",
     "name": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
     "cnel_code": "H05Y",
     "sector": "turismo",
+    "family": {
+      "id": "turismo",
+      "reason": "FIPE/ANGEM agreement for public establishments (restaurants and bars).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "FIPE-Confcommercio",
@@ -2751,7 +2756,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "8bb6c46a9f03606e8a41c9c696596129849aacd5947e54b12219e981c69468f7",
+    "source_hash": "3c09a588a3d9281d363bf6af75cee213fea0c93780d9713ad12c9382e038d8c4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

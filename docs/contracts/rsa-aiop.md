@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `T091` |
 | **Sector** | residenze sanitarie assistenziali — personale non medico |
+| **Family** | `socio-sanitario` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2012-03-22 |
 | **Workers (est.)** | ~17k |

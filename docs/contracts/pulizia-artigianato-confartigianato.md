@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `K521` |
 | **Sector** | pulizia artigianato |
+| **Family** | `pulizia-multiservizi` |
 | **Tax sector** | `artigianato` |
 | **Last renewal** | 2025-12-17 |
 | **Workers (est.)** | ~84505 |

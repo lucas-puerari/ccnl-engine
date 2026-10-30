@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "scuole-private-agidae",
     "name": "CCNL Istituzioni Formative Private (Scuole Private Religiose) — AGIDAE",
     "cnel_code": "T241",
     "sector": "istruzione privata",
+    "family": {
+      "id": "istruzione-formazione",
+      "reason": "Private Catholic schools (AGIDAE).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "AGIDAE",
@@ -1249,7 +1254,7 @@
     "effective_until": null,
     "source": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "29a8d9fb64c915ddd5520cf8a353265659ccd8ea0e695f2bea74031f6fd0961a",
+    "source_hash": "a26c87f1b8ecf0d57f2fc128e640e6b240cdb65bd331f4e9c9cb27327892148c",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -8,6 +8,7 @@ result with the version of that repository instead of the package bundle.
 from __future__ import annotations
 
 from datetime import date
+from typing import TYPE_CHECKING
 
 import pytest
 
@@ -20,7 +21,8 @@ from ccnl_engine import (
     PeriodInput,
     bundle_version,
 )
-from ccnl_engine.errors import UnknownCcnlError
+from ccnl_engine.agreement.family.models import FamilyAssignment
+from ccnl_engine.errors import InvalidInputError, UnknownCcnlError
 from ccnl_engine.inputs import Permanent
 from tests.integration.ccnl_engine.catalog.builders import (
     SYNTHETIC_BUNDLE_VERSION,
@@ -28,6 +30,9 @@ from tests.integration.ccnl_engine.catalog.builders import (
     SYNTHETIC_ID,
     SyntheticCcnlRepository,
 )
+
+if TYPE_CHECKING:
+    from ccnl_engine.agreement.facade import CCNL
 
 _ENGINE = PayrollEngine(repository=SyntheticCcnlRepository())
 
@@ -78,3 +83,40 @@ def test_the_bundled_engine_does_not_know_the_extra_contract() -> None:
         PayrollEngine.bundled().inspect_ruleset(SYNTHETIC_ID)
     with pytest.raises(UnknownCcnlError):
         PayrollEngine.bundled().calculate_period(_june(SYNTHETIC_CNEL_CODE))
+
+
+def test_the_family_filter_reads_the_repository() -> None:
+    """The extra CCNL is listed under its family, the bundled engine lacks it."""
+    listed = {s.ccnl_id for s in _ENGINE.list_contracts(family="metalmeccanica")}
+    bundled = {
+        s.ccnl_id
+        for s in PayrollEngine.bundled().list_contracts(family="metalmeccanica")
+    }
+
+    assert listed == bundled | {SYNTHETIC_ID}
+    with pytest.raises(InvalidInputError, match="not a contract family"):
+        _ENGINE.list_contracts(family="metalworking")
+
+
+class _RefamiliedRepository(SyntheticCcnlRepository):
+    """The synthetic CCNL moved to another family, every rule unchanged."""
+
+    def load_ccnl(self, ccnl_id: str) -> CCNL:
+        ccnl = super().load_ccnl(ccnl_id)
+        if ccnl_id != SYNTHETIC_ID:
+            return ccnl
+        family = FamilyAssignment(id="edilizia", reason="Moved for the test.")
+        meta = ccnl.meta.model_copy(update={"family": family})
+        return ccnl.model_copy(update={"meta": meta})
+
+
+def test_the_family_does_not_change_a_run() -> None:
+    """The family selects no rule: the same CCNL in another family pays alike."""
+    moved = PayrollEngine(repository=_RefamiliedRepository())
+    result = moved.calculate_period(_june(SYNTHETIC_ID, moved))
+    source = _ENGINE.calculate_period(_june(SYNTHETIC_ID))
+
+    assert result.pay_items == source.pay_items
+    assert result.contribution_breakdown == source.contribution_breakdown
+    assert result.period_employer_cost == source.period_employer_cost
+    assert result.decisions == source.decisions

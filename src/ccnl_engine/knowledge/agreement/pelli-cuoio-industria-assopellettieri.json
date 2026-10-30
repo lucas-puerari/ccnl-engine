@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "pelli-cuoio-industria-assopellettieri",
     "name": "CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)",
     "cnel_code": "D111",
     "sector": "industria",
+    "family": {
+      "id": "pelli-calzature",
+      "reason": "Leather goods industry (Assopellettieri).",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Assopellettieri",
@@ -1201,7 +1206,7 @@
     "effective_until": null,
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
     "verification_status": "unverified",
-    "source_hash": "cd205fde8943ecfdfc7281fbf73c084df055326fad181ecb462d7b3113a0f0f1",
+    "source_hash": "9906073a62b181099c220a7fceb55a414e98e6889b8125079837beccfd28b712",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

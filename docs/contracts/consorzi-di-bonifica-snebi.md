@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `A131` |
 | **Sector** | Agricoltura |
+| **Family** | `bonifica-forestazione` |
 | **Tax sector** | `agricoltura` |
 | **Last renewal** | 2025-05-21 |
 | **Workers (est.)** | ~4k |

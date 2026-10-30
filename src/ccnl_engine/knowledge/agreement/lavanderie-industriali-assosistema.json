@@ -1,10 +1,17 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "lavanderie-industriali-assosistema",
     "name": "CCNL Lavanderie Industriali (Assosistema Confindustria)",
     "cnel_code": "D0L1",
     "sector": "lavanderie-industriali",
+    "family": {
+      "id": "pulizia-multiservizi",
+      "reason": "Industrial laundries and textile sanitation for hospitals and hotels (Assosistema): a service to other businesses, not textile manufacturing.",
+      "related": [
+        "tessile-moda"
+      ]
+    },
     "tax_sector": "industria",
     "signatories": [
       "Assosistema Confindustria",
@@ -1387,7 +1394,7 @@
     "effective_until": null,
     "source": "https://www.assosistema.it/11527-2/",
     "verification_status": "unverified",
-    "source_hash": "eb361e066d0fc9ed96a9606d19b0b0b5d2eb34be3c0591126f62595dba6e8b8b",
+    "source_hash": "6270c04b93b5500edca3067e86da3909d0e51c9260988e6716da59a96bf53cb6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `D121` |
 | **Sector** | industria |
+| **Family** | `pelli-calzature` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2024-07-17 |
 | **Workers (est.)** | ~75k |

@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `HV17` |
 | **Sector** | vigilanza privata — guardie particolari giurate (GPG) |
+| **Family** | `vigilanza` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2023-05-04 |
 | **Workers (est.)** | ~45k |

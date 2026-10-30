@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `IC35` |
 | **Sector** | Autorimesse e noleggio automezzi |
+| **Family** | `servizi-automobilistici` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2025-12-09 |
 | **Workers (est.)** | ~41k |

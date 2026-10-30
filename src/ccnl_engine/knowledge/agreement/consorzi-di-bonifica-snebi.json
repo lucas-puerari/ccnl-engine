@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "consorzi-di-bonifica-snebi",
     "name": "CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)",
     "cnel_code": "A131",
     "sector": "Agricoltura",
+    "family": {
+      "id": "bonifica-forestazione",
+      "reason": "Land reclamation and irrigation consortia (SNEBI).",
+      "related": []
+    },
     "tax_sector": "agricoltura",
     "agreement_date": "2025-05-21",
     "signatories": [
@@ -2759,7 +2764,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "8a021e19d9d9a6bf994d76c15b0d65c712301c5cf7fd6aef9121b060b1d9c015",
+    "source_hash": "1d113481d7d4a74d7f99999134a17b08f793a4aaab2a1b489c703febdc0c70a0",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

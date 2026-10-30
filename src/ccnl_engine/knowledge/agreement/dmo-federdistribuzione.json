@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "dmo-federdistribuzione",
     "name": "Distribuzione Moderna Organizzata — Federdistribuzione",
     "cnel_code": "H008",
     "sector": "terziario",
+    "family": {
+      "id": "commercio",
+      "reason": "Federdistribuzione agreement for modern organised retail.",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "Federdistribuzione",
@@ -3078,7 +3083,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "fc421380095566be46ae816344e1b004a2201745b880a4dd43b4d28256c86593",
+    "source_hash": "9a404362f305cb62582728948f1ee551b42a61dcac007b9ebef15c05e2b9b643",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

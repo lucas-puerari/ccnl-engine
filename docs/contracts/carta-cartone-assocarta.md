@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `G022` |
 | **Sector** | carta-cartone |
+| **Family** | `carta-grafica` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2026-02-10 |
 | **Workers (est.)** | ~35k |

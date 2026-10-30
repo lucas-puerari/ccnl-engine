@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H601` |
 | **Sector** | Terziario |
+| **Family** | `servizi-professionali` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2025-07-28 |
 | **Workers (est.)** | ~22k |

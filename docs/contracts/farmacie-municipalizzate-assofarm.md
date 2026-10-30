@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H124` |
 | **Sector** | Farmacie municipalizzate e partecipate da enti locali |
+| **Family** | `farmacie` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2022-07-07 |
 | **Workers (est.)** | ~6k |

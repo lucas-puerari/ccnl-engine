@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "istituzioni-servizi-socio-assistenziali-anaste",
     "name": "CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE)",
     "cnel_code": "T131",
     "sector": "servizi socio-assistenziali",
+    "family": {
+      "id": "socio-sanitario",
+      "reason": "Social-care institutions and residential homes (ANASTE).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "ANASTE",
@@ -1237,7 +1242,7 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "8e61ed5871327a09ba164f6acfb62685f53f732dfe2e0615e28e6f3a9d96dd67",
+    "source_hash": "709414130d0bef8e8971437c01b2faf7e0144d5705ac11f3276d7a8fefe0b4cc",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

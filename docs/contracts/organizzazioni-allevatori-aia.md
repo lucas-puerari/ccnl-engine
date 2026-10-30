@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `A221` |
 | **Sector** | Agricoltura |
+| **Family** | `agricoltura` |
 | **Tax sector** | `agricoltura` |
 | **Last renewal** | 2024-12-12 |
 | **Workers (est.)** | ~2k |

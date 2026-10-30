@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `F051` |
 | **Sector** | industria |
+| **Family** | `legno-arredamento` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2023-06-20 |
 | **Workers (est.)** | ~90k |

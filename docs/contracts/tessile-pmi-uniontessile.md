@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `D018` |
 | **Sector** | tessile abbigliamento moda PMI |
+| **Family** | `tessile-moda` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-02-18 |
 | **Workers (est.)** | ~48k |

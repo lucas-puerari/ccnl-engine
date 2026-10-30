@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "autostrade-trafori",
     "cnel_code": "I192",
     "name": "CCNL Autostrade e Trafori Concessionari",
     "sector": "autostrade e trafori — addetti alle concessionarie autostradali",
+    "family": {
+      "id": "trasporti-logistica",
+      "reason": "Motorway and tunnel concessionaires.",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "AISCAT",
@@ -4152,7 +4157,7 @@
     "effective_until": null,
     "source": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori",
     "verification_status": "unverified",
-    "source_hash": "6e0ca27924043a7e11a84bf763d67b456702654e67bd4107700e871992c48678",
+    "source_hash": "afe7ae4992fb7ad558ab63b160701e56c3cf07633d42befcb6a5372d92347e3f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

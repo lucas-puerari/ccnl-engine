@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "lavoro-domestico-non-convivente",
     "name": "CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)",
     "cnel_code": "H501",
     "sector": "lavoro domestico",
+    "family": {
+      "id": "lavoro-domestico",
+      "reason": "Domestic work, not live-in.",
+      "related": []
+    },
     "tax_sector": "lavoro-domestico",
     "signatories": [
       "DOMINA — Associazione Nazionale Famiglie Datori di Lavoro Domestico",
@@ -991,7 +996,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "2c79047178c6f76ec1d70bb9084bb1ea35b627bee43ba49175e542bf81d2fffc",
+    "source_hash": "ec0e1a5a9d594b197cef632ca94a8d871d786f33705a1e847d23d9a242d4a554",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },

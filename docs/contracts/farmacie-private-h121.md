@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H121` |
 | **Sector** | Farmacie private |
+| **Family** | `farmacie` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2021-09-07 |
 | **Workers (est.)** | ~60k |

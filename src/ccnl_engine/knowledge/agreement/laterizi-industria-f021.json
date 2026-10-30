@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "laterizi-industria-f021",
     "name": "CCNL Laterizi e Manufatti Cementizi - Industria",
     "cnel_code": "F021",
     "sector": "industria",
+    "family": {
+      "id": "materiali-estrattive",
+      "reason": "Brick and precast concrete industry.",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Confindustria Ceramica Raggruppamento Laterizi",
@@ -2946,7 +2951,7 @@
     "effective_until": null,
     "source": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "3799ebd7183b915fc9f58c69360925c3e78eb82ade0abf62b96a7ac35d8c81f4",
+    "source_hash": "704680c5be3291f54b5db54c6fcb00cf197c6a516f59ab3be331b4fe2bff4f5e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

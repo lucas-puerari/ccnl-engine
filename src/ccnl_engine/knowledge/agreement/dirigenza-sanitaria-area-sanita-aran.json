@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "dirigenza-sanitaria-area-sanita-aran",
     "name": "CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Sanitari: psicologi, farmacisti, biologi, fisici, chimici)",
     "cnel_code": "S225",
     "sector": "Pubblica Amministrazione",
+    "family": {
+      "id": "dirigenza-pubblica",
+      "reason": "Health area managers.",
+      "related": []
+    },
     "tax_sector": "pubblica-amministrazione",
     "signatories": [
       "ARAN",
@@ -386,7 +391,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "5d9bc55b8c62d75692ba46931b2aad37116837aff8179cf1de5c578f4189c71c",
+    "source_hash": "e1ac6dcb8b711e3c05558f8f2c21be77bbbe2d0f5d03eed818b830d145f73237",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

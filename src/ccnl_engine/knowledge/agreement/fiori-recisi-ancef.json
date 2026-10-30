@@ -1,10 +1,17 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "fiori-recisi-ancef",
     "name": "CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)",
     "cnel_code": "H201",
     "sector": "Fiori recisi, verde e piante ornamentali (import-export)",
+    "family": {
+      "id": "commercio",
+      "reason": "Import-export and wholesale of cut flowers and ornamental plants: the employer trades goods it does not grow.",
+      "related": [
+        "agricoltura"
+      ]
+    },
     "tax_sector": "terziario",
     "agreement_date": "2023-03-30",
     "signatories": [
@@ -1318,7 +1325,7 @@
     "effective_until": null,
     "source": "https://www.ccnlportatili.it/ccnl/fiori-recisi/",
     "verification_status": "unverified",
-    "source_hash": "0304d941c59c79cc08c6bd835fb6f82954434e6eae276dabc31124a4b29bb4d6",
+    "source_hash": "62ebe89871fbe68de4eecda97e42003f5f7de17dcf79d77c918ca46f9875e841",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

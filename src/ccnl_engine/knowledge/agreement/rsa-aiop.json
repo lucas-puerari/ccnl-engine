@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "rsa-aiop",
     "cnel_code": "T091",
     "name": "CCNL RSA e Strutture Residenziali Socio-Assistenziali (AIOP)",
     "sector": "residenze sanitarie assistenziali — personale non medico",
+    "family": {
+      "id": "socio-sanitario",
+      "reason": "Nursing homes (RSA), non-medical staff (AIOP).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "AIOP",
@@ -1186,7 +1191,7 @@
     "effective_until": null,
     "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
     "verification_status": "unverified",
-    "source_hash": "c8efe1ea26c7b7c0c36899f0b7619c82c83ca4aaa178d7b65701bf23a52df500",
+    "source_hash": "310420fabfdac24f3f9df3f70da3e3fdb2ab83608d23f1e81d40675cbf5ed3d1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `T231` |
 | **Sector** | istruzione privata laica |
+| **Family** | `istruzione-formazione` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2024-06-15 |
 | **Workers (est.)** | ~25k |

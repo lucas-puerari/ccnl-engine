@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "sanita-privata-aiop-aris",
     "name": "CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)",
     "cnel_code": "T011",
     "sector": "Sanità privata",
+    "family": {
+      "id": "socio-sanitario",
+      "reason": "Private hospitals and health facilities (AIOP/ARIS).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "AIOP",
@@ -1951,7 +1956,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "bb6a09bd93a795dbe064a3ba6d6d295a82f3882e8b4be79157e6d0ff5fe7c354",
+    "source_hash": "9a89f41a5707d727179c012953d7179936bd0e34284bc031db4f807b30acf396",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

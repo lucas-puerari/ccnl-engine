@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `V751` |
 | **Sector** | tessile moda chimica ceramica artigianato |
+| **Family** | `tessile-moda` |
 | **Tax sector** | `artigianato` |
 | **Last renewal** | 2024-07-16 |
 | **Workers (est.)** | ~120k |

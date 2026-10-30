@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "agenzie-marittime-i481",
     "name": "CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi",
     "cnel_code": "I481",
     "sector": "Agenzie marittime e aeree",
+    "family": {
+      "id": "trasporti-logistica",
+      "reason": "Shipping and air agencies.",
+      "related": []
+    },
     "tax_sector": "terziario",
     "agreement_date": "2024-09-13",
     "signatories": [
@@ -1242,7 +1247,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
     "verification_status": "unverified",
-    "source_hash": "5e64aa7f05844ff281e038749018552b55bb1dd7d58a4a7d7a1eea02923c57ca",
+    "source_hash": "3a3e58c67d43cd5772ffd34ea449914fc3b4c89898fa3d4816a1a4d0f6f24f74",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

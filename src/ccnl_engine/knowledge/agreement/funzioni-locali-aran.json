@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "funzioni-locali-aran",
     "name": "CCNL Comparto Funzioni Locali 2022-2024 — ARAN",
     "cnel_code": "S105",
     "sector": "Pubblica Amministrazione",
+    "family": {
+      "id": "pubblico-impiego",
+      "reason": "Local functions sector (regions, municipalities and local bodies).",
+      "related": []
+    },
     "tax_sector": "pubblica-amministrazione",
     "signatories": [
       "ARAN",
@@ -964,7 +969,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "02dd8fc2e7f8595f94fe6d517388f8ee578082024174f2b4a3a452d3547a4349",
+    "source_hash": "c12140fdbf807658717d9b79b2462785f015b8bfb3f10bfee7ab6bd96d31f96d",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

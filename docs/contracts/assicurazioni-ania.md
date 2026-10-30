@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `J121` |
 | **Sector** | assicurazioni |
+| **Family** | `assicurazioni` |
 | **Tax sector** | `credito` |
 | **Last renewal** | 2026-05-13 |
 | **Workers (est.)** | ~45k |

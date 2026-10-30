@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `S025` |
 | **Sector** | Pubblica Amministrazione |
+| **Family** | `dirigenza-pubblica` |
 | **Tax sector** | `pubblica-amministrazione` |
 | **Last renewal** | 2025-10-28 |
 | **Workers (est.)** | ~30k |

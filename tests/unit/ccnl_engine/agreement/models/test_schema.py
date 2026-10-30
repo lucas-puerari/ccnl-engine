@@ -1,6 +1,6 @@
 """Tests for the CCNL schema: strict keys, legacy coercion and provenance.
 
-Covers extra-key rejection, schema 0.4 meta coercion, schema 0.5 provenance
+Covers extra-key rejection, schema 0.4 meta coercion, schema 0.6 provenance
 completeness and positive constraints on CCNLParameters.
 """
 
@@ -126,14 +126,14 @@ class TestMetaLegacySchema:
 _PROV = TEST_PROV
 
 
-def _make_v5_dict() -> dict[str, Any]:
-    """Minimal schema-0.5 dict with provenance on every required rule.
+def _make_dict() -> dict[str, Any]:
+    """Minimal schema-0.6 dict with provenance on every required rule.
 
     Returns:
-        A dict suitable for CCNL.model_validate() with schema_version="0.5".
+        A dict suitable for CCNL.model_validate() with schema_version="0.6".
     """
     data = make_ccnl_dict(app_type="")
-    data["schema_version"] = "0.5"
+    data["schema_version"] = "0.6"
     si = data["parameters"]["seniority_increments"]
     si["provenance"] = _PROV
     for level in data["levels"]:
@@ -143,57 +143,56 @@ def _make_v5_dict() -> dict[str, Any]:
     return data
 
 
-class TestSchema05ProvenanceRequired:
-    """schema_version 0.5 requires provenance on every rule."""
+class TestProvenanceRequired:
+    """schema_version 0.6 requires provenance on every rule."""
 
     def test_complete_provenance_accepted(self) -> None:
-        """A fully-populated 0.5 dict loads without errors."""
-        _validate(_make_v5_dict())
+        """A fully-populated 0.6 dict loads without errors."""
+        _validate(_make_dict())
 
     def test_missing_level_provenance_raises(self) -> None:
-        """A level without provenance in schema 0.5 raises ValidationError."""
-        data = _make_v5_dict()
+        """A level without provenance in schema 0.6 raises ValidationError."""
+        data = _make_dict()
         del data["levels"][0]["provenance"]
         with pytest.raises(ValidationError, match="provenance is required"):
             _validate(data)
 
     def test_missing_period_provenance_raises(self) -> None:
-        """A salary period without provenance in schema 0.5 raises ValidationError."""
-        data = _make_v5_dict()
+        """A salary period without provenance in schema 0.6 raises ValidationError."""
+        data = _make_dict()
         del data["levels"][0]["base_salary"]["periods"][0]["provenance"]
         with pytest.raises(ValidationError, match="provenance is required"):
             _validate(data)
 
     def test_missing_seniority_provenance_raises(self) -> None:
-        """Missing seniority_increments.provenance in 0.5 raises ValidationError."""
-        data = _make_v5_dict()
+        """Missing seniority_increments.provenance in 0.6 raises ValidationError."""
+        data = _make_dict()
         del data["parameters"]["seniority_increments"]["provenance"]
         with pytest.raises(ValidationError, match="provenance is required"):
             _validate(data)
 
     def test_missing_allowance_provenance_raises(self) -> None:
-        """An allowance without provenance in schema 0.5 raises ValidationError."""
-        data = _make_v5_dict()
+        """An allowance without provenance in schema 0.6 raises ValidationError."""
+        data = _make_dict()
         data["levels"][0]["fixed_allowances"] = [
             {"code": "X", "description": "X", "monthly": _SERIES}
         ]
         with pytest.raises(ValidationError, match="provenance is required"):
             _validate(data)
 
-    def test_schema_04_without_provenance_rejected(self) -> None:
-        """schema_version 0.4 files without provenance are also rejected."""
+    def test_builder_dict_without_provenance_rejected(self) -> None:
+        """The minimal builder dict without provenance is also rejected."""
         data = make_ccnl_dict(app_type="")
-        assert data["schema_version"] == "0.4"
         # Strip provenance from seniority_increments to trigger the validator.
         data["parameters"]["seniority_increments"].pop("provenance", None)
         with pytest.raises(ValidationError, match="provenance is required"):
             _validate(data)
 
     def test_gap_period_needs_no_provenance(self) -> None:
-        """A gap period in a 0.5 file is exempt from the provenance requirement."""
-        data = _make_v5_dict()
+        """A gap period in a 0.6 file is exempt from the provenance requirement."""
+        data = _make_dict()
         # Insert a gap before the existing period (all periods have provenance via
-        # _make_v5_dict; the gap has none — this must still pass).
+        # _make_dict; the gap has none — this must still pass).
         original = data["levels"][0]["base_salary"]["periods"][0]
         data["levels"][0]["base_salary"]["periods"] = [
             {
@@ -254,3 +253,40 @@ class TestCCNLParametersPositiveConstraints:
         )
         assert params.hourly_divisor is not None
         assert params.additional_months is not None
+
+
+# ---------------------------------------------------------------------------
+# Contract family
+# ---------------------------------------------------------------------------
+
+
+class TestMetaFamily:
+    """``meta.family`` is required and names families of the catalog."""
+
+    def test_a_missing_family_is_rejected(self) -> None:
+        """Schema 0.6 requires the family."""
+        data = make_ccnl_dict()
+        del data["meta"]["family"]
+        with pytest.raises(ValidationError, match=r"meta\.family"):
+            _validate(data)
+
+    @pytest.mark.parametrize(
+        "family",
+        [
+            {"id": "edile", "reason": "Unknown main family."},
+            {"id": "commercio", "reason": "Unknown related.", "related": ["edile"]},
+        ],
+    )
+    def test_an_unknown_family_is_rejected(self, family: dict[str, Any]) -> None:
+        """A main or related family the catalog does not hold fails the load."""
+        data = make_ccnl_dict()
+        data["meta"]["family"] = family
+        with pytest.raises(ValidationError, match=r"\['edile'\] that the catalog"):
+            _validate(data)
+
+    def test_an_earlier_schema_is_rejected(self) -> None:
+        """A 0.5 file predates the family and is not loaded."""
+        data = make_ccnl_dict()
+        data["schema_version"] = "0.5"
+        with pytest.raises(ValidationError, match="schema_version"):
+            _validate(data)

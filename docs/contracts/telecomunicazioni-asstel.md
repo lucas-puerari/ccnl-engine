@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `K411` |
 | **Sector** | telecomunicazioni |
+| **Family** | `ict-telecomunicazioni` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-11-11 |
 | **Workers (est.)** | ~110k |

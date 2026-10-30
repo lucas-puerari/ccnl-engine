@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `J271` |
 | **Sector** | credito |
+| **Family** | `credito` |
 | **Tax sector** | `credito` |
 | **Last renewal** | 2024-07-09 |
 | **Workers (est.)** | ~33k |

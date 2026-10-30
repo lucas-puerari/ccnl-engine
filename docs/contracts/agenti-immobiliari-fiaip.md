@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H0B1` |
 | **Sector** | agenzie immobiliari |
+| **Family** | `servizi-immobiliari` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2025-05-19 |
 | **Workers (est.)** | — |

@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `S005` |
 | **Sector** | Pubblica Amministrazione — Comparto Funzioni Centrali |
+| **Family** | `pubblico-impiego` |
 | **Tax sector** | `pubblica-amministrazione` |
 | **Last renewal** | 2026-08-06 |
 | **Workers (est.)** | ~250k |

@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `S305` |
 | **Sector** | Pubblica Amministrazione |
+| **Family** | `pubblico-impiego` |
 | **Tax sector** | `pubblica-amministrazione` |
 | **Last renewal** | 2026-07-01 |
 | **Workers (est.)** | ~1,2M |

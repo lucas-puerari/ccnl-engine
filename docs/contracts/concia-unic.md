@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `B101` |
 | **Sector** | industria |
+| **Family** | `pelli-calzature` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2024-03-07 |
 | **Workers (est.)** | ~22.6k |

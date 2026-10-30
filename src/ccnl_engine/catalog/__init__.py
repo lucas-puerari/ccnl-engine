@@ -5,12 +5,14 @@ Answers what the engine covers before any run.
 
 from __future__ import annotations
 
+from ccnl_engine.agreement.family.models import ContractFamily, FamilyAssignment
 from ccnl_engine.agreement.validity.models import ValidityWindow
 from ccnl_engine.capability.registry.models import (
     CapabilityCatalog,
     CapabilityEntry,
     CapabilityImplementation,
 )
+from ccnl_engine.catalog.family.services import list_families
 from ccnl_engine.catalog.loaders import (
     CcnlId,
     ContractSummary,
@@ -40,7 +42,9 @@ __all__ = [
     "CapabilityEntry",
     "CapabilityImplementation",
     "CcnlId",
+    "ContractFamily",
     "ContractSummary",
+    "FamilyAssignment",
     "Jurisdiction",
     "LevelSummary",
     "RulesetAssurance",
@@ -51,6 +55,7 @@ __all__ = [
     "ValidityWindow",
     "VerificationStatus",
     "get_ccnl",
+    "list_families",
     "municipalities",
     "regions",
     "search_ccnls",

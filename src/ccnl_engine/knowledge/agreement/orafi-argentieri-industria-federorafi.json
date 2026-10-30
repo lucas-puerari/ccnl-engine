@@ -1,10 +1,17 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "orafi-argentieri-industria-federorafi",
     "name": "CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)",
     "cnel_code": "C021",
     "sector": "industria",
+    "family": {
+      "id": "metalmeccanica",
+      "reason": "Goldsmith, silversmith and jewellery industry (Federorafi): precious-metal working, part of the metalworking area.",
+      "related": [
+        "tessile-moda"
+      ]
+    },
     "tax_sector": "industria",
     "signatories": [
       "Federorafi",
@@ -1359,7 +1366,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "f1714b91d9683368206974ede3252fdd5aa55e7c819297d48bf40cb8241f587b",
+    "source_hash": "1fbc29cdb3089c72937589c1ce10f1404552e9f291d8a3a4a24a48ac0d291989",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "edilizia-ance-impiegati",
     "name": "CCNL Edilizia — Industria (ANCE), impiegati e quadri",
     "cnel_code": "F012",
     "sector": "edilizia",
+    "family": {
+      "id": "edilizia",
+      "reason": "Construction industry, clerical staff (ANCE).",
+      "related": []
+    },
     "tax_sector": "edilizia",
     "signatories": [
       "ANCE",
@@ -2412,7 +2417,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "ff81cffe5d4983ae59114386187f074d43b3144be79604bcc102bebbcc61abcb",
+    "source_hash": "5dc3b3b9a43a25db6ad7139ac132feeb245083fc809280aef2d3f69475aa9ed8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

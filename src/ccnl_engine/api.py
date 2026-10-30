@@ -158,13 +158,13 @@ class PayrollEngine:
         """Payability policy of the results of this engine."""
         return self._mode
 
-    def list_contracts(self) -> tuple[ContractSummary, ...]:
-        """Return every contract of the repository with its readiness tier.
+    def list_contracts(self, family: str | None = None) -> tuple[ContractSummary, ...]:
+        """Return the contracts of the repository, of ``family`` when given.
 
         Returns:
-            One summary per CCNL of the repository, sorted by ``ccnl_id``.
+            One summary per CCNL, sorted by ``ccnl_id``.
         """
-        return _catalog.list_contracts(self._repo)
+        return _catalog.list_contracts(self._repo, family=family)
 
     def list_levels(self, ccnl_id: str) -> tuple[LevelSummary, ...]:
         """Return the levels of one CCNL, each code as ``Employment`` takes it.

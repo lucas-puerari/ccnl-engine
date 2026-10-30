@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `F012` |
 | **Sector** | edilizia |
+| **Family** | `edilizia` |
 | **Tax sector** | `edilizia` |
 | **Last renewal** | 2025-02-21 |
 | **Workers (est.)** | — |

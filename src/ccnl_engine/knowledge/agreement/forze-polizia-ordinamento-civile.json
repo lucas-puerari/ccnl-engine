@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "forze-polizia-ordinamento-civile",
     "name": "DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)",
     "cnel_code": "N/A",
     "sector": "Pubblica Sicurezza — Forze di Polizia ad ordinamento civile",
+    "family": {
+      "id": "forze-polizia",
+      "reason": "Police forces with a civil status.",
+      "related": []
+    },
     "tax_sector": "pubblica-amministrazione",
     "agreement_date": "2025-03-24",
     "validity": {
@@ -2248,7 +2253,7 @@
     "effective_until": null,
     "source": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.dataPubblicazioneGazzetta=2025-04-18&atto.codiceRedazionale=25G00046&atto.articolo.numero=0&atto.articolo.sottoArticolo=1&atto.articolo.sottoArticolo1=0&qId=1ede7c71-4666-4c74-b496-2391fce88e7f",
     "verification_status": "unverified",
-    "source_hash": "55c7a15ca6ecfe3027fbb49ae8202ce5bddecd09fb07934bf35bbff4522245d2",
+    "source_hash": "537dcff732df2174d18dab9828880d24efc51fc1a84d55301e531e95a452ae2f",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

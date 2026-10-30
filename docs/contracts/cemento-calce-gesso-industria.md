@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `F032` |
 | **Sector** | industria del cemento calce e gesso |
+| **Family** | `materiali-estrattive` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-05-08 |
 | **Workers (est.)** | ~25k |

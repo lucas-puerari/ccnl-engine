@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "operai-agricoli-florovivaisti",
     "name": "CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA",
     "cnel_code": "A011",
     "sector": "agricoltura",
+    "family": {
+      "id": "agricoltura",
+      "reason": "Agricultural and nursery manual workers.",
+      "related": []
+    },
     "tax_sector": "agricoltura",
     "signatories": [
       "Coldiretti — Confederazione Nazionale Coldiretti",
@@ -822,7 +827,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "bc2d9da8b01162e424b004d4f66d153ad9d6c30bcebd50ea145a94807ae98dea",
+    "source_hash": "38ebd90778a6ac43923d46d7efe80058b0f3385ac78c0b52686967ccba8868ac",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

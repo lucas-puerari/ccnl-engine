@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `F018` |
 | **Sector** | Edilizia |
+| **Family** | `edilizia` |
 | **Tax sector** | `edilizia` |
 | **Last renewal** | 2025-04-15 |
 | **Workers (est.)** | ~70000 |

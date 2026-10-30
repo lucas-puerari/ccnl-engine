@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `T011` |
 | **Sector** | Sanità privata |
+| **Family** | `socio-sanitario` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2020-10-08 |
 | **Workers (est.)** | ~150k |

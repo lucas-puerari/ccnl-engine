@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "igiene-ambientale-utilitalia",
     "name": "CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana",
     "cnel_code": "K540",
     "sector": "servizi ambientali",
+    "family": {
+      "id": "energia-utilities",
+      "reason": "Waste and environmental services (Utilitalia).",
+      "related": []
+    },
     "tax_sector": "industria",
     "agreement_date": "2025-12-09",
     "validity": {
@@ -4245,7 +4250,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "6bfb966c50a77c58ebf3411dbc8d3c2b0c880c2390bf245511f42d39ee4106a7",
+    "source_hash": "95ddd991e307514ec6cd0bc2f982127b650c5a32d2908a8dd8ae65589a49f4b3",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

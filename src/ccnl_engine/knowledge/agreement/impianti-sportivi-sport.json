@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "impianti-sportivi-sport",
     "cnel_code": "H077",
     "name": "CCNL Impianti e Attività Sportive Profit e No-profit",
     "sector": "impianti sportivi, palestre e attività sportive",
+    "family": {
+      "id": "sport",
+      "reason": "Sport facilities, gyms and sport activities.",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "CUSI",
@@ -1210,7 +1215,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "a7a2a503bd137d574623ca30f2d32c77984e5bcafcc9eecefe29a832c32a48be",
+    "source_hash": "1bb467a2833710da1d3610291910b7523edde688e4ea2cc76c08266237522664",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

@@ -1,10 +1,17 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "legno-lapidei-artigianato-confartigianato",
     "name": "CCNL Area Legno-Lapidei — Artigianato",
     "cnel_code": "F060",
     "sector": "legno arredamento lapidei artigianato",
+    "family": {
+      "id": "legno-arredamento",
+      "reason": "Craft wood, furniture and stone businesses; wood is the main scope, stone a related one.",
+      "related": [
+        "materiali-estrattive"
+      ]
+    },
     "tax_sector": "artigianato",
     "agreement_date": "2024-03-05",
     "signatories": [
@@ -1823,7 +1830,7 @@
     "effective_until": null,
     "source": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
     "verification_status": "unverified",
-    "source_hash": "3a3ac0d15158dcf3688f7f562c7ad033dfaad547a78a8f1c31c3745b54994bd3",
+    "source_hash": "90c2215ed282055c694a9cb31687abaa0b036dea5700ba5bdecdb27eda1229e0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

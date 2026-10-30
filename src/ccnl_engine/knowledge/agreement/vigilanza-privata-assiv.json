@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "vigilanza-privata-assiv",
     "name": "CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (GPG)",
     "cnel_code": "HV40",
     "sector": "vigilanza-privata",
+    "family": {
+      "id": "vigilanza",
+      "reason": "Private security and fiduciary services (ASSIV).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "ASSIV",
@@ -1749,7 +1754,7 @@
     "effective_until": null,
     "source": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
     "verification_status": "unverified",
-    "source_hash": "610a67ba7fcf8bc30e2936314d7fbe7d7793d1b40847f27c0e5692e1ad16c8e1",
+    "source_hash": "b0cb95415d817f6c569e6993a9d94e7f21fd7c3dd7af9268f7fea17ed7660a76",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

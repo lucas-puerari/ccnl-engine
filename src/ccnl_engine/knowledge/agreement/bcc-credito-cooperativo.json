@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "bcc-credito-cooperativo",
     "name": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
     "cnel_code": "J271",
     "sector": "credito",
+    "family": {
+      "id": "credito",
+      "reason": "Cooperative credit banks (BCC).",
+      "related": []
+    },
     "tax_sector": "credito",
     "signatories": [
       "Federcasse",
@@ -1732,7 +1737,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "f7c33ee37eeb877e3a9f43674ca6862bf847ecd6695d052919c22809057b76db",
+    "source_hash": "b75c4bb98e6fc172ed522b5865b41c58ff7e140bc4271b5509c47e17a365bf44",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "poste-italiane-k700",
     "name": "CCNL Poste Italiane S.p.A. (personale non dirigente)",
     "cnel_code": "K700",
     "sector": "Servizi postali",
+    "family": {
+      "id": "servizi-postali",
+      "reason": "Poste Italiane, the universal postal service provider.",
+      "related": []
+    },
     "tax_sector": "industria",
     "agreement_date": "2024-07-23",
     "signatories": [
@@ -1591,7 +1596,7 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "d152fa036db402ef69869d7dc7f8d5eb0c6f1417e5db6078a9d719d5d3dd1558",
+    "source_hash": "b864ab311457ac86f208264d9c2bdd6904cbb8977b71e1a37d1ec319ccdf17b3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
