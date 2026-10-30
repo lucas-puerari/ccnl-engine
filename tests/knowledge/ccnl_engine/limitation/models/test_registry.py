@@ -239,3 +239,25 @@ def test_unsourced_midpoint_components_are_an_open_limitation(
     }
     midpoint = {c.meta.ccnl_id for c in ccnls if _has_midpoint(c)}
     assert unsourced == midpoint - {"aziende-termali-federterme"}
+
+
+def test_the_cumulation_window_covers_the_per_episode_ccnls(
+    ccnls: tuple[CCNL, ...],
+) -> None:
+    """The window limitation scopes the CCNLs that count one episode only.
+
+    A CCNL with a cumulation, or with a comporto over the calendar year,
+    counts the sickness of several episodes and never takes its path.
+    """
+    (window,) = (
+        lim for lim in load_engine_limitations() if lim.id == CUMULATION_LIMITATION
+    )
+    per_episode = {
+        ccnl.meta.ccnl_id
+        for ccnl in ccnls
+        if ccnl.work_rules is not None
+        and (rules := ccnl.work_rules.sickness_rules) is not None
+        and rules.cumulation is None
+        and not rules.comporto_calendar_year
+    }
+    assert set(window.rulesets) == per_episode
