@@ -1,6 +1,6 @@
 """Validity period and time series primitives."""
 
-from collections.abc import Iterator
+from collections.abc import Generator
 from contextlib import contextmanager
 from datetime import date
 from decimal import Decimal
@@ -99,7 +99,7 @@ class SeriesGapError(ValueError):
 @contextmanager
 def rule_scope(
     *, ruleset: str | None = None, feature: str | None = None
-) -> Iterator[None]:
+) -> Generator[None, None, None]:
     """Raise a series gap met within as a :class:`MissingRuleError`.
 
     Scopes nest: an inner scope names the feature, an outer one the
