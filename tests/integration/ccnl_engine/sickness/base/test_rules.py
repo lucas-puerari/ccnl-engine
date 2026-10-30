@@ -8,16 +8,17 @@ payments.  Computed by hand from INPS circ. 134368/1981 point 11.3:
 
 - RMGG = 2158.26 / 26 + (2158.26 * 1 / 12) / 25 = 83.01 + 7.1942 = 90.2042;
 - days 1-3 (25-27 May) carenza, INPS pays nothing;
-- days 4-7 (28-31 May, four calendar days, Sunday included) at 50%:
-  4 * 0.5 * 90.2042 = 180.4084 -> 180.41;
-- days 8-17 (1-10 June, ten calendar days) at 50%: 10 * 0.5 * 90.2042 =
-  451.021 -> 451.02, still on the April base although June pays 2211.43.
+- days 4-7 (28-31 May) at 50%: an operaio is paid the weekdays only, not
+  Sunday 31 May (point 7.3): 3 * 0.5 * 90.2042 = 135.3063 -> 135.31;
+- days 8-17 (1-10 June) at 50%, less Tuesday 2 June (Festa della
+  Repubblica) and Sunday 7 June: 8 * 0.5 * 90.2042 = 360.8168 -> 360.82,
+  still on the April base although June pays 2211.43.
 
 The CCNL pays the first 122 days of the chain in full: the employer tops the
 INPS share up to the daily pay the run deducts, on the June pay in June.
 May deducts 2158.26 * 6 / 26 = 498.06 (three carenza and three indemnified
-payable days, by 26), pays the carenza 249.03 and tops up 249.03 - 180.41 =
-68.62.
+payable days, by 26), pays the carenza 249.03 and tops up 249.03 - 135.31 =
+113.72.
 """
 
 from __future__ import annotations
@@ -82,13 +83,13 @@ def _sick(result: PeriodResult) -> dict[str, Decimal]:
 
 
 def test_may_pays_the_inps_share_on_the_april_base() -> None:
-    """Four calendar days at 50% of the RMGG; the employer tops up the rest."""
+    """Three weekdays at 50% of the RMGG; the employer tops up the rest."""
     may = _run(5, _EPISODE, PeriodState.zero())
 
     assert _sick(may) == {
         "abs": Decimal("498.06"),
-        "inps": Decimal("180.41"),
-        "intg": Decimal("68.62"),
+        "inps": Decimal("135.31"),
+        "intg": Decimal("113.72"),
         "crnz": Decimal("249.03"),
     }
     assert "sickness_inps_base_unknown" not in {i.code for i in may.issues}
@@ -97,12 +98,12 @@ def test_may_pays_the_inps_share_on_the_april_base() -> None:
 
 
 def test_june_keeps_the_april_base_through_the_pay_rise() -> None:
-    """Ten calendar days on the April base; the top-up follows the June pay."""
+    """Eight weekdays on the April base; the top-up follows the June pay."""
     may = _run(5, _EPISODE, PeriodState.zero())
     june = _run(6, _EPISODE, may.closing_state)
 
     sick = _sick(june)
-    assert sick["inps"] == Decimal("451.02")
+    assert sick["inps"] == Decimal("360.82")
     assert sick["inps"] + sick["intg"] == sick["abs"]
     assert sick["abs"] > Decimal("2158.26") * 9 / 26
     assert "sickness_inps_base_unknown" not in {i.code for i in june.issues}

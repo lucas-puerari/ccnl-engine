@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "description": "National and weekday holidays with civil effects (giorni festivi), besides the Sundays. The days art. 2 L. 260/1949 still lists that L. 54/1977 art. 1 suppressed (San Giuseppe, Ascensione, Corpus Domini, SS. Pietro e Paolo, 4 novembre) are not holidays.",
+  "suppressed_provenance": {
+    "status": "derived",
+    "location": {
+      "source_document": {
+        "document_id": "legge-54-1977-art1",
+        "title": "Legge 5 marzo 1977, n. 54, art. 1 (Normattiva, testo vigente al 30/10/2026)",
+        "kind": "legge",
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1977-03-05;54~art1!vig=2026-10-30",
+        "sha256": "6a2adade98fa62e0fa0dc893a17b59161058cfc14425b1c7ab9c628d0c1adc7c"
+      },
+      "section": "Art. 1",
+      "quote": "I seguenti giorni cessano di essere considerati festivi agli effetti civili: Epifania; S. Giuseppe; Ascensione; Corpus Domini; SS. Apostoli Pietro e Paolo. [...] Cessano pertanto di essere considerati festivi i giorni 2 giugno e 4 novembre."
+    },
+    "transformation": "The suppressed days are left out of the list; Epifania and 2 June were restored later."
+  },
+  "holidays": [
+    {
+      "day": "01-01",
+      "name": "Capodanno",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "legge-260-1949-art2",
+            "title": "Legge 27 maggio 1949, n. 260, art. 2 (Normattiva, testo vigente al 30/10/2026)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1949-05-27;260~art2!vig=2026-10-30",
+            "sha256": "2d2442a4ab17ce703bb6b8ca0ea897de74d44cc73de8154d1ba6e3559293a938"
+          },
+          "section": "Art. 2",
+          "quote": "il primo giorno dell'anno"
+        },
+        "transformation": "Listed in art. 2 and not suppressed by L. 54/1977 art. 1."
+      }
+    },
+    {
+      "day": "01-06",
+      "name": "Epifania",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "dpr-792-1985-art1",
+            "title": "D.P.R. 28 dicembre 1985, n. 792, art. 1 (Normattiva, testo vigente al 30/10/2026)",
+            "kind": "dpr",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1985-12-28;792~art1!vig=2026-10-30",
+            "sha256": "c38583940ff7f98ec4337cea7a3e365073b10dd6df44234ce1c575b5ce7a0a97"
+          },
+          "section": "Art. 1",
+          "quote": "il 6 gennaio, Epifania del Signore"
+        },
+        "transformation": "Suppressed by L. 54/1977 art. 1 ('Epifania'), restored as a religious festivity with civil effects by D.P.R. 792/1985 art. 1."
+      }
+    },
+    {
+      "day": "easter_monday",
+      "name": "Lunedì dell'Angelo",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "legge-260-1949-art2",
+            "title": "Legge 27 maggio 1949, n. 260, art. 2 (Normattiva, testo vigente al 30/10/2026)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1949-05-27;260~art2!vig=2026-10-30",
+            "sha256": "2d2442a4ab17ce703bb6b8ca0ea897de74d44cc73de8154d1ba6e3559293a938"
+          },
+          "section": "Art. 2",
+          "quote": "il giorno di lunedi dopo Pasqua"
+        },
+        "transformation": "The Monday after Easter Sunday of the Gregorian calendar."
+      }
+    },
+    {
+      "day": "04-25",
+      "name": "Anniversario della Liberazione",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "legge-260-1949-art2",
+            "title": "Legge 27 maggio 1949, n. 260, art. 2 (Normattiva, testo vigente al 30/10/2026)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1949-05-27;260~art2!vig=2026-10-30",
+            "sha256": "2d2442a4ab17ce703bb6b8ca0ea897de74d44cc73de8154d1ba6e3559293a938"
+          },
+          "section": "Art. 2",
+          "quote": "il 25 aprile: anniversario della liberazione"
+        },
+        "transformation": "Listed in art. 2 and not suppressed by L. 54/1977 art. 1."
+      }
+    },
+    {
+      "day": "05-01",
+      "name": "Festa del lavoro",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "legge-260-1949-art2",
+            "title": "Legge 27 maggio 1949, n. 260, art. 2 (Normattiva, testo vigente al 30/10/2026)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1949-05-27;260~art2!vig=2026-10-30",
+            "sha256": "2d2442a4ab17ce703bb6b8ca0ea897de74d44cc73de8154d1ba6e3559293a938"
+          },
+          "section": "Art. 2",
+          "quote": "il 1 maggio: festa del lavoro"
+        },
+        "transformation": "Listed in art. 2 and not suppressed by L. 54/1977 art. 1."
+      }
+    },
+    {
+      "day": "06-02",
+      "name": "Festa della Repubblica",
+      "valid_from": "2001-01-01",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "legge-336-2000-art1",
+            "title": "Legge 20 novembre 2000, n. 336, art. 1 (Normattiva, testo vigente al 30/10/2026)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2000-11-20;336~art1!vig=2026-10-30",
+            "sha256": "c49165ec389c487318b10350bbbc25b929c3c70bdfd502d9efec73faa490255b"
+          },
+          "section": "Art. 1",
+          "quote": "A decorrere dal 2001 la celebrazione della festa nazionale della Repubblica ha nuovamente luogo il 2 giugno di ciascun anno, che pertanto viene ripristinato come giorno festivo."
+        },
+        "transformation": "The festa nazionale of L. 260/1949 art. 1, moved by L. 54/1977 art. 1 and restored to 2 June from 2001."
+      }
+    },
+    {
+      "day": "08-15",
+      "name": "Assunzione",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "legge-260-1949-art2",
+            "title": "Legge 27 maggio 1949, n. 260, art. 2 (Normattiva, testo vigente al 30/10/2026)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1949-05-27;260~art2!vig=2026-10-30",
+            "sha256": "2d2442a4ab17ce703bb6b8ca0ea897de74d44cc73de8154d1ba6e3559293a938"
+          },
+          "section": "Art. 2",
+          "quote": "il giorno dell'Assunzione della B. V. Maria"
+        },
+        "transformation": "Listed in art. 2 and not suppressed by L. 54/1977 art. 1; 15 August."
+      }
+    },
+    {
+      "day": "10-04",
+      "name": "San Francesco d'Assisi",
+      "valid_from": "2026-01-01",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "legge-260-1949-art2",
+            "title": "Legge 27 maggio 1949, n. 260, art. 2 (Normattiva, testo vigente al 30/10/2026)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1949-05-27;260~art2!vig=2026-10-30",
+            "sha256": "2d2442a4ab17ce703bb6b8ca0ea897de74d44cc73de8154d1ba6e3559293a938"
+          },
+          "section": "Art. 2",
+          "quote": "il 4 ottobre: festa nazionale di San Francesco d'Assisi, patrono d'Italia;"
+        },
+        "transformation": "Added to art. 2 by L. 8 ottobre 2025, n. 151, in force from 1 January 2026."
+      }
+    },
+    {
+      "day": "11-01",
+      "name": "Ognissanti",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "legge-260-1949-art2",
+            "title": "Legge 27 maggio 1949, n. 260, art. 2 (Normattiva, testo vigente al 30/10/2026)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1949-05-27;260~art2!vig=2026-10-30",
+            "sha256": "2d2442a4ab17ce703bb6b8ca0ea897de74d44cc73de8154d1ba6e3559293a938"
+          },
+          "section": "Art. 2",
+          "quote": "il giorno di Ognissanti"
+        },
+        "transformation": "Listed in art. 2 and not suppressed by L. 54/1977 art. 1; 1 November."
+      }
+    },
+    {
+      "day": "12-08",
+      "name": "Immacolata Concezione",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "legge-260-1949-art2",
+            "title": "Legge 27 maggio 1949, n. 260, art. 2 (Normattiva, testo vigente al 30/10/2026)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1949-05-27;260~art2!vig=2026-10-30",
+            "sha256": "2d2442a4ab17ce703bb6b8ca0ea897de74d44cc73de8154d1ba6e3559293a938"
+          },
+          "section": "Art. 2",
+          "quote": "il giorno della festa dell'Immacolata Concezione"
+        },
+        "transformation": "Listed in art. 2 and not suppressed by L. 54/1977 art. 1; 8 December."
+      }
+    },
+    {
+      "day": "12-25",
+      "name": "Natale",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "legge-260-1949-art2",
+            "title": "Legge 27 maggio 1949, n. 260, art. 2 (Normattiva, testo vigente al 30/10/2026)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1949-05-27;260~art2!vig=2026-10-30",
+            "sha256": "2d2442a4ab17ce703bb6b8ca0ea897de74d44cc73de8154d1ba6e3559293a938"
+          },
+          "section": "Art. 2",
+          "quote": "il giorno di Natale"
+        },
+        "transformation": "Listed in art. 2 and not suppressed by L. 54/1977 art. 1."
+      }
+    },
+    {
+      "day": "12-26",
+      "name": "Santo Stefano",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "legge-260-1949-art2",
+            "title": "Legge 27 maggio 1949, n. 260, art. 2 (Normattiva, testo vigente al 30/10/2026)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1949-05-27;260~art2!vig=2026-10-30",
+            "sha256": "2d2442a4ab17ce703bb6b8ca0ea897de74d44cc73de8154d1ba6e3559293a938"
+          },
+          "section": "Art. 2",
+          "quote": "il giorno 26 dicembre"
+        },
+        "transformation": "Listed in art. 2 and not suppressed by L. 54/1977 art. 1."
+      }
+    }
+  ]
+}

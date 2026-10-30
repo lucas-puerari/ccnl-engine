@@ -254,9 +254,13 @@ records one `sickness` decision with the classified days in its inputs.
 #### INPS daily base
 
 INPS pays its share on the retribuzione media globale giornaliera (RMGG) of
-the month immediately before the illness, on every calendar day the
-certificate covers (INPS circ. 134368 A.G.O. 14 of 28 January 1981, point
-11; circ. 55 of 4 April 2024, Allegato 1). `SicknessEpisode.inps_base`
+the month immediately before the illness (INPS circ. 134368 A.G.O. 14 of 28
+January 1981, point 11; circ. 55 of 4 April 2024, Allegato 1), on the days
+it pays (point 7.3): an operaio the weekdays, the Saturday of a short week
+included, not the Sundays and the national holidays; an impiegato, and a
+lavoratore dello spettacolo, every day but the holidays falling on a Sunday.
+The national holidays are those of L. 260/1949 as amended
+(`knowledge/calendar/holiday/national.json`: 4 October from 2026). `SicknessEpisode.inps_base`
 (`InpsSicknessBase`) states the pay of that month as the payroll history
 holds it: the *retribuzione teorica* of its UniEmens flow, the days worked
 or paid, the other recurring payments of the year and, for a month not

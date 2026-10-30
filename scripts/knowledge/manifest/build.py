@@ -33,6 +33,7 @@ DATASETS: dict[str, tuple[str, bool]] = {
     "agreement": ("CCNL", False),
     "agreement/family": ("FamilyCatalog", False),
     "census": ("Census", False),
+    "calendar/holiday": ("NationalHolidays", False),
     "contribution": ("InpsRates", True),
     "sickness/indemnity": ("InpsSickPayRates", False),
     "absence/insured": ("InsuredAbsenceRates", False),
@@ -53,6 +54,7 @@ DATASETS: dict[str, tuple[str, bool]] = {
 NO_VALIDITY = {
     "agreement/family": "contract families describe the CCNLs, not a period",
     "census": "the census lists the requirements of every period of the CCNL",
+    "calendar/holiday": "each holiday states the first date it holds, if any",
     "limitation": "engine limitations follow the engine, not a period",
     "pay_item": "the pay item policy applies to every year the bundle holds",
     "sickness/indemnity": (
@@ -67,6 +69,9 @@ NO_RULESET = {
     ),
     "census": (
         "the census is a checklist of its CCNL; each requirement cites its clause"
+    ),
+    "calendar/holiday": (
+        "the list follows the law, not a period; each holiday cites its act"
     ),
     "capability/registry": (
         "the registry describes engine capabilities for its year; each capability "

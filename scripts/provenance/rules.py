@@ -554,6 +554,8 @@ def fiscal_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]
     yield from _block_rules(file, data, _by_prefix(_NAMED_BLOCKS, file) or ())
     if file.startswith("sickness/indemnity/rates"):
         yield from _sick_pay_regimes(file, data)
+    if file.startswith("calendar/holiday/"):
+        yield from _holidays(file, data)
     for key, capability in _REGIMES.items():
         regime = data.get(key)
         if isinstance(regime, dict):
@@ -561,6 +563,19 @@ def fiscal_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]
             yield PayableRule(
                 file, key, (capability,), status if isinstance(status, str) else None
             )
+
+
+def _holidays(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
+    """Yield the national holidays, one rule each: INPS pays no sick day on them.
+
+    Yields:
+        ``holidays[<day>]`` with the record of the act that makes it one.
+    """
+    holidays = data.get("holidays")
+    for holiday in holidays if isinstance(holidays, list) else []:
+        if isinstance(holiday, dict):
+            path = f"holidays[{holiday.get('day')}]"
+            yield _rule(file, path, ("sickness",), holiday.get("provenance"))
 
 
 def _sick_pay_regimes(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
@@ -593,6 +608,7 @@ FISCAL_DATASETS = (
     "contribution",
     "sickness",
     "surtax",
+    "calendar",
 )
 
 

@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING, Protocol
 if TYPE_CHECKING:
     from ccnl_engine.absence.insured.models import InsuredAbsenceRates
     from ccnl_engine.agreement.facade import CCNL, TaxSector
+    from ccnl_engine.calendar.holiday.models import NationalHolidays
     from ccnl_engine.capability.registry.models import CapabilityCatalog
     from ccnl_engine.catalog.loaders import ContractSummary
     from ccnl_engine.family.models import FamilyDeductionRules
@@ -75,4 +76,8 @@ class KnowledgeRepository(Protocol):  # pragma: no cover
 
     def load_insured_absence_rates(self) -> InsuredAbsenceRates:
         """Load and return the maternity and work-injury indemnities."""
+        ...
+
+    def load_national_holidays(self) -> NationalHolidays:
+        """Load and return the national holidays with civil effects."""
         ...

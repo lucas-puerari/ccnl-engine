@@ -16,7 +16,11 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.pay_item.services import _ZERO
-from ccnl_engine.sickness.base.rules import episode_daily_base
+from ccnl_engine.sickness.base.rules import (
+    episode_daily_base,
+    indemnified_days,
+    weekdays_only,
+)
 from ccnl_engine.sickness.cumulation.results import (
     CumulationReport,
     cumulation_report,
@@ -153,17 +157,24 @@ def _grossed(share: Decimal, rules: SickPayRules, terms: SicknessTerms) -> Decim
 
 
 def _inps_share(
-    segment: SickDaySegment, base: Decimal, inps_base: Decimal | None
+    segment: SickDaySegment,
+    base: Decimal,
+    inps_base: Decimal | None,
+    terms: SicknessTerms,
 ) -> Decimal:
     """Return the INPS share of the days of one segment.
 
     Returns:
-        The INPS daily base times the calendar days of the segment, when
+        The INPS daily base times the days of the segment INPS pays, when
         known; else the CCNL pay of its units; times the INPS rate.
     """
     if inps_base is None:
         return money(base * segment.inps_rate)
-    days = (segment.last - segment.first).days + 1
+    first, last = segment.first, segment.last
+    holidays = (
+        frozenset() if terms.holidays is None else terms.holidays.between(first, last)
+    )
+    days = indemnified_days(first, last, holidays, weekdays=weekdays_only(terms))
     return money(inps_base * days * segment.inps_rate)
 
 
@@ -185,7 +196,7 @@ def _segment_pay(
     """
     if segment.kind is SickDayKind.FIXED_TERM_LIMIT:
         return _ZERO, _ZERO, _ZERO
-    share = _inps_share(segment, base, inps_base)
+    share = _inps_share(segment, base, inps_base, rules[1])
     advanced = (
         share
         if segment.kind is not SickDayKind.CARENZA and not segment.inps_direct

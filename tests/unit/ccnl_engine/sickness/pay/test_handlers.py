@@ -15,7 +15,10 @@ from decimal import Decimal
 from types import SimpleNamespace
 from typing import TYPE_CHECKING, cast
 
+import pytest
+
 from ccnl_engine.compensation.element.types import MonthlyPayChain
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.sickness.day.rules import SickDayKind, SickDaySegment
 from ccnl_engine.sickness.pay.handlers import (
     EpisodePay,
@@ -172,3 +175,29 @@ def test_days_back_within_a_rolling_comporto_are_still_clipped() -> None:
         Decimal(4),
         Decimal(11),
     )
+
+
+@pytest.mark.parametrize(
+    ("category", "share"),
+    [
+        (WorkerCategory.OPERAIO, Decimal("60.00")),
+        (WorkerCategory.IMPIEGATO, Decimal("70.00")),
+    ],
+)
+def test_the_inps_base_pays_the_days_inps_pays(
+    category: WorkerCategory, share: Decimal
+) -> None:
+    """4-10 July 2026, base 20 at 50%: an operaio loses Sunday 5 July.
+
+    Without the holiday list no day is a holiday: 6 or 7 days of 10.00.
+    """
+    segment = replace(
+        _segment(4, 10, SickDayKind.INDEMNIFIED), inps_rate=Decimal("0.5")
+    )
+    rules = (_rules(net_basis=False), SicknessTerms(category=category))
+
+    inps, _, _ = _segment_pay(
+        segment, Decimal("300.00"), rules, excluded=False, inps_base=Decimal(20)
+    )
+
+    assert inps == share
