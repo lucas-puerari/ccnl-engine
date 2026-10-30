@@ -75,7 +75,11 @@ KIND_CAPABILITIES: dict[str, frozenset[str]] = {
     "contract_renewal_arrears": frozenset({"contract_renewal_arrears"}),
     "sickness_item": frozenset({"sickness"}),
     "sickness_inps_item": frozenset({"sickness"}),
-    "maternity_item": frozenset({"maternity_leave", "paternity_leave"}),
+    "maternity_item": frozenset({
+        "maternity_leave",
+        "paternity_leave",
+        "parental_leave",
+    }),
     "work_injury_item": frozenset({"workplace_injury"}),
     "absence_integration_item": frozenset({"maternity_leave", "workplace_injury"}),
     "absence_deduction": frozenset({
@@ -83,6 +87,7 @@ KIND_CAPABILITIES: dict[str, frozenset[str]] = {
         "sickness",
         "maternity_leave",
         "paternity_leave",
+        "parental_leave",
         "workplace_injury",
     }),
     "fringe_benefit_item": frozenset({"fringe_benefit"}),

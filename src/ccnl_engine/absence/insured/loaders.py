@@ -26,6 +26,7 @@ def load_insured_absence_rates() -> InsuredAbsenceRates:
     return InsuredAbsenceRates.model_validate({
         "maternity": raw["maternity"],
         "paternity": raw["paternity"],
+        "parental": raw["parental"],
         "injury": raw["injury"],
         "ruleset": _as_ruleset(raw),
     })

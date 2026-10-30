@@ -31,8 +31,6 @@ if TYPE_CHECKING:
 
 __all__ = ["post_lines"]
 
-_INTEGRATION = "absence_integration_item"
-
 
 def _item(
     kind: str, item_id: str, amount: Decimal, units: Decimal, ctx: _EventHandlerCtx
@@ -71,7 +69,9 @@ def post_lines(
     """Return the items, intents and base deltas of ``lines``.
 
     Each line is ``(suffix, amount, kind, units)``; a negative amount is
-    the deduction of the days, treated like the employer pay.
+    the deduction of the days, treated as ``kind`` says: like the employer
+    pay (``absence_integration_item``) or like an unpaid absence
+    (``absence_deduction``).
 
     Returns:
         The effect with its items, intents and deltas.
@@ -82,12 +82,9 @@ def post_lines(
     for suffix, amount, kind, units in lines:
         if amount == _ZERO:
             continue
-        treated = _INTEGRATION if amount < _ZERO else kind
-        if treated not in resolutions:
-            resolutions[treated] = _require_resolution(
-                ctx.resolver, treated, ctx.context
-            )
-        resolution = resolutions[treated]
+        if kind not in resolutions:
+            resolutions[kind] = _require_resolution(ctx.resolver, kind, ctx.context)
+        resolution = resolutions[kind]
         item_id = f"{ctx.evt_id}_{suffix}"
         item, account = _item(kind, item_id, amount, units, ctx)
         effect.items.append(item)

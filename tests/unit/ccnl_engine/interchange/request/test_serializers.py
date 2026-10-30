@@ -16,6 +16,10 @@ from ccnl_engine.absence.insured.inputs import (
     PaternityLeaveEvent,
     WorkInjuryEvent,
 )
+from ccnl_engine.absence.insured.parental.inputs import (
+    ParentalLeaveEvent,
+    ParentalLeaveTaken,
+)
 from ccnl_engine.agreement.types import TaxSector
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.balance.serializers import STATE_TYPES
@@ -130,6 +134,13 @@ _EVENTS: dict[type, WorkEvent] = {
         HolidayWorkEvent(_DAY, _AMOUNT),
         MaternityLeaveEvent(_DAY, date(2026, 8, 7)),
         PaternityLeaveEvent((_DAY,)),
+        ParentalLeaveEvent(
+            _DAY,
+            _DAY,
+            date(2025, 6, 1),
+            ParentalLeaveTaken(30, 10, 0),
+            single_parent=True,
+        ),
         NightShiftEvent(_DAY, _AMOUNT),
         OvertimeEvent(
             _DAY,

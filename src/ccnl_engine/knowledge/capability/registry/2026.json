@@ -128,6 +128,19 @@
       "description": "Congedo di paternità obbligatorio: indennità INPS al 100% anticipata dal datore"
     },
     {
+      "feature": "parental_leave",
+      "layer": "work_rules",
+      "implementation": "native",
+      "applies_when": "event",
+      "handler": "event",
+      "evidence": "derived",
+      "variants": [
+        "inps_indemnity"
+      ],
+      "required_facts": [],
+      "description": "Congedo parentale: indennità INPS al 30% o all'80% anticipata dal datore"
+    },
+    {
       "feature": "workplace_injury",
       "layer": "work_rules",
       "implementation": "native",

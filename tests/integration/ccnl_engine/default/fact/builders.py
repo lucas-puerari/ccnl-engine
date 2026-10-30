@@ -19,6 +19,8 @@ from ccnl_engine import (
 from ccnl_engine.events import (
     InpsSicknessBase,
     MaternityLeaveEvent,
+    ParentalLeaveEvent,
+    ParentalLeaveTaken,
     PaternityLeaveEvent,
     SicknessEpisode,
 )
@@ -505,6 +507,33 @@ def _paternity(base: InpsSicknessBase | None) -> PeriodInput:
     return replace(run, employment=employment, facts=PeriodFacts(events=(leave,)))
 
 
+_FEBRUARY_PAY = InpsSicknessBase(Decimal("2158.26"), Decimal(0))
+_MATERNITY_END = date(2023, 1, 1)
+
+
+def _parental(base: InpsSicknessBase | None, ended: date | None) -> PeriodInput:
+    """Return two weeks of parental leave in March of an impiegato.
+
+    The child was born on 1 October 2022: only a maternity leave ended in
+    2023 gives a month at 80%.
+
+    Returns:
+        The March run; the indemnity needs the pay of the month before and
+        the end of the maternity leave.
+    """
+    leave = ParentalLeaveEvent(
+        date(2026, 3, 2),
+        date(2026, 3, 15),
+        date(2022, 10, 1),
+        ParentalLeaveTaken(0, 0, 0),
+        ended,
+        parental_base_pay=base,
+    )
+    run = _march(PeriodState.zero())
+    employment = replace(_EMPLOYMENT, category=WorkerCategory.IMPIEGATO)
+    return replace(run, employment=employment, facts=PeriodFacts(events=(leave,)))
+
+
 def sickness_cases[C](
     case: Callable[[PeriodInput, PeriodInput, str], C],
 ) -> Mapping[str, tuple[C, ...]]:
@@ -568,6 +597,20 @@ def sickness_cases[C](
                 _paternity(InpsSicknessBase(Decimal("2158.26"), Decimal(0))),
                 _paternity(None),
                 "paternity_base_pay",
+            ),
+        ),
+        "ParentalLeaveEvent.parental_base_pay": (
+            case(
+                _parental(_FEBRUARY_PAY, _MATERNITY_END),
+                _parental(None, _MATERNITY_END),
+                "parental_base_pay",
+            ),
+        ),
+        "ParentalLeaveEvent.protection_ended_on": (
+            case(
+                _parental(_FEBRUARY_PAY, _MATERNITY_END),
+                _parental(_FEBRUARY_PAY, None),
+                "protection_ended_on",
             ),
         ),
         "SicknessEpisode.prior_worked_days": (

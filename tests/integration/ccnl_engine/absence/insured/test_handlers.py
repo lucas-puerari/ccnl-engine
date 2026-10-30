@@ -28,6 +28,8 @@ from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.events import (
     InpsSicknessBase,
     MaternityLeaveEvent,
+    ParentalLeaveEvent,
+    ParentalLeaveTaken,
     PaternityLeaveEvent,
     WorkInjuryEvent,
 )
@@ -116,6 +118,15 @@ def test_an_injury_without_ccnl_rules_is_paid_by_inail_itself() -> None:
     [
         (_LEAVE, "maternity_leave"),
         (PaternityLeaveEvent((date(2026, 3, 2),)), "paternity_leave"),
+        (
+            ParentalLeaveEvent(
+                date(2026, 3, 2),
+                date(2026, 3, 6),
+                date(2025, 6, 1),
+                ParentalLeaveTaken(0, 0, 0),
+            ),
+            "parental_leave",
+        ),
         (_INJURY, "workplace_injury"),
     ],
 )
@@ -152,6 +163,15 @@ def test_an_event_of_another_month_is_rejected() -> None:
             {"hired": date(2026, 3, 20)},
         ),
         (
+            ParentalLeaveEvent(
+                date(2026, 3, 2),
+                date(2026, 3, 13),
+                date(2025, 6, 1),
+                ParentalLeaveTaken(0, 0, 0),
+            ),
+            {"hired": date(2026, 3, 20)},
+        ),
+        (
             WorkInjuryEvent(date(2026, 12, 1), date(2026, 12, 15)),
             {
                 "month": 12,
@@ -173,6 +193,7 @@ def test_an_event_outside_the_monthly_pay_is_rejected(
 _CAPABILITY = {
     MaternityLeaveEvent: "maternity_leave",
     PaternityLeaveEvent: "paternity_leave",
+    ParentalLeaveEvent: "parental_leave",
     WorkInjuryEvent: "workplace_injury",
 }
 _FEBRUARY = InpsSicknessBase(Decimal("2158.26"), Decimal(0))

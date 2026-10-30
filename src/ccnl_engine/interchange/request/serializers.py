@@ -19,11 +19,8 @@ import json
 from types import MappingProxyType
 from typing import TYPE_CHECKING
 
-from ccnl_engine.absence.inputs import AbsenceEvent, SickLeaveEvent
-from ccnl_engine.absence.insured.inputs import (
-    MaternityLeaveEvent,
-    PaternityLeaveEvent,
-    WorkInjuryEvent,
+from ccnl_engine.absence.insured.parental.inputs import (
+    ParentalLeaveTaken,
 )
 from ccnl_engine.agreement.types import TaxSector
 from ccnl_engine.balance.serializers import STATE_TYPES
@@ -51,6 +48,7 @@ from ccnl_engine.employment.fact.inputs import (
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm, NaspiExclusion
 from ccnl_engine.employment.inputs import Apprentice, Employment, Permanent
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.event.types import WORK_EVENT_TYPES
 from ccnl_engine.extra_month.schedule.models import (
     ExtraMonthKind,
     ExtraMonthSchedule,
@@ -65,7 +63,6 @@ from ccnl_engine.irpef.other_income.inputs import (
     CurrentYearTaxFacts,
     IncomeEstimateQuality,
 )
-from ccnl_engine.leave.inputs import LeaveTakenEvent
 from ccnl_engine.pension_fund.inputs import NoPensionFund, PensionFundEnrolment
 from ccnl_engine.period.inputs import PeriodFacts, PeriodInput
 from ccnl_engine.regime.models import (
@@ -83,26 +80,13 @@ from ccnl_engine.seniority.inputs import (
 )
 from ccnl_engine.severance.provision.models import TfrFundBalance
 from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
-from ccnl_engine.termination.inputs import TerminationTFREvent
-from ccnl_engine.variable_pay.inputs import (
-    ArrearsEvent,
-    BilateralFundEvent,
-    BonusEvent,
-    FringeEvent,
-    TravelAllowanceEvent,
-    WelfareEvent,
-)
 from ccnl_engine.withholding.deferral.inputs import ShortfallDeferralRequest
 from ccnl_engine.working_time.inputs import (
-    HolidayWorkEvent,
     HolidayWorkKind,
-    NightShiftEvent,
-    OvertimeEvent,
     OvertimeKind,
     ShiftKind,
-    ShiftWorkEvent,
 )
-from ccnl_engine.working_time.standby.inputs import StandbyEvent, StandbyKind
+from ccnl_engine.working_time.standby.inputs import StandbyKind
 from ccnl_engine.year.competence.inputs import CompetenceYearPlan
 from ccnl_engine.year.tax_year.inputs import TaxYearPlan
 
@@ -142,12 +126,9 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
     **{
         cls.__name__: cls
         for cls in (
-            AbsenceEvent,
+            *WORK_EVENT_TYPES,
             AgriculturalZone,
             Apprentice,
-            ArrearsEvent,
-            BilateralFundEvent,
-            BonusEvent,
             CalendarOverride,
             CalendarOverrideReason,
             CompetenceYearPlan,
@@ -171,19 +152,13 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             FamilyComposition,
             FixedTerm,
             ForeignTaxPaid,
-            FringeEvent,
             Headcount,
-            HolidayWorkEvent,
             HolidayWorkKind,
             IncomeEstimateQuality,
             IndividualElement,
-            LeaveTakenEvent,
-            MaternityLeaveEvent,
-            PaternityLeaveEvent,
+            ParentalLeaveTaken,
             NaspiExclusion,
-            NightShiftEvent,
             NoPensionFund,
-            OvertimeEvent,
             OvertimeKind,
             PayrollRun,
             PensionFundEnrolment,
@@ -196,22 +171,15 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             SeniorityFact,
             SenioritySource,
             ShiftKind,
-            ShiftWorkEvent,
             ShortfallDeferralRequest,
-            SickLeaveEvent,
-            StandbyEvent,
             StandbyKind,
             SubstituteTaxRegime,
             TaxSector,
             TaxYearPlan,
-            TerminationTFREvent,
             TfrFundBalance,
-            TravelAllowanceEvent,
             WeeklyHours,
-            WelfareEvent,
             WorkCalendar,
             WorkerCategory,
-            WorkInjuryEvent,
             WorkPattern,
         )
     },

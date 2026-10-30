@@ -39,6 +39,7 @@ from ccnl_engine.event.facade import (
     MaternityLeaveEvent,
     NightShiftEvent,
     OvertimeEvent,
+    ParentalLeaveEvent,
     PaternityLeaveEvent,
     ShiftWorkEvent,
     SickLeaveEvent,
@@ -185,6 +186,7 @@ def _amount(event: WorkEvent) -> Decimal | None:
             LeaveTakenEvent,
             MaternityLeaveEvent,
             PaternityLeaveEvent,
+            ParentalLeaveEvent,
             WorkInjuryEvent,
         ),
     ):  # pragma: no cover

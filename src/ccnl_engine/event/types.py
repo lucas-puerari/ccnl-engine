@@ -11,6 +11,7 @@ from ccnl_engine.absence.insured.inputs import (
     PaternityLeaveEvent,
     WorkInjuryEvent,
 )
+from ccnl_engine.absence.insured.parental.inputs import ParentalLeaveEvent
 from ccnl_engine.leave.inputs import LeaveTakenEvent
 from ccnl_engine.sickness.models import SicknessEpisode
 from ccnl_engine.termination.inputs import TerminationTFREvent
@@ -43,6 +44,7 @@ WorkEvent = (
     | SicknessEpisode
     | MaternityLeaveEvent
     | PaternityLeaveEvent
+    | ParentalLeaveEvent
     | WorkInjuryEvent
     | BonusEvent
     | FringeEvent
@@ -66,6 +68,7 @@ WORK_EVENT_TYPES: tuple[type[WorkEvent], ...] = (
     SicknessEpisode,
     MaternityLeaveEvent,
     PaternityLeaveEvent,
+    ParentalLeaveEvent,
     WorkInjuryEvent,
     BonusEvent,
     FringeEvent,
