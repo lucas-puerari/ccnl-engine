@@ -14,6 +14,8 @@ gross, net and employer cost according to its treatment; see
 
 ::: ccnl_engine.events.DisabilityPermitEvent
 
+::: ccnl_engine.events.ExtraordinaryLeaveEvent
+
 ::: ccnl_engine.events.FringeEvent
 
 ::: ccnl_engine.events.HolidayWorkEvent

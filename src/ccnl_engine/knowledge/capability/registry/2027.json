@@ -154,6 +154,19 @@
       "description": "Permessi L. 104/1992: indennità INPS pari all'intera retribuzione dei giorni, anticipata dal datore"
     },
     {
+      "feature": "extraordinary_leave",
+      "layer": "work_rules",
+      "implementation": "native",
+      "applies_when": "event",
+      "handler": "event",
+      "evidence": "derived",
+      "variants": [
+        "inps_indemnity"
+      ],
+      "required_facts": [],
+      "description": "Congedo straordinario art. 42 c. 5 D.Lgs. 151/2001: indennità INPS sull'ultima retribuzione entro il massimale annuo, anticipata dal datore"
+    },
+    {
       "feature": "workplace_injury",
       "layer": "work_rules",
       "implementation": "native",

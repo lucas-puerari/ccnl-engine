@@ -185,6 +185,13 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
     "ParentalLeaveEvent.single_parent": absence_is_fact(
         "two parents; a sole parent is a fact of the family the event records"
     ),
+    "ExtraordinaryLeaveEvent.last_fixed_pay": requires_fact(
+        "extraordinary_leave",
+        "event.last_fixed_pay",
+        FactEnforcement.REPORTED,
+        "unknown last pay before the leave: the indemnity is computed on the "
+        "monthly pay of the run, with a missing_fact last_fixed_pay blocker",
+    ),
     "PaternityLeaveEvent.paternity_base_pay": requires_fact(
         "paternity_leave",
         "event.paternity_base_pay",

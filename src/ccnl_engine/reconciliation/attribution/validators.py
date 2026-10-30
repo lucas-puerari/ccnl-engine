@@ -80,6 +80,7 @@ KIND_CAPABILITIES: dict[str, frozenset[str]] = {
         "paternity_leave",
         "parental_leave",
         "disability_permits",
+        "extraordinary_leave",
     }),
     "work_injury_item": frozenset({"workplace_injury"}),
     "absence_integration_item": frozenset({
@@ -93,6 +94,7 @@ KIND_CAPABILITIES: dict[str, frozenset[str]] = {
         "paternity_leave",
         "parental_leave",
         "disability_permits",
+        "extraordinary_leave",
         "workplace_injury",
     }),
     "fringe_benefit_item": frozenset({"fringe_benefit"}),

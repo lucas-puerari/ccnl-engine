@@ -21,6 +21,7 @@ from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
 __all__ = [
     "DisabilityPermitRates",
+    "ExtraordinaryLeaveRates",
     "InjuryBand",
     "InjuryRates",
     "InjuryRules",
@@ -28,6 +29,7 @@ __all__ = [
     "InsuredAbsenceRules",
     "MaternityRates",
     "MaternityRules",
+    "YearCeiling",
 ]
 
 #: A share of the pay, above zero and up to one.
@@ -85,6 +87,42 @@ class DisabilityPermitRates(BaseModel):
 
     indemnity_rate: Share
     provenance: RuleProvenance
+
+
+class YearCeiling(BaseModel):
+    """The most an indemnity pays a day in a year.
+
+    Attributes:
+        year: The calendar year.
+        amount: The daily maximum.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    year: int
+    amount: Decimal = Field(gt=Decimal(0))
+
+
+class ExtraordinaryLeaveRates(BaseModel):
+    """INPS indemnity of the extraordinary leave (art. 42 c. 5 D.Lgs. 151/2001).
+
+    Attributes:
+        daily_ceilings: The daily maximum of each year INPS published.
+        provenance: Source of the measures.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    daily_ceilings: tuple[YearCeiling, ...]
+    provenance: RuleProvenance
+
+    def ceiling(self, year: int) -> Decimal | None:
+        """Return the daily maximum of ``year``.
+
+        Returns:
+            The maximum, ``None`` for a year the bundle does not list.
+        """
+        return next((c.amount for c in self.daily_ceilings if c.year == year), None)
 
 
 class InjuryBand(BaseModel):
@@ -153,6 +191,7 @@ class InsuredAbsenceRates(BaseModel):
         paternity: The INPS indemnity of the compulsory paternity leave.
         parental: The INPS indemnity of the parental leave.
         disability_permit: The INPS indemnity of the L. 104/1992 permits.
+        extraordinary_leave: The INPS indemnity of the extraordinary leave.
         injury: The pay of a temporary inability after a work injury.
         ruleset: Identity of the data file.
     """
@@ -163,6 +202,7 @@ class InsuredAbsenceRates(BaseModel):
     paternity: PaternityRates
     parental: ParentalRates
     disability_permit: DisabilityPermitRates
+    extraordinary_leave: ExtraordinaryLeaveRates
     injury: InjuryRates
     ruleset: RulesetIdentity | None = None
 

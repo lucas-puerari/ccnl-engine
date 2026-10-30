@@ -19,6 +19,22 @@
       }
     },
     {
+      "id": "extraordinary_leave_daily_base",
+      "institute": "extraordinary_leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The daily indemnity of the extraordinary leave is the last monthly pay of fixed and continuous items times the monthly payments of a year over 365: art. 42 c. 5-ter D.Lgs. 151/2001 and INPS messaggio 30/2024 set the pay and its rateo of the extra months, and the INPS table of the yearly maximum divides it by 365 (2026: 43,486.00 / 365 = 119.14), but no source read states the divisor of the worker's own pay.",
+      "calculation": "ccnl_engine.absence.insured.extraordinary.handlers._handle_extraordinary_leave; D.Lgs. 151/2001 art. 42 c. 5-ter (Normattiva, text in force on 2026-10-30, page sha256 ad8aa2d80253c1a760b5e39ac829afa76dc0156f73a1f115150cd2165306a87f); INPS scheda congedi straordinari (page sha256 3f12506c8279719647196c854ecdbd19c41de7d5c29af10e15909a06d5fa319f)",
+      "state": "unverified",
+      "remediation": "Source the daily divisor INPS applies to the last pay (circ. INPS 64/2001 or 32/2012) and apply it, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "extraordinary_leave_daily_base"
+        ]
+      }
+    },
+    {
       "id": "ivc_renewal_gap",
       "institute": "base_salary",
       "variant": "all",

@@ -27,6 +27,7 @@ from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.event.facade import (
     AbsenceEvent,
     DisabilityPermitEvent,
+    ExtraordinaryLeaveEvent,
     MaternityLeaveEvent,
     ParentalLeaveEvent,
     PaternityLeaveEvent,
@@ -58,6 +59,7 @@ _REDUCING_EVENTS = (
     SickLeaveEvent,
     MaternityLeaveEvent,
     DisabilityPermitEvent,
+    ExtraordinaryLeaveEvent,
     ParentalLeaveEvent,
     PaternityLeaveEvent,
     WorkInjuryEvent,
@@ -78,8 +80,9 @@ def _indemnified(ctx: RunContext) -> bool:
     Returns:
         ``True`` when a maternity leave, a parental leave (art. 35 cc. 1-2
         D.Lgs. 151/2001: its days are covered by figurative contributions,
-        indemnified or not), or the inability after a work injury of an
-        earlier day, spans the employed days of the month.
+        indemnified or not), an extraordinary leave (art. 42 c. 5-ter), or
+        the inability after a work injury of an earlier day, spans the
+        employed days of the month.
     """
     year, month = ctx.cp.year, ctx.cp.month
     first, last = ctx.proration.span or (
@@ -87,7 +90,9 @@ def _indemnified(ctx: RunContext) -> bool:
         date(year, month, calendar.monthrange(year, month)[1]),
     )
     for event in ctx.request.events:
-        if isinstance(event, (MaternityLeaveEvent, ParentalLeaveEvent)):
+        if isinstance(
+            event, (MaternityLeaveEvent, ParentalLeaveEvent, ExtraordinaryLeaveEvent)
+        ):
             start = event.started_on
         elif isinstance(event, WorkInjuryEvent):
             start = event.injury_on + timedelta(days=1)

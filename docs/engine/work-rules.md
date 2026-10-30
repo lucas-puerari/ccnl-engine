@@ -36,6 +36,7 @@ amounts are `Decimal` values in EUR, validated on construction.
 | `PaternityLeaveEvent` | `days`, `paternity_base_pay` | Compulsory paternity leave (10 days, 20 for a multiple birth); the engine derives the deduction and the INPS indemnity it advances for the days in the run's month; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
 | `ParentalLeaveEvent` | `started_on`, `ended_on`, `child_born_on`, `taken` (`ParentalLeaveTaken`), `protection_ended_on`, `single_parent`, `parental_base_pay` | Parental leave of an employee for a child born to the couple; the engine derives the deduction and the INPS indemnity at 30% or 80% of each day; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
 | `DisabilityPermitEvent` | `days` | Days of permit to assist a person with a serious disability (L. 104/1992 art. 33 c. 3); the engine deducts them and pays them back in full as the INPS indemnity it advances; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
+| `ExtraordinaryLeaveEvent` | `started_on`, `ended_on`, `last_fixed_pay` | Extraordinary leave to assist a person with a serious disability (D.Lgs. 151/2001 art. 42 c. 5); the engine deducts the days and pays the INPS indemnity it advances, up to the yearly maximum; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
 | `WorkInjuryEvent` | `injury_on`, `ended_on` | Temporary inability after a work injury; the engine derives the deduction, the waiting period, the INAIL indemnity (advanced or not) and the CCNL top-up; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
 | `SickLeaveEvent` | `amount`, `sick_days`, `waiting_period_days` | Sick pay the caller computed: an override of the engine, never payable; INPS and IRPEF, no TFR |
 | `FringeEvent` | `amount` | Fringe benefit (art. 51 c. 3 TUIR); exempt while the year total stays within the threshold, then the whole year total is taxable; see [Fringe benefits](#fringe-benefits) |
@@ -478,6 +479,17 @@ whose month it touches. The run deducts the days at the CCNL daily quota
   43 c. 2). The TFR base keeps the days, as payroll practice holds, under
   the open engine limitation `disability_permit_tfr`. Hourly permits (art.
   33 cc. 2 and 6) are not modelled;
+- extraordinary leave (D.Lgs. 151/2001 art. 42 c. 5): each day of the
+  span is deducted as an unpaid absence (`absence_deduction`, out of the
+  INPS and TFR bases) and paid back as the INPS indemnity (`maternity_item`):
+  the last monthly pay of fixed and continuous items
+  (`ExtraordinaryLeaveEvent.last_fixed_pay`, a `missing_fact` without it)
+  with the rateo of the extra months, over 365, at most the daily maximum of
+  the year (2026: 119.14; a year the bundle does not list is paid uncapped
+  with `extraordinary_leave_ceiling_unknown`). The divisor falls under the
+  open engine limitation `extraordinary_leave_daily_base`. The span accrues
+  no leave and no 13th (c. 5-quinquies), and a month on leave takes no INPS
+  minimum base (figurative contributions, c. 5-ter);
 - work injury (D.P.R. 1124/1965 artt. 68, 73, 116-117): the injury day is
   paid in full and never deducted, the three days after it at the CCNL
   waiting-period rate (60% by law), from the fourth day the INAIL
