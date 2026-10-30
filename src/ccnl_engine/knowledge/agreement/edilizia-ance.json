@@ -91,8 +91,22 @@
         "text": "OPERAI: twelve monthly payments; paid by the hour worked (Allegato A, parameters.hourly_pay; state PeriodFacts.ordinary_hours_worked); ferie and gratifica natalizia are the 18.5% of the paga base and ex contingenza accrued with the Cassa Edile net of the withholdings (Art. 16 and 18, Allegato D: 14.2% withheld from the net pay), not extra months; the riposi annui are the 4.95% paid with the pay (Art. 5 B). No scatti di anzianità: the operai receive the APE through the Cassa Edile (Art. 29). The TFR is paid by the employer under L. 297/1982 (Art. 33). Prevedi: the contractual contribution of an operaio is an amount per ordinary hour worked (state PeriodFacts.ordinary_hours_worked)."
       },
       {
-        "kind": "info",
-        "text": "APPRENTICESHIP: Art. 92 (ANCE text of 4 April 2019): 72/72/78/78/85/90% by semester for 36 months towards levels 2-4 of the operai; the lavorazioni artistiche (48 months, semesters 7-8 at 90%), the apprendistato duale and the alta formazione are not modelled."
+        "kind": "simplification",
+        "text": "APPRENTICESHIP: Art. 92 (ANCE text of 4 April 2019): 72/72/78/78/85/90% by semester for 36 months towards levels 2-4 of the operai; the lavorazioni artistiche (48 months, semesters 7-8 at 90%), the apprendistato duale and the alta formazione are not modelled.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "other_apprenticeship_types",
+          "applies_when": {
+            "trigger": "outside_input",
+            "levels": [
+              "2",
+              "3",
+              "4"
+            ]
+          },
+          "remediation": "Add the lavorazioni artistiche track (48 months, semesters 7-8 at 90%) and the duale / alta formazione pay, selected by Apprentice.track."
+        }
       },
       {
         "kind": "simplification",
@@ -1625,7 +1639,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "f198266885091aece1141e7808ca446f615e348e2275bf7273109aa6078f754c",
+    "source_hash": "f01dbe00a79e8eeb54e6de79e2167017c2e7880519ace4a26e4778d93d209801",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

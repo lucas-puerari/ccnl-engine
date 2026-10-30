@@ -10868,8 +10868,23 @@
         "text": "Platea ~1,2M: ~800k docenti (infanzia, primaria, secondaria I e II), ~230k ATA scuola, ~130k personale università e ricerca, ~80k AFAM (quifinanza.it)."
       },
       {
-        "kind": "info",
-        "text": "Indennità di funzione (IF) docenti: da ~200€ a ~313€/mese a seconda dell'ordine (da CCNL 23/12/2025). Non modellata come fixed_allowance per eterogeneità tra ordini (SIMPLIFICATION)."
+        "kind": "simplification",
+        "text": "Indennità di funzione (IF) docenti: da ~200€ a ~313€/mese a seconda dell'ordine (da CCNL 23/12/2025). Non modellata come fixed_allowance per eterogeneità tra ordini (SIMPLIFICATION).",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "docenti_function_allowance",
+          "applies_when": {
+            "trigger": "owed",
+            "levels": [
+              "DOCENTE_INFANZIA_PRIMARIA",
+              "DOCENTE_DIPLOMATO_SECONDARIA",
+              "DOCENTE_SECONDARIA",
+              "DOCENTE_LAUREATO_SECONDARIA_II"
+            ]
+          },
+          "remediation": "Model the docenti allowance of the CCNL 23/12/2025 as fixed allowances by order and by band of anzianita (service_months_threshold / service_months_until, as the RPD of afam-aran)."
+        }
       },
       {
         "kind": "info",
@@ -10964,7 +10979,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "e55e70e2ea12adc1b1ae6dfd5bcbd61cbf5ea5359065959124264a03d281b627",
+    "source_hash": "6376df3421c808e3992c2b4d9dda298fe57ff1f4f3c671702f90e65f4e95b707",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

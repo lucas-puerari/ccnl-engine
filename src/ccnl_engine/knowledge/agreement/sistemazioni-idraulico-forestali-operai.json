@@ -58,8 +58,17 @@
         "text": "CCNL A181 — Sistemazioni Idraulico-Forestali (Operai OTI). Split from impiegati contract: salary bands overlap, requiring separate files for correct engine ordering and under-classification apprenticeship. 5 livelli operai (O1-O5). Conglobato. Divisore 169, 14 mensilita."
       },
       {
-        "kind": "info",
-        "text": "Seniority operai: nessuno scatto di anzianita previsto a livello CCNL nazionale. Gli scatti sono disciplinati dai CIRL (contratti integrativi regionali). Modellati con importo zero e maximum_count=0."
+        "kind": "simplification",
+        "text": "Seniority operai: nessuno scatto di anzianita previsto a livello CCNL nazionale. Gli scatti sono disciplinati dai CIRL (contratti integrativi regionali). Modellati con importo zero e maximum_count=0.",
+        "capability": "territorial_supplement",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "regional_seniority_cirl",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the CIRL regional scatti outside the engine and record the limitation (as ert_veneto / provincial_third_elements)."
+        }
       },
       {
         "kind": "simplification",
@@ -84,8 +93,22 @@
         }
       },
       {
-        "kind": "info",
-        "text": "Apprendistato durate: la tabella Art. 7 elenca livelli 2-6 (scala impiegati). Le durate sono mappate su O3/O4/O5 per corrispondenza di livello; la ripartizione per categoria non e confermata dal testo."
+        "kind": "simplification",
+        "text": "Apprendistato durate: la tabella Art. 7 elenca livelli 2-6 (scala impiegati). Le durate sono mappate su O3/O4/O5 per corrispondenza di livello; la ripartizione per categoria non e confermata dal testo.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprenticeship_duration_mapping",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "O3",
+              "O4",
+              "O5"
+            ]
+          },
+          "remediation": "Confirm the Art. 7 durations for the operai categories and fix the tracks, or record the limitation."
+        }
       },
       {
         "kind": "info",
@@ -844,7 +867,7 @@
     "source": "https://redigo.info/",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "a47dc85d073de9951ec998ef49bdccc0b044aaf1ab48b5428ff32ba05b452c67",
+    "source_hash": "3eaf3ca2d662ec275c922db229323a55c7e86d34aeb268bd4035092a27d77391",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

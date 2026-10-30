@@ -51,6 +51,22 @@
       }
     },
     {
+      "id": "centralinisti_apprenticeship",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "APPRENTICESHIP (Art. 27 as renewed on 19 November 2024, signed scan p. 6, by semester on the retribuzione tabellare of the destination level): operai of the 1st and 2nd group 70, 70, 75, 78, 80, 85, 88, 92, 100, 100%; impiegati amministrativi 70, 70, 75, 80, 85, 90%; impiegati centralinisti 70, 70, 75, 80%, not modelled apart (their destination level is not distinguished).",
+      "calculation": "ccnl/metalmeccanico-artigianato:coverage.notes",
+      "state": "absent",
+      "remediation": "Add an 'impiegati_centralinisti' track (70, 70, 75, 80% by semester, then 100%) selectable by Apprentice.track.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-artigianato/centralinisti_apprenticeship"
+        ]
+      }
+    },
+    {
       "id": "health_and_bilateral_funds",
       "institute": "bilateral_funds",
       "variant": "all",

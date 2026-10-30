@@ -51,6 +51,22 @@
       }
     },
     {
+      "id": "level_1_entry_rate",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "LEVEL 1 sub-level: the CCNL provides automatic advancement from entry sub-level (L1 ingresso) to L1 standard after 6 months. The file models only the post-advance minimum throughout, which is the relevant value for permanent workers and for workers beyond their 6th month. The entry sub-level undervaluation during the first 6 months is a deliberate structural simplification.",
+      "calculation": "ccnl/occhiali-occhialeria-industria:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the L1 ingresso minimum for the first 6 months of service (a level or a seniority-gated reduction), or record the limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "occhiali-occhialeria-industria/level_1_entry_rate"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",
@@ -109,6 +125,22 @@
       "links": {
         "rules": [
           "agreement/occhiali-occhialeria-industria.json#additional_months[2023-05-01]"
+        ]
+      }
+    },
+    {
+      "id": "shift_6x6_divisor_156",
+      "institute": "overtime",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "HOURLY DIVISOR: 173 (standard 40h/week). Shift workers on 6x6 turns use divisor 156; engine models the 173 case uniformly.",
+      "calculation": "ccnl/occhiali-occhialeria-industria:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the 156 divisor of the 6x6 shift workers (a work pattern input or an hourly_divisor by schedule), as the long-week divisors tracked elsewhere.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "occhiali-occhialeria-industria/shift_6x6_divisor_156"
         ]
       }
     },

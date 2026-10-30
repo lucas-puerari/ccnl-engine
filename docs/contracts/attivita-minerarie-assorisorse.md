@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | base_salary, seniority |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -90,6 +90,13 @@ percentage: 0.95
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "attivita-minerarie-assorisorse/additional_months_unconfirmed · base_salary · impact unknown · open"
+    ADDITIONAL MONTHS: 13 assumed (tredicesima only, standard for Confindustria-affiliated mining). Not explicitly confirmed from scanned PDF — verify against Art. gratifica natalizia.
+
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Read the gratifica natalizia / mensilità clause of the CCNL and confirm or correct additional_months.
+
 !!! warning "attivita-minerarie-assorisorse/seniority_not_modelled · seniority · impact yes · open"
     SIMPLIFICATION: Seniority increments (scatti di anzianita) not modeled — Art. anzianita not found in scanned PDF pages available (OCR coverage pages 1-10, table on page 9). Seniority amounts are unknown.
 
@@ -144,8 +151,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     SIGNATORIES: ASSORISORSE (Risorse Naturali ed Energie Sostenibili) + FILCTEM-CGIL + FEMCA-CISL + UILTEC-UIL. Agreement signed Roma, 13 luglio 2022. Renews CCNL 11 aprile 2019.
     
     HOURLY DIVISOR: 173 assumed (40h/week x 52/12 = 173.33 standard industria convention). Not explicitly confirmed from scanned PDF — verify against Art. orario.
-    
-    ADDITIONAL MONTHS: 13 assumed (tredicesima only, standard for Confindustria-affiliated mining). Not explicitly confirmed from scanned PDF — verify against Art. gratifica natalizia.
     
     COVERAGE: ~3,000 workers, ~70 enterprises (miniere, cave, saline, metallurgia estrattiva non-ferrosa). INPS code B282 active.
     

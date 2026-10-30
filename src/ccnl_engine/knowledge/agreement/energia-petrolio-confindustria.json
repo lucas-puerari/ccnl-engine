@@ -84,7 +84,7 @@
       },
       {
         "kind": "info",
-        "text": "HOURLY DIVISOR: 174.5 h/month (confirmed from previdenza-professionisti.it and lavoro-economia.it for CCNL B254). The CCNL states EDR is 'omnicomprensivo' with no impact on other contractual institutes. Engine computes hourly_rate = gross_monthly/174.5 where gross includes EDR — overstating hourly_rate by EDR/174.5 (~0.29 EUR/h at group 4). This is a structural engine limitation (no per-allowance hourly_relevant flag); all monthly and annual figures are unaffected."
+        "text": "HOURLY DIVISOR: 174.5 h/month (confirmed from previdenza-professionisti.it and lavoro-economia.it for CCNL B254). The CCNL states EDR is 'omnicomprensivo' with no impact on other contractual institutes. The engine derives no hourly rate for this CCNL (no verified work_rules.time_supplements.hourly_base_provenance: overtime takes the caller's rate); when derived, hourly_base_method=minimo_tabellare leaves the EDR out. All monthly and annual figures are unaffected (review of 2026-10-30)"
       },
       {
         "kind": "info",
@@ -5296,7 +5296,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
     "verification_status": "unverified",
-    "source_hash": "542e8255e8e7e75e714f160914e05cab2a4cb08a818270226527bff6cc2c156e",
+    "source_hash": "f699cc0a677db3b6d45754a8d963ebb25d24b743fb862c04be425ffc500dd9df",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

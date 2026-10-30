@@ -161,7 +161,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 ??? note "Coverage notes"
     SALARY MODEL: conglobated retribuzione tabellare minima (levels 1-6). Single base_salary per level with no separate contingenza or EDR columns in the lavoro-economia.it table (consistent with A011 agricultural model). Level 1Q additionally carries an indennità di funzione of 100.00 EUR/month, additive to the base tabellare (source: lavoro-economia.it/ccnl/ccnl.aspx?c=3 showing 1Q total=1888.38 'with function allowance', decomposed as base 1788.38 + IND_FUN 100.00).
     
-    RENEWAL: CCNL signed 18/06/2024 (quadriennio 2024-2027). Single salary tranche effective 01/07/2024. No subsequent tranches found at time of extraction.
+    RENEWAL: CCNL signed 18/06/2024 (quadriennio 2024-2027). One salary tranche modelled, effective 01/07/2024; the +1.9% tranche of 01/01/2025 is not modelled (tranche_2025_01_missing) (review of 2026-10-30)
     
     CNEL CODE: A021. Source: contratticcnl.it/ccnl/a021/.
     

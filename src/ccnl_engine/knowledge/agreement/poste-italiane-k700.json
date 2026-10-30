@@ -99,12 +99,31 @@
         "text": "SIMPLIFICATION: industria CIGO (1.70-2.00%) included in employer INPS rate. Poste Italiane is not a manufacturing firm and is not CIGO-subject; actual employer cost is lower. Verify against INPS circ. for the correct Poste INPS classification."
       },
       {
-        "kind": "info",
-        "text": "SIMPLIFICATION: Legacy retribuzione individuale di anzianità (D.P.R. 335/1990) and posizioni economiche differenziate (CCNL 1997) not modeled."
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Legacy retribuzione individuale di anzianità (D.P.R. 335/1990) and posizioni economiche differenziate (CCNL 1997) not modeled.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "legacy_individual_seniority",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Let the caller state the retribuzione individuale di anzianità and the posizioni economiche differenziate (e.g. EarnedIncrements or an individual allowance) and record the limitation."
+        }
       },
       {
-        "kind": "info",
-        "text": "SIMPLIFICATION: Salary tranche 01/07/2024–31/08/2025 covered by one-time 'anticipo sui futuri miglioramenti economici' (lump sum, September 2024). Engine carries paga base at 2024-07-23 level (same as pre-renewal) for that window."
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Salary tranche 01/07/2024–31/08/2025 covered by one-time 'anticipo sui futuri miglioramenti economici' (lump sum, September 2024). Engine carries paga base at 2024-07-23 level (same as pre-renewal) for that window.",
+        "capability": "una_tantum",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "anticipo_lump_sum_2024",
+          "applies_when": {
+            "trigger": "run",
+            "effective_from": "2024-09-01"
+          },
+          "remediation": "Model the September 2024 anticipo sui futuri miglioramenti economici as an una tantum (or a caller event) and its absorption, or record a limitation for runs of September 2024."
+        }
       }
     ]
   },
@@ -1596,7 +1615,7 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "b864ab311457ac86f208264d9c2bdd6904cbb8977b71e1a37d1ec319ccdf17b3",
+    "source_hash": "409cfcb19dc6efd94aae01608bf92b0693b1c148707451457e6c5d70093e32c2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

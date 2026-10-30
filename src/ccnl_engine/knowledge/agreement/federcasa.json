@@ -78,7 +78,7 @@
       },
       {
         "kind": "info",
-        "text": "Art. 71.5 defines 'retribuzione oraria' as 1/156 of monthly including tredicesima and quattordicesima quotas. Engine uses gross_monthly / 156 without those quotas, so engine hourly_rate differs slightly from the contractual figure."
+        "text": "Art. 71.5 defines 'retribuzione oraria' as 1/156 of monthly including tredicesima and quattordicesima quotas. The engine derives no hourly rate for this CCNL (no verified hourly_base_provenance): overtime and hourly events take the caller's rate, which should include those quotas (review of 2026-10-30)"
       },
       {
         "kind": "info",
@@ -97,16 +97,44 @@
         "text": "Headcount: not verified. No CNEL/ADAPT figure located for T611 Federcasa."
       },
       {
-        "kind": "info",
-        "text": "tax_sector=terziario: Federcasa entities (ex-IACP/ATER/ATC) left the public-sector comparto (Art. 1.2 CCNL Federcasa). Actual INPS classification not publicly documented; terziario is the best available proxy (commercial/housing entities without industria-style CIG). Same approach as other para-public entities in the engine."
+        "kind": "simplification",
+        "text": "tax_sector=terziario: Federcasa entities (ex-IACP/ATER/ATC) left the public-sector comparto (Art. 1.2 CCNL Federcasa). Actual INPS classification not publicly documented; terziario is the best available proxy (commercial/housing entities without industria-style CIG). Same approach as other para-public entities in the engine.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "terziario_rates_proxy",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the INPS classification of the Federcasa entities and its rates."
+        }
       },
       {
-        "kind": "info",
-        "text": "Seniority amounts use the 10%-reduced values (post-01/01/2018 cohort per Art. 73.4). Workers hired before ~1990 may still have pre-2018 grandfathered scatti at full amounts (engine cannot model the two cohorts separately). New-hire case is exact; long-tenure pre-2018 cohort is understated by ~10%. Structural engine limitation."
+        "kind": "simplification",
+        "text": "Seniority amounts use the 10%-reduced values (post-01/01/2018 cohort per Art. 73.4). Workers hired before ~1990 may still have pre-2018 grandfathered scatti at full amounts (engine cannot model the two cohorts separately). New-hire case is exact; long-tenure pre-2018 cohort is understated by ~10%. Structural engine limitation.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "pre_2018_seniority_cohort",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pay the scatti matured before 01/01/2018 at the full amount (Art. 73.4), from the seniority start date or a worker fact."
+        }
       },
       {
-        "kind": "info",
-        "text": "CCNL expired 31/12/2024. Art. 4 B.5-8 mandates IVC (Indennità Vacanza Contrattuale) at 30% of IPCA (~Mar 2025) and 50% (~Sep 2025) during the renewal gap. Engine models tabellare only; IVC during the gap is not included. This is a structural out-of-scope element (ultrattività compensation, not a tabellare change)."
+        "kind": "simplification",
+        "text": "CCNL expired 31/12/2024. Art. 4 B.5-8 mandates IVC (Indennità Vacanza Contrattuale) at 30% of IPCA (~Mar 2025) and 50% (~Sep 2025) during the renewal gap. Engine models tabellare only; IVC during the gap is not included. This is a structural out-of-scope element (ultrattività compensation, not a tabellare change).",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ivc_renewal_gap",
+          "applies_when": {
+            "trigger": "owed",
+            "effective_from": "2025-01-01"
+          },
+          "remediation": "Source the IVC dates and amounts of Art. 4 B.5-8 (30% then 50% of IPCA) and add them as a time-bound allowance, or close the gap when the renewal is modelled."
+        }
       }
     ]
   },
@@ -1185,7 +1213,7 @@
     "effective_until": null,
     "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "a578e9521623c9b73473c7530b8304d1e0207e179727f2784f8075857d8a41e7",
+    "source_hash": "f5310f690a5c1414943a0faa18a366132f6fce083ec26882e85f107eacfd0a39",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -35,6 +35,22 @@
       }
     },
     {
+      "id": "higher_tier_scatto_amounts",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Seniority: 10 scatti total — tier 1: 6 biennali (cadence 24 months), tier 2: 1 dodicennale (cadence 144 months after tier 1 exhausted), tier 3: 3 quadriennali (cadence 48 months). All tiers modeled. Per-scatto amounts for tiers 2-3 assumed equal to tier 1 amounts (no independent source found for higher-tier amounts; best-guess from standard CCNL practice).",
+      "calculation": "ccnl/consorzi-di-bonifica-snebi:coverage.notes",
+      "state": "unverified",
+      "remediation": "Source the amounts of the dodicennale and quadriennali scatti and correct tiers 2-3.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "consorzi-di-bonifica-snebi/higher_tier_scatto_amounts"
+        ]
+      }
+    },
+    {
       "id": "inps_minimum_base_exempt_category",
       "institute": "inps_employer",
       "variant": "all",
@@ -95,6 +111,22 @@
       "links": {
         "limitations": [
           "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "quadri_function_allowance",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "AQ-category levels (AQ162, AQ164, AQ185, AQ187) are quadri. An indennita di funzione may apply per standard quadri CCNL practice, but the amount could not be confirmed from available public sources; not modeled.",
+      "calculation": "ccnl/consorzi-di-bonifica-snebi:coverage.notes",
+      "state": "unverified",
+      "remediation": "Source whether the CCNL pays an indennità di funzione to the AQ levels and model it.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "consorzi-di-bonifica-snebi/quadri_function_allowance"
         ]
       }
     },

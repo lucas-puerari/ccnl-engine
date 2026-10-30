@@ -403,8 +403,17 @@
         "text": "Platea: ~7.550 dirigenti scolastici + ~360 direttori università/ricerca = ~7.910 totale (quifinanza.it)."
       },
       {
-        "kind": "info",
-        "text": "Retribuzione di posizione parte fissa: seconda fascia 14.515,11€/anno (+1.170€/anno da 1/1/2024, era 13.345,11). Prima fascia 42.598,20€/anno. Variabile per incarico. Non modellata (SIMPLIFICATION)."
+        "kind": "simplification",
+        "text": "Retribuzione di posizione parte fissa: seconda fascia 14.515,11€/anno (+1.170€/anno da 1/1/2024, era 13.345,11). Prima fascia 42.598,20€/anno. Variabile per incarico. Non modellata (SIMPLIFICATION).",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "position_pay_fixed_part",
+          "applies_when": {
+            "trigger": "owed"
+          },
+          "remediation": "Add the parte fissa of the retribuzione di posizione per fascia (14.515,11 / 42.598,20 EUR a year, 13 months) as fixed allowances; leave the variable part to IndividualElement."
+        }
       },
       {
         "kind": "info",
@@ -419,8 +428,17 @@
         "text": "CNEL S325 inferito dalla struttura coerente dei codici ARAN: S005/S025 (FC), S105/S125 (FL), S205/S225 (Sanità), S305/S325 (IR). I codici S005, S105, S205, S225, S305 sono verificati; S325 è inferito dal pattern *25=area dirigenza."
       },
       {
-        "kind": "info",
-        "text": "Hourly divisor 165 = 38h/settimana × 52/12 = 164.67 ≈ 165 (CCNL Area IR 2022-2024 — stesso orario di riferimento delle altre aree ARAN dirigenza). Standard contrattuale PA."
+        "kind": "simplification",
+        "text": "Hourly divisor 165 = 38h/settimana × 52/12 = 164.67 ≈ 165 (CCNL Area IR 2022-2024 — stesso orario di riferimento delle altre aree ARAN dirigenza). Standard contrattuale PA.",
+        "capability": "workplace_injury",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "approximate_hourly_divisor",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the divisor of the Area IR (or the INAIL base of the dirigenti) and replace 165, or mark it not applicable so the INAIL daily base is not derived from it."
+        }
       },
       {
         "kind": "info",
@@ -440,7 +458,7 @@
       },
       {
         "kind": "info",
-        "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — CCNL Area IR 2022-2024 (stessa disciplina delle altre aree ARAN). Modellato con SicknessTier; periodi a cavallo di soglia ricevono un unico tasso (engine limitation accettabile)."
+        "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — CCNL Area IR 2022-2024 (stessa disciplina delle altre aree ARAN). Modellato con SicknessTier; ogni giorno di malattia riceve il tasso del mese dell'episodio in cui cade, anche in un periodo di paga a cavallo di una soglia (review of 2026-10-30)"
       },
       {
         "kind": "info",
@@ -459,7 +477,7 @@
     "effective_until": "2024-12-31",
     "source": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
     "verification_status": "unverified",
-    "source_hash": "122f131e28624de411471629fdb331c09100c9ae19583f7700e258a7330435d4",
+    "source_hash": "58c66fbbcb183f58a6d7b78179251e4e45b2d8f41280a8ddae236df7edf12fd7",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

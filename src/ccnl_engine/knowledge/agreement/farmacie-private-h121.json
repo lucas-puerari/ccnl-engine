@@ -72,16 +72,47 @@
         "text": "Headcount: 77,146 workers in 16,324 companies (INPS-CNEL archive, H121)."
       },
       {
-        "kind": "info",
-        "text": "SIMPLIFICATION: Farmacie Rurali Sussidiate (Tabella B) excluded. Rural pharmacies have lower base salaries; Tabella A (urban) is modelled only."
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Farmacie Rurali Sussidiate (Tabella B) excluded. Rural pharmacies have lower base salaries; Tabella A (urban) is modelled only.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "rural_pharmacy_table",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the Tabella B pay of the Farmacie Rurali Sussidiate with a fact selecting it, or refuse such employers."
+        }
       },
       {
-        "kind": "info",
-        "text": "SIMPLIFICATION: ISQ for Q2 and Q3 modelled at flat 100 EUR (the 2+ anni tier per Tabella C). Workers with 12+ anni receive 130 EUR (delta 30 EUR/month, max ~360 EUR/yr). The two-tier split at 144 months cannot be represented as a single fixed_allowance amount."
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: ISQ for Q2 and Q3 modelled at flat 100 EUR (the 2+ anni tier per Tabella C). Workers with 12+ anni receive 130 EUR (delta 30 EUR/month, max ~360 EUR/yr). The 12-year tier is not modelled, although an allowance can be gated on service months (service_months_threshold) (review of 2026-10-30)",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "isq_twelve_year_tier",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "Q2",
+              "Q3"
+            ]
+          },
+          "remediation": "Check whether the 12 anni of Tabella C count service or time in the quadro qualification; if service, split the ISQ of Q2/Q3 into a 100 EUR allowance with service_months_until=144 and a 130 EUR one with service_months_threshold=144 (Employment.seniority), otherwise add a worker fact for the qualification time."
+        }
       },
       {
-        "kind": "info",
-        "text": "SIMPLIFICATION: EDR (10.33 EUR, Art. 54e) is contractually due for 13 mensilita but the engine multiplies fixed_allowances by additional_months=14. Annual overcount ~10 EUR per worker."
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: EDR (10.33 EUR, Art. 54e) is contractually due for 13 mensilita but the file leaves its months_per_year unset, so the engine also pays it in the quattordicesima. Annual overcount ~10 EUR per worker (review of 2026-10-30)",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "edr_thirteen_months",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Set months_per_year=13 on the edr allowance of every level, then remove this limitation."
+        }
       },
       {
         "kind": "info",
@@ -1453,7 +1484,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "c041846d3095413bbedf3c170b5f4a3c925caa4e43372c2e5bb5c52cb6c87931",
+    "source_hash": "a240bb6f1f8a4ffceac1445e210223b313cebe972a92d7619af3866d48e3f9c8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -72,8 +72,22 @@
         "text": "ADDITIONAL MONTHS: 13 (tredicesima only). Source: Art. 42, CCNL 12/11/2020. Quattordicesima not provided by this CCNL."
       },
       {
-        "kind": "source",
-        "text": "SENIORITY biennale (24 months), max 7 scatti, amounts from Art. 41 CCNL 12/11/2020: 6 of 9 levels confirmed (A2, B1, B2, C1, C3, C4); A1=A2 (21.54), C2=C1 (25.56) and D1=C4 (30.73) by adjacent-level approximation (1° livello, 5°S and Quadri absent from the Art. 41 table)."
+        "kind": "simplification",
+        "text": "SENIORITY biennale (24 months), max 7 scatti, amounts from Art. 41 CCNL 12/11/2020: 6 of 9 levels confirmed (A2, B1, B2, C1, C3, C4); A1=A2 (21.54), C2=C1 (25.56) and D1=C4 (30.73) by adjacent-level approximation (1° livello, 5°S and Quadri absent from the Art. 41 table).",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "seniority_adjacent_level_amounts",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "A1",
+              "C2",
+              "D1"
+            ]
+          },
+          "remediation": "Source the Art. 41 amounts of 1° livello, 5°S and Quadri and replace the adjacent-level values."
+        }
       },
       {
         "kind": "simplification",
@@ -1478,7 +1492,7 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "f505a0c4a1ef64c73088157f9aa002fd197a1e24933adace8702f914ed98e644",
+    "source_hash": "b51506749573a28ea8ac63665fa17e78b2eeeda231b52cfbc916d07bac4fbde4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

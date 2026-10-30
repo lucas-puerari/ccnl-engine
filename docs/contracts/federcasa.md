@@ -31,10 +31,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ✅ |
-| **Limits of this contract** | — |
+| **Core payroll path** | ⚠️ |
+| **Limits of this contract** | base_salary, inps_employer, seniority |
 
-0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -111,6 +111,27 @@ Latest effective values per level (monthly gross, EUR).
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "federcasa/terziario_rates_proxy · inps_employer · impact unknown · open"
+    tax_sector=terziario: Federcasa entities (ex-IACP/ATER/ATC) left the public-sector comparto (Art. 1.2 CCNL Federcasa). Actual INPS classification not publicly documented; terziario is the best available proxy (commercial/housing entities without industria-style CIG). Same approach as other para-public entities in the engine.
+
+    **Applies when:** `inps_employer` applies.
+
+    **Remediation:** Source the INPS classification of the Federcasa entities and its rates.
+
+!!! warning "federcasa/pre_2018_seniority_cohort · seniority · impact yes · open"
+    Seniority amounts use the 10%-reduced values (post-01/01/2018 cohort per Art. 73.4). Workers hired before ~1990 may still have pre-2018 grandfathered scatti at full amounts (engine cannot model the two cohorts separately). New-hire case is exact; long-tenure pre-2018 cohort is understated by ~10%. Structural engine limitation.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pay the scatti matured before 01/01/2018 at the full amount (Art. 73.4), from the seniority start date or a worker fact.
+
+!!! warning "federcasa/ivc_renewal_gap · base_salary · impact yes · open"
+    CCNL expired 31/12/2024. Art. 4 B.5-8 mandates IVC (Indennità Vacanza Contrattuale) at 30% of IPCA (~Mar 2025) and 50% (~Sep 2025) during the renewal gap. Engine models tabellare only; IVC during the gap is not included. This is a structural out-of-scope element (ultrattività compensation, not a tabellare change).
+
+    **Applies when:** `base_salary` applies; from 2025-01-01.
+
+    **Remediation:** Source the IVC dates and amounts of Art. 4 B.5-8 (30% then 50% of IPCA) and add them as a time-bound allowance, or close the gap when the renewal is modelled.
+
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days, when the episode does not let the engine compute the INPS daily base: no SicknessEpisode.inps_base in its relapse chain, an operaio without the days worked or paid of the month before, an impiegato who did not work that whole month, an unknown worker category, or a sector INPS regime (spettacolo). With the base, INPS pays its share on the retribuzione media globale giornaliera of the month before the illness and on calendar days (INPS circ. 134368/1981 point 11). The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
 
@@ -165,7 +186,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Hourly divisor 156 from Art. 71.5: 'un importo pari ad 1/156 della retribuzione individuale mensile'. Also derived from 36h/week x 52/12 = 156.
     
-    Art. 71.5 defines 'retribuzione oraria' as 1/156 of monthly including tredicesima and quattordicesima quotas. Engine uses gross_monthly / 156 without those quotas, so engine hourly_rate differs slightly from the contractual figure.
+    Art. 71.5 defines 'retribuzione oraria' as 1/156 of monthly including tredicesima and quattordicesima quotas. The engine derives no hourly rate for this CCNL (no verified hourly_base_provenance): overtime and hourly events take the caller's rate, which should include those quotas (review of 2026-10-30)
     
     Additional months: 14. Art. 76 (p.68): tredicesima in December + quattordicesima in June.
     
@@ -174,12 +195,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     Apprenticeship: Art. 19 defers terms to accordo interconfederale 18/05/2016 and a CCNL-specific agreement within 6 months of signing. No public text of that agreement found.
     
     Headcount: not verified. No CNEL/ADAPT figure located for T611 Federcasa.
-    
-    tax_sector=terziario: Federcasa entities (ex-IACP/ATER/ATC) left the public-sector comparto (Art. 1.2 CCNL Federcasa). Actual INPS classification not publicly documented; terziario is the best available proxy (commercial/housing entities without industria-style CIG). Same approach as other para-public entities in the engine.
-    
-    Seniority amounts use the 10%-reduced values (post-01/01/2018 cohort per Art. 73.4). Workers hired before ~1990 may still have pre-2018 grandfathered scatti at full amounts (engine cannot model the two cohorts separately). New-hire case is exact; long-tenure pre-2018 cohort is understated by ~10%. Structural engine limitation.
-    
-    CCNL expired 31/12/2024. Art. 4 B.5-8 mandates IVC (Indennità Vacanza Contrattuale) at 30% of IPCA (~Mar 2025) and 50% (~Sep 2025) during the renewal gap. Engine models tabellare only; IVC during the gap is not included. This is a structural out-of-scope element (ultrattività compensation, not a tabellare change).
     
 
 ## Raw data

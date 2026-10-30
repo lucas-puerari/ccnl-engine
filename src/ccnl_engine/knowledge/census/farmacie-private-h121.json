@@ -19,6 +19,38 @@
       }
     },
     {
+      "id": "edr_thirteen_months",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SIMPLIFICATION: EDR (10.33 EUR, Art. 54e) is contractually due for 13 mensilita but the file leaves its months_per_year unset, so the engine also pays it in the quattordicesima. Annual overcount ~10 EUR per worker (review of 2026-10-30)",
+      "calculation": "ccnl/farmacie-private-h121:coverage.notes",
+      "state": "absent",
+      "remediation": "Set months_per_year=13 on the edr allowance of every level, then remove this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "farmacie-private-h121/edr_thirteen_months"
+        ]
+      }
+    },
+    {
+      "id": "isq_twelve_year_tier",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SIMPLIFICATION: ISQ for Q2 and Q3 modelled at flat 100 EUR (the 2+ anni tier per Tabella C). Workers with 12+ anni receive 130 EUR (delta 30 EUR/month, max ~360 EUR/yr). The 12-year tier is not modelled, although an allowance can be gated on service months (service_months_threshold) (review of 2026-10-30)",
+      "calculation": "ccnl/farmacie-private-h121:coverage.notes",
+      "state": "absent",
+      "remediation": "Check whether the 12 anni of Tabella C count service or time in the quadro qualification; if service, split the ISQ of Q2/Q3 into a 100 EUR allowance with service_months_until=144 and a 130 EUR one with service_months_threshold=144 (Employment.seniority), otherwise add a worker fact for the qualification time.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "farmacie-private-h121/isq_twelve_year_tier"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",
@@ -62,6 +94,22 @@
       "links": {
         "rules": [
           "agreement/farmacie-private-h121.json#additional_months[2021-11-01]"
+        ]
+      }
+    },
+    {
+      "id": "rural_pharmacy_table",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SIMPLIFICATION: Farmacie Rurali Sussidiate (Tabella B) excluded. Rural pharmacies have lower base salaries; Tabella A (urban) is modelled only.",
+      "calculation": "ccnl/farmacie-private-h121:coverage.notes",
+      "state": "absent",
+      "remediation": "Add the Tabella B pay of the Farmacie Rurali Sussidiate with a fact selecting it, or refuse such employers.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "farmacie-private-h121/rural_pharmacy_table"
         ]
       }
     },

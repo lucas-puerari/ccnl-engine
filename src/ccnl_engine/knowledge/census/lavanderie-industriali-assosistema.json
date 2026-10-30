@@ -127,6 +127,22 @@
           "tfr_compensation_apprentice_guarantee_fund"
         ]
       }
+    },
+    {
+      "id": "tranches_from_october_2027",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "MODELLED TRANCHES: 2026-05-01 (source-confirmed from ilccnl.it, iqnotizie.it, previdenza-professionisti.it, all concordant); 2026-12-01 (derived: +20 EUR on B1, other levels proportional using coefficient vector verified across 4 historical tranches 2023-2025). Oct 2027 (+50 EUR B1) and Oct 2028 (+60 EUR B1) announced but table not published — not modelled.",
+      "calculation": "ccnl/lavanderie-industriali-assosistema:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the October 2027 (+50 at B1) and October 2028 (+60 at B1) tranches once the tables are published, or derive them with the level coefficients of note 8.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "lavanderie-industriali-assosistema/tranches_from_october_2027"
+        ]
+      }
     }
   ]
 }

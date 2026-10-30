@@ -3,6 +3,38 @@
   "ccnl_id": "federcasa",
   "requirements": [
     {
+      "id": "ivc_renewal_gap",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = owed",
+      "rule": "CCNL expired 31/12/2024. Art. 4 B.5-8 mandates IVC (Indennità Vacanza Contrattuale) at 30% of IPCA (~Mar 2025) and 50% (~Sep 2025) during the renewal gap. Engine models tabellare only; IVC during the gap is not included. This is a structural out-of-scope element (ultrattività compensation, not a tabellare change).",
+      "calculation": "ccnl/federcasa:coverage.notes",
+      "state": "absent",
+      "remediation": "Source the IVC dates and amounts of Art. 4 B.5-8 (30% then 50% of IPCA) and add them as a time-bound allowance, or close the gap when the renewal is modelled.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "federcasa/ivc_renewal_gap"
+        ]
+      }
+    },
+    {
+      "id": "pre_2018_seniority_cohort",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Seniority amounts use the 10%-reduced values (post-01/01/2018 cohort per Art. 73.4). Workers hired before ~1990 may still have pre-2018 grandfathered scatti at full amounts (engine cannot model the two cohorts separately). New-hire case is exact; long-tenure pre-2018 cohort is understated by ~10%. Structural engine limitation.",
+      "calculation": "ccnl/federcasa:coverage.notes",
+      "state": "absent",
+      "remediation": "Pay the scatti matured before 01/01/2018 at the full amount (Art. 73.4), from the seniority start date or a worker fact.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "federcasa/pre_2018_seniority_cohort"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",
@@ -78,6 +110,22 @@
       "links": {
         "limitations": [
           "sickness_inps_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "terziario_rates_proxy",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "tax_sector=terziario: Federcasa entities (ex-IACP/ATER/ATC) left the public-sector comparto (Art. 1.2 CCNL Federcasa). Actual INPS classification not publicly documented; terziario is the best available proxy (commercial/housing entities without industria-style CIG). Same approach as other para-public entities in the engine.",
+      "calculation": "ccnl/federcasa:coverage.notes",
+      "state": "unverified",
+      "remediation": "Source the INPS classification of the Federcasa entities and its rates.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "federcasa/terziario_rates_proxy"
         ]
       }
     },

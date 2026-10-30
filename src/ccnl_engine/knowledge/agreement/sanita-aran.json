@@ -707,8 +707,17 @@
         "text": "Seniority via DEP (Differenziali Economici di Professionalità) per Art. 60 Fondo incarichi: selective procedure, not automatic — maximum_count=0."
       },
       {
-        "kind": "info",
-        "text": "Indennità di specificità infermieristica (Art. 62, Tabella 3) not modelled as fixed_allowance — applies only to specific nursing profiles (infermieri, ostetriche), not universally to all area members."
+        "kind": "simplification",
+        "text": "Indennità di specificità infermieristica (Art. 62, Tabella 3) not modelled as fixed_allowance — applies only to specific nursing profiles (infermieri, ostetriche), not universally to all area members.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "nursing_specificity_allowance",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model l'indennità di specificità infermieristica (Art. 62, Tabella 3) as an allowance gated by a role (infermieri, ostetriche) or record a limitation."
+        }
       },
       {
         "kind": "info",
@@ -740,7 +749,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "54e13e8386425c050cf2f3db7d0f7b07ae8c40f4f25ddc6b3c506917b579c49f",
+    "source_hash": "141cac3a64da52bd243a58405c5142bca145b7d3b9eb1e493d135268ef8dc114",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

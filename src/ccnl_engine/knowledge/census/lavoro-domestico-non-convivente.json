@@ -35,6 +35,22 @@
       }
     },
     {
+      "id": "hourly_inps_bracket_unvalidated",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "INPS BAND: the band of up to 24 weekly hours is chosen on the paga oraria effettiva of INPS (circ. 9/2026; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico): the monthly pay with board and lodging over the hours of the employment (weekly hours x 52 / 12), raised by the tredicesima (x 13 / 12).",
+      "calculation": "ccnl/lavoro-domestico-non-convivente:coverage.notes",
+      "state": "unverified",
+      "remediation": "Validate the hourly INPS bracket lookup for weekly hours up to 24 against the INPS domestic table, as for the convivente files.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "lavoro-domestico-non-convivente/hourly_inps_bracket_unvalidated"
+        ]
+      }
+    },
+    {
       "id": "meal_indennity",
       "institute": "base_salary",
       "variant": "all",

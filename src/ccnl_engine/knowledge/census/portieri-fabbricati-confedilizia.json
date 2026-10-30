@@ -19,6 +19,54 @@
       }
     },
     {
+      "id": "apprenticeship_24_month_profiles",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "APPRENTICESHIP: percentage type per Art. 35-36 of the 2025 renewal. Art. 36 comma 6: 80% months 1-12, 85% months 13-24, 90% months 25-36. Two tracks exist: 36 months (B1, C3) and 24 months (B2, B4, C4, D1, D3). SIMPLIFICATION: all seven destinations use the single 36-month schedule; the five 24-month profiles are over-modelled by 12 months — an apprentice in those profiles is paid 90% during months 25-36 instead of 100%. Impact: slight under-payment for 1 year for 5 destination levels. B3, B5, D2, D4 have no CCNL apprenticeship provision; excluded from destination_levels.",
+      "calculation": "ccnl/portieri-fabbricati-confedilizia:coverage.notes",
+      "state": "absent",
+      "remediation": "Add a professionalizzante_24 track (80% months 1-12, 85% months 13-24, 100% after) for B2, B4, C4, D1, D3 and keep professionalizzante_36 for B1 and C3; until then add a limitation for apprentices of these levels.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "portieri-fabbricati-confedilizia/apprenticeship_24_month_profiles"
+        ]
+      }
+    },
+    {
+      "id": "b5_short_schedule_premium",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "B5 PART-TIME NOTE: Art. 122 provides a 15% hourly premium for B5 (pulitori/lavascale) with weekly schedule below 8 hours. Not modelled (SIMPLIFICATION).",
+      "calculation": "ccnl/portieri-fabbricati-confedilizia:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the Art. 122 15% hourly premium for B5 with a weekly schedule below 8 hours (e.g. a conditional allowance on part_time_pct below 0.2), or record it as a limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "portieri-fabbricati-confedilizia/b5_short_schedule_premium"
+        ]
+      }
+    },
+    {
+      "id": "c4_first_employment_rate",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "EXCLUDED PROFILES: A1-A9 (portieri con alloggio, 45 h or 48 h/week — divisor would be 195 or 208, incompatible with single CCNLParameters.hourly_divisor; also alloggio in-kind not modelled). C1 and C2 (preposti alla direzione tecnica o amministrativa — Art. 62 comma 2 exempts them from the 40 h ceiling; no fixed hourly divisor applies). C4 primo impiego (entry-rate sub-classification at EUR 1290.52/2026, transitional not permanent level).",
+      "calculation": "ccnl/portieri-fabbricati-confedilizia:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the C4 primo impiego entry rate (EUR 1290.52 in 2026) as a separate level or a role-gated variant, or record a limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "portieri-fabbricati-confedilizia/c4_first_employment_rate"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

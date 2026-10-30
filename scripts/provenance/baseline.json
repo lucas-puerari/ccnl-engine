@@ -676,13 +676,16 @@
       "assicurazioni-ania/apprentice_seniority",
       "assicurazioni-ania/funzionari_economic_allowance",
       "assicurazioni-ania/inps_sector_rates_unsourced",
+      "assicurazioni-ania/pre_1999_hire_table",
       "assicurazioni-ania/seniority_modal_class_difference"
     ],
     "agreement/attivita-minerarie-assorisorse.json": [
+      "attivita-minerarie-assorisorse/additional_months_unconfirmed",
       "attivita-minerarie-assorisorse/seniority_not_modelled"
     ],
     "agreement/autoferrotranvieri-internavigatori.json": [
       "autoferrotranvieri-internavigatori/apprentice_seniority",
+      "autoferrotranvieri-internavigatori/priamo_pension_fund",
       "autoferrotranvieri-internavigatori/public_operator_inps_scheme"
     ],
     "agreement/autorimesse-ic35.json": [
@@ -697,7 +700,8 @@
       "autoscuole-unasca/fondo_est_health_fund"
     ],
     "agreement/autostrade-trafori.json": [
-      "autostrade-trafori/apprentice_seniority"
+      "autostrade-trafori/apprentice_seniority",
+      "autostrade-trafori/apprenticeship_full_pay_passthrough"
     ],
     "agreement/aziende-termali-federterme.json": [
       "aziende-termali-federterme/apprentice_seniority",
@@ -709,6 +713,7 @@
     "agreement/bancari-abi.json": [
       "bancari-abi/abi_saturday_overtime_and_hourly_base",
       "bancari-abi/abi_sickness_counting",
+      "bancari-abi/apprentice_net_equivalent_allowance",
       "bancari-abi/apprentice_seniority",
       "bancari-abi/ex_ristrutturazione_amount",
       "bancari-abi/inps_sector_rates_unsourced",
@@ -717,17 +722,21 @@
     "agreement/bcc-credito-cooperativo.json": [
       "bcc-credito-cooperativo/apprentice_seniority",
       "bcc-credito-cooperativo/art3_derogation_apprenticeship",
-      "bcc-credito-cooperativo/inps_sector_rates_unsourced"
+      "bcc-credito-cooperativo/inps_sector_rates_unsourced",
+      "bcc-credito-cooperativo/pre_1998_cohort_scatti"
     ],
     "agreement/calzaturiero-assocalzaturifici.json": [
       "calzaturiero-assocalzaturifici/apprentice_seniority",
+      "calzaturiero-assocalzaturifici/quadri_function_allowance",
       "calzaturiero-assocalzaturifici/seniority_secondary_source"
     ],
     "agreement/carta-cartone-assocarta.json": [
-      "carta-cartone-assocarta/apprentice_seniority"
+      "carta-cartone-assocarta/apprentice_seniority",
+      "carta-cartone-assocarta/emc_absorption_unconfirmed"
     ],
     "agreement/ced-assoced.json": [
       "ced-assoced/conditional_allowances_title_xxiii",
+      "ced-assoced/grandfathered_scatti",
       "ced-assoced/terziario_inps_rates_unverified"
     ],
     "agreement/cemento-calce-gesso-industria.json": [
@@ -735,7 +744,8 @@
       "cemento-calce-gesso-industria/apprenticeship_full_pay_passthrough"
     ],
     "agreement/ceramica-industria-confindustria.json": [
-      "ceramica-industria-confindustria/apprentice_seniority"
+      "ceramica-industria-confindustria/apprentice_seniority",
+      "ceramica-industria-confindustria/sanitary_ceramics_tables"
     ],
     "agreement/chimica-affini-pmi-unionchimica.json": [
       "chimica-affini-pmi-unionchimica/apprentice_seniority",
@@ -764,15 +774,18 @@
     "agreement/commercio-confcommercio.json": [
       "commercio-confcommercio/apprentice_seniority",
       "commercio-confcommercio/permit_deadline_payout",
+      "commercio-confcommercio/profile_specific_apprenticeship",
       "commercio-confcommercio/rol_schedule_absorption",
       "commercio-confcommercio/sickness_net_basis"
     ],
     "agreement/comunicazione-artigianato-confartigianato.json": [
       "comunicazione-artigianato-confartigianato/apprentice_inps_rates_unsourced",
+      "comunicazione-artigianato-confartigianato/apprenticeship_percentages_assumed",
       "comunicazione-artigianato-confartigianato/function_allowance_constant",
       "comunicazione-artigianato-confartigianato/inps_sector_rates_unsourced",
       "comunicazione-artigianato-confartigianato/level_category_not_declared",
       "comunicazione-artigianato-confartigianato/pmi_non_artigiane_tables",
+      "comunicazione-artigianato-confartigianato/previgente_apprenticeship_rules",
       "comunicazione-artigianato-confartigianato/switchboard_apprenticeship_duration"
     ],
     "agreement/concia-unic.json": [
@@ -789,10 +802,13 @@
     "agreement/consorzi-di-bonifica-snebi.json": [
       "consorzi-di-bonifica-snebi/apprentice_inps_rates_unsourced",
       "consorzi-di-bonifica-snebi/ex_sublevel_scatto_mapping",
-      "consorzi-di-bonifica-snebi/pre_2000_cohort_table_missing"
+      "consorzi-di-bonifica-snebi/higher_tier_scatto_amounts",
+      "consorzi-di-bonifica-snebi/pre_2000_cohort_table_missing",
+      "consorzi-di-bonifica-snebi/quadri_function_allowance"
     ],
     "agreement/contoterzismo-caiagromec.json": [
-      "contoterzismo-caiagromec/apprentice_inps_rates_unsourced"
+      "contoterzismo-caiagromec/apprentice_inps_rates_unsourced",
+      "contoterzismo-caiagromec/continuity_premium_cumulation"
     ],
     "agreement/cooperative-consorzi-agricoli.json": [
       "cooperative-consorzi-agricoli/apprentice_inps_rates_unsourced",
@@ -807,16 +823,34 @@
       "cooperative-sociali/inps_rate_not_reconciled",
       "cooperative-sociali/type_b_disadvantaged_exemption"
     ],
+    "agreement/dirigenza-funzioni-centrali-aran.json": [
+      "dirigenza-funzioni-centrali-aran/position_pay_fixed_part",
+      "dirigenza-funzioni-centrali-aran/position_variable_and_result_pay"
+    ],
+    "agreement/dirigenza-funzioni-locali-aran.json": [
+      "dirigenza-funzioni-locali-aran/position_pay",
+      "dirigenza-funzioni-locali-aran/segretari_fascia_c"
+    ],
+    "agreement/dirigenza-istruzione-ricerca-aran.json": [
+      "dirigenza-istruzione-ricerca-aran/approximate_hourly_divisor",
+      "dirigenza-istruzione-ricerca-aran/position_pay_fixed_part"
+    ],
     "agreement/dirigenza-sanitaria-area-sanita-aran.json": [
+      "dirigenza-sanitaria-area-sanita-aran/approximate_hourly_divisor",
+      "dirigenza-sanitaria-area-sanita-aran/position_pay_missing",
       "dirigenza-sanitaria-area-sanita-aran/specificita_pre_2025_estimated"
     ],
     "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json": [
       "dirigenza-sanitaria-medico-veterinaria-aran/approximate_hourly_divisor",
+      "dirigenza-sanitaria-medico-veterinaria-aran/complex_structure_allowance",
+      "dirigenza-sanitaria-medico-veterinaria-aran/position_pay_missing",
       "dirigenza-sanitaria-medico-veterinaria-aran/specificita_pre_2025_estimated",
       "dirigenza-sanitaria-medico-veterinaria-aran/tabellare_pre_2024_estimated"
     ],
     "agreement/distribuzione-cooperativa-ancc.json": [
       "distribuzione-cooperativa-ancc/apprentice_seniority",
+      "distribuzione-cooperativa-ancc/apprenticeship_2024_text_unread",
+      "distribuzione-cooperativa-ancc/long_week_divisors",
       "distribuzione-cooperativa-ancc/seniority_amounts_proxy_source"
     ],
     "agreement/dmo-federdistribuzione.json": [
@@ -825,6 +859,7 @@
       "dmo-federdistribuzione/commission_guarantee",
       "dmo-federdistribuzione/employment_support_contract",
       "dmo-federdistribuzione/health_and_bilateral_funds",
+      "dmo-federdistribuzione/long_apprenticeship_profiles",
       "dmo-federdistribuzione/ordinary_hours_premiums",
       "dmo-federdistribuzione/provincial_elements_missing",
       "dmo-federdistribuzione/sales_operators",
@@ -836,6 +871,7 @@
       "edilizia-ance-impiegati/loyalty_premium",
       "edilizia-ance-impiegati/november_4_holiday",
       "edilizia-ance-impiegati/ordinary_hours_premiums",
+      "edilizia-ance-impiegati/other_apprenticeship_types",
       "edilizia-ance-impiegati/provincial_evr",
       "edilizia-ance-impiegati/provincial_meals_transport_travel",
       "edilizia-ance-impiegati/provincial_production_premium",
@@ -852,6 +888,7 @@
       "edilizia-ance/hardship_allowances",
       "edilizia-ance/holiday_hours",
       "edilizia-ance/ordinary_hours_premiums",
+      "edilizia-ance/other_apprenticeship_types",
       "edilizia-ance/part_time_supplementary_rate",
       "edilizia-ance/provincial_evr",
       "edilizia-ance/provincial_meals_transport_travel",
@@ -867,7 +904,9 @@
       "edilizia-artigianato-cna/seniority_cadence_unconfirmed"
     ],
     "agreement/edilizia-cooperative-ancpl.json": [
-      "edilizia-cooperative-ancpl/apprentice_seniority"
+      "edilizia-cooperative-ancpl/apprentice_seniority",
+      "edilizia-cooperative-ancpl/cassa_edile_accruals_missing",
+      "edilizia-cooperative-ancpl/operai_seniority_ape"
     ],
     "agreement/edilizia-pmi-confapi-aniem.json": [
       "edilizia-pmi-confapi-aniem/apprentice_its_evr_missing",
@@ -875,7 +914,10 @@
       "edilizia-pmi-confapi-aniem/cassa_edile_accruals_missing",
       "edilizia-pmi-confapi-aniem/contractual_fund_partial",
       "edilizia-pmi-confapi-aniem/impiegati_premio_annuo_missing",
-      "edilizia-pmi-confapi-aniem/operai_gruppo_3_track_merged"
+      "edilizia-pmi-confapi-aniem/operai_gruppo_3_track_merged",
+      "edilizia-pmi-confapi-aniem/operai_seniority_ape",
+      "edilizia-pmi-confapi-aniem/provincial_evr",
+      "edilizia-pmi-confapi-aniem/territorial_sector_allowance"
     ],
     "agreement/elettrico-elettricita-futura.json": [
       "elettrico-elettricita-futura/apprentice_seniority"
@@ -894,13 +936,35 @@
       "farmacie-municipalizzate-assofarm/terziario_rates_proxy"
     ],
     "agreement/farmacie-private-h121.json": [
-      "farmacie-private-h121/apprentice_seniority"
+      "farmacie-private-h121/apprentice_seniority",
+      "farmacie-private-h121/edr_thirteen_months",
+      "farmacie-private-h121/isq_twelve_year_tier",
+      "farmacie-private-h121/rural_pharmacy_table"
+    ],
+    "agreement/federcasa.json": [
+      "federcasa/ivc_renewal_gap",
+      "federcasa/pre_2018_seniority_cohort",
+      "federcasa/terziario_rates_proxy"
     ],
     "agreement/fiori-recisi-ancef.json": [
       "fiori-recisi-ancef/apprentice_seniority"
     ],
+    "agreement/formazione-professionale.json": [
+      "formazione-professionale/daily_divisor_assumed",
+      "formazione-professionale/leave_entitlement_rounded",
+      "formazione-professionale/sickness_second_tier_75"
+    ],
+    "agreement/forze-polizia-ordinamento-civile.json": [
+      "forze-polizia-ordinamento-civile/assegno_funzionale_missing",
+      "forze-polizia-ordinamento-civile/renewal_2025_2027_pending_dpr"
+    ],
     "agreement/funivie-anef.json": [
-      "funivie-anef/apprentice_seniority"
+      "funivie-anef/apprentice_seniority",
+      "funivie-anef/pre_2016_seniority_cohort",
+      "funivie-anef/quadri_function_allowance"
+    ],
+    "agreement/funzioni-centrali-aran.json": [
+      "funzioni-centrali-aran/agency_salary_tables"
     ],
     "agreement/funzioni-locali-aran.json": [
       "funzioni-locali-aran/renewal_2025_2027_missing"
@@ -911,7 +975,8 @@
     ],
     "agreement/gomma-plastica-federazione-gomma-plastica.json": [
       "gomma-plastica-federazione-gomma-plastica/apprentice_seniority",
-      "gomma-plastica-federazione-gomma-plastica/apprenticeship_period_boundaries"
+      "gomma-plastica-federazione-gomma-plastica/apprenticeship_period_boundaries",
+      "gomma-plastica-federazione-gomma-plastica/q_allowance_2023_unverified"
     ],
     "agreement/grafica-editoria-aieg.json": [
       "grafica-editoria-aieg/apprentice_seniority",
@@ -921,6 +986,7 @@
     "agreement/igiene-ambientale-utilitalia.json": [
       "igiene-ambientale-utilitalia/apprentice_seniority",
       "igiene-ambientale-utilitalia/contractual_fund_partial",
+      "igiene-ambientale-utilitalia/fasda_health_fund",
       "igiene-ambientale-utilitalia/fund_paid_month",
       "igiene-ambientale-utilitalia/industria_rates_proxy"
     ],
@@ -941,6 +1007,7 @@
     ],
     "agreement/industria-turistica-federturismo.json": [
       "industria-turistica-federturismo/apprentice_seniority",
+      "industria-turistica-federturismo/apprenticeship_under_classification",
       "industria-turistica-federturismo/seniority_cadence_unconfirmed",
       "industria-turistica-federturismo/tourism_special_supplement"
     ],
@@ -949,9 +1016,13 @@
       "informatica-pmi-unimatica/apprenticeship_duration_by_agreement"
     ],
     "agreement/istituzioni-servizi-socio-assistenziali-anaste.json": [
-      "istituzioni-servizi-socio-assistenziali-anaste/apprentice_seniority"
+      "istituzioni-servizi-socio-assistenziali-anaste/apprentice_seniority",
+      "istituzioni-servizi-socio-assistenziali-anaste/apprenticeship_low_levels_track",
+      "istituzioni-servizi-socio-assistenziali-anaste/nurses_professional_allowance",
+      "istituzioni-servizi-socio-assistenziali-anaste/una_tantum_2025"
     ],
     "agreement/istruzione-ricerca-aran.json": [
+      "istruzione-ricerca-aran/docenti_function_allowance",
       "istruzione-ricerca-aran/enam_base",
       "istruzione-ricerca-aran/fixed_hourly_overtime",
       "istruzione-ricerca-aran/teacher_hourly_divisor"
@@ -959,7 +1030,8 @@
     "agreement/lapidei-industria.json": [
       "lapidei-industria/apprentice_seniority",
       "lapidei-industria/apprenticeship_passthrough",
-      "lapidei-industria/cigo_rate_by_activity"
+      "lapidei-industria/cigo_rate_by_activity",
+      "lapidei-industria/daily_divisor_25"
     ],
     "agreement/laterizi-industria-f021.json": [
       "laterizi-industria-f021/apprentice_seniority",
@@ -967,10 +1039,12 @@
       "laterizi-industria-f021/level_e_first_period_one_below"
     ],
     "agreement/lavanderie-industriali-assosistema.json": [
-      "lavanderie-industriali-assosistema/apprentice_seniority"
+      "lavanderie-industriali-assosistema/apprentice_seniority",
+      "lavanderie-industriali-assosistema/tranches_from_october_2027"
     ],
     "agreement/lavoro-domestico-convivente-orario-ridotto.json": [
       "lavoro-domestico-convivente-orario-ridotto/annual_minimi_not_updated",
+      "lavoro-domestico-convivente-orario-ridotto/babysitter_and_certification_allowances",
       "lavoro-domestico-convivente-orario-ridotto/board_lodging_substitute",
       "lavoro-domestico-convivente-orario-ridotto/extra_month_hours",
       "lavoro-domestico-convivente-orario-ridotto/hourly_inps_bracket_unvalidated",
@@ -992,6 +1066,7 @@
     "agreement/lavoro-domestico-non-convivente.json": [
       "lavoro-domestico-non-convivente/annual_minimi_not_updated",
       "lavoro-domestico-non-convivente/extra_month_hours",
+      "lavoro-domestico-non-convivente/hourly_inps_bracket_unvalidated",
       "lavoro-domestico-non-convivente/meal_indennity",
       "lavoro-domestico-non-convivente/oncological_comporto",
       "lavoro-domestico-non-convivente/seniority_frozen_at_2026",
@@ -1010,15 +1085,20 @@
     ],
     "agreement/logistica-trasporto-confetra-viaggiante.json": [
       "logistica-trasporto-confetra-viaggiante/apprentice_seniority",
+      "logistica-trasporto-confetra-viaggiante/edr_2021_in_daily_base",
       "logistica-trasporto-confetra-viaggiante/travelling_allowances"
     ],
     "agreement/logistica-trasporto-confetra.json": [
       "logistica-trasporto-confetra/apprentice_seniority",
+      "logistica-trasporto-confetra/edr_2021_in_daily_base",
       "logistica-trasporto-confetra/health_and_bilateral_funds",
+      "logistica-trasporto-confetra/level_6j_2025",
       "logistica-trasporto-confetra/sixth_day_overtime"
     ],
     "agreement/marittimi-industria-armatoriale.json": [
-      "marittimi-industria-armatoriale/apprentice_seniority"
+      "marittimi-industria-armatoriale/apprentice_seniority",
+      "marittimi-industria-armatoriale/level_superminimo_art_18",
+      "marittimi-industria-armatoriale/una_tantum_2024_2025"
     ],
     "agreement/materiali-costruzione-lapidei-confapi.json": [
       "materiali-costruzione-lapidei-confapi/cigo_rate_by_activity",
@@ -1026,12 +1106,14 @@
     ],
     "agreement/metalmeccanica-cooperative.json": [
       "metalmeccanica-cooperative/apprentice_seniority",
-      "metalmeccanica-cooperative/apprenticeship_from_federmeccanica"
+      "metalmeccanica-cooperative/apprenticeship_from_federmeccanica",
+      "metalmeccanica-cooperative/cooperative_inps_rates_unverified"
     ],
     "agreement/metalmeccanico-artigianato.json": [
       "metalmeccanico-artigianato/apprentice_inps_rates_unsourced",
       "metalmeccanico-artigianato/artisan_impiegati_sickness",
       "metalmeccanico-artigianato/artisan_saturday_overtime",
+      "metalmeccanico-artigianato/centralinisti_apprenticeship",
       "metalmeccanico-artigianato/health_and_bilateral_funds",
       "metalmeccanico-artigianato/inps_sector_rates_unsourced"
     ],
@@ -1076,7 +1158,9 @@
     ],
     "agreement/occhiali-occhialeria-industria.json": [
       "occhiali-occhialeria-industria/apprentice_seniority",
-      "occhiali-occhialeria-industria/apprenticeship_full_pay"
+      "occhiali-occhialeria-industria/apprenticeship_full_pay",
+      "occhiali-occhialeria-industria/level_1_entry_rate",
+      "occhiali-occhialeria-industria/shift_6x6_divisor_156"
     ],
     "agreement/ooss-unsic-confsal.json": [
       "ooss-unsic-confsal/apprentice_seniority",
@@ -1100,7 +1184,8 @@
       "operai-agricoli-florovivaisti/super_profile_scatti"
     ],
     "agreement/orafi-argentieri-industria-federorafi.json": [
-      "orafi-argentieri-industria-federorafi/apprentice_seniority"
+      "orafi-argentieri-industria-federorafi/apprentice_seniority",
+      "orafi-argentieri-industria-federorafi/renewal_2026_tables"
     ],
     "agreement/organizzazioni-allevatori-aia.json": [
       "organizzazioni-allevatori-aia/apprentice_inps_rates_unsourced",
@@ -1128,11 +1213,16 @@
       "pelli-cuoio-industria-assopellettieri/level_1_apprentice_reference"
     ],
     "agreement/portieri-fabbricati-confedilizia.json": [
-      "portieri-fabbricati-confedilizia/apprentice_seniority"
+      "portieri-fabbricati-confedilizia/apprentice_seniority",
+      "portieri-fabbricati-confedilizia/apprenticeship_24_month_profiles",
+      "portieri-fabbricati-confedilizia/b5_short_schedule_premium",
+      "portieri-fabbricati-confedilizia/c4_first_employment_rate"
     ],
     "agreement/poste-italiane-k700.json": [
+      "poste-italiane-k700/anticipo_lump_sum_2024",
       "poste-italiane-k700/edr_pre_privatization",
-      "poste-italiane-k700/fondo_quiescenza_poste_rates"
+      "poste-italiane-k700/fondo_quiescenza_poste_rates",
+      "poste-italiane-k700/legacy_individual_seniority"
     ],
     "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva.json": [
       "pubblici-esercizi-fipe-angem-ristorazione-collettiva/apprentice_seniority",
@@ -1157,11 +1247,13 @@
       "pulizia-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "pulizia-artigianato-confartigianato/apprentice_seniority",
       "pulizia-artigianato-confartigianato/apprenticeship_percentages_2022",
+      "pulizia-artigianato-confartigianato/edar_2022_2024",
       "pulizia-artigianato-confartigianato/health_and_bilateral_funds",
       "pulizia-artigianato-confartigianato/ind_fun_months_per_year",
       "pulizia-artigianato-confartigianato/inps_sector_rates_unsourced",
       "pulizia-artigianato-confartigianato/level_2_seniority_amount",
-      "pulizia-artigianato-confartigianato/overtime_weekly_threshold"
+      "pulizia-artigianato-confartigianato/overtime_weekly_threshold",
+      "pulizia-artigianato-confartigianato/special_collection_allowance"
     ],
     "agreement/radiotelevisive-radiofonico.json": [
       "radiotelevisive-radiofonico/apprentice_seniority",
@@ -1172,22 +1264,31 @@
       "radiotelevisive-televisivo/inps_rates_reused_unverified"
     ],
     "agreement/rsa-aiop.json": [
-      "rsa-aiop/apprentice_seniority"
+      "rsa-aiop/apprentice_seniority",
+      "rsa-aiop/apprenticeship_under_classification",
+      "rsa-aiop/seniority_premium_2023"
     ],
     "agreement/sanita-aran.json": [
+      "sanita-aran/nursing_specificity_allowance",
       "sanita-aran/renewal_2025_2027_not_modelled"
     ],
     "agreement/sanita-privata-aiop-aris.json": [
+      "sanita-privata-aiop-aris/frozen_individual_seniority",
       "sanita-privata-aiop-aris/part_time_supplementary_rate",
-      "sanita-privata-aiop-aris/shift_on_call_allowances"
+      "sanita-privata-aiop-aris/shift_on_call_allowances",
+      "sanita-privata-aiop-aris/statutory_ipca_adjustment"
     ],
     "agreement/scuole-materne-fism.json": [
       "scuole-materne-fism/apprentice_seniority",
       "scuole-materne-fism/apprenticeship_identity_track",
       "scuole-materne-fism/salario_di_anzianita"
     ],
+    "agreement/scuole-private-agidae.json": [
+      "scuole-private-agidae/salario_di_anzianita"
+    ],
     "agreement/scuole-private-laiche-aninsei.json": [
-      "scuole-private-laiche-aninsei/apprentice_seniority"
+      "scuole-private-laiche-aninsei/apprentice_seniority",
+      "scuole-private-laiche-aninsei/salario_di_anzianita"
     ],
     "agreement/servizi-postali-appalto-fise.json": [
       "servizi-postali-appalto-fise/apprentice_seniority",
@@ -1204,6 +1305,8 @@
     "agreement/sistemazioni-idraulico-forestali-operai.json": [
       "sistemazioni-idraulico-forestali-operai/apprentice_inps_rates_unsourced",
       "sistemazioni-idraulico-forestali-operai/apprentice_seniority",
+      "sistemazioni-idraulico-forestali-operai/apprenticeship_duration_mapping",
+      "sistemazioni-idraulico-forestali-operai/regional_seniority_cirl",
       "sistemazioni-idraulico-forestali-operai/structural_rules_from_2021_text"
     ],
     "agreement/studi-professionali-confprofessioni.json": [
@@ -1217,6 +1320,7 @@
       "studi-professionali-confprofessioni/reemployment_entry_pay",
       "studi-professionali-confprofessioni/rol_not_accrued",
       "studi-professionali-confprofessioni/rolling_comporto_and_serious_illness",
+      "studi-professionali-confprofessioni/six_day_week_leave",
       "studi-professionali-confprofessioni/travel_diaria",
       "studi-professionali-confprofessioni/unused_leave_hours"
     ],
@@ -1226,7 +1330,8 @@
     ],
     "agreement/telecomunicazioni-asstel.json": [
       "telecomunicazioni-asstel/apprentice_seniority",
-      "telecomunicazioni-asstel/industria_tax_sector_unverified"
+      "telecomunicazioni-asstel/industria_tax_sector_unverified",
+      "telecomunicazioni-asstel/seniority_adjacent_level_amounts"
     ],
     "agreement/terziario-confesercenti.json": [
       "terziario-confesercenti/apprentice_seniority",
@@ -1251,10 +1356,12 @@
     ],
     "agreement/tessile-pmi-uniontessile.json": [
       "tessile-pmi-uniontessile/fondapi_base_elements",
+      "tessile-pmi-uniontessile/level_8_function_allowance",
       "tessile-pmi-uniontessile/other_subsectors_tables"
     ],
     "agreement/tessile-smi.json": [
-      "tessile-smi/apprentice_seniority"
+      "tessile-smi/apprentice_seniority",
+      "tessile-smi/december_2024_proportional_tranche"
     ],
     "agreement/trasporto-aereo-assaeroporti.json": [
       "trasporto-aereo-assaeroporti/apprentice_seniority",
@@ -1263,11 +1370,15 @@
       "trasporto-aereo-assaeroporti/role_conditional_allowances"
     ],
     "agreement/trasporto-ferroviario-agens.json": [
+      "trasporto-ferroviario-agens/e2_e3_seniority_amounts",
+      "trasporto-ferroviario-agens/fondo_solidarieta_ferrovie",
       "trasporto-ferroviario-agens/pre_june_2025_tables",
       "trasporto-ferroviario-agens/seniority_amounts_before_june_2026"
     ],
     "agreement/turismo-confesercenti.json": [
       "turismo-confesercenti/apprentice_seniority",
+      "turismo-confesercenti/apprenticeship_under_classification",
+      "turismo-confesercenti/other_subsectors_tables",
       "turismo-confesercenti/tourism_special_supplement"
     ],
     "agreement/turismo-federalberghi.json": [
@@ -1287,7 +1398,8 @@
     ],
     "agreement/uneba-uneba.json": [
       "uneba-uneba/apprentice_seniority",
-      "uneba-uneba/equal_apprenticeship_bands"
+      "uneba-uneba/equal_apprenticeship_bands",
+      "uneba-uneba/ermt_territorial"
     ],
     "agreement/universita-aran.json": [
       "universita-aran/perseo_sirio_not_modelled",
@@ -1295,9 +1407,12 @@
     ],
     "agreement/universita-tecnologi-aran.json": [
       "universita-tecnologi-aran/perseo_sirio_not_modelled",
-      "universita-tecnologi-aran/shared_rules_unchecked"
+      "universita-tecnologi-aran/shared_rules_unchecked",
+      "universita-tecnologi-aran/tecnologi_allowances"
     ],
     "agreement/vetro-meccanizzato-assovetro.json": [
+      "vetro-meccanizzato-assovetro/other_subsectors_tables",
+      "vetro-meccanizzato-assovetro/seniority_assumed_constant",
       "vetro-meccanizzato-assovetro/tranches_from_october_2026"
     ],
     "agreement/vigilanza-privata-assiv.json": [
@@ -1305,10 +1420,12 @@
       "vigilanza-privata-assiv/terziario_tax_sector_unverified"
     ],
     "agreement/vigilanza-privata-federdat-gpg.json": [
-      "vigilanza-privata-federdat-gpg/apprentice_seniority"
+      "vigilanza-privata-federdat-gpg/apprentice_seniority",
+      "vigilanza-privata-federdat-gpg/seniority_assumed_unchanged"
     ],
     "agreement/vigilanza-privata-federdat-sf.json": [
-      "vigilanza-privata-federdat-sf/apprentice_seniority"
+      "vigilanza-privata-federdat-sf/apprentice_seniority",
+      "vigilanza-privata-federdat-sf/seniority_assumed_unchanged"
     ],
     "limitation/engine.json": [
       "apprenticeship_pct_undeclared_components",

@@ -170,9 +170,9 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Apprenticeship 70/85/92% confirmed from CCNL ANAS 2025-2027 Art. 28 text. Last period (months_until=null at 92%) reflects the contractual open-ended formulation; upon qualification the worker moves to full pay at the destination level.
     
-    Overtime base (Art. 101 CCNL ANAS): the official retribuzione oraria includes minimo tabellare + IIS (contingenza) + RIA + AEP + EDR. Engine uses hourly_base_method=minimo_tabellare, which understates the overtime base by excluding IIS, RIA, AEP, EDR. Structural engine limitation (no per-allowance hourly_relevant flag); monthly/annual figures unaffected.
+    Overtime base (Art. 101 CCNL ANAS): the official retribuzione oraria includes minimo tabellare + IIS (contingenza) + RIA + AEP + EDR. The file keeps hourly_base_method=minimo_tabellare without a verified hourly_base_provenance, so the engine derives no hourly base: an overtime event needs the caller's hourly rate, otherwise the run is rejected. Monthly/annual figures unaffected (review of 2026-10-30).
     
-    Malattia: 100% mesi 1-12, 50% mesi 13+ — CCNL ANAS 2025-2027 Art. malattia. Modellato con SicknessTier (comporto standard). Periodi a cavallo di soglia mensile ricevono un unico tasso (engine limitation accettabile).
+    Malattia: 100% mesi 1-12, 50% mesi 13+ — CCNL ANAS 2025-2027 Art. malattia. Modellato con SicknessTier (comporto standard). Il tasso si applica giorno per giorno secondo il mese di malattia (mesi di 30 giorni), anche nei periodi di paga a cavallo di soglia (review of 2026-10-30).
     
 
 ## Raw data

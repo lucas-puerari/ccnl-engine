@@ -66,6 +66,22 @@
       }
     },
     {
+      "id": "salario_di_anzianita",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SENIORITY (Art. 24): salario di anzianita frozen as of 2025-01-01, milestone-based (hire-date brackets). Workers with 2+ years continuous service at 01/01/2025 receive 20 EUR/month; pre-2002 hires up to 90 EUR/month (grandfathered). New hires after ~2023-01-01 receive nothing. maximum_count=0 correctly models new-hire case (zero seniority). The engine cadence model cannot express hire-date milestones: long-tenure workers are understated. Structural engine limitation — no data gap.",
+      "calculation": "ccnl/scuole-private-laiche-aninsei:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the Art. 24 salario di anzianità (20 EUR, up to 90 EUR for pre-2002 hires) with a hire-date bracket input or EarnedIncrements, and record the limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "scuole-private-laiche-aninsei/salario_di_anzianita"
+        ]
+      }
+    },
+    {
       "id": "sickness_cumulation_window",
       "institute": "sickness",
       "variant": "all",

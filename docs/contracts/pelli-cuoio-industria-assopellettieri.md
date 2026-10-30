@@ -184,7 +184,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     APPRENTICESHIP: Art. 55 CCNL (CNEL PDF). Under-classification model, maximum duration 36 months. Six distinct tracks (one per destination level) with specific pay progression for each level, as per Art. 55 table. Special note for level 2: 'Gli apprendisti con destinazione finale al secondo saranno inquadrati al livello di destinazione finale con decorrenza dall'inizio del secondo periodo di apprendistato' (from month 11 onwards at level 2).
     
-    INPS: industry sector rates from 2026-industria.json (existing file reused). Employee 9.19%; employer: <=15 employees 30.13%, 16-50 employees 30.20%, >50 employees 30.50%.
+    INPS: industry sector rates from 2026-industria.json (existing file reused). Employee 9.19% up to 15 employees, 9.49% above; employer (operai): <=15 employees 30.68%, 16-50 employees 31.28%, >50 employees 31.58% (impiegati and quadri 28.46%, 29.06%, 29.36%). (review of 2026-10-30)
     
     LEVEL 6Q: not present in the CCNL table of the CNEL PDF (August 2023). Excluded from the model.
     

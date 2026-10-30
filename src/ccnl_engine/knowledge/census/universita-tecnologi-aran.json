@@ -112,6 +112,22 @@
           "sickness_inps_daily_base"
         ]
       }
+    },
+    {
+      "id": "tecnologi_allowances",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SCOPE: tecnologi a tempo indeterminato of the universities, a profile from 1.3.2026 (CCNL 2025-2027 Tabella B2): six posizioni stipendiali (0-5, 6-11, 12-17, 18-23, 24-30, 31 and more years) as seniority steps. No overtime table; the allowances of the profile are not modelled.",
+      "calculation": "ccnl/universita-tecnologi-aran:coverage.notes",
+      "state": "unverified",
+      "remediation": "Source the allowances of the tecnologi profile (CCNL 2025-2027) and model them or record the limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "universita-tecnologi-aran/tecnologi_allowances"
+        ]
+      }
     }
   ]
 }

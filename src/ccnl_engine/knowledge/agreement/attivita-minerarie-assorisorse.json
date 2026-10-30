@@ -58,8 +58,17 @@
         "text": "HOURLY DIVISOR: 173 assumed (40h/week x 52/12 = 173.33 standard industria convention). Not explicitly confirmed from scanned PDF — verify against Art. orario."
       },
       {
-        "kind": "info",
-        "text": "ADDITIONAL MONTHS: 13 assumed (tredicesima only, standard for Confindustria-affiliated mining). Not explicitly confirmed from scanned PDF — verify against Art. gratifica natalizia."
+        "kind": "simplification",
+        "text": "ADDITIONAL MONTHS: 13 assumed (tredicesima only, standard for Confindustria-affiliated mining). Not explicitly confirmed from scanned PDF — verify against Art. gratifica natalizia.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "additional_months_unconfirmed",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Read the gratifica natalizia / mensilità clause of the CCNL and confirm or correct additional_months."
+        }
       },
       {
         "kind": "simplification",
@@ -1623,7 +1632,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "21388f9e85c01277c4f5f2b14993c944148ac21755dc5dfb111923f57291b69f",
+    "source_hash": "715ffd34c88dda168a4d105150d3e32a50b6569edbea04c04ee53abb708aa049",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

@@ -84,20 +84,39 @@
         "text": "SENIORITY INCREMENTS: biennial (24-month cadence), max 5 biennial periods. Amounts from Art. 17 consolidated text September 2025. Non-travelling staff."
       },
       {
-        "kind": "info",
-        "text": "LEVEL 6° JUNIOR: not modelled. The profile existed only in 2025 (1,464.53 a month from 1.1.2025, p. 80; seniority step 18.78, art. 17; EDR 2021 7.58, p. 82) and ended on 31.12.2025 (p. 25: 'Il presente profilo avrà termine inderogabilmente il 31 dicembre 2025'), its workers moving to level 6; a level of the bundle must cover the whole span of the ruleset. A 2025 run of a 6J worker uses level 6 with the 2025 amounts above as overrides."
+        "kind": "simplification",
+        "text": "LEVEL 6° JUNIOR: not modelled. The profile existed only in 2025 (1,464.53 a month from 1.1.2025, p. 80; seniority step 18.78, art. 17; EDR 2021 7.58, p. 82) and ended on 31.12.2025 (p. 25: 'Il presente profilo avrà termine inderogabilmente il 31 dicembre 2025'), its workers moving to level 6; a level of the bundle must cover the whole span of the ruleset. The request has no override of the level amounts: a 2025 run of a 6J worker on level 6 pays the level 6 minimum (1,615.71) (review of 2026-10-30)",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "level_6j_2025",
+          "applies_when": {
+            "trigger": "outside_input",
+            "effective_from": "2025-01-01"
+          },
+          "remediation": "Model 6J for 2025 (a level closed on 2025-12-31, or a refusal of 6J runs), or record the limitation for 2025 runs."
+        }
       },
       {
         "kind": "info",
         "text": "EPA: Elemento Professionale d'Area, a component introduced by the 6.12.2024 renewal. Included in base_salary values from 1.1.2025. Not shown separately because it forms an integral part of the minimum pay (it affects all contractual and statutory entitlements) — see Confetra circ283-2024."
       },
       {
-        "kind": "info",
-        "text": "EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; the 2021 EDR may still enter the daily base of absences and sickness, which 'nessuna incidenza su alcun istituto contrattuale' excludes."
+        "kind": "simplification",
+        "text": "EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; the 2021 EDR may still enter the daily base of absences and sickness, which 'nessuna incidenza su alcun istituto contrattuale' excludes.",
+        "capability": "absence",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "edr_2021_in_daily_base",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Exclude EDR_2021 from the daily base of absences and sickness (a relevance flag on the allowance), or source that it enters it."
+        }
       },
       {
         "kind": "info",
-        "text": "INPS: uses 2026-industria.json (TaxSector.INDUSTRIA). File already present — no changes to the tax file."
+        "text": "INPS: meta.inps_sectors lists industria (contribution/2026/industria.json) and terziario (contribution/2026/terziario.json); EmployerProfile.inps_sector chooses, and without it the run reads the industria with a missing_fact inps_sector blocker (see the INPS SECTOR OF THE EMPLOYER note) (review of 2026-10-30)"
       },
       {
         "kind": "info",
@@ -2603,7 +2622,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "bfc0ad12db30ebc9a087c905fa92f35a1be93df7398e8631e0a129afb3868d2e",
+    "source_hash": "47e6c136a34d6d85140432c0bb7f1c35651fab74f061008308ddb5c444a9b066",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

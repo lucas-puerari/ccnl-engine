@@ -1038,8 +1038,17 @@
         "text": "progressione economica non automatica — differenziali stipendiali assegnati per graduatoria (Art. 16 CCNL 2022-2024); seniority_increments.maximum_count=0."
       },
       {
-        "kind": "info",
-        "text": "sub-settori ENAC, ANSFISA, ANSV e AGID hanno tabelle retributive proprie (Tabelle 3-6 CCNL) non modellate — out_of_scope per implementazione standard."
+        "kind": "simplification",
+        "text": "sub-settori ENAC, ANSFISA, ANSV e AGID hanno tabelle retributive proprie (Tabelle 3-6 CCNL) non modellate — out_of_scope per implementazione standard.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "agency_salary_tables",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the ENAC, ANSFISA, ANSV and AGID tables with a fact selecting them, or refuse those employers."
+        }
       },
       {
         "kind": "info",
@@ -1054,7 +1063,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "ad98cc44ed6a8adc54849b7532cb261f176c2c45dae3a5bfb30fde4a7e94d3c5",
+    "source_hash": "3acfe8db32018b5066cf62dd03851afcca57d1583e1c9e18f9b431404f1c2952",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

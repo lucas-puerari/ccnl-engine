@@ -19,6 +19,22 @@
       }
     },
     {
+      "id": "grandfathered_scatti",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Scatti di anzianita (Art. 166, 2022 stesura): abrogated from 01/01/2019. Grandfathered for personale in forza al 31-12-2018 only. New hires (post-2018): maximum_count=0. Per-level 2009 amounts: QDIR=52, Q=47, L1=44, L2=40, L3S=36, L3=33, L4=30, L5=27, L6=24 (frozen, not updated since 2009 across 2022 and 2025 renewals).",
+      "calculation": "ccnl/ced-assoced:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the scatti frozen at 31/12/2018 for the staff then in service (amounts listed in the note) gated on the hire date, or tell the caller to pass them as Employment.individual_elements (absorbable false) as chimica-farmaceutica-federchimica does.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "ced-assoced/grandfathered_scatti"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

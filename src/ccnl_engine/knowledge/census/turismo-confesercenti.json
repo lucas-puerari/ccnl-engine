@@ -19,6 +19,38 @@
       }
     },
     {
+      "id": "apprenticeship_under_classification",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Apprenticeship model confirmed: CCNL Turismo Confesercenti provides sotto-inquadramento 2 levels below destination (consistent with Testo Unico apprendistato Art. 11, secondary sources). Modeled as 100% passthrough pending contract text; the engine supports under_classification tracks with levels_below. (review of 2026-10-30)",
+      "calculation": "ccnl/turismo-confesercenti:coverage.notes",
+      "state": "absent",
+      "remediation": "Source the contract text and model under_classification tracks (2 levels below destination) instead of the 100% passthrough.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-confesercenti/apprenticeship_under_classification"
+        ]
+      }
+    },
+    {
+      "id": "other_subsectors_tables",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Models the alberghi/campeggi sub-sector only (CCNL H058, conglobated model). Pubblici esercizi and stabilimenti balneari use a split (paga base + contingenza) model with different values — out_of_scope deliberate: these sub-sectors have meaningfully different pay structures requiring separate files.",
+      "calculation": "ccnl/turismo-confesercenti:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the pubblici esercizi and stabilimenti balneari tables (split paga base + contingenza) with a sub-sector input, or record the limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-confesercenti/other_subsectors_tables"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

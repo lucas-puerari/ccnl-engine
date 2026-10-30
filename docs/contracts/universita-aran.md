@@ -135,7 +135,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | CCNL Scuola 2006-2009, still in force for ferie (art. 13), malattia (art. 17) and tredicesima (art. 80). | altro | 2007-11-29 | [↗](https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf) |
 
 ??? note "Coverage notes"
-    SCOPE: personale tecnico-amministrativo of the universities and AOU (Aree Operatori, Collaboratori, Funzionari, Elevate Professionalità) and Collaboratori ed esperti linguistici, from 1.1.2024 (new classification of art. 92 CCNL 18/1/2024 from 1.5.2024, the earlier areas transposed by its allegato F). Tables: CCNL 2022-2024 Tabelle B2-B4 and CCNL 2025-2027 Tabelle B2-B4. Not modelled: the tecnologi a tempo indeterminato (Tabella B2 from 1.3.2026, posizioni stipendiali) and the differenziali economici di professionalità, which the caller pays as allowances. The Elevate Professionalità have no overtime table (B4).
+    SCOPE: personale tecnico-amministrativo of the universities and AOU (Aree Operatori, Collaboratori, Funzionari, Elevate Professionalità) and Collaboratori ed esperti linguistici, from 1.1.2024 (new classification of art. 92 CCNL 18/1/2024 from 1.5.2024, the earlier areas transposed by its allegato F). Tables: CCNL 2022-2024 Tabelle B2-B4 and CCNL 2025-2027 Tabelle B2-B4. The tecnologi a tempo indeterminato (Tabella B2 from 1.3.2026, posizioni stipendiali) are modelled in universita-tecnologi-aran. Not modelled: the differenziali economici di professionalità, which the caller pays as allowances. The Elevate Professionalità have no overtime table (B4). (review of 2026-10-30)
     
 
 ## Raw data

@@ -35,6 +35,22 @@
       }
     },
     {
+      "id": "apprenticeship_under_classification",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "APPRENTICESHIP: under_classification 2 levels below destination is the contract rule. Modelled as 100% passthrough: the apprentice is paid the destination level. The engine can express it (apprenticeship type under_classification, levels_below relative to each destination level), but the periods are not sourced (review of 2026-10-30)",
+      "calculation": "ccnl/industria-turistica-federturismo:coverage.notes",
+      "state": "absent",
+      "remediation": "Source the periods of the under-classification (Art. on apprendistato professionalizzante) and model them as an under_classification track with levels_below 2 (and 1 where due); until then record the limitation on the apprentice path (contract_types apprentice).",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "industria-turistica-federturismo/apprenticeship_under_classification"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

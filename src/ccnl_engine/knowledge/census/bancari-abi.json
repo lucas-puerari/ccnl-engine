@@ -35,6 +35,22 @@
       }
     },
     {
+      "id": "apprentice_net_equivalent_allowance",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "APPRENTICESHIP (Art. 36, testo coordinato p. 53): the apprentice of a 3a area profile is placed one level below the destination for the first 18 months, then paid the destination level 'con assegno temporaneo, corrispondente, al netto'; at most 3 years. Every 3a area level is a destination: an apprentice to 3A1 starts at the Area unificata (1e2A). The assegno equals the destination in net terms; the engine pays the destination gross.",
+      "calculation": "ccnl/bancari-abi:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the assegno temporaneo as the gross that gives the destination-level net under the apprentice contribution rates, or open a limitation stating the overpayment.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "bancari-abi/apprentice_net_equivalent_allowance"
+        ]
+      }
+    },
+    {
       "id": "apprentice_seniority",
       "institute": "seniority",
       "variant": "apprentice",

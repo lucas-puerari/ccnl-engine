@@ -77,19 +77,46 @@
       },
       {
         "kind": "info",
-        "text": "OVERTIME (Art. 39): three rates — diurno +15%, notturno or festivo +30%, notturno+festivo +50%. SIMPLIFICATION: the combined notturno+festivo band (50%) requires a multi-condition match not supported by the engine overtime_bands schema; that case is omitted. Art. 41 para 3 (15% supplement for ordinary work at night or on holidays) is not modeled — engine time_supplements captures overtime only."
+        "text": "OVERTIME (Art. 39): three rates — diurno +15%, notturno or festivo +30%, notturno+festivo +50%. The combined notturno+festivo band (50%) is not in overtime_bands, although the engine supports it (OvertimeKind.NIGHT_HOLIDAY): such an event needs the caller's multiplier. Art. 41 para 3 (15% supplement for ordinary work at night or on holidays) is not modelled as a supplement band (supplement_bands): such an event needs the caller's amount (review of 2026-10-30)"
       },
       {
-        "kind": "info",
-        "text": "LEAVE (Art. 43): 32 giorni lavorativi on 6-day week + 4 giorni festività soppresse. SIMPLIFICATION: stored as 26 working days on 5-day-week basis (32/1.2=26.67); festività soppresse 4 giorni are not modeled as a separate tier. Source: Art. 43 para 3-4 CCNL."
+        "kind": "simplification",
+        "text": "LEAVE (Art. 43): 32 giorni lavorativi on 6-day week + 4 giorni festività soppresse. SIMPLIFICATION: stored as 26 working days on 5-day-week basis (32/1.2=26.67); festività soppresse 4 giorni are not modeled as a separate tier. Source: Art. 43 para 3-4 CCNL.",
+        "capability": "leave",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "leave_entitlement_rounded",
+          "applies_when": {
+            "trigger": "owed"
+          },
+          "remediation": "Model the 32 days on a 6-day week (or 26.67 on 5 days) and the 4 giorni of festività soppresse, with their pay when not taken."
+        }
       },
       {
-        "kind": "info",
-        "text": "SICKNESS (Art. 50 para 4): 100% for 12 months, 75% for months 13-18. SIMPLIFICATION: second tier (75%) is not captured by the single max_duration_days field; stored as max_duration_days=365 (full-pay period only). Source: Art. 50 para 4 CCNL."
+        "kind": "simplification",
+        "text": "SICKNESS (Art. 50 para 4): 100% for 12 months, 75% for months 13-18. SIMPLIFICATION: second tier (75%) is not captured by the single max_duration_days field; stored as max_duration_days=365 (full-pay period only). Source: Art. 50 para 4 CCNL.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sickness_second_tier_75",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Add SicknessTier rows (100% months 1-12, 75% months 13-18) and max_duration_days for 18 months."
+        }
       },
       {
-        "kind": "info",
-        "text": "DAILY DIVISOR: Art. 37 specifies 156 ore/month and 5-day week but does not state a daily divisor explicitly. SIMPLIFICATION: by_26 applied as standard for terziario contracts."
+        "kind": "simplification",
+        "text": "DAILY DIVISOR: Art. 37 specifies 156 ore/month and 5-day week but does not state a daily divisor explicitly. SIMPLIFICATION: by_26 applied as standard for terziario contracts.",
+        "capability": "absence",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "daily_divisor_assumed",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the daily quota of the CCNL (Art. 29 and 37) and set daily_divisor_method, then remove this limitation."
+        }
       }
     ]
   },
@@ -1106,7 +1133,7 @@
     "effective_until": null,
     "source": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
     "verification_status": "verified",
-    "source_hash": "683be237483f9292d4a5e55bb7e9c5533b61b1d500e1396fc86f53689ce152c8",
+    "source_hash": "dced01d1f35e561cd0e8605d63b5752485f953fcfbde8bc9df9b28a8ffcf9f09",
     "published_at": "2026-09-11",
     "source_type": "contracting_party"
   },

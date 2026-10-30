@@ -86,7 +86,7 @@
       },
       {
         "kind": "info",
-        "text": "INPS: industry sector rates from 2026-industria.json (existing file reused). Employee 9.19%; employer: ≤15 employees 30.13%, 16-50 employees 30.20%, >50 employees 30.50%. No substitute bilateral fund for CCNL Legno Industria (Fondimpresa for training only, does not affect INPS contribution rates)."
+        "text": "INPS: industry sector rates from contribution/2026/industria.json (existing file reused). Employee 9.19% up to 15 employees, 9.49% above; employer (operai): up to 15 employees 30.68%, 16-50 employees 31.28%, >50 employees 31.58% (impiegati and quadri 28.46%, 29.06%, 29.36%). No substitute bilateral fund for CCNL Legno Industria (Fondimpresa for training only, does not affect INPS contribution rates) (review of 2026-10-30)"
       },
       {
         "kind": "simplification",
@@ -3499,7 +3499,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "04a6f21c719db4265ebe98881b2e76a9f4a13e7aeed24b19996954f7825dcd3e",
+    "source_hash": "26e53f32c788a0363ccd56059c708d93aeb3d0110f3d5b6a0427884eb92d2f31",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

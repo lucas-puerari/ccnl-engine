@@ -66,7 +66,7 @@
       },
       {
         "kind": "info",
-        "text": "Seniority (Art. 113): first scatto after 4 years (48 months), then every 36 months; maximum 8 scatti for the Aree Professionali and 12 for the Quadri Direttivi (Art. 101), via maximum_count_by_level."
+        "text": "Seniority (Art. 113): first scatto after 4 years (48 months), then every 36 months; maximum 8 scatti for the Aree Professionali and the 1st and 2nd level of the Quadri Direttivi, 7 for the 3rd and 4th level (Art. 101), via maximum_count_by_level; 12 (9) only for the staff in service on 31 December 1997 (review of 2026-10-30)."
       },
       {
         "kind": "simplification",
@@ -126,8 +126,17 @@
         }
       },
       {
-        "kind": "info",
-        "text": "SCATTI: at most 8 for the 1st and 2nd level of the quadri direttivi and for the aree professionali, 7 for the 3rd and 4th level of the quadri (Art. 101, Art. 113). Staff in service on 31 December 1997 keep 12 scatti (9 for the 3rd and 4th level of the quadri) plus a further periodic increase: the engine applies the limits of later hires, so a run for that cohort past the 8th (7th) scatto needs the extra amounts as a fixed input."
+        "kind": "simplification",
+        "text": "SCATTI: at most 8 for the 1st and 2nd level of the quadri direttivi and for the aree professionali, 7 for the 3rd and 4th level of the quadri (Art. 101, Art. 113). Staff in service on 31 December 1997 keep 12 scatti (9 for the 3rd and 4th level of the quadri) plus a further periodic increase: the engine applies the limits of later hires, so a run for that cohort past the 8th (7th) scatto needs the extra amounts as a fixed input.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "pre_1998_cohort_scatti",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Model the 12 (9) scatti and the further periodic increase of staff in service on 31/12/1997 as a hire-date-gated maximum, or open a limitation naming the individual-element workaround."
+        }
       }
     ]
   },
@@ -1737,7 +1746,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "b75c4bb98e6fc172ed522b5865b41c58ff7e140bc4271b5509c47e17a365bf44",
+    "source_hash": "2d765eeb07bf4a81e204dd48d98a14e77ee82ab5112b5b739a4e82bd52025c30",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

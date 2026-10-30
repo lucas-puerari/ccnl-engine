@@ -120,7 +120,7 @@
       },
       {
         "kind": "info",
-        "text": "Layer 3 (overtime, Cassa Edile contributions, holiday/night premiums, accruals managed bilaterally) is out of scope."
+        "text": "Layer 3: overtime is modelled (work_rules.time_supplements.overtime_bands); the Cassa Edile contributions, the premiums on ordinary night and holiday hours and the accruals managed bilaterally are out of scope (review of 2026-10-30)"
       },
       {
         "kind": "info",
@@ -2280,7 +2280,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "b105c003f16f67d057d8ceee7b9a8e94fdfcdedc17af6fa26c7ba2718e1cd4be",
+    "source_hash": "e964d81fb882989dbcaae3eaf7521b64a0bca2cf8f92bd0d9d9f57c04d6d3214",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

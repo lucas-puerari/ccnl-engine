@@ -71,8 +71,21 @@
         "text": "TRANCHE DATES 01.01.2023, 01.01.2024, 01.04.2025, 01.01.2026 from lexplain.it and kitech.it. Future tranches 01.04.2027, 01.04.2028, 01.12.2028 from the rinnovo 10.12.2025 (ipotesi accordo PDF uniolex.com, confirmed by fiscoetasse.com, paserio.it, edotto.com): F +60, +60, +15. Other levels derived parametrically via the stable coefficients documented in CONGLOBATED CHECK — math verified ±0.01 EUR across all 3 tranches and all 10 levels."
       },
       {
-        "kind": "source",
-        "text": "Q LEVEL INDENNITA' DI FUNZIONE 50.00 EUR/month (quadri ex L. 190/1985), cross-verified at April 2025 (lexplain.it total 2473.68 vs contratticcnl.it TEM 2423.68). valid_from set to 2023-01-01 for consistency with the first modelled tranche; not verified whether the amount was already 50 EUR in 2023."
+        "kind": "simplification",
+        "text": "Q LEVEL INDENNITA' DI FUNZIONE 50.00 EUR/month (quadri ex L. 190/1985), cross-verified at April 2025 (lexplain.it total 2473.68 vs contratticcnl.it TEM 2423.68). valid_from set to 2023-01-01 for consistency with the first modelled tranche; not verified whether the amount was already 50 EUR in 2023.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "q_allowance_2023_unverified",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "Q"
+            ],
+            "effective_until": "2025-04-01"
+          },
+          "remediation": "Source the Q indennità di funzione in force from 2023-01-01 to 2025-03-31."
+        }
       },
       {
         "kind": "info",
@@ -2895,7 +2908,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
     "verification_status": "unverified",
-    "source_hash": "61dd5858f6c94b03b557513584eecb1eb0236f1d9d213874b93e270a35ce24ba",
+    "source_hash": "7f72956dde66e3a37af75b3415623f8d6759fc4f46e44d59f11d2fae9b81845b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

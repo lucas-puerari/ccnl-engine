@@ -165,8 +165,17 @@
         }
       },
       {
-        "kind": "info",
-        "text": "INPS BAND: the band of up to 24 weekly hours is chosen on the paga oraria effettiva of INPS (circ. 9/2026; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico): the monthly pay with board and lodging over the hours of the employment (weekly hours x 52 / 12), raised by the tredicesima (x 13 / 12)."
+        "kind": "simplification",
+        "text": "INPS BAND: the band of up to 24 weekly hours is chosen on the paga oraria effettiva of INPS (circ. 9/2026; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico): the monthly pay with board and lodging over the hours of the employment (weekly hours x 52 / 12), raised by the tredicesima (x 13 / 12).",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "hourly_inps_bracket_unvalidated",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Validate the hourly INPS bracket lookup for weekly hours up to 24 against the INPS domestic table, as for the convivente files."
+        }
       },
       {
         "kind": "info",
@@ -997,7 +1006,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "179d7cae31d1c9cd52c06ca365d92cdd75b98bfc29108acd9dd15f9014910102",
+    "source_hash": "7b66a9ead1f9bb65abe6c59cf3c9a925ec0e76005a1590e1d978aa709d34413c",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },

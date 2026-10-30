@@ -221,7 +221,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     CONTINGENCY ALLOWANCE: the amounts frozen at 1 November 1991 of Art. 52: 1S=545.72, 1=538.70, 2=530.51, 3A=525.83, 3=522.32, 4=519.99, 5=517.65, 6=515.31. The oleario-margariniero categories 1-10 and the viaggiatori o piazzisti tables are outside the 8 modelled levels.
     
-    FUNCTION ALLOWANCE 1S: EUR 100 a month for the Quadri (Art. 23, L. 190/1985), modelled as an allowance with role 'quadro' (compute(..., roles={'quadro'})).
+    FUNCTION ALLOWANCE 1S: EUR 100 a month for the Quadri (Art. 23, L. 190/1985), modelled as an allowance with role 'quadro' (Employment.roles=quadro) (review of 2026-10-30).
     
     APPRENTICESHIP under_classification (Art. 21 A, CCNL 1 March 2024): two levels below in the first period, one below in the second, the destination in the third, with the periods of the Durata table: levels 3, 3A, 2 at 10/12/14 months, level 4 at 6/14/16, level 1 at 10/10/16; level 5 at 24 months, at the destination from the second period (month 6), the first period at level 6 being the reading of 'two levels below' kept. Level 6 and 1S are not destinations. First-level and alta formazione apprenticeships are not modelled.
     

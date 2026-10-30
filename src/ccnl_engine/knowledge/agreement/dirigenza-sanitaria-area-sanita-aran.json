@@ -334,8 +334,17 @@
         "text": "Campo di applicazione: Art. 1 CCNL 27.02.2026. Questo file modella la componente non medico-veterinaria (psicologi, farmacisti, biologi, fisici, chimici, dirigenti professioni sanitarie)."
       },
       {
-        "kind": "info",
-        "text": "Retribuzione di posizione (Art. 14): obbligatoria ma variabile per tipo incarico. Non modellata — out_of_scope."
+        "kind": "simplification",
+        "text": "Retribuzione di posizione (Art. 14): obbligatoria ma variabile per tipo incarico. Non modellata — out_of_scope.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "position_pay_missing",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Take the retribuzione di posizione (Art. 14) as a worker fact by type of incarico, or document IndividualElement as its channel."
+        }
       },
       {
         "kind": "info",
@@ -346,8 +355,17 @@
         "text": "Nessuno scatto automatico di anzianità. maximum_count=0."
       },
       {
-        "kind": "info",
-        "text": "Hourly divisor 165 = 38h/settimana × 52/12 = 164.67 ≈ 165 (CCNL Area Sanità 23.01.2024 Art. 27 conferma orario settimanale 38h per la dirigenza sanitaria SSN). Il valore 165 è il divisore contrattuale standard."
+        "kind": "simplification",
+        "text": "Hourly divisor 165 = 38h/settimana × 52/12 = 164.67 ≈ 165 (CCNL Area Sanità 23.01.2024 Art. 27 conferma orario settimanale 38h per la dirigenza sanitaria SSN). Il valore 165 è il divisore contrattuale standard.",
+        "capability": "workplace_injury",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "approximate_hourly_divisor",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the divisor of Art. 27 (or the INAIL base of the SSN dirigenti) and replace 165, or mark it not applicable."
+        }
       },
       {
         "kind": "simplification",
@@ -391,7 +409,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "e1ac6dcb8b711e3c05558f8f2c21be77bbbe2d0f5d03eed818b830d145f73237",
+    "source_hash": "5d0521c7a2eb03a29041e24a495e245bbcc7d15e11f9e938fd7f03261afb7ab2",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

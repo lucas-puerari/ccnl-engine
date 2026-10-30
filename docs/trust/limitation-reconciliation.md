@@ -104,3 +104,23 @@ The new limitations: `assicurazioni-ania/funzionari_economic_allowance`,
 `radiotelevisive-televisivo/inps_rates_reused_unverified`. The open
 limitations of the bundle go from 437 to 449: the gaps were there, now they
 are counted.
+
+## Info and source notes
+
+Last, the 1101 `info` and `source` notes were checked the same way: a note
+that describes what the engine does may be out of date, and one that
+describes an approximation may hide a gap.
+
+| Verdict | Notes | Outcome |
+|---|---:|---|
+| Still true | 962 | Kept as they are |
+| Obsolete | 38 | Rewritten to the current code and data, each marked "review of 2026-10-30" |
+| Hidden gap | 101 | Now open limitations, with their capability, impact, trigger, scope and remediation |
+
+Among the gaps: position pay of the public managers, allowances owed to
+roles (nurses, teachers, quadri) or to cohorts in service before a date,
+apprenticeship profiles and placements below the destination level the
+data do not hold yet, renewal tranches and una tantum missing from the
+tables, and INPS rates reused from another sector without a check. The
+open limitations of the bundle go from 449 to 550: the gaps were there,
+now they are counted.

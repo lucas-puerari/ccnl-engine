@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority, trattamento_integrativo |
+| **Limits of this contract** | base_salary, seniority, trattamento_integrativo |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -108,6 +108,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies.
 
     **Remediation:** Confirm the seniority cadence (36 or 24 months) against the H05B text.
+
+!!! warning "industria-turistica-federturismo/apprenticeship_under_classification · base_salary · impact yes · open"
+    APPRENTICESHIP: under_classification 2 levels below destination is the contract rule. Modelled as 100% passthrough: the apprentice is paid the destination level. The engine can express it (apprenticeship type under_classification, levels_below relative to each destination level), but the periods are not sourced (review of 2026-10-30)
+
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Source the periods of the under-classification (Art. on apprendistato professionalizzante) and model them as an under_classification track with levels_below 2 (and 1 where due); until then record the limitation on the apprentice path (contract_types apprentice).
 
 !!! warning "industria-turistica-federturismo/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
@@ -186,8 +193,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     SALARY VALUES: parametric derivation verified to <0.02 EUR accuracy across all levels. A1 and D2 taken directly from source; all others derived via stable level-coefficient ratios.
     
     PRE-2025 NOT MODELLED: the CCNL H05B renewal starts Jan 2025; series begins 2025-01-01. Prior CCNL salary tables exist but are out of scope for the current engine version (coverage starts at renewal date). This is a deliberate scope decision.
-    
-    APPRENTICESHIP: under_classification 2 levels below destination is a contract-specific rule not representable in the engine schema (single under_levels value, not per-destination-level). Modelled as 100% passthrough by design.
     
 
 ## Raw data

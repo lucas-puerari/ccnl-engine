@@ -60,8 +60,17 @@
         "text": "IDR 2021: modeled as 0.00 for 01/01/2023–01/08/2023 (element not yet established in first 2023 tranches). Period 1 values from 01/08/2023; period 2 from 01/01/2024 onwards."
       },
       {
-        "kind": "info",
-        "text": "Apprenticeship: CCNL provides under-classification 2 levels below (engine schema requires static pay_level_code). Modeled as 100% passthrough."
+        "kind": "simplification",
+        "text": "Apprenticeship: CCNL provides under-classification 2 levels below; the file models it as a 100% passthrough (one percentage track at 1.00), although the engine supports under_classification tracks (review of 2026-10-30).",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "apprenticeship_full_pay_passthrough",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Model the track as type under_classification (levels_below 2, then the CCNL periods) from the CCNL apprenticeship clause and drop the 100% passthrough."
+        }
       },
       {
         "kind": "simplification",
@@ -4157,7 +4166,7 @@
     "effective_until": null,
     "source": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori",
     "verification_status": "unverified",
-    "source_hash": "afe7ae4992fb7ad558ab63b160701e56c3cf07633d42befcb6a5372d92347e3f",
+    "source_hash": "fb75ca44947bc1eac6d6e0d70a7bc5b5eea2b7c0cd0068593c146bd082d44e33",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

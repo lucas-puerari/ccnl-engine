@@ -51,6 +51,22 @@
       }
     },
     {
+      "id": "cooperative_inps_rates_unverified",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "INPS: employer rates from 2026-industria.json (same tax sector as C011). Cooperative employers may have different INPS addizionale rates; this is a SIMPLIFICATION — verify against INPS circular for cooperative sector if precise employer cost is critical.",
+      "calculation": "ccnl/metalmeccanica-cooperative:coverage.notes",
+      "state": "unverified",
+      "remediation": "Check the INPS rates of the cooperative employers (circular of the sector, CSC of the cooperatives) against contribution/2026/industria.json and record any difference.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanica-cooperative/cooperative_inps_rates_unverified"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

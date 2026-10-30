@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | base_salary, seniority |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -119,6 +119,13 @@ Destination levels: `2`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "tessile-smi/december_2024_proportional_tranche · base_salary · impact unknown · open"
+    December 2024 tranche (01/12/2024): per-level values derived proportionally from the +EUR 95 increase at grade 4 (2024 SMI renewal, source filctemcgil.it). Rationale: Dec-2024 increment = 95/152 = 5/8 of the total increase Nov-2024→Jan-2026; verified by exact closure on all levels against Jan-2026 values from kitech.it.
+
+    **Applies when:** `base_salary` applies; from 2024-12-01.
+
+    **Remediation:** Source the per-level Dec 2024 table (2024 SMI renewal) and replace the proportionally derived values.
+
 !!! warning "tessile-smi/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
 
@@ -177,8 +184,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 | https://www.kitech.it/tabelle-retributive-tessile-abbigliamento | tabella_retributiva | — | [↗](https://www.kitech.it/tabelle-retributive-tessile-abbigliamento) |
 
 ??? note "Coverage notes"
-    December 2024 tranche (01/12/2024): per-level values derived proportionally from the +EUR 95 increase at grade 4 (2024 SMI renewal, source filctemcgil.it). Rationale: Dec-2024 increment = 95/152 = 5/8 of the total increase Nov-2024→Jan-2026; verified by exact closure on all levels against Jan-2026 values from kitech.it.
-    
     Level 8 function allowance: the total ERN published on lexplain.it (2,316.33) includes the function allowance (EUR 51.65). base_salary = ERN - 51.65 = 2,264.68 (pre-Dec 2024) and 2,457.72 (Jan 2026). Source kitech.it reports minimum and total separately for Level 8. Verification: combined increase (Dec2024+Jan2026) at Level 8 = EUR 193.04, expected proportional = 126.74% × 152.24 = EUR 193.12 (delta < 0.1 EUR). Interpretation confirmed.
     
     VV.PP. (Travelling and Area Salespeople): not modelled. Special category with their own rates (1st cat.: 1,932.91/1,932.91 pre-Dec 2024; 2nd cat.: 1,823.07); excluded due to complexity.

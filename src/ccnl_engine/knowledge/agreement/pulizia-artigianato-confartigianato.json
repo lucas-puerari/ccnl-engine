@@ -79,12 +79,31 @@
         "text": "Gap 2025: il vecchio CCNL scadeva 31.12.2024; il nuovo decorre economicamente dal 1.1.2026. La serie salariale ha un periodo senza aggiornamento 1.12.2024–31.12.2025 (valore costante). Dec 2029 incluso: accordo rinnovo indica esplicitamente il 7° scatto."
       },
       {
-        "kind": "info",
-        "text": "EDAR (Elemento Distinto e Aggiuntivo della Retribuzione): EUR 15.00 flat, 26 mesi da 1.11.2022, soli lavoratori in forza al 27.10.2022. Scaduto dic 2024. Non rientra in nessun istituto contrattuale incl. TFR. Non modellato."
+        "kind": "simplification",
+        "text": "EDAR (Elemento Distinto e Aggiuntivo della Retribuzione): EUR 15.00 flat, 26 mesi da 1.11.2022, soli lavoratori in forza al 27.10.2022. Scaduto dic 2024. Non rientra in nessun istituto contrattuale incl. TFR. Non modellato.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "edar_2022_2024",
+          "applies_when": {
+            "trigger": "outside_input",
+            "effective_from": "2022-11-01"
+          },
+          "remediation": "Model l'EDAR di EUR 15 (1.11.2022-31.12.2024, solo lavoratori in forza al 27.10.2022, escluso dal TFR) come allowance gated by role, or record a limitation with effective_until 2025-01-01."
+        }
       },
       {
-        "kind": "info",
-        "text": "INDENNITÀ SPECIALE (tabella per-livello nel PDF: L1=126.55→131.55 EUR): corrisposta solo al personale addetto alla riscossione con responsabilità di bollette/fatture > EUR 4.648/giorno. Condizionale, non universale. Non modellata. Totale ilccnl.it lug 2026 = Paga Base conferma assenza di elementi obbligatori aggiuntivi."
+        "kind": "simplification",
+        "text": "INDENNITÀ SPECIALE (tabella per-livello nel PDF: L1=126.55→131.55 EUR): corrisposta solo al personale addetto alla riscossione con responsabilità di bollette/fatture > EUR 4.648/giorno. Condizionale, non universale. Non modellata. Totale ilccnl.it lug 2026 = Paga Base conferma assenza di elementi obbligatori aggiuntivi.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "special_collection_allowance",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model l'indennità speciale per livello as an allowance gated by a role (addetti alla riscossione) or record a limitation."
+        }
       },
       {
         "kind": "simplification",
@@ -3583,7 +3602,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "af46c33daccfb213fb3d5a613d0f4dd7d9d170a0d3086c2e30f0d234f817aaaa",
+    "source_hash": "ff2c0f99a9a8e558131857370b7359e883446120a9786e47b1663181ee71cb8e",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

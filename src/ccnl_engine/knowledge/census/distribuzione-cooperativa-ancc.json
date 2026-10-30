@@ -19,6 +19,38 @@
       }
     },
     {
+      "id": "apprenticeship_2024_text_unread",
+      "institute": "base_salary",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "APPRENTICESHIP (2024 RENEWAL): Modelled from the 2020 CCNL text (CCNL-Utilia2020 PDF, 'Apprendistato accordo 13 giugno 2012'): levels 1-4 start 2 levels below for first 24 months then 1 level below; level 5 stays 1 level below throughout. The 2024 renewal (signed 2024-03-29) amended Arts. 75 and 80-82 but the updated text is not publicly accessible. Rules assumed unchanged from 2020 source.",
+      "calculation": "ccnl/distribuzione-cooperativa-ancc:coverage.notes",
+      "state": "unverified",
+      "remediation": "Read the apprenticeship articles of the 2024 renewal (Arts. 75, 80-82) and update the tracks, then remove this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "distribuzione-cooperativa-ancc/apprenticeship_2024_text_unread"
+        ]
+      }
+    },
+    {
+      "id": "long_week_divisors",
+      "institute": "workplace_injury",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "HOURLY DIVISOR: 165 h/month used, per ilccnl.it (38h/week standard, all levels). Art. 198 of the CCNL also references 168 for 40h/week and higher divisors for extended shifts. Conflict: ilccnl.it states 165 as the contract divisor; Art. 198 lists 168 for 40h/week. Dominant workforce (post-2011 hires in a high-turnover retail sector on the 38h standard) is served by 165. 42h/week (182) and 45h/week (195) schedules not modelled.",
+      "calculation": "ccnl/distribuzione-cooperativa-ancc:coverage.notes",
+      "state": "unverified",
+      "remediation": "Source Art. 198 and add the 168, 182 and 195 divisors of the 40, 42 and 45 hour weeks with hourly_divisor_weekly_hours=38, so other weeks are not derived from 165.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "distribuzione-cooperativa-ancc/long_week_divisors"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

@@ -55,8 +55,18 @@
   "coverage": {
     "notes": [
       {
-        "kind": "info",
-        "text": "December 2024 tranche (01/12/2024): per-level values derived proportionally from the +EUR 95 increase at grade 4 (2024 SMI renewal, source filctemcgil.it). Rationale: Dec-2024 increment = 95/152 = 5/8 of the total increase Nov-2024→Jan-2026; verified by exact closure on all levels against Jan-2026 values from kitech.it."
+        "kind": "simplification",
+        "text": "December 2024 tranche (01/12/2024): per-level values derived proportionally from the +EUR 95 increase at grade 4 (2024 SMI renewal, source filctemcgil.it). Rationale: Dec-2024 increment = 95/152 = 5/8 of the total increase Nov-2024→Jan-2026; verified by exact closure on all levels against Jan-2026 values from kitech.it.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "december_2024_proportional_tranche",
+          "applies_when": {
+            "trigger": "run",
+            "effective_from": "2024-12-01"
+          },
+          "remediation": "Source the per-level Dec 2024 table (2024 SMI renewal) and replace the proportionally derived values."
+        }
       },
       {
         "kind": "info",
@@ -1642,7 +1652,7 @@
     "effective_until": null,
     "source": "https://www.sistemamodaitalia.com/",
     "verification_status": "unverified",
-    "source_hash": "e7d72f54264c3a22a82595fc5aaff53b27471cd3098be72300b4b84995151d07",
+    "source_hash": "44728d8d0a9b8cab28093f35cfa8a72d4de6e0b97ee38b5400bb9b33ad94b581",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

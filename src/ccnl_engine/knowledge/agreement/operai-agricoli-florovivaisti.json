@@ -92,7 +92,7 @@
       },
       {
         "kind": "info",
-        "text": "TAX SECTOR: AGRICOLTURA (new TaxSector). INPS rates: Gestione Previdenziale Speciale Agricola, OTI standard agriculture: employee 8.84%, employer 21.66%, total 30.50% (2026). Source: ciatreviso.it citing INPS 2026 rates."
+        "text": "TAX SECTOR: AGRICOLTURA (new TaxSector). INPS rates: Gestione Previdenziale Speciale Agricola, OTI standard agriculture: employee 8.84%, employer 25.453% (of which IVS 21.66%) (2026). Source: ciatreviso.it citing INPS 2026 rates (review of 2026-10-30)"
       },
       {
         "kind": "info",
@@ -828,7 +828,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "41a8f0e90fb58018638cf9caf1a58ade945e4b784691e19d20d37215ef948e17",
+    "source_hash": "1ee18531c4ab8b9030fdf64f0723e2469c0c4e35707503b9d519db1485074446",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
