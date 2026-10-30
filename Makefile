@@ -2,7 +2,7 @@
 
 SITE := demo/release/site
 # Parallel test workers: a few, not one per core (each loads the whole bundle).
-PYTEST_WORKERS ?= 4
+PYTEST_WORKERS ?= 2
 PACKAGES := demo/release/packages
 
 # Setup
