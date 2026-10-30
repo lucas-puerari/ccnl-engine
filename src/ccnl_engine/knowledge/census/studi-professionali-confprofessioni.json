@@ -305,8 +305,8 @@
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = path",
-      "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
-      "calculation": "ccnl_engine.sickness.handlers (INPS share of a sick day)",
+      "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days, when the episode does not let the engine compute the INPS daily base: no SicknessEpisode.inps_base in its relapse chain, an operaio without the days worked or paid of the month before, an impiegato who did not work that whole month, an unknown worker category, or a sector INPS regime (spettacolo). With the base, INPS pays its share on the retribuzione media globale giornaliera of the month before the illness and on calendar days (INPS circ. 134368/1981 point 11). The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
+      "calculation": "ccnl_engine.sickness.pay.handlers (INPS share of a sick day); ccnl_engine.sickness.base.rules (daily base)",
       "state": "unverified",
       "work": [
         "T03.01"

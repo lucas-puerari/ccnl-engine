@@ -12,7 +12,9 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.absence.models import DailyDivisorMethod
+    from ccnl_engine.agreement.validity.rules import TimeSeries
     from ccnl_engine.compensation.element.types import MonthlyPayChain
+    from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.provenance.source.models import SourceLocation
     from ccnl_engine.sickness.day.models import SickPayRules
 
@@ -62,6 +64,13 @@ class SicknessTerms:
         apprentice: Whether the contract is an apprenticeship.
         employee_rate: INPS rate of the worker, which grosses up the INPS
             share of a CCNL integrating the net daily pay.
+        category: Category of the worker, which selects the divisor of the
+            INPS daily base; ``None`` when unknown.
+        monthly_payments: Monthly payments a year of the CCNL, by date
+            (``additional_months``), read by the INPS daily base.
+        general_regime: Whether INPS pays the sick days under its general
+            rules, whose daily base an episode can state; a sector regime
+            (spettacolo) keeps the CCNL quota.
         paid_by_the_hour: Whether the run pays the worker by the hour
             worked: the sick hours are not among them, so the sick days
             deduct nothing from the pay.
@@ -81,3 +90,6 @@ class SicknessTerms:
     apprentice: bool = False
     employee_rate: Decimal = Decimal(0)
     paid_by_the_hour: bool = False
+    category: WorkerCategory | None = None
+    monthly_payments: TimeSeries | None = None
+    general_regime: bool = True

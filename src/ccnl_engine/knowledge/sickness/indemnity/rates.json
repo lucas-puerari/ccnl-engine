@@ -28,7 +28,7 @@
       "section": "Lavoratori dipendenti: quanto spetta",
       "quote": "In linea generale, l'indennità è corrisposta ai lavoratori dipendenti nella misura del: 50% della retribuzione media giornaliera, dal quarto al ventesimo giorno; 66,66% dal ventunesimo al centottantesimo giorno."
     },
-    "note": "Primary administrative source (INPS). No statute states the percentages: L. 138/1943 art. 6 c. 4 leaves the measure of the indemnity to collective agreements, and the INAM deliberation of 10 April 1963 the INPS page cites is not published online. Not modelled, from the same INPS page (re-read on 2026-10-14, same sha256): the indemnity 'ai 2/5 durante tutto il periodo di degenza ospedaliera [...] per i ricoverati senza familiari a carico' and 'ai 2/3 della misura normalmente prevista [...] per i disoccupati e sospesi dal lavoro'. Every run that pays an INPS share of a sick day already traverses the open engine limitation sickness_inps_daily_base and is not payable."
+    "note": "Primary administrative source (INPS). No statute states the percentages: L. 138/1943 art. 6 c. 4 leaves the measure of the indemnity to collective agreements, and the INAM deliberation of 10 April 1963 the INPS page cites is not published online. Not modelled, from the same INPS page (re-read on 2026-10-14, same sha256): the indemnity 'ai 2/5 durante tutto il periodo di degenza ospedaliera [...] per i ricoverati senza familiari a carico' and 'ai 2/3 della misura normalmente prevista [...] per i disoccupati e sospesi dal lavoro'. A run that pays an INPS share of a sick day without the INPS daily base of the episode traverses the open engine limitation sickness_inps_daily_base and is not payable."
   },
   "ruleset": {
     "id": "inps/sick-pay-rates",
@@ -38,7 +38,7 @@
     "published_at": "2026-10-04",
     "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33) for the waiting period and the indemnity; rates, 180-day annual maximum and cover as summarised by Assolombarda, Lavoro a tempo indeterminato - Tutele previdenziali (secondary, read 2026-10-04); not checked against an INPS circular",
     "verification_status": "unverified",
-    "source_hash": "b50064ab06af34936cd400c051674f0e5b2b8f15b9b4aadd131b80a685ea8ca1",
+    "source_hash": "08d85ec7cff83ea8b0da250625a05a48b4a36d90a411ca1160bc9d5a227cf8d3",
     "source_type": "contracting_party"
   },
   "annual_max_days": 180,

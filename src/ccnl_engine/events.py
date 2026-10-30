@@ -32,6 +32,7 @@ from ccnl_engine.event.facade import (
     WorkInjuryEvent,
 )
 from ccnl_engine.run.types import PeriodId
+from ccnl_engine.sickness.base.inputs import InpsSicknessBase
 
 __all__ = [
     "AbsenceEvent",
@@ -41,6 +42,7 @@ __all__ = [
     "FringeEvent",
     "HolidayWorkEvent",
     "HolidayWorkKind",
+    "InpsSicknessBase",
     "LeaveBucket",
     "LeaveTakenEvent",
     "MaternityLeaveEvent",

@@ -18,12 +18,8 @@ from dataclasses import dataclass, replace
 from datetime import date, timedelta
 
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.validators import (
-    require_bool,
-    require_date,
-    require_int,
-    require_str,
-)
+from ccnl_engine.sickness.base.inputs import InpsSicknessBase
+from ccnl_engine.sickness.validators import validate_episode
 
 __all__ = ["SicknessEpisode", "SicknessHistory"]
 
@@ -70,12 +66,16 @@ class SicknessEpisode:
             the 12 months before the episode, with every employer (D.L.
             463/1983 art. 5 c. 1); ``None`` when not stated.  Read only for
             a fixed-term contract, which pays sickness for no more days.
+        inps_base: Pay of the month before the illness, which the INPS
+            share of the sick days is computed on; ``None`` when not stated.
+            A relapse without one takes that of the episode it continues.
 
     Raises:
         InvalidInputError: When the identifier is blank, a day is not a
             date, ``short_absence_exempt`` is not a bool,
-            ``prior_worked_days`` is not an int in [0, 366], the episode
-            ends before it starts or continues itself.
+            ``prior_worked_days`` is not an int in [0, 366], ``inps_base``
+            is not an :class:`InpsSicknessBase`, the episode ends before it
+            starts or continues itself.
     """
 
     episode_id: str
@@ -88,66 +88,10 @@ class SicknessEpisode:
     serious_illness: bool | None = None
     periodic_check: bool | None = None
     daily_contributions: int | None = None
+    inps_base: InpsSicknessBase | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
-        require_str(
-            self.episode_id, f"{_OWNER}.episode_id", feature=_FEATURE, non_blank=True
-        )
-        require_date(self.started_on, f"{_OWNER}.started_on", feature=_FEATURE)
-        require_date(self.ended_on, f"{_OWNER}.ended_on", feature=_FEATURE)
-        require_str(
-            self.relapse_of,
-            f"{_OWNER}.relapse_of",
-            feature=_FEATURE,
-            non_blank=True,
-            optional=True,
-        )
-        if self.short_absence_exempt is not None:
-            require_bool(
-                self.short_absence_exempt,
-                f"{_OWNER}.short_absence_exempt",
-                feature=_FEATURE,
-            )
-        require_int(
-            self.daily_contributions,
-            f"{_OWNER}.daily_contributions",
-            feature=_FEATURE,
-            minimum=0,
-            maximum=1000,
-            optional=True,
-        )
-        require_int(
-            self.prior_worked_days,
-            f"{_OWNER}.prior_worked_days",
-            feature=_FEATURE,
-            minimum=0,
-            maximum=366,
-            optional=True,
-        )
-        for flag in ("serious_illness", "periodic_check"):
-            value = getattr(self, flag)
-            if value is not None:
-                require_bool(value, f"{_OWNER}.{flag}", feature=_FEATURE)
-        for first, last in self.hospital_stays or ():
-            require_date(first, f"{_OWNER}.hospital_stays", feature=_FEATURE)
-            require_date(last, f"{_OWNER}.hospital_stays", feature=_FEATURE)
-            if not self.started_on <= first <= last <= self.ended_on:
-                msg = (
-                    f"{_OWNER}.hospital_stays: the stay {first} - {last} must lie "
-                    f"within the episode {self.started_on} - {self.ended_on}"
-                )
-                raise InvalidInputError(
-                    msg, field=f"{_OWNER}.hospital_stays", feature=_FEATURE
-                )
-        if self.ended_on < self.started_on:
-            msg = (
-                f"{_OWNER}.ended_on ({self.ended_on}) must not precede "
-                f"started_on ({self.started_on})"
-            )
-            raise InvalidInputError(msg, field=f"{_OWNER}.ended_on", feature=_FEATURE)
-        if self.relapse_of == self.episode_id:
-            msg = f"{_OWNER} '{self.episode_id}' cannot be a relapse of itself"
-            raise InvalidInputError(msg, field=f"{_OWNER}.relapse_of", feature=_FEATURE)
+        validate_episode(self)
 
     def long_stay_days(self, more_than: int, day: date) -> int:
         """Return the days up to ``day`` of the stays longer than ``more_than``.

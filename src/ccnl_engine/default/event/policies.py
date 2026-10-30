@@ -134,6 +134,23 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "stays in full are paid reduced, with a provisional "
         "sickness_hospital_stays_unknown issue",
     ),
+    "SicknessEpisode.inps_base": requires_fact(
+        "sickness",
+        "event.inps_base",
+        FactEnforcement.REPORTED,
+        "unknown pay of the month before the illness: the INPS share is "
+        "computed on the CCNL daily quota and the run traverses the open "
+        "limitation sickness_inps_daily_base, which blocks it",
+    ),
+    "InpsSicknessBase.paid_days": requires_fact(
+        "sickness",
+        "event.inps_base.paid_days",
+        FactEnforcement.REPORTED,
+        "an impiegato who worked the whole month before the illness; an "
+        "operaio divides by the days, so without them the INPS share is "
+        "computed on the CCNL daily quota and the run traverses the open "
+        "limitation sickness_inps_daily_base, which blocks it",
+    ),
     "SicknessEpisode.periodic_check": absence_is_fact(
         "an ordinary sickness absence; a periodic check is a fact of the "
         "certificate the event records"

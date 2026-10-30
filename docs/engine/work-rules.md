@@ -251,9 +251,32 @@ records one `sickness` decision with the classified days in its inputs.
 | CCNL `work_rules.sickness_rules` | Nothing posted; `incomplete` issue `sickness_rule_missing` |
 | CCNL daily quota | Nothing posted; `incomplete` issue `sickness_daily_quota_missing` |
 
-Two engine limitations stay open: the INPS share uses the CCNL daily quota
-of the month instead of the INPS daily base of the month before
-(`sickness_inps_daily_base`), and, for a CCNL without a cumulation, tiers
+#### INPS daily base
+
+INPS pays its share on the retribuzione media globale giornaliera (RMGG) of
+the month immediately before the illness, on every calendar day the
+certificate covers (INPS circ. 134368 A.G.O. 14 of 28 January 1981, point
+11; circ. 55 of 4 April 2024, Allegato 1). `SicknessEpisode.inps_base`
+(`InpsSicknessBase`) states the pay of that month as the payroll history
+holds it: the *retribuzione teorica* of its UniEmens flow, the days worked
+or paid, and the other recurring payments of the year. The engine adds the
+monthly share of the additional months of the CCNL in force in that month:
+
+| Worker | RMGG |
+|---|---|
+| impiegato, quadro, dirigente (point 11.2) | (pay + share) / 30 |
+| operaio (point 11.3) | pay / days worked or paid + share / 25 |
+
+The base is fixed for the episode: a pay change during it moves the CCNL
+deduction and the employer top-up, not the INPS share, and a relapse
+without a base of its own takes that of the episode it continues. The
+`sickness` decision records it as `inps_daily_base`.
+
+Two engine limitations stay open. Without the INPS daily base (no
+`inps_base` in the relapse chain, an operaio without the days, an impiegato
+who did not work the whole month before, an unknown category, or a sector
+regime such as spettacolo) the INPS share uses the CCNL daily quota of the
+month (`sickness_inps_daily_base`). For a CCNL without a cumulation, tiers
 and comporto count one relapse chain, not the CCNL window across episodes
 (`sickness_cumulation_window`).
 

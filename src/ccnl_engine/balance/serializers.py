@@ -45,6 +45,7 @@ from ccnl_engine.leave.types import LeaveBucket
 from ccnl_engine.run.models import PayrollRunId
 from ccnl_engine.run.types import RunKind
 from ccnl_engine.severance.provision.models import TfrQuotaYtd
+from ccnl_engine.sickness.base.inputs import InpsSicknessBase
 from ccnl_engine.sickness.models import SicknessEpisode
 from ccnl_engine.surtax.obligation.models import (
     SurtaxComponent,
@@ -85,6 +86,7 @@ STATE_TYPES: Mapping[str, type] = MappingProxyType({
         EmploymentSpell,
         FringeYtd,
         InpsBaseYtd,
+        InpsSicknessBase,
         LeaveAccount,
         LeaveBalance,
         LeaveBucket,

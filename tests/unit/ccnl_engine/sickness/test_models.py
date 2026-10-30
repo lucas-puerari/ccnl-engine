@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import UTC, date, datetime
+from decimal import Decimal
 
 import pytest
 
@@ -112,3 +113,14 @@ class TestHistory:
         assert history.with_episode(longer) == (longer,)
         assert history.with_episode(early) == (early, _A)
         assert SicknessHistory((early, _A)).earlier(_A) == (early,)
+
+
+def test_an_inps_base_of_another_type_is_rejected() -> None:
+    """The base of the month before is an InpsSicknessBase."""
+    with pytest.raises(InvalidInputError, match="inps_base"):
+        SicknessEpisode(
+            "E",
+            date(2026, 3, 9),
+            date(2026, 3, 13),
+            inps_base=Decimal(1),  # type: ignore[arg-type]
+        )
