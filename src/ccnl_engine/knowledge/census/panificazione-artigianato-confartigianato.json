@@ -24,6 +24,27 @@
       }
     },
     {
+      "id": "err_unsourced",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "ERR: an Elemento Retributivo Residuo of 0.44 EUR a month is folded into every base_salary. The signed text of 6 June 2024 (Art. 32-33, pp. 45-48) states the tabellare and the indennità speciale but no ERR, and no party source was found for it: the base_salary records stay derived until the 0.44 is sourced or dropped.",
+      "calculation": "ccnl/panificazione-artigianato-confartigianato:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T09.03"
+      ],
+      "verification": [
+        "T09.11"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "panificazione-artigianato-confartigianato/err_unsourced"
+        ]
+      }
+    },
+    {
       "id": "ert_veneto",
       "institute": "territorial_supplement",
       "variant": "all",
@@ -150,6 +171,27 @@
       "links": {
         "limitations": [
           "sickness_inps_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "special_allowance_in_base",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "IND.SPECIALE: Indennita Speciale art.33 ter is fixed per level and does not change across tranches (confirmed: same amounts from 1995 to date, not subject to renewal increases). Folded into TOTALE base_salary for simplicity; the engine has no per-level fixed-allowance that is non-absorbable and constant — modeling as part of base_salary is the cleanest approach and does not affect any computation. The indennità speciale folded into base_salary takes the apprenticeship percentage and enters the tredicesima; whether Arts. 33, 36 and 58 do so is not confirmed (review of 2026-10-30).",
+      "calculation": "ccnl/panificazione-artigianato-confartigianato:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T02.01"
+      ],
+      "verification": [
+        "T02.13"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "panificazione-artigianato-confartigianato/special_allowance_in_base"
         ]
       }
     },

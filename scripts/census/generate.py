@@ -70,6 +70,7 @@ WORK: dict[str, tuple[str, ...]] = {
     "inail": ("T04.05",),
     "worker_category": ("T01.02",),
     "irpef": ("T06.01",),
+    "welfare": ("T06.09",),
 }
 #: Work items of a variant more specific than its capability.
 VARIANT_WORK: dict[str, tuple[str, ...]] = {
@@ -97,6 +98,11 @@ VARIANT_WORK: dict[str, tuple[str, ...]] = {
     "rol_schedule_absorption": ("T02.10",),
     "permit_deadline_payout": ("T02.10",),
     "shared_rules_unchecked": ("T09.04",),
+    "long_week_divisors": ("T02.04",),
+    "long_week_divisor_195": ("T02.04",),
+    "approximate_hourly_divisor": ("T02.04",),
+    "teacher_hourly_divisor": ("T02.04",),
+    "err_unsourced": ("T09.03",),
 }
 #: Work items of every weak rule: resolve it on the primary source.
 WEAK_WORK = ("T09.01", "T09.03")

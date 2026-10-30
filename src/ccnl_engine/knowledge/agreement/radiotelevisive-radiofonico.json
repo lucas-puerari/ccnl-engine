@@ -68,7 +68,14 @@
         "kind": "simplification",
         "text": "INPS rates reuse existing 2026-industria.json (tax_sector=industria). No bilateral fund substitution for broadcasting sector identified; standard Confindustria INPS rates apply.",
         "capability": "inps_employer",
-        "monetary_impact": "no"
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "inps_rates_reused_unverified",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Confirm the 2026 INPS rates of the broadcasters (industria, CIGO vs FIS by size) against the INPS circular, and route the roles insured in the ex-ENPALS FPLS to that regime."
+        }
       },
       {
         "kind": "info",
@@ -1368,6 +1375,6 @@
     "source": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "251f4bfc34dc7c4a7b2501a04c59ae7078b7574e9297c7e3a092217aabfd73db"
+    "source_hash": "a73d52255d5c9e76907a06cdc9c388bf7274528e759ef175cb0292177bf1e6bd"
   }
 }

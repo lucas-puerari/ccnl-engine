@@ -95,9 +95,17 @@
         "capability": "base_salary"
       },
       {
-        "kind": "missing",
+        "kind": "simplification",
         "text": "Titolo XXIII conditional allowances not modelled: indennita di mensa (Art. 179), rimborso mezzi pubblici (Art. 180), indennita valori (Art. 181), and elemento economico di garanzia (Art. 177). These are condition-gated or azienda-specific and cannot be determined without employer-level data.",
-        "capability": "base_salary"
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "conditional_allowances_title_xxiii",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model Art. 177 elemento economico di garanzia and Arts. 179-181 (mensa, mezzi pubblici, valori) as conditional fixed allowances or caller-declared items once a fact can express their conditions."
+        }
       },
       {
         "kind": "simplification",
@@ -1379,7 +1387,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "0db7c0ca07e4484a232ce519ac05da96ebe5cd69ef9cbcc4eb97efa29738200a",
+    "source_hash": "1ab35daa73a8f666562a3e86e7cf6d68dd1bf8a99f82c4d7e3875ee1bd93471d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

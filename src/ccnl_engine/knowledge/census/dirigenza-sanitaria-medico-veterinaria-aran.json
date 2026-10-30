@@ -3,6 +3,27 @@
   "ccnl_id": "dirigenza-sanitaria-medico-veterinaria-aran",
   "requirements": [
     {
+      "id": "approximate_hourly_divisor",
+      "institute": "workplace_injury",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Hourly divisor 165 = 38h/settimana × 52/12, arrotondato. Art. 27 CCNL 23.1.2024 (Orario di lavoro dei dirigenti) non modificato dal CCNL 27.02.2026. Il divisore 165 è un'approssimazione — i dirigenti SSN non hanno un orario fisso misurabile.",
+      "calculation": "ccnl/dirigenza-sanitaria-medico-veterinaria-aran:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T02.04"
+      ],
+      "verification": [
+        "T02.13"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "dirigenza-sanitaria-medico-veterinaria-aran/approximate_hourly_divisor"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

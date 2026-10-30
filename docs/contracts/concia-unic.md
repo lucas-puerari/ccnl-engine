@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | overtime, seniority |
+| **Limits of this contract** | leave, overtime, seniority |
 
 4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -132,6 +132,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Pass the multiplier on the overtime event for the hours past a threshold; the engine does not split an event by weekly or daily hours.
 
+!!! warning "concia-unic/rol_not_accrued · leave · impact yes · open"
+    LEAVE: Art. 42 of the CCNL testo definitivo 21/01/2021 (CNEL B101, physical p. 62): 4 weeks (20 days) up to the 10th year of service completed; 4 weeks + 2 days beyond the 10th year (120 months); 4 weeks + 3 days beyond the 15th (180 months); 5 weeks (25 days) beyond the 18th (216 months). ROL 68 ore/anno not modelled.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add a rol bucket of 68 hours a year to leave_rules with its accrual and payout (Art. 42 / ROL article).
+
 !!! warning "concia-unic/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
 
@@ -185,9 +192,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 !!! note ""
     DAILY DIVISOR: Art. 51 b) of the CCNL testo definitivo 21/01/2021 (CNEL B101, physical pp. 69-70) deducts the normal hours not worked by the ratio 173 / working hours of the month; Art. 50 keeps the quota of 1/25 for the holidays falling on a Sunday. Modelled as by_month_hours: one share per Monday to Friday out of the Mondays to Fridays of the month.
-
-!!! note ""
-    LEAVE: Art. 42 of the CCNL testo definitivo 21/01/2021 (CNEL B101, physical p. 62): 4 weeks (20 days) up to the 10th year of service completed; 4 weeks + 2 days beyond the 10th year (120 months); 4 weeks + 3 days beyond the 15th (180 months); 5 weeks (25 days) beyond the 18th (216 months). ROL 68 ore/anno not modelled.
 
 ## Sources
 

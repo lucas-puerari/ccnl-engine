@@ -314,8 +314,15 @@
       {
         "kind": "simplification",
         "text": "Hourly divisor 165 = 38h/settimana × 52/12, arrotondato. Art. 27 CCNL 23.1.2024 (Orario di lavoro dei dirigenti) non modificato dal CCNL 27.02.2026. Il divisore 165 è un'approssimazione — i dirigenti SSN non hanno un orario fisso misurabile.",
-        "capability": "overtime",
-        "monetary_impact": "no"
+        "capability": "workplace_injury",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "approximate_hourly_divisor",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the divisor of Art. 27 (or the INAIL base of the SSN dirigenti) and replace 165, or mark the divisor as not applicable so the INAIL daily base is not derived from it."
+        }
       },
       {
         "kind": "simplification",
@@ -380,7 +387,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "c6fadc488e40e9bffed3d8eaacca9fb82b7399996cb764dea174fbe615edd695",
+    "source_hash": "5d742264583aef96c9d4b3d89dc54528d6291c10a662e2dc2eb7e7f131a8c55f",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

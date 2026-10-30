@@ -89,13 +89,29 @@
       {
         "kind": "simplification",
         "text": "SIMPLIFICATION: Ticket restaurant excluded. Art. 44/84 provides 8.00 EUR/day (from 01/01/2023), rising to 10.00 EUR/day from 01/04/2027, conditional on >= 5 hours worked. Per-day and conditional: not representable as a monthly fixed allowance.",
-        "monetary_impact": "no"
+        "monetary_impact": "yes",
+        "capability": "welfare",
+        "limitation": {
+          "variant": "meal_voucher",
+          "applies_when": {
+            "trigger": "outside_input",
+            "effective_from": "2023-01-01"
+          },
+          "remediation": "Post the ticket restaurant as a welfare item per day worked of at least 5 hours: 8.00 EUR a day from 2023-01-01, 10.00 EUR from 2027-04-01 (Art. 44/84)."
+        }
       },
       {
         "kind": "simplification",
         "text": "SIMPLIFICATION: Hourly divisor 173 applies to standard 40h/week staff. The 2019 CCNL notes 182 (autisti/drivers) and 191 (custodi/security) in specific roles. Only 173 modeled here: dominant case. Verify per-role divisor for drivers and security classifications.",
-        "capability": "overtime",
-        "monetary_impact": "no"
+        "capability": "workplace_injury",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "long_week_divisors",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the 182 (42h, drivers) and 191 (44h, custodians) divisors keyed by the full-time week, set hourly_divisor_weekly_hours=40, and use the divisor of the stated week in the INAIL daily base."
+        }
       },
       {
         "kind": "simplification",
@@ -2930,7 +2946,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "a25a85fe11901450c3b73a12e8128dc2fd35bcb5e6c9c47c3b594e5b547f3861",
+    "source_hash": "d461d2957edcb89c9d3382e101c1ab6e5102896de53846e40ecbf2880b34d907",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

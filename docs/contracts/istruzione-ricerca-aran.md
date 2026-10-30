@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employee, overtime |
+| **Limits of this contract** | inps_employee, overtime, workplace_injury |
 
 4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -91,6 +91,13 @@ Latest effective values per level (monthly gross, EUR).
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "istruzione-ricerca-aran/teacher_hourly_divisor · workplace_injury · impact unknown · open"
+    Hourly divisor 156 = 36h/settimana × 52/12. I docenti hanno orario cattedra (18h/settimana insegnamento), non direttamente comparabile. Il divisore si applica per l'hourly_rate indicativo.
+
+    **Applies when:** `workplace_injury` applies; level in DOCENTE_DIPLOMATO_SECONDARIA, DOCENTE_INFANZIA_PRIMARIA, DOCENTE_LAUREATO_SECONDARIA_II, DOCENTE_SECONDARIA.
+
+    **Remediation:** Give the docenti levels their own INAIL daily base (or divisor of the orario cattedra), or stop deriving it from the 156 divisor for them.
+
 !!! warning "istruzione-ricerca-aran/enam_base · inps_employee · impact yes · open"
     The ENAM of a permanent teacher of the scuola dell'infanzia and primaria (L. 93/1957 art. 3: 1% of 80% of the stipendio) is computed on the whole minimum of the level; the stipendio it counts leaves out the IIS conglobata the retribuzione tabellare holds, which the bundle does not give apart: the contribution is overstated.
 
@@ -137,9 +144,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 !!! note ""
     CNEL S305 confermato per comparto, include tutte le sezioni (scuola, università, ricerca, AFAM).
-
-!!! note ""
-    Hourly divisor 156 = 36h/settimana × 52/12. I docenti hanno orario cattedra (18h/settimana insegnamento), non direttamente comparabile. Il divisore si applica per l'hourly_rate indicativo.
 
 ## Sources
 

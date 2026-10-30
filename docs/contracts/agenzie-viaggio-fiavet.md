@@ -165,7 +165,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     Levels QA and QB (Quadri) excluded from the apprenticeship track (apprenticeship not applicable to Quadri by law).
 
 !!! note ""
-    Layer 3 (overtime, night shifts, public holidays) out of scope.
+    Layer 3 (overtime, night shifts, public holidays) out of scope. Partly superseded: work_rules now holds overtime bands (OT_DIURNO, OT_NOTTURNO, OT_FESTIVO), leave and sickness rules; only the supplements on ordinary night and holiday hours are left to the caller, who states them (review of 2026-10-30).
 
 ## Sources
 

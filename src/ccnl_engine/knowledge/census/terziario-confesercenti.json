@@ -95,7 +95,7 @@
       "calculation": "ccnl/terziario-confesercenti:coverage.notes",
       "state": "absent",
       "work": [
-        "T02.01"
+        "T02.04"
       ],
       "verification": [
         "T02.13"

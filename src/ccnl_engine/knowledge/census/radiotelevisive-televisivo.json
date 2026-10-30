@@ -24,6 +24,27 @@
       }
     },
     {
+      "id": "inps_rates_reused_unverified",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "INPS rates reuse existing 2026-industria.json (tax_sector=industria). No bilateral fund substitution for broadcasting sector identified; standard Confindustria INPS rates apply.",
+      "calculation": "ccnl/radiotelevisive-televisivo:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T04.01"
+      ],
+      "verification": [
+        "T04.12"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "radiotelevisive-televisivo/inps_rates_reused_unverified"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

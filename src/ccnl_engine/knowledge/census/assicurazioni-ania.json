@@ -24,6 +24,27 @@
       }
     },
     {
+      "id": "funzionari_economic_allowance",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Indennità economica funzionari (Allegato 2/D) — L7 only, six sub-grade variants (Ex 3°/2°/1° Grado, Funz. Senior, Funz. Business, Ass. ex F2) with distinct amounts. Monthly amounts not found in publicly accessible sources (Allegato 2/D not published). Not modelled.",
+      "calculation": "ccnl/assicurazioni-ania:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "verification": [
+        "T02.13"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "assicurazioni-ania/funzionari_economic_allowance"
+        ]
+      }
+    },
+    {
       "id": "inps_sector_rates_unsourced",
       "institute": "inps_employer",
       "variant": "all",
