@@ -530,16 +530,18 @@ def test_earlier_episode_outside_the_chain_is_a_limitation(
     [
         ("metalmeccanico-federmeccanica", "C3"),
         ("alimentari-federalimentare", "6"),
+        ("poste-italiane-k700", "C"),
     ],
 )
 def test_a_ccnl_counting_every_episode_has_no_window_limitation(
     slug: str, level: str
 ) -> None:
-    """Federmeccanica and Federalimentare count the earlier episodes themselves.
+    """Federmeccanica, Federalimentare and Poste count the earlier episodes.
 
     Federmeccanica: 18 and 25 days of work separate the three episodes,
     fewer than 61, so the chain holds 3 + 3 + 2 days on 3 March.
-    Federalimentare (Art. 47): every sick day of the 17 months before.
+    Federalimentare (Art. 47): every sick day of the 17 months before;
+    Poste (Art. 41): of the 48 months before.
     """
     relapse = sickness_episode("m", date(2026, 3, 2), date(2026, 3, 3), "f")
     result = calculate_period(
