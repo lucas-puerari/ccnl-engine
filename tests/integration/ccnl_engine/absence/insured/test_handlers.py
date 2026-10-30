@@ -25,7 +25,12 @@ from ccnl_engine import (
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.events import InpsSicknessBase, MaternityLeaveEvent, WorkInjuryEvent
+from ccnl_engine.events import (
+    InpsSicknessBase,
+    MaternityLeaveEvent,
+    PaternityLeaveEvent,
+    WorkInjuryEvent,
+)
 from ccnl_engine.inputs import (
     EmploymentPeriod,
     NoPensionFund,
@@ -108,7 +113,11 @@ def test_an_injury_without_ccnl_rules_is_paid_by_inail_itself() -> None:
 
 @pytest.mark.parametrize(
     ("event", "capability"),
-    [(_LEAVE, "maternity_leave"), (_INJURY, "workplace_injury")],
+    [
+        (_LEAVE, "maternity_leave"),
+        (PaternityLeaveEvent((date(2026, 3, 2),)), "paternity_leave"),
+        (_INJURY, "workplace_injury"),
+    ],
 )
 def test_without_a_daily_quota_nothing_is_posted(
     event: WorkEvent, capability: str
@@ -139,6 +148,10 @@ def test_an_event_of_another_month_is_rejected() -> None:
             {"hired": date(2026, 3, 20)},
         ),
         (
+            PaternityLeaveEvent((date(2026, 3, 2), date(2026, 3, 3))),
+            {"hired": date(2026, 3, 20)},
+        ),
+        (
             WorkInjuryEvent(date(2026, 12, 1), date(2026, 12, 15)),
             {
                 "month": 12,
@@ -151,10 +164,17 @@ def test_an_event_outside_the_monthly_pay_is_rejected(
     event: WorkEvent, kwargs: dict[str, object]
 ) -> None:
     """Days before the hiring, or a run without monthly pay, pay nothing."""
-    with pytest.raises(InvalidInputError, match="monthly pay of a month"):
+    with pytest.raises(InvalidInputError, match="monthly pay of a month") as error:
         _run(event, **kwargs)  # type: ignore[arg-type]
 
+    assert error.value.feature == _CAPABILITY[type(event)]
 
+
+_CAPABILITY = {
+    MaternityLeaveEvent: "maternity_leave",
+    PaternityLeaveEvent: "paternity_leave",
+    WorkInjuryEvent: "workplace_injury",
+}
 _FEBRUARY = InpsSicknessBase(Decimal("2158.26"), Decimal(0))
 
 
@@ -164,7 +184,9 @@ def _maternity(category: WorkerCategory, base: InpsSicknessBase | None) -> Perio
     Returns:
         The result of the run.
     """
-    leave = MaternityLeaveEvent(date(2026, 3, 2), date(2026, 7, 31), base_pay=base)
+    leave = MaternityLeaveEvent(
+        date(2026, 3, 2), date(2026, 7, 31), maternity_base_pay=base
+    )
     return PayrollEngine.bundled().calculate_period(
         PeriodInput(
             run=PayrollRun.regular(2026, 3),
@@ -205,7 +227,9 @@ def test_an_impiegata_without_the_pay_before_lacks_a_fact() -> None:
     """The base is a fact of the payroll history: its absence blocks."""
     result = _maternity(WorkerCategory.IMPIEGATO, None)
 
-    assert ("missing_fact", "base_pay") in {(b.code, b.detail) for b in result.blockers}
+    assert ("missing_fact", "maternity_base_pay") in {
+        (b.code, b.detail) for b in result.blockers
+    }
 
 
 def test_an_operaia_keeps_the_pay_of_the_run_under_a_limitation() -> None:

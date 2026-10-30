@@ -25,6 +25,7 @@ def load_insured_absence_rates() -> InsuredAbsenceRates:
     raw = _read_json(_FILE)
     return InsuredAbsenceRates.model_validate({
         "maternity": raw["maternity"],
+        "paternity": raw["paternity"],
         "injury": raw["injury"],
         "ruleset": _as_ruleset(raw),
     })

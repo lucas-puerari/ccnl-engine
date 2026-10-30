@@ -48,6 +48,27 @@ class MaternityRates(BaseModel):
     provenance: RuleProvenance
 
 
+class PaternityRates(BaseModel):
+    """INPS indemnity of the compulsory paternity leave (D.Lgs. 151/2001).
+
+    Attributes:
+        indemnity_rate: Share of the daily pay INPS pays, 100% (art. 29).
+        daily_divisor: Days the pay of the month before is divided by, 30
+            (art. 23, which art. 29 applies).
+        days: Working days of the leave, 10 (art. 27-bis c. 1).
+        multiple_birth_days: Working days for a multiple birth, 20 (c. 2).
+        provenance: Source of the measures.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    indemnity_rate: Share
+    daily_divisor: int = Field(ge=1)
+    days: int = Field(ge=1)
+    multiple_birth_days: int = Field(ge=1)
+    provenance: RuleProvenance
+
+
 class InjuryBand(BaseModel):
     """An INAIL indemnity rate from a day of the inability.
 
@@ -111,6 +132,7 @@ class InsuredAbsenceRates(BaseModel):
 
     Attributes:
         maternity: The INPS maternity indemnity.
+        paternity: The INPS indemnity of the compulsory paternity leave.
         injury: The pay of a temporary inability after a work injury.
         ruleset: Identity of the data file.
     """
@@ -118,6 +140,7 @@ class InsuredAbsenceRates(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     maternity: MaternityRates
+    paternity: PaternityRates
     injury: InjuryRates
     ruleset: RulesetIdentity | None = None
 

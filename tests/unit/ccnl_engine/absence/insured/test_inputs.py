@@ -6,7 +6,11 @@ from datetime import date
 
 import pytest
 
-from ccnl_engine.absence.insured.inputs import MaternityLeaveEvent, WorkInjuryEvent
+from ccnl_engine.absence.insured.inputs import (
+    MaternityLeaveEvent,
+    PaternityLeaveEvent,
+    WorkInjuryEvent,
+)
 from ccnl_engine.errors import InvalidInputError
 
 _MARCH = (date(2026, 3, 1), date(2026, 3, 31))
@@ -18,6 +22,18 @@ def test_a_leave_is_dated_by_its_first_day() -> None:
 
     assert leave.event_date == date(2026, 2, 20)
     assert leave.within(*_MARCH) == _MARCH
+
+
+def test_a_paternity_leave_is_dated_by_its_first_day() -> None:
+    """Its days are cut to the month."""
+    leave = PaternityLeaveEvent((
+        date(2026, 3, 30),
+        date(2026, 3, 31),
+        date(2026, 4, 1),
+    ))
+
+    assert leave.event_date == date(2026, 3, 30)
+    assert leave.days_within(*_MARCH) == (date(2026, 3, 30), date(2026, 3, 31))
 
 
 def test_an_injury_is_dated_by_the_injury_day() -> None:

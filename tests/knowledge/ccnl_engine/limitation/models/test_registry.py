@@ -16,6 +16,7 @@ import pytest
 
 from ccnl_engine import PayrollEngine
 from ccnl_engine.absence.insured.handlers import MATERNITY_BASE_LIMITATION
+from ccnl_engine.absence.insured.paternity.handlers import PATERNITY_BASE_LIMITATION
 from ccnl_engine.agreement.facade import NoteKind
 from ccnl_engine.apprenticeship.models import (
     ApprenticeshipPercentage,
@@ -113,6 +114,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         APPRENTICE_GUARANTEE_FUND,
         EXEMPT_CATEGORY_FLOOR,
         MATERNITY_BASE_LIMITATION,
+        PATERNITY_BASE_LIMITATION,
     }
     assert by_status[LimitationStatus.RESOLVED] == {
         _MIDPOINT,

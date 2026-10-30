@@ -20,7 +20,11 @@ from types import MappingProxyType
 from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.inputs import AbsenceEvent, SickLeaveEvent
-from ccnl_engine.absence.insured.inputs import MaternityLeaveEvent, WorkInjuryEvent
+from ccnl_engine.absence.insured.inputs import (
+    MaternityLeaveEvent,
+    PaternityLeaveEvent,
+    WorkInjuryEvent,
+)
 from ccnl_engine.agreement.types import TaxSector
 from ccnl_engine.balance.serializers import STATE_TYPES
 from ccnl_engine.calendar.inputs import CalendarOverride, CalendarOverrideReason
@@ -175,6 +179,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             IndividualElement,
             LeaveTakenEvent,
             MaternityLeaveEvent,
+            PaternityLeaveEvent,
             NaspiExclusion,
             NightShiftEvent,
             NoPensionFund,
