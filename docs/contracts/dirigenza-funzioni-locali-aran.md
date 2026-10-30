@@ -31,10 +31,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ✅ |
-| **Limits of this contract** | — |
+| **Core payroll path** | ⚠️ |
+| **Limits of this contract** | base_salary |
 
-0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -75,6 +75,20 @@ Latest effective values per level (monthly gross, EUR).
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "dirigenza-funzioni-locali-aran/position_pay · base_salary · impact yes · open"
+    Retribuzione di posizione: variabile per tipo incarico e ente, non modellata (SIMPLIFICATION). Totale mensile medio include posizione: +491€ RAL, +400€ segretari, +377€ PTA (include tabellare + posizione + altro).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the CCNL minimum of the retribuzione di posizione or accept the amount of the incarico as a caller input, and open a limitation until then.
+
+!!! warning "dirigenza-funzioni-locali-aran/segretari_fascia_c · base_salary · impact yes · open"
+    Segretari comunali e provinciali fascia C (neo-assunti): incremento tabellare +184€/mese (vs +230€ delle altre fasce), valore stimato 49.407,77€/anno = 3.800,60€/mese. Non modellati come livello separato per mancanza di fonte primaria verificata.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model segretari fascia C as a separate level (+184 EUR increment) once a primary source is read, or open a limitation.
+
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days, when the episode does not let the engine compute the INPS daily base: no SicknessEpisode.inps_base in its relapse chain, an operaio without the days worked or paid of the month before, an impiegato who did not work that whole month, an unknown worker category, or a sector INPS regime (spettacolo). With the base, INPS pays its share on the retribuzione media globale giornaliera of the month before the illness and on calendar days (INPS circ. 134368/1981 point 11). The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
 
@@ -112,11 +126,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | SIMPLIFICATION: codice CNEL S125 da fonte secondaria (ilccnl.it). Non riportato nel testo ufficiale ARAN. | altro | — | [↗](https://ilccnl.it/ccnl/dirigenti---funzioni-locali/dirigenti---enti-locali-dal-010195) |
 
 ??? note "Coverage notes"
-    Retribuzione di posizione: variabile per tipo incarico e ente, non modellata (SIMPLIFICATION). Totale mensile medio include posizione: +491€ RAL, +400€ segretari, +377€ PTA (include tabellare + posizione + altro).
-    
-    Segretari comunali e provinciali fascia C (neo-assunti): incremento tabellare +184€/mese (vs +230€ delle altre fasce), valore stimato 49.407,77€/anno = 3.800,60€/mese. Non modellati come livello separato per mancanza di fonte primaria verificata.
-    
-    Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.
+    Layer 2 implemented. Part-time: the engine scales the pay by Employment.weekly_hours over full_time_weekly_hours. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in knowledge/sector/2026/pubblica-amministrazione.json. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL (review of 2026-10-30).
     
     Nessuno scatto automatico di anzianità per i dirigenti. maximum_count=0.
     
@@ -132,7 +142,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Assenza non retribuita: prassi PA divisore 30 (mensile/30 per giorno di assenza). Modellato con by_30, coerente con le altre aree ARAN.
     
-    Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — CCNL Area FL 2022-2024 (stessa disciplina delle altre aree ARAN). Modellato con SicknessTier; periodi a cavallo di soglia ricevono un unico tasso (engine limitation accettabile).
+    Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — CCNL Area FL 2022-2024 (stessa disciplina delle altre aree ARAN). Modellato con SicknessTier; il tasso si applica giorno per giorno secondo il mese di malattia (mesi di 30 giorni), anche nei periodi a cavallo di soglia (review of 2026-10-30).
     
     PENSION FUND. Perseo Sirio (1% + 1% of the retribuzione utile ai fini del TFR). Enrolment is a fact: the silenzio-assenso of the hires from 2 January 2019 (accordo ARAN 16/09/2021) is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual.
     

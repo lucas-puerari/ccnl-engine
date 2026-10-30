@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary, overtime, seniority |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -103,6 +103,20 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "occhiali-occhialeria-industria/shift_6x6_divisor_156 · overtime · impact yes · open"
+    HOURLY DIVISOR: 173 (standard 40h/week). Shift workers on 6x6 turns use divisor 156; engine models the 173 case uniformly.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the 156 divisor of the 6x6 shift workers (a work pattern input or an hourly_divisor by schedule), as the long-week divisors tracked elsewhere.
+
+!!! warning "occhiali-occhialeria-industria/level_1_entry_rate · base_salary · impact yes · open"
+    LEVEL 1 sub-level: the CCNL provides automatic advancement from entry sub-level (L1 ingresso) to L1 standard after 6 months. The file models only the post-advance minimum throughout, which is the relevant value for permanent workers and for workers beyond their 6th month. The entry sub-level undervaluation during the first 6 months is a deliberate structural simplification.
+
+    **Applies when:** `base_salary` applies; level in 1.
+
+    **Remediation:** Model the L1 ingresso minimum for the first 6 months of service (a level or a seniority-gated reduction), or record the limitation.
 
 !!! warning "occhiali-occhialeria-industria/apprenticeship_full_pay · base_salary · impact yes · open"
     APPRENTICESHIP: 2026 rinnovo (signed 30/01/2026) explicitly 'abroga la ripartizione in percentuale in relazione agli step professionali' (edotto.com). Pre-2026 CCNL used a percentage system. Post-2026 replacement type is not confirmed from a D271 primary source — the cognate piccola industria (ccnlportatili.it) uses sotto-inquadramento (2 levels below for first 12m, 1 level below for next 12m, then destination). Modelled as 100% passthrough for all levels pending primary source confirmation; this is a conservative over-estimate for the 2026-2028 period.
@@ -181,11 +195,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Level Q (Quadro): indennita di funzione +82.63 EUR/month on top of the tabular minimum (all tranches). Modelled as INDENNITA_FUNZIONE fixed allowance, months_per_year=13.
     
-    HOURLY DIVISOR: 173 (standard 40h/week). Shift workers on 6x6 turns use divisor 156; engine models the 173 case uniformly.
-    
     SENIORITY: 5 biennali (24-month) scatti. Per-level amounts (EUR): 1=6.84, 2=7.36, 3=3S=7.80, 4=4S=8.26, 5=5S=9.76, 6=Q=11.65.
-    
-    LEVEL 1 sub-level: the CCNL provides automatic advancement from entry sub-level (L1 ingresso) to L1 standard after 6 months. The file models only the post-advance minimum throughout, which is the relevant value for permanent workers and for workers beyond their 6th month. The entry sub-level undervaluation during the first 6 months is a deliberate structural simplification.
     
     TRANCHES 01/10/2026 through 01/11/2028: L4 reference increments confirmed from primary source (CISL communique CCNL occhialeria 30/01/2026: +30, +50, +45, +20 EUR at L4). All-level amounts derived via the parametric ratio matrix from confirmed 01/03/2026 per-level deltas. The CCNL occhialeria uses a declared parametric system; parametric derivation is contractually consistent.
     

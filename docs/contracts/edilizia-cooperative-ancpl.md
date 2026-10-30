@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | bilateral_funds, seniority |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -106,6 +106,20 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "edilizia-cooperative-ancpl/operai_seniority_ape · seniority · impact yes · open"
+    SENIORITY: 5 scatti biennali (24-month cadence, max 5). For blue-collar workers (levels 1-4), seniority is governed by the Cassa Edile APE system; engine uses the tabular scatti as an approximation.
+
+    **Applies when:** `seniority` applies; level in 1, 2, 3, 4.
+
+    **Remediation:** Give levels 1-4 the operaio category with no scatti (APE paid by the Cassa Edile), or split the operai into their own file as edilizia-ance does.
+
+!!! warning "edilizia-cooperative-ancpl/cassa_edile_accruals_missing · bilateral_funds · impact yes · open"
+    CASSA EDILE: for blue-collar workers, holidays (8.5%) and Christmas bonus (10%) accrue through the Cassa Edile system. The employer_cost_annual underestimates by ~18.5% of gross for blue-collar workers.
+
+    **Applies when:** `bilateral_funds` applies; level in 1, 2, 3, 4.
+
+    **Remediation:** Model the operai with 12 monthly payments and the 18.5% Cassa Edile accrual (plus the provincial Cassa Edile contribution), as edilizia-ance does, then remove this limitation.
+
 !!! warning "edilizia-cooperative-ancpl/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
 
@@ -165,11 +179,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     10 LEVELS: 1-8 plus 7Q and 8Q (quadri). Levels 7Q/8Q share paga base with 7/8 but add Indennita' di Funzione = EUR 170.00/month (fixed, not varying by tranche).
     
-    SENIORITY: 5 scatti biennali (24-month cadence, max 5). For blue-collar workers (levels 1-4), seniority is governed by the Cassa Edile APE system; engine uses the tabular scatti as an approximation.
-    
-    ADDITIONAL_MONTHS: 13 (Christmas bonus). The cooperative sector has a gratifica feriale component administered through the Cassa Edile (~8.5% of gross), modelled separately. Engine uses 13 months consistent with the edilizia framework.
-    
-    CASSA EDILE: for blue-collar workers, holidays (8.5%) and Christmas bonus (10%) accrue through the Cassa Edile system. The employer_cost_annual underestimates by ~18.5% of gross for blue-collar workers.
+    ADDITIONAL_MONTHS: 13 (Christmas bonus). The cooperative sector has a gratifica feriale component administered through the Cassa Edile (~8.5% of gross), not modelled. Engine uses 13 months consistent with the edilizia framework (review of 2026-10-30)
     
     INPS: reuses 2026-edilizia.json (proxy rates). Cassa Edile contribution (~18.5%) is separate and not included.
     

@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer, seniority |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -112,6 +112,20 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Verify which ex-classification sub-level carries each scatto amount against the CCNL text.
 
+!!! warning "consorzi-di-bonifica-snebi/higher_tier_scatto_amounts · seniority · impact unknown · open"
+    Seniority: 10 scatti total — tier 1: 6 biennali (cadence 24 months), tier 2: 1 dodicennale (cadence 144 months after tier 1 exhausted), tier 3: 3 quadriennali (cadence 48 months). All tiers modeled. Per-scatto amounts for tiers 2-3 assumed equal to tier 1 amounts (no independent source found for higher-tier amounts; best-guess from standard CCNL practice).
+
+    **Applies when:** `seniority` applies.
+
+    **Remediation:** Source the amounts of the dodicennale and quadriennali scatti and correct tiers 2-3.
+
+!!! warning "consorzi-di-bonifica-snebi/quadri_function_allowance · base_salary · impact unknown · open"
+    AQ-category levels (AQ162, AQ164, AQ185, AQ187) are quadri. An indennita di funzione may apply per standard quadri CCNL practice, but the amount could not be confirmed from available public sources; not modeled.
+
+    **Applies when:** `base_salary` applies; level in AQ162, AQ164, AQ185, AQ187.
+
+    **Remediation:** Source whether the CCNL pays an indennità di funzione to the AQ levels and model it.
+
 !!! warning "consorzi-di-bonifica-snebi/apprentice_inps_rates_unsourced · inps_employer · impact unknown · open"
     APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.
 
@@ -172,10 +186,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     Additional months: 14 — tredicesima (dicembre) + quattordicesima (giugno). Source: ilccnl.it ('quattordici mensilitA').
     
     Tranches: 2025-07-01 (+3%) and 2026-01-01 (+2.2%). Both sourced from redigo.info primary table. No pre-July-2025 salary is modeled; engine returns no result for as_of before 2025-07-01.
-    
-    Seniority: 10 scatti total — tier 1: 6 biennali (cadence 24 months), tier 2: 1 dodicennale (cadence 144 months after tier 1 exhausted), tier 3: 3 quadriennali (cadence 48 months). All tiers modeled. Per-scatto amounts for tiers 2-3 assumed equal to tier 1 amounts (no independent source found for higher-tier amounts; best-guess from standard CCNL practice).
-    
-    AQ-category levels (AQ162, AQ164, AQ185, AQ187) are quadri. An indennita di funzione may apply per standard quadri CCNL practice, but the amount could not be confirmed from available public sources; not modeled.
     
     layer_2 out_of_scope: no apprenticeship data found in available public sources. Full CCNL PDF required.
     

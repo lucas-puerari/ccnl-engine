@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | base_salary, seniority |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -97,6 +97,20 @@ Destination levels: `1`, `2`, `3`, `4`, `5`, `6`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "funivie-anef/quadri_function_allowance · base_salary · impact yes · open"
+    Indennita di funzione (118.79 EUR/month) for Quadri (L. 190/1985 status within levels 1S and 1) is not modelled. It is a person-status allowance tied to individual Quadro designation, not a livello retributivo; the engine can restrict an allowance to Employment.roles (Allowance.role), but the file declares none (review of 2026-10-30)
+
+    **Applies when:** `base_salary` applies; level in 1, 1S.
+
+    **Remediation:** Add the 118.79 EUR allowance to levels 1S and 1 with role 'quadro'.
+
+!!! warning "funivie-anef/pre_2016_seniority_cohort · seniority · impact yes · open"
+    Allegato 3.1 (grandfathered scatti for workers hired before 30/04/2016) not modelled. Only Allegato 3 (standard post-2016 cohort) amounts implemented. Structural scope decision: pre-2016 grandfathered amounts affect a declining cohort; the new-hire case is exact.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the Allegato 3.1 amounts for workers hired before 30/04/2016, selected by hire date or a worker fact.
 
 !!! warning "funivie-anef/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
@@ -169,10 +183,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     Headcount not verified; no CNEL/ADAPT figure located for I911. INPS-CNEL mapping: I911.
     
     tax_sector=industria: ANEF funivie operators are classified under ATECO H (trasporti) which INPS maps to the industria contribution table. No dedicated 'funivie' or 'trasporto-fune' TaxSector exists in the engine enum; industria is the correct proxy for this transport-infrastructure category.
-    
-    Indennita di funzione (118.79 EUR/month) for Quadri (L. 190/1985 status within levels 1S and 1) is not modelled. It is a person-status allowance tied to individual Quadro designation — not a livello retributivo. Structural engine limitation: the engine does not support per-person status allowances.
-    
-    Allegato 3.1 (grandfathered scatti for workers hired before 30/04/2016) not modelled. Only Allegato 3 (standard post-2016 cohort) amounts implemented. Structural scope decision: pre-2016 grandfathered amounts affect a declining cohort; the new-hire case is exact.
     
     Apprenticeship destinations limited to levels 1-6. Level 1S excluded: Quadro status per L. 190/1985 is a person-status designation acquired through individual deed, not a contractually defined apprenticeship destination.
     

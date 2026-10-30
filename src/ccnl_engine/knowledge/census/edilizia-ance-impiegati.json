@@ -83,6 +83,22 @@
       }
     },
     {
+      "id": "other_apprenticeship_types",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "APPRENTICESHIP: Art. 92 (ANCE text of 4 April 2019): 72/72/78/78/85/90% by semester for 36 months towards levels 2-7; the apprendistato duale and the alta formazione are not modelled.",
+      "calculation": "ccnl/edilizia-ance-impiegati:coverage.notes",
+      "state": "unverified",
+      "remediation": "Model the pay of the apprendistato duale and alta formazione, or refuse them by track.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-ance-impiegati/other_apprenticeship_types"
+        ]
+      }
+    },
+    {
       "id": "provincial_evr",
       "institute": "territorial_supplement",
       "variant": "all",

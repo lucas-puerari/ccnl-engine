@@ -3,6 +3,38 @@
   "ccnl_id": "dirigenza-sanitaria-area-sanita-aran",
   "requirements": [
     {
+      "id": "approximate_hourly_divisor",
+      "institute": "workplace_injury",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Hourly divisor 165 = 38h/settimana × 52/12 = 164.67 ≈ 165 (CCNL Area Sanità 23.01.2024 Art. 27 conferma orario settimanale 38h per la dirigenza sanitaria SSN). Il valore 165 è il divisore contrattuale standard.",
+      "calculation": "ccnl/dirigenza-sanitaria-area-sanita-aran:coverage.notes",
+      "state": "unverified",
+      "remediation": "Source the divisor of Art. 27 (or the INAIL base of the SSN dirigenti) and replace 165, or mark it not applicable.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "dirigenza-sanitaria-area-sanita-aran/approximate_hourly_divisor"
+        ]
+      }
+    },
+    {
+      "id": "position_pay_missing",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Retribuzione di posizione (Art. 14): obbligatoria ma variabile per tipo incarico. Non modellata — out_of_scope.",
+      "calculation": "ccnl/dirigenza-sanitaria-area-sanita-aran:coverage.notes",
+      "state": "absent",
+      "remediation": "Take the retribuzione di posizione (Art. 14) as a worker fact by type of incarico, or document IndividualElement as its channel.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "dirigenza-sanitaria-area-sanita-aran/position_pay_missing"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

@@ -58,16 +58,46 @@
         "text": "10 LEVELS: 1-8 plus 7Q and 8Q (quadri). Levels 7Q/8Q share paga base with 7/8 but add Indennita' di Funzione = EUR 170.00/month (fixed, not varying by tranche)."
       },
       {
-        "kind": "info",
-        "text": "SENIORITY: 5 scatti biennali (24-month cadence, max 5). For blue-collar workers (levels 1-4), seniority is governed by the Cassa Edile APE system; engine uses the tabular scatti as an approximation."
+        "kind": "simplification",
+        "text": "SENIORITY: 5 scatti biennali (24-month cadence, max 5). For blue-collar workers (levels 1-4), seniority is governed by the Cassa Edile APE system; engine uses the tabular scatti as an approximation.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "operai_seniority_ape",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "1",
+              "2",
+              "3",
+              "4"
+            ]
+          },
+          "remediation": "Give levels 1-4 the operaio category with no scatti (APE paid by the Cassa Edile), or split the operai into their own file as edilizia-ance does."
+        }
       },
       {
         "kind": "info",
-        "text": "ADDITIONAL_MONTHS: 13 (Christmas bonus). The cooperative sector has a gratifica feriale component administered through the Cassa Edile (~8.5% of gross), modelled separately. Engine uses 13 months consistent with the edilizia framework."
+        "text": "ADDITIONAL_MONTHS: 13 (Christmas bonus). The cooperative sector has a gratifica feriale component administered through the Cassa Edile (~8.5% of gross), not modelled. Engine uses 13 months consistent with the edilizia framework (review of 2026-10-30)"
       },
       {
-        "kind": "info",
-        "text": "CASSA EDILE: for blue-collar workers, holidays (8.5%) and Christmas bonus (10%) accrue through the Cassa Edile system. The employer_cost_annual underestimates by ~18.5% of gross for blue-collar workers."
+        "kind": "simplification",
+        "text": "CASSA EDILE: for blue-collar workers, holidays (8.5%) and Christmas bonus (10%) accrue through the Cassa Edile system. The employer_cost_annual underestimates by ~18.5% of gross for blue-collar workers.",
+        "capability": "bilateral_funds",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "cassa_edile_accruals_missing",
+          "applies_when": {
+            "trigger": "owed",
+            "levels": [
+              "1",
+              "2",
+              "3",
+              "4"
+            ]
+          },
+          "remediation": "Model the operai with 12 monthly payments and the 18.5% Cassa Edile accrual (plus the provincial Cassa Edile contribution), as edilizia-ance does, then remove this limitation."
+        }
       },
       {
         "kind": "info",
@@ -2022,7 +2052,7 @@
     "effective_until": null,
     "source": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/",
     "verification_status": "unverified",
-    "source_hash": "f8ce4b08aee59d04346477ee3b0f14fdd95d6164d81a7e4fb12be301b4e980e0",
+    "source_hash": "0b09717c42292d01539e9d5d979de23d70ba5f4a86da08300c931b864690c402",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

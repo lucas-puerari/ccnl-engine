@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | base_salary, seniority, una_tantum |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -99,6 +99,20 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "marittimi-industria-armatoriale/level_superminimo_art_18 · base_salary · impact yes · open"
+    SUPERMINIMO LIVELLO: Art. 18 provides additional EUR 7/month for L4 workers after 8 years in level, and EUR 7-11/month for L2-L3 workers under specific conditions. Individual-level amounts tied to personal history — not modellable in a standardised payroll engine (no per-worker tenure field). Out_of_scope structural limitation.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the Art. 18 superminimo (7 EUR for IV after 8 years in level, 7-11 EUR for II-III) as allowances gated on the time in level, or pay it as an IndividualElement and record the limitation.
+
+!!! warning "marittimi-industria-armatoriale/una_tantum_2024_2025 · una_tantum · impact yes · open"
+    UNA TANTUM: backpay EUR 200 paid Jul 2024 + EUR 180 paid Jan 2025, uniform all levels. Lump-sum, not recurring. Out_of_scope per engine design (una tantum payments are not included in periodic payroll computation).
+
+    **Applies when:** `una_tantum` applies; from 2024-07-01.
+
+    **Remediation:** Pay the una tantum (200 EUR in July 2024, 180 EUR in January 2025) outside the engine (ArrearsEvent) and record it as an open limitation.
 
 !!! warning "marittimi-industria-armatoriale/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
@@ -184,11 +198,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     SENIORITY MAX: CCNL provides 10 max increments for workers hired before 31/12/1988; modelled as max=5 (post-1988 hires, the prevailing case for the active workforce — no one hired before 1988 is still accumulating scatti). Structural engine limitation for the pre-1988 grandfathered cohort.
     
-    SUPERMINIMO LIVELLO: Art. 18 provides additional EUR 7/month for L4 workers after 8 years in level, and EUR 7-11/month for L2-L3 workers under specific conditions. Individual-level amounts tied to personal history — not modellable in a standardised payroll engine (no per-worker tenure field). Out_of_scope structural limitation.
-    
     EAR FOR VIIQ: Allegato 1bis lists EAR only for VII (not VIIQ separately). VIIQ workers receive the same EAR as VII; the distinguishing element is INDENNITA_FUNZIONE (additional allowance for quadri). Structural design: VIIQ base = VII base, VIIQ fixed_allowances includes INDENNITA_FUNZIONE.
-    
-    UNA TANTUM: backpay EUR 200 paid Jul 2024 + EUR 180 paid Jan 2025, uniform all levels. Lump-sum, not recurring. Out_of_scope per engine design (una tantum payments are not included in periodic payroll computation).
     
 
 ## Raw data

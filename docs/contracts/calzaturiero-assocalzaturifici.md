@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | base_salary, seniority |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -110,6 +110,13 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "calzaturiero-assocalzaturifici/quadri_function_allowance · base_salary · impact yes · open"
+    LEVEL 8 IND_FUN: indennità di funzione per quadri 41.31 EUR/month applies only to quadri supervisory employees, not to all livello 8 workers. Not modelled: the file has no role-scoped allowance for it (review of 2026-10-30).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add IND_FUN 41.31 EUR as a role-scoped fixed allowance on level 8 (role 'quadro', as alimentari-federalimentare does), then drop the note.
+
 !!! warning "calzaturiero-assocalzaturifici/seniority_secondary_source · seniority · impact unknown · open"
     Seniority cadence is triennale (36 months) for all levels; maximum 5 scatti. Scatto amounts derived from businessonline.it article (2025) cross-checked with kitech.it current table.
 
@@ -175,9 +182,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | https://www.businessonline.it/articoli/scatti-anzianita-contratto-calzaturiero-tabella-ogni-quanto-ci-sono-e-stipendio-di-quanto-aumenta.html | tabella_retributiva | 2024-07-17 | [↗](https://www.businessonline.it/articoli/scatti-anzianita-contratto-calzaturiero-tabella-ogni-quanto-ci-sono-e-stipendio-di-quanto-aumenta.html) |
 
 ??? note "Coverage notes"
-    SALARY MODEL: conglobated (minimi retributivi include paga base, contingenza, and EDR). Modeled as base_salary with fixed_allowances: [] for all levels except level 8 (IND_FUN for quadri). Confirmed by stable coefficient ratios across all tranche dates.
-    
-    LEVEL 8 IND_FUN: indennità di funzione per quadri 41.31 EUR/month applies only to quadri supervisory employees, not to all livello 8 workers. Engine models base salary only for L8; the allowance is excluded by contract scope, not by modelling omission.
+    SALARY MODEL: conglobated (minimi retributivi include paga base, contingenza, and EDR). Modeled as base_salary with fixed_allowances: [] for all levels, level 8 included (the IND_FUN of the quadri is not modelled). Confirmed by stable coefficient ratios across all tranche dates (review of 2026-10-30).
     
     LEVEL 1 SPECIAL TRANCHE: separate wage correction from 1 January 2025 (EUR 1,502.46, up from EUR 1,315.70 at Aug 2024), independent of standard tranche dates Aug 2024/Aug 2025/Aug 2026. Confirmed by fiscoetasse.com (rinnovo 2024) and web search: Jan 2025=1502.46, Aug 2025=1530.00, Aug 2026=1557.00. Modeled as a four-period series for level 1 only.
     

@@ -39,10 +39,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ✅ |
-| **Limits of this contract** | — |
+| **Core payroll path** | ⚠️ |
+| **Limits of this contract** | base_salary, seniority |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -103,12 +103,26 @@ Latest effective values per level (monthly gross, EUR).
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "forze-polizia-ordinamento-civile/assegno_funzionale_missing · seniority · impact yes · open"
+    Progressione economica non per scatti automatici sulla paga base, bensì per avanzamento di qualifica e tramite assegno funzionale (Art. 54 D.Lgs. 195/1995) maturato a 17, 27 e 32 anni di servizio. seniority_increments.maximum_count = 0.
+
+    **Applies when:** `seniority` applies.
+
+    **Remediation:** Model the assegno funzionale at 17, 27 and 32 years of service as allowances gated by service_months_threshold.
+
 !!! note "forze-polizia-ordinamento-civile/ctps_rates_proxy · inps_employer · impact unknown · resolved"
     aliquote INPS/CTPS — dipendente 8,80%, datore 24,20% — proxy dal file 2026-pubblica-amministrazione.json già presente; verificare circolare INPS annuale per valori esatti (regime CTPS ex-INPDAP, identico a PA ordinaria).
 
     **Applies when:** `inps_employer` applies.
 
     **Remediation:** Resolved (review of 2026-10-30): the CTPS rates of the bundle (employer 24.20%, employee 8.80%) are read from the INPS page 'I contributi dei dipendenti pubblici' (contribution/2026/pubblica-amministrazione.json, inps.provenance, verified, checked on 2026-10-09 and 2026-10-17), as for funzioni-centrali-aran/ctps_rates_proxy.
+
+!!! warning "forze-polizia-ordinamento-civile/renewal_2025_2027_pending_dpr · base_salary · impact yes · open"
+    Accordo triennio 2025-2027 (Comparto Sicurezza-Difesa) firmato 2026-07-15 a Palazzo Vidoni. Tre nuovi valori del punto parametrale: 200,90 EUR/anno (decorrenza 2025-01-01), 205,40 EUR/anno (2026-01-01), 207,51 EUR/anno (2027-01-01), da T3=195,50. Incremento totale +12,01 punti pari al +6,14%. Retroattività 2025 e 2026 in forma di arretrati. DPR di recepimento (art. 2 D.Lgs. 195/1995) non ancora emanato al 2026-09-09; firma definitiva sospesa per il nodo della previdenza dedicata. I nuovi periodi non sono modellati in attesa del DPR. Fonte: UIL Polizia (uilpolizia.com), money.it.
+
+    **Applies when:** `base_salary` applies; from 2025-01-01.
+
+    **Remediation:** Add the punto parametrale 200.90 / 205.40 / 207.51 periods when the DPR is issued, then remove this limitation.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days, when the episode does not let the engine compute the INPS daily base: no SicknessEpisode.inps_base in its relapse chain, an operaio without the days worked or paid of the month before, an impiegato who did not work that whole month, an unknown worker category, or a sector INPS regime (spettacolo). With the base, INPS pays its share on the retribuzione media globale giornaliera of the month before the illness and on calendar days (INPS circ. 134368/1981 point 11). The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
@@ -168,15 +182,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Tredicesima mensilità prevista — additional_months = 13.
     
-    Progressione economica non per scatti automatici sulla paga base, bensì per avanzamento di qualifica e tramite assegno funzionale (Art. 54 D.Lgs. 195/1995) maturato a 17, 27 e 32 anni di servizio. seniority_increments.maximum_count = 0.
-    
     Apprendistato assente — il reclutamento avviene per concorso pubblico (D.Lgs. 195/1995 art. 6). apprenticeship: [].
     
     validity.valid_from = 2022-01-01 (inizio periodo normativo ex Art. 1 DPR 53/2025). Gli effetti retributivi iniziano il 2022-04-01 (prima tranche stipendiale), che coincide con la data valid_from del primo periodo base_salary.
     
     Firmatari Polizia di Stato: SIULP, SAP, SIAP, FSP Polizia di Stato (ES-LS-CONSAP-M.P.), Federazione COISP-MOSAP, SILP CGIL. Firmatari Polizia Penitenziaria: SAPPE, SINAPPE, OSAPP, UILPA PP, USPP, CISL FNS. Fonte: testo DPR 53/2025.
-    
-    Accordo triennio 2025-2027 (Comparto Sicurezza-Difesa) firmato 2026-07-15 a Palazzo Vidoni. Tre nuovi valori del punto parametrale: 200,90 EUR/anno (decorrenza 2025-01-01), 205,40 EUR/anno (2026-01-01), 207,51 EUR/anno (2027-01-01), da T3=195,50. Incremento totale +12,01 punti pari al +6,14%. Retroattività 2025 e 2026 in forma di arretrati. DPR di recepimento (art. 2 D.Lgs. 195/1995) non ancora emanato al 2026-09-09; firma definitiva sospesa per il nodo della previdenza dedicata. I nuovi periodi non sono modellati in attesa del DPR. Fonte: UIL Polizia (uilpolizia.com), money.it.
     
     ASSICURAZIONE SOCIALE VITA. The employers of this CCNL are Amministrazioni dello Stato (the State schools; the forze di polizia), which INPS circ. 104/2014 leaves out of the Assicurazione Sociale Vita (ex ENPDEP): meta.public_life_insurance is false.
     

@@ -96,8 +96,17 @@
         "text": "HOURLY DIVISOR: 173 h/month (40 h/week standard, same as C011). Confirmed on kitech.it."
       },
       {
-        "kind": "info",
-        "text": "INPS: employer rates from 2026-industria.json (same tax sector as C011). Cooperative employers may have different INPS addizionale rates; this is a SIMPLIFICATION — verify against INPS circular for cooperative sector if precise employer cost is critical."
+        "kind": "simplification",
+        "text": "INPS: employer rates from 2026-industria.json (same tax sector as C011). Cooperative employers may have different INPS addizionale rates; this is a SIMPLIFICATION — verify against INPS circular for cooperative sector if precise employer cost is critical.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "cooperative_inps_rates_unverified",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Check the INPS rates of the cooperative employers (circular of the sector, CSC of the cooperatives) against contribution/2026/industria.json and record any difference."
+        }
       },
       {
         "kind": "simplification",
@@ -1493,7 +1502,7 @@
     "effective_until": null,
     "source": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/",
     "verification_status": "unverified",
-    "source_hash": "2e182e58e1c064e6006ee3dec00113b57046a456bc171154d95d979a2e0bccab",
+    "source_hash": "1bfd53e86f99b7a72f5217e10cbecf5678fe494bdf6a44009654472fe6efa5ed",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

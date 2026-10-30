@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | seniority |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -101,6 +101,13 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "scuole-private-laiche-aninsei/salario_di_anzianita · seniority · impact yes · open"
+    SENIORITY (Art. 24): salario di anzianita frozen as of 2025-01-01, milestone-based (hire-date brackets). Workers with 2+ years continuous service at 01/01/2025 receive 20 EUR/month; pre-2002 hires up to 90 EUR/month (grandfathered). New hires after ~2023-01-01 receive nothing. maximum_count=0 correctly models new-hire case (zero seniority). The engine cadence model cannot express hire-date milestones: long-tenure workers are understated. Structural engine limitation — no data gap.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the Art. 24 salario di anzianità (20 EUR, up to 90 EUR for pre-2002 hires) with a hire-date bracket input or EarnedIncrements, and record the limitation.
+
 !!! warning "scuole-private-laiche-aninsei/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
 
@@ -166,8 +173,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     HOURLY DIVISOR (Art. 27): 165 h/month for 38h/week full-time. The contract table lists divisors for reduced weekly hours (36h=156, 34h=147, 32h=139, 24h=104, 21h=91, 18h=78); each is 165 scaled by hours/38, matching part_time_pct equivalents. hourly_divisor=165 is exact — no simplification.
     
     ADDITIONAL MONTHS (Art. 21): 13 (tredicesima only, paid by 16 December).
-    
-    SENIORITY (Art. 24): salario di anzianita frozen as of 2025-01-01, milestone-based (hire-date brackets). Workers with 2+ years continuous service at 01/01/2025 receive 20 EUR/month; pre-2002 hires up to 90 EUR/month (grandfathered). New hires after ~2023-01-01 receive nothing. maximum_count=0 correctly models new-hire case (zero seniority). The engine cadence model cannot express hire-date milestones: long-tenure workers are understated. Structural engine limitation — no data gap.
     
     APPRENTICESHIP (Art. 9.7): percentages 85/90/100% over 36 months confirmed from Art. 9.7 of ANINSEI CCNL 2024-2027 PDF. Destination level list not specified in available pages; all nine levels modelled as destinations (conservative assumption — no restriction applied). This may overstate eligible levels but never understates payroll cost.
     

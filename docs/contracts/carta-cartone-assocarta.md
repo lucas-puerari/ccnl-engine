@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | base_salary, seniority |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -116,6 +116,13 @@ percentage: 0.95
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "carta-cartone-assocarta/emc_absorption_unconfirmed · base_salary · impact unknown · open"
+    EMC CHECK: aggregators and a payroll firm print 2026 minimi without the EMC (C1 1960.11 = 1835.11 + 125), but none cites a clause removing it; the signed 2026 ipotesi keeps Art. 100 bis and Art. 49. The Assocarta 'nota illustrativa e tabella nuovi minimi' of 24/02/2026 is members-only and was not read: if it shows the EMC absorbed, the 2026-2028 values are EUR 13-33 too high.
+
+    **Applies when:** `base_salary` applies; from 2026-04-01.
+
+    **Remediation:** Read the Assocarta nota illustrativa of 24/02/2026 (or a signed table) and settle whether the EMC is in the 2026-2028 minimi; correct base_salary if absorbed.
+
 !!! warning "carta-cartone-assocarta/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
 
@@ -178,8 +185,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     SALARY MODEL: base_salary is the stipendio of Art. 49, TEM + EMC (Elemento di Modernizzazione Contrattuale, EUR 20.00 at C1, parametrised). 2024-07-01: column 'Minimi dal 1.7.2024' of the ipotesi of 28/07/2021 (CNEL G022, deposit 138131, p. 46), which already includes the EMC. 2026-04-01 to 2028-09-01: previous minimo + the C1 increments of the ipotesi of 10/02/2026 (CNEL deposit 246200, p. 8: 125, 45, 45, 60) reparametrised by level parameter / 153 (Art. 48 table, p. 3). The 2026 ipotesi neither abolishes nor conglobates the EMC (Art. 100 bis) and keeps Art. 49 in force, so the EMC stays in base_salary; fixed_allowances=[] for all levels.
     
     FUTURE TRANCHES: +45 EUR at C1 from 01.01.2027, +45 from 01.01.2028, +60 from 01.09.2028 confirmed from rinnovo 10.02.2026 (zetaservice PDF). Per-level amounts are parametrically derived: each level increment = C1_increment × (level_2026-04-01 / C1_2026-04-01), rounded to cent. Math-verified all 13 levels × 3 tranches: all within ±0.02 EUR of parametric formula — consistent with the conglobated coefficient scale of the 2026 rinnovo.
-    
-    EMC CHECK: aggregators and a payroll firm print 2026 minimi without the EMC (C1 1960.11 = 1835.11 + 125), but none cites a clause removing it; the signed 2026 ipotesi keeps Art. 100 bis and Art. 49. The Assocarta 'nota illustrativa e tabella nuovi minimi' of 24/02/2026 is members-only and was not read: if it shows the EMC absorbed, the 2026-2028 values are EUR 13-33 too high.
     
     HOURLY DIVISOR: 173 (40h/week, Art. Orario di Lavoro CCNL 28/07/2021; confirmed ilccnl.it).
     

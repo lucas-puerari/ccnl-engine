@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | base_salary, seniority |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -104,6 +104,27 @@ under-level: `1`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "farmacie-private-h121/rural_pharmacy_table · base_salary · impact yes · open"
+    SIMPLIFICATION: Farmacie Rurali Sussidiate (Tabella B) excluded. Rural pharmacies have lower base salaries; Tabella A (urban) is modelled only.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the Tabella B pay of the Farmacie Rurali Sussidiate with a fact selecting it, or refuse such employers.
+
+!!! warning "farmacie-private-h121/isq_twelve_year_tier · base_salary · impact yes · open"
+    SIMPLIFICATION: ISQ for Q2 and Q3 modelled at flat 100 EUR (the 2+ anni tier per Tabella C). Workers with 12+ anni receive 130 EUR (delta 30 EUR/month, max ~360 EUR/yr). The 12-year tier is not modelled, although an allowance can be gated on service months (service_months_threshold) (review of 2026-10-30)
+
+    **Applies when:** `base_salary` applies; level in Q2, Q3.
+
+    **Remediation:** Check whether the 12 anni of Tabella C count service or time in the quadro qualification; if service, split the ISQ of Q2/Q3 into a 100 EUR allowance with service_months_until=144 and a 130 EUR one with service_months_threshold=144 (Employment.seniority), otherwise add a worker fact for the qualification time.
+
+!!! warning "farmacie-private-h121/edr_thirteen_months · base_salary · impact yes · open"
+    SIMPLIFICATION: EDR (10.33 EUR, Art. 54e) is contractually due for 13 mensilita but the file leaves its months_per_year unset, so the engine also pays it in the quattordicesima. Annual overcount ~10 EUR per worker (review of 2026-10-30)
+
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Set months_per_year=13 on the edr allowance of every level, then remove this limitation.
 
 !!! warning "farmacie-private-h121/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
@@ -176,12 +197,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     Apprenticeship from Accordo 14 giugno 2012 (Allegato II). Farmacista collaboratore (dest 1o) stays at level 1o for all 36 months. Commesso/Magazziniere/Contabile (dest 4o): months 0-12 at level 6o, months 13-36 at level 5o.
     
     Headcount: 77,146 workers in 16,324 companies (INPS-CNEL archive, H121).
-    
-    SIMPLIFICATION: Farmacie Rurali Sussidiate (Tabella B) excluded. Rural pharmacies have lower base salaries; Tabella A (urban) is modelled only.
-    
-    SIMPLIFICATION: ISQ for Q2 and Q3 modelled at flat 100 EUR (the 2+ anni tier per Tabella C). Workers with 12+ anni receive 130 EUR (delta 30 EUR/month, max ~360 EUR/yr). The two-tier split at 144 months cannot be represented as a single fixed_allowance amount.
-    
-    SIMPLIFICATION: EDR (10.33 EUR, Art. 54e) is contractually due for 13 mensilita but the engine multiplies fixed_allowances by additional_months=14. Annual overcount ~10 EUR per worker.
     
     SIMPLIFICATION: Tabella D groups Q2, Q3, and 1o into a single scatto amount of 25.30 EUR. Q1 uses 25.82 EUR.
     

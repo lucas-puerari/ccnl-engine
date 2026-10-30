@@ -19,6 +19,38 @@
       }
     },
     {
+      "id": "complex_structure_allowance",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Indennità per incarico di direzione di struttura complessa (Art. 16): 11.157€/anno per 13 mensilità. Non modellata come fixed_allowance — assegnata solo ai direttori di SC, non a tutti i dirigenti.",
+      "calculation": "ccnl/dirigenza-sanitaria-medico-veterinaria-aran:coverage.notes",
+      "state": "absent",
+      "remediation": "Add the 11.157 EUR/year (13 months) allowance of Art. 16 restricted to a role such as 'direttore_sc' (Allowance.role).",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "dirigenza-sanitaria-medico-veterinaria-aran/complex_structure_allowance"
+        ]
+      }
+    },
+    {
+      "id": "position_pay_missing",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Retribuzione di posizione (Art. 14): obbligatoria ma variabile per tipo incarico (UOC, UOSD, professionale, ecc.). Non modellata — parte fissa per incarico assegnato in sede aziendale; out_of_scope per il motore.",
+      "calculation": "ccnl/dirigenza-sanitaria-medico-veterinaria-aran:coverage.notes",
+      "state": "absent",
+      "remediation": "Take the retribuzione di posizione (Art. 14) and its Art. 17 guaranteed minimum (note 7) as a worker fact by type of incarico.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "dirigenza-sanitaria-medico-veterinaria-aran/position_pay_missing"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

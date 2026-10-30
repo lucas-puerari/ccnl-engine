@@ -113,12 +113,21 @@
         "text": "EPA: Elemento Professionale d'Area, a component introduced by the 6.12.2024 renewal. Included in base_salary values from 1.1.2025. Not shown separately because it forms an integral part of the minimum pay (it affects all contractual and statutory entitlements) — see Confetra circ283-2024."
       },
       {
-        "kind": "info",
-        "text": "EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; the 2021 EDR may still enter the daily base of absences and sickness, which 'nessuna incidenza su alcun istituto contrattuale' excludes."
+        "kind": "simplification",
+        "text": "EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; the 2021 EDR may still enter the daily base of absences and sickness, which 'nessuna incidenza su alcun istituto contrattuale' excludes.",
+        "capability": "absence",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "edr_2021_in_daily_base",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Exclude EDR_2021 from the daily base of absences and sickness (a relevance flag on the allowance), or source that it enters it."
+        }
       },
       {
         "kind": "info",
-        "text": "INPS: uses 2026-industria.json (TaxSector.INDUSTRIA). File already present — no changes to the tax file."
+        "text": "INPS: meta.inps_sectors lists industria (contribution/2026/industria.json) and terziario (contribution/2026/terziario.json); EmployerProfile.inps_sector chooses, and without it the run reads the industria with a missing_fact inps_sector blocker (see the INPS SECTOR OF THE EMPLOYER note) (review of 2026-10-30)"
       },
       {
         "kind": "simplification",
@@ -3361,7 +3370,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "6cc0e55b7a3b45a56009f239d667b903fa8ab10bc96384aa7ad374d94fd92c47",
+    "source_hash": "e19945a1edf579c09e896b67d5b6c4bb03b503713cbf48ad6e1ddf990c48affc",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

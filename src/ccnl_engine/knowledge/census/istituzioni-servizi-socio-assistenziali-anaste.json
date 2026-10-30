@@ -19,6 +19,22 @@
       }
     },
     {
+      "id": "apprenticeship_low_levels_track",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "APPRENTICESHIP (Art. 22): modelled on levels 6-10 parameters (32 months, 90% mesi 1-28, 95% mesi 29+). Levels 1-5 have different duration (12 months, 95% from month 7) — not modelled separately.",
+      "calculation": "ccnl/istituzioni-servizi-socio-assistenziali-anaste:coverage.notes",
+      "state": "absent",
+      "remediation": "Add a 12-month percentage track for destinations 1-5 (90% months 1-6, 95% months 7-12, per Art. 22) and drop them from professionalizzante_32; record the limitation on the apprentice path until sourced.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "istituzioni-servizi-socio-assistenziali-anaste/apprenticeship_low_levels_track"
+        ]
+      }
+    },
+    {
       "id": "apprenticeship_pct_undeclared_components",
       "institute": "base_salary",
       "variant": "apprentice",
@@ -31,6 +47,22 @@
       "links": {
         "limitations": [
           "apprenticeship_pct_undeclared_components"
+        ]
+      }
+    },
+    {
+      "id": "nurses_professional_allowance",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "NURSES ALLOWANCE: indennita professionale infermieri 155 EUR/month (12 months) not included — qualifica-specific, not level-specific.",
+      "calculation": "ccnl/istituzioni-servizi-socio-assistenziali-anaste:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the indennita professionale infermieri (155 EUR x 12) as a fixed allowance with role 'infermiere' (Allowance.role, months_per_year 12).",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "istituzioni-servizi-socio-assistenziali-anaste/nurses_professional_allowance"
         ]
       }
     },
@@ -126,6 +158,22 @@
       "links": {
         "limitations": [
           "tfr_compensation_apprentice_guarantee_fund"
+        ]
+      }
+    },
+    {
+      "id": "una_tantum_2025",
+      "institute": "una_tantum",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "RENEWAL: CCNL signed 2025-07-23, triennio 2023-2025. Economic effects from 2025-08-01. Una tantum non modelled (non-recurring).",
+      "calculation": "ccnl/istituzioni-servizi-socio-assistenziali-anaste:coverage.notes",
+      "state": "absent",
+      "remediation": "Source the amount and the payment months of the una tantum of the renewal of 23 July 2025, pay it outside the engine (ArrearsEvent) and record it as an open limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "istituzioni-servizi-socio-assistenziali-anaste/una_tantum_2025"
         ]
       }
     }

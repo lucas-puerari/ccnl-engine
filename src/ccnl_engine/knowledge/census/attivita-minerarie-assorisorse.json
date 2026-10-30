@@ -3,6 +3,22 @@
   "ccnl_id": "attivita-minerarie-assorisorse",
   "requirements": [
     {
+      "id": "additional_months_unconfirmed",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "ADDITIONAL MONTHS: 13 assumed (tredicesima only, standard for Confindustria-affiliated mining). Not explicitly confirmed from scanned PDF — verify against Art. gratifica natalizia.",
+      "calculation": "ccnl/attivita-minerarie-assorisorse:coverage.notes",
+      "state": "unverified",
+      "remediation": "Read the gratifica natalizia / mensilità clause of the CCNL and confirm or correct additional_months.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "attivita-minerarie-assorisorse/additional_months_unconfirmed"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

@@ -3,6 +3,22 @@
   "ccnl_id": "vetro-meccanizzato-assovetro",
   "requirements": [
     {
+      "id": "other_subsectors_tables",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SCOPE: Settori meccanizzati (prime lavorazioni) only — 6 base sub-levels (A, B, C, D, E, F). Other sub-sectors (trasformazione, soffio, lampade e display) and sub-levels (A2, B2, C2, D2, D3, E2, E3) not modelled.",
+      "calculation": "ccnl/vetro-meccanizzato-assovetro:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the trasformazione, soffio and lampade e display tables with a sub-sector input, or record the limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "vetro-meccanizzato-assovetro/other_subsectors_tables"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",
@@ -571,6 +587,22 @@
       "links": {
         "rules": [
           "agreement/vetro-meccanizzato-assovetro.json#seniority_increments"
+        ]
+      }
+    },
+    {
+      "id": "seniority_assumed_constant",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SENIORITY: 5 biennial scatti (cadence 24 months, max 5). Per-level amounts sourced from kitech.it Jan 2026: A=17.56, B=16.53, C=14.98, D=12.91, E=10.33, F=8.26 EUR. Historical amounts assumed stable (not verified for 2023-2025 periods).",
+      "calculation": "ccnl/vetro-meccanizzato-assovetro:coverage.notes",
+      "state": "unverified",
+      "remediation": "Source the scatto amounts of the 2023-2025 periods (or confirm unchanged) and record the limitation for runs before 2026-01-01.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "vetro-meccanizzato-assovetro/seniority_assumed_constant"
         ]
       }
     },

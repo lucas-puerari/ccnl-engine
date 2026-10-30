@@ -60,8 +60,20 @@
         "text": "HOURLY DIVISOR: 173 h/month (40 h/week x 52/12). Applicable to profiles B (B1-B5), C3, C4, D (D1-D4) per Art. 60 (B profiles), Art. 62 comma 1 (C3/C4), Art. 69 commi 1-2 (D profiles) — all 40 h/week standard schedule."
       },
       {
-        "kind": "info",
-        "text": "EXCLUDED PROFILES: A1-A9 (portieri con alloggio, 45 h or 48 h/week — divisor would be 195 or 208, incompatible with single CCNLParameters.hourly_divisor; also alloggio in-kind not modelled). C1 and C2 (preposti alla direzione tecnica o amministrativa — Art. 62 comma 2 exempts them from the 40 h ceiling; no fixed hourly divisor applies). C4 primo impiego (entry-rate sub-classification at EUR 1290.52/2026, transitional not permanent level)."
+        "kind": "simplification",
+        "text": "EXCLUDED PROFILES: A1-A9 (portieri con alloggio, 45 h or 48 h/week — divisor would be 195 or 208, incompatible with single CCNLParameters.hourly_divisor; also alloggio in-kind not modelled). C1 and C2 (preposti alla direzione tecnica o amministrativa — Art. 62 comma 2 exempts them from the 40 h ceiling; no fixed hourly divisor applies). C4 primo impiego (entry-rate sub-classification at EUR 1290.52/2026, transitional not permanent level).",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "c4_first_employment_rate",
+          "applies_when": {
+            "trigger": "outside_input",
+            "levels": [
+              "C4"
+            ]
+          },
+          "remediation": "Model the C4 primo impiego entry rate (EUR 1290.52 in 2026) as a separate level or a role-gated variant, or record a limitation."
+        }
       },
       {
         "kind": "info",
@@ -76,12 +88,40 @@
         "text": "ADDITIONAL MONTHS: 13 (tredicesima only — Art. 130 'Gratifica natalizia'). Art. 130 provides tredicesima in December equal to one monthly salary; no quattordicesima provision exists in this CCNL. Confirmed via ilccnl.it full CCNL text and targeted search."
       },
       {
-        "kind": "info",
-        "text": "APPRENTICESHIP: percentage type per Art. 35-36 of the 2025 renewal. Art. 36 comma 6: 80% months 1-12, 85% months 13-24, 90% months 25-36. Two tracks exist: 36 months (B1, C3) and 24 months (B2, B4, C4, D1, D3). SIMPLIFICATION: all seven destinations use the single 36-month schedule; the five 24-month profiles are over-modelled by 12 months — an apprentice in those profiles is paid 90% during months 25-36 instead of 100%. Impact: slight under-payment for 1 year for 5 destination levels. B3, B5, D2, D4 have no CCNL apprenticeship provision; excluded from destination_levels."
+        "kind": "simplification",
+        "text": "APPRENTICESHIP: percentage type per Art. 35-36 of the 2025 renewal. Art. 36 comma 6: 80% months 1-12, 85% months 13-24, 90% months 25-36. Two tracks exist: 36 months (B1, C3) and 24 months (B2, B4, C4, D1, D3). SIMPLIFICATION: all seven destinations use the single 36-month schedule; the five 24-month profiles are over-modelled by 12 months — an apprentice in those profiles is paid 90% during months 25-36 instead of 100%. Impact: slight under-payment for 1 year for 5 destination levels. B3, B5, D2, D4 have no CCNL apprenticeship provision; excluded from destination_levels.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "apprenticeship_24_month_profiles",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "B2",
+              "B4",
+              "C4",
+              "D1",
+              "D3"
+            ]
+          },
+          "remediation": "Add a professionalizzante_24 track (80% months 1-12, 85% months 13-24, 100% after) for B2, B4, C4, D1, D3 and keep professionalizzante_36 for B1 and C3; until then add a limitation for apprentices of these levels."
+        }
       },
       {
-        "kind": "info",
-        "text": "B5 PART-TIME NOTE: Art. 122 provides a 15% hourly premium for B5 (pulitori/lavascale) with weekly schedule below 8 hours. Not modelled (SIMPLIFICATION)."
+        "kind": "simplification",
+        "text": "B5 PART-TIME NOTE: Art. 122 provides a 15% hourly premium for B5 (pulitori/lavascale) with weekly schedule below 8 hours. Not modelled (SIMPLIFICATION).",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "b5_short_schedule_premium",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "B5"
+            ]
+          },
+          "remediation": "Model the Art. 122 15% hourly premium for B5 with a weekly schedule below 8 hours (e.g. a conditional allowance on part_time_pct below 0.2), or record it as a limitation."
+        }
       },
       {
         "kind": "info",
@@ -1395,7 +1435,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "8ed0fc8dcf7c5991ceca6252bce1f63828497a07a6ee0f2aef5d6d73a3b4ab3c",
+    "source_hash": "76ae5162ad340111e774f7d6d26a0833db13fbee7b0bdae6b6ef69ba7835106c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

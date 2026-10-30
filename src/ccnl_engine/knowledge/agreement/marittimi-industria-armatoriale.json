@@ -77,16 +77,40 @@
         "text": "SENIORITY MAX: CCNL provides 10 max increments for workers hired before 31/12/1988; modelled as max=5 (post-1988 hires, the prevailing case for the active workforce — no one hired before 1988 is still accumulating scatti). Structural engine limitation for the pre-1988 grandfathered cohort."
       },
       {
-        "kind": "info",
-        "text": "SUPERMINIMO LIVELLO: Art. 18 provides additional EUR 7/month for L4 workers after 8 years in level, and EUR 7-11/month for L2-L3 workers under specific conditions. Individual-level amounts tied to personal history — not modellable in a standardised payroll engine (no per-worker tenure field). Out_of_scope structural limitation."
+        "kind": "simplification",
+        "text": "SUPERMINIMO LIVELLO: Art. 18 provides additional EUR 7/month for L4 workers after 8 years in level, and EUR 7-11/month for L2-L3 workers under specific conditions. Individual-level amounts tied to personal history — not modellable in a standardised payroll engine (no per-worker tenure field). Out_of_scope structural limitation.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "level_superminimo_art_18",
+          "applies_when": {
+            "trigger": "outside_input",
+            "levels": [
+              "II",
+              "III",
+              "IV"
+            ]
+          },
+          "remediation": "Model the Art. 18 superminimo (7 EUR for IV after 8 years in level, 7-11 EUR for II-III) as allowances gated on the time in level, or pay it as an IndividualElement and record the limitation."
+        }
       },
       {
         "kind": "info",
         "text": "EAR FOR VIIQ: Allegato 1bis lists EAR only for VII (not VIIQ separately). VIIQ workers receive the same EAR as VII; the distinguishing element is INDENNITA_FUNZIONE (additional allowance for quadri). Structural design: VIIQ base = VII base, VIIQ fixed_allowances includes INDENNITA_FUNZIONE."
       },
       {
-        "kind": "info",
-        "text": "UNA TANTUM: backpay EUR 200 paid Jul 2024 + EUR 180 paid Jan 2025, uniform all levels. Lump-sum, not recurring. Out_of_scope per engine design (una tantum payments are not included in periodic payroll computation)."
+        "kind": "simplification",
+        "text": "UNA TANTUM: backpay EUR 200 paid Jul 2024 + EUR 180 paid Jan 2025, uniform all levels. Lump-sum, not recurring. Out_of_scope per engine design (una tantum payments are not included in periodic payroll computation).",
+        "capability": "una_tantum",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "una_tantum_2024_2025",
+          "applies_when": {
+            "trigger": "run",
+            "effective_from": "2024-07-01"
+          },
+          "remediation": "Pay the una tantum (200 EUR in July 2024, 180 EUR in January 2025) outside the engine (ArrearsEvent) and record it as an open limitation."
+        }
       },
       {
         "kind": "simplification",
@@ -1472,7 +1496,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "e8cfd6663f3b911489c78bd8976cef48dac90b4d239f1c2becf2d73341fc5353",
+    "source_hash": "b07eef2158d108bdd2d88dac1672031d06a5b046345e5cd814d3668f5be4e2a1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

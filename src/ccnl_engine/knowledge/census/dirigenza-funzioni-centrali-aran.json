@@ -3,6 +3,38 @@
   "ccnl_id": "dirigenza-funzioni-centrali-aran",
   "requirements": [
     {
+      "id": "position_pay_fixed_part",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = owed",
+      "rule": "Retribuzione di posizione parte fissa: prima fascia 42.598,20€/anno (Art. 23 c.5); seconda fascia 14.515,11€/anno (Art. 26 c.5). Variabile per incarico, non modellata (SIMPLIFICATION).",
+      "calculation": "ccnl/dirigenza-funzioni-centrali-aran:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the retribuzione di posizione parte fissa (Art. 23 c.5, Art. 26 c.5) as a fixed allowance per fascia over 13 months.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "dirigenza-funzioni-centrali-aran/position_pay_fixed_part"
+        ]
+      }
+    },
+    {
+      "id": "position_variable_and_result_pay",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Due livelli (PRIMA_FASCIA / SECONDA_FASCIA) per lo stipendio tabellare. La retribuzione di posizione (fissa e variabile per incarico) e la retribuzione di risultato non sono modellate — out_of_scope strutturale per tutti i dirigenti PA. Il file cattura la componente stipendio tabellare che è uniforme per fascia.",
+      "calculation": "ccnl/dirigenza-funzioni-centrali-aran:coverage.notes",
+      "state": "absent",
+      "remediation": "Accept the parte variabile of the posizione and the retribuzione di risultato as caller-stated amounts (individual element / variable pay) and open a limitation until then.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "dirigenza-funzioni-centrali-aran/position_variable_and_result_pay"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

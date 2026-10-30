@@ -81,8 +81,18 @@
         "text": "APPRENTICESHIP: three-period percentage (85%/90%/95%), standard duration 36 months. Primary source: CCNL 2021 PDF Annex 9 'Apprendistato professionalizzante'. Art. 4 Annex 9: 85% (months 1-12), 90% (months 13-24), 95% (months 25-36). Divisor 173 confirmed in the same Annex. The 36 months are stated as maximum duration; shorter individual contracts would pro-rate the bands — modelled as a fixed standard track (full 36 months)."
       },
       {
-        "kind": "info",
-        "text": "ULTRA-ACTIVITY: the 2026 renewal (signed 10/02/2026) has economic effects from 01/10/2026. The 2021 contract governs economically until 30/09/2026. The 2002 increments (from CCNL 2017 PDF) remain operative throughout the modelled period as neither the 2021 nor the 2026 renewal modified them."
+        "kind": "simplification",
+        "text": "ULTRA-ACTIVITY: the 2026 renewal (signed 10/02/2026) has economic effects from 01/10/2026. The 2021 contract governs economically until 30/09/2026. The 2002 increments (from CCNL 2017 PDF) remain operative throughout the modelled period as neither the 2021 nor the 2026 renewal modified them.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "renewal_2026_tables",
+          "applies_when": {
+            "trigger": "run",
+            "effective_from": "2026-10-01"
+          },
+          "remediation": "Model the minimi of the 2026 renewal (signed 10/02/2026) from 01/10/2026 onwards."
+        }
       },
       {
         "kind": "info",
@@ -98,11 +108,11 @@
       },
       {
         "kind": "info",
-        "text": "INPS: industry sector rates from 2026-industria.json (existing file reused). Employee 9.19%; employer: ≤15 employees 30.13%, 16-50 employees 30.20%, >50 employees 30.50%."
+        "text": "INPS: industry sector rates from contribution/2026/industria.json (existing file reused). Employee 9.19% up to 15 employees, 9.49% above; employer (operai): up to 15 employees 30.68%, 16-50 employees 31.28%, >50 employees 31.58% (impiegati and quadri 28.46%, 29.06%, 29.36%) (review of 2026-10-30)"
       },
       {
         "kind": "info",
-        "text": "COMETA: supplementary pension fund (Art. 44 CCNL 2021 PDF). Employer 2.00% (from Dec 2024), employee 1.20%. Not modelled in the engine (Layer 3, out of scope)."
+        "text": "COMETA: supplementary pension fund (Art. 44 CCNL 2021 PDF). Employer 2.00% (from Dec 2024), employee 1.20%. Not modelled: parameters.employer_funds holds no COMETA fund for this CCNL, so a PensionFundEnrolment in it is rejected; the engine models CCNL pension funds on enrolment (COMETA in metalmeccanico-federmeccanica) (review of 2026-10-30)"
       },
       {
         "kind": "simplification",
@@ -1366,7 +1376,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "1fbc29cdb3089c72937589c1ce10f1404552e9f291d8a3a4a24a48ac0d291989",
+    "source_hash": "7c10c079c234a5a4d4dab30247fc618d25efbdcdf10bb999d9a26a0561cbf751",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

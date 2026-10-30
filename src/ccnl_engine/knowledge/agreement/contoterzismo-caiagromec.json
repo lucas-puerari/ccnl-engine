@@ -76,8 +76,17 @@
         "text": "Salary floors reflect CCNL national minimums only. kitech.it (CodiceCateg=1) shows values ca. EUR 20/month higher — those are in-assenza-di-contratto-integrativo-territoriale top-ups, not CCNL minimums. redigo.info and ilccnl.it agree on the lower CCNL floor used here."
       },
       {
-        "kind": "info",
-        "text": "Seniority: 'premi di continuita professionale' modeled as fixed_allowances with service_months_threshold (60/120/180 months) and months_per_year=1 (annual lump sums: EUR 50/150/180/year). Amounts assumed cumulative (stacking thresholds) per standard CCNL practice; cumulation unverified from public sources. seniority_increments is a schema placeholder (maximum_count=0)."
+        "kind": "simplification",
+        "text": "Seniority: 'premi di continuita professionale' modeled as fixed_allowances with service_months_threshold (60/120/180 months) and months_per_year=1 (annual lump sums: EUR 50/150/180/year). Amounts assumed cumulative (stacking thresholds) per standard CCNL practice; cumulation unverified from public sources. seniority_increments is a schema placeholder (maximum_count=0).",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "continuity_premium_cumulation",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source whether the premi di continuità stack or replace each other and set the allowances accordingly."
+        }
       },
       {
         "kind": "info",
@@ -1541,7 +1550,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/",
     "verification_status": "unverified",
-    "source_hash": "63d939de4a96a64388ee4dba613f3156783dc6267d2e8e16cb47b237691ab5a9",
+    "source_hash": "e2e00924955fe60e2222385de67f249ee5a76e06c7de3fbcdfbab612b76096ab",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

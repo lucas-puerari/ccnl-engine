@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | base_salary, seniority, workplace_injury |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -108,6 +108,20 @@ under-level: `1`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "distribuzione-cooperativa-ancc/apprenticeship_2024_text_unread · base_salary · impact unknown · open"
+    APPRENTICESHIP (2024 RENEWAL): Modelled from the 2020 CCNL text (CCNL-Utilia2020 PDF, 'Apprendistato accordo 13 giugno 2012'): levels 1-4 start 2 levels below for first 24 months then 1 level below; level 5 stays 1 level below throughout. The 2024 renewal (signed 2024-03-29) amended Arts. 75 and 80-82 but the updated text is not publicly accessible. Rules assumed unchanged from 2020 source.
+
+    **Applies when:** `base_salary` applies; contract type in apprentice.
+
+    **Remediation:** Read the apprenticeship articles of the 2024 renewal (Arts. 75, 80-82) and update the tracks, then remove this limitation.
+
+!!! warning "distribuzione-cooperativa-ancc/long_week_divisors · workplace_injury · impact unknown · open"
+    HOURLY DIVISOR: 165 h/month used, per ilccnl.it (38h/week standard, all levels). Art. 198 of the CCNL also references 168 for 40h/week and higher divisors for extended shifts. Conflict: ilccnl.it states 165 as the contract divisor; Art. 198 lists 168 for 40h/week. Dominant workforce (post-2011 hires in a high-turnover retail sector on the 38h standard) is served by 165. 42h/week (182) and 45h/week (195) schedules not modelled.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Source Art. 198 and add the 168, 182 and 195 divisors of the 40, 42 and 45 hour weeks with hourly_divisor_weekly_hours=38, so other weeks are not derived from 165.
 
 !!! warning "distribuzione-cooperativa-ancc/seniority_amounts_proxy_source · seniority · impact unknown · open"
     SENIORITY AMOUNTS: from kitech.it only (proxy source). No independent primary-source confirmation. Cadence (36 months) and maximum (10) confirmed from CCNL text via olympus.uniurb.it.
@@ -183,10 +197,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     SENIORITY: triennial (cadence_months=36), maximum 10 scatti. Per-level amounts from kitech.it Dec 2025 (proxy, label SIMPLIFICATION). Q=27.82, L1=26.64, L2=24.52, L3S=21.79, L3=21.79, L4S=19.93, L4=19.93, L5=18.84, L6=16.51 EUR/scatto. L3S=L3 and L4S=L4 duplication confirmed plausible in Terziario family.
     
     INPS: uses 2026-terziario.json (terziario sector). No bilateral fund substituting INPS contributions. CNEL code: H016.
-    
-    APPRENTICESHIP (2024 RENEWAL): Modelled from the 2020 CCNL text (CCNL-Utilia2020 PDF, 'Apprendistato accordo 13 giugno 2012'): levels 1-4 start 2 levels below for first 24 months then 1 level below; level 5 stays 1 level below throughout. The 2024 renewal (signed 2024-03-29) amended Arts. 75 and 80-82 but the updated text is not publicly accessible. Rules assumed unchanged from 2020 source.
-    
-    HOURLY DIVISOR: 165 h/month used, per ilccnl.it (38h/week standard, all levels). Art. 198 of the CCNL also references 168 for 40h/week and higher divisors for extended shifts. Conflict: ilccnl.it states 165 as the contract divisor; Art. 198 lists 168 for 40h/week. Dominant workforce (post-2011 hires in a high-turnover retail sector on the 38h standard) is served by 165. 42h/week (182) and 45h/week (195) schedules not modelled.
     
     MODELLED TRANCHES (Nov 2026 / Mar 2027): confirmed by studioagostini.org (secondary source, June 2024 commentary on the Mar 2024 renewal). L4 increments: +35.00 EUR (01/11/2026), +40.00 EUR (01/03/2027). L1 increments: +56.39 EUR (01/11/2026), +64.44 EUR (01/03/2027). All per-level values match the reparametrized ratio from confirmed prior tranches. Source: studioagostini.org/ccnl-distribuzione-cooperativa-aumenti-fino-a-240-euro/
     

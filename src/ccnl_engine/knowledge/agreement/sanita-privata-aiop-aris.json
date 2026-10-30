@@ -1886,8 +1886,17 @@
         "text": "28 levels (A, A1–A4, B, B1–B4, C, C1–C4, D, D1–D4, DS, DS1–DS4, E, E1, E2). Order assigned by 2020-07-01 salary because professional families A/B/C/D/DS/E have overlapping salary ranges — categories are not a single hierarchy. A4 (order 6) is paid above B (order 5) per Tabella 1. Horizontal progressions within each category are modelled as static levels per Art. 48; the engine does not auto-advance a worker's level after the contractual service threshold."
       },
       {
-        "kind": "info",
-        "text": "Retribuzione individuale di anzianità frozen at 1993-12-31 per Art. 56 (no new seniority accruals). Modelled as seniority_increments.maximum_count=0."
+        "kind": "simplification",
+        "text": "Retribuzione individuale di anzianità frozen at 1993-12-31 per Art. 56 (no new seniority accruals). Modelled as seniority_increments.maximum_count=0.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "frozen_individual_seniority",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Let the caller state the RIA frozen at 1993-12-31 (EarnedIncrements or an individual allowance) and record the limitation."
+        }
       },
       {
         "kind": "info",
@@ -1903,11 +1912,20 @@
       },
       {
         "kind": "info",
-        "text": "INPS: terziario sector confirmed. Kitech.it (table \"TERZIARIO attività VARIE\", kitech.it/Contributi-previdenziali.aspx?p=4_143) lists operai/impiegati at 9.19% employee contribution and 28.98% employer (≤50 dipendenti) / 29.58% (>50) — matching 2026-terziario.json exactly. Private healthcare (AIOP/ARIS) is classified under terziario standard rates; no healthcare-specific INPS regime applies. INPS Circolare n. 6/2026 confirms 9.19% employee rate for private sector workers."
+        "text": "INPS: terziario sector, 2026-terziario.json: employee 9.36% (up to 5 employees), 9.46% (6-15), 9.76% (above 15); employer 29.31%, 29.51% and 30.11% on the same tiers. Private healthcare (AIOP/ARIS) is classified under terziario standard rates; no healthcare-specific INPS regime applies. INPS Circolare n. 6/2026 confirms the 9.19% IVS employee rate for private sector workers. (review of 2026-10-30)"
       },
       {
-        "kind": "info",
-        "text": "CCNL applied in ultrattività; Decreto Lavoro 2026 introduced a statutory 30% IPCA auto-adjustment if no renewal within 12 months of expiry. If triggered, legally applicable 2026 minimums may exceed the 2020 Tabella 1 values modelled here. Engine models contractual tables only."
+        "kind": "simplification",
+        "text": "CCNL applied in ultrattività; Decreto Lavoro 2026 introduced a statutory 30% IPCA auto-adjustment if no renewal within 12 months of expiry. If triggered, legally applicable 2026 minimums may exceed the 2020 Tabella 1 values modelled here. Engine models contractual tables only.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "statutory_ipca_adjustment",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Verify whether the statutory IPCA adjustment applies to T011 under ultrattività and model it, or record the limitation."
+        }
       },
       {
         "kind": "source",
@@ -1956,7 +1974,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "5fe7ebc673b8037d78441d14b3ec35c6515c55da5d73c1b45b15d17fed98be88",
+    "source_hash": "e78a0c993a2eba4ceff2a08a2a444e3fafc6a4663d41b2897d0c1be01b4c2a4d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

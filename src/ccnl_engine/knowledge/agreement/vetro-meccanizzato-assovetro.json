@@ -1318,8 +1318,17 @@
   "coverage": {
     "notes": [
       {
-        "kind": "info",
-        "text": "SCOPE: Settori meccanizzati (prime lavorazioni) only — 6 base sub-levels (A, B, C, D, E, F). Other sub-sectors (trasformazione, soffio, lampade e display) and sub-levels (A2, B2, C2, D2, D3, E2, E3) not modelled."
+        "kind": "simplification",
+        "text": "SCOPE: Settori meccanizzati (prime lavorazioni) only — 6 base sub-levels (A, B, C, D, E, F). Other sub-sectors (trasformazione, soffio, lampade e display) and sub-levels (A2, B2, C2, D2, D3, E2, E3) not modelled.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "other_subsectors_tables",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the trasformazione, soffio and lampade e display tables with a sub-sector input, or record the limitation."
+        }
       },
       {
         "kind": "info",
@@ -1330,8 +1339,17 @@
         "text": "HOURLY_DIVISOR: 173 — confirmed by ilccnl.it tabelle retributive (divisore orario column, 2026-01-01). Back-check D1: (2080.92+10.33)/173 = 12.09 EUR/h."
       },
       {
-        "kind": "info",
-        "text": "SENIORITY: 5 biennial scatti (cadence 24 months, max 5). Per-level amounts sourced from kitech.it Jan 2026: A=17.56, B=16.53, C=14.98, D=12.91, E=10.33, F=8.26 EUR. Historical amounts assumed stable (not verified for 2023-2025 periods)."
+        "kind": "simplification",
+        "text": "SENIORITY: 5 biennial scatti (cadence 24 months, max 5). Per-level amounts sourced from kitech.it Jan 2026: A=17.56, B=16.53, C=14.98, D=12.91, E=10.33, F=8.26 EUR. Historical amounts assumed stable (not verified for 2023-2025 periods).",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "seniority_assumed_constant",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the scatto amounts of the 2023-2025 periods (or confirm unchanged) and record the limitation for runs before 2026-01-01."
+        }
       },
       {
         "kind": "simplification",
@@ -1395,6 +1413,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "93afcab421c0398a530611676ea4de465e1d97396befe33d7cba8ff896ac9b46"
+    "source_hash": "0f43de836edbdfd70862113f8de0abdd92c9e8b068fe70ae30c3a07df3593ddf"
   }
 }

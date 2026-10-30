@@ -19,6 +19,22 @@
       }
     },
     {
+      "id": "apprenticeship_full_pay_passthrough",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Apprenticeship: CCNL provides under-classification 2 levels below; the file models it as a 100% passthrough (one percentage track at 1.00), although the engine supports under_classification tracks (review of 2026-10-30).",
+      "calculation": "ccnl/autostrade-trafori:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the track as type under_classification (levels_below 2, then the CCNL periods) from the CCNL apprenticeship clause and drop the 100% passthrough.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "autostrade-trafori/apprenticeship_full_pay_passthrough"
+        ]
+      }
+    },
+    {
       "id": "apprenticeship_pct_undeclared_components",
       "institute": "base_salary",
       "variant": "apprentice",

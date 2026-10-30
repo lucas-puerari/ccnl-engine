@@ -3,6 +3,22 @@
   "ccnl_id": "dirigenza-funzioni-locali-aran",
   "requirements": [
     {
+      "id": "position_pay",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Retribuzione di posizione: variabile per tipo incarico e ente, non modellata (SIMPLIFICATION). Totale mensile medio include posizione: +491€ RAL, +400€ segretari, +377€ PTA (include tabellare + posizione + altro).",
+      "calculation": "ccnl/dirigenza-funzioni-locali-aran:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the CCNL minimum of the retribuzione di posizione or accept the amount of the incarico as a caller input, and open a limitation until then.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "dirigenza-funzioni-locali-aran/position_pay"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",
@@ -31,6 +47,22 @@
       "links": {
         "limitations": [
           "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "segretari_fascia_c",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Segretari comunali e provinciali fascia C (neo-assunti): incremento tabellare +184€/mese (vs +230€ delle altre fasce), valore stimato 49.407,77€/anno = 3.800,60€/mese. Non modellati come livello separato per mancanza di fonte primaria verificata.",
+      "calculation": "ccnl/dirigenza-funzioni-locali-aran:coverage.notes",
+      "state": "absent",
+      "remediation": "Model segretari fascia C as a separate level (+184 EUR increment) once a primary source is read, or open a limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "dirigenza-funzioni-locali-aran/segretari_fascia_c"
         ]
       }
     },

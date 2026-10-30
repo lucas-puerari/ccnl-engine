@@ -38,7 +38,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -87,6 +87,13 @@ Latest effective values per level (monthly gross, EUR).
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "sanita-aran/nursing_specificity_allowance · base_salary · impact yes · open"
+    Indennità di specificità infermieristica (Art. 62, Tabella 3) not modelled as fixed_allowance — applies only to specific nursing profiles (infermieri, ostetriche), not universally to all area members.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model l'indennità di specificità infermieristica (Art. 62, Tabella 3) as an allowance gated by a role (infermieri, ostetriche) or record a limitation.
+
 !!! warning "sanita-aran/renewal_2025_2027_not_modelled · base_salary · impact unknown · open"
     2025-2027 RENEWAL NOT YET MODELLED. An ipotesi di CCNL 2025-2027 was signed by ARAN on 29 July 2026 with retroactive effect from 1 January 2025. Increases (monthly, 13 mensilità) from Jan 2024 base: support +41.40 (Jan 2025)/+82.80 (Jan 2026)/+106.70 (Jan 2027); operatori +43.70/+87.40/+112.60; assistenti +46.60/+93.20/+120.00; funzionari +50.50/+101.10/+130.20; elevata qualificazione +70.20/+140.50/+181.00. Not yet modelled — ipotesi pending comitato di settore, Governo, and Corte dei conti certification. STATUS CHECKED 2026-10-17: still an ipotesi (signed text of 29 July 2026, lentepubblica.it copy); no definitive signature found on 2026-10-17.
 
@@ -133,8 +140,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.
     
     Seniority via DEP (Differenziali Economici di Professionalità) per Art. 60 Fondo incarichi: selective procedure, not automatic — maximum_count=0.
-    
-    Indennità di specificità infermieristica (Art. 62, Tabella 3) not modelled as fixed_allowance — applies only to specific nursing profiles (infermieri, ostetriche), not universally to all area members.
     
     CNEL code S205 confirmed via multiple secondary sources: lavoro-economia.it lists 'CCNL Comparto Sanità [Cnel: S205]', kitech.it and ilccnl.it concur. Not stated in the official ipotesi PDF text; CNEL archive not separately verified.
     

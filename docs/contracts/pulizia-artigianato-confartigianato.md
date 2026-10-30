@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, holiday_work, inps_employer, leave, night_work, overtime, seniority |
 
-8 documented simplification(s) and 3 missing feature(s): see [Known simplifications](#known-simplifications).
+10 documented simplification(s) and 3 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -113,6 +113,20 @@ percentage: 0.90
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "pulizia-artigianato-confartigianato/edar_2022_2024 · base_salary · impact yes · open"
+    EDAR (Elemento Distinto e Aggiuntivo della Retribuzione): EUR 15.00 flat, 26 mesi da 1.11.2022, soli lavoratori in forza al 27.10.2022. Scaduto dic 2024. Non rientra in nessun istituto contrattuale incl. TFR. Non modellato.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model l'EDAR di EUR 15 (1.11.2022-31.12.2024, solo lavoratori in forza al 27.10.2022, escluso dal TFR) come allowance gated by role, or record a limitation with effective_until 2025-01-01.
+
+!!! warning "pulizia-artigianato-confartigianato/special_collection_allowance · base_salary · impact yes · open"
+    INDENNITÀ SPECIALE (tabella per-livello nel PDF: L1=126.55→131.55 EUR): corrisposta solo al personale addetto alla riscossione con responsabilità di bollette/fatture > EUR 4.648/giorno. Condizionale, non universale. Non modellata. Totale ilccnl.it lug 2026 = Paga Base conferma assenza di elementi obbligatori aggiuntivi.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model l'indennità speciale per livello as an allowance gated by a role (addetti alla riscossione) or record a limitation.
 
 !!! warning "pulizia-artigianato-confartigianato/ind_fun_months_per_year · base_salary · impact unknown · open"
     SIMPLIFICATION: IND_FUN (EUR 25.82/mese) — il PDF non specifica il numero di mensilità. months_per_year=null (eredita 13). Impatto: ±25.82 EUR/anno se la risposta vera è 12 mensilità.
@@ -233,10 +247,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     Reproportioning: tranche_Li = round(tranche_L5 * round(Dec2024_Li/Dec2024_L5, 4), 2). Nessuna tabella parametri ufficiali per livello nel contratto. Ratios: 1=1.2736, 2=1.1675, 3S=1.1316, 3=1.0928, 4=1.0331, 5=1.0000, 6=0.9633.
     
     Gap 2025: il vecchio CCNL scadeva 31.12.2024; il nuovo decorre economicamente dal 1.1.2026. La serie salariale ha un periodo senza aggiornamento 1.12.2024–31.12.2025 (valore costante). Dec 2029 incluso: accordo rinnovo indica esplicitamente il 7° scatto.
-    
-    EDAR (Elemento Distinto e Aggiuntivo della Retribuzione): EUR 15.00 flat, 26 mesi da 1.11.2022, soli lavoratori in forza al 27.10.2022. Scaduto dic 2024. Non rientra in nessun istituto contrattuale incl. TFR. Non modellato.
-    
-    INDENNITÀ SPECIALE (tabella per-livello nel PDF: L1=126.55→131.55 EUR): corrisposta solo al personale addetto alla riscossione con responsabilità di bollette/fatture > EUR 4.648/giorno. Condizionale, non universale. Non modellata. Totale ilccnl.it lug 2026 = Paga Base conferma assenza di elementi obbligatori aggiuntivi.
     
     Fonte 2022 PDF: ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf — verificata e scaricata il 2026-09-12. Tranches Nov 2022 — Dec 2024 da questo documento.
     

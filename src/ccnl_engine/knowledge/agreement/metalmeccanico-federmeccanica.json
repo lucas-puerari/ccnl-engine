@@ -90,7 +90,7 @@
       },
       {
         "kind": "info",
-        "text": "INPS: the employer rates of 2026-industria.json for an impiegato are IVS 23.81% plus 5.25% up to 50 employees (29.06%) and plus 5.55% from 51 (29.36%); the cost table of the Ministry of Labour of June 2026 (DD 82 of 5 October 2026) applies 29.36%. INAIL (4.417% in that table) is not computed by the engine."
+        "text": "INPS: the employer rates of contribution/2026/industria.json for an impiegato are IVS 23.81% plus 4.65% up to 15 employees (28.46%), plus 5.25% from 16 to 50 (29.06%) and plus 5.55% from 51 (29.36%); the cost table of the Ministry of Labour of June 2026 (DD 82 of 5 October 2026) applies 29.36%. INAIL (4.417% in that table) is not computed by the engine (review of 2026-10-30)"
       },
       {
         "kind": "info",
@@ -132,7 +132,7 @@
       },
       {
         "kind": "info",
-        "text": "TRAVEL AND ON-CALL ALLOWANCES (Art. 7 Trasferta p. 61, Art. 6 Reperibilità p. 158 of the CCNL 2021; adjusted each June by IPCA per the renewal of 22 November 2025, p. 2): event-driven, not modelled. From 1 June 2026 (minutes of 16 June 2026): trasferta intera 51.29, pasto 13.13, pernottamento 25.03; reperibilità by level group D1-D2-C1 / C2-C3 / B1+ per 16h worked day, 24h rest day, 24h holiday and per week. The engine takes no travel or on-call event, so these amounts are not paid."
+        "text": "TRAVEL AND ON-CALL ALLOWANCES (Art. 7 Trasferta p. 61, Art. 6 Reperibilità p. 158 of the CCNL 2021; adjusted each June by IPCA per the renewal of 22 November 2025, p. 2): event-driven. From 1 June 2026 (minutes of 16 June 2026): trasferta intera 51.29, pasto 13.13, pernottamento 25.03; reperibilità by level group D1-D2-C1 / C2-C3 / B1+ per 16h worked day, 24h rest day, 24h holiday and per week. A StandbyEvent is paid at the rates of work_rules.standby_rules (from 1 June 2025; the earlier rates are not extracted) plus 5.00 for each call; a TravelAllowanceEvent pays the daily_amount the caller states, since the file holds no trasferta amounts (review of 2026-10-30)"
       },
       {
         "kind": "simplification",
@@ -3311,7 +3311,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "5906c13ddb876af9b870405b329583d51892689981173affbb309c450fa8f4ee",
+    "source_hash": "d3e3523bf4c75ba9413fb1b1a7fb9690c622ca83a1ad71a5f596cc695257b656",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },

@@ -71,7 +71,7 @@
       },
       {
         "kind": "info",
-        "text": "APPRENTICESHIP: 1° Gruppo only (Panificazione Gruppo A livelli A1s, A1 → destination A1, duration 5 anni/10 semestri). Percentages confirmed from Art. 58 table in UILA CCNL PDF (p. 69, Settore Panificazione Gruppo A 1° Gruppo): sem 1-2=70%, sem 3-4=75%, sem 5-6=84%, sem 7-8=90%, sem 9-10=100%. Converted to 12-month periods: 0-12mo=70%, 12-24mo=75%, 24-36mo=84%, 36-48mo=90%, 48-60mo=100%. Source: Art. 58, UILA CCNL PDF."
+        "text": "APPRENTICESHIP: 1° Gruppo (Panificazione Gruppo A livelli A1s, A1 → destination A1, duration 5 anni/10 semestri). Percentages confirmed from Art. 58 table in UILA CCNL PDF (p. 69, Settore Panificazione Gruppo A 1° Gruppo): sem 1-2=70%, sem 3-4=75%, sem 5-6=84%, sem 7-8=90%, sem 9-10=100%. Converted to 12-month periods: 0-12mo=70%, 12-24mo=75%, 24-36mo=84%, 36-48mo=90%, 48-60mo=100%. Source: Art. 58, UILA CCNL PDF. The other gruppi (A2, A3, B1, B2, B3S, B4) are separate tracks, see the APPRENTICESHIP gruppi note. (review of 2026-10-30)"
       },
       {
         "kind": "simplification",
@@ -2023,7 +2023,7 @@
     "effective_until": null,
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "9034f321456765589d118b4bfba858472daffa928099cc8afabf216e9bf23d46",
+    "source_hash": "0cbd80c4c069137bbb57083400abef08b9bac6e915bc8f19544cc079378341fe",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

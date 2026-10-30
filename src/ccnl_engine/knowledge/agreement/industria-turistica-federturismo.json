@@ -66,8 +66,17 @@
         }
       },
       {
-        "kind": "info",
-        "text": "APPRENTICESHIP: under_classification 2 levels below destination is a contract-specific rule not representable in the engine schema (single under_levels value, not per-destination-level). Modelled as 100% passthrough by design."
+        "kind": "simplification",
+        "text": "APPRENTICESHIP: under_classification 2 levels below destination is the contract rule. Modelled as 100% passthrough: the apprentice is paid the destination level. The engine can express it (apprenticeship type under_classification, levels_below relative to each destination level), but the periods are not sourced (review of 2026-10-30)",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "apprenticeship_under_classification",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the periods of the under-classification (Art. on apprendistato professionalizzante) and model them as an under_classification track with levels_below 2 (and 1 where due); until then record the limitation on the apprentice path (contract_types apprentice)."
+        }
       },
       {
         "kind": "simplification",
@@ -1789,7 +1798,7 @@
     "effective_until": null,
     "source": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
     "verification_status": "unverified",
-    "source_hash": "f53bd9257fcb64d9efb43f8da5df475809cbe8e60a19ab4698763bef8d757adb",
+    "source_hash": "4227653414fc6559d55cc887d111564f88bb86a36448befbd1e7f0a21997b486",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

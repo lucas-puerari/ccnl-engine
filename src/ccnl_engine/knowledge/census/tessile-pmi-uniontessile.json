@@ -19,6 +19,22 @@
       }
     },
     {
+      "id": "level_8_function_allowance",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "LEVEL 8 IDF: indennità di funzione 51.65 EUR modelled as fixed_allowance (unverified for period before Jan 2026). Function-conditional, not automatic for all L8 workers.",
+      "calculation": "ccnl/tessile-pmi-uniontessile:coverage.notes",
+      "state": "absent",
+      "remediation": "Gate IND_FUN by a role (function holders) and source the pre-Jan 2026 amount, or record the limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "tessile-pmi-uniontessile/level_8_function_allowance"
+        ]
+      }
+    },
+    {
       "id": "other_subsectors_tables",
       "institute": "base_salary",
       "variant": "all",

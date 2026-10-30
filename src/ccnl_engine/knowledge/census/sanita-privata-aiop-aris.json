@@ -3,6 +3,22 @@
   "ccnl_id": "sanita-privata-aiop-aris",
   "requirements": [
     {
+      "id": "frozen_individual_seniority",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Retribuzione individuale di anzianità frozen at 1993-12-31 per Art. 56 (no new seniority accruals). Modelled as seniority_increments.maximum_count=0.",
+      "calculation": "ccnl/sanita-privata-aiop-aris:coverage.notes",
+      "state": "absent",
+      "remediation": "Let the caller state the RIA frozen at 1993-12-31 (EarnedIncrements or an individual allowance) and record the limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sanita-privata-aiop-aris/frozen_individual_seniority"
+        ]
+      }
+    },
+    {
       "id": "part_time_supplementary_rate",
       "institute": "overtime",
       "variant": "all",
@@ -95,6 +111,22 @@
       "links": {
         "limitations": [
           "sickness_inps_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "statutory_ipca_adjustment",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "CCNL applied in ultrattività; Decreto Lavoro 2026 introduced a statutory 30% IPCA auto-adjustment if no renewal within 12 months of expiry. If triggered, legally applicable 2026 minimums may exceed the 2020 Tabella 1 values modelled here. Engine models contractual tables only.",
+      "calculation": "ccnl/sanita-privata-aiop-aris:coverage.notes",
+      "state": "unverified",
+      "remediation": "Verify whether the statutory IPCA adjustment applies to T011 under ultrattività and model it, or record the limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sanita-privata-aiop-aris/statutory_ipca_adjustment"
         ]
       }
     },

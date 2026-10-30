@@ -37,7 +37,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, workplace_injury |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -77,6 +77,20 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "dirigenza-sanitaria-medico-veterinaria-aran/position_pay_missing · base_salary · impact yes · open"
+    Retribuzione di posizione (Art. 14): obbligatoria ma variabile per tipo incarico (UOC, UOSD, professionale, ecc.). Non modellata — parte fissa per incarico assegnato in sede aziendale; out_of_scope per il motore.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Take the retribuzione di posizione (Art. 14) and its Art. 17 guaranteed minimum (note 7) as a worker fact by type of incarico.
+
+!!! warning "dirigenza-sanitaria-medico-veterinaria-aran/complex_structure_allowance · base_salary · impact yes · open"
+    Indennità per incarico di direzione di struttura complessa (Art. 16): 11.157€/anno per 13 mensilità. Non modellata come fixed_allowance — assegnata solo ai direttori di SC, non a tutti i dirigenti.
+
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Add the 11.157 EUR/year (13 months) allowance of Art. 16 restricted to a role such as 'direttore_sc' (Allowance.role).
 
 !!! warning "dirigenza-sanitaria-medico-veterinaria-aran/approximate_hourly_divisor · workplace_injury · impact unknown · open"
     Hourly divisor 165 = 38h/settimana × 52/12, arrotondato. Art. 27 CCNL 23.1.2024 (Orario di lavoro dei dirigenti) non modificato dal CCNL 27.02.2026. Il divisore 165 è un'approssimazione — i dirigenti SSN non hanno un orario fisso misurabile.
@@ -148,10 +162,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 | SIMPLIFICATION: codice CNEL S225 da fonte secondaria (ilccnl.it). Non riportato nel testo ufficiale ARAN. | altro | — | [↗](https://ilccnl.it/ccnl/dirigenti---dirigenza-medica-e-veterinaria/dirigenti---sanita-medici-e-veterinari-dal-010195) |
 
 ??? note "Coverage notes"
-    Retribuzione di posizione (Art. 14): obbligatoria ma variabile per tipo incarico (UOC, UOSD, professionale, ecc.). Non modellata — parte fissa per incarico assegnato in sede aziendale; out_of_scope per il motore.
-    
-    Indennità per incarico di direzione di struttura complessa (Art. 16): 11.157€/anno per 13 mensilità. Non modellata come fixed_allowance — assegnata solo ai direttori di SC, non a tutti i dirigenti.
-    
     Clausola di garanzia retribuzione di posizione (Art. 17): minima garantita per anzianità. Non modellata — variabile per anzianità e valutazione.
     
     Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.

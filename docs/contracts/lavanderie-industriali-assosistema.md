@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | base_salary, seniority |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -104,6 +104,13 @@ Destination levels: `A2`, `C3`, `D2`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "lavanderie-industriali-assosistema/tranches_from_october_2027 · base_salary · impact yes · open"
+    MODELLED TRANCHES: 2026-05-01 (source-confirmed from ilccnl.it, iqnotizie.it, previdenza-professionisti.it, all concordant); 2026-12-01 (derived: +20 EUR on B1, other levels proportional using coefficient vector verified across 4 historical tranches 2023-2025). Oct 2027 (+50 EUR B1) and Oct 2028 (+60 EUR B1) announced but table not published — not modelled.
+
+    **Applies when:** `base_salary` applies; from 2027-10-01.
+
+    **Remediation:** Model the October 2027 (+50 at B1) and October 2028 (+60 at B1) tranches once the tables are published, or derive them with the level coefficients of note 8.
+
 !!! warning "lavanderie-industriali-assosistema/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
 
@@ -166,8 +173,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     SECTOR SCOPE: both turismo and sanitario comparti. Pre-2026 the two sectors had distinct tranche dates (sanitario ~9 months behind turismo), but converged to identical minimi by Apr 2025 (sanitario) / Oct 2025 (turismo). The 2026-2028 rinnovo (19 May 2026) applies a single undifferentiated table labelled SANITARIO_TURISMO by Assosistema — confirmed by Assosistema circular title 'Costo medio orario CCNL Lavanderie industriali SANITARIO_TURISMO Aree ABCD tranche 2026'. This contract covers workers in both comparti from 2026-05-01.
     
     SALARY MODEL: split. base_salary = minimo tabellare (contingenza conglobata since 2008, confirmed in CCNL text). fixed_allowances per level = INCENTIVO_DI_MODULO (frozen, level-specific constant). D2 also receives INDENNITA_FUNZIONE 130.00 EUR/month. A1 has no incentivo di modulo (0 EUR). Verified: B1 May 2026 = 1897.54; B1/173 = 10.97 (non-integer, consistent with split). C2 May 2026 = 2535.98; (2535.98+93.44)/173 = 15.20 (matches ilccnl.it hourly for C2).
-    
-    MODELLED TRANCHES: 2026-05-01 (source-confirmed from ilccnl.it, iqnotizie.it, previdenza-professionisti.it, all concordant); 2026-12-01 (derived: +20 EUR on B1, other levels proportional using coefficient vector verified across 4 historical tranches 2023-2025). Oct 2027 (+50 EUR B1) and Oct 2028 (+60 EUR B1) announced but table not published — not modelled.
     
     AGREEMENT DATE: 2026-05-19 is ipotesi di accordo date. Ratification (scioglimento della riserva) was due by 2026-06-19 per Assosistema circular. Definitive signing date not independently confirmed; 2026-05-19 used in sources.
     

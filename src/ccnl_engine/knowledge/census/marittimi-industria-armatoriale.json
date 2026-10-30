@@ -35,6 +35,22 @@
       }
     },
     {
+      "id": "level_superminimo_art_18",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SUPERMINIMO LIVELLO: Art. 18 provides additional EUR 7/month for L4 workers after 8 years in level, and EUR 7-11/month for L2-L3 workers under specific conditions. Individual-level amounts tied to personal history — not modellable in a standardised payroll engine (no per-worker tenure field). Out_of_scope structural limitation.",
+      "calculation": "ccnl/marittimi-industria-armatoriale:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the Art. 18 superminimo (7 EUR for IV after 8 years in level, 7-11 EUR for II-III) as allowances gated on the time in level, or pay it as an IndividualElement and record the limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "marittimi-industria-armatoriale/level_superminimo_art_18"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",
@@ -126,6 +142,22 @@
       "links": {
         "limitations": [
           "tfr_compensation_apprentice_guarantee_fund"
+        ]
+      }
+    },
+    {
+      "id": "una_tantum_2024_2025",
+      "institute": "una_tantum",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "UNA TANTUM: backpay EUR 200 paid Jul 2024 + EUR 180 paid Jan 2025, uniform all levels. Lump-sum, not recurring. Out_of_scope per engine design (una tantum payments are not included in periodic payroll computation).",
+      "calculation": "ccnl/marittimi-industria-armatoriale:coverage.notes",
+      "state": "absent",
+      "remediation": "Pay the una tantum (200 EUR in July 2024, 180 EUR in January 2025) outside the engine (ArrearsEvent) and record it as an open limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "marittimi-industria-armatoriale/una_tantum_2024_2025"
         ]
       }
     }

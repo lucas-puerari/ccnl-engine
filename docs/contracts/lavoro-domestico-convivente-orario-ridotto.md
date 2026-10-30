@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | assistance_contribution, base_salary, inps_employer, overtime, sickness |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -88,6 +88,13 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "lavoro-domestico-convivente-orario-ridotto/babysitter_and_certification_allowances · base_salary · impact yes · open"
+    NOT MODELLED: students aged 16 to 40 (art. 14 c. 2) at levels other than C, B and B super, for whom Tabella B has no value; the Tabella H indennita of the baby sitter of level B super for children under six (art. 34 c. 3), 97,06 a month for Tabella B workers; the Tabella L indennita of art. 34 c. 7 for certified workers. None of them is paid.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the Tabella H indennita (97,06 for a B super baby sitter of children under six) and the Tabella L indennita of certified workers as role-gated allowances (Allowance.role); the Tabella L one applies at any level.
 
 !!! warning "lavoro-domestico-convivente-orario-ridotto/hourly_inps_bracket_unvalidated · inps_employer · impact unknown · open"
     INPS BAND: the engine chooses the band of up to 24 weekly hours on the paga oraria effettiva of INPS (circ. 9/2026; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico): the monthly pay with board and lodging over the hours of the employment (weekly hours x 52 / 12), raised by the tredicesima (x 13 / 12). That reading of the circular is not yet checked against a worked example of the INPS domestic table (review of 2026-10-30).
@@ -164,8 +171,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     HOURLY DIVISOR: 130 = 30 x 52 / 12 in the file; a run uses the weekly hours of the employment x 52 / 12 (flat_pay_max_weekly_hours), since the Tabella B pay does not change with the hours: B super at 10 weekly hours is 737,39 / 43,33 = 17,02 an hour. Work beyond the agreed hours is paid at the hourly retribuzione globale di fatto (art. 14 c. 2), with the art. 15 supplements outside the agreed time arrangement; the overtime bands are those of the convivente file.
     
     SENIORITY: biennale, 4% of the Tabella B minimum (art. 37 c. 1: 'sulla retribuzione minima contrattuale'), maximum 7 scatti: B 28,09, BS 29,50, C 32,58.
-    
-    NOT MODELLED: students aged 16 to 40 (art. 14 c. 2) at levels other than C, B and B super, for whom Tabella B has no value; the Tabella H indennita of the baby sitter of level B super for children under six (art. 34 c. 3), 97,06 a month for Tabella B workers; the Tabella L indennita of art. 34 c. 7 for certified workers. None of them is paid.
     
     TAX SECTOR: lavoro-domestico (TaxSector.LAVORO_DOMESTICO). Flat per-hour INPS contributions from INPS Circ. 9/2026. A household employer is not a withholding agent: it is not among the sostituti d'imposta of art. 23 c. 1 D.P.R. 600/1973 (art. 33 c. 1 D.Lgs. 33/2025 from 2027), so the engine withholds no IRPEF or surtax and pays no trattamento integrativo, ulteriore detrazione or somma esente.
     

@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary, seniority, territorial_supplement |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -125,6 +125,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Confirm the length of the three Art. 22 apprenticeship bands.
 
+!!! warning "uneba-uneba/ermt_territorial · territorial_supplement · impact yes · open"
+    ERMT: Elemento Retributivo Mensile Territoriale is a territorial supplement, not part of the national CCNL salary table. Not modelled at national level.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the ERMT outside the engine and record the limitation (as ert_veneto / provincial_third_elements).
+
 !!! warning "uneba-uneba/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
 
@@ -197,8 +204,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP OSS/4S rule (Art. 22 CCNL 2020, unchanged by the 2025 renewal; primary source olympus.uniurb.it): destination 4S (OSS), 18 months, 85% months 1-9 and 90% months 10-18, track 'oss_4S'. Select it with Apprentice(track='oss_4S'): level 4S is also covered by the generic 24-month track.
     
     TEP ABOLISHED: Art. 80 of the 2025 renewal abolishes the Trattamento Economico Progressivo (progressive 36-month phased salary for new hires). Not modelled as it is no longer in force from 01.02.2025.
-    
-    ERMT: Elemento Retributivo Mensile Territoriale is a territorial supplement, not part of the national CCNL salary table. Not modelled at national level.
     
     INPS: reuses 2026-terziario.json (TERZIARIO sector). No separate INPS circular rate published for UNEBA; rate is consistent with general terziario sector (same as Commercio and Cooperative Sociali).
     

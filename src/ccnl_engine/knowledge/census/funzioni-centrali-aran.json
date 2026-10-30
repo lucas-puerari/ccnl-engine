@@ -3,6 +3,22 @@
   "ccnl_id": "funzioni-centrali-aran",
   "requirements": [
     {
+      "id": "agency_salary_tables",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "sub-settori ENAC, ANSFISA, ANSV e AGID hanno tabelle retributive proprie (Tabelle 3-6 CCNL) non modellate — out_of_scope per implementazione standard.",
+      "calculation": "ccnl/funzioni-centrali-aran:coverage.notes",
+      "state": "unverified",
+      "remediation": "Add the ENAC, ANSFISA, ANSV and AGID tables with a fact selecting them, or refuse those employers.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "funzioni-centrali-aran/agency_salary_tables"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

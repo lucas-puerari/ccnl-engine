@@ -19,6 +19,22 @@
       }
     },
     {
+      "id": "pre_2016_seniority_cohort",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Allegato 3.1 (grandfathered scatti for workers hired before 30/04/2016) not modelled. Only Allegato 3 (standard post-2016 cohort) amounts implemented. Structural scope decision: pre-2016 grandfathered amounts affect a declining cohort; the new-hire case is exact.",
+      "calculation": "ccnl/funivie-anef:coverage.notes",
+      "state": "absent",
+      "remediation": "Add the Allegato 3.1 amounts for workers hired before 30/04/2016, selected by hire date or a worker fact.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "funivie-anef/pre_2016_seniority_cohort"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",
@@ -47,6 +63,22 @@
       "links": {
         "limitations": [
           "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "quadri_function_allowance",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Indennita di funzione (118.79 EUR/month) for Quadri (L. 190/1985 status within levels 1S and 1) is not modelled. It is a person-status allowance tied to individual Quadro designation, not a livello retributivo; the engine can restrict an allowance to Employment.roles (Allowance.role), but the file declares none (review of 2026-10-30)",
+      "calculation": "ccnl/funivie-anef:coverage.notes",
+      "state": "absent",
+      "remediation": "Add the 118.79 EUR allowance to levels 1S and 1 with role 'quadro'.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "funivie-anef/quadri_function_allowance"
         ]
       }
     },

@@ -31,10 +31,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ✅ |
-| **Limits of this contract** | overtime |
+| **Core payroll path** | ⚠️ |
+| **Limits of this contract** | base_salary, overtime, seniority |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -124,6 +124,20 @@ percentage: 0.90
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "sanita-privata-aiop-aris/frozen_individual_seniority · seniority · impact yes · open"
+    Retribuzione individuale di anzianità frozen at 1993-12-31 per Art. 56 (no new seniority accruals). Modelled as seniority_increments.maximum_count=0.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Let the caller state the RIA frozen at 1993-12-31 (EarnedIncrements or an individual allowance) and record the limitation.
+
+!!! warning "sanita-privata-aiop-aris/statutory_ipca_adjustment · base_salary · impact unknown · open"
+    CCNL applied in ultrattività; Decreto Lavoro 2026 introduced a statutory 30% IPCA auto-adjustment if no renewal within 12 months of expiry. If triggered, legally applicable 2026 minimums may exceed the 2020 Tabella 1 values modelled here. Engine models contractual tables only.
+
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Verify whether the statutory IPCA adjustment applies to T011 under ultrattività and model it, or record the limitation.
+
 !!! warning "sanita-privata-aiop-aris/shift_on_call_allowances · overtime · impact yes · open"
     SHIFT, ON-CALL AND RISK ALLOWANCES (Art. 60-61, pp. 89-90): the indennità notturna of 2,74 euro an hour of shift between 22 and 6, the holiday shift indemnity of 17,82 euro (8,91 for half a shift or less), the pronta disponibilità of 21,69 euro per 12 hours and the radiation risk indemnity of 1.239,50 euro a year are not modelled: no field of the request states the shifts or the on-call duty of the worker.
 
@@ -187,17 +201,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     28 levels (A, A1–A4, B, B1–B4, C, C1–C4, D, D1–D4, DS, DS1–DS4, E, E1, E2). Order assigned by 2020-07-01 salary because professional families A/B/C/D/DS/E have overlapping salary ranges — categories are not a single hierarchy. A4 (order 6) is paid above B (order 5) per Tabella 1. Horizontal progressions within each category are modelled as static levels per Art. 48; the engine does not auto-advance a worker's level after the contractual service threshold.
     
-    Retribuzione individuale di anzianità frozen at 1993-12-31 per Art. 56 (no new seniority accruals). Modelled as seniority_increments.maximum_count=0.
-    
     CCNL covers ospedalieri, IRCCS, riabilitazione (AIOP/ARIS members). Does not apply to RSA governed by separate AIOP RSA or Uneba agreements.
     
     hourly_divisor=156 (Art. 58: paga giornaliera=monthly/26, oraria=giornaliera/6 for 36h/week). Levels D4, DS4, E, E1, E2 work 38h/week per Art. 18 (oraria=giornaliera/6.33, exact divisor≈164.6), modelled as 156 uniformly.
     
     Apprenticeship (Art. 23 §14, Art. 23 §2): destination levels are the four category entry positions A, B, C, D only. Horizontal-progression steps (A1-A4, B1-B4, C1-C4, D1-D4) are not apprenticeship destinations. DS and E categories excluded per Art. 23 §2. OSS and Albo-registered health professions excluded per Art. 23 §2 but per-qualification restriction not modellable at level granularity.
     
-    INPS: terziario sector confirmed. Kitech.it (table "TERZIARIO attività VARIE", kitech.it/Contributi-previdenziali.aspx?p=4_143) lists operai/impiegati at 9.19% employee contribution and 28.98% employer (≤50 dipendenti) / 29.58% (>50) — matching 2026-terziario.json exactly. Private healthcare (AIOP/ARIS) is classified under terziario standard rates; no healthcare-specific INPS regime applies. INPS Circolare n. 6/2026 confirms 9.19% employee rate for private sector workers.
-    
-    CCNL applied in ultrattività; Decreto Lavoro 2026 introduced a statutory 30% IPCA auto-adjustment if no renewal within 12 months of expiry. If triggered, legally applicable 2026 minimums may exceed the 2020 Tabella 1 values modelled here. Engine models contractual tables only.
+    INPS: terziario sector, 2026-terziario.json: employee 9.36% (up to 5 employees), 9.46% (6-15), 9.76% (above 15); employer 29.31%, 29.51% and 30.11% on the same tiers. Private healthcare (AIOP/ARIS) is classified under terziario standard rates; no healthcare-specific INPS regime applies. INPS Circolare n. 6/2026 confirms the 9.19% IVS employee rate for private sector workers. (review of 2026-10-30)
     
     TERM: the CCNL of 8 October 2020 renews the economic part 2016-2018 and its table applies from 1 July 2020; no later renewal signed by AIOP and ARIS was found on 14 October 2026 (the unions were still asking to open the table), so the 2020 tabellari stay in force under ultrattività.
     

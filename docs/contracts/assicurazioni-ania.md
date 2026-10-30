@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer, seniority |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -105,6 +105,13 @@ under-level: `1`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "assicurazioni-ania/pre_1999_hire_table · base_salary · impact yes · open"
+    Covers personale amministrativo assunto dal 18/12/1999 (Allegato 2/B — tabella omnicomprensiva). Pre-1999 hires (Allegato 2/A) are out of scope.
+
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Model Allegato 2/A for the staff hired before 18/12/1999, gated on the hire date, or open a limitation.
 
 !!! warning "assicurazioni-ania/funzionari_economic_allowance · base_salary · impact yes · open"
     Indennità economica funzionari (Allegato 2/D) — L7 only, six sub-grade variants (Ex 3°/2°/1° Grado, Funz. Senior, Funz. Business, Ass. ex F2) with distinct amounts. Monthly amounts not found in publicly accessible sources (Allegato 2/D not published). Not modelled.
@@ -191,8 +198,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 | https://www.contratticcnl.it/ | altro | — | [↗](https://www.contratticcnl.it/) |
 
 ??? note "Coverage notes"
-    Covers personale amministrativo assunto dal 18/12/1999 (Allegato 2/B — tabella omnicomprensiva). Pre-1999 hires (Allegato 2/A) are out of scope.
-    
     First tranche decorrenza 01/01/2026 is retroactive; CCNL signed 13/05/2026. Arretrati January–July 2026 paid in July 2026 (Allegato 7). Period start is 2026-01-01 in the engine.
     
     Additional months = 14 (tredicesima + quattordicesima). Monthly amounts are 1/14 of annual retribuzione. Source: Allegato 2/B header, FirstCISL PDF rinnovo 13/05/2026.
@@ -205,9 +210,9 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Seniority increment amounts vary across tranches (e.g. L4: 67.51 → 70.17 → 72.30). Represented exactly via TimeSeries in amount_by_level.
     
-    Indennità profilo J) 4° livello (Allegato 2/E) — modelled as fixed_allowance IND_PROFILO_J on L4 with role 'profilo_j'. Amounts: €57.26/mese dal 01/01/2026, €59.51 dal 01/01/2027, €61.32 dal 01/01/2028. Pass roles={'profilo_j'} in Scenario to include it.
+    Indennità profilo J) 4° livello (Allegato 2/E) — modelled as fixed_allowance IND_PROFILO_J on L4 with role 'profilo_j'. Amounts: €57.26/mese dal 01/01/2026, €59.51 dal 01/01/2027, €61.32 dal 01/01/2028. Set Employment.roles=profilo_j to include it (review of 2026-10-30).
     
-    Indennità economica 6° livello quadro (Allegato 2/F) — modelled as fixed_allowance IND_QUADRO_6 on L6 with role 'quadro_6'. Amount: €74.09/mese dal 01/01/2026. Pass roles={'quadro_6'} in Scenario to include it.
+    Indennità economica 6° livello quadro (Allegato 2/F) — modelled as fixed_allowance IND_QUADRO_6 on L6 with role 'quadro_6'. Amount: €74.09/mese dal 01/01/2026. Set Employment.roles=quadro_6 to include it (review of 2026-10-30).
     
     SOLIDARITY FUND: Fondo di solidarietà del settore assicurativo (accord ANIA of 20 May 2013, D.I. 78459 of 17 January 2014): ordinary contribution 0.30% of the INPS taxable pay of permanent workers, 0.20% employer and 0.10% worker, dirigenti excluded (INPS circ. 56/2015 p. 11); collected by INPS in the overall rate.
     

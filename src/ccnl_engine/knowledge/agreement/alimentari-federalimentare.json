@@ -56,7 +56,7 @@
       },
       {
         "kind": "info",
-        "text": "FUNCTION ALLOWANCE 1S: EUR 100 a month for the Quadri (Art. 23, L. 190/1985), modelled as an allowance with role 'quadro' (compute(..., roles={'quadro'}))."
+        "text": "FUNCTION ALLOWANCE 1S: EUR 100 a month for the Quadri (Art. 23, L. 190/1985), modelled as an allowance with role 'quadro' (Employment.roles=quadro) (review of 2026-10-30)."
       },
       {
         "kind": "info",
@@ -3263,7 +3263,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "b317ddf0a02f1493817ef4e962e7c884fb57f5418f69d30a6d03230c4b1e55c4",
+    "source_hash": "5fcb6e8963c661854c75186bb36950a081b7809948a8892b16c21e2f3544b754",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

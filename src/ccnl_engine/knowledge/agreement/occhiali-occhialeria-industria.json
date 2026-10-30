@@ -59,16 +59,37 @@
         "text": "Level Q (Quadro): indennita di funzione +82.63 EUR/month on top of the tabular minimum (all tranches). Modelled as INDENNITA_FUNZIONE fixed allowance, months_per_year=13."
       },
       {
-        "kind": "info",
-        "text": "HOURLY DIVISOR: 173 (standard 40h/week). Shift workers on 6x6 turns use divisor 156; engine models the 173 case uniformly."
+        "kind": "simplification",
+        "text": "HOURLY DIVISOR: 173 (standard 40h/week). Shift workers on 6x6 turns use divisor 156; engine models the 173 case uniformly.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "shift_6x6_divisor_156",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the 156 divisor of the 6x6 shift workers (a work pattern input or an hourly_divisor by schedule), as the long-week divisors tracked elsewhere."
+        }
       },
       {
         "kind": "info",
         "text": "SENIORITY: 5 biennali (24-month) scatti. Per-level amounts (EUR): 1=6.84, 2=7.36, 3=3S=7.80, 4=4S=8.26, 5=5S=9.76, 6=Q=11.65."
       },
       {
-        "kind": "info",
-        "text": "LEVEL 1 sub-level: the CCNL provides automatic advancement from entry sub-level (L1 ingresso) to L1 standard after 6 months. The file models only the post-advance minimum throughout, which is the relevant value for permanent workers and for workers beyond their 6th month. The entry sub-level undervaluation during the first 6 months is a deliberate structural simplification."
+        "kind": "simplification",
+        "text": "LEVEL 1 sub-level: the CCNL provides automatic advancement from entry sub-level (L1 ingresso) to L1 standard after 6 months. The file models only the post-advance minimum throughout, which is the relevant value for permanent workers and for workers beyond their 6th month. The entry sub-level undervaluation during the first 6 months is a deliberate structural simplification.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "level_1_entry_rate",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "1"
+            ]
+          },
+          "remediation": "Model the L1 ingresso minimum for the first 6 months of service (a level or a seniority-gated reduction), or record the limitation."
+        }
       },
       {
         "kind": "info",
@@ -3167,7 +3188,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
     "verification_status": "verified",
-    "source_hash": "2434747219d8960e6d0d0323260892801d1673ef3c5fe8d6c4ae4331191ce050",
+    "source_hash": "e04c2a956bc47cfe7ebc429569079410b6b66ffec1c73ddb9f5024f52e7d1489",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

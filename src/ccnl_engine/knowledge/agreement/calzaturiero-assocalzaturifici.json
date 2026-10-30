@@ -56,11 +56,23 @@
     "notes": [
       {
         "kind": "info",
-        "text": "SALARY MODEL: conglobated (minimi retributivi include paga base, contingenza, and EDR). Modeled as base_salary with fixed_allowances: [] for all levels except level 8 (IND_FUN for quadri). Confirmed by stable coefficient ratios across all tranche dates."
+        "text": "SALARY MODEL: conglobated (minimi retributivi include paga base, contingenza, and EDR). Modeled as base_salary with fixed_allowances: [] for all levels, level 8 included (the IND_FUN of the quadri is not modelled). Confirmed by stable coefficient ratios across all tranche dates (review of 2026-10-30)."
       },
       {
-        "kind": "info",
-        "text": "LEVEL 8 IND_FUN: indennità di funzione per quadri 41.31 EUR/month applies only to quadri supervisory employees, not to all livello 8 workers. Engine models base salary only for L8; the allowance is excluded by contract scope, not by modelling omission."
+        "kind": "simplification",
+        "text": "LEVEL 8 IND_FUN: indennità di funzione per quadri 41.31 EUR/month applies only to quadri supervisory employees, not to all livello 8 workers. Not modelled: the file has no role-scoped allowance for it (review of 2026-10-30).",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "quadri_function_allowance",
+          "applies_when": {
+            "trigger": "outside_input",
+            "levels": [
+              "8"
+            ]
+          },
+          "remediation": "Add IND_FUN 41.31 EUR as a role-scoped fixed allowance on level 8 (role 'quadro', as alimentari-federalimentare does), then drop the note."
+        }
       },
       {
         "kind": "info",
@@ -1327,7 +1339,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
     "verification_status": "unverified",
-    "source_hash": "50da29d158fe6c2df4f71d6676d2eea16ba01313b59b6bf6066a183ab93ec21c",
+    "source_hash": "2ea8ef870342548d41ab92cf2b4f01183655194c4ecbc38804a11d0a334a685c",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

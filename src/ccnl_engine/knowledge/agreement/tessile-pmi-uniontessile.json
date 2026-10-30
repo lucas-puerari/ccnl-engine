@@ -93,8 +93,20 @@
         "text": "LEVEL 1: jumps to 1558.00 EUR/month at Jan 2025 (9.006 EUR/h, exceeds 9 EUR/h floor per CCNL art. 33bis). Frozen in Jan 2026 and Jan 2027 — excluded from standard tranche mechanism."
       },
       {
-        "kind": "info",
-        "text": "LEVEL 8 IDF: indennità di funzione 51.65 EUR modelled as fixed_allowance (unverified for period before Jan 2026). Function-conditional, not automatic for all L8 workers."
+        "kind": "simplification",
+        "text": "LEVEL 8 IDF: indennità di funzione 51.65 EUR modelled as fixed_allowance (unverified for period before Jan 2026). Function-conditional, not automatic for all L8 workers.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "level_8_function_allowance",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "8"
+            ]
+          },
+          "remediation": "Gate IND_FUN by a role (function holders) and source the pre-Jan 2026 amount, or record the limitation."
+        }
       },
       {
         "kind": "info",
@@ -1854,6 +1866,6 @@
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "77bd2a89c021bd8daa8983da48e0f5c299641ccf8b0771611e17745e049084a2"
+    "source_hash": "1e357d26df71e8a50973ed57fe7e482cb75c414c804c7537b7acf30eaca93636"
   }
 }

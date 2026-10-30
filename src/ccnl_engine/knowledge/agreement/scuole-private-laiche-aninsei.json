@@ -60,8 +60,17 @@
         "text": "ADDITIONAL MONTHS (Art. 21): 13 (tredicesima only, paid by 16 December)."
       },
       {
-        "kind": "info",
-        "text": "SENIORITY (Art. 24): salario di anzianita frozen as of 2025-01-01, milestone-based (hire-date brackets). Workers with 2+ years continuous service at 01/01/2025 receive 20 EUR/month; pre-2002 hires up to 90 EUR/month (grandfathered). New hires after ~2023-01-01 receive nothing. maximum_count=0 correctly models new-hire case (zero seniority). The engine cadence model cannot express hire-date milestones: long-tenure workers are understated. Structural engine limitation — no data gap."
+        "kind": "simplification",
+        "text": "SENIORITY (Art. 24): salario di anzianita frozen as of 2025-01-01, milestone-based (hire-date brackets). Workers with 2+ years continuous service at 01/01/2025 receive 20 EUR/month; pre-2002 hires up to 90 EUR/month (grandfathered). New hires after ~2023-01-01 receive nothing. maximum_count=0 correctly models new-hire case (zero seniority). The engine cadence model cannot express hire-date milestones: long-tenure workers are understated. Structural engine limitation — no data gap.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "salario_di_anzianita",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the Art. 24 salario di anzianità (20 EUR, up to 90 EUR for pre-2002 hires) with a hire-date bracket input or EarnedIncrements, and record the limitation."
+        }
       },
       {
         "kind": "info",
@@ -1371,7 +1380,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "e7ed6702e6d4f843edc7c7fe253d07869413de671acc73dcb4ad6b3ff7fc42d0",
+    "source_hash": "aaddf72424f0df4b11657bb2580a79961839f684cc40c07b7c3af74fef2a81db",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

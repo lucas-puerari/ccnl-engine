@@ -41,7 +41,7 @@ def test_ccnl_limits_and_sources() -> None:
         == "base_salary, leave, seniority, sickness"
     )
     assert rows["anas"].cells.limits == "seniority"
-    assert rows["federcasa"].cells.limits == "—"
+    assert rows["energia-petrolio-confindustria"].cells.limits == "—"
     assert len(rows["anas"].sources.split(" / ")) == 4
 
 
@@ -50,7 +50,7 @@ def test_core_is_partial_only_when_the_contract_limits_a_core_capability() -> No
     year = latest_catalog_year()
     rows = {row.ccnl_id: row for row in build_coverage_report(year).ccnl_rows}
 
-    assert rows["federcasa"].cells.core == "✅"
+    assert rows["energia-petrolio-confindustria"].cells.core == "✅"
     assert rows["anas"].cells.core == "⚠️"
     assert len({row.cells.core for row in rows.values()}) == 2
 

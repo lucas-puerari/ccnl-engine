@@ -35,6 +35,22 @@
       }
     },
     {
+      "id": "ermt_territorial",
+      "institute": "territorial_supplement",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "ERMT: Elemento Retributivo Mensile Territoriale is a territorial supplement, not part of the national CCNL salary table. Not modelled at national level.",
+      "calculation": "ccnl/uneba-uneba:coverage.notes",
+      "state": "absent",
+      "remediation": "Add the ERMT outside the engine and record the limitation (as ert_veneto / provincial_third_elements).",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "uneba-uneba/ermt_territorial"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, pension_fund_contribution, seniority |
+| **Limits of this contract** | base_salary, bilateral_funds, pension_fund_contribution, seniority, territorial_supplement |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -111,6 +111,13 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "edilizia-pmi-confapi-aniem/territorial_sector_allowance · territorial_supplement · impact yes · open"
+    ITS (Indennita' Territoriale di Settore) not modelled: varies by province/region. National table footnote: 'A questa Tabella occorre aggiungere l'ITS che varia da territorio a territorio'. The national tabular minimum does not include ITS.
+
+    **Applies when:** `territorial_supplement` applies.
+
+    **Remediation:** Model the ITS with a fact naming the province, or take it as a second-level element, then remove this limitation.
+
 !!! warning "edilizia-pmi-confapi-aniem/cassa_edile_accruals_missing · bilateral_funds · impact yes · open"
     CASSA EDILE: the operai are owed the gratifica natalizia and the ferie as a 18.5% of the pay paid to the Edilcassa (Art. 16 and 18), not a tredicesima from the employer; the file pays them a direct 13th month, so the net, the employer cost and the Edilcassa contribution are all off.
 
@@ -124,6 +131,20 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; category in impiegato, quadro.
 
     **Remediation:** Model the impiegati in a file of their own with 14 monthly payments (Art. 63-64), as edilizia-ance-impiegati does.
+
+!!! warning "edilizia-pmi-confapi-aniem/operai_seniority_ape · seniority · impact yes · open"
+    SENIORITY: Art. 49 lists impiegati scatti biennali by category. Level 1 has no explicit Art. 49 amount; engine uses 8.22 (Impiegati 4a category, same as level 2) as an approximation. For operai (levels 1-4), seniority is governed by the Cassa Edile anzianita' professionale edile (APE) system; engine uses the Art. 49 impiegati amounts as an approximation.
+
+    **Applies when:** `seniority` applies; level in 1, 2, 3, 4.
+
+    **Remediation:** Give the operai levels no scatti (APE paid by the Cassa Edile) and source the level 1 amount of Art. 49.
+
+!!! warning "edilizia-pmi-confapi-aniem/provincial_evr · territorial_supplement · impact unknown · open"
+    EVR (Elemento Variabile della Retribuzione): conditional, company/territory-specific bonus. Not modelled.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the provincial EVR as an input.
 
 !!! warning "edilizia-pmi-confapi-aniem/operai_gruppo_3_track_merged · base_salary · impact unknown · open"
     SIMPLIFICATION: Apprenticeship destination conflicts. Art. G defines 4 operai groups and 3 impiegati bands. Engine tracks use disjoint destination_levels: level '2' -> gruppo_4 (36m); level '3' -> gruppo_3 (48m, ref=L2); levels '4'/'5' -> gruppo_2 (51m, ref=L3); levels '6'/'7' -> gruppo_1 (60m, ref=L3). Level '1' has no apprenticeship track (manual labor). Operai gruppo_3 (also exits at level '2', 48m) not modelled separately.
@@ -215,13 +236,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     HOURLY DIVISOR: 173, from Art. 25 CCNL: 'dividendo per 173 i valori minimi mensili'. Confirmed by official hourly rate column in FILLEA CGIL salary table.
     
-    ITS (Indennita' Territoriale di Settore) not modelled: varies by province/region. National table footnote: 'A questa Tabella occorre aggiungere l'ITS che varia da territorio a territorio'. The national tabular minimum does not include ITS.
-    
-    SENIORITY: Art. 49 lists impiegati scatti biennali by category. Level 1 has no explicit Art. 49 amount; engine uses 8.22 (Impiegati 4a category, same as level 2) as an approximation. For operai (levels 1-4), seniority is governed by the Cassa Edile anzianita' professionale edile (APE) system; engine uses the Art. 49 impiegati amounts as an approximation.
-    
-    EVR (Elemento Variabile della Retribuzione): conditional, company/territory-specific bonus. Not modelled.
-    
-    INPS: reuses 2026-edilizia.json (proxy rates, employer_tiers=[], employee_rate=null inherited from F012). Cassa Edile ~18.5% contribution is separate and not included in INPS rates.
+    INPS: reuses 2026-edilizia.json (the edilizia rates by employer size and worker category). Cassa Edile ~18.5% contribution is separate and not included in INPS rates (review of 2026-10-30)
     
 
 ## Raw data

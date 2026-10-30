@@ -39,8 +39,18 @@
   "coverage": {
     "notes": [
       {
-        "kind": "info",
-        "text": "RENEWAL: CCNL signed 2025-07-23, triennio 2023-2025. Economic effects from 2025-08-01. Una tantum non modelled (non-recurring)."
+        "kind": "simplification",
+        "text": "RENEWAL: CCNL signed 2025-07-23, triennio 2023-2025. Economic effects from 2025-08-01. Una tantum non modelled (non-recurring).",
+        "capability": "una_tantum",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "una_tantum_2025",
+          "applies_when": {
+            "trigger": "run",
+            "effective_from": "2025-08-01"
+          },
+          "remediation": "Source the amount and the payment months of the una tantum of the renewal of 23 July 2025, pay it outside the engine (ArrearsEvent) and record it as an open limitation."
+        }
       },
       {
         "kind": "info",
@@ -67,12 +77,38 @@
         "text": "LEVEL 1 PRE-2025: level 1 introduced ex-novo in 2025 renewal. Pre-2025 salary set equal to 2025-08-01 value (1295.43 EUR) — no historical data available."
       },
       {
-        "kind": "info",
-        "text": "APPRENTICESHIP (Art. 22): modelled on levels 6-10 parameters (32 months, 90% mesi 1-28, 95% mesi 29+). Levels 1-5 have different duration (12 months, 95% from month 7) — not modelled separately."
+        "kind": "simplification",
+        "text": "APPRENTICESHIP (Art. 22): modelled on levels 6-10 parameters (32 months, 90% mesi 1-28, 95% mesi 29+). Levels 1-5 have different duration (12 months, 95% from month 7) — not modelled separately.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "apprenticeship_low_levels_track",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "1",
+              "2",
+              "3",
+              "3S",
+              "4",
+              "5"
+            ]
+          },
+          "remediation": "Add a 12-month percentage track for destinations 1-5 (90% months 1-6, 95% months 7-12, per Art. 22) and drop them from professionalizzante_32; record the limitation on the apprentice path until sourced."
+        }
       },
       {
-        "kind": "info",
-        "text": "NURSES ALLOWANCE: indennita professionale infermieri 155 EUR/month (12 months) not included — qualifica-specific, not level-specific."
+        "kind": "simplification",
+        "text": "NURSES ALLOWANCE: indennita professionale infermieri 155 EUR/month (12 months) not included — qualifica-specific, not level-specific.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "nurses_professional_allowance",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the indennita professionale infermieri (155 EUR x 12) as a fixed allowance with role 'infermiere' (Allowance.role, months_per_year 12)."
+        }
       },
       {
         "kind": "simplification",
@@ -1242,7 +1278,7 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "709414130d0bef8e8971437c01b2faf7e0144d5705ac11f3276d7a8fefe0b4cc",
+    "source_hash": "c423c6df86b3d64eb60dd7a77704ab5d19fb1de08bff419a7c6698bcf3fa508d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -3,6 +3,22 @@
   "ccnl_id": "istruzione-ricerca-aran",
   "requirements": [
     {
+      "id": "docenti_function_allowance",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = owed",
+      "rule": "Indennità di funzione (IF) docenti: da ~200€ a ~313€/mese a seconda dell'ordine (da CCNL 23/12/2025). Non modellata come fixed_allowance per eterogeneità tra ordini (SIMPLIFICATION).",
+      "calculation": "ccnl/istruzione-ricerca-aran:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the docenti allowance of the CCNL 23/12/2025 as fixed allowances by order and by band of anzianita (service_months_threshold / service_months_until, as the RPD of afam-aran).",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "istruzione-ricerca-aran/docenti_function_allowance"
+        ]
+      }
+    },
+    {
       "id": "enam_base",
       "institute": "inps_employee",
       "variant": "all",

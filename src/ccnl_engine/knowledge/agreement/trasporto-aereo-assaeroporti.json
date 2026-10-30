@@ -62,7 +62,7 @@
       },
       {
         "kind": "info",
-        "text": "SENIORITY CAP: maximum_count=8, as per 2025 rinnovo (signed 04/06/2025, FILT-CGIL comunicato) which recognized the 8th scatto from 01/01/2026 for all workers with ≥16 years seniority. Pre-1993 employees with 16+ years already captured under this rule. Engine has no hire-date input; this is a structural limitation — maximum_count=8 is the correct model for the vast majority of new hires."
+        "text": "SENIORITY CAP: maximum_count=8, as per 2025 rinnovo (signed 04/06/2025, FILT-CGIL comunicato) which recognized the 8th scatto from 01/01/2026 for all workers with ≥16 years seniority. Pre-1993 employees with 16+ years already captured under this rule. The engine ages the recognised seniority of the worker (Employment.seniority, a SeniorityFact as of a date), so the 8th biennial scatto matures after 16 years like the others. (review of 2026-10-30)"
       },
       {
         "kind": "simplification",
@@ -2486,7 +2486,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "e66eb86df1f02afe1f75be4818f63b1899663fb181440094ec89ef928617b101",
+    "source_hash": "ec727bbc5baf9fc1fcd41c6f5a5011140b1c672b01331e003579a399dd596818",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

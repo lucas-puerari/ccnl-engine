@@ -108,8 +108,17 @@
         "text": "SENIORITY: biennale (24 months), maximum 6 scatti. Per-level amounts (EUR/scatto) confirmed from Thaler 2022 CCNL summary table, all 33 parametri. Note: two pairs share the same scatto amount (par.158 = par.160 = 24.65; par.138 = par.139 = 21.06) — this is as published."
       },
       {
-        "kind": "info",
-        "text": "EDR 2024: fixed_allowances per level, code 'edr_2024', 40 EUR at par.175 proportional to the parametro, active 2025-03-01 to 2026-04-30 (14 months). Per AGENS circular 20/03/2025 it is 'non computabile ai fini del TFR e della contribuzione al Fondo Priamo': modelled with tfr_relevant=false (Fondo Priamo is a bilateral pension fund, not modelled)."
+        "kind": "simplification",
+        "text": "EDR 2024: fixed_allowances per level, code 'edr_2024', 40 EUR at par.175 proportional to the parametro, active 2025-03-01 to 2026-04-30 (14 months). Per AGENS circular 20/03/2025 it is 'non computabile ai fini del TFR e della contribuzione al Fondo Priamo': modelled with tfr_relevant=false (Fondo Priamo is a bilateral pension fund, not modelled).",
+        "capability": "pension_fund_contribution",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "priamo_pension_fund",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Source the Fondo Priamo contribution rates (employer, worker, TFR share) and add a PRIAMO entry to parameters.employer_funds; until then open a pension_fund_not_modelled-style limitation."
+        }
       },
       {
         "kind": "info",
@@ -5200,7 +5209,7 @@
     "effective_until": null,
     "source": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
     "verification_status": "unverified",
-    "source_hash": "51ce0a1a5aef08dac183fef1f2082a0fdfe395eb406bf7f38f8a57ea7d1b7382",
+    "source_hash": "bab8708a6f0bca38a761c1f195ccbbd5a5468cb3b86f5b2237b26437acf6ee67",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

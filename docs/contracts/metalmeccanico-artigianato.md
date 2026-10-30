@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | bilateral_funds, inps_employer, overtime, sickness |
+| **Limits of this contract** | base_salary, bilateral_funds, inps_employer, overtime, sickness |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -131,6 +131,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note.
 
+!!! warning "metalmeccanico-artigianato/centralinisti_apprenticeship · base_salary · impact yes · open"
+    APPRENTICESHIP (Art. 27 as renewed on 19 November 2024, signed scan p. 6, by semester on the retribuzione tabellare of the destination level): operai of the 1st and 2nd group 70, 70, 75, 78, 80, 85, 88, 92, 100, 100%; impiegati amministrativi 70, 70, 75, 80, 85, 90%; impiegati centralinisti 70, 70, 75, 80%, not modelled apart (their destination level is not distinguished).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add an 'impiegati_centralinisti' track (70, 70, 75, 80% by semester, then 100%) selectable by Apprentice.track.
+
 !!! warning "metalmeccanico-artigianato/health_and_bilateral_funds · bilateral_funds · impact yes · open"
     HEALTH AND BILATERAL FUNDS (EBNA text, Art. 11-12, pp. 30-32): bilateralità artigiana 11,65 euro a month for 12 months from the employer, also for part-time and apprentices, plus FSBA 0,45% from the employer and 0,15% from the worker of the INPS base (from 1 January 2022), or 30 euro a month for 13 months paid to the worker by a firm outside the bilateral system; San.Arti 10,42 euro a month for 12 months from the employer, or an E.a.r. of 25 euro a month for 13 months when the firm does not enrol. Not modelled: the worker's 0,15% lowers the net pay.
 
@@ -222,13 +229,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     ADDITIONAL MONTHS: 13 (tredicesima). A quattordicesima is not provided for by the CCNL Artigianato Metalmeccanico.
     
-    APPRENTICESHIP administrative impiegati (destination levels 2, 1): 3 years, percentages 70% (year 1), 77% (year 2), 87% (year 3), 100% thereafter. Track 'impiegati'. Level 1Q (quadro) excluded. Source: CCNL metalmeccanico artigianato renewal 17.12.2021 (EBLART summary); formazione-apprendistato.com; conflavoro.it 2021 summary.
+    APPRENTICESHIP administrative impiegati (destination levels 2, 1): 3 years, by semester 70, 70, 75, 80, 85 and 90% (Art. 27 as renewed on 19 November 2024), 100% thereafter. Track 'impiegati'. Level 1Q (quadro) excluded. Source: CCNL metalmeccanico artigianato renewal 17.12.2021 (EBLART summary); formazione-apprendistato.com; conflavoro.it 2021 summary; renewal of 19 November 2024 (review of 2026-10-30)
     
     APPRENTICE SENIORITY: apprentices accrue no scatti before 1 January 2025; from that date they accrue scatti of 10 euro each, not scaled by the apprentice percentage, on the cadence of the other workers, and those in service on that date accrue from it ('la maturazione dell'anzianità di servizio ai fini del riconoscimento degli scatti decorre da pari data', Art. 27 as renewed on 19 November 2024, signed scan p. 6). At the end of the apprenticeship the matured scatti are revalued to the amount of the final level.
     
     TERM: the renewal of 19 November 2024 runs from 1 January 2023 to 31 December 2026 (Art. 2, signed scan) and keeps applying until the next renewal takes effect; the tabellare of 1 November 2026 stays in force after 2026 until a renewal is read.
-    
-    APPRENTICESHIP (Art. 27 as renewed on 19 November 2024, signed scan p. 6, by semester on the retribuzione tabellare of the destination level): operai of the 1st and 2nd group 70, 70, 75, 78, 80, 85, 88, 92, 100, 100%; impiegati amministrativi 70, 70, 75, 80, 85, 90%; impiegati centralinisti 70, 70, 75, 80%, not modelled apart (their destination level is not distinguished).
     
 
 ## Raw data

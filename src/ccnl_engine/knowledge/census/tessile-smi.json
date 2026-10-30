@@ -19,6 +19,22 @@
       }
     },
     {
+      "id": "december_2024_proportional_tranche",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "December 2024 tranche (01/12/2024): per-level values derived proportionally from the +EUR 95 increase at grade 4 (2024 SMI renewal, source filctemcgil.it). Rationale: Dec-2024 increment = 95/152 = 5/8 of the total increase Nov-2024→Jan-2026; verified by exact closure on all levels against Jan-2026 values from kitech.it.",
+      "calculation": "ccnl/tessile-smi:coverage.notes",
+      "state": "unverified",
+      "remediation": "Source the per-level Dec 2024 table (2024 SMI renewal) and replace the proportionally derived values.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "tessile-smi/december_2024_proportional_tranche"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",
