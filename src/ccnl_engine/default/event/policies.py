@@ -139,8 +139,8 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "event.inps_base",
         FactEnforcement.REPORTED,
         "unknown pay of the month before the illness: the INPS share is "
-        "computed on the CCNL daily quota and the run traverses the open "
-        "limitation sickness_inps_daily_base, which blocks it",
+        "computed on the CCNL daily quota, with a missing_fact inps_base "
+        "blocker",
     ),
     "InpsSicknessBase.paid_days": requires_fact(
         "sickness",
@@ -148,8 +148,8 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         FactEnforcement.REPORTED,
         "an impiegato who worked the whole month before the illness; an "
         "operaio divides by the days, so without them the INPS share is "
-        "computed on the CCNL daily quota and the run traverses the open "
-        "limitation sickness_inps_daily_base, which blocks it",
+        "computed on the CCNL daily quota, with a missing_fact inps_base "
+        "blocker",
     ),
     "InpsSicknessBase.full_month_pay": requires_fact(
         "sickness",
@@ -157,8 +157,7 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         FactEnforcement.REPORTED,
         "a month worked in full; an impiegato who did not work it all needs "
         "the pay of a whole month, so without it the INPS share is computed "
-        "on the CCNL daily quota and the run traverses the open limitation "
-        "sickness_inps_daily_base, which blocks it",
+        "on the CCNL daily quota, with a missing_fact inps_base blocker",
     ),
     "SicknessEpisode.periodic_check": absence_is_fact(
         "an ordinary sickness absence; a periodic check is a fact of the "

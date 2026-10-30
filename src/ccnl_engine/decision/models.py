@@ -139,6 +139,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "hospital_stays": "SicknessEpisode.hospital_stays",
     "serious_illness": "SicknessEpisode.serious_illness",
     "daily_contributions": "SicknessEpisode.daily_contributions",
+    "inps_base": "SicknessEpisode.inps_base",
     "sickness_known_from": "OpeningBalances.sickness_known_from",
     "suspends_accrual": "AbsenceEvent.suspends_accrual",
     "tfr_fund": "Employment.tfr_fund",

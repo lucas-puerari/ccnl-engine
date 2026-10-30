@@ -43,10 +43,7 @@ from ccnl_engine.seniority.rules import APPRENTICE_SENIORITY_VARIANT
 from ccnl_engine.severance.relief.services import (
     APPRENTICE_GUARANTEE_FUND,
 )
-from ccnl_engine.sickness.handlers import (
-    CUMULATION_LIMITATION,
-    INPS_DAILY_BASE_LIMITATION,
-)
+from ccnl_engine.sickness.handlers import CUMULATION_LIMITATION
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
@@ -109,14 +106,17 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
     }
     assert by_status[LimitationStatus.OPEN] == {
         PCT_UNDECLARED,
-        INPS_DAILY_BASE_LIMITATION,
         CUMULATION_LIMITATION,
         PROVISIONAL_RULESET,
         PROVISIONAL_INPS_RULESET,
         APPRENTICE_GUARANTEE_FUND,
         EXEMPT_CATEGORY_FLOOR,
     }
-    assert by_status[LimitationStatus.RESOLVED] == {_MIDPOINT, _APPRENTICE_SENIORITY}
+    assert by_status[LimitationStatus.RESOLVED] == {
+        _MIDPOINT,
+        _APPRENTICE_SENIORITY,
+        "sickness_inps_daily_base",
+    }
 
 
 def _has_midpoint(ccnl: CCNL) -> bool:

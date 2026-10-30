@@ -30,7 +30,7 @@ from ccnl_engine import (
     PeriodInput,
     PeriodResult,
 )
-from ccnl_engine.events import FringeEvent
+from ccnl_engine.events import FringeEvent, InpsSicknessBase
 from ccnl_engine.inputs import (
     Permanent,
     SeniorityFact,
@@ -40,6 +40,7 @@ from ccnl_engine.inputs import (
 )
 from ccnl_engine.results import BlockerCode, CalculationDecision
 from tests.integration.ccnl_engine.sickness.builders import (
+    C3_MONTHLY,
     metalmeccanico_c3,
     sickness_episode,
 )
@@ -215,12 +216,21 @@ def test_sickness_after_earlier_sick_days_is_computed() -> None:
     relapse of it, so its days are days 11 to 15 of one episode: no waiting
     period, INPS 50% (days 4-20), CCNL integration to 100%.
 
-    By hand: five days 2158.26 * 5 / 26 = 415.05 deducted and paid back,
-    INPS 415.05 * 0.50 = 207.525 -> 207.53, employer 415.05 - 207.53 =
-    207.52.
+    The February episode states the pay of January, the month before it:
+    2158.26 over 27 days worked or paid; the relapse takes that base.
+
+    By hand: five days 2158.26 * 5 / 26 = 415.05 deducted and paid back;
+    RMGG 2158.26 / 27 + 2158.26 / 12 / 25 = 87.1298 (INPS circ.
+    134368/1981 point 11.3), INPS 5 * 0.50 * 87.1298 = 217.82, employer
+    415.05 - 217.82 = 197.23.
     """
     employment = metalmeccanico_c3(WorkerCategory.OPERAIO)
-    february = sickness_episode("2026-02-02", date(2026, 2, 2), date(2026, 2, 11))
+    february = sickness_episode(
+        "2026-02-02",
+        date(2026, 2, 2),
+        date(2026, 2, 11),
+        inps_base=InpsSicknessBase(C3_MONTHLY, Decimal(0), paid_days=27),
+    )
     first = _regular(employment, 2, PeriodFacts(events=(february,)))
     relapse = sickness_episode(
         "2026-03-09", date(2026, 3, 9), date(2026, 3, 13), relapse_of="2026-02-02"
@@ -242,8 +252,8 @@ def test_sickness_after_earlier_sick_days_is_computed() -> None:
     }
     assert amounts == {
         "absence_deduction": Decimal("415.05"),
-        "sickness_inps_item": Decimal("207.53"),
-        "sickness_item": Decimal("207.52"),
+        "sickness_inps_item": Decimal("217.82"),
+        "sickness_item": Decimal("197.23"),
     }
     (decision,) = (d for d in result.decisions if d.capability == "sickness")
     assert decision.reason_code == "sickness_episode_paid"

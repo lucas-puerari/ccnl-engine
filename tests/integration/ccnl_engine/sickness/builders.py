@@ -15,7 +15,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine import Employment
-from ccnl_engine.events import SicknessEpisode
+from ccnl_engine.events import InpsSicknessBase, SicknessEpisode
 from ccnl_engine.inputs import Permanent
 
 if TYPE_CHECKING:
@@ -37,6 +37,7 @@ def sickness_episode(
     started_on: date,
     ended_on: date,
     relapse_of: str | None = None,
+    inps_base: InpsSicknessBase | None = None,
 ) -> SicknessEpisode:
     """Return an episode of the given days.
 
@@ -48,16 +49,25 @@ def sickness_episode(
         started_on=started_on,
         ended_on=ended_on,
         relapse_of=relapse_of,
+        inps_base=inps_base,
     )
 
 
 def march_sickness_episode() -> SicknessEpisode:
     """Return a five-day episode from Monday 9 to Friday 13 March 2026.
 
+    February, the month before, paid 2158.26 over its 24 days Monday to
+    Saturday: the INPS daily base of an operaio C3.
+
     Returns:
         The episode, id ``"2026-03-09"``.
     """
-    return sickness_episode("2026-03-09", date(2026, 3, 9), date(2026, 3, 13))
+    return sickness_episode(
+        "2026-03-09",
+        date(2026, 3, 9),
+        date(2026, 3, 13),
+        inps_base=InpsSicknessBase(C3_MONTHLY, Decimal(0), paid_days=24),
+    )
 
 
 def metalmeccanico_c3(category: WorkerCategory | None) -> Employment:

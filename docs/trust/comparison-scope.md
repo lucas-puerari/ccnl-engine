@@ -29,18 +29,16 @@ but the base salary has one on a production CCNL yet.
 
 ## Sickness limitations
 
-Two limitations of `knowledge/limitation/engine.json` keep sickness out of
+One limitation of `knowledge/limitation/engine.json` keeps sickness out of
 scope on the production CCNLs:
 
-- `sickness_inps_daily_base`: without `SicknessEpisode.inps_base` (and in
-  the other cases [Work rules](../engine/work-rules.md#inps-daily-base)
-  lists) the INPS share is computed on the CCNL daily quota, not on the
-  INPS daily base; its monetary impact is unknown. It closes when the
-  remaining cases are computed and the base is derived from the closing
-  state of the engine's own runs, and a public worked example of a sick
-  month matches.
 - `sickness_cumulation_window`: covers five of the six production CCNLs
   and closes with the comporto window of each CCNL sourced in its file.
 
-Until both close, a sick month is compared, if at all, only on the gross
+The INPS share is computed on the INPS daily base the episode states
+(`SicknessEpisode.inps_base`, see
+[Work rules](../engine/work-rules.md#inps-daily-base)); a sick month is
+compared only when the packet states it.
+
+Until it closes, a sick month is compared, if at all, only on the gross
 and the employer-paid integration, never on contributions or net.

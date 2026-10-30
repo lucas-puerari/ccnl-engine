@@ -512,7 +512,7 @@ def sickness_cases[C](
                     InpsSicknessBase(Decimal("2158.26"), Decimal(0), paid_days=24)
                 ),
                 _inps_base_sickness(None),
-                "sickness_inps_daily_base",
+                "inps_base",
             ),
         ),
         "InpsSicknessBase.paid_days": (
@@ -521,7 +521,7 @@ def sickness_cases[C](
                     InpsSicknessBase(Decimal("2158.26"), Decimal(0), paid_days=24)
                 ),
                 _inps_base_sickness(InpsSicknessBase(Decimal("2158.26"), Decimal(0))),
-                "sickness_inps_daily_base",
+                "inps_base",
             ),
         ),
         "SicknessEpisode.prior_worked_days": (
