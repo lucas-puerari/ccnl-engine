@@ -10,12 +10,7 @@
       "rule": "ANNUAL MINIMI: the minimi of the CCNL are updated every year from 1 January by the Commissione nazionale (Art. 38, ISTAT variation of the consumer prices); the bundle holds the table of 2026. From 1 January 2027 the amounts are those of 2026 until the 2027 table is published and added, so a 2027 run is not payable.",
       "calculation": "ccnl/lavoro-domestico-convivente:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -31,12 +26,7 @@
       "rule": "The cash indennita sostitutiva of board and lodging is not paid for the days the convivente does not take them: ferie (Art. 17 c. 7), sospensioni extraferiali (Art. 18 c. 1), congedo matrimoniale (Art. 24 c. 2), malattia and infortunio outside hospital (Art. 27 c. 9, Art. 29 c. 7). The request carries no fact on whether board and lodging were taken, so the engine pays none.",
       "calculation": "ccnl/lavoro-domestico-convivente:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Add a fact for the days without board and lodging and pay the Tabella F value for them.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -52,12 +42,7 @@
       "rule": "The INPS contributions of the tredicesima are paid on the hours of the year: INPS bands them on the paga oraria effettiva, which spreads the tredicesima over the hours, so the tredicesima run charges no INPS hours. The Cas.Sa.Colf contribution of Art. 54 c. 2 is charged on the contributable hours the run states, a tredicesima run too: no bundled source says whether the tredicesima carries hours of its own for it.",
       "calculation": "ccnl/lavoro-domestico-convivente:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T05.01"
-      ],
-      "verification": [
-        "T05.10"
-      ],
+      "remediation": "Source from the Cas.Sa.Colf rules whether the tredicesima carries contributable hours and set them for extra-month runs.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -73,12 +58,7 @@
       "rule": "INPS BAND: the engine chooses the band of up to 24 weekly hours on the paga oraria effettiva of INPS (circ. 9/2026; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico): the monthly pay with board and lodging over the hours of the employment (weekly hours x 52 / 12), raised by the tredicesima (x 13 / 12). That reading of the circular is not yet checked against a worked example of the INPS domestic table (review of 2026-10-30).",
       "calculation": "ccnl/lavoro-domestico-convivente:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T04.01"
-      ],
-      "verification": [
-        "T04.12"
-      ],
+      "remediation": "Validate the hourly INPS bracket lookup for weekly hours up to 24 against the INPS domestic table.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -94,12 +74,7 @@
       "rule": "Art. 27 c. 6: the comporto is 50% longer for an oncological illness certified by the ASL. The episode can state a serious illness (SicknessEpisode.serious_illness), but the domestic sickness rules have no serious-illness rule, so the engine keeps the ordinary comporto (review of 2026-10-30).",
       "calculation": "ccnl/lavoro-domestico-convivente:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T03.03"
-      ],
-      "verification": [
-        "T03.11"
-      ],
+      "remediation": "Add the serious-illness rule of Art. 27 c. 6 (comporto 50% longer) to the sickness rules.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -115,12 +90,7 @@
       "rule": "REDUCED HOURS UNDER ART. 14 C. 1: a convivente may agree fewer than 54 weekly hours (art. 14 c. 1: 'con un massimo di [...] 54 ore settimanali'). The CCNL gives Tabella A as monthly values and no rule to proportion them to the agreed hours; the engine scales the pay linearly on the full time the employment states. The art. 14 c. 2 regime (levels C, B, B super up to 30 hours, Tabella B) is the separate file lavoro-domestico-convivente-orario-ridotto.",
       "calculation": "ccnl/lavoro-domestico-convivente:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Source how the Tabella A minimum of a convivente with fewer than 54 agreed weekly hours is computed and model it, then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -136,14 +106,7 @@
       "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
       "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
       "state": "unverified",
-      "work": [
-        "T00.03",
-        "T09.03"
-      ],
-      "verification": [
-        "T00.12",
-        "T09.11"
-      ],
+      "remediation": "Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -159,14 +122,7 @@
       "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
       "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
       "state": "unverified",
-      "work": [
-        "T00.03",
-        "T09.03"
-      ],
-      "verification": [
-        "T00.12",
-        "T09.11"
-      ],
+      "remediation": "Replace each provisional ruleset of the year with the values of its published sources, drop its provisional flag, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -182,12 +138,7 @@
       "rule": "Seniority amounts frozen at 2026 base. Future ISTAT adjustments will raise base_salary but amounts_by_level will need manual update.",
       "calculation": "ccnl/lavoro-domestico-convivente:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Update the seniority amounts with each ISTAT adjustment of the minimum tables.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -203,12 +154,7 @@
       "rule": "Art. 27 c. 9: the conventional value of board and lodging is part of the sick pay only when the worker is not in hospital or in the employer's home. The request does not say where the worker is, so the engine pays the monthly pay as stated.",
       "calculation": "ccnl/lavoro-domestico-convivente:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T03.02"
-      ],
-      "verification": [
-        "T03.11"
-      ],
+      "remediation": "Add a fact for the days in hospital or in the employer's home and leave the board and lodging out of their sick pay.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -224,12 +170,7 @@
       "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.",
       "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
       "state": "unverified",
-      "work": [
-        "T03.03"
-      ],
-      "verification": [
-        "T03.11"
-      ],
+      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -245,12 +186,7 @@
       "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days, when the episode does not let the engine compute the INPS daily base: no SicknessEpisode.inps_base in its relapse chain, an operaio without the days worked or paid of the month before, an impiegato who did not work that whole month, an unknown worker category, or a sector INPS regime (spettacolo). With the base, INPS pays its share on the retribuzione media globale giornaliera of the month before the illness and on calendar days (INPS circ. 134368/1981 point 11). The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
       "calculation": "ccnl_engine.sickness.pay.handlers (INPS share of a sick day); ccnl_engine.sickness.base.rules (daily base)",
       "state": "unverified",
-      "work": [
-        "T03.01"
-      ],
-      "verification": [
-        "T03.11"
-      ],
+      "remediation": "Compute the base of an impiegato's partial month (point 11.2 letters d-f), of the sector regimes, and from the closing state of the engine's own runs so the caller need not state it, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -266,12 +202,7 @@
       "rule": "SINGLE PERIOD 2026-01-01. Pre-2026 tranches out of scope. Post-2026 CCNL 2025-2028 tranches not yet modelled: +30 on BS convivente from Jan 2027, +15 from Jan 2028, +15 from Sep 2028 (other levels proportional — exact amounts require official ASSINDATCOLF/DOMINA table for those periods).",
       "calculation": "ccnl/lavoro-domestico-convivente:coverage.notes",
       "state": "absent",
-      "work": [
-        "T07.07"
-      ],
-      "verification": [
-        "T07.08"
-      ],
+      "remediation": "Add the 2027 and 2028 tranches from the official ASSINDATCOLF/DOMINA tables.",
       "origin": "seeded",
       "links": {
         "limitations": [

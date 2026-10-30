@@ -22,8 +22,8 @@ Usage::
     uv run python scripts/completeness/report.py --check   # fail on drift
     uv run python scripts/completeness/report.py --strict  # fail if incomplete
 
-``--strict`` fails while any CCNL is incomplete: it is the gate of the
-completion plan, not of every pull request.
+``--strict`` fails while any CCNL is incomplete: it is the gate of model
+completeness, not of every pull request.
 """
 
 from __future__ import annotations

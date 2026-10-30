@@ -1,4 +1,4 @@
-"""P06: a sickness episode across two months, on the INPS base of the month before.
+"""A sickness episode across two months, on the INPS base of the month before.
 
 Metalmeccanico Federmeccanica C3 operaio, hired in 2025: 2158.26 EUR a month
 to 31 May 2026 and 2211.43 from 1 June.  The episode runs from Monday 25 May
@@ -44,9 +44,7 @@ if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
 
 _APRIL = InpsSicknessBase(Decimal("2158.26"), Decimal(0), paid_days=26)
-_EPISODE = SicknessEpisode(
-    "P06", date(2026, 5, 25), date(2026, 6, 10), inps_base=_APRIL
-)
+_EPISODE = SicknessEpisode("S1", date(2026, 5, 25), date(2026, 6, 10), inps_base=_APRIL)
 _RMGG = Decimal("2158.26") / 26 + Decimal("2158.26") / 12 / 25
 
 
@@ -105,11 +103,11 @@ def test_june_keeps_the_april_base_through_the_pay_rise() -> None:
 def test_a_relapse_takes_the_base_of_the_episode_it_continues() -> None:
     """A relapse in June states no base: INPS pays it on the April one."""
     first = SicknessEpisode(
-        "P06", date(2026, 5, 25), date(2026, 5, 31), inps_base=_APRIL
+        "S1", date(2026, 5, 25), date(2026, 5, 31), inps_base=_APRIL
     )
     may = _run(5, first, PeriodState.zero())
     relapse = SicknessEpisode(
-        "P06-R", date(2026, 6, 8), date(2026, 6, 10), relapse_of="P06"
+        "S1-R", date(2026, 6, 8), date(2026, 6, 10), relapse_of="S1"
     )
     june = _run(6, relapse, may.closing_state)
 
@@ -121,7 +119,7 @@ def test_a_relapse_takes_the_base_of_the_episode_it_continues() -> None:
 
 def test_without_the_base_the_share_stays_on_the_quota_and_blocks() -> None:
     """No pay of the month before: the limitation still applies."""
-    episode = SicknessEpisode("P06", date(2026, 5, 25), date(2026, 6, 10))
+    episode = SicknessEpisode("S1", date(2026, 5, 25), date(2026, 6, 10))
     may = _run(5, episode, PeriodState.zero())
 
     assert "sickness_inps_daily_base" in {lim.id for lim in may.limitations}

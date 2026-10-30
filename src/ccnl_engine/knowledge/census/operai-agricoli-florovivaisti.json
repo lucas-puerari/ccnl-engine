@@ -10,12 +10,7 @@
       "rule": "APPRENTICESHIP (Allegato n. 10, CCNL 23 May 2022, pp. 122-123): two levels below the destination in the first 12 months, one level below in the next 12, the destination in the last 12 (Area 1 and 2: 36 months; Area 3: 24 months, from one level below, only for the highest provincial level of the area). The levels are the provincial professional levels inside each area, not the three national areas the file holds: the file places an Area1 apprentice at the Area3 and then the Area2 minimum, a reading the text does not support. A fixed-term apprentice operaio is never paid below the lowest level of the destination area (p. 125).",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Model the provincial levels of each area, or pass the apprentice classification of the provincial contract.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -31,12 +26,7 @@
       "rule": "APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T04.02"
-      ],
-      "verification": [
-        "T04.12"
-      ],
+      "remediation": "Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/agricoltura.json derived, then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -52,12 +42,7 @@
       "rule": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T02.03"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -73,12 +58,7 @@
       "rule": "CPL TIMING: the minimi di area of the renewal of 28/05/2026 (Allegato n. 1, p. 52) apply from 1 June 2026 only in the provinces without a contratto provinciale di lavoro (CPL); where a CPL is in force they apply from its renewal, by 1 January 2029 at the latest (Art. 50, p. 30). The file applies them from 1 June 2026 everywhere: a worker in a province with a CPL not yet renewed is paid above the national floor in force for that province.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Add an employer fact for the CPL status of the province, or pass the minimo in force as an input.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -94,12 +74,7 @@
       "rule": "BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and FISA (Fondo Integrativo di Settore Agricolo) bilateral fund contributions are set at provincial level and not modelled. Agrifondo (supplementary pension) contributions also omitted.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "work": [
-        "T05.01"
-      ],
-      "verification": [
-        "T05.10"
-      ],
+      "remediation": "Pass the provincial EBAN, FISA and Agrifondo contributions as bilateral fund events.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -115,12 +90,7 @@
       "rule": "ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (Art. 54-bis, new, verbale of 28 May 2026): from 1 January 2027 a fixed-term operaio who worked at least 150 days a year for the same employer for three consecutive years receives, from the fourth year, 0.4% of the salario contrattuale. The request carries no history of days per employer, so it is not paid.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Add the consecutive years of at least 150 days with the employer to the request and pay 0.4% of the salary, then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -136,12 +106,7 @@
       "rule": "FLOROVIVAISTI OVERTIME AND HOLIDAY WORK: the operai florovivaisti are paid 29% overtime, 40% holiday work, 48% night work, 50% holiday overtime and 55% night holiday work (Art. 44, p. 49), against the 25, 35, 40, 40 and 45% of the operai agricoli (Art. 43) the file pays; ordinary holiday work (35% and 40%) has no band. The request does not say whether the operaio is a florovivaista. The rates apply to the provincial salario contrattuale.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.06"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Split the florovivaisti into their own levels or file with the Art. 44 rates.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -157,12 +122,7 @@
       "rule": "FLOROVIVAISTI SICKNESS: the operaio florovivaista a tempo indeterminato receives from the employer, on top of the INPS indemnity, 25% of the contractual daily wage for at most 90 days a year, from the first day when the sickness lasts more than three days (Art. 62, verbale of 28 May 2026, p. 38); the file pays the operai agricoli rule, with no employer integration, and the request does not say whether the operaio is a florovivaista.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "work": [
-        "T03.02"
-      ],
-      "verification": [
-        "T03.11"
-      ],
+      "remediation": "Split the florovivaisti into their own levels or file, with a sickness rule paying 25% of the daily wage for 90 days a year past the third day.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -178,12 +138,7 @@
       "rule": "FLOROVIVAISTI NOT DISTINGUISHED. The CCNL covers both Operai Agricoli (OTA) and Operai Florovivaisti (OTF). OTF have separate (higher) tabelle retributive with their own area amounts. This file models OTA amounts only. Callers must use a separate file (not yet modelled) for OTF workers.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Model the OTF salary tables as a separate file.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -199,12 +154,7 @@
       "rule": "INAIL NOT MODELLED. INAIL agricultural premium (8.50% unified from 2026 per new tariff) is not modelled. The engine does not track INAIL.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "work": [
-        "T04.05"
-      ],
-      "verification": [
-        "T04.12"
-      ],
+      "remediation": "Model the INAIL agricultural premium.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -220,12 +170,7 @@
       "rule": "D.L. 463/1983 art. 7 c. 5 keeps the operai agricoli out of the 9.50% minimum daily base, and the run applies no minimum to them. Tabella A of INPS circ. 6/2026 still lists 51.70 for the operai agricoli, 'non soggetto all'adeguamento' of art. 7 c. 1; no source found says whether it is a floor of their contribution base. A base below it may understate the contributions.",
       "calculation": "ccnl_engine.contribution.minimum_base.services.minimum_base_paths; D.L. 463/1983 art. 7 cc. 1 and 5; INPS circ. 6/2026 allegato 1, Tabella A, note (2)",
       "state": "unverified",
-      "work": [
-        "T04.03"
-      ],
-      "verification": [
-        "T04.12"
-      ],
+      "remediation": "Source the role of the 51.70 of the operai agricoli (INPS circ. 43/2026 on the agricultural contributions, or the minimum daily wages of art. 1 L. 389/1989), then apply it as their minimum or record that none applies.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -241,12 +186,7 @@
       "rule": "INPS CONTRIBUTION BASE. Agricultural OTI INPS contributions are legally computed on the 'retribuzione convenzionale' (set annually by INPS decree per DL 338/1989 Art. 1), NOT on the actual contractual salary. This engine applies rates to actual gross salary. The net INPS amounts will differ from statutory computations. Figures are indicative only.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "work": [
-        "T04.01"
-      ],
-      "verification": [
-        "T04.12"
-      ],
+      "remediation": "Compute agricultural INPS contributions on the retribuzione convenzionale set by INPS decree.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -262,12 +202,7 @@
       "rule": "OTI ONLY. OTD (Operai a Tempo Determinato / seasonal) workers are not modelled. OTD workers receive a Terzo Elemento of 30.44% (festività 5.45% + ferie 8.33% + tredicesima 8.33% + quattordicesima 8.33%) in lieu of accruals; the engine cannot represent this structure. OTD represent a large share of agricultural workers.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Model the OTD terzo elemento structure for fixed-term agricultural workers.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -283,12 +218,7 @@
       "rule": "NATIONAL MINIMUMS ONLY. Provincial contracts (contratti provinciali di lavoro, 20 provinces) pay substantially more than national floor. The national tabella retributiva is the legal minimum. Actual employer cost in any province requires adding the CPL supplement.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "work": [
-        "T05.09"
-      ],
-      "verification": [
-        "T05.10"
-      ],
+      "remediation": "Add the provincial (CPL) supplement outside the engine.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -304,14 +234,7 @@
       "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
       "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
       "state": "unverified",
-      "work": [
-        "T00.03",
-        "T09.03"
-      ],
-      "verification": [
-        "T00.12",
-        "T09.11"
-      ],
+      "remediation": "Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -327,14 +250,7 @@
       "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
       "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
       "state": "unverified",
-      "work": [
-        "T00.03",
-        "T09.03"
-      ],
-      "verification": [
-        "T00.12",
-        "T09.11"
-      ],
+      "remediation": "Replace each provisional ruleset of the year with the values of its published sources, drop its provisional flag, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -349,13 +265,7 @@
       "rule": "agreement/operai-agricoli-florovivaisti.json#additional_months[2022-06-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -371,12 +281,7 @@
       "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.",
       "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
       "state": "unverified",
-      "work": [
-        "T03.03"
-      ],
-      "verification": [
-        "T03.11"
-      ],
+      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -392,12 +297,7 @@
       "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days, when the episode does not let the engine compute the INPS daily base: no SicknessEpisode.inps_base in its relapse chain, an operaio without the days worked or paid of the month before, an impiegato who did not work that whole month, an unknown worker category, or a sector INPS regime (spettacolo). With the base, INPS pays its share on the retribuzione media globale giornaliera of the month before the illness and on calendar days (INPS circ. 134368/1981 point 11). The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
       "calculation": "ccnl_engine.sickness.pay.handlers (INPS share of a sick day); ccnl_engine.sickness.base.rules (daily base)",
       "state": "unverified",
-      "work": [
-        "T03.01"
-      ],
-      "verification": [
-        "T03.11"
-      ],
+      "remediation": "Compute the base of an impiegato's partial month (point 11.2 letters d-f), of the sector regimes, and from the closing state of the engine's own runs so the caller need not state it, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -413,12 +313,7 @@
       "rule": "SENIORITY OF THE SUPER PROFILES: Art. 54 (p. 55) pays 10,85 a month to the operai qualificati super and 11,62 to the specializzati super; the three areas of the file pay the amount of the qualificati (10,33) and of the specializzati (11,36), and the request does not say whether the operaio is a super profile.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Add the super profiles as levels with their scatto amounts.",
       "origin": "seeded",
       "links": {
         "limitations": [

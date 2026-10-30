@@ -2,9 +2,9 @@
 
 Each open limitation that concerns a CCNL (its own, or an engine one that
 lists it) and each weak payable rule of its file becomes a ``seeded``
-requirement row: the institute is the capability, the work items come from
-:data:`WORK`, and the row links the limitation or the rule, so its open
-state follows theirs.  The weak rules of the shared files (INPS, sector,
+requirement row: the institute is the capability, the remediation is that
+of the limitation, and the row links the limitation or the rule, so its
+open state follows theirs.  The weak rules of the shared files (INPS, sector,
 fiscal) go to ``census/common.json``.  A seeded row is never read from the
 text: the completeness report keeps it open until a row of origin ``text``
 replaces it.
@@ -50,97 +50,11 @@ SCHEMA = 1
 WEAK = frozenset({"assumed", "missing"})
 _MAX_ID = 64
 
-#: Work items of the completion plan, by capability of the row.
-WORK: dict[str, tuple[str, ...]] = {
-    "base_salary": ("T02.01",),
-    "seniority": ("T02.01",),
-    "inps_employer": ("T04.01",),
-    "inps_employee": ("T04.01",),
-    "sickness": ("T03.02",),
-    "overtime": ("T02.06",),
-    "bilateral_funds": ("T05.01",),
-    "contractual_funds": ("T05.01",),
-    "assistance_contribution": ("T05.01",),
-    "pension_fund_contribution": ("T05.04",),
-    "leave": ("T02.10",),
-    "territorial_supplement": ("T05.09",),
-    "trattamento_integrativo": ("T06.01",),
-    "una_tantum": ("T07.01",),
-    "workplace_injury": ("T03.06",),
-    "inail": ("T04.05",),
-    "worker_category": ("T01.02",),
-    "irpef": ("T06.01",),
-    "welfare": ("T06.09",),
-}
-#: Work items of a variant more specific than its capability.
-VARIANT_WORK: dict[str, tuple[str, ...]] = {
-    "apprentice_seniority": ("T02.03",),
-    "apprentice_inps_rates_unsourced": ("T04.02",),
-    "apprenticeship_pct_undeclared_components": ("T02.03",),
-    "sickness_inps_daily_base": ("T03.01",),
-    "sickness_cumulation_window": ("T03.03",),
-    "sickness_net_basis": ("T03.05",),
-    "oncological_comporto": ("T03.03",),
-    "provisional_ruleset": ("T00.03", "T09.03"),
-    "provisional_inps_ruleset": ("T00.03", "T09.03"),
-    "tfr_compensation_apprentice_guarantee_fund": ("T08.05",),
-    "inps_minimum_base_exempt_category": ("T04.03",),
-    "cigo_rate_by_activity": ("T04.10",),
-    "fpls_rates_approximated": ("T04.10",),
-    "tourism_special_supplement": ("T06.09",),
-    "ordinary_hours_premiums": ("T02.07",),
-    "contractual_fund_partial": ("T05.06",),
-    "health_and_bilateral_funds": ("T05.01",),
-    "una_tantum_2025_2026": ("T07.01",),
-    "tranches_2027_2028": ("T07.07",),
-    "tranches_from_2027": ("T07.07",),
-    "part_time_supplementary_rate": ("T02.06",),
-    "rol_schedule_absorption": ("T02.10",),
-    "permit_deadline_payout": ("T02.10",),
-    "shared_rules_unchecked": ("T09.04",),
-    "long_week_divisors": ("T02.04",),
-    "long_week_divisor_195": ("T02.04",),
-    "approximate_hourly_divisor": ("T02.04",),
-    "teacher_hourly_divisor": ("T02.04",),
-    "err_unsourced": ("T09.03",),
-}
-#: Work items of every weak rule: resolve it on the primary source.
-WEAK_WORK = ("T09.01", "T09.03")
-#: The closing check of each area of the plan: the verification a row of
-#: the area is planned for once its work is done.
-VERIFICATION: dict[str, str] = {
-    "T00": "T00.12",
-    "T01": "T01.14",
-    "T02": "T02.13",
-    "T03": "T03.11",
-    "T04": "T04.12",
-    "T05": "T05.10",
-    "T06": "T06.11",
-    "T07": "T07.08",
-    "T08": "T08.09",
-    "T09": "T09.11",
-}
-
-
-def verification(work: tuple[str, ...]) -> list[str]:
-    """Return the planned verification of the work items *work*.
-
-    Returns:
-        The closing check of the area of each item, in order, once each.
-    """
-    return list(dict.fromkeys(VERIFICATION[item[:3]] for item in work))
-
-
-def work_items(capability: str, name: str) -> tuple[str, ...]:
-    """Return the work items that close a limitation.
-
-    Its name decides when :data:`VARIANT_WORK` lists it, its capability
-    otherwise; T00.07 reconciles any other with the census.
-
-    Returns:
-        The work items, never empty.
-    """
-    return VARIANT_WORK.get(name) or WORK.get(capability) or ("T00.07",)
+#: What closes a weak rule.
+WEAK_REMEDIATION = (
+    "Verify the value on its primary source and record the provenance; a "
+    "derivation states its formula and inputs."
+)
 
 
 def limitation_name(limitation: ModelLimitation) -> str:
@@ -178,8 +92,7 @@ def limitation_row(limitation: ModelLimitation) -> dict[str, Any]:
         "rule": limitation.summary,
         "calculation": limitation.source,
         "state": "unverified" if unknown else "absent",
-        "work": list(work := work_items(limitation.capability, name)),
-        "verification": verification(work),
+        "remediation": limitation.remediation,
         "origin": "seeded",
         "links": {"limitations": [limitation.id]},
     }
@@ -219,8 +132,7 @@ def rule_row(rule: PayableRule) -> dict[str, Any]:
         "rule": f"{rule.file}#{rule.path}",
         "calculation": ", ".join(rule.capabilities),
         "state": "absent" if rule.status == "missing" else "unverified",
-        "work": list(WEAK_WORK),
-        "verification": verification(WEAK_WORK),
+        "remediation": WEAK_REMEDIATION,
         "origin": "seeded",
         "links": {"rules": [f"{rule.file}#{rule.path}"]},
     }

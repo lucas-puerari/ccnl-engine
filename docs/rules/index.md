@@ -83,8 +83,7 @@ assignment and, for a multi-sector text, the related families:
 
 A family groups the CCNLs of one productive sector across employer size,
 legal form and signatories; the catalog states for each family its
-assignment criteria and the work groups G01-G17 of the roadmap that hold
-it. The family is descriptive: no rule, rate or contribution regime is
+assignment criteria. The family is descriptive: no rule, rate or contribution regime is
 inherited from it, and it is independent of `tax_sector` and of the CNEL
 code. An id the catalog does not hold is rejected when the file loads, in
 the bundle and in a custom repository alike. Schema `0.6` made the field

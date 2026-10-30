@@ -10,12 +10,7 @@
       "rule": "CIGO: the operai of the stone-working firms owe 3.30% ('operai delle imprese dell'industria e artigianato lapidei', D.Lgs. 148/2015 art. 13 c. 1 (Normattiva, text in force on 2026-10-14, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art13!vig=2026-10-14, snapshot sha256 3f7019a244e01d36ac8e7c9e25bcf058c777c8ed758418ba261d83867672c46a), lett. d); the industria table charges the 1.70% / 2.00% of lett. a-b, so the employer contributions of an operaio are understated by 1.60 or 1.30 points. Impiegati and quadri owe the 1.70% / 2.00% of lett. e-f the table already charges.",
       "calculation": "ccnl/materiali-costruzione-lapidei-confapi:coverage.notes",
       "state": "absent",
-      "work": [
-        "T04.10"
-      ],
-      "verification": [
-        "T04.12"
-      ],
+      "remediation": "Model the CIGO of D.Lgs. 148/2015 art. 13 c. 1 by activity (edile, lapidei) apart from the tax sector, then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -31,12 +26,7 @@
       "rule": "The Fondapi contractual contribution (5 EUR riparametrati a month) is owed on every run that pays the month, in full. The Scheda and the circolare operativa of Fondapi state no rule for a partly employed month, a part-time worker or the extra months: a partial month or part time pays the full amount, an extra-month run none.",
       "calculation": "ccnl/materiali-costruzione-lapidei-confapi:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T05.06"
-      ],
-      "verification": [
-        "T05.10"
-      ],
+      "remediation": "Source the rule of the accordo of 10 November 2020 for a partial month and part time and model it, then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -52,14 +42,7 @@
       "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
       "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
       "state": "unverified",
-      "work": [
-        "T00.03",
-        "T09.03"
-      ],
-      "verification": [
-        "T00.12",
-        "T09.11"
-      ],
+      "remediation": "Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -75,14 +58,7 @@
       "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
       "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
       "state": "unverified",
-      "work": [
-        "T00.03",
-        "T09.03"
-      ],
-      "verification": [
-        "T00.12",
-        "T09.11"
-      ],
+      "remediation": "Replace each provisional ruleset of the year with the values of its published sources, drop its provisional flag, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -97,13 +73,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#additional_months[2019-04-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -118,13 +88,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#contractual_fund_contribution[1][2026-01-01]",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -139,13 +103,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#contractual_fund_contribution[2][2026-01-01]",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -160,13 +118,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#contractual_fund_contribution[3][2026-01-01]",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -181,13 +133,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#contractual_fund_contribution[4][2026-01-01]",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -202,13 +148,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#contractual_fund_contribution[5][2026-01-01]",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -223,13 +163,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#contractual_fund_contribution[6][2026-01-01]",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -244,13 +178,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#contractual_fund_contribution[7][2026-01-01]",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -265,13 +193,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#contractual_fund_contribution[8][2026-01-01]",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -286,13 +208,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#employer_funds[FONDAPI].employee_min_rate[2026-01-01]",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -307,13 +223,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#employer_funds[FONDAPI].rate[2026-01-01]",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -328,13 +238,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#levels[1].fixed_allowances[EDR]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -349,13 +253,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#levels[2].fixed_allowances[EDR]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -370,13 +268,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#levels[3].fixed_allowances[EDR]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -391,13 +283,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#levels[4].fixed_allowances[EDR]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -412,13 +298,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#levels[5].fixed_allowances[EDR]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -433,13 +313,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#levels[6].fixed_allowances[EDR]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -454,13 +328,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#levels[7].fixed_allowances[EDR]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -475,13 +343,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#levels[8].fixed_allowances[EDR]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -496,13 +358,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#levels[8].fixed_allowances[SUPERMIN_COLL]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -517,13 +373,7 @@
       "rule": "agreement/materiali-costruzione-lapidei-confapi.json#seniority_increments",
       "calculation": "seniority",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -539,12 +389,7 @@
       "rule": "An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.",
       "calculation": "ccnl_engine.severance.relief.services; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
       "state": "absent",
-      "work": [
-        "T08.05"
-      ],
-      "verification": [
-        "T08.09"
-      ],
+      "remediation": "Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.",
       "origin": "seeded",
       "links": {
         "limitations": [

@@ -10,12 +10,7 @@
       "rule": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
       "calculation": "ccnl/agenti-immobiliari-fiaip:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T02.03"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -31,12 +26,7 @@
       "rule": "SIMPLIFICATION: QSC and Quota Forfettaria (Art. 11) not modelled. QSC: 1.90% of monthly retribuzione × 14 mensilità (0.30% employee + 1.60% employer), paid to EBNAIP. Quota Forfettaria: 12 EUR/month × 12 mensilità, employer only. Both go to the bilateral entity; the QSC constitutes retribuzione ordinaria for TFR purposes (Art. 11). Modelling would require percentage-based bilateral fund logic not yet implemented. employer_cost_annual understated by (QSC employer portion + 144 EUR/year).",
       "calculation": "ccnl/agenti-immobiliari-fiaip:coverage.notes",
       "state": "absent",
-      "work": [
-        "T05.01"
-      ],
-      "verification": [
-        "T05.10"
-      ],
+      "remediation": "Pass the QSC and the quota forfettaria as a bilateral fund event, or model percentage-based bilateral contributions.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -52,12 +42,7 @@
       "rule": "SIMPLIFICATION: Fondo Fon.Te. supplementary pension (Art. 15) not modelled. Voluntary adhesion. Employee: 0.55% of TFR-eligible retribuzione; employer: 1.55% + 0.05% quota associativa. employer_cost_annual understated by approximately 1.60% of annual retribuzione for adherents.",
       "calculation": "ccnl/agenti-immobiliari-fiaip:coverage.notes",
       "state": "absent",
-      "work": [
-        "T05.04"
-      ],
-      "verification": [
-        "T05.10"
-      ],
+      "remediation": "Add the Fon.Te. employee and employer rates to the CCNL pension fund data.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -73,14 +58,7 @@
       "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
       "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
       "state": "unverified",
-      "work": [
-        "T00.03",
-        "T09.03"
-      ],
-      "verification": [
-        "T00.12",
-        "T09.11"
-      ],
+      "remediation": "Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -96,14 +74,7 @@
       "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
       "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
       "state": "unverified",
-      "work": [
-        "T00.03",
-        "T09.03"
-      ],
-      "verification": [
-        "T00.12",
-        "T09.11"
-      ],
+      "remediation": "Replace each provisional ruleset of the year with the values of its published sources, drop its provisional flag, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -119,12 +90,7 @@
       "rule": "SIMPLIFICATION: Q indennità di funzione (Art. 162 footnote) not modelled. Amount: 250 EUR/month × 12 mensilità, for quadri with responsibility over operational or local units ('nei casi di responsabilità di unità operative o di unità locali'). The schema can express it (Allowance.role, Allowance.months_per_year); the conglobated file keeps fixed_allowances empty. employer_cost_annual may be understated by up to 3000 EUR/year for qualifying Q employees (review of 2026-10-30).",
       "calculation": "ccnl/agenti-immobiliari-fiaip:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Model the Art. 162 Q function allowance (250 EUR x 12) as a role-gated allowance.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -139,13 +105,7 @@
       "rule": "agreement/agenti-immobiliari-fiaip.json#additional_months[2025-05-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -160,13 +120,7 @@
       "rule": "agreement/agenti-immobiliari-fiaip.json#seniority_increments",
       "calculation": "seniority",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -182,12 +136,7 @@
       "rule": "SIMPLIFICATION: Apprendistato specialistico (Art. 55) not modelled. Two-year fast-track for workers holding the mediazione immobiliare exam: 24 months starting at 5° and ending at 3°. Intermediate classification not specified in the article. Modelled only under the four standard Art. 40/48 tracks.",
       "calculation": "ccnl/agenti-immobiliari-fiaip:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Model the Art. 55 two-year specialist track once its intermediate classification is sourced.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -203,12 +152,7 @@
       "rule": "An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.",
       "calculation": "ccnl_engine.severance.relief.services; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
       "state": "absent",
-      "work": [
-        "T08.05"
-      ],
-      "verification": [
-        "T08.09"
-      ],
+      "remediation": "Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -224,12 +168,7 @@
       "rule": "SIMPLIFICATION: Una tantum payments (01/09/2025 and 01/05/2026) for employees hired before 01/01/2024 not modelled. One-time payments only; not part of ongoing monthly retribuzione.",
       "calculation": "ccnl/agenti-immobiliari-fiaip:coverage.notes",
       "state": "absent",
-      "work": [
-        "T07.01"
-      ],
-      "verification": [
-        "T07.08"
-      ],
+      "remediation": "Pay the 01/09/2025 and 01/05/2026 una tantum outside the engine for workers hired before 01/01/2024.",
       "origin": "seeded",
       "links": {
         "limitations": [

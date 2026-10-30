@@ -9,13 +9,7 @@
       "rule": "contribution/2027/agricoltura.json#apprentice",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -30,13 +24,7 @@
       "rule": "contribution/2027/agricoltura.json#inps",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -51,13 +39,7 @@
       "rule": "contribution/2027/agricoltura.json#inps.employee_additional",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -72,13 +54,7 @@
       "rule": "contribution/2027/agricoltura.json#inps.minimum_base",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -93,13 +69,7 @@
       "rule": "contribution/2027/agricoltura.json#inps.zone_reduction",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -114,13 +84,7 @@
       "rule": "contribution/2027/artigianato.json#apprentice",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -135,13 +99,7 @@
       "rule": "contribution/2027/artigianato.json#inps",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -156,13 +114,7 @@
       "rule": "contribution/2027/artigianato.json#inps.cigs_indotto",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -177,13 +129,7 @@
       "rule": "contribution/2027/artigianato.json#inps.employee_additional",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -198,13 +144,7 @@
       "rule": "contribution/2027/artigianato.json#inps.minimum_base",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -219,13 +159,7 @@
       "rule": "contribution/2027/credito.json#apprentice",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -240,13 +174,7 @@
       "rule": "contribution/2027/credito.json#inps",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -261,13 +189,7 @@
       "rule": "contribution/2027/credito.json#inps.employee_additional",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -282,13 +204,7 @@
       "rule": "contribution/2027/credito.json#inps.minimum_base",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -303,13 +219,7 @@
       "rule": "contribution/2027/edilizia.json#apprentice",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -324,13 +234,7 @@
       "rule": "contribution/2027/edilizia.json#inps",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -345,13 +249,7 @@
       "rule": "contribution/2027/edilizia.json#inps.employee_additional",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -366,13 +264,7 @@
       "rule": "contribution/2027/edilizia.json#inps.minimum_base",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -387,13 +279,7 @@
       "rule": "contribution/2027/industria.json#apprentice",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -408,13 +294,7 @@
       "rule": "contribution/2027/industria.json#inps",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -429,13 +309,7 @@
       "rule": "contribution/2027/industria.json#inps.employee_additional",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -450,13 +324,7 @@
       "rule": "contribution/2027/industria.json#inps.minimum_base",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -471,13 +339,7 @@
       "rule": "contribution/2027/lavoro-domestico.json#domestic_contributions",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -492,13 +354,7 @@
       "rule": "contribution/2027/pubblica-amministrazione.json#apprentice",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -513,13 +369,7 @@
       "rule": "contribution/2027/pubblica-amministrazione.json#inps",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -534,13 +384,7 @@
       "rule": "contribution/2027/pubblica-amministrazione.json#inps.employee_additional",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -555,13 +399,7 @@
       "rule": "contribution/2027/pubblica-amministrazione.json#inps.end_of_service",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -576,13 +414,7 @@
       "rule": "contribution/2027/pubblica-amministrazione.json#inps.minimum_base",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -597,13 +429,7 @@
       "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cpug.end_of_service",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -618,13 +444,7 @@
       "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cpug",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -639,13 +459,7 @@
       "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cpdel.end_of_service",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -660,13 +474,7 @@
       "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cpi",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -681,13 +489,7 @@
       "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_credit",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -702,13 +504,7 @@
       "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cpdel",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -723,13 +519,7 @@
       "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cpi.end_of_service",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -744,13 +534,7 @@
       "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cps.end_of_service",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -765,13 +549,7 @@
       "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cps",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -786,13 +564,7 @@
       "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_life_insurance",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -807,13 +579,7 @@
       "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_enam",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -828,13 +594,7 @@
       "rule": "contribution/2027/terziario.json#apprentice",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -849,13 +609,7 @@
       "rule": "contribution/2027/terziario.json#inps",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -870,13 +624,7 @@
       "rule": "contribution/2027/terziario.json#inps.employee_additional",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -891,13 +639,7 @@
       "rule": "contribution/2027/terziario.json#inps.fis_reduction",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -912,13 +654,7 @@
       "rule": "contribution/2027/terziario.json#inps.minimum_base",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -933,13 +669,7 @@
       "rule": "contribution/2027/terziario.json#inps.sick_pay_supplements.pubblici_esercizi",
       "calculation": "inps_employee, inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -954,13 +684,7 @@
       "rule": "family/2027.json#children",
       "calculation": "family_deductions",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -975,13 +699,7 @@
       "rule": "family/2027.json#other_dependents",
       "calculation": "family_deductions",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -996,13 +714,7 @@
       "rule": "family/2027.json#spouse",
       "calculation": "family_deductions",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1017,13 +729,7 @@
       "rule": "family/2027.json#spouse_increases",
       "calculation": "family_deductions",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1038,13 +744,7 @@
       "rule": "irpef/work_deduction/2027.json#work_deduction",
       "calculation": "irpef",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1059,13 +759,7 @@
       "rule": "irpef/work_deduction/2027.json#work_deduction.minimum",
       "calculation": "irpef",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1080,13 +774,7 @@
       "rule": "sector/2027/agricoltura.json#complementary_pension",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1101,13 +789,7 @@
       "rule": "sector/2027/agricoltura.json#fixed_term_additional_rate",
       "calculation": "inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1122,13 +804,7 @@
       "rule": "sector/2027/agricoltura.json#irpef_brackets",
       "calculation": "irpef",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1143,13 +819,7 @@
       "rule": "sector/2027/agricoltura.json#tfr",
       "calculation": "tfr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1164,13 +834,7 @@
       "rule": "sector/2027/agricoltura.json#trattamento_integrativo",
       "calculation": "trattamento_integrativo",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1185,13 +849,7 @@
       "rule": "sector/2027/agricoltura.json#ulteriore_detrazione",
       "calculation": "ulteriore_detrazione_lavoro",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1206,13 +864,7 @@
       "rule": "sector/2027/artigianato.json#complementary_pension",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1227,13 +879,7 @@
       "rule": "sector/2027/artigianato.json#fixed_term_additional_rate",
       "calculation": "inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1248,13 +894,7 @@
       "rule": "sector/2027/artigianato.json#irpef_brackets",
       "calculation": "irpef",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1269,13 +909,7 @@
       "rule": "sector/2027/artigianato.json#tfr",
       "calculation": "tfr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1290,13 +924,7 @@
       "rule": "sector/2027/artigianato.json#tfr.additional_ivs",
       "calculation": "tfr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1311,13 +939,7 @@
       "rule": "sector/2027/artigianato.json#tfr.compensation",
       "calculation": "tfr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1332,13 +954,7 @@
       "rule": "sector/2027/artigianato.json#trattamento_integrativo",
       "calculation": "trattamento_integrativo",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1353,13 +969,7 @@
       "rule": "sector/2027/artigianato.json#ulteriore_detrazione",
       "calculation": "ulteriore_detrazione_lavoro",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1374,13 +984,7 @@
       "rule": "sector/2027/credito.json#complementary_pension",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1395,13 +999,7 @@
       "rule": "sector/2027/credito.json#fixed_term_additional_rate",
       "calculation": "inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1416,13 +1014,7 @@
       "rule": "sector/2027/credito.json#irpef_brackets",
       "calculation": "irpef",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1437,13 +1029,7 @@
       "rule": "sector/2027/credito.json#tfr",
       "calculation": "tfr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1458,13 +1044,7 @@
       "rule": "sector/2027/credito.json#tfr.additional_ivs",
       "calculation": "tfr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1479,13 +1059,7 @@
       "rule": "sector/2027/credito.json#tfr.compensation",
       "calculation": "tfr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1500,13 +1074,7 @@
       "rule": "sector/2027/credito.json#trattamento_integrativo",
       "calculation": "trattamento_integrativo",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1521,13 +1089,7 @@
       "rule": "sector/2027/credito.json#ulteriore_detrazione",
       "calculation": "ulteriore_detrazione_lavoro",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1542,13 +1104,7 @@
       "rule": "sector/2027/edilizia.json#complementary_pension",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1563,13 +1119,7 @@
       "rule": "sector/2027/edilizia.json#fixed_term_additional_rate",
       "calculation": "inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1584,13 +1134,7 @@
       "rule": "sector/2027/edilizia.json#irpef_brackets",
       "calculation": "irpef",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1605,13 +1149,7 @@
       "rule": "sector/2027/edilizia.json#tfr",
       "calculation": "tfr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1626,13 +1164,7 @@
       "rule": "sector/2027/edilizia.json#tfr.additional_ivs",
       "calculation": "tfr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1647,13 +1179,7 @@
       "rule": "sector/2027/edilizia.json#tfr.compensation",
       "calculation": "tfr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1668,13 +1194,7 @@
       "rule": "sector/2027/edilizia.json#trattamento_integrativo",
       "calculation": "trattamento_integrativo",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1689,13 +1209,7 @@
       "rule": "sector/2027/edilizia.json#ulteriore_detrazione",
       "calculation": "ulteriore_detrazione_lavoro",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1710,13 +1224,7 @@
       "rule": "sector/2027/industria.json#complementary_pension",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1731,13 +1239,7 @@
       "rule": "sector/2027/industria.json#fixed_term_additional_rate",
       "calculation": "inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1752,13 +1254,7 @@
       "rule": "sector/2027/industria.json#irpef_brackets",
       "calculation": "irpef",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1773,13 +1269,7 @@
       "rule": "sector/2027/industria.json#tfr",
       "calculation": "tfr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1794,13 +1284,7 @@
       "rule": "sector/2027/industria.json#tfr.additional_ivs",
       "calculation": "tfr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1815,13 +1299,7 @@
       "rule": "sector/2027/industria.json#tfr.compensation",
       "calculation": "tfr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1836,13 +1314,7 @@
       "rule": "sector/2027/industria.json#trattamento_integrativo",
       "calculation": "trattamento_integrativo",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1857,13 +1329,7 @@
       "rule": "sector/2027/industria.json#ulteriore_detrazione",
       "calculation": "ulteriore_detrazione_lavoro",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1878,13 +1344,7 @@
       "rule": "sector/2027/lavoro-domestico.json#complementary_pension",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1899,13 +1359,7 @@
       "rule": "sector/2027/lavoro-domestico.json#fixed_term_additional_rate",
       "calculation": "inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1920,13 +1374,7 @@
       "rule": "sector/2027/lavoro-domestico.json#irpef_brackets",
       "calculation": "irpef",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1941,13 +1389,7 @@
       "rule": "sector/2027/lavoro-domestico.json#tfr",
       "calculation": "tfr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1962,13 +1404,7 @@
       "rule": "sector/2027/lavoro-domestico.json#trattamento_integrativo",
       "calculation": "trattamento_integrativo",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -1983,13 +1419,7 @@
       "rule": "sector/2027/lavoro-domestico.json#ulteriore_detrazione",
       "calculation": "ulteriore_detrazione_lavoro",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2004,13 +1434,7 @@
       "rule": "sector/2027/pubblica-amministrazione.json#complementary_pension",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2025,13 +1449,7 @@
       "rule": "sector/2027/pubblica-amministrazione.json#fixed_term_additional_rate",
       "calculation": "inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2046,13 +1464,7 @@
       "rule": "sector/2027/pubblica-amministrazione.json#irpef_brackets",
       "calculation": "irpef",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2067,13 +1479,7 @@
       "rule": "sector/2027/pubblica-amministrazione.json#tfr",
       "calculation": "tfr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2088,13 +1494,7 @@
       "rule": "sector/2027/pubblica-amministrazione.json#trattamento_integrativo",
       "calculation": "trattamento_integrativo",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2109,13 +1509,7 @@
       "rule": "sector/2027/pubblica-amministrazione.json#ulteriore_detrazione",
       "calculation": "ulteriore_detrazione_lavoro",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2130,13 +1524,7 @@
       "rule": "sector/2027/terziario.json#complementary_pension",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2151,13 +1539,7 @@
       "rule": "sector/2027/terziario.json#fixed_term_additional_rate",
       "calculation": "inps_employer",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2172,13 +1554,7 @@
       "rule": "sector/2027/terziario.json#irpef_brackets",
       "calculation": "irpef",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2193,13 +1569,7 @@
       "rule": "sector/2027/terziario.json#tfr",
       "calculation": "tfr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2214,13 +1584,7 @@
       "rule": "sector/2027/terziario.json#tfr.additional_ivs",
       "calculation": "tfr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2235,13 +1599,7 @@
       "rule": "sector/2027/terziario.json#tfr.compensation",
       "calculation": "tfr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2256,13 +1614,7 @@
       "rule": "sector/2027/terziario.json#trattamento_integrativo",
       "calculation": "trattamento_integrativo",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2277,13 +1629,7 @@
       "rule": "sector/2027/terziario.json#ulteriore_detrazione",
       "calculation": "ulteriore_detrazione_lavoro",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2298,13 +1644,7 @@
       "rule": "surtax/municipal/2027.json#rates",
       "calculation": "addizionale_comunale",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2319,13 +1659,7 @@
       "rule": "surtax/regional/2027.json#rates",
       "calculation": "addizionale_regionale",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2340,13 +1674,7 @@
       "rule": "tax_credit/somma_esente/2027.json#somma_esente",
       "calculation": "somma_esente",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2361,13 +1689,7 @@
       "rule": "variable_pay/2027.json#fringe_benefit",
       "calculation": "fringe_benefit",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2382,13 +1704,7 @@
       "rule": "variable_pay/2027.json#notte_festivi_turni",
       "calculation": "notte_festivi_turni_substitute_tax",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2403,13 +1719,7 @@
       "rule": "variable_pay/2027.json#pdr",
       "calculation": "bonus_pdr",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -2424,13 +1734,7 @@
       "rule": "variable_pay/2027.json#rinnovo",
       "calculation": "rinnovo_substitute_tax",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [

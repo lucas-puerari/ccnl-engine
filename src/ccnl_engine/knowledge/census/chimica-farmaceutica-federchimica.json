@@ -10,12 +10,7 @@
       "rule": "Absences are deducted at 1/175 an hour, a day taken as 8 hours whatever the company schedule.",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Take the company daily schedule for the hours of an absent day.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -31,12 +26,7 @@
       "rule": "APPRENTICESHIP (stesura 22/9/2012, art. 3 A, CNEL n. 468 pp. 16 and 22, unchanged by the later renewals): the contract of 6 months to 3 years is split in two halves; in the first the apprentice is one category below the destination, in the second at the destination, both paid the minimo contrattuale without IPO (nor EAR or EDR). The engine counts levels, not categories, pays the whole base_salary of a level and splits at fixed months, so no track is modelled and an apprentice run fails closed (no track).",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Model an under-classification by category paid at the minimo without IPO, with periods of half the contract duration.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -52,12 +42,7 @@
       "rule": "Art. 12 and Art. 20: the Easter payment of 1/25 and the holiday falling on a Sunday at 1/25.",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Pay the Easter 1/25 and the Sunday holiday at 1/25.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -73,12 +58,7 @@
       "rule": "The EDR is paid whatever the absences of the month and has no effect on other institutes, while the engine reduces it with the month and counts it in the sickness quota.",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Keep the EDR whole in partial months and out of the sickness quota.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -94,12 +74,7 @@
       "rule": "Art. 9 punto 1: the lavoro eccedente from 37h45 to 40 weekly hours at 5%.",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.06"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Add a band for the lavoro eccedente at 5%.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -115,12 +90,7 @@
       "rule": "INSURED ABSENCES: compulsory maternity leave (top-up to 100% of the gross retribuzione globale di fatto for five months, Art. 41) and work injury (full net pay with the INAIL indemnity advanced, Art. 40 C) as work_rules.insured_absence. The full pay of an injury lasts three, four or five months by seniority and halves after: the engine tops up every injury day to 100%.",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
-      "work": [
-        "T03.06"
-      ],
-      "verification": [
-        "T03.11"
-      ],
+      "remediation": "Count the injury days against the full-pay and half-pay periods of Art. 40 C, with the sickness of the same window.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -136,12 +106,7 @@
       "rule": "Renewal of 2025, p. 47: the night-shift indemnity in cifra, outside the TFR base (EUR 13.50 per 8 hours, EUR 15.50 from 1/7/2027).",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Model the night-shift indemnity per shift.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -157,12 +122,7 @@
       "rule": "Art. 9 punti 3-6, 9-11: the premiums on ordinary hours not yet modelled: night work outside shifts 50%, night shifts 34% and 46% (3x7), Sunday 3x7 33%, pluriperiodale and Saturday 10%, the first 120 hours past 2,024 a year 30%. The holiday premium (50%) and the day-shift premium (4%) are modelled (supplement_bands CHIM_FESTIVO, CHIM_TURNO_DIURNO) (review of 2026-10-30).",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.07"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Model the remaining Art. 9 premiums on ordinary hours.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -178,12 +138,7 @@
       "rule": "Scope: the tables of the Fibre, Abrasivi, Lubrificanti e GPL and Ceramica sectors differ and are not modelled.",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Add the tables of the other sectors.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -199,12 +154,7 @@
       "rule": "The CCNL applies the overtime premiums to the art. 15 punto 1 elements, superminimi included, and categories A and B get none. The overtime bands are limited to levels F to C1 and the individual elements count in the hourly base; still open: the hourly quota of art. 20 excludes the EAR, which base_salary holds for category B, and the holiday and shift supplement bands apply to every level (review of 2026-10-30).",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.06"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Exclude the EAR of category B from the hourly base and limit the supplement bands to the levels the CCNL pays them to.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -220,12 +170,7 @@
       "rule": "Artt. 48-50: the premio di partecipazione, the premio variabile and the elemento perequativo.",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Model the premi of Artt. 48-50 with the employer facts they need.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -241,14 +186,7 @@
       "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
       "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
       "state": "unverified",
-      "work": [
-        "T00.03",
-        "T09.03"
-      ],
-      "verification": [
-        "T00.12",
-        "T09.11"
-      ],
+      "remediation": "Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -264,14 +202,7 @@
       "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
       "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
       "state": "unverified",
-      "work": [
-        "T00.03",
-        "T09.03"
-      ],
-      "verification": [
-        "T00.12",
-        "T09.11"
-      ],
+      "remediation": "Replace each provisional ruleset of the year with the values of its published sources, drop its provisional flag, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -287,12 +218,7 @@
       "rule": "LEAVE, ROL OF THE TURNISTI (Art. 13 A): the turnisti 3x5 and 3x6 have 76 hours in the 2006 text (a secondary source states 88 under the current text, not verified on a primary text), the turnisti on a continuous cycle have no hour bucket (232.5 days a year) and the semicontinui on night shift 2 more rest days. The shift pattern is not an input: the engine accrues the 68 hours of the giornalieri and the turnisti 2x5 and 2x6.",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.10"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Source the current hours of the turnisti 3x5 and 3x6 and add the shift pattern as an employment fact.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -308,12 +234,7 @@
       "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.",
       "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
       "state": "unverified",
-      "work": [
-        "T03.03"
-      ],
-      "verification": [
-        "T03.11"
-      ],
+      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -329,12 +250,7 @@
       "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days, when the episode does not let the engine compute the INPS daily base: no SicknessEpisode.inps_base in its relapse chain, an operaio without the days worked or paid of the month before, an impiegato who did not work that whole month, an unknown worker category, or a sector INPS regime (spettacolo). With the base, INPS pays its share on the retribuzione media globale giornaliera of the month before the illness and on calendar days (INPS circ. 134368/1981 point 11). The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
       "calculation": "ccnl_engine.sickness.pay.handlers (INPS share of a sick day); ccnl_engine.sickness.base.rules (daily base)",
       "state": "unverified",
-      "work": [
-        "T03.01"
-      ],
-      "verification": [
-        "T03.11"
-      ],
+      "remediation": "Compute the base of an impiegato's partial month (point 11.2 letters d-f), of the sector regimes, and from the closing state of the engine's own runs so the caller need not state it, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -350,12 +266,7 @@
       "rule": "Sickness: the scales of fixed-term contracts and apprentices (75/60/45/30 days in full, as many at half), the comporto 30% longer for disabled workers (L. 68/1999), the therapies of oncological and degenerative illnesses outside the comporto, the restart of an exhausted treatment on a hospital stay of more than 10 days; hospital stays are left out of the comporto over the whole window, the CCNL does it within one continuous event.",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
-      "work": [
-        "T03.02"
-      ],
-      "verification": [
-        "T03.11"
-      ],
+      "remediation": "Model the fixed-term and apprentice scales and the comporto rules of the sickness article.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -371,12 +282,7 @@
       "rule": "An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.",
       "calculation": "ccnl_engine.severance.relief.services; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
       "state": "absent",
-      "work": [
-        "T08.05"
-      ],
-      "verification": [
-        "T08.09"
-      ],
+      "remediation": "Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -392,12 +298,7 @@
       "rule": "Renewal of 2025, p. 45: the una tantum contribution of EUR 25 withheld in July 2025 from non-member workers.",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Model the withholding of July 2025 for non-member workers.",
       "origin": "seeded",
       "links": {
         "limitations": [

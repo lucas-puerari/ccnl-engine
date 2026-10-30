@@ -14,7 +14,6 @@ census cannot disagree with the limitations it tracks.
 
 from __future__ import annotations
 
-import re
 from enum import StrEnum
 from typing import Self
 
@@ -31,8 +30,6 @@ __all__ = [
 
 #: Lower snake case identifier, the format of limitation variants.
 _SNAKE = r"^[a-z][a-z0-9_]*$"
-#: A work item of the completion plan: ``T03.05`` or ``G13.02``.
-WORK_ITEM = re.compile(r"[TG]\d\d\.\d\d")
 
 
 class RuleState(StrEnum):
@@ -114,10 +111,8 @@ class Requirement(BaseModel):
         calculation: The code or capability that computes it.
         state: Where the engine stands.
         scenarios: Test node ids or reference case ids that verify the row.
-        work: Work items of the completion plan that close it.
-        verification: Work items whose check verifies the row once its
-            work is done (``T03.11`` for a sickness row); required while
-            the row is open, as its ``work``.
+        remediation: What closes the row and how it is checked; required
+            while the row is open.
         origin: How the row entered the census.
         links: Limitations and weak rules whose state the row follows.
     """
@@ -133,8 +128,7 @@ class Requirement(BaseModel):
     calculation: str = ""
     state: RuleState
     scenarios: tuple[str, ...] = ()
-    work: tuple[str, ...] = ()
-    verification: tuple[str, ...] = ()
+    remediation: str = ""
     origin: CensusOrigin = CensusOrigin.TEXT
     links: RequirementLinks = RequirementLinks()
 
@@ -147,20 +141,9 @@ class Requirement(BaseModel):
         }
 
     @model_validator(mode="after")
-    def _check_items(self) -> Self:
-        wrong = [
-            item
-            for item in (*self.work, *self.verification)
-            if not WORK_ITEM.fullmatch(item)
-        ]
-        if wrong:
-            msg = f"requirement {self.id}: work items {wrong} are not T00.00/G00.00"
-            raise ValueError(msg)
-        if self.open and not (self.work and self.verification):
-            msg = (
-                f"requirement {self.id}: an open row names its work item and "
-                "its planned verification"
-            )
+    def _check_remediation(self) -> Self:
+        if self.open and not self.remediation.strip():
+            msg = f"requirement {self.id}: an open row states its remediation"
             raise ValueError(msg)
         return self
 

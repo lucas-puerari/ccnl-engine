@@ -40,21 +40,18 @@ def test_a_row_read_from_the_text_loads() -> None:
                 "state": "not_applicable",
                 "source": None,
                 "origin": "seeded",
-                "work": ["T00.02"],
-                "verification": ["T00.12"],
+                "remediation": "Read the clause.",
             },
             "needs a source",
         ),
-        ({"state": "absent"}, "its planned verification"),
-        ({"state": "absent", "work": ["T03.01"]}, "its planned verification"),
-        ({"state": "absent", "verification": ["T03.11"]}, "its planned verification"),
-        ({"state": "unverified", "work": ["T3.05"]}, "not T00.00/G00.00"),
+        ({"state": "absent"}, "states its remediation"),
+        ({"state": "unverified", "remediation": "  "}, "states its remediation"),
         ({"variant": "All"}, "should match pattern"),
         ({"state": "maybe"}, "Input should be"),
     ],
 )
 def test_a_malformed_row_is_rejected(fields: dict[str, object], match: str) -> None:
-    """Text rows cite a clause, open rows name their work, ids are snake case."""
+    """Text rows cite a clause, open rows their remediation, ids are snake case."""
     with pytest.raises(ValidationError, match=match):
         Requirement.model_validate(_row(**fields))
 
@@ -66,12 +63,11 @@ def test_a_seeded_open_row_needs_no_source() -> None:
             source=None,
             origin="seeded",
             state="absent",
-            work=["T03.05", "G01.01"],
-            verification=["T03.11", "G01.90"],
+            remediation="Model the net daily pay.",
         )
     )
 
-    assert row.work == ("T03.05", "G01.01")
+    assert row.remediation == "Model the net daily pay."
     assert row.open
 
 
