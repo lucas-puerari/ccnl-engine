@@ -10887,8 +10887,21 @@
       {
         "kind": "simplification",
         "text": "Hourly divisor 156 = 36h/settimana × 52/12. I docenti hanno orario cattedra (18h/settimana insegnamento), non direttamente comparabile. Il divisore si applica per l'hourly_rate indicativo.",
-        "capability": "overtime",
-        "monetary_impact": "no"
+        "capability": "workplace_injury",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "teacher_hourly_divisor",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "DOCENTE_INFANZIA_PRIMARIA",
+              "DOCENTE_DIPLOMATO_SECONDARIA",
+              "DOCENTE_SECONDARIA",
+              "DOCENTE_LAUREATO_SECONDARIA_II"
+            ]
+          },
+          "remediation": "Give the docenti levels their own INAIL daily base (or divisor of the orario cattedra), or stop deriving it from the 156 divisor for them."
+        }
       },
       {
         "kind": "info",
@@ -10951,7 +10964,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "da8d96bf9b6e9a3664a20b6d8240543e08224286bfcdfa4ddfe813d395105819",
+    "source_hash": "e55e70e2ea12adc1b1ae6dfd5bcbd61cbf5ea5359065959124264a03d281b627",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

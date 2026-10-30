@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer, territorial_supplement |
+| **Limits of this contract** | base_salary, inps_employer, territorial_supplement |
 
 6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -131,6 +131,20 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "panificazione-artigianato-confartigianato/special_allowance_in_base · base_salary · impact unknown · open"
+    IND.SPECIALE: Indennita Speciale art.33 ter is fixed per level and does not change across tranches (confirmed: same amounts from 1995 to date, not subject to renewal increases). Folded into TOTALE base_salary for simplicity; the engine has no per-level fixed-allowance that is non-absorbable and constant — modeling as part of base_salary is the cleanest approach and does not affect any computation. The indennità speciale folded into base_salary takes the apprenticeship percentage and enters the tredicesima; whether Arts. 33, 36 and 58 do so is not confirmed (review of 2026-10-30).
+
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Model the indennità speciale of Art. 33 as a fixed allowance per level with its own apprenticeship_pct_relevant flag and thirteenth inclusion as the text states.
+
+!!! warning "panificazione-artigianato-confartigianato/err_unsourced · base_salary · impact unknown · open"
+    ERR: an Elemento Retributivo Residuo of 0.44 EUR a month is folded into every base_salary. The signed text of 6 June 2024 (Art. 32-33, pp. 45-48) states the tabellare and the indennità speciale but no ERR, and no party source was found for it: the base_salary records stay derived until the 0.44 is sourced or dropped.
+
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Source the 0.44 EUR ERR or drop it from every base_salary.
+
 !!! warning "panificazione-artigianato-confartigianato/ert_veneto · territorial_supplement · impact yes · open"
     ERT (VENETO): Elemento Retributivo Territoriale Veneto (ERT, expired 31.12.2025) was a territorial supplement specific to Veneto. Not modeled at national level.
 
@@ -195,12 +209,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.
 
 ### Without monetary impact
-
-!!! note ""
-    IND.SPECIALE: Indennita Speciale art.33 ter is fixed per level and does not change across tranches (confirmed: same amounts from 1995 to date, not subject to renewal increases). Folded into TOTALE base_salary for simplicity; the engine has no per-level fixed-allowance that is non-absorbable and constant — modeling as part of base_salary is the cleanest approach and does not affect any computation.
-
-!!! note ""
-    ERR: an Elemento Retributivo Residuo of 0.44 EUR a month is folded into every base_salary. The signed text of 6 June 2024 (Art. 32-33, pp. 45-48) states the tabellare and the indennità speciale but no ERR, and no party source was found for it: the base_salary records stay derived until the 0.44 is sourced or dropped.
 
 !!! note ""
     IND.FUNZIONE: the indennità di funzione of 36.15 EUR a month is owed from 1 April 1994 to the quadri of the settore alimentare (Art. 65, p. 79 of the signed text of 6 June 2024), not to a panificazione level: it is not in the base_salary of A1S. It was added from April 2026 only, citing an Art. 33-quater the text does not have; removed on 15 October 2026.

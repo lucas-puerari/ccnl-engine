@@ -66,6 +66,27 @@
       }
     },
     {
+      "id": "long_week_divisor_195",
+      "institute": "workplace_injury",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SIMPLIFICATION: Divisore orario. Art. 120 prevede 173 (40h) e 195 (45h). Solo il divisore 173 e modellato. Le assunzioni a 45h settimanali non sono gestite.",
+      "calculation": "ccnl/impianti-sportivi-sport:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T02.04"
+      ],
+      "verification": [
+        "T02.13"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "impianti-sportivi-sport/long_week_divisor_195"
+        ]
+      }
+    },
+    {
       "id": "night_overtime_cumulation",
       "institute": "overtime",
       "variant": "all",

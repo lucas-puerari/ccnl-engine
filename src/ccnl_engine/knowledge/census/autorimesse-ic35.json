@@ -66,6 +66,48 @@
       }
     },
     {
+      "id": "long_week_divisors",
+      "institute": "workplace_injury",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SIMPLIFICATION: Hourly divisor 173 applies to standard 40h/week staff. The 2019 CCNL notes 182 (autisti/drivers) and 191 (custodi/security) in specific roles. Only 173 modeled here: dominant case. Verify per-role divisor for drivers and security classifications.",
+      "calculation": "ccnl/autorimesse-ic35:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T02.04"
+      ],
+      "verification": [
+        "T02.13"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "autorimesse-ic35/long_week_divisors"
+        ]
+      }
+    },
+    {
+      "id": "meal_voucher",
+      "institute": "welfare",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SIMPLIFICATION: Ticket restaurant excluded. Art. 44/84 provides 8.00 EUR/day (from 01/01/2023), rising to 10.00 EUR/day from 01/04/2027, conditional on >= 5 hours worked. Per-day and conditional: not representable as a monthly fixed allowance.",
+      "calculation": "ccnl/autorimesse-ic35:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T06.09"
+      ],
+      "verification": [
+        "T06.11"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "autorimesse-ic35/meal_voucher"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer |
 
-1 documented simplification(s) and 2 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 1 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -91,6 +91,13 @@ under-level: `1`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "ced-assoced/conditional_allowances_title_xxiii · base_salary · impact yes · open"
+    Titolo XXIII conditional allowances not modelled: indennita di mensa (Art. 179), rimborso mezzi pubblici (Art. 180), indennita valori (Art. 181), and elemento economico di garanzia (Art. 177). These are condition-gated or azienda-specific and cannot be determined without employer-level data.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model Art. 177 elemento economico di garanzia and Arts. 179-181 (mensa, mezzi pubblici, valori) as conditional fixed allowances or caller-declared items once a fact can express their conditions.
 
 !!! warning "ced-assoced/terziario_inps_rates_unverified · inps_employer · impact unknown · open"
     INPS terziario rates reused from 2026-terziario.json (same sector as H016). Verify against annual INPS circular for exact H601 sub-sector rate.

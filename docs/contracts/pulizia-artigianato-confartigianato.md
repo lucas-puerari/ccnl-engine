@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, holiday_work, inps_employer, leave, night_work, overtime, seniority |
 
-9 documented simplification(s) and 3 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 3 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -212,11 +212,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.
 
-### Without monetary impact
-
-!!! note ""
-    SIMPLIFICATION: Apprendistato — livelli con doppia appartenenza a gruppi diversi (L5: gruppi 1 e 3; L4: gruppi 3 e 4; L3: gruppi 2 e 4). Il contratto distingue per contenuto professionale, non per livello. Engine usa first-match in ordine di dichiarazione: L5 -> gruppo 1 (70/80/90/100, 4 anni), L4 -> gruppo 3 (65/80/90, 18 mesi), L3 -> gruppo 2 (70/80/90, 3 anni). Rischio: basso (usato solo per scenari apprendistato, non per il test di integrazione).
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -246,6 +241,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Fonte 2022 PDF: ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf — verificata e scaricata il 2026-09-12. Tranches Nov 2022 — Dec 2024 da questo documento.
     
     Fonte accordo rinnovo 2025 (Confartigianato, 17 dic 2025): URL non raggiungibile il 2026-09-12. Tranches Jan 2026 — Dec 2029 verificate incrociatamente con kitech CodiceCateg=83 (Jul 2026, tutti e 7 i livelli, match al centesimo) e ilccnl.it Jul 2026 (L1: Paga Base=Totale=1693.84). Accesso originale: 2026-09-12.
+    
+    APPRENTICESHIP TRACKS: a level with several candidate tracks (L5: tracks 1 and 3; L4: 3 and 4; L3: 2 and 4) raises OutOfScopeError ambiguous_track unless Apprentice.track names the track: the engine no longer takes the first match (review of 2026-10-30).
     
 
 ## Raw data

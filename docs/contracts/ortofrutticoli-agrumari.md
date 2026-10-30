@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, leave, seniority, sickness |
 
-6 documented simplification(s) and 2 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 1 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -163,9 +163,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 ### Without monetary impact
 
 !!! note ""
-    SIMPLIFICATION: Valori base_salary livelli 4, 5, 6S, 7 ai periodi non-giugno-2026 derivati via regola proporzionale (stesso aumento percentuale, da edotto.com/fisascat.it). Modello non-compounding: tranche_i = round(pre_rinnovo_livello * pct_i, 2), pct_i = tranche_L6_EUR / L6_pre. Back-solve unico su giugno 2026 confermato per tutti i 9 livelli. Rischio: zero (round-trip verificato).
-
-!!! note ""
     SIMPLIFICATION: Apprendistato non modellato (apprenticeship=[]). Il rinnovo 2024 ha modificato la disciplina dell'apprendistato ma il testo consolidato è dietro paywall. Le fonti accessibili (aggregatori) non sono attribuibili con certezza al CCNL Fruitimprese H341 rispetto al CCNL Confsal/Fesica. Rischio: retribuzione apprendistato restituisce zero anziché un importo errato.
 
 ## Sources
@@ -180,6 +177,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 ??? note "Coverage notes"
     IND_FUN livello Q: 154.94 EUR/mese. Lavoro-economia.it c=72 mostra livello Q totale = 2551.53 = 2396.59 (base giugno 2026) + 154.94. Equivale a 300.000 lire (300.000/1936.27 = 154.94): allowance pre-euro congelata.
+    
+    BASE SALARY: every base_salary period of the nine levels is verified against Allegato 1 of the FLAI text (p. 58, review 2026-10-17-ai-tables); no value is derived by the proportional rule any more (review of 2026-10-30).
     
     Salary model: conglobato. ilccnl.it Sept 2024 table shows Contingenza=0.00 e EDR=0.00 per tutti i livelli. Divisore orario 173 confermato da lavoro-economia.it c=72 (CNEL H341) quota diretta: 'L'importo della retribuzione oraria si ottiene dividendo l'importo della retribuzione mensile per il divisore convenzionale 173'. Verifica aritmetica su 4 livelli: 1 (2286.83/13.22=173), 2 (2020.70/11.68=173), 3 (1932.23/11.17=173), 6 (1599.53/9.25=173).
     

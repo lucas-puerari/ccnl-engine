@@ -7,7 +7,7 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "fe20da84a29addaa3bb32b9d9f85d081934e34e4c56d3fb0194744c29109fbb0",
+    "source_hash": "3c168badd22c163af9548fb9a431d3a5b202d24bae2c57f21ea487402cd9db84",
     "verification_status": "verified",
     "source_type": "contracting_party"
   },
@@ -3574,7 +3574,14 @@
         "kind": "simplification",
         "text": "LEAVE: Art. 42 of the CCNL testo definitivo 21/01/2021 (CNEL B101, physical p. 62): 4 weeks (20 days) up to the 10th year of service completed; 4 weeks + 2 days beyond the 10th year (120 months); 4 weeks + 3 days beyond the 15th (180 months); 5 weeks (25 days) beyond the 18th (216 months). ROL 68 ore/anno not modelled.",
         "capability": "leave",
-        "monetary_impact": "no"
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "rol_not_accrued",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add a rol bucket of 68 hours a year to leave_rules with its accrual and payout (Art. 42 / ROL article)."
+        }
       },
       {
         "kind": "simplification",

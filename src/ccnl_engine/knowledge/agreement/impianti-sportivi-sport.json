@@ -132,8 +132,15 @@
       {
         "kind": "simplification",
         "text": "SIMPLIFICATION: Divisore orario. Art. 120 prevede 173 (40h) e 195 (45h). Solo il divisore 173 e modellato. Le assunzioni a 45h settimanali non sono gestite.",
-        "capability": "overtime",
-        "monetary_impact": "no"
+        "capability": "workplace_injury",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "long_week_divisor_195",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the 195 divisor of the 45-hour week (Art. 120), set hourly_divisor_weekly_hours=40, and use the divisor of the stated week in the INAIL daily base."
+        }
       },
       {
         "kind": "simplification",
@@ -1215,7 +1222,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "14e1dbb27dee536ed010147e6f7317025ca1b982009c6e8bde0ca5617a8c0590",
+    "source_hash": "564b3c99b63a0386f3933d03baa0749580efa6ee457a02530bb1a31a606249bc",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

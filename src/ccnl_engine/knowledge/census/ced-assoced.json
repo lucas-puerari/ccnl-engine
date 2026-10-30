@@ -3,6 +3,27 @@
   "ccnl_id": "ced-assoced",
   "requirements": [
     {
+      "id": "conditional_allowances_title_xxiii",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Titolo XXIII conditional allowances not modelled: indennita di mensa (Art. 179), rimborso mezzi pubblici (Art. 180), indennita valori (Art. 181), and elemento economico di garanzia (Art. 177). These are condition-gated or azienda-specific and cannot be determined without employer-level data.",
+      "calculation": "ccnl/ced-assoced:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "verification": [
+        "T02.13"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "ced-assoced/conditional_allowances_title_xxiii"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

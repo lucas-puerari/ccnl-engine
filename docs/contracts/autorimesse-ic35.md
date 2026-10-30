@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary, seniority, welfare, workplace_injury |
 
 5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -104,6 +104,20 @@ percentage: 0.95
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "autorimesse-ic35/meal_voucher · welfare · impact yes · open"
+    SIMPLIFICATION: Ticket restaurant excluded. Art. 44/84 provides 8.00 EUR/day (from 01/01/2023), rising to 10.00 EUR/day from 01/04/2027, conditional on >= 5 hours worked. Per-day and conditional: not representable as a monthly fixed allowance.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Post the ticket restaurant as a welfare item per day worked of at least 5 hours: 8.00 EUR a day from 2023-01-01, 10.00 EUR from 2027-04-01 (Art. 44/84).
+
+!!! warning "autorimesse-ic35/long_week_divisors · workplace_injury · impact unknown · open"
+    SIMPLIFICATION: Hourly divisor 173 applies to standard 40h/week staff. The 2019 CCNL notes 182 (autisti/drivers) and 191 (custodi/security) in specific roles. Only 173 modeled here: dominant case. Verify per-role divisor for drivers and security classifications.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the 182 (42h, drivers) and 191 (44h, custodians) divisors keyed by the full-time week, set hourly_divisor_weekly_hours=40, and use the divisor of the stated week in the INAIL daily base.
+
 !!! warning "autorimesse-ic35/apprenticeship_percentages_2019 · base_salary · impact unknown · open"
     SIMPLIFICATION: Apprenticeship article numbers from 2019 CCNL may have changed in the current consolidated text (Art. numbering in 2025 verbale differs from 2019 PDF). The 85/90/95 percentage structure is from the 2019 source and is assumed unchanged.
 
@@ -171,12 +185,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 !!! note ""
     SIMPLIFICATION: Sezione Appalti (Art. 81-89) excluded. The appalto sub-section defines a separate A1-SA to C4-SA level ladder with different tranche dates and amounts, for companies doing washing/shuttling/car prep on behalf of rental firms. Not modeled: out of scope for the main contract coverage.
-
-!!! note ""
-    SIMPLIFICATION: Ticket restaurant excluded. Art. 44/84 provides 8.00 EUR/day (from 01/01/2023), rising to 10.00 EUR/day from 01/04/2027, conditional on >= 5 hours worked. Per-day and conditional: not representable as a monthly fixed allowance.
-
-!!! note ""
-    SIMPLIFICATION: Hourly divisor 173 applies to standard 40h/week staff. The 2019 CCNL notes 182 (autisti/drivers) and 191 (custodi/security) in specific roles. Only 173 modeled here: dominant case. Verify per-role divisor for drivers and security classifications.
 
 ## Sources
 

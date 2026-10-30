@@ -1995,7 +1995,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Layer 3 (overtime, night shifts, public holidays) out of scope.",
+        "text": "Layer 3 (overtime, night shifts, public holidays) out of scope. Partly superseded: work_rules now holds overtime bands (OT_DIURNO, OT_NOTTURNO, OT_FESTIVO), leave and sickness rules; only the supplements on ordinary night and holiday hours are left to the caller, who states them (review of 2026-10-30).",
         "capability": "overtime",
         "monetary_impact": "no"
       },
@@ -2039,7 +2039,7 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "58c644c36d1d82b518f251bfac1bd9abe4c518e6e38a814c5a0fa37f2495afb7",
+    "source_hash": "832c102daab3ba8932149537f7dac48b630d0d7053182f657bc39d4aa8d8ff21",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

@@ -78,9 +78,20 @@
         "text": "Seniority increment amounts vary across tranches (e.g. L4: 67.51 → 70.17 → 72.30). Represented exactly via TimeSeries in amount_by_level."
       },
       {
-        "kind": "missing",
+        "kind": "simplification",
         "text": "Indennità economica funzionari (Allegato 2/D) — L7 only, six sub-grade variants (Ex 3°/2°/1° Grado, Funz. Senior, Funz. Business, Ass. ex F2) with distinct amounts. Monthly amounts not found in publicly accessible sources (Allegato 2/D not published). Not modelled.",
-        "capability": "base_salary"
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "funzionari_economic_allowance",
+          "applies_when": {
+            "trigger": "outside_input",
+            "levels": [
+              "L7"
+            ]
+          },
+          "remediation": "Model Allegato 2/D: the indennità economica of the six L7 funzionari sub-grades as role-keyed fixed_allowances on L7 (like IND_PROFILO_J), once the amounts are sourced."
+        }
       },
       {
         "kind": "info",
@@ -1197,7 +1208,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "e91995b948c92fab4215b3dce5a3acb7dacfd98d3cf3f19572c79a277c66bda0",
+    "source_hash": "3a3f445dfdd1cb85cf44d1c309f0ff8c6a73bb87cc1f906a8c0ff0b03807b7b6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

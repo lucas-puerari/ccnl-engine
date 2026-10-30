@@ -91,6 +91,27 @@
       }
     },
     {
+      "id": "rol_not_accrued",
+      "institute": "leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "LEAVE: Art. 42 of the CCNL testo definitivo 21/01/2021 (CNEL B101, physical p. 62): 4 weeks (20 days) up to the 10th year of service completed; 4 weeks + 2 days beyond the 10th year (120 months); 4 weeks + 3 days beyond the 15th (180 months); 5 weeks (25 days) beyond the 18th (216 months). ROL 68 ore/anno not modelled.",
+      "calculation": "ccnl/concia-unic:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.10"
+      ],
+      "verification": [
+        "T02.13"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "concia-unic/rol_not_accrued"
+        ]
+      }
+    },
+    {
       "id": "sickness_cumulation_window",
       "institute": "sickness",
       "variant": "all",

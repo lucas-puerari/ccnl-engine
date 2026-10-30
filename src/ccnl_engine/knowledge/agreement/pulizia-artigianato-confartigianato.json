@@ -188,10 +188,9 @@
         "text": "Fonte accordo rinnovo 2025 (Confartigianato, 17 dic 2025): URL non raggiungibile il 2026-09-12. Tranches Jan 2026 — Dec 2029 verificate incrociatamente con kitech CodiceCateg=83 (Jul 2026, tutti e 7 i livelli, match al centesimo) e ilccnl.it Jul 2026 (L1: Paga Base=Totale=1693.84). Accesso originale: 2026-09-12."
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: Apprendistato — livelli con doppia appartenenza a gruppi diversi (L5: gruppi 1 e 3; L4: gruppi 3 e 4; L3: gruppi 2 e 4). Il contratto distingue per contenuto professionale, non per livello. Engine usa first-match in ordine di dichiarazione: L5 -> gruppo 1 (70/80/90/100, 4 anni), L4 -> gruppo 3 (65/80/90, 18 mesi), L3 -> gruppo 2 (70/80/90, 3 anni). Rischio: basso (usato solo per scenari apprendistato, non per il test di integrazione).",
-        "capability": "base_salary",
-        "monetary_impact": "no"
+        "kind": "info",
+        "text": "APPRENTICESHIP TRACKS: a level with several candidate tracks (L5: tracks 1 and 3; L4: 3 and 4; L3: 2 and 4) raises OutOfScopeError ambiguous_track unless Apprentice.track names the track: the engine no longer takes the first match (review of 2026-10-30).",
+        "capability": "base_salary"
       },
       {
         "kind": "simplification",
@@ -3584,7 +3583,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "f8d435a7f323bd0e062113e803321f9827bed4ffd7b5323149f2567650e11302",
+    "source_hash": "af46c33daccfb213fb3d5a613d0f4dd7d9d170a0d3086c2e30f0d234f817aaaa",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

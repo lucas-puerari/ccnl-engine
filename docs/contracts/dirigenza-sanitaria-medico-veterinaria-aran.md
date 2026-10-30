@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary |
+| **Limits of this contract** | base_salary, workplace_injury |
 
 5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -77,6 +77,13 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "dirigenza-sanitaria-medico-veterinaria-aran/approximate_hourly_divisor · workplace_injury · impact unknown · open"
+    Hourly divisor 165 = 38h/settimana × 52/12, arrotondato. Art. 27 CCNL 23.1.2024 (Orario di lavoro dei dirigenti) non modificato dal CCNL 27.02.2026. Il divisore 165 è un'approssimazione — i dirigenti SSN non hanno un orario fisso misurabile.
+
+    **Applies when:** `workplace_injury` applies.
+
+    **Remediation:** Source the divisor of Art. 27 (or the INAIL base of the SSN dirigenti) and replace 165, or mark the divisor as not applicable so the INAIL daily base is not derived from it.
 
 !!! warning "dirigenza-sanitaria-medico-veterinaria-aran/specificita_pre_2025_estimated · base_salary · impact unknown · open"
     Pre-31/12/2024 specificità medico-veterinaria (704,88€/mese) calcolata per differenza dal valore a regime 728,15€ sottraendo il presunto incremento 23,27€/mese × 13 = 302,51€/anno. L'importo pre-2024 è una stima basata sulle comunicazioni GOAL-plan (fonte secondaria); il valore esatto del CCNL 23.1.2024 Art. 65 non è verificato.
@@ -128,9 +135,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.
 
 ### Without monetary impact
-
-!!! note ""
-    Hourly divisor 165 = 38h/settimana × 52/12, arrotondato. Art. 27 CCNL 23.1.2024 (Orario di lavoro dei dirigenti) non modificato dal CCNL 27.02.2026. Il divisore 165 è un'approssimazione — i dirigenti SSN non hanno un orario fisso misurabile.
 
 !!! note ""
     Questo file modella solo la componente medico-veterinaria del CCNL Area Sanità 27.02.2026. Il medesimo CCNL copre anche altri dirigenti sanitari (psicologi, farmacisti, biologi, fisici, chimici), modellati in 'dirigenza-sanitaria-area-sanita-aran.json'. Entrambi i file condividono codice CNEL S225.

@@ -77,3 +77,30 @@ Pairs kept apart, worth a reading of the text: the renewal tranches and
 the annual ISTAT update of the domestic minimi
 (`tranches_from_2027` and `annual_minimi_not_updated`), and the two
 pre-2015 personal elements of `impianti-sportivi-sport`.
+
+## Simplifications without a limitation
+
+The same day, the 66 `simplification` notes that declared no limitation and
+the 8 `missing` notes were checked: a simplification that can change an
+amount and is not tracked hides a gap from the completeness report.
+
+| Verdict | Notes | Outcome |
+|---|---:|---|
+| No amount: the engine refuses the case (no track, no table before the first date, no band) or the note changes nothing computed | 58 | Kept as they are |
+| Untracked gap | 12 | Now open limitations, with their capability, impact, trigger and remediation |
+| Obsolete | 3 | Rewritten: `ortofrutticoli-agrumari` (salary tables now verified) and `pulizia-artigianato-confartigianato` (an ambiguous track is now refused) became `info` notes; `agenzie-viaggio-fiavet` says which work rules now exist |
+| Duplicate | 1 | Removed: `ortofrutticoli-agrumari` restated the assumed sickness integration that `assumed_sickness_integration_rates` tracks |
+
+The new limitations: `assicurazioni-ania/funzionari_economic_allowance`,
+`autorimesse-ic35/meal_voucher`, `autorimesse-ic35/long_week_divisors`,
+`ced-assoced/conditional_allowances_title_xxiii`,
+`concia-unic/rol_not_accrued`,
+`dirigenza-sanitaria-medico-veterinaria-aran/approximate_hourly_divisor`,
+`impianti-sportivi-sport/long_week_divisor_195`,
+`istruzione-ricerca-aran/teacher_hourly_divisor`,
+`panificazione-artigianato-confartigianato/special_allowance_in_base`,
+`panificazione-artigianato-confartigianato/err_unsourced`,
+`radiotelevisive-radiofonico/inps_rates_reused_unverified` and
+`radiotelevisive-televisivo/inps_rates_reused_unverified`. The open
+limitations of the bundle go from 437 to 449: the gaps were there, now they
+are counted.

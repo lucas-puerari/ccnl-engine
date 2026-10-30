@@ -152,6 +152,27 @@
           "sickness_inps_daily_base"
         ]
       }
+    },
+    {
+      "id": "teacher_hourly_divisor",
+      "institute": "workplace_injury",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Hourly divisor 156 = 36h/settimana × 52/12. I docenti hanno orario cattedra (18h/settimana insegnamento), non direttamente comparabile. Il divisore si applica per l'hourly_rate indicativo.",
+      "calculation": "ccnl/istruzione-ricerca-aran:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T02.04"
+      ],
+      "verification": [
+        "T02.13"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "istruzione-ricerca-aran/teacher_hourly_divisor"
+        ]
+      }
     }
   ]
 }

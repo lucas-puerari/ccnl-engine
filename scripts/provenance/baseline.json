@@ -674,6 +674,7 @@
     ],
     "agreement/assicurazioni-ania.json": [
       "assicurazioni-ania/apprentice_seniority",
+      "assicurazioni-ania/funzionari_economic_allowance",
       "assicurazioni-ania/inps_sector_rates_unsourced",
       "assicurazioni-ania/seniority_modal_class_difference"
     ],
@@ -686,7 +687,9 @@
     ],
     "agreement/autorimesse-ic35.json": [
       "autorimesse-ic35/apprentice_seniority",
-      "autorimesse-ic35/apprenticeship_percentages_2019"
+      "autorimesse-ic35/apprenticeship_percentages_2019",
+      "autorimesse-ic35/long_week_divisors",
+      "autorimesse-ic35/meal_voucher"
     ],
     "agreement/autoscuole-unasca.json": [
       "autoscuole-unasca/apprentice_seniority",
@@ -724,6 +727,7 @@
       "carta-cartone-assocarta/apprentice_seniority"
     ],
     "agreement/ced-assoced.json": [
+      "ced-assoced/conditional_allowances_title_xxiii",
       "ced-assoced/terziario_inps_rates_unverified"
     ],
     "agreement/cemento-calce-gesso-industria.json": [
@@ -773,7 +777,8 @@
     ],
     "agreement/concia-unic.json": [
       "concia-unic/apprentice_seniority",
-      "concia-unic/higher_overtime_bands"
+      "concia-unic/higher_overtime_bands",
+      "concia-unic/rol_not_accrued"
     ],
     "agreement/consorzi-agrari-assocap.json": [
       "consorzi-agrari-assocap/apprentice_inps_rates_unsourced",
@@ -806,6 +811,7 @@
       "dirigenza-sanitaria-area-sanita-aran/specificita_pre_2025_estimated"
     ],
     "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json": [
+      "dirigenza-sanitaria-medico-veterinaria-aran/approximate_hourly_divisor",
       "dirigenza-sanitaria-medico-veterinaria-aran/specificita_pre_2025_estimated",
       "dirigenza-sanitaria-medico-veterinaria-aran/tabellare_pre_2024_estimated"
     ],
@@ -922,6 +928,7 @@
       "impianti-sportivi-sport/integration_75_days_4_20",
       "impianti-sportivi-sport/level_v_first_semester_overpaid",
       "impianti-sportivi-sport/level_vi_whole_track_at_destination",
+      "impianti-sportivi-sport/long_week_divisor_195",
       "impianti-sportivi-sport/night_overtime_cumulation",
       "impianti-sportivi-sport/overtime_over_48h_band_missing",
       "impianti-sportivi-sport/pre_2015_fourteenth_missing",
@@ -946,7 +953,8 @@
     ],
     "agreement/istruzione-ricerca-aran.json": [
       "istruzione-ricerca-aran/enam_base",
-      "istruzione-ricerca-aran/fixed_hourly_overtime"
+      "istruzione-ricerca-aran/fixed_hourly_overtime",
+      "istruzione-ricerca-aran/teacher_hourly_divisor"
     ],
     "agreement/lapidei-industria.json": [
       "lapidei-industria/apprentice_seniority",
@@ -1107,8 +1115,10 @@
     ],
     "agreement/panificazione-artigianato-confartigianato.json": [
       "panificazione-artigianato-confartigianato/apprentice_inps_rates_unsourced",
+      "panificazione-artigianato-confartigianato/err_unsourced",
       "panificazione-artigianato-confartigianato/ert_veneto",
-      "panificazione-artigianato-confartigianato/inps_sector_rates_unsourced"
+      "panificazione-artigianato-confartigianato/inps_sector_rates_unsourced",
+      "panificazione-artigianato-confartigianato/special_allowance_in_base"
     ],
     "agreement/panificazione-assipan.json": [
       "panificazione-assipan/apprentice_seniority"
@@ -1154,10 +1164,12 @@
       "pulizia-artigianato-confartigianato/overtime_weekly_threshold"
     ],
     "agreement/radiotelevisive-radiofonico.json": [
-      "radiotelevisive-radiofonico/apprentice_seniority"
+      "radiotelevisive-radiofonico/apprentice_seniority",
+      "radiotelevisive-radiofonico/inps_rates_reused_unverified"
     ],
     "agreement/radiotelevisive-televisivo.json": [
-      "radiotelevisive-televisivo/apprentice_seniority"
+      "radiotelevisive-televisivo/apprentice_seniority",
+      "radiotelevisive-televisivo/inps_rates_reused_unverified"
     ],
     "agreement/rsa-aiop.json": [
       "rsa-aiop/apprentice_seniority"
