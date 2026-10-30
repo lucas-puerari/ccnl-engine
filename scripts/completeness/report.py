@@ -9,10 +9,12 @@ of the sources, and the comparison with real payslips are separate axes:
 the report shows readiness for reference only and never derives one from
 the other.
 
-A requirement row is open when its rule is ``absent`` or ``unverified``,
-when an implemented row names no scenario, or when a limitation it links is
-still open or a rule it links is still weak.  A scenario, a limitation or a
-rule a row names and the bundle does not hold is a census error.
+A requirement row is open when it is seeded (carried over from a limitation
+or a weak rule, not yet read from the text), when its rule is ``absent`` or
+``unverified``, when an implemented row names no scenario, or when a
+limitation it links is still open or a rule it links is still weak.  A
+scenario, a limitation or a rule a row names and the bundle does not hold
+is a census error.
 
 Usage::
 
@@ -36,7 +38,7 @@ from typing import TYPE_CHECKING
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from ccnl_engine.agreement.census.loaders import load_census
-from ccnl_engine.agreement.census.models import RuleState
+from ccnl_engine.agreement.census.models import CensusOrigin, RuleState
 from ccnl_engine.capability.loaders import load_capability_catalog
 from ccnl_engine.capability.registry.models import CapabilityImplementation
 from ccnl_engine.capability.support.services import ccnl_capabilities
@@ -53,7 +55,7 @@ from scripts.provenance.rules import PayableRule, inventory
 if TYPE_CHECKING:
     from collections.abc import Iterable, Mapping
 
-    from ccnl_engine.agreement.census.models import Census
+    from ccnl_engine.agreement.census.models import Census, Requirement
     from ccnl_engine.agreement.facade import CCNL
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -266,6 +268,23 @@ class Evidence:
     open_limitations: frozenset[str]
 
 
+def row_open(row: Requirement, evidence: Evidence) -> bool:
+    """Return whether the work of a census row is still open.
+
+    Returns:
+        ``True`` for a seeded row, an open state, an implemented row
+        without scenario, or a row whose limitation or rule is still open.
+    """
+    links = row.links
+    return any((
+        row.origin is CensusOrigin.SEEDED,
+        row.state in OPEN_STATES,
+        row.state is RuleState.IMPLEMENTED and not row.scenarios,
+        bool(evidence.open_limitations.intersection(links.limitations)),
+        bool(evidence.weakness.ids.intersection(links.rules)),
+    ))
+
+
 def census_state(
     census: Census, evidence: Evidence
 ) -> tuple[tuple[str, ...], tuple[str, ...]]:
@@ -292,12 +311,7 @@ def census_state(
         errors.extend(
             f"{row.id}: no rule {r}" for r in links.rules if r not in evidence.rules
         )
-        if (
-            row.state in OPEN_STATES
-            or (row.state is RuleState.IMPLEMENTED and not row.scenarios)
-            or evidence.open_limitations.intersection(links.limitations)
-            or evidence.weakness.ids.intersection(links.rules)
-        ):
+        if row_open(row, evidence):
             open_rows.append(row.id)
     return tuple(open_rows), tuple(errors)
 

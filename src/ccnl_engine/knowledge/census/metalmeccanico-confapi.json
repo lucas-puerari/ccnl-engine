@@ -1,0 +1,350 @@
+{
+  "schema_version": 1,
+  "ccnl_id": "metalmeccanico-confapi",
+  "requirements": [
+    {
+      "id": "apprentice_seniority_credit",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 10 p. 49: the 65% credit of the apprenticeship for the seniority increments of the worker kept on.",
+      "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-confapi/apprentice_seniority_credit"
+        ]
+      }
+    },
+    {
+      "id": "child_sickness_and_oncological_permits",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 58 bis and Art. 55 bis: the child sickness indemnity from 2027 and the oncological permits.",
+      "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T03.02"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-confapi/child_sickness_and_oncological_permits"
+        ]
+      }
+    },
+    {
+      "id": "elemento_perequativo",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 48: the elemento perequativo of 485 EUR a year with the June pay in firms without second-level bargaining.",
+      "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-confapi/elemento_perequativo"
+        ]
+      }
+    },
+    {
+      "id": "flexibility_and_hours_bank",
+      "institute": "overtime",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 23: flessibilità beyond 40 hours (15%/20%) and banca ore (50% of the overtime premium).",
+      "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.06"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-confapi/flexibility_and_hours_bank"
+        ]
+      }
+    },
+    {
+      "id": "fondapi_base_elements",
+      "institute": "pension_fund_contribution",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "The Fondapi base ('retribuzione FONDAPI', Art. 50 p. 123) counts, besides the minimi conglobati, the EDR, the indennità di funzione of the quadri and the elemento retributivo of the 8th and 9th categories. The CCNL text sets no EDR amount and no elemento retributivo; the indennità di funzione (Art. 98 p. 182: 69.72 quadri A, 49.06 quadri B, 32.75 quadri B oreficeria) is not held by the bundle pay, so the fund contributions of an enrolled quadro are understated.",
+      "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T05.04"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-confapi/fondapi_base_elements"
+        ]
+      }
+    },
+    {
+      "id": "ipca_top_up",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Renewal of 4 June 2026: the IPCA top-up of June 2027 and 2028 above 2.653% and 2.729%.",
+      "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-confapi/ipca_top_up"
+        ]
+      }
+    },
+    {
+      "id": "ordinary_hours_premiums",
+      "institute": "overtime",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 29 rows b, d, h, i, f, m: the ordinary night, holiday and compensatory-rest premiums; the shift-worker column (night overtime 40%/45%, night holiday overtime 65%) and night holiday work within 8 hours (60%).",
+      "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.07"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-confapi/ordinary_hours_premiums"
+        ]
+      }
+    },
+    {
+      "id": "par_conto_ore_payout",
+      "institute": "leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "LEAVE, CONTO ORE (Art. 22): the PAR not taken in the year go to an individual conto ore for 24 more months and are then paid with the retribuzione in atto. The engine carries the balances and does not pay them at the end of the window.",
+      "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.10"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-confapi/par_conto_ore_payout"
+        ]
+      }
+    },
+    {
+      "id": "par_sector_shift_and_renewal_hours",
+      "institute": "leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "LEAVE, PAR (Artt. 21-22 and renewal of 4 June 2026, p. 18): 8 more hours in the sectors listed by Art. 21 and for the turnisti on 15 or more shifts a week; 4 more hours from 1 January 2027 to 31 December 2028 in the companies with at least 50 employees per unità produttiva and from 2029 in every company (the sentence is an insertion of the scan, read by OCR). The engine accrues the 104 hours of the generalità.",
+      "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.10"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-confapi/par_sector_shift_and_renewal_hours"
+        ]
+      }
+    },
+    {
+      "id": "provisional_inps_ruleset",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_inps_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "provisional_ruleset",
+      "institute": "irpef",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "quadri_allowance",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 98: the indennità di funzione of the quadri.",
+      "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-confapi/quadri_allowance"
+        ]
+      }
+    },
+    {
+      "id": "sickness_cumulation_window",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.",
+      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_cumulation_window"
+        ]
+      }
+    },
+    {
+      "id": "sickness_inps_daily_base",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
+      "calculation": "ccnl_engine.sickness.handlers (INPS share of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_inps_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "sickness_rules",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Sickness: comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27), the net-pay gross-up.",
+      "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T03.02"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-confapi/sickness_rules"
+        ]
+      }
+    },
+    {
+      "id": "six_day_leave",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 33: leave on a 6-day week and the transitional extra day.",
+      "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-confapi/six_day_leave"
+        ]
+      }
+    },
+    {
+      "id": "standby_and_travel",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 28: reperibilità (amounts by group of levels adjusted each June) and trasferta.",
+      "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-confapi/standby_and_travel"
+        ]
+      }
+    },
+    {
+      "id": "sunday_holiday_and_ex_operai",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "The festività on a Sunday (1/26) and the 1 h 20' of the ex operai; the superminimo ex Parte prima of 11 h 10' a year (Art. 38).",
+      "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-confapi/sunday_holiday_and_ex_operai"
+        ]
+      }
+    },
+    {
+      "id": "tfr_compensation_apprentice_guarantee_fund",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.",
+      "calculation": "ccnl_engine.severance.relief.services; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
+      "state": "absent",
+      "work": [
+        "T08.05"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "tfr_compensation_apprentice_guarantee_fund"
+        ]
+      }
+    }
+  ]
+}

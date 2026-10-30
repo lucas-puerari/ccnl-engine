@@ -1,0 +1,2094 @@
+{
+  "schema_version": 1,
+  "ccnl_id": "common",
+  "requirements": [
+    {
+      "id": "rule_contribution_2027_agricoltura_apprentice",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/agricoltura.json#apprentice",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/agricoltura.json#apprentice"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_agricoltura_inps",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/agricoltura.json#inps",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/agricoltura.json#inps"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_agricoltura_inps_employee_additional",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/agricoltura.json#inps.employee_additional",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/agricoltura.json#inps.employee_additional"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_agricoltura_inps_minimum_base",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/agricoltura.json#inps.minimum_base",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/agricoltura.json#inps.minimum_base"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_agricoltura_inps_zone_reduction",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/agricoltura.json#inps.zone_reduction",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/agricoltura.json#inps.zone_reduction"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_artigianato_apprentice",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/artigianato.json#apprentice",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/artigianato.json#apprentice"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_artigianato_inps",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/artigianato.json#inps",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/artigianato.json#inps"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_artigianato_inps_cigs_indotto",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/artigianato.json#inps.cigs_indotto",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/artigianato.json#inps.cigs_indotto"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_artigianato_inps_employee_additional",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/artigianato.json#inps.employee_additional",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/artigianato.json#inps.employee_additional"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_artigianato_inps_minimum_base",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/artigianato.json#inps.minimum_base",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/artigianato.json#inps.minimum_base"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_credito_apprentice",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/credito.json#apprentice",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/credito.json#apprentice"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_credito_inps",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/credito.json#inps",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/credito.json#inps"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_credito_inps_employee_additional",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/credito.json#inps.employee_additional",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/credito.json#inps.employee_additional"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_credito_inps_minimum_base",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/credito.json#inps.minimum_base",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/credito.json#inps.minimum_base"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_edilizia_apprentice",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/edilizia.json#apprentice",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/edilizia.json#apprentice"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_edilizia_inps",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/edilizia.json#inps",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/edilizia.json#inps"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_edilizia_inps_employee_additional",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/edilizia.json#inps.employee_additional",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/edilizia.json#inps.employee_additional"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_edilizia_inps_minimum_base",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/edilizia.json#inps.minimum_base",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/edilizia.json#inps.minimum_base"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_industria_apprentice",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/industria.json#apprentice",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/industria.json#apprentice"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_industria_inps",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/industria.json#inps",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/industria.json#inps"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_industria_inps_employee_additional",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/industria.json#inps.employee_additional",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/industria.json#inps.employee_additional"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_industria_inps_minimum_base",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/industria.json#inps.minimum_base",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/industria.json#inps.minimum_base"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_lavoro_domestico_domestic_contributions",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/lavoro-domestico.json#domestic_contributions",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/lavoro-domestico.json#domestic_contributions"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_pubblica_amministrazione_apprentice",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/pubblica-amministrazione.json#apprentice",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/pubblica-amministrazione.json#apprentice"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_pubblica_amministrazione_inps",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/pubblica-amministrazione.json#inps",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/pubblica-amministrazione.json#inps"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_pubblica_amministrazione_inps_em_01b6ea44",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/pubblica-amministrazione.json#inps.employee_additional",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/pubblica-amministrazione.json#inps.employee_additional"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_pubblica_amministrazione_inps_en_5f907e1f",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/pubblica-amministrazione.json#inps.end_of_service",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/pubblica-amministrazione.json#inps.end_of_service"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_pubblica_amministrazione_inps_mi_db469f09",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/pubblica-amministrazione.json#inps.minimum_base",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/pubblica-amministrazione.json#inps.minimum_base"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_pubblica_amministrazione_inps_pu_137c7267",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cpug.end_of_service",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cpug.end_of_service"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_pubblica_amministrazione_inps_pu_17c1ef30",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cpug",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cpug"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_pubblica_amministrazione_inps_pu_18246d3a",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cpdel.end_of_service",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cpdel.end_of_service"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_pubblica_amministrazione_inps_pu_398ee20b",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cpi",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cpi"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_pubblica_amministrazione_inps_pu_486d90c7",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_credit",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/pubblica-amministrazione.json#inps.public_credit"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_pubblica_amministrazione_inps_pu_6d96fe49",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cpdel",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cpdel"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_pubblica_amministrazione_inps_pu_7353c186",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cpi.end_of_service",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cpi.end_of_service"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_pubblica_amministrazione_inps_pu_a04e3472",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cps.end_of_service",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cps.end_of_service"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_pubblica_amministrazione_inps_pu_a9963fcd",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cps",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/pubblica-amministrazione.json#inps.public_funds.cps"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_pubblica_amministrazione_inps_pu_e3a987d8",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_life_insurance",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/pubblica-amministrazione.json#inps.public_life_insurance"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_pubblica_amministrazione_inps_public_enam",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/pubblica-amministrazione.json#inps.public_enam",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/pubblica-amministrazione.json#inps.public_enam"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_terziario_apprentice",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/terziario.json#apprentice",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/terziario.json#apprentice"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_terziario_inps",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/terziario.json#inps",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/terziario.json#inps"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_terziario_inps_employee_additional",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/terziario.json#inps.employee_additional",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/terziario.json#inps.employee_additional"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_terziario_inps_fis_reduction",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/terziario.json#inps.fis_reduction",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/terziario.json#inps.fis_reduction"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_terziario_inps_minimum_base",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/terziario.json#inps.minimum_base",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/terziario.json#inps.minimum_base"
+        ]
+      }
+    },
+    {
+      "id": "rule_contribution_2027_terziario_inps_sick_pay_suppleme_82e2f0b7",
+      "institute": "inps_employee",
+      "variant": "all",
+      "rule": "contribution/2027/terziario.json#inps.sick_pay_supplements.pubblici_esercizi",
+      "calculation": "inps_employee, inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "contribution/2027/terziario.json#inps.sick_pay_supplements.pubblici_esercizi"
+        ]
+      }
+    },
+    {
+      "id": "rule_family_2027_children",
+      "institute": "family_deductions",
+      "variant": "all",
+      "rule": "family/2027.json#children",
+      "calculation": "family_deductions",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "family/2027.json#children"
+        ]
+      }
+    },
+    {
+      "id": "rule_family_2027_other_dependents",
+      "institute": "family_deductions",
+      "variant": "all",
+      "rule": "family/2027.json#other_dependents",
+      "calculation": "family_deductions",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "family/2027.json#other_dependents"
+        ]
+      }
+    },
+    {
+      "id": "rule_family_2027_spouse",
+      "institute": "family_deductions",
+      "variant": "all",
+      "rule": "family/2027.json#spouse",
+      "calculation": "family_deductions",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "family/2027.json#spouse"
+        ]
+      }
+    },
+    {
+      "id": "rule_family_2027_spouse_increases",
+      "institute": "family_deductions",
+      "variant": "all",
+      "rule": "family/2027.json#spouse_increases",
+      "calculation": "family_deductions",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "family/2027.json#spouse_increases"
+        ]
+      }
+    },
+    {
+      "id": "rule_irpef_work_deduction_2027_work_deduction",
+      "institute": "irpef",
+      "variant": "all",
+      "rule": "irpef/work_deduction/2027.json#work_deduction",
+      "calculation": "irpef",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "irpef/work_deduction/2027.json#work_deduction"
+        ]
+      }
+    },
+    {
+      "id": "rule_irpef_work_deduction_2027_work_deduction_minimum",
+      "institute": "irpef",
+      "variant": "all",
+      "rule": "irpef/work_deduction/2027.json#work_deduction.minimum",
+      "calculation": "irpef",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "irpef/work_deduction/2027.json#work_deduction.minimum"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_agricoltura_complementary_pension",
+      "institute": "pension_fund_contribution",
+      "variant": "all",
+      "rule": "sector/2027/agricoltura.json#complementary_pension",
+      "calculation": "pension_fund_contribution",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/agricoltura.json#complementary_pension"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_agricoltura_fixed_term_additional_rate",
+      "institute": "inps_employer",
+      "variant": "all",
+      "rule": "sector/2027/agricoltura.json#fixed_term_additional_rate",
+      "calculation": "inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/agricoltura.json#fixed_term_additional_rate"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_agricoltura_irpef_brackets",
+      "institute": "irpef",
+      "variant": "all",
+      "rule": "sector/2027/agricoltura.json#irpef_brackets",
+      "calculation": "irpef",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/agricoltura.json#irpef_brackets"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_agricoltura_tfr",
+      "institute": "tfr",
+      "variant": "all",
+      "rule": "sector/2027/agricoltura.json#tfr",
+      "calculation": "tfr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/agricoltura.json#tfr"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_agricoltura_trattamento_integrativo",
+      "institute": "trattamento_integrativo",
+      "variant": "all",
+      "rule": "sector/2027/agricoltura.json#trattamento_integrativo",
+      "calculation": "trattamento_integrativo",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/agricoltura.json#trattamento_integrativo"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_agricoltura_ulteriore_detrazione",
+      "institute": "ulteriore_detrazione_lavoro",
+      "variant": "all",
+      "rule": "sector/2027/agricoltura.json#ulteriore_detrazione",
+      "calculation": "ulteriore_detrazione_lavoro",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/agricoltura.json#ulteriore_detrazione"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_artigianato_complementary_pension",
+      "institute": "pension_fund_contribution",
+      "variant": "all",
+      "rule": "sector/2027/artigianato.json#complementary_pension",
+      "calculation": "pension_fund_contribution",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/artigianato.json#complementary_pension"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_artigianato_fixed_term_additional_rate",
+      "institute": "inps_employer",
+      "variant": "all",
+      "rule": "sector/2027/artigianato.json#fixed_term_additional_rate",
+      "calculation": "inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/artigianato.json#fixed_term_additional_rate"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_artigianato_irpef_brackets",
+      "institute": "irpef",
+      "variant": "all",
+      "rule": "sector/2027/artigianato.json#irpef_brackets",
+      "calculation": "irpef",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/artigianato.json#irpef_brackets"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_artigianato_tfr",
+      "institute": "tfr",
+      "variant": "all",
+      "rule": "sector/2027/artigianato.json#tfr",
+      "calculation": "tfr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/artigianato.json#tfr"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_artigianato_tfr_additional_ivs",
+      "institute": "tfr",
+      "variant": "all",
+      "rule": "sector/2027/artigianato.json#tfr.additional_ivs",
+      "calculation": "tfr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/artigianato.json#tfr.additional_ivs"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_artigianato_tfr_compensation",
+      "institute": "tfr",
+      "variant": "all",
+      "rule": "sector/2027/artigianato.json#tfr.compensation",
+      "calculation": "tfr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/artigianato.json#tfr.compensation"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_artigianato_trattamento_integrativo",
+      "institute": "trattamento_integrativo",
+      "variant": "all",
+      "rule": "sector/2027/artigianato.json#trattamento_integrativo",
+      "calculation": "trattamento_integrativo",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/artigianato.json#trattamento_integrativo"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_artigianato_ulteriore_detrazione",
+      "institute": "ulteriore_detrazione_lavoro",
+      "variant": "all",
+      "rule": "sector/2027/artigianato.json#ulteriore_detrazione",
+      "calculation": "ulteriore_detrazione_lavoro",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/artigianato.json#ulteriore_detrazione"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_credito_complementary_pension",
+      "institute": "pension_fund_contribution",
+      "variant": "all",
+      "rule": "sector/2027/credito.json#complementary_pension",
+      "calculation": "pension_fund_contribution",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/credito.json#complementary_pension"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_credito_fixed_term_additional_rate",
+      "institute": "inps_employer",
+      "variant": "all",
+      "rule": "sector/2027/credito.json#fixed_term_additional_rate",
+      "calculation": "inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/credito.json#fixed_term_additional_rate"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_credito_irpef_brackets",
+      "institute": "irpef",
+      "variant": "all",
+      "rule": "sector/2027/credito.json#irpef_brackets",
+      "calculation": "irpef",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/credito.json#irpef_brackets"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_credito_tfr",
+      "institute": "tfr",
+      "variant": "all",
+      "rule": "sector/2027/credito.json#tfr",
+      "calculation": "tfr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/credito.json#tfr"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_credito_tfr_additional_ivs",
+      "institute": "tfr",
+      "variant": "all",
+      "rule": "sector/2027/credito.json#tfr.additional_ivs",
+      "calculation": "tfr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/credito.json#tfr.additional_ivs"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_credito_tfr_compensation",
+      "institute": "tfr",
+      "variant": "all",
+      "rule": "sector/2027/credito.json#tfr.compensation",
+      "calculation": "tfr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/credito.json#tfr.compensation"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_credito_trattamento_integrativo",
+      "institute": "trattamento_integrativo",
+      "variant": "all",
+      "rule": "sector/2027/credito.json#trattamento_integrativo",
+      "calculation": "trattamento_integrativo",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/credito.json#trattamento_integrativo"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_credito_ulteriore_detrazione",
+      "institute": "ulteriore_detrazione_lavoro",
+      "variant": "all",
+      "rule": "sector/2027/credito.json#ulteriore_detrazione",
+      "calculation": "ulteriore_detrazione_lavoro",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/credito.json#ulteriore_detrazione"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_edilizia_complementary_pension",
+      "institute": "pension_fund_contribution",
+      "variant": "all",
+      "rule": "sector/2027/edilizia.json#complementary_pension",
+      "calculation": "pension_fund_contribution",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/edilizia.json#complementary_pension"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_edilizia_fixed_term_additional_rate",
+      "institute": "inps_employer",
+      "variant": "all",
+      "rule": "sector/2027/edilizia.json#fixed_term_additional_rate",
+      "calculation": "inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/edilizia.json#fixed_term_additional_rate"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_edilizia_irpef_brackets",
+      "institute": "irpef",
+      "variant": "all",
+      "rule": "sector/2027/edilizia.json#irpef_brackets",
+      "calculation": "irpef",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/edilizia.json#irpef_brackets"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_edilizia_tfr",
+      "institute": "tfr",
+      "variant": "all",
+      "rule": "sector/2027/edilizia.json#tfr",
+      "calculation": "tfr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/edilizia.json#tfr"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_edilizia_tfr_additional_ivs",
+      "institute": "tfr",
+      "variant": "all",
+      "rule": "sector/2027/edilizia.json#tfr.additional_ivs",
+      "calculation": "tfr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/edilizia.json#tfr.additional_ivs"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_edilizia_tfr_compensation",
+      "institute": "tfr",
+      "variant": "all",
+      "rule": "sector/2027/edilizia.json#tfr.compensation",
+      "calculation": "tfr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/edilizia.json#tfr.compensation"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_edilizia_trattamento_integrativo",
+      "institute": "trattamento_integrativo",
+      "variant": "all",
+      "rule": "sector/2027/edilizia.json#trattamento_integrativo",
+      "calculation": "trattamento_integrativo",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/edilizia.json#trattamento_integrativo"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_edilizia_ulteriore_detrazione",
+      "institute": "ulteriore_detrazione_lavoro",
+      "variant": "all",
+      "rule": "sector/2027/edilizia.json#ulteriore_detrazione",
+      "calculation": "ulteriore_detrazione_lavoro",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/edilizia.json#ulteriore_detrazione"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_industria_complementary_pension",
+      "institute": "pension_fund_contribution",
+      "variant": "all",
+      "rule": "sector/2027/industria.json#complementary_pension",
+      "calculation": "pension_fund_contribution",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/industria.json#complementary_pension"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_industria_fixed_term_additional_rate",
+      "institute": "inps_employer",
+      "variant": "all",
+      "rule": "sector/2027/industria.json#fixed_term_additional_rate",
+      "calculation": "inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/industria.json#fixed_term_additional_rate"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_industria_irpef_brackets",
+      "institute": "irpef",
+      "variant": "all",
+      "rule": "sector/2027/industria.json#irpef_brackets",
+      "calculation": "irpef",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/industria.json#irpef_brackets"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_industria_tfr",
+      "institute": "tfr",
+      "variant": "all",
+      "rule": "sector/2027/industria.json#tfr",
+      "calculation": "tfr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/industria.json#tfr"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_industria_tfr_additional_ivs",
+      "institute": "tfr",
+      "variant": "all",
+      "rule": "sector/2027/industria.json#tfr.additional_ivs",
+      "calculation": "tfr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/industria.json#tfr.additional_ivs"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_industria_tfr_compensation",
+      "institute": "tfr",
+      "variant": "all",
+      "rule": "sector/2027/industria.json#tfr.compensation",
+      "calculation": "tfr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/industria.json#tfr.compensation"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_industria_trattamento_integrativo",
+      "institute": "trattamento_integrativo",
+      "variant": "all",
+      "rule": "sector/2027/industria.json#trattamento_integrativo",
+      "calculation": "trattamento_integrativo",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/industria.json#trattamento_integrativo"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_industria_ulteriore_detrazione",
+      "institute": "ulteriore_detrazione_lavoro",
+      "variant": "all",
+      "rule": "sector/2027/industria.json#ulteriore_detrazione",
+      "calculation": "ulteriore_detrazione_lavoro",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/industria.json#ulteriore_detrazione"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_lavoro_domestico_complementary_pension",
+      "institute": "pension_fund_contribution",
+      "variant": "all",
+      "rule": "sector/2027/lavoro-domestico.json#complementary_pension",
+      "calculation": "pension_fund_contribution",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/lavoro-domestico.json#complementary_pension"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_lavoro_domestico_fixed_term_additional_rate",
+      "institute": "inps_employer",
+      "variant": "all",
+      "rule": "sector/2027/lavoro-domestico.json#fixed_term_additional_rate",
+      "calculation": "inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/lavoro-domestico.json#fixed_term_additional_rate"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_lavoro_domestico_irpef_brackets",
+      "institute": "irpef",
+      "variant": "all",
+      "rule": "sector/2027/lavoro-domestico.json#irpef_brackets",
+      "calculation": "irpef",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/lavoro-domestico.json#irpef_brackets"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_lavoro_domestico_tfr",
+      "institute": "tfr",
+      "variant": "all",
+      "rule": "sector/2027/lavoro-domestico.json#tfr",
+      "calculation": "tfr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/lavoro-domestico.json#tfr"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_lavoro_domestico_trattamento_integrativo",
+      "institute": "trattamento_integrativo",
+      "variant": "all",
+      "rule": "sector/2027/lavoro-domestico.json#trattamento_integrativo",
+      "calculation": "trattamento_integrativo",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/lavoro-domestico.json#trattamento_integrativo"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_lavoro_domestico_ulteriore_detrazione",
+      "institute": "ulteriore_detrazione_lavoro",
+      "variant": "all",
+      "rule": "sector/2027/lavoro-domestico.json#ulteriore_detrazione",
+      "calculation": "ulteriore_detrazione_lavoro",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/lavoro-domestico.json#ulteriore_detrazione"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_pubblica_amministrazione_complementary_pension",
+      "institute": "pension_fund_contribution",
+      "variant": "all",
+      "rule": "sector/2027/pubblica-amministrazione.json#complementary_pension",
+      "calculation": "pension_fund_contribution",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/pubblica-amministrazione.json#complementary_pension"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_pubblica_amministrazione_fixed_term_ad_86dc5b7a",
+      "institute": "inps_employer",
+      "variant": "all",
+      "rule": "sector/2027/pubblica-amministrazione.json#fixed_term_additional_rate",
+      "calculation": "inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/pubblica-amministrazione.json#fixed_term_additional_rate"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_pubblica_amministrazione_irpef_brackets",
+      "institute": "irpef",
+      "variant": "all",
+      "rule": "sector/2027/pubblica-amministrazione.json#irpef_brackets",
+      "calculation": "irpef",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/pubblica-amministrazione.json#irpef_brackets"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_pubblica_amministrazione_tfr",
+      "institute": "tfr",
+      "variant": "all",
+      "rule": "sector/2027/pubblica-amministrazione.json#tfr",
+      "calculation": "tfr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/pubblica-amministrazione.json#tfr"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_pubblica_amministrazione_trattamento_i_de85bda2",
+      "institute": "trattamento_integrativo",
+      "variant": "all",
+      "rule": "sector/2027/pubblica-amministrazione.json#trattamento_integrativo",
+      "calculation": "trattamento_integrativo",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/pubblica-amministrazione.json#trattamento_integrativo"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_pubblica_amministrazione_ulteriore_detrazione",
+      "institute": "ulteriore_detrazione_lavoro",
+      "variant": "all",
+      "rule": "sector/2027/pubblica-amministrazione.json#ulteriore_detrazione",
+      "calculation": "ulteriore_detrazione_lavoro",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/pubblica-amministrazione.json#ulteriore_detrazione"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_terziario_complementary_pension",
+      "institute": "pension_fund_contribution",
+      "variant": "all",
+      "rule": "sector/2027/terziario.json#complementary_pension",
+      "calculation": "pension_fund_contribution",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/terziario.json#complementary_pension"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_terziario_fixed_term_additional_rate",
+      "institute": "inps_employer",
+      "variant": "all",
+      "rule": "sector/2027/terziario.json#fixed_term_additional_rate",
+      "calculation": "inps_employer",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/terziario.json#fixed_term_additional_rate"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_terziario_irpef_brackets",
+      "institute": "irpef",
+      "variant": "all",
+      "rule": "sector/2027/terziario.json#irpef_brackets",
+      "calculation": "irpef",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/terziario.json#irpef_brackets"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_terziario_tfr",
+      "institute": "tfr",
+      "variant": "all",
+      "rule": "sector/2027/terziario.json#tfr",
+      "calculation": "tfr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/terziario.json#tfr"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_terziario_tfr_additional_ivs",
+      "institute": "tfr",
+      "variant": "all",
+      "rule": "sector/2027/terziario.json#tfr.additional_ivs",
+      "calculation": "tfr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/terziario.json#tfr.additional_ivs"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_terziario_tfr_compensation",
+      "institute": "tfr",
+      "variant": "all",
+      "rule": "sector/2027/terziario.json#tfr.compensation",
+      "calculation": "tfr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/terziario.json#tfr.compensation"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_terziario_trattamento_integrativo",
+      "institute": "trattamento_integrativo",
+      "variant": "all",
+      "rule": "sector/2027/terziario.json#trattamento_integrativo",
+      "calculation": "trattamento_integrativo",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/terziario.json#trattamento_integrativo"
+        ]
+      }
+    },
+    {
+      "id": "rule_sector_2027_terziario_ulteriore_detrazione",
+      "institute": "ulteriore_detrazione_lavoro",
+      "variant": "all",
+      "rule": "sector/2027/terziario.json#ulteriore_detrazione",
+      "calculation": "ulteriore_detrazione_lavoro",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "sector/2027/terziario.json#ulteriore_detrazione"
+        ]
+      }
+    },
+    {
+      "id": "rule_surtax_municipal_2027_rates",
+      "institute": "addizionale_comunale",
+      "variant": "all",
+      "rule": "surtax/municipal/2027.json#rates",
+      "calculation": "addizionale_comunale",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "surtax/municipal/2027.json#rates"
+        ]
+      }
+    },
+    {
+      "id": "rule_surtax_regional_2027_rates",
+      "institute": "addizionale_regionale",
+      "variant": "all",
+      "rule": "surtax/regional/2027.json#rates",
+      "calculation": "addizionale_regionale",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "surtax/regional/2027.json#rates"
+        ]
+      }
+    },
+    {
+      "id": "rule_tax_credit_somma_esente_2027_somma_esente",
+      "institute": "somma_esente",
+      "variant": "all",
+      "rule": "tax_credit/somma_esente/2027.json#somma_esente",
+      "calculation": "somma_esente",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "tax_credit/somma_esente/2027.json#somma_esente"
+        ]
+      }
+    },
+    {
+      "id": "rule_variable_pay_2027_fringe_benefit",
+      "institute": "fringe_benefit",
+      "variant": "all",
+      "rule": "variable_pay/2027.json#fringe_benefit",
+      "calculation": "fringe_benefit",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "variable_pay/2027.json#fringe_benefit"
+        ]
+      }
+    },
+    {
+      "id": "rule_variable_pay_2027_notte_festivi_turni",
+      "institute": "notte_festivi_turni_substitute_tax",
+      "variant": "all",
+      "rule": "variable_pay/2027.json#notte_festivi_turni",
+      "calculation": "notte_festivi_turni_substitute_tax",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "variable_pay/2027.json#notte_festivi_turni"
+        ]
+      }
+    },
+    {
+      "id": "rule_variable_pay_2027_pdr",
+      "institute": "bonus_pdr",
+      "variant": "all",
+      "rule": "variable_pay/2027.json#pdr",
+      "calculation": "bonus_pdr",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "variable_pay/2027.json#pdr"
+        ]
+      }
+    },
+    {
+      "id": "rule_variable_pay_2027_rinnovo",
+      "institute": "rinnovo_substitute_tax",
+      "variant": "all",
+      "rule": "variable_pay/2027.json#rinnovo",
+      "calculation": "rinnovo_substitute_tax",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "variable_pay/2027.json#rinnovo"
+        ]
+      }
+    }
+  ]
+}

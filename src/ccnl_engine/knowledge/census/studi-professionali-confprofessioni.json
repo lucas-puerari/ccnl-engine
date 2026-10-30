@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "ccnl_id": "studi-professionali-confprofessioni",
+  "requirements": [
+    {
+      "id": "apprentice_seniority",
+      "institute": "seniority",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "APPRENTICE SENIORITY: Art. 129 CCNL 2024 (p. 68) applies the scatti of Art. 134 to apprentices from the hiring date, and Art. 28 I counts the apprenticeship for seniority; the text does not say whether the amount is the one of the destination level. The engine pays no scatto during the apprenticeship (apprentice_amount is one series, not per level). Only an apprenticeship prolonged under Art. 28 I past 36 months of service reaches a scatto (EUR 20-30).",
+      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T02.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "studi-professionali-confprofessioni/apprentice_seniority"
+        ]
+      }
+    },
+    {
+      "id": "apprenticeship_pct_undeclared_components",
+      "institute": "base_salary",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.",
+      "calculation": "ccnl_engine.apprenticeship.rules (percentage track chain)",
+      "state": "unverified",
+      "work": [
+        "T02.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "apprenticeship_pct_undeclared_components"
+        ]
+      }
+    },
+    {
+      "id": "fourteenth_exclusion",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 143: the exclusion of the quattordicesima for workers already paid extra months. The una tantum of EUR 400 (EUR 200 in May 2024 and May 2025, p. 73) is historic and outside the TFR base.",
+      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "studi-professionali-confprofessioni/fourteenth_exclusion"
+        ]
+      }
+    },
+    {
+      "id": "holiday_during_sickness",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 124: the 100% of festività during sickness.",
+      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T03.02"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "studi-professionali-confprofessioni/holiday_during_sickness"
+        ]
+      }
+    },
+    {
+      "id": "injury_integration",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 123: the infortunio integration (100% on the day of the event, 60% days 1-3, 75% after).",
+      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T03.02"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "studi-professionali-confprofessioni/injury_integration"
+        ]
+      }
+    },
+    {
+      "id": "intermittent_availability",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 58: the indennità di disponibilità of the lavoro intermittente, 30%.",
+      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "studi-professionali-confprofessioni/intermittent_availability"
+        ]
+      }
+    },
+    {
+      "id": "maternity_holiday_top_up",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 110 c. 8: the employer top-up to 100% of the holidays during compulsory maternity or paternity leave.",
+      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "studi-professionali-confprofessioni/maternity_holiday_top_up"
+        ]
+      }
+    },
+    {
+      "id": "part_time_supplementary",
+      "institute": "overtime",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 42: the lavoro supplementare of part-time at 40% of the quota oraria of the retribuzione di fatto, outside the deferred institutes and the TFR.",
+      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.06"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "studi-professionali-confprofessioni/part_time_supplementary"
+        ]
+      }
+    },
+    {
+      "id": "provisional_inps_ruleset",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_inps_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "provisional_ruleset",
+      "institute": "irpef",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "reemployment_entry_pay",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 56: the salario d'ingresso of the reimpiego, up to two levels below for 9 months and one for 6.",
+      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "studi-professionali-confprofessioni/reemployment_entry_pay"
+        ]
+      }
+    },
+    {
+      "id": "rol_not_accrued",
+      "institute": "leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "LEAVE, ROL (Art. 91 cc.2-3): 40 hours a year on a five-day week, 66 on a six-day week, and for the hires under the 2024 CCNL 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the text is silent on the first twelve months. The weekly schedule is not an input and the first year is not sourced: the ROL is not accrued, and a leave taken from it is not decided.",
+      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.10"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "studi-professionali-confprofessioni/rol_not_accrued"
+        ]
+      }
+    },
+    {
+      "id": "rolling_comporto_and_serious_illness",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Artt. 120-121: the comporto counted over the episodes of the 365 days before the last one, and the +90 days for serious illnesses paid 100% in months 7-8 and 70% in month 9.",
+      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T03.02"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "studi-professionali-confprofessioni/rolling_comporto_and_serious_illness"
+        ]
+      }
+    },
+    {
+      "id": "sickness_cumulation_window",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.",
+      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_cumulation_window"
+        ]
+      }
+    },
+    {
+      "id": "sickness_inps_daily_base",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
+      "calculation": "ccnl_engine.sickness.handlers (INPS share of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_inps_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "tfr_compensation_apprentice_guarantee_fund",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.",
+      "calculation": "ccnl_engine.severance.relief.services; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
+      "state": "absent",
+      "work": [
+        "T08.05"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "tfr_compensation_apprentice_guarantee_fund"
+        ]
+      }
+    },
+    {
+      "id": "travel_diaria",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 115: the diaria of the trasferte, EUR 15 or 30 a day.",
+      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "studi-professionali-confprofessioni/travel_diaria"
+        ]
+      }
+    },
+    {
+      "id": "unused_leave_hours",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Artt. 91, 92, 97 C, 98: the ROL (40 or 66 hours) and the 32 hours of ex festività paid when not taken, the festività falling on Sunday and the flexibility hours not recovered.",
+      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "studi-professionali-confprofessioni/unused_leave_hours"
+        ]
+      }
+    }
+  ]
+}

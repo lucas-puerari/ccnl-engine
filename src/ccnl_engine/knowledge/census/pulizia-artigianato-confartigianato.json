@@ -1,0 +1,782 @@
+{
+  "schema_version": 1,
+  "ccnl_id": "pulizia-artigianato-confartigianato",
+  "requirements": [
+    {
+      "id": "apprentice_inps_rates_unsourced",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.",
+      "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T04.02"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "pulizia-artigianato-confartigianato/apprentice_inps_rates_unsourced"
+        ]
+      }
+    },
+    {
+      "id": "apprentice_seniority",
+      "institute": "seniority",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "APPRENTICE SENIORITY: the December 2025 renewal extends the seniority increments to apprentices from 2026-01-01 (see the seniority note), but the clause and its amounts are not modelled: the engine pays no increment during the apprenticeship. The run is affected when the apprentice has matured increments the level pays.",
+      "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "pulizia-artigianato-confartigianato/apprentice_seniority"
+        ]
+      }
+    },
+    {
+      "id": "apprenticeship_percentages_2022",
+      "institute": "base_salary",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SIMPLIFICATION: Percentuali apprendistato da PDF 2022. Il rinnovo dic 2025 estende scatti anzianità agli apprendisti ma non menziona variazioni alle aliquote. Rischio: basso.",
+      "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "pulizia-artigianato-confartigianato/apprenticeship_percentages_2022"
+        ]
+      }
+    },
+    {
+      "id": "health_and_bilateral_funds",
+      "institute": "bilateral_funds",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = owed",
+      "rule": "SIMPLIFICATION: Fondi bilaterali non modellati (Fondo sanitario EUR 10.42*12 + bilateralità EUR 11.65*12). employer_cost_annual sottostimato di ~EUR 267/anno.",
+      "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T05.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "pulizia-artigianato-confartigianato/health_and_bilateral_funds"
+        ]
+      }
+    },
+    {
+      "id": "ind_fun_months_per_year",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SIMPLIFICATION: IND_FUN (EUR 25.82/mese) — il PDF non specifica il numero di mensilità. months_per_year=null (eredita 13). Impatto: ±25.82 EUR/anno se la risposta vera è 12 mensilità.",
+      "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "pulizia-artigianato-confartigianato/ind_fun_months_per_year"
+        ]
+      }
+    },
+    {
+      "id": "inps_sector_rates_unsourced",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.",
+      "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T04.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "pulizia-artigianato-confartigianato/inps_sector_rates_unsourced"
+        ]
+      }
+    },
+    {
+      "id": "level_2_seniority_amount",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SIMPLIFICATION: L2 scatto anzianità = 26.85 EUR (PDF 2022). Kitech lug 2026 riporta 26.86 EUR. Usato PDF come fonte primaria. Impatto: EUR 0.01/mese.",
+      "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "pulizia-artigianato-confartigianato/level_2_seniority_amount"
+        ]
+      }
+    },
+    {
+      "id": "overtime_weekly_threshold",
+      "institute": "overtime",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SIMPLIFICATION: Soglia settimanale ore straordinarie (OT_DIURNO) non modellata (hour_threshold_per_week=null). Il contratto prevede scatto dopo 40h/settimana e limite annuale 200h. Coverage work_rules gia' marcata partial.",
+      "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T02.06"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "pulizia-artigianato-confartigianato/overtime_weekly_threshold"
+        ]
+      }
+    },
+    {
+      "id": "provisional_inps_ruleset",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_inps_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "provisional_ruleset",
+      "institute": "irpef",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "rule_additional_months_2022_11_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#additional_months[2022-11-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#additional_months[2022-11-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_1_base_salary_2022_11_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[1].base_salary[2022-11-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[1].base_salary[2022-11-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_1_base_salary_2023_07_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[1].base_salary[2023-07-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[1].base_salary[2023-07-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_1_base_salary_2024_07_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[1].base_salary[2024-07-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[1].base_salary[2024-07-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_1_fixed_allowances_ind_fun",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[1].fixed_allowances[IND_FUN]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[1].fixed_allowances[IND_FUN]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_2_base_salary_2022_11_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[2].base_salary[2022-11-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[2].base_salary[2022-11-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_2_base_salary_2023_07_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[2].base_salary[2023-07-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[2].base_salary[2023-07-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_2_base_salary_2024_07_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[2].base_salary[2024-07-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[2].base_salary[2024-07-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_3_base_salary_2022_11_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[3].base_salary[2022-11-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[3].base_salary[2022-11-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_3_base_salary_2023_07_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[3].base_salary[2023-07-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[3].base_salary[2023-07-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_3_base_salary_2024_07_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[3].base_salary[2024-07-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[3].base_salary[2024-07-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_3s_base_salary_2022_11_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[3S].base_salary[2022-11-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[3S].base_salary[2022-11-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_3s_base_salary_2023_07_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[3S].base_salary[2023-07-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[3S].base_salary[2023-07-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_3s_base_salary_2024_07_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[3S].base_salary[2024-07-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[3S].base_salary[2024-07-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_4_base_salary_2022_11_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[4].base_salary[2022-11-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[4].base_salary[2022-11-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_4_base_salary_2023_07_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[4].base_salary[2023-07-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[4].base_salary[2023-07-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_4_base_salary_2024_07_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[4].base_salary[2024-07-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[4].base_salary[2024-07-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_5_base_salary_2022_11_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[5].base_salary[2022-11-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[5].base_salary[2022-11-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_5_base_salary_2023_07_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[5].base_salary[2023-07-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[5].base_salary[2023-07-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_5_base_salary_2024_07_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[5].base_salary[2024-07-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[5].base_salary[2024-07-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_6_base_salary_2022_11_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[6].base_salary[2022-11-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[6].base_salary[2022-11-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_6_base_salary_2023_07_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[6].base_salary[2023-07-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[6].base_salary[2023-07-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_6_base_salary_2024_07_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[6].base_salary[2024-07-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#levels[6].base_salary[2024-07-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_overtime_bands_ot_diurno",
+      "institute": "overtime",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#overtime_bands[OT_DIURNO]",
+      "calculation": "overtime",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#overtime_bands[OT_DIURNO]"
+        ]
+      }
+    },
+    {
+      "id": "rule_overtime_bands_ot_festivo",
+      "institute": "overtime",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#overtime_bands[OT_FESTIVO]",
+      "calculation": "overtime",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#overtime_bands[OT_FESTIVO]"
+        ]
+      }
+    },
+    {
+      "id": "rule_overtime_bands_ot_notturno",
+      "institute": "overtime",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#overtime_bands[OT_NOTTURNO]",
+      "calculation": "overtime",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#overtime_bands[OT_NOTTURNO]"
+        ]
+      }
+    },
+    {
+      "id": "rule_overtime_bands_ot_notturno_festivo",
+      "institute": "overtime",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#overtime_bands[OT_NOTTURNO_FESTIVO]",
+      "calculation": "overtime",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#overtime_bands[OT_NOTTURNO_FESTIVO]"
+        ]
+      }
+    },
+    {
+      "id": "rule_seniority_increments",
+      "institute": "seniority",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#seniority_increments",
+      "calculation": "seniority",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#seniority_increments"
+        ]
+      }
+    },
+    {
+      "id": "rule_work_rules_absence_rules",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#work_rules.absence_rules",
+      "calculation": "base_salary, sickness",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#work_rules.absence_rules"
+        ]
+      }
+    },
+    {
+      "id": "rule_work_rules_sickness_rules",
+      "institute": "sickness",
+      "variant": "all",
+      "rule": "agreement/pulizia-artigianato-confartigianato.json#work_rules.sickness_rules",
+      "calculation": "sickness",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pulizia-artigianato-confartigianato.json#work_rules.sickness_rules"
+        ]
+      }
+    },
+    {
+      "id": "sickness_cumulation_window",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.",
+      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_cumulation_window"
+        ]
+      }
+    },
+    {
+      "id": "sickness_inps_daily_base",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
+      "calculation": "ccnl_engine.sickness.handlers (INPS share of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_inps_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "tfr_compensation_apprentice_guarantee_fund",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.",
+      "calculation": "ccnl_engine.severance.relief.services; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
+      "state": "absent",
+      "work": [
+        "T08.05"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "tfr_compensation_apprentice_guarantee_fund"
+        ]
+      }
+    }
+  ]
+}
