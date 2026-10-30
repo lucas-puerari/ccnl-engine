@@ -98,6 +98,29 @@
       {
         "kind": "info",
         "text": "SICKNESS INPS REGIME: the employees insured with the Fondo pensioni lavoratori dello spettacolo, operai and impiegati alike, have their own INPS sickness indemnity (INPS circ. 132/2021): from the fourth day, 60% up to the 20th day and 80% from the 21st to the 180th (regime 'spettacolo'), with 40 daily contributions from 1 January of the year before (SicknessEpisode.daily_contributions)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS (Art. 64): the CCNL integrates up to 100% of the normal net pay ('normale retribuzione netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.",
+        "capability": "sickness",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "sickness_net_basis",
+          "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 64, align the computation, then resolve this limitation."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS (Art. 64): the hospital stays (day hospital included), the life-saving therapies and the continuous absences over a month for serious illnesses (at most 90 days) are left out of the comporto and of the pay count; and from day 181 the CCNL pays 50% of its own integration, which the engine reads as 50% of the pay: a day INPS still indemnifies in a new year is paid only the INPS share.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sickness_hospital_exclusions",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Leave the hospital stays, life-saving therapies and serious illnesses of Art. 64 out of the counts and pay half of the integration past day 180, then resolve this limitation."
+        }
       }
     ]
   },
@@ -1901,7 +1924,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "61c0c2f8448f62802bebe3a49bfc1e5d89006f309f5de89e8168d025dd3d2ace",
+    "source_hash": "07f18bfa27005784092ef1412641b1b053ae5f968a8d56bd130562e11eaaa4f3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2107,7 +2130,20 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 270,
+      "net_basis": true,
+      "cumulation": {
+        "window_years": 3,
+        "reset_after_days": null,
+        "reduced_integration_rate": "0.50",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 180,
+            "comporto_days": 365
+          }
+        ]
+      },
+      "inps_regime": "spettacolo",
       "provenance": {
         "status": "derived",
         "location": {
@@ -2115,18 +2151,20 @@
             "document_id": "ccnl-esercizi-cinematografici-2023-2026",
             "title": "CCNL Esercizi Cinematografici (ANEC) 2023-2026",
             "kind": "tabella_retributiva",
-            "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+            "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
           },
-          "section": "Art. malattia — integrazione al 100% giorni 1-270"
+          "section": "Art. 64 (malattia e infortunio non sul lavoro)",
+          "quote": "l’azienda conserverà il posto al lavoratore non in prova per 12 mesi. Durante l’interruzione del servizio, l’azienda corrisponderà al lavoratore una indennità integrativa il cui importo, aggiunto al trattamento economico erogato dall’Istituto assicuratore, consenta di raggiungere il 100% della normale retribuzione netta, per la prima metà del periodo suindicato (180 gg.), ed il 50% della integrazione datoriale per la seconda metà del periodo stesso (da 181 gg. a 360 gg.). Nel caso di più assenze per malattia o infortunio non sul lavoro, ai fini del suddetto periodo di conservazione del posto e del conseguente trattamento economico, si deve tener conto dei periodi di assenza complessivamente verificatisi nei trentasei mesi precedenti ogni nuovo ultimo episodio morboso."
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2023-01-01"
-        }
-      },
-      "inps_regime": "spettacolo"
+        },
+        "transformation": "Art. 64: the sick days of the 36 months before each new episode are summed, for the comporto and the pay alike; 100% of the normal net pay for the first 180 days and 50% for the next ones, up to the comporto of 12 months (365 days). INPS pays no more than 180 days a year, so the 50% of the employer's integration of days 181-360 is 50% of the pay. Read on 2026-10-30."
+      }
     }
   }
 }

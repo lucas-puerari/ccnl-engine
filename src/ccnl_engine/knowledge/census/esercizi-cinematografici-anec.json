@@ -210,18 +210,34 @@
       }
     },
     {
-      "id": "sickness_cumulation_window",
+      "id": "sickness_hospital_exclusions",
       "institute": "sickness",
       "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.",
-      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
-      "state": "unverified",
-      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SICKNESS (Art. 64): the hospital stays (day hospital included), the life-saving therapies and the continuous absences over a month for serious illnesses (at most 90 days) are left out of the comporto and of the pay count; and from day 181 the CCNL pays 50% of its own integration, which the engine reads as 50% of the pay: a day INPS still indemnifies in a new year is paid only the INPS share.",
+      "calculation": "ccnl/esercizi-cinematografici-anec:coverage.notes",
+      "state": "absent",
+      "remediation": "Leave the hospital stays, life-saving therapies and serious illnesses of Art. 64 out of the counts and pay half of the integration past day 180, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "sickness_cumulation_window"
+          "esercizi-cinematografici-anec/sickness_hospital_exclusions"
+        ]
+      }
+    },
+    {
+      "id": "sickness_net_basis",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SICKNESS (Art. 64): the CCNL integrates up to 100% of the normal net pay ('normale retribuzione netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.",
+      "calculation": "ccnl/esercizi-cinematografici-anec:coverage.notes",
+      "state": "unverified",
+      "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 64, align the computation, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "esercizi-cinematografici-anec/sickness_net_basis"
         ]
       }
     },

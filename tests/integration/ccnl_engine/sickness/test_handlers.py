@@ -526,17 +526,18 @@ def test_earlier_episode_outside_the_chain_is_a_limitation(
 
 
 @pytest.mark.parametrize(
-    ("slug", "level"),
+    ("slug", "level", "category"),
     [
-        ("metalmeccanico-federmeccanica", "C3"),
-        ("alimentari-federalimentare", "6"),
-        ("poste-italiane-k700", "C"),
-        ("orafi-argentieri-industria-federorafi", "3"),
-        ("trasporto-aereo-assaeroporti", "5"),
+        ("metalmeccanico-federmeccanica", "C3", WorkerCategory.OPERAIO),
+        ("alimentari-federalimentare", "6", WorkerCategory.OPERAIO),
+        ("poste-italiane-k700", "C", WorkerCategory.OPERAIO),
+        ("orafi-argentieri-industria-federorafi", "3", WorkerCategory.OPERAIO),
+        ("trasporto-aereo-assaeroporti", "5", WorkerCategory.OPERAIO),
+        ("esercizi-cinematografici-anec", "2", WorkerCategory.IMPIEGATO),
     ],
 )
 def test_a_ccnl_counting_every_episode_has_no_window_limitation(
-    slug: str, level: str
+    slug: str, level: str, category: WorkerCategory
 ) -> None:
     """Federmeccanica and the CCNLs with a window count the earlier episodes.
 
@@ -544,11 +545,19 @@ def test_a_ccnl_counting_every_episode_has_no_window_limitation(
     fewer than 61, so the chain holds 3 + 3 + 2 days on 3 March.
     Federalimentare (Art. 47): every sick day of the 17 months before;
     Poste (Art. 41): of the 48 months before; Orafi (Art. 35): of the
-    three years before.
+    three years before; Esercizi cinematografici (Art. 64): of the 36
+    months before.
     """
     relapse = sickness_episode("m", date(2026, 3, 2), date(2026, 3, 3), "f")
     result = calculate_period(
-        _req(3, relapse, opening=_after_january_and_february(), slug=slug, level=level),
+        _req(
+            3,
+            relapse,
+            opening=_after_january_and_february(),
+            slug=slug,
+            level=level,
+            category=category,
+        ),
         repo=bundled_repository(),
         resolver=bundled_policies(),
     )

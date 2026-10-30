@@ -929,7 +929,9 @@
     ],
     "agreement/esercizi-cinematografici-anec.json": [
       "esercizi-cinematografici-anec/apprentice_seniority",
-      "esercizi-cinematografici-anec/fpls_rates_approximated"
+      "esercizi-cinematografici-anec/fpls_rates_approximated",
+      "esercizi-cinematografici-anec/sickness_hospital_exclusions",
+      "esercizi-cinematografici-anec/sickness_net_basis"
     ],
     "agreement/farmacie-municipalizzate-assofarm.json": [
       "farmacie-municipalizzate-assofarm/apprentice_seniority",
