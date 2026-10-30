@@ -117,12 +117,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the Art. 31 table of each sub-sector with its operai and impiegati columns.
 
-!!! warning "alimentari-federalimentare/sickness_half_pay_and_comporto · sickness · impact yes · open"
-    SICKNESS (Art. 47): modelled as 100% of the net normal pay for 186 calendar days per episode. Not modelled: over 5 years of seniority the next 179 days at 50%; the comporto of 186 days within 17 months (up to 5 years) and 365 days within 24 months (over 5), summed over different illnesses; the 90 more days for disabled workers; the fixed-term limit (4 months, integration no longer than the INPS indemnity); the apprentice's normal pay for at most six months a year (Art. 21). The net pay is computed by grossing up the INPS indemnity by the worker's INPS rate, as for the Commercio file.
+!!! warning "alimentari-federalimentare/sickness_disabled_fixed_term · sickness · impact yes · open"
+    SICKNESS (Art. 47): the 100% and 50% bands of the net normal pay and the comporto of 186 days in 17 months (up to 5 years) and 365 days in 24 months (over 5) are counted over the sickness of every episode in the window. Not modelled: the 90 more days of comporto for disabled workers (L. 68/99); the fixed-term limit (4 months, integration no longer than the INPS indemnity); the apprentice's normal pay for at most six months a year (Art. 21). The net pay is computed by grossing up the INPS indemnity by the worker's INPS rate, as for the Commercio file.
 
     **Applies when:** `sickness` applies.
 
-    **Remediation:** Model the 50% band over 5 years and the 17 and 24 month comporto windows of Art. 47.
+    **Remediation:** Model the 90 more days of comporto of a disabled worker, the fixed-term limit and the apprentice treatment of Art. 47 and Art. 21.
 
 !!! warning "alimentari-federalimentare/second_level_omission_element · base_salary · impact yes · open"
     Art. 51 bis: the trattamento economico per mancata contrattazione di secondo livello, EUR 21.90 at level 6 to 50.37 at 1S a month for 12 months from 1 January 2023, 32.85 to 75.55 from 1 January 2027, outside the TFR, owed by firms without a premio per obiettivi.
@@ -179,13 +179,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.

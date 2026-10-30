@@ -275,34 +275,18 @@
       }
     },
     {
-      "id": "sickness_cumulation_window",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.",
-      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
-      "state": "unverified",
-      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "sickness_cumulation_window"
-        ]
-      }
-    },
-    {
-      "id": "sickness_half_pay_and_comporto",
+      "id": "sickness_disabled_fixed_term",
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "SICKNESS (Art. 47): modelled as 100% of the net normal pay for 186 calendar days per episode. Not modelled: over 5 years of seniority the next 179 days at 50%; the comporto of 186 days within 17 months (up to 5 years) and 365 days within 24 months (over 5), summed over different illnesses; the 90 more days for disabled workers; the fixed-term limit (4 months, integration no longer than the INPS indemnity); the apprentice's normal pay for at most six months a year (Art. 21). The net pay is computed by grossing up the INPS indemnity by the worker's INPS rate, as for the Commercio file.",
+      "rule": "SICKNESS (Art. 47): the 100% and 50% bands of the net normal pay and the comporto of 186 days in 17 months (up to 5 years) and 365 days in 24 months (over 5) are counted over the sickness of every episode in the window. Not modelled: the 90 more days of comporto for disabled workers (L. 68/99); the fixed-term limit (4 months, integration no longer than the INPS indemnity); the apprentice's normal pay for at most six months a year (Art. 21). The net pay is computed by grossing up the INPS indemnity by the worker's INPS rate, as for the Commercio file.",
       "calculation": "ccnl/alimentari-federalimentare:coverage.notes",
       "state": "absent",
-      "remediation": "Model the 50% band over 5 years and the 17 and 24 month comporto windows of Art. 47.",
+      "remediation": "Model the 90 more days of comporto of a disabled worker, the fixed-term limit and the apprentice treatment of Art. 47 and Art. 21.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "alimentari-federalimentare/sickness_half_pay_and_comporto"
+          "alimentari-federalimentare/sickness_disabled_fixed_term"
         ]
       }
     },
