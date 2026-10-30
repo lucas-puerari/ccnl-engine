@@ -80,7 +80,7 @@
       },
       {
         "kind": "info",
-        "text": "INPS: industry sector rates from 2026-industria.json (existing file reused). Employee 9.19%; employer: <=15 employees 30.13%, 16-50 employees 30.20%, >50 employees 30.50%."
+        "text": "INPS: industry sector rates from 2026-industria.json (existing file reused). Employee 9.19% up to 15 employees, 9.49% above; employer (operai): <=15 employees 30.68%, 16-50 employees 31.28%, >50 employees 31.58% (impiegati and quadri 28.46%, 29.06%, 29.36%). (review of 2026-10-30)"
       },
       {
         "kind": "info",
@@ -1206,7 +1206,7 @@
     "effective_until": null,
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
     "verification_status": "unverified",
-    "source_hash": "9906073a62b181099c220a7fceb55a414e98e6889b8125079837beccfd28b712",
+    "source_hash": "72b4089668f28f10261b6d9560697512e17308db13ee00c458821c80269a70d1",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

@@ -158,8 +158,23 @@
         }
       },
       {
-        "kind": "info",
-        "text": "APPRENTICESHIP (Art. 36, testo coordinato p. 53): the apprentice of a 3a area profile is placed one level below the destination for the first 18 months, then paid the destination level 'con assegno temporaneo, corrispondente, al netto'; at most 3 years. Every 3a area level is a destination: an apprentice to 3A1 starts at the Area unificata (1e2A). The assegno equals the destination in net terms; the engine pays the destination gross."
+        "kind": "simplification",
+        "text": "APPRENTICESHIP (Art. 36, testo coordinato p. 53): the apprentice of a 3a area profile is placed one level below the destination for the first 18 months, then paid the destination level 'con assegno temporaneo, corrispondente, al netto'; at most 3 years. Every 3a area level is a destination: an apprentice to 3A1 starts at the Area unificata (1e2A). The assegno equals the destination in net terms; the engine pays the destination gross.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "apprentice_net_equivalent_allowance",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "3A1",
+              "3A2",
+              "3A3",
+              "3A4"
+            ]
+          },
+          "remediation": "Model the assegno temporaneo as the gross that gives the destination-level net under the apprentice contribution rates, or open a limitation stating the overpayment."
+        }
       }
     ]
   },
@@ -1838,7 +1853,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "03d61d8493f4c3bab61d47e637233acb77c6f8914b16ae125594bc826b1952d8",
+    "source_hash": "da1861bd00ef5fb235321ac1ca93ab1ce3d4243b8856e8be7f7a82c633c55cc9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

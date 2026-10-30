@@ -33,10 +33,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ✅ |
-| **Limits of this contract** | pension_fund_contribution, sickness |
+| **Core payroll path** | ⚠️ |
+| **Limits of this contract** | base_salary, pension_fund_contribution, sickness |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -78,6 +78,13 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "universita-tecnologi-aran/tecnologi_allowances · base_salary · impact unknown · open"
+    SCOPE: tecnologi a tempo indeterminato of the universities, a profile from 1.3.2026 (CCNL 2025-2027 Tabella B2): six posizioni stipendiali (0-5, 6-11, 12-17, 18-23, 24-30, 31 and more years) as seniority steps. No overtime table; the allowances of the profile are not modelled.
+
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Source the allowances of the tecnologi profile (CCNL 2025-2027) and model them or record the limitation.
 
 !!! warning "universita-tecnologi-aran/shared_rules_unchecked · sickness · impact unknown · open"
     SHARED RULES: the hourly divisor, the tredicesima, the leave, absence, sickness and accrual rules are those of the scuola file of the same comparto (istruzione-ricerca-aran), not read again for the university staff.
@@ -129,10 +136,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 | CCNL 2022-2024 (FLC CGIL did not sign). Tabella A2 (pp. 50-51): tabellare from 1.1.2024. | altro | 2025-12-23 | [↗](https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf) |
 | CCNL 2019-2021. Tabelle C1 and E1.5 (pp. 246, 256): tabellare from 1.2.2023. | altro | 2024-01-18 | [↗](https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf) |
 | CCNL Scuola 2006-2009, still in force for ferie (art. 13), malattia (art. 17) and tredicesima (art. 80). | altro | 2007-11-29 | [↗](https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf) |
-
-??? note "Coverage notes"
-    SCOPE: tecnologi a tempo indeterminato of the universities, a profile from 1.3.2026 (CCNL 2025-2027 Tabella B2): six posizioni stipendiali (0-5, 6-11, 12-17, 18-23, 24-30, 31 and more years) as seniority steps. No overtime table; the allowances of the profile are not modelled.
-    
 
 ## Raw data
 

@@ -71,8 +71,17 @@
         "text": "ADDITIONAL MONTHS: 13 (tredicesima only). Confirmed by Art. 23.6 CCNL ('Al lavoratore assunto con contratto a tempo determinato spettano le ferie e la 13.ma mensilità, il T.F.R. e ogni altro trattamento in atto')."
       },
       {
-        "kind": "info",
-        "text": "SENIORITY: frozen at 31/12/2005. Art. 29 clause 1 of the CCNL 2024 lists 'salario di anzianità maturato al 31/12/2005' as a retributive element. Art. 32 governs this frozen amount. No new scatti di anzianità accrue after 2005. The current progression mechanism is POC (Progressione Orizzontale di Carriera), calculated as 100% of the 3-year average of PAP productivity awards (Art. 38, in force from 31/08/2024), which is merit-conditioned and excluded from Layer 1. Maximum_count set to 0; amount_by_level set to 0.00 EUR for all levels. Cadence_months set to 1 (minimum legal value; maximum_count=0 so no scatti ever apply; historical quinquennial cadence noted here only)."
+        "kind": "simplification",
+        "text": "SENIORITY: frozen at 31/12/2005. Art. 29 clause 1 of the CCNL 2024 lists 'salario di anzianità maturato al 31/12/2005' as a retributive element. Art. 32 governs this frozen amount. No new scatti di anzianità accrue after 2005. The current progression mechanism is POC (Progressione Orizzontale di Carriera), calculated as 100% of the 3-year average of PAP productivity awards (Art. 38, in force from 31/08/2024), which is merit-conditioned and excluded from Layer 1. Maximum_count set to 0; amount_by_level set to 0.00 EUR for all levels. Cadence_months set to 1 (minimum legal value; maximum_count=0 so no scatti ever apply; historical quinquennial cadence noted here only).",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "salario_di_anzianita",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Let the caller state the salario di anzianità maturato al 31/12/2005 (EarnedIncrements or an individual allowance) and record the limitation."
+        }
       },
       {
         "kind": "info",
@@ -80,7 +89,7 @@
       },
       {
         "kind": "info",
-        "text": "HOURLY RATE — TEACHING STAFF: hourly_divisor=164 (38h/week) applies to ATA/non-teaching staff. L4 docenti (scuola infanzia/primaria) have 24h/week; L5 docenti (scuola secondaria) have 18–22h/week; L6 (presidi) differ. The engine hourly_rate for L4, L5, L6 is incorrect for the teaching components; this is a structural engine limitation (single divisor per contract). Base monthly salary and all annual financial figures (gross, net, INPS, TFR, IRPEF) are unaffected."
+        "text": "HOURLY RATE — TEACHING STAFF: hourly_divisor=164 (38h/week) applies to ATA/non-teaching staff. L4 docenti (scuola infanzia/primaria) have 24h/week; L5 docenti (scuola secondaria) have 18–22h/week; L6 (presidi) differ. The engine derives no hourly base for this CCNL (no verified hourly base provenance): overtime and absences take the caller's hourly rate, so the single divisor reaches no amount; it must be split by profile before the hourly base is verified. Base monthly salary and all annual financial figures (gross, net, INPS, TFR, IRPEF) are unaffected. (review of 2026-10-30)"
       },
       {
         "kind": "simplification",
@@ -1254,7 +1263,7 @@
     "effective_until": null,
     "source": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "a26c87f1b8ecf0d57f2fc128e640e6b240cdb65bd331f4e9c9cb27327892148c",
+    "source_hash": "564e9b0ce4aa2ac566fca7c8cdd0bb997790575d896b75eee64539b1aa2766d4",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

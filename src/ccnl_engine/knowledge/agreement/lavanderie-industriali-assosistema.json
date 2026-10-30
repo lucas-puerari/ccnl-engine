@@ -73,8 +73,18 @@
         "text": "SALARY MODEL: split. base_salary = minimo tabellare (contingenza conglobata since 2008, confirmed in CCNL text). fixed_allowances per level = INCENTIVO_DI_MODULO (frozen, level-specific constant). D2 also receives INDENNITA_FUNZIONE 130.00 EUR/month. A1 has no incentivo di modulo (0 EUR). Verified: B1 May 2026 = 1897.54; B1/173 = 10.97 (non-integer, consistent with split). C2 May 2026 = 2535.98; (2535.98+93.44)/173 = 15.20 (matches ilccnl.it hourly for C2)."
       },
       {
-        "kind": "info",
-        "text": "MODELLED TRANCHES: 2026-05-01 (source-confirmed from ilccnl.it, iqnotizie.it, previdenza-professionisti.it, all concordant); 2026-12-01 (derived: +20 EUR on B1, other levels proportional using coefficient vector verified across 4 historical tranches 2023-2025). Oct 2027 (+50 EUR B1) and Oct 2028 (+60 EUR B1) announced but table not published — not modelled."
+        "kind": "simplification",
+        "text": "MODELLED TRANCHES: 2026-05-01 (source-confirmed from ilccnl.it, iqnotizie.it, previdenza-professionisti.it, all concordant); 2026-12-01 (derived: +20 EUR on B1, other levels proportional using coefficient vector verified across 4 historical tranches 2023-2025). Oct 2027 (+50 EUR B1) and Oct 2028 (+60 EUR B1) announced but table not published — not modelled.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "tranches_from_october_2027",
+          "applies_when": {
+            "trigger": "run",
+            "effective_from": "2027-10-01"
+          },
+          "remediation": "Model the October 2027 (+50 at B1) and October 2028 (+60 at B1) tranches once the tables are published, or derive them with the level coefficients of note 8."
+        }
       },
       {
         "kind": "info",
@@ -1394,7 +1404,7 @@
     "effective_until": null,
     "source": "https://www.assosistema.it/11527-2/",
     "verification_status": "unverified",
-    "source_hash": "6270c04b93b5500edca3067e86da3909d0e51c9260988e6716da59a96bf53cb6",
+    "source_hash": "c0eb38e62c53360f62475f3151f2bb3ec9e4284d1a05b7267445568a5e90f99d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

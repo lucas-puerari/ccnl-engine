@@ -292,12 +292,30 @@
         "text": "Signatari: frontespizio CCNL 27.02.2026. CGIL FP non ha firmato."
       },
       {
-        "kind": "info",
-        "text": "Retribuzione di posizione (Art. 14): obbligatoria ma variabile per tipo incarico (UOC, UOSD, professionale, ecc.). Non modellata — parte fissa per incarico assegnato in sede aziendale; out_of_scope per il motore."
+        "kind": "simplification",
+        "text": "Retribuzione di posizione (Art. 14): obbligatoria ma variabile per tipo incarico (UOC, UOSD, professionale, ecc.). Non modellata — parte fissa per incarico assegnato in sede aziendale; out_of_scope per il motore.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "position_pay_missing",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Take the retribuzione di posizione (Art. 14) and its Art. 17 guaranteed minimum (note 7) as a worker fact by type of incarico."
+        }
       },
       {
-        "kind": "info",
-        "text": "Indennità per incarico di direzione di struttura complessa (Art. 16): 11.157€/anno per 13 mensilità. Non modellata come fixed_allowance — assegnata solo ai direttori di SC, non a tutti i dirigenti."
+        "kind": "simplification",
+        "text": "Indennità per incarico di direzione di struttura complessa (Art. 16): 11.157€/anno per 13 mensilità. Non modellata come fixed_allowance — assegnata solo ai direttori di SC, non a tutti i dirigenti.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "complex_structure_allowance",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Add the 11.157 EUR/year (13 months) allowance of Art. 16 restricted to a role such as 'direttore_sc' (Allowance.role)."
+        }
       },
       {
         "kind": "info",
@@ -387,7 +405,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "5d742264583aef96c9d4b3d89dc54528d6291c10a662e2dc2eb7e7f131a8c55f",
+    "source_hash": "9bf06392827223afafb1687fffac06a78f1e6104a6ec7a491c208c4e9838d3ff",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

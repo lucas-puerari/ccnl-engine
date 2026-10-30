@@ -30,10 +30,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ✅ |
-| **Limits of this contract** | — |
+| **Core payroll path** | ⚠️ |
+| **Limits of this contract** | seniority |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -89,6 +89,13 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "scuole-private-agidae/salario_di_anzianita · seniority · impact yes · open"
+    SENIORITY: frozen at 31/12/2005. Art. 29 clause 1 of the CCNL 2024 lists 'salario di anzianità maturato al 31/12/2005' as a retributive element. Art. 32 governs this frozen amount. No new scatti di anzianità accrue after 2005. The current progression mechanism is POC (Progressione Orizzontale di Carriera), calculated as 100% of the 3-year average of PAP productivity awards (Art. 38, in force from 31/08/2024), which is merit-conditioned and excluded from Layer 1. Maximum_count set to 0; amount_by_level set to 0.00 EUR for all levels. Cadence_months set to 1 (minimum legal value; maximum_count=0 so no scatti ever apply; historical quinquennial cadence noted here only).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Let the caller state the salario di anzianità maturato al 31/12/2005 (EarnedIncrements or an individual allowance) and record the limitation.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days, when the episode does not let the engine compute the INPS daily base: no SicknessEpisode.inps_base in its relapse chain, an operaio without the days worked or paid of the month before, an impiegato who did not work that whole month, an unknown worker category, or a sector INPS regime (spettacolo). With the base, INPS pays its share on the retribuzione media globale giornaliera of the month before the illness and on calendar days (INPS circ. 134368/1981 point 11). The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
@@ -147,11 +154,9 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     ADDITIONAL MONTHS: 13 (tredicesima only). Confirmed by Art. 23.6 CCNL ('Al lavoratore assunto con contratto a tempo determinato spettano le ferie e la 13.ma mensilità, il T.F.R. e ogni altro trattamento in atto').
     
-    SENIORITY: frozen at 31/12/2005. Art. 29 clause 1 of the CCNL 2024 lists 'salario di anzianità maturato al 31/12/2005' as a retributive element. Art. 32 governs this frozen amount. No new scatti di anzianità accrue after 2005. The current progression mechanism is POC (Progressione Orizzontale di Carriera), calculated as 100% of the 3-year average of PAP productivity awards (Art. 38, in force from 31/08/2024), which is merit-conditioned and excluded from Layer 1. Maximum_count set to 0; amount_by_level set to 0.00 EUR for all levels. Cadence_months set to 1 (minimum legal value; maximum_count=0 so no scatti ever apply; historical quinquennial cadence noted here only).
-    
     INPS: reuses 2026-terziario.json (TERZIARIO sector). Private religious schools are private-sector employers; employer INPS classification follows the general terziario sector consistent with other private educational and social institutions (cf. UNEBA T141 which uses the same sector).
     
-    HOURLY RATE — TEACHING STAFF: hourly_divisor=164 (38h/week) applies to ATA/non-teaching staff. L4 docenti (scuola infanzia/primaria) have 24h/week; L5 docenti (scuola secondaria) have 18–22h/week; L6 (presidi) differ. The engine hourly_rate for L4, L5, L6 is incorrect for the teaching components; this is a structural engine limitation (single divisor per contract). Base monthly salary and all annual financial figures (gross, net, INPS, TFR, IRPEF) are unaffected.
+    HOURLY RATE — TEACHING STAFF: hourly_divisor=164 (38h/week) applies to ATA/non-teaching staff. L4 docenti (scuola infanzia/primaria) have 24h/week; L5 docenti (scuola secondaria) have 18–22h/week; L6 (presidi) differ. The engine derives no hourly base for this CCNL (no verified hourly base provenance): overtime and absences take the caller's hourly rate, so the single divisor reaches no amount; it must be split by profile before the hourly base is verified. Base monthly salary and all annual financial figures (gross, net, INPS, TFR, IRPEF) are unaffected. (review of 2026-10-30)
     
 
 ## Raw data

@@ -59,12 +59,31 @@
         "text": "Accordo ponte (Oct 2023) expired June 2024. Contract applied in ultrattività pending renewal. Oct 2023 table modeled as current (valid_until null)."
       },
       {
-        "kind": "info",
-        "text": "Seniority: CCNL RSA-AIOP provides a flat EUR 40/month after 5 years of service (levels A-E3 only; F/G/H excluded). Modelled as cadence_months=60, maximum_count=1 — correct for new hires (single increment at month 60). Oct 2023 'premio di anzianita' (EUR 40 one-time for 10+ year workers) is a one-time payment, out_of_scope."
+        "kind": "simplification",
+        "text": "Seniority: CCNL RSA-AIOP provides a flat EUR 40/month after 5 years of service (levels A-E3 only; F/G/H excluded). Modelled as cadence_months=60, maximum_count=1 — correct for new hires (single increment at month 60). Oct 2023 'premio di anzianita' (EUR 40 one-time for 10+ year workers) is a one-time payment, out_of_scope.",
+        "capability": "una_tantum",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "seniority_premium_2023",
+          "applies_when": {
+            "trigger": "outside_input",
+            "effective_from": "2023-10-01"
+          },
+          "remediation": "Model or track the Oct 2023 one-time premio di anzianità (EUR 40 to workers with 10+ years) as an una tantum."
+        }
       },
       {
-        "kind": "info",
-        "text": "Apprenticeship: CCNL RSA-AIOP specifies sotto-inquadramento up to 2 levels below destination (levels A-F eligible, 36 months). Engine schema requires a static pay_level_code; cannot express dynamic under-classification tracks; modelled as 100% passthrough (correct for permanent workers, overstates pay for apprentices). Structural engine limitation."
+        "kind": "simplification",
+        "text": "Apprenticeship: CCNL RSA-AIOP specifies sotto-inquadramento up to 2 levels below destination (levels A-F eligible, 36 months). Modelled as 100% passthrough (overstates pay for apprentices); the engine supports under_classification tracks with levels_below, not yet used here. (review of 2026-10-30)",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "apprenticeship_under_classification",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Replace the 100% professionalizzante track with under_classification tracks (levels_below up to 2, 36 months) as servizi-postali-appalto-fise or tessile-smi do."
+        }
       },
       {
         "kind": "simplification",
@@ -1191,7 +1210,7 @@
     "effective_until": null,
     "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
     "verification_status": "unverified",
-    "source_hash": "310420fabfdac24f3f9df3f70da3e3fdb2ab83608d23f1e81d40675cbf5ed3d1",
+    "source_hash": "be139198f13682a0dd2963f7b3b92b822a992522f1f5b0224c379424ac904275",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

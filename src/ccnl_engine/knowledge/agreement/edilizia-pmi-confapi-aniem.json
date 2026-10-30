@@ -52,8 +52,17 @@
         "text": "HOURLY DIVISOR: 173, from Art. 25 CCNL: 'dividendo per 173 i valori minimi mensili'. Confirmed by official hourly rate column in FILLEA CGIL salary table."
       },
       {
-        "kind": "info",
-        "text": "ITS (Indennita' Territoriale di Settore) not modelled: varies by province/region. National table footnote: 'A questa Tabella occorre aggiungere l'ITS che varia da territorio a territorio'. The national tabular minimum does not include ITS."
+        "kind": "simplification",
+        "text": "ITS (Indennita' Territoriale di Settore) not modelled: varies by province/region. National table footnote: 'A questa Tabella occorre aggiungere l'ITS che varia da territorio a territorio'. The national tabular minimum does not include ITS.",
+        "capability": "territorial_supplement",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "territorial_sector_allowance",
+          "applies_when": {
+            "trigger": "owed"
+          },
+          "remediation": "Model the ITS with a fact naming the province, or take it as a second-level element, then remove this limitation."
+        }
       },
       {
         "kind": "simplification",
@@ -87,16 +96,40 @@
         }
       },
       {
-        "kind": "info",
-        "text": "SENIORITY: Art. 49 lists impiegati scatti biennali by category. Level 1 has no explicit Art. 49 amount; engine uses 8.22 (Impiegati 4a category, same as level 2) as an approximation. For operai (levels 1-4), seniority is governed by the Cassa Edile anzianita' professionale edile (APE) system; engine uses the Art. 49 impiegati amounts as an approximation."
+        "kind": "simplification",
+        "text": "SENIORITY: Art. 49 lists impiegati scatti biennali by category. Level 1 has no explicit Art. 49 amount; engine uses 8.22 (Impiegati 4a category, same as level 2) as an approximation. For operai (levels 1-4), seniority is governed by the Cassa Edile anzianita' professionale edile (APE) system; engine uses the Art. 49 impiegati amounts as an approximation.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "operai_seniority_ape",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "1",
+              "2",
+              "3",
+              "4"
+            ]
+          },
+          "remediation": "Give the operai levels no scatti (APE paid by the Cassa Edile) and source the level 1 amount of Art. 49."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "EVR (Elemento Variabile della Retribuzione): conditional, company/territory-specific bonus. Not modelled.",
+        "capability": "territorial_supplement",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "provincial_evr",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the provincial EVR as an input."
+        }
       },
       {
         "kind": "info",
-        "text": "EVR (Elemento Variabile della Retribuzione): conditional, company/territory-specific bonus. Not modelled."
-      },
-      {
-        "kind": "info",
-        "text": "INPS: reuses 2026-edilizia.json (proxy rates, employer_tiers=[], employee_rate=null inherited from F012). Cassa Edile ~18.5% contribution is separate and not included in INPS rates."
+        "text": "INPS: reuses 2026-edilizia.json (the edilizia rates by employer size and worker category). Cassa Edile ~18.5% contribution is separate and not included in INPS rates (review of 2026-10-30)"
       },
       {
         "kind": "simplification",
@@ -1738,7 +1771,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "ab53fa230d05f737a8e32d85792319b076c0151d4794cea482db97b4f90b9d15",
+    "source_hash": "393082a2ef09670f364b7eb7038d05a470334b2aacc22932a15cbd6705e69826",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

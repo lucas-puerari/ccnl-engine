@@ -51,6 +51,22 @@
       }
     },
     {
+      "id": "pre_1999_hire_table",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Covers personale amministrativo assunto dal 18/12/1999 (Allegato 2/B — tabella omnicomprensiva). Pre-1999 hires (Allegato 2/A) are out of scope.",
+      "calculation": "ccnl/assicurazioni-ania:coverage.notes",
+      "state": "absent",
+      "remediation": "Model Allegato 2/A for the staff hired before 18/12/1999, gated on the hire date, or open a limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "assicurazioni-ania/pre_1999_hire_table"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

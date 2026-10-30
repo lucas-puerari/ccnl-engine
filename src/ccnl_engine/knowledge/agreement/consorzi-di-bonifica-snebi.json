@@ -107,12 +107,36 @@
         }
       },
       {
-        "kind": "info",
-        "text": "Seniority: 10 scatti total — tier 1: 6 biennali (cadence 24 months), tier 2: 1 dodicennale (cadence 144 months after tier 1 exhausted), tier 3: 3 quadriennali (cadence 48 months). All tiers modeled. Per-scatto amounts for tiers 2-3 assumed equal to tier 1 amounts (no independent source found for higher-tier amounts; best-guess from standard CCNL practice)."
+        "kind": "simplification",
+        "text": "Seniority: 10 scatti total — tier 1: 6 biennali (cadence 24 months), tier 2: 1 dodicennale (cadence 144 months after tier 1 exhausted), tier 3: 3 quadriennali (cadence 48 months). All tiers modeled. Per-scatto amounts for tiers 2-3 assumed equal to tier 1 amounts (no independent source found for higher-tier amounts; best-guess from standard CCNL practice).",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "higher_tier_scatto_amounts",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the amounts of the dodicennale and quadriennali scatti and correct tiers 2-3."
+        }
       },
       {
-        "kind": "info",
-        "text": "AQ-category levels (AQ162, AQ164, AQ185, AQ187) are quadri. An indennita di funzione may apply per standard quadri CCNL practice, but the amount could not be confirmed from available public sources; not modeled."
+        "kind": "simplification",
+        "text": "AQ-category levels (AQ162, AQ164, AQ185, AQ187) are quadri. An indennita di funzione may apply per standard quadri CCNL practice, but the amount could not be confirmed from available public sources; not modeled.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "quadri_function_allowance",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "AQ162",
+              "AQ164",
+              "AQ185",
+              "AQ187"
+            ]
+          },
+          "remediation": "Source whether the CCNL pays an indennità di funzione to the AQ levels and model it."
+        }
       },
       {
         "kind": "info",
@@ -2764,7 +2788,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "1d113481d7d4a74d7f99999134a17b08f793a4aaab2a1b489c703febdc0c70a0",
+    "source_hash": "43d95943813b29294a57689cd86b971645dded83861eb85a2aaabc965123cf22",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

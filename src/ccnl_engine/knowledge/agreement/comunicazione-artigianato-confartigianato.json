@@ -103,8 +103,17 @@
         "text": "LEVEL ORDERING: 6 (lowest) < 5 < 5bis < 4 < 3 < 2 < 1B < 1A (highest). Level 5bis has higher salary than level 5 — this is correct per the CCNL (5bis = specializzato BIS, above the basic specializzato)."
       },
       {
-        "kind": "info",
-        "text": "APPRENTICESHIP: new rules from 2024-11-18 rinnovo for post-Nov-18-2024 contracts. Track durations confirmed from adapt.it (G016-specific): operai/tecnici max 5 years, amministrativi max 3 years, centraliniste 2 years. Percentage progressions (70/78/85/92/100% for operai/tecnici; 70/80/90% for amministrativi) follow the Confartigianato/CNA artigianato national framework agreement (CCNA); G016-specific source (adapt.it) confirms durations but not the individual percentages. SIMPLIFICATION: percentages assumed from artigianato CCNA framework; not found in a G016-specific primary source (CCNL PDF not fetched)."
+        "kind": "simplification",
+        "text": "APPRENTICESHIP: new rules from 2024-11-18 rinnovo for post-Nov-18-2024 contracts. Track durations confirmed from adapt.it (G016-specific): operai/tecnici max 5 years, amministrativi max 3 years, centraliniste 2 years. Percentage progressions (70/78/85/92/100% for operai/tecnici; 70/80/90% for amministrativi) follow the Confartigianato/CNA artigianato national framework agreement (CCNA); G016-specific source (adapt.it) confirms durations but not the individual percentages. SIMPLIFICATION: percentages assumed from artigianato CCNA framework; not found in a G016-specific primary source (CCNL PDF not fetched).",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprenticeship_percentages_assumed",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the G016 apprenticeship percentages from the CCNL text and correct the tracks."
+        }
       },
       {
         "kind": "info",
@@ -124,8 +133,17 @@
         }
       },
       {
-        "kind": "info",
-        "text": "APPRENTICESHIP SCOPE: only post-Nov-18-2024 rules modelled. Pre-renewal CCNL used a semestrali hybrid model (old percentage tables). Firms with apprenticeship contracts signed before Nov 18, 2024 may follow previgente rules. This is a deliberate scope decision (modelling current rules only); historical contract tracking is out of engine scope."
+        "kind": "simplification",
+        "text": "APPRENTICESHIP SCOPE: only post-Nov-18-2024 rules modelled. Pre-renewal CCNL used a semestrali hybrid model (old percentage tables). Firms with apprenticeship contracts signed before Nov 18, 2024 may follow previgente rules. This is a deliberate scope decision (modelling current rules only); historical contract tracking is out of engine scope.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "previgente_apprenticeship_rules",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Model the pre-18/11/2024 percentage tables gated on the apprenticeship start date, or open a limitation."
+        }
       },
       {
         "kind": "simplification",
@@ -1451,7 +1469,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "2721ee8cc0f73d67a4b6a0cd9fd7c57990fffec58455ed3dda1e8a6c06bba561",
+    "source_hash": "28e093ac8f1548b169f6caccefe00aa24d612030e4149d9244d904cb5fdbf644",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

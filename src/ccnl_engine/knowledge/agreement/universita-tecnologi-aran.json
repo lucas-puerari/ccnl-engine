@@ -615,8 +615,17 @@
   "coverage": {
     "notes": [
       {
-        "kind": "info",
-        "text": "SCOPE: tecnologi a tempo indeterminato of the universities, a profile from 1.3.2026 (CCNL 2025-2027 Tabella B2): six posizioni stipendiali (0-5, 6-11, 12-17, 18-23, 24-30, 31 and more years) as seniority steps. No overtime table; the allowances of the profile are not modelled."
+        "kind": "simplification",
+        "text": "SCOPE: tecnologi a tempo indeterminato of the universities, a profile from 1.3.2026 (CCNL 2025-2027 Tabella B2): six posizioni stipendiali (0-5, 6-11, 12-17, 18-23, 24-30, 31 and more years) as seniority steps. No overtime table; the allowances of the profile are not modelled.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "tecnologi_allowances",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the allowances of the tecnologi profile (CCNL 2025-2027) and model them or record the limitation."
+        }
       },
       {
         "kind": "simplification",
@@ -653,7 +662,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "d7902c1d5aa13d0bc65ac0ced9619a20124da965d843c0cb10bc860e7e9c2e06",
+    "source_hash": "862eb33eaf46fac7838dfe95aba61580374e7ac482296b8410a800ca18c11654",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

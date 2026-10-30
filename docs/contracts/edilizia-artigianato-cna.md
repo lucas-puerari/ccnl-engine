@@ -238,7 +238,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     INPS contribution rates from 2026-artigianato.json (artigianato sector). No Cassa Edile contribution substitution modelled in the INPS rate; employer Cassa Edile contributions are additional and are out of scope.
     
-    Layer 3 (overtime, Cassa Edile contributions, holiday/night premiums, accruals managed bilaterally) is out of scope.
+    Layer 3: overtime is modelled (work_rules.time_supplements.overtime_bands); the Cassa Edile contributions, the premiums on ordinary night and holiday hours and the accruals managed bilaterally are out of scope (review of 2026-10-30)
     
     Apprenticeship specialistico tracks (Allegato D, verbale 05/09/2023, Art. 9): 1 Sp (54m, livelli 4-5): 0-12=78%, 12-24=80%, 24-36=86%, 36-42=91%, 42-54=96%. 3 Sp (42m, livello 3): 0-12=78%, 12-24=80%, 24-36=86%, 36-42=91%. SIMPLIFICATION: 2 Sp (45m, livelli 3-4): last 8th sem.=3m (not 6m) to reach 45m (the exact boundary of the last period is not published in textual form by any secondary source; total duration of 45m is confirmed). Source: studiodalmaschio.it; fareapprendistato.it; cdltorino.it.
     

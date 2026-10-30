@@ -275,7 +275,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     ADDITIONAL MONTHS: 14 (tredicesima Art. 52 + quattordicesima Art. 53 CCNL). Tredicesima paid at year-end; quattordicesima paid 30 April. Both equal one full monthly retribuzione globale.
     
-    TAX SECTOR: AGRICOLTURA (new TaxSector). INPS rates: Gestione Previdenziale Speciale Agricola, OTI standard agriculture: employee 8.84%, employer 21.66%, total 30.50% (2026). Source: ciatreviso.it citing INPS 2026 rates.
+    TAX SECTOR: AGRICOLTURA (new TaxSector). INPS rates: Gestione Previdenziale Speciale Agricola, OTI standard agriculture: employee 8.84%, employer 25.453% (of which IVS 21.66%) (2026). Source: ciatreviso.it citing INPS 2026 rates (review of 2026-10-30)
     
     CNEL CODE: A011. Confirmed from ilccnl.it page header and contratticcnl.it/ccnl/a011/. CNEL archive (cnel.it) returned 404 at time of extraction.
     

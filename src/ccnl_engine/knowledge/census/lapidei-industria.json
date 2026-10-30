@@ -67,6 +67,22 @@
       }
     },
     {
+      "id": "daily_divisor_25",
+      "institute": "absence",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "HOURLY DIVISOR: 174. Daily divisor: 25.",
+      "calculation": "ccnl/lapidei-industria:coverage.notes",
+      "state": "unverified",
+      "remediation": "Read the CCNL clause on the quota giornaliera; set work_rules.absence_rules.daily_divisor_method to by_25 if it states 25 (the engine supports by_25), or correct the note.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "lapidei-industria/daily_divisor_25"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

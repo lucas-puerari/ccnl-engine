@@ -243,6 +243,22 @@
       }
     },
     {
+      "id": "six_day_week_leave",
+      "institute": "leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "LEAVE: 22 working days for the settimana corta (Monday to Friday), 26 for a six-day week (Art. 99 CCNL 2024, p. 51). The file carries the 22 days; the engine cannot switch on the weekly schedule.",
+      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
+      "state": "unverified",
+      "remediation": "Accept the weekly schedule (days per week) and accrue 26 days on a six-day week, or record the limitation as rol_not_accrued does for ROL.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "studi-professionali-confprofessioni/six_day_week_leave"
+        ]
+      }
+    },
+    {
       "id": "tfr_compensation_apprentice_guarantee_fund",
       "institute": "inps_employer",
       "variant": "apprentice",

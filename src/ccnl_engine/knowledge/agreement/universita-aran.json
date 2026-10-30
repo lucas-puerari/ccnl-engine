@@ -1170,7 +1170,7 @@
     "notes": [
       {
         "kind": "info",
-        "text": "SCOPE: personale tecnico-amministrativo of the universities and AOU (Aree Operatori, Collaboratori, Funzionari, Elevate Professionalità) and Collaboratori ed esperti linguistici, from 1.1.2024 (new classification of art. 92 CCNL 18/1/2024 from 1.5.2024, the earlier areas transposed by its allegato F). Tables: CCNL 2022-2024 Tabelle B2-B4 and CCNL 2025-2027 Tabelle B2-B4. Not modelled: the tecnologi a tempo indeterminato (Tabella B2 from 1.3.2026, posizioni stipendiali) and the differenziali economici di professionalità, which the caller pays as allowances. The Elevate Professionalità have no overtime table (B4)."
+        "text": "SCOPE: personale tecnico-amministrativo of the universities and AOU (Aree Operatori, Collaboratori, Funzionari, Elevate Professionalità) and Collaboratori ed esperti linguistici, from 1.1.2024 (new classification of art. 92 CCNL 18/1/2024 from 1.5.2024, the earlier areas transposed by its allegato F). Tables: CCNL 2022-2024 Tabelle B2-B4 and CCNL 2025-2027 Tabelle B2-B4. The tecnologi a tempo indeterminato (Tabella B2 from 1.3.2026, posizioni stipendiali) are modelled in universita-tecnologi-aran. Not modelled: the differenziali economici di professionalità, which the caller pays as allowances. The Elevate Professionalità have no overtime table (B4). (review of 2026-10-30)"
       },
       {
         "kind": "simplification",
@@ -1207,7 +1207,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "3d9b572ae860adfd52285b93cceb85019454f7de6bd69e45515b998c581541ac",
+    "source_hash": "ef4cffba9585a0bb6eee741ab90390fa07180427bec880e5cb47352804ac065a",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

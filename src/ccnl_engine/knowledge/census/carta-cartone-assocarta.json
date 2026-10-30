@@ -19,6 +19,22 @@
       }
     },
     {
+      "id": "emc_absorption_unconfirmed",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "EMC CHECK: aggregators and a payroll firm print 2026 minimi without the EMC (C1 1960.11 = 1835.11 + 125), but none cites a clause removing it; the signed 2026 ipotesi keeps Art. 100 bis and Art. 49. The Assocarta 'nota illustrativa e tabella nuovi minimi' of 24/02/2026 is members-only and was not read: if it shows the EMC absorbed, the 2026-2028 values are EUR 13-33 too high.",
+      "calculation": "ccnl/carta-cartone-assocarta:coverage.notes",
+      "state": "unverified",
+      "remediation": "Read the Assocarta nota illustrativa of 24/02/2026 (or a signed table) and settle whether the EMC is in the 2026-2028 minimi; correct base_salary if absorbed.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "carta-cartone-assocarta/emc_absorption_unconfirmed"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

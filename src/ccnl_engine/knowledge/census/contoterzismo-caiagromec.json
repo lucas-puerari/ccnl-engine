@@ -19,6 +19,22 @@
       }
     },
     {
+      "id": "continuity_premium_cumulation",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Seniority: 'premi di continuita professionale' modeled as fixed_allowances with service_months_threshold (60/120/180 months) and months_per_year=1 (annual lump sums: EUR 50/150/180/year). Amounts assumed cumulative (stacking thresholds) per standard CCNL practice; cumulation unverified from public sources. seniority_increments is a schema placeholder (maximum_count=0).",
+      "calculation": "ccnl/contoterzismo-caiagromec:coverage.notes",
+      "state": "unverified",
+      "remediation": "Source whether the premi di continuità stack or replace each other and set the allowances accordingly.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "contoterzismo-caiagromec/continuity_premium_cumulation"
+        ]
+      }
+    },
+    {
       "id": "inps_minimum_base_exempt_category",
       "institute": "inps_employer",
       "variant": "all",

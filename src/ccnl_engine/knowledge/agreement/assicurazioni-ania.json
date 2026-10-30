@@ -50,8 +50,17 @@
   "coverage": {
     "notes": [
       {
-        "kind": "info",
-        "text": "Covers personale amministrativo assunto dal 18/12/1999 (Allegato 2/B — tabella omnicomprensiva). Pre-1999 hires (Allegato 2/A) are out of scope."
+        "kind": "simplification",
+        "text": "Covers personale amministrativo assunto dal 18/12/1999 (Allegato 2/B — tabella omnicomprensiva). Pre-1999 hires (Allegato 2/A) are out of scope.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "pre_1999_hire_table",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Model Allegato 2/A for the staff hired before 18/12/1999, gated on the hire date, or open a limitation."
+        }
       },
       {
         "kind": "info",
@@ -95,11 +104,11 @@
       },
       {
         "kind": "info",
-        "text": "Indennità profilo J) 4° livello (Allegato 2/E) — modelled as fixed_allowance IND_PROFILO_J on L4 with role 'profilo_j'. Amounts: €57.26/mese dal 01/01/2026, €59.51 dal 01/01/2027, €61.32 dal 01/01/2028. Pass roles={'profilo_j'} in Scenario to include it."
+        "text": "Indennità profilo J) 4° livello (Allegato 2/E) — modelled as fixed_allowance IND_PROFILO_J on L4 with role 'profilo_j'. Amounts: €57.26/mese dal 01/01/2026, €59.51 dal 01/01/2027, €61.32 dal 01/01/2028. Set Employment.roles=profilo_j to include it (review of 2026-10-30)."
       },
       {
         "kind": "info",
-        "text": "Indennità economica 6° livello quadro (Allegato 2/F) — modelled as fixed_allowance IND_QUADRO_6 on L6 with role 'quadro_6'. Amount: €74.09/mese dal 01/01/2026. Pass roles={'quadro_6'} in Scenario to include it."
+        "text": "Indennità economica 6° livello quadro (Allegato 2/F) — modelled as fixed_allowance IND_QUADRO_6 on L6 with role 'quadro_6'. Amount: €74.09/mese dal 01/01/2026. Set Employment.roles=quadro_6 to include it (review of 2026-10-30)."
       },
       {
         "kind": "simplification",
@@ -1208,7 +1217,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "3a3f445dfdd1cb85cf44d1c309f0ff8c6a73bb87cc1f906a8c0ff0b03807b7b6",
+    "source_hash": "66eb3e0029392cad21f3c6efda9ea2105f51c93b4192dc161f8c994e959cb5eb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

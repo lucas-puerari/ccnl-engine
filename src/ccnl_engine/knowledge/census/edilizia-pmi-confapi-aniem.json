@@ -115,6 +115,38 @@
       }
     },
     {
+      "id": "operai_seniority_ape",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SENIORITY: Art. 49 lists impiegati scatti biennali by category. Level 1 has no explicit Art. 49 amount; engine uses 8.22 (Impiegati 4a category, same as level 2) as an approximation. For operai (levels 1-4), seniority is governed by the Cassa Edile anzianita' professionale edile (APE) system; engine uses the Art. 49 impiegati amounts as an approximation.",
+      "calculation": "ccnl/edilizia-pmi-confapi-aniem:coverage.notes",
+      "state": "absent",
+      "remediation": "Give the operai levels no scatti (APE paid by the Cassa Edile) and source the level 1 amount of Art. 49.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-pmi-confapi-aniem/operai_seniority_ape"
+        ]
+      }
+    },
+    {
+      "id": "provincial_evr",
+      "institute": "territorial_supplement",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "EVR (Elemento Variabile della Retribuzione): conditional, company/territory-specific bonus. Not modelled.",
+      "calculation": "ccnl/edilizia-pmi-confapi-aniem:coverage.notes",
+      "state": "unverified",
+      "remediation": "Add the provincial EVR as an input.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-pmi-confapi-aniem/provincial_evr"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",
@@ -190,6 +222,22 @@
       "links": {
         "limitations": [
           "sickness_inps_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "territorial_sector_allowance",
+      "institute": "territorial_supplement",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = owed",
+      "rule": "ITS (Indennita' Territoriale di Settore) not modelled: varies by province/region. National table footnote: 'A questa Tabella occorre aggiungere l'ITS che varia da territorio a territorio'. The national tabular minimum does not include ITS.",
+      "calculation": "ccnl/edilizia-pmi-confapi-aniem:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the ITS with a fact naming the province, or take it as a second-level element, then remove this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-pmi-confapi-aniem/territorial_sector_allowance"
         ]
       }
     },

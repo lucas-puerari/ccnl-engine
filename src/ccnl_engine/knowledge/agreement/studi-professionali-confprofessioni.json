@@ -99,8 +99,17 @@
         }
       },
       {
-        "kind": "info",
-        "text": "LEAVE: 22 working days for the settimana corta (Monday to Friday), 26 for a six-day week (Art. 99 CCNL 2024, p. 51). The file carries the 22 days; the engine cannot switch on the weekly schedule."
+        "kind": "simplification",
+        "text": "LEAVE: 22 working days for the settimana corta (Monday to Friday), 26 for a six-day week (Art. 99 CCNL 2024, p. 51). The file carries the 22 days; the engine cannot switch on the weekly schedule.",
+        "capability": "leave",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "six_day_week_leave",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Accept the weekly schedule (days per week) and accrue 26 days on a six-day week, or record the limitation as rol_not_accrued does for ROL."
+        }
       },
       {
         "kind": "info",
@@ -2423,7 +2432,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "e5067aae1e83ff61440f503e714f20cb70518c8b955327ea3a6a4b20779a81c2",
+    "source_hash": "b294eb3e7bd047463a7aa3060b8a1d26d0e92d7473c21d8e3d11945cecd2488c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

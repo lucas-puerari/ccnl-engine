@@ -82,6 +82,22 @@
       }
     },
     {
+      "id": "seniority_adjacent_level_amounts",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SENIORITY biennale (24 months), max 7 scatti, amounts from Art. 41 CCNL 12/11/2020: 6 of 9 levels confirmed (A2, B1, B2, C1, C3, C4); A1=A2 (21.54), C2=C1 (25.56) and D1=C4 (30.73) by adjacent-level approximation (1° livello, 5°S and Quadri absent from the Art. 41 table).",
+      "calculation": "ccnl/telecomunicazioni-asstel:coverage.notes",
+      "state": "unverified",
+      "remediation": "Source the Art. 41 amounts of 1° livello, 5°S and Quadri and replace the adjacent-level values.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "telecomunicazioni-asstel/seniority_adjacent_level_amounts"
+        ]
+      }
+    },
+    {
       "id": "sickness_cumulation_window",
       "institute": "sickness",
       "variant": "all",

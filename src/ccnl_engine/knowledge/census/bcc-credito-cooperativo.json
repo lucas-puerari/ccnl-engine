@@ -51,6 +51,22 @@
       }
     },
     {
+      "id": "pre_1998_cohort_scatti",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SCATTI: at most 8 for the 1st and 2nd level of the quadri direttivi and for the aree professionali, 7 for the 3rd and 4th level of the quadri (Art. 101, Art. 113). Staff in service on 31 December 1997 keep 12 scatti (9 for the 3rd and 4th level of the quadri) plus a further periodic increase: the engine applies the limits of later hires, so a run for that cohort past the 8th (7th) scatto needs the extra amounts as a fixed input.",
+      "calculation": "ccnl/bcc-credito-cooperativo:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the 12 (9) scatti and the further periodic increase of staff in service on 31/12/1997 as a hire-date-gated maximum, or open a limitation naming the individual-element workaround.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "bcc-credito-cooperativo/pre_1998_cohort_scatti"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

@@ -35,6 +35,22 @@
       }
     },
     {
+      "id": "fasda_health_fund",
+      "institute": "contractual_funds",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = owed",
+      "rule": "BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) contributions are not modelled. Previambiente is modelled (art. 65 lett. A), with the TFR alone of c. 12 and the conversion of the seniority increments of lett. A) bis, for a new hire and for a worker already in service from the date of the request (review of 2026-10-30)",
+      "calculation": "ccnl/igiene-ambientale-utilitalia:coverage.notes",
+      "state": "absent",
+      "remediation": "Declare FASDA in parameters.health_funds with its contributions (or the elemento distinto in its place), then remove this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "igiene-ambientale-utilitalia/fasda_health_fund"
+        ]
+      }
+    },
+    {
       "id": "fund_paid_month",
       "institute": "pension_fund_contribution",
       "variant": "all",

@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, leave, overtime, seniority, sickness |
 
-12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -126,6 +126,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Let seniority_increments pay the level amount to apprentices (a flag such as apprentices_accrue_level_amount), then remove this note.
+
+!!! warning "studi-professionali-confprofessioni/six_day_week_leave · leave · impact unknown · open"
+    LEAVE: 22 working days for the settimana corta (Monday to Friday), 26 for a six-day week (Art. 99 CCNL 2024, p. 51). The file carries the 22 days; the engine cannot switch on the weekly schedule.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Accept the weekly schedule (days per week) and accrue 26 days on a six-day week, or record the limitation as rol_not_accrued does for ROL.
 
 !!! warning "studi-professionali-confprofessioni/part_time_supplementary · overtime · impact yes · open"
     Art. 42: the lavoro supplementare of part-time at 40% of the quota oraria of the retribuzione di fatto, outside the deferred institutes and the TFR. OvertimeKind.SUPPLEMENTARY exists, but the file has no supplementary-hours band (review of 2026-10-30).
@@ -278,8 +285,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     SOLIDARITY FUND: the studi professionali pay the Fondo di solidarietà bilaterale per le attività professionali (D.I. 21 May 2024 art. 6) in place of the FIS and owe no CIGS (D.Lgs. 148/2015 art. 20 c. 3-bis): parameters.solidarity_fund replaces the FIS and CIGS shares of the terziario rates with the thirds of 0.50%, 0.80% and 1% by headcount. Up to 15 employees the rates coincide; above 15 the employer pays 0.46 points and the worker 0.24 points less than the terziario rates.
     
     CNEL code H442: confirmed from the CNEL archive 'Studi Professionali — Confprofessioni'. Workers covered: 317,554 (UNIEMENS 2022).
-    
-    LEAVE: 22 working days for the settimana corta (Monday to Friday), 26 for a six-day week (Art. 99 CCNL 2024, p. 51). The file carries the 22 days; the engine cannot switch on the weekly schedule.
     
     BILATERAL CONTRIBUTION: EBIPRO and CADIPROF are paid with a unified contribution of EUR 29 a month for 12 months, EUR 2 of it by the worker (Art. 13), modelled as the contractual funds cadiprof (20 EUR, health fund) and ebipro (7 + 2 EUR); an employer outside the bilateral system owes the worker 43 EUR for 14 months instead. The CADIPROF enrolment of EUR 24 (Art. 16) stays a caller BilateralFundEvent.
     

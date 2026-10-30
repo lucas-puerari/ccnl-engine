@@ -51,6 +51,22 @@
       }
     },
     {
+      "id": "quadri_function_allowance",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "LEVEL 8 IND_FUN: indennità di funzione per quadri 41.31 EUR/month applies only to quadri supervisory employees, not to all livello 8 workers. Not modelled: the file has no role-scoped allowance for it (review of 2026-10-30).",
+      "calculation": "ccnl/calzaturiero-assocalzaturifici:coverage.notes",
+      "state": "absent",
+      "remediation": "Add IND_FUN 41.31 EUR as a role-scoped fixed allowance on level 8 (role 'quadro', as alimentari-federalimentare does), then drop the note.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "calzaturiero-assocalzaturifici/quadri_function_allowance"
+        ]
+      }
+    },
+    {
       "id": "rule_accrual_rule",
       "institute": "base_salary",
       "variant": "all",

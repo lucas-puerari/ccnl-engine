@@ -185,7 +185,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     PRE-AFAC TRANCHE: now modelled. Confirmed from Testo Unico 2025 (assipan.it PDF, 26/02/2025), column 'Retribuzione al 31/01/2024': I=2102.30, II=1977.36, IIIA=1860.95, IIIB=1766.31, IV=1569.25, V=1452.44, VI=1302.81. These amounts are added as the 2023-01-01 period (valid until 31/01/2024) for all seven levels.
     
-    HOURLY RATE ENGINE DISCREPANCY. Art. 50 bis defines the official quota oraria as minimo_tabellare/173 (base only). The engine computes hourly_rate = gross_monthly/173 where gross includes the PREMIO_PROD fixed_allowance. For level IIIB Sep 2026: official 2046.31/173 = 11.83 EUR/h; engine computes (2046.31+28.04)/173 = 11.99 EUR/h (diff +0.16). Structural engine limitation shared by all contracts with separate fixed allowances (no per-allowance hourly_relevant flag). Monthly and annual figures are unaffected.
+    HOURLY RATE: Art. 50 bis defines the official quota oraria as minimo_tabellare/173 (base only). work_rules.time_supplements.hourly_base_method is minimo_tabellare, so a derived hourly base leaves PREMIO_PROD out; while the hourly base provenance is not verified the engine derives none and overtime and absences take the caller's hourly rate. Monthly and annual figures are unaffected. (review of 2026-10-30)
     
 
 ## Raw data

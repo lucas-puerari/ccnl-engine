@@ -53,8 +53,20 @@
         "text": "SENIORITY: biennale, 4% of the Tabella B minimum (art. 37 c. 1: 'sulla retribuzione minima contrattuale'), maximum 7 scatti: B 28,09, BS 29,50, C 32,58."
       },
       {
-        "kind": "info",
-        "text": "NOT MODELLED: students aged 16 to 40 (art. 14 c. 2) at levels other than C, B and B super, for whom Tabella B has no value; the Tabella H indennita of the baby sitter of level B super for children under six (art. 34 c. 3), 97,06 a month for Tabella B workers; the Tabella L indennita of art. 34 c. 7 for certified workers. None of them is paid."
+        "kind": "simplification",
+        "text": "NOT MODELLED: students aged 16 to 40 (art. 14 c. 2) at levels other than C, B and B super, for whom Tabella B has no value; the Tabella H indennita of the baby sitter of level B super for children under six (art. 34 c. 3), 97,06 a month for Tabella B workers; the Tabella L indennita of art. 34 c. 7 for certified workers. None of them is paid.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "babysitter_and_certification_allowances",
+          "applies_when": {
+            "trigger": "outside_input",
+            "levels": [
+              "BS"
+            ]
+          },
+          "remediation": "Model the Tabella H indennita (97,06 for a B super baby sitter of children under six) and the Tabella L indennita of certified workers as role-gated allowances (Allowance.role); the Tabella L one applies at any level."
+        }
       },
       {
         "kind": "info",
@@ -770,7 +782,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "b6d36fe334e53b87794bbb61f0117af95588bf289ae71b56a532446f379e3f85",
+    "source_hash": "d8c5190a313e0b49988b1b1777af372b48e777a683712225796cbf19a1d5fb0b",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },

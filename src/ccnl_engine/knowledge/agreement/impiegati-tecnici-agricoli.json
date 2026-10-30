@@ -60,7 +60,7 @@
       },
       {
         "kind": "info",
-        "text": "RENEWAL: CCNL signed 18/06/2024 (quadriennio 2024-2027). Single salary tranche effective 01/07/2024. No subsequent tranches found at time of extraction."
+        "text": "RENEWAL: CCNL signed 18/06/2024 (quadriennio 2024-2027). One salary tranche modelled, effective 01/07/2024; the +1.9% tranche of 01/01/2025 is not modelled (tranche_2025_01_missing) (review of 2026-10-30)"
       },
       {
         "kind": "info",
@@ -750,7 +750,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "575ef6232353baf177a5d8dccb37edbd00c7c3fdd5275af78d2be2443e22ebae",
+    "source_hash": "a1e7b7b1d675feb37327142e11acacd075254de0703da97b6249aa4eaa26fa57",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

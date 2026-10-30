@@ -35,6 +35,22 @@
       }
     },
     {
+      "id": "edr_2021_in_daily_base",
+      "institute": "absence",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; the 2021 EDR may still enter the daily base of absences and sickness, which 'nessuna incidenza su alcun istituto contrattuale' excludes.",
+      "calculation": "ccnl/logistica-trasporto-confetra:coverage.notes",
+      "state": "unverified",
+      "remediation": "Exclude EDR_2021 from the daily base of absences and sickness (a relevance flag on the allowance), or source that it enters it.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "logistica-trasporto-confetra/edr_2021_in_daily_base"
+        ]
+      }
+    },
+    {
       "id": "health_and_bilateral_funds",
       "institute": "bilateral_funds",
       "variant": "all",
@@ -47,6 +63,22 @@
       "links": {
         "limitations": [
           "logistica-trasporto-confetra/health_and_bilateral_funds"
+        ]
+      }
+    },
+    {
+      "id": "level_6j_2025",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "LEVEL 6° JUNIOR: not modelled. The profile existed only in 2025 (1,464.53 a month from 1.1.2025, p. 80; seniority step 18.78, art. 17; EDR 2021 7.58, p. 82) and ended on 31.12.2025 (p. 25: 'Il presente profilo avrà termine inderogabilmente il 31 dicembre 2025'), its workers moving to level 6; a level of the bundle must cover the whole span of the ruleset. The request has no override of the level amounts: a 2025 run of a 6J worker on level 6 pays the level 6 minimum (1,615.71) (review of 2026-10-30)",
+      "calculation": "ccnl/logistica-trasporto-confetra:coverage.notes",
+      "state": "absent",
+      "remediation": "Model 6J for 2025 (a level closed on 2025-12-31, or a refusal of 6J runs), or record the limitation for 2025 runs.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "logistica-trasporto-confetra/level_6j_2025"
         ]
       }
     },

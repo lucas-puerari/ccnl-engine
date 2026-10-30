@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer, overtime, seniority, sickness |
+| **Limits of this contract** | base_salary, inps_employer, overtime, seniority, sickness |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -159,6 +159,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add a fact for the counting the employer adopts and the extended periods of Art. 66 cc. 4-5.
 
+!!! warning "bancari-abi/apprentice_net_equivalent_allowance · base_salary · impact yes · open"
+    APPRENTICESHIP (Art. 36, testo coordinato p. 53): the apprentice of a 3a area profile is placed one level below the destination for the first 18 months, then paid the destination level 'con assegno temporaneo, corrispondente, al netto'; at most 3 years. Every 3a area level is a destination: an apprentice to 3A1 starts at the Area unificata (1e2A). The assegno equals the destination in net terms; the engine pays the destination gross.
+
+    **Applies when:** `base_salary` applies; level in 3A1, 3A2, 3A3, 3A4.
+
+    **Remediation:** Model the assegno temporaneo as the gross that gives the destination-level net under the apprentice contribution rates, or open a limitation stating the overpayment.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -212,8 +219,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     Hourly divisor 207,69 for the 37.5h/week period (2023-11-23 to 2024-06-30) and 204,92 from 2024-07-01 (37h/week): 360 x daily hours / 13 (Art. 114 c. 15, Art. 108).
     
     Seniority: first scatto after 48 months, then every 36 months; maximum 8 scatti for the Aree Professionali and 7 for QD3/QD4 (maximum_count_by_level).
-    
-    APPRENTICESHIP (Art. 36, testo coordinato p. 53): the apprentice of a 3a area profile is placed one level below the destination for the first 18 months, then paid the destination level 'con assegno temporaneo, corrispondente, al netto'; at most 3 years. Every 3a area level is a destination: an apprentice to 3A1 starts at the Area unificata (1e2A). The assegno equals the destination in net terms; the engine pays the destination gross.
     
     Apprenticeship: https://www.ccnlbancari.it/ Art. 35, post-rinnovo 2023-11-23.
     

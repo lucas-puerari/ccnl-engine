@@ -73,12 +73,34 @@
         "text": "tax_sector=industria: ANEF funivie operators are classified under ATECO H (trasporti) which INPS maps to the industria contribution table. No dedicated 'funivie' or 'trasporto-fune' TaxSector exists in the engine enum; industria is the correct proxy for this transport-infrastructure category."
       },
       {
-        "kind": "info",
-        "text": "Indennita di funzione (118.79 EUR/month) for Quadri (L. 190/1985 status within levels 1S and 1) is not modelled. It is a person-status allowance tied to individual Quadro designation — not a livello retributivo. Structural engine limitation: the engine does not support per-person status allowances."
+        "kind": "simplification",
+        "text": "Indennita di funzione (118.79 EUR/month) for Quadri (L. 190/1985 status within levels 1S and 1) is not modelled. It is a person-status allowance tied to individual Quadro designation, not a livello retributivo; the engine can restrict an allowance to Employment.roles (Allowance.role), but the file declares none (review of 2026-10-30)",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "quadri_function_allowance",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "1S",
+              "1"
+            ]
+          },
+          "remediation": "Add the 118.79 EUR allowance to levels 1S and 1 with role 'quadro'."
+        }
       },
       {
-        "kind": "info",
-        "text": "Allegato 3.1 (grandfathered scatti for workers hired before 30/04/2016) not modelled. Only Allegato 3 (standard post-2016 cohort) amounts implemented. Structural scope decision: pre-2016 grandfathered amounts affect a declining cohort; the new-hire case is exact."
+        "kind": "simplification",
+        "text": "Allegato 3.1 (grandfathered scatti for workers hired before 30/04/2016) not modelled. Only Allegato 3 (standard post-2016 cohort) amounts implemented. Structural scope decision: pre-2016 grandfathered amounts affect a declining cohort; the new-hire case is exact.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "pre_2016_seniority_cohort",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the Allegato 3.1 amounts for workers hired before 30/04/2016, selected by hire date or a worker fact."
+        }
       },
       {
         "kind": "info",
@@ -1474,7 +1496,7 @@
     "effective_until": null,
     "source": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
     "verification_status": "unverified",
-    "source_hash": "b3f320bfc3d40067090f571abd5b30eb423df3e08aa847eedcb3193a9b5938ea",
+    "source_hash": "ea1ea14d49b2b6cf3e120df8f3324399ceae354a3a35cdef38f33c388c5a8986",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

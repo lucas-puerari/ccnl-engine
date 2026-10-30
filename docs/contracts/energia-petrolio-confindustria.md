@@ -173,7 +173,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     SENIORITY INCREMENTS: abolished from 2016-01-01 by the 2016 CCNL renewal. Amounts accrued up to 2015 are crystallised as a personal supplement. Modelled as maximum_count=0, amount_by_level={}, cadence_months=24 (historical biennial cadence).
     
-    HOURLY DIVISOR: 174.5 h/month (confirmed from previdenza-professionisti.it and lavoro-economia.it for CCNL B254). The CCNL states EDR is 'omnicomprensivo' with no impact on other contractual institutes. Engine computes hourly_rate = gross_monthly/174.5 where gross includes EDR — overstating hourly_rate by EDR/174.5 (~0.29 EUR/h at group 4). This is a structural engine limitation (no per-allowance hourly_relevant flag); all monthly and annual figures are unaffected.
+    HOURLY DIVISOR: 174.5 h/month (confirmed from previdenza-professionisti.it and lavoro-economia.it for CCNL B254). The CCNL states EDR is 'omnicomprensivo' with no impact on other contractual institutes. The engine derives no hourly rate for this CCNL (no verified work_rules.time_supplements.hourly_base_provenance: overtime takes the caller's rate); when derived, hourly_base_method=minimo_tabellare leaves the EDR out. All monthly and annual figures are unaffected (review of 2026-10-30)
     
     ADDITIONAL MONTHS: 14 (tredicesima December + quattordicesima June). Source: previdenza-professionisti.it.
     

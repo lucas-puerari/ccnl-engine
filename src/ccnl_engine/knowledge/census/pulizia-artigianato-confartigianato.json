@@ -51,6 +51,22 @@
       }
     },
     {
+      "id": "edar_2022_2024",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "EDAR (Elemento Distinto e Aggiuntivo della Retribuzione): EUR 15.00 flat, 26 mesi da 1.11.2022, soli lavoratori in forza al 27.10.2022. Scaduto dic 2024. Non rientra in nessun istituto contrattuale incl. TFR. Non modellato.",
+      "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
+      "state": "absent",
+      "remediation": "Model l'EDAR di EUR 15 (1.11.2022-31.12.2024, solo lavoratori in forza al 27.10.2022, escluso dal TFR) come allowance gated by role, or record a limitation with effective_until 2025-01-01.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "pulizia-artigianato-confartigianato/edar_2022_2024"
+        ]
+      }
+    },
+    {
       "id": "health_and_bilateral_funds",
       "institute": "bilateral_funds",
       "variant": "all",
@@ -641,6 +657,22 @@
       "links": {
         "limitations": [
           "sickness_inps_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "special_collection_allowance",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "INDENNITÀ SPECIALE (tabella per-livello nel PDF: L1=126.55→131.55 EUR): corrisposta solo al personale addetto alla riscossione con responsabilità di bollette/fatture > EUR 4.648/giorno. Condizionale, non universale. Non modellata. Totale ilccnl.it lug 2026 = Paga Base conferma assenza di elementi obbligatori aggiuntivi.",
+      "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
+      "state": "absent",
+      "remediation": "Model l'indennità speciale per livello as an allowance gated by a role (addetti alla riscossione) or record a limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "pulizia-artigianato-confartigianato/special_collection_allowance"
         ]
       }
     },

@@ -68,8 +68,17 @@
         "text": "LEVEL F superminimum: +7.75 EUR/month collective superminimum treated as paga base for contractual purposes. Added to paga base values in this file."
       },
       {
-        "kind": "info",
-        "text": "HOURLY DIVISOR: 174. Daily divisor: 25."
+        "kind": "simplification",
+        "text": "HOURLY DIVISOR: 174. Daily divisor: 25.",
+        "capability": "absence",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "daily_divisor_25",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Read the CCNL clause on the quota giornaliera; set work_rules.absence_rules.daily_divisor_method to by_25 if it states 25 (the engine supports by_25), or correct the note."
+        }
       },
       {
         "kind": "info",
@@ -2319,7 +2328,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/Scadenziario/Scadenza/19851/lapidei-industria",
     "verification_status": "verified",
-    "source_hash": "c78e7949f42dfa61485b7d6eabbdfe50e79a7cdb498f2c7c11cb47fc956d72a7",
+    "source_hash": "eb08a7641b5b4c124c702f934c7abf0909dd96b0e42506f94d416ba12d980a31",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

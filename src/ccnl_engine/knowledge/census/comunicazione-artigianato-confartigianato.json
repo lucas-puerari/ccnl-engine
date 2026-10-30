@@ -35,6 +35,22 @@
       }
     },
     {
+      "id": "apprenticeship_percentages_assumed",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "APPRENTICESHIP: new rules from 2024-11-18 rinnovo for post-Nov-18-2024 contracts. Track durations confirmed from adapt.it (G016-specific): operai/tecnici max 5 years, amministrativi max 3 years, centraliniste 2 years. Percentage progressions (70/78/85/92/100% for operai/tecnici; 70/80/90% for amministrativi) follow the Confartigianato/CNA artigianato national framework agreement (CCNA); G016-specific source (adapt.it) confirms durations but not the individual percentages. SIMPLIFICATION: percentages assumed from artigianato CCNA framework; not found in a G016-specific primary source (CCNL PDF not fetched).",
+      "calculation": "ccnl/comunicazione-artigianato-confartigianato:coverage.notes",
+      "state": "unverified",
+      "remediation": "Source the G016 apprenticeship percentages from the CCNL text and correct the tracks.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "comunicazione-artigianato-confartigianato/apprenticeship_percentages_assumed"
+        ]
+      }
+    },
+    {
       "id": "function_allowance_constant",
       "institute": "base_salary",
       "variant": "all",
@@ -95,6 +111,22 @@
       "links": {
         "limitations": [
           "comunicazione-artigianato-confartigianato/pmi_non_artigiane_tables"
+        ]
+      }
+    },
+    {
+      "id": "previgente_apprenticeship_rules",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "APPRENTICESHIP SCOPE: only post-Nov-18-2024 rules modelled. Pre-renewal CCNL used a semestrali hybrid model (old percentage tables). Firms with apprenticeship contracts signed before Nov 18, 2024 may follow previgente rules. This is a deliberate scope decision (modelling current rules only); historical contract tracking is out of engine scope.",
+      "calculation": "ccnl/comunicazione-artigianato-confartigianato:coverage.notes",
+      "state": "unverified",
+      "remediation": "Model the pre-18/11/2024 percentage tables gated on the apprenticeship start date, or open a limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "comunicazione-artigianato-confartigianato/previgente_apprenticeship_rules"
         ]
       }
     },

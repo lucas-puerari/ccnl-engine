@@ -35,6 +35,22 @@
       }
     },
     {
+      "id": "profile_specific_apprenticeship",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Apprenticeship (Art. 53 TU 2019, unchanged in 2024): sottoinquadramento, two levels below the destination for the first half and one level below for the second half; eligible destinations II-VI (Art. 62); durations II-V 36 months, VI 24 months (Art. 64). Track 'livelli_2_5' (18+18 months), track 'livello_6' (VII for the first 12 months; the second half stays at VII by the general one-level-below rule, lexplain.it reads it as VI: adopted the literal text). Art. 68 Tabella B profiles with 42/48-month durations and the farmacista di parafarmacia derogation (Accordo 31/10/2024) are profile-specific and not modelled.",
+      "calculation": "ccnl/commercio-confcommercio:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the Art. 68 Tabella B profiles (42/48 months) and the farmacista di parafarmacia derogation as separate tracks or open a limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "commercio-confcommercio/profile_specific_apprenticeship"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

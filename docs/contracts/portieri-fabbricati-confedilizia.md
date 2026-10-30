@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | base_salary, seniority |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -104,6 +104,27 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "portieri-fabbricati-confedilizia/c4_first_employment_rate · base_salary · impact yes · open"
+    EXCLUDED PROFILES: A1-A9 (portieri con alloggio, 45 h or 48 h/week — divisor would be 195 or 208, incompatible with single CCNLParameters.hourly_divisor; also alloggio in-kind not modelled). C1 and C2 (preposti alla direzione tecnica o amministrativa — Art. 62 comma 2 exempts them from the 40 h ceiling; no fixed hourly divisor applies). C4 primo impiego (entry-rate sub-classification at EUR 1290.52/2026, transitional not permanent level).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the C4 primo impiego entry rate (EUR 1290.52 in 2026) as a separate level or a role-gated variant, or record a limitation.
+
+!!! warning "portieri-fabbricati-confedilizia/apprenticeship_24_month_profiles · base_salary · impact yes · open"
+    APPRENTICESHIP: percentage type per Art. 35-36 of the 2025 renewal. Art. 36 comma 6: 80% months 1-12, 85% months 13-24, 90% months 25-36. Two tracks exist: 36 months (B1, C3) and 24 months (B2, B4, C4, D1, D3). SIMPLIFICATION: all seven destinations use the single 36-month schedule; the five 24-month profiles are over-modelled by 12 months — an apprentice in those profiles is paid 90% during months 25-36 instead of 100%. Impact: slight under-payment for 1 year for 5 destination levels. B3, B5, D2, D4 have no CCNL apprenticeship provision; excluded from destination_levels.
+
+    **Applies when:** `base_salary` applies; level in B2, B4, C4, D1, D3.
+
+    **Remediation:** Add a professionalizzante_24 track (80% months 1-12, 85% months 13-24, 100% after) for B2, B4, C4, D1, D3 and keep professionalizzante_36 for B1 and C3; until then add a limitation for apprentices of these levels.
+
+!!! warning "portieri-fabbricati-confedilizia/b5_short_schedule_premium · base_salary · impact yes · open"
+    B5 PART-TIME NOTE: Art. 122 provides a 15% hourly premium for B5 (pulitori/lavascale) with weekly schedule below 8 hours. Not modelled (SIMPLIFICATION).
+
+    **Applies when:** `base_salary` applies; level in B5.
+
+    **Remediation:** Model the Art. 122 15% hourly premium for B5 with a weekly schedule below 8 hours (e.g. a conditional allowance on part_time_pct below 0.2), or record it as a limitation.
+
 !!! warning "portieri-fabbricati-confedilizia/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
 
@@ -167,17 +188,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     HOURLY DIVISOR: 173 h/month (40 h/week x 52/12). Applicable to profiles B (B1-B5), C3, C4, D (D1-D4) per Art. 60 (B profiles), Art. 62 comma 1 (C3/C4), Art. 69 commi 1-2 (D profiles) — all 40 h/week standard schedule.
     
-    EXCLUDED PROFILES: A1-A9 (portieri con alloggio, 45 h or 48 h/week — divisor would be 195 or 208, incompatible with single CCNLParameters.hourly_divisor; also alloggio in-kind not modelled). C1 and C2 (preposti alla direzione tecnica o amministrativa — Art. 62 comma 2 exempts them from the 40 h ceiling; no fixed hourly divisor applies). C4 primo impiego (entry-rate sub-classification at EUR 1290.52/2026, transitional not permanent level).
-    
     SALARY TRANCHES: three annual steps — 2026-01-01, 2027-01-01, 2028-01-01 — as published on Confedilizia official table (3-column layout: 2026, 2027, 2028). D1 is a separate row (1439.90/1468.70/1498.07); D2-D3-D4 share a combined row (1438.58/1467.35/1496.70), confirmed by parsing raw HTML from confedilizia.it.
     
     SENIORITY INCREMENTS: 36-month cadence (triennale), maximum 12 scatti per Art. 111-114. Art. 114 sets 12 scatti triennali for D profiles. D-profile scatto = 10.00 EUR (all D levels identical, per Art. 114; source: lexplain.it/scatti-di-anzianita-contratto-portieri-custodi-e-proprietari-di-fabbricati). B/C amounts from same source.
     
     ADDITIONAL MONTHS: 13 (tredicesima only — Art. 130 'Gratifica natalizia'). Art. 130 provides tredicesima in December equal to one monthly salary; no quattordicesima provision exists in this CCNL. Confirmed via ilccnl.it full CCNL text and targeted search.
-    
-    APPRENTICESHIP: percentage type per Art. 35-36 of the 2025 renewal. Art. 36 comma 6: 80% months 1-12, 85% months 13-24, 90% months 25-36. Two tracks exist: 36 months (B1, C3) and 24 months (B2, B4, C4, D1, D3). SIMPLIFICATION: all seven destinations use the single 36-month schedule; the five 24-month profiles are over-modelled by 12 months — an apprentice in those profiles is paid 90% during months 25-36 instead of 100%. Impact: slight under-payment for 1 year for 5 destination levels. B3, B5, D2, D4 have no CCNL apprenticeship provision; excluded from destination_levels.
-    
-    B5 PART-TIME NOTE: Art. 122 provides a 15% hourly premium for B5 (pulitori/lavascale) with weekly schedule below 8 hours. Not modelled (SIMPLIFICATION).
     
     INPS: uses 2026-terziario.json (same tax_sector as commercio-confcommercio and turismo-federalberghi).
     

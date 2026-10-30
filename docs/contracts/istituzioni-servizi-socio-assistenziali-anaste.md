@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | base_salary, seniority, una_tantum |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -108,6 +108,27 @@ percentage: 0.95
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "istituzioni-servizi-socio-assistenziali-anaste/una_tantum_2025 · una_tantum · impact yes · open"
+    RENEWAL: CCNL signed 2025-07-23, triennio 2023-2025. Economic effects from 2025-08-01. Una tantum non modelled (non-recurring).
+
+    **Applies when:** `una_tantum` applies; from 2025-08-01.
+
+    **Remediation:** Source the amount and the payment months of the una tantum of the renewal of 23 July 2025, pay it outside the engine (ArrearsEvent) and record it as an open limitation.
+
+!!! warning "istituzioni-servizi-socio-assistenziali-anaste/apprenticeship_low_levels_track · base_salary · impact yes · open"
+    APPRENTICESHIP (Art. 22): modelled on levels 6-10 parameters (32 months, 90% mesi 1-28, 95% mesi 29+). Levels 1-5 have different duration (12 months, 95% from month 7) — not modelled separately.
+
+    **Applies when:** `base_salary` applies; level in 1, 2, 3, 3S, 4, 5.
+
+    **Remediation:** Add a 12-month percentage track for destinations 1-5 (90% months 1-6, 95% months 7-12, per Art. 22) and drop them from professionalizzante_32; record the limitation on the apprentice path until sourced.
+
+!!! warning "istituzioni-servizi-socio-assistenziali-anaste/nurses_professional_allowance · base_salary · impact yes · open"
+    NURSES ALLOWANCE: indennita professionale infermieri 155 EUR/month (12 months) not included — qualifica-specific, not level-specific.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the indennita professionale infermieri (155 EUR x 12) as a fixed allowance with role 'infermiere' (Allowance.role, months_per_year 12).
+
 !!! warning "istituzioni-servizi-socio-assistenziali-anaste/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
 
@@ -171,8 +192,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 | https://snalv.it/docs/anaste25/pdf6.pdf | altro | 2025-07-23 | [↗](https://snalv.it/docs/anaste25/pdf6.pdf) |
 
 ??? note "Coverage notes"
-    RENEWAL: CCNL signed 2025-07-23, triennio 2023-2025. Economic effects from 2025-08-01. Una tantum non modelled (non-recurring).
-    
     CONGLOBATED (Art. 69): minimo contrattuale conglobato includes base wage, contingenza and EDR. No separate contingenza or EDR column.
     
     HOURLY DIVISOR (Art. 72): 164 h/month for 38h/week. Verified: 1696.37/10.34=164.06 (lvl 6), 1893.48/11.55=163.94 (lvl 9), 2130.15/12.99=163.98 (lvl Q).
@@ -184,10 +203,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEVEL Q ALLOWANCE (Art. 70): indennita di funzione 77.47 EUR/month paid 13 months/year.
     
     LEVEL 1 PRE-2025: level 1 introduced ex-novo in 2025 renewal. Pre-2025 salary set equal to 2025-08-01 value (1295.43 EUR) — no historical data available.
-    
-    APPRENTICESHIP (Art. 22): modelled on levels 6-10 parameters (32 months, 90% mesi 1-28, 95% mesi 29+). Levels 1-5 have different duration (12 months, 95% from month 7) — not modelled separately.
-    
-    NURSES ALLOWANCE: indennita professionale infermieri 155 EUR/month (12 months) not included — qualifica-specific, not level-specific.
     
 
 ## Raw data

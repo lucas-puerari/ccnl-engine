@@ -35,6 +35,22 @@
       }
     },
     {
+      "id": "edr_2021_in_daily_base",
+      "institute": "absence",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; the 2021 EDR may still enter the daily base of absences and sickness, which 'nessuna incidenza su alcun istituto contrattuale' excludes.",
+      "calculation": "ccnl/logistica-trasporto-confetra-viaggiante:coverage.notes",
+      "state": "unverified",
+      "remediation": "Exclude EDR_2021 from the daily base of absences and sickness (a relevance flag on the allowance), or source that it enters it.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "logistica-trasporto-confetra-viaggiante/edr_2021_in_daily_base"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

@@ -19,6 +19,22 @@
       }
     },
     {
+      "id": "babysitter_and_certification_allowances",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "NOT MODELLED: students aged 16 to 40 (art. 14 c. 2) at levels other than C, B and B super, for whom Tabella B has no value; the Tabella H indennita of the baby sitter of level B super for children under six (art. 34 c. 3), 97,06 a month for Tabella B workers; the Tabella L indennita of art. 34 c. 7 for certified workers. None of them is paid.",
+      "calculation": "ccnl/lavoro-domestico-convivente-orario-ridotto:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the Tabella H indennita (97,06 for a B super baby sitter of children under six) and the Tabella L indennita of certified workers as role-gated allowances (Allowance.role); the Tabella L one applies at any level.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "lavoro-domestico-convivente-orario-ridotto/babysitter_and_certification_allowances"
+        ]
+      }
+    },
+    {
       "id": "board_lodging_substitute",
       "institute": "base_salary",
       "variant": "all",

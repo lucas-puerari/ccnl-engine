@@ -3,6 +3,22 @@
   "ccnl_id": "forze-polizia-ordinamento-civile",
   "requirements": [
     {
+      "id": "assegno_funzionale_missing",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Progressione economica non per scatti automatici sulla paga base, bensì per avanzamento di qualifica e tramite assegno funzionale (Art. 54 D.Lgs. 195/1995) maturato a 17, 27 e 32 anni di servizio. seniority_increments.maximum_count = 0.",
+      "calculation": "ccnl/forze-polizia-ordinamento-civile:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the assegno funzionale at 17, 27 and 32 years of service as allowances gated by service_months_threshold.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "forze-polizia-ordinamento-civile/assegno_funzionale_missing"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",
@@ -31,6 +47,22 @@
       "links": {
         "limitations": [
           "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "renewal_2025_2027_pending_dpr",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Accordo triennio 2025-2027 (Comparto Sicurezza-Difesa) firmato 2026-07-15 a Palazzo Vidoni. Tre nuovi valori del punto parametrale: 200,90 EUR/anno (decorrenza 2025-01-01), 205,40 EUR/anno (2026-01-01), 207,51 EUR/anno (2027-01-01), da T3=195,50. Incremento totale +12,01 punti pari al +6,14%. Retroattività 2025 e 2026 in forma di arretrati. DPR di recepimento (art. 2 D.Lgs. 195/1995) non ancora emanato al 2026-09-09; firma definitiva sospesa per il nodo della previdenza dedicata. I nuovi periodi non sono modellati in attesa del DPR. Fonte: UIL Polizia (uilpolizia.com), money.it.",
+      "calculation": "ccnl/forze-polizia-ordinamento-civile:coverage.notes",
+      "state": "absent",
+      "remediation": "Add the punto parametrale 200.90 / 205.40 / 207.51 periods when the DPR is issued, then remove this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "forze-polizia-ordinamento-civile/renewal_2025_2027_pending_dpr"
         ]
       }
     },

@@ -3,6 +3,38 @@
   "ccnl_id": "formazione-professionale",
   "requirements": [
     {
+      "id": "daily_divisor_assumed",
+      "institute": "absence",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "DAILY DIVISOR: Art. 37 specifies 156 ore/month and 5-day week but does not state a daily divisor explicitly. SIMPLIFICATION: by_26 applied as standard for terziario contracts.",
+      "calculation": "ccnl/formazione-professionale:coverage.notes",
+      "state": "unverified",
+      "remediation": "Source the daily quota of the CCNL (Art. 29 and 37) and set daily_divisor_method, then remove this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "formazione-professionale/daily_divisor_assumed"
+        ]
+      }
+    },
+    {
+      "id": "leave_entitlement_rounded",
+      "institute": "leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = owed",
+      "rule": "LEAVE (Art. 43): 32 giorni lavorativi on 6-day week + 4 giorni festività soppresse. SIMPLIFICATION: stored as 26 working days on 5-day-week basis (32/1.2=26.67); festività soppresse 4 giorni are not modeled as a separate tier. Source: Art. 43 para 3-4 CCNL.",
+      "calculation": "ccnl/formazione-professionale:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the 32 days on a 6-day week (or 26.67 on 5 days) and the 4 giorni of festività soppresse, with their pay when not taken.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "formazione-professionale/leave_entitlement_rounded"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",
@@ -93,6 +125,22 @@
       "links": {
         "limitations": [
           "sickness_inps_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "sickness_second_tier_75",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SICKNESS (Art. 50 para 4): 100% for 12 months, 75% for months 13-18. SIMPLIFICATION: second tier (75%) is not captured by the single max_duration_days field; stored as max_duration_days=365 (full-pay period only). Source: Art. 50 para 4 CCNL.",
+      "calculation": "ccnl/formazione-professionale:coverage.notes",
+      "state": "absent",
+      "remediation": "Add SicknessTier rows (100% months 1-12, 75% months 13-18) and max_duration_days for 18 months.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "formazione-professionale/sickness_second_tier_75"
         ]
       }
     },

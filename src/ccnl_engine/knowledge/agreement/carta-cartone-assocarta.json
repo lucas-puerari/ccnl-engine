@@ -74,8 +74,18 @@
         "text": "FUTURE TRANCHES: +45 EUR at C1 from 01.01.2027, +45 from 01.01.2028, +60 from 01.09.2028 confirmed from rinnovo 10.02.2026 (zetaservice PDF). Per-level amounts are parametrically derived: each level increment = C1_increment × (level_2026-04-01 / C1_2026-04-01), rounded to cent. Math-verified all 13 levels × 3 tranches: all within ±0.02 EUR of parametric formula — consistent with the conglobated coefficient scale of the 2026 rinnovo."
       },
       {
-        "kind": "info",
-        "text": "EMC CHECK: aggregators and a payroll firm print 2026 minimi without the EMC (C1 1960.11 = 1835.11 + 125), but none cites a clause removing it; the signed 2026 ipotesi keeps Art. 100 bis and Art. 49. The Assocarta 'nota illustrativa e tabella nuovi minimi' of 24/02/2026 is members-only and was not read: if it shows the EMC absorbed, the 2026-2028 values are EUR 13-33 too high."
+        "kind": "simplification",
+        "text": "EMC CHECK: aggregators and a payroll firm print 2026 minimi without the EMC (C1 1960.11 = 1835.11 + 125), but none cites a clause removing it; the signed 2026 ipotesi keeps Art. 100 bis and Art. 49. The Assocarta 'nota illustrativa e tabella nuovi minimi' of 24/02/2026 is members-only and was not read: if it shows the EMC absorbed, the 2026-2028 values are EUR 13-33 too high.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "emc_absorption_unconfirmed",
+          "applies_when": {
+            "trigger": "run",
+            "effective_from": "2026-04-01"
+          },
+          "remediation": "Read the Assocarta nota illustrativa of 24/02/2026 (or a signed table) and settle whether the EMC is in the 2026-2028 minimi; correct base_salary if absorbed."
+        }
       },
       {
         "kind": "info",
@@ -2791,7 +2801,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
     "verification_status": "unverified",
-    "source_hash": "2bfcd25e292ce74e647741070d73749737ba8249f4b923ae44a18b17f09b23e5",
+    "source_hash": "3fbb038dc89a7edd4ff2d2b1723039e2402c854cfb808e7931442054e0f33e43",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

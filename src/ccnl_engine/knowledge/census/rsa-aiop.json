@@ -19,6 +19,22 @@
       }
     },
     {
+      "id": "apprenticeship_under_classification",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Apprenticeship: CCNL RSA-AIOP specifies sotto-inquadramento up to 2 levels below destination (levels A-F eligible, 36 months). Modelled as 100% passthrough (overstates pay for apprentices); the engine supports under_classification tracks with levels_below, not yet used here. (review of 2026-10-30)",
+      "calculation": "ccnl/rsa-aiop:coverage.notes",
+      "state": "absent",
+      "remediation": "Replace the 100% professionalizzante track with under_classification tracks (levels_below up to 2, 36 months) as servizi-postali-appalto-fise or tessile-smi do.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "rsa-aiop/apprenticeship_under_classification"
+        ]
+      }
+    },
+    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",
@@ -62,6 +78,22 @@
       "links": {
         "rules": [
           "agreement/rsa-aiop.json#additional_months[2012-04-01]"
+        ]
+      }
+    },
+    {
+      "id": "seniority_premium_2023",
+      "institute": "una_tantum",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Seniority: CCNL RSA-AIOP provides a flat EUR 40/month after 5 years of service (levels A-E3 only; F/G/H excluded). Modelled as cadence_months=60, maximum_count=1 — correct for new hires (single increment at month 60). Oct 2023 'premio di anzianita' (EUR 40 one-time for 10+ year workers) is a one-time payment, out_of_scope.",
+      "calculation": "ccnl/rsa-aiop:coverage.notes",
+      "state": "absent",
+      "remediation": "Model or track the Oct 2023 one-time premio di anzianità (EUR 40 to workers with 10+ years) as an una tantum.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "rsa-aiop/seniority_premium_2023"
         ]
       }
     },

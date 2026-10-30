@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | base_salary, seniority |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -103,6 +103,13 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "autostrade-trafori/apprenticeship_full_pay_passthrough · base_salary · impact yes · open"
+    Apprenticeship: CCNL provides under-classification 2 levels below; the file models it as a 100% passthrough (one percentage track at 1.00), although the engine supports under_classification tracks (review of 2026-10-30).
+
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Model the track as type under_classification (levels_below 2, then the CCNL periods) from the CCNL apprenticeship clause and drop the 100% passthrough.
 
 !!! warning "autostrade-trafori/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
@@ -176,8 +183,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     Levels B+, B1+, C+ are parametrically derived as D × param/100 for the 2023 contract tranches (params: B+=192, B1+=176, C+=155). Verified against D values to within rounding. 2026 contract values taken from research agent sources.
     
     IDR 2021: modeled as 0.00 for 01/01/2023–01/08/2023 (element not yet established in first 2023 tranches). Period 1 values from 01/08/2023; period 2 from 01/01/2024 onwards.
-    
-    Apprenticeship: CCNL provides under-classification 2 levels below (engine schema requires static pay_level_code). Modeled as 100% passthrough.
     
 
 ## Raw data

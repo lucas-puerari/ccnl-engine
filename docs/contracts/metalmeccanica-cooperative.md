@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary, inps_employer, seniority |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -110,6 +110,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; contract type in apprentice.
 
     **Remediation:** Confirm the apprenticeship percentages against a C016-specific source.
+
+!!! warning "metalmeccanica-cooperative/cooperative_inps_rates_unverified · inps_employer · impact unknown · open"
+    INPS: employer rates from 2026-industria.json (same tax sector as C011). Cooperative employers may have different INPS addizionale rates; this is a SIMPLIFICATION — verify against INPS circular for cooperative sector if precise employer cost is critical.
+
+    **Applies when:** `inps_employer` applies.
+
+    **Remediation:** Check the INPS rates of the cooperative employers (circular of the sector, CSC of the cooperatives) against contribution/2026/industria.json and record any difference.
 
 !!! warning "metalmeccanica-cooperative/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
@@ -187,8 +194,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     ADDITIONAL MONTHS: 13 (tredicesima only). No quattordicesima in any source. Consistent with C011 federmeccanica structure.
     
     HOURLY DIVISOR: 173 h/month (40 h/week standard, same as C011). Confirmed on kitech.it.
-    
-    INPS: employer rates from 2026-industria.json (same tax sector as C011). Cooperative employers may have different INPS addizionale rates; this is a SIMPLIFICATION — verify against INPS circular for cooperative sector if precise employer cost is critical.
     
 
 ## Raw data

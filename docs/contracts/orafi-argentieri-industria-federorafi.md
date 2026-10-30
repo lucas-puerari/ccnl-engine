@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | base_salary, seniority |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -99,6 +99,13 @@ percentage: 0.95
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "orafi-argentieri-industria-federorafi/renewal_2026_tables · base_salary · impact yes · open"
+    ULTRA-ACTIVITY: the 2026 renewal (signed 10/02/2026) has economic effects from 01/10/2026. The 2021 contract governs economically until 30/09/2026. The 2002 increments (from CCNL 2017 PDF) remain operative throughout the modelled period as neither the 2021 nor the 2026 renewal modified them.
+
+    **Applies when:** `base_salary` applies; from 2026-10-01.
+
+    **Remediation:** Model the minimi of the 2026 renewal (signed 10/02/2026) from 01/10/2026 onwards.
 
 !!! warning "orafi-argentieri-industria-federorafi/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
@@ -177,17 +184,15 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     APPRENTICESHIP: three-period percentage (85%/90%/95%), standard duration 36 months. Primary source: CCNL 2021 PDF Annex 9 'Apprendistato professionalizzante'. Art. 4 Annex 9: 85% (months 1-12), 90% (months 13-24), 95% (months 25-36). Divisor 173 confirmed in the same Annex. The 36 months are stated as maximum duration; shorter individual contracts would pro-rate the bands — modelled as a fixed standard track (full 36 months).
     
-    ULTRA-ACTIVITY: the 2026 renewal (signed 10/02/2026) has economic effects from 01/10/2026. The 2021 contract governs economically until 30/09/2026. The 2002 increments (from CCNL 2017 PDF) remain operative throughout the modelled period as neither the 2021 nor the 2026 renewal modified them.
-    
     JUNE 2025 TRANCHE: values confirmed by two independent secondary sources — kitech.it (category 51) and ilccnl.it (tabelle retributive page, 2025-06-01 data). Both show identical amounts: 2=1574.39, 3=1734.59, 4=1804.87, 5=1928.22, 5S=2058.07, 6=2212.40, 7=2405.58, 7Q=2405.58. 10.54% increase consistent with IPCA+TEM mechanism in Art. 3 CCNL 2021. Cross-confirmed by FIOM-CGIL announcement (fiom-cgil.it, Jun 2025) citing the same mechanism.
     
     FUNCTION ALLOWANCE levels 7 and 7Q: Level 7=59.39 EUR/month, 7Q=114.00 EUR/month. Confirmed stable since 2017 by studiocerbone.com (tabella retributiva page, data from June 2017 onwards) and kitech.it. The 2021 renewal did not modify these allowances (not mentioned in the economic clauses). CCNL 2021 PDF Art. 4 and Annex 9 confirm the 7Q structure but do not re-state the allowance amounts (unchanged since prior contract).
     
     MINIMUM 7Q equals 7a for all tranches. The CCNL does not publish a separate tabular minimum for the 7Q (Quadri) level: quadri receive the same tabular minimum as 7a workers plus the INDENNITA_FUNZIONE_QUADRI allowance (114.00 EUR/month). This two-part structure (base=7a + separate allowance) is the standard model for quadri levels in Italian industrial CCNLs and is consistent with Art. 44 CCNL 2021 provisions on quadri.
     
-    INPS: industry sector rates from 2026-industria.json (existing file reused). Employee 9.19%; employer: ≤15 employees 30.13%, 16-50 employees 30.20%, >50 employees 30.50%.
+    INPS: industry sector rates from contribution/2026/industria.json (existing file reused). Employee 9.19% up to 15 employees, 9.49% above; employer (operai): up to 15 employees 30.68%, 16-50 employees 31.28%, >50 employees 31.58% (impiegati and quadri 28.46%, 29.06%, 29.36%) (review of 2026-10-30)
     
-    COMETA: supplementary pension fund (Art. 44 CCNL 2021 PDF). Employer 2.00% (from Dec 2024), employee 1.20%. Not modelled in the engine (Layer 3, out of scope).
+    COMETA: supplementary pension fund (Art. 44 CCNL 2021 PDF). Employer 2.00% (from Dec 2024), employee 1.20%. Not modelled: parameters.employer_funds holds no COMETA fund for this CCNL, so a PensionFundEnrolment in it is rejected; the engine models CCNL pension funds on enrolment (COMETA in metalmeccanico-federmeccanica) (review of 2026-10-30)
     
 
 ## Raw data

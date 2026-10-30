@@ -35,9 +35,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary |
+| **Limits of this contract** | base_salary, workplace_injury |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -77,6 +77,20 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "dirigenza-sanitaria-area-sanita-aran/position_pay_missing · base_salary · impact yes · open"
+    Retribuzione di posizione (Art. 14): obbligatoria ma variabile per tipo incarico. Non modellata — out_of_scope.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Take the retribuzione di posizione (Art. 14) as a worker fact by type of incarico, or document IndividualElement as its channel.
+
+!!! warning "dirigenza-sanitaria-area-sanita-aran/approximate_hourly_divisor · workplace_injury · impact unknown · open"
+    Hourly divisor 165 = 38h/settimana × 52/12 = 164.67 ≈ 165 (CCNL Area Sanità 23.01.2024 Art. 27 conferma orario settimanale 38h per la dirigenza sanitaria SSN). Il valore 165 è il divisore contrattuale standard.
+
+    **Applies when:** `workplace_injury` applies.
+
+    **Remediation:** Source the divisor of Art. 27 (or the INAIL base of the SSN dirigenti) and replace 165, or mark it not applicable.
 
 !!! warning "dirigenza-sanitaria-area-sanita-aran/specificita_pre_2025_estimated · base_salary · impact unknown · open"
     Pre-31/12/2024 specificità sanitaria (104,34€/mese) calcolata per differenza: 124,19 - 17,90 (incremento stimato dalla fonte secondaria openssn, GOAL-plan) = approssimazione; il valore esatto del CCNL 23.1.2024 Art. 66 non è verificato.
@@ -122,13 +136,9 @@ Each simplification below is a model limitation of the registry. An open limitat
 | SIMPLIFICATION: codice CNEL S225 da fonte secondaria (ilccnl.it). Non riportato nel testo ufficiale ARAN. | altro | — | [↗](https://ilccnl.it/ccnl/dirigenti---dirigenza-medica-e-veterinaria/dirigenti---sanita-medici-e-veterinari-dal-010195) |
 
 ??? note "Coverage notes"
-    Retribuzione di posizione (Art. 14): obbligatoria ma variabile per tipo incarico. Non modellata — out_of_scope.
-    
     Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.
     
     Nessuno scatto automatico di anzianità. maximum_count=0.
-    
-    Hourly divisor 165 = 38h/settimana × 52/12 = 164.67 ≈ 165 (CCNL Area Sanità 23.01.2024 Art. 27 conferma orario settimanale 38h per la dirigenza sanitaria SSN). Il valore 165 è il divisore contrattuale standard.
     
     Pre-2024 tabellare 3.616,60€/mese = back-calculation dal valore 2024 (3.846,60) sottraendo +230€ (Art. 11 CCNL 27.02.2026). L'incremento +230€ è riportato esplicitamente nel testo ufficiale ARAN; la back-calculation è quindi aritmeticamente esatta rispetto alla fonte primaria.
     

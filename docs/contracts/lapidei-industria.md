@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer, seniority |
+| **Limits of this contract** | absence, base_salary, inps_employer, seniority |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -98,6 +98,13 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "lapidei-industria/daily_divisor_25 · absence · impact unknown · open"
+    HOURLY DIVISOR: 174. Daily divisor: 25.
+
+    **Applies when:** `absence` applies.
+
+    **Remediation:** Read the CCNL clause on the quota giornaliera; set work_rules.absence_rules.daily_divisor_method to by_25 if it states 25 (the engine supports by_25), or correct the note.
 
 !!! warning "lapidei-industria/apprenticeship_passthrough · base_salary · impact unknown · open"
     APPRENTICESHIP: 2022 CCNL Art. 3d changed system from sotto-inquadramento to percentage ('calcolate in percentuale...come da allegata tabella'). Pre-2022 system confirmed from full CCNL 2008 text (integrating Accordo 15/03/2006): 2 levels below destination for first half of apprenticeship, 1 level below for second half, no seniority increments accrued. Post-2022 percentage values from scanned allegata tabella not extractable (OCR-confirmed: image-only PDF). 2025-2028 rinnovo (12-page OCR) does not modify apprenticeship. Modelled as 1.00 passthrough pending actual 2022+ percentage values.
@@ -191,8 +198,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     2025-2028 totals confirmed from cdltorino.it: 01/07/2025, 01/07/2026, 01/07/2027 (+80 EUR per tranche at C reference). Paga base derived by subtracting frozen contingenza and EDR from confirmed totals.
     
     LEVEL F superminimum: +7.75 EUR/month collective superminimum treated as paga base for contractual purposes. Added to paga base values in this file.
-    
-    HOURLY DIVISOR: 174. Daily divisor: 25.
     
     ADDITIONAL MONTHS: 13 (tredicesima only).
     

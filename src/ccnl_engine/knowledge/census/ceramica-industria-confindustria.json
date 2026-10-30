@@ -97,6 +97,22 @@
       }
     },
     {
+      "id": "sanitary_ceramics_tables",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SUB-SECTORS: CCNL B122 covers Tiles (porcelain and stoneware), Refractory Materials, Sanitary Ceramics and Tableware, and Artistic and Traditional Ceramics. This file models the PIASTRELLE sub-sector (and REFRATTARI, which has identical tables). Sanitary Ceramics has a different pay structure (significantly higher IPO) and is not modelled here.",
+      "calculation": "ccnl/ceramica-industria-confindustria:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the Sanitari e stoviglie tables (higher IPO) as a separate ruleset or a sub-sector fact, or open a limitation like chimica-farmaceutica other_sector_tables.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "ceramica-industria-confindustria/sanitary_ceramics_tables"
+        ]
+      }
+    },
+    {
       "id": "sickness_cumulation_window",
       "institute": "sickness",
       "variant": "all",
