@@ -205,32 +205,6 @@
       "description": "Redditi di altri sostituti nella base IRPEF del conguaglio"
     },
     {
-      "feature": "health_fund_employee",
-      "layer": "net",
-      "implementation": "unsupported",
-      "applies_when": "outside_input",
-      "handler": null,
-      "evidence": "derived",
-      "variants": [],
-      "required_facts": [
-        "employment.health_fund"
-      ],
-      "description": "Fondo sanitario integrativo a carico dipendente"
-    },
-    {
-      "feature": "health_fund_employer",
-      "layer": "net",
-      "implementation": "unsupported",
-      "applies_when": "outside_input",
-      "handler": null,
-      "evidence": "derived",
-      "variants": [],
-      "required_facts": [
-        "employment.health_fund"
-      ],
-      "description": "Fondo sanitario integrativo a carico azienda"
-    },
-    {
       "feature": "territorial_supplement",
       "layer": "gross",
       "implementation": "caller_supplied",

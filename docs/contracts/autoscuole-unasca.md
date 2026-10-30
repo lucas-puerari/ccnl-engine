@@ -32,7 +32,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | bilateral_funds, health_fund_employer, seniority |
+| **Limits of this contract** | bilateral_funds, contractual_funds, seniority |
 
 3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -108,12 +108,12 @@ Destination levels: `5`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "autoscuole-unasca/fondo_est_health_fund · health_fund_employer · impact yes · open"
+!!! warning "autoscuole-unasca/fondo_est_health_fund · contractual_funds · impact yes · open"
     SIMPLIFICATION: Fondo EST (Art. 46) supplementary health fund not modelled. Contribution: 15 EUR/month employer + 2 EUR/month employee. Not an INPS substitute. employer_cost_annual understated by 180 EUR/year.
 
-    **Applies when:** `health_fund_employer` applies.
+    **Applies when:** `contractual_funds` applies.
 
-    **Remediation:** Model the Fondo EST contributions (15 EUR employer, 2 EUR employee per month).
+    **Remediation:** Add Fondo EST (Art. 46: 15 EUR employer, 2 EUR employee a month) to parameters.health_funds, with its source, so contractual_funds posts its shares.
 
 !!! warning "autoscuole-unasca/ente_bilaterale_contribution · bilateral_funds · impact yes · open"
     SIMPLIFICATION: Ente Bilaterale di settore (Art. 7, from 01/09/2021: 2 EUR/month employer) not modelled. employer_cost_annual understated by 24 EUR/year.

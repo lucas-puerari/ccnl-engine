@@ -119,11 +119,11 @@
       {
         "kind": "simplification",
         "text": "SIMPLIFICATION: FILCOOP SANITARIO bilateral health fund not modeled.",
-        "capability": "health_fund_employer",
+        "capability": "contractual_funds",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "filcoop_health_fund_missing",
-          "remediation": "Model the FILCOOP SANITARIO contributions once health funds enter the engine input."
+          "remediation": "Add FILCOOP SANITARIO to parameters.health_funds, with its source, so contractual_funds posts its shares."
         }
       },
       {
@@ -1386,7 +1386,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "5934ed3c12d4e13db44679e53ff14b7cf16604e0f51b271ffcad48b323894bbb",
+    "source_hash": "b2d5f380f931237b97be3e0964476e784b19efecb6998f13f9d9aa311b8ad810",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

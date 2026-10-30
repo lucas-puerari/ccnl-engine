@@ -79,9 +79,11 @@ and the [examples](https://lucas-puerari.github.io/ccnl-engine/docs/examples/).
 - Second-level (company or territorial) agreements are not bundled: their
   monthly elements are a caller input (`SecondLevelElement`), not data.
 - Not computed: the INAIL premium, contribution exemptions and hiring
-  incentives, supplementary health funds, contractual una tantum, personal
+  incentives, contractual una tantum, personal
   withholdings (garnishments, salary-backed loans), the conguaglio of a
-  730 or of other withholding agents, and Art. 15 TUIR deductions. The
+  730 or of other withholding agents, and Art. 15 TUIR deductions.
+  Supplementary health and bilateral funds are computed for the CCNLs whose
+  data model them (`parameters.health_funds`), not yet for the others. The
   [capability matrix](https://lucas-puerari.github.io/ccnl-engine/docs/contracts/capability-matrix/)
   lists every gap.
 - It does not guess facts: an unstated fact that changes an amount blocks

@@ -46,7 +46,7 @@
     },
     {
       "id": "filcoop_health_fund_missing",
-      "institute": "health_fund_employer",
+      "institute": "contractual_funds",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
       "rule": "SIMPLIFICATION: FILCOOP SANITARIO bilateral health fund not modeled.",

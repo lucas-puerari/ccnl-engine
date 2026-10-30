@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, health_fund_employer, inps_employer |
+| **Limits of this contract** | base_salary, contractual_funds, inps_employer |
 
 5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -110,12 +110,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the 55 EUR/month indennita di cassa as a role-gated allowance for cashiers.
 
-!!! warning "consorzi-agrari-assocap/filcoop_health_fund_missing · health_fund_employer · impact yes · open"
+!!! warning "consorzi-agrari-assocap/filcoop_health_fund_missing · contractual_funds · impact yes · open"
     SIMPLIFICATION: FILCOOP SANITARIO bilateral health fund not modeled.
 
-    **Applies when:** `health_fund_employer` applies.
+    **Applies when:** `contractual_funds` applies.
 
-    **Remediation:** Model the FILCOOP SANITARIO contributions once health funds enter the engine input.
+    **Remediation:** Add FILCOOP SANITARIO to parameters.health_funds, with its source, so contractual_funds posts its shares.
 
 !!! warning "consorzi-agrari-assocap/apprentice_inps_rates_unsourced · inps_employer · impact unknown · open"
     APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.

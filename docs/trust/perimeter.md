@@ -24,7 +24,7 @@ provider's figures, or adds them to the engine's, before comparing:
 |---|---|
 | INAIL premium | Employer cost |
 | Contribution exemptions and hiring incentives | Employer contributions, employer cost |
-| Supplementary health funds | Gross or net (employee share), employer cost |
+| Supplementary health and bilateral funds of a CCNL whose data do not model them (`parameters.health_funds`; the others are computed, `contractual_funds`) | Gross or net (employee share), employer cost |
 | Contractual una tantum | Gross, contributions, tax, net |
 | Personal withholdings (garnishments, salary-backed loans) | Net only |
 | Conguaglio of a 730 or of other withholding agents | Tax, net |

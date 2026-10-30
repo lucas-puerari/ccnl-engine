@@ -78,7 +78,7 @@ on unverified sources, or be well sourced and not cleared for production.
 - 📝 `bilateral_funds` (caller_supplied)
 - ⚠️ `pension_fund_contribution` (partial)
 
-**Outside the input: the request has no field for the fact, so the engine does not compute them** (9):
+**Outside the input: the request has no field for the fact, so the engine does not compute them** (7):
 
 - 🔲 `inail` (unsupported)
 - 🔲 `contribution_exemption` (unsupported)
@@ -86,8 +86,6 @@ on unverified sources, or be well sourced and not cleared for production.
 - 🔲 `una_tantum` (unsupported)
 - 🔲 `personal_withholdings` (unsupported)
 - 🔲 `additional_irpef_base` (unsupported)
-- 🔲 `health_fund_employee` (unsupported)
-- 🔲 `health_fund_employer` (unsupported)
 - 🔲 `art15_deductions` (unsupported)
 
 | | Core payroll path of a contract |
@@ -143,7 +141,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 32 | S305 | [CCNL Comparto Istruzione e Ricerca 2025-2027 (trattamento economico) - ARAN, Università, tecnologi a tempo indeterminato](universita-tecnologi-aran.md) | Pubblica Amministrazione | ~1,2M | 2026 | ✅ | pension_fund_contribution, sickness | 2 / 4 / 1 / 0 | 🧪 | 🤖 |
 | 33 | S205 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | Pubblica Amministrazione | ~580k | 2025 | ⚠️ | base_salary | 16 / 5 / 0 / 0 | 👁 | 🤖✓ |
 | 34 | G029 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | informatica-servizi-innovativi | ~20k | — | ⚠️ | base_salary, seniority | 1 / 40 / 1 / 0 | 🧪 | 🤖 |
-| 35 | A141 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | Agricoltura | ~2k | 2023 | ⚠️ | base_salary, health_fund_employer, inps_employer | 1 / 36 / 1 / 0 | 🧪 | 🤖 |
+| 35 | A141 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | Agricoltura | ~2k | 2023 | ⚠️ | base_salary, contractual_funds, inps_employer | 1 / 36 / 1 / 0 | 🧪 | 🤖 |
 | 36 | A131 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | Agricoltura | ~4k | 2025 | ⚠️ | base_salary, inps_employer, seniority | 0 / 56 / 1 / 1 | 🧪 | 🤖 |
 | 37 | T151 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | servizi socio-assistenziali | ~380k | — | ⚠️ | base_salary, bilateral_funds, inps_employer | 62 / 1 / 0 / 0 | 👁 | 🤖✓ |
 | 38 | A016 | [CCNL Cooperative e Consorzi Agricoli](cooperative-consorzi-agricoli.md) | cooperative e consorzi agricoli — impiegati e operai agricoli | ~60k | 2024 | ⚠️ | base_salary, inps_employer, seniority | 33 / 9 / 0 / 0 | 🧪 | 🤖 |
@@ -221,7 +219,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 110 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | vigilanza privata — guardie particolari giurate (GPG) | ~45k | 2023 | ⚠️ | seniority | 0 / 48 / 1 / 1 | 🧪 | 🤖 |
 | 111 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | vigilanza privata — servizi fiduciari (SF) | ~40k | 2023 | ⚠️ | seniority | 0 / 46 / 2 / 1 | 🧪 | 🤖 |
 | 112 | H0B1 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | agenzie immobiliari | — | 2025 | ⚠️ | base_salary, bilateral_funds, pension_fund_contribution, seniority, una_tantum | 28 / 1 / 2 / 0 | 🧪 | 🤖 |
-| 113 | IC91 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | autoscuole e consulenza automobilistica | — | 2023 | ⚠️ | bilateral_funds, health_fund_employer, seniority | 1 / 32 / 1 / 0 | 🧪 | 🤖 |
+| 113 | IC91 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | autoscuole e consulenza automobilistica | — | 2023 | ⚠️ | bilateral_funds, contractual_funds, seniority | 1 / 32 / 1 / 0 | 🧪 | 🤖 |
 | 114 | H05Y | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | turismo | ~350k | — | ⚠️ | base_salary, leave, overtime, seniority, sickness, trattamento_integrativo | 67 / 4 / 0 / 0 | 🏭 | 🤖✓ |
 | 115 | H05Y | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo - Ristorazione collettiva (aziende dell'art. 1 c. 1 par. II)](pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | turismo | ~350k | — | ⚠️ | base_salary, bilateral_funds, overtime, seniority, trattamento_integrativo | 61 / 2 / 0 / 0 | 🏭 | 🤖✓ |
 | 116 | E042 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | lavorazione foglia di tabacco | ~2k | 2025 | ⚠️ | pension_fund_contribution, seniority | 37 / 0 / 22 / 0 | 🧪 | 🔍 |

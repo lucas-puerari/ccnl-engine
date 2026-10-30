@@ -46,7 +46,7 @@
     },
     {
       "id": "fondo_est_health_fund",
-      "institute": "health_fund_employer",
+      "institute": "contractual_funds",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
       "rule": "SIMPLIFICATION: Fondo EST (Art. 46) supplementary health fund not modelled. Contribution: 15 EUR/month employer + 2 EUR/month employee. Not an INPS substitute. employer_cost_annual understated by 180 EUR/year.",

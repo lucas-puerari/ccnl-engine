@@ -40,8 +40,6 @@ _UNSUPPORTED_2026 = {
     "una_tantum": "outside_input",
     "personal_withholdings": "outside_input",
     "additional_irpef_base": "outside_input",
-    "health_fund_employee": "outside_input",
-    "health_fund_employer": "outside_input",
     "art15_deductions": "outside_input",
 }
 
