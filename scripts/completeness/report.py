@@ -40,7 +40,7 @@ from typing import TYPE_CHECKING
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from ccnl_engine.agreement.census.loaders import load_census
-from ccnl_engine.agreement.census.models import CensusOrigin, RuleState
+from ccnl_engine.agreement.census.models import RuleState
 from ccnl_engine.agreement.validity.models import ValidityWindow, model_window
 from ccnl_engine.capability.loaders import load_capability_catalog
 from ccnl_engine.capability.registry.models import CapabilityImplementation
@@ -74,8 +74,6 @@ NOT_NATIVE = frozenset({
 #: Engine limitations that stand for the future data of the window: a run
 #: that reads a year whose sources are not published yet.
 FUTURE_LIMITATIONS = frozenset({"provisional_ruleset", "provisional_inps_ruleset"})
-#: Census states whose rule is still open.
-OPEN_STATES = frozenset({RuleState.ABSENT, RuleState.UNVERIFIED})
 REFERENCE_CASES = (
     ROOT / "tests" / "knowledge" / "ccnl_engine" / "period" / "reference_case"
 )
@@ -374,8 +372,7 @@ def row_open(row: Requirement, evidence: Evidence) -> bool:
     """
     links = row.links
     return any((
-        row.origin is CensusOrigin.SEEDED,
-        row.state in OPEN_STATES,
+        row.open,
         row.state is RuleState.IMPLEMENTED and not row.scenarios,
         bool(evidence.open_limitations.intersection(links.limitations)),
         bool(evidence.weakness.ids.intersection(links.rules)),

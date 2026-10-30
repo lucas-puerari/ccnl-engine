@@ -14,6 +14,10 @@
         "T00.03",
         "T09.03"
       ],
+      "verification": [
+        "T00.12",
+        "T09.11"
+      ],
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -33,6 +37,10 @@
         "T00.03",
         "T09.03"
       ],
+      "verification": [
+        "T00.12",
+        "T09.11"
+      ],
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -51,6 +59,9 @@
       "work": [
         "T03.03"
       ],
+      "verification": [
+        "T03.11"
+      ],
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -68,6 +79,9 @@
       "state": "unverified",
       "work": [
         "T03.01"
+      ],
+      "verification": [
+        "T03.11"
       ],
       "origin": "seeded",
       "links": {

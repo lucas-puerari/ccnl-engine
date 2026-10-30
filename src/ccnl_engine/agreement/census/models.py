@@ -115,6 +115,9 @@ class Requirement(BaseModel):
         state: Where the engine stands.
         scenarios: Test node ids or reference case ids that verify the row.
         work: Work items of the completion plan that close it.
+        verification: Work items whose check verifies the row once its
+            work is done (``T03.11`` for a sickness row); required while
+            the row is open, as its ``work``.
         origin: How the row entered the census.
         links: Limitations and weak rules whose state the row follows.
     """
@@ -131,23 +134,43 @@ class Requirement(BaseModel):
     state: RuleState
     scenarios: tuple[str, ...] = ()
     work: tuple[str, ...] = ()
+    verification: tuple[str, ...] = ()
     origin: CensusOrigin = CensusOrigin.TEXT
     links: RequirementLinks = RequirementLinks()
 
+    @property
+    def open(self) -> bool:
+        """Whether the row is open by itself: seeded, or its rule is open."""
+        return self.origin is CensusOrigin.SEEDED or self.state in {
+            RuleState.ABSENT,
+            RuleState.UNVERIFIED,
+        }
+
     @model_validator(mode="after")
-    def _check(self) -> Self:
-        wrong = [item for item in self.work if not WORK_ITEM.fullmatch(item)]
+    def _check_items(self) -> Self:
+        wrong = [
+            item
+            for item in (*self.work, *self.verification)
+            if not WORK_ITEM.fullmatch(item)
+        ]
         if wrong:
             msg = f"requirement {self.id}: work items {wrong} are not T00.00/G00.00"
             raise ValueError(msg)
+        if self.open and not (self.work and self.verification):
+            msg = (
+                f"requirement {self.id}: an open row names its work item and "
+                "its planned verification"
+            )
+            raise ValueError(msg)
+        return self
+
+    @model_validator(mode="after")
+    def _check(self) -> Self:
         if self.origin is CensusOrigin.TEXT and self.source is None:
             msg = f"requirement {self.id}: a row read from the text names its source"
             raise ValueError(msg)
         if self.state is RuleState.NOT_APPLICABLE and self.source is None:
             msg = f"requirement {self.id}: non-applicability needs a source"
-            raise ValueError(msg)
-        if self.state in {RuleState.ABSENT, RuleState.UNVERIFIED} and not self.work:
-            msg = f"requirement {self.id}: an open rule names its work item"
             raise ValueError(msg)
         return self
 

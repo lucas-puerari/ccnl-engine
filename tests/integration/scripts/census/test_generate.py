@@ -48,6 +48,7 @@ def test_a_limitation_row_links_its_limitation() -> None:
 
     assert row["id"] == "sickness_net_basis"
     assert row["work"] == ["T03.05"]
+    assert row["verification"] == ["T03.11"]
     assert row["links"] == {"limitations": [limitation.id]}
     assert row["origin"] == "seeded"
 
@@ -77,6 +78,7 @@ def test_a_weak_rule_row_links_its_rule() -> None:
         "calculation": "tfr",
         "state": "absent",
         "work": ["T09.01", "T09.03"],
+        "verification": ["T09.11"],
         "origin": "seeded",
         "links": None,
     }
@@ -141,3 +143,8 @@ def test_the_bundled_census_is_up_to_date(tmp_path: Path) -> None:
     assert generate.main(["--check"], root=tmp_path) == 1
     assert generate.main([], root=tmp_path) == 0
     assert generate.main(["--check"], root=tmp_path) == 0
+
+
+def test_the_verification_is_the_closing_check_of_each_area() -> None:
+    """One closing check per area, in the order of the work items."""
+    assert generate.verification(("T00.03", "T09.03", "T09.01")) == ["T00.12", "T09.11"]
