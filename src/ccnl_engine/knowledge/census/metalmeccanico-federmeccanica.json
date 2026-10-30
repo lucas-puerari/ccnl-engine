@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "ccnl_id": "metalmeccanico-federmeccanica",
+  "requirements": [
+    {
+      "id": "apprentice_seniority",
+      "institute": "seniority",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+      "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T02.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-federmeccanica/apprentice_seniority"
+        ]
+      }
+    },
+    {
+      "id": "elemento_perequativo",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "ELEMENTO PEREQUATIVO: the worker of a company without second-level bargaining is owed the elemento perequativo of 485 euro a year, paid with the June pay (Ministry of Labour cost table of June 2026, DD 82/2026, row A). The engine does not pay it: whether the company has second-level bargaining is not in the request.",
+      "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-federmeccanica/elemento_perequativo"
+        ]
+      }
+    },
+    {
+      "id": "overtime_exempt_quota_supplement",
+      "institute": "overtime",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "OVERTIME, QUOTE ESENTI: the 2025 ipotesi (p. 35) adds 8% to the overtime hours worked beyond the exempt quota of 40 or 48 hours a year; the engine does not count the overtime hours of the year, so it does not add it.",
+      "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.06"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement"
+        ]
+      }
+    },
+    {
+      "id": "par_conto_ore_payout",
+      "institute": "leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "LEAVE, CONTO ORE (Art. 5): the PAR not taken in the year go to an individual conto ore for 24 more months and are then paid with the retribuzione in atto. The engine carries the balances and does not pay them at the end of the window.",
+      "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.10"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-federmeccanica/par_conto_ore_payout"
+        ]
+      }
+    },
+    {
+      "id": "par_sector_and_shift_hours",
+      "institute": "leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "LEAVE, PAR (Sez. Quarta, Titolo III, Art. 5): 124 hours in the settore siderurgico, 8 more hours for the turnisti on 15 or more shifts a week with night or weekend work and for the workers of the sottosettori of the accordo 1 September 1983 in force at 31 December 2012. The engine accrues the 104 hours of the generalità.",
+      "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.10"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-federmeccanica/par_sector_and_shift_hours"
+        ]
+      }
+    },
+    {
+      "id": "provisional_inps_ruleset",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_inps_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "provisional_ruleset",
+      "institute": "irpef",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "shift_and_multiweek_premiums",
+      "institute": "overtime",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SHIFT WORK AND MULTI-WEEK SCHEDULE: the shift column of Art. 7 (night overtime 40% for the first two hours and 45% after, night holiday overtime 65%; night shift work 20%, 60% and 35% from 1 June 2013, 25%, 65% and 40% from 22 to 6) and the premiums of the orario plurisettimanale of Art. 5 as renewed on 22 November 2025 (15% Monday to Friday and 25% on Saturday, 20% and 30% for sudden needs, raised by 8% from the 81st hour, p. 32 of the signed scan) are not modelled: an overtime event of a shift worker or of a multi-week schedule takes the non-shift bands.",
+      "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.06"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-federmeccanica/shift_and_multiweek_premiums"
+        ]
+      }
+    },
+    {
+      "id": "sickness_inps_daily_base",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
+      "calculation": "ccnl_engine.sickness.handlers (INPS share of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_inps_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "tfr_compensation_apprentice_guarantee_fund",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.",
+      "calculation": "ccnl_engine.severance.relief.services; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
+      "state": "absent",
+      "work": [
+        "T08.05"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "tfr_compensation_apprentice_guarantee_fund"
+        ]
+      }
+    }
+  ]
+}

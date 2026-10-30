@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "ccnl_id": "cooperative-consorzi-agricoli",
+  "requirements": [
+    {
+      "id": "apprentice_inps_rates_unsourced",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.",
+      "calculation": "ccnl/cooperative-consorzi-agricoli:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T04.02"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "cooperative-consorzi-agricoli/apprentice_inps_rates_unsourced"
+        ]
+      }
+    },
+    {
+      "id": "apprentice_seniority",
+      "institute": "seniority",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+      "calculation": "ccnl/cooperative-consorzi-agricoli:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T02.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "cooperative-consorzi-agricoli/apprentice_seniority"
+        ]
+      }
+    },
+    {
+      "id": "apprenticeship_passthrough",
+      "institute": "base_salary",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Apprendistato: regola non reperita nel PDF 2024. Modellato come 100% passthrough.",
+      "calculation": "ccnl/cooperative-consorzi-agricoli:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "cooperative-consorzi-agricoli/apprenticeship_passthrough"
+        ]
+      }
+    },
+    {
+      "id": "apprenticeship_pct_undeclared_components",
+      "institute": "base_salary",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.",
+      "calculation": "ccnl_engine.apprenticeship.rules (percentage track chain)",
+      "state": "unverified",
+      "work": [
+        "T02.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "apprenticeship_pct_undeclared_components"
+        ]
+      }
+    },
+    {
+      "id": "inps_minimum_base_exempt_category",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "D.L. 463/1983 art. 7 c. 5 keeps the operai agricoli out of the 9.50% minimum daily base, and the run applies no minimum to them. Tabella A of INPS circ. 6/2026 still lists 51.70 for the operai agricoli, 'non soggetto all'adeguamento' of art. 7 c. 1; no source found says whether it is a floor of their contribution base. A base below it may understate the contributions.",
+      "calculation": "ccnl_engine.contribution.minimum_base.services.minimum_base_paths; D.L. 463/1983 art. 7 cc. 1 and 5; INPS circ. 6/2026 allegato 1, Tabella A, note (2)",
+      "state": "unverified",
+      "work": [
+        "T04.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "inps_minimum_base_exempt_category"
+        ]
+      }
+    },
+    {
+      "id": "operai_seniority_over_five",
+      "institute": "seniority",
+      "variant": "operaio",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SENIORITY: operai Art. 61 (max 5 biennali) e impiegati Art. 49 (max 12 biennali) hanno importi differenti per livelli 3-7. Operai amounts confirmed from rinnovo 2024 (lavoro-economia.it, businessonline.it): L7=9.44, L6=10.85, L5=11.39, L4=11.93, L3=12.20, L2=29.44, L1=33.05 EUR/biennio. Modelled with operai amounts (dominant workforce in cooperatives) and maximum_count=12 (impiegati cap). Queries for operai with seniority_count>5 will overstate by at most 1-5 scatti; this is a structural engine limitation (single seniority table per level).",
+      "calculation": "ccnl/cooperative-consorzi-agricoli:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "cooperative-consorzi-agricoli/operai_seniority_over_five"
+        ]
+      }
+    },
+    {
+      "id": "otd_terzo_elemento_missing",
+      "institute": "base_salary",
+      "variant": "operaio",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "OTD: a fixed-term operaio is paid the minimo conglobato giornaliero or orario plus a terzo elemento of 30.44% (festività 5.45%, ferie 8.33%, 13ma 8.33%, 14ma 8.33%) on 312 working days instead of the monthly payments (Art. 60, verbale 19 July 2024, p. 14); the engine pays the monthly structure.",
+      "calculation": "ccnl/cooperative-consorzi-agricoli:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "cooperative-consorzi-agricoli/otd_terzo_elemento_missing"
+        ]
+      }
+    },
+    {
+      "id": "provisional_inps_ruleset",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_inps_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "provisional_ruleset",
+      "institute": "irpef",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "sickness_cumulation_window",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.",
+      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_cumulation_window"
+        ]
+      }
+    },
+    {
+      "id": "sickness_inps_daily_base",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
+      "calculation": "ccnl_engine.sickness.handlers (INPS share of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_inps_daily_base"
+        ]
+      }
+    }
+  ]
+}

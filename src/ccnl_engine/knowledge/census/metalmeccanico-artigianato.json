@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "ccnl_id": "metalmeccanico-artigianato",
+  "requirements": [
+    {
+      "id": "apprentice_inps_rates_unsourced",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.",
+      "calculation": "ccnl/metalmeccanico-artigianato:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T04.02"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-artigianato/apprentice_inps_rates_unsourced"
+        ]
+      }
+    },
+    {
+      "id": "artisan_impiegati_sickness",
+      "institute": "sickness",
+      "variant": "impiegato_quadro",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SICKNESS OF THE IMPIEGATI: Art. 73 (p. 147) pays the impiegati the whole pay for 2 months and half for the next 4 up to 5 years of service, the whole for 3 months and half for the next 5 above; the file applies the operai rule of Art. 61.",
+      "calculation": "ccnl/metalmeccanico-artigianato:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T03.02"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-artigianato/artisan_impiegati_sickness"
+        ]
+      }
+    },
+    {
+      "id": "artisan_saturday_overtime",
+      "institute": "overtime",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SATURDAY OVERTIME AND ORDINARY NIGHT AND HOLIDAY WORK: in a five-day week Saturday overtime is paid 25% for the first 3 hours and 50% after; ordinary night work is paid 15% and holiday work 45% (Art. 22, p. 84). The request has no Saturday kind and the bands hold only the overtime rates.",
+      "calculation": "ccnl/metalmeccanico-artigianato:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.06"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-artigianato/artisan_saturday_overtime"
+        ]
+      }
+    },
+    {
+      "id": "health_and_bilateral_funds",
+      "institute": "bilateral_funds",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = owed",
+      "rule": "HEALTH AND BILATERAL FUNDS (EBNA text, Art. 11-12, pp. 30-32): bilateralità artigiana 11,65 euro a month for 12 months from the employer, also for part-time and apprentices, plus FSBA 0,45% from the employer and 0,15% from the worker of the INPS base (from 1 January 2022), or 30 euro a month for 13 months paid to the worker by a firm outside the bilateral system; San.Arti 10,42 euro a month for 12 months from the employer, or an E.a.r. of 25 euro a month for 13 months when the firm does not enrol. Not modelled: the worker's 0,15% lowers the net pay.",
+      "calculation": "ccnl/metalmeccanico-artigianato:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T05.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-artigianato/health_and_bilateral_funds"
+        ]
+      }
+    },
+    {
+      "id": "inps_sector_rates_unsourced",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.",
+      "calculation": "ccnl/metalmeccanico-artigianato:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T04.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-artigianato/inps_sector_rates_unsourced"
+        ]
+      }
+    },
+    {
+      "id": "provisional_inps_ruleset",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_inps_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "provisional_ruleset",
+      "institute": "irpef",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "sickness_cumulation_window",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.",
+      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_cumulation_window"
+        ]
+      }
+    },
+    {
+      "id": "sickness_inps_daily_base",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
+      "calculation": "ccnl_engine.sickness.handlers (INPS share of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_inps_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "tfr_compensation_apprentice_guarantee_fund",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.",
+      "calculation": "ccnl_engine.severance.relief.services; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
+      "state": "absent",
+      "work": [
+        "T08.05"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "tfr_compensation_apprentice_guarantee_fund"
+        ]
+      }
+    }
+  ]
+}

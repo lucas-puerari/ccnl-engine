@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "ccnl_id": "organizzazioni-allevatori-aia",
+  "requirements": [
+    {
+      "id": "apprentice_inps_rates_unsourced",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.",
+      "calculation": "ccnl/organizzazioni-allevatori-aia:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T04.02"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "organizzazioni-allevatori-aia/apprentice_inps_rates_unsourced"
+        ]
+      }
+    },
+    {
+      "id": "inps_minimum_base_exempt_category",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "D.L. 463/1983 art. 7 c. 5 keeps the operai agricoli out of the 9.50% minimum daily base, and the run applies no minimum to them. Tabella A of INPS circ. 6/2026 still lists 51.70 for the operai agricoli, 'non soggetto all'adeguamento' of art. 7 c. 1; no source found says whether it is a floor of their contribution base. A base below it may understate the contributions.",
+      "calculation": "ccnl_engine.contribution.minimum_base.services.minimum_base_paths; D.L. 463/1983 art. 7 cc. 1 and 5; INPS circ. 6/2026 allegato 1, Tabella A, note (2)",
+      "state": "unverified",
+      "work": [
+        "T04.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "inps_minimum_base_exempt_category"
+        ]
+      }
+    },
+    {
+      "id": "provisional_inps_ruleset",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_inps_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "provisional_ruleset",
+      "institute": "irpef",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "quadri_function_allowance",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SIMPLIFICATION: Indennita di funzione for area 1 Quadri (min 13% monthly) not modeled — variable floor amount, not expressible as fixed allowance.",
+      "calculation": "ccnl/organizzazioni-allevatori-aia:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "organizzazioni-allevatori-aia/quadri_function_allowance"
+        ]
+      }
+    },
+    {
+      "id": "rule_additional_months_2025_09_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/organizzazioni-allevatori-aia.json#additional_months[2025-09-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/organizzazioni-allevatori-aia.json#additional_months[2025-09-01]"
+        ]
+      }
+    },
+    {
+      "id": "sickness_cumulation_window",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.",
+      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_cumulation_window"
+        ]
+      }
+    },
+    {
+      "id": "sickness_inps_daily_base",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
+      "calculation": "ccnl_engine.sickness.handlers (INPS share of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_inps_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "third_tranche_sep_2026",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SIMPLIFICATION: Third tranche (Sep 2026) not modeled; per-level amounts not yet published in primary sources.",
+      "calculation": "ccnl/organizzazioni-allevatori-aia:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "organizzazioni-allevatori-aia/third_tranche_sep_2026"
+        ]
+      }
+    }
+  ]
+}

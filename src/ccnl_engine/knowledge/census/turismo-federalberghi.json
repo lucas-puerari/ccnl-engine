@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "ccnl_id": "turismo-federalberghi",
+  "requirements": [
+    {
+      "id": "apprentice_net_cap",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 58 c. 3: the net cap of the apprentice pay.",
+      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi/apprentice_net_cap"
+        ]
+      }
+    },
+    {
+      "id": "apprentice_seniority",
+      "institute": "seniority",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "APPRENTICE SENIORITY: art. 158 c.1 (2010 text, p. 140) grants the six scatti 'a tutto il personale' and art. 58 pays the apprentice a percentage of the normale retribuzione of the qualified worker, which art. 148 defines with the scatti: apprentices accrue the level amount. The engine pays no increment during the apprenticeship; the run is affected when the apprentice has matured increments.",
+      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T02.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi/apprentice_seniority"
+        ]
+      }
+    },
+    {
+      "id": "apprenticeship_durations_unsourced",
+      "institute": "base_salary",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "APPRENTICESHIP DURATIONS: the durations of the professionalizzante come from the accord of 17 April 2012 as amended in 2014, of which no signed or CNEL copy was found (only aggregator copies); the percentages of art. 58 are verified. Every apprentice run carries this limitation.",
+      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi/apprenticeship_durations_unsourced"
+        ]
+      }
+    },
+    {
+      "id": "balneari_reduction_hours",
+      "institute": "leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "LEAVE, STABILIMENTI BALNEARI (Art. 111 c.2): 108 hours of reduction a year instead of 104. The engine accrues the 104 hours of alberghi, pubblici esercizi, campeggi, alberghi diurni and agenzie di viaggi.",
+      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.10"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi/balneari_reduction_hours"
+        ]
+      }
+    },
+    {
+      "id": "extra_months_during_leave",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Artt. 160 c. 4 and 161 c. 6: the ratei of the tredicesima and quattordicesima during maternity, paternity and parental leave.",
+      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi/extra_months_during_leave"
+        ]
+      }
+    },
+    {
+      "id": "extras_hourly_table",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 155 c. 3, p. 44: the hourly table of the extra workers.",
+      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi/extras_hourly_table"
+        ]
+      }
+    },
+    {
+      "id": "first_scatto_from_18",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 158 c. 2-3: the first scatto counted from age 18 and from the month after the triennium.",
+      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi/first_scatto_from_18"
+        ]
+      }
+    },
+    {
+      "id": "guarantee_element_2027",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 13 c. 10, pp. 11-12: the elemento economico di garanzia paid with the November 2027 pay without an integrative agreement by 31 October 2026 (A and B 186, 1-3 158, 4-5 140, 6s-7 112).",
+      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi/guarantee_element_2027"
+        ]
+      }
+    },
+    {
+      "id": "hires_2016_ramp",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Verbale of 30 November 2016: the lower ramp of the hires of 14 November 2016. The caller pays these amounts as variable items.",
+      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi/hires_2016_ramp"
+        ]
+      }
+    },
+    {
+      "id": "provisional_inps_ruleset",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_inps_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "provisional_ruleset",
+      "institute": "irpef",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "quadri_absorption",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 145: the absorption of the Quadri allowance into individual treatments.",
+      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi/quadri_absorption"
+        ]
+      }
+    },
+    {
+      "id": "sickness_cumulation_window",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.",
+      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_cumulation_window"
+        ]
+      }
+    },
+    {
+      "id": "sickness_inps_daily_base",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
+      "calculation": "ccnl_engine.sickness.handlers (INPS share of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_inps_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "sickness_net_basis",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SICKNESS (art. 228, 2010 text p. 184): the CCNL integrates up to a share of the net daily pay without saying how the net pay is computed; the engine grosses up the INPS indemnity by the worker's INPS rate, as for the Commercio file. Day 1 of the carenza is the worker's when the illness lasts three days or less (c.5): the engine pays all three days. For fixed-term and seasonal workers no integration is due past the end of the contract (c.2).",
+      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T03.05"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi/sickness_net_basis"
+        ]
+      }
+    },
+    {
+      "id": "small_hotel_table",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 152 c. 2 as replaced in 2024, p. 43: the lower paga base of 1-2 star hotels and campsites up to 1200 presenze (level 4 1,688.98 instead of 1,695.69 from May 2026).",
+      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi/small_hotel_table"
+        ]
+      }
+    },
+    {
+      "id": "tfr_compensation_apprentice_guarantee_fund",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.",
+      "calculation": "ccnl_engine.severance.relief.services; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
+      "state": "absent",
+      "work": [
+        "T08.05"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "tfr_compensation_apprentice_guarantee_fund"
+        ]
+      }
+    },
+    {
+      "id": "tourism_special_supplement",
+      "institute": "trattamento_integrativo",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "TRATTAMENTO INTEGRATIVO SPECIALE (L. 199/2025 art. 1 cc. 18-20, Gazzetta Ufficiale text, https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1, page sha256 e05f6f864509f87e7488cdae075fe3a1f2632f6f4577b87ee05479a1ed193c1d): from 1 January to 30 September 2026 the workers of the esercizi di somministrazione di alimenti e bevande (L. 287/1991 art. 5) and of the 'comparto del turismo, ivi inclusi gli stabilimenti termali', with employment income of 2025 not above 40,000 EUR, receive 'un trattamento integrativo speciale, che non concorre alla formazione del reddito, pari al 15 per cento delle retribuzioni lorde corrisposte in relazione al lavoro notturno e alle prestazioni di lavoro straordinario [...] effettuate nei giorni festivi'. The employer pays it 'su richiesta del lavoratore' (c. 20), a fact the request has no field for: the engine does not pay it, so the net pay of a worker who asked for it is understated.",
+      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T06.09"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi/tourism_special_supplement"
+        ]
+      }
+    }
+  ]
+}

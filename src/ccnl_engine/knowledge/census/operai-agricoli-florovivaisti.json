@@ -1,0 +1,386 @@
+{
+  "schema_version": 1,
+  "ccnl_id": "operai-agricoli-florovivaisti",
+  "requirements": [
+    {
+      "id": "agricoli_apprentice_provincial_levels",
+      "institute": "base_salary",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "APPRENTICESHIP (Allegato n. 10, CCNL 23 May 2022, pp. 122-123): two levels below the destination in the first 12 months, one level below in the next 12, the destination in the last 12 (Area 1 and 2: 36 months; Area 3: 24 months, from one level below, only for the highest provincial level of the area). The levels are the provincial professional levels inside each area, not the three national areas the file holds: the file places an Area1 apprentice at the Area3 and then the Area2 minimum, a reading the text does not support. A fixed-term apprentice operaio is never paid below the lowest level of the destination area (p. 125).",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/agricoli_apprentice_provincial_levels"
+        ]
+      }
+    },
+    {
+      "id": "apprentice_inps_rates_unsourced",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T04.02"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/apprentice_inps_rates_unsourced"
+        ]
+      }
+    },
+    {
+      "id": "apprentice_seniority",
+      "institute": "seniority",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T02.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/apprentice_seniority"
+        ]
+      }
+    },
+    {
+      "id": "cpl_minimi_timing",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "CPL TIMING: the minimi di area of the renewal of 28/05/2026 (Allegato n. 1, p. 52) apply from 1 June 2026 only in the provinces without a contratto provinciale di lavoro (CPL); where a CPL is in force they apply from its renewal, by 1 January 2029 at the latest (Art. 50, p. 30). The file applies them from 1 June 2026 everywhere: a worker in a province with a CPL not yet renewed is paid above the national floor in force for that province.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/cpl_minimi_timing"
+        ]
+      }
+    },
+    {
+      "id": "eban_fisa_agrifondo",
+      "institute": "bilateral_funds",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = owed",
+      "rule": "BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and FISA (Fondo Integrativo di Settore Agricolo) bilateral fund contributions are set at provincial level and not modelled. Agrifondo (supplementary pension) contributions also omitted.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T05.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/eban_fisa_agrifondo"
+        ]
+      }
+    },
+    {
+      "id": "fixed_term_seniority_element",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (Art. 54-bis, new, verbale of 28 May 2026): from 1 January 2027 a fixed-term operaio who worked at least 150 days a year for the same employer for three consecutive years receives, from the fourth year, 0.4% of the salario contrattuale. The request carries no history of days per employer, so it is not paid.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/fixed_term_seniority_element"
+        ]
+      }
+    },
+    {
+      "id": "florovivaisti_overtime_rates",
+      "institute": "overtime",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "FLOROVIVAISTI OVERTIME AND HOLIDAY WORK: the operai florovivaisti are paid 29% overtime, 40% holiday work, 48% night work, 50% holiday overtime and 55% night holiday work (Art. 44, p. 49), against the 25, 35, 40, 40 and 45% of the operai agricoli (Art. 43) the file pays; ordinary holiday work (35% and 40%) has no band. The request does not say whether the operaio is a florovivaista. The rates apply to the provincial salario contrattuale.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.06"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/florovivaisti_overtime_rates"
+        ]
+      }
+    },
+    {
+      "id": "florovivaisti_sickness_integration",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "FLOROVIVAISTI SICKNESS: the operaio florovivaista a tempo indeterminato receives from the employer, on top of the INPS indemnity, 25% of the contractual daily wage for at most 90 days a year, from the first day when the sickness lasts more than three days (Art. 62, verbale of 28 May 2026, p. 38); the file pays the operai agricoli rule, with no employer integration, and the request does not say whether the operaio is a florovivaista.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T03.02"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/florovivaisti_sickness_integration"
+        ]
+      }
+    },
+    {
+      "id": "florovivaisti_tables",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "FLOROVIVAISTI NOT DISTINGUISHED. The CCNL covers both Operai Agricoli (OTA) and Operai Florovivaisti (OTF). OTF have separate (higher) tabelle retributive with their own area amounts. This file models OTA amounts only. Callers must use a separate file (not yet modelled) for OTF workers.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/florovivaisti_tables"
+        ]
+      }
+    },
+    {
+      "id": "inail_agricultural_premium",
+      "institute": "inail",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "INAIL NOT MODELLED. INAIL agricultural premium (8.50% unified from 2026 per new tariff) is not modelled. The engine does not track INAIL.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T04.05"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/inail_agricultural_premium"
+        ]
+      }
+    },
+    {
+      "id": "inps_minimum_base_exempt_category",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "D.L. 463/1983 art. 7 c. 5 keeps the operai agricoli out of the 9.50% minimum daily base, and the run applies no minimum to them. Tabella A of INPS circ. 6/2026 still lists 51.70 for the operai agricoli, 'non soggetto all'adeguamento' of art. 7 c. 1; no source found says whether it is a floor of their contribution base. A base below it may understate the contributions.",
+      "calculation": "ccnl_engine.contribution.minimum_base.services.minimum_base_paths; D.L. 463/1983 art. 7 cc. 1 and 5; INPS circ. 6/2026 allegato 1, Tabella A, note (2)",
+      "state": "unverified",
+      "work": [
+        "T04.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "inps_minimum_base_exempt_category"
+        ]
+      }
+    },
+    {
+      "id": "inps_on_actual_not_conventional_pay",
+      "institute": "inps_employee",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "INPS CONTRIBUTION BASE. Agricultural OTI INPS contributions are legally computed on the 'retribuzione convenzionale' (set annually by INPS decree per DL 338/1989 Art. 1), NOT on the actual contractual salary. This engine applies rates to actual gross salary. The net INPS amounts will differ from statutory computations. Figures are indicative only.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T04.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/inps_on_actual_not_conventional_pay"
+        ]
+      }
+    },
+    {
+      "id": "mountain_zone_reductions",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "TERRITORIAL REDUCTIONS. INPS reductions for mountain/disadvantaged zones (75%/68%) are not modelled.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T04.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/mountain_zone_reductions"
+        ]
+      }
+    },
+    {
+      "id": "otd_terzo_elemento",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "OTI ONLY. OTD (Operai a Tempo Determinato / seasonal) workers are not modelled. OTD workers receive a Terzo Elemento of 30.44% (festività 5.45% + ferie 8.33% + tredicesima 8.33% + quattordicesima 8.33%) in lieu of accruals; the engine cannot represent this structure. OTD represent a large share of agricultural workers.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/otd_terzo_elemento"
+        ]
+      }
+    },
+    {
+      "id": "provincial_supplement",
+      "institute": "territorial_supplement",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = owed",
+      "rule": "NATIONAL MINIMUMS ONLY. Provincial contracts (contratti provinciali di lavoro, 20 provinces) pay substantially more than national floor. The national tabella retributiva is the legal minimum. Actual employer cost in any province requires adding the CPL supplement.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T05.09"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/provincial_supplement"
+        ]
+      }
+    },
+    {
+      "id": "provisional_inps_ruleset",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_inps_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "provisional_ruleset",
+      "institute": "irpef",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "rule_additional_months_2022_06_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/operai-agricoli-florovivaisti.json#additional_months[2022-06-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/operai-agricoli-florovivaisti.json#additional_months[2022-06-01]"
+        ]
+      }
+    },
+    {
+      "id": "sickness_cumulation_window",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.",
+      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_cumulation_window"
+        ]
+      }
+    },
+    {
+      "id": "sickness_inps_daily_base",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
+      "calculation": "ccnl_engine.sickness.handlers (INPS share of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_inps_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "super_profile_scatti",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SENIORITY OF THE SUPER PROFILES: Art. 54 (p. 55) pays 10,85 a month to the operai qualificati super and 11,62 to the specializzati super; the three areas of the file pay the amount of the qualificati (10,33) and of the specializzati (11,36), and the request does not say whether the operaio is a super profile.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/super_profile_scatti"
+        ]
+      }
+    }
+  ]
+}

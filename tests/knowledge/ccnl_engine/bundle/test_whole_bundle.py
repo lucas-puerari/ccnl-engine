@@ -15,6 +15,7 @@ from typing import TYPE_CHECKING, Any
 import pytest
 
 from ccnl_engine.absence.insured.loaders import load_insured_absence_rates
+from ccnl_engine.agreement.census.loaders import load_census
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.agreement.family.loaders import load_family_catalog
 from ccnl_engine.capability.loaders import load_capability_catalog
@@ -51,6 +52,7 @@ def _year_rules(resource: dict[str, Any]) -> object:
 _LOADERS: dict[str, Callable[[dict[str, Any]], object]] = {
     "agreement": lambda r: load_ccnl(r["scope"]),
     "agreement/family": lambda _: load_family_catalog(),
+    "census": lambda r: load_census(r["scope"]),
     "capability/registry": lambda r: load_capability_catalog(r["year"]),
     "contribution": _year_rules,
     "family": lambda r: load_family_deduction_rules(r["year"]),

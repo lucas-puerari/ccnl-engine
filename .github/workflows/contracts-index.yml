@@ -9,6 +9,7 @@ on:
       - "scripts/documentation/coverage_matrix/generate.py"
       - "docs/contracts/index.md"
       - "scripts/completeness/report.py"
+      - "scripts/census/generate.py"
       - "docs/trust/completeness.md"
 
 concurrency:
@@ -44,6 +45,9 @@ jobs:
 
       - name: Check contracts index is up to date
         run: uv run python scripts/documentation/coverage_matrix/generate.py --check
+
+      - name: Check the seeded census is up to date
+        run: uv run python scripts/census/generate.py --check
 
       - name: Check model completeness page is up to date
         run: uv run python scripts/completeness/report.py --check

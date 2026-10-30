@@ -93,7 +93,7 @@ def _row(row_id: str, **fields: object) -> dict[str, object]:
         "id": row_id,
         "institute": "sickness",
         "variant": "all",
-        "origin": "seeded",
+        "source": {"document_id": "d", "section": "art. 1"},
         "state": "implemented",
         "scenarios": [f"{_TEST}::test_a_ccnl_with_nothing_open_is_complete"],
         **fields,
@@ -109,24 +109,26 @@ _EVIDENCE = report.Evidence(
 
 
 def test_a_row_is_open_until_its_rule_and_links_are_closed() -> None:
-    """State, scenarios, linked limitations and linked rules decide."""
+    """Origin, state, scenarios, linked limitations and linked rules decide."""
     census = _census(
         _row("a_done", links={"limitations": ["x/closed"], "rules": ["f.json#strong"]}),
         _row("b_absent", state="absent", work=["T03.01"]),
         _row("c_untested", scenarios=[]),
         _row("d_open_limitation", links={"limitations": ["x/open"]}),
         _row("e_weak_rule", links={"rules": ["f.json#weak"]}),
-        _row(
-            "f_not_applicable",
-            state="not_applicable",
-            source={"document_id": "d", "section": "art. 1"},
-            scenarios=[],
-        ),
+        _row("f_not_applicable", state="not_applicable", scenarios=[]),
+        _row("g_seeded", origin="seeded", source=None),
     )
 
     open_rows, errors = report.census_state(census, _EVIDENCE)
 
-    assert open_rows == ("b_absent", "c_untested", "d_open_limitation", "e_weak_rule")
+    assert open_rows == (
+        "b_absent",
+        "c_untested",
+        "d_open_limitation",
+        "e_weak_rule",
+        "g_seeded",
+    )
     assert errors == ()
 
 
@@ -184,11 +186,11 @@ def test_the_bundle_totals_match_the_evidence_snapshot() -> None:
 
 
 def test_today_no_ccnl_is_complete() -> None:
-    """No census yet: every CCNL is incomplete and says so."""
+    """Every census is seeded only: every CCNL is incomplete and says why."""
     built = report.build_report()
 
     assert built.complete == ()
-    assert all("census missing" in row.gaps for row in built.rows)
+    assert all(row.census_rows == len(row.open_rows) for row in built.rows)
 
 
 def test_the_page_names_every_ccnl_and_the_totals() -> None:

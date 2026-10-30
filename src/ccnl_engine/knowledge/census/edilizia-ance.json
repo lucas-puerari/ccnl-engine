@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "ccnl_id": "edilizia-ance",
+  "requirements": [
+    {
+      "id": "ape_cassa_edile",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 29: the APE paid by the Cassa Edile.",
+      "calculation": "ccnl/edilizia-ance:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-ance/ape_cassa_edile"
+        ]
+      }
+    },
+    {
+      "id": "capisquadra_supplement",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 24 point 4: the special maggiorazione of the capisquadra in the base of Art. 17 and 18.",
+      "calculation": "ccnl/edilizia-ance:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-ance/capisquadra_supplement"
+        ]
+      }
+    },
+    {
+      "id": "cassa_edile_contribution",
+      "institute": "bilateral_funds",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = owed",
+      "rule": "CASSA EDILE CONTRIBUTION: the contribution to the Cassa Edile, set by the provincial agreements and shared by employer and worker (5,47% on the hourly elements in the Agrigento table of the Ministry of Labour of May 2025), is not modelled; only the 18.5% accrual for ferie and gratifica is. The worker's share lowers the net pay.",
+      "calculation": "ccnl/edilizia-ance:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T05.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-ance/cassa_edile_contribution"
+        ]
+      }
+    },
+    {
+      "id": "contribution_reduction",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 29 L. 341/1995: the riduzione contributiva edile on the employer INPS contributions of full-time operai.",
+      "calculation": "ccnl/edilizia-ance:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-ance/contribution_reduction"
+        ]
+      }
+    },
+    {
+      "id": "edilizia_operai_sickness",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SICKNESS (Art. 26): the employer pays a coefficient of the hourly minimo, ex contingenza and indennità territoriale times a sixth of the weekly hours, six days a week: 0.5495 for days 1-3 when the sickness lasts more than 6 days, 1.0495 when it lasts more than 12, 0.3795 for days 4-20 and 0.1565 for days 21-180 on top of the INPS indemnity, 0.5495 for days 181-365. The engine stores the coefficient plus the INPS rate of the day as the target (0.8795 and 0.8231), so its employer share is the coefficient on the engine's daily quota, which counts the EDR and not the indennità territoriale. Not modelled: the 1.0495 of a sickness over 12 days (paid 0.5495), the comporto of 365 days past 3.5 years of seniority and the cumulated comporto of 9 months in 20 (12 in 24), the 4.95% paid for the carenza days of a sickness of up to 6 days and for the day of an injury (60% on days 1-3); the percentages accrued with the Cassa Edile during sickness and injury (Allegato D: 18.5% gross and 14.2% net for the carenza days and from day 4 of sickness, 7.4% and 5.7% for days 4-90 of injury or occupational disease, 4.6% and 3.6% from day 91); and the exception of Allegato D point 4: in a pay period without direct pay the conventional net does not apply and the actual withholdings are taken from the accruals. The sick hours of an operaio are not in the hours paid by the hour, so the sick days deduct nothing from the pay.",
+      "calculation": "ccnl/edilizia-ance:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T03.02"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-ance/edilizia_operai_sickness"
+        ]
+      }
+    },
+    {
+      "id": "entry_premium_2022",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Verbale of 3 March 2022, Allegato 5: the una tantum premio di ingresso of EUR 100 to operai under 29.",
+      "calculation": "ccnl/edilizia-ance:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-ance/entry_premium_2022"
+        ]
+      }
+    },
+    {
+      "id": "hardship_allowances",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 20-21: the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario.",
+      "calculation": "ccnl/edilizia-ance:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-ance/hardship_allowances"
+        ]
+      }
+    },
+    {
+      "id": "holiday_hours",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 17 point 3: the festività (8 hours of the point 4 elements, with the 4.95% and the 18.5% on them), which PeriodFacts.ordinary_hours_worked leaves out.",
+      "calculation": "ccnl/edilizia-ance:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-ance/holiday_hours"
+        ]
+      }
+    },
+    {
+      "id": "ordinary_hours_premiums",
+      "institute": "overtime",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 19 and Art. 5: the premiums on ordinary hours (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week.",
+      "calculation": "ccnl/edilizia-ance:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.07"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-ance/ordinary_hours_premiums"
+        ]
+      }
+    },
+    {
+      "id": "part_time_supplementary_rate",
+      "institute": "overtime",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "PART-TIME SUPPLEMENTARY HOURS: the operai are paid the supplementary hours with the hourly quota raised by 20% (Art. 78, pp. 90-91), modelled as the OT_SUPPLEMENTARE band of OvertimeKind.SUPPLEMENTARY; the CCNL gives that pay 'incidenza su tutti gli istituti retributivi legali e contrattuali, indiretti e differiti, compresi le contribuzioni e gli accantonamenti in Cassa Edile', which the engine does not apply (an overtime pay stays out of the TFR base and of the Cassa Edile accruals), nor the 10% of the flexible clauses.",
+      "calculation": "ccnl/edilizia-ance:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T02.06"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-ance/part_time_supplementary_rate"
+        ]
+      }
+    },
+    {
+      "id": "provincial_evr",
+      "institute": "territorial_supplement",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 46: the EVR set by the provincial agreements.",
+      "calculation": "ccnl/edilizia-ance:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T05.09"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-ance/provincial_evr"
+        ]
+      }
+    },
+    {
+      "id": "provincial_meals_transport_travel",
+      "institute": "territorial_supplement",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Mensa, trasporto and trasferta, set by the provincial agreements (verbale 2025).",
+      "calculation": "ccnl/edilizia-ance:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T05.09"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-ance/provincial_meals_transport_travel"
+        ]
+      }
+    },
+    {
+      "id": "provisional_inps_ruleset",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_inps_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "provisional_ruleset",
+      "institute": "irpef",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "sickness_cumulation_window",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.",
+      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_cumulation_window"
+        ]
+      }
+    },
+    {
+      "id": "sickness_inps_daily_base",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
+      "calculation": "ccnl_engine.sickness.handlers (INPS share of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_inps_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "territorial_sector_allowance",
+      "institute": "territorial_supplement",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = owed",
+      "rule": "INDENNITÀ TERRITORIALE DI SETTORE: set by the provincial agreements (Art. 12) and owed to every operaio, also in the base of the 4.95% and 18.5% and in the TFR base of Art. 33. Not modelled: the net pay and the employer cost are short of it.",
+      "calculation": "ccnl/edilizia-ance:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T05.09"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-ance/territorial_sector_allowance"
+        ]
+      }
+    },
+    {
+      "id": "tfr_compensation_apprentice_guarantee_fund",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.",
+      "calculation": "ccnl_engine.severance.relief.services; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
+      "state": "absent",
+      "work": [
+        "T08.05"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "tfr_compensation_apprentice_guarantee_fund"
+        ]
+      }
+    }
+  ]
+}

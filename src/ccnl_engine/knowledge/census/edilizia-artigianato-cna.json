@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "ccnl_id": "edilizia-artigianato-cna",
+  "requirements": [
+    {
+      "id": "apprentice_inps_rates_unsourced",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.",
+      "calculation": "ccnl/edilizia-artigianato-cna:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T04.02"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-artigianato-cna/apprentice_inps_rates_unsourced"
+        ]
+      }
+    },
+    {
+      "id": "apprentice_seniority",
+      "institute": "seniority",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+      "calculation": "ccnl/edilizia-artigianato-cna:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T02.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-artigianato-cna/apprentice_seniority"
+        ]
+      }
+    },
+    {
+      "id": "apprenticeship_pct_undeclared_components",
+      "institute": "base_salary",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.",
+      "calculation": "ccnl_engine.apprenticeship.rules (percentage track chain)",
+      "state": "unverified",
+      "work": [
+        "T02.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "apprenticeship_pct_undeclared_components"
+        ]
+      }
+    },
+    {
+      "id": "cassa_edile_accruals_missing",
+      "institute": "bilateral_funds",
+      "variant": "operaio",
+      "discriminant": "applies_when.trigger = owed",
+      "rule": "For blue-collar workers in construction the Cassa Edile / EPR bilateral system provides additional accrual benefits (annual leave, Christmas bonus, seniority) that are separate from INPS seniority increments. These are not modelled; only the tabular seniority increments are implemented.",
+      "calculation": "ccnl/edilizia-artigianato-cna:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T05.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-artigianato-cna/cassa_edile_accruals_missing"
+        ]
+      }
+    },
+    {
+      "id": "cigo_rate_by_activity",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "CIGO: artisan builders are within the CIGO (D.Lgs. 148/2015 art. 13 c. 1 (Normattiva, text in force on 2026-10-14, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art13!vig=2026-10-14, snapshot sha256 3f7019a244e01d36ac8e7c9e25bcf058c777c8ed758418ba261d83867672c46a)): 4.70% for the 'operai delle imprese dell'industria e artigianato edile' (lett. c) and 1.70% / 2.00% for their impiegati and quadri (lett. e-f). The artigianato table charges no CIGO, so the employer contributions of every worker are understated.",
+      "calculation": "ccnl/edilizia-artigianato-cna:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T04.10"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-artigianato-cna/cigo_rate_by_activity"
+        ]
+      }
+    },
+    {
+      "id": "contractual_fund_uncovered",
+      "institute": "pension_fund_contribution",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "The Prevedi table has no row for some levels of the bundle (a quadro level, or an operaio at a level the hourly table lacks): such a worker owes a contractual contribution the engine does not compute, and the run has the incomplete issue contractual_fund_not_computed.",
+      "calculation": "ccnl/edilizia-artigianato-cna:coverage.notes",
+      "state": "absent",
+      "work": [
+        "T05.04"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-artigianato-cna/contractual_fund_uncovered"
+        ]
+      }
+    },
+    {
+      "id": "inps_sector_rates_unsourced",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.",
+      "calculation": "ccnl/edilizia-artigianato-cna:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T04.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-artigianato-cna/inps_sector_rates_unsourced"
+        ]
+      }
+    },
+    {
+      "id": "provisional_inps_ruleset",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_inps_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "provisional_ruleset",
+      "institute": "irpef",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
+      "state": "unverified",
+      "work": [
+        "T00.03",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "rule_additional_months_2025_05_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/edilizia-artigianato-cna.json#additional_months[2025-05-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "work": [
+        "T09.01",
+        "T09.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/edilizia-artigianato-cna.json#additional_months[2025-05-01]"
+        ]
+      }
+    },
+    {
+      "id": "seniority_cadence_unconfirmed",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Seniority increment cadence (24 months) and maximum count (5) taken from general CCNL Edilizia Artigianato provisions; F015-specific text not independently confirmed. Level 1 scatto = EUR 0.00 as published in kitech.it.",
+      "calculation": "ccnl/edilizia-artigianato-cna:coverage.notes",
+      "state": "unverified",
+      "work": [
+        "T02.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-artigianato-cna/seniority_cadence_unconfirmed"
+        ]
+      }
+    },
+    {
+      "id": "sickness_cumulation_window",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.",
+      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.03"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_cumulation_window"
+        ]
+      }
+    },
+    {
+      "id": "sickness_inps_daily_base",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
+      "calculation": "ccnl_engine.sickness.handlers (INPS share of a sick day)",
+      "state": "unverified",
+      "work": [
+        "T03.01"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sickness_inps_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "tfr_compensation_apprentice_guarantee_fund",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.",
+      "calculation": "ccnl_engine.severance.relief.services; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
+      "state": "absent",
+      "work": [
+        "T08.05"
+      ],
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "tfr_compensation_apprentice_guarantee_fund"
+        ]
+      }
+    }
+  ]
+}
