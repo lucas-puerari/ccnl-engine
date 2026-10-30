@@ -205,7 +205,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 92 | G091 | [CCNL Radiotelevisivo — Settore Radiofonico](radiotelevisive-radiofonico.md) | radiotelevisione — settore radiofonico | — | 2026 | ⚠️ | inps_employer, seniority | 13 / 0 / 8 / 0 | 🧪 | 🤖 |
 | 93 | G091 | [CCNL Radiotelevisivo — Settore Televisivo Multimediale](radiotelevisive-televisivo.md) | radiotelevisione — settore televisivo multimediale | — | 2026 | ⚠️ | inps_employer, seniority | 28 / 0 / 11 / 0 | 🧪 | 🤖 |
 | 94 | K711 | [CCNL Recapito Corrispondenza (FISE-ARE)](recapito-corrispondenza-fise.md) | Recapito corrispondenza e spedizioni | ~1k | 2023 | ✅ | — | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
-| 95 | T271 | [CCNL Scuole Materne — FISM](scuole-materne-fism.md) | istruzione privata cattolica per l'infanzia | ~30k | — | ⚠️ | base_salary, seniority | 1 / 47 / 1 / 0 | 🧪 | 🤖 |
+| 95 | T271 | [CCNL Scuole Materne — FISM](scuole-materne-fism.md) | istruzione privata cattolica per l'infanzia | ~30k | — | ⚠️ | base_salary, seniority, sickness | 1 / 47 / 1 / 0 | 🧪 | 🤖 |
 | 96 | T231 | [CCNL Scuole Private Laiche (ANINSEI-Assoscuola)](scuole-private-laiche-aninsei.md) | istruzione privata laica | ~25k | — | ⚠️ | seniority | 0 / 44 / 1 / 0 | 🧪 | 🤖 |
 | 97 | K721 | [CCNL Servizi Postali in Appalto (FISE-ARE)](servizi-postali-appalto-fise.md) | Servizi postali in appalto e recapito | ~1k | 2023 | ⚠️ | base_salary, seniority | 1 / 49 / 1 / 0 | 🧪 | 🤖 |
 | 98 | K511 | [CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi (ANIP-Confindustria)](multiservizi-anip.md) | multiservizi | ~580k | — | ⚠️ | base_salary, bilateral_funds | 57 / 93 / 0 / 0 | 🧪 | 🤖 |

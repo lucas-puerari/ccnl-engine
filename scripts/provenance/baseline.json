@@ -1284,7 +1284,8 @@
     "agreement/scuole-materne-fism.json": [
       "scuole-materne-fism/apprentice_seniority",
       "scuole-materne-fism/apprenticeship_identity_track",
-      "scuole-materne-fism/salario_di_anzianita"
+      "scuole-materne-fism/salario_di_anzianita",
+      "scuole-materne-fism/sickness_net_basis"
     ],
     "agreement/scuole-private-agidae.json": [
       "scuole-private-agidae/salario_di_anzianita"
