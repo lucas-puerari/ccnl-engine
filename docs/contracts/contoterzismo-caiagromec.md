@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `A051` |
 | **Sector** | Agricoltura |
+| **Family** | `agricoltura` |
 | **Tax sector** | `agricoltura` |
 | **Last renewal** | 2024-06-18 |
 | **Workers (est.)** | ~4k |

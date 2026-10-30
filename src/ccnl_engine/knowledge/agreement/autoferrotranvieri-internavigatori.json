@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "autoferrotranvieri-internavigatori",
     "name": "CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)",
     "cnel_code": "I022",
     "sector": "trasporti",
+    "family": {
+      "id": "trasporti-logistica",
+      "reason": "Local public transport by bus, tram, metro and inland navigation.",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "AGENS",
@@ -5195,7 +5200,7 @@
     "effective_until": null,
     "source": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
     "verification_status": "unverified",
-    "source_hash": "5f386b53374f4e4b7e2ffe567455e925905c9cc01524567ae21961646c2bbe58",
+    "source_hash": "51ce0a1a5aef08dac183fef1f2082a0fdfe395eb406bf7f38f8a57ea7d1b7382",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

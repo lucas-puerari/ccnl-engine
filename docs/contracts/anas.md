@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `T511` |
 | **Sector** | anas spa - personale non dirigente |
+| **Family** | `trasporti-logistica` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-12-18 |
 | **Workers (est.)** | ~7k |

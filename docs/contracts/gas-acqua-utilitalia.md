@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `K321` |
 | **Sector** | gas e acqua |
+| **Family** | `energia-utilities` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-05-08 |
 | **Workers (est.)** | ~65k |

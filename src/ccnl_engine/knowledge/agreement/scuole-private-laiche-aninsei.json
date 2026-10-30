@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "scuole-private-laiche-aninsei",
     "name": "CCNL Scuole Private Laiche (ANINSEI-Assoscuola)",
     "cnel_code": "T231",
     "sector": "istruzione privata laica",
+    "family": {
+      "id": "istruzione-formazione",
+      "reason": "Private secular schools (ANINSEI).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "ANINSEI",
@@ -1366,7 +1371,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "a0a65eaf20b93714b07fdf0d875ea9c69eb0f33d73d971c5e7bb78bd211035a8",
+    "source_hash": "e7ed6702e6d4f843edc7c7fe253d07869413de671acc73dcb4ad6b3ff7fc42d0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

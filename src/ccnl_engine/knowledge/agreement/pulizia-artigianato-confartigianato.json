@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "pulizia-artigianato-confartigianato",
     "name": "CCNL per i dipendenti delle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione",
     "cnel_code": "K521",
     "sector": "pulizia artigianato",
+    "family": {
+      "id": "pulizia-multiservizi",
+      "reason": "Craft cleaning businesses: same service as multiservizi, craft employers.",
+      "related": []
+    },
     "tax_sector": "artigianato",
     "signatories": [
       "Confartigianato Imprese di Pulizia",
@@ -3579,7 +3584,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "d611fbd24a0d8a9d92dcb19e20dc10541d986bb3784229057269bd4eb6caf2e6",
+    "source_hash": "f8d435a7f323bd0e062113e803321f9827bed4ffd7b5323149f2567650e11302",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

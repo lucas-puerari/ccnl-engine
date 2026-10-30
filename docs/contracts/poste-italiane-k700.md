@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `K700` |
 | **Sector** | Servizi postali |
+| **Family** | `servizi-postali` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2024-07-23 |
 | **Workers (est.)** | ~117k |

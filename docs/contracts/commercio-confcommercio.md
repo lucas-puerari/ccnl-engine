@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H011` |
 | **Sector** | terziario |
+| **Family** | `commercio` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2024-03-22 |
 | **Workers (est.)** | ~800k |

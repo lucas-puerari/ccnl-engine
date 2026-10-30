@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "trasporto-aereo-assaeroporti",
     "name": "CCNL Trasporto Aereo — Gestori Aeroportuali",
     "cnel_code": "I810",
     "sector": "trasporto aereo",
+    "family": {
+      "id": "trasporti-logistica",
+      "reason": "Air transport, airport operators (Assaeroporti).",
+      "related": []
+    },
     "tax_sector": "industria",
     "agreement_date": "2025-06-04",
     "validity": {
@@ -2481,7 +2486,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "071102de9b5f7957b9029f53fdfd21121825d596f00fbd3e262df82cea67562b",
+    "source_hash": "e66eb86df1f02afe1f75be4818f63b1899663fb181440094ec89ef928617b101",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `K711` |
 | **Sector** | Recapito corrispondenza e spedizioni |
+| **Family** | `servizi-postali` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2023-11-14 |
 | **Workers (est.)** | ~1k |

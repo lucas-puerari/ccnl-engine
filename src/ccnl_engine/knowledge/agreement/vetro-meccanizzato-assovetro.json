@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "vetro-meccanizzato-assovetro",
     "name": "CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)",
     "cnel_code": "B132",
     "sector": "vetro industria — settori meccanizzati",
+    "family": {
+      "id": "chimica",
+      "reason": "Glass industry, mechanised sectors (Assovetro).",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Assovetro",
@@ -1390,6 +1395,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "d8fdd51cfb3e0040b0d2f2b1bef9f3765bcbc7b0e306f14cd6a31cc397d323d0"
+    "source_hash": "93afcab421c0398a530611676ea4de465e1d97396befe33d7cba8ff896ac9b46"
   }
 }

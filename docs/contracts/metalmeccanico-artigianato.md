@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `C030` |
 | **Sector** | metalmeccanico |
+| **Family** | `metalmeccanica` |
 | **Tax sector** | `artigianato` |
 | **Last renewal** | 2024-11-19 |
 | **Workers (est.)** | ~350k |

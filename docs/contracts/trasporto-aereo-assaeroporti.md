@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `I810` |
 | **Sector** | trasporto aereo |
+| **Family** | `trasporti-logistica` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-06-04 |
 | **Workers (est.)** | ~40k |

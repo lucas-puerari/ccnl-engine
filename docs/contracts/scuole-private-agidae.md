@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `T241` |
 | **Sector** | istruzione privata |
+| **Family** | `istruzione-formazione` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2024-07-03 |
 | **Workers (est.)** | ~50k |

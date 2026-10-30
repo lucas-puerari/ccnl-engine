@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "terziario-confesercenti",
     "name": "CCNL Terziario Distribuzione e Servizi — Confesercenti",
     "cnel_code": "H012",
     "sector": "Terziario distribuzione e servizi",
+    "family": {
+      "id": "commercio",
+      "reason": "Confesercenti agreement for the same tertiary and distribution scope as Confcommercio.",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "Confesercenti",
@@ -3454,7 +3459,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "d58c2e1c4c45db5326ccfdcf68cb844ac04160e6d490ff67c8abaec0bb51210e",
+    "source_hash": "aabc4e04111992f2774fdf9ace11a140dc03b2af638103c1797bad6a53c02e8f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H016` |
 | **Sector** | distribuzione-cooperativa |
+| **Family** | `commercio` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2024-03-29 |
 | **Workers (est.)** | ~63k |

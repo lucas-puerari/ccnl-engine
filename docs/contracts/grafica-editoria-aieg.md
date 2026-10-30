@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `G011` |
 | **Sector** | grafica-editoria |
+| **Family** | `carta-grafica` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2024-12-20 |
 | **Workers (est.)** | ~70k |

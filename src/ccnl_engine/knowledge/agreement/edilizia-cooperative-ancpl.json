@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "edilizia-cooperative-ancpl",
     "name": "CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)",
     "cnel_code": "F016",
     "sector": "Edilizia",
+    "family": {
+      "id": "edilizia",
+      "reason": "Construction cooperatives (ANCPL).",
+      "related": []
+    },
     "tax_sector": "edilizia",
     "agreement_date": "2025-02-21",
     "signatories": [
@@ -2017,7 +2022,7 @@
     "effective_until": null,
     "source": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/",
     "verification_status": "unverified",
-    "source_hash": "f7b184a7fcce605faab53c044eeaed1aaf567f7bbb1f15356fab93ecdf7f9dfc",
+    "source_hash": "f8ce4b08aee59d04346477ee3b0f14fdd95d6164d81a7e4fb12be301b4e980e0",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

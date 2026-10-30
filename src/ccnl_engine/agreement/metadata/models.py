@@ -7,6 +7,8 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.agreement.family.loaders import load_family_catalog
+from ccnl_engine.agreement.family.models import FamilyAssignment
 from ccnl_engine.agreement.metadata.review.models import CCNLReview
 from ccnl_engine.agreement.types import PublicPensionFund, TaxSector
 from ccnl_engine.provenance.ruleset.models import (
@@ -90,6 +92,9 @@ class CCNLMeta(BaseModel):
         name: Full name of the collective agreement.
         cnel_code: CNEL registry code for the agreement.
         sector: Human-readable industry sector (e.g. ``"Industria metalmeccanica"``).
+        family: Contract family of the CCNL, an id of the central catalog
+            with the reason of the assignment.  Descriptive only: no rule
+            and no contribution regime depends on it.
         tax_sector: INPS sector classification used to select the contribution-rate
             file. Pass this to ``load_year_rules``.
         signatories: List of employer associations and unions that signed the agreement.
@@ -121,6 +126,7 @@ class CCNLMeta(BaseModel):
     name: str
     cnel_code: str
     sector: str
+    family: FamilyAssignment
     tax_sector: TaxSector
     signatories: tuple[str, ...]
     sources: tuple[SourceDocument, ...]
@@ -147,6 +153,18 @@ class CCNLMeta(BaseModel):
         file can contradict it.
         """
         return self.tax_sector is not TaxSector.LAVORO_DOMESTICO
+
+    @model_validator(mode="after")
+    def _check_family(self) -> CCNLMeta:
+        known = load_family_catalog().by_id
+        unknown = [family for family in self.family.ids if family not in known]
+        if unknown:
+            msg = (
+                f"meta.family names families {unknown} that the catalog "
+                f"agreement/family/catalog.json does not hold"
+            )
+            raise ValueError(msg)
+        return self
 
     @model_validator(mode="after")
     def _check_public_fund(self) -> CCNLMeta:

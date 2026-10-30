@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "occhiali-occhialeria-industria",
     "name": "CCNL Occhiali e Occhialeria — Industria (ANFAO)",
     "cnel_code": "D271",
     "sector": "industria occhialeria e ottica",
+    "family": {
+      "id": "tessile-moda",
+      "reason": "Eyewear industry: frames and lenses as fashion accessories.",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "ANFAO",
@@ -3162,7 +3167,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
     "verification_status": "verified",
-    "source_hash": "3686ea98ca96b1d9fbd5cb0a9d9ebdf37742b74dcce73c7fb1e36d9f07571228",
+    "source_hash": "2434747219d8960e6d0d0323260892801d1673ef3c5fe8d6c4ae4331191ce050",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

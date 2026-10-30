@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `I391` |
 | **Sector** | navigazione marittima — personale di terra |
+| **Family** | `trasporti-logistica` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2024-07-11 |
 | **Workers (est.)** | ~15k |

@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "organizzazioni-allevatori-aia",
     "name": "CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)",
     "cnel_code": "A221",
     "sector": "Agricoltura",
+    "family": {
+      "id": "agricoltura",
+      "reason": "Livestock breeders' organisations (AIA).",
+      "related": []
+    },
     "tax_sector": "agricoltura",
     "agreement_date": "2024-12-12",
     "signatories": [
@@ -1032,7 +1037,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "54bbac2755d5a2ec845a36260a2bd8556fb149fc437af18e35b1b13e09b4a6fb",
+    "source_hash": "4f49d71ff4383af6a3377388599d5ff0a726b27c9943dc2f5538355e5b78099d",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

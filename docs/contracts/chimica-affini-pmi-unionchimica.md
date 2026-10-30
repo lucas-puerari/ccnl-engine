@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `B018` |
 | **Sector** | chimica |
+| **Family** | `chimica` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2026-02-23 |
 | **Workers (est.)** | ~56k |

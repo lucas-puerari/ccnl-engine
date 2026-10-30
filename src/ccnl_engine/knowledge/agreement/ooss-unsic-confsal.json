@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "ooss-unsic-confsal",
     "name": "CCNL Lavoratori Dipendenti Organizzazioni Sindacali (UNSIC/CONFSAL)",
     "cnel_code": "V925",
     "sector": "Organizzazioni sindacali nazionali e territoriali",
+    "family": {
+      "id": "organizzazioni-associative",
+      "reason": "Staff of national and local trade-union organisations (UNSIC-Confsal).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "agreement_date": "2023-01-19",
     "signatories": [
@@ -830,7 +835,7 @@
     "effective_until": null,
     "source": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
     "verification_status": "unverified",
-    "source_hash": "13ce54c189bcb1cb0b76f15389426a709d5b1cde1da4281489cd374f6f83b6f0",
+    "source_hash": "4d7e9064de5049b71d5a126356db757367d92516d422bb00a0f962a18eb9fcd7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

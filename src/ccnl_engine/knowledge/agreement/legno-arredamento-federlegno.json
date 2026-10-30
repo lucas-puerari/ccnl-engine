@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "legno-arredamento-federlegno",
     "name": "CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)",
     "cnel_code": "F051",
     "sector": "industria",
+    "family": {
+      "id": "legno-arredamento",
+      "reason": "Wood and furniture industry (FederlegnoArredo).",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Federlegno-Arredo",
@@ -3494,7 +3499,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "f87731de27d7b330a0cb7b0026303a1804cfc533e885df482fe2df1b7baba3da",
+    "source_hash": "04a6f21c719db4265ebe98881b2e76a9f4a13e7aeed24b19996954f7825dcd3e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

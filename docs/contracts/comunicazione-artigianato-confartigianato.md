@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `G016` |
 | **Sector** | comunicazione grafica editoria stampa artigianato |
+| **Family** | `carta-grafica` |
 | **Tax sector** | `artigianato` |
 | **Last renewal** | 2024-11-18 |
 | **Workers (est.)** | ~60k |

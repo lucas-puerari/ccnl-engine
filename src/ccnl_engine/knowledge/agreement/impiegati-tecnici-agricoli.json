@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "impiegati-tecnici-agricoli",
     "name": "CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti",
     "cnel_code": "A021",
     "sector": "agricoltura",
+    "family": {
+      "id": "agricoltura",
+      "reason": "Agricultural clerical and technical staff.",
+      "related": []
+    },
     "tax_sector": "agricoltura",
     "signatories": [
       "Confagricoltura — Confederazione Generale dell'Agricoltura Italiana",
@@ -745,7 +750,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "623fa9168610c2689be8f885dcb09fdd8ca996554e64159a51462ce19a4470cb",
+    "source_hash": "575ef6232353baf177a5d8dccb37edbd00c7c3fdd5275af78d2be2443e22ebae",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

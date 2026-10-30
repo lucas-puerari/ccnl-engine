@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `T131` |
 | **Sector** | servizi socio-assistenziali |
+| **Family** | `socio-sanitario` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2025-07-23 |
 | **Workers (est.)** | ~120k |

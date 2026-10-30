@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "panificazione-assipan",
     "name": "CCNL Panificazione e Settori Affini — Industria (Assipan/Fiesa)",
     "cnel_code": "E023",
     "sector": "alimentare",
+    "family": {
+      "id": "alimentare",
+      "reason": "Bakeries (Assipan).",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Assipan — Associazione Sindacale Panificatori Industriali",
@@ -1590,7 +1595,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
     "verification_status": "unverified",
-    "source_hash": "1ea23ac61d9276a7c6dbf7cbae3db71a1ade472b8e13eb69b8c951e18bd7a206",
+    "source_hash": "fe50915973e5a5e40fed24b257dc1b9b4759ae8f06949f31eee600f4b043fab3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

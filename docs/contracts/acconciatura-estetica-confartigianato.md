@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H515` |
 | **Sector** | acconciatura ed estetica |
+| **Family** | `servizi-persona` |
 | **Tax sector** | `artigianato` |
 | **Last renewal** | 2024-05-20 |
 | **Workers (est.)** | ~95k |

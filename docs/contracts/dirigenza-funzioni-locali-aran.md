@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `S125` |
 | **Sector** | Pubblica Amministrazione |
+| **Family** | `dirigenza-pubblica` |
 | **Tax sector** | `pubblica-amministrazione` |
 | **Last renewal** | 2026-02-23 |
 | **Workers (est.)** | ~13k |

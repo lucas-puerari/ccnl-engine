@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "commercio-confcommercio",
     "name": "CCNL Terziario, Distribuzione e Servizi (Confcommercio)",
     "cnel_code": "H011",
     "sector": "terziario",
+    "family": {
+      "id": "commercio",
+      "reason": "Confcommercio agreement for the tertiary, distribution and services sector, the reference text of the trade family.",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "Confcommercio",
@@ -3125,7 +3130,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "3e346b7317cc38a6483742f283f416e8d21a1278d1fdbc621cfed96fd4eaf7a9",
+    "source_hash": "e8baf321eebf040cf83c363055d80946397b387d6cb7cb02043a05edb7c53b9c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

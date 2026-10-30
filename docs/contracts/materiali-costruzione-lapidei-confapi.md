@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `F020` |
 | **Sector** | Industria materiali da costruzione — Lapidei piccola industria |
+| **Family** | `materiali-estrattive` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-09-09 |
 | **Workers (est.)** | ~5000 |

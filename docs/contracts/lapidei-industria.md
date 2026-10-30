@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `F041` |
 | **Sector** | industria lapidea e delle cave |
+| **Family** | `materiali-estrattive` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2022-11-24 |
 | **Workers (est.)** | ~18k |

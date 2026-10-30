@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "edilizia-ance",
     "name": "CCNL Edilizia — Industria (ANCE), operai",
     "cnel_code": "F012",
     "sector": "edilizia",
+    "family": {
+      "id": "edilizia",
+      "reason": "Construction industry, manual workers (ANCE).",
+      "related": []
+    },
     "tax_sector": "edilizia",
     "signatories": [
       "ANCE",
@@ -1620,7 +1625,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "95c40ccd4239aaed1e5e3235b8f110491577130a652c34689311d61f0300400c",
+    "source_hash": "f198266885091aece1141e7808ca446f615e348e2275bf7273109aa6078f754c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

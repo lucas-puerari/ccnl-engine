@@ -287,12 +287,13 @@ def make_ccnl_dict(*, app_type: str = "percentage") -> dict[str, Any]:
     else:
         tracks = []
     return {
-        "schema_version": "0.4",
+        "schema_version": "0.6",
         "meta": {
             "ccnl_id": "test",
             "name": "Test CCNL",
             "cnel_code": "X001",
             "sector": "test",
+            "family": {"id": "commercio", "reason": "Test CCNL of the trade family."},
             "tax_sector": "terziario",
             "signatories": ["A", "B"],
             "sources": [

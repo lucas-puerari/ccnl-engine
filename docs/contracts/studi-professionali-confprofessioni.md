@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H442` |
 | **Sector** | terziario |
+| **Family** | `servizi-professionali` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2024-02-16 |
 | **Workers (est.)** | ~350k |

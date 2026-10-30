@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `I481` |
 | **Sector** | Agenzie marittime e aeree |
+| **Family** | `trasporti-logistica` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2024-09-13 |
 | **Workers (est.)** | ~5k |

@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `K461` |
 | **Sector** | turismo termale |
+| **Family** | `turismo` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2024-10-08 |
 | **Workers (est.)** | — |

@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "multiservizi-anip",
     "name": "CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi (ANIP-Confindustria)",
     "cnel_code": "K511",
     "sector": "multiservizi",
+    "family": {
+      "id": "pulizia-multiservizi",
+      "reason": "Cleaning and integrated services companies (ANIP multiservizi).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "ANIP-Confindustria",
@@ -5437,7 +5442,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "f15d64456c4efc073f8713936c3619d7b67192134cd332f67eae43b01c2896d8",
+    "source_hash": "14ae107b3be7d4ad37ec4eed75b43a34d3e0102f72db201fd6e671028494ee8f",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

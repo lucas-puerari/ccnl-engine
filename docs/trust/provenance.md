@@ -202,7 +202,7 @@ fixed-term exemption and the regional surtax table.
 
 ## Enforcement
 
-- **Load time.** A schema-0.5 CCNL without a record on a level, salary
+- **Load time.** A schema-0.6 CCNL without a record on a level, salary
   period, allowance, seniority block or additional-months period does not
   load. No CCNL, tax, INPS or surtax file loads with a label that outruns
   its evidence (see [above](#a-label-never-outruns-its-evidence)): the

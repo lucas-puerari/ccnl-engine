@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "uneba-uneba",
     "name": "CCNL Istituzioni Socio-Assistenziali — UNEBA",
     "cnel_code": "T141",
     "sector": "servizi socio-assistenziali",
+    "family": {
+      "id": "socio-sanitario",
+      "reason": "Social-care institutions of UNEBA.",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "UNEBA",
@@ -1529,7 +1534,7 @@
     "effective_until": null,
     "source": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "9bdd8863e34bc767d15ff62ba5ac7da93e8b7ad0dcbdb466faa648ad274f22b5",
+    "source_hash": "1e2fdbec38b4417838358ca1e3301386d5b41dbc92320882468f56b755a57925",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

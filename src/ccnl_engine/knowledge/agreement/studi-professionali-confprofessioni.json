@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "studi-professionali-confprofessioni",
     "name": "CCNL per i dipendenti degli studi e delle attività professionali (Confprofessioni)",
     "cnel_code": "H442",
     "sector": "terziario",
+    "family": {
+      "id": "servizi-professionali",
+      "reason": "Employees of professional offices (Confprofessioni).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "Confprofessioni",
@@ -2418,7 +2423,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "1ae846f1e991df0b7f810a85c25d45b51c8ba3d2601b4706b0b49161941d1327",
+    "source_hash": "1e4d2bc13083ca74b45b5c1e50c9795094d023a419b9c9cfc404ee58cc1a858e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "edilizia-artigianato-cna",
     "name": "CCNL Edilizia e Affini Artigianato",
     "cnel_code": "F015",
     "sector": "edilizia",
+    "family": {
+      "id": "edilizia",
+      "reason": "Construction crafts (CNA and other craft associations).",
+      "related": []
+    },
     "tax_sector": "artigianato",
     "validity": {
       "valid_from": "2025-05-01",
@@ -2275,7 +2280,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "30619f3154e6810f34a6258c9136abde20c7ff0e698a2bf1b42ebe34b77c77ed",
+    "source_hash": "b105c003f16f67d057d8ceee7b9a8e94fdfcdedc17af6fa26c7ba2718e1cd4be",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

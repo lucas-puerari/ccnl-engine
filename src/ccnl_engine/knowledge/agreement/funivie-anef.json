@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "funivie-anef",
     "name": "CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF",
     "cnel_code": "I911",
     "sector": "Trasporto a fune",
+    "family": {
+      "id": "trasporti-logistica",
+      "reason": "Cable transport (ANEF).",
+      "related": []
+    },
     "tax_sector": "industria",
     "agreement_date": "2025-05-16",
     "signatories": [
@@ -1469,7 +1474,7 @@
     "effective_until": null,
     "source": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
     "verification_status": "unverified",
-    "source_hash": "59c62734580d6a2b241b36729de42aa598a2d637f6b90df94e7959927bfba729",
+    "source_hash": "b3f320bfc3d40067090f571abd5b30eb423df3e08aa847eedcb3193a9b5938ea",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

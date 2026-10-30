@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H012` |
 | **Sector** | Terziario distribuzione e servizi |
+| **Family** | `commercio` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2024-03-22 |
 | **Workers (est.)** | ~230k |

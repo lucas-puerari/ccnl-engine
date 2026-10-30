@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "alimentari-pmi-unionalimentari",
     "name": "CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)",
     "cnel_code": "E018",
     "sector": "Alimentare",
+    "family": {
+      "id": "alimentare",
+      "reason": "Food small and medium industry (Unionalimentari).",
+      "related": []
+    },
     "tax_sector": "industria",
     "agreement_date": "2025-05-28",
     "signatories": [
@@ -1571,7 +1576,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "44c8d3849618e904c669fa4223ed15fd22dd69a16a2d342a3f0b6a78b199cdc1",
+    "source_hash": "16fb880a01daf047904dbfc3a26d29d37a6eb51fa615d1a268a04165ed3e8944",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

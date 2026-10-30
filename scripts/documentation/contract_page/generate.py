@@ -269,6 +269,7 @@ def _header_section(data: dict[str, Any], ccnl_id: str) -> list[str]:
     cnel = meta.get("cnel_code", "—")
     sector = meta.get("sector", "—")
     tax_sector = meta.get("tax_sector", "—")
+    family = (meta.get("family") or {}).get("id", "—")
     workers = meta.get("workers_estimate", "—")
     agreement_date = (
         meta.get("agreement_date")
@@ -287,6 +288,7 @@ def _header_section(data: dict[str, Any], ccnl_id: str) -> list[str]:
         "|---|---|",
         f"| **CNEL code** | `{cnel}` |",
         f"| **Sector** | {sector} |",
+        f"| **Family** | `{family}` |",
         f"| **Tax sector** | `{tax_sector}` |",
         f"| **Last renewal** | {agreement_date} |",
         f"| **Workers (est.)** | {workers} |",

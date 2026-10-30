@@ -1,10 +1,17 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "tessile-moda-artigianato-confartigianato",
     "name": "CCNL Area Tessile-Moda e Chimica-Ceramica — Artigianato",
     "cnel_code": "V751",
     "sector": "tessile moda chimica ceramica artigianato",
+    "family": {
+      "id": "tessile-moda",
+      "reason": "Craft textile and fashion businesses; the same text also covers craft chemistry and ceramics.",
+      "related": [
+        "chimica"
+      ]
+    },
     "tax_sector": "artigianato",
     "agreement_date": "2024-07-16",
     "signatories": [
@@ -1577,7 +1584,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
     "verification_status": "unverified",
-    "source_hash": "3c9a652e29e248ef0236219f4b6dfec1b8c74d1be51e16f2fbf66e9fc3431000",
+    "source_hash": "d86d5fe741515b93712c2165d5ddc7015b5de59ee343ac5f58d86634c7397ea8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

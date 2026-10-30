@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "lapidei-industria",
     "name": "CCNL Lapidei — Industria (Confindustria Marmomacchine/ANEPLA)",
     "cnel_code": "F041",
     "sector": "industria lapidea e delle cave",
+    "family": {
+      "id": "materiali-estrattive",
+      "reason": "Stone and quarrying industry.",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Confindustria Marmomacchine",
@@ -2314,7 +2319,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/Scadenziario/Scadenza/19851/lapidei-industria",
     "verification_status": "verified",
-    "source_hash": "bb8e35f7f2e25e096327cc35246f0caebac3020146070f2fd1617a7bd9c33411",
+    "source_hash": "c78e7949f42dfa61485b7d6eabbdfe50e79a7cdb498f2c7c11cb47fc956d72a7",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

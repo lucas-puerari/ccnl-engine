@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `HV40` |
 | **Sector** | vigilanza-privata |
+| **Family** | `vigilanza` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2023-05-30 |
 | **Workers (est.)** | ~85k |

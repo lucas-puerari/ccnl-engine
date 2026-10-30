@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `B254` |
 | **Sector** | energia |
+| **Family** | `energia-utilities` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-04-16 |
 | **Workers (est.)** | ~38k |

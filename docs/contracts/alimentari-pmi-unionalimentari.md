@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `E018` |
 | **Sector** | Alimentare |
+| **Family** | `alimentare` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-05-28 |
 | **Workers (est.)** | ~35k |

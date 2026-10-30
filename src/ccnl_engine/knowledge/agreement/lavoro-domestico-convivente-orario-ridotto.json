@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "lavoro-domestico-convivente-orario-ridotto",
     "name": "CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi a orario ridotto, art. 14 c. 2)",
     "cnel_code": "H501",
     "sector": "lavoro domestico",
+    "family": {
+      "id": "lavoro-domestico",
+      "reason": "Domestic work, live-in with reduced hours.",
+      "related": []
+    },
     "tax_sector": "lavoro-domestico",
     "signatories": [
       "DOMINA — Associazione Nazionale Famiglie Datori di Lavoro Domestico",
@@ -765,7 +770,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "f65ba27a74c5a3e970a41ab95c7941978f1d70080cfc26eeea673ea1d5f9281f",
+    "source_hash": "2a2e701b4ae8101b33989a4b7e8f76b9a888cffed77fbaad27257afa7f13bd39",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },

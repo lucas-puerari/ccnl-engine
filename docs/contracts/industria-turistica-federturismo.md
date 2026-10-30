@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H05B` |
 | **Sector** | turismo — alberghi, campeggi, villaggi e strutture ricettive |
+| **Family** | `turismo` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2025-01-01 |
 | **Workers (est.)** | ~40k |

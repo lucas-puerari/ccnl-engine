@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "dirigenza-istruzione-ricerca-aran",
     "name": "CCNL Area Dirigenza Istruzione e Ricerca 2022-2024 — ARAN",
     "cnel_code": "S325",
     "sector": "Pubblica Amministrazione",
+    "family": {
+      "id": "dirigenza-pubblica",
+      "reason": "Managers, education and research area.",
+      "related": []
+    },
     "tax_sector": "pubblica-amministrazione",
     "signatories": [
       "ARAN",
@@ -454,7 +459,7 @@
     "effective_until": "2024-12-31",
     "source": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
     "verification_status": "unverified",
-    "source_hash": "51db976e8fe787f0541c315e3aefa19f96490c65b2b8be8c74683de51ed60362",
+    "source_hash": "122f131e28624de411471629fdb331c09100c9ae19583f7700e258a7330435d4",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

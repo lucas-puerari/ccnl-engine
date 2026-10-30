@@ -12,6 +12,7 @@ from __future__ import annotations
 from contextlib import suppress
 from typing import TYPE_CHECKING
 
+from ccnl_engine.catalog.family.services import of_family
 from ccnl_engine.catalog.loaders import SLUG, LevelSummary, resolve_contract
 from ccnl_engine.catalog.models import ccnl_ruleset_assurance
 from ccnl_engine.errors import DataIntegrityError, UnknownCcnlError
@@ -26,16 +27,21 @@ if TYPE_CHECKING:
 __all__ = ["inspect_ruleset", "list_contracts", "list_levels", "resolve_ccnl"]
 
 
-def list_contracts(repo: KnowledgeRepository) -> tuple[ContractSummary, ...]:
+def list_contracts(
+    repo: KnowledgeRepository, *, family: str | None = None
+) -> tuple[ContractSummary, ...]:
     """Return the summary of every contract of *repo*, sorted by ``ccnl_id``.
 
     Args:
         repo: Repository the contracts are listed from.
+        family: When given, only the contracts of this contract family; an
+            id the catalog does not hold raises
+            :class:`~ccnl_engine.errors.InvalidInputError`.
 
     Returns:
         One summary per CCNL of the repository, with its readiness tier.
     """
-    return repo.load_contracts()
+    return of_family(repo.load_contracts(), family)
 
 
 def resolve_ccnl(repo: KnowledgeRepository, ccnl_id: str) -> CCNL:

@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `E015` |
 | **Sector** | panificazione e alimentazione artigianato |
+| **Family** | `alimentare` |
 | **Tax sector** | `artigianato` |
 | **Last renewal** | 2024-06-06 |
 | **Workers (est.)** | ~90k |

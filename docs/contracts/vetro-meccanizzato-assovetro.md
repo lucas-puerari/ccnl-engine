@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `B132` |
 | **Sector** | vetro industria — settori meccanizzati |
+| **Family** | `chimica` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2026-04-09 |
 | **Workers (est.)** | ~28k |

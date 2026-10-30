@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `T151` |
 | **Sector** | servizi socio-assistenziali |
+| **Family** | `socio-sanitario` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2025-11-20 |
 | **Workers (est.)** | ~380k |

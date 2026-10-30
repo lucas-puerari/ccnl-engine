@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `A181` |
 | **Sector** | sistemazioni idraulico-forestali e idraulico-agrarie — impiegati |
+| **Family** | `bonifica-forestazione` |
 | **Tax sector** | `agricoltura` |
 | **Last renewal** | 2025-12-04 |
 | **Workers (est.)** | ~430 (impiegati subset) |

@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "farmacie-municipalizzate-assofarm",
     "name": "CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)",
     "cnel_code": "H124",
     "sector": "Farmacie municipalizzate e partecipate da enti locali",
+    "family": {
+      "id": "farmacie",
+      "reason": "Pharmacies owned or controlled by local authorities (Assofarm).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "agreement_date": "2022-07-07",
     "signatories": [
@@ -1581,7 +1586,7 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "2cc1f33ee3ad0b7ec7b7fa4f6ce2f9e49ddbbed0d7a5c06e46d3e81ec930dbf4",
+    "source_hash": "4459a0e8ab7e47c5449b010dfbd56cfd8263a831dbe163787c24e0e59b45a1f1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

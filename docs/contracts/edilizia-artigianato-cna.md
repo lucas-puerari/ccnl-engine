@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `F015` |
 | **Sector** | edilizia |
+| **Family** | `edilizia` |
 | **Tax sector** | `artigianato` |
 | **Last renewal** | 2025-05-20 |
 | **Workers (est.)** | ~350k |

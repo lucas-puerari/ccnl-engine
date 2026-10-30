@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `E023` |
 | **Sector** | alimentare |
+| **Family** | `alimentare` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-02-26 |
 | **Workers (est.)** | ~20k |

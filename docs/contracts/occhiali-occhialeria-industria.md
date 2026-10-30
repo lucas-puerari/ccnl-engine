@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `D271` |
 | **Sector** | industria occhialeria e ottica |
+| **Family** | `tessile-moda` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2023-12-04 |
 | **Workers (est.)** | ~20k |

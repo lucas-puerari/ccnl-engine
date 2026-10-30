@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "universita-aran",
     "name": "CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN, Università (personale tecnico-amministrativo e CEL)",
     "cnel_code": "S305",
     "sector": "Pubblica Amministrazione",
+    "family": {
+      "id": "pubblico-impiego",
+      "reason": "Education and research sector, university staff.",
+      "related": []
+    },
     "tax_sector": "pubblica-amministrazione",
     "signatories": [
       "ARAN",
@@ -1202,7 +1207,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "ce78f17c39291046465cfec1a8b41aef49509537db61d5046dc184ff3bd6d6a2",
+    "source_hash": "3d9b572ae860adfd52285b93cceb85019454f7de6bd69e45515b998c581541ac",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `D111` |
 | **Sector** | industria |
+| **Family** | `pelli-calzature` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2023-05-26 |
 | **Workers (est.)** | ~17k |

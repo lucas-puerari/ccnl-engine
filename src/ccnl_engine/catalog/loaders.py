@@ -18,6 +18,7 @@ from ccnl_engine.bundle.validators import (
     verify_provenance_labels,
     verify_ruleset_hash,
 )
+from ccnl_engine.catalog.family.services import of_family
 from ccnl_engine.errors import UnknownCcnlError
 from ccnl_engine.surtax.jurisdiction.types import REGION_CODES
 from ccnl_engine.surtax.loaders import load_surtax_rules
@@ -95,6 +96,8 @@ class ContractSummary:
         name: Full display name
             (e.g. ``"CCNL Metalmeccanico Federmeccanica"``).
         cnel_code: Official CNEL classification code (e.g. ``"E042"``).
+        family: Id of the contract family of the CCNL (e.g.
+            ``"metalmeccanica"``), from :func:`list_families`.
         readiness: Readiness tier of the CCNL ruleset; only ``production``
             is payable in ``operational`` mode.
         validity: Dates on which every rule of the CCNL has a value in the
@@ -113,6 +116,7 @@ class ContractSummary:
     ccnl_id: CcnlId
     name: str
     cnel_code: str
+    family: str
     readiness: RulesetReadiness
     validity: ValidityWindow | None
     withholding_agent: bool = True
@@ -152,6 +156,7 @@ def contract_summary(ccnl: CCNL) -> ContractSummary:
         ccnl_id=CcnlId(meta.ccnl_id),
         name=meta.name,
         cnel_code=meta.cnel_code,
+        family=meta.family.id,
         readiness=ccnl.verification.readiness,
         validity=model_window(ccnl),
         withholding_agent=meta.withholding_agent,
@@ -235,14 +240,17 @@ def get_ccnl(ccnl_id: str) -> ContractSummary:
     return resolve_contract(_load_all(), ccnl_id)
 
 
-def search_ccnls(query: str) -> tuple[ContractSummary, ...]:
+def search_ccnls(
+    query: str, *, family: str | None = None
+) -> tuple[ContractSummary, ...]:
     """Return all CCNLs whose name or slug contains *query*.
 
     The comparison is case-insensitive.
 
     Args:
         query: Substring to match against :attr:`ContractSummary.ccnl_id` and
-            :attr:`ContractSummary.name`.
+            :attr:`ContractSummary.name`; ``""`` matches every CCNL.
+        family: When given, only the CCNLs of this contract family.
 
     Returns:
         A tuple of matching :class:`ContractSummary`, in slug order.
@@ -251,7 +259,7 @@ def search_ccnls(query: str) -> tuple[ContractSummary, ...]:
     q = query.lower()
     return tuple(
         info
-        for info in _load_all()
+        for info in of_family(_load_all(), family)
         if q in info.ccnl_id.lower() or q in info.name.lower()
     )
 

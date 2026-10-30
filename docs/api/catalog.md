@@ -7,7 +7,8 @@ discovery, ruleset identity and readiness, the capability catalog. See
 ## Contracts and rulesets
 
 Before any run, `engine.list_contracts()` returns one `ContractSummary`
-(`ccnl_id`, `name`, `cnel_code`, `readiness`, `validity`) per bundled CCNL and
+(`ccnl_id`, `name`, `cnel_code`, `family`, `readiness`, `validity`) per CCNL of
+the repository and
 `engine.inspect_ruleset(ccnl_id)` returns the `RulesetAssurance` of one CCNL,
 by slug or CNEL code: the same value the run reports in `result.rulesets`.
 
@@ -45,6 +46,31 @@ on 1 June): a competence or tax year of theirs from January is partial (see
 (anas,) = (c for c in engine.list_contracts() if c.ccnl_id == "anas")
 anas.validity.first_day  # → datetime.date(2026, 3, 1)
 ```
+
+## Contract families
+
+Every CCNL names its contract family in `meta.family`, an id of the central
+catalog that `list_families()` returns (`ContractFamily`: `id`, `name`,
+`description`, `criteria` and the work groups G01-G17 of the roadmap). The
+family groups the CCNLs of one productive sector across employer size,
+legal form and signatories (`metalmeccanica` holds the industrial, small
+industry, cooperative and craft metalworking CCNLs); it selects no rule and
+is independent of `tax_sector` and of the CNEL code.
+`engine.list_contracts(family=...)` and `search_ccnls(query, family=...)`
+keep the CCNLs of one family, in the bundle and in a custom repository
+alike; an id the catalog does not hold raises `InvalidInputError`.
+
+```python
+for family in list_families():
+    print(family.id, family.name)
+engine.list_contracts(family="edilizia")  # the five construction CCNLs
+```
+
+::: ccnl_engine.catalog.ContractFamily
+
+::: ccnl_engine.catalog.FamilyAssignment
+
+::: ccnl_engine.catalog.list_families
 
 ::: ccnl_engine.catalog.CapabilityCatalog
 

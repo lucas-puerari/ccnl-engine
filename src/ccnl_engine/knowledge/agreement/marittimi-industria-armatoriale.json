@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "marittimi-industria-armatoriale",
     "name": "CCNL Marittimi — Industria Armatoriale (CONFITARMA)",
     "cnel_code": "I391",
     "sector": "navigazione marittima — personale di terra",
+    "family": {
+      "id": "trasporti-logistica",
+      "reason": "Shipping companies, shore staff.",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "CONFITARMA",
@@ -1467,7 +1472,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "a9cb985d40415da5bce0c58120f985a889191117c84afd1a23cdcca8976ecfc2",
+    "source_hash": "e8cfd6663f3b911489c78bd8976cef48dac90b4d239f1c2becf2d73341fc5353",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

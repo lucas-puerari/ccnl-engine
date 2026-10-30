@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "farmacie-private-h121",
     "name": "CCNL Dipendenti delle Farmacie Private",
     "cnel_code": "H121",
     "sector": "Farmacie private",
+    "family": {
+      "id": "farmacie",
+      "reason": "Private pharmacies.",
+      "related": []
+    },
     "tax_sector": "terziario",
     "agreement_date": "2021-09-07",
     "signatories": [
@@ -1448,7 +1453,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "9b12f527ed0ccdf540f8ae5bdb8896feac72cdd3189f2f08d02917ae07f81deb",
+    "source_hash": "c041846d3095413bbedf3c170b5f4a3c925caa4e43372c2e5bb5c52cb6c87931",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

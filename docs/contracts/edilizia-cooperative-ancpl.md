@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `F016` |
 | **Sector** | Edilizia |
+| **Family** | `edilizia` |
 | **Tax sector** | `edilizia` |
 | **Last renewal** | 2025-02-21 |
 | **Workers (est.)** | ~90000 |

@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `T141` |
 | **Sector** | servizi socio-assistenziali |
+| **Family** | `socio-sanitario` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2025-01-24 |
 | **Workers (est.)** | ~130k |

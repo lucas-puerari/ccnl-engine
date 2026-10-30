@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "agenti-immobiliari-fiaip",
     "name": "CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso",
     "cnel_code": "H0B1",
     "sector": "agenzie immobiliari",
+    "family": {
+      "id": "servizi-immobiliari",
+      "reason": "Employees of real estate agencies (FIAIP).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "agreement_date": "2025-05-19",
     "signatories": [
@@ -1525,6 +1530,6 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "7b362ce427aa65fe296b62801e744e57e3b5aba43ee2a117a86bc50cff8d2eb0"
+    "source_hash": "7289fdd2606546a5f95118718bc8a8b3eb67660d590fc62e35aafc623d037c38"
   }
 }

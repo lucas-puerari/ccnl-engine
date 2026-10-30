@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "federcasa",
     "name": "CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa",
     "cnel_code": "T611",
     "sector": "Case popolari",
+    "family": {
+      "id": "servizi-immobiliari",
+      "reason": "Public housing bodies and companies (Federcasa) managing residential buildings.",
+      "related": []
+    },
     "tax_sector": "terziario",
     "agreement_date": "2024-11-06",
     "signatories": [
@@ -1180,7 +1185,7 @@
     "effective_until": null,
     "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "83e16af95c6ff678f2fdc3caecba16dcde63cc8dd96cda68af70188567e04034",
+    "source_hash": "a578e9521623c9b73473c7530b8304d1e0207e179727f2784f8075857d8a41e7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

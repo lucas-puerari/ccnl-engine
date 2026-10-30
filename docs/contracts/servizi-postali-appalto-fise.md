@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `K721` |
 | **Sector** | Servizi postali in appalto e recapito |
+| **Family** | `servizi-postali` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2023-12-21 |
 | **Workers (est.)** | ~1k |

@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "chimica-farmaceutica-federchimica",
     "name": "CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)",
     "cnel_code": "B011",
     "sector": "chimica",
+    "family": {
+      "id": "chimica",
+      "reason": "Chemical and pharmaceutical industry (Federchimica/Farmindustria).",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Federchimica",
@@ -4821,7 +4826,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "c45d8ea92b82f7f524e902923993e41f2d018e4a68c96c0b6e703e0650966c8b",
+    "source_hash": "6836c0519180e2020e8172398943f221eea3c13b351940f6c6a216274061b4e5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

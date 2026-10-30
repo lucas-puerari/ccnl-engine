@@ -1,10 +1,17 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "recapito-corrispondenza-fise",
     "name": "CCNL Recapito Corrispondenza (FISE-ARE)",
     "cnel_code": "K711",
     "sector": "Recapito corrispondenza e spedizioni",
+    "family": {
+      "id": "servizi-postali",
+      "reason": "Mail delivery and courier companies (FISE).",
+      "related": [
+        "trasporti-logistica"
+      ]
+    },
     "tax_sector": "terziario",
     "agreement_date": "2023-11-14",
     "signatories": [
@@ -1425,7 +1432,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/",
     "verification_status": "unverified",
-    "source_hash": "440c49f93fb9f9d4dd5471db3ebb6b50694216344ad257e539588d1fa094c9ba",
+    "source_hash": "6e4cdaef520a496eb8492c75e9f8a26f3d9cc60feabb3444fc6aa60828b55d3f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

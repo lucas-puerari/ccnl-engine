@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `S225` |
 | **Sector** | Pubblica Amministrazione |
+| **Family** | `dirigenza-pubblica` |
 | **Tax sector** | `pubblica-amministrazione` |
 | **Last renewal** | 2026-02-27 |
 | **Workers (est.)** | ~37k |

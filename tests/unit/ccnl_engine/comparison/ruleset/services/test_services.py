@@ -320,7 +320,7 @@ class TestDiffCcnlVerificationStatus:
     def test_ruleset_verification_status_propagated(self) -> None:
         """verification_status from ruleset is propagated to the diff."""
         data = make_ccnl_dict()
-        data["schema_version"] = "0.5"
+        data["schema_version"] = "0.6"
         data["ruleset"] = {
             "id": "ccnl/test",
             "version": "2026.1",

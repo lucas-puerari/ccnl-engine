@@ -1,10 +1,17 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "servizi-postali-appalto-fise",
     "name": "CCNL Servizi Postali in Appalto (FISE-ARE)",
     "cnel_code": "K721",
     "sector": "Servizi postali in appalto e recapito",
+    "family": {
+      "id": "servizi-postali",
+      "reason": "Postal services contracted out and mail delivery (FISE).",
+      "related": [
+        "trasporti-logistica"
+      ]
+    },
     "tax_sector": "terziario",
     "agreement_date": "2023-12-21",
     "signatories": [
@@ -1698,7 +1705,7 @@
     "effective_until": null,
     "source": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
     "verification_status": "unverified",
-    "source_hash": "f5c3401ddbd187dde369afd6ad1969ebeae3db02e9b1ed9daa30925cb1458cac",
+    "source_hash": "87ccf2ad7d973387386782a2f28d0f6384cfa4fc2e86bc271e55acb56a74583c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

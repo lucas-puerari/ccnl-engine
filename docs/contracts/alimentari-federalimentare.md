@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `E012` |
 | **Sector** | industria |
+| **Family** | `alimentare` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2024-03-01 |
 | **Workers (est.)** | ~145k |

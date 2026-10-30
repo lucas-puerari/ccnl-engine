@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `C016` |
 | **Sector** | metalmeccanico cooperativo |
+| **Family** | `metalmeccanica` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-07-22 |
 | **Workers (est.)** | ~28k |

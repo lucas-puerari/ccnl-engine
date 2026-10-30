@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "calzaturiero-assocalzaturifici",
     "name": "CCNL per i lavoratori addetti all'industria delle calzature",
     "cnel_code": "D121",
     "sector": "industria",
+    "family": {
+      "id": "pelli-calzature",
+      "reason": "Footwear industry (Assocalzaturifici).",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Assocalzaturifici",
@@ -1322,7 +1327,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
     "verification_status": "unverified",
-    "source_hash": "fcce05bb2f12809a3e769b1e35cfc6c45f21db18a8a4b6e792c9bb24c828790d",
+    "source_hash": "50da29d158fe6c2df4f71d6676d2eea16ba01313b59b6bf6066a183ab93ec21c",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

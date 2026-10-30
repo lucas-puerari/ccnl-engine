@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `I192` |
 | **Sector** | autostrade e trafori — addetti alle concessionarie autostradali |
+| **Family** | `trasporti-logistica` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2023-01-01 |
 | **Workers (est.)** | ~15k |

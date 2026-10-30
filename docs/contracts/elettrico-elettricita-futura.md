@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `K051` |
 | **Sector** | industria |
+| **Family** | `energia-utilities` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-02-11 |
 | **Workers (est.)** | ~60k |

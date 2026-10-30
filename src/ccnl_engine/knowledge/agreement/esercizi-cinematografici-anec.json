@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "esercizi-cinematografici-anec",
     "name": "CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)",
     "cnel_code": "G211",
     "sector": "cinema",
+    "family": {
+      "id": "spettacolo-media",
+      "reason": "Cinemas (ANEC): exhibition of films to the public.",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "ANEC",
@@ -1896,7 +1901,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "ef45bda1f93c807715ae0d71d3533c2283fba7443585a1ae5a23bdf932119834",
+    "source_hash": "61c0c2f8448f62802bebe3a49bfc1e5d89006f309f5de89e8168d025dd3d2ace",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

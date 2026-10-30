@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `IC91` |
 | **Sector** | autoscuole e consulenza automobilistica |
+| **Family** | `servizi-automobilistici` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2023-02-28 |
 | **Workers (est.)** | — |

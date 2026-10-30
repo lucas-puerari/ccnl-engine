@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "turismo-federalberghi",
     "name": "CCNL Turismo — Federalberghi/Faita",
     "cnel_code": "H052",
     "sector": "Turismo",
+    "family": {
+      "id": "turismo",
+      "reason": "Federalberghi tourism agreement: hotels and accommodation.",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "Federalberghi",
@@ -3240,7 +3245,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "4c501c03552fa41d94440ac27ecc2fefe940d5aca5cc2fe6aa639cfb2a14c331",
+    "source_hash": "1c8f0534cdbb842d52d0225fbb23b00f3fa9bd36d37ccbb0d952b233e5c9a0b9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

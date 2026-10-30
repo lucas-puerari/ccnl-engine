@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H201` |
 | **Sector** | Fiori recisi, verde e piante ornamentali (import-export) |
+| **Family** | `commercio` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2023-03-30 |
 | **Workers (est.)** | ~1.3k |

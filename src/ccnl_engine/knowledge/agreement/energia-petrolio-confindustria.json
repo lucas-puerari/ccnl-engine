@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "energia-petrolio-confindustria",
     "name": "CCNL Energia e Petrolio (Confindustria Energia)",
     "cnel_code": "B254",
     "sector": "energia",
+    "family": {
+      "id": "energia-utilities",
+      "reason": "Energy and oil industry.",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Confindustria Energia",
@@ -5291,7 +5296,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
     "verification_status": "unverified",
-    "source_hash": "3a8ce28e1509dd01f61fab2407bc4dfd441d65323e046f86adff239811155faa",
+    "source_hash": "542e8255e8e7e75e714f160914e05cab2a4cb08a818270226527bff6cc2c156e",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -1,10 +1,17 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "aziende-termali-federterme",
     "name": "CCNL per i lavoratori dipendenti delle aziende termali",
     "cnel_code": "K461",
     "sector": "turismo termale",
+    "family": {
+      "id": "turismo",
+      "reason": "Spa and thermal establishments (Federterme): hospitality with health treatments.",
+      "related": [
+        "socio-sanitario"
+      ]
+    },
     "tax_sector": "terziario",
     "signatories": [
       "Federterme — Federazione Italiana delle Industrie Termali, delle Acque Minerali e del Benessere Termale",
@@ -2269,7 +2276,7 @@
     "effective_until": null,
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
     "verification_status": "unverified",
-    "source_hash": "2d3276d3166e3dcef9124b1572370b8a027615db5c68033005869fe242559be3",
+    "source_hash": "064c170ff2d152a93cacfc08b031a7f5459e5e4ed46ca63d7647d4aec9f58fd3",
     "published_at": "2026-09-12",
     "source_type": "commercial_secondary"
   },

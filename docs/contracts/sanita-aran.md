@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `S205` |
 | **Sector** | Pubblica Amministrazione |
+| **Family** | `pubblico-impiego` |
 | **Tax sector** | `pubblica-amministrazione` |
 | **Last renewal** | 2025-10-27 |
 | **Workers (est.)** | ~580k |

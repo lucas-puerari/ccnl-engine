@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "logistica-trasporto-confetra-viaggiante",
     "name": "CCNL Logistica, Trasporto Merci e Spedizione (Confetra) - Personale viaggiante",
     "cnel_code": "I100",
     "sector": "logistica",
+    "family": {
+      "id": "trasporti-logistica",
+      "reason": "Logistics and freight transport, travelling staff (Confetra).",
+      "related": []
+    },
     "tax_sector": "industria",
     "inps_sectors": [
       "industria",
@@ -3356,7 +3361,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "a4bb27df3e3f3e8296d98d6b24d8b21d3c1afe0f68fa3535a6bec44c6a190376",
+    "source_hash": "6cc0e55b7a3b45a56009f239d667b903fa8ab10bc96384aa7ad374d94fd92c47",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -1,10 +1,17 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "consorzi-agrari-assocap",
     "name": "CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)",
     "cnel_code": "A141",
     "sector": "Agricoltura",
+    "family": {
+      "id": "agricoltura",
+      "reason": "Agricultural consortia (Assocap): supply and marketing for farms.",
+      "related": [
+        "commercio"
+      ]
+    },
     "tax_sector": "agricoltura",
     "agreement_date": "2023-12-12",
     "signatories": [
@@ -1379,7 +1386,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "40343fa0baa8252566fd4dc3c791a0998e9004163596b0f12feda3a5eae6cb88",
+    "source_hash": "5934ed3c12d4e13db44679e53ff14b7cf16604e0f51b271ffcad48b323894bbb",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `E016` |
 | **Sector** | industria alimentare — cooperative di produzione e lavoro |
+| **Family** | `alimentare` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2024-05-14 |
 | **Workers (est.)** | ~15k |

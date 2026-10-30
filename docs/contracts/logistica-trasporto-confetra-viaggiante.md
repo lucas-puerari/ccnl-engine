@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `I100` |
 | **Sector** | logistica |
+| **Family** | `trasporti-logistica` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2024-12-06 |
 | **Workers (est.)** | ~430k |

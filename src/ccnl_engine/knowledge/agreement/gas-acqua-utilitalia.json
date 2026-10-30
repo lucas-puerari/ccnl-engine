@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "gas-acqua-utilitalia",
     "name": "CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas",
     "cnel_code": "K321",
     "sector": "gas e acqua",
+    "family": {
+      "id": "energia-utilities",
+      "reason": "Gas and water utilities (Utilitalia).",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Utilitalia",
@@ -1972,7 +1977,7 @@
     "effective_until": null,
     "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
     "verification_status": "unverified",
-    "source_hash": "abf98abee5311d5b4cdc2826fdc905ba840da00af9a29e728c3286f4e6b512e4",
+    "source_hash": "38dc0df2ee1c0f0f5e1f48a0fb3ad95f166be61218e3511377dcd12c30f11487",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

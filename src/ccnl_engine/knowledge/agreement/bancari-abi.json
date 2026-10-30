@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "bancari-abi",
     "name": "CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)",
     "cnel_code": "J241",
     "sector": "credito",
+    "family": {
+      "id": "credito",
+      "reason": "Banks (ABI).",
+      "related": []
+    },
     "tax_sector": "credito",
     "signatories": [
       "ABI",
@@ -1832,7 +1837,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "587db5412bd4dfd7cecd15aca5285d694fabe491fada9491f9b8a5d6a99b7887",
+    "source_hash": "645100fc2d3eb8b8e5124a069f78903bef1564e01b1e0bce4aee98d6129d1cd0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

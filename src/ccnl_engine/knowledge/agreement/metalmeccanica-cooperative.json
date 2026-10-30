@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "metalmeccanica-cooperative",
     "name": "CCNL Metalmeccanica - Cooperative",
     "cnel_code": "C016",
     "sector": "metalmeccanico cooperativo",
+    "family": {
+      "id": "metalmeccanica",
+      "reason": "Metalworking cooperatives.",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Legacoop Produzione e Servizi",
@@ -1488,7 +1493,7 @@
     "effective_until": null,
     "source": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/",
     "verification_status": "unverified",
-    "source_hash": "95eb80182d079250da8d80b9c1fc9664e35155fa351b25182b5662206d27902a",
+    "source_hash": "2e182e58e1c064e6006ee3dec00113b57046a456bc171154d95d979a2e0bccab",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "scuole-materne-fism",
     "name": "CCNL Scuole Materne — FISM",
     "cnel_code": "T271",
     "sector": "istruzione privata cattolica per l'infanzia",
+    "family": {
+      "id": "istruzione-formazione",
+      "reason": "Private nursery schools (FISM).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "FISM",
@@ -1460,7 +1465,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "afae578a92aa33adfc3805f03bd7fcc92d7a74e5ec405cc1f7f295f76d592d2f",
+    "source_hash": "e0c9cb09c2e40a59bc3ed1b3079a27274aa8990c89e52e885c97cf46608719f6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

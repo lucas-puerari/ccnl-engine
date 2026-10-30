@@ -1,10 +1,17 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "ceramica-industria-confindustria",
     "name": "CCNL Ceramica Industria (Confindustria-Assopiastrelle)",
     "cnel_code": "B122",
     "sector": "ceramica",
+    "family": {
+      "id": "chimica",
+      "reason": "Ceramics industry: tiles, sanitary ware and refractories.",
+      "related": [
+        "materiali-estrattive"
+      ]
+    },
     "tax_sector": "industria",
     "signatories": [
       "Confindustria Ceramica",
@@ -2002,7 +2009,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
     "verification_status": "unverified",
-    "source_hash": "b474639e157df570bf4dccbc4fceadb914593782196dfa465a13af42ea4b62f3",
+    "source_hash": "208b52de001be7c536729486878b8ee82b94899372fe602be3815993b9a9951e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

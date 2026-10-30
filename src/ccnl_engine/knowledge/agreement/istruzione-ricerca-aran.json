@@ -1,10 +1,17 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "istruzione-ricerca-aran",
     "name": "CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN",
     "cnel_code": "S305",
     "sector": "Pubblica Amministrazione",
+    "family": {
+      "id": "pubblico-impiego",
+      "reason": "Education and research sector, school staff.",
+      "related": [
+        "istruzione-formazione"
+      ]
+    },
     "tax_sector": "pubblica-amministrazione",
     "signatories": [
       "ARAN",
@@ -10944,7 +10951,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "4b195066d6395ea7277448c79ebf5a1075d558b85bbd4e46db9c99417159fa9b",
+    "source_hash": "da8d96bf9b6e9a3664a20b6d8240543e08224286bfcdfa4ddfe813d395105819",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

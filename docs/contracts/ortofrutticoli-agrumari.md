@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H341` |
 | **Sector** | ortofrutticoli ed agrumari import-export |
+| **Family** | `commercio` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2024-07-19 |
 | **Workers (est.)** | ~60000 |

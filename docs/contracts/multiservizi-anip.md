@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `K511` |
 | **Sector** | multiservizi |
+| **Family** | `pulizia-multiservizi` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2021-06-08 |
 | **Workers (est.)** | ~580k |

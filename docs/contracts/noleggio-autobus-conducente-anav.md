@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `IC36` |
 | **Sector** | Trasporti - Noleggio autobus con conducente |
+| **Family** | `trasporti-logistica` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2025-05-23 |
 | **Workers (est.)** | ~5422 |

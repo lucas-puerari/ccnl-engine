@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "edilizia-pmi-confapi-aniem",
     "name": "CCNL Edilizia PMI CONFAPI ANIEM",
     "cnel_code": "F018",
     "sector": "Edilizia",
+    "family": {
+      "id": "edilizia",
+      "reason": "Construction small and medium industry (Confapi-ANIEM).",
+      "related": []
+    },
     "tax_sector": "edilizia",
     "agreement_date": "2025-04-15",
     "signatories": [
@@ -1733,7 +1738,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "1b74833a71d6912b36c2f99cebfdfabc6b83a9b53933647415643ac423a17116",
+    "source_hash": "ab53fa230d05f737a8e32d85792319b076c0151d4794cea482db97b4f90b9d15",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

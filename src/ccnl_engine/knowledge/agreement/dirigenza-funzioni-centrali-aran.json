@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "dirigenza-funzioni-centrali-aran",
     "name": "CCNL Area Dirigenza Funzioni Centrali 2022-2024 — ARAN",
     "cnel_code": "S025",
     "sector": "Pubblica Amministrazione",
+    "family": {
+      "id": "dirigenza-pubblica",
+      "reason": "Managers, central functions area.",
+      "related": []
+    },
     "tax_sector": "pubblica-amministrazione",
     "signatories": [
       "ARAN",
@@ -395,7 +400,7 @@
     "effective_until": "2024-12-31",
     "source": "https://trasparenza.lavoro.gov.it/archiviofile/minlavoro/2025_10_28_CCNL_A_FC_2022-2024_Pubblicazione-1%20vigente.pdf",
     "verification_status": "unverified",
-    "source_hash": "b7e61f30a44b2d0a6f184e6b93ec8f3f00de326702f6405fa82119aee744ab41",
+    "source_hash": "225bf21e57b1a2437ccb1f46ad254e9061f4383e8c1a0252ea2e7bcb2e193765",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

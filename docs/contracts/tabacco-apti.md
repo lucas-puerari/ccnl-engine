@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `E042` |
 | **Sector** | lavorazione foglia di tabacco |
+| **Family** | `alimentare` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-07-02 |
 | **Workers (est.)** | ~2k |

@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H052` |
 | **Sector** | Turismo |
+| **Family** | `turismo` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2024-07-05 |
 | **Workers (est.)** | ~220k |

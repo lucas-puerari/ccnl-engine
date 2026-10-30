@@ -1,10 +1,17 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "sanita-aran",
     "name": "CCNL Comparto Sanità 2022-2024 — ARAN",
     "cnel_code": "S205",
     "sector": "Pubblica Amministrazione",
+    "family": {
+      "id": "pubblico-impiego",
+      "reason": "Public health service sector.",
+      "related": [
+        "socio-sanitario"
+      ]
+    },
     "tax_sector": "pubblica-amministrazione",
     "signatories": [
       "ARAN",
@@ -733,7 +740,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "7887c448fd2037fd78238f839b50b99b643a1e4038d5be34c7cc602beb822b8c",
+    "source_hash": "54e13e8386425c050cf2f3db7d0f7b07ae8c40f4f25ddc6b3c506917b579c49f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

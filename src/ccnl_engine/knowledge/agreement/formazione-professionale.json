@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "formazione-professionale",
     "name": "CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)",
     "cnel_code": "T261",
     "sector": "formazione professionale",
+    "family": {
+      "id": "istruzione-formazione",
+      "reason": "Vocational training bodies.",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "CNOS-FAP",
@@ -1101,7 +1106,7 @@
     "effective_until": null,
     "source": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
     "verification_status": "verified",
-    "source_hash": "ee5e9e344e5a3a738b62548c546d7cbf6b49f95be54b9476d36881721f07fa5a",
+    "source_hash": "683be237483f9292d4a5e55bb7e9c5533b61b1d500e1396fc86f53689ce152c8",
     "published_at": "2026-09-11",
     "source_type": "contracting_party"
   },

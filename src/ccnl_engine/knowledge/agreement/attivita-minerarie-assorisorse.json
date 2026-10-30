@@ -1,10 +1,17 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "attivita-minerarie-assorisorse",
     "name": "CCNL Attivita Minerarie (ASSORISORSE)",
     "cnel_code": "B282",
     "sector": "Industria estrattiva - Miniere, cave, saline, metallurgia estrattiva",
+    "family": {
+      "id": "materiali-estrattive",
+      "reason": "Mines, quarries, salt works and extractive metallurgy (Assorisorse).",
+      "related": [
+        "energia-utilities"
+      ]
+    },
     "tax_sector": "industria",
     "agreement_date": "2022-07-13",
     "signatories": [
@@ -1616,7 +1623,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "9be7c09262504a9a8512aef8874c09f530287b44a2c7177508dec2fb80ed8096",
+    "source_hash": "21388f9e85c01277c4f5f2b14993c944148ac21755dc5dfb111923f57291b69f",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

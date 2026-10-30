@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `T611` |
 | **Sector** | Case popolari |
+| **Family** | `servizi-immobiliari` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2024-11-06 |
 | **Workers (est.)** | ~6k |

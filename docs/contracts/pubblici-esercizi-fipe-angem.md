@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H05Y` |
 | **Sector** | turismo |
+| **Family** | `turismo` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2024-06-26 |
 | **Workers (est.)** | ~350k |

@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `G111` |
 | **Sector** | Cinema e audiovisivo |
+| **Family** | `spettacolo-media` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-07-23 |
 | **Workers (est.)** | ~2.3k |

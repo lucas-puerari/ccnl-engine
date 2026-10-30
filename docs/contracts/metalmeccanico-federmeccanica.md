@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `C011` |
 | **Sector** | metalmeccanico |
+| **Family** | `metalmeccanica` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-11-22 |
 | **Workers (est.)** | ~1,7M |

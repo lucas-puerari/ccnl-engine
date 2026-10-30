@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `D014` |
 | **Sector** | industria |
+| **Family** | `tessile-moda` |
 | **Tax sector** | `industria` |
 | **Last renewal** | 2024-11-11 |
 | **Workers (est.)** | ~160k |

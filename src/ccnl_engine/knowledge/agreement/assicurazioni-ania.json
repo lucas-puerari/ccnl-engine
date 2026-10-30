@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "assicurazioni-ania",
     "name": "CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)",
     "cnel_code": "J121",
     "sector": "assicurazioni",
+    "family": {
+      "id": "assicurazioni",
+      "reason": "Insurance companies (ANIA).",
+      "related": []
+    },
     "tax_sector": "credito",
     "agreement_date": "2026-05-13",
     "signatories": [
@@ -1191,7 +1196,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "6744b26708fd6558f0d8b5b68ea301ec2311ca66bc3784fbc6afaad1b2934b31",
+    "source_hash": "161f7c258b725223f9947228b4cbb85b901cd636dcf55af4cdd253e71c450b0f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H401` |
 | **Sector** | portieri e custodi di condominio |
+| **Family** | `servizi-immobiliari` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2025-10-30 |
 | **Workers (est.)** | ~40k |

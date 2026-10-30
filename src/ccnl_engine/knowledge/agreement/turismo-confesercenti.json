@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "turismo-confesercenti",
     "cnel_code": "H058",
     "name": "CCNL Turismo (Assoturismo-Confesercenti)",
     "sector": "turismo — alberghi, campeggi, pubblici esercizi, agenzie di viaggi",
+    "family": {
+      "id": "turismo",
+      "reason": "Confesercenti tourism agreement: hotels, campsites, public establishments and travel agencies.",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "Assoturismo-Confesercenti",
@@ -1734,7 +1739,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "c357b19f3fe19feae84d0e1ce1e39212826dc36da045144fb2ea8fe51cc35b0e",
+    "source_hash": "9d8cc69be15837d536a5299e92c6a0a5b1f71df3689332441d01506a6b8d4837",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

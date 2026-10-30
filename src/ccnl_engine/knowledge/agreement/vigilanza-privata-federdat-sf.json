@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "vigilanza-privata-federdat-sf",
     "cnel_code": "HV17",
     "name": "CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF",
     "sector": "vigilanza privata — servizi fiduciari (SF)",
+    "family": {
+      "id": "vigilanza",
+      "reason": "Private security, fiduciary services section (Federdat).",
+      "related": []
+    },
     "tax_sector": "terziario",
     "signatories": [
       "FEDERDAT",
@@ -1262,7 +1267,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "83652fe92fa0005a994965befd4277a9652f47315e9eb33c7124ae0567123025",
+    "source_hash": "a93f2060d21f3df671e22a5ff49e3668681bae950d6593c89e8eaaf9171f8397",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

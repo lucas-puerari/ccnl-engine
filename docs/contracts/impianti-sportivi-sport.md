@@ -4,6 +4,7 @@
 |---|---|
 | **CNEL code** | `H077` |
 | **Sector** | impianti sportivi, palestre e attività sportive |
+| **Family** | `sport` |
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2024-01-12 |
 | **Workers (est.)** | 35533 |

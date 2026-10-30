@@ -57,7 +57,7 @@ class CCNL(BaseModel):
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    schema_version: Literal["0.4", "0.5"]
+    schema_version: Literal["0.6"]
     ruleset: RulesetIdentity | None = None
     meta: CCNLMeta
     parameters: CCNLParameters

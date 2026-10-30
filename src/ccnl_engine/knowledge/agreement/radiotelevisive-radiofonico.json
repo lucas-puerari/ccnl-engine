@@ -1,10 +1,15 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "meta": {
     "ccnl_id": "radiotelevisive-radiofonico",
     "name": "CCNL Radiotelevisivo — Settore Radiofonico",
     "cnel_code": "G091",
     "sector": "radiotelevisione — settore radiofonico",
+    "family": {
+      "id": "spettacolo-media",
+      "reason": "Private radio and television broadcasters, radio section.",
+      "related": []
+    },
     "tax_sector": "industria",
     "signatories": [
       "Confindustria Radio Televisioni",
@@ -1363,6 +1368,6 @@
     "source": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "3b448dc5e511daba661b536b0f0c7c49233c807a195fd48e21f22fa3117e90a5"
+    "source_hash": "251f4bfc34dc7c4a7b2501a04c59ae7078b7574e9297c7e3a092217aabfd73db"
   }
 }
