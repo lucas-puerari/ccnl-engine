@@ -16,6 +16,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.pay_item.services import _ZERO
+from ccnl_engine.sickness.base.rules import episode_daily_base
 from ccnl_engine.sickness.cumulation.results import (
     CumulationReport,
     cumulation_report,
@@ -53,6 +54,9 @@ class EpisodePay:
         carenza: Employer pay of the waiting period.
         report: What a CCNL treatment counted over several episodes rests
             on; ``None`` for a per-episode CCNL.
+        inps_base: INPS daily base the INPS share is computed on, on
+            calendar days; ``None`` when the share falls back to the CCNL
+            daily quota.
     """
 
     segments: tuple[SickDaySegment, ...]
@@ -62,6 +66,7 @@ class EpisodePay:
     integration: Decimal = _ZERO
     carenza: Decimal = _ZERO
     report: CumulationReport | None = None
+    inps_base: Decimal | None = None
 
     @property
     def paid(self) -> Decimal:
@@ -147,12 +152,28 @@ def _grossed(share: Decimal, rules: SickPayRules, terms: SicknessTerms) -> Decim
     return money(share / (1 - terms.employee_rate))
 
 
+def _inps_share(
+    segment: SickDaySegment, base: Decimal, inps_base: Decimal | None
+) -> Decimal:
+    """Return the INPS share of the days of one segment.
+
+    Returns:
+        The INPS daily base times the calendar days of the segment, when
+        known; else the CCNL pay of its units; times the INPS rate.
+    """
+    if inps_base is None:
+        return money(base * segment.inps_rate)
+    days = (segment.last - segment.first).days + 1
+    return money(inps_base * days * segment.inps_rate)
+
+
 def _segment_pay(
     segment: SickDaySegment,
     base: Decimal,
     rules: tuple[SickPayRules, SicknessTerms],
     *,
     excluded: bool,
+    inps_base: Decimal | None = None,
 ) -> tuple[Decimal, Decimal, Decimal]:
     """Return the INPS advance, integration and carenza pay of one segment.
 
@@ -164,7 +185,7 @@ def _segment_pay(
     """
     if segment.kind is SickDayKind.FIXED_TERM_LIMIT:
         return _ZERO, _ZERO, _ZERO
-    share = money(base * segment.inps_rate)
+    share = _inps_share(segment, base, inps_base)
     advanced = (
         share
         if segment.kind is not SickDayKind.CARENZA and not segment.inps_direct
@@ -206,6 +227,7 @@ def episode_pay(
     )
     absence = inps = integration = carenza = _ZERO
     excluded = rules.ccnl.apprentices_excluded and terms.apprentice
+    inps_base = episode_daily_base(episode, terms)
     counted = terms.counted
     before = _quota(chain, counted, quota.divisor)
     for segment, unit in zip(segments, units, strict=True):  # pragma: no mutate
@@ -215,7 +237,9 @@ def episode_pay(
         reached = _quota(chain, counted, quota.divisor)
         base, before = reached - before, reached
         absence += _ZERO if terms.paid_by_the_hour else base
-        paid = _segment_pay(segment, base, (rules, terms), excluded=excluded)
+        paid = _segment_pay(
+            segment, base, (rules, terms), excluded=excluded, inps_base=inps_base
+        )
         inps, integration, carenza = (
             inps + paid[0],
             integration + paid[1],
@@ -223,4 +247,6 @@ def episode_pay(
         )
     cumulative = rules.cumulative(episode, terms.history)
     report = None if cumulative is None else cumulation_report(cumulative, span)
-    return EpisodePay(segments, units, absence, inps, integration, carenza, report)
+    return EpisodePay(
+        segments, units, absence, inps, integration, carenza, report, inps_base
+    )

@@ -16,7 +16,7 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
 )
-from ccnl_engine.events import SicknessEpisode
+from ccnl_engine.events import InpsSicknessBase, SicknessEpisode
 from ccnl_engine.inputs import (
     ContributableHours,
     EmploymentPeriod,
@@ -463,6 +463,16 @@ def _fixed_term_sickness(worked: int | None) -> PeriodInput:
     return replace(run, employment=employment)
 
 
+def _inps_base_sickness(base: InpsSicknessBase | None) -> PeriodInput:
+    """Return a five-day episode of an operaio, the pay of February given.
+
+    Returns:
+        The March run; the INPS share needs the pay of the month before.
+    """
+    episode = SicknessEpisode("IB", date(2026, 3, 9), date(2026, 3, 13), inps_base=base)
+    return _march(PeriodState.zero(), episode)
+
+
 def sickness_cases[C](
     case: Callable[[PeriodInput, PeriodInput, str], C],
 ) -> Mapping[str, tuple[C, ...]]:
@@ -494,6 +504,24 @@ def sickness_cases[C](
                 _logistica_long(serious=False),
                 _logistica_long(serious=None),
                 "serious_illness",
+            ),
+        ),
+        "SicknessEpisode.inps_base": (
+            case(
+                _inps_base_sickness(
+                    InpsSicknessBase(Decimal("2158.26"), Decimal(0), paid_days=24)
+                ),
+                _inps_base_sickness(None),
+                "sickness_inps_daily_base",
+            ),
+        ),
+        "InpsSicknessBase.paid_days": (
+            case(
+                _inps_base_sickness(
+                    InpsSicknessBase(Decimal("2158.26"), Decimal(0), paid_days=24)
+                ),
+                _inps_base_sickness(InpsSicknessBase(Decimal("2158.26"), Decimal(0))),
+                "sickness_inps_daily_base",
             ),
         ),
         "SicknessEpisode.prior_worked_days": (

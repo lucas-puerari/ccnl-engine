@@ -213,6 +213,7 @@ def _inputs(
             "inps_indemnity": pay.inps,
             "employer_integration": pay.integration,
             "carenza_pay": pay.carenza,
+            "inps_daily_base": _NONE if pay.inps_base is None else pay.inps_base,
         }
         if pay.report is not None:
             inputs |= cumulation_inputs(pay.report)
@@ -251,12 +252,13 @@ def episode_limitations(
     """Return the engine limitations whose path the episode took.
 
     Returns:
-        The INPS daily base when INPS pays a share; the cumulation window
+        The INPS daily base when INPS pays a share on the CCNL daily quota,
+        the episode stating no base INPS reads; the cumulation window
         of a per-episode CCNL when an earlier episode outside the relapse
         chain is recorded.
     """
     found: list[str] = []
-    if pay is not None and pay.inps > _ZERO:
+    if pay is not None and pay.inps > _ZERO and pay.inps_base is None:
         found.append(INPS_DAILY_BASE_LIMITATION)
     cumulated = pay is not None and pay.report is not None
     chain = _chain_ids(event, terms)
