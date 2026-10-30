@@ -120,6 +120,19 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS (point 6, 9-10): the hospital stays, and the certified convalescence after them up to 120 days, are left out of both the comporto and the pay count; the limits are tripled for oncological illness, multiple sclerosis and muscular dystrophy and raised by 30% for a disability. The engine counts every sick day and applies the ordinary limits.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sickness_hospital_and_serious_illness",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Leave the hospital stays and the convalescence after them out of the counts, and apply the tripled and raised limits of points 9-10, then resolve this limitation."
+        }
       }
     ]
   },
@@ -2486,7 +2499,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "ec727bbc5baf9fc1fcd41c6f5a5011140b1c672b01331e003579a399dd596818",
+    "source_hash": "c505bbf475b9c57b8dd2e3e04d5623f5cfb0d7f30d1cc80c8d311764a0e2499a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2656,7 +2669,18 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 180,
+      "cumulation": {
+        "window_years": 3,
+        "reset_after_days": null,
+        "reduced_integration_rate": "0.50",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 183,
+            "comporto_days": 365
+          }
+        ]
+      },
       "provenance": {
         "status": "derived",
         "location": {
@@ -2664,16 +2688,19 @@
             "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
             "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
             "kind": "tabella_retributiva",
-            "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+            "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+            "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
           },
-          "section": "Art. malattia"
+          "section": "Malattia, punti 6 e 8",
+          "quote": "In caso di malattia anche frazionata la Lavoratrice / Lavoratore ha diritto alla conservazione del posto per un periodo complessivo di 12 mesi nell'arco del triennio mobile di riferimento ed alla corresponsione dell'intera retribuzione mensile per i primi sei mesi complessivi e del 50% della retribuzione stessa per i successivi sei mesi complessivi, sempre avuto riguardo allo stesso periodo"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2020-01-17"
-        }
+        },
+        "transformation": "Point 6: the sick days of the rolling three years are summed; the whole monthly pay for the first 6 months (183 days), 50% for the next 6, up to the comporto of 12 months (365 days). Stored as a cumulation of one band over a three-year window. Read on 2026-10-30."
       }
     }
   }

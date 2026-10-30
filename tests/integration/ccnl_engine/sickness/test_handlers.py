@@ -532,6 +532,7 @@ def test_earlier_episode_outside_the_chain_is_a_limitation(
         ("alimentari-federalimentare", "6"),
         ("poste-italiane-k700", "C"),
         ("orafi-argentieri-industria-federorafi", "3"),
+        ("trasporto-aereo-assaeroporti", "5"),
     ],
 )
 def test_a_ccnl_counting_every_episode_has_no_window_limitation(
