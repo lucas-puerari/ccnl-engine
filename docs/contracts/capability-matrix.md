@@ -57,7 +57,7 @@ formulas or caller-declared amounts.
 |---|---:|---:|---:|---:|
 | core | 21 | 0 | 0 | 0 |
 | scenario | 9 | 10 | 2 | 0 |
-| outside_input | 0 | 0 | 0 | 9 |
+| outside_input | 0 | 0 | 0 | 7 |
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -77,8 +77,6 @@ formulas or caller-declared amounts.
 | `una_tantum` | Una tantum contrattuale | outside_input | gross | unsupported | outside_input | — | `facts.events[una_tantum]` | — | unavailable | none bundled |
 | `personal_withholdings` | Trattenute personali (pignoramenti, cessioni del quinto, prestiti) | outside_input | net | unsupported | outside_input | — | `facts.personal_withholdings` | — | unavailable | none bundled |
 | `additional_irpef_base` | Redditi di altri sostituti nella base IRPEF del conguaglio | outside_input | net | unsupported | outside_input | — | `facts.other_withholding_agents_income` | — | unavailable | none bundled |
-| `health_fund_employee` | Fondo sanitario integrativo a carico dipendente | outside_input | net | unsupported | outside_input | — | `employment.health_fund` | — | unavailable | none bundled |
-| `health_fund_employer` | Fondo sanitario integrativo a carico azienda | outside_input | net | unsupported | outside_input | — | `employment.health_fund` | — | unavailable | none bundled |
 | `territorial_supplement` | Integrazione da contratto territoriale (EmployerProfile.second_level_elements) | scenario | gross | caller_supplied | decided | decision | — | — | caller-supplied | none bundled |
 | `company_supplement` | Integrazione da contratto aziendale (EmployerProfile.second_level_elements) | scenario | gross | caller_supplied | decided | decision | — | — | caller-supplied | none bundled |
 | `tfr` | Trattamento di Fine Rapporto | core | net | native | always | pipeline | `employment.tfr_treasury_fund` | — | simplified | 18 / 0 / 18 / 0 |
@@ -165,7 +163,7 @@ never grow.
 | 32 | [CCNL Comparto Istruzione e Ricerca 2025-2027 (trattamento economico) - ARAN, Università, tecnologi a tempo indeterminato](universita-tecnologi-aran.md) | ✅ | pension_fund_contribution, sickness | 2 / 4 / 1 / 0 |
 | 33 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | ⚠️ | base_salary | 16 / 5 / 0 / 0 |
 | 34 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | ⚠️ | base_salary, seniority | 1 / 40 / 1 / 0 |
-| 35 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | ⚠️ | base_salary, health_fund_employer, inps_employer | 1 / 36 / 1 / 0 |
+| 35 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | ⚠️ | base_salary, contractual_funds, inps_employer | 1 / 36 / 1 / 0 |
 | 36 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | ⚠️ | base_salary, inps_employer, seniority | 0 / 56 / 1 / 1 |
 | 37 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | ⚠️ | base_salary, bilateral_funds, inps_employer | 62 / 1 / 0 / 0 |
 | 38 | [CCNL Cooperative e Consorzi Agricoli](cooperative-consorzi-agricoli.md) | ⚠️ | base_salary, inps_employer, seniority | 33 / 9 / 0 / 0 |
@@ -243,7 +241,7 @@ never grow.
 | 110 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | ⚠️ | seniority | 0 / 48 / 1 / 1 |
 | 111 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | ⚠️ | seniority | 0 / 46 / 2 / 1 |
 | 112 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | ⚠️ | base_salary, bilateral_funds, pension_fund_contribution, seniority, una_tantum | 28 / 1 / 2 / 0 |
-| 113 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | ⚠️ | bilateral_funds, health_fund_employer, seniority | 1 / 32 / 1 / 0 |
+| 113 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | ⚠️ | bilateral_funds, contractual_funds, seniority | 1 / 32 / 1 / 0 |
 | 114 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | ⚠️ | base_salary, leave, overtime, seniority, sickness, trattamento_integrativo | 67 / 4 / 0 / 0 |
 | 115 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo - Ristorazione collettiva (aziende dell'art. 1 c. 1 par. II)](pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | ⚠️ | base_salary, bilateral_funds, overtime, seniority, trattamento_integrativo | 61 / 2 / 0 / 0 |
 | 116 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | ⚠️ | pension_fund_contribution, seniority | 37 / 0 / 22 / 0 |

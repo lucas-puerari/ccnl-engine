@@ -94,11 +94,11 @@
       {
         "kind": "simplification",
         "text": "SIMPLIFICATION: Fondo EST (Art. 46) supplementary health fund not modelled. Contribution: 15 EUR/month employer + 2 EUR/month employee. Not an INPS substitute. employer_cost_annual understated by 180 EUR/year.",
-        "capability": "health_fund_employer",
+        "capability": "contractual_funds",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "fondo_est_health_fund",
-          "remediation": "Model the Fondo EST contributions (15 EUR employer, 2 EUR employee per month)."
+          "remediation": "Add Fondo EST (Art. 46: 15 EUR employer, 2 EUR employee a month) to parameters.health_funds, with its source, so contractual_funds posts its shares."
         }
       },
       {
@@ -1407,7 +1407,7 @@
     "effective_until": null,
     "source": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
     "verification_status": "unverified",
-    "source_hash": "b132199a55e7ccf2e02e47d5585066b82a26d9ed890a01c640b27f880d7213fa",
+    "source_hash": "587971eea01a5ee87f56787f93f495d9941e121ab8268bb38061bb3e6f015184",
     "published_at": "2026-09-12",
     "source_type": "contracting_party"
   },
