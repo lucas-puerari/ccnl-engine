@@ -110,6 +110,16 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS (Art. 69): the CCNL integrates up to 100% of the net monthly pay ('retribuzione mensile netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.",
+        "capability": "sickness",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "sickness_net_basis",
+          "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 69, align the computation, then resolve this limitation."
+        }
       }
     ]
   },
@@ -1465,7 +1475,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "e0c9cb09c2e40a59bc3ed1b3079a27274aa8990c89e52e885c97cf46608719f6",
+    "source_hash": "a571e064b7731fcdf3e310680453afc28c648a3a3237ee82a66de84389b22b3a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1672,6 +1682,8 @@
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
+      "comporto_calendar_year": true,
+      "net_basis": true,
       "provenance": {
         "status": "derived",
         "location": {
@@ -1679,16 +1691,19 @@
             "document_id": "ccnl-scuole-materne-fism-2024-2027",
             "title": "CCNL Scuole dell'Infanzia e Servizi Educativi FISM 2024-2027",
             "kind": "tabella_retributiva",
-            "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+            "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+            "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
           },
-          "section": "Art. malattia"
+          "section": "Art. 69 a) e b)",
+          "quote": "l'ente corrisponderà al lavoratore una integrazione tale da consentire al medesimo di percepire durante il periodo di malattia o infortunio il 100% della retribuzione mensile netta per un massimo di 180 giorni nell’anno solare."
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2024-01-01"
-        }
+        },
+        "transformation": "Art. 69 a): the integration reaches 100% of the net monthly pay for at most 180 sick days in the calendar year, every episode of the year counted; stored as the 180 days of comporto_calendar_year, past which the CCNL integrates nothing. The comporto of b) (180 continuous days, 365 in three calendar years) keeps the job and does not change the pay. The text is a scan: the quote is from an OCR of the signed PDF, read on 2026-10-30."
       }
     }
   }

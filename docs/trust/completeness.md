@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/132 CCNLs.** Bundle: 268 weak rules, 561 open limitations (561 with a monetary impact).
+**Complete: 0/132 CCNLs.** Bundle: 268 weak rules, 562 open limitations (562 with a monetary impact).
 
 ## Declared window
 
@@ -157,7 +157,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [rsa-aiop](../contracts/rsa-aiop.md) | `socio-sanitario` | exploratory | — | 16 rows | 16 open requirements; 1 weak rule; 12 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [sanita-aran](../contracts/sanita-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 12 rows | 12 open requirements; 9 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [sanita-privata-aiop-aris](../contracts/sanita-privata-aiop-aris.md) | `socio-sanitario` | exploratory | 2018-12-31 | 15 rows | 15 open requirements; 10 monetary limitations; 3 outside_input limitations; 21 non-native capabilities |
-| [scuole-materne-fism](../contracts/scuole-materne-fism.md) | `istruzione-formazione` | exploratory | — | 16 rows | 16 open requirements; 1 weak rule; 12 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
+| [scuole-materne-fism](../contracts/scuole-materne-fism.md) | `istruzione-formazione` | exploratory | — | 16 rows | 16 open requirements; 1 weak rule; 12 monetary limitations; 1 outside_input limitation; 22 non-native capabilities |
 | [scuole-private-agidae](../contracts/scuole-private-agidae.md) | `istruzione-formazione` | exploratory | — | 14 rows | 14 open requirements; 1 weak rule; 10 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [scuole-private-laiche-aninsei](../contracts/scuole-private-laiche-aninsei.md) | `istruzione-formazione` | exploratory | — | 15 rows | 15 open requirements; 1 weak rule; 11 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [servizi-postali-appalto-fise](../contracts/servizi-postali-appalto-fise.md) | `servizi-postali` | exploratory | — | 16 rows | 16 open requirements; 1 weak rule; 12 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
