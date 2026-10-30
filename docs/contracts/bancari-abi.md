@@ -110,12 +110,12 @@ Destination levels: `3A1`, `3A2`, `3A3`, `3A4`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "bancari-abi/inps_credit_rate_unverified · inps_employer · impact unknown · open"
+!!! note "bancari-abi/inps_credit_rate_unverified · inps_employer · impact unknown · resolved"
     INPS employer_rate 26.76% flat from kitech.it (Credito e Assicurazioni 2026); the Fondo di solidarietà del credito (bilateral) is presumed included in the aggregate rate. Verify against the annual INPS circular.
 
     **Applies when:** `inps_employer` applies.
 
-    **Remediation:** Verify the 26.76% employer rate and the solidarity fund share against the annual INPS circular.
+    **Remediation:** Resolved as a duplicate of bancari-abi/inps_sector_rates_unsourced, which stays open (review of 2026-10-30): both say the credito employer rate is not confirmed by a 2026 INPS source. contribution/2026/credito.json now takes 26.76 from the INPS 2012 table and keeps the Fondo di solidarietà out of the totals, in parameters.solidarity_fund.
 
 !!! warning "bancari-abi/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.

@@ -21,24 +21,6 @@
       }
     },
     {
-      "id": "domestic_oncological_comporto",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "ONCOLOGICAL ILLNESS: the periods of Art. 27 c. 4 rise by 50% for an oncological illness documented by the ASL (c. 6, p. 37); the file applies the ordinary periods and the request does not state the illness.",
-      "calculation": "ccnl/lavoro-domestico-non-convivente:coverage.notes",
-      "state": "absent",
-      "work": [
-        "T03.02"
-      ],
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "lavoro-domestico-non-convivente/domestic_oncological_comporto"
-        ]
-      }
-    },
-    {
       "id": "extra_month_hours",
       "institute": "assistance_contribution",
       "variant": "all",

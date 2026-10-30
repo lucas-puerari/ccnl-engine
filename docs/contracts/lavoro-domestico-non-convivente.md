@@ -144,12 +144,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note.
 
-!!! warning "lavoro-domestico-non-convivente/domestic_oncological_comporto · sickness · impact yes · open"
+!!! note "lavoro-domestico-non-convivente/domestic_oncological_comporto · sickness · impact yes · resolved"
     ONCOLOGICAL ILLNESS: the periods of Art. 27 c. 4 rise by 50% for an oncological illness documented by the ASL (c. 6, p. 37); the file applies the ordinary periods and the request does not state the illness.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add a fact for an oncological illness and raise the periods by 50%.
+    **Remediation:** Resolved as a duplicate of lavoro-domestico-non-convivente/oncological_comporto, which stays open (review of 2026-10-30): both track the 50% longer comporto of Art. 27 c. 6 for an oncological illness.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.

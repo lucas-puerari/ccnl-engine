@@ -39,8 +39,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
 3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -103,12 +103,12 @@ Latest effective values per level (monthly gross, EUR).
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "forze-polizia-ordinamento-civile/ctps_rates_proxy · inps_employer · impact unknown · open"
+!!! note "forze-polizia-ordinamento-civile/ctps_rates_proxy · inps_employer · impact unknown · resolved"
     aliquote INPS/CTPS — dipendente 8,80%, datore 24,20% — proxy dal file 2026-pubblica-amministrazione.json già presente; verificare circolare INPS annuale per valori esatti (regime CTPS ex-INPDAP, identico a PA ordinaria).
 
     **Applies when:** `inps_employer` applies.
 
-    **Remediation:** Verify the CTPS rates against the annual INPS circular.
+    **Remediation:** Resolved (review of 2026-10-30): the CTPS rates of the bundle (employer 24.20%, employee 8.80%) are read from the INPS page 'I contributi dei dipendenti pubblici' (contribution/2026/pubblica-amministrazione.json, inps.provenance, verified, checked on 2026-10-09 and 2026-10-17), as for funzioni-centrali-aran/ctps_rates_proxy.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.

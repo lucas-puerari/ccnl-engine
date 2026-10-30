@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/132 CCNLs.** Bundle: 384 weak rules, 444 open limitations (444 with a monetary impact).
+**Complete: 0/132 CCNLs.** Bundle: 384 weak rules, 437 open limitations (437 with a monetary impact).
 
 | CCNL | Family | Readiness | Census | Gaps |
 |---|---|---|---|---|
@@ -27,20 +27,20 @@ incomplete.
 | [alimentari-pmi-unionalimentari](../contracts/alimentari-pmi-unionalimentari.md) | `alimentare` | exploratory | 8 rows | 8 open requirements; 1 weak rule; 25 shared weak rules; 7 monetary limitations; 22 non-native capabilities |
 | [alimentaristi-cooperative-e016](../contracts/alimentaristi-cooperative-e016.md) | `alimentare` | exploratory | 9 rows | 9 open requirements; 1 weak rule; 25 shared weak rules; 8 monetary limitations; 23 non-native capabilities |
 | [anas](../contracts/anas.md) | `trasporti-logistica` | exploratory | 8 rows | 8 open requirements; 1 weak rule; 25 shared weak rules; 7 monetary limitations; 22 non-native capabilities |
-| [assicurazioni-ania](../contracts/assicurazioni-ania.md) | `assicurazioni` | exploratory | 11 rows | 11 open requirements; 2 weak rules; 25 shared weak rules; 9 monetary limitations; 24 non-native capabilities |
+| [assicurazioni-ania](../contracts/assicurazioni-ania.md) | `assicurazioni` | exploratory | 10 rows | 10 open requirements; 2 weak rules; 25 shared weak rules; 8 monetary limitations; 24 non-native capabilities |
 | [attivita-minerarie-assorisorse](../contracts/attivita-minerarie-assorisorse.md) | `materiali-estrattive` | exploratory | 7 rows | 7 open requirements; 3 weak rules; 25 shared weak rules; 4 monetary limitations; 22 non-native capabilities |
 | [autoferrotranvieri-internavigatori](../contracts/autoferrotranvieri-internavigatori.md) | `trasporti-logistica` | exploratory | 9 rows | 9 open requirements; 1 weak rule; 27 shared weak rules; 7 monetary limitations; 1 outside_input limitation; 23 non-native capabilities |
 | [autorimesse-ic35](../contracts/autorimesse-ic35.md) | `servizi-automobilistici` | exploratory | 10 rows | 10 open requirements; 2 weak rules; 27 shared weak rules; 8 monetary limitations; 23 non-native capabilities |
 | [autoscuole-unasca](../contracts/autoscuole-unasca.md) | `servizi-automobilistici` | exploratory | 7 rows | 7 open requirements; 1 weak rule; 27 shared weak rules; 6 monetary limitations; 22 non-native capabilities |
 | [autostrade-trafori](../contracts/autostrade-trafori.md) | `trasporti-logistica` | exploratory | 9 rows | 9 open requirements; 2 weak rules; 25 shared weak rules; 7 monetary limitations; 22 non-native capabilities |
 | [aziende-termali-federterme](../contracts/aziende-termali-federterme.md) | `turismo` | exploratory | 9 rows | 9 open requirements; 1 weak rule; 27 shared weak rules; 7 monetary limitations; 1 outside_input limitation; 25 non-native capabilities |
-| [bancari-abi](../contracts/bancari-abi.md) | `credito` | exploratory | 12 rows | 12 open requirements; 25 shared weak rules; 9 monetary limitations; 3 outside_input limitations; 24 non-native capabilities |
+| [bancari-abi](../contracts/bancari-abi.md) | `credito` | exploratory | 11 rows | 11 open requirements; 25 shared weak rules; 8 monetary limitations; 3 outside_input limitations; 24 non-native capabilities |
 | [bcc-credito-cooperativo](../contracts/bcc-credito-cooperativo.md) | `credito` | exploratory | 8 rows | 8 open requirements; 25 shared weak rules; 7 monetary limitations; 1 outside_input limitation; 24 non-native capabilities |
 | [calzaturiero-assocalzaturifici](../contracts/calzaturiero-assocalzaturifici.md) | `pelli-calzature` | exploratory | 9 rows | 9 open requirements; 2 weak rules; 25 shared weak rules; 7 monetary limitations; 22 non-native capabilities |
 | [carta-cartone-assocarta](../contracts/carta-cartone-assocarta.md) | `carta-grafica` | exploratory | 7 rows | 7 open requirements; 1 weak rule; 25 shared weak rules; 6 monetary limitations; 22 non-native capabilities |
 | [ced-assoced](../contracts/ced-assoced.md) | `servizi-professionali` | exploratory | 8 rows | 8 open requirements; 2 weak rules; 27 shared weak rules; 6 monetary limitations; 23 non-native capabilities |
 | [cemento-calce-gesso-industria](../contracts/cemento-calce-gesso-industria.md) | `materiali-estrattive` | exploratory | 9 rows | 9 open requirements; 1 weak rule; 25 shared weak rules; 8 monetary limitations; 23 non-native capabilities |
-| [ceramica-industria-confindustria](../contracts/ceramica-industria-confindustria.md) | `chimica` | exploratory | 10 rows | 10 open requirements; 2 weak rules; 25 shared weak rules; 8 monetary limitations; 22 non-native capabilities |
+| [ceramica-industria-confindustria](../contracts/ceramica-industria-confindustria.md) | `chimica` | exploratory | 9 rows | 9 open requirements; 2 weak rules; 25 shared weak rules; 7 monetary limitations; 22 non-native capabilities |
 | [chimica-affini-pmi-unionchimica](../contracts/chimica-affini-pmi-unionchimica.md) | `chimica` | exploratory | 9 rows | 9 open requirements; 2 weak rules; 25 shared weak rules; 7 monetary limitations; 23 non-native capabilities |
 | [chimica-farmaceutica-federchimica](../contracts/chimica-farmaceutica-federchimica.md) | `chimica` | reviewed | 19 rows | 19 open requirements; 25 shared weak rules; 6 monetary limitations; 13 outside_input limitations; 25 non-native capabilities |
 | [cinema-audiovisivi-industria](../contracts/cinema-audiovisivi-industria.md) | `spettacolo-media` | exploratory | 8 rows | 8 open requirements; 1 weak rule; 25 shared weak rules; 6 monetary limitations; 1 outside_input limitation; 22 non-native capabilities |
@@ -73,7 +73,7 @@ incomplete.
 | [federcasa](../contracts/federcasa.md) | `servizi-immobiliari` | exploratory | 6 rows | 6 open requirements; 1 weak rule; 27 shared weak rules; 5 monetary limitations; 21 non-native capabilities |
 | [fiori-recisi-ancef](../contracts/fiori-recisi-ancef.md) | `commercio` | exploratory | 7 rows | 7 open requirements; 1 weak rule; 27 shared weak rules; 6 monetary limitations; 22 non-native capabilities |
 | [formazione-professionale](../contracts/formazione-professionale.md) | `istruzione-formazione` | exploratory | 7 rows | 7 open requirements; 2 weak rules; 27 shared weak rules; 5 monetary limitations; 21 non-native capabilities |
-| [forze-polizia-ordinamento-civile](../contracts/forze-polizia-ordinamento-civile.md) | `forze-polizia` | exploratory | 7 rows | 7 open requirements; 2 weak rules; 35 shared weak rules; 5 monetary limitations; 22 non-native capabilities |
+| [forze-polizia-ordinamento-civile](../contracts/forze-polizia-ordinamento-civile.md) | `forze-polizia` | exploratory | 6 rows | 6 open requirements; 2 weak rules; 35 shared weak rules; 4 monetary limitations; 21 non-native capabilities |
 | [funivie-anef](../contracts/funivie-anef.md) | `trasporti-logistica` | exploratory | 8 rows | 8 open requirements; 2 weak rules; 25 shared weak rules; 6 monetary limitations; 22 non-native capabilities |
 | [funzioni-centrali-aran](../contracts/funzioni-centrali-aran.md) | `pubblico-impiego` | reviewed | 4 rows | 4 open requirements; 35 shared weak rules; 4 monetary limitations; 21 non-native capabilities |
 | [funzioni-locali-aran](../contracts/funzioni-locali-aran.md) | `pubblico-impiego` | reviewed | 5 rows | 5 open requirements; 35 shared weak rules; 5 monetary limitations; 22 non-native capabilities |
@@ -92,9 +92,9 @@ incomplete.
 | [lavanderie-industriali-assosistema](../contracts/lavanderie-industriali-assosistema.md) | `pulizia-multiservizi` | exploratory | 8 rows | 8 open requirements; 2 weak rules; 25 shared weak rules; 6 monetary limitations; 22 non-native capabilities |
 | [lavoro-domestico-convivente](../contracts/lavoro-domestico-convivente.md) | `lavoro-domestico` | reviewed | 13 rows | 13 open requirements; 20 shared weak rules; 11 monetary limitations; 2 outside_input limitations; 26 non-native capabilities |
 | [lavoro-domestico-convivente-orario-ridotto](../contracts/lavoro-domestico-convivente-orario-ridotto.md) | `lavoro-domestico` | reviewed | 9 rows | 9 open requirements; 20 shared weak rules; 6 monetary limitations; 3 outside_input limitations; 25 non-native capabilities |
-| [lavoro-domestico-non-convivente](../contracts/lavoro-domestico-non-convivente.md) | `lavoro-domestico` | reviewed | 11 rows | 11 open requirements; 20 shared weak rules; 9 monetary limitations; 2 outside_input limitations; 25 non-native capabilities |
+| [lavoro-domestico-non-convivente](../contracts/lavoro-domestico-non-convivente.md) | `lavoro-domestico` | reviewed | 10 rows | 10 open requirements; 20 shared weak rules; 9 monetary limitations; 1 outside_input limitation; 25 non-native capabilities |
 | [legno-arredamento-federlegno](../contracts/legno-arredamento-federlegno.md) | `legno-arredamento` | exploratory | 8 rows | 8 open requirements; 1 weak rule; 25 shared weak rules; 7 monetary limitations; 23 non-native capabilities |
-| [legno-lapidei-artigianato-confartigianato](../contracts/legno-lapidei-artigianato-confartigianato.md) | `legno-arredamento` | exploratory | 12 rows | 12 open requirements; 1 weak rule; 26 shared weak rules; 10 monetary limitations; 1 outside_input limitation; 23 non-native capabilities |
+| [legno-lapidei-artigianato-confartigianato](../contracts/legno-lapidei-artigianato-confartigianato.md) | `legno-arredamento` | exploratory | 11 rows | 11 open requirements; 1 weak rule; 26 shared weak rules; 9 monetary limitations; 1 outside_input limitation; 23 non-native capabilities |
 | [logistica-trasporto-confetra](../contracts/logistica-trasporto-confetra.md) | `trasporti-logistica` | reviewed | 9 rows | 9 open requirements; 39 shared weak rules; 8 monetary limitations; 1 outside_input limitation; 22 non-native capabilities |
 | [logistica-trasporto-confetra-viaggiante](../contracts/logistica-trasporto-confetra-viaggiante.md) | `trasporti-logistica` | reviewed | 8 rows | 8 open requirements; 39 shared weak rules; 7 monetary limitations; 1 outside_input limitation; 23 non-native capabilities |
 | [marittimi-industria-armatoriale](../contracts/marittimi-industria-armatoriale.md) | `trasporti-logistica` | exploratory | 8 rows | 8 open requirements; 1 weak rule; 25 shared weak rules; 7 monetary limitations; 22 non-native capabilities |
@@ -108,7 +108,7 @@ incomplete.
 | [noleggio-autobus-conducente-anav](../contracts/noleggio-autobus-conducente-anav.md) | `trasporti-logistica` | exploratory | 13 rows | 13 open requirements; 4 weak rules; 27 shared weak rules; 9 monetary limitations; 23 non-native capabilities |
 | [occhiali-occhialeria-industria](../contracts/occhiali-occhialeria-industria.md) | `tessile-moda` | exploratory | 10 rows | 10 open requirements; 2 weak rules; 25 shared weak rules; 8 monetary limitations; 23 non-native capabilities |
 | [ooss-unsic-confsal](../contracts/ooss-unsic-confsal.md) | `organizzazioni-associative` | exploratory | 9 rows | 9 open requirements; 1 weak rule; 27 shared weak rules; 8 monetary limitations; 23 non-native capabilities |
-| [operai-agricoli-florovivaisti](../contracts/operai-agricoli-florovivaisti.md) | `agricoltura` | exploratory | 21 rows | 21 open requirements; 1 weak rule; 24 shared weak rules; 12 monetary limitations; 8 outside_input limitations; 26 non-native capabilities |
+| [operai-agricoli-florovivaisti](../contracts/operai-agricoli-florovivaisti.md) | `agricoltura` | exploratory | 20 rows | 20 open requirements; 1 weak rule; 24 shared weak rules; 12 monetary limitations; 7 outside_input limitations; 26 non-native capabilities |
 | [orafi-argentieri-industria-federorafi](../contracts/orafi-argentieri-industria-federorafi.md) | `metalmeccanica` | exploratory | 8 rows | 8 open requirements; 1 weak rule; 25 shared weak rules; 7 monetary limitations; 22 non-native capabilities |
 | [organizzazioni-allevatori-aia](../contracts/organizzazioni-allevatori-aia.md) | `agricoltura` | exploratory | 9 rows | 9 open requirements; 1 weak rule; 24 shared weak rules; 8 monetary limitations; 23 non-native capabilities |
 | [ortofrutticoli-agrumari](../contracts/ortofrutticoli-agrumari.md) | `commercio` | exploratory | 17 rows | 17 open requirements; 8 weak rules; 27 shared weak rules; 9 monetary limitations; 25 non-native capabilities |

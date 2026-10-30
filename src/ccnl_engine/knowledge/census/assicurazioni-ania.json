@@ -21,24 +21,6 @@
       }
     },
     {
-      "id": "inps_credit_rate_unverified",
-      "institute": "inps_employer",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "INPS employer_rate 26.76% flat from kitech.it (Credito e Assicurazioni 2026); reuses 2026-credito.json. Verify against the annual INPS circular.",
-      "calculation": "ccnl/assicurazioni-ania:coverage.notes",
-      "state": "unverified",
-      "work": [
-        "T04.01"
-      ],
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "assicurazioni-ania/inps_credit_rate_unverified"
-        ]
-      }
-    },
-    {
       "id": "inps_sector_rates_unsourced",
       "institute": "inps_employer",
       "variant": "all",

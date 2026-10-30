@@ -93,24 +93,6 @@
       }
     },
     {
-      "id": "null_category_operaio_rate",
-      "institute": "inps_employer",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "LEVEL CATEGORY: all levels left null. Primary source text shows multiple levels map to both operai and impiegati (e.g. level B = 'Impiegati di concetto - Operai specializzati provetti') — this is a genuine one-to-many mapping that the schema cannot represent as a single category value, not a data gap. 2026-artigianato.json applies rate 0.2693 (default/operaio) for null category; impiegato rate 0.2471 not applied to impiegato-eligible levels.",
-      "calculation": "ccnl/legno-lapidei-artigianato-confartigianato:coverage.notes",
-      "state": "unverified",
-      "work": [
-        "T04.01"
-      ],
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "legno-lapidei-artigianato-confartigianato/null_category_operaio_rate"
-        ]
-      }
-    },
-    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

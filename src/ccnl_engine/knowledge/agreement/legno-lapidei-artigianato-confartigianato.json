@@ -136,7 +136,8 @@
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "null_category_operaio_rate",
-          "remediation": "Assign a category per level, or require the worker category, so the impiegato INPS rate applies."
+          "remediation": "Resolved (review of 2026-10-30): a level without category takes the category the employment declares (employment/category/rules.py resolve_worker_category), and contribution/rate/rules.py inps_employer_rate applies employer_rate_by_category to it; a run that declares none gets the provisional issue employer_rate_category_assumed. Tests: tests/integration/ccnl_engine/contribution/rate/test_rules.py::test_declared_category_needs_no_issue, ::test_level_without_category_gets_a_provisional_issue.",
+          "status": "resolved"
         }
       },
       {
@@ -1830,7 +1831,7 @@
     "effective_until": null,
     "source": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
     "verification_status": "unverified",
-    "source_hash": "90c2215ed282055c694a9cb31687abaa0b036dea5700ba5bdecdb27eda1229e0",
+    "source_hash": "820814ef90c77703584500d3463defced3312a135e2b02efe28006bd41b8a439",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

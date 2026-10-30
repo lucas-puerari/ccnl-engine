@@ -106,12 +106,12 @@ percentage: 0.95
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "ceramica-industria-confindustria/apprentice_seniority_amount · seniority · impact unknown · open"
+!!! note "ceramica-industria-confindustria/apprentice_seniority_amount · seniority · impact unknown · resolved"
     APPRENTICE INCREMENT: apprentice_amount=null. No confirmation from any accessible primary source for B122 industria. The EUR 6 value is confirmed only for CCNL Ceramica Artigianato (V751), not B122. Italian CCNLs frequently exclude apprentices from seniority accrual during the training period (D.Lgs 81/2015 Art. 47), so null may be the correct answer rather than a gap. Verification requires full CCNL text (Arts. 80-82 of the July 2024 rinnovo), which is not publicly machine-readable.
 
     **Applies when:** `seniority` applies; contract type in apprentice.
 
-    **Remediation:** Verify Arts. 80-82 of the July 2024 rinnovo for the apprentice seniority amount.
+    **Remediation:** Resolved as a duplicate of ceramica-industria-confindustria/apprentice_seniority, which stays open (review of 2026-10-30): both track the missing parameters.seniority_increments.apprentice_amount, which makes seniority_first_cadence pay apprentices no increment.
 
 !!! warning "ceramica-industria-confindustria/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.

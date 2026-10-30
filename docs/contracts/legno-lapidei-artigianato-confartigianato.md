@@ -128,12 +128,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the 3-year impiegati apprenticeship tracks.
 
-!!! warning "legno-lapidei-artigianato-confartigianato/null_category_operaio_rate · inps_employer · impact unknown · open"
+!!! note "legno-lapidei-artigianato-confartigianato/null_category_operaio_rate · inps_employer · impact unknown · resolved"
     LEVEL CATEGORY: all levels left null. Primary source text shows multiple levels map to both operai and impiegati (e.g. level B = 'Impiegati di concetto - Operai specializzati provetti') — this is a genuine one-to-many mapping that the schema cannot represent as a single category value, not a data gap. 2026-artigianato.json applies rate 0.2693 (default/operaio) for null category; impiegato rate 0.2471 not applied to impiegato-eligible levels.
 
     **Applies when:** `inps_employer` applies.
 
-    **Remediation:** Assign a category per level, or require the worker category, so the impiegato INPS rate applies.
+    **Remediation:** Resolved (review of 2026-10-30): a level without category takes the category the employment declares (employment/category/rules.py resolve_worker_category), and contribution/rate/rules.py inps_employer_rate applies employer_rate_by_category to it; a run that declares none gets the provisional issue employer_rate_category_assumed. Tests: tests/integration/ccnl_engine/contribution/rate/test_rules.py::test_declared_category_needs_no_issue, ::test_level_without_category_gets_a_provisional_issue.
 
 !!! warning "legno-lapidei-artigianato-confartigianato/inps_sector_rates_unsourced · inps_employer · impact unknown · open"
     INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.
