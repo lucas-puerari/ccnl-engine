@@ -13,12 +13,18 @@ CCNL treatment the run pays the statutory amounts only and is provisional.
 
 from __future__ import annotations
 
+from datetime import timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.insured.inputs import MaternityLeaveEvent, WorkInjuryEvent
 from ccnl_engine.absence.insured.posting.services import post_lines
-from ccnl_engine.absence.insured.rules import InsuredPay, injury_pay, maternity_pay
+from ccnl_engine.absence.insured.rules import (
+    InsuredPay,
+    injury_pay,
+    maternity_daily_base,
+    maternity_pay,
+)
 from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
@@ -50,6 +56,10 @@ MATERNITY = "maternity_leave"
 INJURY = "workplace_injury"
 #: Issue of an absence whose CCNL treatment the bundle does not hold.
 NOT_MODELLED = "insured_absence_ccnl_not_modelled"
+#: Maternity paid on the pay of the run: the base of art. 23 is not computed.
+MATERNITY_BASE_LIMITATION = "maternity_daily_base"
+#: INPS pays a maternity indemnity and the leave states no base.
+MATERNITY_BASE_UNKNOWN = "maternity_base_pay_unknown"
 _INTEGRATION = "absence_integration_item"
 
 
@@ -149,8 +159,17 @@ def _handle_maternity_leave(
     if terms is None or terms.pay is None:
         return _no_quota(MATERNITY)
     rules = None if terms.rules is None else terms.rules.maternity
+    rmgg, computable = maternity_daily_base(
+        event.base_pay, terms.category, _payments_before(terms, event.started_on)
+    )
     pay = maternity_pay(
-        span[0], span[1], event.started_on, terms.pay, terms.rates.maternity, rules
+        span[0],
+        span[1],
+        event.started_on,
+        terms.pay,
+        terms.rates.maternity,
+        rules,
+        rmgg,
     )
     effect = post_lines(
         (
@@ -166,7 +185,42 @@ def _handle_maternity_leave(
         )
     ]
     effect.issues = [] if rules is not None else [_not_modelled(MATERNITY)]
+    if rmgg is None and pay.indemnity > _ZERO:
+        if computable:
+            effect.issues.append(_base_unknown())
+        else:
+            effect.limitations = (MATERNITY_BASE_LIMITATION,)
     return effect
+
+
+def _payments_before(terms: InsuredTerms, started_on: date) -> Decimal | None:
+    """Return the monthly payments of the CCNL in the month before the leave.
+
+    Returns:
+        The payments on the last day of that month, ``None`` when unknown.
+    """
+    series = terms.monthly_payments
+    period = (
+        None
+        if series is None
+        else series.period_at(started_on.replace(day=1) - timedelta(days=1))
+    )
+    return None if period is None else period.value
+
+
+def _base_unknown() -> CalculationIssue:
+    return CalculationIssue(
+        code=MATERNITY_BASE_UNKNOWN,
+        message=(
+            "INPS pays the maternity indemnity on the pay of the month before "
+            "the leave (MaternityLeaveEvent.base_pay), which the leave does "
+            "not state; the "
+            "indemnity is computed on the pay of the run meanwhile"
+        ),
+        status=CalculationStatus.PROVISIONAL,
+        capability=MATERNITY,
+        fact="base_pay",
+    )
 
 
 def _handle_work_injury(event: WorkInjuryEvent, ctx: _EventHandlerCtx) -> EventEffect:
