@@ -18,7 +18,7 @@ from decimal import Decimal
 
 from ccnl_engine.validators import require_decimal, require_int
 
-__all__ = ["InpsSicknessBase"]
+__all__ = ["InpsSicknessBase", "SpettacoloSicknessBase"]
 
 _FEATURE = "sickness"
 _OWNER = "InpsSicknessBase"
@@ -88,4 +88,40 @@ class InpsSicknessBase:
             minimum=1,
             maximum=31,
             optional=True,
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class SpettacoloSicknessBase:
+    """The pay of the last daily contributions of a lavoratore dello spettacolo.
+
+    The indemnity of a worker insured with the Fondo pensioni lavoratori
+    dello spettacolo is computed on the average pay of the last 40 daily
+    contributions in the sector, the 13th and the other contributed
+    payments included (art. 13 D.Lgs. C.P.S. 708/1947 as amended by art. 66
+    D.L. 73/2021; INPS circ. 132/2021 par. 2.4).
+
+    Attributes:
+        pay: Gross pay of those contributions, the rateo of the 13th and the
+            bonuses subject to contributions included.
+        contributions: Number of daily contributions the pay covers, every
+            employer of the sector counted.
+
+    Raises:
+        InvalidInputError: When ``pay`` is not a non-negative ``Decimal`` or
+            ``contributions`` is not an int in [1, 366].
+    """
+
+    pay: Decimal
+    contributions: int
+
+    def __post_init__(self) -> None:  # noqa: D105
+        owner = "SpettacoloSicknessBase"
+        require_decimal(self.pay, f"{owner}.pay", feature=_FEATURE, minimum=Decimal(0))
+        require_int(
+            self.contributions,
+            f"{owner}.contributions",
+            feature=_FEATURE,
+            minimum=1,
+            maximum=366,
         )

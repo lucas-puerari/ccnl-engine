@@ -16,7 +16,8 @@ import pytest
 from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.sickness.base.inputs import InpsSicknessBase
+from ccnl_engine.sickness.base.inputs import InpsSicknessBase, SpettacoloSicknessBase
+from ccnl_engine.sickness.base.models import DailyBaseKind, RegimeDailyBase
 from ccnl_engine.sickness.base.rules import daily_base, episode_daily_base
 from ccnl_engine.sickness.models import SicknessEpisode, SicknessHistory
 from ccnl_engine.sickness.term.rules import SicknessTerms
@@ -115,6 +116,9 @@ def _series(valid_from: str) -> TimeSeries:
     })
 
 
+_CONTRIBUTIONS = RegimeDailyBase(
+    kind=DailyBaseKind.LAST_CONTRIBUTIONS, fixed_term_ceiling=Decimal(100)
+)
 _EPISODE = SicknessEpisode(
     "E",
     date(2026, 5, 25),
@@ -141,16 +145,16 @@ def test_the_payments_are_those_of_the_last_day_of_the_month_before() -> None:
 @pytest.mark.parametrize(
     "terms",
     [
-        replace(_TERMS, general_regime=False),
+        replace(_TERMS, daily_base=_CONTRIBUTIONS),
         replace(_TERMS, monthly_payments=None),
         replace(_TERMS, monthly_payments=_series("2026-05-01")),
     ],
-    ids=["sector_regime", "no_payments", "payments_after_the_month_before"],
+    ids=["contributions_regime", "no_payments", "payments_after_the_month_before"],
 )
-def test_no_base_without_the_general_regime_or_the_payments(
+def test_no_base_without_its_kind_or_the_payments(
     terms: SicknessTerms,
 ) -> None:
-    """A sector regime, or no payments on 30 April, leave the quota."""
+    """A regime of the last contributions, or no payments on 30 April."""
     assert episode_daily_base(_EPISODE, terms) is None
 
 
@@ -161,3 +165,42 @@ def test_a_relapse_chain_without_a_base_has_none() -> None:
     terms = replace(_TERMS, history=SicknessHistory((first, second)))
 
     assert episode_daily_base(second, terms) is None
+
+
+def test_a_regime_of_its_own_rates_keeps_the_month_before() -> None:
+    """Pubblici esercizi change the rates, not the base: (1800 + 150) / 30."""
+    terms = replace(_TERMS, daily_base=RegimeDailyBase())
+
+    assert episode_daily_base(_EPISODE, terms) == Decimal(65)
+
+
+@pytest.mark.parametrize(
+    ("pay", "fixed_term", "rmgg"),
+    [
+        (Decimal(4000), False, Decimal(100)),
+        (Decimal(6000), False, Decimal(150)),
+        (Decimal(6000), True, Decimal(100)),
+        (Decimal(2000), True, Decimal(50)),
+    ],
+)
+def test_the_last_contributions_average_their_pay(
+    pay: Decimal, fixed_term: bool, rmgg: Decimal
+) -> None:
+    """Pay over 40 contributions; a fixed-term worker stops at the ceiling."""
+    episode = replace(_EPISODE, inps_base=SpettacoloSicknessBase(pay, 40))
+    terms = replace(_TERMS, daily_base=_CONTRIBUTIONS, fixed_term=fixed_term)
+
+    assert episode_daily_base(episode, terms) == rmgg
+
+
+@pytest.mark.parametrize(
+    ("fields", "match"),
+    [({"pay": Decimal(-1)}, "pay"), ({"contributions": 0}, "contributions")],
+)
+def test_a_malformed_contributions_base_is_rejected(
+    fields: dict[str, object], match: str
+) -> None:
+    """The pay is non-negative, the contributions at least one."""
+    values: dict[str, object] = {"pay": Decimal(4000), "contributions": 40, **fields}
+    with pytest.raises(InvalidInputError, match=match):
+        SpettacoloSicknessBase(**values)  # type: ignore[arg-type]

@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.sickness.base.inputs import InpsSicknessBase
+from ccnl_engine.sickness.base.inputs import InpsSicknessBase, SpettacoloSicknessBase
 from ccnl_engine.validators import (
     require_bool,
     require_date,
@@ -90,7 +90,7 @@ def validate_episode(episode: SicknessEpisode) -> None:
         raise InvalidInputError(msg, field=f"{_OWNER}.relapse_of", feature=_FEATURE)
     require_instance(
         episode.inps_base,
-        InpsSicknessBase,
+        (InpsSicknessBase, SpettacoloSicknessBase),
         f"{_OWNER}.inps_base",
         feature=_FEATURE,
         optional=True,

@@ -269,6 +269,7 @@ a whole month:
 | impiegato, quadro, dirigente (point 11.2) | (pay + share) / 30 |
 | impiegato of a month not worked in full (point 11.2 d-f) | pay / days worked or paid, Sundays and paid holidays included + share / 30 |
 | operaio (point 11.3) | pay / days worked or paid + share / 25 |
+| lavoratore dello spettacolo (INPS circ. 132/2021 par. 2.4; `SpettacoloSicknessBase`) | pay of the last 40 daily contributions, 13th and bonuses included / their number; at most 100 EUR for a fixed-term worker |
 
 The base is fixed for the episode: a pay change during it moves the CCNL
 deduction and the employer top-up, not the INPS share, and a relapse
@@ -278,8 +279,8 @@ without a base of its own takes that of the episode it continues. The
 Two engine limitations stay open. Without the INPS daily base (no
 `inps_base` in the relapse chain, an operaio without the days, an impiegato
 of a month not worked in full without the pay of a whole month, an unknown
-category, or a sector
-regime such as spettacolo) the INPS share uses the CCNL daily quota of the
+category, or a lavoratore dello spettacolo without the pay of the last daily
+contributions) the INPS share uses the CCNL daily quota of the
 month (`sickness_inps_daily_base`). For a CCNL without a cumulation, tiers
 and comporto count one relapse chain, not the CCNL window across episodes
 (`sickness_cumulation_window`).

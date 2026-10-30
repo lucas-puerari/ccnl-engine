@@ -24,13 +24,14 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.sickness.base.inputs import InpsSicknessBase, SpettacoloSicknessBase
+from ccnl_engine.sickness.base.models import DailyBaseKind
 
 if TYPE_CHECKING:
-    from ccnl_engine.sickness.base.inputs import InpsSicknessBase
     from ccnl_engine.sickness.models import SicknessEpisode
     from ccnl_engine.sickness.term.rules import SicknessTerms
 
-__all__ = ["daily_base", "episode_daily_base"]
+__all__ = ["contributions_base", "daily_base", "episode_daily_base"]
 
 _MONTHS = Decimal(12)
 #: Divisor of an impiegato's month (point 11.2 letter c).
@@ -76,7 +77,7 @@ def daily_base(
 
 def _stated(
     episode: SicknessEpisode, terms: SicknessTerms
-) -> tuple[InpsSicknessBase, date] | None:
+) -> tuple[InpsSicknessBase | SpettacoloSicknessBase, date] | None:
     """Return the base an episode reads and the first day of its illness.
 
     A relapse without a base of its own takes that of the episode it
@@ -99,22 +100,48 @@ def _stated(
     return None
 
 
+def contributions_base(
+    base: SpettacoloSicknessBase, ceiling: Decimal | None
+) -> Decimal:
+    """Return the RMGG of the last daily contributions, unrounded.
+
+    Args:
+        base: The pay of the last daily contributions and their number.
+        ceiling: Most a fixed-term worker's base reaches, ``None`` for
+            another worker.
+
+    Returns:
+        The pay over the contributions, at most ``ceiling``.
+    """
+    rmgg = base.pay / base.contributions
+    return rmgg if ceiling is None else min(rmgg, ceiling)
+
+
 def episode_daily_base(
     episode: SicknessEpisode, terms: SicknessTerms
 ) -> Decimal | None:
     """Return the RMGG the INPS share of ``episode`` is computed on.
 
-    The monthly payments are those of the CCNL on the last day of the
-    month before the illness.
+    Under the general rule the monthly payments are those of the CCNL on
+    the last day of the month before the illness; a regime of the last
+    daily contributions averages their pay, capped for a fixed-term worker.
 
     Returns:
-        The daily base; ``None`` under a sector regime, without a stated
-        base or when :func:`daily_base` cannot tell it.
+        The daily base; ``None`` without a stated base of the kind the
+        regime reads, or when :func:`daily_base` cannot tell it.
     """
-    stated = None if not terms.general_regime else _stated(episode, terms)
-    if stated is None or terms.monthly_payments is None:
+    stated = _stated(episode, terms)
+    regime = terms.daily_base
+    if stated is None:
         return None
     base, started_on = stated
+    if regime is not None and regime.kind is DailyBaseKind.LAST_CONTRIBUTIONS:
+        if not isinstance(base, SpettacoloSicknessBase):
+            return None
+        ceiling = regime.fixed_term_ceiling if terms.fixed_term else None
+        return contributions_base(base, ceiling)
+    if not isinstance(base, InpsSicknessBase) or terms.monthly_payments is None:
+        return None
     month_before = started_on.replace(day=1) - timedelta(days=1)
     period = terms.monthly_payments.period_at(month_before)
     if period is None or period.value is None:

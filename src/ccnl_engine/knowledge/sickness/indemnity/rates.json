@@ -38,7 +38,7 @@
     "published_at": "2026-10-04",
     "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33) for the waiting period and the indemnity; rates, 180-day annual maximum and cover as summarised by Assolombarda, Lavoro a tempo indeterminato - Tutele previdenziali (secondary, read 2026-10-04); not checked against an INPS circular",
     "verification_status": "unverified",
-    "source_hash": "08d85ec7cff83ea8b0da250625a05a48b4a36d90a411ca1160bc9d5a227cf8d3",
+    "source_hash": "b6c713bd2779a8d73eb7a9a3ad69f4056ace83fd5b96e84f11042d397f0177f8",
     "source_type": "contracting_party"
   },
   "annual_max_days": 180,
@@ -233,7 +233,27 @@
         "transformation": "From the fourth day ('L'indennità di malattia spetta dal quarto giorno successivo a quello di inizio dell'evento'), 60% up to the 20th day and 80% from the 21st to the 180th ('all'80% della retribuzione media globale giornaliera dal 21° giorno in poi fino al limite di 180 giorni').",
         "note": "Copy of the INPS circular on a third-party site. The requirement of 40 daily contributions from 1 January of the year before (art. 66 D.L. 73/2021, par. 2.1) is min_daily_contributions, read with SicknessEpisode.daily_contributions. Not modelled: the 40% of the days not worked of a worker on predetermined days; the base of the last 40 contributed days is the engine-wide simplification of the INPS share on the CCNL daily quota (inps_share_on_ccnl_quota)."
       },
-      "min_daily_contributions": 40
+      "min_daily_contributions": 40,
+      "daily_base": {
+        "kind": "last_contributions",
+        "fixed_term_ceiling": "100.00",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "inps-circolare-132-2021",
+              "title": "INPS Circolare n. 132 del 10 settembre 2021 (copy)",
+              "kind": "inps_circolare",
+              "url": "https://www.informazionefiscale.it/IMG/pdf/circolare_numero_132_del_10-09-2021.pdf",
+              "sha256": "50c9b80338d888f118f59ac2219d192cb4c5200439e3bf335d4740d30010fe51"
+            },
+            "section": "par. 2.4, Determinazione della retribuzione media globale giornaliera (RMGG)",
+            "quote": "la suddetta misura si determina sulla base della retribuzione media percepita nelle ultime 40 prestazioni giornaliere nel settore spettacolo, soggette a contributo; sono compresi il rateo della tredicesima mensilità e altri eventuali premi o emolumenti vari, ugualmente soggetti a contribuzione"
+          },
+          "transformation": "The base is the pay of the last 40 daily contributions over their number (kind last_contributions); for a fixed-term worker (rapporti di durata limitata, art. 2 c. 1 lett. a D.Lgs. 182/1997) it is capped by the daily ceiling of art. 6 c. 15 D.L. 536/1987, raised to 100 EUR for the events from 26 May 2021 ('Tale massimale [...] è stato elevato da euro 67,14 a euro 100, ai sensi del comma 3 del predetto articolo 66'). The cap of the self-employed is outside the engine, which pays employees.",
+          "note": "Same copy of the INPS circular as the regime rates (same sha256)."
+        }
+      }
     }
   ],
   "fixed_term": {

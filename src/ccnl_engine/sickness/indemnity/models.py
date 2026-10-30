@@ -11,6 +11,7 @@ from ccnl_engine.provenance.ruleset.models import (
     RulesetIdentity,
 )
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
+from ccnl_engine.sickness.base.models import RegimeDailyBase
 
 
 class SickPayBand(BaseModel):
@@ -148,6 +149,7 @@ class SickPayRegime(BaseModel):
             (spettacolo: 40, art. 66 D.L. 73/2021); ``None`` without such a
             requirement.
         provenance: Provenance record of the regime rates.
+        daily_base: The base of the regime; ``None`` keeps the general one.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -158,6 +160,7 @@ class SickPayRegime(BaseModel):
     additional_contribution: bool = True
     min_daily_contributions: int | None = Field(default=None, ge=1)
     provenance: RuleProvenance | None = None
+    daily_base: RegimeDailyBase | None = None
 
 
 class FixedTermSickLimit(BaseModel):

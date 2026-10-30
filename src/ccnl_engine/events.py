@@ -32,7 +32,7 @@ from ccnl_engine.event.facade import (
     WorkInjuryEvent,
 )
 from ccnl_engine.run.types import PeriodId
-from ccnl_engine.sickness.base.inputs import InpsSicknessBase
+from ccnl_engine.sickness.base.inputs import InpsSicknessBase, SpettacoloSicknessBase
 
 __all__ = [
     "AbsenceEvent",
@@ -54,6 +54,7 @@ __all__ = [
     "ShiftWorkEvent",
     "SickLeaveEvent",
     "SicknessEpisode",
+    "SpettacoloSicknessBase",
     "StandbyEvent",
     "StandbyKind",
     "TerminationTFREvent",
