@@ -10,12 +10,7 @@
       "rule": "ALIFOND employer contribution (1.50%) modeled from 01/07/2025 (renewal Art. 47). Pre-July-2025 ALIFOND contribution not modeled.",
       "calculation": "ccnl/tabacco-apti:coverage.notes",
       "state": "absent",
-      "work": [
-        "T05.04"
-      ],
-      "verification": [
-        "T05.10"
-      ],
+      "remediation": "Model the ALIFOND employer rate in force before 1 July 2025.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -31,12 +26,7 @@
       "rule": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
       "calculation": "ccnl/tabacco-apti:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T02.03"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -52,14 +42,7 @@
       "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
       "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
       "state": "unverified",
-      "work": [
-        "T00.03",
-        "T09.03"
-      ],
-      "verification": [
-        "T00.12",
-        "T09.11"
-      ],
+      "remediation": "Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -75,14 +58,7 @@
       "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
       "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
       "state": "unverified",
-      "work": [
-        "T00.03",
-        "T09.03"
-      ],
-      "verification": [
-        "T00.12",
-        "T09.11"
-      ],
+      "remediation": "Replace each provisional ruleset of the year with the values of its published sources, drop its provisional flag, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -97,13 +73,7 @@
       "rule": "agreement/tabacco-apti.json#additional_months[2025-01-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -118,13 +88,7 @@
       "rule": "agreement/tabacco-apti.json#employer_funds[ALIFOND].employee_min_rate[2025-07-01]",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -139,13 +103,7 @@
       "rule": "agreement/tabacco-apti.json#employer_funds[ALIFOND].rate[2025-07-01]",
       "calculation": "pension_fund_contribution",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -160,13 +118,7 @@
       "rule": "agreement/tabacco-apti.json#levels[1].fixed_allowances[CONTINGENZA]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -181,13 +133,7 @@
       "rule": "agreement/tabacco-apti.json#levels[1].fixed_allowances[EDR]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -202,13 +148,7 @@
       "rule": "agreement/tabacco-apti.json#levels[1S].fixed_allowances[CONTINGENZA]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -223,13 +163,7 @@
       "rule": "agreement/tabacco-apti.json#levels[1S].fixed_allowances[EDR]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -244,13 +178,7 @@
       "rule": "agreement/tabacco-apti.json#levels[2].fixed_allowances[CONTINGENZA]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -265,13 +193,7 @@
       "rule": "agreement/tabacco-apti.json#levels[2].fixed_allowances[EDR]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -286,13 +208,7 @@
       "rule": "agreement/tabacco-apti.json#levels[3A].fixed_allowances[CONTINGENZA]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -307,13 +223,7 @@
       "rule": "agreement/tabacco-apti.json#levels[3A].fixed_allowances[EDR]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -328,13 +238,7 @@
       "rule": "agreement/tabacco-apti.json#levels[3B].fixed_allowances[CONTINGENZA]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -349,13 +253,7 @@
       "rule": "agreement/tabacco-apti.json#levels[3B].fixed_allowances[EDR]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -370,13 +268,7 @@
       "rule": "agreement/tabacco-apti.json#levels[4A].fixed_allowances[CONTINGENZA]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -391,13 +283,7 @@
       "rule": "agreement/tabacco-apti.json#levels[4A].fixed_allowances[EDR]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -412,13 +298,7 @@
       "rule": "agreement/tabacco-apti.json#levels[4B].fixed_allowances[CONTINGENZA]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -433,13 +313,7 @@
       "rule": "agreement/tabacco-apti.json#levels[4B].fixed_allowances[EDR]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -454,13 +328,7 @@
       "rule": "agreement/tabacco-apti.json#levels[5].fixed_allowances[CONTINGENZA]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -475,13 +343,7 @@
       "rule": "agreement/tabacco-apti.json#levels[5].fixed_allowances[EDR]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -496,13 +358,7 @@
       "rule": "agreement/tabacco-apti.json#levels[6].fixed_allowances[CONTINGENZA]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -517,13 +373,7 @@
       "rule": "agreement/tabacco-apti.json#levels[6].fixed_allowances[EDR]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -538,13 +388,7 @@
       "rule": "agreement/tabacco-apti.json#seniority_increments",
       "calculation": "seniority",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -560,12 +404,7 @@
       "rule": "An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.",
       "calculation": "ccnl_engine.severance.relief.services; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
       "state": "absent",
-      "work": [
-        "T08.05"
-      ],
-      "verification": [
-        "T08.09"
-      ],
+      "remediation": "Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.",
       "origin": "seeded",
       "links": {
         "limitations": [

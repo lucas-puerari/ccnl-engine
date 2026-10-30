@@ -10,12 +10,7 @@
       "rule": "The ENAM of a permanent teacher of the scuola dell'infanzia and primaria (L. 93/1957 art. 3: 1% of 80% of the stipendio) is computed on the whole minimum of the level; the stipendio it counts leaves out the IIS conglobata the retribuzione tabellare holds, which the bundle does not give apart: the contribution is overstated.",
       "calculation": "ccnl/istruzione-ricerca-aran:coverage.notes",
       "state": "absent",
-      "work": [
-        "T04.01"
-      ],
-      "verification": [
-        "T04.12"
-      ],
+      "remediation": "Source the IIS conglobata of the profile, leave it out of the ENAM base, then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -31,12 +26,7 @@
       "rule": "The ore aggiuntive of the docenti are paid at fixed hourly amounts by activity (CCNL 2019-2021 Tabella E1.6: corsi di recupero 55,00, insegnamento 38,50, non di insegnamento 19,25), not by time of day: no overtime band is modelled for the docenti levels, so their overtime event needs the amount as hourly_rate with multiplier 1. The ATA areas are paid by the bands of Tabella E1.7.",
       "calculation": "ccnl/istruzione-ricerca-aran:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.06"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Pass the amount of Tabella E1.6 of the activity as hourly_rate with multiplier 1.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -52,14 +42,7 @@
       "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
       "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
       "state": "unverified",
-      "work": [
-        "T00.03",
-        "T09.03"
-      ],
-      "verification": [
-        "T00.12",
-        "T09.11"
-      ],
+      "remediation": "Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -75,14 +58,7 @@
       "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
       "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
       "state": "unverified",
-      "work": [
-        "T00.03",
-        "T09.03"
-      ],
-      "verification": [
-        "T00.12",
-        "T09.11"
-      ],
+      "remediation": "Replace each provisional ruleset of the year with the values of its published sources, drop its provisional flag, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -97,13 +73,7 @@
       "rule": "agreement/istruzione-ricerca-aran.json#work_rules.absence_rules",
       "calculation": "base_salary, sickness",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -119,12 +89,7 @@
       "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.",
       "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
       "state": "unverified",
-      "work": [
-        "T03.03"
-      ],
-      "verification": [
-        "T03.11"
-      ],
+      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -140,12 +105,7 @@
       "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days, when the episode does not let the engine compute the INPS daily base: no SicknessEpisode.inps_base in its relapse chain, an operaio without the days worked or paid of the month before, an impiegato who did not work that whole month, an unknown worker category, or a sector INPS regime (spettacolo). With the base, INPS pays its share on the retribuzione media globale giornaliera of the month before the illness and on calendar days (INPS circ. 134368/1981 point 11). The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
       "calculation": "ccnl_engine.sickness.pay.handlers (INPS share of a sick day); ccnl_engine.sickness.base.rules (daily base)",
       "state": "unverified",
-      "work": [
-        "T03.01"
-      ],
-      "verification": [
-        "T03.11"
-      ],
+      "remediation": "Compute the base of an impiegato's partial month (point 11.2 letters d-f), of the sector regimes, and from the closing state of the engine's own runs so the caller need not state it, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -161,12 +121,7 @@
       "rule": "Hourly divisor 156 = 36h/settimana × 52/12. I docenti hanno orario cattedra (18h/settimana insegnamento), non direttamente comparabile. Il divisore si applica per l'hourly_rate indicativo.",
       "calculation": "ccnl/istruzione-ricerca-aran:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T02.04"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Give the docenti levels their own INAIL daily base (or divisor of the orario cattedra), or stop deriving it from the 156 divisor for them.",
       "origin": "seeded",
       "links": {
         "limitations": [

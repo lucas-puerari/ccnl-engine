@@ -10,12 +10,7 @@
       "rule": "Hourly divisor 165 = 38h/settimana × 52/12, arrotondato. Art. 27 CCNL 23.1.2024 (Orario di lavoro dei dirigenti) non modificato dal CCNL 27.02.2026. Il divisore 165 è un'approssimazione — i dirigenti SSN non hanno un orario fisso misurabile.",
       "calculation": "ccnl/dirigenza-sanitaria-medico-veterinaria-aran:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T02.04"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Source the divisor of Art. 27 (or the INAIL base of the SSN dirigenti) and replace 165, or mark the divisor as not applicable so the INAIL daily base is not derived from it.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -31,14 +26,7 @@
       "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
       "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
       "state": "unverified",
-      "work": [
-        "T00.03",
-        "T09.03"
-      ],
-      "verification": [
-        "T00.12",
-        "T09.11"
-      ],
+      "remediation": "Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -54,14 +42,7 @@
       "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
       "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
       "state": "unverified",
-      "work": [
-        "T00.03",
-        "T09.03"
-      ],
-      "verification": [
-        "T00.12",
-        "T09.11"
-      ],
+      "remediation": "Replace each provisional ruleset of the year with the values of its published sources, drop its provisional flag, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -76,13 +57,7 @@
       "rule": "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json#accrual_rule",
       "calculation": "base_salary",
       "state": "absent",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -97,13 +72,7 @@
       "rule": "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json#additional_months[2019-12-19]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -119,12 +88,7 @@
       "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.",
       "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
       "state": "unverified",
-      "work": [
-        "T03.03"
-      ],
-      "verification": [
-        "T03.11"
-      ],
+      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -140,12 +104,7 @@
       "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days, when the episode does not let the engine compute the INPS daily base: no SicknessEpisode.inps_base in its relapse chain, an operaio without the days worked or paid of the month before, an impiegato who did not work that whole month, an unknown worker category, or a sector INPS regime (spettacolo). With the base, INPS pays its share on the retribuzione media globale giornaliera of the month before the illness and on calendar days (INPS circ. 134368/1981 point 11). The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
       "calculation": "ccnl_engine.sickness.pay.handlers (INPS share of a sick day); ccnl_engine.sickness.base.rules (daily base)",
       "state": "unverified",
-      "work": [
-        "T03.01"
-      ],
-      "verification": [
-        "T03.11"
-      ],
+      "remediation": "Compute the base of an impiegato's partial month (point 11.2 letters d-f), of the sector regimes, and from the closing state of the engine's own runs so the caller need not state it, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -161,12 +120,7 @@
       "rule": "Pre-31/12/2024 specificità medico-veterinaria (704,88€/mese) calcolata per differenza dal valore a regime 728,15€ sottraendo il presunto incremento 23,27€/mese × 13 = 302,51€/anno. L'importo pre-2024 è una stima basata sulle comunicazioni GOAL-plan (fonte secondaria); il valore esatto del CCNL 23.1.2024 Art. 65 non è verificato.",
       "calculation": "ccnl/dirigenza-sanitaria-medico-veterinaria-aran:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Source the exact Art. 65 amount of the CCNL 23.1.2024 for periods before 31/12/2024.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -182,12 +136,7 @@
       "rule": "Pre-2024 tabellare 3.616,60€/mese = 47.015,77€/anno ricavato sottraendo l'incremento di 230€/mese (× 13) dal valore 2024. Il valore del CCNL 19.12.2019 (base periodo 1) è stimato in assenza di consultazione del testo del previgente contratto.",
       "calculation": "ccnl/dirigenza-sanitaria-medico-veterinaria-aran:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Source the tabellare of the CCNL 19.12.2019 from the previgente contract text.",
       "origin": "seeded",
       "links": {
         "limitations": [

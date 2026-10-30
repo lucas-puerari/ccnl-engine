@@ -1,8 +1,7 @@
 """Every bundled CCNL names a family of the catalog, and every family is used.
 
-The family is descriptive metadata, kept apart from the INPS sector and the
-work groups of the roadmap: a family spans several INPS sectors and several
-work groups, and the catalog records the groups explicitly.
+The family is descriptive metadata, kept apart from the INPS sector: a
+family spans several INPS sectors and one INPS sector several families.
 """
 
 from __future__ import annotations
@@ -47,13 +46,3 @@ def test_a_family_is_not_the_inps_sector() -> None:
     assert sectors["metalmeccanica"] == {"industria", "artigianato"}
     assert sectors["edilizia"] == {"edilizia", "artigianato"}
     assert len(families["terziario"]) > 1
-
-
-def test_the_catalog_maps_families_to_several_work_groups() -> None:
-    """The family to work group mapping is explicit and not one to one."""
-    catalog = load_family_catalog()
-
-    assert catalog.by_id["metalmeccanica"].groups == ("G06", "G08", "G11")
-    assert {g for family in catalog.families for g in family.groups} == {
-        f"G{n:02d}" for n in range(1, 18)
-    }

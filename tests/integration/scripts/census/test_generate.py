@@ -21,22 +21,6 @@ _SEEDED = {"id": "a", "origin": "seeded", "state": "absent"}
 _TEXT = {"id": "b", "origin": "text", "state": "implemented"}
 
 
-@pytest.mark.parametrize(
-    ("capability", "name", "work"),
-    [
-        ("sickness", "sickness_inps_daily_base", ("T03.01",)),
-        ("sickness", "something_else", ("T03.02",)),
-        ("irpef", "provisional_ruleset", ("T00.03", "T09.03")),
-        ("unmapped", "unmapped", ("T00.07",)),
-    ],
-)
-def test_the_name_then_the_capability_decides_the_work(
-    capability: str, name: str, work: tuple[str, ...]
-) -> None:
-    """A known name wins over its capability; anything else goes to T00.07."""
-    assert generate.work_items(capability, name) == work
-
-
 def test_a_limitation_row_links_its_limitation() -> None:
     """The row of a CCNL limitation takes its variant as id and links it."""
     ccnl = load_ccnl("commercio-confcommercio")
@@ -47,8 +31,7 @@ def test_a_limitation_row_links_its_limitation() -> None:
     row = generate.limitation_row(limitation)
 
     assert row["id"] == "sickness_net_basis"
-    assert row["work"] == ["T03.05"]
-    assert row["verification"] == ["T03.11"]
+    assert row["remediation"] == limitation.remediation
     assert row["links"] == {"limitations": [limitation.id]}
     assert row["origin"] == "seeded"
 
@@ -60,7 +43,7 @@ def test_an_engine_limitation_row_takes_the_engine_id() -> None:
     row = generate.limitation_row(engine["sickness_inps_daily_base"])
 
     assert row["id"] == "sickness_inps_daily_base"
-    assert row["work"] == ["T03.01"]
+    assert row["remediation"] == engine["sickness_inps_daily_base"].remediation
 
 
 def test_a_weak_rule_row_links_its_rule() -> None:
@@ -77,8 +60,7 @@ def test_a_weak_rule_row_links_its_rule() -> None:
         "rule": "agreement/x.json#parameters.accrual_rule",
         "calculation": "tfr",
         "state": "absent",
-        "work": ["T09.01", "T09.03"],
-        "verification": ["T09.11"],
+        "remediation": generate.WEAK_REMEDIATION,
         "origin": "seeded",
         "links": None,
     }
@@ -116,7 +98,7 @@ def test_merge_rejects_two_seeded_rows_with_one_id() -> None:
 
 
 def test_every_weak_rule_and_open_limitation_has_a_row() -> None:
-    """The census reconciles all the weak evidence of the bundle (T00.07)."""
+    """The census reconciles all the weak evidence of the bundle."""
     files = generate.build()
     censuses = [Census.model_validate(json.loads(text)) for text in files.values()]
     linked_rules = {
@@ -133,8 +115,7 @@ def test_every_weak_rule_and_open_limitation_has_a_row() -> None:
         for path in paths
     }
     assert linked == {i for ids in evidence.open_limitations.values() for i in ids}
-    assert all(row.work for c in censuses for row in c.requirements)
-    assert not any("T00.07" in row.work for c in censuses for row in c.requirements)
+    assert all(row.remediation for c in censuses for row in c.requirements)
 
 
 def test_the_bundled_census_is_up_to_date(tmp_path: Path) -> None:
@@ -143,8 +124,3 @@ def test_the_bundled_census_is_up_to_date(tmp_path: Path) -> None:
     assert generate.main(["--check"], root=tmp_path) == 1
     assert generate.main([], root=tmp_path) == 0
     assert generate.main(["--check"], root=tmp_path) == 0
-
-
-def test_the_verification_is_the_closing_check_of_each_area() -> None:
-    """One closing check per area, in the order of the work items."""
-    assert generate.verification(("T00.03", "T09.03", "T09.01")) == ["T00.12", "T09.11"]

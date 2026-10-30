@@ -116,7 +116,7 @@ def test_a_row_is_open_until_its_rule_and_links_are_closed() -> None:
     """Origin, state, scenarios, linked limitations and linked rules decide."""
     census = _census(
         _row("a_done", links={"limitations": ["x/closed"], "rules": ["f.json#strong"]}),
-        _row("b_absent", state="absent", work=["T03.01"], verification=["T03.11"]),
+        _row("b_absent", state="absent", remediation="Model it."),
         _row("c_untested", scenarios=[]),
         _row("d_open_limitation", links={"limitations": ["x/open"]}),
         _row("e_weak_rule", links={"rules": ["f.json#weak"]}),
@@ -125,8 +125,7 @@ def test_a_row_is_open_until_its_rule_and_links_are_closed() -> None:
             "g_seeded",
             origin="seeded",
             source=None,
-            work=["T03.01"],
-            verification=["T03.11"],
+            remediation="Model it.",
         ),
     )
 

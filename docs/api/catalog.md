@@ -51,7 +51,7 @@ anas.validity.first_day  # → datetime.date(2026, 3, 1)
 
 Every CCNL names its contract family in `meta.family`, an id of the central
 catalog that `list_families()` returns (`ContractFamily`: `id`, `name`,
-`description`, `criteria` and the work groups G01-G17 of the roadmap). The
+`description` and `criteria`). The
 family groups the CCNLs of one productive sector across employer size,
 legal form and signatories (`metalmeccanica` holds the industrial, small
 industry, cooperative and craft metalworking CCNLs); it selects no rule and

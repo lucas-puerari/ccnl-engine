@@ -1,7 +1,7 @@
 # Limitation reconciliation
 
 Review of 2026-10-30. Every weak payable rule and every open limitation of
-the bundle was linked to a census row and to the work item that closes it
+the bundle was linked to a census row and to the remediation that closes it
 (`scripts/census/generate.py`, see [Model completeness](completeness.md)).
 Each of the 437 open limitations the CCNL files declared that day was then
 checked against the current code and data. A note is **valid** when it
@@ -45,11 +45,11 @@ Kept open although a reviewer proposed to close them:
   note is narrowed to the worker whose weekly rest falls on another day,
   whose Sunday overtime takes 15% while Art. 149 may pay 30%.
 
-## Valid with stale wording (T09.04)
+## Valid with stale wording
 
 These notes still hold, but part of their text described an engine that has
 changed since. Their text and remediation were rewritten on 2026-10-30
-(work item T09.04), each marked "review of 2026-10-30"; the limitation ids
+each marked "review of 2026-10-30"; the limitation ids
 and their status are unchanged.
 
 | Limitation | What is out of date |

@@ -10,12 +10,7 @@
       "rule": "APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.",
       "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T04.02"
-      ],
-      "verification": [
-        "T04.12"
-      ],
+      "remediation": "Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -31,12 +26,7 @@
       "rule": "APPRENTICE SENIORITY: the December 2025 renewal extends the seniority increments to apprentices from 2026-01-01 (see the seniority note), but the clause and its amounts are not modelled: the engine pays no increment during the apprenticeship. The run is affected when the apprentice has matured increments the level pays.",
       "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
       "state": "absent",
-      "work": [
-        "T02.03"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -52,12 +42,7 @@
       "rule": "SIMPLIFICATION: Percentuali apprendistato da PDF 2022. Il rinnovo dic 2025 estende scatti anzianità agli apprendisti ma non menziona variazioni alle aliquote. Rischio: basso.",
       "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Verify the apprenticeship percentages against the December 2025 renewal.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -73,12 +58,7 @@
       "rule": "SIMPLIFICATION: Fondi bilaterali non modellati (Fondo sanitario EUR 10.42*12 + bilateralità EUR 11.65*12). employer_cost_annual sottostimato di ~EUR 267/anno.",
       "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
       "state": "absent",
-      "work": [
-        "T05.01"
-      ],
-      "verification": [
-        "T05.10"
-      ],
+      "remediation": "Pass the health-fund and bilateral contributions as a bilateral fund event, or model the funds.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -94,12 +74,7 @@
       "rule": "SIMPLIFICATION: IND_FUN (EUR 25.82/mese) — il PDF non specifica il numero di mensilità. months_per_year=null (eredita 13). Impatto: ±25.82 EUR/anno se la risposta vera è 12 mensilità.",
       "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Source the number of yearly instalments of IND_FUN and set months_per_year.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -115,12 +90,7 @@
       "rule": "INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.",
       "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T04.01"
-      ],
-      "verification": [
-        "T04.12"
-      ],
+      "remediation": "Source the artigianato rates of 2026 on an INPS or association table, mark the inps block of contribution/2026/artigianato.json derived, then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -136,12 +106,7 @@
       "rule": "SIMPLIFICATION: L2 scatto anzianità = 26.85 EUR (PDF 2022). Kitech lug 2026 riporta 26.86 EUR. Usato PDF come fonte primaria. Impatto: EUR 0.01/mese.",
       "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T02.01"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Confirm the level 2 seniority amount (26.85 or 26.86 EUR) against the signed table.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -157,12 +122,7 @@
       "rule": "SIMPLIFICATION: Soglia settimanale ore straordinarie (OT_DIURNO) non modellata (hour_threshold_per_week=null). Il contratto prevede scatto dopo 40h/settimana e limite annuale 200h. Coverage work_rules gia' marcata partial.",
       "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
       "state": "unverified",
-      "work": [
-        "T02.06"
-      ],
-      "verification": [
-        "T02.13"
-      ],
+      "remediation": "Model the 40-hour weekly threshold and the 200-hour yearly cap of OT_DIURNO, or pass the multiplier on the overtime event.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -178,14 +138,7 @@
       "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
       "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
       "state": "unverified",
-      "work": [
-        "T00.03",
-        "T09.03"
-      ],
-      "verification": [
-        "T00.12",
-        "T09.11"
-      ],
+      "remediation": "Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -201,14 +154,7 @@
       "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
       "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
       "state": "unverified",
-      "work": [
-        "T00.03",
-        "T09.03"
-      ],
-      "verification": [
-        "T00.12",
-        "T09.11"
-      ],
+      "remediation": "Replace each provisional ruleset of the year with the values of its published sources, drop its provisional flag, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -223,13 +169,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#additional_months[2022-11-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -244,13 +184,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[1].base_salary[2022-11-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -265,13 +199,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[1].base_salary[2023-07-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -286,13 +214,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[1].base_salary[2024-07-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -307,13 +229,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[1].fixed_allowances[IND_FUN]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -328,13 +244,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[2].base_salary[2022-11-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -349,13 +259,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[2].base_salary[2023-07-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -370,13 +274,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[2].base_salary[2024-07-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -391,13 +289,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[3].base_salary[2022-11-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -412,13 +304,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[3].base_salary[2023-07-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -433,13 +319,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[3].base_salary[2024-07-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -454,13 +334,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[3S].base_salary[2022-11-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -475,13 +349,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[3S].base_salary[2023-07-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -496,13 +364,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[3S].base_salary[2024-07-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -517,13 +379,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[4].base_salary[2022-11-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -538,13 +394,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[4].base_salary[2023-07-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -559,13 +409,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[4].base_salary[2024-07-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -580,13 +424,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[5].base_salary[2022-11-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -601,13 +439,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[5].base_salary[2023-07-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -622,13 +454,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[5].base_salary[2024-07-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -643,13 +469,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[6].base_salary[2022-11-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -664,13 +484,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[6].base_salary[2023-07-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -685,13 +499,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#levels[6].base_salary[2024-07-01]",
       "calculation": "base_salary",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -706,13 +514,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#overtime_bands[OT_DIURNO]",
       "calculation": "overtime",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -727,13 +529,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#overtime_bands[OT_FESTIVO]",
       "calculation": "overtime",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -748,13 +544,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#overtime_bands[OT_NOTTURNO]",
       "calculation": "overtime",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -769,13 +559,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#overtime_bands[OT_NOTTURNO_FESTIVO]",
       "calculation": "overtime",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -790,13 +574,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#seniority_increments",
       "calculation": "seniority",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -811,13 +589,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#work_rules.absence_rules",
       "calculation": "base_salary, sickness",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -832,13 +604,7 @@
       "rule": "agreement/pulizia-artigianato-confartigianato.json#work_rules.sickness_rules",
       "calculation": "sickness",
       "state": "unverified",
-      "work": [
-        "T09.01",
-        "T09.03"
-      ],
-      "verification": [
-        "T09.11"
-      ],
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
@@ -854,12 +620,7 @@
       "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.",
       "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
       "state": "unverified",
-      "work": [
-        "T03.03"
-      ],
-      "verification": [
-        "T03.11"
-      ],
+      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -875,12 +636,7 @@
       "rule": "The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days, when the episode does not let the engine compute the INPS daily base: no SicknessEpisode.inps_base in its relapse chain, an operaio without the days worked or paid of the month before, an impiegato who did not work that whole month, an unknown worker category, or a sector INPS regime (spettacolo). With the base, INPS pays its share on the retribuzione media globale giornaliera of the month before the illness and on calendar days (INPS circ. 134368/1981 point 11). The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.",
       "calculation": "ccnl_engine.sickness.pay.handlers (INPS share of a sick day); ccnl_engine.sickness.base.rules (daily base)",
       "state": "unverified",
-      "work": [
-        "T03.01"
-      ],
-      "verification": [
-        "T03.11"
-      ],
+      "remediation": "Compute the base of an impiegato's partial month (point 11.2 letters d-f), of the sector regimes, and from the closing state of the engine's own runs so the caller need not state it, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -896,12 +652,7 @@
       "rule": "An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.",
       "calculation": "ccnl_engine.severance.relief.services; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
       "state": "absent",
-      "work": [
-        "T08.05"
-      ],
-      "verification": [
-        "T08.09"
-      ],
+      "remediation": "Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.",
       "origin": "seeded",
       "links": {
         "limitations": [
