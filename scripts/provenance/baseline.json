@@ -1370,7 +1370,8 @@
       "trasporto-aereo-assaeroporti/apprentice_seniority",
       "trasporto-aereo-assaeroporti/art_g6_reclassification",
       "trasporto-aereo-assaeroporti/level_9_seniority_zero",
-      "trasporto-aereo-assaeroporti/role_conditional_allowances"
+      "trasporto-aereo-assaeroporti/role_conditional_allowances",
+      "trasporto-aereo-assaeroporti/sickness_hospital_and_serious_illness"
     ],
     "agreement/trasporto-ferroviario-agens.json": [
       "trasporto-ferroviario-agens/e2_e3_seniority_amounts",

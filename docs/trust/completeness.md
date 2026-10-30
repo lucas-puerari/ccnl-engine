@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/132 CCNLs.** Bundle: 268 weak rules, 560 open limitations (560 with a monetary impact).
+**Complete: 0/132 CCNLs.** Bundle: 268 weak rules, 561 open limitations (561 with a monetary impact).
 
 ## Declared window
 
@@ -170,7 +170,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [tessile-moda-artigianato-confartigianato](../contracts/tessile-moda-artigianato-confartigianato.md) | `tessile-moda` | exploratory | — | 18 rows | 18 open requirements; 1 weak rule; 13 monetary limitations; 2 outside_input limitations; 22 non-native capabilities |
 | [tessile-pmi-uniontessile](../contracts/tessile-pmi-uniontessile.md) | `tessile-moda` | exploratory | 2027-03-31 | 20 rows | 20 open requirements; 6 weak rules; 11 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [tessile-smi](../contracts/tessile-smi.md) | `tessile-moda` | exploratory | — | 16 rows | 16 open requirements; 2 weak rules; 12 monetary limitations; 21 non-native capabilities |
-| [trasporto-aereo-assaeroporti](../contracts/trasporto-aereo-assaeroporti.md) | `trasporti-logistica` | exploratory | — | 18 rows | 18 open requirements; 1 weak rule; 14 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
+| [trasporto-aereo-assaeroporti](../contracts/trasporto-aereo-assaeroporti.md) | `trasporti-logistica` | exploratory | — | 18 rows | 18 open requirements; 1 weak rule; 14 monetary limitations; 1 outside_input limitation; 22 non-native capabilities |
 | [trasporto-ferroviario-agens](../contracts/trasporto-ferroviario-agens.md) | `trasporti-logistica` | exploratory | 2026-12-31 | 17 rows | 17 open requirements; 1 weak rule; 14 monetary limitations; 22 non-native capabilities |
 | [turismo-confesercenti](../contracts/turismo-confesercenti.md) | `turismo` | exploratory | — | 17 rows | 17 open requirements; 1 weak rule; 12 monetary limitations; 2 outside_input limitations; 22 non-native capabilities |
 | [turismo-federalberghi](../contracts/turismo-federalberghi.md) | `turismo` | production | — | 24 rows | 24 open requirements; 12 monetary limitations; 10 outside_input limitations; 24 non-native capabilities |

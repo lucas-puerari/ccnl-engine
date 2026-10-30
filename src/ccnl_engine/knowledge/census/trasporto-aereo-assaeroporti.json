@@ -258,18 +258,18 @@
       }
     },
     {
-      "id": "sickness_cumulation_window",
+      "id": "sickness_hospital_and_serious_illness",
       "institute": "sickness",
       "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.",
-      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
-      "state": "unverified",
-      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SICKNESS (point 6, 9-10): the hospital stays, and the certified convalescence after them up to 120 days, are left out of both the comporto and the pay count; the limits are tripled for oncological illness, multiple sclerosis and muscular dystrophy and raised by 30% for a disability. The engine counts every sick day and applies the ordinary limits.",
+      "calculation": "ccnl/trasporto-aereo-assaeroporti:coverage.notes",
+      "state": "absent",
+      "remediation": "Leave the hospital stays and the convalescence after them out of the counts, and apply the tripled and raised limits of points 9-10, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "sickness_cumulation_window"
+          "trasporto-aereo-assaeroporti/sickness_hospital_and_serious_illness"
         ]
       }
     },
