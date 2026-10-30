@@ -11,7 +11,8 @@ from dataclasses import dataclass
 from datetime import date
 
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.validators import require_date
+from ccnl_engine.sickness.base.inputs import InpsSicknessBase
+from ccnl_engine.validators import require_date, require_instance
 
 __all__ = ["MaternityLeaveEvent", "WorkInjuryEvent"]
 
@@ -38,20 +39,32 @@ class MaternityLeaveEvent:
     Attributes:
         started_on: First day of the leave.
         ended_on: Last day of the leave.
+        base_pay: Pay of the month before the leave, which the INPS
+            indemnity is computed on (art. 23 D.Lgs. 151/2001: the pay of
+            that month and the daily rateo of the 13th and of the other
+            payments, over 30); ``None`` when not stated.
 
     Raises:
-        InvalidInputError: When a day is not a date or the leave ends
-            before it starts.
+        InvalidInputError: When a day is not a date, the leave ends before
+            it starts or ``base_pay`` is not an :class:`InpsSicknessBase`.
     """
 
     started_on: date
     ended_on: date
+    base_pay: InpsSicknessBase | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         for name in ("started_on", "ended_on"):
             require_date(
                 getattr(self, name), f"MaternityLeaveEvent.{name}", feature=_MATERNITY
             )
+        require_instance(
+            self.base_pay,
+            InpsSicknessBase,
+            "MaternityLeaveEvent.base_pay",
+            feature=_MATERNITY,
+            optional=True,
+        )
         if self.ended_on < self.started_on:
             msg = "MaternityLeaveEvent.ended_on must not precede started_on"
             raise InvalidInputError(

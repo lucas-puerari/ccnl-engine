@@ -17,7 +17,7 @@
         "quote": "Le lavoratrici hanno diritto ad un'indennità giornaliera pari all'80 per cento della retribuzione per tutto il periodo del congedo di maternità"
       },
       "transformation": "80% of the retribuzione media globale giornaliera: the pay of the month before the leave divided by thirty (art. 23 c. 4), plus the daily rateo of the tredicesima and of the other extra months (art. 23 c. 2), for every day of the leave.",
-      "note": "Art. 23 (Normattiva, page sha256 d6056b4965fba0de8b0b234cb07d9fbf058cfa673ea59ce1f746adbedd7d6d3f): 'dividendo per trenta l'importo totale della retribuzione del mese precedente a quello nel corso del quale ha avuto inizio il congedo'; 'Al suddetto importo va aggiunto il rateo giornaliero relativo alla gratifica natalizia o alla tredicesima mensilità e agli altri premi o mensilità'. Read on 2026-10-20. The engine takes the monthly pay of the run as the pay of the month before (no variable pay of that month).",
+      "note": "Art. 23 (Normattiva, page sha256 d6056b4965fba0de8b0b234cb07d9fbf058cfa673ea59ce1f746adbedd7d6d3f): 'dividendo per trenta l'importo totale della retribuzione del mese precedente a quello nel corso del quale ha avuto inizio il congedo'; 'Al suddetto importo va aggiunto il rateo giornaliero relativo alla gratifica natalizia o alla tredicesima mensilità e agli altri premi o mensilità'. Read on 2026-10-20. The pay of the month before is MaternityLeaveEvent.base_pay; without it the engine takes the monthly pay of the run, with a missing_fact blocker, and for an operaia or a month not worked in full it does so under the open engine limitation maternity_daily_base.",
       "extraction": {
         "method": "ai",
         "model": "claude-opus-5-5",
@@ -78,7 +78,7 @@
     "published_at": "2026-10-20",
     "source": "D.Lgs. 151/2001 artt. 22-23 (maternity); D.P.R. 1124/1965 artt. 68, 73, 116-117 (work injury), Normattiva, texts in force read on 2026-10-20",
     "verification_status": "verified",
-    "source_hash": "40861f55860c92ff5089f906cb9e87e08751f0cc67ec474d3b4699fdcaedd122",
+    "source_hash": "9a40c367cede9b5fbf4ab8f947efd274f1b740994c5909b1840d75f4ee589b28",
     "source_type": "official_primary",
     "verified_by": "claude-opus-5-5",
     "verified_at": "2026-10-20"

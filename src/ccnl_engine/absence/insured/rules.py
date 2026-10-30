@@ -29,7 +29,9 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.compensation.proration.rules import payable_days
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.pay_item.rounding.policies import money
+from ccnl_engine.sickness.base.rules import daily_base
 
 if TYPE_CHECKING:
     from ccnl_engine.absence.insured.models import (
@@ -39,6 +41,7 @@ if TYPE_CHECKING:
         MaternityRules,
     )
     from ccnl_engine.compensation.element.types import MonthlyPayChain
+    from ccnl_engine.sickness.base.inputs import InpsSicknessBase
     from ccnl_engine.sickness.term.rules import DailyQuota
 
 __all__ = ["InsuredPay", "MonthPay", "injury_pay", "maternity_pay"]
@@ -138,6 +141,7 @@ def maternity_pay(
     pay: MonthPay,
     rates: MaternityRates,
     rules: MaternityRules | None,
+    rmgg: Decimal | None = None,
 ) -> InsuredPay:
     """Return the deduction, the INPS indemnity and the top-up of the month.
 
@@ -148,6 +152,8 @@ def maternity_pay(
         pay: The pay of the month.
         rates: The INPS indemnity.
         rules: The CCNL top-up, ``None`` for none.
+        rmgg: Daily base of the month before the leave (art. 23 D.Lgs.
+            151/2001); ``None`` takes the monthly pay of the run instead.
 
     Returns:
         The amounts, each rounded to the cent.
@@ -156,7 +162,10 @@ def maternity_pay(
     days = _days(first, last)
     monthly = pay.monthly
     divisor = Decimal(rates.daily_divisor)
-    daily = monthly / divisor + monthly * pay.extra_months / (_MONTHS * divisor)
+    if rmgg is None:
+        daily = monthly / divisor + monthly * pay.extra_months / (_MONTHS * divisor)
+    else:
+        daily = rmgg
     indemnity = money(rates.indemnity_rate * daily * days)
     integration = _ZERO
     if rules is not None and days:
@@ -227,3 +236,30 @@ def injury_pay(
         carenza,
         carenza_units,
     )
+
+
+def maternity_daily_base(
+    base: InpsSicknessBase | None,
+    category: WorkerCategory | None,
+    monthly_payments: Decimal | None,
+) -> tuple[Decimal | None, bool]:
+    """Return the maternity daily base and whether the engine can compute one.
+
+    Art. 23 c. 4 D.Lgs. 151/2001: the pay of the month before the leave
+    over 30, with the daily rateo of the 13th and of the other payments
+    (c. 2), as the sickness base of an impiegato.  The base of an operaia
+    (c. 5) and of a month not worked in full is not computed.
+
+    Returns:
+        ``(rmgg, computable)``: the base, ``None`` without one; whether a
+        stated base would give one.
+    """
+    computable = (
+        category is not None
+        and category is not WorkerCategory.OPERAIO
+        and monthly_payments is not None
+        and (base is None or base.paid_days is None)
+    )
+    if not computable or base is None or monthly_payments is None:
+        return None, computable
+    return daily_base(base, category, monthly_payments), True

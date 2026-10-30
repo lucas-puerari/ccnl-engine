@@ -1430,6 +1430,7 @@
     "limitation/engine.json": [
       "apprenticeship_pct_undeclared_components",
       "inps_minimum_base_exempt_category",
+      "maternity_daily_base",
       "provisional_inps_ruleset",
       "provisional_ruleset",
       "sickness_cumulation_window",

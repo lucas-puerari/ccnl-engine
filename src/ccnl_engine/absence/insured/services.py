@@ -17,6 +17,8 @@ if TYPE_CHECKING:
         InsuredAbsenceRates,
         InsuredAbsenceRules,
     )
+    from ccnl_engine.agreement.validity.rules import TimeSeries
+    from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.provenance.source.models import SourceLocation
 
@@ -43,6 +45,8 @@ class InsuredTerms:
         rule: Identifier of the CCNL rule.
         rule_version: Version of the CCNL ruleset.
         source: Location of the CCNL rule, if recorded.
+        category: Category of the worker, which selects the maternity base.
+        monthly_payments: Monthly payments a year of the CCNL, by date.
     """
 
     employed: tuple[date, date] | None
@@ -55,6 +59,8 @@ class InsuredTerms:
     rule: str
     rule_version: str
     source: SourceLocation | None = None
+    category: WorkerCategory | None = None
+    monthly_payments: TimeSeries | None = None
 
 
 def insured_terms(ctx: RunContext) -> InsuredTerms:
@@ -97,4 +103,6 @@ def insured_terms(ctx: RunContext) -> InsuredTerms:
             str(competence.year) if ccnl.ruleset is None else ccnl.ruleset.version
         ),
         source=record,
+        category=sick.category,
+        monthly_payments=sick.monthly_payments,
     )

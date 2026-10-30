@@ -32,7 +32,7 @@ amounts are `Decimal` values in EUR, validated on construction.
 | `ShiftWorkEvent` | `supplement_amount` or `hours` and `kind` (`ShiftKind`) | Shift allowance; INPS and IRPEF, no TFR |
 | `AbsenceEvent` | `hours`, `hourly_rate` (default `None`: the CCNL quota), `working_days`, `end_date`, `suspends_accrual` | Unpaid absence deducted from pay; reduces the INPS and TFR base |
 | `SicknessEpisode` | `episode_id`, `started_on`, `ended_on`, `relapse_of`, `prior_worked_days` (fixed-term), `hospital_stays`, `serious_illness` | Sickness episode; the engine derives the deduction, INPS indemnity, CCNL integration and carenza pay of the days in the run's month; see [Sickness](#sickness) |
-| `MaternityLeaveEvent` | `started_on`, `ended_on` | Compulsory maternity leave; the engine derives the deduction, the INPS indemnity it advances and the CCNL top-up of the days in the run's month; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
+| `MaternityLeaveEvent` | `started_on`, `ended_on`, `base_pay` | Compulsory maternity leave; the engine derives the deduction, the INPS indemnity it advances and the CCNL top-up of the days in the run's month; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
 | `WorkInjuryEvent` | `injury_on`, `ended_on` | Temporary inability after a work injury; the engine derives the deduction, the waiting period, the INAIL indemnity (advanced or not) and the CCNL top-up; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
 | `SickLeaveEvent` | `amount`, `sick_days`, `waiting_period_days` | Sick pay the caller computed: an override of the engine, never payable; INPS and IRPEF, no TFR |
 | `FringeEvent` | `amount` | Fringe benefit (art. 51 c. 3 TUIR); exempt while the year total stays within the threshold, then the whole year total is taxable; see [Fringe benefits](#fringe-benefits) |
@@ -422,10 +422,16 @@ whose month it touches. The run deducts the days at the CCNL daily quota
 (a whole calendar month deducts the whole monthly pay) and posts:
 
 - maternity (D.Lgs. 151/2001 artt. 22-23): the INPS indemnity, 80% of the
-  monthly pay over thirty plus the daily rateo of the extra months, for
-  every calendar day (`maternity_item`, advanced by the employer, outside
-  the INPS and TFR bases), and the CCNL top-up of the days within its limit
-  (`absence_integration_item`);
+  pay of the month before the leave over thirty plus the daily rateo of the
+  extra months (art. 23 cc. 2 and 4), for every calendar day
+  (`maternity_item`, advanced by the employer, outside the INPS and TFR
+  bases), and the CCNL top-up of the days within its limit
+  (`absence_integration_item`). `MaternityLeaveEvent.base_pay`
+  (`InpsSicknessBase`) states the pay of the month before; without it the
+  run uses its own monthly pay and has a `missing_fact` blocker on
+  `base_pay`. The base of an operaia (art. 23 c. 5) and of a month not
+  worked in full is not computed yet: the run uses its own monthly pay
+  under the open engine limitation `maternity_daily_base`;
 - work injury (D.P.R. 1124/1965 artt. 68, 73, 116-117): the injury day is
   paid in full and never deducted, the three days after it at the CCNL
   waiting-period rate (60% by law), from the fourth day the INAIL

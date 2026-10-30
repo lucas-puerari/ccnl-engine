@@ -16,7 +16,7 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
 )
-from ccnl_engine.events import InpsSicknessBase, SicknessEpisode
+from ccnl_engine.events import InpsSicknessBase, MaternityLeaveEvent, SicknessEpisode
 from ccnl_engine.inputs import (
     ContributableHours,
     EmploymentPeriod,
@@ -473,6 +473,18 @@ def _inps_base_sickness(base: InpsSicknessBase | None) -> PeriodInput:
     return _march(PeriodState.zero(), episode)
 
 
+def _maternity(base: InpsSicknessBase | None) -> PeriodInput:
+    """Return a March maternity leave of an impiegata, the February pay given.
+
+    Returns:
+        The March run; the indemnity needs the pay of the month before.
+    """
+    leave = MaternityLeaveEvent(date(2026, 3, 2), date(2026, 3, 31), base_pay=base)
+    run = _march(PeriodState.zero())
+    employment = replace(_EMPLOYMENT, category=WorkerCategory.IMPIEGATO)
+    return replace(run, employment=employment, facts=PeriodFacts(events=(leave,)))
+
+
 def sickness_cases[C](
     case: Callable[[PeriodInput, PeriodInput, str], C],
 ) -> Mapping[str, tuple[C, ...]]:
@@ -522,6 +534,13 @@ def sickness_cases[C](
                 ),
                 _inps_base_sickness(InpsSicknessBase(Decimal("2158.26"), Decimal(0))),
                 "inps_base",
+            ),
+        ),
+        "MaternityLeaveEvent.base_pay": (
+            case(
+                _maternity(InpsSicknessBase(Decimal("2158.26"), Decimal(0))),
+                _maternity(None),
+                "base_pay",
             ),
         ),
         "SicknessEpisode.prior_worked_days": (

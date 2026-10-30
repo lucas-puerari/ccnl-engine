@@ -23,8 +23,9 @@ from ccnl_engine import (
     PeriodInput,
 )
 from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.events import MaternityLeaveEvent, WorkInjuryEvent
+from ccnl_engine.events import InpsSicknessBase, MaternityLeaveEvent, WorkInjuryEvent
 from ccnl_engine.inputs import (
     EmploymentPeriod,
     NoPensionFund,
@@ -152,3 +153,63 @@ def test_an_event_outside_the_monthly_pay_is_rejected(
     """Days before the hiring, or a run without monthly pay, pay nothing."""
     with pytest.raises(InvalidInputError, match="monthly pay of a month"):
         _run(event, **kwargs)  # type: ignore[arg-type]
+
+
+_FEBRUARY = InpsSicknessBase(Decimal("2158.26"), Decimal(0))
+
+
+def _maternity(category: WorkerCategory, base: InpsSicknessBase | None) -> PeriodResult:
+    """Return March 2026 of a C3 worker on maternity leave from 2 March.
+
+    Returns:
+        The result of the run.
+    """
+    leave = MaternityLeaveEvent(date(2026, 3, 2), date(2026, 7, 31), base_pay=base)
+    return PayrollEngine.bundled().calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(2026, 3),
+            payment_date=date(2026, 3, 27),
+            employment=Employment(
+                ccnl_id="metalmeccanico-federmeccanica",
+                level_code="C3",
+                category=category,
+                contract_type=Permanent(),
+                employment_period=EmploymentPeriod(_HIRED, None),
+                seniority=SeniorityFact.since(_HIRED, SenioritySource.EMPLOYER_RECORDS),
+                pension_fund=NoPensionFund(),
+                tfr_treasury_fund=False,
+            ),
+            employer=EmployerProfile(headcount=Headcount(20)),
+            facts=PeriodFacts(events=(leave,)),
+        )
+    )
+
+
+def _indemnity(result: PeriodResult) -> Decimal:
+    return next(i.amount for i in result.pay_items if i.kind == "maternity_item")
+
+
+def test_an_impiegata_is_paid_on_the_pay_of_the_month_before() -> None:
+    """Art. 23 c. 4: (2158.26 + 2158.26 / 12) / 30 = 77.9372; 30 days at 80%.
+
+    0.80 * 77.937167 * 30 = 1870.49.
+    """
+    result = _maternity(WorkerCategory.IMPIEGATO, _FEBRUARY)
+
+    assert _indemnity(result) == Decimal("1870.49")
+    assert "maternity_daily_base" not in {lim.id for lim in result.limitations}
+    assert "maternity_base_pay_unknown" not in {i.code for i in result.issues}
+
+
+def test_an_impiegata_without_the_pay_before_lacks_a_fact() -> None:
+    """The base is a fact of the payroll history: its absence blocks."""
+    result = _maternity(WorkerCategory.IMPIEGATO, None)
+
+    assert ("missing_fact", "base_pay") in {(b.code, b.detail) for b in result.blockers}
+
+
+def test_an_operaia_keeps_the_pay_of_the_run_under_a_limitation() -> None:
+    """Art. 23 c. 5 is not computed: the engine says so."""
+    result = _maternity(WorkerCategory.OPERAIO, _FEBRUARY)
+
+    assert "maternity_daily_base" in {lim.id for lim in result.limitations}

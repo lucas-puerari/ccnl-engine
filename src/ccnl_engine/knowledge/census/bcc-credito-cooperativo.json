@@ -51,6 +51,22 @@
       }
     },
     {
+      "id": "maternity_daily_base",
+      "institute": "maternity_leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The INPS maternity indemnity of an operaia, or of a leave whose month before was not worked in full, is 80% of the pay of the run over 30 with the rateo of the extra months, not of the pay of the month before the leave: art. 23 c. 5 D.Lgs. 151/2001 divides the pay of an operaia by the days worked or paid (or by the hours, when fewer than the contract), and the divisor of her daily rateo of the 13th is not settled by a primary source. The base of another worker over a whole month is computed from MaternityLeaveEvent.base_pay.",
+      "calculation": "ccnl_engine.absence.insured.rules.maternity_daily_base; D.Lgs. 151/2001 art. 23 (Normattiva, text in force on 2026-10-30, page sha256 f5d5e1ff3028f8249597c78f9371063f0de7790676054b5f0207c974bc50bc04)",
+      "state": "unverified",
+      "remediation": "Source the daily rateo of an operaia (an INPS circular on art. 23 c. 5) and compute her base and that of a month not worked in full, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "maternity_daily_base"
+        ]
+      }
+    },
+    {
       "id": "pre_1998_cohort_scatti",
       "institute": "seniority",
       "variant": "all",
