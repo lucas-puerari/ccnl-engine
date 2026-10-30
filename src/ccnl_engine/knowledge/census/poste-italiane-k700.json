@@ -242,18 +242,18 @@
       }
     },
     {
-      "id": "sickness_cumulation_window",
+      "id": "sickness_comporto_speciale",
       "institute": "sickness",
       "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.",
-      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
-      "state": "unverified",
-      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SICKNESS (Art. 41 II): the comporto speciale of the workers with a serious illness listed in letter A), a disability under L. 68/99 or on life-saving therapy keeps the job for 730 days in the 48 months, with the whole fixed pay for all of them; the engine applies the comporto ordinario (609 days, 502 paid) to every worker.",
+      "calculation": "ccnl/poste-italiane-k700:coverage.notes",
+      "state": "absent",
+      "remediation": "Take the serious illness, disability or life-saving therapy of Art. 41 II as a fact of the episode and apply the 730 days at full pay.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "sickness_cumulation_window"
+          "poste-italiane-k700/sickness_comporto_speciale"
         ]
       }
     },
