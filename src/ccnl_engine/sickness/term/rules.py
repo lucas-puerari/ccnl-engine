@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from ccnl_engine.compensation.element.types import MonthlyPayChain
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.provenance.source.models import SourceLocation
+    from ccnl_engine.sickness.base.models import RegimeDailyBase
     from ccnl_engine.sickness.day.models import SickPayRules
 
 __all__ = ["DailyQuota", "SicknessTerms"]
@@ -68,9 +69,8 @@ class SicknessTerms:
             INPS daily base; ``None`` when unknown.
         monthly_payments: Monthly payments a year of the CCNL, by date
             (``additional_months``), read by the INPS daily base.
-        general_regime: Whether INPS pays the sick days under its general
-            rules, whose daily base an episode can state; a sector regime
-            (spettacolo) keeps the CCNL quota.
+        daily_base: The daily base of the INPS regime of the CCNL; ``None``
+            for the general one, on the month before the illness.
         paid_by_the_hour: Whether the run pays the worker by the hour
             worked: the sick hours are not among them, so the sick days
             deduct nothing from the pay.
@@ -92,4 +92,4 @@ class SicknessTerms:
     paid_by_the_hour: bool = False
     category: WorkerCategory | None = None
     monthly_payments: TimeSeries | None = None
-    general_regime: bool = True
+    daily_base: RegimeDailyBase | None = None

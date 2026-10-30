@@ -38,6 +38,7 @@ if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.capability.rule.services import Rule
     from ccnl_engine.period.context.services import RunContext
+    from ccnl_engine.sickness.base.models import RegimeDailyBase
     from ccnl_engine.sickness.indemnity.models import InpsSickPayRates
 
 __all__ = ["sickness_rules", "sickness_terms"]
@@ -157,6 +158,7 @@ def sickness_terms(ctx: RunContext) -> SicknessTerms:
         )
         cover_fact = _CATEGORY if cover is None and category is None else None
     provenance = None if ccnl_rules is None else ccnl_rules.provenance
+    regime = None if ccnl_rules is None else ccnl_rules.inps_regime
     return SicknessTerms(
         employed=_employed(ctx),
         history=SicknessHistory(ctx.opening.accrual.sickness_episodes),
@@ -175,8 +177,19 @@ def sickness_terms(ctx: RunContext) -> SicknessTerms:
         paid_by_the_hour=ctx.proration.hourly is not None,
         category=ctx.worker_category,
         monthly_payments=ccnl.parameters.additional_months,
-        general_regime=ccnl_rules is None or ccnl_rules.inps_regime is None,
+        daily_base=_daily_base(ctx, regime),
     )
+
+
+def _daily_base(ctx: RunContext, regime: str | None) -> RegimeDailyBase | None:
+    """Return the daily base of the INPS regime the CCNL names.
+
+    Returns:
+        The base of the regime, ``None`` for the general one.
+    """
+    rates = ctx.repo.load_sick_pay_rates()
+    found = next((r for r in rates.regimes if r.id == regime), None)
+    return None if found is None else found.daily_base
 
 
 def _inps_rates(ctx: RunContext, regime: str | None) -> InpsSickPayRates:

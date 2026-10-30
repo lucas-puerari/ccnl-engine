@@ -40,6 +40,8 @@ gross, net and employer cost according to its treatment; see
 
 ::: ccnl_engine.events.InpsSicknessBase
 
+::: ccnl_engine.events.SpettacoloSicknessBase
+
 ::: ccnl_engine.events.StandbyEvent
 
 ::: ccnl_engine.events.StandbyKind
