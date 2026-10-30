@@ -3,11 +3,15 @@
 from __future__ import annotations
 
 from dataclasses import replace
+from datetime import date
 from typing import TYPE_CHECKING
 
 import pytest
 
 from ccnl_engine.agreement.census.models import Census
+from ccnl_engine.agreement.validity.models import ValidityWindow
+from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.limitation.loaders import load_engine_limitations
 from scripts.completeness import report
 from scripts.provenance.evidence.check import snapshot
 from scripts.provenance.rules import PayableRule
@@ -179,7 +183,8 @@ def test_the_bundle_totals_match_the_evidence_snapshot() -> None:
     built = report.build_report()
     evidence = snapshot()
 
-    assert built.weak_rules == sum(map(len, evidence.weak_rules.values()))
+    pending = sum(len(evidence.weak_rules.get(path, {})) for path in built.pending)
+    assert built.weak_rules + pending == sum(map(len, evidence.weak_rules.values()))
     assert built.open_limitations == sum(map(len, evidence.open_limitations.values()))
     assert len(built.rows) == 132
     assert built.census_errors == ()
@@ -230,3 +235,81 @@ def test_a_census_error_fails_every_mode(
     monkeypatch.setattr(report, "OUTPUT", tmp_path / "completeness.md")
 
     assert report.main([]) == 1
+
+
+_WINDOW = report.Window.of((2027, 2026))
+
+
+def test_the_window_spans_the_supported_years() -> None:
+    """From 1 January of the first year to 31 December of the last."""
+    assert report.Window(date(2026, 1, 1), date(2027, 12, 31)) == _WINDOW
+
+
+@pytest.mark.parametrize(
+    ("data", "gaps"),
+    [
+        (None, ("no pay tables",)),
+        (ValidityWindow(date(2025, 1, 1)), ()),
+        (ValidityWindow(date(2026, 1, 1), date(2027, 12, 31)), ()),
+        (ValidityWindow(date(2026, 3, 1)), ("tables from 2026-03-01",)),
+        (
+            ValidityWindow(date(2026, 3, 1), date(2027, 6, 30)),
+            ("tables from 2026-03-01", "tables until 2027-06-30"),
+        ),
+    ],
+)
+def test_pay_tables_must_cover_the_window(
+    data: ValidityWindow | None, gaps: tuple[str, ...]
+) -> None:
+    """A day of the window without pay tables is a gap."""
+    assert report.window_gaps(data, _WINDOW) == gaps
+
+
+def test_a_renewal_inside_the_window_is_future_data() -> None:
+    """Commercio expires on 2027-03-31: due renewal, not a gap."""
+    commercio = load_ccnl("commercio-confcommercio")
+    federmeccanica = load_ccnl("metalmeccanico-federmeccanica")
+
+    assert report.renewal_due(commercio, _WINDOW) == date(2027, 3, 31)
+    assert report.renewal_due(federmeccanica, _WINDOW) is None
+
+
+def test_the_estimated_yearly_resources_are_pending() -> None:
+    """The 2027 fiscal and INPS files, not the estimated CCNL file."""
+    pending = report.pending_data()
+
+    assert "sector/2027/industria.json" in pending
+    assert "contribution/2027/industria.json" in pending
+    assert "agreement/vetro-meccanizzato-assovetro.json" not in pending
+    assert not any("2026" in path for path in pending)
+
+
+def test_the_rules_of_a_pending_file_are_not_weak() -> None:
+    """Future data is registered apart from the weak rules."""
+    rules = [
+        _rule("sector/2027/industria.json", "tfr", "assumed"),
+        _rule("irpef/work_deduction/2027.json", "minimum", "assumed"),
+    ]
+
+    weak = report.weakness(rules, frozenset({"sector/2027/industria.json"}))
+
+    assert weak.by_sector == {}
+    assert weak.common == 1
+
+
+def test_the_provisional_limitations_are_not_gaps() -> None:
+    """The engine limitations of the unpublished year count as future data."""
+    commercio = load_ccnl("commercio-confcommercio")
+    engine = load_engine_limitations()
+
+    met, outside = report.ccnl_limitations(commercio, engine)
+
+    assert not report.FUTURE_LIMITATIONS.intersection((*met, *outside))
+    assert "sickness_inps_daily_base" in met
+
+
+def test_a_window_gap_makes_a_ccnl_incomplete() -> None:
+    """The gap names the first day of the tables."""
+    row = replace(_COMPLETE, window_gaps=("tables from 2026-03-01",))
+
+    assert row.gaps == ("tables from 2026-03-01",)

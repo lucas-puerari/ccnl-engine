@@ -29,9 +29,11 @@ completion plan, not of every pull request.
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from collections import Counter
 from dataclasses import dataclass
+from datetime import date
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -39,6 +41,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from ccnl_engine.agreement.census.loaders import load_census
 from ccnl_engine.agreement.census.models import CensusOrigin, RuleState
+from ccnl_engine.agreement.validity.models import ValidityWindow, model_window
 from ccnl_engine.capability.loaders import load_capability_catalog
 from ccnl_engine.capability.registry.models import CapabilityImplementation
 from ccnl_engine.capability.support.services import ccnl_capabilities
@@ -60,6 +63,7 @@ if TYPE_CHECKING:
 
 ROOT = Path(__file__).resolve().parents[2]
 OUTPUT = ROOT / "docs" / "trust" / "completeness.md"
+MANIFEST = ROOT / "src" / "ccnl_engine" / "knowledge" / "manifest.json"
 WEAK = frozenset({"assumed", "missing"})
 #: Implementations that leave an amount to the caller or do not compute it.
 NOT_NATIVE = frozenset({
@@ -67,6 +71,9 @@ NOT_NATIVE = frozenset({
     CapabilityImplementation.PARTIAL,
     CapabilityImplementation.UNSUPPORTED,
 })
+#: Engine limitations that stand for the future data of the window: a run
+#: that reads a year whose sources are not published yet.
+FUTURE_LIMITATIONS = frozenset({"provisional_ruleset", "provisional_inps_ruleset"})
 #: Census states whose rule is still open.
 OPEN_STATES = frozenset({RuleState.ABSENT, RuleState.UNVERIFIED})
 REFERENCE_CASES = (
@@ -101,13 +108,18 @@ def rule_id(rule: PayableRule) -> str:
     return f"{rule.file}#{rule.path}"
 
 
-def weakness(rules: Iterable[PayableRule]) -> Weakness:
+def weakness(
+    rules: Iterable[PayableRule], pending: frozenset[str] = frozenset()
+) -> Weakness:
     """Return the weak rules of *rules*, split by the CCNLs that read them.
+
+    The rules of a *pending* resource, whose sources are not published
+    yet, are future data: they are not weak rules of the window.
 
     Returns:
         The weak rules by CCNL, by INPS sector and common to every CCNL.
     """
-    weak = [rule for rule in rules if rule.status in WEAK]
+    weak = [rule for rule in rules if rule.status in WEAK and rule.file not in pending]
     by_ccnl: Counter[str] = Counter()
     by_sector: Counter[str] = Counter()
     common = 0
@@ -141,6 +153,11 @@ class CcnlCompleteness:
         outside_input: Open limitations whose fact has no input.
         capabilities: Capabilities left to the caller, partial or not
             computed for the CCNL.
+        window_gaps: Parts of the declared window the pay tables of the
+            CCNL do not cover.
+        renewal_due: End of the contract validity when it falls inside
+            the declared window: the tables after it are future data, not
+            a gap.
     """
 
     ccnl_id: str
@@ -154,11 +171,14 @@ class CcnlCompleteness:
     limitations: tuple[str, ...]
     outside_input: tuple[str, ...]
     capabilities: tuple[str, ...]
+    window_gaps: tuple[str, ...] = ()
+    renewal_due: date | None = None
 
     @property
     def gaps(self) -> tuple[str, ...]:
         """Every reason the CCNL is not complete, empty when it is."""
         found = [
+            *self.window_gaps,
             "census missing" if self.census_rows is None else "",
             _count("open requirement", len(self.open_rows)),
             _count("census error", len(self.census_errors)),
@@ -178,6 +198,76 @@ class CcnlCompleteness:
     def complete(self) -> bool:
         """Whether nothing the model owes the CCNL is open."""
         return not self.gaps
+
+
+@dataclass(frozen=True)
+class Window:
+    """The declared window: every day a supported tax year holds.
+
+    Attributes:
+        first_day: 1 January of the first supported year.
+        last_day: 31 December of the last one.
+    """
+
+    first_day: date
+    last_day: date
+
+    @classmethod
+    def of(cls, years: Iterable[int]) -> Window:
+        """Return the window of the supported tax *years*.
+
+        Returns:
+            The window from the first to the last year, both included.
+        """
+        ordered = sorted(years)
+        return cls(date(ordered[0], 1, 1), date(ordered[-1], 12, 31))
+
+
+def window_gaps(data: ValidityWindow | None, window: Window) -> tuple[str, ...]:
+    """Return the parts of *window* the pay tables of a CCNL do not cover.
+
+    Returns:
+        ``"no pay tables"``, ``"tables from <day>"`` or ``"tables until
+        <day>"``; empty when *data* covers the window.
+    """
+    if data is None:
+        return ("no pay tables",)
+    found = []
+    if data.first_day > window.first_day:
+        found.append(f"tables from {data.first_day}")
+    if data.last_day is not None and data.last_day < window.last_day:
+        found.append(f"tables until {data.last_day}")
+    return tuple(found)
+
+
+def renewal_due(ccnl: CCNL, window: Window) -> date | None:
+    """Return the end of the contract validity when it falls in *window*.
+
+    Returns:
+        The last day of validity, ``None`` when it is unknown or later.
+    """
+    validity = ccnl.meta.validity
+    end = None if validity is None else validity.valid_until
+    return end if end is not None and end < window.last_day else None
+
+
+def pending_data(manifest: Path = MANIFEST) -> tuple[str, ...]:
+    """Return the yearly resources whose sources are not published yet.
+
+    A resource of a year whose source type is ``estimated`` carries the
+    values of the year before: future data, registered apart from the gaps.
+
+    Returns:
+        Their paths, sorted.
+    """
+    resources = json.loads(manifest.read_text("utf-8"))["resources"]
+    return tuple(
+        sorted(
+            r["path"]
+            for r in resources
+            if r["year"] is not None and r.get("source_type") == "estimated"
+        )
+    )
 
 
 def _count(what: str, n: int, plural: str = "") -> str:
@@ -200,14 +290,21 @@ def ccnl_limitations(
 ) -> tuple[tuple[str, ...], tuple[str, ...]]:
     """Return the open monetary limitations of *ccnl*, by whether a run meets them.
 
-    The limitations the CCNL declares and the engine ones that list it.
+    The limitations the CCNL declares and the engine ones that list it,
+    except :data:`FUTURE_LIMITATIONS`: future data, not a gap.
 
     Returns:
         The ids a run can meet and the ids whose fact has no input.
     """
     ccnl_id = ccnl.meta.ccnl_id
     own = (lim for lim in ccnl.limitations if _blocking(lim))
-    shared = (lim for lim in engine if _blocking(lim) and ccnl_id in lim.rulesets)
+    shared = (
+        lim
+        for lim in engine
+        if _blocking(lim)
+        and ccnl_id in lim.rulesets
+        and lim.id not in FUTURE_LIMITATIONS
+    )
     met: list[str] = []
     outside: list[str] = []
     for limitation in (*own, *shared):
@@ -325,7 +422,7 @@ def assess(
     ccnl: CCNL,
     evidence: Evidence,
     engine: Iterable[ModelLimitation],
-    years: Iterable[int],
+    years: tuple[int, ...],
 ) -> CcnlCompleteness:
     """Return how complete the model of *ccnl* is.
 
@@ -350,6 +447,8 @@ def assess(
         limitations=met,
         outside_input=outside,
         capabilities=non_native(ccnl, years),
+        window_gaps=window_gaps(model_window(ccnl), Window.of(years)),
+        renewal_due=renewal_due(ccnl, Window.of(years)),
     )
 
 
@@ -359,15 +458,20 @@ class Report:
 
     Attributes:
         rows: One per CCNL, sorted by slug.
-        weak_rules: Weak payable rules of the bundle.
+        weak_rules: Weak payable rules of the bundle, those of the pending
+            resources left out.
         open_limitations: Open limitations, each counted once.
         monetary_limitations: Those of them with a monetary impact.
+        window: The declared window.
+        pending: Yearly resources whose sources are not published yet.
     """
 
     rows: tuple[CcnlCompleteness, ...]
     weak_rules: int
     open_limitations: int
     monetary_limitations: int
+    window: Window
+    pending: tuple[str, ...] = ()
 
     @property
     def complete(self) -> tuple[CcnlCompleteness, ...]:
@@ -387,12 +491,13 @@ def build_report() -> Report:
         The report of the bundle.
     """
     rules = inventory()
+    pending = pending_data()
     ccnls = [load_ccnl(summary.ccnl_id) for summary in list_contracts()]
     engine = load_engine_limitations()
     every = (*engine, *(lim for ccnl in ccnls for lim in ccnl.limitations))
     opened = [lim for lim in every if lim.status is LimitationStatus.OPEN]
     evidence = Evidence(
-        weakness=weakness(rules),
+        weakness=weakness(rules, frozenset(pending)),
         rules=frozenset(map(rule_id, rules)),
         limitations=frozenset(lim.id for lim in every),
         open_limitations=frozenset(lim.id for lim in opened),
@@ -403,6 +508,8 @@ def build_report() -> Report:
         weak_rules=len(evidence.weakness.ids),
         open_limitations=len(evidence.open_limitations),
         monetary_limitations=sum(1 for lim in opened if lim.blocks),
+        window=Window.of(years),
+        pending=pending,
     )
 
 
@@ -440,17 +547,51 @@ def render(report: Report) -> str:
             "impact)."
         ),
         "",
-        "| CCNL | Family | Readiness | Census | Gaps |",
-        "|---|---|---|---|---|",
+        *_window_lines(report),
+        "",
+        "| CCNL | Family | Readiness | Renewal due | Census | Gaps |",
+        "|---|---|---|---|---|---|",
     ]
     for row in report.rows:
         census = "missing" if row.census_rows is None else f"{row.census_rows} rows"
         gaps = "; ".join(row.gaps) or "complete"
+        renewal = row.renewal_due or "—"
         lines.append(
             f"| [{row.ccnl_id}](../contracts/{row.ccnl_id}.md) | `{row.family}` "
-            f"| {row.readiness} | {census} | {gaps} |"
+            f"| {row.readiness} | {renewal} | {census} | {gaps} |"
         )
     return "\n".join(lines) + "\n"
+
+
+def _window_lines(report: Report) -> list[str]:
+    window = report.window
+    pending = [f"- `{path}`" for path in report.pending] or ["- none"]
+    return [
+        "## Declared window",
+        "",
+        (
+            f"Every CCNL is assessed from {window.first_day} to {window.last_day}, "
+            "the supported tax years. Pay tables that start after the first day "
+            "or end before the last are a gap of the CCNL. The history the engine "
+            "reads from before the window (the INPS sickness base of the month "
+            "before, the progressive amounts of the year) comes from the opening "
+            "state and the prior-year facts of the request, not from the bundle."
+        ),
+        "",
+        (
+            "Future data, registered apart from the gaps: a contract whose "
+            "validity ends inside the window keeps its last tables until the "
+            "renewal (column *Renewal due*), and these resources carry the values "
+            "of the year before because their sources are not published yet "
+            "(their weak rules and the engine limitations "
+            f"{', '.join(f'`{i}`' for i in sorted(FUTURE_LIMITATIONS))} are not "
+            "counted as gaps):"
+        ),
+        "",
+        *pending,
+        "",
+        "## Contracts",
+    ]
 
 
 def main(argv: list[str] | None = None) -> int:
