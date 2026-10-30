@@ -19,8 +19,8 @@ jobs:
         env:
           BRANCH: ${{ github.head_ref }}
         run: |
-          if ! printf '%s\n' "$BRANCH" | grep -qE '^(feature|fix|chore|ci|docs|refactor|perf|test|revert)/.+'; then
+          if ! printf '%s\n' "$BRANCH" | grep -qE '^(feature|fix|chore|ci|docs|refactor|perf|test|revert|dependabot)/.+'; then
             echo "❌ Branch '$BRANCH' does not follow naming convention."
-            echo "   Allowed prefixes: feature/, fix/, chore/, ci/, docs/, refactor/, perf/, test/, revert/"
+            echo "   Allowed prefixes: feature/, fix/, chore/, ci/, docs/, refactor/, perf/, test/, revert/, dependabot/"
             exit 1
           fi
