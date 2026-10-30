@@ -149,20 +149,23 @@ def _assumed_tranches() -> list[tuple[str, str, int, int]]:
     return sorted(found.values())
 
 
-@pytest.mark.parametrize(("slug", "level", "year", "month"), _assumed_tranches())
-def test_an_assumed_tranche_of_the_provisional_year_is_a_visible_blocker(
-    slug: str, level: str, year: int, month: int
-) -> None:
-    """A pay tranche no signed text backs yet blocks the run that pays it."""
-    result = regular_period(ccnl_id=slug, level_code=level, year=year, month=month)
-    weak = {
-        (b.feature, b.detail)
-        for b in result.blockers
-        if b.code is BlockerCode.RULE_SOURCE_WEAK
-    }
+def test_an_assumed_tranche_of_the_provisional_year_is_a_visible_blocker() -> None:
+    """A pay tranche no signed text backs yet blocks the run that pays it.
 
-    assert ("base_salary", "assumed") in weak
-    assert not result.is_payable
+    The bundle may hold no such tranche: the loop then checks nothing, and
+    the blocker stays covered by the rule source tests; a tranche added as
+    ``assumed`` is checked here without a skipped empty parameter set.
+    """
+    for slug, level, year, month in _assumed_tranches():
+        result = regular_period(ccnl_id=slug, level_code=level, year=year, month=month)
+        weak = {
+            (b.feature, b.detail)
+            for b in result.blockers
+            if b.code is BlockerCode.RULE_SOURCE_WEAK
+        }
+
+        assert ("base_salary", "assumed") in weak, slug
+        assert not result.is_payable, slug
 
 
 def test_the_scan_reads_tranches_of_the_provisional_year() -> None:
