@@ -4,15 +4,14 @@ The *retribuzione media globale giornaliera* (RMGG) is the pay of the month
 before the illness and the monthly share of the recurring payments outside
 it (INPS circ. 134368 A.G.O. 14 of 28 January 1981, point 11):
 
-- impiegato (point 11.2): the sum divided by 30.  When the month was not
-  worked in full, the circular divides the pay by its days and the share of
-  a whole month by 30; the share of a whole month is not stated, so that
-  base is not computed;
+- impiegato (point 11.2): the sum divided by 30; when the month was not
+  worked in full, the pay divided by its days worked or paid, Sundays and
+  paid holidays included, plus the share of a whole month divided by 30;
 - operaio (point 11.3): the pay divided by the days worked or paid in the
   month, plus the monthly share divided by 25.
 
 The monthly share is a twelfth of the additional months of the CCNL on the
-pay of the month (circ. 55/2024 Allegato 1: the *retribuzione teorica*
+pay of a whole month (circ. 55/2024 Allegato 1: the *retribuzione teorica*
 times the number of monthly payments) and of the other recurring payments
 of the year.  INPS pays its share on every calendar day the certificate
 covers.
@@ -55,21 +54,24 @@ def daily_base(
 
     Returns:
         The daily base; ``None`` when it cannot be told: an unknown
-        category, an operaio whose days are not stated, or an impiegato
-        who did not work the whole month.
+        category, an operaio whose days are not stated, or an impiegato of
+        a month not worked in full without the pay of a whole month.
     """
     if category is None:
         return None
     extra = max(monthly_payments - _MONTHS, Decimal(0))
-    share = (base.theoretical_pay * extra + base.recurring_annual) / _MONTHS
+    whole = base.theoretical_pay if base.full_month_pay is None else base.full_month_pay
+    share = (whole * extra + base.recurring_annual) / _MONTHS
     days = base.paid_days
     if category is WorkerCategory.OPERAIO:
         if days is None:
             return None
         return base.theoretical_pay / days + share / _OPERAIO_SHARE_DIVISOR
-    if days is not None:
+    if days is None:
+        return (base.theoretical_pay + share) / _CALENDAR_DIVISOR
+    if base.full_month_pay is None:
         return None
-    return (base.theoretical_pay + share) / _CALENDAR_DIVISOR
+    return base.theoretical_pay / days + share / _CALENDAR_DIVISOR
 
 
 def _stated(

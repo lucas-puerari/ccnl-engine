@@ -58,13 +58,27 @@ def test_an_operaio_divides_the_pay_by_the_days_and_the_share_by_25() -> None:
             WorkerCategory.IMPIEGATO,
         ),
     ],
-    ids=["operaio_without_days", "unknown_category", "impiegato_partial_month"],
+    ids=["operaio_without_days", "unknown_category", "partial_month_without_whole"],
 )
 def test_an_untold_base_is_none(
     base: InpsSicknessBase, category: WorkerCategory | None
 ) -> None:
     """Without the days of an operaio, the category or a whole month, no base."""
     assert daily_base(base, category, _THIRTEEN) is None
+
+
+def test_an_impiegato_of_a_partial_month_takes_the_share_of_a_whole_month() -> None:
+    """Point 11.2 d-f: 900 / 15 + (1800 / 12) / 30 = 60 + 5 = 65."""
+    base = InpsSicknessBase(Decimal(900), Decimal(0), paid_days=15, full_month_pay=_PAY)
+
+    assert daily_base(base, WorkerCategory.IMPIEGATO, _THIRTEEN) == Decimal(65)
+
+
+def test_an_operaio_hired_in_the_month_takes_the_share_of_a_whole_month() -> None:
+    """900 / 12 + (1800 / 12) / 25 = 75 + 6 = 81."""
+    base = InpsSicknessBase(Decimal(900), Decimal(0), paid_days=12, full_month_pay=_PAY)
+
+    assert daily_base(base, WorkerCategory.OPERAIO, _THIRTEEN) == Decimal(81)
 
 
 def test_twelve_payments_have_no_share() -> None:
@@ -81,6 +95,7 @@ def test_twelve_payments_have_no_share() -> None:
         ({"recurring_annual": Decimal(-1)}, "recurring_annual"),
         ({"paid_days": 0}, "paid_days"),
         ({"paid_days": 32}, "paid_days"),
+        ({"full_month_pay": Decimal(-1)}, "full_month_pay"),
     ],
 )
 def test_a_malformed_base_is_rejected(fields: dict[str, object], match: str) -> None:

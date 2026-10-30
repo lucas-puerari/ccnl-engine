@@ -44,6 +44,12 @@ _CATALOG = load_capability_catalog(2026)
 
 #: ``requires_fact`` fields without a case, and why.
 _NOT_EXERCISED: dict[str, str] = {
+    "InpsSicknessBase.full_month_pay": (
+        "read only for an impiegato whose month before the illness was not "
+        "worked in full; the cases run an operaio of industria, and INPS does "
+        "not cover the impiegati of industria; "
+        "tests/unit/ccnl_engine/sickness/base/test_rules.py shows the fallback"
+    ),
     "EmployerProfile.contractual_funds": (
         "read only by a CCNL with health_funds, which the cases do not run; "
         "tests/integration/ccnl_engine/fund/health/test_services.py shows its "

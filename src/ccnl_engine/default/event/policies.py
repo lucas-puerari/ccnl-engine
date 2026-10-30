@@ -151,6 +151,15 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "computed on the CCNL daily quota and the run traverses the open "
         "limitation sickness_inps_daily_base, which blocks it",
     ),
+    "InpsSicknessBase.full_month_pay": requires_fact(
+        "sickness",
+        "event.inps_base.full_month_pay",
+        FactEnforcement.REPORTED,
+        "a month worked in full; an impiegato who did not work it all needs "
+        "the pay of a whole month, so without it the INPS share is computed "
+        "on the CCNL daily quota and the run traverses the open limitation "
+        "sickness_inps_daily_base, which blocks it",
+    ),
     "SicknessEpisode.periodic_check": absence_is_fact(
         "an ordinary sickness absence; a periodic check is a fact of the "
         "certificate the event records"
