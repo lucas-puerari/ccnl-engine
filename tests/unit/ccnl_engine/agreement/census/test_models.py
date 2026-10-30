@@ -36,10 +36,18 @@ def test_a_row_read_from_the_text_loads() -> None:
     [
         ({"source": None}, "names its source"),
         (
-            {"state": "not_applicable", "source": None, "origin": "seeded"},
+            {
+                "state": "not_applicable",
+                "source": None,
+                "origin": "seeded",
+                "work": ["T00.02"],
+                "verification": ["T00.12"],
+            },
             "needs a source",
         ),
-        ({"state": "absent"}, "names its work item"),
+        ({"state": "absent"}, "its planned verification"),
+        ({"state": "absent", "work": ["T03.01"]}, "its planned verification"),
+        ({"state": "absent", "verification": ["T03.11"]}, "its planned verification"),
         ({"state": "unverified", "work": ["T3.05"]}, "not T00.00/G00.00"),
         ({"variant": "All"}, "should match pattern"),
         ({"state": "maybe"}, "Input should be"),
@@ -54,10 +62,17 @@ def test_a_malformed_row_is_rejected(fields: dict[str, object], match: str) -> N
 def test_a_seeded_open_row_needs_no_source() -> None:
     """A row carried over from a limitation waits for the reading of the text."""
     row = Requirement.model_validate(
-        _row(source=None, origin="seeded", state="absent", work=["T03.05", "G01.01"])
+        _row(
+            source=None,
+            origin="seeded",
+            state="absent",
+            work=["T03.05", "G01.01"],
+            verification=["T03.11", "G01.90"],
+        )
     )
 
     assert row.work == ("T03.05", "G01.01")
+    assert row.open
 
 
 def test_the_rows_of_a_census_are_sorted_and_unique() -> None:

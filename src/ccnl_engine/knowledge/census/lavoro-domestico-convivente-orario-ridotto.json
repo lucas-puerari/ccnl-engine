@@ -13,6 +13,9 @@
       "work": [
         "T02.01"
       ],
+      "verification": [
+        "T02.13"
+      ],
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -30,6 +33,9 @@
       "state": "unverified",
       "work": [
         "T02.01"
+      ],
+      "verification": [
+        "T02.13"
       ],
       "origin": "seeded",
       "links": {
@@ -49,6 +55,9 @@
       "work": [
         "T05.01"
       ],
+      "verification": [
+        "T05.10"
+      ],
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -66,6 +75,9 @@
       "state": "unverified",
       "work": [
         "T04.01"
+      ],
+      "verification": [
+        "T04.12"
       ],
       "origin": "seeded",
       "links": {
@@ -85,6 +97,9 @@
       "work": [
         "T02.06"
       ],
+      "verification": [
+        "T02.13"
+      ],
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -102,6 +117,9 @@
       "state": "unverified",
       "work": [
         "T03.03"
+      ],
+      "verification": [
+        "T03.11"
       ],
       "origin": "seeded",
       "links": {
@@ -122,6 +140,10 @@
         "T00.03",
         "T09.03"
       ],
+      "verification": [
+        "T00.12",
+        "T09.11"
+      ],
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -141,6 +163,10 @@
         "T00.03",
         "T09.03"
       ],
+      "verification": [
+        "T00.12",
+        "T09.11"
+      ],
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -158,6 +184,9 @@
       "state": "unverified",
       "work": [
         "T03.02"
+      ],
+      "verification": [
+        "T03.11"
       ],
       "origin": "seeded",
       "links": {

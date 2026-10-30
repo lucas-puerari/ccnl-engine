@@ -101,6 +101,29 @@ VARIANT_WORK: dict[str, tuple[str, ...]] = {
 }
 #: Work items of every weak rule: resolve it on the primary source.
 WEAK_WORK = ("T09.01", "T09.03")
+#: The closing check of each area of the plan: the verification a row of
+#: the area is planned for once its work is done.
+VERIFICATION: dict[str, str] = {
+    "T00": "T00.12",
+    "T01": "T01.14",
+    "T02": "T02.13",
+    "T03": "T03.11",
+    "T04": "T04.12",
+    "T05": "T05.10",
+    "T06": "T06.11",
+    "T07": "T07.08",
+    "T08": "T08.09",
+    "T09": "T09.11",
+}
+
+
+def verification(work: tuple[str, ...]) -> list[str]:
+    """Return the planned verification of the work items *work*.
+
+    Returns:
+        The closing check of the area of each item, in order, once each.
+    """
+    return list(dict.fromkeys(VERIFICATION[item[:3]] for item in work))
 
 
 def work_items(capability: str, name: str) -> tuple[str, ...]:
@@ -150,7 +173,8 @@ def limitation_row(limitation: ModelLimitation) -> dict[str, Any]:
         "rule": limitation.summary,
         "calculation": limitation.source,
         "state": "unverified" if unknown else "absent",
-        "work": list(work_items(limitation.capability, name)),
+        "work": list(work := work_items(limitation.capability, name)),
+        "verification": verification(work),
         "origin": "seeded",
         "links": {"limitations": [limitation.id]},
     }
@@ -191,6 +215,7 @@ def rule_row(rule: PayableRule) -> dict[str, Any]:
         "calculation": ", ".join(rule.capabilities),
         "state": "absent" if rule.status == "missing" else "unverified",
         "work": list(WEAK_WORK),
+        "verification": verification(WEAK_WORK),
         "origin": "seeded",
         "links": {"rules": [f"{rule.file}#{rule.path}"]},
     }

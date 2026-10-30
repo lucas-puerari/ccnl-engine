@@ -116,12 +116,18 @@ def test_a_row_is_open_until_its_rule_and_links_are_closed() -> None:
     """Origin, state, scenarios, linked limitations and linked rules decide."""
     census = _census(
         _row("a_done", links={"limitations": ["x/closed"], "rules": ["f.json#strong"]}),
-        _row("b_absent", state="absent", work=["T03.01"]),
+        _row("b_absent", state="absent", work=["T03.01"], verification=["T03.11"]),
         _row("c_untested", scenarios=[]),
         _row("d_open_limitation", links={"limitations": ["x/open"]}),
         _row("e_weak_rule", links={"rules": ["f.json#weak"]}),
         _row("f_not_applicable", state="not_applicable", scenarios=[]),
-        _row("g_seeded", origin="seeded", source=None),
+        _row(
+            "g_seeded",
+            origin="seeded",
+            source=None,
+            work=["T03.01"],
+            verification=["T03.11"],
+        ),
     )
 
     open_rows, errors = report.census_state(census, _EVIDENCE)
