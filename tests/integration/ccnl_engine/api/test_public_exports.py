@@ -346,7 +346,12 @@ def _imported_modules(path: Path) -> set[str]:
     return set(_IMPORT.findall(source))
 
 
-@pytest.mark.parametrize("path", _PUBLIC_SNIPPETS, ids=lambda p: p.name)
-def test_public_snippets_import_the_public_api_only(path: Path) -> None:
+def test_public_snippets_import_the_public_api_only() -> None:
     """README, examples and the wheel smoke test use no deep namespace."""
-    assert _imported_modules(path) <= set(EXPECTED_PUBLIC), path
+    public = set(EXPECTED_PUBLIC)
+    deep = {
+        p.relative_to(_REPO).as_posix(): sorted(modules - public)
+        for p in _PUBLIC_SNIPPETS
+        if (modules := _imported_modules(p)) - public
+    }
+    assert deep == {}

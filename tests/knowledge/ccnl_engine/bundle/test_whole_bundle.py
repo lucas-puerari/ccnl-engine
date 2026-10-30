@@ -9,10 +9,7 @@ ruleset hash of each file is checked by the loaders on the way.
 from __future__ import annotations
 
 import json
-from operator import itemgetter
 from typing import TYPE_CHECKING, Any
-
-import pytest
 
 from ccnl_engine.absence.insured.loaders import load_insured_absence_rates
 from ccnl_engine.agreement.census.loaders import load_census
@@ -76,7 +73,20 @@ def test_every_dataset_has_a_loader() -> None:
     assert {r["dataset"] for r in _RESOURCES} == set(_LOADERS)
 
 
-@pytest.mark.parametrize("resource", _RESOURCES, ids=itemgetter("path"))
-def test_every_resource_loads_through_its_loader(resource: dict[str, Any]) -> None:
-    """The typed loader of the dataset reads and validates the resource."""
-    assert _LOADERS[resource["dataset"]](resource) is not None
+def _load_error(resource: dict[str, Any]) -> str | None:
+    """Return why the typed loader of ``resource`` fails.
+
+    Returns:
+        The error, ``None`` when the resource loads.
+    """
+    try:
+        loaded = _LOADERS[resource["dataset"]](resource)
+    except Exception as error:  # noqa: BLE001 - every failure is reported
+        return f"{type(error).__name__}: {error}"
+    return None if loaded is not None else "the loader returned None"
+
+
+def test_every_resource_loads_through_its_loader() -> None:
+    """The typed loader of the dataset reads and validates every resource."""
+    failures = {r["path"]: err for r in _RESOURCES if (err := _load_error(r))}
+    assert failures == {}

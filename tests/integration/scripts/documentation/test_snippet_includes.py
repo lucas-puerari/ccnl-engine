@@ -12,8 +12,6 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-import pytest
-
 _ROOT = Path(__file__).parents[4]
 _DOCS_DIR = _ROOT / "docs"
 _MARKDOWN_FILES = sorted(
@@ -24,29 +22,35 @@ _ANY_MARKER = re.compile(r"-{2}\s*8\s*<\s*-{2}")
 _INCLUDE = re.compile(re.escape(_VALID_MARKER) + r' "([^"]+)"')
 
 
-def _ids(path: Path) -> str:
-    return path.relative_to(_DOCS_DIR).as_posix()
+def _pages() -> list[tuple[str, str]]:
+    return [
+        (p.relative_to(_DOCS_DIR).as_posix(), p.read_text("utf-8"))
+        for p in _MARKDOWN_FILES
+    ]
 
 
 def test_markdown_files_found() -> None:
-    """The docs tree is present, so the parametrized checks are not vacuous."""
+    """The docs tree is present, so the checks below are not vacuous."""
     assert _MARKDOWN_FILES
 
 
-@pytest.mark.parametrize("page", _MARKDOWN_FILES, ids=_ids)
-def test_include_markers_are_well_formed(page: Path) -> None:
+def test_include_markers_are_well_formed() -> None:
     """Every snippet include marker is written exactly, without spaces."""
     bad = [
-        match.group()
-        for match in _ANY_MARKER.finditer(page.read_text(encoding="utf-8"))
+        (page, match.group())
+        for page, text in _pages()
+        for match in _ANY_MARKER.finditer(text)
         if match.group() != _VALID_MARKER
     ]
-    assert not bad, f"malformed snippet markers: {bad}"
+    assert bad == []
 
 
-@pytest.mark.parametrize("page", _MARKDOWN_FILES, ids=_ids)
-def test_include_targets_exist(page: Path) -> None:
+def test_include_targets_exist() -> None:
     """Every snippet include points to a file relative to the repo root."""
-    targets = _INCLUDE.findall(page.read_text(encoding="utf-8"))
-    missing = [t for t in targets if not (_ROOT / t).is_file()]
-    assert not missing, f"missing snippet targets: {missing}"
+    missing = [
+        (page, target)
+        for page, text in _pages()
+        for target in _INCLUDE.findall(text)
+        if not (_ROOT / target).is_file()
+    ]
+    assert missing == []

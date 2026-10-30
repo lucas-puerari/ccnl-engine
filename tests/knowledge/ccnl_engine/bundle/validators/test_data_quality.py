@@ -59,10 +59,14 @@ def test_cases_exist() -> None:
     assert _ALL_CASES
 
 
-@pytest.mark.parametrize("path", _ALL_CASES, ids=lambda p: p.stem)
-def test_case_verification_is_valid(path: Path) -> None:
+def test_case_verification_is_valid() -> None:
     """Every case declares a known status consistent with its source."""
-    assert verification_errors(load_case(path)) == [], path.name
+    wrong = {
+        p.stem: errors
+        for p in _ALL_CASES
+        if (errors := verification_errors(load_case(p)))
+    }
+    assert wrong == {}
 
 
 def test_status_counts_cover_every_case() -> None:
@@ -236,17 +240,22 @@ def test_count_by_status_reports_zero_for_missing_buckets() -> None:
     assert counts == {"verified": 0, "source_linked": 1}
 
 
-@pytest.mark.parametrize("path", _ALL_CASES, ids=lambda p: p.stem)
-def test_case_declares_runnable_inputs(path: Path) -> None:
-    """Every case carries the inputs the runner uses and pins some of its values."""
+def _runnable(path: Path) -> bool:
     case = load_case(path)
     inputs = case.get("inputs")
     expected = case.get("expected")
-    assert isinstance(inputs, dict), path.name
-    assert isinstance(expected, dict), path.name
-    assert _INPUT_KEYS <= set(inputs) <= _INPUT_KEYS | _OPTIONAL_INPUT_KEYS, path.name
-    assert expected, path.name
-    assert set(expected) <= _EXPECTED_KEYS, path.name
+    return (
+        isinstance(inputs, dict)
+        and isinstance(expected, dict)
+        and _INPUT_KEYS <= set(inputs) <= _INPUT_KEYS | _OPTIONAL_INPUT_KEYS
+        and bool(expected)
+        and set(expected) <= _EXPECTED_KEYS
+    )
+
+
+def test_case_declares_runnable_inputs() -> None:
+    """Every case carries the inputs the runner uses and pins some of its values."""
+    assert [p.stem for p in _ALL_CASES if not _runnable(p)] == []
 
 
 _RULES = inventory()

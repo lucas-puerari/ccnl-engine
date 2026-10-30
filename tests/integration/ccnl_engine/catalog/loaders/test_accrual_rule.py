@@ -14,8 +14,6 @@ from __future__ import annotations
 import importlib.resources
 import re
 
-import pytest
-
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.models import AccrualComparison
 
@@ -55,23 +53,35 @@ def test_some_ccnl_carries_the_clause() -> None:
     assert _WITH_RULE
 
 
-@pytest.mark.parametrize("name", _WITH_RULE)
-def test_quote_states_threshold_and_comparison(name: str) -> None:
-    """The quote names the days and the comparison of the stored rule."""
+def _quote_errors(name: str) -> list[str]:
+    """Return how the quote of the accrual rule of ``name`` fails its rule.
+
+    Returns:
+        One message per failed check, empty when the quote matches.
+    """
     rule = load_ccnl(name).parameters.accrual_rule
     assert rule is not None
     location = rule.provenance.location
-    assert location is not None
-    assert location.section
-    assert location.source_document.url.startswith("http")
+    if location is None or not location.section:
+        return ["no location section"]
+    errors = [] if location.source_document.url.startswith("http") else ["no url"]
     quote = " ".join((location.quote or "").split())
     if rule.min_days is None:
-        assert re.search(_DAY_BASED[rule.comparison], quote, re.IGNORECASE), quote
-        return
+        if not re.search(_DAY_BASED[rule.comparison], quote, re.IGNORECASE):
+            errors.append(f"no {rule.comparison} wording: {quote}")
+        return errors
     days = _THRESHOLDS.get(rule.min_days, rf"\b{rule.min_days}\)?\s+giorni")
-    assert re.search(days, quote, re.IGNORECASE), quote
+    if not re.search(days, quote, re.IGNORECASE):
+        errors.append(f"no threshold {rule.min_days}: {quote}")
     if rule.comparison is AccrualComparison.AT_LEAST:
-        assert _AT_LEAST.search(quote) or rule.min_days == 1, quote
-    else:
-        assert _MORE_THAN.search(quote), quote
-        assert not _AT_LEAST.search(quote), quote
+        if not (_AT_LEAST.search(quote) or rule.min_days == 1):
+            errors.append(f"no at_least wording: {quote}")
+    elif not _MORE_THAN.search(quote) or _AT_LEAST.search(quote):
+        errors.append(f"no more_than wording: {quote}")
+    return errors
+
+
+def test_quote_states_threshold_and_comparison() -> None:
+    """The quote names the days and the comparison of the stored rule."""
+    wrong = {name: errors for name in _WITH_RULE if (errors := _quote_errors(name))}
+    assert wrong == {}

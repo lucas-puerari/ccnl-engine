@@ -11,8 +11,6 @@ from __future__ import annotations
 import json
 from typing import TYPE_CHECKING
 
-import pytest
-
 from scripts.provenance.rules import KNOWLEDGE_DIR
 
 if TYPE_CHECKING:
@@ -49,16 +47,18 @@ def test_every_kind_of_year_file_is_checked() -> None:
     }
 
 
-@pytest.mark.parametrize(
-    "path", _YEAR_FILES, ids=lambda p: str(p.relative_to(KNOWLEDGE_DIR))
-)
-def test_ruleset_covers_exactly_its_year(path: Path) -> None:
-    """The ruleset runs from 1 January to 31 December of the file's year."""
+def _covers_its_year(path: Path) -> bool:
     year = _year_of(path)
     ruleset = json.loads(path.read_text(encoding="utf-8"))["ruleset"]
+    window = (ruleset["effective_from"], ruleset["effective_until"])
+    return window == (f"{year}-01-01", f"{year}-12-31") and year in ruleset["id"]
 
-    assert (ruleset["effective_from"], ruleset["effective_until"]) == (
-        f"{year}-01-01",
-        f"{year}-12-31",
-    )
-    assert year in ruleset["id"]
+
+def test_ruleset_covers_exactly_its_year() -> None:
+    """Each yearly ruleset runs from 1 January to 31 December of its year."""
+    wrong = [
+        str(path.relative_to(KNOWLEDGE_DIR))
+        for path in _YEAR_FILES
+        if not _covers_its_year(path)
+    ]
+    assert wrong == []

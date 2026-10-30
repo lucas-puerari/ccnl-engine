@@ -87,19 +87,22 @@ def test_every_bundled_ccnl_has_an_example() -> None:
     assert {path.parent.name for path in _CONTRACT_EXAMPLES} == ccnls
 
 
-@pytest.mark.parametrize("example", _CONTRACT_EXAMPLES, ids=lambda p: p.parent.name)
-def test_contract_example_prints_the_run(
-    example: Path, capsys: pytest.CaptureFixture[str]
+def test_every_contract_example_prints_the_run(
+    capsys: pytest.CaptureFixture[str],
 ) -> None:
-    """A per-contract example exits cleanly and prints every expected field."""
-    _run(example)
-    out = capsys.readouterr().out
-
-    for label, value in _EXPECTED_LINES:
-        pattern = rf"^{label}:\s+({value})$"
-        assert re.search(pattern, out, re.MULTILINE), (
-            f"{example.parent.name} does not print {label!r} as {value!r}:\n{out}"
-        )
+    """Each per-contract example exits cleanly and prints every expected field."""
+    missing: dict[str, list[str]] = {}
+    for example in _CONTRACT_EXAMPLES:
+        _run(example)
+        out = capsys.readouterr().out
+        absent = [
+            label
+            for label, value in _EXPECTED_LINES
+            if not re.search(rf"^{label}:\s+({value})$", out, re.MULTILINE)
+        ]
+        if absent:
+            missing[example.parent.name] = absent
+    assert missing == {}
 
 
 def test_readme_example_runs(capsys: pytest.CaptureFixture[str]) -> None:

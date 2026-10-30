@@ -18,8 +18,6 @@ from decimal import Decimal
 from pathlib import Path
 from typing import Any
 
-import pytest
-
 _DIR = Path(__file__).resolve().parents[1] / "observed_payslip"
 _FILES = sorted(_DIR.glob("*.json"))
 _LEGIBILITY = frozenset({
@@ -43,15 +41,19 @@ def test_the_folder_holds_payslips() -> None:
     assert len(_FILES) >= 20
 
 
-@pytest.mark.parametrize("path", _FILES, ids=lambda p: p.stem)
-def test_record_is_well_formed(path: Path) -> None:
+def test_every_record_is_well_formed() -> None:
     """Each record names itself, its legibility and, when printed, its period."""
-    record = _load(path)
-
-    assert record["id"] == path.stem
-    assert str(record["legibility"]).split(":")[0] in _LEGIBILITY
-    if record.get("period") is not None:
-        assert _PERIOD.match(record["period"]), record["period"]
+    wrong = []
+    for path in _FILES:
+        record = _load(path)
+        period = record.get("period")
+        if (
+            record["id"] != path.stem
+            or str(record["legibility"]).split(":")[0] not in _LEGIBILITY
+            or (period is not None and not _PERIOD.match(period))
+        ):
+            wrong.append(path.stem)
+    assert wrong == []
 
 
 def _amount(value: object) -> Decimal | None:
@@ -60,17 +62,27 @@ def _amount(value: object) -> Decimal | None:
     return Decimal(value)
 
 
-@pytest.mark.parametrize("path", _FILES, ids=lambda p: p.stem)
-def test_net_matches_the_totals(path: Path) -> None:
-    """Earnings less deductions give the printed net, within the rounding."""
+def _gap(path: Path) -> Decimal | None:
+    """Return how far earnings less deductions are from the printed net.
+
+    Returns:
+        The difference; ``None`` when the payslip does not print both totals
+        and the net, or its note says the printed totals leave items out.
+    """
     record = _load(path)
     totals = record.get("totals") or {}
     earnings = _amount(totals.get("earnings"))
     deductions = _amount(totals.get("deductions"))
     net = _amount(record.get("net"))
     if earnings is None or deductions is None or net is None:
-        pytest.skip("the payslip does not print both totals and the net")
+        return None
     if record.get("totals_reconcile") is False:
-        pytest.skip("the printed totals leave items out; the note says which")
+        return None
+    return abs(earnings - deductions - net)
 
-    assert abs(earnings - deductions - net) <= _ROUNDING
+
+def test_net_matches_the_totals() -> None:
+    """Earnings less deductions give the printed net, within the rounding."""
+    gaps = {path.stem: gap for path in _FILES if (gap := _gap(path)) is not None}
+    assert gaps, "some payslip prints both totals and the net"
+    assert {stem: gap for stem, gap in gaps.items() if gap > _ROUNDING} == {}
