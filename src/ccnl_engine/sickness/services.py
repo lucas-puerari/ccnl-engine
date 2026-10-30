@@ -178,6 +178,7 @@ def sickness_terms(ctx: RunContext) -> SicknessTerms:
         category=ctx.worker_category,
         monthly_payments=ccnl.parameters.additional_months,
         daily_base=_daily_base(ctx, regime),
+        holidays=ctx.repo.load_national_holidays(),
     )
 
 

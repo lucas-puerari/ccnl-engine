@@ -13,8 +13,9 @@ it (INPS circ. 134368 A.G.O. 14 of 28 January 1981, point 11):
 The monthly share is a twelfth of the additional months of the CCNL on the
 pay of a whole month (circ. 55/2024 Allegato 1: the *retribuzione teorica*
 times the number of monthly payments) and of the other recurring payments
-of the year.  INPS pays its share on every calendar day the certificate
-covers.
+of the year.  INPS pays its share on the days of :func:`indemnified_days`:
+the weekdays of an operaio, every day but the holidays on a Sunday of an
+impiegato.
 """
 
 from __future__ import annotations
@@ -31,13 +32,20 @@ if TYPE_CHECKING:
     from ccnl_engine.sickness.models import SicknessEpisode
     from ccnl_engine.sickness.term.rules import SicknessTerms
 
-__all__ = ["contributions_base", "daily_base", "episode_daily_base"]
+__all__ = [
+    "contributions_base",
+    "daily_base",
+    "episode_daily_base",
+    "indemnified_days",
+    "weekdays_only",
+]
 
 _MONTHS = Decimal(12)
 #: Divisor of an impiegato's month (point 11.2 letter c).
 _CALENDAR_DIVISOR = Decimal(30)
 #: Divisor of an operaio's monthly share of recurring payments (point 11.3 e).
 _OPERAIO_SHARE_DIVISOR = Decimal(25)
+_SUNDAY = 7
 
 
 def daily_base(
@@ -147,3 +155,46 @@ def episode_daily_base(
     if period is None or period.value is None:
         return None
     return daily_base(base, terms.category, period.value)
+
+
+def weekdays_only(terms: SicknessTerms) -> bool:
+    """Return whether INPS pays only the weekdays of the sick days.
+
+    An operaio is paid the weekdays, the Saturday of a short week included,
+    not the Sundays and the national holidays (INPS circ. 134368/1981 point
+    7.3); an impiegato, and a lavoratore dello spettacolo, every day but the
+    holidays falling on a Sunday (points 7.2 and 7.3; circ. 132/2021 par.
+    2.3).
+
+    Returns:
+        ``True`` for an operaio under the general base.
+    """
+    regime = terms.daily_base
+    general = regime is None or regime.kind is DailyBaseKind.MONTH_BEFORE
+    return general and terms.category is WorkerCategory.OPERAIO
+
+
+def indemnified_days(
+    first: date, last: date, holidays: frozenset[date], *, weekdays: bool
+) -> int:
+    """Return the days from ``first`` to ``last`` INPS pays.
+
+    Args:
+        first: First sick day.
+        last: Last sick day.
+        holidays: National holidays of the years the days fall in.
+        weekdays: Whether only the weekdays are paid (an operaio).
+
+    Returns:
+        Every day but the Sundays and the holidays for ``weekdays``; else
+        every day but the holidays falling on a Sunday.
+    """
+    count = 0
+    day = first
+    while day <= last:
+        sunday = day.isoweekday() == _SUNDAY
+        holiday = day in holidays
+        excluded = (sunday or holiday) if weekdays else (sunday and holiday)
+        count += 0 if excluded else 1
+        day += timedelta(days=1)
+    return count

@@ -20,6 +20,7 @@ from ccnl_engine.period.repositories import (
 if TYPE_CHECKING:
     from ccnl_engine.absence.insured.models import InsuredAbsenceRates
     from ccnl_engine.agreement.facade import CCNL, TaxSector
+    from ccnl_engine.calendar.holiday.models import NationalHolidays
     from ccnl_engine.capability.registry.models import CapabilityCatalog
     from ccnl_engine.catalog.loaders import ContractSummary
     from ccnl_engine.family.models import FamilyDeductionRules
@@ -127,6 +128,14 @@ class NextYearRepository:
             The indemnities, not tied to a year.
         """
         return self._bundled.load_insured_absence_rates()
+
+    def load_national_holidays(self) -> NationalHolidays:
+        """Return the bundled national holidays.
+
+        Returns:
+            The holidays of the bundle.
+        """
+        return self._bundled.load_national_holidays()
 
     def load_engine_limitations(self) -> tuple[ModelLimitation, ...]:
         """Return the bundled engine limitations.

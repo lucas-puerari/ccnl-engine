@@ -18,7 +18,12 @@ from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.sickness.base.inputs import InpsSicknessBase, SpettacoloSicknessBase
 from ccnl_engine.sickness.base.models import DailyBaseKind, RegimeDailyBase
-from ccnl_engine.sickness.base.rules import daily_base, episode_daily_base
+from ccnl_engine.sickness.base.rules import (
+    daily_base,
+    episode_daily_base,
+    indemnified_days,
+    weekdays_only,
+)
 from ccnl_engine.sickness.models import SicknessEpisode, SicknessHistory
 from ccnl_engine.sickness.term.rules import SicknessTerms
 
@@ -204,3 +209,51 @@ def test_a_malformed_contributions_base_is_rejected(
     values: dict[str, object] = {"pay": Decimal(4000), "contributions": 40, **fields}
     with pytest.raises(InvalidInputError, match=match):
         SpettacoloSicknessBase(**values)  # type: ignore[arg-type]
+
+
+_JUNE_HOLIDAY = frozenset({date(2026, 6, 2)})
+
+
+@pytest.mark.parametrize(
+    ("weekdays", "days"),
+    [(True, 8), (False, 10)],
+    ids=["operaio_weekdays", "impiegato_every_day"],
+)
+def test_indemnified_days_of_1_to_10_june_2026(weekdays: bool, days: int) -> None:
+    """An operaio loses Sunday 7 and the holiday of Tuesday 2 June."""
+    found = indemnified_days(
+        date(2026, 6, 1), date(2026, 6, 10), _JUNE_HOLIDAY, weekdays=weekdays
+    )
+
+    assert found == days
+
+
+def test_an_impiegato_loses_a_holiday_falling_on_a_sunday() -> None:
+    """4 October 2026 is a Sunday: of 1-7 October the impiegato has 6 days."""
+    found = indemnified_days(
+        date(2026, 10, 1),
+        date(2026, 10, 7),
+        frozenset({date(2026, 10, 4)}),
+        weekdays=False,
+    )
+
+    assert found == 6
+
+
+@pytest.mark.parametrize(
+    ("category", "base", "weekdays"),
+    [
+        (WorkerCategory.OPERAIO, None, True),
+        (WorkerCategory.OPERAIO, RegimeDailyBase(), True),
+        (WorkerCategory.IMPIEGATO, None, False),
+        (WorkerCategory.OPERAIO, _CONTRIBUTIONS, False),
+    ],
+    ids=["operaio", "operaio_own_rates", "impiegato", "spettacolo"],
+)
+def test_only_an_operaio_of_the_general_base_is_paid_weekdays(
+    category: WorkerCategory, base: RegimeDailyBase | None, weekdays: bool
+) -> None:
+    """Point 7.3 of the 1981 circular; spettacolo pays every day."""
+    terms = replace(_TERMS, category=category, daily_base=base)
+
+    assert weekdays_only(terms) is weekdays

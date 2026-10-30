@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.insured.loaders import load_insured_absence_rates
 from ccnl_engine.bundle.loaders import bundle_version as _bundle_version
+from ccnl_engine.calendar.holiday.loaders import load_national_holidays
 from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
@@ -20,6 +21,7 @@ from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
 if TYPE_CHECKING:
     from ccnl_engine.absence.insured.models import InsuredAbsenceRates
     from ccnl_engine.agreement.facade import CCNL, TaxSector
+    from ccnl_engine.calendar.holiday.models import NationalHolidays
     from ccnl_engine.capability.registry.models import CapabilityCatalog
     from ccnl_engine.catalog.loaders import ContractSummary
     from ccnl_engine.family.models import FamilyDeductionRules
@@ -130,3 +132,11 @@ class BundledKnowledgeRepository:
             The INPS maternity indemnity and the work-injury measures.
         """
         return load_insured_absence_rates()
+
+    def load_national_holidays(self) -> NationalHolidays:  # noqa: PLR6301
+        """Return the national holidays with civil effects.
+
+        Returns:
+            The holidays of L. 260/1949 as amended, besides the Sundays.
+        """
+        return load_national_holidays()

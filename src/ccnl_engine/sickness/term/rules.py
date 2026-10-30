@@ -13,6 +13,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.absence.models import DailyDivisorMethod
     from ccnl_engine.agreement.validity.rules import TimeSeries
+    from ccnl_engine.calendar.holiday.models import NationalHolidays
     from ccnl_engine.compensation.element.types import MonthlyPayChain
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.provenance.source.models import SourceLocation
@@ -71,6 +72,9 @@ class SicknessTerms:
             (``additional_months``), read by the INPS daily base.
         daily_base: The daily base of the INPS regime of the CCNL; ``None``
             for the general one, on the month before the illness.
+        holidays: National holidays, which INPS does not pay as sick days
+            in the cases :func:`~ccnl_engine.sickness.base.rules.indemnified_days`
+            states; ``None`` when unknown.
         paid_by_the_hour: Whether the run pays the worker by the hour
             worked: the sick hours are not among them, so the sick days
             deduct nothing from the pay.
@@ -93,3 +97,4 @@ class SicknessTerms:
     category: WorkerCategory | None = None
     monthly_payments: TimeSeries | None = None
     daily_base: RegimeDailyBase | None = None
+    holidays: NationalHolidays | None = None
