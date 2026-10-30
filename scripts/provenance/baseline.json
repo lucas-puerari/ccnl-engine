@@ -998,7 +998,8 @@
       "impianti-sportivi-sport/night_overtime_cumulation",
       "impianti-sportivi-sport/overtime_over_48h_band_missing",
       "impianti-sportivi-sport/pre_2015_fourteenth_missing",
-      "impianti-sportivi-sport/pre_2015_superminimo_missing"
+      "impianti-sportivi-sport/pre_2015_superminimo_missing",
+      "impianti-sportivi-sport/sickness_net_basis"
     ],
     "agreement/impiegati-tecnici-agricoli.json": [
       "impiegati-tecnici-agricoli/apprentice_inps_rates_unsourced",
