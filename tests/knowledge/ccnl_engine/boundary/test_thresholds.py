@@ -237,19 +237,22 @@ def _tranches() -> list[tuple[str, str, date, Decimal, Decimal]]:
 _TRANCHES = _tranches()
 
 
-@pytest.mark.parametrize("ccnl", sorted({t[0] for t in _TRANCHES}), ids=lambda c: c)
-def test_each_tranche_starts_on_its_day(ccnl: str) -> None:
+_ONE_DAY = timedelta(days=1)
+
+
+def test_each_tranche_starts_on_its_day() -> None:
     """The day before pays the old table, the day and the day after the new."""
-    tables = {level.code: level.base_salary for level in _REPO.load_ccnl(ccnl).levels}
-    for _, level, start, old, new in (t for t in _TRANCHES if t[0] == ccnl):
-        series = tables[level]
+    wrong = []
+    for ccnl, level, start, old, new in _TRANCHES:
+        series = _REPO.load_ccnl(ccnl).level_by_code(level).base_salary
         try:
             before = series.value_at(start - timedelta(days=1))
         except SeriesGapError:  # pragma: no cover - a gap is no tranche
             continue
-        assert before == old, (level, start)
-        assert series.value_at(start) == new, (level, start)
-        assert series.value_at(start + timedelta(days=1)) == new, (level, start)
+        found = (before, series.value_at(start), series.value_at(start + _ONE_DAY))
+        if found != (old, new, new):
+            wrong.append((ccnl, level, start, found))
+    assert wrong == []
 
 
 _ENGINE = PayrollEngine.bundled()
