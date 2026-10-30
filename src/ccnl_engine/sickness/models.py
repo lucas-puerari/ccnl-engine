@@ -18,7 +18,7 @@ from dataclasses import dataclass, replace
 from datetime import date, timedelta
 
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.sickness.base.inputs import InpsSicknessBase
+from ccnl_engine.sickness.base.inputs import InpsSicknessBase, SpettacoloSicknessBase
 from ccnl_engine.sickness.validators import validate_episode
 
 __all__ = ["SicknessEpisode", "SicknessHistory"]
@@ -66,15 +66,17 @@ class SicknessEpisode:
             the 12 months before the episode, with every employer (D.L.
             463/1983 art. 5 c. 1); ``None`` when not stated.  Read only for
             a fixed-term contract, which pays sickness for no more days.
-        inps_base: Pay of the month before the illness, which the INPS
-            share of the sick days is computed on; ``None`` when not stated.
+        inps_base: Pay the INPS share of the sick days is computed on: of
+            the month before the illness, or of the last daily contributions
+            for a lavoratore dello spettacolo; ``None`` when not stated.
             A relapse without one takes that of the episode it continues.
 
     Raises:
         InvalidInputError: When the identifier is blank, a day is not a
             date, ``short_absence_exempt`` is not a bool,
             ``prior_worked_days`` is not an int in [0, 366], ``inps_base``
-            is not an :class:`InpsSicknessBase`, the episode ends before it
+            is not an :class:`InpsSicknessBase` or a
+            :class:`SpettacoloSicknessBase`, the episode ends before it
             starts or continues itself.
     """
 
@@ -88,7 +90,7 @@ class SicknessEpisode:
     serious_illness: bool | None = None
     periodic_check: bool | None = None
     daily_contributions: int | None = None
-    inps_base: InpsSicknessBase | None = None
+    inps_base: InpsSicknessBase | SpettacoloSicknessBase | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         validate_episode(self)

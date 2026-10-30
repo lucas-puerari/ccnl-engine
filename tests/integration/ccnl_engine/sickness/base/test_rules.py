@@ -26,9 +26,17 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine import (
+    Employment,
+    PayrollEngine,
+    PayrollRun,
+    PeriodFacts,
+    PeriodInput,
+)
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.inputs import FixedTerm, NaspiExclusion, Permanent
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.services import (
     bundled_policies,
@@ -36,7 +44,7 @@ from ccnl_engine.period.services import (
     calculate_period,
 )
 from ccnl_engine.run.types import PeriodId
-from ccnl_engine.sickness.base.inputs import InpsSicknessBase
+from ccnl_engine.sickness.base.inputs import InpsSicknessBase, SpettacoloSicknessBase
 from ccnl_engine.sickness.models import SicknessEpisode
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
@@ -125,3 +133,67 @@ def test_without_the_base_the_share_stays_on_the_quota_and_blocks() -> None:
     assert "sickness_inps_daily_base" in {lim.id for lim in may.limitations}
     (decision,) = (d for d in may.decisions if d.capability == "sickness")
     assert decision.inputs["inps_daily_base"] == "none"
+
+
+def _cinema(
+    base: InpsSicknessBase | SpettacoloSicknessBase, *, fixed_term: bool
+) -> PeriodResult:
+    """Return March 2026 of a film production impiegato sick from 2 to 11 March.
+
+    Returns:
+        The result of the run.
+    """
+    contract: FixedTerm | Permanent = (
+        FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE)
+        if fixed_term
+        else Permanent()
+    )
+    episode = SicknessEpisode(
+        "CIN",
+        date(2026, 3, 2),
+        date(2026, 3, 11),
+        daily_contributions=120,
+        prior_worked_days=200 if fixed_term else None,
+        inps_base=base,
+    )
+    request = PeriodInput(
+        run=PayrollRun.regular(2026, 3),
+        payment_date=date(2026, 3, 27),
+        employment=Employment(
+            ccnl_id="cinema-audiovisivi-industria",
+            level_code="4",
+            category=WorkerCategory.IMPIEGATO,
+            contract_type=contract,
+            seniority=new_hire(2025),
+        ),
+        employer=EmployerProfile(headcount=Headcount(50)),
+        facts=PeriodFacts(events=(episode,)),
+    )
+    return PayrollEngine.bundled().calculate_period(request)
+
+
+def _base_of(result: PeriodResult) -> object:
+    (decision,) = (d for d in result.decisions if d.capability == "sickness")
+    return decision.inputs["inps_daily_base"]
+
+
+def test_spettacolo_averages_the_last_daily_contributions() -> None:
+    """4000 EUR over 40 contributions: 100 a day (circ. 132/2021 par. 2.4)."""
+    result = _cinema(SpettacoloSicknessBase(Decimal(4000), 40), fixed_term=False)
+
+    assert _base_of(result) == Decimal(100)
+    assert "sickness_inps_daily_base" not in {lim.id for lim in result.limitations}
+
+
+def test_a_fixed_term_spettacolo_base_stops_at_the_ceiling() -> None:
+    """6000 / 40 = 150 a day, capped at the 100 EUR of art. 66 c. 3 D.L. 73/2021."""
+    result = _cinema(SpettacoloSicknessBase(Decimal(6000), 40), fixed_term=True)
+
+    assert _base_of(result) == Decimal(100)
+
+
+def test_spettacolo_does_not_read_the_month_before() -> None:
+    """The general base does not stand for the spettacolo one."""
+    result = _cinema(InpsSicknessBase(Decimal(2000), Decimal(0)), fixed_term=False)
+
+    assert _base_of(result) == "none"

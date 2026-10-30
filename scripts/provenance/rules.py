@@ -567,13 +567,19 @@ def _sick_pay_regimes(file: str, data: Mapping[str, object]) -> Iterator[Payable
     """Yield the INPS indemnity regimes of the sick-pay rates, one rule each.
 
     Yields:
-        ``regimes[<id>]`` with the record of the regime.
+        ``regimes[<id>]`` with the record of the regime, and
+        ``regimes[<id>].daily_base`` with that of its daily base when the
+        regime has its own.
     """
     regimes = data.get("regimes")
     for regime in regimes if isinstance(regimes, list) else []:
         if isinstance(regime, dict):
             path = f"regimes[{regime.get('id')}]"
             yield _rule(file, path, ("sickness",), regime.get("provenance"))
+            base = regime.get("daily_base")
+            if isinstance(base, dict):
+                record = base.get("provenance")
+                yield _rule(file, f"{path}.daily_base", ("sickness",), record)
 
 
 #: Datasets of the fiscal rules, in the order the inventory lists them.
