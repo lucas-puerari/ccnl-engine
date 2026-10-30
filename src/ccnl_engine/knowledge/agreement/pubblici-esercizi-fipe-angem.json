@@ -2756,7 +2756,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "3c09a588a3d9281d363bf6af75cee213fea0c93780d9713ad12c9382e038d8c4",
+    "source_hash": "b3dd97d3500f795eaadea88f90474197e134ae5c9dfb65e577e044060b22aa99",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3338,6 +3338,7 @@
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "0.8",
       "max_duration_days": 180,
+      "comporto_calendar_year": true,
       "provenance": {
         "status": "verified",
         "location": {
@@ -3362,7 +3363,7 @@
           "verified_at": "2026-10-11T19:46:50Z",
           "review_id": "2026-10-11-ai"
         },
-        "transformation": "Art. 190 c. 3: INPS pays the indemnity at 80% (regime pubblici_esercizi of sickness/indemnity/rates.json) and the CCNL adds no top-up, so the target is 0.8; the employer pays the normal pay for the three days of carenza only when the sickness lasts more than five days (carenza_min_days 5). Art. 194: 180 days a year, from 1 January to 31 December."
+        "transformation": "Art. 190 c. 3: INPS pays the indemnity at 80% (regime pubblici_esercizi of sickness/indemnity/rates.json) and the CCNL adds no top-up, so the target is 0.8; the employer pays the normal pay for the three days of carenza only when the sickness lasts more than five days (carenza_min_days 5). Art. 194: 180 days a year, from 1 January to 31 December, the absences of several illnesses of the year summed ('Ove il lavoratore si ammali o si infortuni più volte nel corso dell'anno i relativi periodi di assenza sono cumulabili'): comporto_calendar_year."
       },
       "carenza_min_days": 5,
       "inps_regime": "pubblici_esercizi"
