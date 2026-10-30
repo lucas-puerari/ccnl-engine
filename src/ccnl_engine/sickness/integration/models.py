@@ -304,13 +304,13 @@ class SicknessCumulation(BaseModel):
         comporto = [b.comporto_days for b in self.bands]
         increasing = all(
             later > earlier
-            for values in (starts, full, comporto)
+            for values in (starts, comporto)
             for earlier, later in itertools.pairwise(values)
-        )
+        ) and all(later >= earlier for earlier, later in itertools.pairwise(full))
         if starts[0] != 0 or not increasing:
             msg = (
-                "bands must start at 0 months and increase in seniority, "
-                f"full-pay days and comporto days; got {starts}, {full}, {comporto}"
+                "bands must start at 0 months, increase in seniority and comporto,"
+                f" never decrease in full-pay days; got {starts}, {full}, {comporto}"
             )
             raise ValueError(msg)
         return self

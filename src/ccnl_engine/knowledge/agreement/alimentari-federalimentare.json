@@ -81,15 +81,15 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS (Art. 47): modelled as 100% of the net normal pay for 186 calendar days per episode. Not modelled: over 5 years of seniority the next 179 days at 50%; the comporto of 186 days within 17 months (up to 5 years) and 365 days within 24 months (over 5), summed over different illnesses; the 90 more days for disabled workers; the fixed-term limit (4 months, integration no longer than the INPS indemnity); the apprentice's normal pay for at most six months a year (Art. 21). The net pay is computed by grossing up the INPS indemnity by the worker's INPS rate, as for the Commercio file.",
+        "text": "SICKNESS (Art. 47): the 100% and 50% bands of the net normal pay and the comporto of 186 days in 17 months (up to 5 years) and 365 days in 24 months (over 5) are counted over the sickness of every episode in the window. Not modelled: the 90 more days of comporto for disabled workers (L. 68/99); the fixed-term limit (4 months, integration no longer than the INPS indemnity); the apprentice's normal pay for at most six months a year (Art. 21). The net pay is computed by grossing up the INPS indemnity by the worker's INPS rate, as for the Commercio file.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "sickness_half_pay_and_comporto",
+          "variant": "sickness_disabled_fixed_term",
           "applies_when": {
             "trigger": "run"
           },
-          "remediation": "Model the 50% band over 5 years and the 17 and 24 month comporto windows of Art. 47."
+          "remediation": "Model the 90 more days of comporto of a disabled worker, the fixed-term limit and the apprentice treatment of Art. 47 and Art. 21."
         }
       },
       {
@@ -3263,7 +3263,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "5fcb6e8963c661854c75186bb36950a081b7809948a8892b16c21e2f3544b754",
+    "source_hash": "02636141f8650658b0f7428b2d87445bd11bab75ff721b1bb77ed018b9155446",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3475,8 +3475,25 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 186,
       "net_basis": true,
+      "cumulation": {
+        "window_years": 2,
+        "reset_after_days": null,
+        "reduced_integration_rate": "0.50",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 186,
+            "comporto_days": 186,
+            "window_months": 17
+          },
+          {
+            "seniority_months_from": 60,
+            "full_pay_days": 186,
+            "comporto_days": 365
+          }
+        ]
+      },
       "provenance": {
         "status": "verified",
         "location": {
@@ -3490,9 +3507,9 @@
           },
           "page": "109-111",
           "section": "Art. 47 - 1) Conservazione del posto; 2) Trattamento economico (table p. 110)",
-          "quote": "a) anzianità fino a 5 anni compiuti: 186 giorni di calendario; [...] Per i primi 186 giorni [...] il 100 o il 50 per cento della retribuzione normale netta."
+          "quote": "a) anzianità fino a 5 anni compiuti: 186 giorni di calendario; b) anzianità oltre i 5 anni: 365 giorni di calendario. Cesserà per l’azienda l’obbligo della conservazione del posto e del trattamento economico qualora il lavoratore abbia raggiunto in complesso, durante i 17 mesi antecedenti, i limiti massimi previsti dalla lett. a) e, durante i 24 mesi antecedenti, quelli previsti dalla lettera b), anche in caso di diverse malattie. [...] integrerà l’indennità corrisposta dallo stesso in modo da raggiungere il 100 o il 50 per cento della retribuzione normale netta."
         },
-        "transformation": "The company integrates the INPS indemnity up to 100% of the net normal pay from the first day for the first 186 calendar days. The 179 days at 50% over 5 years of seniority and the comporto counted over 17 and 24 months are not modelled (see the sickness note).",
+        "transformation": "Art. 47 1)-2): the company integrates the INPS indemnity up to 100% of the net normal pay for the first 186 calendar days and, over 5 years of seniority, up to 50% for the next 179; the comporto is 186 days within the 17 months before the day (up to 5 years) and 365 days within the 24 months before (over 5), 'anche in caso di diverse malattie', and the same window bounds the treatment ('Cesserà per l'azienda l'obbligo della conservazione del posto e del trattamento economico'). Stored as a cumulation counted over the window, with a band of each seniority. Read on 2026-10-30.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",

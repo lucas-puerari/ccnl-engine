@@ -500,7 +500,7 @@ def _after_january_and_february() -> PeriodState:
 @pytest.mark.parametrize(
     ("slug", "level", "limited"),
     [
-        ("alimentari-federalimentare", "6", True),
+        ("pelli-cuoio-industria-assopellettieri", "3", True),
         ("commercio-confcommercio", "4", False),
         ("farmacie-private-h121", "2", False),
     ],
@@ -510,7 +510,7 @@ def test_earlier_episode_outside_the_chain_is_a_limitation(
 ) -> None:
     """A March relapse chain after an unrelated January episode.
 
-    Federalimentare counts its comporto on the episode and its relapses;
+    Pelli e cuoio counts its comporto on the episode and its relapses;
     Commercio (Art. 186) and Farmacie private (Art. 43) count it over the
     calendar year, with tiers of the episode.
     """
@@ -525,15 +525,25 @@ def test_earlier_episode_outside_the_chain_is_a_limitation(
     assert found is limited
 
 
-def test_a_ccnl_counting_every_episode_has_no_window_limitation() -> None:
-    """Federmeccanica counts the January and February episodes itself.
+@pytest.mark.parametrize(
+    ("slug", "level"),
+    [
+        ("metalmeccanico-federmeccanica", "C3"),
+        ("alimentari-federalimentare", "6"),
+    ],
+)
+def test_a_ccnl_counting_every_episode_has_no_window_limitation(
+    slug: str, level: str
+) -> None:
+    """Federmeccanica and Federalimentare count the earlier episodes themselves.
 
-    18 and 25 days of work separate the three episodes, fewer than 61, so
-    the chain holds 3 + 3 + 2 days on 3 March.
+    Federmeccanica: 18 and 25 days of work separate the three episodes,
+    fewer than 61, so the chain holds 3 + 3 + 2 days on 3 March.
+    Federalimentare (Art. 47): every sick day of the 17 months before.
     """
     relapse = sickness_episode("m", date(2026, 3, 2), date(2026, 3, 3), "f")
     result = calculate_period(
-        _req(3, relapse, opening=_after_january_and_february()),
+        _req(3, relapse, opening=_after_january_and_february(), slug=slug, level=level),
         repo=bundled_repository(),
         resolver=bundled_policies(),
     )
