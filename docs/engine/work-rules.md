@@ -259,12 +259,15 @@ certificate covers (INPS circ. 134368 A.G.O. 14 of 28 January 1981, point
 11; circ. 55 of 4 April 2024, Allegato 1). `SicknessEpisode.inps_base`
 (`InpsSicknessBase`) states the pay of that month as the payroll history
 holds it: the *retribuzione teorica* of its UniEmens flow, the days worked
-or paid, and the other recurring payments of the year. The engine adds the
-monthly share of the additional months of the CCNL in force in that month:
+or paid, the other recurring payments of the year and, for a month not
+worked in full, the pay of a whole month. The engine adds the monthly share
+of the additional months of the CCNL in force in that month, on the pay of
+a whole month:
 
 | Worker | RMGG |
 |---|---|
 | impiegato, quadro, dirigente (point 11.2) | (pay + share) / 30 |
+| impiegato of a month not worked in full (point 11.2 d-f) | pay / days worked or paid, Sundays and paid holidays included + share / 30 |
 | operaio (point 11.3) | pay / days worked or paid + share / 25 |
 
 The base is fixed for the episode: a pay change during it moves the CCNL
@@ -274,7 +277,8 @@ without a base of its own takes that of the episode it continues. The
 
 Two engine limitations stay open. Without the INPS daily base (no
 `inps_base` in the relapse chain, an operaio without the days, an impiegato
-who did not work the whole month before, an unknown category, or a sector
+of a month not worked in full without the pay of a whole month, an unknown
+category, or a sector
 regime such as spettacolo) the INPS share uses the CCNL daily quota of the
 month (`sickness_inps_daily_base`). For a CCNL without a cumulation, tiers
 and comporto count one relapse chain, not the CCNL window across episodes

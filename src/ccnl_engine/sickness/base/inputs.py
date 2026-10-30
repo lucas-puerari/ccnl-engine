@@ -39,28 +39,41 @@ class InpsSicknessBase:
             (circ. 134368/1981 point 11.1; circ. 55/2024 Allegato 1).
         paid_days: Days worked or paid in that month (paid holidays and
             leave, the sixth day of a short week; never the sick days), which
-            the base of an operaio divides by (point 11.3).  ``None`` for an
-            impiegato who worked the whole month.  An impiegato who did not
-            (point 11.2 letters d-f) states them too: the engine does not
-            compute that base yet and the INPS share stays on the CCNL daily
-            quota.
+            the base of an operaio divides by (point 11.3), and that of an
+            impiegato who did not work the whole month, Sundays and paid
+            holidays included (point 11.2 letters d-f).  ``None`` for an
+            impiegato who worked the whole month.
         recurring_annual: Recurring payments of the year that are neither
             part of the monthly pay nor an additional month of the CCNL
             (annual or periodic bonuses, point 11.2 letter b); the engine
             adds the additional months of the CCNL itself.  ``0`` when there
             are none.
+        full_month_pay: Monthly pay of a whole month of the employment in
+            that month, when the worker was not employed all of it (a hire
+            during the month): the additional months accrue on it, not on
+            the pay of the days (point 11.2 letter e).  Required for an
+            impiegato who did not work the whole month; ``None`` when the
+            month was worked in full.
 
     Raises:
-        InvalidInputError: When ``theoretical_pay`` or ``recurring_annual``
-            is not a non-negative ``Decimal``, or ``paid_days`` is not an
-            int in [1, 31].
+        InvalidInputError: When ``theoretical_pay``, ``recurring_annual``
+            or ``full_month_pay`` is not a non-negative ``Decimal``, or
+            ``paid_days`` is not an int in [1, 31].
     """
 
     theoretical_pay: Decimal
     recurring_annual: Decimal
     paid_days: int | None = None
+    full_month_pay: Decimal | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
+        require_decimal(
+            self.full_month_pay,
+            f"{_OWNER}.full_month_pay",
+            feature=_FEATURE,
+            minimum=Decimal(0),
+            optional=True,
+        )
         for name in ("theoretical_pay", "recurring_annual"):
             require_decimal(
                 getattr(self, name),
