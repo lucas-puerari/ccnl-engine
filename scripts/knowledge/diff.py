@@ -97,7 +97,9 @@ def _git_show(git_ref: str, file_path: str) -> str | None:
     return result.stdout if result.returncode == 0 else None
 
 
-def _git_load_ccnl_base(base_ref: str, file_path: str) -> CCNL | None:
+def _git_load_ccnl_base(
+    base_ref: str, file_path: str, head: CCNL | None = None
+) -> CCNL | None:
     """Load a CCNL from the base ref, tolerating schema drift.
 
     The base branch may predate the current validator (e.g. ``model`` was null
@@ -105,7 +107,9 @@ def _git_load_ccnl_base(base_ref: str, file_path: str) -> CCNL | None:
     is treated as "file existed but cannot be compared", equivalent to a new
     file from the diff's perspective.  A base file whose provenance records
     predate the required ``status`` is compared after assigning the statuses
-    in memory, as ``scripts/provenance/assign.py`` does.
+    in memory, as ``scripts/provenance/assign.py`` does.  The report
+    compares rules only, so a base file of an earlier schema takes the
+    schema version and, when it has none, the family of *head*.
 
     Returns:
         Validated CCNL instance, or ``None`` if the file did not exist at
@@ -118,6 +122,11 @@ def _git_load_ccnl_base(base_ref: str, file_path: str) -> CCNL | None:
     # The report compares rules only: a coverage block of an older schema
     # (aggregate flags, notes without a capability) must not hide them.
     data["coverage"] = {"notes": []}
+    if head is not None:
+        data["schema_version"] = head.schema_version
+        meta = data.get("meta")
+        if isinstance(meta, dict):
+            meta.setdefault("family", head.meta.family.model_dump(mode="json"))
     try:
         return CCNL.model_validate(data)
     except ValidationError:
@@ -445,7 +454,11 @@ def _report(base_ref: str) -> str:
 
     lines: list[str] = ["## Rules diff — knowledge data changes", ""]
 
-    ccnl_files = [p for p in changed if p.startswith(_CCNL_PREFIX)]
+    ccnl_files = [
+        p
+        for p in changed
+        if p.startswith(_CCNL_PREFIX) and "/" not in p[len(_CCNL_PREFIX) :]
+    ]
     other_files = [
         p for p in changed if any(p.startswith(pfx) for pfx in _OTHER_PREFIXES)
     ]
@@ -467,7 +480,7 @@ def _report(base_ref: str) -> str:
         if new_ccnl is None:
             lines.extend([f"### `{filename}` _(removed)_", ""])
             continue
-        old_ccnl = _git_load_ccnl_base(base_ref, path)
+        old_ccnl = _git_load_ccnl_base(base_ref, path, new_ccnl)
         ccnl_name = new_ccnl.meta.name
         lines.extend([f"### `{filename}` — {ccnl_name}", ""])
         lines.extend(_compare_ccnl_versions(old_ccnl, new_ccnl))

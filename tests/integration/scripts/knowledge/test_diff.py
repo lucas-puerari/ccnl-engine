@@ -195,3 +195,30 @@ def test_base_with_retired_coverage_flags_is_compared(
     ccnl = report_mod._git_load_ccnl_base("main", "x.json")
     assert isinstance(ccnl, CCNL)
     assert ccnl.coverage.notes == ()
+
+
+def test_base_of_an_earlier_schema_takes_the_family_of_head(
+    report_mod: types.ModuleType, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """A base file without family, schema 0.5, is compared to HEAD."""
+    pkg = _AGREEMENTS
+    head_data = json.loads(pkg.joinpath("commercio-confcommercio.json").read_text())
+    head = CCNL.model_validate(head_data)
+    base = {**head_data, "schema_version": "0.5"}
+    base["meta"] = {k: v for k, v in head_data["meta"].items() if k != "family"}
+    monkeypatch.setattr(report_mod, "_git_show", lambda _ref, _path: json.dumps(base))
+
+    assert report_mod._git_load_ccnl_base("main", "x.json") is None
+    ccnl = report_mod._git_load_ccnl_base("main", "x.json", head)
+    assert isinstance(ccnl, CCNL)
+    assert ccnl.meta.family == head.meta.family
+
+
+def test_the_family_catalog_is_not_a_ccnl(
+    report_mod: types.ModuleType, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """A file below ``agreement/`` in a sub-folder is not read as a CCNL."""
+    catalog = "src/ccnl_engine/knowledge/agreement/family/catalog.json"
+    monkeypatch.setattr(report_mod, "_git_changed_files", lambda _ref: [catalog])
+
+    assert "catalog.json" not in report_mod._report("main")
