@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/132 CCNLs.** Bundle: 268 weak rules, 563 open limitations (563 with a monetary impact).
+**Complete: 0/132 CCNLs.** Bundle: 268 weak rules, 565 open limitations (565 with a monetary impact).
 
 ## Declared window
 
@@ -98,7 +98,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [elettrico-elettricita-futura](../contracts/elettrico-elettricita-futura.md) | `energia-utilities` | exploratory | — | 15 rows | 15 open requirements; 1 weak rule; 12 monetary limitations; 20 non-native capabilities |
 | [energia-petrolio-confindustria](../contracts/energia-petrolio-confindustria.md) | `energia-utilities` | exploratory | — | 13 rows | 13 open requirements; 1 weak rule; 10 monetary limitations; 19 non-native capabilities |
 | [enti-ricerca-aran](../contracts/enti-ricerca-aran.md) | `pubblico-impiego` | exploratory | — | 14 rows | 14 open requirements; 1 weak rule; 10 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
-| [esercizi-cinematografici-anec](../contracts/esercizi-cinematografici-anec.md) | `spettacolo-media` | exploratory | — | 15 rows | 15 open requirements; 1 weak rule; 12 monetary limitations; 21 non-native capabilities |
+| [esercizi-cinematografici-anec](../contracts/esercizi-cinematografici-anec.md) | `spettacolo-media` | exploratory | — | 16 rows | 16 open requirements; 1 weak rule; 13 monetary limitations; 22 non-native capabilities |
 | [farmacie-municipalizzate-assofarm](../contracts/farmacie-municipalizzate-assofarm.md) | `farmacie` | exploratory | — | 15 rows | 15 open requirements; 1 weak rule; 12 monetary limitations; 21 non-native capabilities |
 | [farmacie-private-h121](../contracts/farmacie-private-h121.md) | `farmacie` | exploratory | — | 16 rows | 16 open requirements; 1 weak rule; 12 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [federcasa](../contracts/federcasa.md) | `servizi-immobiliari` | exploratory | — | 16 rows | 16 open requirements; 1 weak rule; 12 monetary limitations; 1 outside_input limitation; 22 non-native capabilities |
