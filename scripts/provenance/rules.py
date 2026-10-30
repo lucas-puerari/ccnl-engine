@@ -110,6 +110,14 @@ _NAMED_BLOCKS: Final[dict[str, _Blocks]] = {
         ("service_period", ("termination_tfr",), False),
     ),
     "sickness/indemnity/rates": (("bands", ("sickness",), True),),
+    "absence/insured/rates": (
+        ("maternity", ("maternity_leave",), False),
+        ("paternity", ("paternity_leave",), False),
+        ("parental", ("parental_leave",), False),
+        ("disability_permit", ("disability_permits",), False),
+        ("extraordinary_leave", ("extraordinary_leave",), False),
+        ("injury", ("workplace_injury",), False),
+    ),
 }
 #: CCNL work rules read by every run that needs them: key and capabilities.
 _WORK_RULES: Final = (
@@ -609,6 +617,7 @@ FISCAL_DATASETS = (
     "sickness",
     "surtax",
     "calendar",
+    "absence",
 )
 
 
