@@ -1,6 +1,8 @@
 .PHONY: setup format check lint typecheck complexity architecture test generate rehash docs demo
 
 SITE := demo/release/site
+# Parallel test workers: a few, not one per core (each loads the whole bundle).
+PYTEST_WORKERS ?= 4
 PACKAGES := demo/release/packages
 
 # Setup
@@ -34,7 +36,7 @@ architecture:
 	uv run python scripts/quality/test_tree/check.py
 
 test:
-	uv run pytest -n auto
+	uv run pytest -n $(PYTEST_WORKERS)
 
 # Generated artefacts: knowledge manifest and documentation pages
 
