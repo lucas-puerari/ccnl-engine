@@ -34,6 +34,7 @@ amounts are `Decimal` values in EUR, validated on construction.
 | `SicknessEpisode` | `episode_id`, `started_on`, `ended_on`, `relapse_of`, `prior_worked_days` (fixed-term), `hospital_stays`, `serious_illness` | Sickness episode; the engine derives the deduction, INPS indemnity, CCNL integration and carenza pay of the days in the run's month; see [Sickness](#sickness) |
 | `MaternityLeaveEvent` | `started_on`, `ended_on`, `maternity_base_pay` | Compulsory maternity leave; the engine derives the deduction, the INPS indemnity it advances and the CCNL top-up of the days in the run's month; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
 | `PaternityLeaveEvent` | `days`, `paternity_base_pay` | Compulsory paternity leave (10 days, 20 for a multiple birth); the engine derives the deduction and the INPS indemnity it advances for the days in the run's month; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
+| `ParentalLeaveEvent` | `started_on`, `ended_on`, `child_born_on`, `taken` (`ParentalLeaveTaken`), `protection_ended_on`, `single_parent`, `parental_base_pay` | Parental leave of an employee for a child born to the couple; the engine derives the deduction and the INPS indemnity at 30% or 80% of each day; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
 | `WorkInjuryEvent` | `injury_on`, `ended_on` | Temporary inability after a work injury; the engine derives the deduction, the waiting period, the INAIL indemnity (advanced or not) and the CCNL top-up; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
 | `SickLeaveEvent` | `amount`, `sick_days`, `waiting_period_days` | Sick pay the caller computed: an override of the engine, never payable; INPS and IRPEF, no TFR |
 | `FringeEvent` | `amount` | Fringe benefit (art. 51 c. 3 TUIR); exempt while the year total stays within the threshold, then the whole year total is taxable; see [Fringe benefits](#fringe-benefits) |
@@ -441,6 +442,27 @@ whose month it touches. The run deducts the days at the CCNL daily quota
   before, with the `missing_fact` blocker on `paternity_base_pay` without
   it; the base of an operaio and of a month not worked in full falls under
   the open engine limitation `paternity_daily_base`;
+- parental leave (D.Lgs. 151/2001 artt. 32 and 34): each day of the span,
+  Saturdays, Sundays and holidays included, is deducted as an unpaid
+  absence (`absence_deduction`: out of the INPS and TFR bases, since art.
+  2120 c. 3 c.c. does not list it) and paid back by INPS on the base of
+  art. 23 (`maternity_item`): 80% for the months of the couple the cohort
+  gives (one for leave from 2023 when the last maternity or paternity leave
+  ended, or the child was born, from 2023; two from 2024; three from 2025)
+  within the parent's three months not transferable and while the child is
+  under six, 30% for the rest of those months and the three further months
+  of the couple (nine months for a sole parent). `ParentalLeaveTaken` states
+  the INPS counters before the event, in days, thirty to a month; a calendar
+  month of the span counts as one month. The days beyond the indemnified
+  months are paid nothing under the open engine limitation
+  `parental_income_condition`; a counter ending inside a calendar month not
+  of thirty days falls under `parental_month_split`, and the base of an
+  operaio or of a month not worked in full under `parental_daily_base`. An
+  unstated `protection_ended_on` that could give more months at 80% is a
+  `missing_fact`. The leave keeps the 13th and the leave accrual (art. 34
+  c. 5). The bundle holds no CCNL treatment of the leave: the run is
+  `provisional` with `insured_absence_ccnl_not_modelled`. Hourly leave (art.
+  32 cc. 1-bis and 1-ter) and adoption are not modelled;
 - work injury (D.P.R. 1124/1965 artt. 68, 73, 116-117): the injury day is
   paid in full and never deducted, the three days after it at the CCNL
   waiting-period rate (60% by law), from the fourth day the INAIL

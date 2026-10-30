@@ -15,6 +15,7 @@ from typing import Annotated, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.absence.insured.parental.models import ParentalRates
 from ccnl_engine.provenance.ruleset.models import RulesetIdentity
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
@@ -133,6 +134,7 @@ class InsuredAbsenceRates(BaseModel):
     Attributes:
         maternity: The INPS maternity indemnity.
         paternity: The INPS indemnity of the compulsory paternity leave.
+        parental: The INPS indemnity of the parental leave.
         injury: The pay of a temporary inability after a work injury.
         ruleset: Identity of the data file.
     """
@@ -141,6 +143,7 @@ class InsuredAbsenceRates(BaseModel):
 
     maternity: MaternityRates
     paternity: PaternityRates
+    parental: ParentalRates
     injury: InjuryRates
     ruleset: RulesetIdentity | None = None
 

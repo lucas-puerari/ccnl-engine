@@ -16,6 +16,11 @@ import pytest
 
 from ccnl_engine import PayrollEngine
 from ccnl_engine.absence.insured.handlers import MATERNITY_BASE_LIMITATION
+from ccnl_engine.absence.insured.parental.handlers import (
+    PARENTAL_BASE_LIMITATION,
+    PARENTAL_INCOME_LIMITATION,
+    PARENTAL_SPLIT_LIMITATION,
+)
 from ccnl_engine.absence.insured.paternity.handlers import PATERNITY_BASE_LIMITATION
 from ccnl_engine.agreement.facade import NoteKind
 from ccnl_engine.apprenticeship.models import (
@@ -115,6 +120,9 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         EXEMPT_CATEGORY_FLOOR,
         MATERNITY_BASE_LIMITATION,
         PATERNITY_BASE_LIMITATION,
+        PARENTAL_BASE_LIMITATION,
+        PARENTAL_INCOME_LIMITATION,
+        PARENTAL_SPLIT_LIMITATION,
     }
     assert by_status[LimitationStatus.RESOLVED] == {
         _MIDPOINT,

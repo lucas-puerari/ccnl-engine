@@ -39,6 +39,7 @@ from ccnl_engine.pay_item.services import _ZERO
 if TYPE_CHECKING:
     from datetime import date
 
+    from ccnl_engine.absence.insured.parental.inputs import ParentalLeaveEvent
     from ccnl_engine.absence.insured.services import InsuredTerms
 
 __all__ = [
@@ -63,7 +64,10 @@ _INTEGRATION = "absence_integration_item"
 
 
 def _span(
-    event: MaternityLeaveEvent | PaternityLeaveEvent | WorkInjuryEvent,
+    event: MaternityLeaveEvent
+    | PaternityLeaveEvent
+    | ParentalLeaveEvent
+    | WorkInjuryEvent,
     terms: InsuredTerms | None,
     feature: str,
 ) -> tuple[date, date]:

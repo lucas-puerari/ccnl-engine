@@ -13,6 +13,7 @@ from ccnl_engine.absence.insured.handlers import (
     _handle_maternity_leave,
     _handle_work_injury,
 )
+from ccnl_engine.absence.insured.parental.handlers import _handle_parental_leave
 from ccnl_engine.absence.insured.paternity.handlers import _handle_paternity_leave
 from ccnl_engine.event.facade import (
     AbsenceEvent,
@@ -25,6 +26,7 @@ from ccnl_engine.event.facade import (
     MaternityLeaveEvent,
     NightShiftEvent,
     OvertimeEvent,
+    ParentalLeaveEvent,
     PaternityLeaveEvent,
     ShiftWorkEvent,
     SickLeaveEvent,
@@ -79,5 +81,6 @@ _HANDLER_REGISTRY: dict[type, _EventHandlerFn] = {
     LeaveTakenEvent: _handle_leave_taken,
     MaternityLeaveEvent: _handle_maternity_leave,
     PaternityLeaveEvent: _handle_paternity_leave,
+    ParentalLeaveEvent: _handle_parental_leave,
     WorkInjuryEvent: _handle_work_injury,
 }

@@ -17,6 +17,10 @@ from ccnl_engine.absence.insured.inputs import (
     PaternityLeaveEvent,
     WorkInjuryEvent,
 )
+from ccnl_engine.absence.insured.parental.inputs import (
+    ParentalLeaveEvent,
+    ParentalLeaveTaken,
+)
 from ccnl_engine.event.types import WORK_EVENT_TYPES, WorkEvent
 from ccnl_engine.leave.inputs import LeaveTakenEvent
 from ccnl_engine.leave.types import LeaveBucket
@@ -56,6 +60,8 @@ __all__ = [
     "NightShiftEvent",
     "OvertimeEvent",
     "OvertimeKind",
+    "ParentalLeaveEvent",
+    "ParentalLeaveTaken",
     "PaternityLeaveEvent",
     "ShiftKind",
     "ShiftWorkEvent",

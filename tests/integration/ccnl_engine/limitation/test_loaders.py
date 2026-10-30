@@ -45,6 +45,9 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "inps_minimum_base_exempt_category",
         "maternity_daily_base",
         "paternity_daily_base",
+        "parental_daily_base",
+        "parental_income_condition",
+        "parental_month_split",
     }
     assert {lim.id for lim in limitations} - blocking == {
         "apprenticeship_midpoint_allowances",

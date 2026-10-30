@@ -27,6 +27,7 @@ from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.event.facade import (
     AbsenceEvent,
     MaternityLeaveEvent,
+    ParentalLeaveEvent,
     PaternityLeaveEvent,
     SickLeaveEvent,
     WorkInjuryEvent,
@@ -55,6 +56,7 @@ _REDUCING_EVENTS = (
     AbsenceEvent,
     SickLeaveEvent,
     MaternityLeaveEvent,
+    ParentalLeaveEvent,
     PaternityLeaveEvent,
     WorkInjuryEvent,
 )
