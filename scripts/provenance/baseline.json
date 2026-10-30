@@ -1429,6 +1429,7 @@
     ],
     "limitation/engine.json": [
       "apprenticeship_pct_undeclared_components",
+      "disability_permit_tfr",
       "inps_minimum_base_exempt_category",
       "maternity_daily_base",
       "parental_daily_base",

@@ -19,8 +19,8 @@ from ccnl_engine.absence.insured.handlers import (
     _no_quota,
     _span,
 )
+from ccnl_engine.absence.insured.paternity.rules import paternity_pay
 from ccnl_engine.absence.insured.posting.services import post_lines
-from ccnl_engine.absence.insured.rules import paternity_pay
 
 if TYPE_CHECKING:
     from ccnl_engine.absence.insured.inputs import PaternityLeaveEvent

@@ -39,7 +39,6 @@ if TYPE_CHECKING:
         InjuryRules,
         MaternityRates,
         MaternityRules,
-        PaternityRates,
     )
     from ccnl_engine.compensation.element.types import MonthlyPayChain
     from ccnl_engine.sickness.base.inputs import InpsSicknessBase
@@ -178,40 +177,6 @@ def maternity_pay(
             insurer = pay.grossed(indemnity * share, net_basis=rules.net_basis)
             integration = money(max(target - insurer, _ZERO))
     return InsuredPay(units, deduction, indemnity, days, integration)
-
-
-def paternity_pay(
-    days: tuple[date, ...],
-    pay: MonthPay,
-    rates: PaternityRates,
-    rmgg: Decimal | None = None,
-) -> InsuredPay:
-    """Return the deduction and the INPS indemnity of the paternity days.
-
-    Args:
-        days: The days of leave in the month.
-        pay: The pay of the month.
-        rates: The INPS indemnity.
-        rmgg: Daily base of the month before the leave (art. 23);
-            ``None`` takes the monthly pay of the run instead.
-
-    Returns:
-        The amounts, each rounded to the cent; no CCNL top-up, the
-        indemnity is already the whole pay.
-    """
-    units = sum((pay.deducted(day, day)[0] for day in days), _ZERO)
-    units = min(units, pay.quota.divisor)
-    part = pay.chain.prorated(units, pay.quota.divisor)
-    deduction = part.base + part.seniority + part.allowances_total
-    divisor = Decimal(rates.daily_divisor)
-    monthly = pay.monthly
-    daily = (
-        monthly / divisor + monthly * pay.extra_months / (_MONTHS * divisor)
-        if rmgg is None
-        else rmgg
-    )
-    indemnity = money(rates.indemnity_rate * daily * len(days))
-    return InsuredPay(units, deduction, indemnity, len(days))
 
 
 def injury_pay(

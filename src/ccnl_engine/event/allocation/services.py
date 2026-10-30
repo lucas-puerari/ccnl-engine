@@ -12,6 +12,7 @@ from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import (
     AbsenceEvent,
     ArrearsEvent,
+    DisabilityPermitEvent,
     MaternityLeaveEvent,
     ParentalLeaveEvent,
     PaternityLeaveEvent,
@@ -96,7 +97,13 @@ def _check_event_date(
         return
     if isinstance(
         event,
-        (MaternityLeaveEvent, PaternityLeaveEvent, ParentalLeaveEvent, WorkInjuryEvent),
+        (
+            MaternityLeaveEvent,
+            PaternityLeaveEvent,
+            ParentalLeaveEvent,
+            DisabilityPermitEvent,
+            WorkInjuryEvent,
+        ),
     ):
         if event.within(date_ctx.period_start, date_ctx.period_end) is None:
             msg = (

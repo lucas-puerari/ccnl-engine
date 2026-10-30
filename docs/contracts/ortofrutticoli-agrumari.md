@@ -202,6 +202,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source how the extra months of a parental leave are split between INPS and the employer and net the INPS share from the employer's rateo, then resolve this limitation.
 
+!!! warning "disability_permit_tfr · disability_permits · impact unknown · open"
+    The days of permit under L. 104/1992 art. 33 c. 3 keep the TFR base, as payroll practice holds; art. 2120 c. 3 c.c. keeps in the TFR base only the absences of art. 2110 c.c. and the wage integration, and no primary source read says the permits are among them, so the TFR quota of a month with permits may be overstated.
+
+    **Applies when:** `disability_permits` applies; the run takes the engine code path.
+
+    **Remediation:** Source the TFR treatment of the permit days (an INPS or Ministry ruling, or case law of the Cassazione) and apply it, then resolve this limitation.
+
 ### Without monetary impact
 
 !!! note ""

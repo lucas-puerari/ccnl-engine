@@ -92,6 +92,25 @@
       "note": "Cohorts of the 80% months (INPS, scheda 'Indennità di congedo parentale per lavoratrici e lavoratori dipendenti', updated 16 June 2026, page sha256 45bb01b07bf12e26b8a1fb74b8c4050ee4ff98829c9458c8e0959f229fb669ed; L. 197/2022 art. 1 c. 359, L. 213/2023 art. 1 c. 179, L. 207/2024 art. 1 cc. 217-218): one month for leave from 1 January 2023 when the maternity or paternity leave ended after 31 December 2022 or the child was born from 1 January 2023, two from 2024 (after 31 December 2023, born from 2024), three from 2025 (after 31 December 2024, born from 2025); 'L'indennità maggiorata è riconoscibile solo nell'ambito dei sei mesi (tre per ogni genitore) non trasferibili all'altro genitore.' Counting of months (INPS FAQ congedo parentale 2024, pdf sha256 f3f4d4f68b1db21e9f3c7589c5fa2e584a398c055031c4bb1e6481a897f4461f, n. 10): 'Se i periodi sono di durata inferiore al mese, si sommano le giornate di assenza di ciascun periodo fino a raggiungere il numero 30'; a longer period counts its calendar months and leaves the rest as days. Saturdays, Sundays and holidays inside a span are leave days (INPS FAQ congedo parentale 2023, pdf sha256 0e56dde5dc8928e89fc428074fb411a25065ab1c670e602da4157f74b9ca9ef2, n. 10). Hourly leave (art. 32 cc. 1-bis and 1-ter) is not modelled. The leave runs to the child's fourteenth year since the budget law 2026 (INPS news of 27 January 2026 on messaggio 26 gennaio 2026 n. 251, page sha256 34e2dfb30bbfe75d099df311e9c877c4c3b49524e55812d12b490fefe1356238); twelve years before 2026. Art. 35 cc. 1-2 (Normattiva, page sha256 8ba4db68a1ce127134035e8b1de029aa518551a611832b1d8d3e5e76abe99723): every period of parental leave, indemnified or not, is covered by figurative contributions."
     }
   },
+  "disability_permit": {
+    "indemnity_rate": "1",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "dlgs-151-2001-art43",
+          "title": "D.Lgs. 26 marzo 2001 n. 151, art. 43 (Normattiva, testo vigente al 30/10/2026)",
+          "kind": "dlgs",
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2001-03-26;151~art43!vig=2026-10-30",
+          "sha256": "6bd9b8071e8c852ec96f3cdfdd2ee236d75a9bbb9ea0ef5d058d9315dd9c7888"
+        },
+        "section": "art. 43 c. 1",
+        "quote": "Per i riposi e i permessi di cui al presente Capo è dovuta un'indennità, a carico dell'ente assicuratore, pari all'intero ammontare della retribuzione relativa ai riposi e ai permessi medesimi. L'indennità è anticipata dal datore di lavoro ed è portata a conguaglio con gli apporti contributivi dovuti all'ente assicuratore."
+      },
+      "transformation": "The days of permit are deducted at the CCNL daily quota and paid back in full as the INPS indemnity the employer advances: the pay of the permit days.",
+      "note": "L. 104/1992 art. 33 c. 3 (Normattiva, text in force on 2026-10-30, page sha256 5f5fe1a3d37f766d9865a4734dc76740170ac52d86c137f8295eb77a46bc1943): 'tre giorni di permesso mensile retribuito coperto da contribuzione figurativa'; c. 4 applies artt. 43, 44 and 56 D.Lgs. 151/2001. Art. 43 c. 2 applies art. 34 c. 5 (the 13th and the leave are not reduced). Art. 44 c. 2 (Normattiva, page sha256 c297a2e29a0e672ad2ae52a62c903d2e2c6ad9dcbf4a3dd112228906da0c6dc9): 'I tre giorni di permesso mensile di cui all'articolo 42, commi 2 e 3, sono coperti da contribuzione figurativa', so the indemnity is out of the INPS base. Hourly permits (art. 33 cc. 2 and 6) are not modelled."
+    }
+  },
   "injury": {
     "injury_day_rate": "1",
     "carenza_days": 3,
@@ -139,9 +158,9 @@
     "effective_from": "1965-10-28",
     "effective_until": null,
     "published_at": "2026-10-20",
-    "source": "D.Lgs. 151/2001 artt. 22-23 (maternity), 27-bis and 29 (paternity), 34 (parental leave); D.P.R. 1124/1965 artt. 68, 73, 116-117 (work injury), Normattiva, texts in force read on 2026-10-20 and 2026-10-30",
+    "source": "D.Lgs. 151/2001 artt. 22-23 (maternity), 27-bis and 29 (paternity), 34 (parental leave), 43-44 and L. 104/1992 art. 33 (disability permits); D.P.R. 1124/1965 artt. 68, 73, 116-117 (work injury), Normattiva, texts in force read on 2026-10-20 and 2026-10-30",
     "verification_status": "verified",
-    "source_hash": "b41988905cf1c9ef3626a140cdd8d88fa5a8767839cc2b5b49f3c6a1ef6143c8",
+    "source_hash": "f51523abf1af2ca629a1b674a19e14e09d3044805e4030b81ecae559285c4f71",
     "source_type": "official_primary",
     "verified_by": "claude-opus-5-5",
     "verified_at": "2026-10-20"

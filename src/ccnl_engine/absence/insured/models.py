@@ -20,6 +20,7 @@ from ccnl_engine.provenance.ruleset.models import RulesetIdentity
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
 __all__ = [
+    "DisabilityPermitRates",
     "InjuryBand",
     "InjuryRates",
     "InjuryRules",
@@ -67,6 +68,22 @@ class PaternityRates(BaseModel):
     daily_divisor: int = Field(ge=1)
     days: int = Field(ge=1)
     multiple_birth_days: int = Field(ge=1)
+    provenance: RuleProvenance
+
+
+class DisabilityPermitRates(BaseModel):
+    """INPS indemnity of the permits to assist a disabled person.
+
+    Attributes:
+        indemnity_rate: Share of the pay of the permit days INPS pays, 100%
+            (art. 43 c. 1 D.Lgs. 151/2001, which art. 33 c. 4 L. 104/1992
+            applies).
+        provenance: Source of the measure.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    indemnity_rate: Share
     provenance: RuleProvenance
 
 
@@ -135,6 +152,7 @@ class InsuredAbsenceRates(BaseModel):
         maternity: The INPS maternity indemnity.
         paternity: The INPS indemnity of the compulsory paternity leave.
         parental: The INPS indemnity of the parental leave.
+        disability_permit: The INPS indemnity of the L. 104/1992 permits.
         injury: The pay of a temporary inability after a work injury.
         ruleset: Identity of the data file.
     """
@@ -144,6 +162,7 @@ class InsuredAbsenceRates(BaseModel):
     maternity: MaternityRates
     paternity: PaternityRates
     parental: ParentalRates
+    disability_permit: DisabilityPermitRates
     injury: InjuryRates
     ruleset: RulesetIdentity | None = None
 

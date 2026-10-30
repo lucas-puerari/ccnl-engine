@@ -21,6 +21,7 @@ from ccnl_engine.absence.insured.parental.inputs import (
     ParentalLeaveEvent,
     ParentalLeaveTaken,
 )
+from ccnl_engine.absence.insured.permit.inputs import DisabilityPermitEvent
 from ccnl_engine.event.types import WORK_EVENT_TYPES, WorkEvent
 from ccnl_engine.leave.inputs import LeaveTakenEvent
 from ccnl_engine.leave.types import LeaveBucket
@@ -51,6 +52,7 @@ __all__ = [
     "ArrearsEvent",
     "BilateralFundEvent",
     "BonusEvent",
+    "DisabilityPermitEvent",
     "FringeEvent",
     "HolidayWorkEvent",
     "HolidayWorkKind",
