@@ -19,7 +19,7 @@ echo "Lint passed."
 echo "pytest (coverage 100%)..."
 # A few workers: every worker loads the whole bundle, and as many workers
 # as cores freeze the machine.  PYTEST_WORKERS overrides it.
-uv run pytest -n "${PYTEST_WORKERS:-4}"
+uv run pytest -n "${PYTEST_WORKERS:-2}"
 
 echo "Tests passed."
 
