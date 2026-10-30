@@ -121,7 +121,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source how the Tabella A minimum of a convivente with fewer than 54 agreed weekly hours is computed and model it, then remove this note.
 
 !!! warning "lavoro-domestico-convivente/hourly_inps_bracket_unvalidated · inps_employer · impact unknown · open"
-    INPS BAND: the band of up to 24 weekly hours is chosen on the paga oraria effettiva of INPS (circ. 9/2026; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico): the monthly pay with board and lodging over the hours of the employment (weekly hours x 52 / 12), raised by the tredicesima (x 13 / 12).
+    INPS BAND: the engine chooses the band of up to 24 weekly hours on the paga oraria effettiva of INPS (circ. 9/2026; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico): the monthly pay with board and lodging over the hours of the employment (weekly hours x 52 / 12), raised by the tredicesima (x 13 / 12). That reading of the circular is not yet checked against a worked example of the INPS domestic table (review of 2026-10-30).
 
     **Applies when:** `inps_employer` applies.
 
@@ -142,11 +142,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source from the Cas.Sa.Colf rules whether the tredicesima carries contributable hours and set them for extra-month runs.
 
 !!! warning "lavoro-domestico-convivente/oncological_comporto · sickness · impact unknown · open"
-    Art. 27 c. 6: the comporto is 50% longer for an oncological illness certified by the ASL. The request does not say whether an episode is oncological, so the engine keeps the ordinary comporto.
+    Art. 27 c. 6: the comporto is 50% longer for an oncological illness certified by the ASL. The episode can state a serious illness (SicknessEpisode.serious_illness), but the domestic sickness rules have no serious-illness rule, so the engine keeps the ordinary comporto (review of 2026-10-30).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add a fact for an oncological sickness episode and lengthen its comporto by 50%.
+    **Remediation:** Add the serious-illness rule of Art. 27 c. 6 (comporto 50% longer) to the sickness rules.
 
 !!! warning "lavoro-domestico-convivente/sick_board_lodging · sickness · impact unknown · open"
     Art. 27 c. 9: the conventional value of board and lodging is part of the sick pay only when the worker is not in hospital or in the employer's home. The request does not say where the worker is, so the engine pays the monthly pay as stated.

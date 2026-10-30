@@ -109,11 +109,11 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "cemento-calce-gesso-industria/apprenticeship_full_pay_passthrough · base_salary · impact yes · open"
-    APPRENTICESHIP (Art. 25): under_classification model — period 1 at 2 levels below target, period 2 at 1 level below target, period 3 (where applicable) at target level pay. The engine under_classification schema requires a fixed pay_level_code per period for all destination levels; expressing the level-relative structure requires per-destination-level entries with 9 separate apprenticeship objects. Modelled as 100% passthrough for all eligible levels (AQ2 and above); correct for permanent workers.
+    APPRENTICESHIP (Art. 25): under_classification model — period 1 at 2 levels below target, period 2 at 1 level below target, period 3 (where applicable) at target level pay. Modelled as 100% passthrough for all eligible levels (AQ2 and above); correct for permanent workers. The schema can express it: UnderClassificationPeriod.levels_below is relative to the destination level (review of 2026-10-30).
 
     **Applies when:** `base_salary` applies; contract type in apprentice.
 
-    **Remediation:** Model the Art. 25 under-classification periods per destination level.
+    **Remediation:** Model the Art. 25 periods with levels_below 2 and 1.
 
 !!! warning "cemento-calce-gesso-industria/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.

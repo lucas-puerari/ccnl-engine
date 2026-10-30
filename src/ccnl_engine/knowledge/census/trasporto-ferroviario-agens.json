@@ -7,7 +7,7 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "PRE-JUN 2025 PERIOD NOT MODELLED. The CCNL contractual coverage runs 2024-01-01 to 2026-12-31. The Jan 2024 – May 2025 wage gap was compensated by a lump-sum una tantum paid in Aug 2025 (per redigo.info), explicitly stated as having no effect on any contractual institute ('non avranno riflessi su alcun istituto contrattuale'). Salary periods therefore start 01/06/2025. Engine queries with as_of before Jun 2025 will return the Jun 2025 values, which overstate actual pay for that window.",
+      "rule": "PRE-JUN 2025 PERIOD NOT MODELLED. The CCNL contractual coverage runs 2024-01-01 to 2026-12-31. The Jan 2024 – May 2025 wage gap was compensated by a lump-sum una tantum paid in Aug 2025 (per redigo.info), explicitly stated as having no effect on any contractual institute ('non avranno riflessi su alcun istituto contrattuale'). Salary periods therefore start 01/06/2025. A run before 1 June 2025 reads no salary table and fails (SeriesGapError, outside the validity window of the file); the window declared for completeness starts on 1 January 2026, so only an arrears or history computation would need the earlier tables (review of 2026-10-30).",
       "calculation": "ccnl/trasporto-ferroviario-agens:coverage.notes",
       "state": "absent",
       "work": [

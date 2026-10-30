@@ -169,7 +169,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Cap the apprentice net pay.
 
 !!! warning "turismo-federalberghi/extra_months_during_leave · base_salary · impact yes · open"
-    Artt. 160 c. 4 and 161 c. 6: the ratei of the tredicesima and quattordicesima during maternity, paternity and parental leave.
+    Artt. 160 c. 4 and 161 c. 6: the ratei of the tredicesima and quattordicesima during maternity, paternity and parental leave. The caller can suspend the accrual of an absence (AbsenceEvent.suspends_accrual); the engine does not apply the CCNL rule itself (review of 2026-10-30).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 

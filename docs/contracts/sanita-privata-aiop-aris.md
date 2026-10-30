@@ -132,11 +132,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the Art. 60-61 indemnities with facts naming the night and holiday shift hours and the on-call turns of the worker.
 
 !!! warning "sanita-privata-aiop-aris/part_time_supplementary_rate · overtime · impact yes · open"
-    PART-TIME SUPPLEMENTARY HOURS: the ore supplementari of a part-time worker are paid with 15% of the retribuzione oraria globale (Art. 22, CCNL 8 October 2020, p. 25). The request has no kind for supplementary hours: an overtime event of a part-time worker takes the overtime bands unless the caller passes the multiplier.
+    PART-TIME SUPPLEMENTARY HOURS: the ore supplementari of a part-time worker are paid with 15% of the retribuzione oraria globale (Art. 22, CCNL 8 October 2020, p. 25). OvertimeKind.SUPPLEMENTARY exists, but the file has no supplementary-hours band: the event takes the overtime bands unless the caller passes the multiplier (review of 2026-10-30).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add a supplementary-hours kind to the overtime event and a supplementare band with the CCNL rate.
+    **Remediation:** Add the supplementary-hours band (15%) of Art. 22.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days, when the episode does not let the engine compute the INPS daily base: no SicknessEpisode.inps_base in its relapse chain, an operaio without the days worked or paid of the month before, an impiegato who did not work that whole month, an unknown worker category, or a sector INPS regime (spettacolo). With the base, INPS pays its share on the retribuzione media globale giornaliera of the month before the illness and on calendar days (INPS circ. 134368/1981 point 11). The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.

@@ -176,7 +176,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 29 rows b, d, h, i, f, m: the ordinary night, holiday and compensatory-rest premiums; the shift-worker column (night overtime 40%/45%, night holiday overtime 65%) and night holiday work within 8 hours (60%).",
+        "text": "Art. 29 rows b, d, h, i, f, m: the ordinary night premiums, the shift-worker column (night overtime 40%/45%, night holiday overtime 65%) and night holiday work within 8 hours (60%). The holiday premium (55%) and the compensatory-rest premium (10%) are modelled (supplement_bands CONFAPI_FESTIVO, CONFAPI_FESTIVO_RIPOSO) (review of 2026-10-30).",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -184,7 +184,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the Art. 29 premiums and the shift-worker column."
+          "remediation": "Model the remaining Art. 29 premiums: ordinary night work and the shift-worker column."
         }
       },
       {
@@ -228,7 +228,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Sickness: comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27), the net-pay gross-up.",
+        "text": "Sickness: comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27). The net-pay gross-up is modelled (sickness_rules.net_basis) (review of 2026-10-30).",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -3044,7 +3044,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "b9cbbe425284fd808f6f805a8d2807c19e8697922294d086e6f8d02d73ded008",
+    "source_hash": "9fe3b9aebe84352b0f59d67e0c292888927248d46ad72ee673ee84c759eae4df",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

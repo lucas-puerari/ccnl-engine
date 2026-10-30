@@ -76,7 +76,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Q indennità di funzione (Art. 162 footnote) not modelled. Amount: 250 EUR/month × 12 mensilità, for quadri with responsibility over operational or local units ('nei casi di responsabilità di unità operative o di unità locali'). Excluded because: (1) conditional on role attribute, not universal for level Q; (2) 12 mensilità conflicts with additional_months=14; (3) conglobated model requires fixed_allowances: []. employer_cost_annual may be understated by up to 3000 EUR/year for qualifying Q employees.",
+        "text": "SIMPLIFICATION: Q indennità di funzione (Art. 162 footnote) not modelled. Amount: 250 EUR/month × 12 mensilità, for quadri with responsibility over operational or local units ('nei casi di responsabilità di unità operative o di unità locali'). The schema can express it (Allowance.role, Allowance.months_per_year); the conglobated file keeps fixed_allowances empty. employer_cost_annual may be understated by up to 3000 EUR/year for qualifying Q employees (review of 2026-10-30).",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -1530,6 +1530,6 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "7289fdd2606546a5f95118718bc8a8b3eb67660d590fc62e35aafc623d037c38"
+    "source_hash": "b02fca15393c92b18a936482bda2143385023a56acd727652d2e7e63738f45d5"
   }
 }

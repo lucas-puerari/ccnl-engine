@@ -128,11 +128,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Let seniority_increments pay the level amount to apprentices (a flag such as apprentices_accrue_level_amount), then remove this note.
 
 !!! warning "studi-professionali-confprofessioni/part_time_supplementary · overtime · impact yes · open"
-    Art. 42: the lavoro supplementare of part-time at 40% of the quota oraria of the retribuzione di fatto, outside the deferred institutes and the TFR.
+    Art. 42: the lavoro supplementare of part-time at 40% of the quota oraria of the retribuzione di fatto, outside the deferred institutes and the TFR. OvertimeKind.SUPPLEMENTARY exists, but the file has no supplementary-hours band (review of 2026-10-30).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the OT_SUPPLEMENTARE band once OvertimeKind.SUPPLEMENTARY is on main.
+    **Remediation:** Add the OT_SUPPLEMENTARE band (40%) of Art. 42.
 
 !!! warning "studi-professionali-confprofessioni/rolling_comporto_and_serious_illness · sickness · impact yes · open"
     Artt. 120-121: the comporto counted over the episodes of the 365 days before the last one, and the +90 days for serious illnesses paid 100% in months 7-8 and 70% in month 9.

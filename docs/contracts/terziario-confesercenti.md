@@ -122,11 +122,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "terziario-confesercenti/sickness_net_basis · sickness · impact yes · open"
-    SICKNESS (Art. 187): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate and tops it up to the measure of the gross daily quota, as for the Commercio file. The events exempt from the carenza reduction (hospital stay, day hospital, dialysis, prognosis of 12 days or more, the illnesses of Art. 192, pregnancy) are not inputs: the carenza of such an event is paid at the reduced rate of its order.
+    SICKNESS (Art. 187): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate and tops it up to the measure of the gross daily quota, as for the Commercio file. The events exempt from the carenza reduction are an input (SicknessEpisode.short_absence_exempt, read with carenza_by_event) (review of 2026-10-30).
 
     **Applies when:** `sickness` applies.
 
-    **Remediation:** Model the net daily pay of Art. 187 and the exempt events of its second paragraph.
+    **Remediation:** Model the net daily pay of Art. 187.
 
 !!! warning "terziario-confesercenti/provincial_third_elements · territorial_supplement · impact yes · open"
     Art. 214: the provincial terzi elementi, amounts set by provincial agreements.

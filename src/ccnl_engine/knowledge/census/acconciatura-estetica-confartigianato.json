@@ -49,7 +49,7 @@
       "institute": "base_salary",
       "variant": "apprentice",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "APPRENTICESHIP DURATION (TAB.3): the 6-month reduction for post-secondary qualification holders (Gruppo 1: 54 months instead of 60) is not modelled; the standard 60-month table applies.",
+      "rule": "APPRENTICESHIP DURATION (TAB.3): the gruppo_1 track of the file reaches 100% at month 54 (95% from month 48), the duration of the 6-month reduction for post-secondary qualification holders, while the note first said the standard 60-month table applies. Which table the data hold, and the other one, are to be read again in TAB.3 (review of 2026-10-30).",
       "calculation": "ccnl/acconciatura-estetica-confartigianato:coverage.notes",
       "state": "absent",
       "work": [

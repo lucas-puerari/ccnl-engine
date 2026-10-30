@@ -154,7 +154,7 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 9 punti 3-6, 9-11: the premiums on ordinary hours (Sunday or holiday work with compensatory rest 50%, night work outside shifts 50%, shifts 4% day, 34% night, 46% night 3x7, Sunday 3x7 33%, pluriperiodale and Saturday 10%, the first 120 hours past 2,024 a year 30%).",
+      "rule": "Art. 9 punti 3-6, 9-11: the premiums on ordinary hours not yet modelled: night work outside shifts 50%, night shifts 34% and 46% (3x7), Sunday 3x7 33%, pluriperiodale and Saturday 10%, the first 120 hours past 2,024 a year 30%. The holiday premium (50%) and the day-shift premium (4%) are modelled (supplement_bands CHIM_FESTIVO, CHIM_TURNO_DIURNO) (review of 2026-10-30).",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
       "work": [
@@ -196,7 +196,7 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "The CCNL applies the overtime premiums to the art. 15 punto 1 elements, superminimi included, categories A and B get none, and the hourly quota of art. 20 excludes the EAR, which base_salary holds for A and B.",
+      "rule": "The CCNL applies the overtime premiums to the art. 15 punto 1 elements, superminimi included, and categories A and B get none. The overtime bands are limited to levels F to C1 and the individual elements count in the hourly base; still open: the hourly quota of art. 20 excludes the EAR, which base_salary holds for category B, and the holiday and shift supplement bands apply to every level (review of 2026-10-30).",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
       "work": [

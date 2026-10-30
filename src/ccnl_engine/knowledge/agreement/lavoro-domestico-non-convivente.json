@@ -153,7 +153,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 27 c. 6: the comporto is 50% longer for an oncological illness certified by the ASL. The request does not say whether an episode is oncological, so the engine keeps the ordinary comporto.",
+        "text": "Art. 27 c. 6: the comporto is 50% longer for an oncological illness certified by the ASL. The episode can state a serious illness (SicknessEpisode.serious_illness), but the domestic sickness rules have no serious-illness rule, so the engine keeps the ordinary comporto (review of 2026-10-30).",
         "capability": "sickness",
         "monetary_impact": "unknown",
         "limitation": {
@@ -161,7 +161,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add a fact for an oncological sickness episode and lengthen its comporto by 50%."
+          "remediation": "Add the serious-illness rule of Art. 27 c. 6 (comporto 50% longer) to the sickness rules."
         }
       },
       {
@@ -997,7 +997,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "3d155aed458fa7028403d9e5715acf85cb5832cc89ca7d2c5307732385efc966",
+    "source_hash": "179d7cae31d1c9cd52c06ca365d92cdd75b98bfc29108acd9dd15f9014910102",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },

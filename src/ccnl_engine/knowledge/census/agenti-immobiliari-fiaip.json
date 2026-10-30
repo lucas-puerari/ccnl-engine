@@ -116,7 +116,7 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SIMPLIFICATION: Q indennità di funzione (Art. 162 footnote) not modelled. Amount: 250 EUR/month × 12 mensilità, for quadri with responsibility over operational or local units ('nei casi di responsabilità di unità operative o di unità locali'). Excluded because: (1) conditional on role attribute, not universal for level Q; (2) 12 mensilità conflicts with additional_months=14; (3) conglobated model requires fixed_allowances: []. employer_cost_annual may be understated by up to 3000 EUR/year for qualifying Q employees.",
+      "rule": "SIMPLIFICATION: Q indennità di funzione (Art. 162 footnote) not modelled. Amount: 250 EUR/month × 12 mensilità, for quadri with responsibility over operational or local units ('nei casi di responsabilità di unità operative o di unità locali'). The schema can express it (Allowance.role, Allowance.months_per_year); the conglobated file keeps fixed_allowances empty. employer_cost_annual may be understated by up to 3000 EUR/year for qualifying Q employees (review of 2026-10-30).",
       "calculation": "ccnl/agenti-immobiliari-fiaip:coverage.notes",
       "state": "absent",
       "work": [

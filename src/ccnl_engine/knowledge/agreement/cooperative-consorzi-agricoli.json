@@ -51,7 +51,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY: operai Art. 61 (max 5 biennali) e impiegati Art. 49 (max 12 biennali) hanno importi differenti per livelli 3-7. Operai amounts confirmed from rinnovo 2024 (lavoro-economia.it, businessonline.it): L7=9.44, L6=10.85, L5=11.39, L4=11.93, L3=12.20, L2=29.44, L1=33.05 EUR/biennio. Modelled with operai amounts (dominant workforce in cooperatives) and maximum_count=12 (impiegati cap). Queries for operai with seniority_count>5 will overstate by at most 1-5 scatti; this is a structural engine limitation (single seniority table per level).",
+        "text": "SENIORITY: operai Art. 61 (max 5 biennali) e impiegati Art. 49 (max 12 biennali) hanno importi differenti per livelli 3-7. Operai amounts confirmed from rinnovo 2024 (lavoro-economia.it, businessonline.it): L7=9.44, L6=10.85, L5=11.39, L4=11.93, L3=12.20, L2=29.44, L1=33.05 EUR/biennio. Modelled with operai amounts (dominant workforce in cooperatives) and maximum_count=12 (impiegati cap). Queries for operai with seniority_count>5 will overstate by at most 1-5 scatti. The engine supports per-category amounts and maxima (amount_by_level_by_category, maximum_count_by_category): the gap is in the data only (review of 2026-10-30).",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
@@ -62,7 +62,7 @@
             ],
             "seniority_months_from": 144
           },
-          "remediation": "Model the operai scatti (Art. 61, at most 5 biennali) apart from the impiegati scatti (Art. 49)."
+          "remediation": "Fill amount_by_level_by_category with the operai (Art. 61) and impiegati (Art. 49) amounts and maximum_count_by_category with 5 and 12."
         }
       },
       {
@@ -1626,7 +1626,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "76e055533827fe216c20b60601b89df84d35f514c012ab848bfd73def9c0b2bf",
+    "source_hash": "b9f4671772779fb17f3b7711a26fc12ddd292fd460a670251e4f02a5f9a46134",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

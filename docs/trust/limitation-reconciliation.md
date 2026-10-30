@@ -47,8 +47,10 @@ Kept open although a reviewer proposed to close them:
 
 ## Valid with stale wording (T09.04)
 
-These notes still hold, but part of their text describes an engine that has
-changed since. Their rewording is work item T09.04.
+These notes still hold, but part of their text described an engine that has
+changed since. Their text and remediation were rewritten on 2026-10-30
+(work item T09.04), each marked "review of 2026-10-30"; the limitation ids
+and their status are unchanged.
 
 | Limitation | What is out of date |
 |---|---|
@@ -69,7 +71,7 @@ changed since. Their rewording is work item T09.04.
 | `cemento-calce-gesso-industria/apprenticeship_full_pay_passthrough` | Under-classification is now relative to the destination level |
 | `agenti-immobiliari-fiaip/quadri_function_allowance` | Role and months per year are now allowance fields |
 | `turismo-federalberghi/extra_months_during_leave` | The caller can suspend the accrual; the CCNL rule is still not applied |
-| `trasporto-ferroviario-agens/pre_june_2025_tables`, `alimentari-pmi-unionalimentari/tranches_2027_2028` | Whether the engine still returns the nearest table outside the covered dates was not checked |
+| `trasporto-ferroviario-agens/pre_june_2025_tables` | A run before the first table now fails instead of reading the nearest one |
 
 Pairs kept apart, worth a reading of the text: the renewal tranches and
 the annual ISTAT update of the domestic minimi

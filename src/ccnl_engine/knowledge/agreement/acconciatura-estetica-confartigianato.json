@@ -101,7 +101,7 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP DURATION (TAB.3): the 6-month reduction for post-secondary qualification holders (Gruppo 1: 54 months instead of 60) is not modelled; the standard 60-month table applies.",
+        "text": "APPRENTICESHIP DURATION (TAB.3): the gruppo_1 track of the file reaches 100% at month 54 (95% from month 48), the duration of the 6-month reduction for post-secondary qualification holders, while the note first said the standard 60-month table applies. Which table the data hold, and the other one, are to be read again in TAB.3 (review of 2026-10-30).",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -115,7 +115,7 @@
               "3"
             ]
           },
-          "remediation": "Add the 54-month Gruppo 1 table for post-secondary qualification holders and a request field to select it."
+          "remediation": "Read TAB.3, keep the standard table on gruppo_1 and add the 54-month table for post-secondary qualification holders with a request field to select it."
         }
       },
       {
@@ -1051,7 +1051,7 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "064246f1b95ed01403c80e01ad8bd2b091e38c144aa93a4ccbef32cc30fb8707",
+    "source_hash": "f41c11bc226b7340101180dd17900bff8118e5119d26ce4895f6aabbd19f9237",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

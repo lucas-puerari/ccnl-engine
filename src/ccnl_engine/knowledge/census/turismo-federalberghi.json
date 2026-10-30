@@ -91,7 +91,7 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Artt. 160 c. 4 and 161 c. 6: the ratei of the tredicesima and quattordicesima during maternity, paternity and parental leave.",
+      "rule": "Artt. 160 c. 4 and 161 c. 6: the ratei of the tredicesima and quattordicesima during maternity, paternity and parental leave. The caller can suspend the accrual of an absence (AbsenceEvent.suspends_accrual); the engine does not apply the CCNL rule itself (review of 2026-10-30).",
       "calculation": "ccnl/turismo-federalberghi:coverage.notes",
       "state": "absent",
       "work": [

@@ -101,7 +101,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS (Art. 170): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate and tops it up to the measure of the gross daily quota, as for the Commercio file. The exempt events of c. 3 (hospital stay, prognosis of 12 days or more, the illnesses of Art. 175 c. 3, pregnancy) are not inputs: the carenza of such an event is paid at the reduced rate of its order.",
+        "text": "SICKNESS (Art. 170): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate and tops it up to the measure of the gross daily quota, as for the Commercio file. The exempt events of c. 3 are an input (SicknessEpisode.short_absence_exempt, read with carenza_by_event) (review of 2026-10-30).",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -109,7 +109,7 @@
           "applies_when": {
             "trigger": "run"
           },
-          "remediation": "Model the net daily pay of Art. 170 and the exempt events of c. 3."
+          "remediation": "Model the net daily pay of Art. 170."
         }
       },
       {
@@ -3083,7 +3083,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "9a404362f305cb62582728948f1ee551b42a61dcac007b9ebef15c05e2b9b643",
+    "source_hash": "d14b903139169b62e5111cbcba889687e4487ea5723c314048418f8d836b13b6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
