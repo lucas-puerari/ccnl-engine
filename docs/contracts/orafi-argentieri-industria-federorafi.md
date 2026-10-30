@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary, seniority, sickness |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -114,6 +114,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
+!!! warning "orafi-argentieri-industria-federorafi/sickness_single_illness_comporto · sickness · impact yes · open"
+    SICKNESS (Art. 35): a single illness keeps the job for 183, 244 or 305 days by seniority (61, 91 or 122 at full pay, the rest at 75%), several illnesses in the last three years for 274, 365 or 456 days. The engine counts every episode against the longer comporto of several illnesses, so a single illness past 183, 244 or 305 days is still integrated. The integration reaches the 'normale trattamento economico complessivo netto' but the measures are of the retribuzione globale: the engine applies them to the gross pay.
+
+    **Applies when:** `sickness` applies.
+
+    **Remediation:** Count the comporto of one illness apart from that of several illnesses and stop the integration at the shorter one, then resolve this limitation.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -134,13 +141,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.

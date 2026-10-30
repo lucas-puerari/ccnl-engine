@@ -129,6 +129,19 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS (Art. 35): a single illness keeps the job for 183, 244 or 305 days by seniority (61, 91 or 122 at full pay, the rest at 75%), several illnesses in the last three years for 274, 365 or 456 days. The engine counts every episode against the longer comporto of several illnesses, so a single illness past 183, 244 or 305 days is still integrated. The integration reaches the 'normale trattamento economico complessivo netto' but the measures are of the retribuzione globale: the engine applies them to the gross pay.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sickness_single_illness_comporto",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Count the comporto of one illness apart from that of several illnesses and stop the integration at the shorter one, then resolve this limitation."
+        }
       }
     ]
   },
@@ -1376,7 +1389,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "7c10c079c234a5a4d4dab30247fc618d25efbdcdf10bb999d9a26a0561cbf751",
+    "source_hash": "281856a69795fe9bcbf1981abcaaec83532d172bca4e8f156f004b08cc8fd23f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1583,7 +1596,41 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 180,
+      "cumulation": {
+        "window_years": 3,
+        "reset_after_days": null,
+        "reduced_integration_rate": "0.75",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 61,
+            "comporto_days": 274
+          },
+          {
+            "seniority_months_from": 60,
+            "full_pay_days": 91,
+            "comporto_days": 365
+          },
+          {
+            "seniority_months_from": 120,
+            "full_pay_days": 122,
+            "comporto_days": 456
+          }
+        ],
+        "short_absences": {
+          "max_days": 7,
+          "from_event": 4,
+          "first_days": 3,
+          "rates": [
+            "0.66",
+            "0.50"
+          ]
+        },
+        "hospital_stay": {
+          "more_than_days": 10,
+          "max_full_days": 61
+        }
+      },
       "provenance": {
         "status": "derived",
         "location": {
@@ -1591,16 +1638,19 @@
             "document_id": "ccnl-orafi-argentieri-industria-2017",
             "title": "CCNL Orafi, Argentieri e Orologiai — Industria (Federorafi) 2017",
             "kind": "tabella_retributiva",
-            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf"
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf",
+            "sha256": "093a8610fb069f16df77cee5fec9e858568f2f3776bcf14013eb4673869dc45b"
           },
-          "section": "Art. malattia — integrazione al 100% per 180 giorni"
+          "section": "Disciplina comune, Art. 35",
+          "quote": "Nell’ipotesi di più malattie o infortuni nell’arco dell’ultimo triennio (vedi comma 9°) il trattamento sarà il seguente: - per anzianità di servizio fino a 5 anni compiuti: 274 giorni, di cui 61 giorni a intera retribuzione globale e 213 giorni al 75% della retribuzione globale; - per anzianità di servizio oltre 5 anni compiuti: 365 giorni, di cui 91 giorni a intera retribuzione globale e 274 giorni al 75% della retribuzione globale; - per anzianità di servizio oltre 10 anni: 456 giorni, di cui 122 giorni a intera retribuzione globale e 334 giorni al 75% della retribuzione globale."
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2017-05-01"
-        }
+        },
+        "transformation": "Art. 35: bands from 0, 60 and 120 completed months of seniority; the sick days of the three years before the day are summed (comma 9: 'nei tre anni precedenti ogni nuovo ultimo episodio morboso'), paid 100% of the retribuzione globale for 61, 91 or 122 days and 75% up to the comporto of 274, 365 or 456 days. Hospital stays over 10 consecutive days paid in full, at most 61 days ('I periodi di ricovero ospedaliero di durata superiore a 10 giorni continuativi sono retribuiti con l'intera retribuzione globale [...] fino ad un massimo di 61 giorni'). From the fourth absence of at most 7 days of the calendar year, its first three days at 66%, from the fifth at 50%. Read on 2026-10-30."
       }
     }
   }
