@@ -3156,7 +3156,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Artt. 160 c. 4 and 161 c. 6: the ratei of the tredicesima and quattordicesima during maternity, paternity and parental leave.",
+        "text": "Artt. 160 c. 4 and 161 c. 6: the ratei of the tredicesima and quattordicesima during maternity, paternity and parental leave. The caller can suspend the accrual of an absence (AbsenceEvent.suspends_accrual); the engine does not apply the CCNL rule itself (review of 2026-10-30).",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -3245,7 +3245,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "1c8f0534cdbb842d52d0225fbb23b00f3fa9bd36d37ccbb0d952b233e5c9a0b9",
+    "source_hash": "f46069410dad57f48b736e21d981b1254a56f20664c3d596a01d837ae759bbf9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

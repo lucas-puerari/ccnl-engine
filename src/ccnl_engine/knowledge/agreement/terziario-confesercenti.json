@@ -3318,7 +3318,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS (Art. 187): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate and tops it up to the measure of the gross daily quota, as for the Commercio file. The events exempt from the carenza reduction (hospital stay, day hospital, dialysis, prognosis of 12 days or more, the illnesses of Art. 192, pregnancy) are not inputs: the carenza of such an event is paid at the reduced rate of its order.",
+        "text": "SICKNESS (Art. 187): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate and tops it up to the measure of the gross daily quota, as for the Commercio file. The events exempt from the carenza reduction are an input (SicknessEpisode.short_absence_exempt, read with carenza_by_event) (review of 2026-10-30).",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -3326,7 +3326,7 @@
           "applies_when": {
             "trigger": "run"
           },
-          "remediation": "Model the net daily pay of Art. 187 and the exempt events of its second paragraph."
+          "remediation": "Model the net daily pay of Art. 187."
         }
       },
       {
@@ -3459,7 +3459,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "0752b159e6f2b708747b429729e418c6576afa9e40da9c81ba2e935bcf23333e",
+    "source_hash": "62310e7587a28180d5c2570cd36b52887c974155b46b212873976baf35b04a93",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

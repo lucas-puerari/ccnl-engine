@@ -141,11 +141,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model standby and travel.
 
 !!! warning "metalmeccanico-confapi/ordinary_hours_premiums · overtime · impact yes · open"
-    Art. 29 rows b, d, h, i, f, m: the ordinary night, holiday and compensatory-rest premiums; the shift-worker column (night overtime 40%/45%, night holiday overtime 65%) and night holiday work within 8 hours (60%).
+    Art. 29 rows b, d, h, i, f, m: the ordinary night premiums, the shift-worker column (night overtime 40%/45%, night holiday overtime 65%) and night holiday work within 8 hours (60%). The holiday premium (55%) and the compensatory-rest premium (10%) are modelled (supplement_bands CONFAPI_FESTIVO, CONFAPI_FESTIVO_RIPOSO) (review of 2026-10-30).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the Art. 29 premiums and the shift-worker column.
+    **Remediation:** Model the remaining Art. 29 premiums: ordinary night work and the shift-worker column.
 
 !!! warning "metalmeccanico-confapi/flexibility_and_hours_bank · overtime · impact yes · open"
     Art. 23: flessibilità beyond 40 hours (15%/20%) and banca ore (50% of the overtime premium).
@@ -169,7 +169,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the leave of a 6-day week.
 
 !!! warning "metalmeccanico-confapi/sickness_rules · sickness · impact yes · open"
-    Sickness: comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27), the net-pay gross-up.
+    Sickness: comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27). The net-pay gross-up is modelled (sickness_rules.net_basis) (review of 2026-10-30).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 

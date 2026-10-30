@@ -154,7 +154,7 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 42: the lavoro supplementare of part-time at 40% of the quota oraria of the retribuzione di fatto, outside the deferred institutes and the TFR.",
+      "rule": "Art. 42: the lavoro supplementare of part-time at 40% of the quota oraria of the retribuzione di fatto, outside the deferred institutes and the TFR. OvertimeKind.SUPPLEMENTARY exists, but the file has no supplementary-hours band (review of 2026-10-30).",
       "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
       "state": "absent",
       "work": [

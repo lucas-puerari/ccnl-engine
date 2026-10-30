@@ -133,7 +133,7 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 29 rows b, d, h, i, f, m: the ordinary night, holiday and compensatory-rest premiums; the shift-worker column (night overtime 40%/45%, night holiday overtime 65%) and night holiday work within 8 hours (60%).",
+      "rule": "Art. 29 rows b, d, h, i, f, m: the ordinary night premiums, the shift-worker column (night overtime 40%/45%, night holiday overtime 65%) and night holiday work within 8 hours (60%). The holiday premium (55%) and the compensatory-rest premium (10%) are modelled (supplement_bands CONFAPI_FESTIVO, CONFAPI_FESTIVO_RIPOSO) (review of 2026-10-30).",
       "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
       "state": "absent",
       "work": [
@@ -305,7 +305,7 @@
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Sickness: comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27), the net-pay gross-up.",
+      "rule": "Sickness: comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27). The net-pay gross-up is modelled (sickness_rules.net_basis) (review of 2026-10-30).",
       "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
       "state": "absent",
       "work": [

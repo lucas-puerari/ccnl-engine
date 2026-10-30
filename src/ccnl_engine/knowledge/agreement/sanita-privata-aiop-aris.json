@@ -1936,7 +1936,7 @@
       },
       {
         "kind": "simplification",
-        "text": "PART-TIME SUPPLEMENTARY HOURS: the ore supplementari of a part-time worker are paid with 15% of the retribuzione oraria globale (Art. 22, CCNL 8 October 2020, p. 25). The request has no kind for supplementary hours: an overtime event of a part-time worker takes the overtime bands unless the caller passes the multiplier.",
+        "text": "PART-TIME SUPPLEMENTARY HOURS: the ore supplementari of a part-time worker are paid with 15% of the retribuzione oraria globale (Art. 22, CCNL 8 October 2020, p. 25). OvertimeKind.SUPPLEMENTARY exists, but the file has no supplementary-hours band: the event takes the overtime bands unless the caller passes the multiplier (review of 2026-10-30).",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -1944,7 +1944,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add a supplementary-hours kind to the overtime event and a supplementare band with the CCNL rate."
+          "remediation": "Add the supplementary-hours band (15%) of Art. 22."
         }
       }
     ]
@@ -1956,7 +1956,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "9a89f41a5707d727179c012953d7179936bd0e34284bc031db4f807b30acf396",
+    "source_hash": "5fe7ebc673b8037d78441d14b3ec35c6515c55da5d73c1b45b15d17fed98be88",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

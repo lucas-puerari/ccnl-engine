@@ -131,7 +131,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 9 punti 3-6, 9-11: the premiums on ordinary hours (Sunday or holiday work with compensatory rest 50%, night work outside shifts 50%, shifts 4% day, 34% night, 46% night 3x7, Sunday 3x7 33%, pluriperiodale and Saturday 10%, the first 120 hours past 2,024 a year 30%).",
+        "text": "Art. 9 punti 3-6, 9-11: the premiums on ordinary hours not yet modelled: night work outside shifts 50%, night shifts 34% and 46% (3x7), Sunday 3x7 33%, pluriperiodale and Saturday 10%, the first 120 hours past 2,024 a year 30%. The holiday premium (50%) and the day-shift premium (4%) are modelled (supplement_bands CHIM_FESTIVO, CHIM_TURNO_DIURNO) (review of 2026-10-30).",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -139,7 +139,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the Art. 9 premiums on ordinary hours."
+          "remediation": "Model the remaining Art. 9 premiums on ordinary hours."
         }
       },
       {
@@ -196,7 +196,7 @@
       },
       {
         "kind": "simplification",
-        "text": "The CCNL applies the overtime premiums to the art. 15 punto 1 elements, superminimi included, categories A and B get none, and the hourly quota of art. 20 excludes the EAR, which base_salary holds for A and B.",
+        "text": "The CCNL applies the overtime premiums to the art. 15 punto 1 elements, superminimi included, and categories A and B get none. The overtime bands are limited to levels F to C1 and the individual elements count in the hourly base; still open: the hourly quota of art. 20 excludes the EAR, which base_salary holds for category B, and the holiday and shift supplement bands apply to every level (review of 2026-10-30).",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -204,7 +204,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Compute the overtime base on the art. 15 elements and exclude categories A and B."
+          "remediation": "Exclude the EAR of category B from the hourly base and limit the supplement bands to the levels the CCNL pays them to."
         }
       },
       {
@@ -4826,7 +4826,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "6836c0519180e2020e8172398943f221eea3c13b351940f6c6a216274061b4e5",
+    "source_hash": "444c9c068de60340d0a58ec8971c1e491ed8c0c834a826bb5d7d6cfdbc175c40",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

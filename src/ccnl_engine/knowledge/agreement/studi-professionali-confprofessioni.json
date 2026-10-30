@@ -108,7 +108,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 42: the lavoro supplementare of part-time at 40% of the quota oraria of the retribuzione di fatto, outside the deferred institutes and the TFR.",
+        "text": "Art. 42: the lavoro supplementare of part-time at 40% of the quota oraria of the retribuzione di fatto, outside the deferred institutes and the TFR. OvertimeKind.SUPPLEMENTARY exists, but the file has no supplementary-hours band (review of 2026-10-30).",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -116,7 +116,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add the OT_SUPPLEMENTARE band once OvertimeKind.SUPPLEMENTARY is on main."
+          "remediation": "Add the OT_SUPPLEMENTARE band (40%) of Art. 42."
         }
       },
       {
@@ -2423,7 +2423,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "1e4d2bc13083ca74b45b5c1e50c9795094d023a419b9c9cfc404ee58cc1a858e",
+    "source_hash": "e5067aae1e83ff61440f503e714f20cb70518c8b955327ea3a6a4b20779a81c2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

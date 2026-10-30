@@ -70,7 +70,7 @@
       },
       {
         "kind": "simplification",
-        "text": "INPS BAND: the band of up to 24 weekly hours is chosen on the paga oraria effettiva of INPS (circ. 9/2026; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico): the monthly pay with board and lodging over the hours of the employment (weekly hours x 52 / 12), raised by the tredicesima (x 13 / 12).",
+        "text": "INPS BAND: the engine chooses the band of up to 24 weekly hours on the paga oraria effettiva of INPS (circ. 9/2026; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico): the monthly pay with board and lodging over the hours of the employment (weekly hours x 52 / 12), raised by the tredicesima (x 13 / 12). That reading of the circular is not yet checked against a worked example of the INPS domestic table (review of 2026-10-30).",
         "capability": "inps_employer",
         "monetary_impact": "unknown",
         "limitation": {
@@ -126,7 +126,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 27 c. 6: the comporto is 50% longer for an oncological illness certified by the ASL. The request does not say whether an episode is oncological, so the engine keeps the ordinary comporto.",
+        "text": "Art. 27 c. 6: the comporto is 50% longer for an oncological illness certified by the ASL. The episode can state a serious illness (SicknessEpisode.serious_illness), but the domestic sickness rules have no serious-illness rule, so the engine keeps the ordinary comporto (review of 2026-10-30).",
         "capability": "sickness",
         "monetary_impact": "unknown",
         "limitation": {
@@ -134,7 +134,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add a fact for an oncological sickness episode and lengthen its comporto by 50%."
+          "remediation": "Add the serious-illness rule of Art. 27 c. 6 (comporto 50% longer) to the sickness rules."
         }
       },
       {
@@ -770,7 +770,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "2a2e701b4ae8101b33989a4b7e8f76b9a888cffed77fbaad27257afa7f13bd39",
+    "source_hash": "b6d36fe334e53b87794bbb61f0117af95588bf289ae71b56a532446f379e3f85",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },

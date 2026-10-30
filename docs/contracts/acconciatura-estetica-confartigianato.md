@@ -109,11 +109,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Confirm from the accordo tables that the 70/80/100% steps of Gruppo 2 run on 6-month periods.
 
 !!! warning "acconciatura-estetica-confartigianato/gruppo_1_reduced_duration · base_salary · impact yes · open"
-    APPRENTICESHIP DURATION (TAB.3): the 6-month reduction for post-secondary qualification holders (Gruppo 1: 54 months instead of 60) is not modelled; the standard 60-month table applies.
+    APPRENTICESHIP DURATION (TAB.3): the gruppo_1 track of the file reaches 100% at month 54 (95% from month 48), the duration of the 6-month reduction for post-secondary qualification holders, while the note first said the standard 60-month table applies. Which table the data hold, and the other one, are to be read again in TAB.3 (review of 2026-10-30).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the 54-month Gruppo 1 table for post-secondary qualification holders and a request field to select it.
+    **Remediation:** Read TAB.3, keep the standard table on gruppo_1 and add the 54-month table for post-secondary qualification holders with a request field to select it.
 
 !!! warning "acconciatura-estetica-confartigianato/inps_sector_rates_unsourced · inps_employer · impact unknown · open"
     INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.

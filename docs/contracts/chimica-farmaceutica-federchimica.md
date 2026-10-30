@@ -113,11 +113,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add a band for the lavoro eccedente at 5%.
 
 !!! warning "chimica-farmaceutica-federchimica/ordinary_hours_premiums · overtime · impact yes · open"
-    Art. 9 punti 3-6, 9-11: the premiums on ordinary hours (Sunday or holiday work with compensatory rest 50%, night work outside shifts 50%, shifts 4% day, 34% night, 46% night 3x7, Sunday 3x7 33%, pluriperiodale and Saturday 10%, the first 120 hours past 2,024 a year 30%).
+    Art. 9 punti 3-6, 9-11: the premiums on ordinary hours not yet modelled: night work outside shifts 50%, night shifts 34% and 46% (3x7), Sunday 3x7 33%, pluriperiodale and Saturday 10%, the first 120 hours past 2,024 a year 30%. The holiday premium (50%) and the day-shift premium (4%) are modelled (supplement_bands CHIM_FESTIVO, CHIM_TURNO_DIURNO) (review of 2026-10-30).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the Art. 9 premiums on ordinary hours.
+    **Remediation:** Model the remaining Art. 9 premiums on ordinary hours.
 
 !!! warning "chimica-farmaceutica-federchimica/night_shift_indemnity · base_salary · impact yes · open"
     Renewal of 2025, p. 47: the night-shift indemnity in cifra, outside the TFR base (EUR 13.50 per 8 hours, EUR 15.50 from 1/7/2027).
@@ -148,11 +148,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the withholding of July 2025 for non-member workers.
 
 !!! warning "chimica-farmaceutica-federchimica/overtime_base_and_categories · overtime · impact yes · open"
-    The CCNL applies the overtime premiums to the art. 15 punto 1 elements, superminimi included, categories A and B get none, and the hourly quota of art. 20 excludes the EAR, which base_salary holds for A and B.
+    The CCNL applies the overtime premiums to the art. 15 punto 1 elements, superminimi included, and categories A and B get none. The overtime bands are limited to levels F to C1 and the individual elements count in the hourly base; still open: the hourly quota of art. 20 excludes the EAR, which base_salary holds for category B, and the holiday and shift supplement bands apply to every level (review of 2026-10-30).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Compute the overtime base on the art. 15 elements and exclude categories A and B.
+    **Remediation:** Exclude the EAR of category B from the hourly base and limit the supplement bands to the levels the CCNL pays them to.
 
 !!! warning "chimica-farmaceutica-federchimica/edr_absences · base_salary · impact yes · open"
     The EDR is paid whatever the absences of the month and has no effect on other institutes, while the engine reduces it with the month and counts it in the sickness quota.
