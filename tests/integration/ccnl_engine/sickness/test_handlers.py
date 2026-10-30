@@ -497,23 +497,31 @@ def _after_january_and_february() -> PeriodState:
     )
 
 
-def test_earlier_episode_outside_the_chain_is_a_limitation() -> None:
-    """A March relapse chain after an unrelated January episode (Commercio).
+@pytest.mark.parametrize(
+    ("slug", "level", "limited"),
+    [
+        ("alimentari-federalimentare", "6", True),
+        ("commercio-confcommercio", "4", False),
+    ],
+)
+def test_earlier_episode_outside_the_chain_is_a_limitation(
+    slug: str, level: str, limited: bool
+) -> None:
+    """A March relapse chain after an unrelated January episode.
 
-    Commercio counts its comporto on the episode and its relapses.
+    Federalimentare counts its comporto on the episode and its relapses;
+    Commercio counts it over the calendar year (Art. 186), with tiers of
+    the episode.
     """
     relapse = sickness_episode("m", date(2026, 3, 2), date(2026, 3, 3), "f")
     request = _req(
-        3,
-        relapse,
-        opening=_after_january_and_february(),
-        slug="commercio-confcommercio",
-        level="4",
+        3, relapse, opening=_after_january_and_february(), slug=slug, level=level
     )
     result = calculate_period(
         request, repo=bundled_repository(), resolver=bundled_policies()
     )
-    assert "sickness_cumulation_window" in {lim.id for lim in result.limitations}
+    found = "sickness_cumulation_window" in {lim.id for lim in result.limitations}
+    assert found is limited
 
 
 def test_a_ccnl_counting_every_episode_has_no_window_limitation() -> None:

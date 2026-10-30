@@ -263,12 +263,16 @@ def episode_limitations(
     """Return the engine limitations whose path the episode took.
 
     Returns:
-        The cumulation window
-        of a per-episode CCNL when an earlier episode outside the relapse
-        chain is recorded.
+        The cumulation window of a per-episode CCNL when an earlier
+        episode outside the relapse chain is recorded; not of a CCNL whose
+        comporto the engine counts over the calendar year (Commercio Art.
+        186), whose tiers are of the episode.
     """
     found: list[str] = []
-    cumulated = pay is not None and pay.report is not None
+    ccnl = None if terms.rules is None else terms.rules.ccnl
+    cumulated = (pay is not None and pay.report is not None) or (
+        ccnl is not None and ccnl.comporto_calendar_year
+    )
     chain = _chain_ids(event, terms)
     if not cumulated and any(
         e.episode_id not in chain for e in terms.history.earlier(event)
