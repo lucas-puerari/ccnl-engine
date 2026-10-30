@@ -226,18 +226,18 @@
       }
     },
     {
-      "id": "sickness_cumulation_window",
+      "id": "sickness_single_illness_comporto",
       "institute": "sickness",
       "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.",
-      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
-      "state": "unverified",
-      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SICKNESS (Art. 35): a single illness keeps the job for 183, 244 or 305 days by seniority (61, 91 or 122 at full pay, the rest at 75%), several illnesses in the last three years for 274, 365 or 456 days. The engine counts every episode against the longer comporto of several illnesses, so a single illness past 183, 244 or 305 days is still integrated. The integration reaches the 'normale trattamento economico complessivo netto' but the measures are of the retribuzione globale: the engine applies them to the gross pay.",
+      "calculation": "ccnl/orafi-argentieri-industria-federorafi:coverage.notes",
+      "state": "absent",
+      "remediation": "Count the comporto of one illness apart from that of several illnesses and stop the integration at the shorter one, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "sickness_cumulation_window"
+          "orafi-argentieri-industria-federorafi/sickness_single_illness_comporto"
         ]
       }
     },
