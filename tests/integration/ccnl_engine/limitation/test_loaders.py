@@ -38,7 +38,6 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
     blocking = {lim.id for lim in limitations if lim.blocks}
     assert blocking == {
         "apprenticeship_pct_undeclared_components",
-        "sickness_inps_daily_base",
         "sickness_cumulation_window",
         "provisional_ruleset",
         "provisional_inps_ruleset",
@@ -48,6 +47,7 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
     assert {lim.id for lim in limitations} - blocking == {
         "apprenticeship_midpoint_allowances",
         "apprentice_seniority_simplified",
+        "sickness_inps_daily_base",
     }
     assert all(
         lim.applies_when.trigger is LimitationTrigger.PATH for lim in limitations

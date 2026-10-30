@@ -136,9 +136,13 @@ class TestMultiPeriodEpisode:
             "intg": Decimal("428.89"),
         }
         decision = _decision(march)
-        assert decision.reason_code == "sickness_episode_paid"
+        # The episode states no INPS base: the share above is on the CCNL
+        # quota and the run lacks the fact.
+        assert decision.reason_code == "sickness_inps_base_unknown"
         assert decision.amount == Decimal("913.11")
-        assert "sickness_inps_daily_base" in {lim.id for lim in march.limitations}
+        assert ("missing_fact", "inps_base") in {
+            (b.code, b.detail) for b in march.blockers
+        }
 
     def test_inps_indemnity_stays_out_of_the_contribution_base(self) -> None:
         """The INPS base is the monthly pay less the INPS share."""

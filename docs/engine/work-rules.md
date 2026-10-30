@@ -276,12 +276,15 @@ deduction and the employer top-up, not the INPS share, and a relapse
 without a base of its own takes that of the episode it continues. The
 `sickness` decision records it as `inps_daily_base`.
 
-Two engine limitations stay open. Without the INPS daily base (no
-`inps_base` in the relapse chain, an operaio without the days, an impiegato
-of a month not worked in full without the pay of a whole month, an unknown
-category, or a lavoratore dello spettacolo without the pay of the last daily
-contributions) the INPS share uses the CCNL daily quota of the
-month (`sickness_inps_daily_base`). For a CCNL without a cumulation, tiers
+Without a base the engine can read (no `inps_base` in the relapse chain,
+an operaio without the days, an impiegato of a month not worked in full
+without the pay of a whole month, an unknown category, or a lavoratore
+dello spettacolo without the pay of the last daily contributions) the INPS
+share is computed on the CCNL daily quota meanwhile and the episode has the
+provisional issue `sickness_inps_base_unknown`, a `missing_fact` blocker
+on `inps_base`: the run is not payable until the fact is stated.
+
+One engine limitation stays open: for a CCNL without a cumulation, tiers
 and comporto count one relapse chain, not the CCNL window across episodes
 (`sickness_cumulation_window`).
 

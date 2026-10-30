@@ -30,7 +30,6 @@ __all__ = [
     "BEYOND_COMPORTO",
     "COVER_UNKNOWN",
     "CUMULATION_LIMITATION",
-    "INPS_DAILY_BASE_LIMITATION",
     "PAID",
     "QUOTA_MISSING",
     "RULE_MISSING",
@@ -40,8 +39,8 @@ __all__ = [
 ]
 
 CAPABILITY = "sickness"
-#: Engine limitation of the INPS share computed on the CCNL daily quota.
-INPS_DAILY_BASE_LIMITATION = "sickness_inps_daily_base"
+#: INPS pays a share and the episode states no base INPS reads.
+BASE_UNKNOWN = "sickness_inps_base_unknown"
 #: Engine limitation of the CCNL tiers counted over one relapse chain.
 CUMULATION_LIMITATION = "sickness_cumulation_window"
 #: Reason of an episode paid from the CCNL and INPS rules.
@@ -170,6 +169,18 @@ def episode_issues(
                 "daily_contributions",
             )
         )
+    if pay.inps > _ZERO and pay.inps_base is None:
+        issues.append(
+            _issue(
+                BASE_UNKNOWN,
+                f"sickness episode '{episode.episode_id}': INPS pays its share "
+                "on the pay before the illness (inps_base), which the episode "
+                "does not state in full; the share is computed on the CCNL "
+                "daily quota meanwhile",
+                CalculationStatus.PROVISIONAL,
+                "inps_base",
+            )
+        )
     if pay.report is not None:
         issues.extend(cumulation_issues(episode, pay.report, terms))
     year = None if rules is None else rules.year(episode, terms.history)
@@ -252,14 +263,11 @@ def episode_limitations(
     """Return the engine limitations whose path the episode took.
 
     Returns:
-        The INPS daily base when INPS pays a share on the CCNL daily quota,
-        the episode stating no base INPS reads; the cumulation window
+        The cumulation window
         of a per-episode CCNL when an earlier episode outside the relapse
         chain is recorded.
     """
     found: list[str] = []
-    if pay is not None and pay.inps > _ZERO and pay.inps_base is None:
-        found.append(INPS_DAILY_BASE_LIMITATION)
     cumulated = pay is not None and pay.report is not None
     chain = _chain_ids(event, terms)
     if not cumulated and any(

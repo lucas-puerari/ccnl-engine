@@ -44,7 +44,6 @@ from ccnl_engine.pay_item.services import (
 from ccnl_engine.sickness.day.rules import SickDayKind
 from ccnl_engine.sickness.issue.handlers import (
     CUMULATION_LIMITATION,
-    INPS_DAILY_BASE_LIMITATION,
     episode_decision,
     episode_issues,
     episode_limitations,
@@ -64,7 +63,6 @@ if TYPE_CHECKING:
 
 __all__ = [
     "CUMULATION_LIMITATION",
-    "INPS_DAILY_BASE_LIMITATION",
     "EpisodePay",
     "_handle_sickness_episode",
     "episode_pay",

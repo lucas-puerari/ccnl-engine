@@ -91,7 +91,7 @@ def test_may_pays_the_inps_share_on_the_april_base() -> None:
         "intg": Decimal("68.62"),
         "crnz": Decimal("249.03"),
     }
-    assert "sickness_inps_daily_base" not in {lim.id for lim in may.limitations}
+    assert "sickness_inps_base_unknown" not in {i.code for i in may.issues}
     (decision,) = (d for d in may.decisions if d.capability == "sickness")
     assert decision.inputs["inps_daily_base"] == _RMGG
 
@@ -105,7 +105,7 @@ def test_june_keeps_the_april_base_through_the_pay_rise() -> None:
     assert sick["inps"] == Decimal("451.02")
     assert sick["inps"] + sick["intg"] == sick["abs"]
     assert sick["abs"] > Decimal("2158.26") * 9 / 26
-    assert "sickness_inps_daily_base" not in {lim.id for lim in june.limitations}
+    assert "sickness_inps_base_unknown" not in {i.code for i in june.issues}
 
 
 def test_a_relapse_takes_the_base_of_the_episode_it_continues() -> None:
@@ -126,11 +126,11 @@ def test_a_relapse_takes_the_base_of_the_episode_it_continues() -> None:
 
 
 def test_without_the_base_the_share_stays_on_the_quota_and_blocks() -> None:
-    """No pay of the month before: the limitation still applies."""
+    """No pay of the month before: a missing fact blocks the run."""
     episode = SicknessEpisode("S1", date(2026, 5, 25), date(2026, 6, 10))
     may = _run(5, episode, PeriodState.zero())
 
-    assert "sickness_inps_daily_base" in {lim.id for lim in may.limitations}
+    assert ("missing_fact", "inps_base") in {(b.code, b.detail) for b in may.blockers}
     (decision,) = (d for d in may.decisions if d.capability == "sickness")
     assert decision.inputs["inps_daily_base"] == "none"
 
@@ -182,7 +182,7 @@ def test_spettacolo_averages_the_last_daily_contributions() -> None:
     result = _cinema(SpettacoloSicknessBase(Decimal(4000), 40), fixed_term=False)
 
     assert _base_of(result) == Decimal(100)
-    assert "sickness_inps_daily_base" not in {lim.id for lim in result.limitations}
+    assert "sickness_inps_base_unknown" not in {i.code for i in result.issues}
 
 
 def test_a_fixed_term_spettacolo_base_stops_at_the_ceiling() -> None:
