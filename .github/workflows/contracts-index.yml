@@ -8,6 +8,8 @@ on:
       - "scripts/documentation/coverage/loaders.py"
       - "scripts/documentation/coverage_matrix/generate.py"
       - "docs/contracts/index.md"
+      - "scripts/completeness/report.py"
+      - "docs/trust/completeness.md"
 
 concurrency:
   group: contracts-index-${{ github.head_ref }}
@@ -42,3 +44,6 @@ jobs:
 
       - name: Check contracts index is up to date
         run: uv run python scripts/documentation/coverage_matrix/generate.py --check
+
+      - name: Check model completeness page is up to date
+        run: uv run python scripts/completeness/report.py --check

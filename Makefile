@@ -47,6 +47,7 @@ generate:
 	uv run python scripts/documentation/capability_matrix/generate.py
 	uv run python scripts/documentation/review_plan/generate.py
 	uv run python scripts/documentation/validation_matrix/generate.py
+	uv run python scripts/completeness/report.py
 
 rehash:
 	uv run python scripts/knowledge/update.py
