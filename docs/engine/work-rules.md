@@ -443,7 +443,9 @@ whose month it touches. The run deducts the days at the CCNL daily quota
   it; the base of an operaio and of a month not worked in full falls under
   the open engine limitation `paternity_daily_base`;
 - parental leave (D.Lgs. 151/2001 artt. 32 and 34): each day of the span,
-  Saturdays, Sundays and holidays included, is deducted as an unpaid
+  Saturdays, Sundays and holidays included (also those between two pieces
+  with no work resumed in between, which belong to a piece), is deducted
+  as an unpaid
   absence (`absence_deduction`: out of the INPS and TFR bases, since art.
   2120 c. 3 c.c. does not list it) and paid back by INPS on the base of
   art. 23 (`maternity_item`): 80% for the months of the couple the cohort
@@ -460,7 +462,10 @@ whose month it touches. The run deducts the days at the CCNL daily quota
   operaio or of a month not worked in full under `parental_daily_base`. An
   unstated `protection_ended_on` that could give more months at 80% is a
   `missing_fact`. The leave keeps the 13th and the leave accrual (art. 34
-  c. 5). The bundle holds no CCNL treatment of the leave: the run is
+  c. 5), the 13th in full at the employer's charge under the open engine
+  limitation `parental_extra_month_share` (the INPS base already holds its
+  daily rateo); a month on leave takes no INPS minimum base, its days
+  covered by figurative contributions (art. 35 cc. 1-2). The bundle holds no CCNL treatment of the leave: the run is
   `provisional` with `insured_absence_ccnl_not_modelled`. Hourly leave (art.
   32 cc. 1-bis and 1-ter) and adoption are not modelled;
 - work injury (D.P.R. 1124/1965 artt. 68, 73, 116-117): the injury day is

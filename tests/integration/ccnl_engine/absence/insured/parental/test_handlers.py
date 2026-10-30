@@ -111,7 +111,14 @@ def _amounts(result: PeriodResult) -> dict[str, tuple[str, Decimal]]:
 
 
 def _limitations(result: PeriodResult) -> set[str]:
-    return {lim.id for lim in result.limitations if lim.id.startswith("parental")}
+    """Return the parental limitations of the run but the extra-month one.
+
+    Returns:
+        Their ids; every run on leave has ``parental_extra_month_share``.
+    """
+    ids = {lim.id for lim in result.limitations if lim.id.startswith("parental")}
+    assert "parental_extra_month_share" in ids
+    return ids - {"parental_extra_month_share"}
 
 
 def test_a_whole_month_at_80_percent() -> None:
@@ -130,6 +137,7 @@ def test_a_whole_month_at_80_percent() -> None:
         (i.code, i.capability) for i in result.issues
     }
     assert _limitations(result) == set()
+    assert "inps_minimum_base_undetermined" not in {i.code for i in result.issues}
 
 
 def test_the_80_percent_months_run_out_inside_the_month() -> None:

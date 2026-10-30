@@ -18,6 +18,7 @@ from ccnl_engine import PayrollEngine
 from ccnl_engine.absence.insured.handlers import MATERNITY_BASE_LIMITATION
 from ccnl_engine.absence.insured.parental.handlers import (
     PARENTAL_BASE_LIMITATION,
+    PARENTAL_EXTRA_MONTH_LIMITATION,
     PARENTAL_INCOME_LIMITATION,
     PARENTAL_SPLIT_LIMITATION,
 )
@@ -123,6 +124,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         PARENTAL_BASE_LIMITATION,
         PARENTAL_INCOME_LIMITATION,
         PARENTAL_SPLIT_LIMITATION,
+        PARENTAL_EXTRA_MONTH_LIMITATION,
     }
     assert by_status[LimitationStatus.RESOLVED] == {
         _MIDPOINT,

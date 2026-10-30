@@ -179,6 +179,22 @@
       }
     },
     {
+      "id": "parental_extra_month_share",
+      "institute": "parental_leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The days of parental leave accrue the 13th and the other extra months in full at the employer's charge (art. 34 c. 5 D.Lgs. 151/2001: the leave does not reduce them), while the INPS indemnity is computed on a base that already holds their daily rateo (art. 23 c. 2, INPS circ. 122/2022): no source read settles whether the employer's extra month is reduced by the share INPS pays, so the rateo of a month on leave may be overstated.",
+      "calculation": "ccnl_engine.absence.insured.parental.handlers._handle_parental_leave; D.Lgs. 151/2001 art. 34 c. 5 (Normattiva, text in force on 2026-10-30, page sha256 aaf521a98f84e5d33cad1deee74452d789e5c58ec3d1ede4567453d7b7bd3967) and art. 23 c. 2",
+      "state": "unverified",
+      "remediation": "Source how the extra months of a parental leave are split between INPS and the employer and net the INPS share from the employer's rateo, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "parental_extra_month_share"
+        ]
+      }
+    },
+    {
       "id": "parental_income_condition",
       "institute": "parental_leave",
       "variant": "all",

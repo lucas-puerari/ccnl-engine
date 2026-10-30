@@ -166,6 +166,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source how INPS splits a calendar month between two rates of the parental leave and apply it, then resolve this limitation.
 
+!!! warning "parental_extra_month_share · parental_leave · impact unknown · open"
+    The days of parental leave accrue the 13th and the other extra months in full at the employer's charge (art. 34 c. 5 D.Lgs. 151/2001: the leave does not reduce them), while the INPS indemnity is computed on a base that already holds their daily rateo (art. 23 c. 2, INPS circ. 122/2022): no source read settles whether the employer's extra month is reduced by the share INPS pays, so the rateo of a month on leave may be overstated.
+
+    **Applies when:** `parental_leave` applies; the run takes the engine code path.
+
+    **Remediation:** Source how the extra months of a parental leave are split between INPS and the employer and net the INPS share from the employer's rateo, then resolve this limitation.
+
 ## Sources
 
 | Document | Kind | Date | URL |

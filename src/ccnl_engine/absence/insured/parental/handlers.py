@@ -39,6 +39,7 @@ __all__ = [
     "PARENTAL",
     "PARENTAL_BASE_LIMITATION",
     "PARENTAL_BASE_UNKNOWN",
+    "PARENTAL_EXTRA_MONTH_LIMITATION",
     "PARENTAL_INCOME_LIMITATION",
     "PARENTAL_SPLIT_LIMITATION",
     "PROTECTION_END_UNKNOWN",
@@ -55,6 +56,8 @@ PARENTAL_BASE_LIMITATION = "parental_daily_base"
 PARENTAL_INCOME_LIMITATION = "parental_income_condition"
 #: A counter ends inside a calendar month not of thirty days.
 PARENTAL_SPLIT_LIMITATION = "parental_month_split"
+#: The extra months of the leave are accrued in full at the employer's charge.
+PARENTAL_EXTRA_MONTH_LIMITATION = "parental_extra_month_share"
 #: The unstated end of the protected leave could give more enhanced months.
 PROTECTION_END_UNKNOWN = "parental_protection_end_unknown"
 _DEDUCTION = "absence_deduction"
@@ -118,7 +121,7 @@ def _handle_parental_leave(
     effect.issues = [_not_modelled(PARENTAL), *base.issues]
     if days.cohort_unknown:
         effect.issues.append(_cohort_issue())
-    limitations = list(base.limitations)
+    limitations = [*base.limitations, PARENTAL_EXTRA_MONTH_LIMITATION]
     if any(days.rates[day] is None for day in in_span):
         limitations.append(PARENTAL_INCOME_LIMITATION)
     if days.split.intersection(in_span):

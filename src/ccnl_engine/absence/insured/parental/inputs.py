@@ -2,9 +2,12 @@
 
 The event is one span of leave of a parent for one child born to the
 couple; its Saturdays, Sundays and holidays are days of leave.  Leave in
-pieces is one event per piece.  Pass the event to every regular run whose
-month it touches, and each run pays the days of its month within the
-employment.
+pieces is one event per piece, but the Saturdays, Sundays and holidays
+between two pieces belong to the leave unless the worker resumes work
+between them (holidays or another absence do not): include them in a
+piece (INPS FAQ congedo parentale 2023, n. 10).  Pass the event to every
+regular run whose month it touches, and each run pays the days of its
+month within the employment.
 """
 
 from __future__ import annotations
