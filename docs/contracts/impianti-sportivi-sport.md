@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, overtime, sickness, workplace_injury |
 
-8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -149,19 +149,19 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Read Art. 116 and model the residual quattordicesima as an allowance with in_service_on 2015-12-22, or resolve it as part of pre_2015_superminimo_missing.
 
+!!! warning "impianti-sportivi-sport/sickness_net_basis · sickness · impact unknown · open"
+    SICKNESS (Art. 103): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.
+
+    **Applies when:** `sickness` applies.
+
+    **Remediation:** Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 103, align the computation, then resolve this limitation.
+
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
 
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.

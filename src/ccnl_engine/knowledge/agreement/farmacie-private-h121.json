@@ -1484,7 +1484,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "a240bb6f1f8a4ffceac1445e210223b313cebe972a92d7619af3866d48e3f9c8",
+    "source_hash": "814851ee8d2313484d6f933780e2a8974287aea4ecfee67e7623ae2616008f60",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1692,9 +1692,22 @@
       }
     },
     "sickness_rules": {
-      "carenza_integration_rate": "0.8",
+      "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
+      "day_bands": [
+        {
+          "day_from": 4,
+          "day_until": 21,
+          "integration_rate": "0.80"
+        },
+        {
+          "day_from": 21,
+          "day_until": null,
+          "integration_rate": "1"
+        }
+      ],
+      "comporto_calendar_year": true,
       "provenance": {
         "status": "derived",
         "location": {
@@ -1702,16 +1715,19 @@
             "document_id": "ccnl-farmacie-private-2021",
             "title": "CCNL Farmacie Private (MNLF / Federfarma) 2021",
             "kind": "tabella_retributiva",
-            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+            "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
           },
-          "section": "Art. malattia — 100% gg1-3, 80% gg4-20, 100% gg21-180; carenza_integration_rate modella fase ridotta"
+          "section": "Artt. 43-44",
+          "quote": "Durante la malattia o infortunio il lavoratore non in prova ha diritto alla conservazione del posto per un periodo massimo di 180 giorni in un anno solare [...] 1. il 100% della quota giornaliera della retribuzione di fatto per i primi 3 giorni (periodo di carenza); 2. l’80% della quota giornaliera della retribuzione di fatto per i giorni dal 4° al 20°; 3. il 100% della quota giornaliera della retribuzione di fatto per i giorni dal 21° in poi."
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2021-01-01"
-        }
+        },
+        "transformation": "Art. 44 b): 100% for the three days of carenza, 80% for days 4-20 and 100% from day 21 of the gross daily quota, stored as day_bands of the episode; comporto of 180 days in the calendar year (Art. 43), counted over every episode of the year. Read on 2026-10-30."
       }
     }
   }

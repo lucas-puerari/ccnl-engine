@@ -502,6 +502,7 @@ def _after_january_and_february() -> PeriodState:
     [
         ("alimentari-federalimentare", "6", True),
         ("commercio-confcommercio", "4", False),
+        ("farmacie-private-h121", "2", False),
     ],
 )
 def test_earlier_episode_outside_the_chain_is_a_limitation(
@@ -510,8 +511,8 @@ def test_earlier_episode_outside_the_chain_is_a_limitation(
     """A March relapse chain after an unrelated January episode.
 
     Federalimentare counts its comporto on the episode and its relapses;
-    Commercio counts it over the calendar year (Art. 186), with tiers of
-    the episode.
+    Commercio (Art. 186) and Farmacie private (Art. 43) count it over the
+    calendar year, with tiers of the episode.
     """
     relapse = sickness_episode("m", date(2026, 3, 2), date(2026, 3, 3), "f")
     request = _req(
