@@ -6,6 +6,8 @@ CCNL.pdf), Art. 27 (pp. 37-38) and chiarimento a verbale 2 (p. 56):
 
 - c. 4: the job is kept "per anzianità oltre i 2 anni, 180 giorni di
   calendario";
+- c. 6: "I periodi di cui al comma 4 saranno aumentati del 50% in caso di
+  malattia oncologica, documentata dalla competente ASL" (p. 39);
 - c. 7: "decorre in caso di malattia la retribuzione globale di fatto per
   un massimo di 8, 10, 15 giorni complessivi nell'anno [...] fino al 3°
   giorno consecutivo, il 50% [...] dal 4° giorno in poi, il 100%";
@@ -22,8 +24,10 @@ months of seniority): 1,241.59 a month, 41.386 a day.
 
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, timedelta
 from decimal import Decimal
+
+import pytest
 
 from ccnl_engine import (
     EmployerProfile,
@@ -35,6 +39,7 @@ from ccnl_engine import (
     PeriodInput,
     PeriodResult,
 )
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.events import SicknessEpisode
 from ccnl_engine.inputs import (
     ContributableHours,
@@ -44,6 +49,7 @@ from ccnl_engine.inputs import (
     SenioritySource,
     WeeklyHours,
 )
+from ccnl_engine.sickness.cumulation.rules import CumulativeTreatment, SicknessWorker
 
 _ENGINE = PayrollEngine.bundled()
 
@@ -107,3 +113,44 @@ def test_days_past_the_fifteenth_are_unpaid() -> None:
     assert decision.inputs["divisor_method"] == "by_30"
     assert decision.inputs["inps_cover"] == "false"
     assert decision.inputs["band_full_pay_days"] == Decimal(15)
+
+
+_DOMESTIC = (
+    "lavoro-domestico-convivente",
+    "lavoro-domestico-convivente-orario-ridotto",
+    "lavoro-domestico-non-convivente",
+)
+_START = date(2026, 1, 1)
+
+
+def _last_kept(slug: str, months: int, *, serious: bool) -> int:
+    rules = load_ccnl(slug).work_rules
+    assert rules is not None
+    assert rules.sickness_rules is not None
+    cumulation = rules.sickness_rules.cumulation
+    assert cumulation is not None
+    episode = SicknessEpisode("e", _START, date(2026, 12, 31), serious_illness=serious)
+    worker = SicknessWorker(
+        seniority=SeniorityFact(months, _START, SenioritySource.PAYSLIP)
+    )
+    treatment = CumulativeTreatment(
+        rules.sickness_rules, cumulation, episode, (), worker
+    )
+    return next(
+        day - 1
+        for day in range(1, 366)
+        if treatment.day(day, _START + timedelta(days=day - 1)).beyond_comporto
+    )
+
+
+@pytest.mark.parametrize("slug", _DOMESTIC)
+@pytest.mark.parametrize(
+    ("months", "ordinary", "oncological"),
+    [(3, 10, 15), (12, 45, 68), (36, 180, 270)],
+)
+def test_an_oncological_illness_keeps_the_job_half_as_long_again(
+    slug: str, months: int, ordinary: int, oncological: int
+) -> None:
+    """10, 45, 180 days; 15, 67.5 (the 68th day still in part kept), 270."""
+    assert _last_kept(slug, months, serious=False) == ordinary
+    assert _last_kept(slug, months, serious=True) == oncological

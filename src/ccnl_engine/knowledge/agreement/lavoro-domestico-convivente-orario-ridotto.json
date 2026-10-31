@@ -146,7 +146,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add the serious-illness rule of Art. 27 c. 6 (comporto 50% longer) to the sickness rules."
+          "remediation": "Resolved: the bands carry the comporto of an oncological illness (serious_comporto_days 15, 68 and 270 days, the periods of c. 4 raised by 50%), applied when the episode states SicknessEpisode.serious_illness; 45 x 1.5 = 67.5 is read as 68, the 68th day being still in part within the period.",
+          "status": "resolved"
         }
       },
       {
@@ -782,7 +783,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "d8c5190a313e0b49988b1b1777af372b48e777a683712225796cbf19a1d5fb0b",
+    "source_hash": "c8da8f937cb0d70f9cbe705626c64f248efb2442f62072ca53bafe3044cc4906",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },
@@ -994,17 +995,20 @@
           {
             "seniority_months_from": 0,
             "full_pay_days": 8,
-            "comporto_days": 10
+            "comporto_days": 10,
+            "serious_comporto_days": 15
           },
           {
             "seniority_months_from": 6,
             "full_pay_days": 10,
-            "comporto_days": 45
+            "comporto_days": 45,
+            "serious_comporto_days": 68
           },
           {
             "seniority_months_from": 24,
             "full_pay_days": 15,
-            "comporto_days": 180
+            "comporto_days": 180,
+            "serious_comporto_days": 270
           }
         ]
       },
@@ -1021,7 +1025,7 @@
             "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
           },
           "page": "37-38, 56",
-          "section": "Art. 27 cc. 4, 5, 7 (malattia); chiarimento a verbale 2 (giorni di calendario in trentesimi)",
+          "section": "Art. 27 cc. 4-7 (malattia); chiarimento a verbale 2 (giorni di calendario in trentesimi)",
           "quote": "decorre in caso di malattia la retribuzione globale di fatto per un massimo di 8, 10, 15 giorni complessivi nell'anno"
         },
         "extraction": {
@@ -1031,7 +1035,7 @@
           "verification_status": "unverified",
           "effective_from": "2025-11-01"
         },
-        "transformation": "INPS pays domestic workers no sickness indemnity, so the employer pays the CCNL rate: 50% up to the third consecutive day (the carenza) and 100% from the fourth, for at most 8, 10 or 15 days and within a comporto of 10, 45 or 180 days, for up to 6 months of seniority, from 6 months to 2 years and over 2 years (bands from 0, 6 and 24 months). Readings: 'nell'anno' of c. 7 is taken as the period of 365 days of c. 5, and the 365 days 'decorrenti dall'evento' as the year that ends on the sick day; a day past the paid days is unpaid; the daily pay is a thirtieth of the monthly pay (chiarimento a verbale 2: 'giorni di calendario' are thirtieths, 'esempio: malattia')."
+        "transformation": "INPS pays domestic workers no sickness indemnity, so the employer pays the CCNL rate: 50% up to the third consecutive day (the carenza) and 100% from the fourth, for at most 8, 10 or 15 days and within a comporto of 10, 45 or 180 days, for up to 6 months of seniority, from 6 months to 2 years and over 2 years (bands from 0, 6 and 24 months). Readings: 'nell'anno' of c. 7 is taken as the period of 365 days of c. 5, and the 365 days 'decorrenti dall'evento' as the year that ends on the sick day; a day past the paid days is unpaid; the daily pay is a thirtieth of the monthly pay (chiarimento a verbale 2: 'giorni di calendario' are thirtieths, 'esempio: malattia'). An oncological illness documented by the ASL (c. 6, SicknessEpisode.serious_illness) keeps the post 50% longer: 15, 68 and 270 days (45 x 1.5 = 67.5, the 68th day still in part within the period); the paid days of c. 7 do not change."
       }
     }
   },
