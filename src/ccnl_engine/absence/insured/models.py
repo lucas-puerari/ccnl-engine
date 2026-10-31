@@ -20,7 +20,6 @@ from ccnl_engine.provenance.ruleset.models import RulesetIdentity
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
 __all__ = [
-    "DisabilityPermitRates",
     "ExtraordinaryLeaveRates",
     "InjuryBand",
     "InjuryRates",
@@ -29,6 +28,7 @@ __all__ = [
     "InsuredAbsenceRules",
     "MaternityRates",
     "MaternityRules",
+    "RestPermitRates",
     "YearCeiling",
 ]
 
@@ -73,13 +73,13 @@ class PaternityRates(BaseModel):
     provenance: RuleProvenance
 
 
-class DisabilityPermitRates(BaseModel):
-    """INPS indemnity of the permits to assist a disabled person.
+class RestPermitRates(BaseModel):
+    """INPS indemnity of a rest or a permit of Capo V D.Lgs. 151/2001.
 
     Attributes:
-        indemnity_rate: Share of the pay of the permit days INPS pays, 100%
-            (art. 43 c. 1 D.Lgs. 151/2001, which art. 33 c. 4 L. 104/1992
-            applies).
+        indemnity_rate: Share of the pay of the rest or permit INPS pays,
+            100% (art. 43 c. 1, which art. 33 c. 4 L. 104/1992 applies to
+            the permits to assist a disabled person).
         provenance: Source of the measure.
     """
 
@@ -191,6 +191,8 @@ class InsuredAbsenceRates(BaseModel):
         paternity: The INPS indemnity of the compulsory paternity leave.
         parental: The INPS indemnity of the parental leave.
         disability_permit: The INPS indemnity of the L. 104/1992 permits.
+        nursing_rest: The INPS indemnity of the daily rests of the first
+            year of a child (artt. 39-41).
         extraordinary_leave: The INPS indemnity of the extraordinary leave.
         injury: The pay of a temporary inability after a work injury.
         ruleset: Identity of the data file.
@@ -201,7 +203,8 @@ class InsuredAbsenceRates(BaseModel):
     maternity: MaternityRates
     paternity: PaternityRates
     parental: ParentalRates
-    disability_permit: DisabilityPermitRates
+    disability_permit: RestPermitRates
+    nursing_rest: RestPermitRates
     extraordinary_leave: ExtraordinaryLeaveRates
     injury: InjuryRates
     ruleset: RulesetIdentity | None = None

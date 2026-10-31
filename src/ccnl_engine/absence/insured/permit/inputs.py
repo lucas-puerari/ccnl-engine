@@ -11,40 +11,13 @@ from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 
+from ccnl_engine.absence.insured.hours.inputs import LeaveHours
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.validators import require_date, require_decimal, require_instance
+from ccnl_engine.validators import require_date, require_instance
 
-__all__ = ["DisabilityPermitEvent", "PermitHours"]
+__all__ = ["DisabilityPermitEvent"]
 
 _PERMITS = "disability_permits"
-_DAY_HOURS = Decimal(24)
-
-
-@dataclass(frozen=True, slots=True)
-class PermitHours:
-    """Hours of permit taken on one day.
-
-    Attributes:
-        day: The day of the hours.
-        hours: The hours of permit, above 0 and at most 24.
-
-    Raises:
-        InvalidInputError: When ``day`` is not a date or ``hours`` is not a
-            ``Decimal`` within its bounds.
-    """
-
-    day: date
-    hours: Decimal
-
-    def __post_init__(self) -> None:  # noqa: D105
-        require_date(self.day, "PermitHours.day", feature=_PERMITS)
-        require_decimal(
-            self.hours,
-            "PermitHours.hours",
-            feature=_PERMITS,
-            positive=True,
-            maximum=_DAY_HOURS,
-        )
 
 
 def _check_order(days: tuple[date, ...], field: str) -> None:
@@ -78,7 +51,7 @@ class DisabilityPermitEvent:
     """
 
     days: tuple[date, ...]
-    hours: tuple[PermitHours, ...] = ()
+    hours: tuple[LeaveHours, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
         for name in ("days", "hours"):
@@ -95,7 +68,7 @@ class DisabilityPermitEvent:
             require_date(day, "DisabilityPermitEvent.days", feature=_PERMITS)
         for item in self.hours:
             require_instance(
-                item, PermitHours, "DisabilityPermitEvent.hours", feature=_PERMITS
+                item, LeaveHours, "DisabilityPermitEvent.hours", feature=_PERMITS
             )
         _check_order(self.days, "DisabilityPermitEvent.days")
         hour_days = tuple(item.day for item in self.hours)

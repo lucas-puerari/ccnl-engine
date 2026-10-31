@@ -19,10 +19,10 @@ import json
 from types import MappingProxyType
 from typing import TYPE_CHECKING
 
+from ccnl_engine.absence.insured.hours.inputs import LeaveHours
 from ccnl_engine.absence.insured.parental.inputs import (
     ParentalLeaveTaken,
 )
-from ccnl_engine.absence.insured.permit.inputs import PermitHours
 from ccnl_engine.agreement.types import TaxSector
 from ccnl_engine.balance.serializers import STATE_TYPES
 from ccnl_engine.calendar.inputs import CalendarOverride, CalendarOverrideReason
@@ -163,7 +163,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             OvertimeKind,
             PayrollRun,
             PensionFundEnrolment,
-            PermitHours,
+            LeaveHours,
             PeriodFacts,
             PeriodId,
             PeriodInput,

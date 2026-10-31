@@ -8,10 +8,9 @@ keeps the TFR base, as payroll practice holds for these permits; art. 2120
 c. 3 c.c. does not list them, so the run records the open engine
 limitation ``disability_permit_tfr``.
 
-An hour of permit is the hourly base of the CCNL on its day
-(:class:`~ccnl_engine.working_time.hourly.policies.HourlyTerms`), deducted
-and paid back alike.  Where the engine cannot derive that base the hours
-post nothing: the run records the ``incomplete`` issue
+An hour of permit is paid as :mod:`~ccnl_engine.absence.insured.hours.rules`
+says.  Where the engine cannot derive its base the hours post nothing: the
+run records the ``incomplete`` issue
 ``disability_permit_hours_underived`` naming the reason, and the decision
 of the permits is ``incomplete`` with the same reason.
 """
@@ -29,18 +28,15 @@ from ccnl_engine.absence.insured.handlers import (
     _no_quota,
     _span,
 )
+from ccnl_engine.absence.insured.hours.rules import hours_pay
 from ccnl_engine.absence.insured.posting.services import post_lines
 from ccnl_engine.absence.insured.rules import InsuredPay
-from ccnl_engine.decision.models import CalculationIssue, CalculationStatus, IssueCause
-from ccnl_engine.errors import MissingRuleError
+from ccnl_engine.decision.models import CalculationIssue, CalculationStatus
 from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
-    from datetime import date
-
     from ccnl_engine.absence.insured.permit.inputs import DisabilityPermitEvent
     from ccnl_engine.event.handlers import EventEffect, _EventHandlerCtx
-    from ccnl_engine.working_time.hourly.policies import HourlyTerms
 
 __all__ = [
     "HOURS_UNDERIVED",
@@ -56,34 +52,6 @@ PERMIT_TFR_LIMITATION = "disability_permit_tfr"
 #: Hours of permit whose CCNL hourly base the engine cannot derive.
 HOURS_UNDERIVED = "disability_permit_hours_underived"
 _ZERO = Decimal(0)
-_BASE_FIELD = "the hourly base of PermitHours.hours"
-
-
-def _hour_pay(
-    event: DisabilityPermitEvent, span: tuple[date, date], hourly: HourlyTerms
-) -> Decimal | CalculationIssue:
-    """Return the pay of the hours of permit in ``span``, or why not.
-
-    Returns:
-        Each hour at the CCNL hourly base of its day, rounded once; the
-        ``incomplete`` issue when a base cannot be derived.
-    """
-    total = _ZERO
-    for item in event.hours:
-        if not span[0] <= item.day <= span[1]:
-            continue
-        try:
-            base = hourly.base(item.day, _BASE_FIELD, PERMITS)
-        except MissingRuleError as error:
-            return CalculationIssue(
-                code=HOURS_UNDERIVED,
-                message=f"the hours of permit post nothing: {error.detail}",
-                status=CalculationStatus.INCOMPLETE,
-                capability=PERMITS,
-                cause=IssueCause.RULE,
-            )
-        total += base.rate * item.hours
-    return money(total)
 
 
 def _handle_disability_permit(
@@ -104,7 +72,7 @@ def _handle_disability_permit(
     rate = terms.rates.disability_permit.indemnity_rate
     indemnity = money(rate * deduction)
     hours = event.hours_within(*span)
-    hour_pay = _hour_pay(event, span, ctx.hourly)
+    hour_pay = hours_pay(event.hours, span, ctx.hourly, PERMITS, HOURS_UNDERIVED)
     issues = []
     if isinstance(hour_pay, CalculationIssue):
         issues, hours, hour_pay = [hour_pay], _ZERO, _ZERO
