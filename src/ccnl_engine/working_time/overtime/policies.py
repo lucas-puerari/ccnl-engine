@@ -9,7 +9,7 @@ sets no statutory rate, so the engine has no default multiplier:
 - without a multiplier the CCNL band of the event's kind gives it as
   ``1 + band``;
 - without a multiplier and without such a band the run is rejected with
-  :class:`~ccnl_engine.errors.InvalidInputError`.
+  :class:`~ccnl_engine.errors.MissingRuleError`.
 
 The band of a kind is the single percentage overtime band (code ``OT_*``)
 that applies to it with no hour threshold and no context condition: the
@@ -35,7 +35,7 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
     IssueCause,
 )
-from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.errors import MissingRuleError
 from ccnl_engine.working_time.models import TimeSupplementKind, WorkKind
 
 if TYPE_CHECKING:
@@ -222,7 +222,7 @@ def resolve_overtime_rate(
         The caller's multiplier, or ``1 + band`` of the CCNL first tier.
 
     Raises:
-        InvalidInputError: When the event has no multiplier and the CCNL
+        MissingRuleError: When the event has no multiplier and the CCNL
             has no first-tier percentage band of its kind in force.
     """
     matching = _kind_bands(bands, event)
@@ -239,10 +239,11 @@ def resolve_overtime_rate(
             f"OvertimeEvent on {event.event_date.isoformat()} has no multiplier "
             f"and the CCNL ({bands.ruleset}) has no first-tier percentage "
             f"overtime band for {event.kind.value!r} work in force on that "
-            "date; D.Lgs. 66/2003 art. 5 leaves the rate to the CCNL, so pass "
-            "an explicit multiplier"
+            "date; D.Lgs. 66/2003 art. 5 leaves the rate to the CCNL"
         )
-        raise InvalidInputError(msg, feature="overtime")
+        raise MissingRuleError(
+            msg, as_of=event.event_date, feature=_OT, remediation=_MULTIPLIER
+        )
     return OvertimeRate(Decimal(1) + supplement, True, band, supplement, tiers)
 
 
@@ -286,7 +287,7 @@ def _issue(code: str, message: str, cause: IssueCause) -> tuple[CalculationIssue
 
 
 _PROVISIONAL = CalculationStatus.PROVISIONAL
-_OT = "overtime"
+_OT, _MULTIPLIER = "overtime", "Pass OvertimeEvent.multiplier."
 
 
 def band_decision(

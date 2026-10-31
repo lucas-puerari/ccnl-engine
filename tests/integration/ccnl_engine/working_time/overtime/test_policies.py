@@ -23,7 +23,7 @@ from ccnl_engine.decision.models import (
 )
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
-from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.errors import MissingRuleError
 from ccnl_engine.event.facade import (
     AbsenceEvent,
     NightShiftEvent,
@@ -172,7 +172,7 @@ def test_explicit_multiplier_different_from_the_band_prevails() -> None:
 
 def test_no_band_and_no_multiplier_is_rejected() -> None:
     """A CCNL with no overtime band gives no multiplier: fail closed."""
-    with pytest.raises(InvalidInputError, match="pass an explicit multiplier"):
+    with pytest.raises(MissingRuleError, match="leaves the rate to the CCNL"):
         _run(_overtime(), "agenti-immobiliari-fiaip", "III")
 
 
@@ -212,7 +212,7 @@ def test_bands_that_give_no_multiplier_fail_closed(
 ) -> None:
     """Thresholded or ordinary-work bands give no multiplier."""
     bands = CCNLOvertimeBands.of(load_ccnl(slug), 2026)
-    with pytest.raises(InvalidInputError, match="no first-tier percentage"):
+    with pytest.raises(MissingRuleError, match="no first-tier percentage"):
         resolve_overtime_rate(_overtime(kind=kind), bands)
 
 
@@ -220,7 +220,7 @@ def test_band_not_in_force_on_the_event_date_fails_closed() -> None:
     """Metalmeccanico bands start in 2021: a 2020 event has no band."""
     bands = CCNLOvertimeBands.of(load_ccnl(_METAL), 2020)
     event = OvertimeEvent(date(2020, 3, 10), Decimal(1), _RATE)
-    with pytest.raises(InvalidInputError, match="in force on that"):
+    with pytest.raises(MissingRuleError, match="in force on that"):
         resolve_overtime_rate(event, bands)
 
 

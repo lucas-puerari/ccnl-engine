@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.decision.models import CalculationDecision, CalculationStatus
-from ccnl_engine.errors import InvalidInputError, MissingRuleError
+from ccnl_engine.errors import MissingRuleError
 from ccnl_engine.event.handlers import EventEffect, _EventHandlerCtx
 from ccnl_engine.ledger.models import AccountKind, PostingIntent
 from ccnl_engine.pay_item.facade import TravelAllowanceItem
@@ -170,18 +170,21 @@ def _tfr_base(event: TravelAllowanceEvent, terms: TravelTerms | None) -> str:
         The event's choice, else the CCNL's.
 
     Raises:
-        InvalidInputError: When neither states it.
+        MissingRuleError: When neither states it.
     """
     if event.tfr_base is not None:
         return event.tfr_base
     rules = None if terms is None else terms.rules
     if rules is None:
         msg = (
-            "TravelAllowanceEvent.tfr_base: the CCNL states no TFR rule for the "
-            "allowance (art. 2120 c.c. leaves it to the CCNL): state it"
+            "the CCNL states no TFR rule for the allowance (art. 2120 c.c. "
+            "leaves it to the CCNL)"
         )
-        raise InvalidInputError(
-            msg, field="TravelAllowanceEvent.tfr_base", feature=_FEATURE
+        raise MissingRuleError(
+            msg,
+            as_of=event.event_date,
+            feature=_FEATURE,
+            remediation="Pass TravelAllowanceEvent.tfr_base.",
         )
     return rules.tfr_base
 

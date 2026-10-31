@@ -32,7 +32,7 @@ from ccnl_engine.absence.insured.handlers import (
 from ccnl_engine.absence.insured.posting.services import post_lines
 from ccnl_engine.absence.insured.rules import InsuredPay
 from ccnl_engine.decision.models import CalculationIssue, CalculationStatus, IssueCause
-from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.errors import MissingRuleError
 from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
@@ -74,10 +74,10 @@ def _hour_pay(
             continue
         try:
             base = hourly.base(item.day, _BASE_FIELD, PERMITS)
-        except InvalidInputError as error:
+        except MissingRuleError as error:
             return CalculationIssue(
                 code=HOURS_UNDERIVED,
-                message=f"the hours of permit post nothing: {error}",
+                message=f"the hours of permit post nothing: {error.detail}",
                 status=CalculationStatus.INCOMPLETE,
                 capability=PERMITS,
                 cause=IssueCause.RULE,

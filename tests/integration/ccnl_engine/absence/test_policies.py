@@ -12,7 +12,7 @@ from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.absence.policies import resolve_absence
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.element.types import MonthlyPayChain
-from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.errors import InvalidInputError, MissingRuleError
 from ccnl_engine.event.facade import AbsenceEvent
 from ccnl_engine.working_time.hourly.policies import HourlyTerms
 
@@ -55,13 +55,15 @@ def test_an_hourly_rule_deducts_the_hours() -> None:
 
 def test_a_daily_rule_needs_the_working_days() -> None:
     """by_26 without working_days: the caller states the rate."""
-    with pytest.raises(InvalidInputError, match="working_days is not stated"):
+    with pytest.raises(InvalidInputError, match="working_days is not stated") as error:
         resolve_absence(_absence(), _terms())
+
+    assert error.value.field == "AbsenceEvent.working_days"
 
 
 def test_a_part_time_day_is_not_a_26th() -> None:
     """by_26 for a part-time worker: the caller states the rate."""
-    with pytest.raises(InvalidInputError, match="part-time worker"):
+    with pytest.raises(MissingRuleError, match="part-time worker"):
         resolve_absence(_absence(1), _terms(part_time=True))
 
 
@@ -69,7 +71,7 @@ def test_a_quota_of_unstated_days_is_not_derived() -> None:
     """by_25 leaves the payable days of a month open."""
     terms = _terms(_with_method(DailyDivisorMethod.BY_25))
 
-    with pytest.raises(InvalidInputError, match="does not derive"):
+    with pytest.raises(MissingRuleError, match="does not derive"):
         resolve_absence(_absence(1), terms)
 
 
@@ -77,5 +79,5 @@ def test_a_ccnl_without_work_rules_has_no_verified_rule() -> None:
     """No absence rule: status none."""
     bare = _COMMERCIO.model_copy(update={"work_rules": None})
 
-    with pytest.raises(InvalidInputError, match="status none"):
+    with pytest.raises(MissingRuleError, match="status none"):
         resolve_absence(_absence(1), _terms(bare))

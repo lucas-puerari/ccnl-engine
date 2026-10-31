@@ -11,7 +11,7 @@ from ccnl_engine.agreement.validity.rules import TimeSeries, ValidityPeriod
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.element.types import MonthlyPayChain
 from ccnl_engine.compensation.models import Allowance
-from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.errors import MissingRuleError
 from ccnl_engine.working_time.hourly.policies import HourlyTerms
 from ccnl_engine.working_time.supplement.models import HourlyBaseMethod
 
@@ -33,7 +33,7 @@ def _terms(**changes: object) -> HourlyTerms:
 
 
 def _reject(terms: HourlyTerms, day: date = _DAY) -> str:
-    with pytest.raises(InvalidInputError) as caught:
+    with pytest.raises(MissingRuleError) as caught:
         terms.base(day, "OvertimeEvent.hourly_rate", "overtime")
     return str(caught.value)
 

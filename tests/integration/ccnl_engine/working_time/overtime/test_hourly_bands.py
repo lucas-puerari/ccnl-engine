@@ -15,7 +15,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.errors import MissingRuleError
 from ccnl_engine.event.facade import OvertimeEvent, OvertimeKind
 from ccnl_engine.working_time.models import OvertimeBand, TimeSupplements
 from ccnl_engine.working_time.overtime.policies import (
@@ -61,7 +61,7 @@ def test_the_amount_of_the_area_is_paid_per_hour(
 def test_a_level_without_band_fails_closed() -> None:
     """The docenti ore aggiuntive are by activity: no band, an explicit rate."""
     bands = CCNLOvertimeBands.of(_IR, 2026, "DOCENTE_SECONDARIA")
-    with pytest.raises(InvalidInputError, match="no first-tier"):
+    with pytest.raises(MissingRuleError, match="no first-tier"):
         resolve_overtime_rate(_event(OvertimeKind.WEEKDAY), bands)
 
 

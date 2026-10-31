@@ -299,7 +299,7 @@ def test_without_ccnl_amounts_the_daily_amount_is_required() -> None:
 
 def test_without_ccnl_rule_the_tfr_base_is_required() -> None:
     """A CCNL without a TFR rule needs the event's tfr_base."""
-    with pytest.raises(InvalidInputError, match="tfr_base"):
+    with pytest.raises(MissingRuleError, match="no TFR rule"):
         _run(_trip(tfr_base=None))
 
 
@@ -461,7 +461,7 @@ def test_without_ccnl_terms_the_event_states_amount_and_tfr_base() -> None:
     assert _process(trip, None) == Decimal("180.00")
     with pytest.raises(MissingRuleError, match="state daily_amount"):
         _process(_ccnl_trip(tfr_base="whole"), None)
-    with pytest.raises(InvalidInputError, match="tfr_base"):
+    with pytest.raises(MissingRuleError, match="no TFR rule"):
         _process(_trip(tfr_base=None), None)
 
 
@@ -498,7 +498,7 @@ def test_the_errors_name_the_feature_the_field_and_the_day() -> None:
     """A missing amount or TFR rule names what to state, for which feature."""
     with pytest.raises(MissingRuleError) as missing:
         _run(_ccnl_trip(tfr_base="none"))
-    with pytest.raises(InvalidInputError) as invalid:
+    with pytest.raises(MissingRuleError) as no_rule:
         _run(_trip(tfr_base=None))
 
     assert missing.value.as_of == _DAY
@@ -507,9 +507,9 @@ def test_the_errors_name_the_feature_the_field_and_the_day() -> None:
     assert missing.value.detail == (
         "the CCNL of the run has no travel allowance amounts: state daily_amount"
     )
-    assert invalid.value.field == "TravelAllowanceEvent.tfr_base"
-    assert invalid.value.feature == "travel_allowance"
-    assert str(invalid.value).startswith(
-        "TravelAllowanceEvent.tfr_base: the CCNL states no TFR rule for the "
-        "allowance (art. 2120 c.c. leaves it to the CCNL): state it"
+    assert (no_rule.value.as_of, no_rule.value.feature) == (_DAY, "travel_allowance")
+    assert no_rule.value.detail == (
+        "the CCNL states no TFR rule for the allowance (art. 2120 c.c. leaves "
+        "it to the CCNL)"
     )
+    assert no_rule.value.remediation == "Pass TravelAllowanceEvent.tfr_base."
