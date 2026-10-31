@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 84 verified / 2 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 92 verified / 2 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-22 |
-| **Last review** | 2026-10-31 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-20 | claude-opus-5-5 (ai) | The pricing of the seniority increments matured before a change of level (Art. 205 - Scatti di anzianità). | corrected | Art. 205 - Scatti di anzianità (p. 153): the earlier increments are repriced at the new level when the next one matures: seniority_increments.on_promotion. |
 | 2026-10-20 | claude-opus-5-5 (ai) | Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Art. 149 - Maggiorazione lavoro straordinario; Artt. 206 and 208). | corrected | Art. 149 - Maggiorazione lavoro straordinario; Artt. 206 and 208: individual elements hour only in the hourly base: work_rules.time_supplements.individual_elements. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment (work_rules.leave_rules.termination) read again in the cited text. | confirmed | Art. 159 - Chiarimento a verbale (p. 127): the indemnity of the ferie at the end of the employment is the retribuzione mensile di fatto divided by twenty-six, as recorded; the basis is now verified. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The indennità di cassa e maneggio denaro of Art. 218 (p. 158). | corrected | Art. 218 (p. 158): 5% of the paga base nazionale conglobata to the staff normally at the till with full responsibility for it: levels[*].fixed_allowances[IND_CASSA], role cassiere, one value per period of the base_salary. |
 
 ## Salary table
 
@@ -136,12 +137,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add the provincial terzi elementi as inputs.
 
-!!! warning "terziario-confesercenti/cashier_allowance · base_salary · impact yes · open"
+!!! note "terziario-confesercenti/cashier_allowance · base_salary · impact yes · resolved"
     Art. 218: the indennità di cassa e maneggio denaro of 5%.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the cashier allowance with a role.
+    **Remediation:** Resolved: every level carries IND_CASSA, 5% of its paga base nazionale conglobata, for the role cassiere of Employment.roles.
 
 !!! warning "terziario-confesercenti/sales_operators · base_salary · impact yes · open"
     The minimi of the operatori di vendita I and II categoria (CNEL 20279 tables).

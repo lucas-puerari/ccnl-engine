@@ -19,22 +19,6 @@
       }
     },
     {
-      "id": "cashier_allowance",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 202: the indennità di cassa of 5%.",
-      "calculation": "ccnl/dmo-federdistribuzione:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the cashier allowance with a role.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "dmo-federdistribuzione/cashier_allowance"
-        ]
-      }
-    },
-    {
       "id": "commission_guarantee",
       "institute": "base_salary",
       "variant": "all",
