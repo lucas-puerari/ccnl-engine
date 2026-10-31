@@ -28,6 +28,7 @@ from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.handlers import (
@@ -136,6 +137,7 @@ def _not_modelled(capability: str) -> CalculationIssue:
         ),
         status=CalculationStatus.PROVISIONAL,
         capability=capability,
+        cause=IssueCause.RULE,
     )
 
 
@@ -150,6 +152,7 @@ def _no_quota(capability: str) -> EventEffect:
                 ),
                 status=CalculationStatus.INCOMPLETE,
                 capability=capability,
+                cause=IssueCause.RULE,
             )
         ]
     )

@@ -36,13 +36,11 @@ from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.regime.eligibility.rules import RegimeEligibility
-from ccnl_engine.regime.requirement.rules import (
-    ineligibility,
-    missing_facts,
-)
+from ccnl_engine.regime.requirement.rules import ineligibility, missing_facts
 
 if TYPE_CHECKING:
     from datetime import date
@@ -329,4 +327,5 @@ def _unquantified_issue(regime: PreferentialTaxRegime) -> CalculationIssue:
         ),
         status=CalculationStatus.PROVISIONAL,
         source=regime.source,
+        cause=IssueCause.RULE,
     )

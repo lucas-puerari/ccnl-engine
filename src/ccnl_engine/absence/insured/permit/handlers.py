@@ -29,7 +29,7 @@ from ccnl_engine.absence.insured.handlers import (
 )
 from ccnl_engine.absence.insured.posting.services import post_lines
 from ccnl_engine.absence.insured.rules import InsuredPay
-from ccnl_engine.decision.models import CalculationIssue, CalculationStatus
+from ccnl_engine.decision.models import CalculationIssue, CalculationStatus, IssueCause
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.pay_item.rounding.policies import money
 
@@ -78,6 +78,7 @@ def _hour_pay(
                 message=f"the hours of permit post nothing: {error}",
                 status=CalculationStatus.INCOMPLETE,
                 capability=PERMITS,
+                cause=IssueCause.RULE,
             )
         total += base.rate * item.hours
     return money(total)

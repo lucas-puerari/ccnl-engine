@@ -33,6 +33,7 @@ from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.working_time.models import TimeSupplementKind, WorkKind
@@ -266,11 +267,7 @@ def overtime_issues(
             "threshold the event does not carry: pass an explicit multiplier "
             "for the hours beyond it"
         )
-        return (
-            CalculationIssue(
-                TIER_NOT_APPLIED, message, _PROVISIONAL, capability="overtime"
-            ),
-        )
+        return _issue(TIER_NOT_APPLIED, message, IssueCause.RULE)
     ccnl = [(rate.band, rate.supplement)] if rate.band is not None else []
     known = [(b, r) for b, r in (*ccnl, *rate.tiers) if r is not None]
     if not known or any(rate.multiplier == 1 + r for _, r in known):
@@ -281,14 +278,15 @@ def overtime_issues(
         f"the CCNL bands for {event.kind.value!r} work ({values}); the caller "
         "value is applied"
     )
-    return (
-        CalculationIssue(
-            CALLER_MULTIPLIER_DIFFERS, message, _PROVISIONAL, capability="overtime"
-        ),
-    )
+    return _issue(CALLER_MULTIPLIER_DIFFERS, message, IssueCause.CONDITION)
+
+
+def _issue(code: str, message: str, cause: IssueCause) -> tuple[CalculationIssue]:
+    return (CalculationIssue(code, message, _PROVISIONAL, capability=_OT, cause=cause),)
 
 
 _PROVISIONAL = CalculationStatus.PROVISIONAL
+_OT = "overtime"
 
 
 def band_decision(

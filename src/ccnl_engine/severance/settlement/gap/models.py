@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.decision.models import (
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.employment.fact.inputs import PublicEndOfService
 
@@ -29,17 +30,22 @@ _INCOMPLETE = CalculationStatus.INCOMPLETE
 
 @dataclass(frozen=True)
 class _Gap:
-    """Why an amount is not computed: reason, missing fact and explanation."""
+    """Why an amount is not computed: reason, missing fact and explanation.
+
+    ``cause`` is what resolves a gap that names no fact.
+    """
 
     reason: str
     message: str
     fact: str | None = None
+    cause: IssueCause = IssueCause.RULE
 
 
 _TFR_AT_INPS = _Gap(
     "tfr_at_inps",
     "the TFR of a public employee under the TFS or the TFR at INPS is paid by "
     "INPS, not by the employer",
+    cause=IssueCause.CONDITION,
 )
 _TREASURY = _Gap(
     "treasury_fund_share",
@@ -67,6 +73,7 @@ _PERIOD_UNKNOWN = _Gap(
     "required_fact_missing",
     "the start of the employment is not stated, so the TFR of the year and the "
     "years of service are not known: set Employment.employment_period",
+    cause=IssueCause.CONDITION,
 )
 _QUOTAS_UNKNOWN = _Gap(
     "required_fact_missing",

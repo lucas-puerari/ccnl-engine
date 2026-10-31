@@ -32,6 +32,7 @@ from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
     DecisionOrigin,
+    IssueCause,
 )
 from ccnl_engine.extra_month.progress.models import ExtraMonthProgress
 from ccnl_engine.interchange.result.serializers import result_to_json
@@ -64,6 +65,7 @@ __all__ = [
     "DecisionOrigin",
     "EvidenceStatus",
     "ExtraMonthProgress",
+    "IssueCause",
     "LimitationStatus",
     "ModelLimitation",
     "MonetaryImpact",

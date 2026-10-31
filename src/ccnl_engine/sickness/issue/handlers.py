@@ -9,6 +9,7 @@ from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.sickness.cumulation.handlers import (
     cumulation_inputs,
@@ -58,15 +59,14 @@ CONTRIBUTIONS_UNKNOWN = "sickness_daily_contributions_unknown"
 #: A fixed-term episode does not state the days of work before it.
 PRIOR_WORK_UNKNOWN = "sickness_fixed_term_prior_work_unknown"
 _NONE = "none"
+_RULE = IssueCause.RULE
 _ZERO = Decimal(0)
 
 
 def _issue(
     code: str, message: str, status: CalculationStatus, fact: str | None = None
 ) -> CalculationIssue:
-    return CalculationIssue(
-        code=code, capability=CAPABILITY, message=message, status=status, fact=fact
-    )
+    return CalculationIssue(code, message, status, None, fact, CAPABILITY, _RULE)
 
 
 def _missing(episode: SicknessEpisode, terms: SicknessTerms) -> CalculationIssue:

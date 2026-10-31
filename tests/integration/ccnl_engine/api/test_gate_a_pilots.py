@@ -80,7 +80,7 @@ _RENEWAL: Final[frozenset[Blocker]] = frozenset({
         "renewal_increment_in_minimum_unquantified",
     ),
     (
-        "calculation_issue",
+        "missing_rule",
         "rinnovo_substitute_tax",
         "rinnovo_minimum_increment_unquantified",
     ),
@@ -94,7 +94,7 @@ _SURTAX_SOURCE: Final[frozenset[Blocker]] = frozenset({
 _SURTAX_PRIOR_RATES: Final[frozenset[Blocker]] = frozenset({
     ("calculation_issue", "addizionale_comunale", "deferred_to_installments"),
     (
-        "calculation_issue",
+        "missing_rule",
         "addizionale_comunale",
         "municipal_surtax_prior_year_rates",
     ),

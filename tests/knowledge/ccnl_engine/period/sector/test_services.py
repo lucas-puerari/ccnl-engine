@@ -673,7 +673,7 @@ def test_only_the_stated_gaps_block_the_net_pay(name: str) -> None:
     if s.overtime:
         expected |= {
             (BlockerCode.CALCULATION_ISSUE, "overtime", "ccnl_overtime_band_applied"),
-            (BlockerCode.CALCULATION_ISSUE, "overtime", "overtime_tier_not_applied"),
+            (BlockerCode.MISSING_RULE, "overtime", "overtime_tier_not_applied"),
             (BlockerCode.CALLER_SUPPLIED_RULE, "overtime", "hourly_rate"),
             (
                 BlockerCode.OPEN_LIMITATION,

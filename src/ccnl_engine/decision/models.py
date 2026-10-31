@@ -33,6 +33,7 @@ __all__ = [
     "CalculationIssue",
     "CalculationStatus",
     "DecisionOrigin",
+    "IssueCause",
 ]
 
 _CODE_PATTERN = re.compile(r"[a-z][a-z0-9_]*")
@@ -159,6 +160,25 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
 })
 
 
+class IssueCause(StrEnum):
+    """What resolves a :class:`CalculationIssue`.
+
+    Attributes:
+        FACT: A fact of the request is missing: the caller supplies it.
+        RULE: The bundle or the engine lacks the rule or the data the
+            amount needs: it is added to the engine, and until then the
+            amount is computed outside it.
+        CONDITION: Anything else the message explains: an assumption, a
+            figure the caller gave that differs from the rule, an amount
+            left to a later run, an input whose absence another blocker
+            already reports.
+    """
+
+    FACT = "fact"
+    RULE = "rule"
+    CONDITION = "condition"
+
+
 def _require_code(value: str, name: str) -> None:
     if not _CODE_PATTERN.fullmatch(value):
         msg = f"{name} must be lower snake case (e.g. 'unknown_table'); got {value!r}"
@@ -189,10 +209,15 @@ class CalculationIssue:
             ``"seniority"``; ``None`` for a condition of the whole run (the
             opening state, the provenance of the rules).  The assessment
             reports one blocker per cause of a capability.
+        cause: What resolves the issue: :attr:`IssueCause.FACT` whenever
+            ``fact`` is set (a cause given with it stands for the case
+            without a fact, and is replaced); without ``fact`` required and
+            one of :attr:`IssueCause.RULE` and :attr:`IssueCause.CONDITION`.
 
     Raises:
         ValueError: When ``code`` is not lower snake case, ``fact`` is not
-            one of :data:`PUBLIC_FACTS` or ``message`` is empty.
+            one of :data:`PUBLIC_FACTS`, ``message`` is empty, or an issue
+            without ``fact`` has no ``cause`` or the cause ``fact``.
     """
 
     code: str
@@ -201,12 +226,21 @@ class CalculationIssue:
     source: SourceLocation | None = None
     fact: str | None = None
     capability: str | None = None
+    cause: IssueCause | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         _require_code(self.code, "code")
         _require_text(self.message, "message")
-        if self.fact is not None and self.fact not in PUBLIC_FACTS:
-            msg = f"fact must be one of {sorted(PUBLIC_FACTS)}; got {self.fact!r}"
+        if self.fact is not None:
+            if self.fact not in PUBLIC_FACTS:
+                msg = f"fact must be one of {sorted(PUBLIC_FACTS)}; got {self.fact!r}"
+                raise ValueError(msg)
+            object.__setattr__(self, "cause", IssueCause.FACT)
+        elif self.cause is None or self.cause is IssueCause.FACT:
+            msg = (
+                f"issue {self.code!r} names no fact: its cause must be "
+                "IssueCause.RULE or IssueCause.CONDITION"
+            )
             raise ValueError(msg)
 
 

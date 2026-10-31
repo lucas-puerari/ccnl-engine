@@ -32,6 +32,7 @@ from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.event.facade import (
     HolidayWorkEvent,
@@ -260,4 +261,5 @@ def supplement_issue(
         message,
         CalculationStatus.PROVISIONAL,
         capability=_FEATURES[type(event)],
+        cause=IssueCause.RULE,
     )

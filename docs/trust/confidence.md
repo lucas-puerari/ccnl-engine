@@ -69,7 +69,8 @@ does not report its gap as well.
 
 | `BlockerCode` | `feature` | `detail` | Raised when |
 |---|---|---|---|
-| `calculation_issue` | capability (`None` for the whole run) | issue code | The run raised an issue (an assumption, a fallback, an unrecovered shortfall) |
+| `calculation_issue` | capability (`None` for the whole run) | issue code | The run raised an issue whose cause is a condition (`IssueCause.CONDITION`: an assumption, a caller figure that differs from the rule, an unrecovered shortfall) |
+| `missing_rule` | capability (`None` for the whole run) | issue code | The run raised an issue whose cause is a rule or data the bundle or the engine lacks (`IssueCause.RULE`): supplying facts does not resolve it |
 | `calculation_issue` | capability | decision reason | A decision is not `final` |
 | `missing_fact` | capability (`None` for the whole run, e.g. `opening_state`) | fact name, a key of `ccnl_engine.results.PUBLIC_FACTS` | An issue names a fact the calculation needs and the request did not supply; the remediation names the public field (`Employment.seniority`) |
 | `requirement_unresolved` | capability | fact path | No decision ruled out a required capability and its applicability fact (e.g. `facts.regione`) was left to its default |

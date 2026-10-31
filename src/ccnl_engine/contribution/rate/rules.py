@@ -88,6 +88,7 @@ def category_rate_issue(
             "category of the employment"
         ),
         status=CalculationStatus.PROVISIONAL,
+        fact="category",
     )
 
 

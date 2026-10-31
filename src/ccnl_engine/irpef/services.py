@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.family.services import resolve_family
 from ccnl_engine.irpef.computation.services import (
@@ -86,6 +87,7 @@ TRATTAMENTO_INCREMENT_OPEN = CalculationIssue(
         "lower: no cited source settles the reading"
     ),
     status=CalculationStatus.INCOMPLETE,
+    cause=IssueCause.RULE,
 )
 
 

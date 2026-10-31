@@ -42,10 +42,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.compensation.proration.rules import MonthProration
-from ccnl_engine.decision.models import (
-    CalculationIssue,
-    CalculationStatus,
-)
+from ccnl_engine.decision.models import CalculationIssue, CalculationStatus, IssueCause
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import AbsenceEvent
 from ccnl_engine.run.models import PayrollRun, RunKind
@@ -264,6 +261,7 @@ class RunProration:
                 "is undetermined, the amounts shown leave it out"
             ),
             status=CalculationStatus.INCOMPLETE,
+            cause=IssueCause.RULE,
         )
 
 

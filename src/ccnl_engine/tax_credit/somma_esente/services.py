@@ -28,6 +28,7 @@ from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.tax_credit.somma_esente.posting.services import (
@@ -112,6 +113,7 @@ BAND_ASSUMED_ISSUE = CalculationIssue(
         "or the tax return settles"
     ),
     status=CalculationStatus.PROVISIONAL,
+    cause=IssueCause.CONDITION,
 )
 
 

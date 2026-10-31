@@ -9,8 +9,7 @@ already records, never stored beside it:
   capability registry and what the run executed, for the capabilities that
   apply to it;
 - ``evidence``: the weakest provenance of the payable rules the run read;
-- ``rulesets``: the identity, readiness and confidence of each ruleset
-  those rules came from;
+- ``rulesets``: identity, readiness and confidence of the rules' rulesets;
 - ``mode``: the payability policy of the engine that produced the result;
 - ``blockers``: every reason the amounts cannot be paid, each with the
   totals it leaves unreliable (the net pay, the employer cost or both);
@@ -19,8 +18,7 @@ already records, never stored beside it:
 The result is payable only when nothing blocks it.  The net pay alone is
 payable when no blocker touches it: an amount owed by the employer only,
 such as a health fund, leaves the employer cost incomplete and the net pay
-payable.  How a run is assessed is
-in :mod:`~ccnl_engine.assurance.rules`.
+payable.  How a run is assessed is in :mod:`~ccnl_engine.assurance.rules`.
 """
 
 from __future__ import annotations
@@ -128,6 +126,7 @@ class BlockerCode(StrEnum):
             an amount rests on an assumption, a fallback or a condition the
             worker must be told about.
         MISSING_FACT: A fact the calculation needs was not supplied.
+        MISSING_RULE: An issue caused by a rule or data the engine lacks.
         REQUIREMENT_UNRESOLVED: A capability required in every run was
             not ruled out by a decision of the run, and the fact that
             decides it was left to its default: a default never decides a
@@ -155,6 +154,7 @@ class BlockerCode(StrEnum):
 
     CALCULATION_ISSUE = "calculation_issue"
     MISSING_FACT = "missing_fact"
+    MISSING_RULE = "missing_rule"
     REQUIREMENT_UNRESOLVED = "requirement_unresolved"
     CAPABILITY_NOT_COMPUTED = "capability_not_computed"
     RULE_SOURCE_WEAK = "rule_source_weak"

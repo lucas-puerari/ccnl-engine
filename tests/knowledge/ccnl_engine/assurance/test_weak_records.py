@@ -128,7 +128,7 @@ def _concia_year(comune: str, regione: str) -> tuple[PeriodResult, ...]:
 
 def _carried(results: tuple[PeriodResult, ...]) -> bool:
     return any(
-        b.code is BlockerCode.CALCULATION_ISSUE and b.detail == _CARRIED
+        b.code is BlockerCode.MISSING_RULE and b.detail == _CARRIED
         for r in results
         for b in r.blockers
     )

@@ -32,6 +32,7 @@ from ccnl_engine.compensation.proration.rules import payable_days
 from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import AbsenceEvent
@@ -132,6 +133,7 @@ def _quota_issue(
             "the CCNL data do not say how such a month is deducted"
         ),
         status=CalculationStatus.PROVISIONAL,
+        cause=IssueCause.CONDITION,
     )
 
 
@@ -170,6 +172,7 @@ def month_issues(
                     "do not count the days of the month on one rule"
                 ),
                 status=CalculationStatus.PROVISIONAL,
+                cause=IssueCause.CONDITION,
             )
         )
     return tuple(issues)

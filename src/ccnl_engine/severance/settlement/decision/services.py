@@ -9,6 +9,7 @@ from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.employment.fact.inputs import PublicEndOfService
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
@@ -112,6 +113,7 @@ def _issue(gap: _Gap) -> CalculationIssue:
         status=_INCOMPLETE,
         fact=gap.fact,
         capability=CAPABILITY,
+        cause=gap.cause,
     )
 
 
@@ -130,6 +132,7 @@ def _issues(settlement: TfrSettlement) -> tuple[CalculationIssue, ...]:
                 ),
                 status=_INCOMPLETE,
                 capability=CAPABILITY,
+                cause=IssueCause.RULE,
             )
         )
     return tuple(issues)
