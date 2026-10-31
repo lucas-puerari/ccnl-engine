@@ -17,6 +17,7 @@ from ccnl_engine.event.facade import (
     LeaveTakenEvent,
     MaternityLeaveEvent,
     NightShiftEvent,
+    NoticeIndemnityEvent,
     NursingRestEvent,
     OvertimeEvent,
     ParentalLeaveEvent,
@@ -64,6 +65,7 @@ EVENT_FEATURES: dict[type, str] = {
     ParentalLeaveEvent: "parental_leave",
     DisabilityPermitEvent: "disability_permits",
     NursingRestEvent: "nursing_rests",
+    NoticeIndemnityEvent: "termination_notice",
     ExtraordinaryLeaveEvent: "extraordinary_leave",
     WorkInjuryEvent: "workplace_injury",
     FringeEvent: "fringe_benefit",
@@ -92,7 +94,8 @@ class _EventTotals:
     ``executed_features`` are the catalog features of the events whose
     handler had an effect (see :func:`_has_effect`).  ``separate_irpef_base``
     is the part of ``irpef_base`` withheld apart from the pay of the period
-    (art. 23 c. 2 lett. b) DPR 600/1973).  ``leave`` is the leave account
+    (art. 23 c. 2 lett. b) DPR 600/1973); ``apart_inps_base`` the part of
+    ``inps_base`` taxed apart (art. 17 TUIR).  ``leave`` is the leave account
     after the run, set by :func:`~ccnl_engine.leave.services.run_leave`;
     ``None`` leaves the account of the opening state unchanged.
     """
@@ -106,6 +109,7 @@ class _EventTotals:
     substitute_base: Decimal
     work_time_cap_used: Decimal = _ZERO
     separate_irpef_base: Decimal = _ZERO
+    apart_inps_base: Decimal = _ZERO
     decisions: tuple[CalculationDecision, ...] = ()
     issues: tuple[CalculationIssue, ...] = ()
     executed_features: frozenset[str] = frozenset()
@@ -131,6 +135,7 @@ class _EventAccumulator:
     tfr: Decimal = _ZERO
     irpef: Decimal = _ZERO
     separate_irpef: Decimal = _ZERO
+    apart_inps: Decimal = _ZERO
     substitute: Decimal = _ZERO
     fringe_value: Decimal = _ZERO
     fringe_inps: Decimal = _ZERO
@@ -159,6 +164,7 @@ class _EventAccumulator:
         self.tfr += result.tfr_delta
         self.irpef += result.irpef_delta
         self.separate_irpef += result.separate_irpef_delta
+        self.apart_inps += result.apart_inps_delta
         self.substitute += result.substitute_delta
         self.fringe_value += result.fringe_value
         self.fringe_inps += result.fringe_inps
@@ -195,6 +201,7 @@ class _EventAccumulator:
             substitute_base=self.substitute,
             work_time_cap_used=self.work_time_cap.used - self.opening_cap.used,
             separate_irpef_base=self.separate_irpef,
+            apart_inps_base=self.apart_inps,
             decisions=tuple(self.decisions),
             issues=tuple(self.issues),
             executed_features=frozenset(self.executed),

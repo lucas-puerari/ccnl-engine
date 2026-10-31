@@ -24,14 +24,9 @@ from ccnl_engine.contribution.additional_ivs.services import (
 from ccnl_engine.contribution.domestic.services import _domestic_hourly_rate
 from ccnl_engine.contribution.enam.services import enam_stipendio
 from ccnl_engine.employment.spell.models import spell_days, unpaid_days_between
-from ccnl_engine.event.allocation.services import (
-    _process_events,
-    worker_facts_of,
-)
+from ccnl_engine.event.allocation.services import _process_events, worker_facts_of
 from ccnl_engine.event.facade import FringeEvent
-from ccnl_engine.family.child.rules import (
-    children_within_income_limit,
-)
+from ccnl_engine.family.child.rules import children_within_income_limit
 from ccnl_engine.family.inputs import DependentRelationship
 from ccnl_engine.fund.assistance.policies import assistance_terms
 from ccnl_engine.fund.contractual.rules import contractual_run
@@ -39,10 +34,9 @@ from ccnl_engine.leave.services import leave_terms
 from ccnl_engine.pay_item.services import _hours_value
 from ccnl_engine.pension_fund.decision.services import pension_terms
 from ccnl_engine.run.models import RunKind
-from ccnl_engine.severance.provision.services import (
-    tfr_treasury_fund,
-)
+from ccnl_engine.severance.provision.services import tfr_treasury_fund
 from ccnl_engine.sickness.services import sickness_terms
+from ccnl_engine.termination.notice.services import notice_terms
 from ccnl_engine.variable_pay.benefit.handlers import fringe_threshold_of
 from ccnl_engine.variable_pay.travel.handlers import TravelTerms
 from ccnl_engine.working_time.hourly.services import hourly_terms
@@ -108,6 +102,7 @@ def variable_events(
         standby=_standby_terms(ctx),
         ccnl_travel=_travel_terms(ctx),
         leave=leave_terms(ctx),
+        notice=notice_terms(ctx),
     )
 
 
@@ -229,6 +224,7 @@ def amounts_input(
         event_tfr_base=totals.tfr_base,
         event_irpef_base=totals.irpef_base,
         event_separate_base=totals.separate_irpef_base,
+        event_apart_inps_base=totals.apart_inps_base,
         event_substitute_base=totals.substitute_base,
         opening=ctx.opening.cash,
         ytd_inps_base=ctx.ytd_inps_base,

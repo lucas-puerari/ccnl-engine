@@ -149,6 +149,7 @@ def _compute_amounts(
         period_tratt=tax_comp.trattamento_integrativo,
         period_surtax=surtax.due,
         period_taxable=taxable.period,
+        apart_inps=taxable.apart_inps,
         period_substitute_tax=pdr.substitute_tax,
         pdr_eligible=pdr.eligible,
         projected_taxable=taxable.projected,

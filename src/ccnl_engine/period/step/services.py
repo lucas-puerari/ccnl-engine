@@ -60,12 +60,11 @@ from ccnl_engine.severance.public.services import (
 from ccnl_engine.severance.revaluation.services import (
     tfr_revaluation_decisions,
 )
-from ccnl_engine.severance.settlement.services import (
-    settle_terminations,
-)
+from ccnl_engine.severance.settlement.services import settle_terminations
 from ccnl_engine.sickness.month.validators import (
     WITH_UNPAID_ABSENCE,
 )
+from ccnl_engine.termination.notice.settlement.services import notice_tax
 from ccnl_engine.working_time.hourly.services import hourly_terms
 
 _NO_QUOTA = Decimal(0)
@@ -228,22 +227,23 @@ def run_tfr_settlement(
 
     Returns:
         ``events`` with the items, entries, decisions and issues of the
-        computed settlements; their decisions trace ``termination_tfr``.
+        computed settlements and of the notice indemnity's separate tax.
     """
     tfr = run.amounts.tfr
     quota = _NO_QUOTA if tfr.to_pension_fund else tfr.amount
     effect = settle_terminations(ctx, quota, run_to_pension_fund=tfr.to_pension_fund)
-    if not effect.decisions:
+    notice = notice_tax(ctx, events.items, run.amounts.apart_inps, effect.rate)
+    if not effect.decisions and not notice.decisions:
         return events
     totals = events.totals
     return RunEvents(
         replace(
             totals,
-            decisions=totals.decisions + effect.decisions,
-            issues=totals.issues + effect.issues,
+            decisions=totals.decisions + effect.decisions + notice.decisions,
+            issues=totals.issues + effect.issues + notice.issues,
         ),
         events.items + effect.items,
-        events.entries + effect.entries,
+        events.entries + effect.entries + notice.entries,
     )
 
 

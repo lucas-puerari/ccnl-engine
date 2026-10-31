@@ -368,18 +368,18 @@
     "legal_basis": "Art. 12-13 TUIR"
   },
   {
-    "policy_id": "it/deduction/termination",
+    "policy_id": "it/earning/notice_indemnity",
     "policy_version": "2026.1",
     "kinds": [
-      "termination_item"
+      "notice_indemnity_item"
     ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "separate",
-    "contribution": "excluded",
-    "tfr": "excluded",
+    "contribution": "included",
+    "tfr": "included",
     "cost": "employee_cash",
-    "legal_basis": "Art. 17 c. 1 lett. a) e art. 19 TUIR"
+    "legal_basis": "Art. 2118 c. 2 and 2121 c.c.; art. 17 c. 1 lett. a) TUIR ('comprese l'indennità di preavviso') and art. 19 c. 2 TUIR (net of the compulsory contributions, at the TFR rate); art. 12 c. 4 lett. b) L. 153/1969 as replaced by art. 6 D.Lgs. 314/1997 ('fatta salva l'imponibilità dell'indennità sostitutiva del preavviso'); TFR base under the open limitation notice_indemnity_tfr"
   },
   {
     "policy_id": "it/leave/settlement",

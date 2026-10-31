@@ -551,7 +551,27 @@ days of the band.
 |---|---|---|
 | Metalmeccanico Federmeccanica | B2, B3, A1: 2, 3, 4 months; C2, C3, B1: 1 month 15 days, 2 months, 2 months 15 days; D1, D2, C1: 10 days, 20 days, 1 month; up to 5, 10, over 10 years of service; the same for dismissal and resignation | CCNL 5 February 2021, Sez. Quarta, Tit. VIII, Art. 1 |
 
-The other CCNLs state no notice yet, and no run pays the indemnity yet.
+The other CCNLs state no notice yet: a `NoticeIndemnityEvent` under them
+raises the `incomplete` rule issue `notice_rule_missing`.
+
+`NoticeIndemnityEvent(received_on, cause, just_cause)`, passed to the run
+of the month of the last day of the employment, pays the indemnity of the
+notice not worked when the employer owes it: a dismissal without just cause
+or a death (art. 2118 c.c.), a resignation for just cause (art. 2119 c. 1).
+A dismissal for just cause and a mutual agreement owe none; a resignation
+without just cause makes the worker owe it, which the engine does not
+compute (`notice_owed_by_worker`). The band is that of the service on the
+day of the act; the indemnity is its monthly pays on the monthly pay of
+art. 2121 c.c., times the share of the notice days not worked
+(`notice_indemnity_partial` when partly worked). It is in the INPS base
+(art. 12 c. 4 lett. b L. 153/1969: "fatta salva l'imponibilità
+dell'indennità sostitutiva del preavviso") and in the TFR base
+(`notice_indemnity_tfr`); the 13th and 14th of the notice are not added
+(`notice_indemnity_extra_months`). It is taxed apart (art. 17 c. 1 lett. a
+TUIR), net of its employee INPS, at the rate of the TFR settlement of the
+run (art. 19 c. 2); its INPS is no deduction of the ordinary taxable.
+Without a TFR settlement taxed in the run, nothing is withheld on it and the
+run raises `notice_indemnity_tax_rate_unknown`.
 
 ### Absences are bounded by the pay of the run
 

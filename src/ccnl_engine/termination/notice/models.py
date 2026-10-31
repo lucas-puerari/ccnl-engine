@@ -21,15 +21,21 @@ __all__ = ["NoticeBand", "NoticeRules", "TerminationCause"]
 
 
 class TerminationCause(StrEnum):
-    """Who ends an open-ended employment, for the notice it owes.
+    """How an open-ended employment ends, for the notice it owes.
 
     Attributes:
         DISMISSAL: The employer dismisses the worker (licenziamento).
         RESIGNATION: The worker resigns (dimissioni).
+        DEATH: The worker dies (art. 2118 c. 3 c.c.: the employer owes the
+            indemnity, measured on the notice of a dismissal).
+        MUTUAL_AGREEMENT: The parties agree to end it (risoluzione
+            consensuale): no notice is owed.
     """
 
     DISMISSAL = "dismissal"
     RESIGNATION = "resignation"
+    DEATH = "death"
+    MUTUAL_AGREEMENT = "mutual_agreement"
 
 
 class NoticeBand(BaseModel):

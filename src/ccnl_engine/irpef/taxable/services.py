@@ -42,12 +42,15 @@ class _Taxable:
             recurring pay of the slots still to come.
         separate: Part of :attr:`period` withheld apart from the pay of the
             period (art. 23 c. 2 lett. b) DPR 600/1973).
+        apart_inps: Employee INPS of the pay taxed apart (art. 17 TUIR),
+            left out of :attr:`period`.
     """
 
     irpef_base: Decimal
     period: Decimal
     projected: Decimal
     separate: Decimal = _ZERO
+    apart_inps: Decimal = _ZERO
 
 
 def pdr_split(inp: _AmountsInput) -> _PdrSplit:
@@ -79,8 +82,10 @@ def taxable_income(
     """Return the taxable income of the run and its annual projection.
 
     The run enters with its actual employee INPS (IVS ceiling and 1%
-    addizionale included); only the slots still to come are projected at
-    the current rate, so the last slot settles on the final taxable income.
+    addizionale included), less that of the pay taxed apart (art. 19 c. 2
+    TUIR: "al netto dei contributi obbligatori"); only the slots still to
+    come are projected at the current rate, so the last slot settles on
+    the final taxable income.
     Pension fund contributions change the taxable of the run by their
     :attr:`~ccnl_engine.pension_fund.rules.PensionContribution\
 .taxable_adjustment`, and the projection by the same change on the slots
@@ -91,7 +96,9 @@ def taxable_income(
     """
     # Excess PdR beyond the cap is taxed ordinarily; add it back to the IRPEF base.
     irpef_base = inp.event_irpef_base + pdr.excess
-    period_taxable = money(inp.monthly_gross - inps_employee + irpef_base)
+    # The employee INPS on what is taxed apart reduces that taxable instead.
+    apart_inps = money(inp.event_apart_inps_base * employee_rate)
+    period_taxable = money(inp.monthly_gross - inps_employee + apart_inps + irpef_base)
     if pension is not None:
         period_taxable += pension.taxable_adjustment
     upcoming_inps = money(inp.upcoming_gross * employee_rate)
@@ -107,6 +114,7 @@ def taxable_income(
         period=period_taxable,
         projected=projected,
         separate=_separate(inp, period_taxable, employee_rate, pdr),
+        apart_inps=apart_inps,
     )
 
 

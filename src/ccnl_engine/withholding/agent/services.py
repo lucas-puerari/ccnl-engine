@@ -85,6 +85,7 @@ def untaxed_amounts(
         period_tratt=_ZERO,
         period_surtax=_ZERO,
         period_taxable=taxable.period,
+        apart_inps=taxable.apart_inps,
         period_substitute_tax=_ZERO,
         pdr_eligible=_ZERO,
         projected_taxable=taxable.projected,

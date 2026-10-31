@@ -79,7 +79,9 @@ class _AmountsInput:
     for any other run.  ``event_separate_base`` is the part of
     ``event_irpef_base`` withheld apart from the pay of the period (art. 23
     c. 2 lett. b) DPR 600/1973), and so is the whole of an
-    :attr:`additional_month` run.
+    :attr:`additional_month` run.  ``event_apart_inps_base`` is the part
+    of ``event_inps_base`` taxed apart (art. 17 TUIR): its employee
+    contributions are no deduction of the ordinary taxable.
     ``recovery_plan`` is the installment recovery opened in this tax year,
     if one is running, ``ulteriore_plan`` the ulteriore detrazione plan
     opened by a conguaglio of this tax year.  ``installment_run`` tells
@@ -138,6 +140,7 @@ class _AmountsInput:
     fixed_term_in_year: bool = False
     period_days: int = 0
     event_separate_base: Decimal = Decimal(0)
+    event_apart_inps_base: Decimal = Decimal(0)
     recovery_plan: RecoveryPlan | None = None
     ulteriore_plan: RecoveryPlan | None = None
     installment_run: InstallmentRun = field(default_factory=InstallmentRun)
@@ -218,3 +221,4 @@ class _PeriodAmounts:
     pension: PensionContribution | None = None
     issues: tuple[CalculationIssue, ...] = ()
     assistance: AssistanceContribution | None = None
+    apart_inps: Decimal = Decimal(0)

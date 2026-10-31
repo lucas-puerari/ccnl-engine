@@ -104,6 +104,7 @@ KIND_CAPABILITIES: dict[str, frozenset[str]] = {
     "standby_earning": frozenset({"standby"}),
     "welfare_item": frozenset({"welfare", "contractual_funds"}),
     "leave_settlement_item": frozenset({"termination_residual_leave"}),
+    "notice_indemnity_item": frozenset({"termination_notice"}),
 }
 
 #: Capabilities that post to every other account.

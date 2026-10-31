@@ -95,6 +95,8 @@ from ccnl_engine.severance.provision.models import TfrFundBalance
 from ccnl_engine.sickness.models import SicknessEpisode
 from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
 from ccnl_engine.termination.inputs import TerminationTFREvent
+from ccnl_engine.termination.notice.inputs import NoticeIndemnityEvent
+from ccnl_engine.termination.notice.models import TerminationCause
 from ccnl_engine.variable_pay.inputs import (
     ArrearsEvent,
     BilateralFundEvent,
@@ -141,6 +143,7 @@ _EVENTS: dict[type, WorkEvent] = {
         DisabilityPermitEvent((_DAY,), (LeaveHours(date(2026, 3, 3), Decimal("1.5")),)),
         ExtraordinaryLeaveEvent(_DAY, _DAY, Decimal("2000.00")),
         NursingRestEvent((LeaveHours(_DAY, Decimal(2)),), date(2026, 1, 15)),
+        NoticeIndemnityEvent(_DAY, TerminationCause.DISMISSAL, just_cause=False),
         ParentalLeaveEvent(
             _DAY,
             _DAY,

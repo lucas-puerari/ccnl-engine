@@ -26,6 +26,7 @@ __all__ = [
     "LeaveSettlementItem",
     "MaternityItem",
     "NightHolidayShiftEarning",
+    "NoticeIndemnityItem",
     "OneOffEarning",
     "OvertimeEarning",
     "PayItem",
@@ -37,7 +38,6 @@ __all__ = [
     "SicknessItem",
     "TaxCreditItem",
     "TaxRefundItem",
-    "TerminationItem",
     "TfrAccrualItem",
     "TfrSettlementItem",
     "WelfareItem",
@@ -258,10 +258,10 @@ class EmployerContributionItem(_PayItemBase):
     kind: Literal["employer_contribution_item"] = "employer_contribution_item"
 
 
-class TerminationItem(_PayItemBase):
-    """Termination payment (indennità di mancato preavviso, ecc.)."""
+class NoticeIndemnityItem(_PayItemBase):
+    """Indemnity of the notice not given (indennità sostitutiva del preavviso)."""
 
-    kind: Literal["termination_item"] = "termination_item"
+    kind: Literal["notice_indemnity_item"] = "notice_indemnity_item"
 
 
 class TfrAccrualItem(_PayItemBase):
@@ -315,7 +315,7 @@ PayItem = Annotated[
     | AbsenceIntegrationItem
     | EmployeeWithholdingItem
     | EmployerContributionItem
-    | TerminationItem
+    | NoticeIndemnityItem
     | TfrAccrualItem
     | TfrSettlementItem
     | TaxCreditItem
