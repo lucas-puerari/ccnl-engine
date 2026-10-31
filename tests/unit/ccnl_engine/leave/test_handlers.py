@@ -7,6 +7,7 @@ from decimal import Decimal
 from types import SimpleNamespace
 from typing import TYPE_CHECKING, cast
 
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.leave.handlers import LeaveTerms, _handle_leave_taken
 from ccnl_engine.leave.inputs import LeaveTakenEvent
@@ -38,6 +39,28 @@ def test_leave_of_an_accrued_bucket_is_final_and_pays_nothing() -> None:
     assert effect.intents == []
 
 
+def test_the_decision_cites_the_ccnl_leave_rules() -> None:
+    """Commercio: its ruleset, its version, the clause and the leave taken."""
+    work = load_ccnl("commercio-confcommercio").work_rules
+    assert work is not None
+    rules = work.leave_rules
+    assert rules is not None
+    assert rules.provenance is not None
+    effect = _handle_leave_taken(_EVENT, _ctx(LeaveTerms(rules, "ccnl/c", "2")))
+
+    (decision,) = effect.decisions
+    assert (decision.rule, decision.rule_version, decision.source) == (
+        "ccnl/c:work_rules.leave_rules",
+        "2",
+        rules.provenance.location,
+    )
+    assert decision.inputs == {
+        "bucket": "ferie",
+        "quantity": Decimal(10),
+        "unit": "days",
+    }
+
+
 def test_leave_without_rules_is_incomplete() -> None:
     """No leave rules in the context: the bucket is not modelled."""
     effect = _handle_leave_taken(_EVENT, _ctx(None))
@@ -48,4 +71,4 @@ def test_leave_without_rules_is_incomplete() -> None:
         "leave_bucket_not_modelled",
         "unknown",
     )
-    assert decision.source is None
+    assert (decision.rule, decision.source) == ("work_rules.leave_rules", None)

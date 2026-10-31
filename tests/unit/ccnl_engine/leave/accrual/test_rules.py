@@ -182,3 +182,68 @@ def test_ferie_without_accrual_rules_accrue_nothing() -> None:
     account = accrue_month(LeaveAccount(), rules, _facts())
 
     assert [b.bucket for b in account.balances] == [LeaveBucket.EX_FESTIVITA]
+
+
+@pytest.mark.parametrize(
+    ("period", "suspended", "served"),
+    [
+        # Suspended on the first and the last day of the month: 29 of 31.
+        (None, {date(2026, 3, 1), date(2026, 3, 31)}, 29),
+        # An employment ended before the month serves none of it.
+        (EmploymentPeriod(date(2025, 1, 1), date(2026, 2, 28)), set(), 0),
+        # Every day suspended: none served.
+        (
+            EmploymentPeriod(date(2026, 3, 30), date(2026, 3, 31)),
+            {date(2026, 3, 30), date(2026, 3, 31)},
+            0,
+        ),
+    ],
+)
+def test_month_service_at_its_edges(
+    period: EmploymentPeriod | None, suspended: set[date], served: int
+) -> None:
+    """The first and last day count, and nothing goes below zero."""
+    service = month_service(2026, 3, period, frozenset(suspended), known=True)
+
+    assert service.served == served
+
+
+def test_a_ramp_without_the_hire_date_takes_its_first_step() -> None:
+    """A first step of 50%: half of the 72 hours, inexact."""
+    ramp = NewHireRamp(
+        hired_after=date(2011, 3, 1),
+        steps=(RampStep(service_months_min=0, share=Decimal("0.5")),),
+    )
+    rules = _RULES.model_copy(
+        update={"permits": (_ROL.model_copy(update={"ramp": ramp}),)}
+    )
+    account = accrue_month(LeaveAccount(), rules, _facts(hired_on=None))
+
+    rol = next(b for b in account.balances if b.bucket is LeaveBucket.ROL)
+    assert (rol.accrued_twelfths, rol.exact) == (Decimal(36), False)
+
+
+@pytest.mark.parametrize(("tiers", "exact"), [(True, False), (False, True)])
+def test_unknown_seniority_is_inexact_only_where_the_days_depend_on_it(
+    tiers: bool, exact: bool
+) -> None:
+    """Without the seniority, the default days; exact only if no tier differs."""
+    rules = _RULES if tiers else _RULES.model_copy(update={"entitlement_tiers": ()})
+    account = accrue_month(LeaveAccount(), rules, _facts(seniority_months=None))
+
+    ferie = next(b for b in account.balances if b.bucket is LeaveBucket.FERIE)
+    assert (ferie.accrued_twelfths, ferie.exact) == (Decimal(20), exact)
+
+
+def test_a_tier_in_force_later_does_not_count_yet() -> None:
+    """A tier of 30 days from 2027: a January 2026 month accrues 21."""
+    later = LeaveEntitlementTier(
+        service_months_min=0, annual_days=Decimal(30), valid_from=date(2027, 1, 1)
+    )
+    rules = _RULES.model_copy(
+        update={"entitlement_tiers": (*_RULES.entitlement_tiers, later)}
+    )
+    account = accrue_month(LeaveAccount(), rules, _facts())
+
+    ferie = next(b for b in account.balances if b.bucket is LeaveBucket.FERIE)
+    assert ferie.accrued_twelfths == Decimal(21)

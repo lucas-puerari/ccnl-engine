@@ -4,14 +4,23 @@ from __future__ import annotations
 
 from datetime import date
 from decimal import Decimal
+from types import SimpleNamespace
+from typing import TYPE_CHECKING, cast
 
 import pytest
 
-from ccnl_engine.decision.models import CalculationStatus
+from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.decision.models import (
+    CalculationIssue,
+    CalculationStatus,
+    IssueCause,
+)
+from ccnl_engine.event.total.handlers import _EventTotals
 from ccnl_engine.leave.balance.models import LeaveAccount, LeaveBalance
 from ccnl_engine.leave.handlers import LeaveTerms
 from ccnl_engine.leave.models import FerieAccrual, LeaveRules, LeaveTermination
 from ccnl_engine.leave.permit.models import PermitHours, PermitRules
+from ccnl_engine.leave.services import RunLeave, part_time_ratio
 from ccnl_engine.leave.settlement.services import SettlementTerms, settle_leave
 from ccnl_engine.leave.types import LeaveBucket
 from ccnl_engine.pay_item.facade import CompetencePeriod
@@ -28,6 +37,10 @@ _RULES = LeaveRules(
     termination=LeaveTermination(ferie_divisor=Decimal(26), permits_hourly=True),
 )
 _RESOLVER = load_policy_resolver()
+_ZERO = Decimal(0)
+
+if TYPE_CHECKING:
+    from ccnl_engine.period.context.services import RunContext
 
 
 def _terms(
@@ -72,7 +85,20 @@ def test_residual_is_paid_and_settled() -> None:
     assert settlement.decision.amount == Decimal("913.65")
     assert settlement.inps_base == settlement.tfr_base == settlement.irpef_base
     assert settlement.account.unsettled() == ()
-    assert len(settlement.entries) == 2
+    assert settlement.decision.inputs == {
+        "ferie_residual": Decimal(140) / 12,
+        "ex_festivita_residual": Decimal(128) / 12,
+        "ferie_divisor": Decimal(26),
+        "ex_festivita_divisor": Decimal(168),
+        "monthly_pay": Decimal("1783.75"),
+    }
+    assert [(i.quantity, i.source) for i in settlement.items] == [
+        (Decimal(140) / 12, "residual ferie at termination, days"),
+        (Decimal(128) / 12, "residual ex_festivita at termination, hours"),
+    ]
+    assert [e.policy_decision_id for e in settlement.entries] == [
+        "it/leave/settlement"
+    ] * 2
 
 
 def test_part_time_permits_are_paid_at_the_full_time_hourly_quota() -> None:
@@ -178,3 +204,94 @@ def test_residual_without_a_basis_is_not_paid(
         reason,
     )
     assert bool(settlement.issues) is (reason == "leave_history_unknown")
+
+
+def test_the_indemnity_enters_the_bases_of_the_run() -> None:
+    """The run totals take its bases, its decision, its issues and the account."""
+    settlement = settle_leave(_account(), _terms())
+    unknown = settle_leave(_account(known=False), _terms())
+    earlier = CalculationIssue(
+        code="earlier",
+        message="an earlier issue of the run",
+        status=CalculationStatus.PROVISIONAL,
+        cause=IssueCause.CONDITION,
+    )
+    one = Decimal(1)
+    totals = _EventTotals(
+        inps_base=one,
+        tfr_base=one,
+        irpef_base=one,
+        fringe_value=_ZERO,
+        fringe_inps=_ZERO,
+        fringe_irpef=_ZERO,
+        substitute_base=_ZERO,
+        issues=(earlier,),
+    )
+    added = RunLeave(settlement.account, settlement).added_to(totals)
+
+    assert unknown.issues
+    assert (added.inps_base, added.tfr_base, added.irpef_base) == (
+        one + settlement.inps_base,
+        one + settlement.tfr_base,
+        one + settlement.irpef_base,
+    )
+    assert added.decisions == (settlement.decision,)
+    assert added.issues == (earlier,)
+    assert RunLeave(unknown.account, unknown).added_to(totals).issues == (
+        earlier,
+        *unknown.issues,
+    )
+    assert added.leave is settlement.account
+
+
+@pytest.mark.parametrize(
+    ("weekly", "full", "ratio"),
+    [(20, 40, Decimal("0.5")), (None, 40, None), (20, None, None), (40, 40, None)],
+)
+def test_the_part_time_ratio(
+    weekly: int | None, full: int | None, ratio: Decimal | None
+) -> None:
+    """Weekly over full-time hours, only below one and with both stated."""
+    request = SimpleNamespace(
+        weekly_hours=None if weekly is None else SimpleNamespace(value=weekly),
+        full_time_weekly_hours=None if full is None else SimpleNamespace(value=full),
+    )
+
+    assert part_time_ratio(cast("RunContext", SimpleNamespace(request=request))) == (
+        ratio
+    )
+
+
+def test_the_decision_cites_the_ccnl_basis() -> None:
+    """Commercio: the clause of the indemnity is the source of the decision."""
+    work = load_ccnl("commercio-confcommercio").work_rules
+    assert work is not None
+    rules = work.leave_rules
+    assert rules is not None
+    assert rules.termination is not None
+    assert rules.termination.provenance is not None
+    settlement = settle_leave(_account(), _terms(rules=rules))
+
+    assert settlement.decision.source == rules.termination.provenance.location
+
+
+def test_the_residuals_of_every_year_are_paid_together() -> None:
+    """Ferie left of 2025 and of 2026: one item for both."""
+    account = LeaveAccount((
+        LeaveBalance(LeaveBucket.FERIE, 2025, Decimal(120), Decimal(60)),
+        LeaveBalance(LeaveBucket.FERIE, 2026, Decimal(120), Decimal(60)),
+    ))
+    settlement = settle_leave(account, _terms())
+
+    assert [i.quantity for i in settlement.items] == [Decimal(10)]
+
+
+def test_a_permit_used_up_needs_no_hourly_basis() -> None:
+    """No hourly divisor, but no permit hour left: the ferie are paid."""
+    account = LeaveAccount((
+        LeaveBalance(LeaveBucket.FERIE, 2026, Decimal(260), Decimal(120)),
+        LeaveBalance(LeaveBucket.EX_FESTIVITA, 2026, Decimal(320), Decimal(320)),
+    ))
+    settlement = settle_leave(account, _terms(divisor=None))
+
+    assert settlement.decision.reason_code == "residual_leave_paid"
