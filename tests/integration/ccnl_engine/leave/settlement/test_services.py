@@ -82,6 +82,35 @@ def test_part_time_permits_are_paid_at_the_full_time_hourly_quota() -> None:
     assert settlement.items[1].amount == Decimal("226.51")
 
 
+_DAILY = _RULES.model_copy(
+    update={
+        "permits": (_PERMIT.model_copy(update={"day_hours": Decimal(8)}),),
+        "termination": LeaveTermination(
+            ferie_divisor=Decimal(26), permits_hourly=False
+        ),
+    }
+)
+
+
+@pytest.mark.parametrize(
+    ("ratio", "amount"), [(None, Decimal("91.47")), (Decimal("0.5"), Decimal("182.95"))]
+)
+def test_permits_paid_by_the_day_need_no_hourly_divisor(
+    ratio: Decimal | None, amount: Decimal
+) -> None:
+    """128/12 hours are 1.3333 days of 8 hours at the full-time pay over 26.
+
+    Full time: 10.6667 x 1,783.75 / (26 x 8) = 91.47; half time: the hours
+    were accrued at half, the day is the full-time one, 1,783.75 / 0.5.
+    """
+    settlement = settle_leave(
+        _account(), _terms(rules=_DAILY, divisor=None, ratio=ratio)
+    )
+
+    assert settlement.decision.reason_code == "residual_leave_paid"
+    assert settlement.items[1].amount == amount
+
+
 def test_inexact_balance_gives_a_provisional_payment() -> None:
     """A balance resting on an estimate is paid, provisionally."""
     decision = settle_leave(_account(exact=False), _terms()).decision

@@ -126,6 +126,20 @@ def test_new_hire_ramp_and_part_time() -> None:
     assert credited[LeaveBucket.EX_FESTIVITA] == (Decimal(16), True)
 
 
+@pytest.mark.parametrize(("headcount", "hours"), [(15, Decimal(0)), (16, Decimal(72))])
+def test_ramp_of_small_employers_only(headcount: int, hours: Decimal) -> None:
+    """A ramp up to 15 employees: a 2026 hire of a larger employer accrues all."""
+    ramp = _ROL.ramp.model_copy(update={"headcount_max": 15})  # type: ignore[union-attr]
+    rules = _RULES.model_copy(
+        update={"permits": (_ROL.model_copy(update={"ramp": ramp}),)}
+    )
+    facts = _facts(hired_on=date(2026, 1, 1), headcount=headcount)
+    account = accrue_month(LeaveAccount(), rules, facts)
+
+    rol = next(b for b in account.balances if b.bucket is LeaveBucket.ROL)
+    assert (rol.accrued_twelfths, rol.exact) == (hours, True)
+
+
 @pytest.mark.parametrize(
     ("hired", "months"),
     [(date(2024, 1, 31), 24), (date(2024, 3, 1), 23), (date(2024, 2, 28), 24)],

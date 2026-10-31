@@ -126,6 +126,20 @@ def test_ramp_share_by_hire_date_and_months() -> None:
     assert ramp.share(date(2026, 1, 1), 24) == Decimal("0.5")
 
 
+def test_ramp_gates_by_hire_window_and_employer_size() -> None:
+    """Hires after ``hired_until`` and employers above the size accrue in full."""
+    ramp = NewHireRamp(
+        hired_after=date(2024, 2, 16),
+        hired_until=date(2027, 2, 15),
+        headcount_max=40,
+        steps=(RampStep(service_months_min=0, share=Decimal(0)),),
+    )
+
+    assert ramp.share(date(2027, 2, 15), 0) == 0
+    assert ramp.share(date(2027, 2, 16), 0) == 1
+    assert (ramp.covers(40), ramp.covers(41)) == (True, False)
+
+
 def test_ramp_must_start_at_zero_months() -> None:
     """A ramp whose first step is not at hire is rejected."""
     with pytest.raises(ValidationError, match="start at 0 months"):

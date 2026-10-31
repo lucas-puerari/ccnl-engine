@@ -179,8 +179,8 @@ when they drift.
 
 | Status | CCNL rules | Fiscal blocks | Total |
 |---|---:|---:|---:|
-| `verified` | 2 431 | 97 | 2 528 |
-| `derived` | 4 408 | 49 | 4 457 |
+| `verified` | 2 436 | 97 | 2 533 |
+| `derived` | 4 417 | 49 | 4 466 |
 | `assumed` | 240 | 116 | 356 |
 | `missing` | 26 | 0 | 26 |
 

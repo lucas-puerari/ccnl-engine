@@ -251,7 +251,7 @@
       },
       {
         "kind": "simplification",
-        "text": "LEAVE, ROL (Art. 91 cc.2-3): 40 hours a year on a five-day week, 66 on a six-day week, and for the hires under the 2024 CCNL 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the text is silent on the first twelve months. The weekly schedule is not an input and the first year is not sourced: the ROL is not accrued, and a leave taken from it is not decided.",
+        "text": "LEAVE, ROL (Art. 91 cc.2-3, p. 47): 40 hours a year on a five-day week, 66 on a six-day week. The file accrues the 40 hours, the schedule it assumes for the 22 days of ferie; the 66 hours of a six-day week are not modelled (the weekly schedule is not an input). The hires within the 2024-2027 term accrue 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the clause states no share before the twelfth month, read as nothing, as Commercio's 'decorsi due anni' (steps 0, 11, 23, 36 completed months). The 50/75/100% of the contratto di reimpiego (c.4) is not modelled.",
         "capability": "leave",
         "monetary_impact": "yes",
         "limitation": {
@@ -259,12 +259,12 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add the weekly schedule as an employment fact and source the first twelve months of the new-hire ramp."
+          "remediation": "Add the weekly schedule as an employment fact for the 66 hours of a six-day week, and the contratto di reimpiego for its own ramp."
         }
       },
       {
         "kind": "info",
-        "text": "LEAVE AT TERMINATION (Art. 137, p. 70): the indemnity for the ferie not taken is the monthly pay divided by 26 ('il computo dell’indennità sostitutiva delle ferie, si ottiene dividendo l’importo mensile per il divisore convenzionale 26'), for any weekly schedule, while the file accrues the 22 days of the settimana corta. The 32 hours of ex festività left are paid at the 'retribuzione normale giornaliera' of a festività (Art. 98), a daily amount the hours accrued do not convert into: a residual of them is not paid (termination_residual_leave incomplete, permit_basis_not_sourced)."
+        "text": "LEAVE AT TERMINATION (Art. 137, p. 70): the indemnity for the ferie not taken is the monthly pay divided by 26 ('il computo dell’indennità sostitutiva delle ferie, si ottiene dividendo l’importo mensile per il divisore convenzionale 26'), for any weekly schedule, while the file accrues the 22 days of the settimana corta. The 32 hours of ex festività left are paid by the day, 8 hours at the monthly pay / 26 (the 'retribuzione normale giornaliera' of Art. 98); the 40 hours of ROL of the five-day week (Art. 91) at the monthly pay / 170."
       }
     ]
   },
@@ -2432,7 +2432,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "ca53aef671edc216b710dd9b95ff746fd4e36e9ef2d9adc2721fb65604de17f0",
+    "source_hash": "e5aa92e9b9113390bd23b35865d925814bf0705a31b18c5476f57f0ef3e68f76",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2851,13 +2851,99 @@
               "verification_status": "verified",
               "review_id": "2026-10-19-ai-leave"
             },
-            "note": "32 hours a year, apart from the ROL. The month rule of Art. 91 (whole months) is stated for the ROL, not for these hours: a partial month accrues nothing and the balance is marked inexact."
+            "note": "32 hours a year, apart from the ROL. The month rule of Art. 91 (whole months) is stated for the ROL, not for these hours: a partial month accrues nothing and the balance is marked inexact. Paid by the day (day_hours 8): Art. 98 (p. 51) pays the permits not used with 'un importo pari alla retribuzione normale giornaliera comprensiva di ogni elemento accessorio', one daily pay for each of the four festività the 32 hours replace, 8 hours each."
+          },
+          "day_hours": "8"
+        },
+        {
+          "bucket": "rol",
+          "annual_hours": [
+            {
+              "hours": "40"
+            }
+          ],
+          "month_credit": "whole_month",
+          "ramp": {
+            "hired_after": "2024-02-16",
+            "hired_until": "2027-02-15",
+            "steps": [
+              {
+                "service_months_min": 0,
+                "share": "0"
+              },
+              {
+                "service_months_min": 11,
+                "share": "0.5"
+              },
+              {
+                "service_months_min": 23,
+                "share": "0.75"
+              },
+              {
+                "service_months_min": 36,
+                "share": "1"
+              }
+            ],
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+                  "kind": "associazione",
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+                },
+                "page": "47",
+                "section": "Art. 91 c.3",
+                "quote": "Limitatamente alla vigenza contrattuale ai lavoratori che saranno assunti successivamente alla data di entrata in vigore del presente contratto i permessi di cui alle lettere A e B maturano nella misura del 50% a partire dal dodicesimo mese successivo all’assunzione e nella misura del 75% a partire dal ventiquattresimo mese dalla data di assunzione fino al trentaseiesimo mese; nella misura del 100% per i mesi successivi."
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-31T17:00:00Z",
+                "effective_from": "2024-02-16",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-31T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-31-ai-leave-accrual"
+              },
+              "transformation": "The hires within the term of the contract, from 16 February 2024 to 15 February 2027 (Validità del contratto, p. 1: 'ha durata triennale dal 16 febbraio 2024 fino al 15 febbraio 2027'), read as the workers the clause limits. Nothing before the twelfth month, 50% from the twelfth month after the hire, 75% from the twenty-fourth to the thirty-sixth, 100% after: the months counted are those the engine completes at the end of a month (11 completed months at the end of the twelfth), so the steps are 0, 11, 23 and 36. The 50/75/100% of the contratto di reimpiego (c.4) is not modelled."
+            }
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-studi-professionali-2024-02-16",
+                "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+                "kind": "associazione",
+                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                "published_on": "2024-02-16",
+                "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+              },
+              "page": "47",
+              "section": "Art. 91 c.2 lett. A",
+              "quote": "In questo caso la riduzione dell’orario di lavoro sarà pari a 40 (quaranta) ore annue, usufruibili dai lavoratori mediante permessi retribuiti, della durata di otto o quattro ore, da collocarsi in periodi da concordare con il datore di lavoro."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-31T17:00:00Z",
+              "effective_from": "2024-02-16",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-31T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-31-ai-leave-accrual"
+            },
+            "transformation": "40 hours: the reduction of the week of five days (lett. A, Monday to Friday), the schedule the file assumes for the 22 days of ferie (Art. 99); the six-day week of lett. B has 66 hours, not modelled. Whole months only (c.6, p. 47: 'un dodicesimo dei permessi di cui al presente articolo per ogni mese intero di servizio prestato')."
           }
         }
       ],
       "termination": {
         "ferie_divisor": "26",
-        "permits_hourly": false,
+        "permits_hourly": true,
         "provenance": {
           "status": "verified",
           "location": {
@@ -2883,7 +2969,7 @@
             "verification_status": "verified",
             "review_id": "2026-10-31-ai-leave-termination"
           },
-          "transformation": "Ferie: residual days x monthly pay / 26, as quoted (Art. 124, the exception, is the daily quota of sickness and injury). The divisor is the same for every weekly schedule while the file carries the 22 days of the settimana corta (Art. 99, p. 51): the text does not convert the days of a five-day week, and the quote is applied as written. Permits: not paid. The only permit bucket accrued is the 32 hours of ex festività, and Art. 98 (p. 51) pays the permits not used with 'un importo pari alla retribuzione normale giornaliera comprensiva di ogni elemento accessorio', a daily amount for each festività, not the hourly quota of Art. 137 (170): the residual hours have no stated basis."
+          "transformation": "Ferie: residual days x monthly pay / 26, as quoted (Art. 124, the exception, is the daily quota of sickness and injury). The divisor is the same for every weekly schedule while the file carries the 22 days of the settimana corta (Art. 99, p. 51): the text does not convert the days of a five-day week, and the quote is applied as written. ROL: residual hours x monthly pay / 170, the hourly quota of the same article ('La quota oraria della retribuzione si ottiene dividendo l’importo mensile per il divisore convenzionale 170'), the measure Art. 91 c.5 (p. 47) uses for the permits not taken ('saranno pagati con la retribuzione di fatto in atto al momento della scadenza'), the reading adopted for Commercio. Ex festività: by the day (permits[ex_festivita].day_hours 8), each 8 hours at the monthly pay / 26, the 'retribuzione normale giornaliera' of Art. 98 (p. 51) for each festività not used."
         }
       }
     },
@@ -3159,6 +3245,33 @@
         "checked": [
           "work_rules.leave_rules.termination.ferie_divisor 26",
           "work_rules.leave_rules.termination.permits_hourly false",
+          "coverage.notes[LEAVE AT TERMINATION]"
+        ]
+      },
+      {
+        "id": "2026-10-31-ai-leave-accrual",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The ROL and the basis of the ex festività left at the end of the employment, read in the CCNL of 16 February 2024 (Artt. 91, 98, 137) and checked against its April 2026 testo ufficiale (Art. 91 p. 77, Art. 98: same wording).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "Art. 91 c.2 lett. A, cc.3, 6 (p. 47): 40 hours of ROL a year for the week of five days, by whole months, reduced for the hires within the term of the contract: work_rules.leave_rules.permits[rol].",
+          "Art. 98 (p. 51): the ex festività not used are paid at the retribuzione normale giornaliera, one day for each festività of 8 hours: permits[ex_festivita].day_hours.",
+          "Art. 91 c.5 (p. 47) and Art. 137 (p. 70): the ROL left are paid at the monthly pay / 170: termination.permits_hourly true."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.permits[rol] 40",
+          "work_rules.leave_rules.permits[rol].ramp",
+          "work_rules.leave_rules.permits[ex_festivita].day_hours 8",
+          "work_rules.leave_rules.termination.permits_hourly true",
           "coverage.notes[LEAVE AT TERMINATION]"
         ]
       }
