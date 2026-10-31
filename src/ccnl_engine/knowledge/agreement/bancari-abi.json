@@ -1853,7 +1853,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "da1861bd00ef5fb235321ac1ca93ab1ce3d4243b8856e8be7f7a82c633c55cc9",
+    "source_hash": "f72735956b5f6878d214c0124a4e8917b5967d35d1b7c474d53300c885644913",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2147,42 +2147,32 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "cumulation": {
-        "window_years": 4,
-        "reduced_integration_rate": "0",
-        "bands": [
-          {
-            "seniority_months_from": 0,
-            "full_pay_days": 240,
-            "comporto_days": 240
-          },
-          {
-            "seniority_months_from": 61,
-            "full_pay_days": 300,
-            "comporto_days": 300
-          },
-          {
-            "seniority_months_from": 121,
-            "full_pay_days": 420,
-            "comporto_days": 420
-          },
-          {
-            "seniority_months_from": 181,
-            "full_pay_days": 540,
-            "comporto_days": 540
-          },
-          {
-            "seniority_months_from": 241,
-            "full_pay_days": 660,
-            "comporto_days": 660
-          },
-          {
-            "seniority_months_from": 301,
-            "full_pay_days": 720,
-            "comporto_days": 720
-          }
-        ]
-      },
+      "comporto_bands": [
+        {
+          "seniority_months_from": 0,
+          "comporto_days": 180
+        },
+        {
+          "seniority_months_from": 61,
+          "comporto_days": 240
+        },
+        {
+          "seniority_months_from": 121,
+          "comporto_days": 360
+        },
+        {
+          "seniority_months_from": 181,
+          "comporto_days": 450
+        },
+        {
+          "seniority_months_from": 241,
+          "comporto_days": 540
+        },
+        {
+          "seniority_months_from": 301,
+          "comporto_days": 660
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -2194,21 +2184,22 @@
             "published_on": "2025-07-01",
             "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
           },
-          "page": "101",
-          "section": "Art. 66 cc. 1-2 (Malattie e infortuni)",
-          "quote": "I periodi di assenza per malattia e infortunio possono essere calcolati dall'impresa con riferimento ai 48 mesi precedenti l'ultimo giorno di assenza considerato"
+          "page": "99",
+          "section": "Art. 66 c. 1 (Malattie e infortuni)",
+          "quote": "In caso di assenza per malattia o infortunio accertati, l'impresa conserva il posto e l'intero trattamento economico alla lavoratrice/lavoratore che abbia superato il periodo di prova per: a) fino a 5 anni 6; b) da oltre 5 anni e fino a 10 anni 8; c) da oltre 10 anni e fino a 15 anni 12; d) da oltre 15 anni e fino a 20 anni 15; e) da oltre 20 anni e fino a 25 anni 18; f) oltre i 25 anni 22"
         },
+        "transformation": "Art. 66 c. 1: the job and the whole pay are kept for 6, 8, 12, 15, 18 or 22 months of an illness by seniority up to 5, 10, 15, 20, 25 years and over, months of 30 days (180, 240, 360, 450, 540, 660 days, from 61, 121, 181, 241, 301 completed months), stored as comporto_bands of the episode; the bank pays it all, the employees of credit being outside the INPS sick pay. The file stored the 48-month variant of c. 2 as the rule. Read on 2026-10-31.",
+        "note": "Art. 66 c. 2: 'I periodi di assenza per malattia e infortunio possono essere calcolati dall'impresa con riferimento ai 48 mesi precedenti l'ultimo giorno di assenza considerato. In tal caso i periodi [...] sono i seguenti: 8, 10, 14, 18, 22, 24' months. The choice is the employer's and no fact of the run states it: a bank that counts over the 48 months is not modelled (limitation sickness_cumulation_window). Not modelled: the periods raised by 50% (c. 4: tbc, AIDS, L. 104/1992 art. 3 c. 3, 12 to 30 months) or doubled for an oncological illness (c. 5, at most 36 months); the end of the treatment for a worker over sixty with the old-age pension requirements (c. 8); the unpaid aspettativa (c. 12) and the minimum of R.D.L. 1825/1924 for its last period (c. 3).",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-15T11:41:26Z",
-          "verification_status": "verified",
+          "extraction_timestamp": "2026-10-31T18:00:00Z",
           "effective_from": "2023-07-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-15T11:41:26Z",
-          "review_id": "2026-10-15-ai-texts-leave"
-        },
-        "transformation": "The employer keeps the job and the whole pay for 8, 10, 14, 18, 22 or 24 months of sickness in the 48 months before the last day, by seniority up to 5, 10, 15, 20, 25 years and over (c. 2), months of 30 days; the bank pays it all, the employees of credit being outside the INPS sick pay. The alternative of c. 1 (6, 8, 12, 15, 18, 22 months) is declared."
+          "verified_at": "2026-10-31T18:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-31-ai-sickness-pay-texts"
+        }
       }
     }
   },
@@ -2364,6 +2355,27 @@
           "The 36 stipendi of the nine levels from 2023 and the scatti (QD4 and QD3 95,31, QD2 to 3A1 41,55, 1a and 2a area 29,07) are printed in the texts read. Match.",
           "Flagged: the hourly divisor of the file (162, then 160) has no provenance. Art. 114 c. 15 of the testo coordinato computes the paga oraria 'secondo il comune criterio (1/360 della retribuzione annua per ogni giornata diviso 7,4)': on thirteen monthly payments the monthly pay over 204,92, not over 160. Every amount the engine derives from the hourly divisor (absence deductions, the hourly rate of the overtime bands) is affected; the elements of the 'retribuzione annua' were not read.",
           "Not promoted to reviewed: verification.confidence is unverified and the hourly divisor is unsourced. The two derived rules (the solidarity fund rates and the absence rule) stay derived."
+        ]
+      },
+      {
+        "id": "2026-10-31-ai-sickness-pay-texts",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules"
+        ],
+        "scope": "The sick pay and the comporto of the CCNL (work_rules.sickness_rules), read on the signed text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+            "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
+          }
+        ],
+        "findings": [
+          "Art. 66 (p. 99): c. 1 keeps the job and the whole pay for 6, 8, 12, 15, 18, 22 months by seniority; c. 2 lets the bank count instead over the 48 months before the last day, with 8 to 24 months. The file stored the option of c. 2 as the rule: corrected to the bands of c. 1 for one illness, the option of c. 2 in the note."
         ]
       }
     ]
