@@ -55,6 +55,7 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "notice_indemnity_extra_months",
         "notice_indemnity_tfr",
         "notice_indemnity_day_measure",
+        "parental_hourly_ccnl_rule",
     }
     assert {lim.id for lim in limitations} - blocking == {
         "apprenticeship_midpoint_allowances",

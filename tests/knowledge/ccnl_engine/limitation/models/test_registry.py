@@ -25,6 +25,9 @@ from ccnl_engine.absence.insured.parental.handlers import (
     PARENTAL_INCOME_LIMITATION,
     PARENTAL_SPLIT_LIMITATION,
 )
+from ccnl_engine.absence.insured.parental.hourly.handlers import (
+    HOURLY_CCNL_LIMITATION,
+)
 from ccnl_engine.absence.insured.paternity.handlers import PATERNITY_BASE_LIMITATION
 from ccnl_engine.absence.insured.permit.handlers import PERMIT_TFR_LIMITATION
 from ccnl_engine.agreement.facade import NoteKind
@@ -139,6 +142,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         NOTICE_EXTRA_MONTHS,
         NOTICE_TFR,
         NOTICE_DAY_MEASURE,
+        HOURLY_CCNL_LIMITATION,
     }
     assert by_status[LimitationStatus.RESOLVED] == {
         _MIDPOINT,

@@ -28,6 +28,7 @@ from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.events import (
     DisabilityPermitEvent,
     ExtraordinaryLeaveEvent,
+    HourlyParentalLeaveEvent,
     InpsSicknessBase,
     LeaveHours,
     MaternityLeaveEvent,
@@ -128,6 +129,18 @@ def test_an_injury_without_ccnl_rules_is_paid_by_inail_itself() -> None:
                 (LeaveHours(date(2026, 3, 2), Decimal(2)),), date(2025, 10, 1)
             ),
             "nursing_rests",
+        ),
+        (
+            HourlyParentalLeaveEvent(
+                (
+                    LeaveHours(date(2026, 3, 2), Decimal(4)),
+                    LeaveHours(date(2026, 3, 3), Decimal(4)),
+                ),
+                date(2025, 10, 1),
+                ParentalLeaveTaken(0, 0, 0),
+                Decimal(8),
+            ),
+            "parental_leave",
         ),
         (
             ExtraordinaryLeaveEvent(date(2026, 3, 2), date(2026, 3, 6)),

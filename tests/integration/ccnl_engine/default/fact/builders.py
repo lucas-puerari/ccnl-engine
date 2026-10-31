@@ -18,7 +18,9 @@ from ccnl_engine import (
 )
 from ccnl_engine.events import (
     ExtraordinaryLeaveEvent,
+    HourlyParentalLeaveEvent,
     InpsSicknessBase,
+    LeaveHours,
     MaternityLeaveEvent,
     ParentalLeaveEvent,
     ParentalLeaveTaken,
@@ -535,6 +537,28 @@ def _parental(base: InpsSicknessBase | None, ended: date | None) -> PeriodInput:
     return replace(run, employment=employment, facts=PeriodFacts(events=(leave,)))
 
 
+def _hourly_parental(base: InpsSicknessBase | None, ended: date | None) -> PeriodInput:
+    """Return two days of parental leave by the hour in March of an impiegato.
+
+    The same child as :func:`_parental`, an average day of 8 hours.
+
+    Returns:
+        The March run; the indemnity needs the pay of the month before and
+        the end of the maternity leave.
+    """
+    leave = HourlyParentalLeaveEvent(
+        tuple(LeaveHours(date(2026, 3, d), Decimal(4)) for d in (2, 3, 4, 5)),
+        date(2022, 10, 1),
+        ParentalLeaveTaken(0, 0, 0),
+        Decimal(8),
+        protection_ended_on=ended,
+        parental_base_pay=base,
+    )
+    run = _march(PeriodState.zero())
+    employment = replace(_EMPLOYMENT, category=WorkerCategory.IMPIEGATO)
+    return replace(run, employment=employment, facts=PeriodFacts(events=(leave,)))
+
+
 def _extraordinary(last_pay: Decimal | None) -> PeriodInput:
     """Return two weeks of extraordinary leave in March of an impiegato.
 
@@ -623,6 +647,20 @@ def sickness_cases[C](
             case(
                 _parental(_FEBRUARY_PAY, _MATERNITY_END),
                 _parental(_FEBRUARY_PAY, None),
+                "protection_ended_on",
+            ),
+        ),
+        "HourlyParentalLeaveEvent.parental_base_pay": (
+            case(
+                _hourly_parental(_FEBRUARY_PAY, _MATERNITY_END),
+                _hourly_parental(None, _MATERNITY_END),
+                "parental_base_pay",
+            ),
+        ),
+        "HourlyParentalLeaveEvent.protection_ended_on": (
+            case(
+                _hourly_parental(_FEBRUARY_PAY, _MATERNITY_END),
+                _hourly_parental(_FEBRUARY_PAY, None),
                 "protection_ended_on",
             ),
         ),

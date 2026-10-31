@@ -472,8 +472,16 @@ whose month it touches. The run deducts the days at the CCNL daily quota
   limitation `parental_extra_month_share` (the INPS base already holds its
   daily rateo); a month on leave takes no INPS minimum base, its days
   covered by figurative contributions (art. 35 cc. 1-2). The bundle holds no CCNL treatment of the leave: the run is
-  `provisional` with `insured_absence_ccnl_not_modelled`. Hourly leave (art.
-  32 cc. 1-bis and 1-ter) and adoption are not modelled;
+  `provisional` with `insured_absence_ccnl_not_modelled`. Leave by the hour
+  (art. 32 c. 1-ter, `HourlyParentalLeaveEvent`) takes half the average
+  daily hours the event states on each day, two such days a day of leave
+  (INPS circ. 152/2015 par. 2.2): the hours are deducted at the CCNL hourly
+  base as an unpaid absence and each day is paid half the daily indemnity
+  at its rate, under the open limitation `parental_hourly_ccnl_rule` (a
+  collective rule on the hours of a day of leave prevails, and the bundle
+  holds none); same-day cumulation with the rests of artt. 39-40 and the
+  hours of artt. 33 c. 2 and 42 c. 1 (INPS msg. 6704/2015) is not checked.
+  Adoption is not modelled;
 - permits to assist a disabled person (L. 104/1992 art. 33 c. 3, three
   days a month for each person assisted): the days are deducted at the
   CCNL daily quota and paid back in full as the INPS indemnity (D.Lgs.
