@@ -190,3 +190,9 @@ def test_hours_without_a_verified_hourly_base_post_nothing() -> None:
         "incomplete",
     )
     assert "has no verified hourly base" in issue.message
+    (decision,) = (d for d in result.decisions if d.capability == "disability_permits")
+    assert (decision.status, decision.reason_code, decision.amount) == (
+        "incomplete",
+        "disability_permit_hours_underived",
+        Decimal("87.19"),  # the day only: 2267.00 / 26
+    )
