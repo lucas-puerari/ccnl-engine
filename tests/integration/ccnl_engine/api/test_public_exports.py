@@ -106,6 +106,8 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "PensionFundEnrolment",
         "PeriodState",
         "Permanent",
+        "PersonalWithholding",
+        "PersonalWithholdingKind",
         "PriorYearTaxFacts",
         "PublicEndOfService",
         "RecoveryObligation",

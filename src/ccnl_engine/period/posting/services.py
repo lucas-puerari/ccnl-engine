@@ -17,6 +17,10 @@ from ccnl_engine.pay_item.services import (
     _make_entry,
     _require_resolution,
 )
+from ccnl_engine.personal_withholding.services import (
+    PersonalWithholdingPostings,
+    post_personal_withholdings,
+)
 from ccnl_engine.tax_credit.recovery.services import (
     CarriedRecoveries,
     post_carried_recoveries,
@@ -59,8 +63,8 @@ class RunPostings:
     """Base pay items and ledger of the run after the withholding cap.
 
     ``amounts`` are the amounts after the cap; ``entries`` hold every ledger
-    entry of the run, the base ones first and the deferred IRPEF of an
-    earlier year last.
+    entry of the run, the base ones first, then the deferred IRPEF of an
+    earlier year and the personal withholdings last.
     """
 
     amounts: _PeriodAmounts
@@ -68,6 +72,9 @@ class RunPostings:
     entries: tuple[LedgerEntry, ...]
     capped: CappedWithholding
     deferred: DeferredPostings = field(default_factory=DeferredPostings)
+    personal: PersonalWithholdingPostings = field(
+        default_factory=PersonalWithholdingPostings
+    )
 
 
 def _no_credits(ctx: RunContext) -> RunCredits:
@@ -213,7 +220,8 @@ def post_run(
     given back by one ``credit_recovery_shortfall`` line.  On a written
     request the IRPEF shortfall of the conguaglio is deferred to the next
     year, and the IRPEF an earlier conguaglio deferred is withheld from the
-    pay left after every other line.
+    pay left after every other line.  The personal withholdings come last,
+    on the net pay of the run.
 
     Returns:
         The capped amounts, the base pay items and every ledger entry.
@@ -237,10 +245,13 @@ def post_run(
     items, entries = _recovery_adjustment(ctx, capped.recovery_adjustment)
     all_entries = ledger_entries + other_entries + entries
     deferred = post_deferred(ctx, run_net(all_entries), opened)
+    all_entries += deferred.entries
+    personal = post_personal_withholdings(ctx, all_entries)
     return RunPostings(
         amounts,
-        pay_items + items + deferred.items,
-        all_entries + deferred.entries,
+        pay_items + items + deferred.items + personal.items,
+        all_entries + personal.entries,
         capped,
         deferred,
+        personal,
     )

@@ -81,6 +81,10 @@ from ccnl_engine.leave.inputs import LeaveTakenEvent
 from ccnl_engine.leave.types import LeaveBucket
 from ccnl_engine.pension_fund.inputs import NoPensionFund, PensionFundEnrolment
 from ccnl_engine.period.inputs import PeriodFacts, PeriodInput
+from ccnl_engine.personal_withholding.inputs import (
+    PersonalWithholding,
+    PersonalWithholdingKind,
+)
 from ccnl_engine.regime.models import (
     EmployerActivity,
     EmploymentSector,
@@ -231,6 +235,16 @@ def _employment(contract: Contract) -> Employment:
         ),
         erc_amount=Decimal(0),
         public_end_of_service=None,
+        personal_withholdings=(
+            PersonalWithholding(
+                "cessione_1",
+                PersonalWithholdingKind.SALARY_ASSIGNMENT,
+                date(2025, 11, 3),
+                date(2026, 1, 1),
+                Decimal("9000.00"),
+                Decimal("250.00"),
+            ),
+        ),
     )
 
 

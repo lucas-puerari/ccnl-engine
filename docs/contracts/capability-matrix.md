@@ -55,9 +55,9 @@ formulas or caller-declared amounts.
 
 | Scope | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
-| core | 21 | 0 | 0 | 0 |
+| core | 22 | 0 | 0 | 0 |
 | scenario | 16 | 10 | 2 | 0 |
-| outside_input | 0 | 0 | 0 | 7 |
+| outside_input | 0 | 0 | 0 | 6 |
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -82,7 +82,7 @@ formulas or caller-declared amounts.
 | `termination_tfr` | Liquidazione TFR a tassazione separata (artt. 17 e 19 TUIR): fondo, quote dell'anno e aliquota media calcolati, importo e aliquota del chiamante come override | scenario | net | native | event | event | — | — | implemented | 2 / 1 / 0 / 0 |
 | `contract_renewal_arrears` | Arretrati rinnovo contratto: tassazione separata se di anni precedenti (aliquota dal chiamante), ordinaria se dell'anno | scenario | gross | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `una_tantum` | Una tantum contrattuale | outside_input | gross | unsupported | outside_input | — | `facts.events[una_tantum]` | — | unavailable | none bundled |
-| `personal_withholdings` | Trattenute personali (pignoramenti, cessioni del quinto, prestiti) | outside_input | net | unsupported | outside_input | — | `facts.personal_withholdings` | — | unavailable | none bundled |
+| `personal_withholdings` | Pignoramenti presso il datore di lavoro, cessioni del quinto e delegazioni sul netto (art. 545 c.p.c., artt. 5 e 68-70 DPR 180/1950, art. 72-ter DPR 602/1973) | core | net | native | decided | decision | — | — | implemented | none bundled |
 | `additional_irpef_base` | Redditi di altri sostituti nella base IRPEF del conguaglio | outside_input | net | unsupported | outside_input | — | `facts.other_withholding_agents_income` | — | unavailable | none bundled |
 | `territorial_supplement` | Integrazione da contratto territoriale (EmployerProfile.second_level_elements) | scenario | gross | caller_supplied | decided | decision | — | — | caller-supplied | none bundled |
 | `company_supplement` | Integrazione da contratto aziendale (EmployerProfile.second_level_elements) | scenario | gross | caller_supplied | decided | decision | — | — | caller-supplied | none bundled |

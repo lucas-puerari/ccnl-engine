@@ -30,14 +30,17 @@ type Money = Decimal
 
 
 class AccountKind(StrEnum):
-    """The twenty-two logical accounts that partition a payroll pay period.
+    """The twenty-three logical accounts that partition a payroll pay period.
 
     The three ``PENSION_FUND`` accounts hold what is paid to a complementary
     pension fund: the employee contribution withheld, the employer
     contribution and the TFR paid to the fund instead of accruing in the
     company.  ``TFR_TREASURY_FUND`` holds the TFR the employer pays monthly
     to the Fondo Tesoreria INPS (L. 296/2006 art. 1 c. 756) instead of
-    accruing it in the company.
+    accruing it in the company.  ``PERSONAL_WITHHOLDINGS`` holds what the
+    employer withholds from the net pay for a third party: a garnishment, a
+    salary assignment or a delegation
+    (:mod:`~ccnl_engine.personal_withholding.services`).
 
     Every entry of the tax and credit accounts is non-negative; the account
     gives the direction:
@@ -77,6 +80,7 @@ class AccountKind(StrEnum):
     PENSION_FUND_EMPLOYER = "pension_fund_employer"
     PENSION_FUND_TFR = "pension_fund_tfr"
     TFR_TREASURY_FUND = "tfr_treasury_fund"
+    PERSONAL_WITHHOLDINGS = "personal_withholdings"
 
 
 class LedgerEntry(BaseModel):

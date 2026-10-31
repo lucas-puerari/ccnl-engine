@@ -227,6 +227,22 @@
       }
     },
     {
+      "id": "personal_withholding_same_kind",
+      "institute": "personal_withholdings",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "Two garnishments of the same kind, or two salary assignments, share the measure of their kind (a fifth, or the tenth or seventh of the agente della riscossione) in the order of notification: art. 545 c. 4 c.p.c. sets 'un quinto per i tributi ... ed in eguale misura per ogni altro credito' and art. 5 DPR 180/1950 a cessione 'fino al quinto', but no text read says how two orders of the same kind split the measure, so the later order may be under- or overstated.",
+      "calculation": "ccnl_engine.personal_withholding.services.same_kind_paths; art. 545 c.p.c. (Normattiva, page sha256 1fa0acce41c8fa68d80eba137bd4fcbe903016fa97ac4df183cc0ce55897ce66); art. 5 DPR 180/1950 (Normattiva, page sha256 461c2014ffdc7d93ddc0761877b9cd4b4964c256165ef252412a3c38a78a4919)",
+      "state": "unverified",
+      "remediation": "Source how the employer splits the measure between two orders of the same kind (art. 499 c.p.c. on the intervention of creditors, case law of the Cassazione) and apply it, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "personal_withholding_same_kind"
+        ]
+      }
+    },
+    {
       "id": "position_pay_fixed_part",
       "institute": "base_salary",
       "variant": "all",

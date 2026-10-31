@@ -145,6 +145,7 @@ ACCOUNT_CAPABILITIES: dict[AccountKind, frozenset[str]] = {
     AccountKind.TFR_SETTLEMENT: frozenset({"termination_tfr"}),
     AccountKind.PENSION_FUND_EMPLOYEE: frozenset({"pension_fund_contribution"}),
     AccountKind.PENSION_FUND_EMPLOYER: frozenset({"pension_fund_contribution"}),
+    AccountKind.PERSONAL_WITHHOLDINGS: frozenset({"personal_withholdings"}),
 }
 
 

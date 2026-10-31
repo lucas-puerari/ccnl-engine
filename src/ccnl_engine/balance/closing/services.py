@@ -31,6 +31,7 @@ if TYPE_CHECKING:
     from ccnl_engine.employment.spell.models import EmploymentSpell
     from ccnl_engine.event.total.handlers import _EventTotals
     from ccnl_engine.ledger.models import LedgerEntry
+    from ccnl_engine.personal_withholding.models import WithheldToDate
     from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
     from ccnl_engine.tax_credit.somma_esente.services import (
         SommaEsenteOutcome,
@@ -74,6 +75,8 @@ class RunOutcome:
         shortfall: IRPEF and surtax not yet withheld after the run.
         deferred: IRPEF of conguagli deferred on written request, still to
             withhold after the run.
+        personal_withholdings: Amount withheld to date per garnishment or
+            salary assignment after the run.
         additional_ivs: Additional 1% IVS the run withheld, negative when
             its conguaglio gave some back.
         history_known: Whether the closing state holds the history of the
@@ -96,6 +99,7 @@ class RunOutcome:
     carried: tuple[RecoveryObligation, ...]
     shortfall: WithholdingShortfall = field(default_factory=WithholdingShortfall)
     deferred: tuple[DeferredShortfall, ...] = ()
+    personal_withholdings: tuple[WithheldToDate, ...] = ()
     additional_ivs: Decimal = _ZERO
     history_known: bool = True
     employment_spells: tuple[EmploymentSpell, ...] = ()
@@ -112,9 +116,11 @@ def closing_state(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
         the current tax year running after the run: trattamento integrativo
         first, then somma esente, then the ulteriore detrazione, whose
         installments are posted by the adjustment runs of the tax year and
-        the runs of the next one; then the surtax still to withhold and the
-        IRPEF deferred on written request.  After the last run of the
-        employment no recovery, no surtax and no deferral is left.
+        the runs of the next one; then the surtax still to withhold, the
+        IRPEF deferred on written request and the amount withheld to date
+        per personal withholding.  After the last run of the employment no
+        recovery, no surtax, no deferral and no personal withholding is
+        left.
 
     Raises:
         DataIntegrityError: When the advanced state breaks an invariant of
@@ -152,6 +158,7 @@ def _advance(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
         recoveries=outcome.carried + current,
         surtax=outcome.amounts.surtax.obligations,
         deferred_shortfall=outcome.deferred,
+        personal_withholdings=outcome.personal_withholdings,
     )
     return PeriodState(
         accrual=opening.accrual.after(

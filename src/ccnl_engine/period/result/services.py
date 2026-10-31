@@ -109,6 +109,7 @@ def _closing(
             carried=recoveries.carried.remaining,
             shortfall=posted.capped.shortfall,
             deferred=posted.deferred.remaining,
+            personal_withholdings=posted.personal.withheld,
             additional_ivs=sum(
                 (
                     c.amount
@@ -210,6 +211,7 @@ def _result(
         + carried.decisions
         + capped.decisions
         + posted.deferred.decisions
+        + posted.personal.decisions
     )
     executed = events.totals.executed_features
     sources = run_rule_sources(ctx, all_decisions, executed)
@@ -228,6 +230,7 @@ def _result(
         + somma.issues
         + capped.issues
         + posted.deferred.issues
+        + posted.personal.issues
         + _input_issues(ctx, events, amounts)
         + missing_source_issues(sources)
     )

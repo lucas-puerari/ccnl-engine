@@ -84,8 +84,8 @@ def run_net(entries: tuple[LedgerEntry, ...]) -> Decimal:
         Cash earnings, TFR settled, credits paid, IRPEF and surtax refunded
         and credit
         recoveries given back, less the credits recovered, the employee
-        contributions, bilateral and pension fund contributions, deductions
-        and every tax withheld.
+        contributions, bilateral and pension fund contributions, deductions,
+        every tax withheld and the personal withholdings.
     """
     return (
         _sum_ledger(entries, AccountKind.CASH_EARNINGS)
@@ -103,6 +103,7 @@ def run_net(entries: tuple[LedgerEntry, ...]) -> Decimal:
         - _sum_ledger(entries, AccountKind.ORDINARY_TAX)
         - _sum_ledger(entries, AccountKind.SURTAX)
         - _sum_ledger(entries, AccountKind.SEPARATE_TAX)
+        - _sum_ledger(entries, AccountKind.PERSONAL_WITHHOLDINGS)
     )
 
 
