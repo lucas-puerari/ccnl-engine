@@ -108,6 +108,11 @@ def test_chained_ratei_name_the_absences_of_the_earlier_months() -> None:
 
     assert "termination_window_absences_unknown" in _codes(november)
     assert "extra_month_paid_before_termination" not in _codes(november)
+    ratei = [d for d in november.decisions if "window_start" in d.inputs]
+    assert ratei
+    assert {(d.status, d.reason_code) for d in ratei} == {
+        ("provisional", "termination_window_absences_unknown")
+    }
 
 
 def test_an_employment_of_one_month_has_no_earlier_absences() -> None:

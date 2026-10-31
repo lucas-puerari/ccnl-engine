@@ -16,6 +16,9 @@ When counting it as suspending would change the months, the rateo is
 undetermined: its decision is provisional, with the reason
 ``required_fact_missing``, and an issue names ``suspends_accrual``.  The
 engine does not decide which absences suspend accrual under the CCNL.
+The ratei a run liquidates at the termination without the absences of the
+earlier months of the window are provisional for the same reason, with
+the reason of their issue, ``termination_window_absences_unknown``.
 """
 
 from __future__ import annotations
@@ -29,6 +32,10 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
 )
 from ccnl_engine.decision.rules import _ccnl_rule
+from ccnl_engine.extra_month.liquidation.services import (
+    ABSENCES_UNKNOWN,
+    settlement_issues,
+)
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 
 if TYPE_CHECKING:
@@ -79,15 +86,24 @@ def accrual_decisions(ctx: RunContext) -> tuple[CalculationDecision, ...]:
     """
     contract = ctx.contract
     version = _ccnl_rule(contract.ccnl, contract.tctx.competence.year)[1]
+    issues = settlement_issues(ctx.request, contract.ccnl, ctx.settlements)
+    open_window = any(i.code == ABSENCES_UNKNOWN for i in issues)
+    unsettled = ctx.settlements if open_window else ()
     return tuple(
         CalculationDecision(
             capability="base_salary",
             status=(
                 CalculationStatus.PROVISIONAL
-                if accrual.undetermined
+                if accrual.undetermined or accrual in unsettled
                 else CalculationStatus.FINAL
             ),
-            reason_code=UNDETERMINED_CODE if accrual.undetermined else REASON_CODE,
+            reason_code=(
+                UNDETERMINED_CODE
+                if accrual.undetermined
+                else ABSENCES_UNKNOWN
+                if accrual in unsettled
+                else REASON_CODE
+            ),
             rule=accrual.rule.rule,
             rule_version=version,
             inputs={
