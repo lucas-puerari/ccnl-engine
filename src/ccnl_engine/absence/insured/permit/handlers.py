@@ -7,6 +7,9 @@ days covered by figurative contributions (art. 44 c. 2).  The deduction
 keeps the TFR base, as payroll practice holds for these permits; art. 2120
 c. 3 c.c. does not list them, so the run records the open engine
 limitation ``disability_permit_tfr``.
+
+An hour of permit is the hourly pay of the CCNL: the full-time monthly pay
+over the CCNL hourly divisor, deducted and paid back alike.
 """
 
 from __future__ import annotations
@@ -40,7 +43,7 @@ PERMIT_TFR_LIMITATION = "disability_permit_tfr"
 def _handle_disability_permit(
     event: DisabilityPermitEvent, ctx: _EventHandlerCtx
 ) -> EventEffect:
-    """Pay the days of permit in the month of the run.
+    """Pay the days and hours of permit in the month of the run.
 
     Returns:
         The items, entries, base deltas, decision and limitation of the
@@ -48,16 +51,24 @@ def _handle_disability_permit(
     """
     terms = ctx.insured
     span = _span(event, terms, PERMITS)
-    if terms is None or terms.pay is None:
+    chain = ctx.hourly.chain
+    if terms is None or terms.pay is None or chain is None:
         return _no_quota(PERMITS)
     days = event.days_within(*span)
     units, deduction = deducted_days(terms.pay, days)
-    indemnity = money(terms.rates.disability_permit.indemnity_rate * deduction)
-    pay = InsuredPay(units, deduction, indemnity, len(days))
+    rate = terms.rates.disability_permit.indemnity_rate
+    indemnity = money(rate * deduction)
+    hours = event.hours_within(*span)
+    monthly = chain.base + chain.seniority + chain.allowances_total
+    hour_pay = money(monthly * hours / terms.hourly_divisor)
+    hour_indemnity = money(rate * hour_pay)
+    pay = InsuredPay(units, deduction + hour_pay, indemnity + hour_indemnity, len(days))
     effect = post_lines(
         (
-            ("abs", -pay.deduction, _INTEGRATION, pay.units),
-            ("inps", pay.indemnity, "maternity_item", Decimal(pay.days)),
+            ("abs", -deduction, _INTEGRATION, units),
+            ("inps", indemnity, "maternity_item", Decimal(len(days))),
+            ("abshours", -hour_pay, _INTEGRATION, hours),
+            ("inpshours", hour_indemnity, "maternity_item", hours),
         ),
         ctx,
     )

@@ -182,6 +182,10 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "on the months at 80% the birth day gives, with a missing_fact "
         "protection_ended_on blocker when the end could give more",
     ),
+    "DisabilityPermitEvent.hours": absence_is_fact(
+        "permits taken as whole days only; hours of permit are a fact of the "
+        "timesheet the event records"
+    ),
     "ParentalLeaveEvent.single_parent": absence_is_fact(
         "two parents; a sole parent is a fact of the family the event records"
     ),
