@@ -250,8 +250,7 @@
       "overtime_bands[OT_FESTIVO_NOTTURNO]": "assumed",
       "overtime_bands[OT_NOTTURNO]": "assumed",
       "seniority_increments": "assumed",
-      "work_rules.absence_rules": "assumed",
-      "work_rules.sickness_rules": "assumed"
+      "work_rules.absence_rules": "assumed"
     },
     "agreement/panificazione-assipan.json": {
       "additional_months[2023-01-01]": "assumed"

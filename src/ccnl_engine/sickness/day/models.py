@@ -125,14 +125,22 @@ class SickPayRules:
 
         Returns:
             The treatment, ``None`` unless the CCNL counts its comporto over
-            the calendar year or windows, or lowers the carenza by event.
+            the calendar year or windows, or by seniority, or lowers the
+            carenza by event.
         """
         ccnl = self.ccnl
-        counted = ccnl.comporto_calendar_year or ccnl.comporto_windows
+        counted = (
+            ccnl.comporto_calendar_year or ccnl.comporto_windows or ccnl.comporto_bands
+        )
         if not counted and ccnl.carenza_by_event is None:
             return None
         return YearTreatment(
-            ccnl, episode, history.earlier(episode), self.worker, self.target_rate
+            ccnl,
+            episode,
+            history.earlier(episode),
+            self.worker,
+            self.target_rate,
+            history.offset(episode),
         )
 
     def treatment(
