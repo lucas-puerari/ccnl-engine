@@ -92,6 +92,26 @@ def test_inps_pays_directly_beyond_the_days_with_this_employer() -> None:
     ]
 
 
+def test_a_regime_paid_directly_has_inps_pay_every_day() -> None:
+    """Operai agricoli a tempo determinato: no days of work stated, INPS pays.
+
+    Days 1-3 are carenza; from day 4 INPS pays its share directly, the
+    days of c. 1 not applying.
+    """
+    direct = _INPS.model_copy(
+        update={
+            "fixed_term": FixedTermSickLimit(short_work_days=30, paid_directly=True)
+        }
+    )
+    rules = replace(_rules(hired_on=date(2026, 2, 21)), inps=direct)
+    episode = SicknessEpisode("a", date(2026, 3, 1), date(2026, 3, 12))
+
+    assert _kinds(episode, rules) == [
+        (date(2026, 3, 1), date(2026, 3, 3), SickDayKind.CARENZA, False),
+        (date(2026, 3, 4), date(2026, 3, 12), SickDayKind.INDEMNIFIED, True),
+    ]
+
+
 def test_thirty_days_a_year_paid_by_inps_when_work_was_short() -> None:
     """20 days of work: 30 days of 2026 paid, every INPS day directly."""
     episode = SicknessEpisode(

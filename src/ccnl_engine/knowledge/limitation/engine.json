@@ -3045,6 +3045,25 @@
       },
       "source": "ccnl_engine.personal_withholding.services.same_kind_paths; art. 545 c.p.c. (Normattiva, page sha256 1fa0acce41c8fa68d80eba137bd4fcbe903016fa97ac4df183cc0ce55897ce66); art. 5 DPR 180/1950 (Normattiva, page sha256 461c2014ffdc7d93ddc0761877b9cd4b4964c256165ef252412a3c38a78a4919)",
       "remediation": "Source how the employer splits the measure between two orders of the same kind (art. 499 c.p.c. on the intervention of creditors, case law of the Cassazione) and apply it, then resolve this limitation."
+    },
+    {
+      "id": "sickness_agricultural_fixed_term_days",
+      "capability": "sickness",
+      "variant": "sickness_agricultural_fixed_term_days",
+      "summary": "INPS pays an operaio agricolo a tempo determinato for as many days as his registration in the elenchi (at most 180 a calendar year), and only when he worked 51 days in agriculture the year before and 51 in the year before the illness. The request states neither the registration days nor the agricultural days, so the engine pays INPS up to the 180 days a year and does not check the 51-day requirements.",
+      "monetary_impact": "unknown",
+      "status": "open",
+      "rulesets": [
+        "operai-agricoli-florovivaisti"
+      ],
+      "applies_when": {
+        "trigger": "path",
+        "contract_types": [
+          "fixed_term"
+        ]
+      },
+      "source": "ccnl_engine.sickness.issue.handlers.episode_limitations; INPS, Indennità di malattia e visite mediche di controllo (scheda informativa, aggiornata al 21/09/2026, page sha256 2c123881b7667eed21bc6971e82ea1106f53eb759d5943e7e964227fe7c67a06), Lavoratori dipendenti: quanto spetta",
+      "remediation": "Add the registration days in the elenchi and the agricultural days of the two years to the facts of the episode, apply them, then resolve this limitation."
     }
   ]
 }

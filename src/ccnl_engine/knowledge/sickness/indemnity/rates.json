@@ -38,7 +38,7 @@
     "published_at": "2026-10-04",
     "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33) for the waiting period and the indemnity; rates, 180-day annual maximum and cover as summarised by Assolombarda, Lavoro a tempo indeterminato - Tutele previdenziali (secondary, read 2026-10-04); not checked against an INPS circular",
     "verification_status": "unverified",
-    "source_hash": "ca2e3875a8092a9441697f01c5665b18f471cd1e5ce907b1d40c513ff8d8b75a",
+    "source_hash": "af166fc97c425eb84f14828bc01c999e5127a96e05758d487a8b216dc817bf2e",
     "source_type": "contracting_party"
   },
   "annual_max_days": 180,
@@ -252,6 +252,59 @@
           },
           "transformation": "The base is the pay of the last 40 daily contributions over their number (kind last_contributions); for a fixed-term worker (rapporti di durata limitata, art. 2 c. 1 lett. a D.Lgs. 182/1997) it is capped by the daily ceiling of art. 6 c. 15 D.L. 536/1987, raised to 100 EUR for the events from 26 May 2021 ('Tale massimale [...] è stato elevato da euro 67,14 a euro 100, ai sensi del comma 3 del predetto articolo 66'). The cap of the self-employed is outside the engine, which pays employees.",
           "note": "Same copy of the INPS circular as the regime rates (same sha256)."
+        }
+      }
+    },
+    {
+      "id": "agricoltura",
+      "description": "Lavoratori dell'agricoltura: the general bands; INPS pays the operai agricoli a tempo determinato directly, for the days of their registration in the elenchi (at most 180 a year), when they worked 51 days in agriculture the year before and 51 in the year before the illness.",
+      "bands": [
+        {
+          "day_from": 4,
+          "day_to": 20,
+          "rate": "0.50",
+          "description": "Days 4-20: INPS pays 50% of daily reference base"
+        },
+        {
+          "day_from": 21,
+          "day_to": 180,
+          "rate": "0.6666",
+          "description": "Days 21-180: INPS pays 66.66% of daily reference base"
+        }
+      ],
+      "additional_contribution": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-scheda-indennita-malattia",
+            "title": "INPS, Indennità di malattia e visite mediche di controllo (scheda informativa, aggiornata al 21/09/2026)",
+            "kind": "amministrazione",
+            "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.indennit--di-malattia-e-visite-mediche-di-controllo.html",
+            "sha256": "2c123881b7667eed21bc6971e82ea1106f53eb759d5943e7e964227fe7c67a06"
+          },
+          "section": "Lavoratori dipendenti: quanto spetta",
+          "quote": "Ai lavoratori dell’agricoltura spetta: per massimo 180 giorni nell’anno solare, se hanno effettivamente iniziato l’attività lavorativa e sono assunti con contratto di lavoro a tempo indeterminato"
+        },
+        "transformation": "The page gives the lavoratori dell'agricoltura no rates of their own: the general bands (50% days 4-20, 66.66% days 21-180) apply. Their sickness contribution is in the agricultural rates, not a supplement of the INPS table."
+      },
+      "fixed_term": {
+        "short_work_days": 30,
+        "paid_directly": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "inps-scheda-indennita-malattia",
+              "title": "INPS, Indennità di malattia e visite mediche di controllo (scheda informativa, aggiornata al 21/09/2026)",
+              "kind": "amministrazione",
+              "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.indennit--di-malattia-e-visite-mediche-di-controllo.html",
+              "sha256": "2c123881b7667eed21bc6971e82ea1106f53eb759d5943e7e964227fe7c67a06"
+            },
+            "section": "Lavoratori dipendenti: modalità di pagamento",
+            "quote": "Per alcune tipologie di lavoratori è previsto il pagamento diretto da parte dell’INPS (operai agricoli a tempo determinato, lavoratori non agricoli a tempo determinato per le giornate non indennizzate dal datore di lavoro"
+          },
+          "transformation": "The employer advances nothing to an operaio agricolo a tempo determinato: INPS pays its share of every day directly. The days of D.L. 463/1983 art. 5 c. 1 do not apply: the page gives the agricultural fixed-term worker 'un numero di giorni pari al numero di giorni di iscrizione negli elenchi (fino a un massimo di 180 giorni nell’anno solare)' with 51 days of agricultural work the year before and 51 in the current year, which the request does not state (limitation sickness_agricultural_fixed_term_days); the engine caps the days at the 180 a year. short_work_days keeps the 30 days of c. 3 only to satisfy the shared model and is not read on this path."
         }
       }
     }

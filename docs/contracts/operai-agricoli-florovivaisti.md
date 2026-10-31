@@ -355,6 +355,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source how the employer splits the measure between two orders of the same kind (art. 499 c.p.c. on the intervention of creditors, case law of the Cassazione) and apply it, then resolve this limitation.
 
+!!! warning "sickness_agricultural_fixed_term_days · sickness · impact unknown · open"
+    INPS pays an operaio agricolo a tempo determinato for as many days as his registration in the elenchi (at most 180 a calendar year), and only when he worked 51 days in agriculture the year before and 51 in the year before the illness. The request states neither the registration days nor the agricultural days, so the engine pays INPS up to the 180 days a year and does not check the 51-day requirements.
+
+    **Applies when:** `sickness` applies; the run takes the engine code path; contract type in fixed_term.
+
+    **Remediation:** Add the registration days in the elenchi and the agricultural days of the two years to the facts of the episode, apply them, then resolve this limitation.
+
 ### Without monetary impact
 
 !!! note ""
