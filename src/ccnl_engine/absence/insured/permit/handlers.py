@@ -11,12 +11,14 @@ limitation ``disability_permit_tfr``.
 An hour of permit is the hourly base of the CCNL on its day
 (:class:`~ccnl_engine.working_time.hourly.policies.HourlyTerms`), deducted
 and paid back alike.  Where the engine cannot derive that base the hours
-post nothing and the run records the ``incomplete`` issue
-``disability_permit_hours_underived`` naming the reason.
+post nothing: the run records the ``incomplete`` issue
+``disability_permit_hours_underived`` naming the reason, and the decision
+of the permits is ``incomplete`` with the same reason.
 """
 
 from __future__ import annotations
 
+from dataclasses import replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -117,9 +119,11 @@ def _handle_disability_permit(
         ),
         ctx,
     )
-    effect.decisions = [
-        _decision(PERMITS, terms, span, pay, modelled=True, advanced=True)
-    ]
+    decision = _decision(PERMITS, terms, span, pay, modelled=True, advanced=True)
+    if issues:
+        incomplete = CalculationStatus.INCOMPLETE
+        decision = replace(decision, status=incomplete, reason_code=HOURS_UNDERIVED)
+    effect.decisions = [decision]
     effect.issues = issues
     effect.limitations = (PERMIT_TFR_LIMITATION,)
     return effect
