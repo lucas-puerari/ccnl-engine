@@ -378,6 +378,23 @@ def test_a_hire_of_the_year_counts_its_quotas_from_its_month() -> None:
     assert due.inputs["quotas_before_run"] == Decimal(0)
 
 
+def test_a_fixed_term_of_up_to_two_years_takes_the_tax_deduction() -> None:
+    """Art. 19 c. 1-ter TUIR: 61.97 a year, by the month: 20 months, 103.28.
+
+    Lire 120,000 at 1,936.27 lire a euro is 61.97; from 1 June 2024 to 31
+    January 2026 are 20 months of service: 61.97 * 20 / 12 = 103.283.
+    """
+    period = EmploymentPeriod(date(2024, 6, 1), date(2026, 1, 31))
+    fixed = _settlement(_run(employment_period=period, contract_type=FixedTerm()))
+    open_ended = _settlement(_run(employment_period=period))
+
+    assert fixed[1].inputs["fixed_term_deduction"] == Decimal("103.28")
+    assert open_ended[1].inputs["fixed_term_deduction"] == Decimal(0)
+    assert fixed[1].amount is not None
+    assert open_ended[1].amount is not None
+    assert open_ended[1].amount - fixed[1].amount == Decimal("103.28")
+
+
 def test_a_month_of_the_year_not_closed_leaves_the_quotas_unknown() -> None:
     """A March termination opened without January and February runs."""
     result = _run(
@@ -419,16 +436,6 @@ def test_a_tfr_paid_to_a_pension_fund_is_not_computed() -> None:
                 )
             },
             "advances_not_modelled",
-            None,
-        ),
-        (
-            {
-                "employment_period": EmploymentPeriod(
-                    date(2024, 6, 1), date(2026, 1, 31)
-                ),
-                "contract_type": FixedTerm(),
-            },
-            "fixed_term_deduction_not_modelled",
             None,
         ),
         # Hired in 1995: the TFR accrued up to 31 December 2000 keeps the

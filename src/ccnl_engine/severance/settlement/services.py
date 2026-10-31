@@ -14,25 +14,23 @@ asks the engine for the TFR it pays and the tax it withholds:
 - the reference income is the taxable divided by the years and fraction
   of year of service, counted in months (art. 2120 c. 1 c.c.: a fraction
   of at least 15 days is a whole month), times 12; the average IRPEF rate
-  on it, at the art. 11 brackets of the termination year, taxes the TFR.
-  The offices reliquidate the tax later on the average rate of the five
-  years before: the employer withholds at this rate.
+  on it, at the art. 11 brackets of the termination year, taxes the TFR
+  (the offices reliquidate it later on the rate of the five years before).
 
-The yearly revaluation of the past years was taxed at the substitute rate
-when it was credited, so neither the payout nor the taxable counts it
-twice.  The revaluation of the termination year for a fraction of year
-(art. 2120 c. 5) needs the FOI index of the last month counted: until the
-bundle holds it the TFR posted leaves the revaluation out and its decision
-is incomplete, while the tax, which does not depend on it, stays final.
+The past revaluations were taxed at the substitute rate when credited:
+neither the payout nor the taxable counts them twice.  The revaluation of
+the year for a fraction of it (art. 2120 c. 5) needs the FOI index of the
+last month counted: until the bundle holds it the TFR leaves it out and
+its decision is incomplete; the tax, which does not depend on it, stays.
 
 Not computed, with an incomplete decision and the fact or the reason in
 an issue: a TFR at INPS (public TFS or TFR at INPS) or paid to a pension
 fund (whose sums art. 19 c. 1 adds to the reference income; the employer
 pays the share of the Fondo Tesoreria INPS, circ. 70/2007 par. 7.1); an
 unknown fund or quotas of the year; a fund with advances (art. 19 c. 4,
-the conguaglio of their tax); a fixed term of up to two years (the
-deduction of art. 19 c. 1-ter); a termination in a year without
-settlement rules, or paid in another tax year than the termination's.
+the conguaglio of their tax); a termination in a year without settlement
+rules, or paid in another tax year than the termination's.  The tax of a
+fixed term of up to two years takes the deduction of art. 19 c. 1-ter.
 """
 
 from __future__ import annotations
@@ -71,6 +69,7 @@ from ccnl_engine.severance.settlement.posting.services import _postings
 from ccnl_engine.severance.settlement.tax.rules import (
     _tax_gap,
     average_rate,
+    fixed_term_deduction,
     months_of_service,
 )
 from ccnl_engine.termination.inputs import TerminationTFREvent
@@ -232,9 +231,8 @@ def _with_tax(
     taxable = fund.amount - (fund.revaluations or _ZERO) + quotas
     inputs = {**settlement.inputs, "revaluations_taxed": fund.revaluations or _ZERO}
     inputs["taxable"] = taxable
-    caller = event.separate_tax_rate
+    caller, deduction = event.separate_tax_rate, _ZERO
     if caller is not None or rules is None or months is None:
-        # _tax_gap lets a settlement without rules through only with a rate.
         rate = caller or _ZERO
     else:
         brackets = ctx.contract.year_rules.irpef_brackets
@@ -242,7 +240,9 @@ def _with_tax(
         inputs["reference_income"] = money(reference)
         inputs["average_rate"] = rate
         inputs["brackets_year"] = str(ctx.contract.year_rules.year)
-    tax = money(max(taxable, _ZERO) * rate)
+        deduction = fixed_term_deduction(ctx, rules, months)
+        inputs["fixed_term_deduction"] = deduction
+    tax = max(_ZERO, money(max(taxable, _ZERO) * rate) - deduction)
     inputs["tax"] = tax
     return TfrSettlement(
         settlement.payout,

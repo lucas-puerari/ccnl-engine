@@ -398,11 +398,15 @@ and stays final.
 | No `employment_period`, no `tfr_fund` of the year before (an employment of the year without one has an empty fund), unknown quotas of the year (balances of that year imported without `tfr_quotas`, or a regular month of the year not closed) | not computed, `missing_fact` | not computed |
 | `tfr_fund.revaluations` not stated on a non-empty fund | posted | `missing_fact` `revaluations` |
 | `tfr_fund.advances` not stated, or advances paid (art. 19 c. 4, `advances_not_modelled`) | posted | not computed |
-| Fixed term of up to 24 months (art. 19 c. 1-ter, `fixed_term_deduction_not_modelled`) | posted | not computed |
 | Employment started before 1 January 2001: the TFR accrued up to 2000 keeps the earlier rules (D.Lgs. 47/2000 art. 11 c. 1, `tfr_before_2001_not_modelled`) | posted | not computed |
 | A year without settlement rules (from 2027, D.Lgs. 117/2026), or a run paid in another tax year than the termination's (`rule_not_in_bundle`) | posted | not computed |
 
 Each gap leaves its decision `incomplete` and the run not payable.
+
+The tax of a fixed term of no more than two years of effective duration
+is lowered by 61.97 EUR a year, by the month (lire 120,000, art. 19 c. 1-ter
+TUIR), in proportion to the hours of a part time, down to zero at most; the
+tax decision records it as `fixed_term_deduction`.
 
 A TFR at the Fondo Tesoreria INPS is no gap: "La liquidazione delle
 prestazioni viene effettuata integralmente dal datore di lavoro, anche per

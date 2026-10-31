@@ -5720,7 +5720,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/tfr-settlement",
       "ruleset_version": "2026.1",
-      "source_hash": "c33cb6f984adb4d801d105cced17af0c1121a7ab92241b4f19ffd769cc35a7c8",
+      "source_hash": "a72d0d735fc46d213bb54bce40fab7af62611bf02634a27f33bf10ba1508e6d3",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "severance/settlement/2026.json.gz",
