@@ -18,6 +18,7 @@ from ccnl_engine.absence.insured.rest.inputs import NursingRestEvent
 from ccnl_engine.leave.inputs import LeaveTakenEvent
 from ccnl_engine.sickness.models import SicknessEpisode
 from ccnl_engine.termination.inputs import TerminationTFREvent
+from ccnl_engine.termination.notice.inputs import NoticeIndemnityEvent
 from ccnl_engine.variable_pay.inputs import (
     ArrearsEvent,
     BilateralFundEvent,
@@ -50,6 +51,7 @@ WorkEvent = (
     | ParentalLeaveEvent
     | DisabilityPermitEvent
     | NursingRestEvent
+    | NoticeIndemnityEvent
     | ExtraordinaryLeaveEvent
     | WorkInjuryEvent
     | BonusEvent
@@ -77,6 +79,7 @@ WORK_EVENT_TYPES: tuple[type[WorkEvent], ...] = (
     ParentalLeaveEvent,
     DisabilityPermitEvent,
     NursingRestEvent,
+    NoticeIndemnityEvent,
     ExtraordinaryLeaveEvent,
     WorkInjuryEvent,
     BonusEvent,

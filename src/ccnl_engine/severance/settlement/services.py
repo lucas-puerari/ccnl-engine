@@ -131,12 +131,17 @@ class TfrSettlement:
 
 @dataclass(frozen=True)
 class TfrSettlementEffect:
-    """Items, entries, decisions and issues of the computed settlements."""
+    """Items, entries, decisions and issues of the computed settlements.
+
+    ``rate``: the rate the first settlement taxed with, which art. 19 c. 2
+    TUIR applies to the other indemnities; ``None`` when none was taxed.
+    """
 
     items: tuple[PayItem, ...] = ()
     entries: tuple[LedgerEntry, ...] = ()
     decisions: tuple[CalculationDecision, ...] = ()
     issues: tuple[CalculationIssue, ...] = ()
+    rate: Decimal | None = None
 
 
 def tfr_settlement(
@@ -249,6 +254,15 @@ def _with_tax(
     )
 
 
+def _applied_rate(settlement: TfrSettlement) -> Decimal | None:
+    if settlement.tax is None:
+        return None
+    if settlement.caller_rate is not None:
+        return settlement.caller_rate
+    rate = settlement.inputs.get("average_rate")
+    return rate if isinstance(rate, Decimal) else None
+
+
 def settle_terminations(
     ctx: RunContext, run_quota: Decimal, *, run_to_pension_fund: bool
 ) -> TfrSettlementEffect:
@@ -281,5 +295,6 @@ def settle_terminations(
                 _tax_decision(ctx, settlement),
             ),
             effect.issues + _issues(settlement),
+            effect.rate if effect.rate is not None else _applied_rate(settlement),
         )
     return effect

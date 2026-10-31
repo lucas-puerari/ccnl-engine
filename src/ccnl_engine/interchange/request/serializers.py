@@ -81,6 +81,7 @@ from ccnl_engine.seniority.inputs import (
 )
 from ccnl_engine.severance.provision.models import TfrFundBalance
 from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
+from ccnl_engine.termination.notice.models import TerminationCause
 from ccnl_engine.withholding.deferral.inputs import ShortfallDeferralRequest
 from ccnl_engine.working_time.inputs import (
     HolidayWorkKind,
@@ -178,6 +179,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             SubstituteTaxRegime,
             TaxSector,
             TaxYearPlan,
+            TerminationCause,
             TfrFundBalance,
             WeeklyHours,
             WorkCalendar,

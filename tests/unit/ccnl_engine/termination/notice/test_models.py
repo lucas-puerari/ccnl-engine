@@ -8,12 +8,17 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
+from ccnl_engine.event.handlers import EventEffect
+from ccnl_engine.inputs import SeniorityFact, SenioritySource
+from ccnl_engine.termination.notice.handlers import _band as _band_of
+from ccnl_engine.termination.notice.inputs import NoticeIndemnityEvent
 from ccnl_engine.termination.notice.models import (
     NoticeBand,
     NoticeRules,
     TerminationCause,
 )
 from ccnl_engine.termination.notice.rules import notice_period
+from ccnl_engine.termination.notice.services import NoticeTerms
 from tests.knowledge.ccnl_engine.termination.test_notice import RULES
 
 _D, _R = TerminationCause.DISMISSAL, TerminationCause.RESIGNATION
@@ -79,10 +84,11 @@ def test_the_notice_runs_from_the_next_day(
     received: date, months: int, days: int, last: date
 ) -> None:
     """Art. 2963 c.c.: the corresponding day of the last month, then days."""
-    period = notice_period(_band(None, months, days), received)
+    band = _band(None, months, days)
+    period = notice_period(band, received)
 
     assert period.first_day == date.fromordinal(received.toordinal() + 1)
-    assert period.last_day == last
+    assert (period.last_day, period.band) == (last, band)
 
 
 def test_the_days_left_unworked() -> None:
@@ -94,3 +100,26 @@ def test_the_days_left_unworked() -> None:
     assert period.unworked_days(date(2026, 2, 28)) == 28
     assert period.unworked_days(date(2026, 3, 28)) == 0
     assert period.unworked_days(date(2026, 4, 2)) == 0
+
+
+def test_a_level_the_ccnl_notice_omits_has_no_indemnity() -> None:
+    """No band for the level: an incomplete rule issue, no amount."""
+    terms = NoticeTerms(
+        rules=NoticeRules(bands=(_band(None),), provenance=RULES.provenance),
+        level="Z",
+        seniority=SeniorityFact.since(date(2020, 1, 1), SenioritySource.PAYSLIP),
+        ended_on=date(2026, 3, 31),
+        permanent=True,
+        monthly=Decimal(2000),
+        rule="ccnl/x:work_rules.notice",
+        rule_version="1",
+    )
+
+    effect = _band_of(
+        NoticeIndemnityEvent(date(2026, 3, 1), _D, just_cause=False), terms
+    )
+
+    assert isinstance(effect, EventEffect)
+    assert [(i.code, i.cause) for i in effect.issues] == [
+        ("notice_band_missing", "rule")
+    ]

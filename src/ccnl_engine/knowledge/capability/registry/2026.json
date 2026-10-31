@@ -167,6 +167,19 @@
       "description": "Riposi giornalieri D.Lgs. 151/2001 artt. 39-41: indennità INPS pari all'intera retribuzione delle ore, anticipata dal datore"
     },
     {
+      "feature": "termination_notice",
+      "layer": "work_rules",
+      "implementation": "native",
+      "applies_when": "event",
+      "handler": "event",
+      "evidence": "derived",
+      "variants": [
+        "notice_indemnity"
+      ],
+      "required_facts": [],
+      "description": "Preavviso: indennità sostitutiva del preavviso non lavorato (art. 2118 c.c.), dovuta dal datore, sulla tabella CCNL; tassazione separata con l'aliquota del TFR (art. 19 c. 2 TUIR)"
+    },
+    {
       "feature": "extraordinary_leave",
       "layer": "work_rules",
       "implementation": "native",

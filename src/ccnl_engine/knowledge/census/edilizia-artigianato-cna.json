@@ -163,6 +163,54 @@
       }
     },
     {
+      "id": "notice_indemnity_extra_months",
+      "institute": "termination_notice",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The indemnity is the monthly pays of the CCNL band on the monthly pay of art. 2121 c.c.; the 13th and 14th the notice would have accrued are not added, although art. 2121 counts 'ogni altro compenso di carattere continuativo', so the indemnity may be understated.",
+      "calculation": "ccnl_engine.termination.notice.handlers._handle_notice_indemnity; art. 2121 c.c. (Normattiva, page sha256 209f2f9e1b21f1c41b8d413496e3a5abf062616cf6d87f22c01625cbe3bf408f)",
+      "state": "absent",
+      "remediation": "Source whether the indemnity carries the rateo of the extra months (CCNL clause or case law) and add it, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "notice_indemnity_extra_months"
+        ]
+      }
+    },
+    {
+      "id": "notice_indemnity_partial",
+      "institute": "termination_notice",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "A notice partly worked pays the share of its calendar days left of the indemnity the CCNL band gives in monthly pays; the CCNL clause read (Federmeccanica Sez. Quarta Tit. VIII Art. 1) states the indemnity of the whole notice only, and practice also measures the rest by 30ths or 26ths of the monthly pay.",
+      "calculation": "ccnl_engine.termination.notice.handlers._handle_notice_indemnity; art. 2118 c. 2 c.c. (Normattiva, page sha256 4452820aa5b54831d6c7295a8e1ac8035d9ea4babba3db388188c6101ab4cc3f)",
+      "state": "unverified",
+      "remediation": "Source how the CCNL or case law measures the indemnity of a notice partly worked and apply it, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "notice_indemnity_partial"
+        ]
+      }
+    },
+    {
+      "id": "notice_indemnity_tfr",
+      "institute": "termination_notice",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The notice indemnity enters the TFR base as payroll practice holds; art. 2120 c. 2 c.c. counts the sums paid 'a titolo non occasionale' and no primary source read settles whether this indemnity is among them, so the TFR quota of the termination run may be overstated.",
+      "calculation": "ccnl_engine.termination.notice.handlers._handle_notice_indemnity; art. 2120 c.c. (Normattiva, page sha256 45dbc6519992406a3ed0e764b69b7367c8ebf6151d28e3ec193fe868e7b98c27)",
+      "state": "unverified",
+      "remediation": "Source the TFR treatment of the notice indemnity (case law of the Cassazione or a Ministry ruling) and apply it, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "notice_indemnity_tfr"
+        ]
+      }
+    },
+    {
       "id": "parental_daily_base",
       "institute": "parental_leave",
       "variant": "all",

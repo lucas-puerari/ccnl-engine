@@ -197,6 +197,27 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the TFR treatment of the permit days (an INPS or Ministry ruling, or case law of the Cassazione) and apply it, then resolve this limitation.
 
+!!! warning "notice_indemnity_partial · termination_notice · impact unknown · open"
+    A notice partly worked pays the share of its calendar days left of the indemnity the CCNL band gives in monthly pays; the CCNL clause read (Federmeccanica Sez. Quarta Tit. VIII Art. 1) states the indemnity of the whole notice only, and practice also measures the rest by 30ths or 26ths of the monthly pay.
+
+    **Applies when:** `termination_notice` applies; the run takes the engine code path.
+
+    **Remediation:** Source how the CCNL or case law measures the indemnity of a notice partly worked and apply it, then resolve this limitation.
+
+!!! warning "notice_indemnity_extra_months · termination_notice · impact yes · open"
+    The indemnity is the monthly pays of the CCNL band on the monthly pay of art. 2121 c.c.; the 13th and 14th the notice would have accrued are not added, although art. 2121 counts 'ogni altro compenso di carattere continuativo', so the indemnity may be understated.
+
+    **Applies when:** `termination_notice` applies; the run takes the engine code path.
+
+    **Remediation:** Source whether the indemnity carries the rateo of the extra months (CCNL clause or case law) and add it, then resolve this limitation.
+
+!!! warning "notice_indemnity_tfr · termination_notice · impact unknown · open"
+    The notice indemnity enters the TFR base as payroll practice holds; art. 2120 c. 2 c.c. counts the sums paid 'a titolo non occasionale' and no primary source read settles whether this indemnity is among them, so the TFR quota of the termination run may be overstated.
+
+    **Applies when:** `termination_notice` applies; the run takes the engine code path.
+
+    **Remediation:** Source the TFR treatment of the notice indemnity (case law of the Cassazione or a Ministry ruling) and apply it, then resolve this limitation.
+
 !!! warning "extraordinary_leave_daily_base · extraordinary_leave · impact unknown · open"
     The daily indemnity of the extraordinary leave is the last monthly pay of fixed and continuous items times the monthly payments of a year over 365: art. 42 c. 5-ter D.Lgs. 151/2001 and INPS messaggio 30/2024 set the pay and its rateo of the extra months, and the INPS table of the yearly maximum divides it by 365 (2026: 43,486.00 / 365 = 119.14), but no source read states the divisor of the worker's own pay.
 

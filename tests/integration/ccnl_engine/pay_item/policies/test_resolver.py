@@ -209,13 +209,14 @@ class TestMisclassificationFixes:
         assert result is not None
         assert result.tax == TaxAxis.SUBSTITUTE
 
-    def test_termination_payment_uses_separate_taxation(self) -> None:
-        """Cessation payments, including notice indemnity, use TUIR art. 17."""
+    def test_the_notice_indemnity_is_taxed_apart_and_contributed(self) -> None:
+        """Art. 17 TUIR taxes it apart; art. 12 c. 4 b) L. 153/1969 keeps INPS."""
         resolver = load_policy_resolver()
-        result = resolver.resolve("termination_item", _ctx())
+        result = resolver.resolve("notice_indemnity_item", _ctx())
         assert result is not None
         assert result.tax == TaxAxis.SEPARATE
-        assert "Art. 17 c. 1 lett. a)" in result.legal_basis
+        assert result.contribution == ContributionAxis.INCLUDED
+        assert "art. 17 c. 1 lett. a) TUIR" in result.legal_basis
 
     def test_tfr_settlement_names_separate_tax_basis(self) -> None:
         """The TFR settlement cites both its civil and tax treatment."""

@@ -32,6 +32,7 @@ from ccnl_engine.event.facade import (
     LeaveTakenEvent,
     MaternityLeaveEvent,
     NightShiftEvent,
+    NoticeIndemnityEvent,
     NursingRestEvent,
     OvertimeEvent,
     ParentalLeaveEvent,
@@ -57,6 +58,7 @@ from ccnl_engine.termination.handlers import (
     _handle_bilateral_fund,
     _handle_termination_tfr,
 )
+from ccnl_engine.termination.notice.handlers import _handle_notice_indemnity
 from ccnl_engine.variable_pay.arrears.handlers import _handle_arrears
 from ccnl_engine.variable_pay.benefit.handlers import (
     _handle_fringe,
@@ -92,6 +94,7 @@ _HANDLER_REGISTRY: dict[type, _EventHandlerFn] = {
     ParentalLeaveEvent: _handle_parental_leave,
     DisabilityPermitEvent: _handle_disability_permit,
     NursingRestEvent: _handle_nursing_rest,
+    NoticeIndemnityEvent: _handle_notice_indemnity,
     ExtraordinaryLeaveEvent: _handle_extraordinary_leave,
     WorkInjuryEvent: _handle_work_injury,
 }

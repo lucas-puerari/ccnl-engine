@@ -17,6 +17,7 @@ _NOTICE = load_ccnl("metalmeccanico-federmeccanica").work_rules
 assert _NOTICE is not None
 assert _NOTICE.notice is not None
 RULES = _NOTICE.notice
+_D, _R = TerminationCause.DISMISSAL, TerminationCause.RESIGNATION
 
 
 @pytest.mark.parametrize(
@@ -33,7 +34,9 @@ RULES = _NOTICE.notice
         ("D2", 121, 1, 0, "1"),
     ],
 )
-@pytest.mark.parametrize("cause", list(TerminationCause))
+@pytest.mark.parametrize(
+    "cause", [TerminationCause.DISMISSAL, TerminationCause.RESIGNATION]
+)
 def test_the_table_of_art_1(
     level: str,
     service: int,

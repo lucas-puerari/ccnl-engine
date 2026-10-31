@@ -31,6 +31,7 @@ if TYPE_CHECKING:
         PreferentialTaxRegime,
     )
     from ccnl_engine.sickness.models import SicknessEpisode
+    from ccnl_engine.termination.notice.services import NoticeTerms
     from ccnl_engine.variable_pay.models import TravelAllowanceRules
     from ccnl_engine.variable_pay.travel.handlers import TravelTerms
     from ccnl_engine.working_time.standby.handlers import StandbyTerms
@@ -83,7 +84,8 @@ class _EventHandlerCtx:
     and the episodes a sickness episode is paid with, updated after each;
     ``travel_allowance`` the exempt caps a travel allowance is assessed with;
     ``standby`` the CCNL standby rates and the worker's level; ``leave``
-    the CCNL leave rules a leave taken is decided with.
+    the CCNL leave rules a leave taken is decided with; ``notice`` the
+    CCNL notice the indemnity of a termination is computed with.
     """
 
     evt_id: str
@@ -107,6 +109,7 @@ class _EventHandlerCtx:
     standby: StandbyTerms | None = None
     ccnl_travel: TravelTerms | None = None
     leave: LeaveTerms | None = None
+    notice: NoticeTerms | None = None
 
     @property
     def tax_year(self) -> int:
@@ -129,6 +132,9 @@ class EventEffect:
             the pay of the period, as a premium (art. 23 c. 2 lett. b) DPR
             600/1973).
         substitute_delta: Increase in the PdR substitute-tax base.
+        apart_inps_delta: Part of ``inps_delta`` taxed apart (art. 17 TUIR):
+            its employee contributions reduce that taxable, not the
+            ordinary one (art. 19 c. 2).
         fringe_value: Total fringe benefit value (FringeEvent only).
         fringe_inps: Fringe INPS-taxable portion (FringeEvent only).
         fringe_irpef: Fringe IRPEF-taxable portion (FringeEvent only).
@@ -152,6 +158,7 @@ class EventEffect:
     irpef_delta: Decimal = _ZERO
     separate_irpef_delta: Decimal = _ZERO
     substitute_delta: Decimal = _ZERO
+    apart_inps_delta: Decimal = _ZERO
     fringe_value: Decimal = _ZERO
     fringe_inps: Decimal = _ZERO
     fringe_irpef: Decimal = _ZERO

@@ -33,6 +33,7 @@ def _inp(**changes: object) -> Any:  # noqa: ANN401
         "event_substitute_base": _D(0),
         "event_irpef_base": _D(0),
         "event_separate_base": _D(0),
+        "event_apart_inps_base": _D(0),
         "monthly_gross": _D(2000),
         "upcoming_gross": _D(12000),
         "additional_month": False,
@@ -107,3 +108,12 @@ def test_lett_b_withholds_the_premiums_net_of_the_inps_of_the_run(
     )
 
     assert taxable.separate == min(expected, taxable.period)
+
+
+def test_the_inps_of_the_pay_taxed_apart_is_no_ordinary_deduction() -> None:
+    """Art. 19 c. 2 TUIR: 1000 taxed apart at 9.49% gives 94.90 back."""
+    plain = taxable_income(_inp(), _D("189.80"), _D("0.0949"), pdr_split(_inp()))
+    inp = _inp(event_apart_inps_base=_D(1000))
+    apart = taxable_income(inp, _D("284.70"), _D("0.0949"), pdr_split(inp))
+
+    assert (apart.period, apart.apart_inps) == (plain.period, _D("94.90"))

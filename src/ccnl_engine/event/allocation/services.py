@@ -15,6 +15,7 @@ from ccnl_engine.event.facade import (
     DisabilityPermitEvent,
     ExtraordinaryLeaveEvent,
     MaternityLeaveEvent,
+    NoticeIndemnityEvent,
     NursingRestEvent,
     ParentalLeaveEvent,
     PaternityLeaveEvent,
@@ -55,6 +56,7 @@ if TYPE_CHECKING:
     from ccnl_engine.regime.models import (
         PreferentialTaxRegime,
     )
+    from ccnl_engine.termination.notice.services import NoticeTerms
     from ccnl_engine.variable_pay.models import TravelAllowanceRules
     from ccnl_engine.variable_pay.travel.handlers import TravelTerms
     from ccnl_engine.working_time.standby.handlers import StandbyTerms
@@ -95,7 +97,7 @@ def _check_event_date(
     Raises:
         InvalidInputError: When any validation fails.
     """
-    if isinstance(event, ArrearsEvent):
+    if isinstance(event, ArrearsEvent | NoticeIndemnityEvent):
         return
     if isinstance(
         event,
@@ -238,6 +240,7 @@ def _process_events(
     standby: StandbyTerms | None = None,
     ccnl_travel: TravelTerms | None = None,
     leave: LeaveTerms | None = None,
+    notice: NoticeTerms | None = None,
 ) -> tuple[_EventTotals, tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
     """Translate variable work events into accounting entries and aggregated totals.
 
@@ -283,6 +286,7 @@ def _process_events(
         standby=standby,
         ccnl_travel=ccnl_travel,
         leave=leave,
+        notice=notice,
     )
     _run_handlers(events, base_ctx, (tag, date_ctx), acc)
     return (
