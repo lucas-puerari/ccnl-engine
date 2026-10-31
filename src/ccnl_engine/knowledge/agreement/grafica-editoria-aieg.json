@@ -210,7 +210,30 @@
             {
               "valid_from": "2024-03-01",
               "valid_until": "2026-07-01",
-              "gap_kind": "missing"
+              "value": "16.01",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-grafici-editoriali-2021-uilcom",
+                    "title": "CCNL 19 gennaio 2021 per i dipendenti delle aziende grafiche ed affini e delle aziende editoriali (edizione a stampa autorizzata, UILCOM-UIL)",
+                    "kind": "associazione",
+                    "url": "https://www.uilcom.it/wp-content/uploads/2023/10/CCNL-GRAFICI.pdf",
+                    "published_on": "2021-01-19",
+                    "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+                  },
+                  "page": "80, 91",
+                  "section": "Parte seconda (operai) e Parte terza (impiegati), Art. 9 - Aumenti periodici di anzianita",
+                  "quote": "per ogni biennio e fino ad un massimo di 5 bienni un aumento in cifra fissa [...] Grafici gruppo a= € 16,01; B/1s= € 14,46; B/1= € 14,46; B/2= € 13,94; B/3= € 13,43; C/1= € 12,91; C/2= € 12,39 [Parte terza]; [...] d/1= € 11,88; d/2= € 11,36; e= € 10,33 [Parte seconda]"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-10-31T00:00:00",
+                  "verification_status": "unverified",
+                  "effective_from": "2024-03-01"
+                }
+              }
             },
             {
               "valid_from": "2026-07-01",
@@ -224,7 +247,30 @@
             {
               "valid_from": "2024-03-01",
               "valid_until": "2026-07-01",
-              "gap_kind": "missing"
+              "value": "16.01",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-grafici-editoriali-2021-uilcom",
+                    "title": "CCNL 19 gennaio 2021 per i dipendenti delle aziende grafiche ed affini e delle aziende editoriali (edizione a stampa autorizzata, UILCOM-UIL)",
+                    "kind": "associazione",
+                    "url": "https://www.uilcom.it/wp-content/uploads/2023/10/CCNL-GRAFICI.pdf",
+                    "published_on": "2021-01-19",
+                    "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+                  },
+                  "page": "80, 91",
+                  "section": "Parte seconda (operai) e Parte terza (impiegati), Art. 9 - Aumenti periodici di anzianita",
+                  "quote": "per ogni biennio e fino ad un massimo di 5 bienni un aumento in cifra fissa [...] Grafici gruppo a= € 16,01; B/1s= € 14,46; B/1= € 14,46; B/2= € 13,94; B/3= € 13,43; C/1= € 12,91; C/2= € 12,39 [Parte terza]; [...] d/1= € 11,88; d/2= € 11,36; e= € 10,33 [Parte seconda]"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-10-31T00:00:00",
+                  "verification_status": "unverified",
+                  "effective_from": "2024-03-01"
+                }
+              }
             },
             {
               "valid_from": "2026-07-01",
@@ -238,7 +284,30 @@
             {
               "valid_from": "2024-03-01",
               "valid_until": "2026-07-01",
-              "gap_kind": "missing"
+              "value": "16.01",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-grafici-editoriali-2021-uilcom",
+                    "title": "CCNL 19 gennaio 2021 per i dipendenti delle aziende grafiche ed affini e delle aziende editoriali (edizione a stampa autorizzata, UILCOM-UIL)",
+                    "kind": "associazione",
+                    "url": "https://www.uilcom.it/wp-content/uploads/2023/10/CCNL-GRAFICI.pdf",
+                    "published_on": "2021-01-19",
+                    "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+                  },
+                  "page": "80, 91",
+                  "section": "Parte seconda (operai) e Parte terza (impiegati), Art. 9 - Aumenti periodici di anzianita",
+                  "quote": "per ogni biennio e fino ad un massimo di 5 bienni un aumento in cifra fissa [...] Grafici gruppo a= € 16,01; B/1s= € 14,46; B/1= € 14,46; B/2= € 13,94; B/3= € 13,43; C/1= € 12,91; C/2= € 12,39 [Parte terza]; [...] d/1= € 11,88; d/2= € 11,36; e= € 10,33 [Parte seconda]"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-10-31T00:00:00",
+                  "verification_status": "unverified",
+                  "effective_from": "2024-03-01"
+                }
+              }
             },
             {
               "valid_from": "2026-07-01",
@@ -252,7 +321,30 @@
             {
               "valid_from": "2024-03-01",
               "valid_until": "2026-07-01",
-              "gap_kind": "missing"
+              "value": "14.46",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-grafici-editoriali-2021-uilcom",
+                    "title": "CCNL 19 gennaio 2021 per i dipendenti delle aziende grafiche ed affini e delle aziende editoriali (edizione a stampa autorizzata, UILCOM-UIL)",
+                    "kind": "associazione",
+                    "url": "https://www.uilcom.it/wp-content/uploads/2023/10/CCNL-GRAFICI.pdf",
+                    "published_on": "2021-01-19",
+                    "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+                  },
+                  "page": "80, 91",
+                  "section": "Parte seconda (operai) e Parte terza (impiegati), Art. 9 - Aumenti periodici di anzianita",
+                  "quote": "per ogni biennio e fino ad un massimo di 5 bienni un aumento in cifra fissa [...] Grafici gruppo a= € 16,01; B/1s= € 14,46; B/1= € 14,46; B/2= € 13,94; B/3= € 13,43; C/1= € 12,91; C/2= € 12,39 [Parte terza]; [...] d/1= € 11,88; d/2= € 11,36; e= € 10,33 [Parte seconda]"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-10-31T00:00:00",
+                  "verification_status": "unverified",
+                  "effective_from": "2024-03-01"
+                }
+              }
             },
             {
               "valid_from": "2026-07-01",
@@ -266,7 +358,30 @@
             {
               "valid_from": "2024-03-01",
               "valid_until": "2026-07-01",
-              "gap_kind": "missing"
+              "value": "14.46",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-grafici-editoriali-2021-uilcom",
+                    "title": "CCNL 19 gennaio 2021 per i dipendenti delle aziende grafiche ed affini e delle aziende editoriali (edizione a stampa autorizzata, UILCOM-UIL)",
+                    "kind": "associazione",
+                    "url": "https://www.uilcom.it/wp-content/uploads/2023/10/CCNL-GRAFICI.pdf",
+                    "published_on": "2021-01-19",
+                    "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+                  },
+                  "page": "80, 91",
+                  "section": "Parte seconda (operai) e Parte terza (impiegati), Art. 9 - Aumenti periodici di anzianita",
+                  "quote": "per ogni biennio e fino ad un massimo di 5 bienni un aumento in cifra fissa [...] Grafici gruppo a= € 16,01; B/1s= € 14,46; B/1= € 14,46; B/2= € 13,94; B/3= € 13,43; C/1= € 12,91; C/2= € 12,39 [Parte terza]; [...] d/1= € 11,88; d/2= € 11,36; e= € 10,33 [Parte seconda]"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-10-31T00:00:00",
+                  "verification_status": "unverified",
+                  "effective_from": "2024-03-01"
+                }
+              }
             },
             {
               "valid_from": "2026-07-01",
@@ -280,7 +395,30 @@
             {
               "valid_from": "2024-03-01",
               "valid_until": "2026-07-01",
-              "gap_kind": "missing"
+              "value": "13.94",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-grafici-editoriali-2021-uilcom",
+                    "title": "CCNL 19 gennaio 2021 per i dipendenti delle aziende grafiche ed affini e delle aziende editoriali (edizione a stampa autorizzata, UILCOM-UIL)",
+                    "kind": "associazione",
+                    "url": "https://www.uilcom.it/wp-content/uploads/2023/10/CCNL-GRAFICI.pdf",
+                    "published_on": "2021-01-19",
+                    "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+                  },
+                  "page": "80, 91",
+                  "section": "Parte seconda (operai) e Parte terza (impiegati), Art. 9 - Aumenti periodici di anzianita",
+                  "quote": "per ogni biennio e fino ad un massimo di 5 bienni un aumento in cifra fissa [...] Grafici gruppo a= € 16,01; B/1s= € 14,46; B/1= € 14,46; B/2= € 13,94; B/3= € 13,43; C/1= € 12,91; C/2= € 12,39 [Parte terza]; [...] d/1= € 11,88; d/2= € 11,36; e= € 10,33 [Parte seconda]"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-10-31T00:00:00",
+                  "verification_status": "unverified",
+                  "effective_from": "2024-03-01"
+                }
+              }
             },
             {
               "valid_from": "2026-07-01",
@@ -294,7 +432,30 @@
             {
               "valid_from": "2024-03-01",
               "valid_until": "2026-07-01",
-              "gap_kind": "missing"
+              "value": "13.43",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-grafici-editoriali-2021-uilcom",
+                    "title": "CCNL 19 gennaio 2021 per i dipendenti delle aziende grafiche ed affini e delle aziende editoriali (edizione a stampa autorizzata, UILCOM-UIL)",
+                    "kind": "associazione",
+                    "url": "https://www.uilcom.it/wp-content/uploads/2023/10/CCNL-GRAFICI.pdf",
+                    "published_on": "2021-01-19",
+                    "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+                  },
+                  "page": "80, 91",
+                  "section": "Parte seconda (operai) e Parte terza (impiegati), Art. 9 - Aumenti periodici di anzianita",
+                  "quote": "per ogni biennio e fino ad un massimo di 5 bienni un aumento in cifra fissa [...] Grafici gruppo a= € 16,01; B/1s= € 14,46; B/1= € 14,46; B/2= € 13,94; B/3= € 13,43; C/1= € 12,91; C/2= € 12,39 [Parte terza]; [...] d/1= € 11,88; d/2= € 11,36; e= € 10,33 [Parte seconda]"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-10-31T00:00:00",
+                  "verification_status": "unverified",
+                  "effective_from": "2024-03-01"
+                }
+              }
             },
             {
               "valid_from": "2026-07-01",
@@ -308,7 +469,30 @@
             {
               "valid_from": "2024-03-01",
               "valid_until": "2026-07-01",
-              "gap_kind": "missing"
+              "value": "12.91",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-grafici-editoriali-2021-uilcom",
+                    "title": "CCNL 19 gennaio 2021 per i dipendenti delle aziende grafiche ed affini e delle aziende editoriali (edizione a stampa autorizzata, UILCOM-UIL)",
+                    "kind": "associazione",
+                    "url": "https://www.uilcom.it/wp-content/uploads/2023/10/CCNL-GRAFICI.pdf",
+                    "published_on": "2021-01-19",
+                    "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+                  },
+                  "page": "80, 91",
+                  "section": "Parte seconda (operai) e Parte terza (impiegati), Art. 9 - Aumenti periodici di anzianita",
+                  "quote": "per ogni biennio e fino ad un massimo di 5 bienni un aumento in cifra fissa [...] Grafici gruppo a= € 16,01; B/1s= € 14,46; B/1= € 14,46; B/2= € 13,94; B/3= € 13,43; C/1= € 12,91; C/2= € 12,39 [Parte terza]; [...] d/1= € 11,88; d/2= € 11,36; e= € 10,33 [Parte seconda]"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-10-31T00:00:00",
+                  "verification_status": "unverified",
+                  "effective_from": "2024-03-01"
+                }
+              }
             },
             {
               "valid_from": "2026-07-01",
@@ -322,7 +506,30 @@
             {
               "valid_from": "2024-03-01",
               "valid_until": "2026-07-01",
-              "gap_kind": "missing"
+              "value": "12.39",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-grafici-editoriali-2021-uilcom",
+                    "title": "CCNL 19 gennaio 2021 per i dipendenti delle aziende grafiche ed affini e delle aziende editoriali (edizione a stampa autorizzata, UILCOM-UIL)",
+                    "kind": "associazione",
+                    "url": "https://www.uilcom.it/wp-content/uploads/2023/10/CCNL-GRAFICI.pdf",
+                    "published_on": "2021-01-19",
+                    "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+                  },
+                  "page": "80, 91",
+                  "section": "Parte seconda (operai) e Parte terza (impiegati), Art. 9 - Aumenti periodici di anzianita",
+                  "quote": "per ogni biennio e fino ad un massimo di 5 bienni un aumento in cifra fissa [...] Grafici gruppo a= € 16,01; B/1s= € 14,46; B/1= € 14,46; B/2= € 13,94; B/3= € 13,43; C/1= € 12,91; C/2= € 12,39 [Parte terza]; [...] d/1= € 11,88; d/2= € 11,36; e= € 10,33 [Parte seconda]"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-10-31T00:00:00",
+                  "verification_status": "unverified",
+                  "effective_from": "2024-03-01"
+                }
+              }
             },
             {
               "valid_from": "2026-07-01",
@@ -336,7 +543,30 @@
             {
               "valid_from": "2024-03-01",
               "valid_until": "2026-07-01",
-              "gap_kind": "missing"
+              "value": "11.88",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-grafici-editoriali-2021-uilcom",
+                    "title": "CCNL 19 gennaio 2021 per i dipendenti delle aziende grafiche ed affini e delle aziende editoriali (edizione a stampa autorizzata, UILCOM-UIL)",
+                    "kind": "associazione",
+                    "url": "https://www.uilcom.it/wp-content/uploads/2023/10/CCNL-GRAFICI.pdf",
+                    "published_on": "2021-01-19",
+                    "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+                  },
+                  "page": "80, 91",
+                  "section": "Parte seconda (operai) e Parte terza (impiegati), Art. 9 - Aumenti periodici di anzianita",
+                  "quote": "per ogni biennio e fino ad un massimo di 5 bienni un aumento in cifra fissa [...] Grafici gruppo a= € 16,01; B/1s= € 14,46; B/1= € 14,46; B/2= € 13,94; B/3= € 13,43; C/1= € 12,91; C/2= € 12,39 [Parte terza]; [...] d/1= € 11,88; d/2= € 11,36; e= € 10,33 [Parte seconda]"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-10-31T00:00:00",
+                  "verification_status": "unverified",
+                  "effective_from": "2024-03-01"
+                }
+              }
             },
             {
               "valid_from": "2026-07-01",
@@ -350,7 +580,30 @@
             {
               "valid_from": "2024-03-01",
               "valid_until": "2026-07-01",
-              "gap_kind": "missing"
+              "value": "11.36",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-grafici-editoriali-2021-uilcom",
+                    "title": "CCNL 19 gennaio 2021 per i dipendenti delle aziende grafiche ed affini e delle aziende editoriali (edizione a stampa autorizzata, UILCOM-UIL)",
+                    "kind": "associazione",
+                    "url": "https://www.uilcom.it/wp-content/uploads/2023/10/CCNL-GRAFICI.pdf",
+                    "published_on": "2021-01-19",
+                    "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+                  },
+                  "page": "80, 91",
+                  "section": "Parte seconda (operai) e Parte terza (impiegati), Art. 9 - Aumenti periodici di anzianita",
+                  "quote": "per ogni biennio e fino ad un massimo di 5 bienni un aumento in cifra fissa [...] Grafici gruppo a= € 16,01; B/1s= € 14,46; B/1= € 14,46; B/2= € 13,94; B/3= € 13,43; C/1= € 12,91; C/2= € 12,39 [Parte terza]; [...] d/1= € 11,88; d/2= € 11,36; e= € 10,33 [Parte seconda]"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-10-31T00:00:00",
+                  "verification_status": "unverified",
+                  "effective_from": "2024-03-01"
+                }
+              }
             },
             {
               "valid_from": "2026-07-01",
@@ -364,7 +617,30 @@
             {
               "valid_from": "2024-03-01",
               "valid_until": "2026-07-01",
-              "gap_kind": "missing"
+              "value": "10.33",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-grafici-editoriali-2021-uilcom",
+                    "title": "CCNL 19 gennaio 2021 per i dipendenti delle aziende grafiche ed affini e delle aziende editoriali (edizione a stampa autorizzata, UILCOM-UIL)",
+                    "kind": "associazione",
+                    "url": "https://www.uilcom.it/wp-content/uploads/2023/10/CCNL-GRAFICI.pdf",
+                    "published_on": "2021-01-19",
+                    "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+                  },
+                  "page": "80, 91",
+                  "section": "Parte seconda (operai) e Parte terza (impiegati), Art. 9 - Aumenti periodici di anzianita",
+                  "quote": "per ogni biennio e fino ad un massimo di 5 bienni un aumento in cifra fissa [...] Grafici gruppo a= € 16,01; B/1s= € 14,46; B/1= € 14,46; B/2= € 13,94; B/3= € 13,43; C/1= € 12,91; C/2= € 12,39 [Parte terza]; [...] d/1= € 11,88; d/2= € 11,36; e= € 10,33 [Parte seconda]"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-10-31T00:00:00",
+                  "verification_status": "unverified",
+                  "effective_from": "2024-03-01"
+                }
+              }
             },
             {
               "valid_from": "2026-07-01",
@@ -2600,7 +2876,7 @@
     "effective_until": null,
     "source": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
     "verification_status": "unverified",
-    "source_hash": "8212b84d14807a3d0ef8020fd40dc07bf27e6d70238e9ca1fbc9683feaa423b5",
+    "source_hash": "1c9379e96d6c96b6a2de804a9f35bed24c8a0d6bc433bd69430ffc64aad6fe3e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

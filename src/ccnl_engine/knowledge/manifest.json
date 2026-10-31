@@ -1088,7 +1088,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/grafica-editoria-aieg",
       "ruleset_version": "2026.2",
-      "source_hash": "8212b84d14807a3d0ef8020fd40dc07bf27e6d70238e9ca1fbc9683feaa423b5",
+      "source_hash": "1c9379e96d6c96b6a2de804a9f35bed24c8a0d6bc433bd69430ffc64aad6fe3e",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/grafica-editoria-aieg.json.gz"
