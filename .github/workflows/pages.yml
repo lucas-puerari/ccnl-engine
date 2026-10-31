@@ -79,17 +79,21 @@ jobs:
           EOF
 
       # ── Coverage badge ────────────────────────────────────────────────────
-      - name: "Badge: install test + badge deps"
-        run: uv pip install --system -e . pytest pytest-cov hypothesis "genbadge[coverage]"
+      # The tests import the dev tools (mutmut, the scripts): run them in the
+      # locked environment the CI uses, not in a hand-picked install.
+      - name: "Badge: install the locked test environment"
+        run: uv sync --locked
 
       - name: "Badge: run tests and collect coverage"
         run: |
           set -o pipefail
-          python -m pytest --cov=ccnl_engine --cov-report=xml:coverage.xml -q \
+          uv run pytest --cov=ccnl_engine --cov-report=xml:coverage.xml -q \
             --no-header 2>&1 | tail -5
 
       - name: "Badge: generate SVG"
-        run: genbadge coverage -i coverage.xml -o docs/_build/coverage-badge.svg
+        run: >-
+          uvx --from "genbadge[coverage]" genbadge coverage
+          -i coverage.xml -o docs/_build/coverage-badge.svg
 
       # ── Docs ──────────────────────────────────────────────────────────────
       - name: "Docs: install dependencies"
