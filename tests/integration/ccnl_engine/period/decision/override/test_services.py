@@ -37,8 +37,24 @@ from ccnl_engine.event.facade import (
     TerminationTFREvent,
     WelfareEvent,
 )
+from ccnl_engine.event.types import WORK_EVENT_TYPES
+from ccnl_engine.events import (
+    DisabilityPermitEvent,
+    ExtraordinaryLeaveEvent,
+    HourlyParentalLeaveEvent,
+    LeaveTakenEvent,
+    MaternityLeaveEvent,
+    NoticeIndemnityEvent,
+    NursingRestEvent,
+    ParentalLeaveEvent,
+    PaternityLeaveEvent,
+    SicknessEpisode,
+    StandbyEvent,
+    WorkInjuryEvent,
+)
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.period.decision.override.services import (
+    _RULES,
     CALLER_DECLARED_AMOUNT,
     CALLER_OVERRIDE,
     CALLER_SUPPLIED_AMOUNT,
@@ -297,3 +313,35 @@ def test_report_leaves_out_declared_amounts() -> None:
         _CCNL,
     )
     assert caller_supplied_fields(decisions) == {"absence": ("hourly_rate",)}
+
+
+#: Events whose fields are facts of the employment, not values in place of a
+#: rule: dates, quantities, and the pay of an earlier month the run does not
+#: hold (a base the engine can compute and the event leaves out is a missing
+#: fact, one it cannot compute an engine limitation).  A fringe benefit
+#: records its own decision.
+_FACTS_ONLY = frozenset({
+    StandbyEvent,
+    SicknessEpisode,
+    MaternityLeaveEvent,
+    PaternityLeaveEvent,
+    ParentalLeaveEvent,
+    DisabilityPermitEvent,
+    NursingRestEvent,
+    HourlyParentalLeaveEvent,
+    NoticeIndemnityEvent,
+    ExtraordinaryLeaveEvent,
+    WorkInjuryEvent,
+    FringeEvent,
+    LeaveTakenEvent,
+})
+
+
+def test_every_public_event_is_classified() -> None:
+    """Each event either records its caller values or states only facts.
+
+    A new event type, or one that gains a value in place of a rule, must be
+    added to the caller rules or to the facts-only events on purpose.
+    """
+    assert set(_RULES).isdisjoint(_FACTS_ONLY)
+    assert set(WORK_EVENT_TYPES) == set(_RULES) | _FACTS_ONLY
