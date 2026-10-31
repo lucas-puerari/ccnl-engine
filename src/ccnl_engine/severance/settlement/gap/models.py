@@ -89,11 +89,6 @@ _ADVANCES = _Gap(
     "advances were paid out of the TFR fund: the conguaglio of their tax (art. "
     "19 c. 4 TUIR) is not computed; state the rate",
 )
-_SHORT_TERM = _Gap(
-    "fixed_term_deduction_not_modelled",
-    "a fixed term of up to two years takes the deduction of art. 19 c. 1-ter "
-    "TUIR, which is not computed; state the rate",
-)
 _BEFORE_2001 = _Gap(
     "tfr_before_2001_not_modelled",
     "the employment started before 1 January 2001: the TFR accrued up to 31 "

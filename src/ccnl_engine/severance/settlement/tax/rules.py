@@ -13,6 +13,7 @@ from ccnl_engine.decision.models import (
 from ccnl_engine.employment.fact.inputs import PublicEndOfService
 from ccnl_engine.employment.inputs import FixedTerm
 from ccnl_engine.irpef.rules import _exact_marginal_tax
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.termination.inputs import TerminationTFREvent
 
 if TYPE_CHECKING:
@@ -29,7 +30,6 @@ from ccnl_engine.severance.settlement.gap.models import (
     _BEFORE_2001,
     _NO_RULES,
     _REVALUATIONS_UNKNOWN,
-    _SHORT_TERM,
     _Gap,
 )
 
@@ -37,12 +37,11 @@ from ccnl_engine.severance.settlement.gap.models import (
 CAPABILITY = "termination_tfr"
 _KIND = "tfr_settlement_item"
 _ZERO = Decimal(0)
+_ONE = Decimal(1)
 _MONTHS = 12
 _AT_INPS = frozenset({PublicEndOfService.TFS, PublicEndOfService.TFR_INPS})
 #: First day of the TFR taxed under D.Lgs. 47/2000 (art. 11 c. 1).
 _NEW_RULES_FROM = date(2001, 1, 1)
-#: Months of service up to which a fixed term takes the art. 19 c. 1-ter deduction.
-_SHORT_FIXED_TERM = 24
 _FINAL = CalculationStatus.FINAL
 _INCOMPLETE = CalculationStatus.INCOMPLETE
 
@@ -77,7 +76,7 @@ def _tax_gap(
 
     Returns:
         The gap of unknown revaluations, of a year without rules, of
-        unknown or paid advances or of a short fixed term; a caller rate
+        unknown or paid advances; a caller rate
         needs only the revaluations.
     """
     if fund.amount and fund.revaluations is None:
@@ -86,27 +85,44 @@ def _tax_gap(
         return None
     if months is None:
         return _NO_RULES
-    return _rate_gap(ctx, fund, months)
+    return _rate_gap(ctx, fund)
 
 
-def _rate_gap(ctx: RunContext, fund: _Fund, months: int) -> _Gap | None:
+def _rate_gap(ctx: RunContext, fund: _Fund) -> _Gap | None:
     """Return why the engine does not compute the rate, ``None`` when it does.
 
     Returns:
-        The gap of an employment started before 2001, of unknown or paid
-        advances or of a short fixed term.
+        The gap of an employment started before 2001 or of unknown or paid
+        advances.
     """
     period = ctx.request.employment_period
     if period is not None and period.started_on < _NEW_RULES_FROM:
         return _BEFORE_2001
     if fund.advances is None:
         return _ADVANCES_UNKNOWN
-    if fund.advances:
-        return _ADVANCES
-    short = months <= _SHORT_FIXED_TERM
-    if short and isinstance(ctx.request.contract_type, FixedTerm):
-        return _SHORT_TERM
-    return None
+    return _ADVANCES if fund.advances else None
+
+
+def fixed_term_deduction(
+    ctx: RunContext, rules: TfrSettlementRules, months: int
+) -> Decimal:
+    """Return the deduction of art. 19 c. 1-ter TUIR from the TFR tax.
+
+    Returns:
+        ``per_year`` times the months of service over 12 of a fixed term of
+        at most ``max_months``, times the weekly over the full-time hours of
+        a part time, to the cent; zero for any other employment.
+    """
+    deduction, request = rules.fixed_term_deduction, ctx.request
+    if not isinstance(request.contract_type, FixedTerm):
+        return _ZERO
+    if months > deduction.max_months:
+        return _ZERO
+    weekly, full = request.weekly_hours, request.full_time_weekly_hours
+    share = _ONE
+    if weekly is not None and full is not None and weekly.value < full.value:
+        share = Decimal(weekly.value) / Decimal(full.value)
+    return money(deduction.per_year * months / _MONTHS * share)
 
 
 def average_rate(

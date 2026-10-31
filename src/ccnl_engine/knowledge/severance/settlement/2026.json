@@ -45,7 +45,7 @@
         "quote": "Il trattamento di fine rapporto costituisce reddito per un importo che si determina riducendo il suo ammontare delle rivalutazioni già assoggettate ad imposta sostitutiva. L'imposta è applicata con l'aliquota determinata con riferimento all'anno in cui è maturato il diritto alla percezione, corrispondente all'importo che risulta dividendo il suo ammontare, aumentato delle somme destinate alle forme pensionistiche di cui al decreto legislativo 21 aprile 1993, n. 124 e al netto delle rivalutazioni già assoggettate ad imposta sostitutiva, per il numero degli anni e frazione di anno preso a base di commisurazione, e moltiplicando il risultato per dodici."
       },
       "transformation": "multiplier = dodici = 12. Taxable = TFR paid - revaluations already taxed at the substitute rate. Reference income = taxable / (months of service / 12) x 12. Average rate = gross IRPEF on the reference income at the art. 11 brackets of the year of the termination / reference income, not rounded. Tax withheld = taxable x average rate, rounded to the cent.",
-      "note": "Normattiva text of art. 19 TUIR in force from 12-8-2006 to 31-12-2026, read on 2026-10-19 at the url of the record (sha256 of the page as fetched); quote found in the page, whitespace normalised. The rest of c. 1 has the offices reliquidate the tax on the average rate of the five years before: the employer withholds at the rate above, the reliquidation is not a payroll amount. C. 1-ter (lire 120 mila per year off the tax of a fixed-term employment of no more than two years) is not applied: the engine reports such a tax as not computed. C. 2-bis (lire 600.000 per year) reduces the 'indennità equipollenti', not the TFR, and is not applied. The 'somme destinate alle forme pensionistiche' of D.Lgs. 124/1993 are not known to the engine: a TFR paid to a pension fund is not computed. C. 4 (advances, salvo conguaglio) is not applied: a fund with advances is not computed. Verified on 2026-10-19 by an AI review.",
+      "note": "Normattiva text of art. 19 TUIR in force from 12-8-2006 to 31-12-2026, read on 2026-10-19 at the url of the record (sha256 of the page as fetched); quote found in the page, whitespace normalised. The rest of c. 1 has the offices reliquidate the tax on the average rate of the five years before: the employer withholds at the rate above, the reliquidation is not a payroll amount. C. 1-ter (lire 120 mila per year off the tax of a fixed-term employment of no more than two years) is the block fixed_term_deduction. C. 2-bis (lire 600.000 per year) reduces the 'indennità equipollenti', not the TFR, and is not applied. The 'somme destinate alle forme pensionistiche' of D.Lgs. 124/1993 are not known to the engine: a TFR paid to a pension fund is not computed. C. 4 (advances, salvo conguaglio) is not applied: a fund with advances is not computed. Verified on 2026-10-19 by an AI review.",
       "extraction": {
         "method": "ai",
         "model": "claude-opus-5-5",
@@ -84,6 +84,36 @@
       }
     }
   },
+  "fixed_term_deduction": {
+    "per_year": "61.97",
+    "max_months": 24,
+    "provenance": {
+      "status": "verified",
+      "location": {
+        "source_document": {
+          "document_id": "dpr-917-1986-art19",
+          "title": "D.P.R. 22 dicembre 1986 n. 917 (TUIR), art. 19",
+          "kind": "dpr",
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.presidente.repubblica:1986-12-22;917~art19!vig=2026-10-31",
+          "sha256": "73946bb96eddc8f469aef7be455d4876d2f5436f78a0a747d4509d2f1177485a"
+        },
+        "section": "art. 19 c. 1-ter",
+        "quote": "Qualora il trattamento di fine rapporto sia relativo a rapporti di lavoro a tempo determinato, di durata effettiva non superiore a due anni, l'imposta determinata ai sensi del comma 1 è diminuita di un importo pari a lire 120 mila per ciascun anno; per i periodi inferiori ad un anno, tale importo è rapportato a mese. Se il rapporto si svolge per un numero di ore inferiore a quello ordinario previsto dai contratti collettivi nazionali di lavoro, la somma è proporzionalmente ridotta."
+      },
+      "transformation": "per_year = 120,000 lire at the conversion rate of 1,936.27 lire for one euro (Reg. CE 2866/98) = 61.9748, 61.97 EUR; max_months = 24 (two years of effective duration). The deduction is per_year times the months of service over 12 (a year, and a shorter period by the month), times the weekly over the full-time hours of a part time, and lowers the tax of comma 1 down to zero at most.",
+      "note": "Normattiva text of art. 19 TUIR in force from 12-8-2006 to 31-12-2026, read on 2026-10-31 at the url of the record (the page hashes as the one of 2026-10-19); quote found in the page, whitespace normalised. Verified on 2026-10-31 by an AI review.",
+      "extraction": {
+        "method": "ai",
+        "model": "claude-opus-5-5",
+        "extraction_timestamp": "2026-10-31T21:00:00Z",
+        "effective_from": "2026-01-01",
+        "effective_until": "2026-12-31",
+        "verified_by": "claude-opus-5-5",
+        "verified_at": "2026-10-31T21:00:00Z",
+        "verification_status": "verified"
+      }
+    }
+  },
   "ruleset": {
     "id": "tax/2026/tfr-settlement",
     "version": "2026.1",
@@ -93,6 +123,6 @@
     "source": "D.P.R. 917/1986 (TUIR) artt. 17 c. 1 lett. a and 19 c. 1; c.c. art. 2120 c. 1",
     "source_type": "official_primary",
     "verification_status": "unverified",
-    "source_hash": "c33cb6f984adb4d801d105cced17af0c1121a7ab92241b4f19ffd769cc35a7c8"
+    "source_hash": "a72d0d735fc46d213bb54bce40fab7af62611bf02634a27f33bf10ba1508e6d3"
   }
 }
