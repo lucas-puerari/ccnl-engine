@@ -500,9 +500,11 @@ def _after_january_and_february() -> PeriodState:
 @pytest.mark.parametrize(
     ("slug", "level", "limited"),
     [
-        ("pelli-cuoio-industria-assopellettieri", "3", True),
+        ("tessile-smi", "3", True),
         ("commercio-confcommercio", "4", False),
         ("farmacie-private-h121", "2", False),
+        ("edilizia-ance", "1", False),
+        ("marittimi-industria-armatoriale", "IV", False),
     ],
 )
 def test_earlier_episode_outside_the_chain_is_a_limitation(
@@ -510,9 +512,11 @@ def test_earlier_episode_outside_the_chain_is_a_limitation(
 ) -> None:
     """A March relapse chain after an unrelated January episode.
 
-    Pelli e cuoio counts its comporto on the episode and its relapses;
+    Tessile SMI counts its comporto on the episode and its relapses;
     Commercio (Art. 186) and Farmacie private (Art. 43) count it over the
-    calendar year, with tiers of the episode.
+    calendar year, Edilizia ANCE (Art. 26: 9 months in 20) and Marittimi
+    (Art. 26: 330 days in three years) over windows of months, with tiers
+    of the episode.
     """
     relapse = sickness_episode("m", date(2026, 3, 2), date(2026, 3, 3), "f")
     request = _req(
@@ -534,6 +538,9 @@ def test_earlier_episode_outside_the_chain_is_a_limitation(
         ("orafi-argentieri-industria-federorafi", "3", WorkerCategory.OPERAIO),
         ("trasporto-aereo-assaeroporti", "5", WorkerCategory.OPERAIO),
         ("esercizi-cinematografici-anec", "2", WorkerCategory.IMPIEGATO),
+        ("autoferrotranvieri-internavigatori", "140", WorkerCategory.OPERAIO),
+        ("trasporto-ferroviario-agens", "D2", WorkerCategory.IMPIEGATO),
+        ("bcc-credito-cooperativo", "3AP1", WorkerCategory.IMPIEGATO),
     ],
 )
 def test_a_ccnl_counting_every_episode_has_no_window_limitation(
@@ -546,7 +553,9 @@ def test_a_ccnl_counting_every_episode_has_no_window_limitation(
     Federalimentare (Art. 47): every sick day of the 17 months before;
     Poste (Art. 41): of the 48 months before; Orafi (Art. 35): of the
     three years before; Esercizi cinematografici (Art. 64): of the 36
-    months before.
+    months before; Autoferrotranvieri (A.N. 19.9.2005 art. 1): of the 42
+    months; Mobilità/Area AF (Art. 31): of the 36; BCC (Art. 55): of the
+    18 months before.
     """
     relapse = sickness_episode("m", date(2026, 3, 2), date(2026, 3, 3), "f")
     result = calculate_period(

@@ -85,13 +85,19 @@ def test_rate_of_a_short_absence(ordinal: int, rate: Decimal) -> None:
                 seniority_months_from=36, full_pay_days=100, comporto_days=274
             ),
         ),
+        (
+            _BANDS[0],
+            SicknessSeniorityBand(
+                seniority_months_from=36, full_pay_days=122, comporto_days=100
+            ),
+        ),
     ],
-    ids=["no_first_band", "out_of_order", "fewer_full_pay_days"],
+    ids=["no_first_band", "out_of_order", "fewer_full_pay_days", "less_comporto"],
 )
 def test_bands_must_start_at_zero_and_increase(
     bands: tuple[SicknessSeniorityBand, ...],
 ) -> None:
-    """A later band gives more comporto and no fewer full-pay days."""
+    """A later band gives no less comporto and no fewer full-pay days."""
     with pytest.raises(ValidationError, match="bands must start at 0 months"):
         _cumulation(bands)
 
@@ -103,6 +109,15 @@ def test_a_later_band_may_keep_the_full_pay_days() -> None:
     )
 
     assert _cumulation((_BANDS[0], later)).bands[1].full_pay_days == 122
+
+
+def test_a_later_band_may_keep_the_comporto() -> None:
+    """Cineaudiovisivo Art. 35: 12 months of comporto at every seniority."""
+    later = SicknessSeniorityBand(
+        seniority_months_from=36, full_pay_days=153, comporto_days=183
+    )
+
+    assert _cumulation((_BANDS[0], later)).bands[1].comporto_days == 183
 
 
 @pytest.mark.parametrize(

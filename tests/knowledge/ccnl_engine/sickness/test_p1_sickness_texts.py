@@ -38,7 +38,7 @@ def test_abi_bands_by_seniority() -> None:
 
 
 def test_artisan_operai_sickness() -> None:
-    """Net 100%, carenza only past 7 days, 150 days."""
+    """Net 100%, carenza only past 7 days, 150 days; 9 months, 10 in 24."""
     rules = load_ccnl("metalmeccanico-artigianato").work_rules
     assert rules is not None
     sickness = rules.sickness_rules
@@ -47,7 +47,11 @@ def test_artisan_operai_sickness() -> None:
     assert sickness.full_pay_integration_rate == Decimal(1)
     assert sickness.net_basis is True
     assert sickness.carenza_min_days == 7
-    assert sickness.max_duration_days == 150
+    assert sickness.max_duration_days == 274
+    assert [t.month_from for t in sickness.tiers] == [6]
+    assert sickness.tiers[0].integration_rate == 0
+    (window,) = sickness.comporto_windows
+    assert (window.window_months, window.comporto_days) == (24, 304)
 
 
 def test_domestic_sickness_bands() -> None:

@@ -253,7 +253,7 @@ def cumulation_inputs(report: CumulationReport) -> dict[str, Decimal]:
 def year_issues(
     episode: SicknessEpisode, year: YearTreatment
 ) -> tuple[CalculationIssue, ...]:
-    """Return the issues of a treatment counted over the calendar year.
+    """Return the issues of a treatment counted over the year or a window.
 
     Returns:
         A provisional issue when sick days before the known history, or an
@@ -265,9 +265,9 @@ def year_issues(
             year.history_reach,
             HISTORY_UNKNOWN,
             (
-                f"{name}: sick days of the year before the history the state "
-                "records could change the comporto or the carenza counted; state "
-                "from which day the imported episodes are complete "
+                f"{name}: sick days of the year or window before the history "
+                "the state records could change the comporto or the carenza "
+                "counted; state from which day the imported episodes are complete "
                 "(OpeningBalances.sickness_known_from)"
             ),
             "sickness_known_from",

@@ -174,6 +174,27 @@
           "The file's meta lists the signatories as AIEG and Acigraf; the texts are signed by Assografici, AIE and ANES with SLC-CGIL, FISTel-CISL and UILCOM-UIL (CNEL G011).",
           "Corrected to the printed table: D1 2024-03-01: 1582.37 -> 1582.36; D1 2025-05-01: 1626.84 -> 1626.82; D1 2025-10-01: 1663.90 -> 1663.88; D1 2026-07-01: 1702.44 -> 1702.42; C2 2024-03-01: 1694.91 -> 1694.90; C2 2025-05-01: 1743.97 -> 1743.96; C2 2025-10-01: 1784.85 -> 1784.84; C2 2026-07-01: 1827.37 -> 1827.35; C1 2024-03-01: 1852.88 -> 1852.87; C1 2025-05-01: 1908.29 -> 1908.27; C1 2025-10-01: 1954.47 -> 1954.44; C1 2026-07-01: 2002.49 -> 2002.46; B3 2024-03-01: 1964.85 -> 1964.84; B3 2025-05-01: 2024.85 -> 2024.84; B3 2025-10-01: 2074.85 -> 2074.84; B3 2026-07-01: 2126.85 -> 2126.84; B2 2025-05-01: 2142.24 -> 2142.23; B2 2025-10-01: 2196.06 -> 2196.05; B2 2026-07-01: 2252.04 -> 2252.02; B1 2025-10-01: 2311.16 -> 2311.15; B1 2026-07-01: 2371.11 -> 2371.10; B1S 2025-10-01: 2363.93 -> 2363.92; B1S 2026-07-01: 2425.41 -> 2425.40; Q 2025-05-01: 2732.71 -> 2732.70; Q 2026-07-01: 2882.11 -> 2882.10."
         ]
+      },
+      {
+        "id": "2026-10-31-ai-sickness-comporto",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules"
+        ],
+        "scope": "The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+            "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
+          }
+        ],
+        "findings": [
+          "Arts. 10 A) and 11 of the CCNL 19.1.2021 (pp. 108-109 of the 2024 edition; the 2024 renewal pages do not touch sickness): comporto 12 months, 180 days of 100% of the net pay and 6 months of 50%, counted over the 36 months before each day of absence, from day 1. The file kept a carenza of 60% and 75% for 180 days of one illness, from a pay-table page: corrected to a cumulation over three years at 100% then 50%."
+        ]
       }
     ]
   },
@@ -2876,7 +2897,7 @@
     "effective_until": null,
     "source": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
     "verification_status": "unverified",
-    "source_hash": "1c9379e96d6c96b6a2de804a9f35bed24c8a0d6bc433bd69430ffc64aad6fe3e",
+    "source_hash": "240e45f1c53499990b6aaa3e8e2fb6abb7b2c5c9f2e3b029042f192a2d6f1b28",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3080,26 +3101,48 @@
       }
     },
     "sickness_rules": {
-      "carenza_integration_rate": "0.6",
-      "full_pay_integration_rate": "0.75",
-      "max_duration_days": 180,
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "net_basis": true,
+      "cumulation": {
+        "window_years": 3,
+        "reset_after_days": null,
+        "reduced_integration_rate": "0.50",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 180,
+            "comporto_days": 365
+          }
+        ]
+      },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-grafica-editoria-industria-2022",
-            "title": "CCNL Grafica ed Editoria — Industria (AIEG) 2022",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+            "document_id": "ccnl-grafici-editoriali-2024-2026",
+            "title": "CCNL per i dipendenti delle aziende grafiche ed affini e delle aziende editoriali 19 gennaio 2021, with the economic part of the 2024 renewal (FISTEL-CISL Veneto)",
+            "kind": "associazione",
+            "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+            "published_on": "2021-01-19",
+            "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
           },
-          "section": "Art. malattia — 60% gg1-3 (carenza), 75% gg4-180; casi gravi 100%/180gg"
+          "page": "108-109",
+          "section": "Parte Seconda Operai, Art. 10 - Malattia ed infortunio, A); Parte Terza Impiegati, Art. 11",
+          "quote": "Conservazione del posto, senza interruzione di anzianità per tutta la durata della malattia fino ad un massimo di 12 mesi; Corresponsione da parte dell'azienda a partire dal 1° giorno e fino al 180° giorno, di una integrazione di quanto il lavoratore percepisce, in forza di disposizioni di legge e/o di altre norme, fino a raggiungere il 100% della normale retribuzione giornaliera di fatto netta [...] Per i successivi 6 mesi corresponsione del 50% della normale retribuzione di [...] fatto netta come sopra definita. [...] In caso di più assenze il periodo di conservazione del posto e il trattamento economico si intendono riferiti ad un arco temporale di 36 mesi precedente ciascun giorno di assenza per malattia od infortunio non sul lavoro."
         },
+        "transformation": "Art. 10 A) (operai): the sick days of the 36 months before each day are summed, for the comporto and the pay alike; the job is kept 12 months (365 days); the net pay is integrated to 100% from day 1 to day 180 and paid 50% for the next 6 months, only for the days INPS does not pay (the engine pays the higher of the INPS share and the CCNL rate). Art. 11 (impiegati) has the same 12 months, 6 at the whole and 6 at half pay, over the same 36 months. Stored as a cumulation of one band over a three-year window. Read on 2026-10-31.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2022-05-01"
-        }
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-31T12:00:00Z",
+          "effective_from": "2021-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-31T12:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-31-ai-sickness-comporto"
+        },
+        "note": "Not modelled: the hospital stays (day hospital included), the life-saving therapies and the continuous absences over a month (up to 90 days) left out of the counts; the absences of up to 3 days counted twice after the first 4 events of the comporto; the comporto of the apprentices on contracts under 36 months (a third of the contract)."
       }
     }
   }

@@ -8,6 +8,11 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
+from ccnl_engine.sickness.comporto.models import (
+    ComportoWindow,
+    HospitalComportoRule,
+    check_windows,
+)
 
 _ONE = Decimal(1)
 
@@ -200,25 +205,6 @@ class HospitalStayRule(BaseModel):
     max_full_days: int = Field(ge=1)
 
 
-class HospitalComportoRule(BaseModel):
-    """Hospital stays left out of the comporto count.
-
-    Concia art. 60 B: "non saranno tenuti in considerazione i periodi di
-    ricovero ospedaliero di durata superiore a 5 giorni [...] continuativi
-    di calendario fino ad un massimo di 60 complessivi".
-
-    Attributes:
-        more_than_days: A stay counts when it lasts more than these
-            consecutive days.
-        max_days: Days of such stays left out at most, over the window.
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    more_than_days: int = Field(ge=0)
-    max_days: int = Field(ge=1)
-
-
 class SeriousIllnessRule(BaseModel):
     """Treatment of a particularly serious illness.
 
@@ -302,15 +288,15 @@ class SicknessCumulation(BaseModel):
         starts = [b.seniority_months_from for b in self.bands]
         full = [b.full_pay_days for b in self.bands]
         comporto = [b.comporto_days for b in self.bands]
-        increasing = all(
-            later > earlier
-            for values in (starts, comporto)
+        increasing = all(b > a for a, b in itertools.pairwise(starts)) and all(
+            later >= earlier
+            for values in (full, comporto)
             for earlier, later in itertools.pairwise(values)
-        ) and all(later >= earlier for earlier, later in itertools.pairwise(full))
+        )
         if starts[0] != 0 or not increasing:
             msg = (
-                "bands must start at 0 months, increase in seniority and comporto,"
-                f" never decrease in full-pay days; got {starts}, {full}, {comporto}"
+                "bands must start at 0 months, increase in seniority, never decrease"
+                f" in full-pay or comporto days; got {starts}, {full}, {comporto}"
             )
             raise ValueError(msg)
         return self
@@ -359,6 +345,8 @@ class SicknessRules(BaseModel):
             sick days of every episode of the calendar year of the day
             (Commercio Art. 186: 180 days "in un anno solare") instead of
             the days of one episode.
+        comporto_windows: Comporto summed over the months before the day,
+            by seniority, on top of ``max_duration_days`` for one illness.
         carenza_by_event: Lower carenza from the n-th event of the year.
         carenza_min_days: The carenza is paid only when the sickness lasts
             more than this many calendar days (Pubblici esercizi FIPE
@@ -393,6 +381,7 @@ class SicknessRules(BaseModel):
     tiers: tuple[SicknessTier, ...] = Field(default=())
     day_bands: tuple[SicknessDayBand, ...] = Field(default=())
     comporto_calendar_year: bool = False
+    comporto_windows: tuple[ComportoWindow, ...] = ()
     carenza_by_event: CarenzaByEvent | None = None
     carenza_min_days: int | None = Field(default=None, ge=1)
     max_duration_days: int = Field(default=180, ge=1)
@@ -405,10 +394,12 @@ class SicknessRules(BaseModel):
 
     @model_validator(mode="after")
     def _one_model(self) -> Self:
+        check_windows(self.comporto_windows)
         per_episode = (
             self.tiers
             or self.day_bands
             or self.comporto_calendar_year
+            or self.comporto_windows
             or self.carenza_by_event is not None
             or "max_duration_days" in self.model_fields_set
         )

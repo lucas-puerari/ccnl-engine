@@ -5209,7 +5209,7 @@
     "effective_until": null,
     "source": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
     "verification_status": "unverified",
-    "source_hash": "bab8708a6f0bca38a761c1f195ccbbd5a5468cb3b86f5b2237b26437acf6ee67",
+    "source_hash": "f18fc8719821e2f1e0c465b23c0bd45ffbd4eb50740fdc914b43d69929bcc5db",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5387,24 +5387,43 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 180,
+      "cumulation": {
+        "window_years": 4,
+        "reset_after_days": null,
+        "reduced_integration_rate": "0.50",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 180,
+            "comporto_days": 540,
+            "window_months": 42
+          }
+        ]
+      },
       "provenance": {
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "autoferrotranvieri-internavigatori",
-            "title": "CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/autoferrotranvieri/"
+            "document_id": "autoferrotranvieri-contrattazione-nazionale-2013",
+            "title": "Contrattazione collettiva nazionale e disposizioni legislative Autoferrotranvieri Internavigatori, febbraio 2013 (FILT-CGIL; reproduces the Accordo nazionale 19 settembre 2005 and the Accordo nazionale ANAV 15 novembre 2005)",
+            "kind": "associazione",
+            "url": "https://www.amt.genova.it/amt/accordi_aziendali/CCNL_TPL_integrato.pdf",
+            "published_on": "2013-02-01",
+            "sha256": "288cec0840b850299ce1f5b65ae9b57dd7b338aac2d1bca742f71c71f543ee36"
           },
-          "section": "Malattia — piena retribuzione; comporto 6 mesi (<3aa), 9 mesi (3-6aa), 12 mesi (>6aa)"
+          "page": "119-124",
+          "section": "Accordo nazionale 19 settembre 2005, Trattamento di malattia, art. 1 punti 3, 5, 7 and art. 4; Accordo nazionale 15 novembre 2005 (ANAV), art. 1 punto 5",
+          "quote": "3. Il lavoratore assente per malattia ha diritto alla conservazione del posto per un periodo di comporto secco (relativo, quindi, ad un solo evento morboso) pari a 18 mesi. Nel caso di più assenze per malattia in relazione a diversi eventi morbosi, il periodo di conservazione del posto (comporto per sommatoria) è pari a 18 mesi, tale periodo si intende riferito alle assenze complessivamente verificatesi in un arco temporale di 42 mesi consecutivi. [...] 5. L’indennità di malattia spetta per 18 mesi. Durante i primi 6 mesi di conservazione del posto di cui al precedente punto 3., al lavoratore con contratto a tempo indeterminato [...] 7. Dopo i primi 6 mesi, al lavoratore assente per malattia o infortunio non sul lavoro spetta un trattamento pari a quello indicato al terzo alinea dell’art. 4, punto 1. del presente accordo. [...] per i primi sei mesi (3 giorni di carenza a carico dell’azienda +177 giorni sussidiati dall’INPS) l’azienda garantirà un trattamento complessivo per malattia o infortunio non sul lavoro pari alla somma degli istituti economici nazionali ed aziendali compresi nella base di calcolo utilizzata dall’INPS per determinare l’indennità di malattia a suo carico"
         },
+        "transformation": "Art. 1 p. 3: the sick days of the 42 consecutive months that end on the day are summed; the job is kept 18 months of them (540 days, the months of 30 days of the ANAV text, where six months are '3 giorni [...] +177 giorni'), one illness alike. P. 5: the first 6 months of the comporto (180 days, the 3 carenza days included) are paid the whole INPS base; p. 7 and art. 4: the later days half of the reference pay. Stored as a cumulation of one band over a 42-month window: 180 days at 100%, 50% up to 540. Read on 2026-10-31.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "1976-07-23"
-        }
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-31T12:00:00Z",
+          "effective_from": "2005-09-19",
+          "verification_status": "unverified"
+        },
+        "note": "Not modelled: two thirds instead of half of the reference pay past six months when the worker has more than two dependants (art. 4); the 30 months of comporto, 18 paid in full, of the serious illnesses of p. 4; the own rules of the area operativa staff of all. A) A.N. 27 novembre 2000 and of the apprentices (180 days in the calendar year). The source is a compilation of the signatory union that reproduces the national agreements; later renewals were not checked for changes to them."
       }
     }
   }

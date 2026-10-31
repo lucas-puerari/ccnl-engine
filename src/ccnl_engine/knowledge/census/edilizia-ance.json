@@ -87,10 +87,10 @@
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "SICKNESS (Art. 26): the employer pays a coefficient of the hourly minimo, ex contingenza and indennità territoriale times a sixth of the weekly hours, six days a week: 0.5495 for days 1-3 when the sickness lasts more than 6 days, 1.0495 when it lasts more than 12, 0.3795 for days 4-20 and 0.1565 for days 21-180 on top of the INPS indemnity, 0.5495 for days 181-365. The engine stores the coefficient plus the INPS rate of the day as the target (0.8795 and 0.8231), so its employer share is the coefficient on the engine's daily quota, which counts the EDR and not the indennità territoriale. Not modelled: the 1.0495 of a sickness over 12 days (paid 0.5495), the comporto of 365 days past 3.5 years of seniority and the cumulated comporto of 9 months in 20 (12 in 24), the 4.95% paid for the carenza days of a sickness of up to 6 days and for the day of an injury (60% on days 1-3); the percentages accrued with the Cassa Edile during sickness and injury (Allegato D: 18.5% gross and 14.2% net for the carenza days and from day 4 of sickness, 7.4% and 5.7% for days 4-90 of injury or occupational disease, 4.6% and 3.6% from day 91); and the exception of Allegato D point 4: in a pay period without direct pay the conventional net does not apply and the actual withholdings are taken from the accruals. The sick hours of an operaio are not in the hours paid by the hour, so the sick days deduct nothing from the pay.",
+      "rule": "SICKNESS (Art. 26): the employer pays a coefficient of the hourly minimo, ex contingenza and indennità territoriale times a sixth of the weekly hours, six days a week: 0.5495 for days 1-3 when the sickness lasts more than 6 days, 1.0495 when it lasts more than 12, 0.3795 for days 4-20 and 0.1565 for days 21-180 on top of the INPS indemnity, 0.5495 for days 181-365. The engine stores the coefficient plus the INPS rate of the day as the target (0.8795 and 0.8231), so its employer share is the coefficient on the engine's daily quota, which counts the EDR and not the indennità territoriale. Not modelled: the 1.0495 of a sickness over 12 days (paid 0.5495), the 4.95% paid for the carenza days of a sickness of up to 6 days and for the day of an injury (60% on days 1-3); the percentages accrued with the Cassa Edile during sickness and injury (Allegato D: 18.5% gross and 14.2% net for the carenza days and from day 4 of sickness, 7.4% and 5.7% for days 4-90 of injury or occupational disease, 4.6% and 3.6% from day 91); and the exception of Allegato D point 4: in a pay period without direct pay the conventional net does not apply and the actual withholdings are taken from the accruals. The sick hours of an operaio are not in the hours paid by the hour, so the sick days deduct nothing from the pay.",
       "calculation": "ccnl/edilizia-ance:coverage.notes",
       "state": "absent",
-      "remediation": "Model the coefficients of Art. 26 on their own base and the comporto by seniority.",
+      "remediation": "Model the coefficients of Art. 26 on their own base.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -463,22 +463,6 @@
       "links": {
         "limitations": [
           "provisional_ruleset"
-        ]
-      }
-    },
-    {
-      "id": "sickness_cumulation_window",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.",
-      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
-      "state": "unverified",
-      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "sickness_cumulation_window"
         ]
       }
     },
