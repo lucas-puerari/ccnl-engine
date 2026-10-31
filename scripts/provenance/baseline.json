@@ -1451,6 +1451,7 @@
       "parental_income_condition",
       "parental_month_split",
       "paternity_daily_base",
+      "personal_withholding_same_kind",
       "provisional_inps_ruleset",
       "provisional_ruleset",
       "sickness_cumulation_window",

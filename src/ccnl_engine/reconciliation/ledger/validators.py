@@ -84,7 +84,7 @@ def check_net_identity(
     - CREDIT_RECOVERIES - EMPLOYEE_CONTRIBUTIONS
     - BILATERAL_FUND_EMPLOYEE - PENSION_FUND_EMPLOYEE
     - EMPLOYEE_DEDUCTIONS - SUBSTITUTE_TAX
-    - ORDINARY_TAX - SURTAX - SEPARATE_TAX
+    - ORDINARY_TAX - SURTAX - SEPARATE_TAX - PERSONAL_WITHHOLDINGS
     = period_net.
 
     Returns:
@@ -107,6 +107,7 @@ def check_net_identity(
     taxes = _sum_account(result, AccountKind.ORDINARY_TAX)
     surtax = _sum_account(result, AccountKind.SURTAX)
     sep_tax = _sum_account(result, AccountKind.SEPARATE_TAX)
+    personal = _sum_account(result, AccountKind.PERSONAL_WITHHOLDINGS)
     derived = (
         cash
         + period_credits
@@ -119,6 +120,7 @@ def check_net_identity(
         - taxes
         - surtax
         - sep_tax
+        - personal
     )
     if derived != result.period_net:
         return [

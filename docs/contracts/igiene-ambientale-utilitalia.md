@@ -302,6 +302,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add the facts of these cases to the end of the employment (EmploymentPeriod) and apply them, then resolve this limitation.
 
+!!! warning "personal_withholding_same_kind · personal_withholdings · impact unknown · open"
+    Two garnishments of the same kind, or two salary assignments, share the measure of their kind (a fifth, or the tenth or seventh of the agente della riscossione) in the order of notification: art. 545 c. 4 c.p.c. sets 'un quinto per i tributi ... ed in eguale misura per ogni altro credito' and art. 5 DPR 180/1950 a cessione 'fino al quinto', but no text read says how two orders of the same kind split the measure, so the later order may be under- or overstated.
+
+    **Applies when:** `personal_withholdings` applies; the run takes the engine code path.
+
+    **Remediation:** Source how the employer splits the measure between two orders of the same kind (art. 499 c.p.c. on the intervention of creditors, case law of the Cassazione) and apply it, then resolve this limitation.
+
 ### Without monetary impact
 
 !!! note ""

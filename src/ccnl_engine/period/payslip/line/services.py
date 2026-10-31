@@ -48,6 +48,7 @@ DEDUCTION_ACCOUNTS = frozenset({
     AccountKind.ORDINARY_TAX,
     AccountKind.SURTAX,
     AccountKind.SEPARATE_TAX,
+    AccountKind.PERSONAL_WITHHOLDINGS,
 })
 _ZERO = Decimal(0)
 #: Kind of the statutory withholdings (INPS, IRPEF, surtax): their voce is

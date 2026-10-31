@@ -203,9 +203,9 @@ is `False` on its closing state). See
 ## Model limitations
 
 A known simplification of the model is data, not a comment. The registry has
-<!-- trust:limitations-total -->587<!-- /trust:limitations-total --> `ModelLimitation`
+<!-- trust:limitations-total -->588<!-- /trust:limitations-total --> `ModelLimitation`
 entries: one per `simplification` note of a CCNL file that can move an
-amount, and <!-- trust:limitations-engine -->23<!-- /trust:limitations-engine -->
+amount, and <!-- trust:limitations-engine -->24<!-- /trust:limitations-engine -->
 engine limitations of code paths several CCNLs share
 (`knowledge/limitation/engine.json`: the apprenticeship midpoint and
 the apprentice seniority increment, both resolved; a percentage
@@ -295,6 +295,7 @@ Issues that lower the calculation axis include:
 | `employer_rate_category_assumed` | `provisional` | The sector sets INPS employer rates by worker category (artigianato: impiegati and quadri 24.71%), the level fixes no category and none was declared, so the general rate (26.93%, the operai rate) applied |
 | `somma_esente_band_assumed` | `provisional` | The worker has employment income from other employers this tax year; the percentage of the somma esente is taken on the income of this employer alone |
 | `withholding_shortfall_unrecovered` | `provisional` | The pay of the run cannot cover the tax due; the worker must be told the amount |
+| `personal_withholding_residual` | `provisional` | A garnishment or salary assignment is still due at the end of the employment; the engine does not withhold it on the TFR the run settles |
 
 ### Coverage
 

@@ -72,6 +72,16 @@ def test_a_state_before_schema_16_has_its_leave_unknown(schema: int) -> None:
     assert state.accrual.leave == LeaveAccount(known=False)
 
 
+@pytest.mark.parametrize("schema", [14, 15, 16])
+def test_a_state_before_schema_17_has_withheld_nothing_for_third_parties(
+    schema: int,
+) -> None:
+    """Written before the personal withholdings, a state carries none."""
+    state = period_state_from_json(_stored(schema))
+
+    assert state.cash.obligations.personal_withholdings == ()
+
+
 def test_a_migration_rejects_a_tree_that_is_not_a_state() -> None:
     """A step reads only a tagged state tree."""
     with pytest.raises(TypeError, match="tagged PeriodState"):

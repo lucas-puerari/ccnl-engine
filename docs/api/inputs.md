@@ -86,6 +86,15 @@ state types.
 
 ::: ccnl_engine.inputs.SubstituteTaxRegime
 
+## Garnishments and salary assignments
+
+See [Payroll state: garnishments and salary
+assignments](../engine/payroll-state.md#garnishments-and-salary-assignments).
+
+::: ccnl_engine.inputs.PersonalWithholding
+
+::: ccnl_engine.inputs.PersonalWithholdingKind
+
 ## Calendar and engine mode
 
 ::: ccnl_engine.inputs.WorkCalendar

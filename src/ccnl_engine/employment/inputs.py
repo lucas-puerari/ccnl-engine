@@ -32,6 +32,10 @@ from ccnl_engine.pension_fund.inputs import (
     NoPensionFund,
     PensionFundEnrolment,
 )
+from ccnl_engine.personal_withholding.inputs import (
+    PersonalWithholding,
+    check_personal_withholdings,
+)
 from ccnl_engine.regime.models import EmploymentSector
 from ccnl_engine.seniority.inputs import SeniorityFact
 from ccnl_engine.severance.provision.models import TfrFundBalance
@@ -123,97 +127,88 @@ class Employment:
             :class:`~ccnl_engine.errors.UnknownCcnlError` when the run loads
             it.
         level_code: Contractual level code, e.g. ``"C3"``.
-        contract_type: :class:`Permanent`, :class:`FixedTerm` or
-            :class:`Apprentice`, always stated: it selects the NASpI
-            surcharge of a fixed-term contract and the art. 13 TUIR
-            deduction minimum.
-        category: Worker category; its string value (e.g. ``"operaio"``) is
-            accepted and normalized.  ``None`` takes the category fixed by
-            the level, if any.  The calculation raises when the category
-            differs from the one the level fixes, or when it is ``None`` and
-            seniority increments for the level differ by category.
-        employment_period: Start and optional end of the employment.
-            ``None`` when not tracked: a year then computes every run of the
-            calendar with full ratei.
-        weekly_hours: Contracted weekly hours.  Required for domestic CCNLs
-            to select the INPS bracket; below ``full_time_weekly_hours`` it
-            scales the pay for part time.
-        full_time_weekly_hours: Full-time weekly hours of the contract.
-            ``weekly_hours`` must not exceed it.
-        work_pattern: Vertical or mixed part time: the hours of each day of
-            the week, whose sum must equal ``weekly_hours``, and the months
-            of the year the worker works.  A month not worked pays no
-            monthly pay and accrues no extra-month rateo.  ``None`` for a
-            horizontal part time or a full time worked every month.
-        seniority: Recognised seniority, aged by the engine to each run.
-            ``None`` means not known: a run whose level pays seniority
-            increments or service-gated allowances then has a
-            ``missing_fact`` blocker, and its amounts leave them out.
-        roles: Role codes that unlock role-specific contractual allowances,
-            each a non-blank string.  A set is accepted and stored as a
-            frozenset; an empty set states that the worker holds no role.
-            ``None`` means not known: a run whose level has an allowance
-            restricted to a role then has a ``missing_fact`` blocker, and
-            its amounts leave the allowance out.
-        contribution_history: First enrolment in a mandatory pension scheme
-            and contributory option, from which the engine derives whether
-            the IVS massimale applies.  ``None`` means not known: a run whose
-            INPS base crosses the massimale then has an undetermined
-            contribution and a ``missing_fact`` blocker.
-        sector: Private or public sector of the employment, for the regimes
-            restricted to one sector.  ``None`` means not known: those
-            regimes are then ``unknown`` and the result provisional.  It is
-            not derived from the CCNL: a public employer may apply a private
-            CCNL.
-        pension_fund: Enrolment in a complementary pension fund of the CCNL,
-            or
-            :class:`~ccnl_engine.pension_fund.inputs.NoPensionFund`
-            to state that the worker is not enrolled: no fund contribution is
-            computed, and on a CCNL that has funds the
-            ``pension_fund_contribution`` capability records the reason
-            ``not_enrolled``.  ``None`` means not known: on every CCNL but
-            domestic work the contributions are undetermined and the run
-            has a ``missing_fact`` blocker.
-        tfr_fund: TFR fund at 31 December of the year before the run, the
-            base of the revaluation at 31 December (art. 2120 c. 4 c.c.).
-            ``None`` means not known: the December run then has a
-            ``missing_fact`` blocker, unless the employment starts in the
-            year of the run (no fund to revalue).
-        tfr_treasury_fund: Whether the TFR not paid to a pension fund is
-            paid to the Fondo Tesoreria INPS (L. 296/2006 art. 1 c. 756):
-            the employer is obliged by its size and the worker is not
-            excluded (DM 30 gennaio 2007 art. 1 cc. 5-8).  ``None`` means not
-            known: a run that accrues TFR in the company then has a
-            ``missing_fact`` blocker.  Domestic work and the public
-            administrations are outside the Fondo: ``True`` there raises
-            ``InvalidInputError``, ``None`` and ``False`` keep the TFR in
-            the company.
-        erc_amount: Annual Elemento di Raccordo Contrattuale of the CCNL
-            grafici editoriali (renewal of 19 January 2021), frozen in
-            December 2020; zero when the worker has none.  It is paid with
-            the tredicesima, by its months, and sets the Byblos employer
-            rate (1.4% with one, 1.9% without).  ``None`` means not known,
-            zero for an employment that started after December 2020: an
-            enrolled run, or a run paying the tredicesima, on that CCNL has
-            a ``missing_fact`` blocker.
-        public_end_of_service: End-of-service regime of a public employee
-            (TFS, TFR at INPS or TFR at the employer), which sets the
-            contributions to INPS Gestione Dipendenti Pubblici and whether
-            the run accrues the TFR.  ``None`` means not known: a run on a
-            CCNL of the public administrations has a ``missing_fact``
+        contract_type: :class:`Permanent`, :class:`FixedTerm` or :class:`Apprentice`,
+            always stated: it selects the NASpI surcharge of a fixed-term contract and
+            the art. 13 TUIR deduction minimum.
+        category: Worker category; its string value (e.g. ``"operaio"``) is accepted and
+            normalized.  ``None`` takes the category fixed by the level, if any.  The
+            calculation raises when the category differs from the one the level fixes,
+            or when it is ``None`` and seniority increments for the level differ by
+            category.
+        employment_period: Start and optional end of the employment. ``None`` when not
+            tracked: a year then computes every run of the calendar with full ratei.
+        weekly_hours: Contracted weekly hours.  Required for domestic CCNLs to select
+            the INPS bracket; below ``full_time_weekly_hours`` it scales the pay for
+            part time.
+        full_time_weekly_hours: Full-time weekly hours of the contract. ``weekly_hours``
+            must not exceed it.
+        work_pattern: Vertical or mixed part time: the hours of each day of the week,
+            whose sum must equal ``weekly_hours``, and the months of the year the worker
+            works.  A month not worked pays no monthly pay and accrues no extra-month
+            rateo.  ``None`` for a horizontal part time or a full time worked every
+            month.
+        seniority: Recognised seniority, aged by the engine to each run. ``None`` means
+            not known: a run whose level pays seniority increments or service-gated
+            allowances then has a ``missing_fact`` blocker, and its amounts leave them
+            out.
+        roles: Role codes that unlock role-specific contractual allowances, each a
+            non-blank string.  A set is accepted and stored as a frozenset; an empty set
+            states that the worker holds no role. ``None`` means not known: a run whose
+            level has an allowance restricted to a role then has a ``missing_fact``
+            blocker, and its amounts leave the allowance out.
+        contribution_history: First enrolment in a mandatory pension scheme and
+            contributory option, from which the engine derives whether the IVS massimale
+            applies.  ``None`` means not known: a run whose INPS base crosses the
+            massimale then has an undetermined contribution and a ``missing_fact``
+            blocker.
+        sector: Private or public sector of the employment, for the regimes restricted
+            to one sector.  ``None`` means not known: those regimes are then ``unknown``
+            and the result provisional.  It is not derived from the CCNL: a public
+            employer may apply a private CCNL.
+        pension_fund: Enrolment in a complementary pension fund of the CCNL, or
+            :class:`~ccnl_engine.pension_fund.inputs.NoPensionFund` to state that the
+            worker is not enrolled: no fund contribution is computed, and on a CCNL that
+            has funds the ``pension_fund_contribution`` capability records the reason
+            ``not_enrolled``.  ``None`` means not known: on every CCNL but domestic work
+            the contributions are undetermined and the run has a ``missing_fact``
+            blocker.
+        tfr_fund: TFR fund at 31 December of the year before the run, the base of the
+            revaluation at 31 December (art. 2120 c. 4 c.c.). ``None`` means not known:
+            the December run then has a ``missing_fact`` blocker, unless the employment
+            starts in the year of the run (no fund to revalue).
+        tfr_treasury_fund: Whether the TFR not paid to a pension fund is paid to the
+            Fondo Tesoreria INPS (L. 296/2006 art. 1 c. 756): the employer is obliged by
+            its size and the worker is not excluded (DM 30 gennaio 2007 art. 1 cc. 5-8).
+            ``None`` means not known: a run that accrues TFR in the company then has a
+            ``missing_fact`` blocker.  Domestic work and the public administrations are
+            outside the Fondo: ``True`` there raises ``InvalidInputError``, ``None`` and
+            ``False`` keep the TFR in the company.
+        erc_amount: Annual Elemento di Raccordo Contrattuale of the CCNL grafici
+            editoriali (renewal of 19 January 2021), frozen in December 2020; zero when
+            the worker has none.  It is paid with the tredicesima, by its months, and
+            sets the Byblos employer rate (1.4% with one, 1.9% without).  ``None`` means
+            not known, zero for an employment that started after December 2020: an
+            enrolled run, or a run paying the tredicesima, on that CCNL has a
+            ``missing_fact`` blocker.
+        public_end_of_service: End-of-service regime of a public employee (TFS, TFR at
+            INPS or TFR at the employer), which sets the contributions to INPS Gestione
+            Dipendenti Pubblici and whether the run accrues the TFR.  ``None`` means not
+            known: a run on a CCNL of the public administrations has a ``missing_fact``
             blocker.
         individual_elements: Pay elements agreed with the worker above the
-            CCNL minimum (superminimo, assegno ad personam), each a
-            :class:`~ccnl_engine.compensation.individual.inputs.IndividualElement`
-            with its own code; a list is accepted and stored as a tuple.
-            Empty when the worker has none.
+            CCNL minimum (superminimo, assegno ad personam), each with its
+            own code; a list is accepted and stored as a tuple.
+        personal_withholdings: Garnishments and salary assignments notified
+            to the employer, each a
+            :class:`~ccnl_engine.personal_withholding.inputs.PersonalWithholding`
+            with its own id; a list is accepted and stored as a tuple.
 
     Raises:
         InvalidInputError: When a field is not of its type, a role is not a
-            non-blank string, ``weekly_hours`` exceeds
-            ``full_time_weekly_hours`` or differs from the weekday hours of
-            ``work_pattern``, ``category`` or ``sector`` names
-            no known value, or two individual elements share a code.
+            non-blank string, ``weekly_hours`` exceeds ``full_time_weekly_hours``
+            or differs from the weekday hours of ``work_pattern``, ``category``
+            or ``sector`` names no known value, or two individual elements or
+            withholdings share a code.
     """
 
     ccnl_id: str
@@ -234,6 +229,7 @@ class Employment:
     erc_amount: Decimal | None = None
     public_end_of_service: PublicEndOfService | None = None
     individual_elements: tuple[IndividualElement, ...] = ()
+    personal_withholdings: tuple[PersonalWithholding, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
         if not isinstance(self.ccnl_id, str) or not _CCNL_ID.fullmatch(self.ccnl_id):
@@ -271,6 +267,10 @@ class Employment:
             self.individual_elements, "Employment.individual_elements"
         )
         object.__setattr__(self, "individual_elements", elements)
+        withholdings = check_personal_withholdings(
+            self.personal_withholdings, "Employment.personal_withholdings"
+        )
+        object.__setattr__(self, "personal_withholdings", withholdings)
         require_decimal(
             self.erc_amount,
             "Employment.erc_amount",

@@ -66,6 +66,10 @@ from ccnl_engine.irpef.other_income.inputs import (
 )
 from ccnl_engine.pension_fund.inputs import NoPensionFund, PensionFundEnrolment
 from ccnl_engine.period.inputs import PeriodFacts, PeriodInput
+from ccnl_engine.personal_withholding.inputs import (
+    PersonalWithholding,
+    PersonalWithholdingKind,
+)
 from ccnl_engine.regime.models import (
     EmployerActivity,
     EmploymentSector,
@@ -163,6 +167,8 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             OvertimeKind,
             PayrollRun,
             PensionFundEnrolment,
+            PersonalWithholding,
+            PersonalWithholdingKind,
             LeaveHours,
             PeriodFacts,
             PeriodId,

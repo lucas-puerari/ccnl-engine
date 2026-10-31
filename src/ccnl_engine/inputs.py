@@ -71,6 +71,10 @@ from ccnl_engine.pension_fund.inputs import (
     NoPensionFund,
     PensionFundEnrolment,
 )
+from ccnl_engine.personal_withholding.inputs import (
+    PersonalWithholding,
+    PersonalWithholdingKind,
+)
 from ccnl_engine.regime.models import EmploymentSector
 from ccnl_engine.run.models import PayrollRunId
 from ccnl_engine.seniority.inputs import (
@@ -120,6 +124,8 @@ __all__ = [
     "PensionFundEnrolment",
     "PeriodState",
     "Permanent",
+    "PersonalWithholding",
+    "PersonalWithholdingKind",
     "PriorYearTaxFacts",
     "PublicEndOfService",
     "RecoveryObligation",

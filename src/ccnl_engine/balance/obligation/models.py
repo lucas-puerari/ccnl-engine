@@ -12,7 +12,8 @@ so no recovery outlives the employment.  The surtax a
 conguaglio of year N determines is withheld the same way on the payslips of
 N+1 (:mod:`~ccnl_engine.surtax.obligation.models`), and so is the
 IRPEF of a conguaglio the worker asked in writing to defer
-(:mod:`~ccnl_engine.withholding.deferral.inputs`).
+(:mod:`~ccnl_engine.withholding.deferral.inputs`).  What the payslips
+withheld to date under a garnishment or a salary assignment runs on too.
 """
 
 from __future__ import annotations
@@ -28,6 +29,7 @@ from ccnl_engine.validators import (
 )
 
 if TYPE_CHECKING:
+    from ccnl_engine.personal_withholding.models import WithheldToDate
     from ccnl_engine.surtax.obligation.models import SurtaxObligation
     from ccnl_engine.tax_credit.recovery.models import (
         InstallmentRun,
@@ -153,20 +155,32 @@ class EmploymentObligations:
             tax year of the conguaglio that determined it, oldest first.
         deferred_shortfall: IRPEF of a conguaglio deferred on the worker's
             written request, at most one per tax year of the conguaglio.
+        personal_withholdings: Amount withheld to date under each
+            garnishment or salary assignment, at most one per id
+            (:mod:`~ccnl_engine.personal_withholding.services`).
     """
 
     recoveries: tuple[RecoveryObligation, ...] = ()
     surtax: tuple[SurtaxObligation, ...] = ()
     deferred_shortfall: tuple[DeferredShortfall, ...] = ()
+    personal_withholdings: tuple[WithheldToDate, ...] = ()
 
     def __post_init__(self) -> None:
         """Reject two recoveries of the same credit opened in the same year.
 
         Raises:
             ValueError: When two recoveries share ``tax_year`` and kind, two
-                surtax obligations share ``tax_year`` and component, or two
-                deferred shortfalls share ``tax_year``.
+                surtax obligations share ``tax_year`` and component, two
+                deferred shortfalls share ``tax_year``, or two personal
+                withholdings share an id.
         """
+        ids = [w.withholding_id for w in self.personal_withholdings]
+        if len(set(ids)) != len(ids):
+            msg = (
+                "EmploymentObligations.personal_withholdings holds two "
+                f"amounts of the same id: {ids}"
+            )
+            raise ValueError(msg)
         deferred = [d.tax_year for d in self.deferred_shortfall]
         if len(set(deferred)) != len(deferred):
             msg = (

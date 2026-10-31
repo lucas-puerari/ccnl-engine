@@ -6,8 +6,9 @@ sign.
 
 Implemented invariants:
     gross_non_negative: ``period_gross >= 0``.
-    employee_deduction_non_negative: every EMPLOYEE_DEDUCTIONS entry is
-        ``>= 0``; refunds and adjustments use an explicit account.
+    employee_deduction_non_negative: every EMPLOYEE_DEDUCTIONS and
+        PERSONAL_WITHHOLDINGS entry is ``>= 0``; refunds and adjustments
+        use an explicit account.
     substitute_tax_non_negative: every SUBSTITUTE_TAX entry is ``>= 0``;
         a refund is never a negative substitute tax.
     ordinary_tax_non_negative: every ORDINARY_TAX entry is ``>= 0``; an
@@ -54,6 +55,10 @@ _ZERO = Decimal(0)
 #: Accounts whose every entry must be non-negative, with the invariant code.
 _NON_NEGATIVE_ACCOUNTS: tuple[tuple[AccountKind, InvariantCode], ...] = (
     (AccountKind.EMPLOYEE_DEDUCTIONS, InvariantCode.EMPLOYEE_DEDUCTION_NON_NEGATIVE),
+    (
+        AccountKind.PERSONAL_WITHHOLDINGS,
+        InvariantCode.EMPLOYEE_DEDUCTION_NON_NEGATIVE,
+    ),
     (AccountKind.SUBSTITUTE_TAX, InvariantCode.SUBSTITUTE_TAX_NON_NEGATIVE),
     (AccountKind.ORDINARY_TAX, InvariantCode.ORDINARY_TAX_NON_NEGATIVE),
     (

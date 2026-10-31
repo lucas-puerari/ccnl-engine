@@ -272,15 +272,13 @@
     {
       "feature": "personal_withholdings",
       "layer": "net",
-      "implementation": "unsupported",
-      "applies_when": "outside_input",
-      "handler": null,
+      "implementation": "native",
+      "applies_when": "decided",
+      "handler": "decision",
       "evidence": "derived",
       "variants": [],
-      "required_facts": [
-        "facts.personal_withholdings"
-      ],
-      "description": "Trattenute personali (pignoramenti, cessioni del quinto, prestiti)"
+      "required_facts": [],
+      "description": "Pignoramenti presso il datore di lavoro, cessioni del quinto e delegazioni sul netto (art. 545 c.p.c., artt. 5 e 68-70 DPR 180/1950, art. 72-ter DPR 602/1973)"
     },
     {
       "feature": "additional_irpef_base",

@@ -12,6 +12,7 @@ from scripts.quality.mutation.check import (
     changed_modules,
     compute_score,
     evaluate,
+    has_mutants,
     load_equivalent,
     load_floors,
     module_stats,
@@ -32,6 +33,20 @@ def test_the_perimeter_is_the_mutmut_source_paths() -> None:
 def test_a_module_maps_to_the_pattern_of_its_mutants() -> None:
     """Mutmut names a mutant by the dotted module, then the function."""
     assert mutant_glob("src/ccnl_engine/irpef/rules.py") == "ccnl_engine.irpef.rules.*"
+
+
+@pytest.mark.parametrize(
+    ("module", "expected"),
+    [
+        ("src/ccnl_engine/irpef/rules.py", True),
+        ("src/ccnl_engine/ledger/models.py", False),
+    ],
+)
+def test_a_module_of_declarations_only_yields_no_mutant(
+    module: str, expected: bool
+) -> None:
+    """The enums of the ledger give mutmut nothing to mutate: no pattern."""
+    assert has_mutants(module) is expected
 
 
 def test_only_changed_modules_of_the_perimeter_are_selected() -> None:

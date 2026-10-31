@@ -4,11 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.default.models import (
-    FactEnforcement,
-    absence_is_fact,
-    requires_fact,
-)
+from ccnl_engine.default.models import FactEnforcement, absence_is_fact, requires_fact
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -169,6 +165,8 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "weekly_hours alone sets the part-time ratio"
     ),
     "Employment.individual_elements": absence_is_fact("no element above the minimo"),
+    "Employment.personal_withholdings": absence_is_fact("no order notified"),
+    "PersonalWithholding.installment": absence_is_fact("a legal fraction, none stated"),
     "IndividualElement.absorbable": absence_is_fact("not absorbed by increases"),
     "IndividualElement.as_of": absence_is_fact("read only when absorbable"),
     "IndividualElement.extra_months": absence_is_fact("paid on the extra months"),

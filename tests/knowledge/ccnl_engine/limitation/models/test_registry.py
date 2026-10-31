@@ -54,6 +54,7 @@ from ccnl_engine.limitation.models import LimitationStatus, MonetaryImpact
 from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
+from ccnl_engine.personal_withholding.services import SAME_KIND
 from ccnl_engine.seniority.rules import APPRENTICE_SENIORITY_VARIANT
 from ccnl_engine.severance.relief.services import (
     APPRENTICE_GUARANTEE_FUND,
@@ -145,6 +146,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         NOTICE_DAY_MEASURE,
         HOURLY_CCNL_LIMITATION,
         NASPI_EXCEPTIONS,
+        SAME_KIND,
     }
     assert by_status[LimitationStatus.RESOLVED] == {
         _MIDPOINT,

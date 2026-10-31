@@ -30,13 +30,14 @@ on unverified sources, or be well sourced and not cleared for production.
   verified / derived / assumed / missing.
 - **Readiness:** the review tier of the contract ruleset.
 
-**Core payroll path: computed on every run of every contract** (21):
+**Core payroll path: computed on every run of every contract** (22):
 
 - ✅ `base_salary` (native)
 - ✅ `seniority` (native)
 - ✅ `worker_category` (native)
 - ✅ `inps_employee` (native)
 - ✅ `inps_employer` (native)
+- ✅ `personal_withholdings` (native)
 - ✅ `tfr` (native)
 - ✅ `tfr_revaluation` (native)
 - ✅ `irpef` (native)
@@ -85,13 +86,12 @@ on unverified sources, or be well sourced and not cleared for production.
 - 📝 `bilateral_funds` (caller_supplied)
 - ⚠️ `pension_fund_contribution` (partial)
 
-**Outside the input: the request has no field for the fact, so the engine does not compute them** (7):
+**Outside the input: the request has no field for the fact, so the engine does not compute them** (6):
 
 - 🔲 `inail` (unsupported)
 - 🔲 `contribution_exemption` (unsupported)
 - 🔲 `fiscal_adjustment` (unsupported)
 - 🔲 `una_tantum` (unsupported)
-- 🔲 `personal_withholdings` (unsupported)
 - 🔲 `additional_irpef_base` (unsupported)
 - 🔲 `art15_deductions` (unsupported)
 

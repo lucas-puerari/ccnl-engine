@@ -40,10 +40,8 @@ if TYPE_CHECKING:
     from ccnl_engine.event.facade import WorkEvent
     from ccnl_engine.extra_month.models import ExtraMonthAccrual
     from ccnl_engine.family.inputs import FamilyComposition
-    from ccnl_engine.pension_fund.inputs import (
-        NoPensionFund,
-        PensionFundEnrolment,
-    )
+    from ccnl_engine.pension_fund.inputs import NoPensionFund, PensionFundEnrolment
+    from ccnl_engine.personal_withholding.inputs import PersonalWithholding
     from ccnl_engine.run.models import PayrollRun, PayrollRunId
     from ccnl_engine.withholding.schedule.models import WithholdingSchedule
 
@@ -96,10 +94,9 @@ class PeriodCalculationRequest:
         full_time_weekly_hours: Full-time weekly hours of the contract,
             positive.  ``weekly_hours`` must not exceed it.
         work_pattern: Vertical or mixed part time: weekday hours summing to
-            ``weekly_hours`` and the months worked.  A regular or
-            termination run of a month not worked posts no monthly pay, and
-            the months not worked accrue no extra-month rateo.  ``None``
-            for a horizontal part time or a full time.
+            ``weekly_hours`` and the months worked.  A regular or termination run of a
+            month not worked posts no monthly pay, and the months not worked accrue no
+            extra-month rateo.  ``None`` for a horizontal part time or a full time.
         employment_period: Start and optional end of the employment.
             ``None`` when not tracked.
             :func:`~ccnl_engine.year.tax_year.services.calculate_tax_year`
@@ -121,19 +118,18 @@ class PeriodCalculationRequest:
             or tax-year plan passes the schedule of its payments.  ``None``
             builds it from the payments closed, this one and
             ``planned_payments``.
-        planned_payments: Payments of the tax year still planned after this
-            one, in payment order; ``()`` makes this payment the
-            conguaglio.  ``None`` projects the runs of the CCNL standard
-            calendar that follow this run.
+        planned_payments: Payments of the tax year still planned after this one, in
+            payment order; ``()`` makes this payment the conguaglio.  ``None`` projects
+            the runs of the CCNL standard calendar that follow this run.
         extra_month_accrual: Rateo of an extra-month run (window, qualifying
             months), from ``calculate_year``; ``None`` counts it from
             ``employment_period`` over the 12 months ending in the run month,
             without absences.  Ignored on a regular run.
-        extra_month_settlements: Ratei the run liquidates at the end of the
-            employment, as extra-month earnings; ``None`` derives them
+        extra_month_settlements: Ratei the run liquidates at the end of the employment,
+            as extra-month earnings; ``None`` derives them
             (:mod:`~ccnl_engine.extra_month.liquidation.services`).
-        sector: Private or public sector of the employment, ``None`` when
-            not known.  Read by the regimes restricted to one sector.
+        sector: Private or public sector of the employment, ``None`` when not known.
+            Read by the regimes restricted to one sector.
         prior_year: Prior-year income and written waivers, read by every
             preferential tax regime.
         current_year: Income of the tax year beyond this employment, read
@@ -143,14 +139,16 @@ class PeriodCalculationRequest:
             for that year, in place of the one the state carries.
         pension_fund: Enrolment in a pension fund of the CCNL, if known
             (``NoPensionFund``: not enrolled).
-        uncovered_runs: Runs of the competence year the year calculation
-            left out because the bundle holds no pay rules on their date.
-            They are reported once, as ``run_not_computed`` blockers of the
-            year, so the opening state is not judged to miss them.
+        uncovered_runs: Runs of the competence year the year calculation left out
+            because the bundle holds no pay rules on their date. They are reported once,
+            as ``run_not_computed`` blockers of the year, so the opening state is not
+            judged to miss them.
         tfr_fund: TFR fund at 31 December of the year before, if known.
         tfr_treasury_fund: Whether the TFR goes to the Fondo Tesoreria.
         erc_amount: Annual ERC of the CCNL grafici editoriali, if known.
         public_end_of_service: End-of-service regime of a public employee.
+        personal_withholdings: Garnishments and salary assignments notified
+            to the employer, withheld from the net pay.
     """
 
     period_id: PeriodId
@@ -189,6 +187,7 @@ class PeriodCalculationRequest:
     tfr_treasury_fund: bool | None = None
     erc_amount: Decimal | None = None
     public_end_of_service: PublicEndOfService | None = None
+    personal_withholdings: tuple[PersonalWithholding, ...] = ()
 
     def __post_init__(self) -> None:
         """Guard dates, cross-year state or schedule and hours above full time.

@@ -531,6 +531,66 @@ issue. These lines do not enter `cash.tax.irpef` of N+1: the invariant
 withheld one. See
 [Fiscal: written deferral](fiscal.md#written-deferral-of-the-year-end-shortfall).
 
+## Garnishments and salary assignments
+
+`Employment.personal_withholdings` states each order or contract the
+employer was notified of, as a `PersonalWithholding`: its id, kind, the
+day it was notified (`notified_on`), the first payment it applies to
+(`starts_on`), the amount due to the creditor (`total_due`) and, for a
+salary assignment (cessione del quinto), a payment delegation or a
+maintenance order, the monthly `installment`. The caller states the facts,
+never the amount withheld: every run computes it from its own net pay.
+
+| Kind | Limit on the net pay of the run | Source |
+|---|---|---|
+| `salary_assignment` | the installment, at most a fifth | art. 5 DPR 180/1950 |
+| `payment_delegation` | the installment | art. 69-70 DPR 180/1950 |
+| `maintenance` | the measure the judge set | art. 545 c. 3 c.p.c. |
+| `tax`, `ordinary` | a fifth | art. 545 c. 4 c.p.c. |
+| `tax_collection` | a tenth up to 2,500 EUR, a seventh up to 5,000, a fifth above | art. 72-ter DPR 602/1973, art. 171 D.Lgs. 33/2025 from 2027 |
+
+The base is the net pay of the run before these deductions ("valutato al
+netto di ritenute", art. 2 and 5 DPR 180/1950), without the TFR it settles
+and its separate tax. The deductions are taken in the order of
+notification: each keeps its amount, and a later one gets what its own
+limit and the combined limits leave. After any earlier deduction, the
+total stops at half the base (art. 545 c. 5 c.p.c., art. 68 c. 2, 69 and
+70 DPR 180/1950); a salary assignment after a garnishment at two fifths
+less the garnishments (art. 68 c. 1). Each limit is rounded down to the
+cent. A salary assignment, a delegation and a maintenance order withhold on
+the regular payslip of the month only; the garnishments of a fraction on
+every run but an adjustment, the extra months and the termination run
+included.
+
+Worked examples on a net of 1,500.00:
+
+- an ordinary garnishment: 1,500.00 / 5 = 300.00;
+- a cessione of 250 notified first, then an ordinary garnishment: 250.00
+  and 300.00; a maintenance order of 400 notified after both gets
+  750.00 - 550.00 = 200.00;
+- a maintenance order of 400 notified first, then a cessione of 250: the
+  cessione gets 2 x 300.00 - 400.00 = 200.00;
+- the agente della riscossione on a net of 2,000.00: 200.00; on 3,000.00:
+  428.57.
+
+Each amount is a `personal_withholding_{id}_{run}` line on the
+`PERSONAL_WITHHOLDINGS` account (never remitted on the F24), with a
+`personal_withholdings` decision recording the base, the legal limit, its
+rule and the residual before and after. `cash.obligations.personal_withholdings`
+carries, as one `WithheldToDate` per id, what the runs withheld to date;
+the residual of a run is `total_due` less that amount. `close_tax_year`
+carries it into the next year like the other obligations; a deduction
+started on another payroll states what is left of it as `total_due`.
+
+Two garnishments of the same kind, or two salary assignments, share the
+measure of their kind in the order of notification under the open engine
+limitation `personal_withholding_same_kind`: no text read says how the
+measure is split. The last run of the employment withholds nothing on the
+TFR: what each deduction leaves is reported by a provisional
+`personal_withholding_residual` issue, with the TFR the run settles
+(art. 545 c. 4 c.p.c. and art. 55 c. 2 and 43 c. 3 DPR 180/1950 extend the
+deductions to it), and the state carries nothing after it.
+
 ## Ledger accounts and F24 remittance
 
 The withholding agent remits the tax it withholds and offsets the credits
@@ -595,6 +655,7 @@ period_net = CASH_EARNINGS + TFR_SETTLEMENT + CREDITS + TAX_REFUNDS
            - EMPLOYEE_CONTRIBUTIONS - BILATERAL_FUND_EMPLOYEE
            - PENSION_FUND_EMPLOYEE - EMPLOYEE_DEDUCTIONS
            - ORDINARY_TAX - SURTAX - SUBSTITUTE_TAX - SEPARATE_TAX
+           - PERSONAL_WITHHOLDINGS
 ```
 
 The invariant `credit_non_negative` rejects a negative entry on the credit
