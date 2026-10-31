@@ -8,7 +8,8 @@ holds them in four shapes, and each reaches the result its own way:
   capability that read it;
 - a CCNL series with a ``missing`` gap: the run on a date inside the gap is
   refused (:class:`~ccnl_engine.errors.MissingRuleError`), no amount comes
-  out;
+  out; no gap of the bundle falls in 2026 or 2027, so the refusal is
+  shown on a declared gap in the public error contract tests;
 - an ``assumed`` block of a 2026 INPS file (the agricultural apprentice
   rates, the minimum base of the public administrations): a
   ``rule_source_weak`` blocker of the INPS capabilities, only on the runs
@@ -34,7 +35,6 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodResult,
 )
-from ccnl_engine.errors import MissingRuleError
 from ccnl_engine.inputs import (
     Apprentice,
     CurrentYearTaxFacts,
@@ -43,8 +43,6 @@ from ccnl_engine.inputs import (
     NoPensionFund,
     Permanent,
     PriorYearTaxFacts,
-    SeniorityFact,
-    SenioritySource,
     WorkerCategory,
 )
 from ccnl_engine.results import BlockerCode
@@ -72,21 +70,6 @@ def test_an_assumed_ccnl_rule_blocks_the_capability_that_reads_it() -> None:
 
     assert ("base_salary", "assumed") in _weak(result)
     assert not result.is_payable
-
-
-def test_a_missing_gap_refuses_the_run() -> None:
-    """Grafica editoria declares no seniority amount of Q before July 2026."""
-    employment = Employment(
-        ccnl_id="grafica-editoria-aieg",
-        level_code="Q",
-        seniority=SeniorityFact.since(
-            date(2018, 1, 1), SenioritySource.EMPLOYER_RECORDS
-        ),
-        contract_type=Permanent(),
-    )
-
-    with pytest.raises(MissingRuleError):
-        regular_period(employment=employment)
 
 
 def _agricultural(contract_type: Permanent | Apprentice) -> PeriodResult:

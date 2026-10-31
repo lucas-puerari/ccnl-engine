@@ -1,6 +1,6 @@
 <!-- auto-generated; run: uv run python scripts/documentation/capability_matrix/generate.py -->
 
-<!-- generated: 2026-10-30 -->
+<!-- generated: 2026-10-31 -->
 
 # Capability Matrix
 

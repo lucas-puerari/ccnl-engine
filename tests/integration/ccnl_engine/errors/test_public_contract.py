@@ -44,7 +44,10 @@ from tests.integration.ccnl_engine.sickness.builders import (
     metalmeccanico_c3,
     sickness_episode,
 )
-from tests.knowledge.ccnl_engine.seniority.builders import new_hire
+from tests.knowledge.ccnl_engine.seniority.builders import (
+    SeniorityGapRepository,
+    new_hire,
+)
 
 _ENGINE = PayrollEngine.bundled()
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
@@ -127,12 +130,20 @@ def test_rule_series_not_yet_valid_with_zero_increments_is_computed() -> None:
 def test_increments_due_where_the_series_is_missing_raise_a_typed_error() -> None:
     """Level E in June 2026, ten years of service: five increments due.
 
-    Their amount before July 2026 is not in the bundle: the run raises
+    With their amount before July 2026 declared missing, the run raises
     :class:`MissingRuleError` naming the CCNL, the feature, the date, the
     declared gap and the first date the amount is known.
     """
+    engine = PayrollEngine(repository=SeniorityGapRepository())
     with pytest.raises(MissingRuleError) as raised:
-        _regular(_grafica_e(6, 120), month=6)
+        engine.calculate_period(
+            PeriodInput(
+                run=PayrollRun.regular(2026, 6),
+                payment_date=date(2026, 6, 27),
+                employment=_grafica_e(6, 120),
+                employer=_EMPLOYER,
+            )
+        )
 
     error = raised.value
     assert isinstance(error, CcnlEngineError)
@@ -145,14 +156,16 @@ def test_increments_due_where_the_series_is_missing_raise_a_typed_error() -> Non
     assert "2026-07-01" in error.remediation
 
 
-def test_increments_on_the_first_date_of_the_series_are_paid() -> None:
-    """Level E in July 2026, ten years of service: five increments.
+@pytest.mark.parametrize("month", [6, 7])
+def test_increments_of_the_bundle_are_paid_either_side_of_july(month: int) -> None:
+    """Level E in June and July 2026, ten years of service: five increments.
 
-    Source: kitech.it, Grafici July 2026 breakdown, scatto of level E
-    10.33 EUR, at most five biennial increments.  Ten years (120 months)
-    mature 1 + (120 - 24) // 24 = 5 increments: 5 x 10.33 = 51.65 EUR.
+    Source: CCNL 19 January 2021, Parte seconda Art. 9, level E 10.33 EUR
+    a biennium, at most five; the July 2026 table of kitech.it repeats it.
+    Ten years (120 months) mature 1 + (120 - 24) // 24 = 5 increments:
+    5 x 10.33 = 51.65 EUR.
     """
-    result = _regular(_grafica_e(7, 120), month=7)
+    result = _regular(_grafica_e(month, 120), month=month)
 
     decision = _seniority_decision(result)
     assert decision.reason_code == "increments_applied"

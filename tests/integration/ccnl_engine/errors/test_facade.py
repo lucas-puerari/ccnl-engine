@@ -59,6 +59,7 @@ from ccnl_engine.inputs import (
     SenioritySource,
     WeeklyHours,
 )
+from tests.knowledge.ccnl_engine.seniority.builders import SeniorityGapRepository
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -259,7 +260,7 @@ CCNL-2025-2027.pdf, "Tabella retributiva") start with the tranche of
         assert [str(c) for c in result.conguagli] == ["2026-12-thirteenth@2026-12-28"]
 
     def test_a_seniority_table_starting_later_leaves_its_months_out(self) -> None:
-        """Grafica editoria declares no seniority amount before 1 July 2026.
+        """A seniority amount declared missing before 1 July 2026.
 
         A worker with a recognised seniority reads it from January: January
         to June are left out with a ``seniority`` error each, the rest of the
@@ -272,7 +273,8 @@ CCNL-2025-2027.pdf, "Tabella retributiva") start with the tranche of
             seniority=SeniorityFact(36, date(_YEAR, 1, 1), SenioritySource.PAYSLIP),
             contract_type=Permanent(),
         )
-        result = _ENGINE.calculate_competence_year(
+        engine = PayrollEngine(repository=SeniorityGapRepository())
+        result = engine.calculate_competence_year(
             CompetenceYearPlan(year=_YEAR, employment=employment, employer=_EMPLOYER)
         )
 
