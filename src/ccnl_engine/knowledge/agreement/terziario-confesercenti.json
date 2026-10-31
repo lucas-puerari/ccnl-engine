@@ -981,6 +981,77 @@
             }
           },
           "replaced_by_provincial_element": true
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di cassa e maneggio denaro (Art. 218): 5% della paga base nazionale conglobata, livello Q",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2020-01-01",
+                "valid_until": "2023-04-01",
+                "value": "94.83"
+              },
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": "2024-04-01",
+                "value": "97.44"
+              },
+              {
+                "valid_from": "2024-04-01",
+                "valid_until": "2025-03-01",
+                "value": "103.51"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2025-11-01",
+                "value": "106.12"
+              },
+              {
+                "valid_from": "2025-11-01",
+                "valid_until": "2026-11-01",
+                "value": "109.15"
+              },
+              {
+                "valid_from": "2026-11-01",
+                "valid_until": "2027-02-01",
+                "value": "112.19"
+              },
+              {
+                "valid_from": "2027-02-01",
+                "valid_until": null,
+                "value": "115.66"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "confesercenti-tu2019",
+                "title": "CCNL Terziario, Distribuzione e Servizi Confesercenti, Testo Unico 12 dicembre 2019",
+                "kind": "associazione",
+                "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+                "published_on": "2019-12-12",
+                "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+              },
+              "page": "158",
+              "section": "Art. 218 - Indennità di cassa e maneggio denaro",
+              "quote": "compete un'indennità di cassa e di maneggio di denaro nella misura del 5% (cinque per cento) della paga base nazionale conglobata di cui all'art. 212 del presente contratto"
+            },
+            "transformation": "5% of the paga base nazionale conglobata (Art. 212: the paga base column of the table each base_salary period quotes: the base_salary less the contingenza and, for Q and VII, the altri elementi it conglobates) in force in each period, rounded to the cent. Owed to the staff normally assigned to the till with full responsibility for it and bound to make good its shortfalls: reserved to the role cassiere of Employment.roles. A continuous element, so in the retribuzione di fatto and its extra months and TFR.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T09:00:00Z",
+              "effective_from": "2020-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T09:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-cashier-allowance"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1291,6 +1362,77 @@
             }
           },
           "replaced_by_provincial_element": true
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di cassa e maneggio denaro (Art. 218): 5% della paga base nazionale conglobata, livello I",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2020-01-01",
+                "valid_until": "2023-04-01",
+                "value": "85.42"
+              },
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": "2024-04-01",
+                "value": "87.77"
+              },
+              {
+                "valid_from": "2024-04-01",
+                "valid_until": "2025-03-01",
+                "value": "93.24"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2025-11-01",
+                "value": "95.59"
+              },
+              {
+                "valid_from": "2025-11-01",
+                "valid_until": "2026-11-01",
+                "value": "98.33"
+              },
+              {
+                "valid_from": "2026-11-01",
+                "valid_until": "2027-02-01",
+                "value": "101.06"
+              },
+              {
+                "valid_from": "2027-02-01",
+                "valid_until": null,
+                "value": "104.19"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "confesercenti-tu2019",
+                "title": "CCNL Terziario, Distribuzione e Servizi Confesercenti, Testo Unico 12 dicembre 2019",
+                "kind": "associazione",
+                "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+                "published_on": "2019-12-12",
+                "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+              },
+              "page": "158",
+              "section": "Art. 218 - Indennità di cassa e maneggio denaro",
+              "quote": "compete un'indennità di cassa e di maneggio di denaro nella misura del 5% (cinque per cento) della paga base nazionale conglobata di cui all'art. 212 del presente contratto"
+            },
+            "transformation": "5% of the paga base nazionale conglobata (Art. 212: the paga base column of the table each base_salary period quotes: the base_salary less the contingenza and, for Q and VII, the altri elementi it conglobates) in force in each period, rounded to the cent. Owed to the staff normally assigned to the till with full responsibility for it and bound to make good its shortfalls: reserved to the role cassiere of Employment.roles. A continuous element, so in the retribuzione di fatto and its extra months and TFR.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T09:00:00Z",
+              "effective_from": "2020-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T09:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-cashier-allowance"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1601,6 +1743,77 @@
             }
           },
           "replaced_by_provincial_element": true
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di cassa e maneggio denaro (Art. 218): 5% della paga base nazionale conglobata, livello II",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2020-01-01",
+                "valid_until": "2023-04-01",
+                "value": "73.89"
+              },
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": "2024-04-01",
+                "value": "75.92"
+              },
+              {
+                "valid_from": "2024-04-01",
+                "valid_until": "2025-03-01",
+                "value": "80.66"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2025-11-01",
+                "value": "82.68"
+              },
+              {
+                "valid_from": "2025-11-01",
+                "valid_until": "2026-11-01",
+                "value": "85.05"
+              },
+              {
+                "valid_from": "2026-11-01",
+                "valid_until": "2027-02-01",
+                "value": "87.42"
+              },
+              {
+                "valid_from": "2027-02-01",
+                "valid_until": null,
+                "value": "90.13"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "confesercenti-tu2019",
+                "title": "CCNL Terziario, Distribuzione e Servizi Confesercenti, Testo Unico 12 dicembre 2019",
+                "kind": "associazione",
+                "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+                "published_on": "2019-12-12",
+                "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+              },
+              "page": "158",
+              "section": "Art. 218 - Indennità di cassa e maneggio denaro",
+              "quote": "compete un'indennità di cassa e di maneggio di denaro nella misura del 5% (cinque per cento) della paga base nazionale conglobata di cui all'art. 212 del presente contratto"
+            },
+            "transformation": "5% of the paga base nazionale conglobata (Art. 212: the paga base column of the table each base_salary period quotes: the base_salary less the contingenza and, for Q and VII, the altri elementi it conglobates) in force in each period, rounded to the cent. Owed to the staff normally assigned to the till with full responsibility for it and bound to make good its shortfalls: reserved to the role cassiere of Employment.roles. A continuous element, so in the retribuzione di fatto and its extra months and TFR.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T09:00:00Z",
+              "effective_from": "2020-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T09:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-cashier-allowance"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1911,6 +2124,77 @@
             }
           },
           "replaced_by_provincial_element": true
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di cassa e maneggio denaro (Art. 218): 5% della paga base nazionale conglobata, livello III",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2020-01-01",
+                "valid_until": "2023-04-01",
+                "value": "63.16"
+              },
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": "2024-04-01",
+                "value": "64.89"
+              },
+              {
+                "valid_from": "2024-04-01",
+                "valid_until": "2025-03-01",
+                "value": "68.94"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2025-11-01",
+                "value": "70.67"
+              },
+              {
+                "valid_from": "2025-11-01",
+                "valid_until": "2026-11-01",
+                "value": "72.70"
+              },
+              {
+                "valid_from": "2026-11-01",
+                "valid_until": "2027-02-01",
+                "value": "74.72"
+              },
+              {
+                "valid_from": "2027-02-01",
+                "valid_until": null,
+                "value": "77.03"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "confesercenti-tu2019",
+                "title": "CCNL Terziario, Distribuzione e Servizi Confesercenti, Testo Unico 12 dicembre 2019",
+                "kind": "associazione",
+                "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+                "published_on": "2019-12-12",
+                "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+              },
+              "page": "158",
+              "section": "Art. 218 - Indennità di cassa e maneggio denaro",
+              "quote": "compete un'indennità di cassa e di maneggio di denaro nella misura del 5% (cinque per cento) della paga base nazionale conglobata di cui all'art. 212 del presente contratto"
+            },
+            "transformation": "5% of the paga base nazionale conglobata (Art. 212: the paga base column of the table each base_salary period quotes: the base_salary less the contingenza and, for Q and VII, the altri elementi it conglobates) in force in each period, rounded to the cent. Owed to the staff normally assigned to the till with full responsibility for it and bound to make good its shortfalls: reserved to the role cassiere of Employment.roles. A continuous element, so in the retribuzione di fatto and its extra months and TFR.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T09:00:00Z",
+              "effective_from": "2020-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T09:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-cashier-allowance"
+            }
+          }
         }
       ],
       "provenance": {
@@ -2221,6 +2505,77 @@
             }
           },
           "replaced_by_provincial_element": true
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di cassa e maneggio denaro (Art. 218): 5% della paga base nazionale conglobata, livello IV",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2020-01-01",
+                "valid_until": "2023-04-01",
+                "value": "54.62"
+              },
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": "2024-04-01",
+                "value": "56.12"
+              },
+              {
+                "valid_from": "2024-04-01",
+                "valid_until": "2025-03-01",
+                "value": "59.62"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2025-11-01",
+                "value": "61.12"
+              },
+              {
+                "valid_from": "2025-11-01",
+                "valid_until": "2026-11-01",
+                "value": "62.87"
+              },
+              {
+                "valid_from": "2026-11-01",
+                "valid_until": "2027-02-01",
+                "value": "64.62"
+              },
+              {
+                "valid_from": "2027-02-01",
+                "valid_until": null,
+                "value": "66.62"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "confesercenti-tu2019",
+                "title": "CCNL Terziario, Distribuzione e Servizi Confesercenti, Testo Unico 12 dicembre 2019",
+                "kind": "associazione",
+                "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+                "published_on": "2019-12-12",
+                "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+              },
+              "page": "158",
+              "section": "Art. 218 - Indennità di cassa e maneggio denaro",
+              "quote": "compete un'indennità di cassa e di maneggio di denaro nella misura del 5% (cinque per cento) della paga base nazionale conglobata di cui all'art. 212 del presente contratto"
+            },
+            "transformation": "5% of the paga base nazionale conglobata (Art. 212: the paga base column of the table each base_salary period quotes: the base_salary less the contingenza and, for Q and VII, the altri elementi it conglobates) in force in each period, rounded to the cent. Owed to the staff normally assigned to the till with full responsibility for it and bound to make good its shortfalls: reserved to the role cassiere of Employment.roles. A continuous element, so in the retribuzione di fatto and its extra months and TFR.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T09:00:00Z",
+              "effective_from": "2020-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T09:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-cashier-allowance"
+            }
+          }
         }
       ],
       "provenance": {
@@ -2531,6 +2886,77 @@
             }
           },
           "replaced_by_provincial_element": true
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di cassa e maneggio denaro (Art. 218): 5% della paga base nazionale conglobata, livello V",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2020-01-01",
+                "valid_until": "2023-04-01",
+                "value": "49.35"
+              },
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": "2024-04-01",
+                "value": "50.71"
+              },
+              {
+                "valid_from": "2024-04-01",
+                "valid_until": "2025-03-01",
+                "value": "53.87"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2025-11-01",
+                "value": "55.22"
+              },
+              {
+                "valid_from": "2025-11-01",
+                "valid_until": "2026-11-01",
+                "value": "56.80"
+              },
+              {
+                "valid_from": "2026-11-01",
+                "valid_until": "2027-02-01",
+                "value": "58.38"
+              },
+              {
+                "valid_from": "2027-02-01",
+                "valid_until": null,
+                "value": "60.19"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "confesercenti-tu2019",
+                "title": "CCNL Terziario, Distribuzione e Servizi Confesercenti, Testo Unico 12 dicembre 2019",
+                "kind": "associazione",
+                "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+                "published_on": "2019-12-12",
+                "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+              },
+              "page": "158",
+              "section": "Art. 218 - Indennità di cassa e maneggio denaro",
+              "quote": "compete un'indennità di cassa e di maneggio di denaro nella misura del 5% (cinque per cento) della paga base nazionale conglobata di cui all'art. 212 del presente contratto"
+            },
+            "transformation": "5% of the paga base nazionale conglobata (Art. 212: the paga base column of the table each base_salary period quotes: the base_salary less the contingenza and, for Q and VII, the altri elementi it conglobates) in force in each period, rounded to the cent. Owed to the staff normally assigned to the till with full responsibility for it and bound to make good its shortfalls: reserved to the role cassiere of Employment.roles. A continuous element, so in the retribuzione di fatto and its extra months and TFR.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T09:00:00Z",
+              "effective_from": "2020-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T09:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-cashier-allowance"
+            }
+          }
         }
       ],
       "provenance": {
@@ -2841,6 +3267,77 @@
             }
           },
           "replaced_by_provincial_element": true
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di cassa e maneggio denaro (Art. 218): 5% della paga base nazionale conglobata, livello VI",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2020-01-01",
+                "valid_until": "2023-04-01",
+                "value": "44.31"
+              },
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": "2024-04-01",
+                "value": "45.52"
+              },
+              {
+                "valid_from": "2024-04-01",
+                "valid_until": "2025-03-01",
+                "value": "48.36"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2025-11-01",
+                "value": "49.58"
+              },
+              {
+                "valid_from": "2025-11-01",
+                "valid_until": "2026-11-01",
+                "value": "51.00"
+              },
+              {
+                "valid_from": "2026-11-01",
+                "valid_until": "2027-02-01",
+                "value": "52.42"
+              },
+              {
+                "valid_from": "2027-02-01",
+                "valid_until": null,
+                "value": "54.04"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "confesercenti-tu2019",
+                "title": "CCNL Terziario, Distribuzione e Servizi Confesercenti, Testo Unico 12 dicembre 2019",
+                "kind": "associazione",
+                "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+                "published_on": "2019-12-12",
+                "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+              },
+              "page": "158",
+              "section": "Art. 218 - Indennità di cassa e maneggio denaro",
+              "quote": "compete un'indennità di cassa e di maneggio di denaro nella misura del 5% (cinque per cento) della paga base nazionale conglobata di cui all'art. 212 del presente contratto"
+            },
+            "transformation": "5% of the paga base nazionale conglobata (Art. 212: the paga base column of the table each base_salary period quotes: the base_salary less the contingenza and, for Q and VII, the altri elementi it conglobates) in force in each period, rounded to the cent. Owed to the staff normally assigned to the till with full responsibility for it and bound to make good its shortfalls: reserved to the role cassiere of Employment.roles. A continuous element, so in the retribuzione di fatto and its extra months and TFR.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T09:00:00Z",
+              "effective_from": "2020-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T09:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-cashier-allowance"
+            }
+          }
         }
       ],
       "provenance": {
@@ -3151,6 +3648,77 @@
             }
           },
           "replaced_by_provincial_element": true
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di cassa e maneggio denaro (Art. 218): 5% della paga base nazionale conglobata, livello VII",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2020-01-01",
+                "valid_until": "2023-04-01",
+                "value": "37.93"
+              },
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": "2024-04-01",
+                "value": "38.97"
+              },
+              {
+                "valid_from": "2024-04-01",
+                "valid_until": "2025-03-01",
+                "value": "41.40"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2025-11-01",
+                "value": "42.45"
+              },
+              {
+                "valid_from": "2025-11-01",
+                "valid_until": "2026-11-01",
+                "value": "43.66"
+              },
+              {
+                "valid_from": "2026-11-01",
+                "valid_until": "2027-02-01",
+                "value": "44.88"
+              },
+              {
+                "valid_from": "2027-02-01",
+                "valid_until": null,
+                "value": "46.27"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "confesercenti-tu2019",
+                "title": "CCNL Terziario, Distribuzione e Servizi Confesercenti, Testo Unico 12 dicembre 2019",
+                "kind": "associazione",
+                "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+                "published_on": "2019-12-12",
+                "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+              },
+              "page": "158",
+              "section": "Art. 218 - Indennità di cassa e maneggio denaro",
+              "quote": "compete un'indennità di cassa e di maneggio di denaro nella misura del 5% (cinque per cento) della paga base nazionale conglobata di cui all'art. 212 del presente contratto"
+            },
+            "transformation": "5% of the paga base nazionale conglobata (Art. 212: the paga base column of the table each base_salary period quotes: the base_salary less the contingenza and, for Q and VII, the altri elementi it conglobates) in force in each period, rounded to the cent. Owed to the staff normally assigned to the till with full responsibility for it and bound to make good its shortfalls: reserved to the role cassiere of Employment.roles. A continuous element, so in the retribuzione di fatto and its extra months and TFR.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T09:00:00Z",
+              "effective_from": "2020-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T09:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-cashier-allowance"
+            }
+          }
         }
       ],
       "provenance": {
@@ -3352,7 +3920,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the cashier allowance with a role."
+          "remediation": "Resolved: every level carries IND_CASSA, 5% of its paga base nazionale conglobata, for the role cassiere of Employment.roles.",
+          "status": "resolved"
         }
       },
       {
@@ -3459,7 +4028,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "26814192988e1e682490149067065d9bdb2e518adcc8a70fe19c732ef70b3b04",
+    "source_hash": "3464d60a3ad42b4ca56ab16b068fb1666007c2901b241099dba780ef9e25b424",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4654,6 +5223,27 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.leave_rules.termination.ferie_divisor 26"
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-cashier-allowance",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The indennità di cassa e maneggio denaro of Art. 218 (p. 158).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+            "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+          }
+        ],
+        "findings": [
+          "Art. 218 (p. 158): 5% of the paga base nazionale conglobata to the staff normally at the till with full responsibility for it: levels[*].fixed_allowances[IND_CASSA], role cassiere, one value per period of the base_salary."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels[*].fixed_allowances[IND_CASSA]"
         ]
       }
     ],

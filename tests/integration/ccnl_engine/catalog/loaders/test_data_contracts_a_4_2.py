@@ -296,12 +296,13 @@ class TestLoadTerziarioConfesercenti:
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(168)
 
     def test_terziario_confesercenti_terzo_elemento_only(self) -> None:
-        """Conglobated model: the only allowance is the terzo elemento (Art. 215)."""
+        """Conglobated model: the terzo elemento (Art. 215) and the cassa (Art. 218)."""
         ccnl = load_ccnl("terziario-confesercenti")
         for lv in ccnl.levels:
-            (allowance,) = lv.fixed_allowances
-            assert allowance.code == "TERZO_ELEMENTO_NAZIONALE"
-            assert allowance.replaced_by_provincial_element
+            terzo, cassa = lv.fixed_allowances
+            assert terzo.code == "TERZO_ELEMENTO_NAZIONALE"
+            assert terzo.replaced_by_provincial_element
+            assert (cassa.code, cassa.role) == ("IND_CASSA", "cassiere")
 
     def test_terziario_confesercenti_tax_sector(self) -> None:
         """Contract declares TERZIARIO tax sector."""

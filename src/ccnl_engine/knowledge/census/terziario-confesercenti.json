@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "cashier_allowance",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 218: the indennità di cassa e maneggio denaro of 5%.",
-      "calculation": "ccnl/terziario-confesercenti:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the cashier allowance with a role.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "terziario-confesercenti/cashier_allowance"
-        ]
-      }
-    },
-    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",

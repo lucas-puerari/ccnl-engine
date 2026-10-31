@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 80 verified / 3 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 88 verified / 3 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-09-29 |
-| **Last review** | 2026-10-31 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-17 | claude-opus-5-5 (ai) | The paga base, contingenza, terzo elemento, indennità di funzione and scatti of every level against the Testo Unico of 29 September 2025, and a year and a termination of a level IV worker against a hand oracle. | confirmed | Allegato 11 (PDF pp. 97-99): 47 of the 48 paghe base of the file are printed in the tables; the IV of 1 April 2023 prints 1112,46 in the paga base column, but its total 1646,68 less the contingenza 524,22 gives the 1122,46 of the file, which the CCNL Terziario Confesercenti also reaches (total 1646,68). The paga base column has a misprint; the file keeps 1122,46.<br>Contingenza + EDR of every level, the terzo elemento of 2,07 (Art. 195), the indennità di funzione of the Quadri (260,76) and of the VII (5,16) and the scatti (Quadri 25,46 to VII 19,47): match.<br>Art. 204 and 205 (PDF p. 59): tredicesima at Christmas, quattordicesima of the pay in force on 30 June paid on 1 July, in twelfths of the twelve months before. Match.<br>Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios dmo-year and dmo-june): a level IV impiegato hired on 1 January 2026 by an employer with 50 employees where a provincial element is in force; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, read in the Testo Unico of 29 September 2025 (Artt. 79, 141, 142, 191, 193, 194). | corrected | Art. 142 - Ferie, Chiarimento a verbale (p. 45): the indemnity of the ferie at the end of the employment is the retribuzione mensile di fatto divided by twenty-six: work_rules.leave_rules.termination; the accrual of the leave is not modelled, so the basis is not used yet. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The accrual of the ferie, the ex festività and the ROL read in the Testo Unico of 29 September 2025 (Artt. 141, 142, 145). | corrected | Art. 145 c.1 (p. 45): twelfths of the 26 days of Art. 142 per month of effective service, no month-fraction rule: work_rules.leave_rules.ferie_accrual.<br>Art. 141 cc.1, 3, 4, 7 (pp. 44-45): 32 hours of ex festività (4 festività in groups of 8 hours), 56 hours of permits up to 15 employees and 72 above, by whole months: work_rules.leave_rules.permits.<br>Art. 141 c.8 (p. 45): the 56/72 hours of a hire after 1 March 2011 at 0%, 50% after two years, 100% after four: permits[rol].ramp. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The indennità di cassa e maneggio denaro of Art. 202 (p. 59). | corrected | Art. 202 (p. 59): 5% of the paga base nazionale conglobata to the staff normally at the till with full responsibility for it: levels[*].fixed_allowances[IND_CASSA], role cassiere, one value per period of the base_salary. |
 
 ## Salary table
 
@@ -135,12 +136,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the net daily pay of Art. 170.
 
-!!! warning "dmo-federdistribuzione/cashier_allowance · base_salary · impact yes · open"
+!!! note "dmo-federdistribuzione/cashier_allowance · base_salary · impact yes · resolved"
     Art. 202: the indennità di cassa of 5%.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the cashier allowance with a role.
+    **Remediation:** Resolved: every level carries IND_CASSA, 5% of its paga base nazionale conglobata, for the role cassiere of Employment.roles.
 
 !!! warning "dmo-federdistribuzione/ordinary_hours_premiums · overtime · impact yes · open"
     Art. 134, 136 and 139: the premiums on ordinary night (15%), Sunday (30%) and weekly rest day (30%) work.

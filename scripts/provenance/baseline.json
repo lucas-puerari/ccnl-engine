@@ -853,7 +853,6 @@
     ],
     "agreement/dmo-federdistribuzione.json": [
       "dmo-federdistribuzione/apprentice_seniority",
-      "dmo-federdistribuzione/cashier_allowance",
       "dmo-federdistribuzione/commission_guarantee",
       "dmo-federdistribuzione/employment_support_contract",
       "dmo-federdistribuzione/health_and_bilateral_funds",
@@ -1338,7 +1337,6 @@
     "agreement/terziario-confesercenti.json": [
       "terziario-confesercenti/apprentice_seniority",
       "terziario-confesercenti/apprentice_sickness",
-      "terziario-confesercenti/cashier_allowance",
       "terziario-confesercenti/long_apprenticeship_profiles",
       "terziario-confesercenti/long_week_divisors",
       "terziario-confesercenti/lump_sum_2024_2025",

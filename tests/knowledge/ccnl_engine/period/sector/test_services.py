@@ -582,6 +582,7 @@ def _year(name: str) -> CompetenceYearResult:
                 level_code=s.level,
                 category=s.category,
                 seniority=new_hire(),
+                roles=frozenset(),
                 employment_period=_period(s),
                 tfr_treasury_fund=False,
                 pension_fund=NoPensionFund(),
