@@ -12,13 +12,10 @@ from ccnl_engine.decision.models import (
 )
 from ccnl_engine.employment.fact.inputs import PublicEndOfService
 from ccnl_engine.run.models import RunKind
-from ccnl_engine.severance.provision.services import tfr_treasury_fund
 from ccnl_engine.severance.revaluation.services import run_tfr_revaluation
 from ccnl_engine.severance.settlement.gap.models import (
     _PENSION_FUND,
     _TFR_AT_INPS,
-    _TREASURY,
-    _TREASURY_UNKNOWN,
     _Gap,
 )
 
@@ -50,18 +47,18 @@ class _Fund:
 def _destination_gap(ctx: RunContext, run_to_pension_fund: bool) -> _Gap | None:
     """Return why the employer does not pay the TFR, ``None`` when it does.
 
+    The employer pays the TFR held at the Fondo Tesoreria INPS too: "La
+    liquidazione delle prestazioni viene effettuata integralmente dal
+    datore di lavoro, anche per la quota parte di competenza del Fondo",
+    recovered in the conguaglio of the monthly return (INPS circ. 70/2007
+    par. 7.1).
+
     Returns:
-        The gap of a TFR at INPS, at the Fondo Tesoreria (or not known to
-        be out of it) or at a pension fund.
+        The gap of a TFR at INPS or at a pension fund.
     """
     if ctx.request.public_end_of_service in _AT_INPS:
         return _TFR_AT_INPS
-    if run_to_pension_fund:
-        return _PENSION_FUND
-    treasury = tfr_treasury_fund(ctx)
-    if treasury is None:
-        return _TREASURY_UNKNOWN
-    return _TREASURY if treasury else None
+    return _PENSION_FUND if run_to_pension_fund else None
 
 
 def _fund(ctx: RunContext, year: int, started_on: date) -> _Fund | None:

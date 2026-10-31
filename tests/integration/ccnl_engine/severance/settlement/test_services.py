@@ -318,16 +318,6 @@ _UNKNOWN_QUOTAS = PeriodState(
             "tfr_at_inps",
             "tfr_settlement_tfr_at_inps",
         ),
-        (
-            {"tfr_treasury_fund": True},
-            "treasury_fund_share",
-            "tfr_settlement_treasury_fund_share",
-        ),
-        (
-            {"tfr_treasury_fund": None},
-            "required_fact_missing",
-            "tfr_settlement_required_fact_missing",
-        ),
         ({"employment_period": None}, "required_fact_missing", None),
         ({"tfr_fund": None}, "required_fact_missing", None),
         (
@@ -353,6 +343,25 @@ def test_a_tfr_the_engine_cannot_compute_posts_nothing(
     assert _ledger(result, AccountKind.TFR_SETTLEMENT) == Decimal(0)
     if code is not None:
         assert code in _codes(result)
+
+
+@pytest.mark.parametrize("treasury", [True, None])
+def test_the_employer_pays_the_share_of_the_fondo_tesoreria(
+    treasury: bool | None,
+) -> None:
+    """INPS circ. 70/2007 par. 7.1: the employer pays the whole TFR.
+
+    "La liquidazione delle prestazioni viene effettuata integralmente dal
+    datore di lavoro, anche per la quota parte di competenza del Fondo":
+    the settlement and its tax are those of a TFR held by the employer,
+    whether the TFR goes to the Fondo Tesoreria or that is not stated.
+    """
+    held = _settlement(_run())
+    treasury_run = _settlement(_run(tfr_treasury_fund=treasury))
+
+    assert [(d.status, d.amount) for d in treasury_run] == [
+        (d.status, d.amount) for d in held
+    ]
 
 
 def test_a_month_of_the_year_not_closed_leaves_the_quotas_unknown() -> None:
