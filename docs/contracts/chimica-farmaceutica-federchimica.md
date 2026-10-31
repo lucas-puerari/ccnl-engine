@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-04-15 |
-| **Last review** | 2026-10-20 |
+| **Last review** | 2026-10-31 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-20 | claude-opus-5-5 (ai) | The renewal within the window of L. 199/2025 art. 1 c. 7 and the minimo before its first tranche. | corrected | Ipotesi of 15 April 2025, first tranche from 1 July 2025: parameters.renewals.<br>p. 46: the July 2025 tranche also pays the last 20 EUR (D1) of the renewal of 13 June 2022, signed outside the window: the minimo before the renewal at D1 is 2239.26 + 20 = 2259.26. The 2022 tranche of the other categories is not printed in the 2025 text (its tables are announced, not attached): their increment stays unmeasured. |
 | 2026-10-20 | claude-opus-5-5 (ai) | The treatment of the compulsory maternity leave and of a work injury. | corrected | work_rules.insured_absence added from the articles cited in its provenance; statutory measures in absence/insured/rates.json (D.Lgs. 151/2001 artt. 22-23, D.P.R. 1124/1965 artt. 68, 73, 116-117). |
 | 2026-10-20 | claude-opus-5-5 (ai) | Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Art. 15 punto 1 - Elementi della retribuzione; Art. 9). | corrected | Art. 15 punto 1 - Elementi della retribuzione; Art. 9: individual elements included in the hourly base: work_rules.time_supplements.individual_elements. |
+| 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched for a divisor of the daily pay in the testo definitivo of 10 May 2006 (Artt. 13, 14, 20) and in the OCR of the renewals of 2010, 2019 and 2025. | confirmed | The daily coefficient 1/25 of Art. 20 is restricted by its chiarimento a verbale to the festività on a Sunday and to the clauses that refer to it expressly; Art. 14 does not. No termination basis is recorded. |
 
 ## Salary table
 
@@ -352,7 +353,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     HOURLY RATE AND SUPPLEMENTS (artt. 9, 15 punto 1, 20 of the 2006 text): without a caller value the engine derives the hourly base (minimo + IPO + scatti over 175), the 50% on holiday hours (art. 9 punto 3) and the 4% on rotating day shifts (punto 5 a). Not derived, the caller states the amount: ordinary night work of non-shift workers (50%, punto 4), whose 9-hour window the company fixes between 20 and 8 (art. 8 H); Sunday work (50% with compensatory rest, 33% for 3x7 continuous cycles under punto 6, a fact the request does not carry); night shifts (34%, 46% for 3x7, punto 5 b-c), because the fixed amount per 8 hours of art. 9 H in force after the 2022 renewal is unconfirmed (6.50 EUR from 2007, 13.50 from 1 April 2019, 15.50 from 1 July 2027). Art. 9 does not say whether the holiday hours themselves are paid on top of the monthly pay: a derived holiday supplement is provisional. Not modelled: the 5% on hours 37h45m to 40 and the 30% beyond 2,024 annual hours (punti 1 and 11). Absences: art. 20 punti 2-3 deduct 1/175 of the same elements per hour, but work_rules.absence_rules stays derived (its 8-hour day is not in the text), so the engine derives no absence deduction: the caller states AbsenceEvent.hourly_rate.
     
-    LEAVE AT TERMINATION (Art. 14): the indemnity is the 'retribuzione globale di fatto in atto al momento della liquidazione' for the days of ferie not taken; its daily divisor is not stated in the text read, so the engine pays no residual (termination_residual_leave incomplete). The ferie taken in excess are repaid (not modelled); Art. 13 sets no deadline for the residual ROL and ex festività.
+    LEAVE AT TERMINATION (Art. 14 of the testo definitivo of 10 May 2006): the ferie not taken are paid with 'un’indennità sostitutiva corrispondente alla retribuzione dovuta per le giornate di ferie non godute, da calcolare nella misura della retribuzione globale di fatto in atto al momento della liquidazione'. Art. 20 point 4 states a daily pay of 1/25 of the monthly pay, but its chiarimento a verbale limits it: 'Il coefficiente giornaliero (1/25) deve essere adottato esclusivamente per la corresponsione del trattamento economico per festività coincidente con la domenica e per i casi in cui il Contratto fa ad esso espresso riferimento', and Art. 14 makes no such reference; the renewals of 2010, 2019 and 2025 (OCR) do not change either article. The engine pays no residual (termination_residual_leave incomplete, termination_basis_not_sourced). The ferie taken in excess are repaid (not modelled); Art. 13 sets no deadline for the residual ROL and ex festività.
     
 
 ## Raw data

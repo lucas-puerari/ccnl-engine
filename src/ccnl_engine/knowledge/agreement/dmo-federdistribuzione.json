@@ -3092,7 +3092,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "05546c71262f5ad467eccbb764ac958eb720a3f0998dbee65c6d16c1b20ad16f",
+    "source_hash": "8ceb6df421a026ba2712510b21a742b195def47705b7fd3875fe68a1be6f7ea3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3384,6 +3384,37 @@
           "verification_status": "verified",
           "review_id": "2026-10-13-ai-production"
         }
+      },
+      "termination": {
+        "ferie_divisor": "26",
+        "permits_hourly": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+              "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+              "kind": "associazione",
+              "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+              "published_on": "2025-09-29",
+              "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+            },
+            "page": "45",
+            "section": "Art. 142 - Ferie, Chiarimento a verbale",
+            "quote": "Nella ipotesi di risoluzione del rapporto di lavoro, l’indennità sostitutiva delle ferie si calcola dividendo per ventisei la retribuzione mensile di fatto di cui all’art. 191."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-31T15:00:00Z",
+            "effective_from": "2023-04-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-31T15:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-31-ai-leave-termination"
+          },
+          "transformation": "Ferie: residual days x monthly pay / 26, as quoted. Permits: residual hours x monthly pay / 168, the hourly divisor of Art. 194 (p. 58) for a 40-hour week; Art. 141 c.6 (p. 44) pays the permits not taken in the year 'con la retribuzione di fatto di cui all’art. 191 in atto al momento della scadenza', and paying the residual hours at the end of the employment at that hourly pay is the reading adopted, as for Commercio. The file does not model the accrual of the leave yet: until it does the basis pays nothing (leave_accrual_not_modelled)."
+        }
       }
     },
     "sickness_rules": {
@@ -3512,6 +3543,28 @@
           "Contingenza + EDR of every level, the terzo elemento of 2,07 (Art. 195), the indennità di funzione of the Quadri (260,76) and of the VII (5,16) and the scatti (Quadri 25,46 to VII 19,47): match.",
           "Art. 204 and 205 (PDF p. 59): tredicesima at Christmas, quattordicesima of the pay in force on 30 June paid on 1 July, in twelfths of the twelve months before. Match.",
           "Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios dmo-year and dmo-june): a level IV impiegato hired on 1 January 2026 by an employer with 50 employees where a provincial element is in force; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done."
+        ]
+      },
+      {
+        "id": "2026-10-31-ai-leave-termination",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The basis of the indemnity for the leave not taken at the end of the employment, read in the Testo Unico of 29 September 2025 (Artt. 79, 141, 142, 191, 193, 194).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "Art. 142 - Ferie, Chiarimento a verbale (p. 45): the indemnity of the ferie at the end of the employment is the retribuzione mensile di fatto divided by twenty-six: work_rules.leave_rules.termination; the accrual of the leave is not modelled, so the basis is not used yet."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.termination.ferie_divisor 26",
+          "work_rules.leave_rules.termination.permits_hourly true"
         ]
       }
     ],

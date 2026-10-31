@@ -310,7 +310,7 @@
       },
       {
         "kind": "info",
-        "text": "LEAVE AT TERMINATION (Art. 33): each day of ferie is paid at the 'retribuzione giornaliera globale di fatto'; its divisor of the monthly pay is not stated in the texts read, so the engine pays no residual (termination_residual_leave incomplete)."
+        "text": "LEAVE AT TERMINATION (Art. 33, p. 106 of the CCNL of 3 July 2017): 'Per ogni giornata di ferie la retribuzione dovuta al lavoratore è costituita dalla retribuzione giornaliera globale di fatto'. No clause of the 2017 text or of the 2025-2028 renewal (OCR) defines that daily pay as a fraction of the monthly pay: the 1/26 of the retribuzione mensile fissa (Art. 32, p. 104) is the pay of a festività falling on a Sunday, the 1/6 of the weekly pay (Art. 15, p. 87) is the ferie of the discontinuous workers only, and the divisor 173 gives the hourly pay. The engine pays no residual (termination_residual_leave incomplete, termination_basis_not_sourced)."
       }
     ]
   },
@@ -3044,7 +3044,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "9fe3b9aebe84352b0f59d67e0c292888927248d46ad72ee673ee84c759eae4df",
+    "source_hash": "dde87a5984dff702358ca0c474231a7a72503f82b2f2bc1f818f948a762eb093",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3722,6 +3722,32 @@
         ],
         "findings": [
           "Art. 38 - Mensilizzazione: individual elements included in the hourly base: work_rules.time_supplements.individual_elements."
+        ]
+      },
+      {
+        "id": "2026-10-31-ai-leave-termination",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The basis of the indemnity for the leave not taken at the end of the employment, searched for a divisor of the daily pay in the CCNL of 3 July 2017 (Artt. 15, 29, 32, 33, 40) and in the OCR of the 2025-2028 renewal.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          },
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
+            "sha256": "ae59a64f408072c1438892143e2146eea350d7e2c3e5883fb8538f86ffc47f53"
+          }
+        ],
+        "findings": [
+          "Art. 33 pays a day of ferie at the 'retribuzione giornaliera globale di fatto' and no text read divides the monthly pay into it for the generality of workers. No termination basis is recorded."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.termination absent",
+          "coverage.notes[LEAVE AT TERMINATION]"
         ]
       }
     ],

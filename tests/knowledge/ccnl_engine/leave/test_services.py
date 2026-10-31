@@ -288,16 +288,19 @@ _TURISMO_TAKEN: Final = {
 }
 
 
-def test_turismo_oracle_accrual_and_balance(engine: PayrollEngine) -> None:
+def test_turismo_oracle_accrual_balance_and_payout(engine: PayrollEngine) -> None:
     """Turismo level 4, hired 1 January 2026, ended 31 October 2026.
 
-    6 days of ferie taken in April and 24 hours of the 104-hour pool in May.
+    6 days of ferie taken in April and 24 hours of the 104-hour pool in May;
+    monthly paga base 1,695.69 from May 2026.  The daily pay is the monthly
+    pay over 26 "a tutti i fini contrattuali" (Art. 150), the hourly pay over
+    172 (Art. 151).
 
     - after June: ferie 26 x 6 / 12 = 13 accrued, 7 left; pool 104 x 6 / 12
       = 52 hours accrued, 28 left;
-    - after October: ferie 26 x 10 / 12 - 6 = 15.6667 days left, pool
-      104 x 10 / 12 - 24 = 62.6667 hours left, not paid: the indemnity has
-      no sourced basis, so the run is not payable.
+    - after October: ferie 26 x 10 / 12 - 6 = 15.6667 days left,
+      15.6667 x 1,695.69 / 26 = 1,021.76; pool 104 x 10 / 12 - 24 =
+      62.6667 hours left, 62.6667 x 1,695.69 / 172 = 617.81.
     """
     year = _year(engine, "turismo-federalberghi", "4", _TURISMO_TAKEN)
     june = _run(year, "2026-06-regular")
@@ -309,16 +312,15 @@ def test_turismo_oracle_accrual_and_balance(engine: PayrollEngine) -> None:
         (LeaveBucket.FERIE, Decimal(13), Decimal(6), Decimal(7)),
         (LeaveBucket.ROL, Decimal(52), Decimal(24), Decimal(28)),
     ]
-    assert [b.residual for b in october.leave_balances] == [
-        Decimal(26) * 10 / _TWELVE - 6,
-        Decimal(104) * 10 / _TWELVE - 24,
-    ]
-    assert _settled(october) == {}
+    assert _settled(october) == {
+        "leave_ferie": Decimal("1021.76"),
+        "leave_rol": Decimal("617.81"),
+    }
     assert _decision(october, "termination_residual_leave") == (
-        "incomplete",
-        "termination_basis_not_sourced",
+        "final",
+        "residual_leave_paid",
     )
-    assert not october.is_payable
+    assert [b.residual for b in october.leave_balances] == [Decimal(0)] * 2
 
 
 def test_turismo_ex_festivita_is_inside_the_pool(engine: PayrollEngine) -> None:
