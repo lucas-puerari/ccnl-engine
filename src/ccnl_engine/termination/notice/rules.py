@@ -7,6 +7,8 @@ from dataclasses import dataclass
 from datetime import date, timedelta
 from typing import TYPE_CHECKING
 
+from ccnl_engine.termination.notice.models import NoticeStart
+
 if TYPE_CHECKING:
     from ccnl_engine.termination.notice.models import NoticeBand
 
@@ -50,7 +52,16 @@ class NoticePeriod:
         return max((self.last_day - start).days + 1, 0)
 
 
-def notice_period(band: NoticeBand, received_on: date) -> NoticePeriod:
+def _first_or_sixteenth(received_on: date) -> date:
+    day = received_on + _DAY
+    while day.day not in {1, 16}:
+        day += _DAY
+    return day
+
+
+def notice_period(
+    band: NoticeBand, received_on: date, starts: NoticeStart = NoticeStart.DAY_AFTER
+) -> NoticePeriod:
     """Return the notice ``band`` opens on an act received on ``received_on``.
 
     The notice is a term of the obligation, computed as art. 1187 c.c.
@@ -62,8 +73,16 @@ def notice_period(band: NoticeBand, received_on: date) -> NoticePeriod:
     ending on a holiday (art. 2963 c. 3) concerns the act owed at the
     term, not the length of the notice, and is not applied.
 
+    A CCNL whose notice starts on the 1st or the 16th of a month runs it
+    from the first such day after the act, for its months and days: 60 days
+    on an act of 10 March run from 16 March to 14 May.
+
     Returns:
         The first and last day of notice.
     """
+    if starts is NoticeStart.FIRST_OR_SIXTEENTH:
+        first = _first_or_sixteenth(received_on)
+        last = _add_months(first, band.months) + timedelta(days=band.days) - _DAY
+        return NoticePeriod(first, last, band)
     last = _add_months(received_on, band.months) + timedelta(days=band.days)
     return NoticePeriod(received_on + _DAY, last, band)

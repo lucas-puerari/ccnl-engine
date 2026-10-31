@@ -54,3 +54,40 @@ def test_the_table_of_art_1(
         days,
         Decimal(indemnity),
     )
+
+
+_WORK = load_ccnl("commercio-confcommercio").work_rules
+assert _WORK is not None
+assert _WORK.notice is not None
+_COMMERCIO = _WORK.notice
+
+
+@pytest.mark.parametrize(
+    ("level", "service", "dismissal", "resignation"),
+    [
+        ("Q", 60, 60, 45),
+        ("1", 61, 90, 60),
+        ("2", 121, 60, 45),
+        ("3", 1, 30, 20),
+        ("4", 120, 30, 20),
+        ("5", 121, 45, 30),
+        ("6", 60, 15, 10),
+        ("7", 121, 20, 15),
+    ],
+)
+def test_the_tables_of_commercio_artt_247_and_254(
+    level: str, service: int, dismissal: int, resignation: int
+) -> None:
+    """Calendar days by level group and service, apart for each cause."""
+    rules = _COMMERCIO
+    found = [rules.band(level, cause, service) for cause in (_D, _R)]
+
+    assert [(b.months, b.days, b.indemnity_months) for b in found if b] == [
+        (0, dismissal, None),
+        (0, resignation, None),
+    ]
+    assert (rules.starts.value, rules.extra_months_included, rules.tfr_base) == (
+        "first_or_sixteenth",
+        True,
+        False,
+    )

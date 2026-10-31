@@ -1441,6 +1441,7 @@
       "extraordinary_leave_daily_base",
       "inps_minimum_base_exempt_category",
       "maternity_daily_base",
+      "notice_indemnity_day_measure",
       "notice_indemnity_extra_months",
       "notice_indemnity_partial",
       "notice_indemnity_tfr",
