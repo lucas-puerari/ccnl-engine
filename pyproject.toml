@@ -302,6 +302,15 @@ source_paths = [
     "src/ccnl_engine/sickness/cumulation/rules.py",
     "src/ccnl_engine/sickness/cumulation/year/rules.py",
     "src/ccnl_engine/sickness/cumulation/handlers.py",
+    # The INPS-insured absences: the daily base, the days and hours paid,
+    # and the indemnity of maternity, paternity and parental leave.
+    "src/ccnl_engine/absence/insured/rules.py",
+    "src/ccnl_engine/absence/insured/base/rules.py",
+    "src/ccnl_engine/absence/insured/days/rules.py",
+    "src/ccnl_engine/absence/insured/hours/rules.py",
+    "src/ccnl_engine/absence/insured/paternity/rules.py",
+    "src/ccnl_engine/absence/insured/parental/rules.py",
+    "src/ccnl_engine/absence/insured/parental/hourly/rules.py",
 ]
 # Limit collection to the tests of the mutated payroll modules; copy full src
 # so imports resolve. Hypothesis tests are left out: they use multiple
@@ -447,6 +456,9 @@ pytest_add_cli_args_test_selection = [
     "tests/knowledge/ccnl_engine/leave",
     "tests/unit/ccnl_engine/sickness",
     "tests/integration/ccnl_engine/sickness",
+    "tests/unit/ccnl_engine/absence",
+    "tests/integration/ccnl_engine/absence",
+    "tests/knowledge/ccnl_engine/absence",
 ]
 pytest_add_cli_args = ["--no-cov"]
 mutate_only_covered_lines = true
