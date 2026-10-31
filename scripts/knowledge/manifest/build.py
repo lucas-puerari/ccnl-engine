@@ -44,6 +44,7 @@ DATASETS: dict[str, tuple[str, bool]] = {
     "variable_pay": ("VariablePayRules", False),
     "severance/revaluation": ("TfrRevaluationRules", False),
     "severance/settlement": ("TfrSettlementRules", False),
+    "termination/naspi": ("NaspiDismissalRules", False),
     "surtax/regional": ("RegionalSurtaxTable", False),
     "surtax/municipal": ("MunicipalSurtaxTable", False),
     "capability/registry": ("CapabilityCatalog", False),

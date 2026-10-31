@@ -43,6 +43,7 @@ def test_every_kind_of_year_file_is_checked() -> None:
         "severance",
         "surtax",
         "tax_credit",
+        "termination",
         "variable_pay",
     }
 

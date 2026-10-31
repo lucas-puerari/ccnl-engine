@@ -1,0 +1,71 @@
+{
+  "year": 2026,
+  "description": "Contributo per le interruzioni dei rapporti di lavoro a tempo indeterminato (L. 92/2012 art. 2 c. 31)",
+  "rate": {
+    "value": "0.41",
+    "provenance": {
+      "status": "verified",
+      "location": {
+        "source_document": {
+          "document_id": "l-92-2012-art2",
+          "title": "L. 28 giugno 2012 n. 92, art. 2 (Normattiva, testo vigente al 31/10/2026)",
+          "kind": "legge",
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2012-06-28;92~art2!vig=2026-10-31",
+          "sha256": "b73a86474e09ecb4a31eadfc49e86999fb944a8d787598c73f840a5f29fb31a6"
+        },
+        "section": "art. 2 c. 31",
+        "quote": "Nei casi di interruzione di un rapporto di lavoro a tempo indeterminato per le causali che, indipendentemente dal requisito contributivo, darebbero diritto all'ASpI, intervenuti a decorrere dal 1° gennaio 2013, è dovuta, a carico del datore di lavoro, una somma pari al 41 per cento del massimale mensile di ASpI per ogni dodici mesi di anzianità aziendale negli ultimi tre anni."
+      },
+      "transformation": "The 41 per cento of c. 31, applied to the monthly NASpI maximum of the year for each twelve months of company seniority in the last three years; shorter service in months, a month of at least 15 calendar days whole, the yearly amount to the cent divided by 12 and multiplied by the months, the cent cut off as in the 403.16 of its example (INPS circ. 44/2013 par. 2 and note 6, sha256 921fa38bef69508119c546fd0179ceff3e272224bd4ddea8f2e2949e09c89f07).",
+      "extraction": {
+        "method": "ai",
+        "model": "claude-opus-5-5",
+        "extraction_timestamp": "2026-10-31T00:00:00",
+        "effective_from": "2026-01-01",
+        "verification_status": "verified",
+        "verified_by": "claude-opus-5-5",
+        "verified_at": "2026-10-31T22:00:00Z",
+        "review_id": "2026-10-31-ai"
+      }
+    }
+  },
+  "monthly_maximum": {
+    "value": "1584.70",
+    "provenance": {
+      "status": "verified",
+      "location": {
+        "source_document": {
+          "document_id": "inps-circ-4-2026",
+          "title": "INPS, circolare n. 4 del 28 gennaio 2026",
+          "kind": "inps_circolare",
+          "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2026/01/Circolare_15147/Allegati/16539_Circolare-numero-4-del-28-01-2026.pdf",
+          "sha256": "2bb466099b968b515e3a573b23662206697b48111d1b799700094f07d0b68568"
+        },
+        "section": "par. 6, Indennità di disoccupazione NASpI",
+        "quote": "L'importo massimo mensile di detta indennità, per la quale non opera la riduzione di cui all'articolo 26 della legge n. 41/1986, non può in ogni caso superare, per il 2026,1.584,70 euro."
+      },
+      "transformation": "The base of the contribution is the NASpI maximum of the year: INPS news of 8 February 2024 on msg. 531/2024 (https://www.inps.it/it/it/inps-comunica/notizie/dettaglio-news-page.news.2024.02.ticket-di-licenziamento-massimale-naspi-2024.html, page sha256 8e3be8dad149ada570e1ed1d2f5cc232dbb7dc554d0b8ed1dc4ff165e01b5b02): 'La base di calcolo del contributo è costituita dal massimale NASpI'.",
+      "extraction": {
+        "method": "ai",
+        "model": "claude-opus-5-5",
+        "extraction_timestamp": "2026-10-31T00:00:00",
+        "effective_from": "2026-01-01",
+        "verification_status": "verified",
+        "verified_by": "claude-opus-5-5",
+        "verified_at": "2026-10-31T22:00:00Z",
+        "review_id": "2026-10-31-ai"
+      }
+    }
+  },
+  "ruleset": {
+    "id": "law/2026/naspi-dismissal",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-10-31",
+    "source": "L. 92/2012 art. 2 c. 31; INPS circ. 4/2026 par. 6; INPS circ. 44/2013",
+    "source_type": "official_primary",
+    "verification_status": "unverified",
+    "source_hash": "899185dd72dae8d13bafe1f1eef7b428b1fb4f183700b1e9da060d9ea6cbb3f0"
+  }
+}

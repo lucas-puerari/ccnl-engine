@@ -222,6 +222,19 @@
       "description": "Indennità sostitutiva di ferie e permessi residui alla cessazione, sulla base del CCNL"
     },
     {
+      "feature": "naspi_dismissal",
+      "layer": "net",
+      "implementation": "native",
+      "applies_when": "termination_run",
+      "handler": "decision",
+      "evidence": "derived",
+      "variants": [],
+      "required_facts": [
+        "employment.employment_period"
+      ],
+      "description": "Contributo NASpI per le interruzioni dei rapporti a tempo indeterminato e di apprendistato (L. 92/2012 art. 2 cc. 31-32): 41% del massimale mensile NASpI per ogni dodici mesi di anzianità negli ultimi tre anni"
+    },
+    {
       "feature": "termination_tfr",
       "layer": "net",
       "implementation": "native",

@@ -22,13 +22,15 @@ PERIOD_DEFAULTS: Mapping[str, FieldDefault] = {
         "employment.employment_period.ended_by",
         _REPORTED,
         "an end of the employment whose cause is not stated: the notice "
-        "indemnity has a missing_fact ended_by blocker",
+        "indemnity and the NASpI contribution have a missing_fact ended_by "
+        "blocker",
     ),
     "EmploymentPeriod.just_cause": requires_fact(
         "termination_notice",
         "employment.employment_period.just_cause",
         _REPORTED,
         "a dismissal or a resignation whose just cause is not stated: the "
-        "notice indemnity has a missing_fact just_cause blocker",
+        "notice indemnity, and the NASpI contribution of a resignation, have "
+        "a missing_fact just_cause blocker",
     ),
 }

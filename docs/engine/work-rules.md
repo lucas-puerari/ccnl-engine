@@ -585,6 +585,27 @@ run (art. 19 c. 2); its INPS is no deduction of the ordinary taxable.
 Without a TFR settlement taxed in the run, nothing is withheld on it and the
 run raises `notice_indemnity_tax_rate_unknown`.
 
+### NASpI contribution on the end of the employment
+
+The run that closes an open-ended employment or an apprenticeship (the
+regular run of the month of `EmploymentPeriod.ended_on`, or a termination
+run) posts the contribution of L. 92/2012 art. 2 cc. 31-32 as an employer
+contribution (`naspi_dismissal`): 41% of the monthly NASpI maximum of the
+year of the last day (1584.70 EUR in 2026, INPS circ. 4/2026) for each
+twelve months of service in the last three years. A month of at least 15
+calendar days counts whole, and the yearly amount is divided by 12 and
+multiplied by the months, the cent cut off (INPS circ. 44/2013 par. 2 and
+note 6): 1949.19 EUR for 36 months in 2026. It is owed on a dismissal and
+on a resignation for just cause; a resignation without just cause, a mutual
+agreement, a death and the end of a fixed-term contract owe none (circ.
+44/2013 par. 1). An unstated `ended_by`, or `just_cause` of a resignation,
+is a `missing_fact`; a year without a maximum in the bundle raises
+`naspi_dismissal_rule_missing`. A run of the same employment that closed it
+before keeps the contribution. The cases the request cannot state (the
+maternity protection, the conciliation, the collective dismissal of c. 35,
+the exclusions of c. 34) are the limitation `naspi_dismissal_exceptions`,
+on the employer cost only.
+
 ### Absences are bounded by the pay of the run
 
 Unpaid absences that deduct more than the monthly pay of the run raise

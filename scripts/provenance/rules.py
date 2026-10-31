@@ -109,6 +109,10 @@ _NAMED_BLOCKS: Final[dict[str, _Blocks]] = {
         ("reference_income", ("termination_tfr",), False),
         ("service_period", ("termination_tfr",), False),
     ),
+    "termination/naspi/": (
+        ("rate", ("naspi_dismissal",), False),
+        ("monthly_maximum", ("naspi_dismissal",), False),
+    ),
     "sickness/indemnity/rates": (("bands", ("sickness",), True),),
     "absence/insured/rates": (
         ("maternity", ("maternity_leave",), False),
@@ -386,6 +390,7 @@ _HOURLY_BASE_CAPABILITIES: Final = (
     "holiday_work",
     "shift_work",
     "absence",
+    "termination",
 )
 
 
@@ -618,6 +623,7 @@ FISCAL_DATASETS = (
     "surtax",
     "calendar",
     "absence",
+    "termination",
 )
 
 

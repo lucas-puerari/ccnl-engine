@@ -333,6 +333,7 @@ def _reviewed(file: str, path: str) -> bool:
         "surtax/regional/2026.json",
         "severance/revaluation/2026.json",
         "severance/settlement/2026.json",
+        "termination/naspi/2026.json",
     }
 
 
@@ -344,7 +345,8 @@ def test_verified_fiscal_rules_are_the_reviewed_tables() -> None:
     trattamento integrativo, ulteriore detrazione, family deductions, somma
     esente, regional surtax), the TFR divisor and revaluation of art. 2120
     c.c. (L. 297/1982 art. 1), the INPS maternity indemnity (D.Lgs. 151/2001
-    artt. 22-23) and the INAIL injury indemnity (D.P.R. 1124/1965).  Each
+    artt. 22-23), the INAIL injury indemnity (D.P.R. 1124/1965) and the
+    NASpI contribution of the end of an employment (L. 92/2012 art. 2 c. 31).  Each
     names its reviewer and date (``RuleProvenance`` rejects a verified
     record without them, so the bundle would not load otherwise).  Verified
     CCNL rules point to their review log instead, which the evidence gate

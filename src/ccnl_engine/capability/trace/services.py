@@ -61,6 +61,7 @@ _DECISION_FEATURES: dict[str, TraceState] = {
     "territorial_supplement": TraceState.NOT_APPLICABLE,
     # Decided on every run that closes the employment: no other run has it.
     "termination_residual_leave": TraceState.NOT_APPLICABLE,
+    "naspi_dismissal": TraceState.NOT_APPLICABLE,
 }
 
 #: Capabilities a handler of the engine decides and traces: the registry
