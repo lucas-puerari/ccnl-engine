@@ -500,7 +500,7 @@ def _after_january_and_february() -> PeriodState:
 @pytest.mark.parametrize(
     ("slug", "level", "limited"),
     [
-        ("pelli-cuoio-industria-assopellettieri", "3", True),
+        ("tessile-smi", "3", True),
         ("commercio-confcommercio", "4", False),
         ("farmacie-private-h121", "2", False),
         ("edilizia-ance", "1", False),
@@ -512,7 +512,7 @@ def test_earlier_episode_outside_the_chain_is_a_limitation(
 ) -> None:
     """A March relapse chain after an unrelated January episode.
 
-    Pelli e cuoio counts its comporto on the episode and its relapses;
+    Tessile SMI counts its comporto on the episode and its relapses;
     Commercio (Art. 186) and Farmacie private (Art. 43) count it over the
     calendar year, Edilizia ANCE (Art. 26: 9 months in 20) and Marittimi
     (Art. 26: 330 days in three years) over windows of months, with tiers
