@@ -34,6 +34,7 @@ def _due(
         ("2000.00", [_due(Kind.TAX_COLLECTION)], ["200.00"], ["dpr602-1973-art72ter"]),
         ("2500.00", [_due(Kind.TAX_COLLECTION)], ["250.00"], ["dpr602-1973-art72ter"]),
         ("3000.00", [_due(Kind.TAX_COLLECTION)], ["428.57"], ["dpr602-1973-art72ter"]),
+        ("5000.00", [_due(Kind.TAX_COLLECTION)], ["714.28"], ["dpr602-1973-art72ter"]),
         ("6000.00", [_due(Kind.TAX_COLLECTION)], ["1200.00"], ["dpr602-1973-art72ter"]),
         # Maintenance 400 first: the cessione gets 2/5 x 1,500 - 400 = 200 (art. 68).
         (
@@ -89,6 +90,14 @@ def _due(
             ],
             ["600", "150.00", "0.00"],
             ["dpr180-1950-art70", "dpr180-1950-art70", "dpr180-1950-art68-c2"],
+        ),
+        # After a delegation of 300, the half leaves a garnishment 200, its own
+        # fifth of 1,000: the garnishment keeps the rule of its fifth.
+        (
+            "1000.00",
+            [_due(Kind.PAYMENT_DELEGATION, "300"), _due(Kind.ORDINARY)],
+            ["300", "200.00"],
+            ["dpr180-1950-art70", "cpc-art545-c4"],
         ),
         (
             "1500.00",

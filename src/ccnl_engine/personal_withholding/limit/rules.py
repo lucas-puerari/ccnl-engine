@@ -50,13 +50,17 @@ class LegalLimit:
     source: SourceLocation
 
 
-def _limit(rule: str, document: SourceDocument, section: str, quote: str) -> LegalLimit:
+# The two builders below run once, at import, to make the constants: no
+# mutant of theirs is active by then, so none can be killed.
+def _limit(
+    rule: str, document: SourceDocument, section: str, quote: str
+) -> LegalLimit:  # pragma: no mutate block
     return LegalLimit(
         rule, SourceLocation(source_document=document, section=section, quote=quote)
     )
 
 
-def _dpr_180(article: str, sha256: str) -> SourceDocument:
+def _dpr_180(article: str, sha256: str) -> SourceDocument:  # pragma: no mutate block
     return SourceDocument(
         document_id=f"dpr-180-1950-art{article}",
         title=f"D.P.R. 5 gennaio 1950, n. 180, art. {article}",

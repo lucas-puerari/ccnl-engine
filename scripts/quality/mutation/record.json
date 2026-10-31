@@ -1,6 +1,6 @@
 {
-  "commit": "6a556b87e8fa789f4e667b3cd74802310dc56339",
-  "date": "2026-10-24",
+  "commit": "c4d249f1099be6e0e6a170eb38c6a3c9d9be93ed",
+  "date": "2026-10-31",
   "min_score": 93.0,
   "perimeter": [
     "src/ccnl_engine/contribution/rules.py",
@@ -32,17 +32,25 @@
     "src/ccnl_engine/severance/provision/services.py",
     "src/ccnl_engine/surtax/conguaglio/rules.py",
     "src/ccnl_engine/tax_credit/recovery/models.py",
-    "src/ccnl_engine/withholding/deferral/inputs.py"
+    "src/ccnl_engine/withholding/deferral/inputs.py",
+    "src/ccnl_engine/termination/notice/rules.py",
+    "src/ccnl_engine/termination/notice/handlers.py",
+    "src/ccnl_engine/termination/notice/settlement/services.py",
+    "src/ccnl_engine/termination/naspi/rules.py",
+    "src/ccnl_engine/termination/naspi/services.py",
+    "src/ccnl_engine/personal_withholding/rules.py",
+    "src/ccnl_engine/personal_withholding/limit/rules.py",
+    "src/ccnl_engine/personal_withholding/services.py"
   ],
   "scores": {
     "core": {
-      "killed": 2916,
-      "survived": 68,
-      "other": 0,
+      "killed": 4197,
+      "survived": 125,
+      "other": 1,
       "not_checked": 0,
       "equivalent": 7,
-      "total": 2984,
-      "score": 97.7,
+      "total": 4323,
+      "score": 97.1,
       "minimum": 93.0
     },
     "src/ccnl_engine/contribution/rules.py": {
@@ -66,13 +74,13 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/irpef/deduction/rules.py": {
-      "killed": 88,
+      "killed": 82,
       "survived": 1,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 89,
-      "score": 98.9,
+      "total": 83,
+      "score": 98.8,
       "minimum": 93.0
     },
     "src/ccnl_engine/pay_item/rounding/policies.py": {
@@ -86,13 +94,13 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/assurance/rules.py": {
-      "killed": 191,
-      "survived": 10,
+      "killed": 174,
+      "survived": 8,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 201,
-      "score": 95.0,
+      "total": 182,
+      "score": 95.6,
       "minimum": 93.0
     },
     "src/ccnl_engine/capability/requirement/rules.py": {
@@ -106,23 +114,23 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/tax_credit/trattamento_integrativo/rules.py": {
-      "killed": 169,
-      "survived": 2,
+      "killed": 207,
+      "survived": 7,
       "other": 0,
       "not_checked": 0,
       "equivalent": 1,
-      "total": 171,
-      "score": 98.8,
+      "total": 214,
+      "score": 96.7,
       "minimum": 93.0
     },
     "src/ccnl_engine/irpef/net/rules.py": {
       "killed": 56,
-      "survived": 1,
+      "survived": 2,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 57,
-      "score": 98.2,
+      "total": 58,
+      "score": 96.6,
       "minimum": 93.0
     },
     "src/ccnl_engine/contribution/additional_ivs/rules.py": {
@@ -166,22 +174,22 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/sickness/pay/handlers.py": {
-      "killed": 160,
-      "survived": 0,
+      "killed": 190,
+      "survived": 11,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 160,
-      "score": 100.0,
+      "total": 201,
+      "score": 94.5,
       "minimum": 93.0
     },
     "src/ccnl_engine/variable_pay/travel/handlers.py": {
-      "killed": 219,
+      "killed": 221,
       "survived": 0,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 219,
+      "total": 221,
       "score": 100.0,
       "minimum": 93.0
     },
@@ -236,23 +244,23 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/irpef/taxable/services.py": {
-      "killed": 75,
+      "killed": 81,
       "survived": 0,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 75,
+      "total": 81,
       "score": 100.0,
       "minimum": 93.0
     },
     "src/ccnl_engine/irpef/computation/services.py": {
-      "killed": 163,
-      "survived": 8,
+      "killed": 166,
+      "survived": 7,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 171,
-      "score": 95.3,
+      "total": 173,
+      "score": 96.0,
       "minimum": 93.0
     },
     "src/ccnl_engine/irpef/separate/rules.py": {
@@ -276,13 +284,13 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/extra_month/liquidation/services.py": {
-      "killed": 211,
+      "killed": 213,
       "survived": 11,
       "other": 0,
       "not_checked": 0,
       "equivalent": 4,
-      "total": 222,
-      "score": 95.0,
+      "total": 224,
+      "score": 95.1,
       "minimum": 93.0
     },
     "src/ccnl_engine/severance/revaluation/services.py": {
@@ -306,13 +314,13 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/surtax/conguaglio/rules.py": {
-      "killed": 165,
+      "killed": 172,
       "survived": 56,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 221,
-      "score": 74.7,
+      "total": 228,
+      "score": 75.4,
       "minimum": 74.6
     },
     "src/ccnl_engine/tax_credit/recovery/models.py": {
@@ -334,6 +342,86 @@
       "total": 159,
       "score": 87.4,
       "minimum": 87.4
+    },
+    "src/ccnl_engine/termination/notice/rules.py": {
+      "killed": 79,
+      "survived": 1,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 80,
+      "score": 98.8,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/termination/notice/handlers.py": {
+      "killed": 344,
+      "survived": 10,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 354,
+      "score": 97.2,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/termination/notice/settlement/services.py": {
+      "killed": 123,
+      "survived": 6,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 129,
+      "score": 95.3,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/termination/naspi/rules.py": {
+      "killed": 94,
+      "survived": 1,
+      "other": 1,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 96,
+      "score": 97.9,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/termination/naspi/services.py": {
+      "killed": 223,
+      "survived": 11,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 234,
+      "score": 95.3,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/personal_withholding/rules.py": {
+      "killed": 124,
+      "survived": 3,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 127,
+      "score": 97.6,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/personal_withholding/limit/rules.py": {
+      "killed": 12,
+      "survived": 0,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 12,
+      "score": 100.0,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/personal_withholding/services.py": {
+      "killed": 224,
+      "survived": 11,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 235,
+      "score": 95.3,
+      "minimum": 93.0
     }
   }
 }

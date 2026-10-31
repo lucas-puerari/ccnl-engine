@@ -130,13 +130,27 @@ def test_a_notice_not_given_is_paid_and_taxed_at_the_tfr_rate() -> None:
         ("final", "taxed_at_tfr_rate", Decimal("1200.36")),
     ]
     due, tax = (d for d in result.decisions if d.capability == "termination_notice")
-    assert (due.inputs["cause"], due.inputs["unworked_days"]) == ("dismissal", "76")
+    assert due.inputs == {
+        "cause": "dismissal",
+        "just_cause": "false",
+        "received_on": "2026-03-10",
+        "ended_on": "2026-03-10",
+        "months_of_service": "122",
+        "notice_first_day": "2026-03-11",
+        "notice_last_day": "2026-05-25",
+        "notice_days": "76",
+        "unworked_days": "76",
+        "indemnity_months": Decimal("2.5"),
+        "monthly_pay": Decimal("2306.46"),
+    }
     assert due.source is not None
-    assert (tax.inputs["employee_inps"], tax.inputs["taxable"], tax.inputs["rate"]) == (
-        Decimal("547.21"),
-        Decimal("5218.94"),
-        Decimal("0.23"),
-    )
+    assert tax.inputs == {
+        "indemnity": Decimal("5766.15"),
+        "employee_inps": Decimal("547.21"),
+        "taxable": Decimal("5218.94"),
+        "rate": Decimal("0.23"),
+    }
+    assert (tax.rule, tax.rule_version) == ("tax/separate:art19c2", "2026")
     (item,) = (i for i in result.pay_items if isinstance(i, NoticeIndemnityItem))
     assert item.quantity == 1
     separate = {
@@ -296,27 +310,42 @@ def test_what_the_engine_cannot_pay_it_reports(
 
 
 @pytest.mark.parametrize(
-    ("kwargs", "event", "field"),
+    ("kwargs", "field", "message"),
     [
-        ({"ended": None}, _notice(date(2026, 3, 10)), "Employment.employment_period"),
-        ({"fixed_term": True}, _notice(date(2026, 3, 10)), "Employment.contract_type"),
+        (
+            {"ended": None},
+            "Employment.employment_period",
+            "NoticeIndemnityEvent needs Employment.employment_period.ended_on",
+        ),
+        (
+            {"fixed_term": True},
+            "Employment.contract_type",
+            "the notice of art. 2118 c.c. ends an open-ended contract only",
+        ),
         (
             {"ended": date(2026, 4, 30)},
-            _notice(date(2026, 3, 10)),
             "NoticeIndemnityEvent",
+            (
+                "NoticeIndemnityEvent must be passed to the run of the month of "
+                "the last day of the employment, April 2026"
+            ),
         ),
         (
             {"ended": date(2026, 3, 9)},
-            _notice(date(2026, 3, 10)),
             "NoticeIndemnityEvent.received_on",
+            "NoticeIndemnityEvent.received_on must not follow the last day",
         ),
     ],
 )
 def test_a_misplaced_notice_is_rejected(
-    kwargs: dict[str, object], event: NoticeIndemnityEvent, field: str
+    kwargs: dict[str, object], field: str, message: str
 ) -> None:
     """Open-ended only, on the run of the last month, an act before the end."""
     with pytest.raises(InvalidInputError) as error:
-        _run(event, **kwargs)  # type: ignore[arg-type]
+        _run(_notice(date(2026, 3, 10)), **kwargs)  # type: ignore[arg-type]
 
-    assert error.value.field == field
+    assert (str(error.value), error.value.field, error.value.feature) == (
+        message,
+        field,
+        "termination_notice",
+    )
