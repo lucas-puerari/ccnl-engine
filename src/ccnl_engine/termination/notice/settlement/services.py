@@ -75,10 +75,12 @@ def notice_tax(
         settled_rate: Rate the computed TFR settlement taxed with.
 
     Returns:
-        The tax entry and its decision; an ``incomplete`` issue and
-        decision when the run has no TFR rate; nothing without indemnity.
+        The tax entry, on the indemnity item, and its decision; an
+        ``incomplete`` issue and decision when the run has no TFR rate;
+        nothing without indemnity.
     """
-    gross = sum((i.amount for i in items if i.kind == _KIND), _ZERO)
+    notices = [i for i in items if i.kind == _KIND]
+    gross = sum((i.amount for i in notices), _ZERO)
     if not gross:
         return NoticeTax()
     taxable = gross - apart_inps
@@ -108,7 +110,7 @@ def notice_tax(
     resolution = _require_resolution(ctx.resolver, _KIND, ctx.policy_context)
     entry = _make_entry(
         f"notice_tax_{ctx.run_id}",
-        f"notice_{ctx.run_id}",
+        notices[0].item_id,
         _KIND,
         ctx.cp,
         ctx.contract.tctx.payment,

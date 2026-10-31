@@ -96,7 +96,8 @@ def taxable_income(
     """
     # Excess PdR beyond the cap is taxed ordinarily; add it back to the IRPEF base.
     irpef_base = inp.event_irpef_base + pdr.excess
-    # The employee INPS on what is taxed apart reduces that taxable instead.
+    # The employee INPS on what is taxed apart reduces that taxable instead;
+    # at the rate of the run, without the 1% additional IVS or the ceiling.
     apart_inps = money(inp.event_apart_inps_base * employee_rate)
     period_taxable = money(inp.monthly_gross - inps_employee + apart_inps + irpef_base)
     if pension is not None:
