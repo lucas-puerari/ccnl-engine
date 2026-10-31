@@ -133,10 +133,13 @@ def test_a_notice_not_given_is_paid_and_taxed_at_the_tfr_rate() -> None:
     )
     (item,) = (i for i in result.pay_items if isinstance(i, NoticeIndemnityItem))
     assert item.quantity == 1
-    separate = sorted(
-        e.amount for e in result.ledger_entries if e.account.value == "separate_tax"
-    )
-    assert separate == [Decimal("1200.36"), Decimal("4600.00")]
+    separate = {
+        e.pay_item_id: e.amount
+        for e in result.ledger_entries
+        if e.account.value == "separate_tax"
+    }
+    assert separate[item.item_id] == Decimal("1200.36")
+    assert sorted(separate.values()) == [Decimal("1200.36"), Decimal("4600.00")]
     # The TFR base takes the indemnity: 5766.15 / 13.5 = 427.12, less the
     # 0.50% IVS of L. 297/1982 on it, 28.83: the quota grows by 398.30 (one
     # cent of rounding on the whole run).

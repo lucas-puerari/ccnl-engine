@@ -4,10 +4,11 @@ Pass the event to the run that pays the month of the last day of the
 employment (``Employment.employment_period.ended_on``).  The employer owes
 the indemnity in place of the notice not worked: on a dismissal without
 just cause and on a death (art. 2118 c.c.), on a resignation for just
-cause (art. 2119 c. 1).  No notice is owed on a dismissal for just cause or
-a mutual agreement, nor during a trial period (art. 2096): do not pass the
-event then.  A resignation without just cause makes the worker owe the
-indemnity, which the engine does not compute.
+cause (art. 2119 c. 1).  A dismissal for just cause and a mutual agreement
+owe none: the run records a nil decision.  No notice is owed during a trial
+period (art. 2096 c.c.), which the event does not state: do not pass it
+then.  A resignation without just cause makes the worker owe the
+indemnity, which the engine does not compute (an ``incomplete`` issue).
 """
 
 from __future__ import annotations
