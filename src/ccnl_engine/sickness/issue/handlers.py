@@ -50,7 +50,7 @@ PAID = "sickness_episode_paid"
 RULE_MISSING = "sickness_rule_missing"
 #: The CCNL defines no daily quota: nothing is posted.
 QUOTA_MISSING = "sickness_daily_quota_missing"
-#: Sick days past the comporto: they are left out.
+#: Sick days past the comporto: INPS alone pays them.
 BEYOND_COMPORTO = "sickness_beyond_comporto"
 #: The bundle does not say whether INPS pays the worker.
 COVER_UNKNOWN = "sickness_inps_cover_unknown"
@@ -98,8 +98,8 @@ def episode_issues(
     """Return the issues of ``episode`` in the run.
 
     Returns:
-        An incomplete issue for a missing rule or days past the comporto;
-        a provisional one when INPS cover is unknown for indemnified days,
+        An incomplete issue for a missing rule; a provisional one for days
+        past the comporto and when INPS cover is unknown for indemnified days,
         and the issues of a treatment counted over several episodes.
     """
     if pay is None:
@@ -111,10 +111,12 @@ def episode_issues(
             _issue(
                 BEYOND_COMPORTO,
                 f"sickness episode '{episode.episode_id}' lasts past the "
-                "comporto of the CCNL: those days are left out of the amounts; "
-                "a longer comporto the CCNL grants in some cases (comporto "
-                "prolungato, certified disability) is not modelled",
-                CalculationStatus.INCOMPLETE,
+                "comporto of the CCNL: the employer may end the employment "
+                "(art. 2110 c. 2 c.c.) and integrates nothing, INPS pays its "
+                "share within its yearly days; a longer comporto the CCNL "
+                "grants in some cases (comporto prolungato, certified "
+                "disability) is not modelled",
+                CalculationStatus.PROVISIONAL,
             )
         )
     rules = terms.rules

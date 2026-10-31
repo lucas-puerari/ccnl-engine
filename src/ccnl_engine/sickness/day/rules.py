@@ -58,7 +58,7 @@ class SickDayKind(StrEnum):
     Attributes:
         CARENZA: Waiting period: no INPS indemnity.
         INDEMNIFIED: After the waiting period, within the comporto.
-        BEYOND_COMPORTO: Past the days the CCNL integrates.
+        BEYOND_COMPORTO: Past the comporto: INPS alone (art. 2110 c.c.).
         FIXED_TERM_LIMIT: Past the days a fixed-term contract pays (D.L.
             463/1983 art. 5): unpaid.
     """
@@ -200,8 +200,6 @@ def _classify(
         The kind, INPS rate and worker rate of the day.
     """
     ccnl, limit = days
-    if ccnl.beyond_comporto:
-        return _Day(SickDayKind.BEYOND_COMPORTO, _ZERO, _ZERO)
     if limit is not None and not limit.allows(index, day, inps):
         return _Day(SickDayKind.FIXED_TERM_LIMIT, _ZERO, _ZERO)
     if index <= rules.inps.carenza_days:
@@ -215,6 +213,8 @@ def _classify(
         and limit.direct_after is not None
         and index > limit.direct_after
     )
+    if ccnl.beyond_comporto:
+        return _Day(SickDayKind.BEYOND_COMPORTO, rate, rate, direct)
     return _Day(SickDayKind.INDEMNIFIED, rate, max(ccnl.rate, rate), direct)
 
 

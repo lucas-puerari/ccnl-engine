@@ -35,6 +35,7 @@ from ccnl_engine.event.facade import (
     ParentalLeaveEvent,
     PaternityLeaveEvent,
     SickLeaveEvent,
+    SicknessEpisode,
     WorkInjuryEvent,
 )
 from ccnl_engine.run.models import RunKind
@@ -60,6 +61,7 @@ _PAYING_KINDS = frozenset({RunKind.REGULAR, RunKind.TERMINATION})
 _REDUCING_EVENTS = (
     AbsenceEvent,
     SickLeaveEvent,
+    SicknessEpisode,
     MaternityLeaveEvent,
     DisabilityPermitEvent,
     NursingRestEvent,

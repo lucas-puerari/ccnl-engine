@@ -189,7 +189,7 @@ it continues for a relapse. The index sets:
 | 1-3 (carenza) | nothing | CCNL `carenza_integration_rate`, only past `carenza_min_days` of sickness when the CCNL sets it |
 | 4-20 | 50% | the higher of the CCNL tier rate and the INPS rate |
 | 21-180 | 66.66% | the same |
-| past the comporto | left out, `incomplete` issue | left out |
+| past the comporto | its band, within its 180 days a year | the INPS share alone, deducted like the other sick days, no CCNL top-up, `provisional` issue: the comporto ends the CCNL treatment and the protection of the job, not the INPS indemnity (art. 2110 c.c.) |
 
 A fixed-term contract pays sickness for no more days than those of work in
 the 12 months before the episode, every employer counted
