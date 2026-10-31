@@ -535,6 +535,24 @@ CCNL daily quota it posts nothing and is `incomplete`
 (`insured_absence_without_daily_quota`). The pay of the month before is the
 monthly pay of the run: its variable pay is not known.
 
+### Notice of termination
+
+Art. 2118 c.c. leaves the notice of an open-ended employment to the
+collective agreement. A CCNL states it in `work_rules.notice`: bands by
+level, cause (`dismissal`, `resignation`) and the longest service in months
+each covers, with the months and days of notice and the indemnity owed in
+its place, in monthly pays. The notice runs from the day after the act is
+received and ends as art. 1187 c.c. reads art. 2963 c.c.: on the day of
+the last month corresponding to the day of receipt (one month on an act of
+28 February ends on 28 March; of 31 January, on 28 February), then the
+days of the band.
+
+| CCNL | Bands | Source |
+|---|---|---|
+| Metalmeccanico Federmeccanica | B2, B3, A1: 2, 3, 4 months; C2, C3, B1: 1 month 15 days, 2 months, 2 months 15 days; D1, D2, C1: 10 days, 20 days, 1 month; up to 5, 10, over 10 years of service; the same for dismissal and resignation | CCNL 5 February 2021, Sez. Quarta, Tit. VIII, Art. 1 |
+
+The other CCNLs state no notice yet, and no run pays the indemnity yet.
+
 ### Absences are bounded by the pay of the run
 
 Unpaid absences that deduct more than the monthly pay of the run raise
