@@ -123,7 +123,22 @@ def test_only_a_late_end_could_give_more_months() -> None:
         _RATES,
     )
 
+    stated = allocate(
+        _leave(date(2026, 3, 2), date(2026, 3, 3), born=date(2024, 6, 1)), _RATES
+    )
+
     assert (early.cohort_unknown, late.cohort_unknown) == (True, False)
+    assert not stated.cohort_unknown
+
+
+def test_the_sixth_birthday_is_past_the_enhanced_rate() -> None:
+    """Born 2 March 2020: from 2 March 2026 no cohort can give the 80%."""
+    sixth = allocate(
+        _leave(date(2026, 3, 2), date(2026, 3, 3), born=date(2020, 3, 2), end=None),
+        _RATES,
+    )
+
+    assert not sixth.cohort_unknown
 
 
 def test_a_cohort_applies_from_its_first_day() -> None:
@@ -219,10 +234,11 @@ def test_the_leave_cannot_reach_the_fourteenth_birthday() -> None:
     """The day the child turns fourteen is no longer a day of leave."""
     leave = _leave(date(2026, 3, 1), date(2026, 3, 15), born=date(2012, 3, 15))
 
-    with pytest.raises(InvalidInputError, match="14th birthday") as error:
+    with pytest.raises(InvalidInputError) as error:
         allocate(leave, _RATES)
 
-    assert (error.value.field, error.value.feature) == (
+    assert (str(error.value), error.value.field, error.value.feature) == (
+        "ParentalLeaveEvent.ended_on must precede the child's 14th birthday",
         "ParentalLeaveEvent.ended_on",
         "parental_leave",
     )
