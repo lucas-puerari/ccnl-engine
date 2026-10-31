@@ -77,7 +77,15 @@ Evidence:
   the hour (no sick hours deducted) and a carenza left on a Sunday at the
   start of a month. The baseline is empty: the five handlers count in the
   93% minimum of the core.  The core twelve scored 859 of
-  917 (93.7%) that day.
+  917 (93.7%) that day.  On 31 October 2026 the perimeter took the rest
+  of the money path: the end of the employment (notice, NASpI
+  contribution), the deductions from the net pay, the leave, the sickness
+  and the INPS-insured absences entered at 93% or more after new tests,
+  and 65 further modules of contributions, TFR, tax credits, surtaxes,
+  withholdings, IRPEF, variable pay, extra months, pay and working time
+  entered together, 61 of them below 93% with the floor of their score
+  that day in `baseline.json` (from 50.0% to 92.8%): no regression of
+  theirs can merge, and each floor rises as tests kill its survivors.
   On 19 October 2026 the perimeter grew to the money path of every run:
   the pay chain elements and their proration, the contributions service,
   the IRPEF taxable and computation services and the separate taxation,
