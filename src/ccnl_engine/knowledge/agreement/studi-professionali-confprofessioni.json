@@ -264,7 +264,7 @@
       },
       {
         "kind": "info",
-        "text": "LEAVE AT TERMINATION (Art. 101): the ferie are paid at the 'normale retribuzione di fatto' during the leave; no clause states the basis of the indemnity at the end of the employment, so the engine pays no residual (termination_residual_leave incomplete)."
+        "text": "LEAVE AT TERMINATION (Art. 137, p. 70): the indemnity for the ferie not taken is the monthly pay divided by 26 ('il computo dell’indennità sostitutiva delle ferie, si ottiene dividendo l’importo mensile per il divisore convenzionale 26'), for any weekly schedule, while the file accrues the 22 days of the settimana corta. The 32 hours of ex festività left are paid at the 'retribuzione normale giornaliera' of a festività (Art. 98), a daily amount the hours accrued do not convert into: a residual of them is not paid (termination_residual_leave incomplete, permit_basis_not_sourced)."
       }
     ]
   },
@@ -2432,7 +2432,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "b294eb3e7bd047463a7aa3060b8a1d26d0e92d7473c21d8e3d11945cecd2488c",
+    "source_hash": "ca53aef671edc216b710dd9b95ff746fd4e36e9ef2d9adc2721fb65604de17f0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2855,7 +2855,37 @@
           }
         }
       ],
-      "termination": null
+      "termination": {
+        "ferie_divisor": "26",
+        "permits_hourly": false,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-studi-professionali-2024-02-16",
+              "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+              "kind": "associazione",
+              "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+              "published_on": "2024-02-16",
+              "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+            },
+            "page": "70",
+            "section": "Art. 137 - Frazionamento della retribuzione",
+            "quote": "La quota giornaliera della retribuzione ed il computo dell’indennità sostitutiva delle ferie, si ottiene dividendo l’importo mensile per il divisore convenzionale 26 (ventisei), fatto salvo quanto previsto al precedente articolo 124."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-31T15:00:00Z",
+            "effective_from": "2024-02-16",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-31T15:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-31-ai-leave-termination"
+          },
+          "transformation": "Ferie: residual days x monthly pay / 26, as quoted (Art. 124, the exception, is the daily quota of sickness and injury). The divisor is the same for every weekly schedule while the file carries the 22 days of the settimana corta (Art. 99, p. 51): the text does not convert the days of a five-day week, and the quote is applied as written. Permits: not paid. The only permit bucket accrued is the 32 hours of ex festività, and Art. 98 (p. 51) pays the permits not used with 'un importo pari alla retribuzione normale giornaliera comprensiva di ogni elemento accessorio', a daily amount for each festività, not the hourly quota of Art. 137 (170): the residual hours have no stated basis."
+        }
+      }
     },
     "sickness_rules": {
       "carenza_integration_rate": "1",
@@ -3103,6 +3133,33 @@
         ],
         "findings": [
           "Art. 135 - Normale retribuzione; Art. 95: individual elements included in the hourly base: work_rules.time_supplements.individual_elements."
+        ]
+      },
+      {
+        "id": "2026-10-31-ai-leave-termination",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The basis of the indemnity for the leave not taken at the end of the employment, searched in the CCNL of 16 February 2024 (Artt. 44, 45, 91, 98, 101, 137) and in its April 2026 testo ufficiale.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          },
+          {
+            "url": "https://www.confprofessioni.eu/wp-content/uploads/2026/07/00274046_CCNL_Studi_Professionali_2026.04.10_completo.pdf",
+            "sha256": "35cc1ec44a282f39fa401949828f180897872a8c7907eb39d4f7a51420e04477"
+          }
+        ],
+        "findings": [
+          "Art. 137 - Frazionamento della retribuzione (p. 70; same text in the 2026 testo ufficiale, p. 122): the indemnity for the ferie not taken is the monthly pay divided by 26: work_rules.leave_rules.termination. The ex festività left have a daily basis (Art. 98), not an hourly one: permits_hourly false."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.termination.ferie_divisor 26",
+          "work_rules.leave_rules.termination.permits_hourly false",
+          "coverage.notes[LEAVE AT TERMINATION]"
         ]
       }
     ],

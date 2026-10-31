@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 51 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 52 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-02-16 |
-| **Last review** | 2026-10-20 |
+| **Last review** | 2026-10-31 |
 | **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-20 | claude-opus-5-5 (ai) | The renewal within the window of L. 199/2025 art. 1 c. 7 and the minimo in force before its first tranche. | corrected | Renewal signed on 2024-02-16, first tranche from 2024-03-01: parameters.renewals.<br>Minimo before the renewal = the column 'Minimo tabellare in vigore al 29 febbraio 2024' of the first tranche (Q 2,133.31 to 5 1,315.12). |
 | 2026-10-20 | claude-opus-5-5 (ai) | The pricing of the seniority increments matured before a change of level (Art. 134 - Scatti di anzianità). | corrected | Art. 134 - Scatti di anzianità (p. 69): the earlier increments take the amounts of the new level from the change: seniority_increments.on_promotion. |
 | 2026-10-20 | claude-opus-5-5 (ai) | Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Art. 135 - Normale retribuzione; Art. 95). | corrected | Art. 135 - Normale retribuzione; Art. 95: individual elements included in the hourly base: work_rules.time_supplements.individual_elements. |
+| 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched in the CCNL of 16 February 2024 (Artt. 44, 45, 91, 98, 101, 137) and in its April 2026 testo ufficiale. | corrected | Art. 137 - Frazionamento della retribuzione (p. 70; same text in the 2026 testo ufficiale, p. 122): the indemnity for the ferie not taken is the monthly pay divided by 26: work_rules.leave_rules.termination. The ex festività left have a daily basis (Art. 98), not an hourly one: permits_hourly false. |
 
 ## Salary table
 
@@ -388,7 +389,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     HOURLY RATE AND SUPPLEMENTS (artt. 93-97, 135, 137 of the CCNL of 16 February 2024): without a caller value the engine derives the hourly base (the art. 135 normale retribuzione over 170) and the 30% on festività hours paid as straordinario festivo (art. 97 lett. E with art. 95); art. 97 also pays the hours themselves, which the engine does not post: the run is provisional. Not derived, the caller states the amount: ordinary night work, which art. 93 leaves to the Area Professionale or second-level bargaining (the 30% of art. 95 is a night overtime rate); work on the weekly rest day ('la relativa sola maggiorazione', art. 97 lett. F, names no percentage).
     
-    LEAVE AT TERMINATION (Art. 101): the ferie are paid at the 'normale retribuzione di fatto' during the leave; no clause states the basis of the indemnity at the end of the employment, so the engine pays no residual (termination_residual_leave incomplete).
+    LEAVE AT TERMINATION (Art. 137, p. 70): the indemnity for the ferie not taken is the monthly pay divided by 26 ('il computo dell’indennità sostitutiva delle ferie, si ottiene dividendo l’importo mensile per il divisore convenzionale 26'), for any weekly schedule, while the file accrues the 22 days of the settimana corta. The 32 hours of ex festività left are paid at the 'retribuzione normale giornaliera' of a festività (Art. 98), a daily amount the hours accrued do not convert into: a residual of them is not paid (termination_residual_leave incomplete, permit_basis_not_sourced).
     
 
 ## Raw data

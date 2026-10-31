@@ -763,10 +763,21 @@ def _turismo_year() -> tuple[Pay, ...]:
     return tuple(pays)
 
 
+#: Residual leave paid on the last regular run (CCNL 20 February 2010,
+#: sha256 47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4):
+#: six twelfths of 26 days of ferie (art. 129, p. 124), 13 days at the
+#: retribuzione giornaliera, the monthly pay over 26 (art. 150, p. 134);
+#: six twelfths of the 104 hours of permits (art. 111, p. 114), 52 hours at
+#: the monthly pay over the hourly divisor 172 (art. 151, p. 135).
+_TURISMO_LEAVE = _cents(Decimal(13) * _TURISMO_FROM_MAY / 26) + _cents(
+    Decimal(52) * _TURISMO_FROM_MAY / 172
+)
+
+
 def _turismo_june() -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _turismo(m), _turismo(m)) for m in range(1, 6)]
     #: Six twelfths of the tredicesima are paid with the last month.
-    june = _TURISMO_FROM_MAY + _cents(_TURISMO_FROM_MAY * 6 / 12)
+    june = _TURISMO_FROM_MAY + _cents(_TURISMO_FROM_MAY * 6 / 12) + _TURISMO_LEAVE
     fourteenth = _TURISMO_FOURTEENTH
     return (
         *pays,
@@ -1014,11 +1025,29 @@ def _fipe_year(tranche: int) -> tuple[Pay, ...]:
     return tuple(pays)
 
 
-def _fipe_june(tranche: int) -> tuple[Pay, ...]:
+def _fipe_leave(pay: Decimal) -> Decimal:
+    """Return the residual leave of the pubblici esercizi June termination.
+
+    CCNL 8 February 2018 (sha256
+    32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85, OCR):
+    six twelfths of 26 days of ferie (art. 134, p. 104), 13 days at the
+    monthly pay over 26 (art. 159, p. 116); six twelfths of the 32 hours of
+    ex festività (art. 114 c. 3), 16 hours at the monthly pay over 172 (art.
+    160, p. 116); no other ROL in the first two years of a hire after 1
+    January 2018 (art. 114 c. 4, p. 94).
+
+    Returns:
+        The indemnity of the ferie and of the ex festività left.
+    """
+    return _cents(Decimal(13) * pay / 26) + _cents(Decimal(16) * pay / 172)
+
+
+def _fipe_june(tranche: int, *, leave: bool) -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _fipe(m, tranche), _fipe(m, tranche)) for m in range(1, 6)]
     last = _fipe(6, tranche)
-    #: Six twelfths of the tredicesima are paid with the last month.
-    june = last + _cents(last * 6 / 12)
+    #: Six twelfths of the tredicesima are paid with the last month, with the
+    #: residual leave where the CCNL file accrues it (not ristorazione).
+    june = last + _cents(last * 6 / 12) + (_fipe_leave(last) if leave else _ZERO)
     fourteenth = _cents(last * 6 / 12)
     return (
         *pays,
@@ -1028,11 +1057,15 @@ def _fipe_june(tranche: int) -> tuple[Pay, ...]:
 
 
 FIPE_YEAR = sector_year(_fipe_year(6), _FIPE_RATES, _FULL_YEAR, terminated=False)
-FIPE_JUNE = sector_year(_fipe_june(6), _FIPE_RATES, _HALF_YEAR, terminated=True)
+FIPE_JUNE = sector_year(
+    _fipe_june(6, leave=True), _FIPE_RATES, _HALF_YEAR, terminated=True
+)
 RISTORAZIONE_YEAR = sector_year(
     _fipe_year(9), _FIPE_RATES, _FULL_YEAR, terminated=False
 )
-RISTORAZIONE_JUNE = sector_year(_fipe_june(9), _FIPE_RATES, _HALF_YEAR, terminated=True)
+RISTORAZIONE_JUNE = sector_year(
+    _fipe_june(9, leave=False), _FIPE_RATES, _HALF_YEAR, terminated=True
+)
 
 
 # Confapi: Metalmeccanico Unionmeccanica Confapi 5th level, 50 employees.

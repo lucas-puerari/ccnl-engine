@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 67 verified / 4 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 68 verified / 4 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-06-26 |
-| **Last review** | 2026-10-20 |
+| **Last review** | 2026-10-31 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-20 | claude-opus-5-5 (ai) | The renewal within the window of L. 199/2025 art. 1 c. 7 and the minimo in force before its first tranche. | corrected | Renewal signed on 2024-06-05, first tranche from 2024-06-01: parameters.renewals.<br>Minimo before the renewal = paga base before the tranche of June 2024 plus the contingenza, unchanged by it (the Totale the bundle carries): e.g. level 3, 1,130.81 + 528.26 = 1,659.07. The paga base is the table of December 2021 of the CCNL of 8 February 2018 (p. 117, column 'dic-21', read by OCR). |
 | 2026-10-20 | claude-opus-5-5 (ai) | The pricing of the seniority increments matured before a change of level (Art. 182 c. 5 - Scatti di anzianità). | corrected | Art. 182 c. 5 - Scatti di anzianità (p. 127): the earlier increments are repriced at the new level when the next one matures: seniority_increments.on_promotion. |
 | 2026-10-20 | claude-opus-5-5 (ai) | Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Art. 157 c. 1 - Elementi della retribuzione). | corrected | Art. 157 c. 1 - Elementi della retribuzione: individual elements excluded in the hourly base: work_rules.time_supplements.individual_elements. |
+| 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched in the OCR of the signed text of 2018 (Artt. 114, 134, 135, 159, 160) and of the 2024 renewal. | corrected | Art. 159 - Determinazione della retribuzione giornaliera (p. 116): the daily pay is the monthly pay divided by 26 for every contractual purpose: the residual ferie are paid at it, and the permits at the hourly pay of Art. 160: work_rules.leave_rules.termination. |
 
 ## Salary table
 
@@ -345,7 +346,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     HOURLY RATE AND SUPPLEMENTS (artt. 124, 130, 132, 157, 160 of the 2018 text, unchanged by the 2024 renewal): without a caller value the engine derives the hourly base (the art. 157 retribuzione over 172), the 25% on ordinary night hours from 24 to 6 (art. 124), the 20% on the hours worked on a festività (art. 132) and the 10% of the hourly paga base and contingenza on ordinary Sunday hours of a worker resting on another day (art. 130). Art. 132 also pays the festività hours themselves on top of the monthly pay: the engine posts the 20% only and the run is provisional. Not derived: holiday and night holiday overtime (art. 126 sets no rate; the bands OT_FESTIVO and OT_NOTTURNO_FESTIVO stay derived), the divisor 190 of the 44-hour week.
     
-    LEAVE AT TERMINATION: no clause of the OCR of the 2018 text read states the basis of the indemnity for the ferie and permits not taken; the engine pays no residual (termination_residual_leave incomplete).
+    LEAVE AT TERMINATION: no clause of the 2018 text (OCR of the signed scan) or of the 2024 renewal names the indemnity for the ferie and permits not taken; the daily pay of Art. 159 (monthly pay / 26, 'valido a tutti i fini contrattuali', p. 116) prices a residual day of ferie, and the hourly pay of Art. 160 (/ 172) a residual hour of permits, the measure Art. 114 c.12 uses for the permits left at the deadline.
     
 
 ## Raw data

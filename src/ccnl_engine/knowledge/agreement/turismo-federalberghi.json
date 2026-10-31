@@ -3230,7 +3230,7 @@
       },
       {
         "kind": "info",
-        "text": "LEAVE AT TERMINATION: no clause of the texts read (2010, 2014 version, 2024 ipotesi) states the basis of the indemnity for the ferie and permits not taken; the engine accrues and carries the balances and pays no residual (termination_residual_leave incomplete, termination_basis_not_sourced)."
+        "text": "LEAVE AT TERMINATION: no clause of the texts read (2010, 2014 version, 2024 ipotesi) names the indemnity for the ferie and permits not taken; the daily pay of Art. 150 (monthly pay / 26, 'valido a tutti i fini contrattuali', p. 134) prices a residual day of ferie, and the hourly pay of Art. 151 (/ 172) a residual hour of ROL, the measure Art. 111 c.7 uses for the permits left at the deadline."
       },
       {
         "kind": "info",
@@ -3245,7 +3245,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "f46069410dad57f48b736e21d981b1254a56f20664c3d596a01d837ae759bbf9",
+    "source_hash": "f4ce3e7c763407e21bb8ccffdf3e4914c1f1d2462f42b456ff1e00478f4e66e2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3715,7 +3715,36 @@
           }
         }
       ],
-      "termination": null
+      "termination": {
+        "ferie_divisor": "26",
+        "permits_hourly": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-turismo-2010",
+              "title": "CCNL Turismo 20 febbraio 2010, testo firmato (UILTuCS)",
+              "kind": "associazione",
+              "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+            },
+            "page": "134",
+            "section": "Art. 150 - Determinazione della retribuzione giornaliera",
+            "quote": "(1) La retribuzione giornaliera si ottiene dividendo la retribuzione mensile per ventisei. (2) Tale indice è valido a tutti i fini contrattuali ivi compresi i casi di trattenuta per assenze non retribuite."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-31T15:00:00Z",
+            "effective_from": "2010-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-31T15:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-31-ai-leave-termination"
+          },
+          "transformation": "Ferie: residual days x monthly pay / 26. No clause on the end of the employment names a divisor: the daily pay of Art. 150, stated for every contractual purpose, is the pay of a day of ferie, and the 26 days of ferie are counted on a week of six days (Art. 129 c.1, p. 124), the week of the divisor. Permits: residual hours x monthly pay / 172, the hourly divisor of Art. 151 (p. 135) for a 40-hour week. Art. 111 c.7 (p. 114) pays the permits not taken by the deadline 'con la retribuzione in atto al momento della scadenza'; paying the residual hours at the end of the employment at that hourly pay is the reading adopted, as for Commercio, not a clause on termination. The 2014 version and the 2024 ipotesi read leave Artt. 150 and 151 unchanged."
+        }
+      }
     },
     "sickness_rules": {
       "carenza_integration_rate": "1",
@@ -3992,6 +4021,37 @@
         ],
         "findings": [
           "Art. 148 c. 1 - Elementi della retribuzione: individual elements excluded in the hourly base: work_rules.time_supplements.individual_elements."
+        ]
+      },
+      {
+        "id": "2026-10-31-ai-leave-termination",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The basis of the indemnity for the leave not taken at the end of the employment, searched in the signed text of 2010 (Artt. 111, 129, 130, 150, 151), the 2014 version and the OCR of the 2024 ipotesi.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+          },
+          {
+            "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%2018%20gennaio%202014/ccnl%20turismo%2018%2001%2014%20versione%20guida.pdf",
+            "sha256": "c81ff0334a9dbed9ec45136ced81d7e1db51a3d0f082badf511969a1fd049356"
+          },
+          {
+            "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+            "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+          }
+        ],
+        "findings": [
+          "Art. 150 - Determinazione della retribuzione giornaliera (p. 134): the daily pay is the monthly pay divided by 26 for every contractual purpose: the residual ferie are paid at it, and the ROL at the hourly pay of Art. 151: work_rules.leave_rules.termination."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.leave_rules.termination.ferie_divisor 26",
+          "work_rules.leave_rules.termination.permits_hourly true",
+          "coverage.notes[LEAVE AT TERMINATION]"
         ]
       }
     ],

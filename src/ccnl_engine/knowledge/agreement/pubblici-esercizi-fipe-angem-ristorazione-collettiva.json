@@ -2497,7 +2497,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "efedfd36e83cd03366105c2447220f13b71c5a15d1f4fd592c1619d6d215cf44",
+    "source_hash": "43ecd968a420df3827ec9653eed0def40e9119961e2c14761a60ccd0541e3a91",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2738,6 +2738,37 @@
           "verified_at": "2026-10-11T19:46:50Z",
           "review_id": "2026-10-11-ai"
         }
+      },
+      "termination": {
+        "ferie_divisor": "26",
+        "permits_hourly": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "fipe-ccnl-2018-02-08",
+              "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+              "kind": "associazione",
+              "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+              "published_on": "2018-02-08",
+              "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+            },
+            "page": "116",
+            "section": "Art. 159 - Determinazione della retribuzione giornaliera",
+            "quote": "(1) La retribuzione giornaliera si ottiene dividendo la retribuzione mensile per ventisei. (2) Tale indice è valido a tutti i fini contrattuali ivi compresi i casi di trattenuta per assenze non retribuite."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-31T15:00:00Z",
+            "effective_from": "2018-02-08",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-31T15:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-31-ai-leave-termination"
+          },
+          "transformation": "Ferie: residual days x monthly pay / 26: the daily pay of Art. 159, stated for every contractual purpose, with the 26 days of ferie counted on a week of six days (Art. 134 c.1, p. 104). Permits: residual hours x monthly pay / 172 (Art. 160, p. 116), the measure Art. 114 c.12 (p. 95) uses for the permits left at the deadline ('con la retribuzione in atto al momento della predetta scadenza'), the reading adopted for Commercio. The file does not model the accrual of the leave yet: until it does the basis pays nothing (leave_accrual_not_modelled)."
+        }
       }
     },
     "sickness_rules": {
@@ -2918,6 +2949,28 @@
           "Accordo integrativo of 26 June 2024 (pp. 1-3): the 50 totals of contingenza and paga base of the ten levels from June 2024 to December 2027 match the file, with the tranches of 2025 and 2026 in September.",
           "Art. 184 of the CCNL of 8 February 2018 (p. 128, scan read by OCR): quattordicesima of the pay in force on 30 June, paid with the July pay, in ratei of the twelve months before 1 July. Match.",
           "Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios ristorazione-year and ristorazione-june): a 4th level impiegato hired on 1 January 2026 by an employer with 10 employees, with the terziario rates up to 15 employees and the 0.77% sickness supplement of the pubblici esercizi taken apart; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done."
+        ]
+      },
+      {
+        "id": "2026-10-31-ai-leave-termination",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The basis of the indemnity for the leave not taken at the end of the employment, searched in the OCR of the signed text of 2018 (Artt. 114, 134, 135, 159, 160).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          }
+        ],
+        "findings": [
+          "Art. 159 - Determinazione della retribuzione giornaliera (p. 116): the daily pay is the monthly pay divided by 26 for every contractual purpose: work_rules.leave_rules.termination; the accrual of the leave is not modelled, so the basis is not used yet."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.leave_rules.termination.ferie_divisor 26",
+          "work_rules.leave_rules.termination.permits_hourly true"
         ]
       }
     ],

@@ -220,7 +220,7 @@
       },
       {
         "kind": "info",
-        "text": "LEAVE AT TERMINATION: no clause of the OCR of the 2018 text read states the basis of the indemnity for the ferie and permits not taken; the engine pays no residual (termination_residual_leave incomplete)."
+        "text": "LEAVE AT TERMINATION: no clause of the 2018 text (OCR of the signed scan) or of the 2024 renewal names the indemnity for the ferie and permits not taken; the daily pay of Art. 159 (monthly pay / 26, 'valido a tutti i fini contrattuali', p. 116) prices a residual day of ferie, and the hourly pay of Art. 160 (/ 172) a residual hour of permits, the measure Art. 114 c.12 uses for the permits left at the deadline."
       }
     ]
   },
@@ -2756,7 +2756,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "b3dd97d3500f795eaadea88f90474197e134ae5c9dfb65e577e044060b22aa99",
+    "source_hash": "8c50bc40665427b997eb7771ff6cdb87282ebf71f1a9bb6529b68005de5f52c5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3332,7 +3332,37 @@
           }
         }
       ],
-      "termination": null
+      "termination": {
+        "ferie_divisor": "26",
+        "permits_hourly": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "fipe-ccnl-2018-02-08",
+              "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+              "kind": "associazione",
+              "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+              "published_on": "2018-02-08",
+              "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+            },
+            "page": "116",
+            "section": "Art. 159 - Determinazione della retribuzione giornaliera",
+            "quote": "(1) La retribuzione giornaliera si ottiene dividendo la retribuzione mensile per ventisei. (2) Tale indice è valido a tutti i fini contrattuali ivi compresi i casi di trattenuta per assenze non retribuite."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-31T15:00:00Z",
+            "effective_from": "2018-02-08",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-31T15:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-31-ai-leave-termination"
+          },
+          "transformation": "Ferie: residual days x monthly pay / 26. No clause on the end of the employment names a divisor: the daily pay of Art. 159, stated for every contractual purpose, is the pay of a day of ferie, and the 26 days of ferie are counted on a week of six days (Art. 134 c.1, p. 104), the week of the divisor. Permits: residual hours x monthly pay / 172, the hourly divisor of Art. 160 (p. 116) for a 40-hour week. Art. 114 c.12 (p. 95) pays the permits not taken by the deadline 'con la retribuzione in atto al momento della predetta scadenza'; paying the residual hours at the end of the employment at that hourly pay is the reading adopted, as for Commercio, not a clause on termination. Read on the OCR of the signed scan; the 2024 renewal read leaves Artt. 159 and 160 unchanged."
+        }
+      }
     },
     "sickness_rules": {
       "carenza_integration_rate": "1",
@@ -3576,6 +3606,33 @@
         ],
         "findings": [
           "Art. 157 c. 1 - Elementi della retribuzione: individual elements excluded in the hourly base: work_rules.time_supplements.individual_elements."
+        ]
+      },
+      {
+        "id": "2026-10-31-ai-leave-termination",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The basis of the indemnity for the leave not taken at the end of the employment, searched in the OCR of the signed text of 2018 (Artt. 114, 134, 135, 159, 160) and of the 2024 renewal.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          },
+          {
+            "url": "https://www.fipe.it/wp-content/uploads/2024/06/Contratto-CCNL-05_06_24.pdf",
+            "sha256": "b133dcca1351c72309389e53eeea21cb9b0459c82736423749206d6f11235c43"
+          }
+        ],
+        "findings": [
+          "Art. 159 - Determinazione della retribuzione giornaliera (p. 116): the daily pay is the monthly pay divided by 26 for every contractual purpose: the residual ferie are paid at it, and the permits at the hourly pay of Art. 160: work_rules.leave_rules.termination."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.leave_rules.termination.ferie_divisor 26",
+          "work_rules.leave_rules.termination.permits_hourly true",
+          "coverage.notes[LEAVE AT TERMINATION]"
         ]
       }
     ],

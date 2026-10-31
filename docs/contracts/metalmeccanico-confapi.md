@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2017-07-03 |
-| **Last review** | 2026-10-20 |
+| **Last review** | 2026-10-31 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-19 | claude-opus-5-5 (ai) | Leave accrual: the ferie twelfths and month rule, the hours of each permit bucket (ROL, ex festività or the pooled PAR), the new-hire ramps and the basis of the indemnity for the residual leave at termination, read on the text cited by each rule. An AI review: the extractor is also the verifier. | confirmed | The values stated are those of the quoted clauses; what the texts leave open (month fractions, termination divisors, schedules and shift patterns) is not modelled and is recorded in the coverage notes. |
 | 2026-10-20 | claude-opus-5-5 (ai) | The pricing of the seniority increments matured before a change of level (Art. 41 - Aumenti periodici di anzianità). | corrected | Art. 41 - Aumenti periodici di anzianità (p. 116): the earlier increments take the amounts of the new level from the change: seniority_increments.on_promotion. |
 | 2026-10-20 | claude-opus-5-5 (ai) | Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Art. 38 - Mensilizzazione). | corrected | Art. 38 - Mensilizzazione: individual elements included in the hourly base: work_rules.time_supplements.individual_elements. |
+| 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched for a divisor of the daily pay in the CCNL of 3 July 2017 (Artt. 15, 29, 32, 33, 40) and in the OCR of the 2025-2028 renewal. | confirmed | Art. 33 pays a day of ferie at the 'retribuzione giornaliera globale di fatto' and no text read divides the monthly pay into it for the generality of workers. No termination basis is recorded. |
 
 ## Salary table
 
@@ -376,7 +377,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     HOURLY RATE AND SUPPLEMENTS (Art. 29 of the CCNL of 3 July 2017 (rates untouched by the renewals of 2021 and 2026)): without a caller value the engine derives the hourly base (minimi, scatti and fixed allowances over 173) and the supplements on holiday hours (55%) and on holiday hours with a compensatory rest (10%), equal in both columns. Whether those hours are also paid on top of the monthly pay is not settled: a derived holiday supplement is provisional. Not derived, the caller states the amount: ordinary night work (25% until 22 and 35% after (shift column 25%)), because its window starts 12 hours after the morning shift of each work group and its rate depends on the hour and on the shift column, facts the request does not carry; night holiday work and Sunday work. Individual elements (merito, superminimi, cottimi) are not in the hourly base. Absences: no clause sets the divisor of an absence deduction (work_rules.absence_rules is derived from the 1/26 of art. 32): the caller states AbsenceEvent.hourly_rate.
     
-    LEAVE AT TERMINATION (Art. 33): each day of ferie is paid at the 'retribuzione giornaliera globale di fatto'; its divisor of the monthly pay is not stated in the texts read, so the engine pays no residual (termination_residual_leave incomplete).
+    LEAVE AT TERMINATION (Art. 33, p. 106 of the CCNL of 3 July 2017): 'Per ogni giornata di ferie la retribuzione dovuta al lavoratore è costituita dalla retribuzione giornaliera globale di fatto'. No clause of the 2017 text or of the 2025-2028 renewal (OCR) defines that daily pay as a fraction of the monthly pay: the 1/26 of the retribuzione mensile fissa (Art. 32, p. 104) is the pay of a festività falling on a Sunday, the 1/6 of the weekly pay (Art. 15, p. 87) is the ferie of the discontinuous workers only, and the divisor 173 gives the hourly pay. The engine pays no residual (termination_residual_leave incomplete, termination_basis_not_sourced).
     
 
 ## Raw data

@@ -278,7 +278,7 @@
       },
       {
         "kind": "info",
-        "text": "LEAVE AT TERMINATION (Art. 14): the indemnity is the 'retribuzione globale di fatto in atto al momento della liquidazione' for the days of ferie not taken; its daily divisor is not stated in the text read, so the engine pays no residual (termination_residual_leave incomplete). The ferie taken in excess are repaid (not modelled); Art. 13 sets no deadline for the residual ROL and ex festività."
+        "text": "LEAVE AT TERMINATION (Art. 14 of the testo definitivo of 10 May 2006): the ferie not taken are paid with 'un’indennità sostitutiva corrispondente alla retribuzione dovuta per le giornate di ferie non godute, da calcolare nella misura della retribuzione globale di fatto in atto al momento della liquidazione'. Art. 20 point 4 states a daily pay of 1/25 of the monthly pay, but its chiarimento a verbale limits it: 'Il coefficiente giornaliero (1/25) deve essere adottato esclusivamente per la corresponsione del trattamento economico per festività coincidente con la domenica e per i casi in cui il Contratto fa ad esso espresso riferimento', and Art. 14 makes no such reference; the renewals of 2010, 2019 and 2025 (OCR) do not change either article. The engine pays no residual (termination_residual_leave incomplete, termination_basis_not_sourced). The ferie taken in excess are repaid (not modelled); Art. 13 sets no deadline for the residual ROL and ex festività."
       },
       {
         "kind": "simplification",
@@ -4826,7 +4826,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "444c9c068de60340d0a58ec8971c1e491ed8c0c834a826bb5d7d6cfdbc175c40",
+    "source_hash": "209ec49d151735341cb28fef009bfaa685fe21744045897e265631e6d45a9f26",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5871,6 +5871,40 @@
         ],
         "findings": [
           "Art. 15 punto 1 - Elementi della retribuzione; Art. 9: individual elements included in the hourly base: work_rules.time_supplements.individual_elements."
+        ]
+      },
+      {
+        "id": "2026-10-31-ai-leave-termination",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The basis of the indemnity for the leave not taken at the end of the employment, searched for a divisor of the daily pay in the testo definitivo of 10 May 2006 (Artt. 13, 14, 20) and in the OCR of the renewals of 2010, 2019 and 2025.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+            "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+          },
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/091218_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL%202010-2012.pdf",
+            "sha256": "a0b24f309c05253dc46e57cba8b0635766270d5be4c28379d2525f0643d330be"
+          },
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/180719_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%202019-GIUGNO%202022.pdf",
+            "sha256": "8f6f3e6a461bf49d66fed093750c2830ecca6d6efc26b929191fce0d267b2c9c"
+          },
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
+            "sha256": "00f87d6fbef42494d47d90dab50146e353b31cbef4ca1f03d6f7ea37d97546ee"
+          }
+        ],
+        "findings": [
+          "The daily coefficient 1/25 of Art. 20 is restricted by its chiarimento a verbale to the festività on a Sunday and to the clauses that refer to it expressly; Art. 14 does not. No termination basis is recorded."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.termination absent",
+          "coverage.notes[LEAVE AT TERMINATION]"
         ]
       }
     ],

@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-11-22 |
-| **Last review** | 2026-10-20 |
+| **Last review** | 2026-10-31 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -74,6 +74,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-19 | claude-opus-5-5 (ai) | Leave accrual: the ferie twelfths and month rule, the hours of each permit bucket (ROL, ex festività or the pooled PAR), the new-hire ramps and the basis of the indemnity for the residual leave at termination, read on the text cited by each rule. An AI review: the extractor is also the verifier. | confirmed | The values stated are those of the quoted clauses; what the texts leave open (month fractions, termination divisors, schedules and shift patterns) is not modelled and is recorded in the coverage notes. |
 | 2026-10-20 | claude-opus-5-5 (ai) | The pricing of the seniority increments matured before a change of level (Sez. Quarta, Titolo IV, Art. 6 - Aumenti periodici di anzianità). | corrected | Sez. Quarta, Titolo IV, Art. 6 - Aumenti periodici di anzianità (p. 176): the earlier increments take the amounts of the new level from the change: seniority_increments.on_promotion. |
 | 2026-10-20 | claude-opus-5-5 (ai) | Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Sez. Quarta, Titolo IV, Art. 3 - Mensilizzazione; Titolo III, Art. 7). | corrected | Sez. Quarta, Titolo IV, Art. 3 - Mensilizzazione; Titolo III, Art. 7: individual elements included in the hourly base: work_rules.time_supplements.individual_elements. |
+| 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched for a divisor of the daily pay in the CCNL of 5 February 2021 (Sez. IV, Tit. III, Artt. 9, 10; Tit. IV, Art. 3) and in the OCR of the ipotesi of 22 November 2025. | confirmed | Art. 10 pays a day of ferie not taken at the 'retribuzione giornaliera globale di fatto' and no text read divides the monthly pay into it: the 1/26 of Art. 9 is limited to a festività on a Sunday. No termination basis is recorded. |
 
 ## Salary table
 
@@ -345,7 +346,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     HOURLY RATE AND SUPPLEMENTS (Art. 7 Sez. Quarta Tit. III of the CCNL of 5 February 2021, rates untouched by the renewal of 22 November 2025): without a caller value the engine derives the hourly base (minimi, scatti and fixed allowances over 173) and the supplements on holiday hours (50%) and on holiday hours with a compensatory rest (10%), equal in both columns. Whether those hours are also paid on top of the monthly pay is not settled: a derived holiday supplement is provisional. Not derived, the caller states the amount: ordinary night work (20% until 22 and 30% after; shift workers 15%, 20% from June 2013, 25% from 22 to 6 in the impiantistica), because its window starts 12 hours after the morning shift of each work group and its rate depends on the hour and on the shift column, facts the request does not carry; night holiday work and Sunday work. Individual elements (merito, superminimi, cottimi) are not in the hourly base. Absences: no clause sets the divisor of an absence deduction; the 1/26 of art. 9 (festività on a Sunday) is taken by analogy (work_rules.absence_rules derived, was verified on the wrong clause): the caller states AbsenceEvent.hourly_rate.
     
-    LEAVE AT TERMINATION (Art. 10): the indemnity of a day of ferie is the 'retribuzione giornaliera globale di fatto'; the texts read do not state its divisor of the monthly pay, so the engine pays no residual (termination_residual_leave incomplete, termination_basis_not_sourced).
+    LEAVE AT TERMINATION (Sez. IV, Tit. III, Art. 10, p. 166 of the CCNL of 5 February 2021): 'L’indennità dovuta al lavoratore per le giornate di ferie non godute è costituita dalla retribuzione giornaliera globale di fatto'. No clause of the 2021 text or of the ipotesi of 22 November 2025 (OCR) defines that daily pay as a fraction of the monthly pay: the only daily quota stated (1/26 of the retribuzione mensile fissa, Art. 9, p. 164) is the pay of a festività falling on a Sunday, and the divisor 173 (Tit. IV, Art. 3, p. 173) gives the hourly pay. The engine pays no residual (termination_residual_leave incomplete, termination_basis_not_sourced).
     
 
 ## Raw data

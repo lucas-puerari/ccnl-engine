@@ -157,6 +157,28 @@
         "findings": [
           "Titolo XVIII - Anzianità di servizio, Art. 51 (p. 23): \"Le frazioni di anno sono computate a tutti gli effetti contrattuali per dodicesimi, computando come mese intero le frazioni di mese superiori a 15 giorni.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
         ]
+      },
+      {
+        "id": "2026-10-31-ai-leave-termination",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The basis of the indemnity for the leave not taken at the end of the employment, read in the CCNL of 7 September 2021 (Artt. 24, 26, 28, 29, 55, 57).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+            "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+          }
+        ],
+        "findings": [
+          "Art. 57 (p. 24): the daily quota of the retribuzione di fatto is the monthly pay divided by 26 and the hourly quota by 173: work_rules.leave_rules.termination; the accrual of the leave is not modelled, so the basis is not used yet."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.termination.ferie_divisor 26",
+          "work_rules.leave_rules.termination.permits_hourly true"
+        ]
       }
     ]
   },
@@ -1484,7 +1506,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "814851ee8d2313484d6f933780e2a8974287aea4ecfee67e7623ae2616008f60",
+    "source_hash": "fda23db1e717ed40817481a837a41592c1b5227b0393a4047e5703eb034a10b4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1688,6 +1710,37 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2021-01-01"
+        }
+      },
+      "termination": {
+        "ferie_divisor": "26",
+        "permits_hourly": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "farmacie-private-h121-ccnl-testo",
+              "title": "Federfarma Filcams-Cgil / Fisascat-Cisl / Uiltucs-Uil Contratto Collettivo Nazionale di Lavoro per i dipendenti da farmacia privata - Testo ufficiale",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+              "published_on": "2021-09-07",
+              "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+            },
+            "page": "24",
+            "section": "Art. 57",
+            "quote": "La quota oraria di retribuzione, sia normale che di fatto, si ottiene dividendo l’importo mensile per il divisore convenzionale 173 per il personale la cui durata normale di lavoro è di 40 ore settimanali. La quota giornaliera della retribuzione, sia normale che di fatto, si ottiene dividendo l’importo mensile per il divisore convenzionale 26, fatto salvo quanto previsto dall’art. 44, 2° comma del presente contratto."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-31T15:00:00Z",
+            "effective_from": "2021-09-07",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-31T15:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-31-ai-leave-termination"
+          },
+          "transformation": "Ferie: residual days x monthly pay / 26. No clause on the end of the employment names a divisor: Art. 28 pays the ferie at the retribuzione di fatto and Art. 29 grants the twelfths at the end of the employment; the daily quota of that retribuzione is the monthly pay / 26 of Art. 57 (the exception of Art. 44 c.2 is the daily quota of sickness and injury), and the 26 days of ferie are working days of a six-day week (Art. 26). Permits: residual hours x monthly pay / 173, the hourly quota of the same article, the measure Art. 24 (p. 16) uses for the permits not taken in the year ('saranno pagati con la retribuzione di fatto di cui all’art. 55 in atto al momento della scadenza'), the reading adopted for Commercio. The file does not model the accrual of the leave yet: until it does the basis pays nothing (leave_accrual_not_modelled)."
         }
       }
     },
