@@ -46,6 +46,7 @@ def _run(
     *events: WorkEvent,
     hired: date = _HIRED,
     individual: tuple[IndividualElement, ...] = (),
+    ccnl: tuple[str, str] = ("metalmeccanico-federmeccanica", "C3"),
 ) -> PeriodResult:
     """Return March 2026 with ``events``.
 
@@ -57,8 +58,8 @@ def _run(
             run=PayrollRun.regular(2026, 3),
             payment_date=date(2026, 3, 27),
             employment=Employment(
-                ccnl_id="metalmeccanico-federmeccanica",
-                level_code="C3",
+                ccnl_id=ccnl[0],
+                level_code=ccnl[1],
                 category=WorkerCategory.IMPIEGATO,
                 contract_type=Permanent(),
                 employment_period=EmploymentPeriod(hired, None),
@@ -150,8 +151,14 @@ def test_hours_of_permit_are_paid_back_at_the_hourly_pay() -> None:
 
 
 def test_an_hour_holds_the_seniority_and_the_individual_elements() -> None:
-    """Four steps and a superminimo enter the hourly pay: 54.96."""
-    hours = (PermitHours(date(2026, 3, 31), Decimal(4)),)
+    """Four steps and a superminimo enter the hourly pay: 54.96.
+
+    The hours of 1 April belong to the April run.
+    """
+    hours = (
+        PermitHours(date(2026, 3, 31), Decimal(4)),
+        PermitHours(date(2026, 4, 1), Decimal(2)),
+    )
     result = _run(
         DisabilityPermitEvent((), hours),
         hired=date(2018, 1, 1),
@@ -163,3 +170,23 @@ def test_an_hour_holds_the_seniority_and_the_individual_elements() -> None:
         for i in result.pay_items
         if isinstance(i, AbsenceDeduction | MaternityItem)
     } == {"abshours": Decimal("54.96"), "inpshours": Decimal("54.96")}
+
+
+def test_hours_without_a_verified_hourly_base_post_nothing() -> None:
+    """Chimica PMI has no verified hourly base: the day is paid, not the hours."""
+    hours = (PermitHours(date(2026, 3, 3), Decimal(4)),)
+    result = _run(
+        DisabilityPermitEvent((date(2026, 3, 2),), hours),
+        ccnl=("chimica-affini-pmi-unionchimica", "D"),
+    )
+
+    assert set(_amounts(result)) == {"absence_deduction", "maternity_item"}
+    assert not {"abshours", "inpshours"} & {
+        i.item_id.rsplit("_", 1)[-1] for i in result.pay_items
+    }
+    (issue,) = (i for i in result.issues if i.capability == "disability_permits")
+    assert (issue.code, issue.status) == (
+        "disability_permit_hours_underived",
+        "incomplete",
+    )
+    assert "has no verified hourly base" in issue.message
