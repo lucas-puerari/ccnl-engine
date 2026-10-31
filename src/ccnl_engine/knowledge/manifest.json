@@ -13,7 +13,7 @@
       "valid_to": null,
       "ruleset_id": "law/insured-absence-rates",
       "ruleset_version": "1.0",
-      "source_hash": "f0450dced31dd3bc0816abf1272addb2c607b3a0ce59c5a1dbeaf6ec04d49b44",
+      "source_hash": "47d95fe2cb8bfc66f0cf78a5fbb1206a54f802b815bbb0ef275c379e1c4aedf5",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "absence/insured/rates.json.gz",

@@ -488,7 +488,9 @@ whose month it touches. The run deducts the days at the CCNL daily quota
   at the CCNL hourly base of their day, the one an overtime hour without
   the caller's rate is paid with; where the engine cannot derive it the
   hours post nothing, with the `incomplete` issue
-  `disability_permit_hours_underived`. The daily hours of art. 33 cc. 2 and 6 are not modelled;
+  `disability_permit_hours_underived`. The two daily hours of art. 33 cc. 2
+  and 6 (and art. 42 c. 1 D.Lgs. 151/2001), to which art. 33 c. 4 applies
+  the same artt. 43 and 44, are passed as `DisabilityPermitEvent.hours`;
 - daily rests of the first year of a child (D.Lgs. 151/2001 artt. 39-41:
   two rests of an hour a day, one under six hours of work, half an hour
   with a nursery of the employer, doubled for a multiple birth; the event

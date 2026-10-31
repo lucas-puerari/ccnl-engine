@@ -1,8 +1,11 @@
-"""The permits to assist a disabled person (L. 104/1992 art. 33 c. 3).
+"""The permits of a person with a serious disability (L. 104/1992 art. 33).
 
-Three days a month for each person assisted, taken as whole days or split
-into hours.  Pass the event to the run of every month that holds one of
-its days; each run pays the days and the hours of its month.
+Three days a month for each person assisted (c. 3), taken as whole days or
+split into hours; or two hours a day for a child under three (c. 2 and art.
+42 c. 1 D.Lgs. 151/2001) or for the disabled worker (c. 6), passed as hours.
+Art. 33 c. 4 applies artt. 43 and 44 D.Lgs. 151/2001 to both.  Pass the
+event to the run of every month that holds one of its days; each run pays
+the days and the hours of its month.
 """
 
 from __future__ import annotations
@@ -32,7 +35,7 @@ class DisabilityPermitEvent:
 
     INPS pays them in full and the employer advances the indemnity (art. 43
     D.Lgs. 151/2001, which art. 33 c. 4 L. 104/1992 applies); they are
-    covered by figurative contributions (art. 44 c. 2).  A worker who
+    covered by figurative contributions (art. 44).  A worker who
     assists more than one person has three days for each.  Hours a month
     are at most the three days as hours: the weekly hours over the working
     days of the week, times three (INPS msg. 16866/2007); the engine pays
