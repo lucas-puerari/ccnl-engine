@@ -344,9 +344,7 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
             "activity",
         ),
     ),
-    "Employment.category": (
-        _employment_pair(CONCIA_D2, _UNCATEGORISED, "employer_rate_category_assumed"),
-    ),
+    "Employment.category": (_employment_pair(CONCIA_D2, _UNCATEGORISED, "category"),),
     "Employment.employment_period": (
         # Hired on the first of a month: Concia's quota of 1/25 leaves the
         # payable days of a partly employed month undefined, so a hire in

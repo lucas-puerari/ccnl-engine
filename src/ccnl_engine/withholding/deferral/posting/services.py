@@ -12,6 +12,7 @@ from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.ledger.remittance.models import POST_CONGUAGLIO_WITHHOLDING
@@ -151,6 +152,7 @@ def unrecovered_deferral(
             "the worker, who pays it by 15 January of the next year"
         ),
         status=CalculationStatus.PROVISIONAL,
+        cause=IssueCause.CONDITION,
     )
     return decision, issue
 

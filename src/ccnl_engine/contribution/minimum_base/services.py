@@ -22,6 +22,7 @@ from ccnl_engine.contribution.minimum_base.rules import resolve_minimum_base
 from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.event.facade import (
@@ -175,6 +176,7 @@ def minimum_base_issue(minimum: MinimumBase | None) -> CalculationIssue | None:
         status=CalculationStatus.INCOMPLETE,
         source=minimum.source,
         fact=_CATEGORY if unknown else None,
+        cause=IssueCause.RULE,
     )
 
 

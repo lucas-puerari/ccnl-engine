@@ -30,6 +30,7 @@ from ccnl_engine.capability.trace.services import build_traces
 from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 
@@ -129,6 +130,7 @@ def missing_source_issues(
                 "amount it feeds cannot be relied upon"
             ),
             status=CalculationStatus.INCOMPLETE,
+            cause=IssueCause.RULE,
         )
         for source in sources
         if source.status is ProvenanceStatus.MISSING

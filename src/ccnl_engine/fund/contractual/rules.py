@@ -25,6 +25,7 @@ from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.fund.contractual.policies import (
@@ -92,6 +93,7 @@ _UNCOVERED = CalculationIssue(
         "worked of an operaio): the amounts shown leave it out"
     ),
     status=CalculationStatus.INCOMPLETE,
+    cause=IssueCause.RULE,
 )
 
 

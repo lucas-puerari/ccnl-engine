@@ -24,6 +24,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 
 if TYPE_CHECKING:
@@ -65,7 +66,7 @@ HOSPITAL_STAY_UNKNOWN = "sickness_hospital_stays_unknown"
 #: The full-pay and comporto days of a fixed-term contract are not scaled.
 FIXED_TERM = "sickness_fixed_term_proportion"
 
-_PROVISIONAL = CalculationStatus.PROVISIONAL
+_PROVISIONAL, _RULE = CalculationStatus.PROVISIONAL, IssueCause.RULE
 
 
 def _messages(
@@ -191,6 +192,7 @@ def _hospital_issue(
             "CCNL could pay in full is not modelled for it"
         ),
         status=_PROVISIONAL,
+        cause=IssueCause.RULE,
     )
 
 
@@ -204,13 +206,7 @@ def cumulation_issues(
         run pays.
     """
     issues = [
-        CalculationIssue(
-            code=code,
-            capability="sickness",
-            message=message,
-            status=_PROVISIONAL,
-            fact=fact,
-        )
+        CalculationIssue(code, message, _PROVISIONAL, None, fact, "sickness", _RULE)
         for holds, code, message, fact in _messages(episode, report)
         if holds
     ]
@@ -231,6 +227,7 @@ def cumulation_issues(
                     "fixed-term contract, which is not modelled"
                 ),
                 status=_PROVISIONAL,
+                cause=IssueCause.RULE,
             )
         )
     return tuple(issues)
@@ -287,13 +284,7 @@ def year_issues(
         ),
     )
     return tuple(
-        CalculationIssue(
-            code=code,
-            capability="sickness",
-            message=message,
-            status=_PROVISIONAL,
-            fact=fact,
-        )
+        CalculationIssue(code, message, _PROVISIONAL, None, fact, "sickness", _RULE)
         for holds, code, message, fact in conditions
         if holds
     )

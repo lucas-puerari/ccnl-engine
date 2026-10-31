@@ -13,6 +13,7 @@ from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
     DecisionOrigin,
+    IssueCause,
 )
 from ccnl_engine.period.services import bundled_policies, bundled_repository
 from ccnl_engine.provenance.source.models import (
@@ -53,7 +54,9 @@ _SOURCE = SourceLocation(
 def _issue(
     status: CalculationStatus, code: str = "surtax_table_unknown"
 ) -> CalculationIssue:
-    return CalculationIssue(code=code, message="table not found", status=status)
+    return CalculationIssue(
+        code=code, message="table not found", status=status, cause=IssueCause.RULE
+    )
 
 
 def _decision(**overrides: Any) -> CalculationDecision:  # noqa: ANN401
@@ -146,6 +149,7 @@ class TestCalculationIssue:
             message="no table for region ZZ",
             status=_INCOMPLETE,
             source=_SOURCE,
+            cause=IssueCause.RULE,
         )
         assert issue.code == "surtax_table_unknown"
         assert issue.status is _INCOMPLETE
@@ -168,6 +172,16 @@ class TestCalculationIssue:
         assert issue.fact == "employment_income"
         with pytest.raises(ValueError, match="fact must be one of"):
             CalculationIssue("x", "unknown", _PROVISIONAL, fact="prior_income")
+
+    def test_the_cause_is_the_fact_or_stated(self) -> None:
+        """A fact makes the cause ``fact``; without one a cause is required."""
+        named = CalculationIssue(
+            "x", "m", _PROVISIONAL, fact="employment_income", cause=IssueCause.RULE
+        )
+        assert named.cause is IssueCause.FACT
+        for cause in (None, IssueCause.FACT):
+            with pytest.raises(ValueError, match="names no fact"):
+                CalculationIssue("x", "m", _PROVISIONAL, cause=cause)
 
     def test_rejects_empty_message(self) -> None:
         """An issue must explain itself."""
@@ -321,7 +335,10 @@ def test_year_issues_are_listed_once(year_result: CompetenceYearResult) -> None:
     first_run, second_run, *rest = year_result.period_results
     repeated = _issue(_PROVISIONAL, code="repeated")
     other = CalculationIssue(
-        code="repeated", message="another message", status=_PROVISIONAL
+        code="repeated",
+        message="another message",
+        status=_PROVISIONAL,
+        cause=IssueCause.RULE,
     )
     year = replace(
         year_result,

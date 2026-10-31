@@ -16,6 +16,7 @@ from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.family.inputs import DependentRelationship
 from ccnl_engine.irpef import rules as _irpef
@@ -123,6 +124,7 @@ class SurtaxTable:
                     "are bundled"
                 ),
                 status=CalculationStatus.PROVISIONAL,
+                cause=IssueCause.RULE,
             )
             return (issue, *extra)
         if decision.amount is not None:
@@ -136,6 +138,7 @@ class SurtaxTable:
                 "must not be paid as is"
             ),
             status=CalculationStatus.INCOMPLETE,
+            cause=IssueCause.RULE,
         )
         return (issue,)
 
@@ -150,6 +153,7 @@ class SurtaxTable:
             capability=self.capability,
             message=f"{self.capability} for code {self.code!r}: {detail}",
             status=CalculationStatus.PROVISIONAL,
+            cause=IssueCause.RULE,
         )
 
 

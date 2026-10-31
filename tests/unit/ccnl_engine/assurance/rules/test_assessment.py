@@ -5,6 +5,8 @@ from __future__ import annotations
 from datetime import date
 from typing import TYPE_CHECKING
 
+import pytest
+
 from ccnl_engine.assurance.models import (
     BlockerCode,
     CoverageStatus,
@@ -30,6 +32,7 @@ from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
     DecisionOrigin,
+    IssueCause,
 )
 from ccnl_engine.limitation.models import ModelLimitation, MonetaryImpact
 from ccnl_engine.limitation.types import ResultTotal
@@ -117,19 +120,30 @@ class TestAssess:
         assert assurance.is_payable
         assert assurance.blockers == ()
 
-    def test_issue_blocks_with_its_code(self) -> None:
-        """An issue blocks the run as a whole, whatever its status."""
+    @pytest.mark.parametrize(
+        ("cause", "code"),
+        [
+            (IssueCause.CONDITION, BlockerCode.CALCULATION_ISSUE),
+            (IssueCause.RULE, BlockerCode.MISSING_RULE),
+        ],
+    )
+    def test_issue_blocks_with_its_code(
+        self, cause: IssueCause, code: BlockerCode
+    ) -> None:
+        """An issue blocks the run as a whole; a rule gap says no fact helps."""
         issue = CalculationIssue(
-            "withholding_shortfall_unrecovered", "tax not withheld", _PROVISIONAL
+            "shortfall", "tax not withheld", _PROVISIONAL, cause=cause
         )
 
         assurance = assess((issue,), (), _report(), (), _SIMULATION, _PAID)
 
         assert assurance.calculation is _PROVISIONAL
-        assert _keys(assurance) == [
-            (BlockerCode.CALCULATION_ISSUE, None, "withholding_shortfall_unrecovered")
-        ]
+        assert _keys(assurance) == [(code, None, "shortfall")]
         assert not assurance.is_payable
+        (blocker,) = assurance.blockers
+        assert ("does not resolve it" in blocker.remediation) is (
+            cause is IssueCause.RULE
+        )
 
     def test_issue_with_a_fact_is_a_missing_fact(self) -> None:
         """An issue naming a fact becomes a missing-fact blocker on that fact."""

@@ -10,6 +10,7 @@ from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.event.facade import FringeEvent, WelfareEvent
 from ccnl_engine.event.handlers import (
@@ -168,6 +169,7 @@ class FringeAssessment:
             ),
             status=CalculationStatus.INCOMPLETE,
             fact=self.threshold.missing_fact,
+            cause=IssueCause.CONDITION,  # no family: requirement_unresolved
         )
 
     @property

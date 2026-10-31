@@ -36,6 +36,7 @@ from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.services import _sum_ledger
@@ -153,6 +154,7 @@ def unrecovered_issue(
             "next year unless a written deferral is agreed"
         ),
         status=CalculationStatus.PROVISIONAL,
+        cause=IssueCause.CONDITION,
     )
 
 

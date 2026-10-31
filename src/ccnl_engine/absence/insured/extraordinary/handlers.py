@@ -20,7 +20,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.absence.insured.handlers import _decision, _no_quota, _span
 from ccnl_engine.absence.insured.posting.services import post_lines
 from ccnl_engine.absence.insured.rules import InsuredPay
-from ccnl_engine.decision.models import CalculationIssue, CalculationStatus
+from ccnl_engine.decision.models import CalculationIssue, CalculationStatus, IssueCause
 from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
@@ -61,6 +61,7 @@ def _issue(code: str, message: str, fact: str | None = None) -> CalculationIssue
         status=CalculationStatus.PROVISIONAL,
         capability=EXTRAORDINARY,
         fact=fact,
+        cause=IssueCause.RULE,
     )
 
 

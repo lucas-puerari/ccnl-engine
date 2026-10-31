@@ -24,6 +24,7 @@ from ccnl_engine.calendar.services import effective_calendar
 from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.extra_month.qualification.services import (
@@ -191,6 +192,7 @@ def _paid_issue(kind: str) -> CalculationIssue:
             "CompetenceYearPlan or outside the engine"
         ),
         status=CalculationStatus.INCOMPLETE,
+        cause=IssueCause.RULE,
     )
 
 
@@ -205,6 +207,7 @@ def _absences_issue() -> CalculationIssue:
             "employment with a CompetenceYearPlan to count them"
         ),
         status=CalculationStatus.PROVISIONAL,
+        cause=IssueCause.RULE,
     )
 
 

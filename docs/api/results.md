@@ -123,6 +123,8 @@ unresolved requirement, otherwise `partial` when every gap is partial and
 
 ::: ccnl_engine.results.CalculationStatus
 
+::: ccnl_engine.results.IssueCause
+
 ::: ccnl_engine.results.CapabilityGap
 
 ::: ccnl_engine.results.CapabilityScope

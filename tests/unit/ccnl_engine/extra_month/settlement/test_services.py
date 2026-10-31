@@ -12,7 +12,11 @@ import pytest
 from ccnl_engine.agreement.validity.rules import TimeSeries, ValidityPeriod
 from ccnl_engine.compensation.element.types import MonthlyPayChain
 from ccnl_engine.compensation.models import Allowance
-from ccnl_engine.decision.models import CalculationIssue, CalculationStatus
+from ccnl_engine.decision.models import (
+    CalculationIssue,
+    CalculationStatus,
+    IssueCause,
+)
 from ccnl_engine.event.total.handlers import _EventTotals
 from ccnl_engine.extra_month.models import ExtraMonthAccrual
 from ccnl_engine.extra_month.schedule.models import AccrualWindow, ExtraMonthKind
@@ -147,6 +151,7 @@ def test_the_settlement_adds_to_the_bases_and_issues_of_the_run() -> None:
         capability="base_salary",
         message="m",
         status=CalculationStatus.INCOMPLETE,
+        cause=IssueCause.RULE,
     )
     totals = _EventTotals(
         inps_base=_D(10),
