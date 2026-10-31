@@ -8,6 +8,7 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.employment.period.inputs import TerminationCause
 from ccnl_engine.event.handlers import EventEffect
 from ccnl_engine.inputs import SeniorityFact, SenioritySource
@@ -16,9 +17,12 @@ from ccnl_engine.termination.notice.inputs import NoticeIndemnityEvent
 from ccnl_engine.termination.notice.models import NoticeBand, NoticeRules, NoticeStart
 from ccnl_engine.termination.notice.rules import notice_period
 from ccnl_engine.termination.notice.services import NoticeTerms
-from tests.knowledge.ccnl_engine.termination.test_notice import RULES
 
 _D, _R = TerminationCause.DISMISSAL, TerminationCause.RESIGNATION
+_WORK = load_ccnl("metalmeccanico-federmeccanica").work_rules
+assert _WORK is not None
+assert _WORK.notice is not None
+RULES = _WORK.notice
 
 
 def _band(up: int | None, months: int = 1, days: int = 0) -> NoticeBand:

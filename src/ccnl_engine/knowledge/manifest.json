@@ -592,7 +592,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cooperative-sociali",
       "ruleset_version": "2026.2",
-      "source_hash": "0daf27869821905e69b1bd0ced35ad4dc8b7115b62cac7822623abf8eeeaf656",
+      "source_hash": "d2d7bde20f9ffae47a983e7a26d3c8cfa22a0c9da23b6b49ad5899a079764020",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/cooperative-sociali.json.gz"
@@ -1462,7 +1462,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-confapi",
       "ruleset_version": "2026.2",
-      "source_hash": "dde87a5984dff702358ca0c474231a7a72503f82b2f2bc1f818f948a762eb093",
+      "source_hash": "986c13880087e447d20304a612eac5d80c398fcb133029d2f31f617b91bb9869",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-confapi.json.gz"
@@ -1751,7 +1751,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem",
       "ruleset_version": "2026.2",
-      "source_hash": "8c50bc40665427b997eb7771ff6cdb87282ebf71f1a9bb6529b68005de5f52c5",
+      "source_hash": "659b998942ab38f662a4cce2a7ff0e010212e66708ac70600de36ae13d215d45",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem.json.gz"
@@ -2040,7 +2040,7 @@
       "valid_to": "2027-03-31",
       "ruleset_id": "ccnl/terziario-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "70d237b903f9d314fa3484ccb431e624269c566a4704d3b818153b86f157d99b",
+      "source_hash": "26814192988e1e682490149067065d9bdb2e518adcc8a70fe19c732ef70b3b04",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/terziario-confesercenti.json.gz"
@@ -2159,7 +2159,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi",
       "ruleset_version": "2026.2",
-      "source_hash": "f4ce3e7c763407e21bb8ccffdf3e4914c1f1d2462f42b456ff1e00478f4e66e2",
+      "source_hash": "8a5de25020333f46687f67367f0464c87f630ba8fbe6454a457e0442ef5e8ebe",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/turismo-federalberghi.json.gz"

@@ -3459,7 +3459,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "70d237b903f9d314fa3484ccb431e624269c566a4704d3b818153b86f157d99b",
+    "source_hash": "26814192988e1e682490149067065d9bdb2e518adcc8a70fe19c732ef70b3b04",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4219,6 +4219,297 @@
           "0.50",
           "0"
         ]
+      }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "Q",
+            "I"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 60
+        },
+        {
+          "levels": [
+            "Q",
+            "I"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "days": 90
+        },
+        {
+          "levels": [
+            "Q",
+            "I"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "days": 120
+        },
+        {
+          "levels": [
+            "II",
+            "III"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 30
+        },
+        {
+          "levels": [
+            "II",
+            "III"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "days": 45
+        },
+        {
+          "levels": [
+            "II",
+            "III"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "days": 60
+        },
+        {
+          "levels": [
+            "IV",
+            "V"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 20
+        },
+        {
+          "levels": [
+            "IV",
+            "V"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "days": 30
+        },
+        {
+          "levels": [
+            "IV",
+            "V"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "days": 45
+        },
+        {
+          "levels": [
+            "VI",
+            "VII"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 15
+        },
+        {
+          "levels": [
+            "VI",
+            "VII"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "days": 20
+        },
+        {
+          "levels": [
+            "VI",
+            "VII"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "days": 20
+        },
+        {
+          "levels": [
+            "Q",
+            "I"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 45
+        },
+        {
+          "levels": [
+            "Q",
+            "I"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 60
+        },
+        {
+          "levels": [
+            "Q",
+            "I"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "days": 90
+        },
+        {
+          "levels": [
+            "II",
+            "III"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 20
+        },
+        {
+          "levels": [
+            "II",
+            "III"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 30
+        },
+        {
+          "levels": [
+            "II",
+            "III"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "days": 45
+        },
+        {
+          "levels": [
+            "IV",
+            "V"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 15
+        },
+        {
+          "levels": [
+            "IV",
+            "V"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 20
+        },
+        {
+          "levels": [
+            "IV",
+            "V"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "days": 30
+        },
+        {
+          "levels": [
+            "VI",
+            "VII"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 10
+        },
+        {
+          "levels": [
+            "VI",
+            "VII"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 15
+        },
+        {
+          "levels": [
+            "VI",
+            "VII"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "days": 15
+        }
+      ],
+      "starts": "first_or_sixteenth",
+      "extra_months_included": true,
+      "tfr_base": false,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "confesercenti-tu2019",
+            "title": "CCNL Terziario, Distribuzione e Servizi Confesercenti, Testo Unico 12 dicembre 2019",
+            "kind": "associazione",
+            "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+            "published_on": "2019-12-12",
+            "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+          },
+          "page": "169-173",
+          "section": "Artt. 247 (termini di preavviso in caso di licenziamento), 248 (indennità sostitutiva del preavviso), 249 (trattamento di fine rapporto), 254 (dimissioni e preavviso)",
+          "quote": "I termini di preavviso, a decorrere dal primo o dal sedicesimo giorno di ciascun mese, sono i seguenti: a) fino a cinque anni di servizio compiuti: Quadri e I Livello 60 giorni di calendario II e III Livello 30 giorni di calendario IV e V Livello 20 giorni di calendario VI e VII Livello 15 giorni di calendario [...] una indennità equivalente all’importo della retribuzione di fatto di cui all’art. 208 corrispondente al periodo di cui all’articolo precedente, comprensiva dei ratei di 13a e 14a mensilità. [...] sono escluse dalla quota annua della retribuzione utile ai fini del calcolo del trattamento di fine rapporto le seguenti somme: [...] l’indennità sostitutiva del preavviso, di cui agli artt. 200, 248, 251 e 252 [...] con rispetto dei seguenti termini di preavviso a decorrere dal primo o dal sedicesimo giorno di ciascun mese: a) fino a cinque anni di servizio compiuti: Quadri e I Livello 45 giorni di calendario"
+        },
+        "transformation": "Art. 247 for dismissal and art. 254 for resignation, in calendar days, by 'fino a cinque anni di servizio compiuti' (up to 60 months), 'oltre i cinque anni e fino a dieci' (up to 120) and 'oltre i dieci anni'; level groups Quadri and I (Q, I), II and III, IV and V, VI and VII. Dismissal: 60, 90, 120; 30, 45, 60; 20, 30, 45; 15, 20, 20. Resignation: 45, 60, 90; 20, 30, 45; 15, 20, 30; 10, 15, 15. The indemnity of art. 248 is the pay of the calendar days of notice with the ratei of the 13th and 14th; art. 249 leaves it out of the TFR base.",
+        "note": "Art. 209 refers the monthly pay to all the days of the calendar month and art. 210 sets the daily quota at 1/26 'in tutti i casi': which of the two measures the calendar days of the notice is not stated (limitation notice_indemnity_day_measure). Art. 98 gives part-time workers the same calendar days. Art. 19 of the annex on operatori di vendita sets 30, 45, 60 days for them, a role this file does not tell apart from the level.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-31T00:00:00",
+          "effective_from": "2019-12-12",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-31T21:00:00Z",
+          "review_id": "2026-10-31-ai"
+        }
       }
     }
   },

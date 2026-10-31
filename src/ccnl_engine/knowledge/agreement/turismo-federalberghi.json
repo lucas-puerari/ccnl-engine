@@ -3245,7 +3245,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "f4ce3e7c763407e21bb8ccffdf3e4914c1f1d2462f42b456ff1e00478f4e66e2",
+    "source_hash": "8a5de25020333f46687f67367f0464c87f630ba8fbe6454a457e0442ef5e8ebe",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3856,6 +3856,221 @@
             "verification_status": "verified",
             "effective_from": "2010-02-20"
           }
+        }
+      }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "A",
+            "B"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "months": 4,
+          "indemnity_months": "4"
+        },
+        {
+          "levels": [
+            "A",
+            "B"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "months": 5,
+          "indemnity_months": "5"
+        },
+        {
+          "levels": [
+            "A",
+            "B"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 6,
+          "indemnity_months": "6"
+        },
+        {
+          "levels": [
+            "1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "months": 2,
+          "indemnity_months": "2"
+        },
+        {
+          "levels": [
+            "1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "months": 3,
+          "indemnity_months": "3"
+        },
+        {
+          "levels": [
+            "1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 4,
+          "indemnity_months": "4"
+        },
+        {
+          "levels": [
+            "2",
+            "3"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "months": 1,
+          "indemnity_months": "1"
+        },
+        {
+          "levels": [
+            "2",
+            "3"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 45
+        },
+        {
+          "levels": [
+            "2",
+            "3"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 2,
+          "indemnity_months": "2"
+        },
+        {
+          "levels": [
+            "4",
+            "5"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 20
+        },
+        {
+          "levels": [
+            "4",
+            "5"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 30
+        },
+        {
+          "levels": [
+            "4",
+            "5"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 45
+        },
+        {
+          "levels": [
+            "6s",
+            "6",
+            "7"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 15
+        },
+        {
+          "levels": [
+            "6s",
+            "6",
+            "7"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 20
+        },
+        {
+          "levels": [
+            "6s",
+            "6",
+            "7"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 20
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-turismo-2010",
+            "title": "CCNL Turismo 20 febbraio 2010, testo firmato (UILTuCS)",
+            "kind": "associazione",
+            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+            "published_on": "2010-02-20",
+            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+          },
+          "page": "158-159",
+          "section": "Parte generale, Titolo VIII, Capo II, Art. 187 - Preavviso; Art. 188 - Indennità sostitutiva del preavviso",
+          "quote": "(1) Tanto per il caso di licenziamento quanto per quello di dimissioni i termini di preavviso sono i seguenti: a) fino a 5 anni di servizio compiuti: livelli preavviso A e B quattro mesi 1 due mesi 2 e 3 un mese 4 e 5 20 giorni 6S, 6 e 7 15 giorni b) oltre i 5 anni e fino a 10 anni di servizio compiuti: livelli preavviso A e B cinque mesi 1 tre mesi 2 e 3 45 giorni 4 e 5 30 giorni 6S, 6 e 7 20 giorni c) oltre i 10 anni di servizio compiuti: livelli preavviso A e B sei mesi 1 quattro mesi 2 e 3 due mesi 4 e 5 45 giorni 6S, 6 e 7 20 giorni [...] (1) Il datore di lavoro, in luogo del preavviso, potrà dare al personale licenziato, per l'intero periodo di preavviso stesso, la normale retribuzione salvo quanto diversamente previsto per i pubblici esercizi all'articolo 321."
+        },
+        "transformation": "Art. 187 (read on the page images: the text layer is a poor OCR): 'fino a 5 anni' is up to 60 months of service, 'oltre i 5 anni e fino a 10' up to 120, 'oltre i 10 anni' any longer; levels A and B: 4, 5, 6 months; 1: 2, 3, 4 months; 2 and 3: 1 month, 45 days, 2 months; 4 and 5: 20, 30, 45 days; 6S, 6 and 7: 15, 20, 20 days; the same for dismissal and resignation. Art. 188 pays 'la normale retribuzione' of the whole notice: a notice of months is that many monthly pays; a notice of days is the pay of those days.",
+        "note": "Art. 210 (Parte speciale, aziende alberghiere, p. 179) sets 15 days of notice for the staff hired open-ended by seasonal hotels ('nelle aziende stagionali'); the engine does not know whether the employer is seasonal and applies Art. 187. The renewals of 18 January 2014 and 5 July 2024 cited by this file do not amend Art. 187.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-31T00:00:00",
+          "effective_from": "2010-02-20",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-31T21:00:00Z",
+          "review_id": "2026-10-31-ai"
         }
       }
     }

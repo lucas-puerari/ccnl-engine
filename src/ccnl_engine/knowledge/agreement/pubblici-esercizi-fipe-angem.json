@@ -2756,7 +2756,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "8c50bc40665427b997eb7771ff6cdb87282ebf71f1a9bb6529b68005de5f52c5",
+    "source_hash": "659b998942ab38f662a4cce2a7ff0e010212e66708ac70600de36ae13d215d45",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3397,6 +3397,221 @@
       },
       "carenza_min_days": 5,
       "inps_regime": "pubblici_esercizi"
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "Qa",
+            "Qb"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "months": 4,
+          "indemnity_months": "4"
+        },
+        {
+          "levels": [
+            "Qa",
+            "Qb"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "months": 5,
+          "indemnity_months": "5"
+        },
+        {
+          "levels": [
+            "Qa",
+            "Qb"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 6,
+          "indemnity_months": "6"
+        },
+        {
+          "levels": [
+            "1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "months": 2,
+          "indemnity_months": "2"
+        },
+        {
+          "levels": [
+            "1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "months": 3,
+          "indemnity_months": "3"
+        },
+        {
+          "levels": [
+            "1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 4,
+          "indemnity_months": "4"
+        },
+        {
+          "levels": [
+            "2",
+            "3"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "months": 1,
+          "indemnity_months": "1"
+        },
+        {
+          "levels": [
+            "2",
+            "3"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 45
+        },
+        {
+          "levels": [
+            "2",
+            "3"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 2,
+          "indemnity_months": "2"
+        },
+        {
+          "levels": [
+            "4",
+            "5"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 20
+        },
+        {
+          "levels": [
+            "4",
+            "5"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 30
+        },
+        {
+          "levels": [
+            "4",
+            "5"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 45
+        },
+        {
+          "levels": [
+            "6s",
+            "6",
+            "7"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 15
+        },
+        {
+          "levels": [
+            "6s",
+            "6",
+            "7"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 20
+        },
+        {
+          "levels": [
+            "6s",
+            "6",
+            "7"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 20
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-ccnl-2018-02-08",
+            "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "published_on": "2018-02-08",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          },
+          "page": "143-144",
+          "section": "Titolo VII, Capo II, Art. 208 - Preavviso; Art. 209 - Indennità sostitutiva del preavviso",
+          "quote": "(1) Tanto per il caso di licenziamento quanto per quello di dimissioni i termini di preavviso sono i seguenti: a) fino a 5 anni di servizio compiuti: livelli preavviso A e B quattro mesi 1 due mesi 2 e 3 un mese 4 e 5 20 giorni 6S, 6 e 7 15 giorni b) oltre i 5 anni e fino a 10 anni di servizio compiuti: livelli preavviso A e B cinque mesi 1 tre mesi 2 e 3 45 giorni 4 e 5 30 giorni 6S, 6 e 7 20 giorni c) oltre i 10 anni di servizio compiuti: livelli preavviso A e B sei mesi 1 quattro mesi 2 e 3 due mesi 4 e 5 45 giorni 6S, 6 e 7 20 giorni [...] (1) Il datore di lavoro, in luogo del preavviso, potrà dare al personale licenziato, per l'intero periodo di preavviso stesso, la normale retribuzione salvo quanto diversamente previsto per i pubblici esercizi all'articolo 179."
+        },
+        "transformation": "Art. 208 (OCR of the signed scan, checked on the page image): 'fino a 5 anni' is up to 60 months of service, 'oltre i 5 anni e fino a 10' up to 120, 'oltre i 10 anni' any longer; levels A and B are the quadri Qa and Qb of this file: 4, 5, 6 months; 1: 2, 3, 4 months; 2 and 3: 1 month, 45 days, 2 months; 4 and 5: 20, 30, 45 days; 6S, 6 and 7: 15, 20, 20 days; the same for dismissal and resignation. Art. 209 pays 'la normale retribuzione' of the whole notice: a notice of months is that many monthly pays; a notice of days is the pay of those days.",
+        "note": "Art. 179 c. 2 measures the indemnity of the staff paid by a service percentage (percentualisti) on art. 2121 c.c.; the engine does not model the percentage pay. The renewal of 5 June 2024 cited by this file does not amend Art. 208.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-31T00:00:00",
+          "effective_from": "2018-02-08",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-31T21:00:00Z",
+          "review_id": "2026-10-31-ai"
+        }
+      }
     }
   },
   "verification": {
