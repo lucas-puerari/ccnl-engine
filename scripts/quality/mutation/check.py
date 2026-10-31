@@ -7,7 +7,8 @@ Two campaigns use it, both reading the per-mutant exit codes mutmut keeps in
   source_paths``;
 - the pull request campaign mutates only the money-moving modules the pull
   request changed.  ``--changed-since REF --print-globs`` prints the mutmut
-  name patterns of those modules (nothing when none changed), and
+  name patterns of those modules that yield a mutant (nothing when none
+  does: mutmut refuses a filter that matches no mutant), and
   ``--changed-since REF`` then scores those modules alone.
 
 Every module must reach ``--min-score`` on its own, and the core (the
@@ -51,6 +52,8 @@ import sys
 import tomllib
 from datetime import UTC, datetime
 from pathlib import Path
+
+from mutmut.mutation.file_mutation import mutate_file_contents
 
 ROOT = Path(__file__).resolve().parents[3]
 _MUTANTS = Path("mutants")
@@ -115,6 +118,19 @@ def mutant_glob(module: str) -> str:
     """
     dotted = module.removeprefix("src/").removesuffix(".py").replace("/", ".")
     return f"{dotted}.*"
+
+
+def has_mutants(module: str, root: Path = ROOT) -> bool:
+    """Return whether mutmut generates a mutant for ``module``.
+
+    A module of declarations only (enums, dataclasses without logic) yields
+    none, and ``mutmut run`` fails on a filter that matches no mutant.
+
+    Returns:
+        ``True`` when mutmut's own generator finds a mutation in the module.
+    """
+    code = (root / module).read_text(encoding="utf-8")
+    return bool(mutate_file_contents(module, code).mutant_names)
 
 
 def load_equivalent(path: Path = EQUIVALENT) -> dict[str, str]:
@@ -250,7 +266,7 @@ def _perimeter(args: argparse.Namespace) -> tuple[str, ...]:
         return source_paths()
     modules = changed_modules(args.changed_since, source_paths())
     if args.print_globs:
-        print(" ".join(mutant_glob(m) for m in modules))
+        print(" ".join(mutant_glob(m) for m in modules if has_mutants(m)))
         raise SystemExit(0)
     if not modules:
         print(f"No mutated module changed since {args.changed_since}.")
