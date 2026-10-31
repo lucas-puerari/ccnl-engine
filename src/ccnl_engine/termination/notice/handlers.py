@@ -210,7 +210,7 @@ def _handle_notice_indemnity(
         The item, entry, base deltas, decision, issues and limitations.
     """
     terms = ctx.notice
-    assert terms is not None, "the run builds the notice terms of every event"
+    assert terms is not None, "built by the run"  # pragma: no mutate
     ended = _check(event, terms, ctx)
     stated = _cause(terms)
     if isinstance(stated, EventEffect):
@@ -229,7 +229,7 @@ def _handle_notice_indemnity(
         return found
     band, months = found
     rules = terms.rules
-    assert rules is not None, "a band comes from the CCNL notice"
+    assert rules is not None, "a band comes from the CCNL notice"  # pragma: no mutate
     period = notice_period(band, event.received_on, rules.starts)
     unworked = period.unworked_days(ended)
     pays = band.indemnity_months

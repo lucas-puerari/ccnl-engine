@@ -140,29 +140,31 @@ class Withheld:
     rule: LegalLimit
 
 
-def _own_limit(due: DueWithholding, base: Decimal, year: int) -> Withheld:
+def _own_limit(
+    due: DueWithholding, base: Decimal, year: int
+) -> tuple[Decimal, LegalLimit]:
     """Return the limit of ``due`` alone, before the earlier deductions.
 
     Returns:
         A fifth of the base for a salary assignment and an ordinary or tax
         garnishment, the fraction of :func:`tax_collection_fraction` for the
         agente della riscossione, the stated amount for a maintenance order
-        and a delegation; nothing withheld yet.
+        and a delegation; with its rule.
     """
     if due.kind is _K.TAX_COLLECTION:
         fraction = tax_collection_fraction(base)
-        return Withheld(_ZERO, _down(base * fraction), tax_collection_limit(year))
+        return _down(base * fraction), tax_collection_limit(year)
     if due.kind in INSTALLMENT_LIMITS and due.installment is not None:
-        return Withheld(_ZERO, due.installment, INSTALLMENT_LIMITS[due.kind])
+        return due.installment, INSTALLMENT_LIMITS[due.kind]
     rule = ASSIGNMENT_LIMIT if due.kind is _K.SALARY_ASSIGNMENT else FIFTH_LIMIT
-    return Withheld(_ZERO, _down(base * _FIFTH), rule)
+    return _down(base * _FIFTH), rule
 
 
 def _combined_limit(
     due: DueWithholding,
     taken: Sequence[tuple[PersonalWithholdingKind, Decimal]],
     base: Decimal,
-) -> Withheld | None:
+) -> tuple[Decimal, LegalLimit] | None:
     """Return the limit the earlier deductions of the run leave to ``due``.
 
     Returns:
@@ -176,7 +178,7 @@ def _combined_limit(
     garnished = sum((a for k, a in taken if k not in ASSIGNMENTS), _ZERO)
     if due.kind is _K.SALARY_ASSIGNMENT and garnished:
         left = min(left, _down(base * 2 * _FIFTH) - garnished)
-    return Withheld(_ZERO, left, half_rule(due.kind, frozenset(k for k, _ in taken)))
+    return left, half_rule(due.kind, frozenset(k for k, _ in taken))
 
 
 def allocate(
@@ -196,20 +198,21 @@ def allocate(
         measure of its kind (the stated amount of a maintenance order or a
         delegation is its own); a deduction after another one at most what
         :func:`_combined_limit` leaves.  The installment and the residual
-        cap the amount, and the deductions never exceed the base.
+        cap the amount, and the deductions never exceed the base: the first
+        one at most the base, a later one at most the half of it the
+        combined limit leaves.
     """
     base = max(_ZERO, base)
     taken: list[tuple[PersonalWithholdingKind, Decimal]] = []
     out: list[Withheld] = []
     for due in dues:
-        own = _own_limit(due, base, year)
-        limit, rule = own.limit, own.rule
+        limit, rule = _own_limit(due, base, year)
         if due.kind not in INSTALLMENT_LIMITS:
             limit -= sum((a for k, a in taken if k is due.kind), _ZERO)
         combined = _combined_limit(due, taken, base)
-        if combined is not None and combined.limit < limit:
-            limit, rule = combined.limit, combined.rule
-        limit = max(_ZERO, min(limit, base - sum((a for _, a in taken), _ZERO)))
+        if combined is not None and combined[0] < limit:
+            limit, rule = combined
+        limit = max(_ZERO, min(limit, base))
         amount = min(limit, due.residual)
         if due.installment is not None:
             amount = min(amount, due.installment)

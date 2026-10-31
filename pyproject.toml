@@ -278,6 +278,17 @@ source_paths = [
     "src/ccnl_engine/surtax/conguaglio/rules.py",
     "src/ccnl_engine/tax_credit/recovery/models.py",
     "src/ccnl_engine/withholding/deferral/inputs.py",
+    # The end of the employment: the notice indemnity and its separate tax,
+    # and the NASpI contribution of the employer.
+    "src/ccnl_engine/termination/notice/rules.py",
+    "src/ccnl_engine/termination/notice/handlers.py",
+    "src/ccnl_engine/termination/notice/settlement/services.py",
+    "src/ccnl_engine/termination/naspi/rules.py",
+    "src/ccnl_engine/termination/naspi/services.py",
+    # The deductions from the net pay paid to third parties.
+    "src/ccnl_engine/personal_withholding/rules.py",
+    "src/ccnl_engine/personal_withholding/limit/rules.py",
+    "src/ccnl_engine/personal_withholding/services.py",
 ]
 # Limit collection to the tests of the mutated payroll modules; copy full src
 # so imports resolve. Hypothesis tests are left out: they use multiple
@@ -413,6 +424,11 @@ pytest_add_cli_args_test_selection = [
     "tests/unit/ccnl_engine/surtax/conguaglio/test_rules.py",
     "tests/unit/ccnl_engine/tax_credit/recovery/test_models.py",
     "tests/unit/ccnl_engine/withholding/deferral/test_inputs.py",
+    "tests/unit/ccnl_engine/termination",
+    "tests/integration/ccnl_engine/termination",
+    "tests/knowledge/ccnl_engine/termination",
+    "tests/unit/ccnl_engine/personal_withholding",
+    "tests/integration/ccnl_engine/personal_withholding",
 ]
 pytest_add_cli_args = ["--no-cov"]
 mutate_only_covered_lines = true

@@ -116,6 +116,7 @@ def test_a_dismissal_posts_the_contribution_on_the_employer(
         "L. 92/2012 art. 2 c. 31",
     )
     assert entry.policy_decision_id is not None
+    assert result.capability_report.rule_sources[_CAPABILITY] == "verified"
     assert reconcile(result, PeriodState.zero()).ok
     assert "naspi_dismissal_exceptions" in {lim.id for lim in result.limitations}
 

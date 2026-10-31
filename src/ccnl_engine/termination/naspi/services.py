@@ -241,8 +241,8 @@ def naspi_rules(ctx: RunContext) -> tuple[tuple[str, RuleProvenance], ...]:
         when the year has none.
     """
     period = ctx.request.employment_period
-    assert period is not None, "a decision of the contribution needs the end"
-    assert period.ended_on is not None, "a decision needs the last day"
+    assert period is not None, "decided on an end"  # pragma: no mutate
+    assert period.ended_on is not None, "decided on a last day"  # pragma: no mutate
     rules = load_naspi_dismissal_rules(period.ended_on.year)
     if rules is None:
         return ()
