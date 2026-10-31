@@ -364,6 +364,20 @@ def test_the_employer_pays_the_share_of_the_fondo_tesoreria(
     ]
 
 
+def test_a_hire_of_the_year_counts_its_quotas_from_its_month() -> None:
+    """Hired 1 March, left 31 March: no month before it to close."""
+    result = _run(
+        3,
+        employment_period=EmploymentPeriod(date(2026, 3, 1), date(2026, 3, 31)),
+        tfr_fund=None,
+        events=(TerminationTFREvent(date(2026, 3, 31)),),
+    )
+    (due, _) = _settlement(result)
+
+    assert due.reason_code != "required_fact_missing"
+    assert due.inputs["quotas_before_run"] == Decimal(0)
+
+
 def test_a_month_of_the_year_not_closed_leaves_the_quotas_unknown() -> None:
     """A March termination opened without January and February runs."""
     result = _run(
