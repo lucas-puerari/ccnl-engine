@@ -560,6 +560,11 @@ days of the band.
 |---|---|---|
 | Metalmeccanico Federmeccanica | B2, B3, A1: 2, 3, 4 months; C2, C3, B1: 1 month 15 days, 2 months, 2 months 15 days; D1, D2, C1: 10 days, 20 days, 1 month; up to 5, 10, over 10 years of service; the same for dismissal and resignation | CCNL 5 February 2021, Sez. Quarta, Tit. VIII, Art. 1 |
 | Terziario Confcommercio | dismissal (art. 247) Q and I: 60, 90, 120 days; II and III: 30, 45, 60; IV and V: 20, 30, 45; VI and VII: 15, 20, 20; resignation (art. 254) Q and I: 45, 60, 90; II and III: 20, 30, 45; IV and V: 15, 20, 30; VI and VII: 10, 15, 15; calendar days from the next 1st or 16th; the indemnity is the pay of those days with the ratei of the 13th and 14th (art. 248), out of the TFR base (art. 249) | CCNL Terziario 30 July 2019, artt. 247-249, 254 |
+| Metalmeccanico Confapi | 9, 8, 7: 2, 3, 4 months; 6, 5, 4: 1 month 15 days, 2 months, 2 months 15 days; 3, 2: 10, 20, 30 days; 1: 7, 15, 20 days; the indemnity in the monthly pays of its table (0.33, 0.67, 1; 0.24, 0.5, 0.67 for the days); up to 5, 10, over 10 years of service; the same for dismissal and resignation | CCNL 3 July 2017, Art. 75 |
+| Terziario Confesercenti | the tables, start and indemnity of Terziario Confcommercio on the levels Q, I to VII | CCNL Terziario Confesercenti 12 December 2019, artt. 247-249, 254 |
+| Cooperative sociali | A1, A2, B, C1: 15, 30 days; C2: 30, 45; C3, D1 to E1: 45, 60; E2, F1, F2 and their quadri: 90, 120; up to 3, over 3 years of service; the same for dismissal and resignation | CCNL Cooperative sociali 2023-2025, Art. 33 |
+| Turismo Federalberghi | A and B: 4, 5, 6 months; 1: 2, 3, 4 months; 2 and 3: 1 month, 45 days, 2 months; 4 and 5: 20, 30, 45 days; 6S, 6 and 7: 15, 20, 20 days; up to 5, 10, over 10 years of service; the same for dismissal and resignation; the indemnity is the normal pay of the notice (art. 188) | CCNL Turismo 20 February 2010, Art. 187 |
+| Pubblici esercizi FIPE | the table of Turismo, A and B on the quadri Qa and Qb; the indemnity is the normal pay of the notice (art. 209) | CCNL Pubblici esercizi 8 February 2018, Art. 208 |
 
 The other CCNLs state no notice yet: a `NoticeIndemnityEvent` under them
 raises the `incomplete` rule issue `notice_rule_missing`.
