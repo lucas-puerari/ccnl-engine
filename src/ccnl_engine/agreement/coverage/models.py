@@ -28,6 +28,7 @@ from ccnl_engine.limitation.models import (
     NoteLimitation,
 )
 from ccnl_engine.sickness.integration.models import SicknessRules
+from ccnl_engine.termination.notice.models import NoticeRules
 from ccnl_engine.working_time.models import (
     CcnlTravelAllowance,
     TimeSupplements,
@@ -131,6 +132,7 @@ class CCNLWorkRules(BaseModel):
     insured_absence: InsuredAbsenceRules | None = None
     standby_rules: StandbyRules | None = None
     travel_allowance: CcnlTravelAllowance | None = None
+    notice: NoticeRules | None = None
 
 
 class CCNLCoverage(BaseModel):

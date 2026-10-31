@@ -3311,7 +3311,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "d3e3523bf4c75ba9413fb1b1a7fb9690c622ca83a1ad71a5f596cc695257b656",
+    "source_hash": "11158db1bcc43f7953ad419c7dcb89ccc2e4f5c89747a86080c6222996ca08f5",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -5228,6 +5228,162 @@
         },
         "transformation": "Bands D1-D2-C1, C2-C3, B1 and above ('superiore al C3' in 2021); the hourly rate is the 16-hour column divided by 16; 5.00 euro for each call followed by an intervention; excluded from the TFR base (art. 2120 c. 2 c.c.). Rates from 1 June 2025 and 1 June 2026 from the IPCA verbali; the 2021 table of p. 155 and the updates of 2022-2024 are not extracted (gap missing).",
         "note": "Not modelled here: the travel time after a call (85% of the ordinary hourly pay) and the intervention hours (overtime or ordinary hours), which take their own events; the 'personale direttivo' is excluded from the standby rules."
+      }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "B2",
+            "B3",
+            "A1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "months": 2,
+          "indemnity_months": "2"
+        },
+        {
+          "levels": [
+            "B2",
+            "B3",
+            "A1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "months": 3,
+          "indemnity_months": "3"
+        },
+        {
+          "levels": [
+            "B2",
+            "B3",
+            "A1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 4,
+          "indemnity_months": "4"
+        },
+        {
+          "levels": [
+            "C2",
+            "C3",
+            "B1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "months": 1,
+          "days": 15,
+          "indemnity_months": "1.5"
+        },
+        {
+          "levels": [
+            "C2",
+            "C3",
+            "B1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "months": 2,
+          "indemnity_months": "2"
+        },
+        {
+          "levels": [
+            "C2",
+            "C3",
+            "B1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 2,
+          "days": 15,
+          "indemnity_months": "2.5"
+        },
+        {
+          "levels": [
+            "D1",
+            "D2",
+            "C1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 10,
+          "indemnity_months": "0.33"
+        },
+        {
+          "levels": [
+            "D1",
+            "D2",
+            "C1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 20,
+          "indemnity_months": "0.67"
+        },
+        {
+          "levels": [
+            "D1",
+            "D2",
+            "C1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 1,
+          "indemnity_months": "1"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+            "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "published_on": "2021-02-05",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          },
+          "page": "230",
+          "section": "Sez. Quarta, Titolo VIII, Art. 1 - Preavviso di licenziamento e di dimissioni",
+          "quote": "Il rapporto di lavoro a tempo indeterminato non può essere risolto da nessuna delle due parti senza un preavviso i cui termini sono stabiliti come segue a seconda dell'anzianità e della categoria professionale cui appartiene il lavoratore. [...] I termini di disdetta decorrono dal giorno del ricevimento dell'atto di dimissioni o di licenziamento e il periodo di preavviso si calcola dal giorno successivo. La parte che risolve il rapporto senza l'osservanza dei predetti termini di preavviso deve corrispondere all'altra un'indennità pari all'importo della retribuzione per il periodo di mancato preavviso come di seguito stabilito."
+        },
+        "transformation": "The two tables of Art. 1: 'Fino a 5 anni' is up to 60 months of service, 'Oltre 5 fino a 10' up to 120, 'Oltre i 10 anni' any longer; B2, B3 and A1 2, 3 and 4 months (2, 3, 4 mensilità); C2, C3 and B1 1 month and 15 days, 2 months, 2 months and 15 days (1.5, 2, 2.5 mensilità); D1, D2 and C1 10 days, 20 days, 1 month (0.33, 0.67, 1 mensilità). The same tables apply to dismissal and resignation.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-31T00:00:00",
+          "effective_from": "2021-06-01",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-31T18:00:00Z",
+          "review_id": "2026-10-31-ai"
+        }
       }
     }
   },
