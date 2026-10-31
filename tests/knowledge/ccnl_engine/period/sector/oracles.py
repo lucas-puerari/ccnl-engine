@@ -710,8 +710,15 @@ def _studi_year() -> tuple[Pay, ...]:
 
 def _studi_june() -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _studi(m), _studi(m)) for m in range(1, 6)]
-    #: Six twelfths of the tredicesima are paid with the last month.
-    june = _STUDI_UNTIL_NOVEMBER + _cents(_STUDI_UNTIL_NOVEMBER * 6 / 12)
+    #: Six twelfths of the tredicesima are paid with the last month, and the
+    #: residual leave: six twelfths of 22 days of ferie (Art. 99, p. 51), 11
+    #: days at the monthly pay over 26 (Art. 137, p. 70); six twelfths of the
+    #: 32 hours of ex festività, 16 hours paid by the day, two days of 8 hours
+    #: at the monthly pay over 26 (Art. 98, p. 51); no ROL before the twelfth
+    #: month of a hire within the term of the contract (Art. 91 c. 3, p. 47).
+    pay = _STUDI_UNTIL_NOVEMBER
+    leave = _cents(Decimal(11) * pay / 26) + _cents(Decimal(16) * pay / (26 * 8))
+    june = pay + _cents(pay * 6 / 12) + leave
     return (
         *pays,
         Pay(_run(6), june, june),
@@ -917,8 +924,15 @@ def _dmo_year() -> tuple[Pay, ...]:
 
 def _dmo_june() -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _dmo(m), _dmo(m)) for m in range(1, 6)]
-    #: Six twelfths of the tredicesima are paid with the last month.
-    june = _DMO_UNTIL_OCTOBER + _cents(_DMO_UNTIL_OCTOBER * 6 / 12)
+    #: Six twelfths of the tredicesima are paid with the last month, and the
+    #: residual leave: six twelfths of 26 days of ferie (Artt. 142 and 145,
+    #: p. 45), 13 days at the monthly pay over 26 (chiarimento a verbale, p.
+    #: 45); six twelfths of the 32 hours of ex festività (Art. 141 c. 1, p.
+    #: 44), 16 hours at the monthly pay over 168 (Art. 194, p. 58); no ROL in
+    #: the first two years of a hire after 1 March 2011 (Art. 141 c. 8).
+    pay = _DMO_UNTIL_OCTOBER
+    leave = _cents(Decimal(13) * pay / 26) + _cents(Decimal(16) * pay / 168)
+    june = pay + _cents(pay * 6 / 12) + leave
     return (
         *pays,
         Pay(_run(6), june, june),
@@ -1042,12 +1056,12 @@ def _fipe_leave(pay: Decimal) -> Decimal:
     return _cents(Decimal(13) * pay / 26) + _cents(Decimal(16) * pay / 172)
 
 
-def _fipe_june(tranche: int, *, leave: bool) -> tuple[Pay, ...]:
+def _fipe_june(tranche: int) -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _fipe(m, tranche), _fipe(m, tranche)) for m in range(1, 6)]
     last = _fipe(6, tranche)
     #: Six twelfths of the tredicesima are paid with the last month, with the
-    #: residual leave where the CCNL file accrues it (not ristorazione).
-    june = last + _cents(last * 6 / 12) + (_fipe_leave(last) if leave else _ZERO)
+    #: residual leave.
+    june = last + _cents(last * 6 / 12) + _fipe_leave(last)
     fourteenth = _cents(last * 6 / 12)
     return (
         *pays,
@@ -1057,15 +1071,11 @@ def _fipe_june(tranche: int, *, leave: bool) -> tuple[Pay, ...]:
 
 
 FIPE_YEAR = sector_year(_fipe_year(6), _FIPE_RATES, _FULL_YEAR, terminated=False)
-FIPE_JUNE = sector_year(
-    _fipe_june(6, leave=True), _FIPE_RATES, _HALF_YEAR, terminated=True
-)
+FIPE_JUNE = sector_year(_fipe_june(6), _FIPE_RATES, _HALF_YEAR, terminated=True)
 RISTORAZIONE_YEAR = sector_year(
     _fipe_year(9), _FIPE_RATES, _FULL_YEAR, terminated=False
 )
-RISTORAZIONE_JUNE = sector_year(
-    _fipe_june(9, leave=False), _FIPE_RATES, _HALF_YEAR, terminated=True
-)
+RISTORAZIONE_JUNE = sector_year(_fipe_june(9), _FIPE_RATES, _HALF_YEAR, terminated=True)
 
 
 # Confapi: Metalmeccanico Unionmeccanica Confapi 5th level, 50 employees.

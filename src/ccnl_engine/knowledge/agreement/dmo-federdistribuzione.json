@@ -3092,7 +3092,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "8ceb6df421a026ba2712510b21a742b195def47705b7fd3875fe68a1be6f7ea3",
+    "source_hash": "232a102b539aa717271cd9ccd53ad0c3df84936bca0031a72766042a98ea525b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3413,9 +3413,161 @@
             "verification_status": "verified",
             "review_id": "2026-10-31-ai-leave-termination"
           },
-          "transformation": "Ferie: residual days x monthly pay / 26, as quoted. Permits: residual hours x monthly pay / 168, the hourly divisor of Art. 194 (p. 58) for a 40-hour week; Art. 141 c.6 (p. 44) pays the permits not taken in the year 'con la retribuzione di fatto di cui all’art. 191 in atto al momento della scadenza', and paying the residual hours at the end of the employment at that hourly pay is the reading adopted, as for Commercio. The file does not model the accrual of the leave yet: until it does the basis pays nothing (leave_accrual_not_modelled)."
+          "transformation": "Ferie: residual days x monthly pay / 26, as quoted. Permits: residual hours x monthly pay / 168, the hourly divisor of Art. 194 (p. 58) for a 40-hour week; Art. 141 c.6 (p. 44) pays the permits not taken in the year 'con la retribuzione di fatto di cui all’art. 191 in atto al momento della scadenza', and paying the residual hours at the end of the employment at that hourly pay is the reading adopted, as for Commercio. The ferie and permits it pays accrue under Artt. 141 and 145 (work_rules.leave_rules)."
         }
-      }
+      },
+      "ferie_accrual": {
+        "month_credit": null,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+              "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+              "kind": "associazione",
+              "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+              "published_on": "2025-09-29",
+              "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+            },
+            "page": "45",
+            "section": "Art. 145 c.1 - Normativa per cessazione rapporto",
+            "quote": "In caso di licenziamento o di dimissioni, spetteranno al lavoratore tanti dodicesimi del periodo di ferie al quale ha diritto, quanti sono i mesi di effettivo servizio prestato per l’anno di competenza."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-31T17:00:00Z",
+            "effective_from": "2023-04-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-31T17:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-31-ai-leave-accrual"
+          },
+          "note": "Twelfths of the 26 days per month of effective service. The text does not say how a month served in part counts for the ferie: month_credit is left open, so a partial month accrues nothing and the balance is marked inexact."
+        }
+      },
+      "permits": [
+        {
+          "bucket": "ex_festivita",
+          "annual_hours": [
+            {
+              "hours": "32"
+            }
+          ],
+          "month_credit": "whole_month",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+                "kind": "associazione",
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+              },
+              "page": "44",
+              "section": "Art. 141 c.1 - Permessi retribuiti",
+              "quote": "Gruppi di 4 o di 8 ore di permesso individuale retribuito, in sostituzione delle 4 festività abolite dal combinato disposto della Legge 5 marzo 1977, n. 54, e del D.P.R. 28 dicembre 1985, n. 792, verranno fruiti dai lavoratori, a partire dal 1° gennaio 1980."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-31T17:00:00Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-31T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-31-ai-leave-accrual"
+            },
+            "transformation": "32 hours = the 4 abolished festivities of comma 1 times a working day of 8 hours: the clause grants the hours in groups of 4 or 8 in place of the 4 festivities and states no total. Whole months only, Art. 141 c.7 (p. 45): 'un dodicesimo dei permessi di cui al presente articolo per ogni mese intero di servizio prestato'. Accrued in full by every worker, the hires after 1 March 2011 included (c.8 keeps 'il godimento delle ore di permesso di cui al primo comma')."
+          }
+        },
+        {
+          "bucket": "rol",
+          "annual_hours": [
+            {
+              "hours": "56"
+            },
+            {
+              "hours": "72",
+              "headcount_above": 15
+            }
+          ],
+          "month_credit": "whole_month",
+          "ramp": {
+            "hired_after": "2011-03-01",
+            "steps": [
+              {
+                "service_months_min": 0,
+                "share": "0"
+              },
+              {
+                "service_months_min": 24,
+                "share": "0.5"
+              },
+              {
+                "service_months_min": 48,
+                "share": "1"
+              }
+            ],
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+                  "kind": "associazione",
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+                },
+                "page": "45",
+                "section": "Art. 141 c.8 - Permessi retribuiti, assunti dopo il 1° marzo 2011",
+                "quote": "per tutti i lavoratori assunti successivamente al 1° marzo 2011, fermo restando il godimento delle ore di permesso di cui al primo comma, le ulteriori ore di permesso di cui ai commi terzo e quarto, verranno riconosciute in misura pari al 50%, decorsi due anni dall’assunzione e in misura pari al 100% decorsi quattro anni dall’assunzione."
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-31T17:00:00Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-31T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-31-ai-leave-accrual"
+              },
+              "transformation": "Share 0 for the first 24 months, 0.5 from 24 months, 1 from 48 months: the clause grants 50% after two years and 100% after four and nothing before two years. A month accrues at the share in force on its last day. The count from the first hire of an apprenticeship or a fixed term converted to open-ended (c.9) is not modelled: the employment start is the hire."
+            }
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+                "kind": "associazione",
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+              },
+              "page": "44",
+              "section": "Art. 141 cc.3-4 - Permessi retribuiti",
+              "quote": "per complessive 56 ore annuali(4) per le aziende fino a 15 dipendenti. 4. Per le aziende con più di 15 dipendenti i permessi individuali retribuiti sono incrementati di 16 ore(5)."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-31T17:00:00Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-31T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-31-ai-leave-accrual"
+            },
+            "note": "56 hours a year up to 15 employees, 72 above (EmployerProfile.headcount). Whole months only (Art. 141 c.7, p. 45: 'per ogni mese intero di servizio prestato'). Part time: the hours in proportion to the weekly hours."
+          }
+        }
+      ]
     },
     "sickness_rules": {
       "provenance": {
@@ -3565,6 +3717,32 @@
         "checked": [
           "work_rules.leave_rules.termination.ferie_divisor 26",
           "work_rules.leave_rules.termination.permits_hourly true"
+        ]
+      },
+      {
+        "id": "2026-10-31-ai-leave-accrual",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual of the ferie, the ex festività and the ROL read in the Testo Unico of 29 September 2025 (Artt. 141, 142, 145).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "Art. 145 c.1 (p. 45): twelfths of the 26 days of Art. 142 per month of effective service, no month-fraction rule: work_rules.leave_rules.ferie_accrual.",
+          "Art. 141 cc.1, 3, 4, 7 (pp. 44-45): 32 hours of ex festività (4 festività in groups of 8 hours), 56 hours of permits up to 15 employees and 72 above, by whole months: work_rules.leave_rules.permits.",
+          "Art. 141 c.8 (p. 45): the 56/72 hours of a hire after 1 March 2011 at 0%, 50% after two years, 100% after four: permits[rol].ramp."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.ferie_accrual",
+          "work_rules.leave_rules.permits[ex_festivita] 32",
+          "work_rules.leave_rules.permits[rol] 56 / 72 above 15",
+          "work_rules.leave_rules.permits[rol].ramp"
         ]
       }
     ],

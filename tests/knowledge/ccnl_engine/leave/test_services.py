@@ -112,12 +112,13 @@ def _year(
     level: str,
     events: Mapping[int, tuple[LeaveTakenEvent, ...]],
     ended_on: date | None = _ENDED,
+    employer: EmployerProfile = _EMPLOYER,
 ) -> CompetenceYearResult:
     return engine.calculate_competence_year(
         CompetenceYearPlan(
             year=2026,
             employment=_employment(ccnl_id, level, ended_on),
-            employer=_EMPLOYER,
+            employer=employer,
             prior_year=PriorYearTaxFacts(employment_income=Decimal(40000)),
             default_facts=_FACTS,
             periods={
@@ -373,4 +374,34 @@ def test_part_time_and_suspended_days_in_the_accrual(engine: PayrollEngine) -> N
     assert _decision(february, "termination_residual_leave") == (
         "provisional",
         "residual_leave_estimated",
+    )
+
+
+@pytest.mark.parametrize(("headcount", "rol"), [(40, Decimal(0)), (41, Decimal(40))])
+def test_farmacie_rol_ramp_of_small_pharmacies(
+    engine: PayrollEngine, headcount: int, rol: Decimal
+) -> None:
+    """Farmacie (CCNL 7 September 2021, Art. 24, p. 16), hired 1 January 2026.
+
+    A hire from 1 November 2021 by a pharmacy "fino a 40 dipendenti" accrues
+    none of the 40 further hours before three years; a larger pharmacy owes
+    them all: 40 x 10 / 12 by the end of October.  The 32 hours of ex
+    festività accrue in full either way, and 26 days of ferie (Art. 26).
+    """
+    employer = EmployerProfile(
+        headcount=Headcount(headcount), provincial_pay_element=False
+    )
+    year = _year(engine, "farmacie-private-h121", "4", {}, employer=employer)
+    september = _run(year, "2026-09-regular")
+    october = _run(year, "2026-10-regular")
+
+    assert [(b.bucket, b.accrued) for b in september.leave_balances] == [
+        (LeaveBucket.FERIE, Decimal(26) * 9 / _TWELVE),
+        (LeaveBucket.ROL, rol * 9 / _TWELVE),
+        (LeaveBucket.EX_FESTIVITA, Decimal(32) * 9 / _TWELVE),
+    ]
+    assert _balance(october, LeaveBucket.ROL).paid == rol * 10 / _TWELVE
+    assert _decision(october, "termination_residual_leave") == (
+        "final",
+        "residual_leave_paid",
     )

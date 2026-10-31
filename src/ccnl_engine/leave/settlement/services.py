@@ -165,10 +165,12 @@ def _blocking_reason(
         return LEAVE_HISTORY_UNKNOWN.code
     if any(value < _ZERO for value in residuals.values()):
         return "leave_taken_beyond_accrual"
-    permits = any(
-        b is not LeaveBucket.FERIE and v > _ZERO for b, v in residuals.items()
+    daily = {p.bucket for p in rules.permits if p.day_hours is not None}
+    hourly = any(
+        b is not LeaveBucket.FERIE and b not in daily and v > _ZERO
+        for b, v in residuals.items()
     )
-    if permits and (not basis.permits_hourly or terms.hourly_divisor is None):
+    if hourly and (not basis.permits_hourly or terms.hourly_divisor is None):
         return "permit_basis_not_sourced"
     return None
 
@@ -179,14 +181,18 @@ def _quota(
     """Return the divisor of one day or hour of ``bucket``, and the pay divided.
 
     Returns:
-        ``(divisor, pay)``: the ferie divisor of the monthly pay, or the
-        hourly divisor of the full-time monthly pay.
+        ``(divisor, pay)``: the ferie divisor of the monthly pay; for a
+        permit, of the full-time monthly pay, the ferie divisor times the
+        hours of a day of a bucket paid by the day, else the hourly divisor.
     """
-    basis = rules.termination
+    divisor = rules.termination.ferie_divisor  # type: ignore[union-attr]
     if bucket is LeaveBucket.FERIE:
-        return basis.ferie_divisor, terms.monthly_pay  # type: ignore[union-attr]
+        return divisor, terms.monthly_pay
     ratio = terms.part_time_ratio
     pay = terms.monthly_pay if ratio is None else terms.monthly_pay / ratio
+    day = next((p.day_hours for p in rules.permits if p.bucket is bucket), None)
+    if day is not None:
+        return divisor * day, pay
     return terms.hourly_divisor, pay  # type: ignore[return-value]
 
 

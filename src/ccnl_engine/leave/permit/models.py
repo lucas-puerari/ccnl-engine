@@ -52,6 +52,12 @@ class NewHireRamp(BaseModel):
 
     Attributes:
         hired_after: The ramp applies to the workers hired after this day.
+        hired_until: The ramp applies to the workers hired up to this day
+            included (Studi Art. 91 c.3: the hires within the term of the
+            contract); ``None`` for every later hire.
+        headcount_max: The ramp applies to an employer with at most this
+            many employees (Farmacie Art. 24: "fino a 40 dipendenti");
+            ``None`` for any employer.
         steps: Shares by months since the hire; the first starts at 0.
         provenance: Source of the ramp.
     """
@@ -59,6 +65,8 @@ class NewHireRamp(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     hired_after: date
+    hired_until: date | None = None
+    headcount_max: int | None = Field(default=None, ge=1)
     steps: tuple[RampStep, ...] = Field(min_length=1)
     provenance: RuleProvenance | None = None
 
@@ -70,14 +78,24 @@ class NewHireRamp(BaseModel):
             raise ValueError(msg)
         return self
 
+    def covers(self, headcount: int) -> bool:
+        """Return whether the ramp applies to an employer of ``headcount``.
+
+        Returns:
+            ``False`` above :attr:`headcount_max`.
+        """
+        return self.headcount_max is None or headcount <= self.headcount_max
+
     def share(self, hired_on: date, service_months: int) -> Decimal:
         """Return the share of the hours a worker hired on ``hired_on`` accrues.
 
         Returns:
-            1 for a worker hired on or before :attr:`hired_after`, else the
-            share of the last step ``service_months`` reached.
+            1 for a worker hired on or before :attr:`hired_after` or after
+            :attr:`hired_until`, else the share of the last step
+            ``service_months`` reached.
         """
-        if hired_on <= self.hired_after:
+        until = self.hired_until
+        if hired_on <= self.hired_after or (until is not None and hired_on > until):
             return _ONE
         reached = [s for s in self.steps if s.service_months_min <= service_months]
         return reached[-1].share
@@ -98,6 +116,12 @@ class PermitRules(BaseModel):
         month_credit: Which months accrue a twelfth of the hours; ``None``
             when the text does not say how a month fraction counts.
         ramp: Reduced hours of the workers hired after a date.
+        day_hours: Hours that make one day when the text pays the hours left
+            by the day (Studi Art. 98: the retribuzione normale giornaliera
+            of each of the four festività of 8 hours): at the end of the
+            employment every ``day_hours`` hours are paid at the daily quota,
+            the monthly pay over the ferie divisor; ``None`` when they are
+            paid by the hour.
         provenance: Source of the hours.
     """
 
@@ -108,6 +132,7 @@ class PermitRules(BaseModel):
     includes_ex_festivita: bool = False
     month_credit: MonthCredit | None = None
     ramp: NewHireRamp | None = None
+    day_hours: Decimal | None = Field(default=None, gt=_ZERO)
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")

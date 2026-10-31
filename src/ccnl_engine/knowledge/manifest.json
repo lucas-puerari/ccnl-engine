@@ -711,7 +711,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/dmo-federdistribuzione",
       "ruleset_version": "2026.2",
-      "source_hash": "8ceb6df421a026ba2712510b21a742b195def47705b7fd3875fe68a1be6f7ea3",
+      "source_hash": "232a102b539aa717271cd9ccd53ad0c3df84936bca0031a72766042a98ea525b",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/dmo-federdistribuzione.json.gz"
@@ -918,7 +918,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/farmacie-private-h121",
       "ruleset_version": "2026.2",
-      "source_hash": "fda23db1e717ed40817481a837a41592c1b5227b0393a4047e5703eb034a10b4",
+      "source_hash": "ea7cc1100842da7c956f8f2bd8ace7bcd773f1348658c1fd9705f3f8f052c25d",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/farmacie-private-h121.json.gz"
@@ -1734,7 +1734,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem-ristorazione-collettiva",
       "ruleset_version": "2026.2",
-      "source_hash": "43ecd968a420df3827ec9653eed0def40e9119961e2c14761a60ccd0541e3a91",
+      "source_hash": "5b4b0cb8d31c09173a0d6e4d11e71c756d4c1ef2f9c933a28e3af52f77d3f4f6",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva.json.gz"
@@ -1989,7 +1989,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/studi-professionali-confprofessioni",
       "ruleset_version": "2026.2",
-      "source_hash": "ca53aef671edc216b710dd9b95ff746fd4e36e9ef2d9adc2721fb65604de17f0",
+      "source_hash": "e5aa92e9b9113390bd23b35865d925814bf0705a31b18c5476f57f0ef3e68f76",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/studi-professionali-confprofessioni.json.gz"
@@ -4653,7 +4653,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "94d46323ce4f7cdbceae01740ccf52c4dc05726454d2a29064fedb5128212b1e",
+      "source_hash": "e04c8ec300ebc4b99abbb5c3fa62d61e572a3ac6f147c6c5719c861f18e499a6",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/studi-professionali-confprofessioni.json.gz",

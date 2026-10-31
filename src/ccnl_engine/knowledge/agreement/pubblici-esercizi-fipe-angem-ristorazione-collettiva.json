@@ -2497,7 +2497,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "43ecd968a420df3827ec9653eed0def40e9119961e2c14761a60ccd0541e3a91",
+    "source_hash": "5b4b0cb8d31c09173a0d6e4d11e71c756d4c1ef2f9c933a28e3af52f77d3f4f6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2767,9 +2767,145 @@
             "verification_status": "verified",
             "review_id": "2026-10-31-ai-leave-termination"
           },
-          "transformation": "Ferie: residual days x monthly pay / 26: the daily pay of Art. 159, stated for every contractual purpose, with the 26 days of ferie counted on a week of six days (Art. 134 c.1, p. 104). Permits: residual hours x monthly pay / 172 (Art. 160, p. 116), the measure Art. 114 c.12 (p. 95) uses for the permits left at the deadline ('con la retribuzione in atto al momento della predetta scadenza'), the reading adopted for Commercio. The file does not model the accrual of the leave yet: until it does the basis pays nothing (leave_accrual_not_modelled)."
+          "transformation": "Ferie: residual days x monthly pay / 26: the daily pay of Art. 159, stated for every contractual purpose, with the 26 days of ferie counted on a week of six days (Art. 134 c.1, p. 104). Permits: residual hours x monthly pay / 172 (Art. 160, p. 116), the measure Art. 114 c.12 (p. 95) uses for the permits left at the deadline ('con la retribuzione in atto al momento della predetta scadenza'), the reading adopted for Commercio. The ferie and permits it pays accrue under Artt. 114 and 135 (work_rules.leave_rules)."
         }
-      }
+      },
+      "ferie_accrual": {
+        "month_credit": null,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "fipe-ccnl-2018-02-08",
+              "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+              "kind": "associazione",
+              "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+              "published_on": "2018-02-08",
+              "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+            },
+            "page": "105",
+            "section": "Art. 135 c.9",
+            "quote": "ai fini della determinazione dei ratei di ferie, le frazioni di mese saranno cumulate. La somma così ottenuta comporterà la corresponsione di un rateo mensile per ogni trenta giorni di calendario, nonché per la eventuale frazione residua pari o superiore a quindici giorni. La frazione inferiore ai quindici giorni non verrà considerata."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-31T17:00:00Z",
+            "verification_status": "unverified",
+            "effective_from": "2018-02-08"
+          },
+          "note": "Twelfths of the 26 days. The cumulated month fractions are not modelled: a partial month accrues nothing and the balance is marked inexact."
+        }
+      },
+      "permits": [
+        {
+          "bucket": "ex_festivita",
+          "annual_hours": [
+            {
+              "hours": "32"
+            }
+          ],
+          "month_credit": null,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "fipe-ccnl-2018-02-08",
+                "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+                "published_on": "2018-02-08",
+                "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+              },
+              "page": "94",
+              "section": "Art. 114 c.3",
+              "quote": "Tali riduzioni sono comprensive delle 32 ore relative alle festività religiose abolite dalla legge n. 54 del 1977"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-31T17:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2018-02-08"
+            },
+            "note": "The 32 hours of the abolished festivities, kept apart from the rest of the 104 hours because Art. 114 c.4 grants only them to the hires after 1 January 2018 for two years. Cumulated month fractions (c.13) not modelled."
+          }
+        },
+        {
+          "bucket": "rol",
+          "annual_hours": [
+            {
+              "hours": "72"
+            }
+          ],
+          "month_credit": null,
+          "ramp": {
+            "hired_after": "2018-01-01",
+            "steps": [
+              {
+                "service_months_min": 0,
+                "share": "0"
+              },
+              {
+                "service_months_min": 24,
+                "share": "0.5"
+              },
+              {
+                "service_months_min": 48,
+                "share": "1"
+              }
+            ],
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-ccnl-2018-02-08",
+                  "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+                  "published_on": "2018-02-08",
+                  "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+                },
+                "page": "94",
+                "section": "Art. 114 c.4",
+                "quote": "Per tutti i lavoratori delle aziende di cui al comma 1 e 2, assunti dopo il 1° gennaio 2018, verranno riconosciute per i primi due anni le 32 ore di permesso relative alle festività religiose abolite dalla legge n. 54 del 1977 di cui al terzo comma. Decorsi due anni dall'assunzione, ai dipendenti delle aziende di cui al comma 1 verranno riconosciute ulteriori 36 ore"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-31T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2018-02-08"
+              },
+              "transformation": "On the 72 hours beside the ex festività: share 0 for two years (only the 32 hours), 36/72 = 0.5 from two years, the whole reduction from four years. The exclusion of the seasonal contracts of Artt. 89 and 90 from the ramp is not modelled."
+            }
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "fipe-ccnl-2018-02-08",
+                "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+                "published_on": "2018-02-08",
+                "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+              },
+              "page": "94",
+              "section": "Art. 114 cc.1-3 - Riduzione dell'orario",
+              "quote": "viene concordata una riduzione dell'orario annuale pari a 104 ore. (2) Per gli Stabilimenti Balneari la riduzione dell'orario annuale sarà, invece pari a 108 ore. (3) Tali riduzioni sono comprensive delle 32 ore relative alle festività religiose abolite dalla legge n. 54 del 1977"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-31T17:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2018-02-08"
+            },
+            "transformation": "72 = 104 - 32: the text states the 104-hour total holding the 32 hours of ex festività. Cumulated month fractions (c.13) not modelled."
+          }
+        }
+      ]
     },
     "sickness_rules": {
       "carenza_integration_rate": "1",

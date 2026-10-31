@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 52 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 53 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-20 | claude-opus-5-5 (ai) | The pricing of the seniority increments matured before a change of level (Art. 134 - Scatti di anzianità). | corrected | Art. 134 - Scatti di anzianità (p. 69): the earlier increments take the amounts of the new level from the change: seniority_increments.on_promotion. |
 | 2026-10-20 | claude-opus-5-5 (ai) | Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Art. 135 - Normale retribuzione; Art. 95). | corrected | Art. 135 - Normale retribuzione; Art. 95: individual elements included in the hourly base: work_rules.time_supplements.individual_elements. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched in the CCNL of 16 February 2024 (Artt. 44, 45, 91, 98, 101, 137) and in its April 2026 testo ufficiale. | corrected | Art. 137 - Frazionamento della retribuzione (p. 70; same text in the 2026 testo ufficiale, p. 122): the indemnity for the ferie not taken is the monthly pay divided by 26: work_rules.leave_rules.termination. The ex festività left have a daily basis (Art. 98), not an hourly one: permits_hourly false. |
+| 2026-10-31 | claude-opus-5-5 (ai) | The ROL and the basis of the ex festività left at the end of the employment, read in the CCNL of 16 February 2024 (Artt. 91, 98, 137) and checked against its April 2026 testo ufficiale (Art. 91 p. 77, Art. 98: same wording). | corrected | Art. 91 c.2 lett. A, cc.3, 6 (p. 47): 40 hours of ROL a year for the week of five days, by whole months, reduced for the hires within the term of the contract: work_rules.leave_rules.permits[rol].<br>Art. 98 (p. 51): the ex festività not used are paid at the retribuzione normale giornaliera, one day for each festività of 8 hours: permits[ex_festivita].day_hours.<br>Art. 91 c.5 (p. 47) and Art. 137 (p. 70): the ROL left are paid at the monthly pay / 170: termination.permits_hourly true. |
 
 ## Salary table
 
@@ -206,11 +207,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add a worker fact for extra months already paid.
 
 !!! warning "studi-professionali-confprofessioni/rol_not_accrued · leave · impact yes · open"
-    LEAVE, ROL (Art. 91 cc.2-3): 40 hours a year on a five-day week, 66 on a six-day week, and for the hires under the 2024 CCNL 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the text is silent on the first twelve months. The weekly schedule is not an input and the first year is not sourced: the ROL is not accrued, and a leave taken from it is not decided.
+    LEAVE, ROL (Art. 91 cc.2-3, p. 47): 40 hours a year on a five-day week, 66 on a six-day week. The file accrues the 40 hours, the schedule it assumes for the 22 days of ferie; the 66 hours of a six-day week are not modelled (the weekly schedule is not an input). The hires within the 2024-2027 term accrue 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the clause states no share before the twelfth month, read as nothing, as Commercio's 'decorsi due anni' (steps 0, 11, 23, 36 completed months). The 50/75/100% of the contratto di reimpiego (c.4) is not modelled.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the weekly schedule as an employment fact and source the first twelve months of the new-hire ramp.
+    **Remediation:** Add the weekly schedule as an employment fact for the 66 hours of a six-day week, and the contratto di reimpiego for its own ramp.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -396,7 +397,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     HOURLY RATE AND SUPPLEMENTS (artt. 93-97, 135, 137 of the CCNL of 16 February 2024): without a caller value the engine derives the hourly base (the art. 135 normale retribuzione over 170) and the 30% on festività hours paid as straordinario festivo (art. 97 lett. E with art. 95); art. 97 also pays the hours themselves, which the engine does not post: the run is provisional. Not derived, the caller states the amount: ordinary night work, which art. 93 leaves to the Area Professionale or second-level bargaining (the 30% of art. 95 is a night overtime rate); work on the weekly rest day ('la relativa sola maggiorazione', art. 97 lett. F, names no percentage).
     
-    LEAVE AT TERMINATION (Art. 137, p. 70): the indemnity for the ferie not taken is the monthly pay divided by 26 ('il computo dell’indennità sostitutiva delle ferie, si ottiene dividendo l’importo mensile per il divisore convenzionale 26'), for any weekly schedule, while the file accrues the 22 days of the settimana corta. The 32 hours of ex festività left are paid at the 'retribuzione normale giornaliera' of a festività (Art. 98), a daily amount the hours accrued do not convert into: a residual of them is not paid (termination_residual_leave incomplete, permit_basis_not_sourced).
+    LEAVE AT TERMINATION (Art. 137, p. 70): the indemnity for the ferie not taken is the monthly pay divided by 26 ('il computo dell’indennità sostitutiva delle ferie, si ottiene dividendo l’importo mensile per il divisore convenzionale 26'), for any weekly schedule, while the file accrues the 22 days of the settimana corta. The 32 hours of ex festività left are paid by the day, 8 hours at the monthly pay / 26 (the 'retribuzione normale giornaliera' of Art. 98); the 40 hours of ROL of the five-day week (Art. 91) at the monthly pay / 170.
     
 
 ## Raw data

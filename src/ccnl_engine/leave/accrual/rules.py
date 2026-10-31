@@ -178,7 +178,7 @@ def _permit(permit: PermitRules, facts: AccrualFacts) -> tuple[Decimal, bool]:
     credited, exact = _credit(permit.month_credit, facts.service)
     hours = permit.hours_for(facts.headcount)
     ramp = permit.ramp
-    if ramp is not None:
+    if ramp is not None and ramp.covers(facts.headcount):
         months = facts.months_since_hire()
         if facts.hired_on is None or months is None:
             hours *= ramp.steps[0].share

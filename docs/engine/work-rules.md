@@ -375,7 +375,9 @@ each bucket with its provenance: `ferie_accrual` (the twelfths of the
 yearly days of `entitlement_tiers` and how a month fraction counts),
 `permits` (the yearly hours of `rol` and `ex_festivita` by employer size,
 a single `rol` pool with `includes_ex_festivita` when the CCNL pools them,
-and a new-hire `ramp`) and `termination` (the basis of the indemnity for
+a new-hire `ramp`, limited to the hires up to `hired_until` or to the
+employers up to `headcount_max` when the text says so, and `day_hours` for
+a bucket whose hours left are paid by the day) and `termination` (the basis of the indemnity for
 the residual leave). A CCNL without them accrues nothing.
 
 Every regular run credits its competence month: a twelfth of the yearly
@@ -409,10 +411,12 @@ imported balances miss the leave (`missing_fact leave_balances`).
 | CCNL | Ferie | Permits | Residual at termination |
 |---|---|---|---|
 | Commercio, Confesercenti | 26 days, month rule not stated | ex festività 32 h, ROL 56 h (72 above 15 employees; 0% / 50% / 100% at 0 / 24 / 48 months for hires after 1 March 2011), whole months | ferie: monthly pay / 26; permits: monthly pay / hourly divisor |
-| Turismo | 26 days, cumulated fractions not modelled | pool of 104 h with the ex festività | not sourced |
-| FIPE | 26 days, cumulated fractions not modelled | ex festività 32 h, ROL 72 h (0% / 50% / 100% for hires after 1 January 2018) | not sourced |
+| DMO Federdistribuzione | 26 days, month rule not stated | as Commercio (Art. 141) | ferie: monthly pay / 26; permits: monthly pay / 168 |
+| Farmacie private | 26 days, month rule not stated | ex festività 32 h, ROL 40 h (0% / 50% / 100% at 0 / 36 / 72 months for hires from 1 November 2021 by pharmacies up to 40 employees) | ferie: monthly pay / 26; permits: monthly pay / 173 |
+| Turismo | 26 days, cumulated fractions not modelled | pool of 104 h with the ex festività | ferie: monthly pay / 26; pool: monthly pay / 172 |
+| FIPE, Ristorazione collettiva | 26 days, cumulated fractions not modelled | ex festività 32 h, ROL 72 h (0% / 50% / 100% for hires after 1 January 2018) | ferie: monthly pay / 26; permits: monthly pay / 172 |
 | Metalmeccanici (Federmeccanica, Confapi) | 20 / 21 / 25 days, fraction > 15 days | PAR pool of 104 h | divisor not stated |
-| Studi professionali | 22 days, month rule not stated | ex festività 32 h; ROL not accrued (weekly schedule not an input) | not sourced |
+| Studi professionali | 22 days (five-day week), month rule not stated | ex festività 32 h; ROL 40 h of the five-day week (0% / 50% / 75% / 100% for hires within the 2024-2027 term), whole months | ferie: monthly pay / 26; ex festività by the day of 8 h at monthly pay / 26; ROL: monthly pay / 170 |
 | Chimica | 20 / 25 days, fraction > 15 days | ROL 68 h (giornalieri, 2x5, 2x6), ex festività 40 h | divisor not stated |
 
 The balances are carried in the state and shown on the result

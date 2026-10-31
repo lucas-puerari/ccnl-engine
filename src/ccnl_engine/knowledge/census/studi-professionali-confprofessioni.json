@@ -423,10 +423,10 @@
       "institute": "leave",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEAVE, ROL (Art. 91 cc.2-3): 40 hours a year on a five-day week, 66 on a six-day week, and for the hires under the 2024 CCNL 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the text is silent on the first twelve months. The weekly schedule is not an input and the first year is not sourced: the ROL is not accrued, and a leave taken from it is not decided.",
+      "rule": "LEAVE, ROL (Art. 91 cc.2-3, p. 47): 40 hours a year on a five-day week, 66 on a six-day week. The file accrues the 40 hours, the schedule it assumes for the 22 days of ferie; the 66 hours of a six-day week are not modelled (the weekly schedule is not an input). The hires within the 2024-2027 term accrue 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the clause states no share before the twelfth month, read as nothing, as Commercio's 'decorsi due anni' (steps 0, 11, 23, 36 completed months). The 50/75/100% of the contratto di reimpiego (c.4) is not modelled.",
       "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
       "state": "absent",
-      "remediation": "Add the weekly schedule as an employment fact and source the first twelve months of the new-hire ramp.",
+      "remediation": "Add the weekly schedule as an employment fact for the 66 hours of a six-day week, and the contratto di reimpiego for its own ramp.",
       "origin": "seeded",
       "links": {
         "limitations": [

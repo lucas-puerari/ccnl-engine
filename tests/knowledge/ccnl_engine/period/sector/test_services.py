@@ -516,20 +516,19 @@ SCENARIOS = {
 
 
 #: Why the residual leave of a terminated scenario is not paid: the CCNL
-#: accrues no leave, gives no basis for the permits left (Studi pays its ex
-#: festività by the day), or (any other pilot) gives no basis for the
-#: indemnity; ``None`` when it is paid.
+#: accrues no leave, or (any other pilot) gives no basis for the indemnity;
+#: ``None`` when it is paid.
 _RESIDUAL_LEAVE_UNPAID: dict[str, str | None] = {
     _TERZ: None,
     _COMMERCIO: None,
     _TURISMO: None,
     _FIPE: None,
-    _STUDI: "permit_basis_not_sourced",
+    _STUDI: None,
+    _DMO: None,
+    _RISTORAZIONE: None,
     _EDIL: "leave_accrual_not_modelled",
     _EDILIZIA_IMPIEGATI: "leave_accrual_not_modelled",
     _ALIMENTARI: "leave_accrual_not_modelled",
-    _DMO: "leave_accrual_not_modelled",
-    _RISTORAZIONE: "leave_accrual_not_modelled",
 }
 
 
