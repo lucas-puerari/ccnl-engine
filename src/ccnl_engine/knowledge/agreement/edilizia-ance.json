@@ -110,7 +110,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS (Art. 26): the employer pays a coefficient of the hourly minimo, ex contingenza and indennità territoriale times a sixth of the weekly hours, six days a week: 0.5495 for days 1-3 when the sickness lasts more than 6 days, 1.0495 when it lasts more than 12, 0.3795 for days 4-20 and 0.1565 for days 21-180 on top of the INPS indemnity, 0.5495 for days 181-365. The engine stores the coefficient plus the INPS rate of the day as the target (0.8795 and 0.8231), so its employer share is the coefficient on the engine's daily quota, which counts the EDR and not the indennità territoriale. Not modelled: the 1.0495 of a sickness over 12 days (paid 0.5495), the comporto of 365 days past 3.5 years of seniority and the cumulated comporto of 9 months in 20 (12 in 24), the 4.95% paid for the carenza days of a sickness of up to 6 days and for the day of an injury (60% on days 1-3); the percentages accrued with the Cassa Edile during sickness and injury (Allegato D: 18.5% gross and 14.2% net for the carenza days and from day 4 of sickness, 7.4% and 5.7% for days 4-90 of injury or occupational disease, 4.6% and 3.6% from day 91); and the exception of Allegato D point 4: in a pay period without direct pay the conventional net does not apply and the actual withholdings are taken from the accruals. The sick hours of an operaio are not in the hours paid by the hour, so the sick days deduct nothing from the pay.",
+        "text": "SICKNESS (Art. 26): the employer pays a coefficient of the hourly minimo, ex contingenza and indennità territoriale times a sixth of the weekly hours, six days a week: 0.5495 for days 1-3 when the sickness lasts more than 6 days, 1.0495 when it lasts more than 12, 0.3795 for days 4-20 and 0.1565 for days 21-180 on top of the INPS indemnity, 0.5495 for days 181-365. The engine stores the coefficient plus the INPS rate of the day as the target (0.8795 and 0.8231), so its employer share is the coefficient on the engine's daily quota, which counts the EDR and not the indennità territoriale. Not modelled: the 1.0495 of a sickness over 12 days (paid 0.5495), the 4.95% paid for the carenza days of a sickness of up to 6 days and for the day of an injury (60% on days 1-3); the percentages accrued with the Cassa Edile during sickness and injury (Allegato D: 18.5% gross and 14.2% net for the carenza days and from day 4 of sickness, 7.4% and 5.7% for days 4-90 of injury or occupational disease, 4.6% and 3.6% from day 91); and the exception of Allegato D point 4: in a pay period without direct pay the conventional net does not apply and the actual withholdings are taken from the accruals. The sick hours of an operaio are not in the hours paid by the hour, so the sick days deduct nothing from the pay.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -118,7 +118,7 @@
           "applies_when": {
             "trigger": "run"
           },
-          "remediation": "Model the coefficients of Art. 26 on their own base and the comporto by seniority."
+          "remediation": "Model the coefficients of Art. 26 on their own base."
         }
       },
       {
@@ -1639,7 +1639,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "f01dbe00a79e8eeb54e6de79e2167017c2e7880519ace4a26e4778d93d209801",
+    "source_hash": "6a8ab1ee372ca650097780bb9de8656fe0c6347f64fa1c45e68382372ef61470",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1936,7 +1936,19 @@
     "sickness_rules": {
       "carenza_integration_rate": "0.5495",
       "full_pay_integration_rate": "0.5495",
-      "max_duration_days": 270,
+      "max_duration_days": 365,
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 20,
+          "comporto_days": 270
+        },
+        {
+          "seniority_months_from": 42,
+          "window_months": 24,
+          "comporto_days": 365
+        }
+      ],
       "carenza_min_days": 6,
       "day_bands": [
         {
@@ -1951,7 +1963,7 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "ccnl-edilizia-industria-2010-fillea",
@@ -1963,15 +1975,18 @@
           },
           "page": "50-51",
           "section": "Art. 26 Trattamento in caso di malattia (operai)",
-          "quote": "per un periodo di nove mesi consecutivi (pari a 270 giorni di calendario), senza [...] c) dal 4° al 20° giorno, per le giornate indennizzate dall'INPS: 0,3795;"
+          "quote": "In caso di malattia, l’operaio non in prova ha diritto alla conservazione del posto per un periodo di nove mesi consecutivi (pari a 270 giorni di calendario), senza interruzione dell’anzianità. L’operaio con un’anzianità superiore a tre anni e mezzo ha diritto alla conservazione del posto per un periodo di dodici mesi consecutivi (pari a 365 giorni di calendario), senza interruzione dell’anzianità. Nel caso di più malattie o ricadute nella stessa malattia, l’operaio ha diritto alla conservazione del posto per un periodo massimo complessivo di nove mesi nell’arco di 20 mesi consecutivi. L’operaio con un’anzianità superiore a tre anni e mezzo ha diritto alla conservazione del posto per un periodo massimo complessivo di 12 mesi nell’arco di 24 mesi consecutivi. [...] c) dal 4° al 20° giorno, per le giornate indennizzate dall’INPS: 0,3795; d) dal 21° al 180° giorno, per le giornate indennizzate dall’INPS: 0,1565; e) dal 181° giorno al compimento del 365° giorno, per le sole giornate non indennizzate dall’INPS: 0,5495."
         },
-        "transformation": "Coefficients of the hourly elements paid by the employer: (a) 0.5495 for days 1-3 when the sickness lasts more than 6 days (carenza_min_days 6); (c) 0.3795 for days 4-20 and (d) 0.1565 for days 21-180 on top of the INPS 50% and 66.66%, stored as the targets 0.8795 and 0.8231; (e) 0.5495 for days 181-365, when INPS pays nothing (flat rate). Comporto of 270 calendar days. The 1.0495 of a sickness over 12 days and the longer comporto are declared in the coverage notes.",
+        "transformation": "Coefficients of the hourly elements paid by the employer for each illness: (a) 0.5495 for days 1-3 when the sickness lasts more than 6 days (carenza_min_days 6); (c) 0.3795 for days 4-20 and (d) 0.1565 for days 21-180 on top of the INPS 50% and 66.66%, stored as the targets 0.8795 and 0.8231; (e) 0.5495 for days 181-365, when INPS pays nothing (flat rate), so one illness is paid up to day 365. Comporto: the sick days of every illness within the 20 months that end on the day, at most 270 (nine months, the CCNL's own 270 calendar days), and within 24 months at most 365 past three and a half years of seniority; the band from 42 completed months reads 'superiore a tre anni e mezzo' as three and a half completed years. The comporto of one illness (270 and 365 days) is held by the same windows. Read on 2026-10-31.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T07:47:58Z",
+          "extraction_timestamp": "2026-10-31T12:00:00Z",
           "effective_from": "2025-02-01",
-          "verification_status": "unverified"
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-31T12:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-31-ai-sickness-comporto"
         }
       }
     }
@@ -2195,6 +2210,27 @@
         ],
         "findings": [
           "Art. 78 (pp. 90-91): the operai are paid the supplementary hours with the hourly quota raised by 20%, which 'avrà incidenza su tutti gli istituti retributivi legali e contrattuali, indiretti e differiti, compresi le contribuzioni e gli accantonamenti in Cassa Edile'. The 20% band is added; its incidence on the TFR and the Cassa Edile accruals is not modelled (the engine keeps an overtime pay out of the TFR base), so part_time_supplementary_rate stays open, narrowed to it. The 10% of the flexible clauses is not modelled either."
+        ]
+      },
+      {
+        "id": "2026-10-31-ai-sickness-comporto",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules"
+        ],
+        "scope": "The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "Art. 26 (pp. 50-51): the comporto is 270 days of one illness and 'nove mesi nell’arco di 20 mesi consecutivi' of several, 365 days and '12 mesi nell’arco di 24 mesi consecutivi' past three and a half years of seniority; coefficient (e) pays days 181-365. The file kept a comporto of 270 days of one illness: corrected to the windows of 20 and 24 months (comporto_windows) with one illness paid up to day 365. The coefficients were confirmed."
         ]
       }
     ],

@@ -2629,7 +2629,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "6a9e57c3ffada3a8417558a80aea1f7c3eaacb2b398d0a0f2f37931cddff5baa",
+    "source_hash": "3bee2cf897fde82703b915f497e3c0450ba7d142d5d34d5d181963ef8ecb081c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2872,9 +2872,23 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
+      "tiers": [
+        {
+          "month_from": 6,
+          "month_until": null,
+          "integration_rate": "0"
+        }
+      ],
       "carenza_min_days": 7,
       "net_basis": true,
-      "max_duration_days": 150,
+      "max_duration_days": 274,
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 24,
+          "comporto_days": 304
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -2888,19 +2902,19 @@
           },
           "page": "137-138",
           "section": "Art. 61 (Trattamento in caso di malattia e infortunio, ex operai)",
-          "quote": "l'integrazione economica del trattamento erogato ai lavoratori dagli istituti assicurativi preposti fino al 100% della retribuzione di fatto netta. Tale integrazione verrà corrisposta, a partire dal quarto giorno compreso"
+          "quote": "In caso di malattia il lavoratore non in prova avrà diritto alla conservazione del posto per un periodo di 9 mesi. In caso di più malattie il lavoratore avrà diritto alla conservazione del posto per 10 mesi nell'arco dei 24 mesi precedenti. [...] l'integrazione economica del trattamento erogato ai lavoratori dagli istituti assicurativi preposti fino al 100% della retribuzione di fatto netta. Tale integrazione verrà corrisposta, a partire dal quarto giorno compreso [...] Nel caso di malattia di durata superiore a 7 (sette) giorni la integrazione decorrerà dal primo giorno di malattia. L'integrazione di cui sopra sarà corrisposta per la durata massima di 150 giorni."
         },
+        "transformation": "Top-up to 100% of the net pay from the fourth day, from the first when the sickness lasts more than 7 days, for at most 150 days of the illness: from day 151 (the sixth month of 30 days) the integration target is 0, INPS alone pays. Comporto: 9 months of one illness (274 days, months of 365/12 days) and 10 months (304 days) of the sick days within the 24 months that end on the day ('nell'arco dei 24 mesi precedenti'). The file had kept the 150 days of integration as the comporto. Read on 2026-10-31.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-15T11:41:26Z",
-          "verification_status": "verified",
+          "extraction_timestamp": "2026-10-31T12:00:00Z",
           "effective_from": "2022-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-15T11:41:26Z",
-          "review_id": "2026-10-15-ai-texts-leave"
-        },
-        "transformation": "Top-up to 100% of the net pay from the fourth day, from the first when the sickness lasts more than 7 days, for at most 150 days; the job is kept 9 months, 10 in the 24 months before for several illnesses."
+          "verified_at": "2026-10-31T12:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-31-ai-sickness-comporto"
+        }
       }
     }
   },
@@ -3095,6 +3109,27 @@
         ],
         "findings": [
           "Bilateralità 11,65 euro a month, FSBA 0,45% + 0,15%, San.Arti 10,42 euro a month and the E.a.r. of 30 and 25 euro read on pp. 30-32: the declared limitation now states every amount."
+        ]
+      },
+      {
+        "id": "2026-10-31-ai-sickness-comporto",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules"
+        ],
+        "scope": "The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.ebat.tn.it/wp-content/uploads/2024/02/EBNA-Contratto-CCNL-Area-Meccanica_web_LR_compressed-1.pdf",
+            "sha256": "f8cd3c42582324aa4484bb2bb9465a5a0a442467aae64e3ea3a1c57e089f3151"
+          }
+        ],
+        "findings": [
+          "Art. 61 (pp. 137-138): the job is kept 9 months for one illness and 10 months 'nell'arco dei 24 mesi precedenti' for several; the integration lasts at most 150 days. The file stored the 150 days as max_duration_days, the comporto: corrected to 274 days of one illness and 304 within 24 months (comporto_windows), the integration ending on day 150 by a tier of rate 0 from the sixth month."
         ]
       }
     ],

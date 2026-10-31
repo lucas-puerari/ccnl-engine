@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 71 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 2 verified / 70 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-20 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-10-31 |
 | **Latest salary tranche** | 2026-07-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Parte Terza (Impiegati), Art. 8 - Tredicesima mensilità (p. 98): "Nel caso di inizio o cessazione del rapporto durante il corso dell’anno, l’impiegato non in prova avrà diritto a tanti dodicesimi dell’ammontare della 13a mensilità per quanti sono i mesi di servizio prestato. La frazione di mese non superiore a 15 giorni non sarà considerata, mentre sarà considerata come mese intero la frazione di mese superiore a 15 giorni.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-10-18 | claude-opus-5-5 (ai) | The base_salary (minimo + contingenza + EDR) of the twelve Grafici levels against the renewal of 19 December 2023 and the CCNL 19 January 2021 it amends. | corrected | No signatory text prints the 2024-2026 Grafici totals. The signed ipotesi of 19/12/2023 (PDF p. 17) sets the B3 increments (Marzo 24 € 90, Ottobre 24 € 30, Maggio 25 € 30, Ottobre 25 € 50, Luglio 26 € 52) to be riparametrati and keeps contingenza and EDR unchanged; p. 19 (also printed by SLC-FISTel-UILCOM national secretariats on 11/01/2024) gives the per-level increments; the CCNL 2021 printed text gives the minimi at 01/10/2022 (p. 172), contingenza (p. 176) and EDR 10,33 (p. 173). The file's base_salary is the total minimo + contingenza + EDR, so each value is derived as that sum.<br>The file's second tranche starts 2024-09-01, but the ipotesi and the increment table date it October 2024: the 12 periods of 2024-09-01 are left unbacked and should be moved to 2024-10-01.<br>Levels Q, B1S, B1, B2, B3, C1, C2, D1: the 32 periods of 2024-03-01, 2025-05-01, 2025-10-01 and 2026-07-01 are derived; the file values were 0-3 cents higher (aggregator rounding) and 25 are corrected.<br>Levels E, D2, A, AS: the file exceeds the derived sum by a constant 14.74-14.77 (E), 16.77-16.79 (D2), 30.81-30.83 (A), 36.47-36.49 (AS) at every tranche. These 16 periods are left unbacked pending a printed table; the derived values are in each reason.<br>The file's meta lists the signatories as AIEG and Acigraf; the texts are signed by Assografici, AIE and ANES with SLC-CGIL, FISTel-CISL and UILCOM-UIL (CNEL G011).<br>Corrected to the printed table: D1 2024-03-01: 1582.37 -> 1582.36; D1 2025-05-01: 1626.84 -> 1626.82; D1 2025-10-01: 1663.90 -> 1663.88; D1 2026-07-01: 1702.44 -> 1702.42; C2 2024-03-01: 1694.91 -> 1694.90; C2 2025-05-01: 1743.97 -> 1743.96; C2 2025-10-01: 1784.85 -> 1784.84; C2 2026-07-01: 1827.37 -> 1827.35; C1 2024-03-01: 1852.88 -> 1852.87; C1 2025-05-01: 1908.29 -> 1908.27; C1 2025-10-01: 1954.47 -> 1954.44; C1 2026-07-01: 2002.49 -> 2002.46; B3 2024-03-01: 1964.85 -> 1964.84; B3 2025-05-01: 2024.85 -> 2024.84; B3 2025-10-01: 2074.85 -> 2074.84; B3 2026-07-01: 2126.85 -> 2126.84; B2 2025-05-01: 2142.24 -> 2142.23; B2 2025-10-01: 2196.06 -> 2196.05; B2 2026-07-01: 2252.04 -> 2252.02; B1 2025-10-01: 2311.16 -> 2311.15; B1 2026-07-01: 2371.11 -> 2371.10; B1S 2025-10-01: 2363.93 -> 2363.92; B1S 2026-07-01: 2425.41 -> 2425.40; Q 2025-05-01: 2732.71 -> 2732.70; Q 2026-07-01: 2882.11 -> 2882.10. |
+| 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Arts. 10 A) and 11 of the CCNL 19.1.2021 (pp. 108-109 of the 2024 edition; the 2024 renewal pages do not touch sickness): comporto 12 months, 180 days of 100% of the net pay and 6 months of 50%, counted over the 36 months before each day of absence, from day 1. The file kept a carenza of 60% and 75% for 180 days of one illness, from a pay-table page: corrected to a cumulation over three years at 100% then 50%. |
 
 ## Salary table
 
@@ -148,13 +149,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.

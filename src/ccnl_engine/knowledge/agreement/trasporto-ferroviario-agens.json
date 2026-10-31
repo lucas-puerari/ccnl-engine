@@ -200,6 +200,27 @@
           "Art. 68 punto 3.1: \"Gli importi dei minimi contrattuali di cui sopra sono comprensivi dell'ex indennità di contingenza (...) nonché dell'E.D.R. di cui al Protocollo Interconfederale del 31 luglio 1992 e dell'E.D.R. di cui all'accordo nazionale del 24.1.2008.\" This confirms the conglobated base_salary model of the file.",
           "The indennità di funzione Quadri (art. 71) is a separate element of pay (art. 68 punto 1.2 c), so the file's Q1/Q2 base_salary correctly excludes it."
         ]
+      },
+      {
+        "id": "2026-10-31-ai-sickness-comporto",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules"
+        ],
+        "scope": "The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+            "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
+          }
+        ],
+        "findings": [
+          "Art. 31 (pp. 81-82): comporto of 12 months summed over 36 consecutive months, the net pay integrated to 100% for 9 months (days 1-3 included) and 80% for 3. The file kept 100% for 540 days of one illness: corrected to a cumulation over three years (274 days at 100% of the net pay, 80% up to 365)."
+        ]
       }
     ]
   },
@@ -2454,7 +2475,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "3ca3415da5b3aac399636d3caa72e99a29c8dcf4b63fb083ea794563746f9a58",
+    "source_hash": "79284d681053128cf0d0d356bab7bd12c52f604849988b196393081933d893a7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2588,24 +2609,53 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 540,
+      "net_basis": true,
+      "cumulation": {
+        "window_years": 3,
+        "reset_after_days": null,
+        "reduced_integration_rate": "0",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 274,
+            "comporto_days": 365,
+            "steps": [
+              {
+                "day_from": 275,
+                "day_until": 366,
+                "integration_rate": "0.80"
+              }
+            ]
+          }
+        ]
+      },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-trasporto-ferroviario-agens-2025",
-            "title": "CCNL Attività Ferroviarie AGENS 2025",
-            "kind": "tabella_retributiva",
-            "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+            "document_id": "ccnl-mobilita-area-af-2025-05-22",
+            "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (OrSA Ferrovie)",
+            "kind": "associazione",
+            "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+            "published_on": "2025-05-22",
+            "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
           },
-          "section": "Art. malattia — 100% per 18 mesi (540gg)"
+          "page": "81-82",
+          "section": "Art. 31 Malattia e infortunio non sul lavoro, punti 6-7",
+          "quote": "6. Il lavoratore assente per malattia ha diritto alla conservazione del posto, con il riconoscimento dell’anzianità di servizio a tutti gli effetti, anche ai fini del passaggio alla posizione retributiva superiore nell’ambito dello stesso livello professionale, per un periodo di comporto di 12 mesi; durante tale periodo le aziende corrisponderanno al lavoratore assente per malattia o infortunio non sul lavoro un trattamento economico ad integrazione di quanto il lavoratore percepisce da parte degli Istituti previdenziali in forza di disposizioni legislative e/o di altre norme, compresi i primi 3 giorni di assenza, fino al raggiungimento del 100% del trattamento economico complessivo netto, [...] per i primi 9 mesi ed all’80% del trattamento economico complessivo netto, [...] per i successivi 3 mesi. [...] 7. Nel caso di più assenze per malattia, anche in relazione a diversi eventi morbosi, il suddetto periodo di conservazione del posto si intende riferito alle assenze complessivamente verificatesi in un arco temporale di 36 mesi consecutivi."
         },
+        "transformation": "Art. 31 pp. 6-7: the sick days of the 36 consecutive months that end on the day are summed; the job is kept 12 months of them (365 days); the integration of the INPS indemnity reaches 100% of the net pay for the first 9 months (274 days, months of 365/12 days, the first 3 days included) and 80% for the next 3, up to day 365. The rates are of the net pay: the INPS share is grossed up by the worker's INPS rate (net_basis). Stored as a cumulation of one band over a three-year window. Read on 2026-10-31.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2025-05-22"
-        }
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-31T12:00:00Z",
+          "effective_from": "2025-05-22",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-31T12:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-31-ai-sickness-comporto"
+        },
+        "note": "Not modelled: the comporto of 15 months, the extension paid 50%, when the illness in progress at its end lasts more than 40 days; the continuous hospital stays over 20 days left out of the comporto; the 30 months in 36 of the serious illnesses of p. 8 (100% for 18 months, 70% for 12); the absences of p. 10 (organ donation, pregnancy) left out of the 12 months."
       }
     }
   }

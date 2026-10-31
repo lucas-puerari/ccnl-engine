@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 57 verified / 0 derived / 30 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 58 verified / 0 derived / 29 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-17 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-10-31 |
 | **Latest salary tranche** | 2029-12-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-17 | claude-opus-5-5 (ai) | The tabellare of the seven levels from December 2024 to December 2029 against the ipotesi di rinnovo of 17 December 2025. | corrected | 56 tabellari (seven levels, eight columns, pp. 7-9 of the signed scan, read by OCR and on the page images) move from assumed to verified.<br>Corrected: level 2 from 1 December 2029 is 1.727,83 in the text (1.716,16 + 11,67, and the table 'a regime'), not 1.727,84; the file reproportioned the level 5 tranche instead of reading the table.<br>The 21 tabellari of November 2022, July 2023 and July 2024 stay assumed: the accordo of 27 October 2022 (Art. 35) prints only the increments of the 5th level, 'riferito al 5° livello', and no table of the other levels was found. |
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 38 Tredicesima mensilità (p. 22): "Nel caso di inizio o di cessazione del rapporto durante il corso dell'anno, il lavoratore non in prova avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese non superiori ai 15 giorni non saranno calcolate, mentre saranno considerate come mese intero se superiori ai 15 giorni.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
+| 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 44 of the CCNL 18.9.2014 (pp. 25-26, OCR of the signed scan): comporto 9 months of one illness and 10 months within the 24 months before; integration to 100% of the net pay from day 1 for at most 180 days in the calendar year. The file kept 180 days of one illness as the comporto: corrected (max_duration_days 274, a window of 24 months and 304 days, integration ending on day 180 of the illness). |
 
 ## Salary table
 
@@ -197,13 +198,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.

@@ -151,6 +151,27 @@
         "findings": [
           "Art. 17 - Tredicesima e Quattordicesima mensilità (p. 15): \"il lavoratore non in prova, avrà diritto a tanti dodicesimi dell'ammontare delle mensilità accessorie e per quanti sono stati i mesi interi di servizio prestato, calcolando come mese intero la frazione di mese uguale o superiore a 15 giorni e trascurando invece quella inferiore a 15 giorni.\". Match: at_least 15."
         ]
+      },
+      {
+        "id": "2026-10-31-ai-sickness-comporto",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules"
+        ],
+        "scope": "The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+            "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+          }
+        ],
+        "findings": [
+          "Art. 26 (pp. 20-21) of the shore-staff section: the comporto is 10 months of one illness and 330 days of several within the last three years, with the whole pay; the carenza of the 4th-6th event of the year is paid 50%, from the 7th 30%. The file kept a comporto of 180 days of one illness with no event reduction: corrected (max_duration_days 304, a window of 36 months and 330 days, carenza_by_event). The 18 months of a serious illness are not modelled."
+        ]
       }
     ]
   },
@@ -1496,7 +1517,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "b07eef2158d108bdd2d88dac1672031d06a5b046345e5cd814d3668f5be4e2a1",
+    "source_hash": "971d3f421c1ecd812bf361efffc88349baa75bdbf741c33a47d345eb840a1017",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1702,24 +1723,50 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 180,
+      "carenza_by_event": {
+        "from_event": 4,
+        "rates": [
+          "0.50",
+          "0.50",
+          "0.50",
+          "0.30"
+        ]
+      },
+      "max_duration_days": 304,
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 36,
+          "comporto_days": 330
+        }
+      ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "ccnl-marittimi-industria-armatoriale-2024",
-            "title": "CCNL Industria Armatoriale — Personale di Terra 2024-2026",
-            "kind": "tabella_retributiva",
-            "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+            "title": "CCNL Industria Armatoriale, Sezione per il personale di terra - uffici e terminals delle Società di Navigazione, 11 luglio 2024 (FILT CGIL)",
+            "kind": "associazione",
+            "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+            "published_on": "2024-07-11",
+            "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
           },
-          "section": "Art. malattia — integrazione al 100% per 180 giorni"
+          "page": "20-21",
+          "section": "Art. 26 - Trattamento in caso di malattia o infortunio, B) Trattamento economico, C) Periodo di comporto",
+          "quote": "Nel corso di ciascun anno di calendario, nel caso di susseguirsi di più eventi di malattia (l’ipotesi di continuazione di malattia è considerata un unico evento morboso), il trattamento economico di malattia, anche qualora esso sia erogato dall’INPS, verrà così corrisposto: - per i primi 3 eventi al 100% della retribuzione giornaliera di riferimento; - dal 4° al 6° evento, limitatamente ai primi 3 giorni di malattia (periodo di carenza) indicati nel certificato medico, al 50% della retribuzione giornaliera di riferimento; [...] - dal 7° evento, limitatamente ai primi 3 giorni di malattia (periodo di carenza) indicati nel certificato medico, al 30% della retribuzione giornaliera di riferimento. [...] In caso di assenza per un singolo evento di malattia la Società conserverà al dipendente, non in prova, il posto di lavoro per un periodo almeno pari a 10 mesi, senza interruzione di anzianità, corrispondendo l’intera retribuzione, fermo restando quanto previsto al paragrafo B (comporto secco). Fermo restando quanto previsto al paragrafo B), qualora nell’arco dell’ultimo triennio il dipendente raggiunga, per effetto di più eventi morbosi, assenze complessive per malattia almeno pari a 330 giorni, per i quali sarà corrisposta l’intera retribuzione, la Società potrà procedere alla risoluzione del rapporto di lavoro (comporto per sommatoria)."
         },
+        "transformation": "Art. 26 B)-C): the whole pay for every sick day of the comporto; the comporto is 10 months of one illness (304 days, months of 365/12 days, 'comporto secco') and 330 sick days within the last three years (the 36 months that end on the day, 'comporto per sommatoria'). The first 3 days of the 4th to 6th event of the calendar year are paid 50%, of the 7th and later 30%; a continued illness is one event, and the hospital stays, day hospital, dialysis and illnesses of pregnancy are not counted (SicknessEpisode.short_absence_exempt). Read on 2026-10-31.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-07-01"
-        }
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-31T12:00:00Z",
+          "effective_from": "2024-07-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-31T12:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-31-ai-sickness-comporto"
+        },
+        "note": "Art. 26 D): an illness of particular gravity (neoplasie invalidanti, sclerosi multipla, trapianti...) keeps the job 18 months, 540 days within the three years, with the whole pay; the engine applies the ordinary comporto to it."
       }
     }
   }

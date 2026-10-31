@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-11-19 |
-| **Last review** | 2026-10-15 |
+| **Last review** | 2026-10-31 |
 | **Latest salary tranche** | 2026-11-01 |
 
 ## Review history
@@ -71,6 +71,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'straordinario, notturno, festivo, turni e maggiorazioni cumulabili', re-read on the full text published by a party, found on 15 October 2026. | corrected | Art. 22 (p. 84): straordinario 25% and straordinario festivo 45% match; straordinario notturno is 55%, not 45%: corrected; the rates apply to the retribuzione di fatto (hourly base gross_incl_allowances) and do not cumulate (night holiday 55%). The unconfirmed-rates limitation is resolved; the Saturday rule and the ordinary night and holiday work are declared. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'ferie, permessi, festività, assenze, malattia e comporto', re-read on the full text published by a party, found on 15 October 2026. | corrected | Sickness of the operai (Art. 61, pp. 137-138): top-up to 100% of the net pay from the fourth day (from the first past 7 days), for at most 150 days; the file paid 100% from the first day for 180 days: corrected. The impiegati rule of Art. 73 (p. 147) is declared by category.<br>Ferie 160 hours, 20 days (Art. 58, p. 133): verified. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the amounts of the declared contributions, read on the full text published by a party. | confirmed | Bilateralità 11,65 euro a month, FSBA 0,45% + 0,15%, San.Arti 10,42 euro a month and the E.a.r. of 30 and 25 euro read on pp. 30-32: the declared limitation now states every amount. |
+| 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 61 (pp. 137-138): the job is kept 9 months for one illness and 10 months 'nell'arco dei 24 mesi precedenti' for several; the integration lasts at most 150 days. The file stored the 150 days as max_duration_days, the comporto: corrected to 274 days of one illness and 304 within 24 months (comporto_windows), the integration ending on day 150 by a tier of rate 0 from the sixth month. |
 
 ## Salary table
 
@@ -172,13 +173,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.

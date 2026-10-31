@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 35 verified / 8 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 36 verified / 7 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-09 |
-| **Last review** | 2026-10-14 |
+| **Last review** | 2026-10-31 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-14 | claude-opus-5-5 (ai) | Second review of the credito group: stipendio of the eleven levels in the three tranches, scatti, number of monthly payments, against the testo coordinato signed on 19 December 2024. | corrected | The 33 stipendi match Allegato A (p. 149) except two 2026 values, one cent off: 3ª Area 1° livello 2742.35 corrected to 2742.34, 2ª Area 2° livello 2572.10 corrected to 2572.11.<br>13 monthly payments: verified (Art. 46, tredicesima; no further monthly payment in the text).<br>Scatti: amounts match Allegato A; at most 8 for the 1st and 2nd level of the quadri, not 12: the 12 apply only to staff in service on 31 December 1997 (Art. 101). Corrected; the 1997 cohort is noted.<br>The FABI URL of the text no longer serves the PDF; the same signed text is cited from its Eutekne reproduction.<br>Not reviewed here: the hourly pay of Art. 114 (90.66% of one twelfth of the annual pay, divided by 160) and the overtime rates, which stay derived. |
+| 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 55 (p. 75) of the testo coordinato signed on 19.12.2024: the job and the whole pay are kept 6, 8, 12, one month per year up to 18, or 22 months by seniority, summing the absences of the 18 months before. The file kept 180 days of one illness: corrected to a cumulation over 18 months with ten seniority bands. The FABI copy cited before returns 404; the Eutekne copy of the same signed text is cited. |
 
 ## Salary table
 
@@ -148,13 +149,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.

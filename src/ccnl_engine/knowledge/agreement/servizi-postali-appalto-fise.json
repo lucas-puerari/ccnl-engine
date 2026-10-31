@@ -148,6 +148,27 @@
         "findings": [
           "Art. 37 - Tredicesima mensilità (p. 53): \"Ai fini di cui sopra saranno calcolate come mese intero le frazioni di mese superiori ai 15 giorni; diversamente tali frazioni non saranno computate.\". Match: more_than 15."
         ]
+      },
+      {
+        "id": "2026-10-31-ai-sickness-comporto",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules"
+        ],
+        "scope": "The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+            "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
+          }
+        ],
+        "findings": [
+          "Art. on malattia e infortunio (pp. 42-43): the comporto is twelve months of sickness summed over the 36 months before the last sick day; the operai are paid 100% up to day 180 counted over the same window and 50% after, the impiegati the whole pay for 6 months and 50% for 6 more within 18 months. The file kept 180 days of one illness: corrected to a cumulation over three years (180 days at 100%, 50% up to 365)."
+        ]
       }
     ]
   },
@@ -1705,7 +1726,7 @@
     "effective_until": null,
     "source": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
     "verification_status": "unverified",
-    "source_hash": "87ccf2ad7d973387386782a2f28d0f6384cfa4fc2e86bc271e55acb56a74583c",
+    "source_hash": "e1e187b63b5ba19f2f451c884f780c9b3d61be46925d74c3c134571aff80ebee",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1911,24 +1932,45 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 180,
+      "cumulation": {
+        "window_years": 3,
+        "reset_after_days": null,
+        "reduced_integration_rate": "0.50",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 180,
+            "comporto_days": 365
+          }
+        ]
+      },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-servizi-postali-appalto-fise-2024",
-            "title": "CCNL Servizi Postali in Appalto FISE 2024",
-            "kind": "tabella_retributiva",
-            "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+            "document_id": "ccnl-servizi-postali-appalto-2023",
+            "title": "CCNL per imprese esercenti servizi postali in appalto, 21 dicembre 2023, versione stampa (SLP-CISL)",
+            "kind": "associazione",
+            "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+            "published_on": "2023-12-21",
+            "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
           },
-          "section": "Art. malattia"
+          "page": "42-43",
+          "section": "Malattia e infortunio, B) Conservazione del posto (cc. 11-12), C) Trattamento economico (cc. 17-21)",
+          "quote": "11. Il lavoratore ha diritto alla conservazione del posto per un periodo di dodici mesi in caso di malattia e sino alla data di guarigione clinica in caso di infortunio, senza interruzione di anzianità. 12. Il diritto alla conservazione del posto viene a cessare qualora il lavoratore anche con più periodi di infermità superi in complesso i dodici mesi di assenza nell’arco di trentasei mesi consecutivi. A tale fine si procede al cumulo dei periodi di assenza per malattia verificatisi nell’arco temporale degli ultimi trentasei mesi che precedono l’ultimo giorno di malattia considerato [...] Per le assenze per causa di malattia all’operaio sarà corrisposto a partire dal 1° giorno lavorativo di assenza fino al 180° giorno, calcolati anche con periodi discontinui nell’arco di tempo di cui alla lettera B) del presente articolo, una integrazione del trattamento INPS fino a raggiungere il 100% della retribuzione base. Dal 181° giorno e fino alla conservazione del posto il 50% della retribuzione globale. [...] Per le assenze per causa di malattia all’impiegato sarà corrisposta l’intera retribuzione globale per i primi 6 mesi e il 50% della stessa per i successivi 6 mesi."
         },
+        "transformation": "B) cc. 11-12: the sick days of the 36 months that end on the day are summed; the job is kept for twelve months of them (365 days). C) c. 18 (operai): 100% from the first day up to the 180th day counted over the same 36 months, 50% from the 181st to the end of the comporto; c. 19 (impiegati): the whole pay for 6 months (180 days) and 50% for the next 6. Stored as a cumulation of one band over a three-year window: 180 days at 100%, then 50% up to 365. Read on 2026-10-31.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-06-23"
-        }
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-31T12:00:00Z",
+          "effective_from": "2024-06-23",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-31T12:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-31-ai-sickness-comporto"
+        },
+        "note": "C) c. 21 counts the treatment of the impiegati over 18 consecutive months, not 36: an impiegato with earlier sick days 18 to 36 months before reaches the 50% earlier in the engine than in the CCNL. The operai are paid 100% of the retribuzione base and 50% of the retribuzione globale; the engine takes both on its daily quota."
       }
     }
   }
