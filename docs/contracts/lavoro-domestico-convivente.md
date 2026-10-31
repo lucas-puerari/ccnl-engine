@@ -141,12 +141,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source from the Cas.Sa.Colf rules whether the tredicesima carries contributable hours and set them for extra-month runs.
 
-!!! warning "lavoro-domestico-convivente/oncological_comporto · sickness · impact unknown · open"
+!!! note "lavoro-domestico-convivente/oncological_comporto · sickness · impact unknown · resolved"
     Art. 27 c. 6: the comporto is 50% longer for an oncological illness certified by the ASL. The episode can state a serious illness (SicknessEpisode.serious_illness), but the domestic sickness rules have no serious-illness rule, so the engine keeps the ordinary comporto (review of 2026-10-30).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the serious-illness rule of Art. 27 c. 6 (comporto 50% longer) to the sickness rules.
+    **Remediation:** Resolved: the bands carry the comporto of an oncological illness (serious_comporto_days 15, 68 and 270 days, the periods of c. 4 raised by 50%), applied when the episode states SicknessEpisode.serious_illness; 45 x 1.5 = 67.5 is read as 68, the 68th day being still in part within the period.
 
 !!! warning "lavoro-domestico-convivente/sick_board_lodging · sickness · impact unknown · open"
     Art. 27 c. 9: the conventional value of board and lodging is part of the sick pay only when the worker is not in hospital or in the employer's home. The request does not say where the worker is, so the engine pays the monthly pay as stated.

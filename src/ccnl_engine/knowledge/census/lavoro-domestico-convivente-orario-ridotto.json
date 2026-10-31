@@ -211,22 +211,6 @@
       }
     },
     {
-      "id": "oncological_comporto",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 27 c. 6: the comporto is 50% longer for an oncological illness certified by the ASL. The episode can state a serious illness (SicknessEpisode.serious_illness), but the domestic sickness rules have no serious-illness rule, so the engine keeps the ordinary comporto (review of 2026-10-30).",
-      "calculation": "ccnl/lavoro-domestico-convivente-orario-ridotto:coverage.notes",
-      "state": "unverified",
-      "remediation": "Add the serious-illness rule of Art. 27 c. 6 (comporto 50% longer) to the sickness rules.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "lavoro-domestico-convivente-orario-ridotto/oncological_comporto"
-        ]
-      }
-    },
-    {
       "id": "parental_daily_base",
       "institute": "parental_leave",
       "variant": "all",

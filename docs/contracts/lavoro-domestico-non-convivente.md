@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | assistance_contribution, base_salary, inps_employer, seniority, sickness |
+| **Limits of this contract** | assistance_contribution, base_salary, inps_employer, seniority |
 
 8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -130,12 +130,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source from the Cas.Sa.Colf rules whether the tredicesima carries contributable hours and set them for extra-month runs.
 
-!!! warning "lavoro-domestico-non-convivente/oncological_comporto · sickness · impact unknown · open"
+!!! note "lavoro-domestico-non-convivente/oncological_comporto · sickness · impact unknown · resolved"
     Art. 27 c. 6: the comporto is 50% longer for an oncological illness certified by the ASL. The episode can state a serious illness (SicknessEpisode.serious_illness), but the domestic sickness rules have no serious-illness rule, so the engine keeps the ordinary comporto (review of 2026-10-30).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the serious-illness rule of Art. 27 c. 6 (comporto 50% longer) to the sickness rules.
+    **Remediation:** Resolved: the bands carry the comporto of an oncological illness (serious_comporto_days 15, 68 and 270 days, the periods of c. 4 raised by 50%), applied when the episode states SicknessEpisode.serious_illness; 45 x 1.5 = 67.5 is read as 68, the 68th day being still in part within the period.
 
 !!! warning "lavoro-domestico-non-convivente/hourly_inps_bracket_unvalidated · inps_employer · impact unknown · open"
     INPS BAND: the band of up to 24 weekly hours is chosen on the paga oraria effettiva of INPS (circ. 9/2026; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico): the monthly pay with board and lodging over the hours of the employment (weekly hours x 52 / 12), raised by the tredicesima (x 13 / 12).
@@ -156,7 +156,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Resolved as a duplicate of lavoro-domestico-non-convivente/oncological_comporto, which stays open (review of 2026-10-30): both track the 50% longer comporto of Art. 27 c. 6 for an oncological illness.
+    **Remediation:** Resolved as a duplicate of lavoro-domestico-non-convivente/oncological_comporto, resolved in turn: both track the 50% longer comporto of Art. 27 c. 6 for an oncological illness.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
