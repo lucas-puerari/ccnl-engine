@@ -45,7 +45,10 @@ if TYPE_CHECKING:
     from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
     from ccnl_engine.period.requests import PeriodCalculationRequest
 
-__all__ = ["run_settlements", "settlement_issues"]
+__all__ = ["ABSENCES_UNKNOWN", "run_settlements", "settlement_issues"]
+
+#: The ratei liquidated count the absences of the run only.
+ABSENCES_UNKNOWN = "termination_window_absences_unknown"
 
 _EXTRA_MONTHS = frozenset({RunKind.THIRTEENTH, RunKind.FOURTEENTH})
 
@@ -198,7 +201,7 @@ def _paid_issue(kind: str) -> CalculationIssue:
 
 def _absences_issue() -> CalculationIssue:
     return CalculationIssue(
-        code="termination_window_absences_unknown",
+        code=ABSENCES_UNKNOWN,
         capability="base_salary",
         message=(
             "the ratei liquidated at the termination count the absences of this "
