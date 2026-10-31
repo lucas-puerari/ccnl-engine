@@ -79,11 +79,10 @@ class EpisodePay:
 
     @property
     def sick_days(self) -> frozenset[date]:
-        """Days of the segments within the comporto."""
+        """Days of the segments, within the comporto and past it."""
         return frozenset(
             s.first + timedelta(days=step)
             for s in self.segments
-            if s.kind is not SickDayKind.BEYOND_COMPORTO
             for step in range((s.last - s.first).days + 1)
         )
 
@@ -110,31 +109,21 @@ def _quota(chain: MonthlyPayChain, units: Decimal, divisor: Decimal) -> Decimal:
 
 
 def _within_month(
-    segments: tuple[SickDaySegment, ...],
-    units: tuple[Decimal, ...],
-    counted: Decimal,
-    divisor: Decimal,
+    units: tuple[Decimal, ...], counted: Decimal, divisor: Decimal
 ) -> tuple[Decimal, ...]:
     """Clip the deducted units so the month never counts more than ``divisor``.
 
     Episodes of the same month are counted from their own first day, so
     their units can add up to more than a monthly pay (27 working days of a
     ``by_26`` month).  The units past what is left of the month after the
-    ``counted`` units of earlier episodes are dropped; the days past the
-    comporto, not deducted, keep theirs.
+    ``counted`` units of earlier episodes are dropped.
 
     Returns:
         One unit count per segment, in segment order.
     """
-    # Segments and units are built together, one count per segment, so the
-    # ``strict`` of their ``zip`` never matters: its mutants are equivalent
-    # and not generated.
     left = divisor - counted
     clipped: list[Decimal] = []
-    for segment, unit in zip(segments, units, strict=True):  # pragma: no mutate
-        if segment.kind is SickDayKind.BEYOND_COMPORTO:
-            clipped.append(unit)
-            continue
+    for unit in units:
         kept = min(unit, left)
         left -= kept
         clipped.append(kept)
@@ -188,8 +177,9 @@ def _segment_pay(
 ) -> tuple[Decimal, Decimal, Decimal]:
     """Return the INPS advance, integration and carenza pay of one segment.
 
-    A day past the fixed-term limit (D.L. 463/1983 art. 5) is unpaid; an
-    INPS share paid by INPS directly is not advanced.
+    A day past the fixed-term limit (D.L. 463/1983 art. 5) is unpaid; a day
+    past the comporto has the INPS share alone (art. 2110 c.c.); an INPS
+    share paid by INPS directly is not advanced.
 
     Returns:
         ``(inps, integration, carenza)`` of the segment.
@@ -202,7 +192,7 @@ def _segment_pay(
         if segment.kind is not SickDayKind.CARENZA and not segment.inps_direct
         else _ZERO
     )
-    if excluded:
+    if excluded or segment.kind is SickDayKind.BEYOND_COMPORTO:
         return advanced, _ZERO, _ZERO
     worker = money(base * segment.worker_rate)
     if segment.kind is SickDayKind.CARENZA:
@@ -231,7 +221,6 @@ def episode_pay(
         return None
     segments = classify_days(episode, span, terms.history, rules)
     units = _within_month(
-        segments,
         segment_units(segments, quota.method, quota.divisor, quota.daily_hours),
         terms.counted,
         quota.divisor,
@@ -242,7 +231,7 @@ def episode_pay(
     counted = terms.counted
     before = _quota(chain, counted, quota.divisor)
     for segment, unit in zip(segments, units, strict=True):  # pragma: no mutate
-        if segment.kind is SickDayKind.BEYOND_COMPORTO or unit == _ZERO:
+        if unit == _ZERO:
             continue
         counted += unit
         reached = _quota(chain, counted, quota.divisor)

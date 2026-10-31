@@ -63,30 +63,23 @@ def test_bands_rounded_once_add_up_to_the_month() -> None:
     assert month - nine == Decimal("1445.93")
 
 
-def test_units_past_the_month_are_dropped() -> None:
-    """13 days already counted by an earlier episode leave 13 of 26."""
-    segments = (
-        _segment(16, 18, SickDayKind.CARENZA),
-        _segment(19, 31, SickDayKind.INDEMNIFIED),
-    )
-    units = (Decimal(3), Decimal(11))
-    assert _within_month(segments, units, Decimal(13), _DIVISOR) == (
-        Decimal(3),
-        Decimal(10),
-    )
-
-
-def test_days_past_the_comporto_keep_their_units() -> None:
-    """They are not deducted, so they neither spend nor need the month left."""
-    segments = (
-        _segment(1, 10, SickDayKind.INDEMNIFIED),
-        _segment(11, 31, SickDayKind.BEYOND_COMPORTO),
-    )
-    units = (Decimal(9), Decimal(17))
-    assert _within_month(segments, units, Decimal(20), _DIVISOR) == (
-        Decimal(6),
-        Decimal(17),
-    )
+@pytest.mark.parametrize(
+    ("units", "counted", "kept"),
+    [
+        # 13 days already counted by an earlier episode leave 13 of 26.
+        ((3, 11), 13, (3, 10)),
+        # Days past the comporto are deducted too: they spend the month.
+        ((9, 17), 20, (6, 0)),
+        ((5, 4, 18), 10, (5, 4, 7)),
+    ],
+)
+def test_units_past_the_month_are_dropped(
+    units: tuple[int, ...], counted: int, kept: tuple[int, ...]
+) -> None:
+    """The units of a month never pass its divisor, in day order."""
+    assert _within_month(
+        tuple(map(Decimal, units)), Decimal(counted), _DIVISOR
+    ) == tuple(map(Decimal, kept))
 
 
 def _rules(*, net_basis: bool) -> SickPayRules:
@@ -158,22 +151,12 @@ def test_the_carenza_is_paid_by_the_employer_alone() -> None:
     assert _paid(SickDayKind.CARENZA) == (Decimal(0), Decimal(0), Decimal("300.00"))
 
 
-def test_days_back_within_a_rolling_comporto_are_still_clipped() -> None:
-    """Days within the comporto again after days past it still spend the month.
-
-    A rolling comporto window can drop the sick days of old episodes, so a
-    day past the comporto may be followed by days within it.
-    """
-    segments = (
-        _segment(1, 5, SickDayKind.INDEMNIFIED),
-        _segment(6, 10, SickDayKind.BEYOND_COMPORTO),
-        _segment(11, 31, SickDayKind.INDEMNIFIED),
-    )
-    units = (Decimal(5), Decimal(4), Decimal(18))
-    assert _within_month(segments, units, Decimal(10), _DIVISOR) == (
-        Decimal(5),
-        Decimal(4),
-        Decimal(11),
+def test_past_the_comporto_inps_alone_pays() -> None:
+    """Art. 2110 c.c.: the INPS 50% of 300.00 advanced, no CCNL top-up."""
+    assert _paid(SickDayKind.BEYOND_COMPORTO) == (
+        Decimal("150.00"),
+        Decimal(0),
+        Decimal(0),
     )
 
 

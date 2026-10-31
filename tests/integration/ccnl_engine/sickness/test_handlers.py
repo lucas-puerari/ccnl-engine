@@ -264,21 +264,25 @@ class TestMissingRulesAndFacts:
         assert issue.fact == "category"
         assert _sick(result)["intg"] == Decimal("166.02")
 
-    def test_days_past_the_comporto_are_left_out(self) -> None:
+    def test_days_past_the_comporto_have_no_ccnl_pay(self) -> None:
         """Sick from 1 January: only 1 and 2 July are within the comporto.
 
         January to June are 31 + 28 + 31 + 30 + 31 + 30 = 181 days, so 1 and
         2 July (Wednesday, Thursday) are days 182 and 183 of the 183-day
         comporto, past the 122 full-pay days and past the 180 INPS days:
-        2211.43 * 2 / 26 = 170.11 deducted, 170.11 * 0.80 = 136.088, 136.09
-        paid by the employer.  From 3 July the days are left out.
+        170.11 * 0.80 = 136.088, 136.09 paid by the employer on their 2211.43
+        * 2 / 26 = 170.11.  From 3 July the comporto is past: the days are
+        deducted too, the whole month, 2211.43, and only INPS could pay them
+        (art. 2110 c.c.), here nothing, past its 180 days of the year.
         """
         long = sickness_episode("a", date(2026, 1, 1), date(2026, 7, 31))
         result = calculate_period(
             _req(7, long), repo=bundled_repository(), resolver=bundled_policies()
         )
         assert _decision(result).reason_code == "sickness_beyond_comporto"
-        assert _sick(result) == {"abs": Decimal("170.11"), "intg": Decimal("136.09")}
+        assert _sick(result) == {"abs": Decimal("2211.43"), "intg": Decimal("136.09")}
+        (issue,) = (i for i in result.issues if i.code == "sickness_beyond_comporto")
+        assert issue.status.value == "provisional"
 
 
 def test_hourly_quota_counts_hours() -> None:

@@ -184,6 +184,36 @@ def test_days_past_the_comporto_are_set_apart() -> None:
     ]
 
 
+def test_inps_still_pays_past_a_comporto_shorter_than_its_days() -> None:
+    """A 60-day comporto from 1 January: 2 March is day 61, INPS 66.66% alone.
+
+    Art. 2110 c.c.: the comporto ends the CCNL pay and the protection of the
+    job; INPS pays by its own days, 180 a year.
+    """
+    short = _FULL.model_copy(update={"max_duration_days": 60})
+    episode = _episode("a", date(2026, 1, 1), date(2026, 3, 31))
+    segments = classify_days(
+        episode, (date(2026, 3, 1), date(2026, 3, 2)), SicknessHistory(), _rules(short)
+    )
+
+    assert _shape(segments) == [
+        (
+            date(2026, 3, 1),
+            date(2026, 3, 1),
+            SickDayKind.INDEMNIFIED,
+            _TWO_THIRDS,
+            _ONE,
+        ),
+        (
+            date(2026, 3, 2),
+            date(2026, 3, 2),
+            SickDayKind.BEYOND_COMPORTO,
+            _TWO_THIRDS,
+            _TWO_THIRDS,
+        ),
+    ]
+
+
 def test_without_cover_the_ccnl_target_applies() -> None:
     """Unknown cover pays no INPS share; a CCNL without integration pays INPS."""
     episode = _episode("a", date(2026, 3, 9), date(2026, 3, 13))
