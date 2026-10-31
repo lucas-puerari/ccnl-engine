@@ -13,6 +13,7 @@ limitation ``extraordinary_leave_daily_base``.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -133,9 +134,11 @@ def _handle_extraordinary_leave(
         ),
         ctx,
     )
-    effect.decisions = [
-        _decision(EXTRAORDINARY, terms, span, pay, modelled=True, advanced=True)
-    ]
+    decision = _decision(EXTRAORDINARY, terms, span, pay, modelled=True, advanced=True)
+    if issues:
+        provisional = CalculationStatus.PROVISIONAL
+        decision = replace(decision, status=provisional, reason_code=issues[0].code)
+    effect.decisions = [decision]
     effect.issues = issues
     effect.limitations = (EXTRAORDINARY_BASE_LIMITATION,)
     return effect
