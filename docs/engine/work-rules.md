@@ -481,8 +481,10 @@ whose month it touches. The run deducts the days at the CCNL daily quota
   (`DisabilityPermitEvent.hours`, at most the three days as hours: weekly
   hours over the working days of the week, times three, INPS msg.
   16866/2007, which the engine does not check) are deducted and paid back
-  at the hourly pay of the CCNL, the full-time monthly pay over the CCNL
-  hourly divisor. The daily hours of art. 33 cc. 2 and 6 are not modelled;
+  at the CCNL hourly base of their day, the one an overtime hour without
+  the caller's rate is paid with; where the engine cannot derive it the
+  hours post nothing, with the `incomplete` issue
+  `disability_permit_hours_underived`. The daily hours of art. 33 cc. 2 and 6 are not modelled;
 - extraordinary leave (D.Lgs. 151/2001 art. 42 c. 5): each day of the
   span is deducted as an unpaid absence (`absence_deduction`, out of the
   INPS and TFR bases) and paid back as the INPS indemnity (`maternity_item`):
