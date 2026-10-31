@@ -64,7 +64,6 @@ from ccnl_engine.termination.naspi.services import EXCEPTIONS as NASPI_EXCEPTION
 from ccnl_engine.termination.notice.handlers import DAY_MEASURE as NOTICE_DAY_MEASURE
 from ccnl_engine.termination.notice.handlers import EXTRA_MONTHS as NOTICE_EXTRA_MONTHS
 from ccnl_engine.termination.notice.handlers import PARTIAL as NOTICE_PARTIAL
-from ccnl_engine.termination.notice.handlers import TFR as NOTICE_TFR
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
@@ -142,7 +141,6 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         EXTRAORDINARY_BASE_LIMITATION,
         NOTICE_PARTIAL,
         NOTICE_EXTRA_MONTHS,
-        NOTICE_TFR,
         NOTICE_DAY_MEASURE,
         HOURLY_CCNL_LIMITATION,
         NASPI_EXCEPTIONS,
@@ -152,6 +150,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         _MIDPOINT,
         _APPRENTICE_SENIORITY,
         "sickness_inps_daily_base",
+        "notice_indemnity_tfr",
     }
 
 

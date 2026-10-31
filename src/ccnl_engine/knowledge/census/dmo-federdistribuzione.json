@@ -211,22 +211,6 @@
       }
     },
     {
-      "id": "notice_indemnity_tfr",
-      "institute": "termination_notice",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The notice indemnity enters the TFR base as payroll practice holds; art. 2120 c. 2 c.c. counts the sums paid 'a titolo non occasionale' and no primary source read settles whether this indemnity is among them, so the TFR quota of the termination run may be overstated.",
-      "calculation": "ccnl_engine.termination.notice.handlers._handle_notice_indemnity; art. 2120 c.c. (Normattiva, page sha256 45dbc6519992406a3ed0e764b69b7367c8ebf6151d28e3ec193fe868e7b98c27)",
-      "state": "unverified",
-      "remediation": "Source the TFR treatment of the notice indemnity (case law of the Cassazione or a Ministry ruling) and apply it, then resolve this limitation.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "notice_indemnity_tfr"
-        ]
-      }
-    },
-    {
       "id": "ordinary_hours_premiums",
       "institute": "overtime",
       "variant": "all",

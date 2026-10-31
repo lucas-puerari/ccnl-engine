@@ -53,7 +53,6 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "extraordinary_leave_daily_base",
         "notice_indemnity_partial",
         "notice_indemnity_extra_months",
-        "notice_indemnity_tfr",
         "notice_indemnity_day_measure",
         "parental_hourly_ccnl_rule",
         "personal_withholding_same_kind",
@@ -63,6 +62,7 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "apprenticeship_midpoint_allowances",
         "apprentice_seniority_simplified",
         "sickness_inps_daily_base",
+        "notice_indemnity_tfr",
     }
     assert all(
         lim.applies_when.trigger is LimitationTrigger.PATH for lim in limitations

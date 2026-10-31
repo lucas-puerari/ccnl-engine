@@ -160,24 +160,23 @@ def test_a_notice_not_given_is_paid_and_taxed_at_the_tfr_rate() -> None:
     }
     assert separate[item.item_id] == Decimal("1200.36")
     assert sorted(separate.values()) == [Decimal("1200.36"), Decimal("4600.00")]
-    # The TFR base takes the indemnity: 5766.15 / 13.5 = 427.12, less the
-    # 0.50% IVS of L. 297/1982 on it, 28.83: the quota grows by 398.30 (one
+    # The TFR base leaves the indemnity out (Cass. 1581/2023): the quota
+    # loses only the 0.50% IVS of L. 297/1982 on its INPS base, 28.83 (one
     # cent of rounding on the whole run).
     quota = [
         sum(i.amount for i in r.pay_items if i.item_id.startswith("tfr_2026"))
         for r in (result, without)
     ]
-    assert abs(quota[0] - quota[1] - Decimal("398.30")) <= Decimal("0.01")
+    assert abs(quota[0] - quota[1] + Decimal("28.83")) <= Decimal("0.01")
     # The ordinary taxable moves only by the cents of the whole-euro INPS base.
     ordinary = (
         result.closing_state.cash.earnings.taxable,
         without.closing_state.cash.earnings.taxable,
     )
     assert abs(ordinary[0] - ordinary[1]) <= Decimal("0.05")
-    assert {lim.id for lim in result.limitations} >= {
-        "notice_indemnity_extra_months",
-        "notice_indemnity_tfr",
-    }
+    limitations = {lim.id for lim in result.limitations}
+    assert "notice_indemnity_extra_months" in limitations
+    assert "notice_indemnity_tfr" not in limitations
     assert "notice_indemnity_partial" not in {lim.id for lim in result.limitations}
 
 
