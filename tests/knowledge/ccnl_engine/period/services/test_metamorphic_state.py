@@ -2,7 +2,8 @@
 
 - the totals of every payment are the sums of its postings;
 - a year exported at June and imported back resumes as the year in one
-  pass;
+  pass, up to the settlement of an employment that ends in September, and
+  the state the end closes reads back from JSON;
 - the year plan and the same runs chained one by one, each opening with the
   state the run before closed, pay the same;
 - a fact the run needs, left unknown, blocks the feature it decides: an
@@ -37,6 +38,8 @@ from ccnl_engine.inputs import (
     PeriodState,
     Permanent,
     PriorYearTaxFacts,
+    period_state_from_json,
+    period_state_to_json,
 )
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
@@ -57,21 +60,26 @@ _PRIOR = PriorYearTaxFacts(employment_income=_D(40000))
 _EMPLOYER = EmployerProfile(headcount=Headcount(20))
 
 
-def _employment(ccnl: str) -> Employment:
+_ENDED = date(2026, 9, 30)
+
+
+def _employment(ccnl: str, ended_on: date | None = None) -> Employment:
     return Employment(
         ccnl_id=ccnl,
         level_code=_PRODUCTION[ccnl],
         seniority=new_hire(),
-        employment_period=EmploymentPeriod(date(2026, 1, 1)),
+        employment_period=EmploymentPeriod(date(2026, 1, 1), ended_on),
         contract_type=Permanent(),
     )
 
 
-def _year(ccnl: str, opening: PeriodState | None = None) -> CompetenceYearResult:
+def _year(
+    ccnl: str, opening: PeriodState | None = None, ended_on: date | None = None
+) -> CompetenceYearResult:
     return _ENGINE.calculate_competence_year(
         CompetenceYearPlan(
             year=2026,
-            employment=_employment(ccnl),
+            employment=_employment(ccnl, ended_on),
             employer=_EMPLOYER,
             default_facts=_FACTS,
             prior_year=_PRIOR,
@@ -122,11 +130,16 @@ def _exported(state: PeriodState) -> OpeningBalances:
         taxable=cash.earnings.taxable,
         inps_employee=cash.earnings.inps_employee,
         irpef_withheld=cash.tax.irpef,
+        trattamento_recognized=cash.trattamento.recognized,
+        trattamento_recovered=cash.trattamento.recovered,
         trattamento_due=cash.trattamento.due,
         trattamento_reason=cash.trattamento.reason,
+        somma_esente_recognized=cash.somma_esente.recognized,
+        somma_esente_recovered=cash.somma_esente.recovered,
         somma_esente_due=cash.somma_esente.due,
         somma_esente_reason=cash.somma_esente.reason,
         ulteriore_recognized=cash.ulteriore_detrazione.recognized,
+        ulteriore_recovered=cash.ulteriore_detrazione.recovered,
         ulteriore_due=cash.ulteriore_detrazione.due,
         ulteriore_reason=cash.ulteriore_detrazione.reason,
         recoveries=(),
@@ -159,6 +172,45 @@ def test_a_year_resumed_from_an_exported_june_pays_as_one_pass(ccnl: str) -> Non
     assert [r.period_net for r in resumed.period_results[-len(tail) :]] == [
         r.period_net for r in tail
     ]
+
+
+@pytest.mark.parametrize("ccnl", _CCNLS)
+def test_an_end_resumed_from_an_exported_june_settles_as_one_pass(ccnl: str) -> None:
+    """Leave, extra months and TFR the end pays: imported or accrued, the same."""
+    one = _year(ccnl, ended_on=_ENDED)
+    june = _june_index(one)
+    imported = _ENGINE.import_opening_balances(
+        _exported(one.period_results[june].closing_state)
+    )
+    end, resumed = (
+        one.period_results[-1],
+        _year(ccnl, imported, _ENDED).period_results[-1],
+    )
+
+    assert end.run is not None
+    assert (end.run.month, end.run.run_kind.value) == (9, "regular")
+    assert "termination_residual_leave" in {d.capability for d in end.decisions}
+    assert _by_account(resumed) == _by_account(end)
+    closed, reopened = end.closing_state.accrual, resumed.closing_state.accrual
+    assert (reopened.tfr_quotas, reopened.leave) == (closed.tfr_quotas, closed.leave)
+
+
+@pytest.mark.parametrize("ccnl", _CCNLS)
+def test_the_state_an_end_closes_reads_back_from_json_with_nothing_left(
+    ccnl: str,
+) -> None:
+    """A leave balance is closed only when paid; the TFR quota of the year is kept."""
+    end = _year(ccnl, ended_on=_ENDED).period_results[-1]
+    state = end.closing_state
+    leave = next(
+        d for d in end.decisions if d.capability == "termination_residual_leave"
+    )
+
+    assert period_state_from_json(period_state_to_json(state)) == state
+    assert state.accrual.leave.known
+    for balance in state.accrual.leave.balances:
+        assert balance.settled is (leave.amount is not None), balance
+    assert [q.year for q in state.accrual.tfr_quotas] == [2026]
 
 
 @pytest.mark.parametrize("ccnl", _CCNLS)
