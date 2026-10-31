@@ -12,6 +12,7 @@ import pytest
 
 from ccnl_engine.absence.inputs import AbsenceEvent, SickLeaveEvent
 from ccnl_engine.absence.insured.extraordinary.inputs import ExtraordinaryLeaveEvent
+from ccnl_engine.absence.insured.hours.inputs import LeaveHours
 from ccnl_engine.absence.insured.inputs import (
     MaternityLeaveEvent,
     PaternityLeaveEvent,
@@ -21,10 +22,8 @@ from ccnl_engine.absence.insured.parental.inputs import (
     ParentalLeaveEvent,
     ParentalLeaveTaken,
 )
-from ccnl_engine.absence.insured.permit.inputs import (
-    DisabilityPermitEvent,
-    PermitHours,
-)
+from ccnl_engine.absence.insured.permit.inputs import DisabilityPermitEvent
+from ccnl_engine.absence.insured.rest.inputs import NursingRestEvent
 from ccnl_engine.agreement.types import TaxSector
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.balance.serializers import STATE_TYPES
@@ -139,10 +138,9 @@ _EVENTS: dict[type, WorkEvent] = {
         HolidayWorkEvent(_DAY, _AMOUNT),
         MaternityLeaveEvent(_DAY, date(2026, 8, 7)),
         PaternityLeaveEvent((_DAY,)),
-        DisabilityPermitEvent(
-            (_DAY,), (PermitHours(date(2026, 3, 3), Decimal("1.5")),)
-        ),
+        DisabilityPermitEvent((_DAY,), (LeaveHours(date(2026, 3, 3), Decimal("1.5")),)),
         ExtraordinaryLeaveEvent(_DAY, _DAY, Decimal("2000.00")),
+        NursingRestEvent((LeaveHours(_DAY, Decimal(2)),), date(2026, 1, 15)),
         ParentalLeaveEvent(
             _DAY,
             _DAY,

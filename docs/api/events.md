@@ -26,6 +26,8 @@ gross, net and employer cost according to its treatment; see
 ::: ccnl_engine.events.LeaveTakenEvent
 ::: ccnl_engine.events.MaternityLeaveEvent
 
+::: ccnl_engine.events.NursingRestEvent
+
 ::: ccnl_engine.events.NightShiftEvent
 
 ::: ccnl_engine.events.OvertimeEvent
@@ -40,7 +42,7 @@ gross, net and employer cost according to its treatment; see
 
 ::: ccnl_engine.events.PeriodId
 
-::: ccnl_engine.events.PermitHours
+::: ccnl_engine.events.LeaveHours
 
 ::: ccnl_engine.events.ShiftKind
 

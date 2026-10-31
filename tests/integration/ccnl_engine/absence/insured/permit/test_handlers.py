@@ -25,7 +25,7 @@ from ccnl_engine import (
 )
 from ccnl_engine.compensation.individual.inputs import IndividualElement
 from ccnl_engine.employment.category.models import WorkerCategory
-from ccnl_engine.events import DisabilityPermitEvent, PermitHours, WorkEvent
+from ccnl_engine.events import DisabilityPermitEvent, LeaveHours, WorkEvent
 from ccnl_engine.inputs import (
     EmploymentPeriod,
     NoPensionFund,
@@ -129,7 +129,7 @@ def test_a_sunday_of_permit_deducts_nothing() -> None:
 
 def test_hours_of_permit_are_paid_back_at_the_hourly_pay() -> None:
     """Four hours beside one whole day: a line of each, the hours by 173."""
-    hours = (PermitHours(date(2026, 3, 3), Decimal(4)),)
+    hours = (LeaveHours(date(2026, 3, 3), Decimal(4)),)
     result = _run(DisabilityPermitEvent((date(2026, 3, 2),), hours))
 
     lines = {
@@ -156,8 +156,8 @@ def test_an_hour_holds_the_seniority_and_the_individual_elements() -> None:
     The hours of 1 April belong to the April run.
     """
     hours = (
-        PermitHours(date(2026, 3, 31), Decimal(4)),
-        PermitHours(date(2026, 4, 1), Decimal(2)),
+        LeaveHours(date(2026, 3, 31), Decimal(4)),
+        LeaveHours(date(2026, 4, 1), Decimal(2)),
     )
     result = _run(
         DisabilityPermitEvent((), hours),
@@ -174,7 +174,7 @@ def test_an_hour_holds_the_seniority_and_the_individual_elements() -> None:
 
 def test_hours_without_a_verified_hourly_base_post_nothing() -> None:
     """Chimica PMI has no verified hourly base: the day is paid, not the hours."""
-    hours = (PermitHours(date(2026, 3, 3), Decimal(4)),)
+    hours = (LeaveHours(date(2026, 3, 3), Decimal(4)),)
     result = _run(
         DisabilityPermitEvent((date(2026, 3, 2),), hours),
         ccnl=("chimica-affini-pmi-unionchimica", "D"),

@@ -29,7 +29,9 @@ from ccnl_engine.events import (
     DisabilityPermitEvent,
     ExtraordinaryLeaveEvent,
     InpsSicknessBase,
+    LeaveHours,
     MaternityLeaveEvent,
+    NursingRestEvent,
     ParentalLeaveEvent,
     ParentalLeaveTaken,
     PaternityLeaveEvent,
@@ -121,6 +123,12 @@ def test_an_injury_without_ccnl_rules_is_paid_by_inail_itself() -> None:
         (_LEAVE, "maternity_leave"),
         (PaternityLeaveEvent((date(2026, 3, 2),)), "paternity_leave"),
         (DisabilityPermitEvent((date(2026, 3, 2),)), "disability_permits"),
+        (
+            NursingRestEvent(
+                (LeaveHours(date(2026, 3, 2), Decimal(2)),), date(2025, 10, 1)
+            ),
+            "nursing_rests",
+        ),
         (
             ExtraordinaryLeaveEvent(date(2026, 3, 2), date(2026, 3, 6)),
             "extraordinary_leave",

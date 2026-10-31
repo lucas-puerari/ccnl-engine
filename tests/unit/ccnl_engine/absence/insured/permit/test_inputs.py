@@ -7,10 +7,8 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.absence.insured.permit.inputs import (
-    DisabilityPermitEvent,
-    PermitHours,
-)
+from ccnl_engine.absence.insured.hours.inputs import LeaveHours
+from ccnl_engine.absence.insured.permit.inputs import DisabilityPermitEvent
 from ccnl_engine.errors import InvalidInputError
 
 _MARCH = (date(2026, 3, 1), date(2026, 3, 31))
@@ -30,8 +28,8 @@ def test_the_hours_count_among_the_days_of_the_month() -> None:
     permits = DisabilityPermitEvent(
         (date(2026, 3, 10),),
         (
-            PermitHours(date(2026, 3, 2), Decimal(4)),
-            PermitHours(date(2026, 4, 1), Decimal("2.5")),
+            LeaveHours(date(2026, 3, 2), Decimal(4)),
+            LeaveHours(date(2026, 4, 1), Decimal("2.5")),
         ),
     )
 
@@ -75,14 +73,14 @@ def test_wrong_days_are_rejected(days: tuple[date, ...], match: str) -> None:
     )
 
 
-_HOUR = PermitHours(date(2026, 3, 2), Decimal(2))
+_HOUR = LeaveHours(date(2026, 3, 2), Decimal(2))
 
 
 @pytest.mark.parametrize(
     ("days", "hours", "match"),
     [
         ((), [_HOUR], "must be a tuple"),
-        ((), (date(2026, 3, 2),), "PermitHours"),
+        ((), (date(2026, 3, 2),), "LeaveHours"),
         ((), (_HOUR, _HOUR), "in order, each day once"),
         (
             (date(2026, 3, 2),),
@@ -92,7 +90,7 @@ _HOUR = PermitHours(date(2026, 3, 2), Decimal(2))
     ],
 )
 def test_wrong_hours_are_rejected(
-    days: tuple[date, ...], hours: tuple[PermitHours, ...], match: str
+    days: tuple[date, ...], hours: tuple[LeaveHours, ...], match: str
 ) -> None:
     """Hours on days apart from the whole days, each day once."""
     with pytest.raises(InvalidInputError, match=match) as error:
@@ -102,22 +100,3 @@ def test_wrong_hours_are_rejected(
         "DisabilityPermitEvent.hours",
         "disability_permits",
     )
-
-
-@pytest.mark.parametrize(
-    ("day", "hours", "field"),
-    [
-        (date(2026, 3, 2), Decimal(0), "PermitHours.hours"),
-        (date(2026, 3, 2), Decimal(25), "PermitHours.hours"),
-        (date(2026, 3, 2), 4, "PermitHours.hours"),
-        ("2026-03-02", Decimal(4), "PermitHours.day"),
-    ],
-)
-def test_hours_are_dated_above_zero_and_within_a_day(
-    day: date, hours: Decimal, field: str
-) -> None:
-    """A date and at most 24 hours, as a Decimal."""
-    with pytest.raises(InvalidInputError, match=field) as error:
-        PermitHours(day, hours)
-
-    assert (error.value.field, error.value.feature) == (field, "disability_permits")
