@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-11-23 |
-| **Last review** | 2026-10-17 |
+| **Last review** | 2026-10-31 |
 | **Latest salary tranche** | 2026-03-01 |
 
 ## Review history
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'ferie, permessi, festività, assenze, malattia e comporto', re-read on the full text published by a party, found on 15 October 2026. | corrected | Sickness (Art. 66, p. 101): full pay for 6 to 24 months by seniority, not a flat 180 days: modelled on the 48-month count of c. 2 with six seniority bands; the c. 1 count and the extended periods are declared.<br>Ferie (Art. 60, p. 89): 20/22/25 days of the aree match; the quadri have 26 (noted). Tredicesima accrual: a fraction of month counts (Art. 51, p. 77): verified. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova', re-read on the full text published by a party. | corrected | Art. 36 (p. 53): one level below for 18 months, then the destination; all 3a area profiles are destinations: 3A1 added (from 1e2A); the apprenticeship_destination_levels limitation is resolved. |
 | 2026-10-17 | claude-opus-5-5 (ai) | Periodic review due 2026-12-31: the stipendi from 2023 and the scatti against the CCNL ABI of 23 November 2023, the hourly divisor, and the readiness of the file. | flagged | The 36 stipendi of the nine levels from 2023 and the scatti (QD4 and QD3 95,31, QD2 to 3A1 41,55, 1a and 2a area 29,07) are printed in the texts read. Match.<br>Flagged: the hourly divisor of the file (162, then 160) has no provenance. Art. 114 c. 15 of the testo coordinato computes the paga oraria 'secondo il comune criterio (1/360 della retribuzione annua per ogni giornata diviso 7,4)': on thirteen monthly payments the monthly pay over 204,92, not over 160. Every amount the engine derives from the hourly divisor (absence deductions, the hourly rate of the overtime bands) is affected; the elements of the 'retribuzione annua' were not read.<br>Not promoted to reviewed: verification.confidence is unverified and the hourly divisor is unsourced. The two derived rules (the solidarity fund rates and the absence rule) stay derived. |
+| 2026-10-31 | claude-opus-5-5 (ai) | The sick pay and the comporto of the CCNL (work_rules.sickness_rules), read on the signed text. | corrected | Art. 66 (p. 99): c. 1 keeps the job and the whole pay for 6, 8, 12, 15, 18, 22 months by seniority; c. 2 lets the bank count instead over the 48 months before the last day, with 8 to 24 months. The file stored the option of c. 2 as the rule: corrected to the bands of c. 1 for one illness, the option of c. 2 in the note. |
 
 ## Salary table
 
@@ -179,6 +180,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
+
+!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
+    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
+
+    **Applies when:** `sickness` applies; the run takes the engine code path.
+
+    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.

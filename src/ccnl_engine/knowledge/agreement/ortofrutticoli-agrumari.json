@@ -209,6 +209,27 @@
         "findings": [
           "Art. 79 - Anzianità di servizio (general clause), applied to Art. 77 - 13ª mensilità (p. 43) (p. 44): \"le frazioni di anno saranno computate, a tutti gli effetti contrattuali, per dodicesimi computandosi come mese intero le frazioni di mese superiori o uguali a 15 giorni.\". Added: at_least 15 (the file applied the engine default, at least 15 days)."
         ]
+      },
+      {
+        "id": "2026-10-31-ai-sickness-pay-texts",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules"
+        ],
+        "scope": "The sick pay and the comporto of the CCNL (work_rules.sickness_rules), read on the signed text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+            "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+          }
+        ],
+        "findings": [
+          "Art. 22 (pp. 27-28): the integration reaches 100% for the three days of carenza, 75% for days 4-20 and 100% for days 21-180 of the normale retribuzione; Art. 25: 180 days of comporto. The file had assumed 100% for every day: corrected to day bands of 75% and 100%."
+        ]
       }
     ]
   },
@@ -2148,7 +2169,7 @@
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "81f846e39a9a488c4576611a1870b6f11ec145637423d641ec3630adbaa6b85d",
+    "source_hash": "a9c20b378dd6329ea57b3fdcd2b3e3eab4da711d0cb55241230db5449781526c",
     "source_type": "contracting_party"
   },
   "work_rules": {
@@ -2341,30 +2362,47 @@
       }
     },
     "sickness_rules": {
-      "carenza_integration_rate": "1.0",
-      "full_pay_integration_rate": "1.0",
-      "tiers": [],
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "day_bands": [
+        {
+          "day_from": 4,
+          "day_until": 21,
+          "integration_rate": "0.75"
+        },
+        {
+          "day_from": 21,
+          "day_until": null,
+          "integration_rate": "1"
+        }
+      ],
       "max_duration_days": 180,
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "lavoro-economia-h341",
-            "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-            "pages": [],
+            "document_id": "ccnl-ortofrutticoli-agrumari-2024-07-19-flai",
+            "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, 1 gennaio 2024 - 31 dicembre 2027, Cesena 19 luglio 2024 (FLAI-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
             "published_on": "2024-07-19",
-            "jurisdiction": "it"
+            "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
           },
-          "section": "Comporto 180 giorni da snippet ricerca H341. Tassi integrazione (carenza/full-pay) non trovati da fonti accessibili — assunti 100% SEMPLIFICAZIONE; motore può sovrastimare supplement."
+          "page": "27-28",
+          "section": "Art. 22 (Trattamento economico in caso di malattia), Art. 25 (Conservazione del posto)",
+          "quote": "b) ad una integrazione delle indennità a carico dell'INPS da corrispondersi dal datore di lavoro e a suo carico, in modo da raggiungere complessivamente le seguenti misure: 1) il 100% (cento per cento) della normale retribuzione per i primi tre giorni (periodo di carenza); 2) il 75% (settantacinque per cento) della normale retribuzione per i giorni dal quarto al ventesimo; 3) il 100% (cento per cento) della normale retribuzione per i giorni dal ventunesimo al centottantesimo."
         },
+        "transformation": "Art. 22 b): 100% for the three days of carenza, 75% for days 4-20 and 100% for days 21-180 of the 'normale retribuzione' (gross), stored as day_bands of the episode; Art. 25: the job is kept for 180 days, max_duration_days. The file had assumed 100% for every day. Read on 2026-10-31.",
+        "note": "Not modelled: points 2 and 3 (days 4-180) are owed only to open-ended staff, 'con esclusione delle integrazioni previste ai punti 2 e 3' for fixed-term and seasonal workers, whom the engine pays as the others; the employer integration is not due when INPS pays no indemnity ('non sono dovute se l'INPS non corrisponde per qualsiasi motivo l'indennità'); apprentices (Art. 43) get 50% of the normale retribuzione for at most 6 months a year; the 180 days are counted 'in un anno solare', defined as '365 giorni computati o dalla data del primo episodio morboso o dalla data del licenziamento', which the engine does not sum over episodes (limitation sickness_cumulation_window); the 180 more days of unpaid aspettativa on request.",
         "extraction": {
           "method": "ai",
-          "extraction_timestamp": "2026-09-11T00:00:00",
-          "verification_status": "unverified",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-31T18:00:00Z",
           "effective_from": "2024-01-01",
-          "model": "claude-sonnet-4-6"
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-31T18:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-31-ai-sickness-pay-texts"
         }
       }
     },

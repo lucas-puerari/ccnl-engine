@@ -256,8 +256,9 @@ def year_issues(
     """Return the issues of a treatment counted over the year or a window.
 
     Returns:
-        A provisional issue when sick days before the known history, or an
-        unstated exemption, could change the comporto or the carenza.
+        A provisional issue when sick days before the known history, an
+        unknown seniority or an unstated exemption could change the comporto
+        or the carenza.
     """
     name = f"sickness episode '{episode.episode_id}'"
     conditions = (
@@ -271,6 +272,15 @@ def year_issues(
                 "(OpeningBalances.sickness_known_from)"
             ),
             "sickness_known_from",
+        ),
+        (
+            year.seniority_reach,
+            SENIORITY_UNKNOWN,
+            (
+                f"{name}: the days pass the comporto of the first seniority band, "
+                "and the seniority is not known; the first band is applied"
+            ),
+            "seniority",
         ),
         (
             year.exemption_reach,

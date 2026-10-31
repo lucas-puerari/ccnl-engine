@@ -9,6 +9,8 @@ episodes:
   day, against the days of the window of the worker's seniority, on top of
   ``max_duration_days`` for one illness (Edilizia ANCE Art. 26: nine months
   in 20, twelve in 24 above three and a half years);
+- the comporto of one illness by the worker's seniority, in place of
+  ``max_duration_days`` (ABI Art. 66 c. 1: 6 to 22 months);
 - the carenza: paid at a lower rate from the n-th event of the year
   (:class:`~ccnl_engine.sickness.integration.models.CarenzaByEvent`).  A
   relapse continues its event; an event the CCNL exempts is not counted.
@@ -34,7 +36,7 @@ from ccnl_engine.sickness.cumulation.rules import CcnlDay, window_start
 if TYPE_CHECKING:
     from collections.abc import Callable
 
-    from ccnl_engine.sickness.comporto.models import ComportoWindow
+    from ccnl_engine.sickness.comporto.models import ComportoBand, ComportoWindow
     from ccnl_engine.sickness.cumulation.rules import SicknessWorker
     from ccnl_engine.sickness.integration.models import SicknessRules
     from ccnl_engine.sickness.models import SicknessEpisode
@@ -55,12 +57,13 @@ class YearTreatment:
 
     Attributes:
         rules: CCNL sickness rules, with a calendar-year comporto, comporto
-            windows or a carenza by event.
+            windows or bands, or a carenza by event.
         episode: The episode.
         earlier: Recorded episodes that started before it.
         worker: Seniority and known history of the worker; the history is
             complete from ``known_from``, all of it when ``None``.
         target_rate: Integration target of an episode day index.
+        offset: Sick days of the episodes the episode continues as a relapse.
     """
 
     rules: SicknessRules
@@ -68,6 +71,7 @@ class YearTreatment:
     earlier: tuple[SicknessEpisode, ...]
     worker: SicknessWorker
     target_rate: Callable[[int], Decimal]
+    offset: int = 0
 
     def year_days(self, day: date) -> int:
         """Return the sick days of the calendar year of ``day`` up to ``day``.
@@ -87,15 +91,46 @@ class YearTreatment:
         return earlier + _overlap(self.episode, first, day)
 
     @cached_property
+    def _months(self) -> int:
+        """Seniority months on the first day of the episode, ``0`` if unknown."""
+        seniority = self.worker.seniority
+        return 0 if seniority is None else seniority.months_at(self.episode.started_on)
+
+    @cached_property
     def window(self) -> ComportoWindow | None:
         """Comporto window of the seniority on the first day of the episode.
 
         An unknown seniority takes the first window.
         """
-        seniority = self.worker.seniority
-        start = self.episode.started_on
-        months = 0 if seniority is None else seniority.months_at(start)
-        return window_of(self.rules.comporto_windows, months)
+        return window_of(self.rules.comporto_windows, self._months)
+
+    @cached_property
+    def band(self) -> ComportoBand | None:
+        """Comporto band of the seniority on the first day of the episode.
+
+        An unknown seniority takes the first band.
+        """
+        return window_of(self.rules.comporto_bands, self._months)
+
+    @property
+    def limit(self) -> int:
+        """Comporto of one illness: of the seniority band, if the CCNL has bands."""
+        band = self.band
+        return self.rules.max_duration_days if band is None else band.comporto_days
+
+    @property
+    def seniority_reach(self) -> bool:
+        """Whether an unknown seniority could keep the job past the first band.
+
+        The days of the episode and of those it continues pass the comporto
+        of the first band, and a later band would give more.
+        """
+        bands = self.rules.comporto_bands
+        return (
+            self.worker.seniority is None
+            and len(bands) > 1
+            and self.offset + self.episode.days > bands[0].comporto_days
+        )
 
     @cached_property
     def _events(self) -> tuple[Decimal, Decimal]:
@@ -137,10 +172,13 @@ class YearTreatment:
         """Whether sick days before the known history could change the count."""
         known = self.worker.known_from
         start = self.episode.started_on
-        first = date(start.year, 1, 1)
+        rules = self.rules
+        firsts = []
+        if rules.comporto_calendar_year or rules.carenza_by_event is not None:
+            firsts.append(date(start.year, 1, 1))
         if self.window is not None:
-            first = min(first, window_start(start, 0, self.window.window_months))
-        return known is not None and known > first
+            firsts.append(window_start(start, 0, self.window.window_months))
+        return known is not None and bool(firsts) and known > min(firsts)
 
     def day(self, index: int, day: date) -> CcnlDay:
         """Return the CCNL treatment of ``day``.
@@ -150,10 +188,11 @@ class YearTreatment:
             day: The sick day.
 
         Returns:
-            Whether the day is past the comporto of the illness, of the
-            calendar year or of the window, and its rates.
+            Whether the day is past the comporto of the illness (of the
+            seniority band, if any), of the calendar year or of the window,
+            and its rates.
         """
-        limit = self.rules.max_duration_days
+        limit = self.limit
         count = self.year_days(day) if self.rules.comporto_calendar_year else index
         window = self.window
         summed = window is not None and (
