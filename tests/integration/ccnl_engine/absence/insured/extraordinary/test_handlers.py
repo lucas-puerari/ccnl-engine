@@ -123,6 +123,11 @@ def test_a_year_without_a_maximum_is_paid_uncapped() -> None:
         i for i in result.issues if i.code == "extraordinary_leave_ceiling_unknown"
     )
     assert (issue.status, "for 2027:" in issue.message) == ("provisional", True)
+    (decision,) = (d for d in result.decisions if d.capability == "extraordinary_leave")
+    assert (decision.status, decision.reason_code) == (
+        "provisional",
+        "extraordinary_leave_ceiling_unknown",
+    )
 
 
 def test_without_the_last_pay_a_fact_is_missing() -> None:
