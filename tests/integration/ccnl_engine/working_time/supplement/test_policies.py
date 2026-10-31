@@ -10,7 +10,7 @@ import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.element.types import MonthlyPayChain
-from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.errors import InvalidInputError, MissingRuleError
 from ccnl_engine.event.facade import (
     HolidayWorkEvent,
     HolidayWorkKind,
@@ -79,15 +79,17 @@ def test_without_the_role_the_plain_band_applies() -> None:
 
 def test_unknown_roles_leave_the_band_open() -> None:
     """A role band and unstated roles: the caller states the amount."""
-    with pytest.raises(InvalidInputError, match=r"Employment\.roles is not stated"):
+    with pytest.raises(InvalidInputError, match=r"Employment\.roles is not") as error:
         resolve_supplement(_sunday(), _terms(roles=None))
+
+    assert error.value.field == "Employment.roles"
 
 
 def test_a_band_of_roles_only_needs_one_of_them() -> None:
     """Without a plain band, a worker holding no role has none."""
     only_role = tuple(b for b in _bands() if b.code != "TDS_DOMENICA")
 
-    with pytest.raises(InvalidInputError, match="only for the roles"):
+    with pytest.raises(MissingRuleError, match="only for the roles"):
         resolve_supplement(_sunday(), _terms(_with_bands(only_role)))
 
 
@@ -97,7 +99,7 @@ def test_a_band_of_another_level_does_not_apply() -> None:
     other = night.model_copy(update={"levels": ("Q",)})
     terms = _terms(_with_bands((other,)), level_code="4")
 
-    with pytest.raises(InvalidInputError, match="no night supplement band"):
+    with pytest.raises(MissingRuleError, match="no night supplement band"):
         resolve_supplement(NightShiftEvent(_DAY, hours=_HOURS), terms)
 
 

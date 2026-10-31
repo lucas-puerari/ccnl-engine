@@ -27,7 +27,7 @@ from ccnl_engine import (
     EmployerProfile,
     Employment,
     Headcount,
-    InvalidInputError,
+    MissingRuleError,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
@@ -104,5 +104,5 @@ def test_non_convivente_first_tier_is_ten_percent() -> None:
 
 def test_night_overtime_on_a_holiday_has_no_band() -> None:
     """Art. 15 sets no rate of its own for it: the event needs a multiplier."""
-    with pytest.raises(InvalidInputError, match="no multiplier"):
+    with pytest.raises(MissingRuleError, match="no multiplier"):
         _run(_CONVIVENTE, OvertimeKind.NIGHT_HOLIDAY)

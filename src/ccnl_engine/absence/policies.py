@@ -29,7 +29,11 @@ from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.decision.models import CalculationDecision, CalculationStatus
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
-from ccnl_engine.working_time.hourly.policies import BASE_PATH, reject_underived
+from ccnl_engine.working_time.hourly.policies import (
+    BASE_PATH,
+    Unstated,
+    reject_underived,
+)
 
 if TYPE_CHECKING:
     from datetime import date
@@ -98,7 +102,7 @@ def _rules(terms: HourlyTerms, day: date) -> AbsenceRules | str:
 
 def _units(
     event: AbsenceEvent, terms: HourlyTerms, rules: AbsenceRules
-) -> tuple[Decimal, Decimal | None] | str:
+) -> tuple[Decimal, Decimal | None] | str | Unstated:
     """Return the units deducted and the days of a monthly pay, or why not.
 
     Returns:
@@ -113,7 +117,10 @@ def _units(
     if days is None:
         return f"{name}, whose quota of a day the engine does not derive"
     if event.working_days is None:
-        return f"{name} and AbsenceEvent.working_days is not stated"
+        return Unstated(
+            "AbsenceEvent.working_days",
+            f"{name} and AbsenceEvent.working_days is not stated",
+        )
     if terms.part_time:
         return f"{name} and the day of a part-time worker is not such a quota"
     return Decimal(event.working_days), days
@@ -134,7 +141,7 @@ def resolve_absence(event: AbsenceEvent, terms: HourlyTerms) -> AbsenceQuota:
     if isinstance(rules, str):
         reject_underived(_FIELD, _FEATURE, day, rules)
     units = _units(event, terms, rules)
-    if isinstance(units, str):
+    if isinstance(units, str | Unstated):
         reject_underived(_FIELD, _FEATURE, day, units)
     count, days = units
     base = terms.base(day, _FIELD, _FEATURE)

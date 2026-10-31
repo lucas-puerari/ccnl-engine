@@ -40,7 +40,11 @@ from ccnl_engine.event.facade import (
     ShiftWorkEvent,
 )
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.working_time.hourly.policies import BASE_PATH, reject_underived
+from ccnl_engine.working_time.hourly.policies import (
+    BASE_PATH,
+    Unstated,
+    reject_underived,
+)
 from ccnl_engine.working_time.inputs import ShiftKind
 from ccnl_engine.working_time.supplement.models import SupplementWork
 
@@ -145,7 +149,7 @@ def _in_force(
 
 def _band(
     terms: HourlyTerms, work: SupplementWork, day: date
-) -> tuple[SupplementBand, Decimal] | str:
+) -> tuple[SupplementBand, Decimal] | str | Unstated:
     """Return the band of ``work`` the worker is paid with on ``day``.
 
     Returns:
@@ -159,9 +163,10 @@ def _band(
         )
     roles = sorted({b.role for b, _ in found if b.role is not None})
     if roles and terms.roles is None:
-        return (
+        return Unstated(
+            "Employment.roles",
             f"the CCNL ({terms.ruleset}) pays {work.value} work apart for the "
-            f"roles {', '.join(roles)} and Employment.roles is not stated"
+            f"roles {', '.join(roles)} and Employment.roles is not stated",
         )
     held = terms.roles or frozenset()
     chosen = next(((b, r) for b, r in found if b.role in held), None)
@@ -177,9 +182,9 @@ def _band(
 def resolve_supplement(event: SupplementEvent, terms: HourlyTerms) -> SupplementPay:
     """Return the CCNL supplement of an event without ``supplement_amount``.
 
-    The event is rejected (``reject_underived``) when the shift kind is not
-    stated, the CCNL has no band of the work for the worker or the hourly
-    base cannot be derived.
+    The event is rejected (``reject_underived``) when the shift kind or the
+    roles a band needs are not stated, the CCNL has no band of the work for
+    the worker or the hourly base cannot be derived.
 
     Returns:
         The supplement and what it is computed from.
@@ -189,9 +194,10 @@ def resolve_supplement(event: SupplementEvent, terms: HourlyTerms) -> Supplement
     day = event.event_date
     work = work_of(event)
     if work is None:
-        reject_underived(field, feature, day, "ShiftWorkEvent.kind is not stated")
+        unstated = Unstated("ShiftWorkEvent.kind", "ShiftWorkEvent.kind is not stated")
+        reject_underived(field, feature, day, unstated)
     found = _band(terms, work, day)
-    if isinstance(found, str):
+    if isinstance(found, str | Unstated):
         reject_underived(field, feature, day, found)
     band, rate = found
     base = terms.base(day, field, feature, band.base, supplement=True)

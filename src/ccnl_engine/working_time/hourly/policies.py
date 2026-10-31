@@ -17,7 +17,7 @@ The engine derives it only from a sourced rule, never from a default:
   190 for 44 hours, not by 172.
 
 Otherwise the event needs the caller's value and the run is rejected with
-:class:`~ccnl_engine.errors.InvalidInputError` naming the reason.
+:class:`~ccnl_engine.errors.MissingRuleError` naming the reason.
 
 The individual elements of the worker (``Employment.individual_elements``:
 superminimi, aumenti di merito, assegni ad personam) enter the base as the
@@ -35,7 +35,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING, NoReturn
 
-from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.errors import InvalidInputError, MissingRuleError
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 from ccnl_engine.working_time.supplement.models import (
     HourlyBaseMethod,
@@ -50,7 +50,7 @@ if TYPE_CHECKING:
     from ccnl_engine.provenance.source.models import SourceLocation
     from ccnl_engine.working_time.models import TimeSupplements
 
-__all__ = ["BASE_PATH", "HourlyBase", "HourlyTerms", "reject_underived"]
+__all__ = ["BASE_PATH", "HourlyBase", "HourlyTerms", "Unstated", "reject_underived"]
 
 #: Path of the hourly base method in a CCNL file.
 BASE_PATH = "work_rules.time_supplements.hourly_base_method"
@@ -267,17 +267,34 @@ class HourlyTerms:
         return rule is not None and rule.in_hourly_base is IndividualInBase.HOUR_ONLY
 
 
-def reject_underived(field: str, feature: str, day: date, reason: str) -> NoReturn:
+@dataclass(frozen=True)
+class Unstated:
+    """Why a value is not derived: an input (``field``) left out, and why."""
+
+    field: str
+    reason: str
+
+
+def reject_underived(
+    field: str, feature: str, day: date, reason: str | Unstated
+) -> NoReturn:
     """Reject an event value the caller left out and the engine cannot derive.
 
     Raises:
-        InvalidInputError: Naming the field, the day and the reason, with
-            the remediation to pass the value.
+        InvalidInputError: When ``reason`` is :class:`Unstated`, naming it.
+        MissingRuleError: Otherwise: the rule is missing, and passing the
+            value is the workaround its remediation names.
     """
-    msg = f"{field} on {day.isoformat()} is not stated and {reason}"
-    raise InvalidInputError(
+    if isinstance(reason, Unstated):
+        msg = f"{field} on {day} is not stated and {reason.reason}"
+        remedy = f"Pass {reason.field}, or {field}."
+        raise InvalidInputError(
+            msg, field=reason.field, feature=feature, remediation=remedy
+        )
+    msg = f"{reason}, and {field} is not stated"
+    raise MissingRuleError(
         msg,
-        field=field,
+        as_of=day,
         feature=feature,
         remediation=f"Pass {field}: the engine does not derive it here.",
     )

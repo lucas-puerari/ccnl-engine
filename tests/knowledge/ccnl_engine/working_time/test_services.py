@@ -32,7 +32,7 @@ from ccnl_engine.decision.models import (
     DecisionOrigin,
 )
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
-from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.errors import MissingRuleError
 from ccnl_engine.event.facade import (
     AbsenceEvent,
     HolidayWorkEvent,
@@ -253,7 +253,7 @@ def test_underived_night_work_stays_the_callers(pilot: Pilot) -> None:
     assert decision.amount == _CALLER_NIGHT
 
     event = NightShiftEvent(date(2026, 3, 11), hours=_NIGHT_HOURS)
-    with pytest.raises(InvalidInputError, match="no night supplement band"):
+    with pytest.raises(MissingRuleError, match="no night supplement band"):
         calculate_period(
             _request(pilot, event),
             repo=bundled_repository(),
@@ -302,7 +302,7 @@ def test_absence_days_are_deducted_at_a_26th(slug: str) -> None:
 def test_absence_on_a_derived_rule_stays_the_callers(slug: str) -> None:
     """An absence rule not verified leaves the rate to the caller."""
     event = AbsenceEvent(date(2026, 3, 16), Decimal(8), working_days=1)
-    with pytest.raises(InvalidInputError, match="absence rule is not verified"):
+    with pytest.raises(MissingRuleError, match="absence rule is not verified"):
         calculate_period(
             _request(_pilot(slug), event),
             repo=bundled_repository(),

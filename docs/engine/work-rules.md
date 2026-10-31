@@ -57,7 +57,7 @@ sets no statutory rate, so the engine has no default multiplier.
 | `multiplier` | CCNL band of `kind` | Paid with | Decision and status |
 |---|---|---|---|
 | `None` | present | `1 + band` | `overtime` decision `ccnl_overtime_band_applied`, origin `engine`, citing the band and its source |
-| `None` | absent | nothing: `InvalidInputError` | the run is rejected; pass an explicit multiplier |
+| `None` | absent | nothing: `MissingRuleError` | the run is rejected; its remediation says to pass an explicit multiplier |
 | explicit | equal to a band | the caller's value | `caller_supplied` decision only |
 | explicit | different | the caller's value | `caller_supplied` decision and a `provisional` issue `caller_multiplier_differs_from_ccnl` with both values |
 | explicit | absent | the caller's value | `caller_supplied` decision only |
@@ -161,7 +161,10 @@ RATE AND SUPPLEMENTS" what is derived and what stays the caller's:
 | studi-professionali-confprofessioni | caller (unconfirmed) | 30% | | 1/26 |
 
 Where the CCNL sets no value the engine applies, the event is rejected
-with `InvalidInputError` naming the field and the reason. A value the
+with `MissingRuleError` naming the reason, its remediation the field to
+pass; where the value depends on an input the request leaves out (the
+working days of an absence, the roles of the worker, the shift kind), with
+`InvalidInputError` naming that input. A value the
 caller states is applied as given and reported as a `caller_supplied`
 decision listing only the fields the caller stated. The
 `separate_tax_rate` of arrears comes from the caller; the TFR settlement is
