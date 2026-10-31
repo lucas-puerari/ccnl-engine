@@ -108,7 +108,7 @@
         "quote": "Per i riposi e i permessi di cui al presente Capo è dovuta un'indennità, a carico dell'ente assicuratore, pari all'intero ammontare della retribuzione relativa ai riposi e ai permessi medesimi. L'indennità è anticipata dal datore di lavoro ed è portata a conguaglio con gli apporti contributivi dovuti all'ente assicuratore."
       },
       "transformation": "The days of permit are deducted at the CCNL daily quota and paid back in full as the INPS indemnity the employer advances: the pay of the permit days.",
-      "note": "L. 104/1992 art. 33 c. 3 (Normattiva, text in force on 2026-10-30, page sha256 5f5fe1a3d37f766d9865a4734dc76740170ac52d86c137f8295eb77a46bc1943): 'tre giorni di permesso mensile retribuito coperto da contribuzione figurativa'; c. 4 applies artt. 43, 44 and 56 D.Lgs. 151/2001. Art. 43 c. 2 applies art. 34 c. 5 (the 13th and the leave are not reduced). Art. 44 c. 2 (Normattiva, page sha256 c297a2e29a0e672ad2ae52a62c903d2e2c6ad9dcbf4a3dd112228906da0c6dc9): 'I tre giorni di permesso mensile di cui all'articolo 42, commi 2 e 3, sono coperti da contribuzione figurativa', so the indemnity is out of the INPS base. Hourly permits (art. 33 cc. 2 and 6) are not modelled."
+      "note": "L. 104/1992 art. 33 c. 3 (Normattiva, text in force on 2026-10-30, page sha256 5f5fe1a3d37f766d9865a4734dc76740170ac52d86c137f8295eb77a46bc1943): 'tre giorni di permesso mensile retribuito coperto da contribuzione figurativa'; c. 4 applies artt. 43, 44 and 56 D.Lgs. 151/2001. Art. 43 c. 2 applies art. 34 c. 5 (the 13th and the leave are not reduced). Art. 44 c. 2 (Normattiva, page sha256 c297a2e29a0e672ad2ae52a62c903d2e2c6ad9dcbf4a3dd112228906da0c6dc9): 'I tre giorni di permesso mensile di cui all'articolo 42, commi 2 e 3, sono coperti da contribuzione figurativa', so the indemnity is out of the INPS base. Art. 33 c. 4 applies artt. 43 and 44 to the permits of c. 2 (two hours a day for a child under three, also art. 42 c. 1 D.Lgs. 151/2001) as to those of c. 3, and c. 6 gives either to the disabled worker: the same indemnity covers their hours."
     }
   },
   "nursing_rest": {
@@ -203,7 +203,7 @@
     "published_at": "2026-10-20",
     "source": "D.Lgs. 151/2001 artt. 22-23 (maternity), 27-bis and 29 (paternity), 34 (parental leave), 43-44 and L. 104/1992 art. 33 (disability permits), 42 c. 5 (extraordinary leave); D.P.R. 1124/1965 artt. 68, 73, 116-117 (work injury), Normattiva, texts in force read on 2026-10-20 and 2026-10-30",
     "verification_status": "verified",
-    "source_hash": "f0450dced31dd3bc0816abf1272addb2c607b3a0ce59c5a1dbeaf6ec04d49b44",
+    "source_hash": "47d95fe2cb8bfc66f0cf78a5fbb1206a54f802b815bbb0ef275c379e1c4aedf5",
     "source_type": "official_primary",
     "verified_by": "claude-opus-5-5",
     "verified_at": "2026-10-20"
