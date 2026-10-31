@@ -28,7 +28,14 @@ from ccnl_engine import (
     PeriodInput,
 )
 from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.events import InpsSicknessBase, MaternityLeaveEvent, WorkInjuryEvent
+from ccnl_engine.events import (
+    ExtraordinaryLeaveEvent,
+    InpsSicknessBase,
+    MaternityLeaveEvent,
+    ParentalLeaveEvent,
+    ParentalLeaveTaken,
+    WorkInjuryEvent,
+)
 from ccnl_engine.inputs import (
     EmploymentPeriod,
     NoPensionFund,
@@ -176,3 +183,47 @@ def test_a_maternity_leave_is_topped_up_to_the_whole_pay() -> None:
     assert work.insured_absence.maternity is not None
     assert decision.source == work.insured_absence.maternity.provenance.location
     assert "insured_absence_ccnl_not_modelled" not in {i.code for i in result.issues}
+
+
+def _tfr(result: PeriodResult) -> Decimal:
+    return sum(
+        (i.amount for i in result.pay_items if i.item_id.startswith("tfr_2026")),
+        Decimal(0),
+    )
+
+
+@pytest.mark.parametrize(
+    ("event", "quota"),
+    [
+        # Art. 2120 c. 3 c.c.: the causes of art. 2110 keep the pay the
+        # worker would have had; the indemnities bear no 0.50% IVS.
+        (
+            MaternityLeaveEvent(
+                date(2026, 3, 1),
+                date(2026, 3, 31),
+                InpsSicknessBase(Decimal(2500), Decimal(0)),
+            ),
+            Decimal("174.22"),
+        ),
+        (_INJURY, Decimal("165.41")),
+        # Parental and extraordinary leave are no cause of art. 2110: the
+        # days of leave leave the TFR base (art. 42 c. 5-quinquies says so
+        # of the extraordinary leave).
+        (
+            ParentalLeaveEvent(
+                date(2026, 3, 2),
+                date(2026, 3, 13),
+                date(2025, 6, 1),
+                ParentalLeaveTaken(0, 0, 0),
+            ),
+            Decimal("88.50"),
+        ),
+        (
+            ExtraordinaryLeaveEvent(date(2026, 3, 2), date(2026, 3, 13), Decimal(2500)),
+            Decimal("88.50"),
+        ),
+    ],
+)
+def test_the_tfr_base_of_each_absence(event: WorkEvent, quota: Decimal) -> None:
+    """A full March accrues 2,360.26 / 13.5 less its 0.50% IVS: 163.03."""
+    assert _tfr(_run(event=event)) == quota
