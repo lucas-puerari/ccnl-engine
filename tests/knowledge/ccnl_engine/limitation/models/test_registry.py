@@ -262,8 +262,9 @@ def test_the_cumulation_window_covers_the_per_episode_ccnls(
 ) -> None:
     """The window limitation scopes the CCNLs that count one episode only.
 
-    A CCNL with a cumulation, or with a comporto over the calendar year,
-    counts the sickness of several episodes and never takes its path.
+    A CCNL with a cumulation, or with a comporto over the calendar year or
+    over windows, counts the sickness of several episodes and never takes
+    its path.
     """
     (window,) = (
         lim for lim in load_engine_limitations() if lim.id == CUMULATION_LIMITATION
@@ -275,5 +276,6 @@ def test_the_cumulation_window_covers_the_per_episode_ccnls(
         and (rules := ccnl.work_rules.sickness_rules) is not None
         and rules.cumulation is None
         and not rules.comporto_calendar_year
+        and not rules.comporto_windows
     }
     assert set(window.rulesets) == per_episode

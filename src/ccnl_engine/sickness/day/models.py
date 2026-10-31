@@ -121,21 +121,18 @@ class SickPayRules:
     def year(
         self, episode: SicknessEpisode, history: SicknessHistory
     ) -> YearTreatment | None:
-        """Return the per-episode treatment counted over the calendar year.
+        """Return the per-episode treatment counted over several episodes.
 
         Returns:
             The treatment, ``None`` unless the CCNL counts its comporto over
-            the calendar year or lowers the carenza by event.
+            the calendar year or windows, or lowers the carenza by event.
         """
         ccnl = self.ccnl
-        if not ccnl.comporto_calendar_year and ccnl.carenza_by_event is None:
+        counted = ccnl.comporto_calendar_year or ccnl.comporto_windows
+        if not counted and ccnl.carenza_by_event is None:
             return None
         return YearTreatment(
-            ccnl,
-            episode,
-            history.earlier(episode),
-            self.worker.known_from,
-            self.target_rate,
+            ccnl, episode, history.earlier(episode), self.worker, self.target_rate
         )
 
     def treatment(

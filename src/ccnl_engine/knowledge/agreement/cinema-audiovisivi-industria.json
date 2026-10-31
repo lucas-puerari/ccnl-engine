@@ -118,6 +118,27 @@
         "findings": [
           "Art. 26 Gratifica natalizia o 13° mensilità (p. 19): \"Nel caso di inizio o cessazione del rapporto di lavoro durante il corso dell'anno, il lavoratore ha diritto a tanti dodicesimi della gratifica natalizia per quanti sono i mesi di servizio prestato presso l'azienda. Le frazioni di mese superiori a 15 giorni sono considerate come mese intero di servizio.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
         ]
+      },
+      {
+        "id": "2026-10-31-ai-sickness-comporto",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules"
+        ],
+        "scope": "The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.slc-cgil.it/images/CCNL_cineaudiovisivo_09072019.pdf",
+            "sha256": "aa5591694eecf78be4686fe19f5ec97b7667394edd5f3fdb66a40fbda517bdcc"
+          }
+        ],
+        "findings": [
+          "Art. 35 of the CCNL 9.7.2019 (pp. 24-26, OCR of the signed scan): comporto 12 months, whole pay for 3, 5 or 8 months and half for 3, 4 or 4 by seniority, the absences of the 24 months before each new episode summed. The file kept 270 days of one illness at 100% with an unpaid carenza: corrected to a cumulation over two years with three seniority bands."
+        ]
       }
     ]
   },
@@ -1884,7 +1905,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153",
     "verification_status": "unverified",
-    "source_hash": "2bc43b890ece7074062b99666816ef0ad0dfb60f3a371ee83d421189b04bb13a",
+    "source_hash": "88d88590479ce5ef5f06f6c3442a74409798f313a2ebdf23316cdbdfe9a7cb0c",
     "published_at": "2026-09-18",
     "source_type": "commercial_secondary"
   },
@@ -2088,28 +2109,81 @@
       }
     },
     "sickness_rules": {
-      "carenza_integration_rate": "0",
+      "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 270,
+      "net_basis": true,
+      "cumulation": {
+        "window_years": 2,
+        "reset_after_days": null,
+        "reduced_integration_rate": "0",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 91,
+            "comporto_days": 365,
+            "steps": [
+              {
+                "day_from": 92,
+                "day_until": 184,
+                "integration_rate": "0.50"
+              }
+            ]
+          },
+          {
+            "seniority_months_from": 60,
+            "full_pay_days": 152,
+            "comporto_days": 365,
+            "steps": [
+              {
+                "day_from": 153,
+                "day_until": 275,
+                "integration_rate": "0.50"
+              }
+            ]
+          },
+          {
+            "seniority_months_from": 120,
+            "full_pay_days": 243,
+            "comporto_days": 365,
+            "steps": [
+              {
+                "day_from": 244,
+                "day_until": 366,
+                "integration_rate": "0.50"
+              }
+            ]
+          }
+        ]
+      },
+      "inps_regime": "spettacolo",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-            "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+            "document_id": "ccnl-cineaudiovisivo-2019-07-09",
+            "title": "CCNL per i dipendenti dell'industria cineaudiovisiva, Roma 9 luglio 2019 (ANICA / SLC-CGIL, FISTEL-CISL, UILCOM-UIL), signed scan (SLC-CGIL), read by OCR",
+            "kind": "associazione",
+            "url": "https://www.slc-cgil.it/images/CCNL_cineaudiovisivo_09072019.pdf",
+            "published_on": "2019-07-09",
+            "sha256": "aa5591694eecf78be4686fe19f5ec97b7667394edd5f3fdb66a40fbda517bdcc"
           },
-          "section": "Malattia — industria standard (270 gg totali)"
+          "page": "24-26",
+          "section": "Parte Comune, Art. 35 - Trattamento in caso di malattia o infortunio non sul lavoro",
+          "quote": "al lavoratore non in prova spetta la conservazione del posto per 12 mesi ed il seguente trattamento: [...] 1. non superiore a 5 anni - 3 mesi a retribuzione intera e 3 dimezzata; 2. da 5 a 10 anni - 5 mesi a retribuzione intera e 4 dimezzata; 3. superiore a 10 anni - 8 mesi a retribuzione intera e 4 dimezzata. [...] si intendono riferiti alle assenze complessivamente verificatesi nei 24 mesi precedenti ogni nuovo ultimo episodio morboso."
         },
+        "transformation": "Art. 35: the job is kept 12 months (365 days) at every seniority; the whole net pay for 3, 5 or 8 months and half of it for 3, 4 or 4 more up to 5 years, from 5 to 10 years and above 10 years of seniority, nothing for the later days of the comporto; the sick days of the 24 months before are summed, for the comporto and the pay alike. Months of 365/12 days: 91 and 183, 152 and 274, 243 and 365 days; the bands start at 60 and 120 completed months. The company tops up the INPS indemnity to the net pay (net_basis), from the first day. Stored as a cumulation with a band of each seniority over a two-year window. Read on 2026-10-31.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-18T12:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2025-07-23"
-        }
-      },
-      "inps_regime": "spettacolo"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-31T12:00:00Z",
+          "effective_from": "2018-01-18",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-31T12:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-31-ai-sickness-comporto"
+        },
+        "note": "Not modelled: the days of life-saving therapy (up to 60) left out of the pay limits and paid in full; the 6 months of unpaid aspettativa of a particularly serious illness. The troupe staff of the film productions are outside this CCNL."
+      }
     }
   }
 }

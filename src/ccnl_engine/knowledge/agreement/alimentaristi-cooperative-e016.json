@@ -120,6 +120,27 @@
         "findings": [
           "Art. 47 - Tredicesima e quattordicesima mensilità (p. 52): \"Nel caso di inizio o cessazione del rapporto durante il corso dell’anno il lavoratore non in prova avrà diritto a tanti dodicesimi dell’ammontare della tredicesima e della quattordicesima mensilità per quanti sono i mesi interi di servizio prestato. Le frazioni di mese non superiori a quindici giorni non saranno calcolate, mentre saranno calcolate come mese intero le frazioni superiori ai quindici giorni.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
         ]
+      },
+      {
+        "id": "2026-10-31-ai-sickness-comporto",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules"
+        ],
+        "scope": "The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-cooperazione-alimentare-2023.pdf",
+            "sha256": "a38eb5c832d99cddb4c6fe1b31c24b72291c8362b8633aa3c523c6a189fc043a"
+          }
+        ],
+        "findings": [
+          "Art. 41 (pp. 45-47): comporto 6 months up to 5 years of seniority within the 17 months before, 12 months above within the 24 months before; 6 months of whole net pay and, above 5 years, 6 of half. The file kept 180 days of one illness: corrected to a cumulation with two seniority bands."
+        ]
       }
     ]
   },
@@ -2267,7 +2288,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
     "verification_status": "unverified",
-    "source_hash": "f30702612f52a9302d1c735f1b7ee3ab92a1f9e143d0d6a52089902ebb4005ec",
+    "source_hash": "6d23e9b4c56b5ed66e26d20e7250556a173ad87b4cb656f22fbe54872c604b29",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2437,24 +2458,52 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 180,
+      "net_basis": true,
+      "cumulation": {
+        "window_years": 2,
+        "reset_after_days": null,
+        "reduced_integration_rate": "0.50",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 183,
+            "comporto_days": 183,
+            "window_months": 17
+          },
+          {
+            "seniority_months_from": 60,
+            "full_pay_days": 183,
+            "comporto_days": 365
+          }
+        ]
+      },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "alimentaristi-cooperative-e016",
-            "title": "CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)",
-            "kind": "tabella_retributiva",
-            "url": "https://ilccnl.it/contratto/ccnl/alimentari---cooperative"
+            "document_id": "ccnl-cooperazione-alimentare-2020-12-02",
+            "title": "CCNL per i lavoratori dipendenti da aziende cooperative di trasformazione di prodotti agricoli e zootecnici e lavorazione prodotti alimentari 2019-2023, Roma 2 dicembre 2020 (FLAI-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-cooperazione-alimentare-2023.pdf",
+            "published_on": "2020-12-02",
+            "sha256": "a38eb5c832d99cddb4c6fe1b31c24b72291c8362b8633aa3c523c6a189fc043a"
           },
-          "section": "Malattia — integrazione al 100%; max 180 giorni (rinnovo 2024)"
+          "page": "45-47",
+          "section": "Art. 41 - Malattia e infortunio non sul lavoro, 1) Conservazione del posto; 3) Trattamento economico",
+          "quote": "a) anzianità fino a 5 anni compiuti: mesi 6; b) anzianità oltre 5 anni: mesi 12. [...] Cesserà per l'azienda l'obbligo della conservazione del posto e del trattamento economico qualora il lavoratore abbia raggiunto in complesso, durante i 17 mesi antecedenti, i limiti massimi previsti dalla lettera a); e, durante i 24 mesi antecedenti per il caso previsto dalla lettera b), anche in caso di diverse malattie. [...] integrerà l'indennità corrisposta dallo stesso in modo da raggiungere il 100 o il 50 per cento della retribuzione normale netta"
         },
+        "transformation": "Art. 41 1)-3): the job is kept 6 months (183 days, months of 365/12 days) up to 5 years of seniority, counted over the 17 months before the day, and 12 months (365 days) above, counted over the 24 months before, 'anche in caso di diverse malattie'; the same windows bound the treatment. The whole net pay for 6 months, and above 5 years half of it for 6 more (table of 3). Stored as a cumulation with a band of each seniority, the first over 17 months, the second over the two-year window; the band from 60 months reads 'oltre 5 anni' as five completed years. Read on 2026-10-31.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-01-01"
-        }
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-31T12:00:00Z",
+          "effective_from": "2019-12-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-31T12:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-31-ai-sickness-comporto"
+        },
+        "note": "Not modelled: the 3 or 7 days of franchigia of the seasonal fixed-term workers of some sectors for an illness of up to 14 days; the 4 months of the fixed-term workers; the sugar annex (operai: full pay for six months without carenza); the serious illnesses without comporto pending the invalidity pension. A renewal after the 2019-2023 text was not checked."
       }
     }
   }

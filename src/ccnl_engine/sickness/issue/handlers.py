@@ -266,12 +266,14 @@ def episode_limitations(
         The cumulation window of a per-episode CCNL when an earlier
         episode outside the relapse chain is recorded; not of a CCNL whose
         comporto the engine counts over the calendar year (Commercio Art.
-        186), whose tiers are of the episode.
+        186) or over windows (Edilizia ANCE Art. 26), whose tiers are of
+        the episode.
     """
     found: list[str] = []
     ccnl = None if terms.rules is None else terms.rules.ccnl
     cumulated = (pay is not None and pay.report is not None) or (
-        ccnl is not None and ccnl.comporto_calendar_year
+        ccnl is not None
+        and (ccnl.comporto_calendar_year or bool(ccnl.comporto_windows))
     )
     chain = _chain_ids(event, terms)
     if not cumulated and any(

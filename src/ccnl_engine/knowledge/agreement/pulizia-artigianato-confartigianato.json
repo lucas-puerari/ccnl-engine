@@ -294,6 +294,27 @@
         "findings": [
           "Art. 38 Tredicesima mensilità (p. 22): \"Nel caso di inizio o di cessazione del rapporto durante il corso dell'anno, il lavoratore non in prova avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese non superiori ai 15 giorni non saranno calcolate, mentre saranno considerate come mese intero se superiori ai 15 giorni.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
         ]
+      },
+      {
+        "id": "2026-10-31-ai-sickness-comporto",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules"
+        ],
+        "scope": "The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.informaimpresa.it/wp-content/uploads/2014/09/CCNL-Pulizie-18-sette-2014_Firmato-84b.pdf",
+            "sha256": "3b9549505ed29bae42278201160fadfb7427d07ec4113228eeb09aefb33b212e"
+          }
+        ],
+        "findings": [
+          "Art. 44 of the CCNL 18.9.2014 (pp. 25-26, OCR of the signed scan): comporto 9 months of one illness and 10 months within the 24 months before; integration to 100% of the net pay from day 1 for at most 180 days in the calendar year. The file kept 180 days of one illness as the comporto: corrected (max_duration_days 274, a window of 24 months and 304 days, integration ending on day 180 of the illness)."
+        ]
       }
     ]
   },
@@ -3602,7 +3623,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "ff2c0f99a9a8e558131857370b7359e883446120a9786e47b1663181ee71cb8e",
+    "source_hash": "d75764b6c51c48e0d1c4e85101fff5b5121dd6d08d00a0427657147fefe9bb73",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -3829,38 +3850,51 @@
       }
     },
     "sickness_rules": {
-      "carenza_integration_rate": "1.0",
-      "full_pay_integration_rate": "1.0",
-      "tiers": [],
-      "max_duration_days": 180,
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "tiers": [
+        {
+          "month_from": 7,
+          "month_until": null,
+          "integration_rate": "0"
+        }
+      ],
+      "net_basis": true,
+      "max_duration_days": 274,
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 24,
+          "comporto_days": 304
+        }
+      ],
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "k521-ccnl-2022-cemu",
-            "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+            "document_id": "ccnl-pulizia-artigianato-2014-09-18",
+            "title": "CCNL per i dipendenti dalle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione, Roma 18 settembre 2014, firmato (InformaImpresa; scanned, read by OCR)",
             "kind": "associazione",
-            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
-            "pages": [],
-            "published_on": "2022-11-02",
-            "jurisdiction": "it"
+            "url": "https://www.informaimpresa.it/wp-content/uploads/2014/09/CCNL-Pulizie-18-sette-2014_Firmato-84b.pdf",
+            "published_on": "2014-09-18",
+            "sha256": "3b9549505ed29bae42278201160fadfb7427d07ec4113228eeb09aefb33b212e"
           },
-          "page": null,
-          "section": "Malattia: integrazione 100% dal 1 giorno, max 180gg/anno; conservazione posto 9 mesi (PDF 2022)",
-          "quote": null
+          "page": "25-26",
+          "section": "Art. 44 Malattia",
+          "quote": "In caso di malattia il lavoratore non in prova avrà diritto alla conservazione del posto per periodo di 9 mesi. [...] In caso di più malattie il lavoratore avrà diritto alla conservazione del posto per 10 mesi nell'arco dei 24 mesi precedenti. [...] fino al 100% della retribuzione globale netta comprensiva dell'indennità speciale. Tale integrazione verrà corrisposta a partire dal 1° giorno di malattia. [...] Le integrazioni di cui sopra saranno corrisposte per la durata massima di 180 giorni nell’anno solare (1° gennaio — 31 dicembre)."
         },
+        "transformation": "Art. 44: the net pay is integrated to 100% from the first day of each illness for 180 days; from day 181 (the seventh month of 30 days) the integration target is 0. Comporto: 9 months of one illness (274 days, months of 365/12 days) and 10 months (304 days) of the sick days within the 24 months that end on the day. Read on 2026-10-31 on the OCR of the signed scan; the renewals of 27.10.2022 and 17.12.2025 do not touch Art. 44.",
         "extraction": {
           "method": "ai",
-          "model": "claude-sonnet-4-6",
-          "extraction_timestamp": "2026-09-12T00:00:00",
-          "verified_by": null,
-          "verified_at": null,
-          "verification_status": "unverified",
-          "effective_from": "2022-11-01",
-          "effective_until": null,
-          "back_calculation": null
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-31T12:00:00Z",
+          "effective_from": "2014-09-18",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-31T12:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-31-ai-sickness-comporto"
         },
-        "note": null
+        "note": "The 180 days of integration are counted over the calendar year (1 January - 31 December), the engine counts them on each illness: several illnesses of a year over 180 days in total are integrated beyond the CCNL. Not modelled: the 4 months of unpaid aspettativa of a serious illness, once per employment."
       }
     }
   }

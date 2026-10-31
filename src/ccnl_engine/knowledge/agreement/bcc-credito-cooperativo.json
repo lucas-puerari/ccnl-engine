@@ -1746,7 +1746,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "2d765eeb07bf4a81e204dd48d98a14e77ee82ab5112b5b739a4e82bd52025c30",
+    "source_hash": "a7092f9fc72732db09dc6277a139c0d5eb73bd31860e70215ccbbcd72aaf1219",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1952,24 +1952,100 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 180,
+      "cumulation": {
+        "window_years": 2,
+        "reset_after_days": null,
+        "reduced_integration_rate": "0",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 183,
+            "comporto_days": 183,
+            "window_months": 18
+          },
+          {
+            "seniority_months_from": 60,
+            "full_pay_days": 243,
+            "comporto_days": 243,
+            "window_months": 18
+          },
+          {
+            "seniority_months_from": 120,
+            "full_pay_days": 365,
+            "comporto_days": 365,
+            "window_months": 18
+          },
+          {
+            "seniority_months_from": 156,
+            "full_pay_days": 395,
+            "comporto_days": 395,
+            "window_months": 18
+          },
+          {
+            "seniority_months_from": 168,
+            "full_pay_days": 426,
+            "comporto_days": 426,
+            "window_months": 18
+          },
+          {
+            "seniority_months_from": 180,
+            "full_pay_days": 456,
+            "comporto_days": 456,
+            "window_months": 18
+          },
+          {
+            "seniority_months_from": 192,
+            "full_pay_days": 487,
+            "comporto_days": 487,
+            "window_months": 18
+          },
+          {
+            "seniority_months_from": 204,
+            "full_pay_days": 517,
+            "comporto_days": 517,
+            "window_months": 18
+          },
+          {
+            "seniority_months_from": 216,
+            "full_pay_days": 548,
+            "comporto_days": 548,
+            "window_months": 18
+          },
+          {
+            "seniority_months_from": 300,
+            "full_pay_days": 669,
+            "comporto_days": 669,
+            "window_months": 18
+          }
+        ]
+      },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "bcc-credito-cooperativo",
-            "title": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
-            "kind": "tabella_retributiva",
-            "url": "https://ilccnl.it/contratto/ccnl/banche-di-credito-cooperativo---casse-rurali-ed-artigiane"
+            "document_id": "ccnl-bcc-testo-coordinato-2024-12-19",
+            "title": "Testo coordinato del CCNL per i quadri direttivi e per il personale delle aree professionali delle Banche di Credito Cooperativo Casse Rurali ed Artigiane del 9 luglio 2024, sottoscritto il 19 dicembre 2024 (copia Eutekne)",
+            "kind": "associazione",
+            "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+            "published_on": "2024-12-19",
+            "sha256": "9506f2d65c5e65851d6a938888482a06b6b7bf77950dde43725f097ffad02c3b"
           },
-          "section": "Malattia — conservazione trattamento economico; 6 mesi senza riduzione ferie"
+          "page": "75",
+          "section": "Capitolo VIII, Art. 55 Malattie e infortuni",
+          "quote": "In caso di assenza per malattia o infortunio, accertato, l'Azienda conserva il posto e l'intero trattamento economico alla lavoratrice e/o al lavoratore che abbia superato il periodo di prova per: a) mesi 6 se l'anzianità non sia superiore a 5 anni; b) mesi 8 se l'anzianità sia superiore a 5 anni e non superi i 10 anni; c) mesi 12 se l'anzianità sia superiore a 10 anni e non superi i 12 anni; d) un mese per ogni anno di anzianità, fino ad un massimo di 18 mesi, se l'anzianità sia superiore a 12 anni e non superi i 25 anni; e) mesi 22 se l'anzianità sia superiore a 25 anni. [...] Ai fini del computo del trattamento previsto dai commi precedenti, si cumulano anche le assenze per malattia o infortunio ― sia con diritto a trattamento economico sia nelle forme dell'aspettativa di cui al comma 9 ― verificatesi nei 18 mesi precedenti"
         },
+        "transformation": "Art. 55: the job and the whole pay are kept for the sick days of the 18 months that end on the day ('verificatesi nei 18 mesi precedenti'), up to 6 months of seniority up to 5 years, 8 up to 10, 12 up to 12, then one month for each completed year up to 18, 22 above 25 years. Months of 365/12 days: 183, 243, 365, 395, 426, 456, 487, 517, 548 and 669 days; the bands start at 60, 120, 156 (13 years, the first with more than 12 months), 168, 180, 192, 204, 216 and 300 completed months, reading 'superiore a N anni' as N completed years. The pay is the whole pay less the INPS share for every day of the comporto, nothing past it. Stored as a cumulation of one band per seniority step, each over 18 months. Read on 2026-10-31.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-07-09"
-        }
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-31T12:00:00Z",
+          "effective_from": "2024-07-09",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-31T12:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-31-ai-sickness-comporto"
+        },
+        "note": "Not modelled: the 80% longer comporto (12 to 40 months) of tuberculosis and the listed serious illnesses and the therapy days left out of it; the unpaid aspettativa summed in the 18 months; the floor of the R.D.L. 1825/1924 for the last period ('non può essere praticato un trattamento meno favorevole'); the end of the treatment six months after the old-age pension requirements; the 6 months of the apprentices."
       }
     }
   },
@@ -1998,6 +2074,27 @@
           "Scatti: amounts match Allegato A; at most 8 for the 1st and 2nd level of the quadri, not 12: the 12 apply only to staff in service on 31 December 1997 (Art. 101). Corrected; the 1997 cohort is noted.",
           "The FABI URL of the text no longer serves the PDF; the same signed text is cited from its Eutekne reproduction.",
           "Not reviewed here: the hourly pay of Art. 114 (90.66% of one twelfth of the annual pay, divided by 160) and the overtime rates, which stay derived."
+        ]
+      },
+      {
+        "id": "2026-10-31-ai-sickness-comporto",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules"
+        ],
+        "scope": "The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+            "sha256": "9506f2d65c5e65851d6a938888482a06b6b7bf77950dde43725f097ffad02c3b"
+          }
+        ],
+        "findings": [
+          "Art. 55 (p. 75) of the testo coordinato signed on 19.12.2024: the job and the whole pay are kept 6, 8, 12, one month per year up to 18, or 22 months by seniority, summing the absences of the 18 months before. The file kept 180 days of one illness: corrected to a cumulation over 18 months with ten seniority bands. The FABI copy cited before returns 404; the Eutekne copy of the same signed text is cited."
         ]
       }
     ],

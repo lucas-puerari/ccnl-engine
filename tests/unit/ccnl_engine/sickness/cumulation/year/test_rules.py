@@ -6,7 +6,11 @@ from datetime import date
 from decimal import Decimal
 
 import pytest
+from pydantic import ValidationError
 
+from ccnl_engine.seniority.inputs import SeniorityFact, SenioritySource
+from ccnl_engine.sickness.comporto.models import ComportoWindow
+from ccnl_engine.sickness.cumulation.rules import SicknessWorker
 from ccnl_engine.sickness.cumulation.year.rules import YearTreatment
 from ccnl_engine.sickness.integration.models import CarenzaByEvent, SicknessRules
 from ccnl_engine.sickness.models import SicknessEpisode
@@ -45,8 +49,10 @@ def _year(
     *earlier: SicknessEpisode,
     rules: SicknessRules = _RULES,
     known_from: date | None = None,
+    seniority: SeniorityFact | None = None,
 ) -> YearTreatment:
-    return YearTreatment(rules, episode, earlier, known_from, lambda _i: _ONE)
+    worker = SicknessWorker(seniority=seniority, known_from=known_from)
+    return YearTreatment(rules, episode, earlier, worker, lambda _i: _ONE)
 
 
 def _earlier(count: int, **kwargs: object) -> tuple[SicknessEpisode, ...]:
@@ -135,3 +141,86 @@ def test_without_events_the_carenza_is_the_rule_rate() -> None:
     year = _year(_episode("now", date(2026, 6, 1), 3), *_earlier(4), rules=rules)
     assert year.carenza_rate == _ONE
     assert not year.exemption_reach
+
+
+_ANCE = SicknessRules(
+    carenza_integration_rate=_ONE,
+    full_pay_integration_rate=_ONE,
+    max_duration_days=365,
+    comporto_windows=(
+        ComportoWindow(seniority_months_from=0, window_months=20, comporto_days=270),
+        ComportoWindow(seniority_months_from=42, window_months=24, comporto_days=365),
+    ),
+)
+
+
+@pytest.mark.parametrize(
+    ("hired", "earlier_start", "last_kept", "first_past"),
+    [
+        # Three years: 270 days in the 20 months to the day.  The 200 days
+        # from 1 Feb 2025 fall in the window of 1 Jun 2026 (from 2 Oct
+        # 2024): 70 days more, to 9 Aug, are kept, 10 Aug is past them.
+        (date(2023, 6, 1), date(2025, 2, 1), date(2026, 8, 9), date(2026, 8, 10)),
+        # Earlier days that left the 20 months no longer count: from
+        # 1 Feb 2024 (to 18 Aug 2024) none lie in the window of 1 Jun 2026,
+        # and 270 days of the episode run to 25 Feb 2027.
+        (date(2023, 6, 1), date(2024, 2, 1), date(2027, 2, 25), date(2027, 2, 26)),
+        # Five years: 365 days in the 24 months.  The 200 days from
+        # 1 Feb 2025 (to 19 Aug 2025) are in the window: 165 days more,
+        # to 12 Nov 2026, are kept.
+        (date(2021, 6, 1), date(2025, 2, 1), date(2026, 11, 12), date(2026, 11, 13)),
+    ],
+    ids=["window-of-20-months", "days-out-of-the-window", "window-of-24-months"],
+)
+def test_the_window_comporto_sums_the_sick_days_of_its_months(
+    hired: date, earlier_start: date, last_kept: date, first_past: date
+) -> None:
+    """Edilizia ANCE Art. 26: nine months in 20, twelve in 24 past 3.5 years."""
+    seniority = SeniorityFact.since(hired, SenioritySource.PAYSLIP)
+    earlier = _episode("before", earlier_start, 200)
+    year = _year(
+        _episode("now", date(2026, 6, 1), 400),
+        earlier,
+        rules=_ANCE,
+        seniority=seniority,
+    )
+    index = (last_kept - date(2026, 6, 1)).days + 1
+    assert not year.day(index, last_kept).beyond_comporto
+    assert year.day(index + 1, first_past).beyond_comporto
+
+
+def test_the_illness_limit_holds_under_a_longer_window() -> None:
+    """Metalmeccanico artigianato Art. 61: 9 months for one illness, 10 in 24."""
+    rules = _ANCE.model_copy(
+        update={
+            "max_duration_days": 270,
+            "comporto_windows": (
+                ComportoWindow(
+                    seniority_months_from=0, window_months=24, comporto_days=300
+                ),
+            ),
+        }
+    )
+    year = _year(_episode("now", date(2026, 6, 1), 300), rules=rules)
+    assert not year.day(270, date(2027, 2, 25)).beyond_comporto
+    assert year.day(271, date(2027, 2, 26)).beyond_comporto
+
+
+def test_a_history_known_within_the_window_could_change_the_count() -> None:
+    """The 20 months before 1 Jun 2026 start on 2 Oct 2024."""
+    episode = _episode("now", date(2026, 6, 1), 3)
+    assert _year(episode, rules=_ANCE, known_from=date(2024, 10, 3)).history_reach
+    assert not _year(episode, rules=_ANCE, known_from=date(2024, 10, 2)).history_reach
+
+
+def test_windows_must_start_at_no_seniority_and_increase() -> None:
+    """A first window from 12 months is refused."""
+    window = ComportoWindow(
+        seniority_months_from=12, window_months=20, comporto_days=270
+    )
+    with pytest.raises(ValidationError, match="comporto windows must start at 0"):
+        SicknessRules(
+            carenza_integration_rate=_ONE,
+            full_pay_integration_rate=_ONE,
+            comporto_windows=(window,),
+        )

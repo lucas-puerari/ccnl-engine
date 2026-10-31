@@ -1,19 +1,23 @@
-"""Per-episode sick pay counted over the calendar year of the sick day.
+"""Per-episode sick pay with a comporto or a carenza counted over episodes.
 
-A CCNL may keep the per-episode rates and still count two things over the
-calendar year (Commercio Arts. 186-187):
+A CCNL may keep the per-episode rates and still count over several
+episodes:
 
-- the comporto: the sick days of every episode of the year, against
-  ``max_duration_days``;
+- the comporto: the sick days of every episode of the calendar year,
+  against ``max_duration_days`` (Commercio Art. 186);
+- the comporto: the sick days of the months of a window that end on the
+  day, against the days of the window of the worker's seniority, on top of
+  ``max_duration_days`` for one illness (Edilizia ANCE Art. 26: nine months
+  in 20, twelve in 24 above three and a half years);
 - the carenza: paid at a lower rate from the n-th event of the year
   (:class:`~ccnl_engine.sickness.integration.models.CarenzaByEvent`).  A
   relapse continues its event; an event the CCNL exempts is not counted.
 
 The count reads the recorded episodes.  When the history is known only from
-a day after the first of January, or an earlier event does not say whether
-the CCNL exempts it, the count can be wrong: the higher pay is applied and
-the treatment says so (:attr:`YearTreatment.history_reach`,
-:attr:`YearTreatment.exemption_reach`).
+a day after the start of the year or of the window, or an earlier event
+does not say whether the CCNL exempts it, the count can be wrong: the
+higher pay is applied and the treatment says so
+(:attr:`YearTreatment.history_reach`, :attr:`YearTreatment.exemption_reach`).
 """
 
 from __future__ import annotations
@@ -24,11 +28,14 @@ from decimal import Decimal
 from functools import cached_property
 from typing import TYPE_CHECKING
 
-from ccnl_engine.sickness.cumulation.rules import CcnlDay
+from ccnl_engine.sickness.comporto.models import window_of
+from ccnl_engine.sickness.cumulation.rules import CcnlDay, window_start
 
 if TYPE_CHECKING:
     from collections.abc import Callable
 
+    from ccnl_engine.sickness.comporto.models import ComportoWindow
+    from ccnl_engine.sickness.cumulation.rules import SicknessWorker
     from ccnl_engine.sickness.integration.models import SicknessRules
     from ccnl_engine.sickness.models import SicknessEpisode
 
@@ -44,22 +51,22 @@ def _overlap(episode: SicknessEpisode, first: date, last: date) -> int:
 
 @dataclass(frozen=True)
 class YearTreatment:
-    """CCNL treatment of the days of one episode, counted over its year.
+    """CCNL treatment of the days of one episode, counted over episodes.
 
     Attributes:
-        rules: CCNL sickness rules, with a calendar-year comporto or a
-            carenza by event.
+        rules: CCNL sickness rules, with a calendar-year comporto, comporto
+            windows or a carenza by event.
         episode: The episode.
         earlier: Recorded episodes that started before it.
-        known_from: First day from which the recorded episodes are complete;
-            ``None`` when the history is complete.
+        worker: Seniority and known history of the worker; the history is
+            complete from ``known_from``, all of it when ``None``.
         target_rate: Integration target of an episode day index.
     """
 
     rules: SicknessRules
     episode: SicknessEpisode
     earlier: tuple[SicknessEpisode, ...]
-    known_from: date | None
+    worker: SicknessWorker
     target_rate: Callable[[int], Decimal]
 
     def year_days(self, day: date) -> int:
@@ -68,9 +75,27 @@ class YearTreatment:
         Returns:
             The recorded days of the year and those of the episode.
         """
-        first = date(day.year, 1, 1)
+        return self.days_from(date(day.year, 1, 1), day)
+
+    def days_from(self, first: date, day: date) -> int:
+        """Return the sick days from ``first`` up to ``day``.
+
+        Returns:
+            The recorded days and those of the episode.
+        """
         earlier = sum(_overlap(e, first, day) for e in self.earlier)
         return earlier + _overlap(self.episode, first, day)
+
+    @cached_property
+    def window(self) -> ComportoWindow | None:
+        """Comporto window of the seniority on the first day of the episode.
+
+        An unknown seniority takes the first window.
+        """
+        seniority = self.worker.seniority
+        start = self.episode.started_on
+        months = 0 if seniority is None else seniority.months_at(start)
+        return window_of(self.rules.comporto_windows, months)
 
     @cached_property
     def _events(self) -> tuple[Decimal, Decimal]:
@@ -110,8 +135,11 @@ class YearTreatment:
     @property
     def history_reach(self) -> bool:
         """Whether sick days before the known history could change the count."""
-        known = self.known_from
-        first = date(self.episode.started_on.year, 1, 1)
+        known = self.worker.known_from
+        start = self.episode.started_on
+        first = date(start.year, 1, 1)
+        if self.window is not None:
+            first = min(first, window_start(start, 0, self.window.window_months))
         return known is not None and known > first
 
     def day(self, index: int, day: date) -> CcnlDay:
@@ -122,12 +150,18 @@ class YearTreatment:
             day: The sick day.
 
         Returns:
-            Whether the day is past the comporto, and its rates.
+            Whether the day is past the comporto of the illness, of the
+            calendar year or of the window, and its rates.
         """
         limit = self.rules.max_duration_days
         count = self.year_days(day) if self.rules.comporto_calendar_year else index
+        window = self.window
+        summed = window is not None and (
+            self.days_from(window_start(day, 0, window.window_months), day)
+            > window.comporto_days
+        )
         return CcnlDay(
-            beyond_comporto=count > limit,
+            beyond_comporto=count > limit or summed,
             rate=self.target_rate(index),
             carenza_rate=self.carenza_rate,
         )
