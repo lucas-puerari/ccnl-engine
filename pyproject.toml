@@ -295,6 +295,13 @@ source_paths = [
     "src/ccnl_engine/leave/services.py",
     "src/ccnl_engine/leave/handlers.py",
     "src/ccnl_engine/leave/settlement/services.py",
+    # Sickness: the INPS base, the days of an episode, the count of the
+    # illnesses over their window and the issues of that count.
+    "src/ccnl_engine/sickness/base/rules.py",
+    "src/ccnl_engine/sickness/day/rules.py",
+    "src/ccnl_engine/sickness/cumulation/rules.py",
+    "src/ccnl_engine/sickness/cumulation/year/rules.py",
+    "src/ccnl_engine/sickness/cumulation/handlers.py",
 ]
 # Limit collection to the tests of the mutated payroll modules; copy full src
 # so imports resolve. Hypothesis tests are left out: they use multiple
@@ -438,6 +445,8 @@ pytest_add_cli_args_test_selection = [
     "tests/unit/ccnl_engine/leave",
     "tests/integration/ccnl_engine/leave",
     "tests/knowledge/ccnl_engine/leave",
+    "tests/unit/ccnl_engine/sickness",
+    "tests/integration/ccnl_engine/sickness",
 ]
 pytest_add_cli_args = ["--no-cov"]
 mutate_only_covered_lines = true

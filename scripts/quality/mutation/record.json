@@ -1,5 +1,5 @@
 {
-  "commit": "60132e72bc3387280a0d7e23825c8817ea51fed4",
+  "commit": "1faf0c85407a67e53504a8c2ad1c6d4711976b31",
   "date": "2026-10-31",
   "min_score": 93.0,
   "perimeter": [
@@ -44,17 +44,22 @@
     "src/ccnl_engine/leave/accrual/rules.py",
     "src/ccnl_engine/leave/services.py",
     "src/ccnl_engine/leave/handlers.py",
-    "src/ccnl_engine/leave/settlement/services.py"
+    "src/ccnl_engine/leave/settlement/services.py",
+    "src/ccnl_engine/sickness/base/rules.py",
+    "src/ccnl_engine/sickness/day/rules.py",
+    "src/ccnl_engine/sickness/cumulation/rules.py",
+    "src/ccnl_engine/sickness/cumulation/year/rules.py",
+    "src/ccnl_engine/sickness/cumulation/handlers.py"
   ],
   "scores": {
     "core": {
-      "killed": 4781,
-      "survived": 138,
-      "other": 1,
+      "killed": 5754,
+      "survived": 170,
+      "other": 3,
       "not_checked": 0,
       "equivalent": 7,
-      "total": 4920,
-      "score": 97.2,
+      "total": 5927,
+      "score": 97.1,
       "minimum": 93.0
     },
     "src/ccnl_engine/contribution/rules.py": {
@@ -178,13 +183,13 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/sickness/pay/handlers.py": {
-      "killed": 190,
-      "survived": 11,
+      "killed": 201,
+      "survived": 0,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
       "total": 201,
-      "score": 94.5,
+      "score": 100.0,
       "minimum": 93.0
     },
     "src/ccnl_engine/variable_pay/travel/handlers.py": {
@@ -465,6 +470,56 @@
       "equivalent": 0,
       "total": 229,
       "score": 98.3,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/sickness/base/rules.py": {
+      "killed": 116,
+      "survived": 0,
+      "other": 2,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 118,
+      "score": 98.3,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/sickness/day/rules.py": {
+      "killed": 300,
+      "survived": 17,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 317,
+      "score": 94.6,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/sickness/cumulation/rules.py": {
+      "killed": 323,
+      "survived": 19,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 342,
+      "score": 94.4,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/sickness/cumulation/year/rules.py": {
+      "killed": 71,
+      "survived": 0,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 71,
+      "score": 100.0,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/sickness/cumulation/handlers.py": {
+      "killed": 152,
+      "survived": 7,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 159,
+      "score": 95.6,
       "minimum": 93.0
     }
   }
