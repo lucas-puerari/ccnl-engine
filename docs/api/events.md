@@ -40,6 +40,8 @@ gross, net and employer cost according to its treatment; see
 
 ::: ccnl_engine.events.PeriodId
 
+::: ccnl_engine.events.PermitHours
+
 ::: ccnl_engine.events.ShiftKind
 
 ::: ccnl_engine.events.ShiftWorkEvent

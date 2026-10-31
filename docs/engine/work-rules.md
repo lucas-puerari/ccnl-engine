@@ -35,7 +35,7 @@ amounts are `Decimal` values in EUR, validated on construction.
 | `MaternityLeaveEvent` | `started_on`, `ended_on`, `maternity_base_pay` | Compulsory maternity leave; the engine derives the deduction, the INPS indemnity it advances and the CCNL top-up of the days in the run's month; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
 | `PaternityLeaveEvent` | `days`, `paternity_base_pay` | Compulsory paternity leave (10 days, 20 for a multiple birth); the engine derives the deduction and the INPS indemnity it advances for the days in the run's month; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
 | `ParentalLeaveEvent` | `started_on`, `ended_on`, `child_born_on`, `taken` (`ParentalLeaveTaken`), `protection_ended_on`, `single_parent`, `parental_base_pay` | Parental leave of an employee for a child born to the couple; the engine derives the deduction and the INPS indemnity at 30% or 80% of each day; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
-| `DisabilityPermitEvent` | `days` | Days of permit to assist a person with a serious disability (L. 104/1992 art. 33 c. 3); the engine deducts them and pays them back in full as the INPS indemnity it advances; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
+| `DisabilityPermitEvent` | `days`, `hours` (`PermitHours`: `day`, `hours`) | Days and hours of permit to assist a person with a serious disability (L. 104/1992 art. 33 c. 3); the engine deducts them and pays them back in full as the INPS indemnity it advances; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
 | `ExtraordinaryLeaveEvent` | `started_on`, `ended_on`, `last_fixed_pay` | Extraordinary leave to assist a person with a serious disability (D.Lgs. 151/2001 art. 42 c. 5); the engine deducts the days and pays the INPS indemnity it advances, up to the yearly maximum; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
 | `WorkInjuryEvent` | `injury_on`, `ended_on` | Temporary inability after a work injury; the engine derives the deduction, the waiting period, the INAIL indemnity (advanced or not) and the CCNL top-up; see [Maternity leave and work injury](#maternity-leave-and-work-injury) |
 | `SickLeaveEvent` | `amount`, `sick_days`, `waiting_period_days` | Sick pay the caller computed: an override of the engine, never payable; INPS and IRPEF, no TFR |
@@ -477,8 +477,12 @@ whose month it touches. The run deducts the days at the CCNL daily quota
   `maternity_item`), out of the INPS base since figurative contributions
   cover them (art. 44 c. 2); the 13th and the leave accrual are kept (art.
   43 c. 2). The TFR base keeps the days, as payroll practice holds, under
-  the open engine limitation `disability_permit_tfr`. Hourly permits (art.
-  33 cc. 2 and 6) are not modelled;
+  the open engine limitation `disability_permit_tfr`. Days split into hours
+  (`DisabilityPermitEvent.hours`, at most the three days as hours: weekly
+  hours over the working days of the week, times three, INPS msg.
+  16866/2007, which the engine does not check) are deducted and paid back
+  at the hourly pay of the CCNL, the full-time monthly pay over the CCNL
+  hourly divisor. The daily hours of art. 33 cc. 2 and 6 are not modelled;
 - extraordinary leave (D.Lgs. 151/2001 art. 42 c. 5): each day of the
   span is deducted as an unpaid absence (`absence_deduction`, out of the
   INPS and TFR bases) and paid back as the INPS indemnity (`maternity_item`):
