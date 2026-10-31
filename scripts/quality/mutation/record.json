@@ -1,5 +1,5 @@
 {
-  "commit": "c4d249f1099be6e0e6a170eb38c6a3c9d9be93ed",
+  "commit": "60132e72bc3387280a0d7e23825c8817ea51fed4",
   "date": "2026-10-31",
   "min_score": 93.0,
   "perimeter": [
@@ -40,17 +40,21 @@
     "src/ccnl_engine/termination/naspi/services.py",
     "src/ccnl_engine/personal_withholding/rules.py",
     "src/ccnl_engine/personal_withholding/limit/rules.py",
-    "src/ccnl_engine/personal_withholding/services.py"
+    "src/ccnl_engine/personal_withholding/services.py",
+    "src/ccnl_engine/leave/accrual/rules.py",
+    "src/ccnl_engine/leave/services.py",
+    "src/ccnl_engine/leave/handlers.py",
+    "src/ccnl_engine/leave/settlement/services.py"
   ],
   "scores": {
     "core": {
-      "killed": 4197,
-      "survived": 125,
+      "killed": 4781,
+      "survived": 138,
       "other": 1,
       "not_checked": 0,
       "equivalent": 7,
-      "total": 4323,
-      "score": 97.1,
+      "total": 4920,
+      "score": 97.2,
       "minimum": 93.0
     },
     "src/ccnl_engine/contribution/rules.py": {
@@ -421,6 +425,46 @@
       "equivalent": 0,
       "total": 235,
       "score": 95.3,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/leave/accrual/rules.py": {
+      "killed": 154,
+      "survived": 2,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 156,
+      "score": 98.7,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/leave/services.py": {
+      "killed": 148,
+      "survived": 7,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 155,
+      "score": 95.5,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/leave/handlers.py": {
+      "killed": 57,
+      "survived": 0,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 57,
+      "score": 100.0,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/leave/settlement/services.py": {
+      "killed": 225,
+      "survived": 4,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 229,
+      "score": 98.3,
       "minimum": 93.0
     }
   }

@@ -289,6 +289,12 @@ source_paths = [
     "src/ccnl_engine/personal_withholding/rules.py",
     "src/ccnl_engine/personal_withholding/limit/rules.py",
     "src/ccnl_engine/personal_withholding/services.py",
+    # Leave: the accrual of ferie, ROL and ex festività, the leave taken and
+    # the indemnity of the residual at the end of the employment.
+    "src/ccnl_engine/leave/accrual/rules.py",
+    "src/ccnl_engine/leave/services.py",
+    "src/ccnl_engine/leave/handlers.py",
+    "src/ccnl_engine/leave/settlement/services.py",
 ]
 # Limit collection to the tests of the mutated payroll modules; copy full src
 # so imports resolve. Hypothesis tests are left out: they use multiple
@@ -429,6 +435,9 @@ pytest_add_cli_args_test_selection = [
     "tests/knowledge/ccnl_engine/termination",
     "tests/unit/ccnl_engine/personal_withholding",
     "tests/integration/ccnl_engine/personal_withholding",
+    "tests/unit/ccnl_engine/leave",
+    "tests/integration/ccnl_engine/leave",
+    "tests/knowledge/ccnl_engine/leave",
 ]
 pytest_add_cli_args = ["--no-cov"]
 mutate_only_covered_lines = true
