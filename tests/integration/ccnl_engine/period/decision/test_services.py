@@ -7,6 +7,7 @@ stage and must match what the run posted to the ledger.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -16,6 +17,7 @@ from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.capability.trace.models import TraceState
 from ccnl_engine.capability.trace.services import build_traces
 from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.decision.models import (
     CalculationStatus,
     DecisionOrigin,
@@ -23,7 +25,7 @@ from ccnl_engine.decision.models import (
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.event.facade import AbsenceEvent, BonusEvent
-from ccnl_engine.inputs import ContributableHours, WeeklyHours
+from ccnl_engine.inputs import ContributableHours, WeeklyHours, WorkerCategory
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.pension_fund.inputs import PensionFundEnrolment
@@ -49,9 +51,29 @@ _DAY = date(2026, 3, 1)
 _BASE_STAGES = ("base_salary", "inps_employee", "inps_employer", "tfr", "irpef")
 
 
+#: No other employment this year: the IVS massimale is reached here alone.
+_STATE = replace(
+    PeriodState.zero(),
+    accrual=PeriodState.zero().accrual.with_inps_base(
+        InpsBaseYtd(2026, other_employers=Decimal(0))
+    ),
+)
+
+
 def _run(
     ccnl: str = _METALMECCANICO, level: str = "C3", **kwargs: object
 ) -> PeriodResult:
+    """Return March 2026, the facts the base stages read stated.
+
+    A stage whose fact is left to its default decides ``provisional``.
+
+    Returns:
+        The result of the run.
+    """
+    kwargs.setdefault("opening_state", _STATE)
+    kwargs.setdefault("tfr_treasury_fund", False)
+    if level == "C3":
+        kwargs.setdefault("category", WorkerCategory.IMPIEGATO)
     return calculate_period(
         PeriodCalculationRequest(
             period_id=PeriodId(year=2026, month=3),
@@ -59,7 +81,6 @@ def _run(
             ccnl_id=ccnl,
             level_code=level,
             employer=EmployerProfile(headcount=Headcount(50)),
-            opening_state=PeriodState.zero(),
             **kwargs,  # type: ignore[arg-type]
         ),
         repo=bundled_repository(),
@@ -296,3 +317,17 @@ def test_low_part_time_pay_withholds_nothing() -> None:
     decision = _decision(result, "irpef")
     assert decision.reason_code == "nothing_due"
     assert decision.amount == Decimal(0)
+
+
+def test_a_fact_left_to_its_default_leaves_the_decision_provisional() -> None:
+    """Without tfr_treasury_fund the TFR quota rests on its default."""
+    stated, open_fact = _run(), _run(tfr_treasury_fund=None)
+
+    assert "tfr_treasury_fund" in {i.fact for i in open_fact.issues}
+    assert (_decision(stated, "tfr").status, _decision(open_fact, "tfr").status) == (
+        CalculationStatus.FINAL,
+        CalculationStatus.PROVISIONAL,
+    )
+    assert (
+        _decision(open_fact, "tfr").reason_code == _decision(stated, "tfr").reason_code
+    )
