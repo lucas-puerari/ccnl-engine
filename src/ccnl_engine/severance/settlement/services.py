@@ -26,9 +26,9 @@ bundle holds it the TFR posted leaves the revaluation out and its decision
 is incomplete, while the tax, which does not depend on it, stays final.
 
 Not computed, with an incomplete decision and the fact or the reason in
-an issue: a TFR at INPS (public TFS or TFR at INPS), paid to the Fondo
-Tesoreria INPS (who pays its share is not settled in the bundle) or to a
-pension fund (whose sums art. 19 c. 1 adds to the reference income); an
+an issue: a TFR at INPS (public TFS or TFR at INPS) or paid to a pension
+fund (whose sums art. 19 c. 1 adds to the reference income; the employer
+pays the share of the Fondo Tesoreria INPS, circ. 70/2007 par. 7.1); an
 unknown fund or quotas of the year; a fund with advances (art. 19 c. 4,
 the conguaglio of their tax); a fixed term of up to two years (the
 deduction of art. 19 c. 1-ter); a termination in a year without

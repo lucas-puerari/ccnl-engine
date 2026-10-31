@@ -394,7 +394,7 @@ and stays final.
 
 | Gap | Payout | Tax |
 |---|---|---|
-| Public TFS or TFR at INPS (`tfr_at_inps`), Fondo Tesoreria (`treasury_fund_share`), unknown Fondo Tesoreria destination, pension fund TFR (`pension_fund_tfr`) | not computed | not computed |
+| Public TFS or TFR at INPS (`tfr_at_inps`), pension fund TFR (`pension_fund_tfr`) | not computed | not computed |
 | No `employment_period`, no `tfr_fund` of the year before (an employment of the year without one has an empty fund), unknown quotas of the year (balances of that year imported without `tfr_quotas`, or a regular month of the year not closed) | not computed, `missing_fact` | not computed |
 | `tfr_fund.revaluations` not stated on a non-empty fund | posted | `missing_fact` `revaluations` |
 | `tfr_fund.advances` not stated, or advances paid (art. 19 c. 4, `advances_not_modelled`) | posted | not computed |
@@ -403,6 +403,14 @@ and stays final.
 | A year without settlement rules (from 2027, D.Lgs. 117/2026), or a run paid in another tax year than the termination's (`rule_not_in_bundle`) | posted | not computed |
 
 Each gap leaves its decision `incomplete` and the run not payable.
+
+A TFR at the Fondo Tesoreria INPS is no gap: "La liquidazione delle
+prestazioni viene effettuata integralmente dal datore di lavoro, anche per
+la quota parte di competenza del Fondo" (INPS circ. 70/2007 par. 7.1, PDF
+sha256 7def4bc121c204925ac5e8a20b640afc9e157243b6e6903c7c1942aab275d49a),
+which the employer then recovers in the conguaglio of the monthly return,
+on the contributions due to the Fondo first: the settlement is the one of a
+TFR the employer holds, whether `tfr_treasury_fund` is set or not.
 
 `separate_tax_rate` alone overrides the average rate on the taxable the
 engine computes (reason `caller_rate`). `amount` with `separate_tax_rate`

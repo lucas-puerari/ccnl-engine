@@ -47,17 +47,6 @@ _TFR_AT_INPS = _Gap(
     "INPS, not by the employer",
     cause=IssueCause.CONDITION,
 )
-_TREASURY = _Gap(
-    "treasury_fund_share",
-    "the TFR goes to the Fondo Tesoreria INPS: who pays its share at the "
-    "termination is not settled in the bundle; state the payout and its rate",
-)
-_TREASURY_UNKNOWN = _Gap(
-    "required_fact_missing",
-    "whether the TFR goes to the Fondo Tesoreria INPS is not known: set "
-    "Employment.tfr_treasury_fund",
-    "tfr_treasury_fund",
-)
 _PENSION_FUND = _Gap(
     "pension_fund_tfr",
     "the TFR goes to a pension fund, whose sums art. 19 c. 1 TUIR adds to the "
