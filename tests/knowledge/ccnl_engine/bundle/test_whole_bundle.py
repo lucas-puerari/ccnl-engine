@@ -30,6 +30,7 @@ from ccnl_engine.severance.loaders import (
 from ccnl_engine.sickness.indemnity.loaders import load_sick_pay_rates
 from ccnl_engine.surtax.loaders import load_surtax_rules
 from ccnl_engine.tax_credit.somma_esente.loaders import load_somma_esente_rules
+from ccnl_engine.termination.naspi.loaders import load_naspi_dismissal_rules
 from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
 from scripts.provenance.rules import KNOWLEDGE_DIR
 
@@ -60,6 +61,7 @@ _LOADERS: dict[str, Callable[[dict[str, Any]], object]] = {
     "sector": _year_rules,
     "severance/revaluation": lambda r: load_tfr_revaluation_rules(r["year"]),
     "severance/settlement": lambda r: load_tfr_settlement_rules(r["year"]),
+    "termination/naspi": lambda r: load_naspi_dismissal_rules(r["year"]),
     "sickness/indemnity": lambda _: load_sick_pay_rates(),
     "absence/insured": lambda _: load_insured_absence_rates(),
     "surtax/municipal": lambda r: load_surtax_rules(r["year"]),

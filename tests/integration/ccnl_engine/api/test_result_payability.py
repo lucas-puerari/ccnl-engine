@@ -31,6 +31,7 @@ from ccnl_engine.inputs import (
     FamilyComposition,
     NoPensionFund,
     Permanent,
+    TerminationCause,
     TfrFundBalance,
     WeeklyHours,
     WorkerCategory,
@@ -82,7 +83,7 @@ def _blocker_keys(result: PeriodResult) -> set[tuple[BlockerCode, str | None, st
 
 
 def test_incomplete_coverage_is_not_payable() -> None:
-    """Metalmeccanico C3, last month of an employment ending on 30 January.
+    """Metalmeccanico C3, last month of an employment resigned on 30 January.
 
     The final payslip must settle the residual leave, which the CCNL texts
     read give no divisor for: it applies to this run and is decided
@@ -95,7 +96,12 @@ def test_incomplete_coverage_is_not_payable() -> None:
     issue that blocks on its own.  The worker resides in Alghero, so the
     surtaxes leave no gap of their own.
     """
-    period = EmploymentPeriod(started_on=date(2020, 1, 1), ended_on=date(2026, 1, 30))
+    period = EmploymentPeriod(
+        started_on=date(2020, 1, 1),
+        ended_on=date(2026, 1, 30),
+        ended_by=TerminationCause.RESIGNATION,
+        just_cause=False,
+    )
     result = _january(
         Employment(
             ccnl_id=_METALMECCANICO,

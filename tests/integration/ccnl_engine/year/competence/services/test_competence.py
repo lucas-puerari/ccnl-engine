@@ -24,7 +24,7 @@ from ccnl_engine.calendar.inputs import (
 from ccnl_engine.calendar.models import WorkCalendar
 from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employment.inputs import Permanent
-from ccnl_engine.employment.period.inputs import EmploymentPeriod
+from ccnl_engine.employment.period.inputs import EmploymentPeriod, TerminationCause
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import AbsenceEvent
 from ccnl_engine.inputs import (
@@ -323,7 +323,7 @@ class TestEmploymentPeriodRuns:
         }
 
     def test_termination_in_may_has_no_december_tredicesima(self) -> None:
-        """Ended 31 May: five regular runs, no extra-month run.
+        """Resigned 31 May: five regular runs, no extra-month run.
 
         The income of five months is within the 20,000 EUR limit of the
         somma esente, whose reddito complessivo (L. 207/2024 art. 1 c. 4)
@@ -337,7 +337,10 @@ class TestEmploymentPeriodRuns:
                 _LEVEL,
                 facts=resident(),
                 employment_period=EmploymentPeriod(
-                    date(2020, 1, 1), date(_YEAR, 5, 31)
+                    date(2020, 1, 1),
+                    date(_YEAR, 5, 31),
+                    ended_by=TerminationCause.RESIGNATION,
+                    just_cause=False,
                 ),
                 opening_state=fresh_tax_year(_YEAR),
             ),

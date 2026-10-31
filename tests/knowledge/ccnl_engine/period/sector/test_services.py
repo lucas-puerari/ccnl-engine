@@ -43,6 +43,7 @@ from ccnl_engine.inputs import (
     NoPensionFund,
     Permanent,
     PriorYearTaxFacts,
+    TerminationCause,
     WeeklyHours,
     WorkerCategory,
 )
@@ -528,6 +529,18 @@ _RESIDUAL_LEAVE_UNPAID: dict[str, str | None] = {
 }
 
 
+def _period(s: Scenario) -> EmploymentPeriod:
+    """Return the employment of the case.
+
+    Returns:
+        Its period; one that ends is resigned without just cause.
+    """
+    ended = s.ends_on or (_JUNE_END if s.terminated else None)
+    if ended is None:
+        return EmploymentPeriod(s.starts_on)
+    return EmploymentPeriod(s.starts_on, ended, TerminationCause.RESIGNATION, False)
+
+
 def _contract(s: Scenario) -> Permanent | Apprentice | FixedTerm:
     if s.apprentice_track is not None:
         return Apprentice(months_elapsed=0, track=s.apprentice_track)
@@ -566,9 +579,7 @@ def _year(name: str) -> CompetenceYearResult:
                 level_code=s.level,
                 category=s.category,
                 seniority=new_hire(),
-                employment_period=EmploymentPeriod(
-                    s.starts_on, s.ends_on or (_JUNE_END if s.terminated else None)
-                ),
+                employment_period=_period(s),
                 tfr_treasury_fund=False,
                 pension_fund=NoPensionFund(),
                 contract_type=_contract(s),
@@ -687,6 +698,14 @@ def test_only_the_stated_gaps_block_the_net_pay(name: str) -> None:
             BlockerCode.CALCULATION_ISSUE,
             "termination_residual_leave",
             reason,
+        ))
+    if _period(s).ended_on is not None and not s.fixed_term:
+        # A resignation in the maternity protection would owe the NASpI
+        # contribution, which the request cannot state.
+        expected.add((
+            BlockerCode.OPEN_LIMITATION,
+            "naspi_dismissal",
+            "naspi_dismissal_exceptions",
         ))
     if s.ccnl in {_EDIL, _EDILIZIA_IMPIEGATI}:
         expected.add((

@@ -15,9 +15,7 @@ from ccnl_engine.capability.rule.time.services import (
     _supplement_rules,
 )
 from ccnl_engine.compensation.hourly.services import percentage_rules
-from ccnl_engine.contribution.additional_ivs.services import (
-    additional_ivs_rules,
-)
+from ccnl_engine.contribution.additional_ivs.services import additional_ivs_rules
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm
 from ccnl_engine.event.facade import (
     HolidayWorkEvent,
@@ -35,6 +33,7 @@ from ccnl_engine.severance.services import (
 )
 from ccnl_engine.sickness.services import sickness_rules
 from ccnl_engine.surtax.jurisdiction.types import region_table_name
+from ccnl_engine.termination.naspi.services import naspi_rules
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -350,4 +349,5 @@ LOADED: dict[str, Callable[[RunContext], tuple[Rule, ...]]] = {
     "sickness": sickness_rules,
     "leave": _leave_rules,
     "termination_residual_leave": _termination_leave_rules,
+    "naspi_dismissal": naspi_rules,
 }

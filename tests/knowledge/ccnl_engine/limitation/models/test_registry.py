@@ -59,6 +59,7 @@ from ccnl_engine.severance.relief.services import (
     APPRENTICE_GUARANTEE_FUND,
 )
 from ccnl_engine.sickness.handlers import CUMULATION_LIMITATION
+from ccnl_engine.termination.naspi.services import EXCEPTIONS as NASPI_EXCEPTIONS
 from ccnl_engine.termination.notice.handlers import DAY_MEASURE as NOTICE_DAY_MEASURE
 from ccnl_engine.termination.notice.handlers import EXTRA_MONTHS as NOTICE_EXTRA_MONTHS
 from ccnl_engine.termination.notice.handlers import PARTIAL as NOTICE_PARTIAL
@@ -143,6 +144,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         NOTICE_TFR,
         NOTICE_DAY_MEASURE,
         HOURLY_CCNL_LIMITATION,
+        NASPI_EXCEPTIONS,
     }
     assert by_status[LimitationStatus.RESOLVED] == {
         _MIDPOINT,

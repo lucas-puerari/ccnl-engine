@@ -84,7 +84,7 @@ does not report its gap as well.
 
 A `derived` rule (taken from a cited document location, with no recorded
 human check) lowers the evidence axis but does not block on its own. Only
-<!-- trust:rules-verified -->2503<!-- /trust:rules-verified --> payable rules of
+<!-- trust:rules-verified -->2505<!-- /trust:rules-verified --> payable rules of
 the bundle are `verified`, so requiring `verified` would block almost every
 result; the evidence axis keeps the difference visible instead.
 
@@ -203,9 +203,9 @@ is `False` on its closing state). See
 ## Model limitations
 
 A known simplification of the model is data, not a comment. The registry has
-<!-- trust:limitations-total -->586<!-- /trust:limitations-total --> `ModelLimitation`
+<!-- trust:limitations-total -->587<!-- /trust:limitations-total --> `ModelLimitation`
 entries: one per `simplification` note of a CCNL file that can move an
-amount, and <!-- trust:limitations-engine -->22<!-- /trust:limitations-engine -->
+amount, and <!-- trust:limitations-engine -->23<!-- /trust:limitations-engine -->
 engine limitations of code paths several CCNLs share
 (`knowledge/limitation/engine.json`: the apprenticeship midpoint and
 the apprentice seniority increment, both resolved; a percentage

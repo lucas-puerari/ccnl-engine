@@ -83,6 +83,22 @@
       }
     },
     {
+      "id": "naspi_dismissal_exceptions",
+      "institute": "naspi_dismissal",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The NASpI contribution of the end of an employment is read from the cause, the just cause and the contract type alone. The request states none of the cases that change it: a resignation in the protected period of maternity and a mutual agreement before the labour office or on a transfer over 50 km owe it (INPS circ. 44/2013 par. 1); a collective dismissal without union agreement owes it three times (L. 92/2012 art. 2 c. 35); the changes of contractor with a social clause and the closures of a construction site of c. 34, and the reductions agreed under artt. 4 and 24 L. 223/1991, leave it out; the service counts the fixed-term periods before the open-ended contract and leaves out the leave of art. 42 c. 5 D.Lgs. 151/2001 only through EmploymentPeriod.started_on.",
+      "calculation": "ccnl_engine.termination.naspi.services.naspi_dismissal; L. 92/2012 art. 2 cc. 31-35 (Normattiva, sha256 b73a86474e09ecb4a31eadfc49e86999fb944a8d787598c73f840a5f29fb31a6); INPS circ. 44/2013 (sha256 921fa38bef69508119c546fd0179ceff3e272224bd4ddea8f2e2949e09c89f07)",
+      "state": "unverified",
+      "remediation": "Add the facts of these cases to the end of the employment (EmploymentPeriod) and apply them, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "naspi_dismissal_exceptions"
+        ]
+      }
+    },
+    {
       "id": "notice_indemnity_day_measure",
       "institute": "termination_notice",
       "variant": "all",
