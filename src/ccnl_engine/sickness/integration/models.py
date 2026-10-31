@@ -9,6 +9,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.sickness.comporto.models import (
+    ComportoBand,
     ComportoWindow,
     HospitalComportoRule,
     check_windows,
@@ -347,6 +348,8 @@ class SicknessRules(BaseModel):
             the days of one episode.
         comporto_windows: Comporto summed over the months before the day,
             by seniority, on top of ``max_duration_days`` for one illness.
+        comporto_bands: Comporto of one illness by seniority, in place of
+            ``max_duration_days`` (ABI Art. 66 c. 1).
         carenza_by_event: Lower carenza from the n-th event of the year.
         carenza_min_days: The carenza is paid only when the sickness lasts
             more than this many calendar days (Pubblici esercizi FIPE
@@ -382,6 +385,7 @@ class SicknessRules(BaseModel):
     day_bands: tuple[SicknessDayBand, ...] = Field(default=())
     comporto_calendar_year: bool = False
     comporto_windows: tuple[ComportoWindow, ...] = ()
+    comporto_bands: tuple[ComportoBand, ...] = ()
     carenza_by_event: CarenzaByEvent | None = None
     carenza_min_days: int | None = Field(default=None, ge=1)
     max_duration_days: int = Field(default=180, ge=1)
@@ -395,11 +399,13 @@ class SicknessRules(BaseModel):
     @model_validator(mode="after")
     def _one_model(self) -> Self:
         check_windows(self.comporto_windows)
+        check_windows(self.comporto_bands)
         per_episode = (
             self.tiers
             or self.day_bands
             or self.comporto_calendar_year
             or self.comporto_windows
+            or self.comporto_bands
             or self.carenza_by_event is not None
             or "max_duration_days" in self.model_fields_set
         )

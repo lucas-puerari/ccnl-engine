@@ -9,7 +9,7 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.seniority.inputs import SeniorityFact, SenioritySource
-from ccnl_engine.sickness.comporto.models import ComportoWindow
+from ccnl_engine.sickness.comporto.models import ComportoBand, ComportoWindow
 from ccnl_engine.sickness.cumulation.rules import SicknessWorker
 from ccnl_engine.sickness.cumulation.year.rules import YearTreatment
 from ccnl_engine.sickness.integration.models import CarenzaByEvent, SicknessRules
@@ -50,9 +50,10 @@ def _year(
     rules: SicknessRules = _RULES,
     known_from: date | None = None,
     seniority: SeniorityFact | None = None,
+    offset: int = 0,
 ) -> YearTreatment:
     worker = SicknessWorker(seniority=seniority, known_from=known_from)
-    return YearTreatment(rules, episode, earlier, worker, lambda _i: _ONE)
+    return YearTreatment(rules, episode, earlier, worker, lambda _i: _ONE, offset)
 
 
 def _earlier(count: int, **kwargs: object) -> tuple[SicknessEpisode, ...]:
@@ -224,3 +225,52 @@ def test_windows_must_start_at_no_seniority_and_increase() -> None:
             full_pay_integration_rate=_ONE,
             comporto_windows=(window,),
         )
+
+
+_ABI = SicknessRules(
+    carenza_integration_rate=_ONE,
+    full_pay_integration_rate=_ONE,
+    comporto_bands=(
+        ComportoBand(seniority_months_from=0, comporto_days=180),
+        ComportoBand(seniority_months_from=61, comporto_days=240),
+        ComportoBand(seniority_months_from=301, comporto_days=660),
+    ),
+)
+
+
+@pytest.mark.parametrize(
+    ("hired", "offset", "last_kept", "reach"),
+    [
+        # Three years, 6 months of 30 days: days 1-180, to 28 Nov 2026.
+        (date(2023, 6, 1), 0, 180, False),
+        # A relapse after 100 days of the illness it continues: 80 more.
+        (date(2023, 6, 1), 100, 80, False),
+        # Over 25 years (301 months): 22 months, 660 days.
+        (date(2000, 1, 1), 0, 660, False),
+        # Unknown seniority: the first band, and a later one could keep
+        # the 700 days of the episode longer.
+        (None, 0, 180, True),
+    ],
+    ids=["first-band", "relapse", "last-band", "unknown-seniority"],
+)
+def test_the_comporto_of_one_illness_follows_the_seniority(
+    hired: date | None, offset: int, last_kept: int, reach: bool
+) -> None:
+    """ABI Art. 66 c. 1: 6 to 22 months of one illness by seniority."""
+    start = date(2026, 6, 1)
+    seniority = (
+        None if hired is None else SeniorityFact.since(hired, SenioritySource.PAYSLIP)
+    )
+    year = _year(
+        _episode("now", start, 700),
+        rules=_ABI,
+        seniority=seniority,
+        offset=offset,
+        known_from=date(2026, 5, 1),
+    )
+    kept = date.fromordinal(start.toordinal() + last_kept - 1)
+    after = date.fromordinal(kept.toordinal() + 1)
+    assert not year.day(offset + last_kept, kept).beyond_comporto
+    assert year.day(offset + last_kept + 1, after).beyond_comporto
+    assert year.seniority_reach is reach
+    assert not year.history_reach

@@ -271,7 +271,7 @@ def test_the_cause_decides_who_owes(
             "fact",
         ),
         (
-            {"ccnl": "metalmeccanico-confapi"},
+            {"ccnl": "alimentari-federalimentare"},
             _notice(date(2026, 3, 10)),
             "notice_rule_missing",
             "rule",

@@ -303,7 +303,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/bancari-abi",
       "ruleset_version": "2026.2",
-      "source_hash": "da1861bd00ef5fb235321ac1ca93ab1ce3d4243b8856e8be7f7a82c633c55cc9",
+      "source_hash": "f72735956b5f6878d214c0124a4e8917b5967d35d1b7c474d53300c885644913",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/bancari-abi.json.gz"
@@ -541,7 +541,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/consorzi-di-bonifica-snebi",
       "ruleset_version": "2026.2",
-      "source_hash": "43d95943813b29294a57689cd86b971645dded83861eb85a2aaabc965123cf22",
+      "source_hash": "b29a14829a04f160e4ea2fdbc52a0526b5f493ae4fe9e1b22304cd03f5ade953",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/consorzi-di-bonifica-snebi.json.gz"
@@ -592,7 +592,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cooperative-sociali",
       "ruleset_version": "2026.2",
-      "source_hash": "0daf27869821905e69b1bd0ced35ad4dc8b7115b62cac7822623abf8eeeaf656",
+      "source_hash": "d2d7bde20f9ffae47a983e7a26d3c8cfa22a0c9da23b6b49ad5899a079764020",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/cooperative-sociali.json.gz"
@@ -1462,7 +1462,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-confapi",
       "ruleset_version": "2026.2",
-      "source_hash": "dde87a5984dff702358ca0c474231a7a72503f82b2f2bc1f818f948a762eb093",
+      "source_hash": "986c13880087e447d20304a612eac5d80c398fcb133029d2f31f617b91bb9869",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-confapi.json.gz"
@@ -1632,7 +1632,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/ortofrutticoli-agrumari",
       "ruleset_version": "2024.1",
-      "source_hash": "81f846e39a9a488c4576611a1870b6f11ec145637423d641ec3630adbaa6b85d",
+      "source_hash": "a9c20b378dd6329ea57b3fdcd2b3e3eab4da711d0cb55241230db5449781526c",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/ortofrutticoli-agrumari.json.gz"
@@ -1751,7 +1751,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem",
       "ruleset_version": "2026.2",
-      "source_hash": "8c50bc40665427b997eb7771ff6cdb87282ebf71f1a9bb6529b68005de5f52c5",
+      "source_hash": "659b998942ab38f662a4cce2a7ff0e010212e66708ac70600de36ae13d215d45",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem.json.gz"
@@ -2040,7 +2040,7 @@
       "valid_to": "2027-03-31",
       "ruleset_id": "ccnl/terziario-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "70d237b903f9d314fa3484ccb431e624269c566a4704d3b818153b86f157d99b",
+      "source_hash": "26814192988e1e682490149067065d9bdb2e518adcc8a70fe19c732ef70b3b04",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/terziario-confesercenti.json.gz"
@@ -2057,7 +2057,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tessile-moda-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "d86d5fe741515b93712c2165d5ddc7015b5de59ee343ac5f58d86634c7397ea8",
+      "source_hash": "c1d4b9874a1a88bbc793a409e65ab29e3559b9e16be3f0d86df59e03ad526488",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tessile-moda-artigianato-confartigianato.json.gz"
@@ -2159,7 +2159,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi",
       "ruleset_version": "2026.2",
-      "source_hash": "f4ce3e7c763407e21bb8ccffdf3e4914c1f1d2462f42b456ff1e00478f4e66e2",
+      "source_hash": "8a5de25020333f46687f67367f0464c87f630ba8fbe6454a457e0442ef5e8ebe",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/turismo-federalberghi.json.gz"
@@ -2673,7 +2673,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "327437f51b632ffadaef72ccc0399c73653c004141677f444f4c5d07c93d8bd0",
+      "source_hash": "eec34e556c83d21dcac3ef45da8188a33ecda89bcbd8abc8f4e2aea067583ea3",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/bancari-abi.json.gz",
@@ -4233,7 +4233,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "ee54fa88cbd0717714995801180b4ff3e824a6bdf6629857bd33cd4c6739cb95",
+      "source_hash": "73aa028e2a37c5e92e4a6252720b7915aeac2e1a49c3e073502ad05cc4fc345e",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/ortofrutticoli-agrumari.json.gz",
@@ -5373,7 +5373,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "14fb76e48683906fd1c18a7fdb5f85e39e3e6c339f06996be1461bbd40b51c18",
+      "source_hash": "deb54fbf8ca599f1fd53318e5804d22a0643833bd17fb9dfe59f54e064715777",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "limitation/engine.json.gz",

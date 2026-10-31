@@ -2948,7 +2948,7 @@
     "effective_until": null,
     "source": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
     "verification_status": "unverified",
-    "source_hash": "0daf27869821905e69b1bd0ced35ad4dc8b7115b62cac7822623abf8eeeaf656",
+    "source_hash": "d2d7bde20f9ffae47a983e7a26d3c8cfa22a0c9da23b6b49ad5899a079764020",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3231,6 +3231,145 @@
           "verified_at": "2026-10-13T07:21:20Z",
           "verification_status": "verified",
           "review_id": "2026-10-13-ai-production"
+        }
+      }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "A1",
+            "A2",
+            "B",
+            "C1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 36,
+          "days": 15
+        },
+        {
+          "levels": [
+            "A1",
+            "A2",
+            "B",
+            "C1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 30
+        },
+        {
+          "levels": [
+            "C2"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 36,
+          "days": 30
+        },
+        {
+          "levels": [
+            "C2"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 45
+        },
+        {
+          "levels": [
+            "C3",
+            "D1",
+            "D2",
+            "D3",
+            "E1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 36,
+          "days": 45
+        },
+        {
+          "levels": [
+            "C3",
+            "D1",
+            "D2",
+            "D3",
+            "E1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 60
+        },
+        {
+          "levels": [
+            "E2",
+            "E2Q",
+            "F1",
+            "F1Q",
+            "F2",
+            "F2Q"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 36,
+          "days": 90
+        },
+        {
+          "levels": [
+            "E2",
+            "E2Q",
+            "F1",
+            "F1Q",
+            "F2",
+            "F2Q"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 120
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+          },
+          "page": "68",
+          "section": "Art. 33 - Preavviso di licenziamento e dimissioni",
+          "quote": "il contratto di impiego a tempo indeterminato non può essere risolto da alcuna delle parti senza un preavviso i cui termini sono stabiliti in giorni di calendario, come segue: Categoria Posizione economica Giorni di calendario Per anzianità di servizio fino a 3 anni Giorni di calendario Per anzianità di servizio oltre i tre anni A A1 15 30 A2 15 30 B B1 15 30 C C1 15 30 C2 30 45 C3 45 60 D D1 45 60 D2 45 60 D3 45 60 E E1 45 60 E2 90 120 F F1 90 120 F2 90 120 La parte che risolve il rapporto di lavoro senza l’osservanza dei predetti termini di preavviso deve corrispondere all’altra un’indennità pari all’importo della retribuzione del periodo di mancato preavviso."
+        },
+        "transformation": "The table of Art. 33 in calendar days: 'fino a 3 anni' is up to 36 months of service, 'oltre i tre anni' any longer; position B1 is level B of this file. The quadri E2Q, F1Q and F2Q are positions E2, F1 and F2 with the indemnity of function (Art. 47, Quadri, pp. 85-86: 'nell'ambito delle lavoratrici e dei lavoratori con funzioni direttive di cui alle categorie e posizioni economiche E2, F1, F2'), so they take the rows of E2, F1 and F2. The notice binds 'alcuna delle parti': the same for dismissal and resignation. The article states no start day: the notice runs from the day after the act.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-31T00:00:00",
+          "effective_from": "2025-11-20",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-31T21:00:00Z",
+          "review_id": "2026-10-31-ai"
         }
       }
     }
