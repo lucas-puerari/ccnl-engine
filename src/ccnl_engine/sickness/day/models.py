@@ -61,6 +61,12 @@ class SickPayRules:
     worker: SicknessWorker = field(default_factory=SicknessWorker)
     fixed_term: bool = False
 
+    @property
+    def paid_directly(self) -> bool:
+        """Whether INPS pays every day of the fixed-term contract directly."""
+        statute = self.inps.fixed_term
+        return self.fixed_term and statute is not None and statute.paid_directly
+
     def target_rate(self, index: int) -> Decimal:
         """Return the CCNL integration target of episode day ``index``.
 

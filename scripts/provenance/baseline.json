@@ -1452,6 +1452,7 @@
       "personal_withholding_same_kind",
       "provisional_inps_ruleset",
       "provisional_ruleset",
+      "sickness_agricultural_fixed_term_days",
       "sickness_cumulation_window",
       "tfr_compensation_apprentice_guarantee_fund"
     ]

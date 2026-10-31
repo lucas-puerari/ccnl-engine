@@ -7,9 +7,7 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from ccnl_engine.provenance.ruleset.models import (
-    RulesetIdentity,
-)
+from ccnl_engine.provenance.ruleset.models import RulesetIdentity
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.sickness.base.models import RegimeDailyBase
 
@@ -128,12 +126,34 @@ def _check_band_chain(bands: list[SickPayBand], carenza_days: int, owner: str) -
             raise ValueError(msg)
 
 
+class FixedTermSickLimit(BaseModel):
+    """Sickness of a fixed-term contract (D.L. 463/1983 art. 5).
+
+    Paid for no more days than those of work in the 12 months before the
+    episode (c. 1); with :attr:`short_work_days` days or fewer, for at most
+    that many days a year, INPS paying directly (c. 3), as it does beyond
+    the days of work with the employer (c. 5).
+
+    Attributes:
+        short_work_days: The 30 days of c. 3.
+        provenance: Source and status of the rule.
+        paid_directly: Whether INPS pays every day directly, in place of
+            the days of c. 1 (operai agricoli a tempo determinato).
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    short_work_days: int = Field(ge=1)
+    provenance: RuleProvenance | None = None
+    paid_directly: bool = False
+
+
 class SickPayRegime(BaseModel):
     """INPS indemnity bands of a group of workers that differs from the rule.
 
     A CCNL names the regime of its workers in
     :attr:`~ccnl_engine.sickness.integration.models.SicknessRules.inps_regime`;
-    the regime replaces the general bands, while the carenza, the annual
+    it replaces the bands and the fixed-term rule; the carenza, the annual
     maximum and the coverage stay those of :class:`InpsSickPayRates`.
 
     Attributes:
@@ -150,6 +170,7 @@ class SickPayRegime(BaseModel):
             requirement.
         provenance: Provenance record of the regime rates.
         daily_base: The base of the regime; ``None`` keeps the general one.
+        fixed_term: The fixed-term rule of the regime; ``None`` keeps it.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -161,34 +182,14 @@ class SickPayRegime(BaseModel):
     min_daily_contributions: int | None = Field(default=None, ge=1)
     provenance: RuleProvenance | None = None
     daily_base: RegimeDailyBase | None = None
-
-
-class FixedTermSickLimit(BaseModel):
-    """Sickness of a fixed-term contract (D.L. 463/1983 art. 5).
-
-    Sickness is paid for no more days than those of work in the 12 months
-    before the episode (c. 1); with :attr:`short_work_days` days of work or
-    fewer, for at most that many days in the calendar year, the INPS share
-    paid by INPS directly (c. 3); beyond the days of work with the employer
-    INPS pays its share directly (c. 5).
-
-    Attributes:
-        short_work_days: The 30 days of c. 3.
-        provenance: Source and status of the rule.
-    """
-
-    model_config = ConfigDict(extra="forbid")
-
-    short_work_days: int = Field(ge=1)
-    provenance: RuleProvenance | None = None
+    fixed_term: FixedTermSickLimit | None = None
 
 
 class InpsSickPayRates(BaseModel):
     """Statutory INPS sick-pay indemnity rates (malattia ordinaria).
 
-    The carenza period (first *carenza_days* days) is not covered by INPS;
-    coverage is CCNL-specific.  From day ``carenza_days + 1`` onwards the
-    ``bands`` list defines the INPS rate for successive day ranges.
+    INPS does not cover the first *carenza_days* days; from the next one
+    the ``bands`` give the INPS rate of successive day ranges.
 
     Bands must be ordered by ``day_from`` and must not overlap.  The first
     band must start at ``carenza_days + 1``.  Every statutory field is
@@ -229,12 +230,11 @@ class InpsSickPayRates(BaseModel):
         """Return the table with the bands of ``regime`` in place of the rule.
 
         Args:
-            regime: Id of a regime of :attr:`regimes`; ``None`` keeps the
-                general bands.
+            regime: Id of a regime of :attr:`regimes`; ``None`` for the rule.
 
         Returns:
-            This table for ``None``; otherwise a copy whose bands and their
-            provenance are the regime's.
+            This table for ``None``; otherwise a copy with the regime's bands,
+            their provenance and its fixed-term rule.
 
         Raises:
             KeyError: When no regime has the id ``regime``.
@@ -249,6 +249,7 @@ class InpsSickPayRates(BaseModel):
                 "bands": found.bands,
                 "bands_provenance": found.provenance,
                 "min_daily_contributions": found.min_daily_contributions,
+                "fixed_term": found.fixed_term or self.fixed_term,
             }
         )
 

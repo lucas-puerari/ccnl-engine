@@ -57,6 +57,7 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "parental_hourly_ccnl_rule",
         "personal_withholding_same_kind",
         "naspi_dismissal_exceptions",
+        "sickness_agricultural_fixed_term_days",
     }
     assert {lim.id for lim in limitations} - blocking == {
         "apprenticeship_midpoint_allowances",

@@ -12,15 +12,14 @@ decides, for that day:
   past the comporto, from the index or from the sickness of several
   episodes (:mod:`~ccnl_engine.sickness.day.models`);
 - for a fixed-term contract (D.L. 463/1983 art. 5), whether the day is
-  within the days of work of the 12 months before the episode (c. 1), or
-  within 30 days in the calendar year when they were 30 or fewer (c. 3),
-  and whether INPS pays its share directly: always in the second case,
-  beyond the days with this employer in the first (c. 5).
+  within the days of work of the 12 months before the episode (c. 1) or
+  within 30 a year when they were 30 or fewer (c. 3), INPS paying directly
+  in the second case, beyond the days with this employer in the first
+  (c. 5), and always under a regime that says so (operai agricoli).
 
-The worker receives the higher of the CCNL target rate and the INPS rate;
-the employer pays what INPS does not.  Consecutive days with the same
-treatment form a :class:`SickDaySegment`; how many of its days are payable
-is the CCNL daily-divisor count (:func:`segment_units`).
+The worker receives the higher of the CCNL target and the INPS rate, the
+employer what INPS does not; days of the same treatment form a
+:class:`SickDaySegment`, payable by the CCNL divisor (:func:`segment_units`).
 """
 
 from __future__ import annotations
@@ -164,18 +163,19 @@ def _fixed_term_limit(
 ) -> _FixedTermLimit | None:
     """Return the limit of a fixed-term episode, ``None`` without one.
 
-    The days with this employer are the calendar days of the employment in
-    the 12 months before the episode.
-
     Returns:
-        The limit; ``None`` for an open-ended contract or when the days of
-        work are not stated.
+        INPS paying every day directly where the regime says so; else the
+        days with this employer in the 12 months before the episode; ``None``
+        for an open-ended contract or when the days of work are not stated.
     """
-    worked = episode.prior_worked_days
-    statute = rules.inps.fixed_term
-    if not rules.fixed_term or worked is None or statute is None:
+    worked, statute = episode.prior_worked_days, rules.inps.fixed_term
+    if not rules.fixed_term or statute is None:
         return None
     short = statute.short_work_days
+    if statute.paid_directly:
+        return _FixedTermLimit(rules.inps.annual_max_days, 0, short)
+    if worked is None:
+        return None
     if worked <= short:
         return _FixedTermLimit(None, 0, short)
     hired = rules.worker.hired_on

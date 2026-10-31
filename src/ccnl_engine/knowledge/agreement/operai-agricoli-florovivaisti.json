@@ -828,7 +828,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "1ee18531c4ab8b9030fdf64f0723e2469c0c4e35707503b9d519db1485074446",
+    "source_hash": "3b9a08163ed06356747a0f0e2fbab12535f9302e03a23722fb6bfde81842ced0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1079,6 +1079,7 @@
       "carenza_integration_rate": "0",
       "full_pay_integration_rate": "0",
       "max_duration_days": 180,
+      "inps_regime": "agricoltura",
       "provenance": {
         "status": "verified",
         "location": {

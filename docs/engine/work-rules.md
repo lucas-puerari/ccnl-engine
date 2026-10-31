@@ -197,7 +197,13 @@ the 12 months before the episode, every employer counted
 days or fewer, for at most 30 days in the calendar year, the INPS share
 paid by INPS directly (c. 3). The employer advances the INPS share only for
 the calendar days of the employment in those 12 months; INPS pays the later
-days directly (c. 5), so their share is not on the payslip. The days past
+days directly (c. 5), so their share is not on the payslip. The operai agricoli
+a tempo determinato (`inps_regime` `agricoltura`, operai agricoli e
+florovivaisti) are paid by INPS directly from the first indemnified day and
+the days of c. 1 do not apply: INPS pays them for the days of their
+registration in the elenchi, with 51 days of agricultural work the year
+before and in the year, which the request does not state
+(`sickness_agricultural_fixed_term_days`; INPS, Indennità di malattia). The days past
 the limit are unpaid sickness (`fixed_term_limit`, deducted). Without
 `prior_worked_days` the limit is not applied and the run has a provisional
 `sickness_fixed_term_prior_work_unknown` issue. The 30 days of c. 3 and

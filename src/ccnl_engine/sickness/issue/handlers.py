@@ -23,9 +23,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.sickness.models import SicknessEpisode
     from ccnl_engine.sickness.pay.handlers import EpisodePay
-    from ccnl_engine.sickness.term.rules import (
-        SicknessTerms,
-    )
+    from ccnl_engine.sickness.term.rules import SicknessTerms
 
 __all__ = [
     "BEYOND_COMPORTO",
@@ -50,6 +48,7 @@ PAID = "sickness_episode_paid"
 RULE_MISSING = "sickness_rule_missing"
 #: The CCNL defines no daily quota: nothing is posted.
 QUOTA_MISSING = "sickness_daily_quota_missing"
+_AGRICULTURAL_DAYS = "sickness_agricultural_fixed_term_days"
 #: Sick days past the comporto: INPS alone pays them.
 BEYOND_COMPORTO = "sickness_beyond_comporto"
 #: The bundle does not say whether INPS pays the worker.
@@ -140,6 +139,7 @@ def episode_issues(
     if (
         rules is not None
         and rules.fixed_term
+        and not rules.paid_directly
         and episode.prior_worked_days is None
         and kinds - {SickDayKind.BEYOND_COMPORTO}
     ):
@@ -265,11 +265,9 @@ def episode_limitations(
     """Return the engine limitations whose path the episode took.
 
     Returns:
-        The cumulation window of a per-episode CCNL when an earlier
-        episode outside the relapse chain is recorded; not of a CCNL whose
-        comporto the engine counts over the calendar year (Commercio Art.
-        186) or over windows (Edilizia ANCE Art. 26), whose tiers are of
-        the episode.
+        The cumulation window of a per-episode CCNL with an earlier episode
+        outside the relapse chain (not of a comporto counted over the year
+        or windows); the agricultural fixed-term days INPS pays directly.
     """
     found: list[str] = []
     ccnl = None if terms.rules is None else terms.rules.ccnl
@@ -282,6 +280,8 @@ def episode_limitations(
         e.episode_id not in chain for e in terms.history.earlier(event)
     ):
         found.append(CUMULATION_LIMITATION)
+    if terms.rules is not None and terms.rules.paid_directly:
+        found.append(_AGRICULTURAL_DAYS)
     return tuple(found)
 
 
