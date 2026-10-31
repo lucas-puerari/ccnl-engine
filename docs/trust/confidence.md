@@ -203,9 +203,9 @@ is `False` on its closing state). See
 ## Model limitations
 
 A known simplification of the model is data, not a comment. The registry has
-<!-- trust:limitations-total -->584<!-- /trust:limitations-total --> `ModelLimitation`
+<!-- trust:limitations-total -->585<!-- /trust:limitations-total --> `ModelLimitation`
 entries: one per `simplification` note of a CCNL file that can move an
-amount, and <!-- trust:limitations-engine -->20<!-- /trust:limitations-engine -->
+amount, and <!-- trust:limitations-engine -->21<!-- /trust:limitations-engine -->
 engine limitations of code paths several CCNLs share
 (`knowledge/limitation/engine.json`: the apprenticeship midpoint and
 the apprentice seniority increment, both resolved; a percentage

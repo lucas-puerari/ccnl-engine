@@ -17,7 +17,20 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
-__all__ = ["NoticeBand", "NoticeRules", "TerminationCause"]
+__all__ = ["NoticeBand", "NoticeRules", "NoticeStart", "TerminationCause"]
+
+
+class NoticeStart(StrEnum):
+    """The day the notice of a CCNL starts from.
+
+    Attributes:
+        DAY_AFTER: The day after the act is received.
+        FIRST_OR_SIXTEENTH: The first 1st or 16th of a month after the act
+            is received.
+    """
+
+    DAY_AFTER = "day_after"
+    FIRST_OR_SIXTEENTH = "first_or_sixteenth"
 
 
 class TerminationCause(StrEnum):
@@ -48,7 +61,9 @@ class NoticeBand(BaseModel):
             inclusive; ``None`` for any longer service.
         months: Calendar months of notice.
         days: Further days of notice.
-        indemnity_months: Monthly pays owed for a notice not given.
+        indemnity_months: Monthly pays owed for a notice not given;
+            ``None`` when the CCNL measures the indemnity on the pay of the
+            calendar days of notice.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -58,7 +73,7 @@ class NoticeBand(BaseModel):
     up_to_months: int | None = Field(default=None, ge=1)
     months: int = Field(default=0, ge=0)
     days: int = Field(default=0, ge=0)
-    indemnity_months: Decimal = Field(gt=Decimal(0))
+    indemnity_months: Decimal | None = Field(default=None, gt=Decimal(0))
 
     @model_validator(mode="after")
     def _has_length(self) -> Self:
@@ -74,12 +89,20 @@ class NoticeRules(BaseModel):
     Attributes:
         bands: The bands; for a level and a cause, ordered by
             ``up_to_months`` with the open-ended band last.
+        starts: The day the notice starts from.
+        extra_months_included: Whether the indemnity carries the rateo of
+            the extra monthly payments of the year.
+        tfr_base: Whether the indemnity is in the TFR base by the CCNL;
+            ``None`` when the CCNL does not say.
         provenance: Source of the clause.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     bands: tuple[NoticeBand, ...] = Field(min_length=1)
+    starts: NoticeStart = NoticeStart.DAY_AFTER
+    extra_months_included: bool = False
+    tfr_base: bool | None = None
     provenance: RuleProvenance
 
     @model_validator(mode="after")

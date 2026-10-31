@@ -3139,7 +3139,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "535e14666e80988625b89fb8eb68d66e5d33dd308034e30c128aafc12f0a0473",
+    "source_hash": "cd4bf3bba539a1fb1f2c3952f1af03f4577a5dc628dbd1beb3b3bd37cfb6dc88",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3893,6 +3893,297 @@
           "0.50",
           "0"
         ]
+      }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "Q",
+            "1"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 60
+        },
+        {
+          "levels": [
+            "Q",
+            "1"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "days": 90
+        },
+        {
+          "levels": [
+            "Q",
+            "1"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "days": 120
+        },
+        {
+          "levels": [
+            "2",
+            "3"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 30
+        },
+        {
+          "levels": [
+            "2",
+            "3"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "days": 45
+        },
+        {
+          "levels": [
+            "2",
+            "3"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "days": 60
+        },
+        {
+          "levels": [
+            "4",
+            "5"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 20
+        },
+        {
+          "levels": [
+            "4",
+            "5"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "days": 30
+        },
+        {
+          "levels": [
+            "4",
+            "5"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "days": 45
+        },
+        {
+          "levels": [
+            "6",
+            "7"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 15
+        },
+        {
+          "levels": [
+            "6",
+            "7"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "days": 20
+        },
+        {
+          "levels": [
+            "6",
+            "7"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "days": 20
+        },
+        {
+          "levels": [
+            "Q",
+            "1"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 45
+        },
+        {
+          "levels": [
+            "Q",
+            "1"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 60
+        },
+        {
+          "levels": [
+            "Q",
+            "1"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "days": 90
+        },
+        {
+          "levels": [
+            "2",
+            "3"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 20
+        },
+        {
+          "levels": [
+            "2",
+            "3"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 30
+        },
+        {
+          "levels": [
+            "2",
+            "3"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "days": 45
+        },
+        {
+          "levels": [
+            "4",
+            "5"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 15
+        },
+        {
+          "levels": [
+            "4",
+            "5"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 20
+        },
+        {
+          "levels": [
+            "4",
+            "5"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "days": 30
+        },
+        {
+          "levels": [
+            "6",
+            "7"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 10
+        },
+        {
+          "levels": [
+            "6",
+            "7"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 15
+        },
+        {
+          "levels": [
+            "6",
+            "7"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "days": 15
+        }
+      ],
+      "starts": "first_or_sixteenth",
+      "extra_months_included": true,
+      "tfr_base": false,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "uiltucs-tu2019",
+            "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "published_on": "2019-07-30",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          },
+          "page": "213-217",
+          "section": "Artt. 247 (termini di preavviso in caso di licenziamento), 248 (indennità sostitutiva), 249 (trattamento di fine rapporto), 254 (dimissioni e preavviso)",
+          "quote": "I termini di preavviso, a decorrere dal primo o dal sedicesimo giorno di ciascun mese, sono i seguenti [...] una indennità equivalente all'importo della retribuzione di fatto di cui all'art. 208 corrispondente al periodo di cui all'articolo precedente, comprensiva dei ratei di 13a e 14a mensilità [...] sono escluse dalla quota annua della retribuzione utile ai fini del calcolo del trattamento di fine rapporto [...] l'indennità sostitutiva del preavviso, di cui agli artt. 200, 248, 251 e 252"
+        },
+        "transformation": "Art. 247 for dismissal and art. 254 for resignation, in calendar days, by 'fino a cinque anni di servizio compiuti' (up to 60 months), 'oltre i cinque anni e fino a dieci' (up to 120) and 'oltre i dieci anni'; level groups Quadri and I, II and III, IV and V, VI and VII. The indemnity of art. 248 is the pay of the calendar days of notice with the ratei of the 13th and 14th; art. 249 leaves it out of the TFR base.",
+        "note": "Art. 209 refers the monthly pay to all the days of the calendar month and art. 210 sets the daily quota at 1/26 'in tutti i casi': which of the two measures the calendar days of the notice is not stated (limitation notice_indemnity_day_measure). Art. 254 lets the employer withhold the indemnity of a resignation without notice 'dalle competenze nette'.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-31T00:00:00",
+          "effective_from": "2019-07-30",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-31T20:00:00Z",
+          "review_id": "2026-10-31-ai"
+        }
       }
     }
   },

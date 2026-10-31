@@ -542,7 +542,8 @@ collective agreement. A CCNL states it in `work_rules.notice`: bands by
 level, cause (`dismissal`, `resignation`) and the longest service in months
 each covers, with the months and days of notice and the indemnity owed in
 its place, in monthly pays. The notice runs from the day after the act is
-received and ends as art. 1187 c.c. reads art. 2963 c.c.: on the day of
+received (or, where the CCNL says so, from the next 1st or 16th of a month,
+`starts: first_or_sixteenth`) and ends as art. 1187 c.c. reads art. 2963 c.c.: on the day of
 the last month corresponding to the day of receipt (one month on an act of
 28 February ends on 28 March; of 31 January, on 28 February), then the
 days of the band.
@@ -550,6 +551,7 @@ days of the band.
 | CCNL | Bands | Source |
 |---|---|---|
 | Metalmeccanico Federmeccanica | B2, B3, A1: 2, 3, 4 months; C2, C3, B1: 1 month 15 days, 2 months, 2 months 15 days; D1, D2, C1: 10 days, 20 days, 1 month; up to 5, 10, over 10 years of service; the same for dismissal and resignation | CCNL 5 February 2021, Sez. Quarta, Tit. VIII, Art. 1 |
+| Terziario Confcommercio | dismissal (art. 247) Q and I: 60, 90, 120 days; II and III: 30, 45, 60; IV and V: 20, 30, 45; VI and VII: 15, 20, 20; resignation (art. 254) Q and I: 45, 60, 90; II and III: 20, 30, 45; IV and V: 15, 20, 30; VI and VII: 10, 15, 15; calendar days from the next 1st or 16th; the indemnity is the pay of those days with the ratei of the 13th and 14th (art. 248), out of the TFR base (art. 249) | CCNL Terziario 30 July 2019, artt. 247-249, 254 |
 
 The other CCNLs state no notice yet: a `NoticeIndemnityEvent` under them
 raises the `incomplete` rule issue `notice_rule_missing`.

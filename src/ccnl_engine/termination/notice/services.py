@@ -31,6 +31,8 @@ class NoticeTerms:
         permanent: Whether the contract is open-ended.
         monthly: Monthly pay of art. 2121 c.c.: base salary, seniority and
             cash allowances of the worker's month.
+        yearly_payments: Monthly payments of a year (13 with the 13th, 14
+            with the 14th).
         rule: Identifier of the CCNL rule.
         rule_version: Version of the CCNL ruleset.
         source: Location of the clause, if recorded.
@@ -42,6 +44,7 @@ class NoticeTerms:
     ended_on: date | None
     permanent: bool
     monthly: Decimal
+    yearly_payments: Decimal
     rule: str
     rule_version: str
     source: SourceLocation | None = None
@@ -67,6 +70,9 @@ def notice_terms(ctx: RunContext) -> NoticeTerms:
         ended_on=None if period is None else period.ended_on,
         permanent=isinstance(request.contract_type, Permanent),
         monthly=chain.base + chain.seniority + chain.allowances_total,
+        yearly_payments=ccnl.parameters.additional_months.value_at(
+            ctx.contract.tctx.competence
+        ),
         rule=f"{name}:work_rules.notice",
         rule_version=str(year) if ccnl.ruleset is None else ccnl.ruleset.version,
         source=None if rules is None else rules.provenance.location,

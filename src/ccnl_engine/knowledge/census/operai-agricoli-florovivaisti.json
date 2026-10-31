@@ -243,6 +243,22 @@
       }
     },
     {
+      "id": "notice_indemnity_day_measure",
+      "institute": "termination_notice",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "A CCNL that sets the notice in calendar days measures the indemnity on the pay of those days: the engine takes a calendar day as a 30th of the monthly pay; Commercio art. 209 refers the monthly pay to all the days of the calendar month, but its art. 210 sets the daily quota at 1/26 'in tutti i casi', so the indemnity may be understated.",
+      "calculation": "ccnl_engine.termination.notice.handlers._handle_notice_indemnity; CCNL Terziario Confcommercio 30 luglio 2019 artt. 209-210, 248 (sha256 76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016)",
+      "state": "unverified",
+      "remediation": "Source the daily measure of the notice indemnity of the CCNL (an interpretation of the parties or case law) and apply it, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "notice_indemnity_day_measure"
+        ]
+      }
+    },
+    {
       "id": "notice_indemnity_extra_months",
       "institute": "termination_notice",
       "variant": "all",

@@ -56,6 +56,9 @@ _ZERO = Decimal(0)
 PARTIAL = "notice_indemnity_partial"
 EXTRA_MONTHS = "notice_indemnity_extra_months"
 TFR = "notice_indemnity_tfr"
+DAY_MEASURE = "notice_indemnity_day_measure"
+_MONTH_DAYS = Decimal(30)
+_MONTHS = Decimal(12)
 type _Inputs = dict[str, Decimal | str]
 
 
@@ -198,22 +201,37 @@ def _handle_notice_indemnity(
     if isinstance(found, EventEffect):
         return found
     band, months = found
-    period = notice_period(band, event.received_on)
+    rules = terms.rules
+    assert rules is not None, "a band comes from the CCNL notice"
+    period = notice_period(band, event.received_on, rules.starts)
     unworked = period.unworked_days(ended)
+    pays = band.indemnity_months
+    if pays is None:
+        pays = Decimal(period.days) / _MONTH_DAYS
+    monthly = terms.monthly
+    if rules.extra_months_included:
+        monthly = monthly * terms.yearly_payments / _MONTHS
     inputs |= {
         "months_of_service": str(months),
+        "notice_first_day": period.first_day.isoformat(),
         "notice_last_day": period.last_day.isoformat(),
         "notice_days": str(period.days),
         "unworked_days": str(unworked),
-        "indemnity_months": band.indemnity_months,
-        "monthly_pay": terms.monthly,
+        "indemnity_months": pays,
+        "monthly_pay": monthly,
     }
     if not unworked:
         return EventEffect(decisions=[_decision(terms, "notice_worked", _ZERO, inputs)])
-    amount = money(
-        terms.monthly * band.indemnity_months * unworked / Decimal(period.days)
+    amount = money(monthly * pays * unworked / Decimal(period.days))
+    limitations = (
+        *((PARTIAL,) if unworked < period.days else ()),
+        *(() if rules.extra_months_included else (EXTRA_MONTHS,)),
+        *((TFR,) if rules.tfr_base is None else ()),
+        *((DAY_MEASURE,) if band.indemnity_months is None else ()),
     )
-    return _post(amount, terms, inputs, ctx, partial=unworked < period.days)
+    return _post(
+        amount, terms, inputs, ctx, limitations, tfr=rules.tfr_base is not False
+    )
 
 
 def _post(
@@ -221,8 +239,9 @@ def _post(
     terms: NoticeTerms,
     inputs: _Inputs,
     ctx: _EventHandlerCtx,
+    limitations: tuple[str, ...],
     *,
-    partial: bool,
+    tfr: bool,
 ) -> EventEffect:
     resolution = _require_resolution(ctx.resolver, _KIND, ctx.context)
     treatment = _treatment_from_resolution(resolution)
@@ -246,8 +265,8 @@ def _post(
         items=[item],
         intents=[intent],
         inps_delta=inps,
-        tfr_delta=amount if treatment.tfr else _ZERO,
+        tfr_delta=amount if treatment.tfr and tfr else _ZERO,
         apart_inps_delta=inps,
         decisions=[_decision(terms, "notice_indemnity_due", amount, inputs)],
-        limitations=(EXTRA_MONTHS, TFR, *((PARTIAL,) if partial else ())),
+        limitations=limitations,
     )

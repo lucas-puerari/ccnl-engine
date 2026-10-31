@@ -75,7 +75,7 @@ def _run(
             payment_date=date(2026, month, 27),
             employment=Employment(
                 ccnl_id=ccnl,
-                level_code="C3" if ccnl.startswith("metal") else "4",
+                level_code="C3" if ccnl == "metalmeccanico-federmeccanica" else "4",
                 category=WorkerCategory.IMPIEGATO,
                 contract_type=(FixedTerm() if fixed_term else Permanent()),
                 employment_period=EmploymentPeriod(_HIRED, ended),
@@ -195,6 +195,33 @@ def test_a_notice_partly_worked_pays_its_days_left() -> None:
     )
 
 
+def test_commercio_pays_the_days_with_the_extra_months_out_of_the_tfr() -> None:
+    """Terziario Confcommercio level 4, over ten years, dismissed on 10 March.
+
+    Art. 247: 45 calendar days from the next 1st or 16th, 16 March to 29
+    April.  Art. 248: the pay of those days with the ratei of the 13th and
+    14th: (1257.46 + 524.22 + 3 * 20.66) * 14 / 12 * 45 / 30 = 3226.41 (the
+    terzo elemento waits for the provincial element, not stated).  Art. 249:
+    out of the TFR base, which only loses the 0.50% IVS on it: 16.13.
+    """
+    result = _run(_notice(date(2026, 3, 10)), ccnl="commercio-confcommercio")
+    without = _run(ccnl="commercio-confcommercio")
+
+    assert _indemnity(result) == Decimal("3226.41")
+    (due,) = (d for d in result.decisions if d.reason_code == "notice_indemnity_due")
+    assert (due.inputs["notice_first_day"], due.inputs["notice_last_day"]) == (
+        "2026-03-16",
+        "2026-04-29",
+    )
+    notice = {lim.id for lim in result.limitations if lim.id.startswith("notice")}
+    assert notice == {"notice_indemnity_day_measure"}
+    quota = [
+        sum(i.amount for i in r.pay_items if i.item_id.startswith("tfr_2026"))
+        for r in (result, without)
+    ]
+    assert quota[1] - quota[0] == Decimal("16.13")
+
+
 def test_a_notice_fully_worked_owes_nothing() -> None:
     """Notice from 2 January to 16 March, last day 31 March."""
     result = _run(_notice(date(2026, 1, 1)), ended=date(2026, 3, 31))
@@ -228,7 +255,7 @@ def test_the_cause_decides_who_owes(
     [
         ({}, _notice(date(2026, 3, 10), _R), "notice_owed_by_worker", "rule"),
         (
-            {"ccnl": "commercio-confcommercio"},
+            {"ccnl": "metalmeccanico-confapi"},
             _notice(date(2026, 3, 10)),
             "notice_rule_missing",
             "rule",

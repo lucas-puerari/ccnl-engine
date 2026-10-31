@@ -15,6 +15,7 @@ from ccnl_engine.termination.notice.inputs import NoticeIndemnityEvent
 from ccnl_engine.termination.notice.models import (
     NoticeBand,
     NoticeRules,
+    NoticeStart,
     TerminationCause,
 )
 from ccnl_engine.termination.notice.rules import notice_period
@@ -91,6 +92,26 @@ def test_the_notice_runs_from_the_next_day(
     assert (period.last_day, period.band) == (last, band)
 
 
+@pytest.mark.parametrize(
+    ("received", "first", "last"),
+    [
+        (date(2026, 3, 10), date(2026, 3, 16), date(2026, 5, 14)),
+        (date(2026, 3, 15), date(2026, 3, 16), date(2026, 5, 14)),
+        (date(2026, 3, 16), date(2026, 4, 1), date(2026, 5, 30)),
+        (date(2026, 12, 20), date(2027, 1, 1), date(2027, 3, 1)),
+    ],
+)
+def test_a_notice_from_the_first_or_the_sixteenth(
+    received: date, first: date, last: date
+) -> None:
+    """60 days from the first 1st or 16th after the act."""
+    period = notice_period(
+        _band(None, months=0, days=60), received, NoticeStart.FIRST_OR_SIXTEENTH
+    )
+
+    assert (period.first_day, period.last_day, period.days) == (first, last, 60)
+
+
 def test_the_days_left_unworked() -> None:
     """Leaving before the notice ends leaves its last days; after, none."""
     period = notice_period(_band(None, 1), date(2026, 2, 28))
@@ -111,6 +132,7 @@ def test_a_level_the_ccnl_notice_omits_has_no_indemnity() -> None:
         ended_on=date(2026, 3, 31),
         permanent=True,
         monthly=Decimal(2000),
+        yearly_payments=Decimal(13),
         rule="ccnl/x:work_rules.notice",
         rule_version="1",
     )
