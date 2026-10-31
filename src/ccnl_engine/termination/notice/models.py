@@ -76,7 +76,8 @@ class NoticeRules(BaseModel):
         extra_months_included: Whether the indemnity carries the rateo of
             the extra monthly payments of the year.
         tfr_base: Whether the indemnity is in the TFR base by the CCNL;
-            ``None`` when the CCNL does not say.
+            ``None`` when the CCNL does not say, and then it is out of it
+            (Cass. 19 January 2023 n. 1581).
         provenance: Source of the clause.
     """
 

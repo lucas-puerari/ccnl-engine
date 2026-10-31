@@ -2312,9 +2312,9 @@
       "id": "notice_indemnity_tfr",
       "capability": "termination_notice",
       "variant": "notice_indemnity_tfr",
-      "summary": "The notice indemnity enters the TFR base as payroll practice holds; art. 2120 c. 2 c.c. counts the sums paid 'a titolo non occasionale' and no primary source read settles whether this indemnity is among them, so the TFR quota of the termination run may be overstated.",
-      "monetary_impact": "unknown",
-      "status": "open",
+      "summary": "The notice indemnity enters the TFR base only when the CCNL puts it there: the Cassazione holds that it is out of it, being referable to a period not worked after the end of the employment, and art. 2120 c. 2 c.c. leaves a different rule to the collective agreement.",
+      "monetary_impact": "yes",
+      "status": "resolved",
       "rulesets": [
         "acconciatura-estetica-confartigianato",
         "afam-aran",
@@ -2452,8 +2452,8 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.termination.notice.handlers._handle_notice_indemnity; art. 2120 c.c. (Normattiva, page sha256 45dbc6519992406a3ed0e764b69b7367c8ebf6151d28e3ec193fe868e7b98c27)",
-      "remediation": "Source the TFR treatment of the notice indemnity (case law of the Cassazione or a Ministry ruling) and apply it, then resolve this limitation."
+      "source": "ccnl_engine.termination.notice.handlers._handle_notice_indemnity; Cass. sez. lav. 19 January 2023 n. 1581, par. 10.2 ('L'indennità di mancato preavviso non rientra nella base di computo del T.f.r. poiché essa non è dipendente dal rapporto di lavoro essendo invece riferibile ad un periodo non lavorato'), citing Cass. 21270/2012, 21216/2009 and 17248/2015 (text reproduced at https://www.studiocerbone.com/?p=471677, page sha256 d87f0d7485c6cb5717ed8b2c706bcbc99f4a05c0b7165c1b7c8ec39e3b905ae1); art. 2120 c. 2 c.c.",
+      "remediation": "Resolved: the indemnity is out of the TFR base unless the CCNL notice sets tfr_base true."
     },
     {
       "id": "notice_indemnity_day_measure",

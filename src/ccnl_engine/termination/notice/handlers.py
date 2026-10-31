@@ -5,9 +5,11 @@ the monthly pays of the CCNL band (or its calendar days) on the monthly
 pay of art. 2121 c.c., with the extra months where the CCNL says so; a
 notice partly worked pays the share of its days left.  The item is in the
 INPS base (art. 12 c. 4 lett. b L. 153/1969: "fatta salva l'imponibilità
-dell'indennità sostitutiva del preavviso"), in the TFR base unless the
-CCNL leaves it out, and taxed apart (art. 17 c. 1 lett. a TUIR) at the
-rate of the TFR settlement of the run (art. 19 c. 2).
+dell'indennità sostitutiva del preavviso"), out of the TFR base unless the
+CCNL puts it in (Cass. 19 January 2023 n. 1581: "L'indennità di mancato
+preavviso non rientra nella base di computo del T.f.r."), and taxed apart
+(art. 17 c. 1 lett. a TUIR) at the rate of the TFR settlement of the run
+(art. 19 c. 2).
 """
 
 from __future__ import annotations
@@ -52,7 +54,6 @@ _ZERO = Decimal(0)
 #: Limitations of the indemnity.
 PARTIAL = "notice_indemnity_partial"
 EXTRA_MONTHS = "notice_indemnity_extra_months"
-TFR = "notice_indemnity_tfr"
 _WITH_JUST_CAUSE = frozenset({TerminationCause.DISMISSAL, TerminationCause.RESIGNATION})
 DAY_MEASURE = "notice_indemnity_day_measure"
 _MONTH_DAYS = Decimal(30)
@@ -253,12 +254,9 @@ def _handle_notice_indemnity(
     limitations = (
         *((PARTIAL,) if unworked < period.days else ()),
         *(() if rules.extra_months_included else (EXTRA_MONTHS,)),
-        *((TFR,) if rules.tfr_base is None else ()),
         *((DAY_MEASURE,) if band.indemnity_months is None else ()),
     )
-    return _post(
-        amount, terms, inputs, ctx, limitations, tfr=rules.tfr_base is not False
-    )
+    return _post(amount, terms, inputs, ctx, limitations, tfr=rules.tfr_base is True)
 
 
 def _post(

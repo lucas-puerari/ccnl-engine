@@ -586,8 +586,10 @@ day of the act; the indemnity is its monthly pays on the monthly pay of
 art. 2121 c.c., times the share of the notice days not worked
 (`notice_indemnity_partial` when partly worked). It is in the INPS base
 (art. 12 c. 4 lett. b L. 153/1969: "fatta salva l'imponibilità
-dell'indennità sostitutiva del preavviso") and in the TFR base
-(`notice_indemnity_tfr`); the 13th and 14th of the notice are not added
+dell'indennità sostitutiva del preavviso") and out of the TFR base unless
+the CCNL puts it in (`tfr_base`): "L'indennità di mancato preavviso non
+rientra nella base di computo del T.f.r." (Cass. 19 January 2023 n. 1581,
+after Cass. 21216/2009 and 17248/2015); the 13th and 14th of the notice are not added
 (`notice_indemnity_extra_months`). It is taxed apart (art. 17 c. 1 lett. a
 TUIR), net of its employee INPS, at the rate of the TFR settlement of the
 run (art. 19 c. 2); its INPS is no deduction of the ordinary taxable.

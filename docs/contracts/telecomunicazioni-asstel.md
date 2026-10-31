@@ -228,12 +228,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source whether the indemnity carries the rateo of the extra months (CCNL clause or case law) and add it, then resolve this limitation.
 
-!!! warning "notice_indemnity_tfr · termination_notice · impact unknown · open"
-    The notice indemnity enters the TFR base as payroll practice holds; art. 2120 c. 2 c.c. counts the sums paid 'a titolo non occasionale' and no primary source read settles whether this indemnity is among them, so the TFR quota of the termination run may be overstated.
+!!! note "notice_indemnity_tfr · termination_notice · impact yes · resolved"
+    The notice indemnity enters the TFR base only when the CCNL puts it there: the Cassazione holds that it is out of it, being referable to a period not worked after the end of the employment, and art. 2120 c. 2 c.c. leaves a different rule to the collective agreement.
 
     **Applies when:** `termination_notice` applies; the run takes the engine code path.
 
-    **Remediation:** Source the TFR treatment of the notice indemnity (case law of the Cassazione or a Ministry ruling) and apply it, then resolve this limitation.
+    **Remediation:** Resolved: the indemnity is out of the TFR base unless the CCNL notice sets tfr_base true.
 
 !!! warning "notice_indemnity_day_measure · termination_notice · impact unknown · open"
     A CCNL that sets the notice in calendar days measures the indemnity on the pay of those days: the engine takes a calendar day as a 30th of the monthly pay; Commercio art. 209 refers the monthly pay to all the days of the calendar month, but its art. 210 sets the daily quota at 1/26 'in tutti i casi', so the indemnity may be understated.
