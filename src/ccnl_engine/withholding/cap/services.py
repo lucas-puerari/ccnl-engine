@@ -47,7 +47,7 @@ from ccnl_engine.withholding.rules import (
 
 if TYPE_CHECKING:
     from ccnl_engine.amount.types import _PeriodAmounts
-    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+    from ccnl_engine.employment.period.inputs import EmploymentPeriod
     from ccnl_engine.ledger.models import LedgerEntry
     from ccnl_engine.sector.models import YearRules
 

@@ -26,8 +26,8 @@ from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.employment.inputs import Apprentice
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.errors import DataIntegrityError, InvalidInputError
 from ccnl_engine.event.facade import SickLeaveEvent
 from ccnl_engine.period.repositories import (

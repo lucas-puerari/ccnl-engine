@@ -8,16 +8,12 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
+from ccnl_engine.employment.period.inputs import TerminationCause
 from ccnl_engine.event.handlers import EventEffect
 from ccnl_engine.inputs import SeniorityFact, SenioritySource
 from ccnl_engine.termination.notice.handlers import _band as _band_of
 from ccnl_engine.termination.notice.inputs import NoticeIndemnityEvent
-from ccnl_engine.termination.notice.models import (
-    NoticeBand,
-    NoticeRules,
-    NoticeStart,
-    TerminationCause,
-)
+from ccnl_engine.termination.notice.models import NoticeBand, NoticeRules, NoticeStart
 from ccnl_engine.termination.notice.rules import notice_period
 from ccnl_engine.termination.notice.services import NoticeTerms
 from tests.knowledge.ccnl_engine.termination.test_notice import RULES
@@ -130,6 +126,8 @@ def test_a_level_the_ccnl_notice_omits_has_no_indemnity() -> None:
         level="Z",
         seniority=SeniorityFact.since(date(2020, 1, 1), SenioritySource.PAYSLIP),
         ended_on=date(2026, 3, 31),
+        ended_by=_D,
+        just_cause=False,
         permanent=True,
         monthly=Decimal(2000),
         yearly_payments=Decimal(13),
@@ -137,9 +135,7 @@ def test_a_level_the_ccnl_notice_omits_has_no_indemnity() -> None:
         rule_version="1",
     )
 
-    effect = _band_of(
-        NoticeIndemnityEvent(date(2026, 3, 1), _D, just_cause=False), terms
-    )
+    effect = _band_of(NoticeIndemnityEvent(date(2026, 3, 1)), terms)
 
     assert isinstance(effect, EventEffect)
     assert [(i.code, i.cause) for i in effect.issues] == [

@@ -35,7 +35,8 @@ if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.calendar.models import WorkCalendar
     from ccnl_engine.compensation.models import ExtraMonthAccrualRule
-    from ccnl_engine.employment.fact.inputs import EmploymentPeriod, WorkPattern
+    from ccnl_engine.employment.fact.inputs import WorkPattern
+    from ccnl_engine.employment.period.inputs import EmploymentPeriod
     from ccnl_engine.event.facade import WorkEvent
 
 

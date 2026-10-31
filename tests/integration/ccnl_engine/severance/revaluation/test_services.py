@@ -24,7 +24,7 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
 )
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.inputs import NoPensionFund, TfrFundBalance
 from ccnl_engine.period.context.request.services import build_context
 from ccnl_engine.period.repositories import (

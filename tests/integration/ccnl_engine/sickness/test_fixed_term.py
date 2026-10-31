@@ -19,8 +19,8 @@ from typing import TYPE_CHECKING
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm, NaspiExclusion
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.events import SicknessEpisode
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.services import (

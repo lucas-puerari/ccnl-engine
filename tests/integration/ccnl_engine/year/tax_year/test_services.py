@@ -10,8 +10,8 @@ import pytest
 
 from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.employment.inputs import Employment, Permanent
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.family.inputs import (
     DependentRelationship,

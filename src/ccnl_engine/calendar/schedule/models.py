@@ -32,7 +32,7 @@ from ccnl_engine.run.models import PayrollRun
 
 if TYPE_CHECKING:
     from ccnl_engine.calendar.models import WorkCalendar
-    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+    from ccnl_engine.employment.period.inputs import EmploymentPeriod
 
 __all__ = ["PayrollRunCount", "PayrollSchedule"]
 

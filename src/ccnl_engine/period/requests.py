@@ -13,7 +13,6 @@ from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.employer.inputs import EmployerProfile
 from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
-    EmploymentPeriod,
     PublicEndOfService,
     WeeklyHours,
     WorkPattern,
@@ -21,6 +20,7 @@ from ccnl_engine.employment.fact.inputs import (
     check_within_full_time,
 )
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts

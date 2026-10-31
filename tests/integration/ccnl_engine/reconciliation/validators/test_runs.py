@@ -15,7 +15,7 @@ from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.errors import (
     DataIntegrityError,
     InvalidInputError,

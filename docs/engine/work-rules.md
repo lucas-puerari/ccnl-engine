@@ -564,9 +564,11 @@ days of the band.
 The other CCNLs state no notice yet: a `NoticeIndemnityEvent` under them
 raises the `incomplete` rule issue `notice_rule_missing`.
 
-`NoticeIndemnityEvent(received_on, cause, just_cause)`, passed to the run
-of the month of the last day of the employment, pays the indemnity of the
-notice not worked when the employer owes it: a dismissal without just cause
+`NoticeIndemnityEvent(received_on)`, passed to the run of the month of the
+last day of the employment, pays the indemnity of the notice not worked
+when the employer owes it, by how the employment ends
+(`EmploymentPeriod.ended_by` and `just_cause`; a `missing_fact` when
+not stated): a dismissal without just cause
 or a death (art. 2118 c.c.), a resignation for just cause (art. 2119 c. 1).
 A dismissal for just cause and a mutual agreement owe none; a resignation
 without just cause makes the worker owe it, which the engine does not

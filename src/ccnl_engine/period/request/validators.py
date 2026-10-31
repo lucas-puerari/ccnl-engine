@@ -13,7 +13,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.run.models import RunKind
 
 if TYPE_CHECKING:
-    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+    from ccnl_engine.employment.period.inputs import EmploymentPeriod
     from ccnl_engine.run.models import PayrollRun
     from ccnl_engine.run.types import PeriodId
 

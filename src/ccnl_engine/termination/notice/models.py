@@ -15,9 +15,10 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.employment.period.inputs import TerminationCause
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
-__all__ = ["NoticeBand", "NoticeRules", "NoticeStart", "TerminationCause"]
+__all__ = ["NoticeBand", "NoticeRules", "NoticeStart"]
 
 
 class NoticeStart(StrEnum):
@@ -31,24 +32,6 @@ class NoticeStart(StrEnum):
 
     DAY_AFTER = "day_after"
     FIRST_OR_SIXTEENTH = "first_or_sixteenth"
-
-
-class TerminationCause(StrEnum):
-    """How an open-ended employment ends, for the notice it owes.
-
-    Attributes:
-        DISMISSAL: The employer dismisses the worker (licenziamento).
-        RESIGNATION: The worker resigns (dimissioni).
-        DEATH: The worker dies (art. 2118 c. 3 c.c.: the employer owes the
-            indemnity, measured on the notice of a dismissal).
-        MUTUAL_AGREEMENT: The parties agree to end it (risoluzione
-            consensuale): no notice is owed.
-    """
-
-    DISMISSAL = "dismissal"
-    RESIGNATION = "resignation"
-    DEATH = "death"
-    MUTUAL_AGREEMENT = "mutual_agreement"
 
 
 class NoticeBand(BaseModel):

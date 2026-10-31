@@ -31,10 +31,10 @@ from ccnl_engine.balance.obligation.models import EmploymentObligations
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
-    EmploymentPeriod,
     WeeklyHours,
 )
 from ccnl_engine.employment.inputs import Employment, Permanent
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.errors import InvalidInputError, OutOfScopeError
 from ccnl_engine.irpef.declaration.inputs import (
     ShortfallDeferralRequest,

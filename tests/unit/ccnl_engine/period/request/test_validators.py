@@ -9,7 +9,8 @@ from typing import Any
 import pytest
 
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod, WeeklyHours
+from ccnl_engine.employment.fact.inputs import WeeklyHours
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.period.request.validators import employment_gap
 from ccnl_engine.period.requests import PeriodCalculationRequest

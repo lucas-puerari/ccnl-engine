@@ -7,7 +7,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.leave.accrual.rules import (
     AccrualFacts,
     MonthService,

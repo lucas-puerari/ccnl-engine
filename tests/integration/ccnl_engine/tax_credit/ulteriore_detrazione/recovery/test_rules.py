@@ -21,7 +21,8 @@ from ccnl_engine.balance.obligation.models import (
     EmploymentObligations,
     RecoveryObligation,
 )
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod, WeeklyHours
+from ccnl_engine.employment.fact.inputs import WeeklyHours
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.event.facade import AbsenceEvent, WorkEvent
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.period.services import bundled_policies, bundled_repository

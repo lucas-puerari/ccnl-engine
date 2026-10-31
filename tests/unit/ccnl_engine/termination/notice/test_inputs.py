@@ -1,4 +1,4 @@
-"""The act that ends the employment: its checks and who owes the notice."""
+"""The act that ends the employment and who owes the notice."""
 
 from __future__ import annotations
 
@@ -6,9 +6,9 @@ from datetime import date
 
 import pytest
 
+from ccnl_engine.employment.period.inputs import TerminationCause
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.termination.notice.inputs import NoticeIndemnityEvent
-from ccnl_engine.termination.notice.models import TerminationCause
+from ccnl_engine.termination.notice.inputs import NoticeIndemnityEvent, employer_owes
 
 _DAY = date(2026, 3, 10)
 
@@ -18,36 +18,25 @@ _DAY = date(2026, 3, 10)
     [
         ("dismissal", False, True),
         ("dismissal", True, False),
+        ("dismissal", None, False),
         ("resignation", False, False),
         ("resignation", True, True),
-        ("death", False, True),
-        ("mutual_agreement", False, False),
+        ("death", None, True),
+        ("mutual_agreement", None, False),
     ],
 )
-def test_who_owes_the_notice(cause: str, just: bool, owes: bool) -> None:
-    """Artt. 2118-2119 c.c.; the cause is read from its value."""
-    event = NoticeIndemnityEvent(_DAY, cause, just_cause=just)  # type: ignore[arg-type]
-
-    assert (event.cause, event.event_date, event.employer_owes) == (
-        TerminationCause(cause),
-        _DAY,
-        owes,
-    )
+def test_who_owes_the_notice(cause: str, just: bool | None, owes: bool) -> None:
+    """Artt. 2118-2119 c.c."""
+    assert employer_owes(TerminationCause(cause), just) is owes
 
 
-@pytest.mark.parametrize(
-    ("received", "cause", "just", "field"),
-    [
-        ("2026-03-10", "dismissal", False, "NoticeIndemnityEvent.received_on"),
-        (_DAY, "retirement", False, "NoticeIndemnityEvent.cause"),
-        (_DAY, "dismissal", None, "NoticeIndemnityEvent.just_cause"),
-    ],
-)
-def test_wrong_acts_are_rejected(
-    received: object, cause: str, just: object, field: str
-) -> None:
-    """A date, a cause of the list, a just cause stated."""
+def test_the_act_is_dated() -> None:
+    """The day of the act dates the event; it is a date."""
+    assert NoticeIndemnityEvent(_DAY).event_date == _DAY
     with pytest.raises(InvalidInputError) as error:
-        NoticeIndemnityEvent(received, cause, just_cause=just)  # type: ignore[arg-type]
+        NoticeIndemnityEvent("2026-03-10")  # type: ignore[arg-type]
 
-    assert (error.value.field, error.value.feature) == (field, "termination_notice")
+    assert (error.value.field, error.value.feature) == (
+        "NoticeIndemnityEvent.received_on",
+        "termination_notice",
+    )

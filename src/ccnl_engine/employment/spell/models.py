@@ -36,7 +36,7 @@ from ccnl_engine.validators import require_bool, require_date
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
-    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+    from ccnl_engine.employment.period.inputs import EmploymentPeriod
 
 __all__ = ["EmploymentSpell", "spell_days", "spells_of", "spells_with"]
 

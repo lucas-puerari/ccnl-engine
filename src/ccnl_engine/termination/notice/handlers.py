@@ -1,17 +1,13 @@
 """Handler of the notice not given: the indemnity the employer owes.
 
 The indemnity is the pay of the notice not worked (art. 2118 c. 2 c.c.):
-the monthly pays the CCNL band gives, on the monthly pay of art. 2121
-c.c. (base salary, seniority and cash allowances).  A notice partly worked
-pays the share of its calendar days left, an interpretation no source
-read settles (limitation ``notice_indemnity_partial``).  The 13th and 14th
-the notice would have accrued are not added (``notice_indemnity_extra_
-months``).  The item is in the INPS base (art. 12 c. 4 lett. b L.
-153/1969: "fatta salva l'imponibilità dell'indennità sostitutiva del
-preavviso"), in the TFR base
-(``notice_indemnity_tfr``), and taxed apart (art. 17 c. 1 lett. a TUIR,
-"comprese l'indennità di preavviso"): its tax follows the TFR settlement
-of the run (art. 19 c. 2).
+the monthly pays of the CCNL band (or its calendar days) on the monthly
+pay of art. 2121 c.c., with the extra months where the CCNL says so; a
+notice partly worked pays the share of its days left.  The item is in the
+INPS base (art. 12 c. 4 lett. b L. 153/1969: "fatta salva l'imponibilità
+dell'indennità sostitutiva del preavviso"), in the TFR base unless the
+CCNL leaves it out, and taxed apart (art. 17 c. 1 lett. a TUIR) at the
+rate of the TFR settlement of the run (art. 19 c. 2).
 """
 
 from __future__ import annotations
@@ -25,6 +21,7 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
     IssueCause,
 )
+from ccnl_engine.employment.period.inputs import TerminationCause
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.handlers import EventEffect
 from ccnl_engine.ledger.models import AccountKind, PostingIntent
@@ -34,7 +31,7 @@ from ccnl_engine.pay_item.services import (
     _require_resolution,
     _treatment_from_resolution,
 )
-from ccnl_engine.termination.notice.models import TerminationCause
+from ccnl_engine.termination.notice.inputs import employer_owes
 from ccnl_engine.termination.notice.rules import notice_period
 
 if TYPE_CHECKING:
@@ -56,6 +53,7 @@ _ZERO = Decimal(0)
 PARTIAL = "notice_indemnity_partial"
 EXTRA_MONTHS = "notice_indemnity_extra_months"
 TFR = "notice_indemnity_tfr"
+_WITH_JUST_CAUSE = frozenset({TerminationCause.DISMISSAL, TerminationCause.RESIGNATION})
 DAY_MEASURE = "notice_indemnity_day_measure"
 _MONTH_DAYS = Decimal(30)
 _MONTHS = Decimal(12)
@@ -160,15 +158,40 @@ def _band(
     return band, months
 
 
+def _cause(terms: NoticeTerms) -> tuple[TerminationCause, bool | None] | EventEffect:
+    """Return how the employment ends, or the fact it misses.
+
+    Returns:
+        The cause and the just cause, or the ``missing_fact`` issue of
+        ``ended_by``, or of ``just_cause`` on a dismissal or a resignation.
+    """
+    cause = terms.ended_by
+    if cause is None:
+        return _issue(
+            "notice_cause_unknown",
+            "who owes the notice depends on how the employment ends "
+            "(EmploymentPeriod.ended_by), which is not stated",
+            fact="ended_by",
+        )
+    if cause in _WITH_JUST_CAUSE and terms.just_cause is None:
+        return _issue(
+            "notice_just_cause_unknown",
+            f"a {cause.value} owes the notice according to its just cause "
+            "(EmploymentPeriod.just_cause), which is not stated",
+            fact="just_cause",
+        )
+    return cause, terms.just_cause
+
+
 def _not_owed(
-    event: NoticeIndemnityEvent, terms: NoticeTerms, inputs: _Inputs
+    cause: TerminationCause, terms: NoticeTerms, inputs: _Inputs
 ) -> EventEffect:
     """Return the effect of a termination whose notice the employer does not owe.
 
     Returns:
         The issue of a resignation without just cause, or a nil decision.
     """
-    if event.cause is TerminationCause.RESIGNATION:
+    if cause is TerminationCause.RESIGNATION:
         return _issue(
             "notice_owed_by_worker",
             "a resignation without just cause and without the notice makes "
@@ -189,14 +212,18 @@ def _handle_notice_indemnity(
     terms = ctx.notice
     assert terms is not None, "the run builds the notice terms of every event"
     ended = _check(event, terms, ctx)
+    stated = _cause(terms)
+    if isinstance(stated, EventEffect):
+        return stated
+    cause, just_cause = stated
     inputs: _Inputs = {
-        "cause": event.cause.value,
-        "just_cause": str(event.just_cause).lower(),
+        "cause": cause.value,
+        "just_cause": str(just_cause).lower(),
         "received_on": event.received_on.isoformat(),
         "ended_on": ended.isoformat(),
     }
-    if not event.employer_owes:
-        return _not_owed(event, terms, inputs)
+    if not employer_owes(cause, just_cause):
+        return _not_owed(cause, terms, inputs)
     found = _band(event, terms)
     if isinstance(found, EventEffect):
         return found

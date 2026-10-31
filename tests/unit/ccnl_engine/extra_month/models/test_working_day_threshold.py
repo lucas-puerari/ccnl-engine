@@ -16,7 +16,7 @@ from datetime import date
 import pytest
 
 from ccnl_engine.compensation.models import AccrualComparison, ExtraMonthAccrualRule
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.extra_month.models import ExtraMonthAccrual, MonthAccrualRule
 from ccnl_engine.extra_month.schedule.models import ExtraMonthKind, ExtraMonthSchedule
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance

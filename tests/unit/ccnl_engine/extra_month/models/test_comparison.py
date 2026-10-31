@@ -7,7 +7,7 @@ from datetime import date
 import pytest
 
 from ccnl_engine.compensation.models import AccrualComparison
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.extra_month.models import (
     DEFAULT_ACCRUAL_RULE_ID,
     DEFAULT_MONTH_ACCRUAL_RULE,

@@ -1,8 +1,7 @@
 """Extra-month accrual: the qualifying months of a window and the rateo they give.
 
-A tredicesima or quattordicesima accrues one twelfth (rateo) for each month
-of its 12-month
-:class:`~ccnl_engine.extra_month.schedule.models.AccrualWindow`
+A tredicesima or quattordicesima accrues one twelfth (rateo) for each month of
+its 12-month :class:`~ccnl_engine.extra_month.schedule.models.AccrualWindow`
 that qualifies for the employment.  The months are counted from dates, never
 from the number of payroll runs already closed:
 
@@ -37,7 +36,8 @@ from ccnl_engine.compensation.models import AccrualComparison
 if TYPE_CHECKING:
     from collections.abc import Iterator
 
-    from ccnl_engine.employment.fact.inputs import EmploymentPeriod, WorkPattern
+    from ccnl_engine.employment.fact.inputs import WorkPattern
+    from ccnl_engine.employment.period.inputs import EmploymentPeriod
     from ccnl_engine.extra_month.schedule.models import (
         AccrualWindow,
         ExtraMonthKind,

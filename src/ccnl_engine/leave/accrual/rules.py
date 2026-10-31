@@ -27,7 +27,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.leave.types import LeaveBucket
 
 if TYPE_CHECKING:
-    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+    from ccnl_engine.employment.period.inputs import EmploymentPeriod
     from ccnl_engine.leave.balance.models import LeaveAccount
     from ccnl_engine.leave.models import LeaveRules
     from ccnl_engine.leave.permit.models import PermitRules

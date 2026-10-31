@@ -10,7 +10,7 @@ import pytest
 
 from ccnl_engine.calendar.models import WorkCalendar
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.event.facade import AbsenceEvent
 from ccnl_engine.irpef.computation.services import compute_tax
 from ccnl_engine.irpef.deduction.rules import work_income_deduction

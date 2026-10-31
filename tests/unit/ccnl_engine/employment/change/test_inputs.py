@@ -9,8 +9,9 @@ import pytest
 
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.change.inputs import EmploymentChange, timeline
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod, WeeklyHours
+from ccnl_engine.employment.fact.inputs import WeeklyHours
 from ccnl_engine.employment.inputs import Employment, Permanent
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.errors import InvalidInputError
 
 _EMPLOYMENT = Employment(

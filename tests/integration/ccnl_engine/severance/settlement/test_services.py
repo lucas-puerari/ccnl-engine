@@ -30,8 +30,9 @@ from ccnl_engine.decision.models import (
     DecisionOrigin,
 )
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod, PublicEndOfService
+from ccnl_engine.employment.fact.inputs import PublicEndOfService
 from ccnl_engine.employment.inputs import FixedTerm
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.events import TerminationTFREvent
 from ccnl_engine.inputs import (
     InpsBaseYtd,
