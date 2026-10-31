@@ -143,10 +143,6 @@ def tfr_quotas_unknown(tree: object) -> object:
     return migrated
 
 
-#: The step from each schema version to the next, keyed by the version it
-#: reads.  A bump of :attr:`PeriodState.SCHEMA_VERSION` comes with the step
-#: from the previous version, so a stored state stays readable; a test holds
-#: the registry to every version from :data:`FIRST_SCHEMA_VERSION`.
 def _leave_unknown(tree: object) -> object:
     """Add the leave account to a schema 15 state: unknown, no balance.
 
@@ -177,9 +173,25 @@ def _leave_unknown(tree: object) -> object:
     return {**tree, "fields": fields}
 
 
+def _no_personal_withholdings(tree: object) -> object:
+    """Add the personal withholdings of schema 17 to a schema 16 state: none.
+
+    Returns:
+        A copy of ``tree`` whose obligations hold no amount withheld to date.
+    """
+    migrated: Any = copy.deepcopy(tree)
+    obligations = migrated["fields"]["cash"]["fields"]["obligations"]
+    obligations["fields"]["personal_withholdings"] = {"$tuple": []}
+    return migrated
+
+
+#: The step from each schema version to the next, keyed by the version it reads.
+#: A bump of :attr:`PeriodState.SCHEMA_VERSION` comes with the step from the previous
+#: one, so a stored state stays readable (a test holds every version from the first).
 STATE_MIGRATIONS: Mapping[int, StateMigration] = MappingProxyType({
     14: tfr_quotas_unknown,
     15: _leave_unknown,
+    16: _no_personal_withholdings,
 })
 
 _NAMES: Mapping[type, str] = MappingProxyType({

@@ -1,0 +1,237 @@
+{
+  "bundle_version": "2025.1",
+  "engine_version": "0.5.1",
+  "schema_version": 17,
+  "state": {
+    "$type": "PeriodState",
+    "fields": {
+      "accrual": {
+        "$type": "EmploymentAccrualState",
+        "fields": {
+          "competence_runs": {
+            "$tuple": [
+              {
+                "$type": "PayrollRunId",
+                "fields": {
+                  "kind": {
+                    "$enum": "RunKind",
+                    "value": "regular"
+                  },
+                  "month": 1,
+                  "sequence": 1,
+                  "year": 2026
+                }
+              }
+            ]
+          },
+          "inps_bases": {
+            "$tuple": [
+              {
+                "$type": "InpsBaseYtd",
+                "fields": {
+                  "additional_ivs": {
+                    "$decimal": "0"
+                  },
+                  "month": null,
+                  "month_base": {
+                    "$decimal": "0"
+                  },
+                  "other_employers": {
+                    "$decimal": "0"
+                  },
+                  "other_employers_additional_ivs": null,
+                  "own": {
+                    "$decimal": "2158.26"
+                  },
+                  "year": 2026
+                }
+              }
+            ]
+          },
+          "leave": {
+            "$type": "LeaveAccount",
+            "fields": {
+              "balances": {
+                "$tuple": []
+              },
+              "known": false
+            }
+          },
+          "sickness_episodes": {
+            "$tuple": [
+              {
+                "$type": "SicknessEpisode",
+                "fields": {
+                  "daily_contributions": null,
+                  "ended_on": {
+                    "$date": "2026-01-09"
+                  },
+                  "episode_id": "A",
+                  "hospital_stays": null,
+                  "periodic_check": null,
+                  "prior_worked_days": null,
+                  "relapse_of": null,
+                  "serious_illness": null,
+                  "short_absence_exempt": null,
+                  "started_on": {
+                    "$date": "2026-01-05"
+                  }
+                }
+              }
+            ]
+          },
+          "sickness_known_from": {
+            "$date": "2026-01-01"
+          },
+          "tfr_quotas": {
+            "$tuple": []
+          },
+          "tfr_quotas_known_from": 2027
+        }
+      },
+      "cash": {
+        "$type": "TaxCashState",
+        "fields": {
+          "conguaglio": null,
+          "earnings": {
+            "$type": "EarningsYtd",
+            "fields": {
+              "gross": {
+                "$decimal": "0"
+              },
+              "inps_employee": {
+                "$decimal": "0"
+              },
+              "pension_deducted": {
+                "$decimal": "0"
+              },
+              "taxable": {
+                "$decimal": "0"
+              }
+            }
+          },
+          "employment_spells": {
+            "$tuple": []
+          },
+          "fringe": {
+            "$type": "FringeYtd",
+            "fields": {
+              "pdr": {
+                "$decimal": "0"
+              },
+              "taxed": {
+                "$decimal": "0"
+              },
+              "value": {
+                "$decimal": "0"
+              }
+            }
+          },
+          "obligations": {
+            "$type": "EmploymentObligations",
+            "fields": {
+              "deferred_shortfall": {
+                "$tuple": []
+              },
+              "personal_withholdings": {
+                "$tuple": []
+              },
+              "recoveries": {
+                "$tuple": []
+              },
+              "surtax": {
+                "$tuple": []
+              }
+            }
+          },
+          "payments": {
+            "$tuple": []
+          },
+          "shortfall": {
+            "$type": "WithholdingShortfall",
+            "fields": {
+              "credit_recovery": {
+                "$decimal": "0"
+              },
+              "irpef": {
+                "$decimal": "0"
+              },
+              "surtax": {
+                "$decimal": "0"
+              }
+            }
+          },
+          "somma_esente": {
+            "$type": "SommaEsenteAccount",
+            "fields": {
+              "due": null,
+              "reason": null,
+              "recognized": {
+                "$decimal": "0"
+              },
+              "recovered": {
+                "$decimal": "0"
+              }
+            }
+          },
+          "tax": {
+            "$type": "TaxYtd",
+            "fields": {
+              "irpef": {
+                "$decimal": "0"
+              },
+              "municipal_advance": {
+                "$decimal": "0"
+              },
+              "municipal_settled": {
+                "$decimal": "0"
+              },
+              "regional_settled": {
+                "$decimal": "0"
+              },
+              "surtax": {
+                "$decimal": "0"
+              }
+            }
+          },
+          "tax_year": null,
+          "trattamento": {
+            "$type": "TrattamentoAccount",
+            "fields": {
+              "due": null,
+              "reason": null,
+              "recognized": {
+                "$decimal": "0"
+              },
+              "recovered": {
+                "$decimal": "0"
+              }
+            }
+          },
+          "ulteriore_detrazione": {
+            "$type": "UlterioreDetrazioneAccount",
+            "fields": {
+              "due": null,
+              "reason": null,
+              "recognized": {
+                "$decimal": "0"
+              },
+              "recovered": {
+                "$decimal": "0"
+              }
+            }
+          },
+          "work_time_regime": {
+            "$type": "RegimeCapAccount",
+            "fields": {
+              "used": {
+                "$decimal": "0"
+              }
+            }
+          }
+        }
+      },
+      "history_known": false
+    }
+  }
+}
