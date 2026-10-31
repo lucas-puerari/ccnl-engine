@@ -16,12 +16,14 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
 )
+from ccnl_engine.employment.period.inputs import TerminationCause
 from ccnl_engine.events import (
     ExtraordinaryLeaveEvent,
     HourlyParentalLeaveEvent,
     InpsSicknessBase,
     LeaveHours,
     MaternityLeaveEvent,
+    NoticeIndemnityEvent,
     ParentalLeaveEvent,
     ParentalLeaveTaken,
     PaternityLeaveEvent,
@@ -559,6 +561,22 @@ def _hourly_parental(base: InpsSicknessBase | None, ended: date | None) -> Perio
     return replace(run, employment=employment, facts=PeriodFacts(events=(leave,)))
 
 
+def _notice(cause: TerminationCause | None, just: bool | None) -> PeriodInput:
+    """Return the March run of a C3 whose employment ends on 31 March.
+
+    The act is received on 20 March; who owes the notice depends on how the
+    employment ends and on its just cause.
+
+    Returns:
+        The March run with the notice not given.
+    """
+    period = EmploymentPeriod(date(2025, 1, 1), date(2026, 3, 31), cause, just)
+    run = _march(PeriodState.zero())
+    employment = replace(_EMPLOYMENT, employment_period=period)
+    events = (NoticeIndemnityEvent(date(2026, 3, 20)),)
+    return replace(run, employment=employment, facts=PeriodFacts(events=events))
+
+
 def _extraordinary(last_pay: Decimal | None) -> PeriodInput:
     """Return two weeks of extraordinary leave in March of an impiegato.
 
@@ -662,6 +680,20 @@ def sickness_cases[C](
                 _hourly_parental(_FEBRUARY_PAY, _MATERNITY_END),
                 _hourly_parental(_FEBRUARY_PAY, None),
                 "protection_ended_on",
+            ),
+        ),
+        "EmploymentPeriod.ended_by": (
+            case(
+                _notice(TerminationCause.DISMISSAL, False),
+                _notice(None, None),
+                "ended_by",
+            ),
+        ),
+        "EmploymentPeriod.just_cause": (
+            case(
+                _notice(TerminationCause.DISMISSAL, False),
+                _notice(TerminationCause.DISMISSAL, None),
+                "just_cause",
             ),
         ),
         "ExtraordinaryLeaveEvent.last_fixed_pay": (

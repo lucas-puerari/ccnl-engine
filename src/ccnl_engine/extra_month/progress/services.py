@@ -16,7 +16,7 @@ from datetime import date
 from typing import TYPE_CHECKING
 
 from ccnl_engine.calendar.services import standard_calendar
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.extra_month.models import ExtraMonthAccrual
 from ccnl_engine.extra_month.progress.models import ExtraMonthProgress
 from ccnl_engine.extra_month.qualification.services import month_accrual_rule

@@ -52,7 +52,7 @@ if TYPE_CHECKING:
     from ccnl_engine.capability.rule.services import Rule
     from ccnl_engine.compensation.element.types import MonthlyPayChain
     from ccnl_engine.employment.category.models import WorkerCategory
-    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+    from ccnl_engine.employment.period.inputs import EmploymentPeriod
     from ccnl_engine.period.requests import PeriodCalculationRequest
     from ccnl_engine.provenance.source.models import SourceLocation
 

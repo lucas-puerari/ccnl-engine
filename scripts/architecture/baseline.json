@@ -7,7 +7,6 @@
   "src/ccnl_engine/compensation/renewal_minimum/rules.py": 332,
   "src/ccnl_engine/contribution/rate/models.py": 326,
   "src/ccnl_engine/contribution/services.py": 322,
-  "src/ccnl_engine/employment/fact/inputs.py": 403,
   "src/ccnl_engine/employment/inputs.py": 319,
   "src/ccnl_engine/extra_month/models.py": 481,
   "src/ccnl_engine/fund/health/services.py": 419,

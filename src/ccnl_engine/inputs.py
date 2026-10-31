@@ -38,13 +38,13 @@ from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.change.inputs import EmploymentChange
 from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
-    EmploymentPeriod,
     PublicEndOfService,
     WeeklyHours,
     WorkPattern,
 )
 from ccnl_engine.employment.fixed_term.inputs import NaspiExclusion
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
+from ccnl_engine.employment.period.inputs import EmploymentPeriod, TerminationCause
 from ccnl_engine.employment.spell.models import EmploymentSpell
 from ccnl_engine.family.inputs import (
     Dependent,
@@ -134,6 +134,7 @@ __all__ = [
     "SurtaxComponent",
     "SurtaxObligation",
     "TaxSector",
+    "TerminationCause",
     "TfrFundBalance",
     "TfrQuotaYtd",
     "WeeklyHours",

@@ -23,8 +23,8 @@ from ccnl_engine.calendar.inputs import (
 )
 from ccnl_engine.calendar.models import WorkCalendar
 from ccnl_engine.decision.models import CalculationStatus
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.employment.inputs import Permanent
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import AbsenceEvent
 from ccnl_engine.inputs import (

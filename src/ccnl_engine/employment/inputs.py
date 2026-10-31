@@ -19,7 +19,6 @@ from ccnl_engine.employment.category.models import (
 )
 from ccnl_engine.employment.fact.inputs import (
     FEATURE,
-    EmploymentPeriod,
     PublicEndOfService,
     WeeklyHours,
     WorkPattern,
@@ -27,6 +26,7 @@ from ccnl_engine.employment.fact.inputs import (
     check_within_full_time,
 )
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.pension_fund.inputs import (
     PENSION_FUND_TYPES,
     NoPensionFund,

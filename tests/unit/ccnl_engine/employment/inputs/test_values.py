@@ -10,13 +10,13 @@ import pytest
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
-    EmploymentPeriod,
     WeeklyHours,
     WorkPattern,
     check_pattern_hours,
     check_within_full_time,
 )
 from ccnl_engine.employment.inputs import Employment, Permanent
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.run.types import PeriodId

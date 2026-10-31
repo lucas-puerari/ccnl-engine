@@ -11,7 +11,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.termination.notice.models import TerminationCause
+from ccnl_engine.employment.period.inputs import TerminationCause
 
 _NOTICE = load_ccnl("metalmeccanico-federmeccanica").work_rules
 assert _NOTICE is not None

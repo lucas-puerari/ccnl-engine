@@ -36,6 +36,7 @@ from ccnl_engine import (
     PeriodInput,
 )
 from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.period.inputs import TerminationCause
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.events import NoticeIndemnityEvent, TerminationTFREvent, WorkEvent
 from ccnl_engine.inputs import (
@@ -48,12 +49,12 @@ from ccnl_engine.inputs import (
     TfrFundBalance,
 )
 from ccnl_engine.pay_item.facade import NoticeIndemnityItem
-from ccnl_engine.termination.notice.models import TerminationCause
 
 if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
 
 _HIRED = date(2016, 1, 1)
+_ACT = date(2026, 3, 10)
 _D, _R = TerminationCause.DISMISSAL, TerminationCause.RESIGNATION
 _TFR = TerminationTFREvent(
     date(2026, 3, 10), amount=Decimal("20000.00"), separate_tax_rate=Decimal("0.23")
@@ -68,6 +69,8 @@ def _run(
     fixed_term: bool = False,
     month: int = 3,
     fund: TfrFundBalance | None = None,
+    cause: TerminationCause | None = _D,
+    just: bool | None = False,
 ) -> PeriodResult:
     return PayrollEngine.bundled().calculate_period(
         PeriodInput(
@@ -78,7 +81,12 @@ def _run(
                 level_code="C3" if ccnl == "metalmeccanico-federmeccanica" else "4",
                 category=WorkerCategory.IMPIEGATO,
                 contract_type=(FixedTerm() if fixed_term else Permanent()),
-                employment_period=EmploymentPeriod(_HIRED, ended),
+                employment_period=EmploymentPeriod(
+                    _HIRED,
+                    ended,
+                    cause if ended else None,
+                    just if ended and cause in {_D, _R} else None,
+                ),
                 seniority=(
                     SeniorityFact.since(_HIRED, SenioritySource.EMPLOYER_RECORDS)
                     if seniority
@@ -94,10 +102,8 @@ def _run(
     )
 
 
-def _notice(
-    received: date, cause: TerminationCause = _D, *, just: bool = False
-) -> NoticeIndemnityEvent:
-    return NoticeIndemnityEvent(received, cause, just_cause=just)
+def _notice(received: date) -> NoticeIndemnityEvent:
+    return NoticeIndemnityEvent(received)
 
 
 def _indemnity(result: PeriodResult) -> Decimal | None:
@@ -246,7 +252,7 @@ def test_the_cause_decides_who_owes(
     cause: TerminationCause, just: bool, paid: bool
 ) -> None:
     """Art. 2119: just cause; art. 2118 c. 3: death; mutual agreement: none."""
-    result = _run(_notice(date(2026, 3, 10), cause, just=just))
+    result = _run(_notice(date(2026, 3, 10)), cause=cause, just=just)
 
     assert (_indemnity(result) is not None) is paid
     if not paid:
@@ -256,7 +262,14 @@ def test_the_cause_decides_who_owes(
 @pytest.mark.parametrize(
     ("kwargs", "event", "code", "cause"),
     [
-        ({}, _notice(date(2026, 3, 10), _R), "notice_owed_by_worker", "rule"),
+        ({"cause": _R}, _notice(date(2026, 3, 10)), "notice_owed_by_worker", "rule"),
+        ({"cause": None}, _notice(date(2026, 3, 10)), "notice_cause_unknown", "fact"),
+        (
+            {"just": None},
+            _notice(date(2026, 3, 10)),
+            "notice_just_cause_unknown",
+            "fact",
+        ),
         (
             {"ccnl": "metalmeccanico-confapi"},
             _notice(date(2026, 3, 10)),
@@ -274,7 +287,7 @@ def test_the_cause_decides_who_owes(
 def test_what_the_engine_cannot_pay_it_reports(
     kwargs: dict[str, object], event: NoticeIndemnityEvent, code: str, cause: str
 ) -> None:
-    """A worker's debt, a CCNL without notice, an unknown service."""
+    """A worker's debt, an unknown cause, a CCNL without notice, no service."""
     result = _run(event, **kwargs)  # type: ignore[arg-type]
 
     assert _indemnity(result) is None

@@ -9,7 +9,7 @@ import pytest
 
 from ccnl_engine.calendar.models import WorkCalendar
 from ccnl_engine.calendar.schedule.models import PayrollSchedule
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.extra_month.schedule.models import (
     AccrualWindow,

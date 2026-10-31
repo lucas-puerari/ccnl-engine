@@ -62,6 +62,8 @@ state types.
 
 ::: ccnl_engine.inputs.TaxSector
 
+::: ccnl_engine.inputs.TerminationCause
+
 ## Family and tax facts
 
 ::: ccnl_engine.inputs.FamilyComposition

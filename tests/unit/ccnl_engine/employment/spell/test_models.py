@@ -11,7 +11,7 @@ from datetime import date
 
 import pytest
 
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.employment.spell.models import (
     EmploymentSpell,
     spell_days,

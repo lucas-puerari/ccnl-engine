@@ -16,7 +16,7 @@ from datetime import date
 from ccnl_engine.balance.cash.models import TaxCashState
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.services import (
     bundled_policies,

@@ -30,7 +30,7 @@ from ccnl_engine.year.competence.services import (
 from tests.unit.ccnl_engine.builders import year_plan
 
 if TYPE_CHECKING:
-    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+    from ccnl_engine.employment.period.inputs import EmploymentPeriod
     from ccnl_engine.event.facade import AbsenceEvent
     from ccnl_engine.period.results import PeriodResult
     from ccnl_engine.year.results import CompetenceYearResult

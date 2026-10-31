@@ -44,13 +44,13 @@ from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.change.inputs import EmploymentChange
 from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
-    EmploymentPeriod,
     PublicEndOfService,
     WeeklyHours,
     WorkPattern,
 )
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm, NaspiExclusion
 from ccnl_engine.employment.inputs import Apprentice, Contract, Employment, Permanent
+from ccnl_engine.employment.period.inputs import EmploymentPeriod, TerminationCause
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import WorkEvent
 from ccnl_engine.extra_month.schedule.models import (
@@ -99,7 +99,6 @@ from ccnl_engine.sickness.models import SicknessEpisode
 from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
 from ccnl_engine.termination.inputs import TerminationTFREvent
 from ccnl_engine.termination.notice.inputs import NoticeIndemnityEvent
-from ccnl_engine.termination.notice.models import TerminationCause
 from ccnl_engine.variable_pay.inputs import (
     ArrearsEvent,
     BilateralFundEvent,
@@ -152,7 +151,7 @@ _EVENTS: dict[type, WorkEvent] = {
             ParentalLeaveTaken(0, 0, 0),
             Decimal(8),
         ),
-        NoticeIndemnityEvent(_DAY, TerminationCause.DISMISSAL, just_cause=False),
+        NoticeIndemnityEvent(_DAY),
         ParentalLeaveEvent(
             _DAY,
             _DAY,
@@ -203,7 +202,9 @@ def _employment(contract: Contract) -> Employment:
         level_code="C3",
         contract_type=contract,
         category=WorkerCategory.IMPIEGATO,
-        employment_period=EmploymentPeriod(date(2020, 1, 1), date(2030, 12, 31)),
+        employment_period=EmploymentPeriod(
+            date(2020, 1, 1), date(2030, 12, 31), TerminationCause.DISMISSAL, False
+        ),
         weekly_hours=WeeklyHours(Decimal(30)),
         full_time_weekly_hours=WeeklyHours(Decimal(40)),
         work_pattern=WorkPattern(

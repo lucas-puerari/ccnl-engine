@@ -41,13 +41,13 @@ from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.change.inputs import EmploymentChange
 from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
-    EmploymentPeriod,
     PublicEndOfService,
     WeeklyHours,
     WorkPattern,
 )
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm, NaspiExclusion
 from ccnl_engine.employment.inputs import Apprentice, Employment, Permanent
+from ccnl_engine.employment.period.inputs import EmploymentPeriod, TerminationCause
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.types import WORK_EVENT_TYPES
 from ccnl_engine.extra_month.schedule.models import (
@@ -81,7 +81,6 @@ from ccnl_engine.seniority.inputs import (
 )
 from ccnl_engine.severance.provision.models import TfrFundBalance
 from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
-from ccnl_engine.termination.notice.models import TerminationCause
 from ccnl_engine.withholding.deferral.inputs import ShortfallDeferralRequest
 from ccnl_engine.working_time.inputs import (
     HolidayWorkKind,

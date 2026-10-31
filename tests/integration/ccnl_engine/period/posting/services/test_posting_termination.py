@@ -34,7 +34,7 @@ from ccnl_engine.balance.obligation.models import (
     EmploymentObligations,
     RecoveryObligation,
 )
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.period.inputs import PeriodInput
 from ccnl_engine.period.services import (

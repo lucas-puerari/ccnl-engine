@@ -26,10 +26,10 @@ from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
-    EmploymentPeriod,
     WeeklyHours,
     WorkPattern,
 )
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.run.models import PayrollRun, RunKind
 
 if TYPE_CHECKING:

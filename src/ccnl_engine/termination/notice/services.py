@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from datetime import date
     from decimal import Decimal
 
+    from ccnl_engine.employment.period.inputs import TerminationCause
     from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.provenance.source.models import SourceLocation
     from ccnl_engine.seniority.inputs import SeniorityFact
@@ -28,6 +29,8 @@ class NoticeTerms:
         level: Level of the worker.
         seniority: Recognised service, ``None`` when not stated.
         ended_on: Last day of the employment, ``None`` when not stated.
+        ended_by: How the employment ends, ``None`` when not stated.
+        just_cause: Whether a dismissal or resignation has a just cause.
         permanent: Whether the contract is open-ended.
         monthly: Monthly pay of art. 2121 c.c.: base salary, seniority and
             cash allowances of the worker's month.
@@ -42,6 +45,8 @@ class NoticeTerms:
     level: str
     seniority: SeniorityFact | None
     ended_on: date | None
+    ended_by: TerminationCause | None
+    just_cause: bool | None
     permanent: bool
     monthly: Decimal
     yearly_payments: Decimal
@@ -68,6 +73,8 @@ def notice_terms(ctx: RunContext) -> NoticeTerms:
         level=request.level_code,
         seniority=request.seniority,
         ended_on=None if period is None else period.ended_on,
+        ended_by=None if period is None else period.ended_by,
+        just_cause=None if period is None else period.just_cause,
         permanent=isinstance(request.contract_type, Permanent),
         monthly=chain.base + chain.seniority + chain.allowances_total,
         yearly_payments=ccnl.parameters.additional_months.value_at(

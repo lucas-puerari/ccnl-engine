@@ -37,7 +37,8 @@ if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.calendar.models import WorkCalendar
     from ccnl_engine.compensation.element.types import MonthlyPayChain
-    from ccnl_engine.employment.fact.inputs import EmploymentPeriod, WorkPattern
+    from ccnl_engine.employment.fact.inputs import WorkPattern
+    from ccnl_engine.employment.period.inputs import EmploymentPeriod
     from ccnl_engine.period.requests import PeriodCalculationRequest
     from ccnl_engine.run.models import PayrollRunId
     from ccnl_engine.withholding.schedule.models import WithholdingSlot
