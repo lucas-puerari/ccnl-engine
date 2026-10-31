@@ -1,5 +1,5 @@
 {
-  "commit": "ad67436b8bd036697f46accb7b529028e0f821b7",
+  "commit": "6a878ebe85224d7aa7620c37361c8fc1608d5514",
   "date": "2026-10-31",
   "min_score": 93.0,
   "perimeter": [
@@ -56,17 +56,26 @@
     "src/ccnl_engine/absence/insured/hours/rules.py",
     "src/ccnl_engine/absence/insured/paternity/rules.py",
     "src/ccnl_engine/absence/insured/parental/rules.py",
-    "src/ccnl_engine/absence/insured/parental/hourly/rules.py"
+    "src/ccnl_engine/absence/insured/parental/hourly/rules.py",
+    "src/ccnl_engine/absence/insured/services.py",
+    "src/ccnl_engine/absence/insured/handlers.py",
+    "src/ccnl_engine/absence/insured/posting/services.py",
+    "src/ccnl_engine/absence/insured/paternity/handlers.py",
+    "src/ccnl_engine/absence/insured/parental/handlers.py",
+    "src/ccnl_engine/absence/insured/parental/hourly/handlers.py",
+    "src/ccnl_engine/absence/insured/extraordinary/handlers.py",
+    "src/ccnl_engine/absence/insured/permit/handlers.py",
+    "src/ccnl_engine/absence/insured/rest/handlers.py"
   ],
   "scores": {
     "core": {
-      "killed": 6404,
-      "survived": 173,
+      "killed": 7424,
+      "survived": 211,
       "other": 4,
       "not_checked": 0,
       "equivalent": 18,
-      "total": 6581,
-      "score": 97.3,
+      "total": 7639,
+      "score": 97.2,
       "minimum": 93.0
     },
     "src/ccnl_engine/contribution/rules.py": {
@@ -597,6 +606,96 @@
       "equivalent": 4,
       "total": 56,
       "score": 100.0,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/absence/insured/services.py": {
+      "killed": 69,
+      "survived": 2,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 71,
+      "score": 97.2,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/absence/insured/handlers.py": {
+      "killed": 254,
+      "survived": 12,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 266,
+      "score": 95.5,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/absence/insured/posting/services.py": {
+      "killed": 96,
+      "survived": 2,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 98,
+      "score": 98.0,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/absence/insured/paternity/handlers.py": {
+      "killed": 71,
+      "survived": 0,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 71,
+      "score": 100.0,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/absence/insured/parental/handlers.py": {
+      "killed": 113,
+      "survived": 4,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 117,
+      "score": 96.6,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/absence/insured/parental/hourly/handlers.py": {
+      "killed": 118,
+      "survived": 8,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 126,
+      "score": 93.7,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/absence/insured/extraordinary/handlers.py": {
+      "killed": 133,
+      "survived": 4,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 137,
+      "score": 97.1,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/absence/insured/permit/handlers.py": {
+      "killed": 94,
+      "survived": 2,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 96,
+      "score": 97.9,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/absence/insured/rest/handlers.py": {
+      "killed": 72,
+      "survived": 4,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 76,
+      "score": 94.7,
       "minimum": 93.0
     }
   }
