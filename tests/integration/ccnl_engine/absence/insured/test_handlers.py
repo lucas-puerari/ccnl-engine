@@ -286,6 +286,12 @@ def test_an_impiegata_without_the_pay_before_lacks_a_fact() -> None:
     assert ("missing_fact", "maternity_base_pay") in {
         (b.code, b.detail) for b in result.blockers
     }
+    (issue,) = (i for i in result.issues if i.code == "maternity_base_pay_unknown")
+    assert issue.message == (
+        "INPS pays the indemnity on the pay of the month before the leave "
+        "(MaternityLeaveEvent.maternity_base_pay), which the leave does not "
+        "state; the indemnity is computed on the pay of the run meanwhile"
+    )
 
 
 def test_an_operaia_keeps_the_pay_of_the_run_under_a_limitation() -> None:

@@ -84,8 +84,14 @@ def test_without_an_hourly_base_the_hours_post_nothing() -> None:
 
 def test_the_leave_ends_before_the_fourteenth_birthday() -> None:
     """The last day falls on the fourteenth birthday: no longer leave."""
-    with pytest.raises(InvalidInputError, match="14th birthday"):
+    with pytest.raises(InvalidInputError) as error:
         _run(_leave(2, 3, 4, 5, born=date(2012, 3, 5)))
+
+    assert (str(error.value), error.value.field, error.value.feature) == (
+        "HourlyParentalLeaveEvent.hours must precede the child's 14th birthday",
+        "HourlyParentalLeaveEvent.hours",
+        "parental_leave",
+    )
 
 
 def test_the_pay_of_the_month_before_gives_the_daily_base() -> None:
