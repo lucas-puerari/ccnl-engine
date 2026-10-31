@@ -18,6 +18,9 @@ from ccnl_engine.absence.insured.inputs import (
     PaternityLeaveEvent,
     WorkInjuryEvent,
 )
+from ccnl_engine.absence.insured.parental.hourly.inputs import (
+    HourlyParentalLeaveEvent,
+)
 from ccnl_engine.absence.insured.parental.inputs import (
     ParentalLeaveEvent,
     ParentalLeaveTaken,
@@ -143,6 +146,12 @@ _EVENTS: dict[type, WorkEvent] = {
         DisabilityPermitEvent((_DAY,), (LeaveHours(date(2026, 3, 3), Decimal("1.5")),)),
         ExtraordinaryLeaveEvent(_DAY, _DAY, Decimal("2000.00")),
         NursingRestEvent((LeaveHours(_DAY, Decimal(2)),), date(2026, 1, 15)),
+        HourlyParentalLeaveEvent(
+            (LeaveHours(_DAY, Decimal(4)), LeaveHours(date(2026, 3, 11), Decimal(4))),
+            date(2025, 6, 1),
+            ParentalLeaveTaken(0, 0, 0),
+            Decimal(8),
+        ),
         NoticeIndemnityEvent(_DAY, TerminationCause.DISMISSAL, just_cause=False),
         ParentalLeaveEvent(
             _DAY,

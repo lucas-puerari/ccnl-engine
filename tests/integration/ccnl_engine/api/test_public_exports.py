@@ -142,6 +142,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "FringeEvent",
         "HolidayWorkEvent",
         "HolidayWorkKind",
+        "HourlyParentalLeaveEvent",
         "InpsSicknessBase",
         "LeaveBucket",
         "LeaveTakenEvent",

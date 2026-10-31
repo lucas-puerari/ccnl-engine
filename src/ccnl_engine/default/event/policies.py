@@ -189,6 +189,24 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
     "ParentalLeaveEvent.single_parent": absence_is_fact(
         "two parents; a sole parent is a fact of the family the event records"
     ),
+    "HourlyParentalLeaveEvent.parental_base_pay": requires_fact(
+        "parental_leave",
+        "event.parental_base_pay",
+        FactEnforcement.REPORTED,
+        "unknown pay of the month before the leave: the indemnity is computed "
+        "on the pay of the run, with a missing_fact parental_base_pay blocker",
+    ),
+    "HourlyParentalLeaveEvent.protection_ended_on": requires_fact(
+        "parental_leave",
+        "event.protection_ended_on",
+        FactEnforcement.REPORTED,
+        "unknown end of the maternity or paternity leave: the days are paid "
+        "on the months at 80% the birth day gives, with a missing_fact "
+        "protection_ended_on blocker when the end could give more",
+    ),
+    "HourlyParentalLeaveEvent.single_parent": absence_is_fact(
+        "two parents; a sole parent is a fact of the family the event records"
+    ),
     "ExtraordinaryLeaveEvent.last_fixed_pay": requires_fact(
         "extraordinary_leave",
         "event.last_fixed_pay",

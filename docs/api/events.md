@@ -21,6 +21,8 @@ gross, net and employer cost according to its treatment; see
 ::: ccnl_engine.events.HolidayWorkEvent
 
 ::: ccnl_engine.events.HolidayWorkKind
+
+::: ccnl_engine.events.HourlyParentalLeaveEvent
 ::: ccnl_engine.events.LeaveBucket
 
 ::: ccnl_engine.events.LeaveTakenEvent

@@ -28,12 +28,15 @@ from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
-    from collections.abc import Iterator
+    from collections.abc import Iterable, Iterator
 
+    from ccnl_engine.absence.insured.parental.hourly.inputs import (
+        HourlyParentalLeaveEvent,
+    )
     from ccnl_engine.absence.insured.parental.inputs import ParentalLeaveEvent
     from ccnl_engine.absence.insured.parental.models import ParentalRates
 
-__all__ = ["ParentalDays", "allocate", "indemnity"]
+__all__ = ["ParentalDays", "allocate", "cohort_unknown", "indemnity"]
 
 _ZERO = Decimal(0)
 _MONTHS = 12
@@ -89,7 +92,9 @@ def _blocks(first: date, last: date) -> Iterator[tuple[list[date], bool]]:
 class _Counters:
     """The counters of the parent and of the couple, consumed day by day."""
 
-    def __init__(self, event: ParentalLeaveEvent, rates: ParentalRates) -> None:
+    def __init__(
+        self, event: ParentalLeaveEvent | HourlyParentalLeaveEvent, rates: ParentalRates
+    ) -> None:
         days, taken = rates.month_days, event.taken
         single = event.single_parent
         self.own_cap = days * (
@@ -150,15 +155,31 @@ def allocate(event: ParentalLeaveEvent, rates: ParentalRates) -> ParentalDays:
     result = ParentalDays()
     for block, whole in _blocks(event.started_on, event.ended_on):
         _take_block(block, whole, counters, result)
-    if event.protection_ended_on is None:
-        born = event.child_born_on
-        result.cohort_unknown = any(
-            rates.enhanced_months(day, date.max, born)
-            > rates.enhanced_months(day, born, born)
-            for day in result.rates
-            if day < counters.enhanced_until
-        )
+    result.cohort_unknown = cohort_unknown(event, rates, result.rates, counters)
     return result
+
+
+def cohort_unknown(
+    event: ParentalLeaveEvent | HourlyParentalLeaveEvent,
+    rates: ParentalRates,
+    days: Iterable[date],
+    counters: _Counters,
+) -> bool:
+    """Return whether the unstated end of the protected leave could matter.
+
+    Returns:
+        ``True`` when the end is not stated and a later one would give a
+        day of ``days`` more months at the enhanced rate.
+    """
+    if event.protection_ended_on is not None:
+        return False
+    born = event.child_born_on
+    return any(
+        rates.enhanced_months(day, date.max, born)
+        > rates.enhanced_months(day, born, born)
+        for day in days
+        if day < counters.enhanced_until
+    )
 
 
 def _take_block(
