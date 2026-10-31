@@ -311,6 +311,15 @@ source_paths = [
     "src/ccnl_engine/absence/insured/paternity/rules.py",
     "src/ccnl_engine/absence/insured/parental/rules.py",
     "src/ccnl_engine/absence/insured/parental/hourly/rules.py",
+    "src/ccnl_engine/absence/insured/services.py",
+    "src/ccnl_engine/absence/insured/handlers.py",
+    "src/ccnl_engine/absence/insured/posting/services.py",
+    "src/ccnl_engine/absence/insured/paternity/handlers.py",
+    "src/ccnl_engine/absence/insured/parental/handlers.py",
+    "src/ccnl_engine/absence/insured/parental/hourly/handlers.py",
+    "src/ccnl_engine/absence/insured/extraordinary/handlers.py",
+    "src/ccnl_engine/absence/insured/permit/handlers.py",
+    "src/ccnl_engine/absence/insured/rest/handlers.py",
 ]
 # Limit collection to the tests of the mutated payroll modules; copy full src
 # so imports resolve. Hypothesis tests are left out: they use multiple

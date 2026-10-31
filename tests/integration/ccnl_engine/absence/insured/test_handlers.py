@@ -68,6 +68,13 @@ class _NoAbsenceRules(BundledKnowledgeRepository):
         return ccnl.model_copy(update={"work_rules": rules})
 
 
+class _NoRuleset(BundledKnowledgeRepository):
+    """The bundle with a CCNL file that carries no ruleset identity."""
+
+    def load_ccnl(self, ccnl_id: str) -> CCNL:
+        return load_ccnl(ccnl_id).model_copy(update={"ruleset": None})
+
+
 def _run(
     event: WorkEvent,
     month: int = 3,
@@ -109,6 +116,19 @@ def test_a_leave_without_ccnl_rules_pays_inps_alone() -> None:
         Decimal("1932.84"),
     )
     assert "insured_absence_ccnl_not_modelled" in {i.code for i in result.issues}
+    (decision,) = (d for d in result.decisions if d.capability == "maternity_leave")
+    assert decision.source is None
+
+
+def test_a_ccnl_without_a_ruleset_is_named_by_its_id_and_year() -> None:
+    """No ruleset identity: the rule names the CCNL id, the version the year."""
+    result = _run(_LEAVE, engine=PayrollEngine(repository=_NoRuleset()))
+    (decision,) = (d for d in result.decisions if d.capability == "maternity_leave")
+
+    assert (decision.rule, decision.rule_version) == (
+        "ccnl/metalmeccanico-federmeccanica:work_rules.insured_absence",
+        "2026",
+    )
 
 
 def test_an_injury_without_ccnl_rules_is_paid_by_inail_itself() -> None:
@@ -220,7 +240,10 @@ def test_an_event_outside_the_monthly_pay_is_rejected(
     with pytest.raises(InvalidInputError, match="monthly pay of a month") as error:
         _run(event, **kwargs)  # type: ignore[arg-type]
 
-    assert error.value.feature == _CAPABILITY[type(event)]
+    assert (error.value.feature, error.value.field) == (
+        _CAPABILITY[type(event)],
+        type(event).__name__,
+    )
 
 
 _CAPABILITY = {
