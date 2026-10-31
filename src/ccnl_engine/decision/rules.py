@@ -8,6 +8,7 @@ never executed.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from typing import TYPE_CHECKING
 
 from ccnl_engine.decision.models import (
@@ -22,6 +23,7 @@ if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.compensation.element.types import ApprenticeshipScaling
     from ccnl_engine.compensation.models import Level
+    from ccnl_engine.decision.models import CalculationIssue
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.variable_pay.models import PdRRules
 
@@ -194,3 +196,25 @@ def contract_decisions(
         apprenticeship_scaling_decision(ccnl, apprenticeship, year),
     )
     return tuple(d for d in taken if d is not None)
+
+
+def with_open_facts(
+    decisions: tuple[CalculationDecision, ...],
+    issues: tuple[CalculationIssue, ...],
+) -> tuple[CalculationDecision, ...]:
+    """Return ``decisions`` with those a missing fact leaves open provisional.
+
+    A ``final`` decision of a capability an issue names a missing fact of
+    rests on the default of that fact: it is ``provisional``, its reason
+    kept, until the caller supplies the fact.
+
+    Returns:
+        The decisions, in order.
+    """
+    open_facts = {i.capability for i in issues if i.fact is not None}
+    return tuple(
+        replace(d, status=CalculationStatus.PROVISIONAL)
+        if d.status is CalculationStatus.FINAL and d.capability in open_facts
+        else d
+        for d in decisions
+    )
