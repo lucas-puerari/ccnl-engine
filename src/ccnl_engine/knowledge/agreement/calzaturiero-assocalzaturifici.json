@@ -59,22 +59,6 @@
         "text": "SALARY MODEL: conglobated (minimi retributivi include paga base, contingenza, and EDR). Modeled as base_salary with fixed_allowances: [] for all levels, level 8 included (the IND_FUN of the quadri is not modelled). Confirmed by stable coefficient ratios across all tranche dates (review of 2026-10-30)."
       },
       {
-        "kind": "simplification",
-        "text": "LEVEL 8 IND_FUN: indennità di funzione per quadri 41.31 EUR/month applies only to quadri supervisory employees, not to all livello 8 workers. Not modelled: the file has no role-scoped allowance for it (review of 2026-10-30).",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "quadri_function_allowance",
-          "applies_when": {
-            "trigger": "outside_input",
-            "levels": [
-              "8"
-            ]
-          },
-          "remediation": "Add IND_FUN 41.31 EUR as a role-scoped fixed allowance on level 8 (role 'quadro', as alimentari-federalimentare does), then drop the note."
-        }
-      },
-      {
         "kind": "info",
         "text": "LEVEL 1 SPECIAL TRANCHE: separate wage correction from 1 January 2025 (EUR 1,502.46, up from EUR 1,315.70 at Aug 2024), independent of standard tranche dates Aug 2024/Aug 2025/Aug 2026. Confirmed by fiscoetasse.com (rinnovo 2024) and web search: Jan 2025=1502.46, Aug 2025=1530.00, Aug 2026=1557.00. Modeled as a four-period series for level 1 only."
       },
@@ -1231,7 +1215,46 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_FUNZIONE_QUADRO",
+          "description": "Indennità di funzione of the workers with the qualifica di quadro (Art. 112), level 8",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-08-01",
+                "valid_until": null,
+                "value": "41.31"
+              }
+            ]
+          },
+          "role": "quadro",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "calzature-rinnovo-2024-07-17",
+                "title": "Ipotesi di rinnovo del CCNL calzature 2024-2026, 17 luglio 2024, signed scan (FILCTEM-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/calzaturiero/240717_CALZATURE_RINNOVO%20CCNL%202024-2026.pdf",
+                "published_on": "2024-07-17",
+                "sha256": "888668b2cf5283aa2f3f53d2a269bb722bf04ce9faacf6cb6ddf75de7f6553d7"
+              },
+              "page": "19",
+              "section": "Art. 112 - Aumenti retributivi e nuovi minimi contrattuali",
+              "quote": "L'indennità di funzione pari ad € 41,31 mensili prevista ai lavoratori con qualifica di quadro dal 1° Settembre 1995 viene mantenuta. Tale indennità è assorbibile dai superminimi individuali."
+            },
+            "transformation": "EUR 41.31 a month, paid with the role 'quadro' on level 8, the level of the quadri in this ruleset (the renewal does not restate which levels hold the qualifica). It is absorbable by individual superminimi: the caller states a superminimo net of the part that absorbs the allowance. Dated from the renewal that maintains it (1 August 2024).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T22:30:00Z",
+              "effective_from": "2024-08-01",
+              "verification_status": "unverified"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1339,7 +1362,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
     "verification_status": "unverified",
-    "source_hash": "2ea8ef870342548d41ab92cf2b4f01183655194c4ecbc38804a11d0a334a685c",
+    "source_hash": "b6e213d25cc55c1ce1667c102620fcce3caea71683dfec15a9f2e52401783673",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

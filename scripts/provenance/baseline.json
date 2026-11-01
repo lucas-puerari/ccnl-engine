@@ -723,7 +723,6 @@
     ],
     "agreement/calzaturiero-assocalzaturifici.json": [
       "calzaturiero-assocalzaturifici/apprentice_seniority",
-      "calzaturiero-assocalzaturifici/quadri_function_allowance",
       "calzaturiero-assocalzaturifici/seniority_secondary_source"
     ],
     "agreement/carta-cartone-assocarta.json": [

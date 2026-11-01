@@ -2,7 +2,7 @@
 
 Covers Pelli Cuoio Industria Assopellettieri, Pubblici Esercizi Ristorazione
 Fipe Angem, Agenzie Di Viaggio Fiavet, Terziario Confesercenti, Turismo
-Federalberghi, Funzioni Centrali Aran.
+Federalberghi, Funzioni Centrali Aran, Calzaturiero Assocalzaturifici.
 """
 
 from datetime import date
@@ -453,3 +453,18 @@ class TestLoadFunzioniCentraliAran:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 1
         assert si.maximum_count == 0
+
+
+class TestLoadCalzaturieroAssocalzaturifici:
+    """Tests for CCNL Calzature (Assocalzaturifici), renewal of 17 July 2024."""
+
+    def test_calzaturiero_only_the_quadri_take_the_function_allowance(self) -> None:
+        """Art. 112, p. 19: 41.31 a month to the qualifica di quadro, level 8."""
+        ccnl = load_ccnl("calzaturiero-assocalzaturifici")
+        for lv in ccnl.levels:
+            found = [(a.code, a.role) for a in lv.fixed_allowances]
+            expected = [("IND_FUNZIONE_QUADRO", "quadro")] if lv.code == "8" else []
+            assert found == expected, lv.code
+        eighth = next(lv for lv in ccnl.levels if lv.code == "8")
+        allowance = eighth.fixed_allowances[0]
+        assert allowance.monthly.value_at(date(2026, 9, 1)) == Decimal("41.31")
