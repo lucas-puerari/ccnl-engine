@@ -150,7 +150,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 33 | S205 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | Pubblica Amministrazione | ~580k | 2025 | ⚠️ | base_salary | 16 / 5 / 0 / 0 | 👁 | 🤖✓ |
 | 34 | G029 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | informatica-servizi-innovativi | ~20k | — | ⚠️ | base_salary, seniority | 2 / 39 / 1 / 0 | 🧪 | 🤖 |
 | 35 | A141 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | Agricoltura | ~2k | 2023 | ⚠️ | base_salary, contractual_funds, inps_employer | 1 / 36 / 1 / 0 | 🧪 | 🤖 |
-| 36 | A131 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | Agricoltura | ~4k | 2025 | ⚠️ | base_salary, inps_employer, seniority | 1 / 55 / 1 / 1 | 🧪 | 🤖 |
+| 36 | A131 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | Agricoltura | ~4k | 2025 | ⚠️ | base_salary, inps_employer, seniority | 5 / 55 / 1 / 1 | 🧪 | 🤖 |
 | 37 | T151 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | servizi socio-assistenziali | ~380k | — | ⚠️ | base_salary, bilateral_funds, inps_employer | 62 / 1 / 0 / 0 | 👁 | 🤖✓ |
 | 38 | A016 | [CCNL Cooperative e Consorzi Agricoli](cooperative-consorzi-agricoli.md) | cooperative e consorzi agricoli — impiegati e operai agricoli | ~60k | 2024 | ⚠️ | base_salary, inps_employer, seniority | 33 / 9 / 0 / 0 | 🧪 | 🤖 |
 | 39 | T611 | [CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa](federcasa.md) | Case popolari | ~6k | 2024 | ⚠️ | base_salary, inps_employer, seniority | 1 / 23 / 1 / 0 | 🧪 | 🤖 |

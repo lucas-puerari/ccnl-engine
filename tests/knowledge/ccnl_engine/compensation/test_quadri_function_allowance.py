@@ -22,6 +22,7 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
 )
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.inputs import EmploymentPeriod, Permanent
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
@@ -60,3 +61,29 @@ def test_a_quadro_responsible_for_a_unit_is_paid_250_a_month() -> None:
 def test_the_allowance_has_no_share_in_the_extra_months() -> None:
     """12 mensilità: the tredicesima pays none of it."""
     assert _funzione(PayrollRun.thirteenth(year=2026, payment_month=12), _ROLE) == []
+
+
+def test_the_quadri_of_the_consorzi_di_bonifica_take_140() -> None:
+    """Consorzi di bonifica, Art. 78 (FLAI-CGIL text, p. 83, sha256 558ceea9...).
+
+    "un'indennità di funzione in misura fissa pari ad Euro 140,00, da
+    corrispondere per quattordici mensilità" to every quadro: the Area
+    Quadri levels AQ162, AQ164, AQ185 and AQ187 (p. 11), no other level.
+    """
+    ccnl = load_ccnl("consorzi-di-bonifica-snebi")
+    day = date(2026, 3, 1)
+    paid = {
+        level.code: [
+            a.monthly.value_at(day)
+            for a in level.fixed_allowances
+            if a.code == "IND_FUNZIONE_QUADRI"
+        ]
+        for level in ccnl.levels
+    }
+    assert {code for code, amounts in paid.items() if amounts} == {
+        "AQ162",
+        "AQ164",
+        "AQ185",
+        "AQ187",
+    }
+    assert all(amounts == [Decimal("140.00")] for amounts in paid.values() if amounts)

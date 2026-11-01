@@ -135,7 +135,8 @@
               "AQ187"
             ]
           },
-          "remediation": "Source whether the CCNL pays an indennità di funzione to the AQ levels and model it."
+          "remediation": "Resolved: the AQ levels carry IND_FUNZIONE_QUADRI, 140.00 for 14 months (Art. 78, p. 83 of the FLAI-CGIL text).",
+          "status": "resolved"
         }
       },
       {
@@ -184,6 +185,27 @@
         ],
         "findings": [
           "Art. 98 (pp. 92-93): the whole pay for the first ten months of absence and half of it for the next five, as an integration of the INPS indemnity. The file kept the INPS indemnity alone (0/0) from a secondary summary: corrected to 100% for days 1-300 and 50% to day 450, the comporto paid. The continuation of an illness within three months of the end of the last is not modelled (note)."
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-quadri-function-allowance",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The indennità di funzione of the quadri, Art. 78 (p. 83).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+            "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+          }
+        ],
+        "findings": [
+          "Art. 78 (p. 83): 140.00 for 14 months to the quadri; p. 11: the Area Quadri is the parametri 162, 164, 185, 187: levels[AQ*].fixed_allowances[IND_FUNZIONE_QUADRI]. Found by a delegated search, checked again on the PDF text."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels[AQ162,AQ164,AQ185,AQ187].fixed_allowances"
         ]
       }
     ]
@@ -2413,7 +2435,47 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_FUNZIONE_QUADRI",
+          "description": "Indennità di funzione per i quadri (Art. 78): 140,00 euro per 14 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "140.00"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-bonifica-flai-2026",
+                "title": "CCNL per i Dipendenti dai Consorzi di Bonifica e di Miglioramento Fondiario (testo pubblicato da FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+              },
+              "page": "83",
+              "section": "Art. 78 - Indennità di funzione per i quadri",
+              "quote": "Ai dipendenti con la qualifica di quadro viene corrisposta, in aggiunta alla retribuzione mensile ai medesimi spettante e quale elemento distinto della stessa, un'indennità di funzione in misura fissa pari ad Euro 140,00, da corrispondere per quattordici mensilità."
+            },
+            "transformation": "140.00 a month on every level of the Area Quadri (p. 11: parametri 162, 164, 185, 187, the levels AQ162, AQ164, AQ185, AQ187), paid on the 14 mensilità of the file.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:00:00Z",
+              "effective_from": "2025-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T19:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-quadri-function-allowance"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -2488,7 +2550,47 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_FUNZIONE_QUADRI",
+          "description": "Indennità di funzione per i quadri (Art. 78): 140,00 euro per 14 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "140.00"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-bonifica-flai-2026",
+                "title": "CCNL per i Dipendenti dai Consorzi di Bonifica e di Miglioramento Fondiario (testo pubblicato da FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+              },
+              "page": "83",
+              "section": "Art. 78 - Indennità di funzione per i quadri",
+              "quote": "Ai dipendenti con la qualifica di quadro viene corrisposta, in aggiunta alla retribuzione mensile ai medesimi spettante e quale elemento distinto della stessa, un'indennità di funzione in misura fissa pari ad Euro 140,00, da corrispondere per quattordici mensilità."
+            },
+            "transformation": "140.00 a month on every level of the Area Quadri (p. 11: parametri 162, 164, 185, 187, the levels AQ162, AQ164, AQ185, AQ187), paid on the 14 mensilità of the file.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:00:00Z",
+              "effective_from": "2025-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T19:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-quadri-function-allowance"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -2713,7 +2815,47 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_FUNZIONE_QUADRI",
+          "description": "Indennità di funzione per i quadri (Art. 78): 140,00 euro per 14 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "140.00"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-bonifica-flai-2026",
+                "title": "CCNL per i Dipendenti dai Consorzi di Bonifica e di Miglioramento Fondiario (testo pubblicato da FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+              },
+              "page": "83",
+              "section": "Art. 78 - Indennità di funzione per i quadri",
+              "quote": "Ai dipendenti con la qualifica di quadro viene corrisposta, in aggiunta alla retribuzione mensile ai medesimi spettante e quale elemento distinto della stessa, un'indennità di funzione in misura fissa pari ad Euro 140,00, da corrispondere per quattordici mensilità."
+            },
+            "transformation": "140.00 a month on every level of the Area Quadri (p. 11: parametri 162, 164, 185, 187, the levels AQ162, AQ164, AQ185, AQ187), paid on the 14 mensilità of the file.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:00:00Z",
+              "effective_from": "2025-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T19:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-quadri-function-allowance"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -2788,7 +2930,47 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_FUNZIONE_QUADRI",
+          "description": "Indennità di funzione per i quadri (Art. 78): 140,00 euro per 14 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "140.00"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-bonifica-flai-2026",
+                "title": "CCNL per i Dipendenti dai Consorzi di Bonifica e di Miglioramento Fondiario (testo pubblicato da FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+              },
+              "page": "83",
+              "section": "Art. 78 - Indennità di funzione per i quadri",
+              "quote": "Ai dipendenti con la qualifica di quadro viene corrisposta, in aggiunta alla retribuzione mensile ai medesimi spettante e quale elemento distinto della stessa, un'indennità di funzione in misura fissa pari ad Euro 140,00, da corrispondere per quattordici mensilità."
+            },
+            "transformation": "140.00 a month on every level of the Area Quadri (p. 11: parametri 162, 164, 185, 187, the levels AQ162, AQ164, AQ185, AQ187), paid on the 14 mensilità of the file.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:00:00Z",
+              "effective_from": "2025-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T19:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-quadri-function-allowance"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -2816,7 +2998,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "b29a14829a04f160e4ea2fdbc52a0526b5f493ae4fe9e1b22304cd03f5ade953",
+    "source_hash": "d607f4e8b029bb1b9f498c786601a4c0c6f39c0cf11ee5a8249bc34007b869f0",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 55 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 5 verified / 55 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-21 |
-| **Last review** | 2026-10-31 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-31 | claude-opus-5-5 (ai) | The sick pay and the comporto of the CCNL (work_rules.sickness_rules), read on the signed text. | corrected | Art. 98 (pp. 92-93): the whole pay for the first ten months of absence and half of it for the next five, as an integration of the INPS indemnity. The file kept the INPS indemnity alone (0/0) from a secondary summary: corrected to 100% for days 1-300 and 50% to day 450, the comporto paid. The continuation of an illness within three months of the end of the last is not modelled (note). |
+| 2026-11-01 | claude-opus-5-5 (ai) | The indennità di funzione of the quadri, Art. 78 (p. 83). | corrected | Art. 78 (p. 83): 140.00 for 14 months to the quadri; p. 11: the Area Quadri is the parametri 162, 164, 185, 187: levels[AQ*].fixed_allowances[IND_FUNZIONE_QUADRI]. Found by a delegated search, checked again on the PDF text. |
 
 ## Salary table
 
@@ -121,12 +122,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the amounts of the dodicennale and quadriennali scatti and correct tiers 2-3.
 
-!!! warning "consorzi-di-bonifica-snebi/quadri_function_allowance · base_salary · impact unknown · open"
+!!! note "consorzi-di-bonifica-snebi/quadri_function_allowance · base_salary · impact unknown · resolved"
     AQ-category levels (AQ162, AQ164, AQ185, AQ187) are quadri. An indennita di funzione may apply per standard quadri CCNL practice, but the amount could not be confirmed from available public sources; not modeled.
 
     **Applies when:** `base_salary` applies; level in AQ162, AQ164, AQ185, AQ187.
 
-    **Remediation:** Source whether the CCNL pays an indennità di funzione to the AQ levels and model it.
+    **Remediation:** Resolved: the AQ levels carry IND_FUNZIONE_QUADRI, 140.00 for 14 months (Art. 78, p. 83 of the FLAI-CGIL text).
 
 !!! warning "consorzi-di-bonifica-snebi/apprentice_inps_rates_unsourced · inps_employer · impact unknown · open"
     APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.
