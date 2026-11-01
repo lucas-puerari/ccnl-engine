@@ -289,11 +289,12 @@ class TestLoadAgentiImmobilariFiaip:
         ccnl = load_ccnl("agenti-immobiliari-fiaip")
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(168)
 
-    def test_agenti_immobiliari_fiaip_no_fixed_allowances(self) -> None:
-        """Conglobated model: every level has fixed_allowances == [] (Art. 158)."""
+    def test_agenti_immobiliari_fiaip_only_q_function_allowance(self) -> None:
+        """Conglobated model: only the Q function allowance of Art. 162 (*)."""
         ccnl = load_ccnl("agenti-immobiliari-fiaip")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == (), f"{lv.code} has unexpected allowances"
+            codes = tuple(a.code for a in lv.fixed_allowances)
+            assert codes == (("IND_FUNZIONE",) if lv.code == "Q" else ()), lv.code
 
     def test_agenti_immobiliari_fiaip_tax_sector(self) -> None:
         """Tax sector is terziario (FILCAMS/FISASCAT/UILTUCS signatories)."""
