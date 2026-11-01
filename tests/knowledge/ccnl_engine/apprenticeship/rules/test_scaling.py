@@ -153,6 +153,6 @@ def test_under_classification_track_records_no_scaling() -> None:
     The apprentice is paid at a lower level, so no percentage is applied
     and no scaling decision is recorded.
     """
-    result = _apprentice_run(COMMERCIO, "4")
+    result = _apprentice_run(COMMERCIO, "4", "livelli_2_5")
 
     assert not [d for d in result.decisions if d.capability == "apprenticeship_scaling"]

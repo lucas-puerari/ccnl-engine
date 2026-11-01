@@ -654,7 +654,9 @@ class TestCommercioNetBasis:
         "Le indennità a carico del datore di lavoro non sono dovute [...] né
         agli apprendisti".
         """
-        result = self._run(contract_type=Apprentice(months_elapsed=6))
+        result = self._run(
+            contract_type=Apprentice(months_elapsed=6, track="livelli_2_5")
+        )
         assert set(_sick(result)) == {"abs", "inps"}
 
 

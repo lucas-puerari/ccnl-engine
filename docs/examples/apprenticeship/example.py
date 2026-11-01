@@ -27,7 +27,9 @@ def apprentice_period(months_elapsed: int) -> PeriodInput:
         employment=Employment(
             ccnl_id="commercio-confcommercio",
             level_code="4",
-            contract_type=Apprentice(months_elapsed=months_elapsed),
+            contract_type=Apprentice(
+                months_elapsed=months_elapsed, track="livelli_2_5"
+            ),
         ),
         employer=EmployerProfile(headcount=Headcount(50)),
     )

@@ -432,7 +432,9 @@ class TestCommercioFonte:
 
     def test_apprentice_pays_the_apprentice_rate(self) -> None:
         """1.05% of the apprentice pay of the run: 1541.77 -> 16.19."""
-        result = self._run(contract_type=Apprentice(months_elapsed=6))
+        result = self._run(
+            contract_type=Apprentice(months_elapsed=6, track="livelli_2_5")
+        )
         decision = _pension_decision(result)
         assert decision.inputs["employer_rate"] == Decimal("0.0105")
         assert decision.inputs["base"] == result.period_gross == Decimal("1541.77")

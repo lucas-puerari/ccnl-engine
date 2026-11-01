@@ -93,7 +93,10 @@ The `Apprentice` type covers both salary tracks used by Italian CCNLs:
 - **Under-classification track**: the apprentice is placed at a lower level for each
   phase. Used by most tertiary CCNLs (Commercio, Turismo).
 
-The engine automatically detects which track the loaded CCNL uses.
+The engine picks the track of the destination level. When the CCNL has several
+tracks for that level (the longer profiles of Commercio Art. 68 Tabella B, of
+Edilizia or of FIPE), `Apprentice.track` names the one of the worker's profile;
+without it the run raises an input error.
 
 ```python
 --8<-- "docs/examples/apprenticeship/example.py"

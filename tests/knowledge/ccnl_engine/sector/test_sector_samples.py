@@ -220,7 +220,7 @@ def test_apprentice_rates(
         "commercio-confcommercio",
         "4",
         WorkerCategory.IMPIEGATO,
-        Apprentice(months_elapsed=6),
+        Apprentice(months_elapsed=6, track="livelli_2_5"),
         headcount,
     )
     rates = _inps("terziario")["apprentice"]
