@@ -140,10 +140,11 @@ class ArrearsEvent:
     Attributes:
         event_date: Date the arrears are attributed to.
         amount: Gross arrears amount in EUR.  Must be >= 0.
-        separate_tax_rate: Caller-supplied rate of the separate taxation:
-            the rate on half the income of the two years before the year of
-            receipt (art. 21 c. 1 TUIR; art. 23 c. 1 D.Lgs. 117/2026 from
-            2027).  Must be in [0, 1].
+        separate_tax_rate: Rate of the separate taxation: the rate on half
+            the income of the two years before the year of receipt (art. 21
+            c. 1 TUIR; art. 23 c. 1 D.Lgs. 117/2026 from 2027), in [0, 1].
+            ``None``: the engine computes it from
+            ``PriorYearTaxFacts.net_income_biennio``.
         reference_period: The competence period the arrears refer to.  An
             earlier tax year selects the separate taxation, the tax year of
             the run the ordinary one, a later year is rejected.  ``None``
@@ -153,7 +154,7 @@ class ArrearsEvent:
 
     event_date: date
     amount: Decimal
-    separate_tax_rate: Decimal
+    separate_tax_rate: Decimal | None = None
     reference_period: PeriodId | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
@@ -164,6 +165,7 @@ class ArrearsEvent:
             feature="arrears",
             minimum=_ZERO,
             maximum=_ONE,
+            optional=True,
         )
         require_instance(
             self.reference_period,

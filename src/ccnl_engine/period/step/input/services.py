@@ -24,7 +24,7 @@ from ccnl_engine.contribution.additional_ivs.services import (
 from ccnl_engine.contribution.domestic.services import _domestic_hourly_rate
 from ccnl_engine.contribution.enam.services import enam_stipendio
 from ccnl_engine.employment.spell.models import spell_days, unpaid_days_between
-from ccnl_engine.event.allocation.services import _process_events, worker_facts_of
+from ccnl_engine.event.allocation.services import _process_events
 from ccnl_engine.event.facade import FringeEvent
 from ccnl_engine.family.child.rules import children_within_income_limit
 from ccnl_engine.family.inputs import DependentRelationship
@@ -33,6 +33,7 @@ from ccnl_engine.fund.contractual.rules import contractual_run
 from ccnl_engine.leave.services import leave_terms
 from ccnl_engine.pay_item.services import _hours_value
 from ccnl_engine.pension_fund.decision.services import pension_terms
+from ccnl_engine.regime.requirement.rules import worker_facts_of
 from ccnl_engine.run.models import RunKind
 from ccnl_engine.severance.provision.services import tfr_treasury_fund
 from ccnl_engine.sickness.services import sickness_terms
@@ -89,7 +90,9 @@ def variable_events(
         rinnovo_regime=ctx.var_pay_rules.rinnovo,
         work_time_regime=ctx.var_pay_rules.notte_festivi_turni,
         opening_work_time_cap=opening.cash.work_time_regime,
-        worker_facts=worker_facts_of(request, withholding_agent=ctx.withholding_agent),
+        worker_facts=worker_facts_of(
+            request, ctx.withholding_agent, ctx.contract.year_rules.irpef_brackets
+        ),
         overtime_bands=CCNLOvertimeBands.of(
             ctx.contract.ccnl,
             ctx.contract.tctx.competence.year,

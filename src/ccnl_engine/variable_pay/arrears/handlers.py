@@ -17,6 +17,7 @@ with the December run of the year before belong to that year.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -48,6 +49,9 @@ SEPARATE_TAXATION = "separate_taxation"
 ORDINARY_TAXATION = "ordinary_taxation"
 #: Reason of arrears whose reference period is not stated.
 REFERENCE_PERIOD_UNKNOWN = "reference_period_unknown"
+#: Engine limitation of a rate the engine computes: the deductions of art. 21
+#: c. 4 TUIR the worker did not use in the years of the arrears are not taken.
+UNUSED_DEDUCTIONS = "arrears_unused_deductions"
 
 
 def _reason(reference: PeriodId | None, tax_year: int, index: str) -> str:
@@ -74,16 +78,13 @@ def _reason(reference: PeriodId | None, tax_year: int, index: str) -> str:
 
 
 def _decision(
-    reason: str, event: ArrearsEvent, tax_year: int, amount: Decimal
+    reason: str, event: ArrearsEvent, tax_year: int, amount: Decimal | None
 ) -> CalculationDecision:
     reference = event.reference_period
+    unknown = amount is None or reason == REFERENCE_PERIOD_UNKNOWN
     return CalculationDecision(
         capability=_CAPABILITY,
-        status=(
-            CalculationStatus.INCOMPLETE
-            if reason == REFERENCE_PERIOD_UNKNOWN
-            else CalculationStatus.FINAL
-        ),
+        status=CalculationStatus.INCOMPLETE if unknown else CalculationStatus.FINAL,
         reason_code=reason,
         rule=separate_tax_rule(tax_year).rule,
         rule_version=str(tax_year),
@@ -113,6 +114,22 @@ def _unknown_issue(index: str, tax_year: int) -> CalculationIssue:
         ),
         status=CalculationStatus.INCOMPLETE,
         fact="reference_period",
+    )
+
+
+def _rate_issue(index: str, tax_year: int) -> CalculationIssue:
+    law = separate_tax_rule(tax_year)
+    return CalculationIssue(
+        code="arrears_separate_rate_unknown",
+        capability=_CAPABILITY,
+        message=(
+            f"ArrearsEvent {index}: the arrears are taxed separately at the "
+            f"rate of half the income of the two years before ({law.rate_citation}); "
+            "state ArrearsEvent.separate_tax_rate or "
+            "PriorYearTaxFacts.net_income_biennio"
+        ),
+        status=CalculationStatus.INCOMPLETE,
+        fact="net_income_biennio",
     )
 
 
@@ -158,7 +175,20 @@ def _handle_arrears(event: ArrearsEvent, ctx: _EventHandlerCtx) -> EventEffect:
             irpef_delta=gross,
             decisions=[_decision(reason, event, tax_year, gross)],
         )
-    sep_tax = money(gross * event.separate_tax_rate)
+    rate = event.separate_tax_rate
+    if rate is None:
+        rate = ctx.worker_facts.arrears_rate
+    unknown = reason == REFERENCE_PERIOD_UNKNOWN
+    issues = [_unknown_issue(ctx.evt_id, tax_year)] if unknown else []
+    if rate is None:
+        return EventEffect(
+            items=[item],
+            intents=intents,
+            inps_delta=gross,
+            decisions=[_decision(reason, event, tax_year, None)],
+            issues=[*issues, _rate_issue(ctx.evt_id, tax_year)],
+        )
+    sep_tax = money(gross * rate)
     intents.append(
         PostingIntent(
             entry_id=f"sep_tax_{ctx.evt_id}",
@@ -170,11 +200,18 @@ def _handle_arrears(event: ArrearsEvent, ctx: _EventHandlerCtx) -> EventEffect:
             remittance_code=ARREARS_WITHHOLDING,
         )
     )
-    unknown = reason == REFERENCE_PERIOD_UNKNOWN
+    decision = _decision(reason, event, tax_year, sep_tax)
+    computed = event.separate_tax_rate is None
+    inputs = {
+        **decision.inputs,
+        "separate_tax_rate": rate,
+        "rate_source": "biennio" if computed else "caller",
+    }
     return EventEffect(
         items=[item],
         intents=intents,
         inps_delta=gross,
-        decisions=[_decision(reason, event, tax_year, sep_tax)],
-        issues=[_unknown_issue(ctx.evt_id, tax_year)] if unknown else [],
+        decisions=[replace(decision, inputs=inputs)],
+        issues=issues,
+        limitations=(UNUSED_DEDUCTIONS,) if computed else (),
     )

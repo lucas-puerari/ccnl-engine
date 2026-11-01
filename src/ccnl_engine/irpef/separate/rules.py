@@ -14,10 +14,20 @@ two years before the year "in cui sono percepiti".
 from __future__ import annotations
 
 from dataclasses import dataclass
+from decimal import Decimal
+from typing import TYPE_CHECKING
 
+from ccnl_engine.irpef.rules import _exact_marginal_tax
 from ccnl_engine.provenance.statute.rules import INCOME_TAX_CODE_FROM
 
-__all__ = ["SeparateTaxRule", "separate_tax_rule"]
+if TYPE_CHECKING:
+    from collections.abc import Sequence
+
+    from ccnl_engine.types import Bracket
+
+__all__ = ["SeparateTaxRule", "separate_rate", "separate_tax_rule"]
+
+_TWO = Decimal(2)
 
 
 @dataclass(frozen=True)
@@ -54,3 +64,24 @@ def separate_tax_rule(tax_year: int) -> SeparateTaxRule:
         citation="art. 17 c. 1 lett. b TUIR",
         rate_citation="art. 21 c. 1 TUIR",
     )
+
+
+def separate_rate(
+    biennio: tuple[Decimal, Decimal], brackets: Sequence[Bracket]
+) -> Decimal:
+    """Return the rate of the separate taxation of arrears (art. 21 TUIR).
+
+    The rate "corrispondente alla metà del reddito complessivo netto del
+    contribuente nel biennio anteriore" (c. 1): the average rate of the
+    brackets on half the income of the two years; a year without income
+    leaves half the other's (c. 3, "la metà del reddito complessivo netto
+    dell'altro anno"), and two years without income the rate of the first
+    bracket.
+
+    Returns:
+        The rate, not rounded.
+    """
+    half = sum(biennio, Decimal(0)) / _TWO
+    if half <= 0:
+        return Decimal(brackets[0].rate)
+    return _exact_marginal_tax(half, brackets) / half

@@ -66,6 +66,7 @@ from ccnl_engine.termination.naspi.services import EXCEPTIONS as NASPI_EXCEPTION
 from ccnl_engine.termination.notice.handlers import DAY_MEASURE as NOTICE_DAY_MEASURE
 from ccnl_engine.termination.notice.handlers import EXTRA_MONTHS as NOTICE_EXTRA_MONTHS
 from ccnl_engine.termination.notice.handlers import PARTIAL as NOTICE_PARTIAL
+from ccnl_engine.variable_pay.arrears.handlers import UNUSED_DEDUCTIONS
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
@@ -149,6 +150,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         SAME_KIND,
         AGRICULTURAL_DAYS,
         MID_MONTH_CHANGE,
+        UNUSED_DEDUCTIONS,
     }
     assert by_status[LimitationStatus.RESOLVED] == {
         _MIDPOINT,

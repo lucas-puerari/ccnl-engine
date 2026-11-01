@@ -59,6 +59,7 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "naspi_dismissal_exceptions",
         "sickness_agricultural_fixed_term_days",
         "mid_month_level_change",
+        "arrears_unused_deductions",
     }
     assert {lim.id for lim in limitations} - blocking == {
         "apprenticeship_midpoint_allowances",

@@ -14,16 +14,27 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.irpef.separate.rules import separate_rate
 from ccnl_engine.withholding.agent.rules import NOT_WITHHOLDING_AGENT
 
 if TYPE_CHECKING:
+    from collections.abc import Sequence
+
+    from ccnl_engine.period.requests import PeriodCalculationRequest
     from ccnl_engine.regime.models import (
         EmployerActivity,
         EmploymentSector,
         PreferentialTaxRegime,
     )
+    from ccnl_engine.types import Bracket
 
-__all__ = ["RegimeFacts", "ineligibility", "missing_fact", "missing_facts"]
+__all__ = [
+    "RegimeFacts",
+    "ineligibility",
+    "missing_fact",
+    "missing_facts",
+    "worker_facts_of",
+]
 
 
 @dataclass(frozen=True, slots=True)
@@ -43,6 +54,9 @@ class RegimeFacts:
             substitute tax is withheld by the sostituto d'imposta, so a
             household employer applies no regime (art. 23 c. 1 D.P.R.
             600/1973).
+        arrears_rate: Rate of the separate taxation of arrears from the
+            income of the two years before (art. 21 TUIR).  ``None`` when
+            that income is not known.
     """
 
     prior_income: Decimal | None = None
@@ -51,6 +65,7 @@ class RegimeFacts:
     waived_regimes: frozenset[str] = frozenset()
     agreement_signed_on: date | None = None
     withholding_agent: bool = True
+    arrears_rate: Decimal | None = None
 
     def waived(self, regime: PreferentialTaxRegime) -> bool:
         """Return whether the worker renounced ``regime`` in writing.
@@ -141,3 +156,35 @@ _UNKNOWN_FACTS: dict[str, tuple[str, str]] = {
     "signing": ("agreement_signing_date_unknown", "agreement_signed_on"),
     "income": ("prior_income_unknown", "employment_income"),
 }
+
+
+def worker_facts_of(
+    request: PeriodCalculationRequest,
+    withholding_agent: bool,
+    brackets: Sequence[Bracket] = (),
+) -> RegimeFacts:
+    """Return the worker facts the regimes of a run are checked against.
+
+    Args:
+        request: The period calculation request.
+        withholding_agent: Whether the employer withholds tax; the regimes
+            are applied only by a withholding agent.
+        brackets: IRPEF brackets of the tax year, for the rate of arrears.
+
+    Returns:
+        The prior-year income and waivers, the sector of the employment and
+        the activity of the employer, as declared on ``request``.
+    """
+    biennio = request.prior_year.net_income_biennio
+    return RegimeFacts(
+        prior_income=request.prior_year.employment_income,
+        sector=request.sector,
+        activity=request.employer.activity,
+        waived_regimes=frozenset(request.prior_year.waived_regimes),
+        withholding_agent=withholding_agent,
+        arrears_rate=(
+            None
+            if biennio is None or not brackets
+            else separate_rate(biennio, brackets)
+        ),
+    )

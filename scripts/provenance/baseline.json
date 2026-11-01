@@ -1423,6 +1423,7 @@
     ],
     "limitation/engine.json": [
       "apprenticeship_pct_undeclared_components",
+      "arrears_unused_deductions",
       "disability_permit_tfr",
       "extraordinary_leave_daily_base",
       "inps_minimum_base_exempt_category",

@@ -10,6 +10,7 @@ from ccnl_engine.collection.validators import (
     items_of_type,
     tuple_of,
 )
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.regime.models import SubstituteTaxRegime
 from ccnl_engine.tax_credit.foreign.inputs import (
     ForeignTaxPaid,
@@ -64,18 +65,24 @@ class PriorYearTaxFacts:
             year, one entry per State, credited at the conguaglio (art. 165
             TUIR, art. 23 c. 3 DPR 600/1973).  A list is accepted and
             stored as a tuple.
+        net_income_biennio: Reddito complessivo netto of the second and of
+            the first year before the tax year, in EUR, each ``>= 0``: the
+            rate of the separate taxation of arrears is the one of half
+            their sum (art. 21 cc. 1, 3 TUIR).  ``None`` when not known.
 
     Raises:
         InvalidInputError: When ``employment_income`` is not a finite,
             non-negative ``Decimal``, a waiver names no regime,
-            ``shortfall_deferral`` is not a request, or two foreign taxes
-            name the same State.
+            ``shortfall_deferral`` is not a request, two foreign taxes
+            name the same State, or ``net_income_biennio`` is not two
+            non-negative amounts.
     """
 
     employment_income: Decimal | None = None
     waived_regimes: frozenset[SubstituteTaxRegime] = frozenset()
     shortfall_deferral: ShortfallDeferralRequest | None = None
     foreign_taxes: tuple[ForeignTaxPaid, ...] = ()
+    net_income_biennio: tuple[Decimal, Decimal] | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         owner = "PriorYearTaxFacts"
@@ -105,6 +112,20 @@ class PriorYearTaxFacts:
         )
         check_one_per_state(taxes)
         object.__setattr__(self, "foreign_taxes", taxes)
+        biennio: object = self.net_income_biennio
+        if biennio is not None:
+            if not isinstance(biennio, tuple) or len(biennio) != 2:
+                msg = f"{owner}.net_income_biennio must be a tuple of two amounts"
+                raise InvalidInputError(
+                    msg, field=f"{owner}.net_income_biennio", feature=_FEATURE
+                )
+            for i, income in enumerate(biennio):
+                require_decimal(
+                    income,
+                    f"{owner}.net_income_biennio[{i}]",
+                    feature=_FEATURE,
+                    minimum=Decimal(0),
+                )
 
 
 def _regime(value: object, path: str) -> SubstituteTaxRegime:

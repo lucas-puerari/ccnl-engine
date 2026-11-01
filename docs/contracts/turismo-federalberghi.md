@@ -352,6 +352,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source how a month is split by a promotion inside it (a CCNL clause or an INPS or Ministry ruling) and price the events of the month at the terms of their day, then resolve this limitation.
 
+!!! warning "arrears_unused_deductions · contract_renewal_arrears · impact yes · open"
+    The engine computes the rate of the separate taxation of arrears from PriorYearTaxFacts.net_income_biennio (art. 21 cc. 1, 3 TUIR) but does not reduce the tax by the deductions of artt. 12 and 13 cc. 1-2 the worker did not use in the years the arrears refer to (art. 21 c. 4): the request does not state them, so the tax may be overstated.
+
+    **Applies when:** `contract_renewal_arrears` applies; the run takes the engine code path.
+
+    **Remediation:** Add the deductions the worker declares as unused for each year of the arrears and reduce the tax by them, then resolve this limitation.
+
 ## Sources
 
 | Document | Kind | Date | URL |
