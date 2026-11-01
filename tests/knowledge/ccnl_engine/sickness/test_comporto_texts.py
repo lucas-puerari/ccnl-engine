@@ -143,3 +143,17 @@ def test_orafi_ends_one_illness_before_the_three_years() -> None:
         (b.seniority_months_from, b.single_comporto_days, b.comporto_days)
         for b in rules.cumulation.bands
     ] == [(0, 183, 274), (60, 244, 365), (120, 305, 456)]
+
+
+def test_metalmeccanica_cooperative_counts_three_years_like_federmeccanica() -> None:
+    """Tit. VI Art. 2, pp. 123-125: 183/274/365 days, full pay 122/153/214."""
+    rules = _sickness("metalmeccanica-cooperative")
+    cumulation = rules.cumulation
+    assert cumulation is not None
+
+    assert (cumulation.window_years, cumulation.reset_after_days) == (3, 61)
+    assert cumulation.reduced_integration_rate == Decimal("0.80")
+    assert [
+        (b.seniority_months_from, b.full_pay_days, b.comporto_days)
+        for b in cumulation.bands
+    ] == [(0, 122, 183), (36, 153, 274), (72, 214, 365)]
