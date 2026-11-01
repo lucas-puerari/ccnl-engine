@@ -9,6 +9,7 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.period.inputs import TerminationCause
 from ccnl_engine.event.handlers import EventEffect
 from ccnl_engine.inputs import SeniorityFact, SenioritySource
@@ -69,6 +70,49 @@ def test_the_band_of_a_level_cause_and_service() -> None:
     assert rules.band("A", _D, 61) is rules.bands[1]
     assert rules.band("A", _R, 1) is None
     assert rules.band("B", _D, 1) is None
+
+
+_I, _O = WorkerCategory.IMPIEGATO, WorkerCategory.OPERAIO
+
+
+def _of(category: WorkerCategory, up: int | None, days: int) -> NoticeBand:
+    return NoticeBand(
+        levels=("A",), causes=(_D,), up_to_months=up, days=days, categories=(category,)
+    )
+
+
+def test_the_band_of_a_category() -> None:
+    """Each category its own ladder; an unknown category matches none of them."""
+    bands = (_of(_I, 36, 30), _of(_I, None, 60), _of(_O, None, 12))
+    rules = NoticeRules(bands=bands, provenance=RULES.provenance)
+
+    assert rules.band("A", _D, 36, _I) is bands[0]
+    assert rules.band("A", _D, 37, _I) is bands[1]
+    assert rules.band("A", _D, 200, _O) is bands[2]
+    assert rules.band("A", _D, 1) is None
+    assert rules.band("A", _D, 1, WorkerCategory.QUADRO) is None
+
+
+def test_a_band_without_categories_serves_every_category() -> None:
+    """No categories named: the band of any category, known or not."""
+    rules = NoticeRules(bands=(_band(None),), provenance=RULES.provenance)
+    assert rules.band("A", _D, 1, _O) is rules.bands[0]
+    assert rules.band("A", _D, 1) is rules.bands[0]
+
+
+def test_each_category_grows_to_an_open_end() -> None:
+    """A ladder per category: the operai without an open band fail."""
+    with pytest.raises(ValidationError, match=r"\(operaio\)"):
+        NoticeRules(
+            bands=(_of(_I, None, 30), _of(_O, 48, 12)), provenance=RULES.provenance
+        )
+
+
+def test_a_band_may_start_on_its_own_day() -> None:
+    """The band's start overrides the CCNL's; none keeps it."""
+    own = NoticeBand(levels=("A",), causes=(_D,), days=12, starts=NoticeStart.DAY_AFTER)
+    assert own.starts is NoticeStart.DAY_AFTER
+    assert _band(None).starts is None
 
 
 @pytest.mark.parametrize(

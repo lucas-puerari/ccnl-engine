@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from datetime import date
     from decimal import Decimal
 
+    from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.employment.period.inputs import TerminationCause
     from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.provenance.source.models import SourceLocation
@@ -28,6 +29,7 @@ class NoticeTerms:
         rules: The CCNL notice, ``None`` when the CCNL states none.
         level: Level of the worker.
         seniority: Recognised service, ``None`` when not stated.
+        category: Category of the worker, ``None`` when not known.
         ended_on: Last day of the employment, ``None`` when not stated.
         ended_by: How the employment ends, ``None`` when not stated.
         just_cause: Whether a dismissal or resignation has a just cause.
@@ -53,6 +55,7 @@ class NoticeTerms:
     rule: str
     rule_version: str
     source: SourceLocation | None = None
+    category: WorkerCategory | None = None
 
 
 def notice_terms(ctx: RunContext) -> NoticeTerms:
@@ -83,4 +86,5 @@ def notice_terms(ctx: RunContext) -> NoticeTerms:
         rule=f"{name}:work_rules.notice",
         rule_version=str(year) if ccnl.ruleset is None else ccnl.ruleset.version,
         source=None if rules is None else rules.provenance.location,
+        category=ctx.worker_category,
     )
