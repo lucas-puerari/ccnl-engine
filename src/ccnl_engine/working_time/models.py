@@ -3,9 +3,9 @@
 from collections.abc import Sequence
 from decimal import Decimal
 from enum import StrEnum
-from typing import Literal
+from typing import Literal, Self
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
@@ -76,6 +76,20 @@ class OvertimeBand(BaseModel):
     provenance: RuleProvenance | None = None
 
 
+class WeekDivisor(BaseModel):
+    """The hourly divisor of a normal week other than the one of the CCNL divisor.
+
+    Commercio art. 211: 168 for a normal week of 40 hours, 182 for 42, 195
+    for 45; the CCNL divisor is the first, this the others.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    weekly_hours: int = Field(ge=1)
+    divisor: Decimal = Field(gt=Decimal(0))
+    provenance: RuleProvenance
+
+
 class TimeSupplements(BaseModel):
     """Layer 3 time-supplement rules (overtime, night work, holiday work).
 
@@ -85,7 +99,8 @@ class TimeSupplements(BaseModel):
     only when ``hourly_base_provenance`` is verified; otherwise the caller
     states the rate.  ``hourly_divisor_weekly_hours``, when set, is the
     full-time week the divisor belongs to: an employment whose full-time
-    week differs is not derived (the CCNL sets another divisor for it).
+    week differs is not derived (the CCNL sets another divisor for it),
+    unless ``week_divisors`` holds the divisor of its week.
     ``individual_elements`` says whether the worker's individual elements
     enter the base (:class:`IndividualElementsRule`).
 
@@ -100,9 +115,34 @@ class TimeSupplements(BaseModel):
     hourly_base_method: HourlyBaseMethod = HourlyBaseMethod.MINIMO_TABELLARE
     hourly_base_provenance: RuleProvenance | None = None
     hourly_divisor_weekly_hours: int | None = Field(default=None, ge=1)
+    week_divisors: tuple[WeekDivisor, ...] = Field(default=())
     individual_elements: IndividualElementsRule | None = None
     overtime_bands: tuple[OvertimeBand, ...] = Field(default=())
     supplement_bands: tuple[SupplementBand, ...] = Field(default=())
+
+    @model_validator(mode="after")
+    def _distinct_weeks(self) -> Self:
+        """Reject a week divisor without the week of the CCNL divisor, or twice.
+
+        Returns:
+            The validated instance.
+
+        Raises:
+            ValueError: When ``week_divisors`` is set without
+                ``hourly_divisor_weekly_hours`` or names a week twice or
+                that week.
+        """
+        weeks = [w.weekly_hours for w in self.week_divisors]
+        if not weeks:
+            return self
+        own = self.hourly_divisor_weekly_hours
+        if own is None or own in weeks or len(set(weeks)) < len(weeks):
+            msg = (
+                "week_divisors need hourly_divisor_weekly_hours and name each "
+                f"other week once: {own} and {weeks}"
+            )
+            raise ValueError(msg)
+        return self
 
     @field_validator("overtime_bands")
     @classmethod

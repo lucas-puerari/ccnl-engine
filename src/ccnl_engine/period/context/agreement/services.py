@@ -26,6 +26,7 @@ from ccnl_engine.employment.context.models import (
 )
 from ccnl_engine.errors import InvalidInputError, UnknownLevelError
 from ccnl_engine.fund.solidarity.models import with_solidarity_tiers
+from ccnl_engine.working_time.week.rules import with_week_divisor
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL, TaxSector
@@ -132,7 +133,10 @@ def load_contract(
         UnknownLevelError: When the CCNL has no level ``request.level_code``.
     """
     period_id = request.period_id
-    ccnl = flat_pay_divisor(resolve_ccnl(repo, request.ccnl_id), request.weekly_hours)
+    ccnl = with_week_divisor(
+        flat_pay_divisor(resolve_ccnl(repo, request.ccnl_id), request.weekly_hours),
+        request.full_time_weekly_hours,
+    )
     ccnl, sector_unknown = with_employer_sector(ccnl, request.employer.inps_sector)
     tctx = TemporalContext.from_period(
         period_id.year, period_id.month, request.payment_date

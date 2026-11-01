@@ -3621,13 +3621,76 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "39c396a0b503cd86fba5389dba2206968d66f4a97fef7fb7a800d2c246a42846",
+    "source_hash": "ad0044f6b32f66d1acd69279bc252ea1c20639e03cabd963da569fe9209e552d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
       "hourly_base_method": "gross_incl_allowances",
+      "hourly_divisor_weekly_hours": 40,
+      "week_divisors": [
+        {
+          "weekly_hours": 42,
+          "divisor": "182",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+                "kind": "associazione",
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+              },
+              "page": "58",
+              "section": "Art. 194 - Quota oraria, lett. b)",
+              "quote": "182, per il personale la cui durata normale di lavoro è di 42 ore settimanali"
+            },
+            "transformation": "The hourly divisor of an employment whose full-time week (Employment.full_time_weekly_hours) is 42 hours.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T12:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T12:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-week-divisors"
+            }
+          }
+        },
+        {
+          "weekly_hours": 45,
+          "divisor": "195",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+                "kind": "associazione",
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+              },
+              "page": "58",
+              "section": "Art. 194 - Quota oraria, lett. c)",
+              "quote": "195, per il personale la cui durata normale di lavoro è di 45 ore settimanali"
+            },
+            "transformation": "The hourly divisor of an employment whose full-time week (Employment.full_time_weekly_hours) is 45 hours.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T12:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T12:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-week-divisors"
+            }
+          }
+        }
+      ],
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -4293,6 +4356,27 @@
         "independence": "same_process",
         "checked": [
           "levels[*].fixed_allowances[IND_CASSA]"
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-week-divisors",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The hourly divisors of the 42 and 45 hour weeks, Art. 194 - Quota oraria (p. 58).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "Art. 194 - Quota oraria (p. 58): 168 for a normal week of 40 hours, 182 for 42, 195 for 45: work_rules.time_supplements.hourly_divisor_weekly_hours 40 and week_divisors 42/182, 45/195."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements.week_divisors"
         ]
       }
     ],

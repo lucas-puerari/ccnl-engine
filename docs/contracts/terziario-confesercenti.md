@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-20 | claude-opus-5-5 (ai) | Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Art. 149 - Maggiorazione lavoro straordinario; Artt. 206 and 208). | corrected | Art. 149 - Maggiorazione lavoro straordinario; Artt. 206 and 208: individual elements hour only in the hourly base: work_rules.time_supplements.individual_elements. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment (work_rules.leave_rules.termination) read again in the cited text. | confirmed | Art. 159 - Chiarimento a verbale (p. 127): the indemnity of the ferie at the end of the employment is the retribuzione mensile di fatto divided by twenty-six, as recorded; the basis is now verified. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The indennità di cassa e maneggio denaro of Art. 218 (p. 158). | corrected | Art. 218 (p. 158): 5% of the paga base nazionale conglobata to the staff normally at the till with full responsibility for it: levels[*].fixed_allowances[IND_CASSA], role cassiere, one value per period of the base_salary. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The hourly divisors of the 42 and 45 hour weeks, Art. 211 - Quota oraria (p. 156). | corrected | Art. 211 - Quota oraria (p. 156): 168 for a normal week of 40 hours, 182 for 42, 195 for 45: work_rules.time_supplements.hourly_divisor_weekly_hours 40 and week_divisors 42/182, 45/195. |
 
 ## Salary table
 
@@ -151,12 +152,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add the operatori di vendita levels.
 
-!!! warning "terziario-confesercenti/long_week_divisors · base_salary · impact yes · open"
+!!! note "terziario-confesercenti/long_week_divisors · base_salary · impact yes · resolved"
     Art. 211: the hourly divisors 182 and 195 of the 42 and 45 hour weeks.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Pick the divisor by the weekly hours.
+    **Remediation:** Resolved: work_rules.time_supplements.week_divisors holds 182 and 195, read for an employment whose full_time_weekly_hours is 42 or 45.
 
 !!! warning "terziario-confesercenti/sunday_overtime · overtime · impact unknown · open"
     Art. 149: the 30% on Sunday overtime. Overtime declared as OvertimeKind.REST_DAY takes OT_FESTIVO, 30% (working_time/overtime/policies.py, tests/integration/ccnl_engine/working_time/overtime/test_rest_day.py::test_rest_day_band[terziario_sunday_30]); Sunday overtime of a worker whose weekly rest falls on another day is weekday overtime, 15%, and whether Art. 149 pays it 30% is not confirmed (review of 2026-10-30).

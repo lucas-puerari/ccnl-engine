@@ -402,6 +402,7 @@ source_paths = [
     "src/ccnl_engine/working_time/services.py",
     "src/ccnl_engine/working_time/standby/handlers.py",
     "src/ccnl_engine/working_time/supplement/policies.py",
+    "src/ccnl_engine/working_time/week/rules.py",
 ]
 # Limit collection to the tests of the mutated payroll modules; copy full src
 # so imports resolve. Hypothesis tests are left out: they use multiple
