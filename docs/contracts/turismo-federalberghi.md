@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-05 |
-| **Last review** | 2026-10-31 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-20 | claude-opus-5-5 (ai) | The pricing of the seniority increments matured before a change of level (Art. 158 c. 6 - Scatti di anzianità). | corrected | Art. 158 c. 6 - Scatti di anzianità (p. 141): the earlier increments are repriced at the new level when the next one matures: seniority_increments.on_promotion. |
 | 2026-10-20 | claude-opus-5-5 (ai) | Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Art. 148 c. 1 - Elementi della retribuzione). | corrected | Art. 148 c. 1 - Elementi della retribuzione: individual elements excluded in the hourly base: work_rules.time_supplements.individual_elements. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched in the signed text of 2010 (Artt. 111, 129, 130, 150, 151), the 2014 version and the OCR of the 2024 ipotesi. | corrected | Art. 150 - Determinazione della retribuzione giornaliera (p. 134): the daily pay is the monthly pay divided by 26 for every contractual purpose: the residual ferie are paid at it, and the ROL at the hourly pay of Art. 151: work_rules.leave_rules.termination. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The hourly divisors of the 44 and 45 hour weeks, Art. 151 c.1 (p. 135), checked by a separate session on the rendered page. | confirmed | Art. 151 c.1 (PDF p. 135, sha256 47f71f5f... matched; the page rendered and read, the OCR 't 92' and 'L 90' are 192 and 190): 192 for a normal week of 45 hours, 190 for 44, 172 for 40: work_rules.time_supplements.week_divisors 44/190, 45/192.<br>No later source of the file states another divisor; the notes of the file hold Art. 151 unchanged by the renewals of 2014 and 2024, whose PDFs were not opened. |
 
 ## Salary table
 
@@ -355,7 +356,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 ??? note "Coverage notes"
     CNEL code H052 is shared with CCNL Agenzie di Viaggio Fiavet: the engine allows duplicates.
     
-    HOURLY RATE AND SUPPLEMENTS (artt. 148, 151, 216, 220 of the 2010 text): without a caller value the engine derives the hourly base (the art. 148 retribuzione over 172), the 25% on ordinary night hours from 24 to 6 (art. 216 c.1; 12% for the role qualifica_notturna, c.2: Employment.roles must be stated) and the 20% on the hours worked on a festività (art. 220). The night window of the lavoratori notturni (23:30-6:30, art. 218) only changes which hours the caller declares. Art. 220 also pays the festività hours themselves on top of the monthly pay: the engine posts the 20% only and the run is provisional. Not derived: the Sunday allowance of art. 126 (10% of the hourly paga base and contingenza: the bundle does not record that base_salary holds exactly those two voci), holiday overtime (art. 219 sets no rate), the divisors 190 and 192 of the 44- and 45-hour weeks (a stated full-time week other than 40 is not derived).
+    HOURLY RATE AND SUPPLEMENTS (artt. 148, 151, 216, 220 of the 2010 text): without a caller value the engine derives the hourly base (the art. 148 retribuzione over 172), the 25% on ordinary night hours from 24 to 6 (art. 216 c.1; 12% for the role qualifica_notturna, c.2: Employment.roles must be stated) and the 20% on the hours worked on a festività (art. 220). The night window of the lavoratori notturni (23:30-6:30, art. 218) only changes which hours the caller declares. Art. 220 also pays the festività hours themselves on top of the monthly pay: the engine posts the 20% only and the run is provisional. Not derived: the Sunday allowance of art. 126 (10% of the hourly paga base and contingenza: the bundle does not record that base_salary holds exactly those two voci), holiday overtime (art. 219 sets no rate). The divisors 190 and 192 of the 44- and 45-hour weeks are derived from Employment.full_time_weekly_hours; another week than 40, 44 or 45 is not derived.
     
     LEAVE AT TERMINATION: no clause of the texts read (2010, 2014 version, 2024 ipotesi) names the indemnity for the ferie and permits not taken; the daily pay of Art. 150 (monthly pay / 26, 'valido a tutti i fini contrattuali', p. 134) prices a residual day of ferie, and the hourly pay of Art. 151 (/ 172) a residual hour of ROL, the measure Art. 111 c.7 uses for the permits left at the deadline.
     
@@ -365,7 +366,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     APPRENTICESHIP: 80%, 85%, 90% and 95% from the fourth year (art. 58 c.1, 2010 text p. 90), to which art. 152 c.4 of the 2024 text still refers. Destination levels 2, 3, 4, 5, 6s and 6. The durations of art. 54 of the 2010 text were replaced by the accordo apprendistato of 17 April 2012 and its art. 14 bis (renewal of 18 January 2014, p. 12: 2 and 3 34 months, 6 22 months with prior learning); no signed copy of the 2012 accord was found, so its base durations are not sourced. The 95% band is open-ended.
     
-    HOURLY DIVISOR: 172 for the 40-hour week (art. 151 c.1, 2010 text p. 135); 190 and 192 for 44 and 45 hours not modelled.
+    HOURLY DIVISOR: 172 for the 40-hour week (art. 151 c.1, 2010 text p. 135); 190 and 192 for 44 and 45 hours in work_rules.time_supplements.week_divisors, read from Employment.full_time_weekly_hours.
     
     MONTHLY PAYMENTS: 14, art. 160 (tredicesima) and art. 161 (quattordicesima, paid with the July pay) as replaced by the renewal of 5 July 2024 (pp. 45-46).
     

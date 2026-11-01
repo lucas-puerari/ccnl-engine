@@ -100,3 +100,11 @@ def test_the_sport_ccnl_divides_by_173_or_195(week: int, divisor: int) -> None:
         load_ccnl("impianti-sportivi-sport"), WeeklyHours(Decimal(week))
     )
     assert ccnl.parameters.hourly_divisor.value_at(date(2026, 3, 1)) == divisor
+
+
+@pytest.mark.parametrize(
+    ("week", "amount"), [(40, "25.10"), (44, "22.73"), (45, "22.49")]
+)
+def test_turismo_divides_by_172_190_or_192(week: int, amount: str) -> None:
+    """Turismo Art. 151 c.1 (2010 text, p. 135): 2 x 1.30 x 1,660.69 / divisor."""
+    assert _overtime("turismo-federalberghi", "4", week) == Decimal(amount)

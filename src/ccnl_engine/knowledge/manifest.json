@@ -2159,7 +2159,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi",
       "ruleset_version": "2026.2",
-      "source_hash": "8a5de25020333f46687f67367f0464c87f630ba8fbe6454a457e0442ef5e8ebe",
+      "source_hash": "35f1ff64b72760ba4b658429d15b05e1cf9f73e96b23c21f4a68f80203ad0cb8",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/turismo-federalberghi.json.gz"
