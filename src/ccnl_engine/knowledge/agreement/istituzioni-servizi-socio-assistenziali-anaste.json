@@ -1278,7 +1278,7 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "c423c6df86b3d64eb60dd7a77704ab5d19fb1de08bff419a7c6698bcf3fa508d",
+    "source_hash": "5c89c761a7008dc1b0f756a89c6675cc48458fdf708e77a0c9fd814f00953038",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1501,8 +1501,16 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2025-01-01"
+        },
+        "transformation": "Comporto of several illnesses (2026-11-01): the comporto sums the sick days of the 36 months before the day, up to 180, on top of the 180 days of one illness. Source: https://snalv.it/docs/anaste25/pdf6.pdf, p. 52 (sha256 0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98): 'Al lavoratore è garantita la conservazione del posto di lavoro per un periodo massimo di 180 giorni continuativi in un anno solare […] il numero di giorni di malattia risulti superiore a 180 giorni nell’arco del triennio precedente l’ultimo evento morboso.'"
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 36,
+          "comporto_days": 180
         }
-      }
+      ]
     }
   }
 }

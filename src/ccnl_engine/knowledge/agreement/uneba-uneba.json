@@ -1543,7 +1543,7 @@
     "effective_until": null,
     "source": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "157926284581432e4cfd33c8ca0428348d826584429939440f193db5c716b9a8",
+    "source_hash": "9f4648161ef909cf79f3c4e3b7fc94e3f05019b14a7c37c227288e6446cb8209",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1766,8 +1766,16 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2025-01-01"
+        },
+        "transformation": "Comporto of several illnesses (2026-11-01): the comporto sums the sick days of the 36 months before the day, up to 365, on top of the 180 days of one illness. Source: https://www.uneba.org/wp-content/uploads/2026/05/CCNL-UNEBA-2023-2025.pdf, p. 75 (sha256 5d70e03494dc0a1cdacd1b9f68d0faaf89c87809c41fe9cfa446f76c41f13cbc): 'un massimo di 365 giorni di calendario continuativi ovvero frazionati nell’arco dell’ultimo triennio a partire dall’evento in corso e comprensivo dello stesso'"
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 36,
+          "comporto_days": 365
         }
-      }
+      ]
     }
   }
 }

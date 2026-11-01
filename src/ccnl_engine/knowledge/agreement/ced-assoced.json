@@ -1396,7 +1396,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "e980ae87f17629da8ebfc1d9569090ee4b22fcc2ef7a25f9a9c2362a074a3a06",
+    "source_hash": "a81d9dce282e5cb73b5ec422b11b090031edd1c9984a07cd1b41878e8f92cc5a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1583,8 +1583,10 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2022-03-09"
-        }
-      }
+        },
+        "transformation": "Comporto of several illnesses (2026-11-01): the comporto of 180 days counts the sick days of every episode of the calendar year. Source: https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/stesura-ccnl-ced,-imprese-ict,-professioni-digitali-e-s.t.p.-del-09-marzo-2022.pdf, p. 96 (sha256 1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e): 'per un periodo massimo di comporto pari a 180 giorni in un anno solare, calcolato per sommatoria di eventi conglobando all’interno del suddetto periodo sia gli eventi di malattia che gli eventi di infortunio'"
+      },
+      "comporto_calendar_year": true
     }
   }
 }

@@ -1595,7 +1595,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
     "verification_status": "unverified",
-    "source_hash": "d8c90864395b40ada443b6ce463721e53ffe8c0874ad8f359937953e6181bf37",
+    "source_hash": "616827f4d08b87b9db114c054915291e2ea82dd848b218864d0a5e626253217f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1819,8 +1819,16 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2025-02-01"
+        },
+        "transformation": "Comporto of several illnesses (2026-11-01): the comporto sums the sick days of the 12 months before the day, up to 180, on top of the 180 days of one illness. Source: https://assipan.it/wp-content/uploads/2025/03/CCNL-della-Panificazione-26-febbraio-2025.pdf, p. 58 (sha256 8533abbd8719e1de2e7f3fa2f228ebe44e62154d27b2e9a3120bd47ab31e1abf): 'per un periodo massimo di 180 giorni, anche in caso di diverse malattie, nei 12 mesi precedenti.'"
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 12,
+          "comporto_days": 180
         }
-      }
+      ]
     }
   }
 }

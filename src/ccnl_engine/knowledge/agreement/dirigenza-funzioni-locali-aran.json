@@ -364,7 +364,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/",
     "verification_status": "unverified",
-    "source_hash": "8da099cf379dc9dfb805e6515040e791a7244adde4070252261e59bed948106a",
+    "source_hash": "6f7f308d76980b26f76d2b3e5424728006885966e60d1575fb1da69dec4e0520",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -446,7 +446,8 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2022-01-01"
-        }
+        },
+        "transformation": "Comporto of several illnesses (2026-11-01): the comporto sums the sick days of the 36 months before the day, up to 540, on top of the 540 days of one illness. Source: https://www.aranagenzia.it/wp-content/uploads/2024/10/CCNL-Area-Funzioni-Locali.pdf, p. 28 (sha256 b8ea493408be4c5d850c960a7c58a6d04a83f01c9aa4524a4b46a9b0f1a7dc76): 'Ai fini della maturazione del predetto periodo, si sommano tutte le assenze per malattia intervenute nei tre anni precedenti l’ultimo episodio morboso in corso.'"
       },
       "tiers": [
         {
@@ -463,6 +464,13 @@
           "month_from": 13,
           "month_until": null,
           "integration_rate": "0.5"
+        }
+      ],
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 36,
+          "comporto_days": 540
         }
       ]
     }

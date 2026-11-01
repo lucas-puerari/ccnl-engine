@@ -477,7 +477,7 @@
     "effective_until": "2024-12-31",
     "source": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
     "verification_status": "unverified",
-    "source_hash": "58c66fbbcb183f58a6d7b78179251e4e45b2d8f41280a8ddae236df7edf12fd7",
+    "source_hash": "704a01513fe1496fa29c835b635000204c14dea5efe97fc8a1ecb97be901716e",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -559,7 +559,8 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2022-01-01"
-        }
+        },
+        "transformation": "Comporto of several illnesses (2026-11-01): the comporto sums the sick days of the 36 months before the day, up to 540, on top of the 540 days of one illness. Source: https://www.aranagenzia.it/wp-content/uploads/2024/10/CCNL-area-istruzione-e-ricerca-2016_2018-testo-firma-definitiva.pdf, p. 24 (sha256 5d9a09340c79873bbfe8117ec337188f8fa452b0a073b5fbf3e00ae1e60062a5): 'Ai fini della maturazione del predetto periodo, si sommano tutte le assenze per malattia intervenute nei tre anni precedenti l'ultimo episodio morboso in corso.'"
       },
       "tiers": [
         {
@@ -576,6 +577,13 @@
           "month_from": 13,
           "month_until": null,
           "integration_rate": "0.5"
+        }
+      ],
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 36,
+          "comporto_days": 540
         }
       ]
     }

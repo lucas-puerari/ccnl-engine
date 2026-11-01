@@ -405,7 +405,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "826a028e532b079861a531d1e289782e40dbb9fc80bb944add158f39fca21926",
+    "source_hash": "85abf1d565835b23e4a37afd3c2c5c66a032ee6b3bb1c21431177f8a095d03ff",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -560,7 +560,8 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2022-01-01"
-        }
+        },
+        "transformation": "Comporto of several illnesses (2026-11-01): the comporto sums the sick days of the 36 months before the day, up to 540, on top of the 540 days of one illness. Source: https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf, p. 65 (sha256 de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375): 'Ai fini della maturazione del predetto periodo, si sommano tutte le assenze per malattia intervenute nei tre anni precedenti l’ultimo episodio morboso in corso.'"
       },
       "tiers": [
         {
@@ -577,6 +578,13 @@
           "month_from": 13,
           "month_until": null,
           "integration_rate": "0.5"
+        }
+      ],
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 36,
+          "comporto_days": 540
         }
       ]
     },
