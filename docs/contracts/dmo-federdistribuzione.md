@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority, sickness, territorial_supplement |
 
-10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -106,6 +106,12 @@ Destination levels: `II`, `III`, `IV`, `V`
 **standard_VI** (type: `under_classification`)  
 Destination levels: `VI`
 
+**tabella_b_48_mesi** (type: `under_classification`)  
+Destination levels: `II`, `III`
+
+**tabella_b_42_mesi** (type: `under_classification`)  
+Destination levels: `IV`
+
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
@@ -116,13 +122,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the provincial terzi elementi of Art. 198 as a territorial supplement.
-
-!!! warning "dmo-federdistribuzione/long_apprenticeship_profiles · base_salary · impact yes · open"
-    APPRENTICESHIP: under-classification of Art. 46 and durations of Art. 57 (Testo Unico 29/09/2025, PDF pp. 24-25). Destinations II-VI (Art. 55: I and Q excluded). Levels II-V: 36 months, two levels below in the first half, one below in the second. Level VI: 24 months at level VII, the first half by Art. 46 c. 5 and the second by c. 3 (one level below), as the Commercio file. The 42 and 48 month profiles of Art. 61 are not modelled.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Add the 42 and 48 month tracks of Art. 61, selected by Apprentice.track.
 
 !!! warning "dmo-federdistribuzione/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
@@ -361,6 +360,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Seniority: 10 scatti triennali (Art. 188), amounts of the Art. 188 table, in force since 1 January 1990; paid from the month after the triennium (c. 4).
     
     Additional months: 14 (tredicesima Art. 204 + quattordicesima Art. 205).
+    
+    APPRENTICESHIP PROFILES OF TABELLA B (Art. 61): 48 months for the listed profiles ending at levels II and III (track tabella_b_48_mesi), 42 months for those ending at level IV (tabella_b_42_mesi), two levels below for the first half and one below for the second. An apprentice of levels II, III and IV states Apprentice.track: standard_II_V for the 36 months of the other profiles.
     
 
 ## Raw data

@@ -83,22 +83,6 @@
       }
     },
     {
-      "id": "long_apprenticeship_profiles",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 68 Tabella B: the 42 and 48 month apprenticeship profiles. The una tantum of the Protocollo 12/12/2022 (EUR 200 + 150 at level IV with the January and March 2023 pay) is historic.",
-      "calculation": "ccnl/terziario-confesercenti:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the 42 and 48 month tracks.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "terziario-confesercenti/long_apprenticeship_profiles"
-        ]
-      }
-    },
-    {
       "id": "lump_sum_2024_2025",
       "institute": "una_tantum",
       "variant": "all",

@@ -115,22 +115,6 @@
       }
     },
     {
-      "id": "long_apprenticeship_profiles",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "APPRENTICESHIP: under-classification of Art. 46 and durations of Art. 57 (Testo Unico 29/09/2025, PDF pp. 24-25). Destinations II-VI (Art. 55: I and Q excluded). Levels II-V: 36 months, two levels below in the first half, one below in the second. Level VI: 24 months at level VII, the first half by Art. 46 c. 5 and the second by c. 3 (one level below), as the Commercio file. The 42 and 48 month profiles of Art. 61 are not modelled.",
-      "calculation": "ccnl/dmo-federdistribuzione:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the 42 and 48 month tracks of Art. 61, selected by Apprentice.track.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "dmo-federdistribuzione/long_apprenticeship_profiles"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",
