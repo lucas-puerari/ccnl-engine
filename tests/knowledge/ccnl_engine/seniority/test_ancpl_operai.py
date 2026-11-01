@@ -1,4 +1,4 @@
-"""The scatti of Edilizia cooperative ANCPL and PMI ANIEM belong to the impiegati.
+"""The scatti of Edilizia ANCPL, PMI ANIEM and artigianato belong to the impiegati.
 
 Art. 83 (CCNL text 2000, p. 89): "l'impiegato ha diritto, per ogni biennio
 d'anzianità [...] a 1 scatto biennale per un massimo di 5 scatti"; the operai
@@ -35,7 +35,9 @@ _HIRED = date(2020, 1, 1)
 
 
 def _seniority(
-    category: WorkerCategory, ccnl_id: str = "edilizia-cooperative-ancpl"
+    category: WorkerCategory,
+    ccnl_id: str = "edilizia-cooperative-ancpl",
+    level: str = "4",
 ) -> Decimal:
     result = PayrollEngine.bundled().calculate_period(
         PeriodInput(
@@ -43,7 +45,7 @@ def _seniority(
             payment_date=date(2026, 3, 27),
             employment=Employment(
                 ccnl_id=ccnl_id,
-                level_code="4",
+                level_code=level,
                 contract_type=Permanent(),
                 employment_period=EmploymentPeriod(_HIRED, None),
                 seniority=SeniorityFact.since(_HIRED, SenioritySource.EMPLOYER_RECORDS),
@@ -73,3 +75,15 @@ def test_only_the_impiegato_accrues_the_scatti(
 def test_aniem_gives_the_operai_no_scatti_either() -> None:
     """Art. 49 (testo armonizzato 2025, p. 87): 'L'impiegato [...] ha diritto'."""
     assert _seniority(WorkerCategory.OPERAIO, "edilizia-pmi-confapi-aniem") == 0
+
+
+@pytest.mark.parametrize(
+    ("category", "amount"),
+    [(WorkerCategory.IMPIEGATO, "46.26"), (WorkerCategory.OPERAIO, "0")],
+)
+def test_cna_pays_the_impiegato_of_level_6_15_42(
+    category: WorkerCategory, amount: str
+) -> None:
+    """Art. 56 (testo integrale 2025, p. 87): 'Impiegato 1ª (6º livello): € 15,42'."""
+    ccnl_id = "edilizia-artigianato-cna"
+    assert _seniority(category, ccnl_id, "6") == Decimal(amount)

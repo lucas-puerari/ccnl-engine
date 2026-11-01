@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 548 open limitations (548 with a monetary impact).
+**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 547 open limitations (547 with a monetary impact).
 
 ## Declared window
 
@@ -93,7 +93,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [dmo-federdistribuzione](../contracts/dmo-federdistribuzione.md) | `commercio` | reviewed | — | 28 rows | 28 open requirements; 21 monetary limitations; 5 outside_input limitations; 21 non-native capabilities |
 | [edilizia-ance](../contracts/edilizia-ance.md) | `edilizia` | reviewed | — | 34 rows | 34 open requirements; 21 monetary limitations; 11 outside_input limitations; 20 non-native capabilities |
 | [edilizia-ance-impiegati](../contracts/edilizia-ance-impiegati.md) | `edilizia` | production | — | 32 rows | 32 open requirements; 22 monetary limitations; 8 outside_input limitations; 21 non-native capabilities |
-| [edilizia-artigianato-cna](../contracts/edilizia-artigianato-cna.md) | `edilizia` | exploratory | — | 30 rows | 30 open requirements; 1 weak rule; 26 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
+| [edilizia-artigianato-cna](../contracts/edilizia-artigianato-cna.md) | `edilizia` | exploratory | — | 29 rows | 29 open requirements; 1 weak rule; 25 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [edilizia-cooperative-ancpl](../contracts/edilizia-cooperative-ancpl.md) | `edilizia` | exploratory | — | 25 rows | 25 open requirements; 1 weak rule; 21 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [edilizia-pmi-confapi-aniem](../contracts/edilizia-pmi-confapi-aniem.md) | `edilizia` | exploratory | — | 32 rows | 32 open requirements; 1 weak rule; 27 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [elettrico-elettricita-futura](../contracts/elettrico-elettricita-futura.md) | `energia-utilities` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 21 monetary limitations; 19 non-native capabilities |
