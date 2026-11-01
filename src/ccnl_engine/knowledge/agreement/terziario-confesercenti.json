@@ -698,6 +698,67 @@
           "note": "Not in the repo coverage note. No alternative element."
         }
       }
+    ],
+    "una_tantum": [
+      {
+        "code": "UT_2024_2025",
+        "covers_from": "2022-01-01",
+        "covers_until": "2023-03-31",
+        "in_service_on": "2024-03-22",
+        "installments": [
+          {
+            "paid_in": "2024-07-01",
+            "amounts": {
+              "Q": "303.81",
+              "I": "273.67",
+              "II": "236.73",
+              "III": "202.34",
+              "IV": "175.00",
+              "V": "158.11",
+              "VI": "141.95",
+              "VII": "121.53"
+            }
+          },
+          {
+            "paid_in": "2025-07-01",
+            "amounts": {
+              "Q": "303.81",
+              "I": "273.67",
+              "II": "236.73",
+              "III": "202.34",
+              "IV": "175.00",
+              "V": "158.11",
+              "VI": "141.95",
+              "VII": "121.53"
+            }
+          }
+        ],
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-20260-terziario-confesercenti-2024",
+              "title": "Accordo di rinnovo del CCNL Terziario, distribuzione e servizi Confesercenti, 22 marzo 2024 (archivio CNEL 20260)",
+              "kind": "cnel",
+              "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20260.pdf",
+              "published_on": "2024-03-22",
+              "sha256": "3b40cf4b51935290efb18c1ff22b3d1a51f7cd09720dc204c0f4295d3cf26cd9"
+            },
+            "page": "49-50",
+            "section": "Una tantum",
+            "quote": "Ai soli fini del computo tale importo, suddivisibile in 15 quote mensili, o frazioni, verrà determinato in proporzione alla durata del rapporto ed all'effettivo servizio prestato nel periodo che va dal 1° gennaio 2022 al 31 marzo 2023. L'importo forfettario aggiuntivo \"una tantum\" di cui sopra verrà erogato in due rate, la prima rata di 175 euro con la retribuzione di luglio 2024, la seconda rata di 175 euro con la retribuzione di luglio 2025. [...] Quadro € 303,81 I € 273,67 II € 236,73 III € 202,34 IV € 175,00 V € 158,11 VI € 141,95 VII € 121,53"
+          },
+          "transformation": "Two installments of the table, each in proportion to the months served in the 15 months of 2022-2023, to the workers in force on 22 March 2024, the day of signature; part-time in proportion to the hours.",
+          "note": "The text counts the months 'o frazioni' without a day threshold: the model's 15 days make a month. The table also prints 165.20 and 138.69 for the operatori di vendita of the I and II categoria, and the apprentices take the amount 'riproporzionata in base al trattamento economico': neither is modelled apart.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-01T23:52:20Z",
+            "verification_status": "unverified",
+            "effective_from": "2024-07-01"
+          }
+        }
+      }
     ]
   },
   "levels": [
@@ -3922,27 +3983,22 @@
         "text": "Apprenticeship from Art. 53 (under-classification) and Art. 64 (durations: II-V 36 months, VI 24 months) of the Testo Unico 2019, unchanged by the 2024 renewal: at the end of the apprenticeship the worker is paid at the destination level (Art. 53)."
       },
       {
+        "kind": "info",
+        "text": "UNA TANTUM 2024-2025 (renewal of 22/03/2024, CNEL 20260, pp. 49-50): EUR 350 at level IV, two installments with the July 2024 and July 2025 pay (per installment Q 303.81 to VII 121.53), to the workers in force on 22/03/2024, in proportion to the months served from 1/1/2022 to 31/3/2023, outside the TFR: una tantum UT_2024_2025."
+      },
+      {
         "kind": "simplification",
-        "text": "One-off lump sum of the renewal of 22/03/2024 (CNEL 20260, pp. 49-50): EUR 350 at level IV, reparametrised for every level, paid in two instalments with the July 2024 and July 2025 pay (per instalment Q 303.81, I 273.67, II 236.73, III 202.34, IV 175.00, V 158.11, VI 141.95, VII 121.53), to the workers in force on 22/03/2024, pro rata over 1/1/2022-31/3/2023, outside the TFR and every other institute. Not modelled.",
+        "text": "UNA TANTUM 2024-2025, apprentices and operatori di vendita: the apprentices take the una tantum 'riproporzionata in base al trattamento economico' and the operatori di vendita of the I and II categoria 165.20 and 138.69 per installment (p. 50); the engine pays them the amount of the level.",
         "capability": "una_tantum",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "lump_sum_2024_2025",
+          "variant": "una_tantum_apprentices_sales",
           "applies_when": {
-            "levels": [
-              "Q",
-              "I",
-              "II",
-              "III",
-              "IV",
-              "V",
-              "VI",
-              "VII"
-            ],
+            "trigger": "outside_input",
             "effective_from": "2024-07-01",
             "effective_until": "2025-08-01"
           },
-          "remediation": "Pay the una tantum as a one-off earning with the July 2024 and July 2025 pay: per instalment Q 303.81, I 273.67, II 236.73, III 202.34, IV 175.00, V 158.11, VI 141.95, VII 121.53, pro rata over 1/1/2022-31/3/2023."
+          "remediation": "Reproportion the una tantum of the apprentices and pay the operatori di vendita their row."
         }
       },
       {
@@ -4121,7 +4177,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "65e35b42f7bca2341f0b8332219b8e94d815882de4bdba05e274887ae89f43aa",
+    "source_hash": "5fb6d4a93961ae088478eb25b2dfd239a3c58ff900cf74a233ac49cf6234e53d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

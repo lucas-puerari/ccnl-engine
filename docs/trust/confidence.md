@@ -246,7 +246,7 @@ classifies it by obligation:
 - an engine limitation applies only when the run takes its code path, and the
   run records the traversal (an apprentice in a midpoint period of a CCNL
   whose midpoint components are unsourced);
-- <!-- trust:limitations-outside-input -->204<!-- /trust:limitations-outside-input -->
+- <!-- trust:limitations-outside-input -->205<!-- /trust:limitations-outside-input -->
   limitations depend on a fact the request cannot express (a hire date before
   a transitional regime, a fund the worker joins, a sector section): they are
   documented on the contract page and never recorded on a run. An amount

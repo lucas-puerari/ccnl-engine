@@ -116,12 +116,12 @@ Destination levels: `IV`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "terziario-confesercenti/lump_sum_2024_2025 · una_tantum · impact yes · open"
-    One-off lump sum of the renewal of 22/03/2024 (CNEL 20260, pp. 49-50): EUR 350 at level IV, reparametrised for every level, paid in two instalments with the July 2024 and July 2025 pay (per instalment Q 303.81, I 273.67, II 236.73, III 202.34, IV 175.00, V 158.11, VI 141.95, VII 121.53), to the workers in force on 22/03/2024, pro rata over 1/1/2022-31/3/2023, outside the TFR and every other institute. Not modelled.
+!!! warning "terziario-confesercenti/una_tantum_apprentices_sales · una_tantum · impact yes · open"
+    UNA TANTUM 2024-2025, apprentices and operatori di vendita: the apprentices take the una tantum 'riproporzionata in base al trattamento economico' and the operatori di vendita of the I and II categoria 165.20 and 138.69 per installment (p. 50); the engine pays them the amount of the level.
 
-    **Applies when:** `una_tantum` applies; level in I, II, III, IV, Q, V, VI, VII; from 2024-07-01; before 2025-08-01.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Pay the una tantum as a one-off earning with the July 2024 and July 2025 pay: per instalment Q 303.81, I 273.67, II 236.73, III 202.34, IV 175.00, V 158.11, VI 141.95, VII 121.53, pro rata over 1/1/2022-31/3/2023.
+    **Remediation:** Reproportion the una tantum of the apprentices and pay the operatori di vendita their row.
 
 !!! warning "terziario-confesercenti/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
@@ -372,6 +372,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 | Protocollo straordinario 12 dicembre 2022 (CNEL 19967): acconto EUR 30 at level IV from 1 April 2023 (first 2023-2027 tranche) and una tantum EUR 350 at level IV (January and March 2023), not modelled. | altro | 2022-12-12 | [↗](https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2022//19967.pdf) |
 
 ??? note "Coverage notes"
+    UNA TANTUM 2024-2025 (renewal of 22/03/2024, CNEL 20260, pp. 49-50): EUR 350 at level IV, two installments with the July 2024 and July 2025 pay (per installment Q 303.81 to VII 121.53), to the workers in force on 22/03/2024, in proportion to the months served from 1/1/2022 to 31/3/2023, outside the TFR: una tantum UT_2024_2025.
+    
     Apprenticeship type b (professionalizzante). Durations (Art. 64): II-V 36 months, VI 24 months; half-period 18 and 12 months. The 42 and 48 month profiles of Art. 68 Tabella B are in the unmodelled note.
     
     TERZO ELEMENTO NAZIONALE (Art. 215, TU p. 157): EUR 2.07 a month due only in the provinces where no provincial third element is in force (Art. 214); paid when EmployerProfile.provincial_pay_element is false, left out with a missing_fact blocker when it is not stated.
