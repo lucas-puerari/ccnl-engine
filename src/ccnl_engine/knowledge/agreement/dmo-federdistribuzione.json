@@ -3621,7 +3621,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "ad0044f6b32f66d1acd69279bc252ea1c20639e03cabd963da569fe9209e552d",
+    "source_hash": "ce1c6dfc0d4aca1401e7b25ce9ed76e54f005bd8552a99b27f17168ccc5b67a1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4215,6 +4215,296 @@
           "0"
         ]
       }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "Q",
+            "I"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 60
+        },
+        {
+          "levels": [
+            "Q",
+            "I"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "days": 90
+        },
+        {
+          "levels": [
+            "Q",
+            "I"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "days": 120
+        },
+        {
+          "levels": [
+            "II",
+            "III"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 30
+        },
+        {
+          "levels": [
+            "II",
+            "III"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "days": 45
+        },
+        {
+          "levels": [
+            "II",
+            "III"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "days": 60
+        },
+        {
+          "levels": [
+            "IV",
+            "V"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 20
+        },
+        {
+          "levels": [
+            "IV",
+            "V"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "days": 30
+        },
+        {
+          "levels": [
+            "IV",
+            "V"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "days": 45
+        },
+        {
+          "levels": [
+            "VI",
+            "VII"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 15
+        },
+        {
+          "levels": [
+            "VI",
+            "VII"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "days": 20
+        },
+        {
+          "levels": [
+            "VI",
+            "VII"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "days": 20
+        },
+        {
+          "levels": [
+            "Q",
+            "I"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 45
+        },
+        {
+          "levels": [
+            "Q",
+            "I"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 60
+        },
+        {
+          "levels": [
+            "Q",
+            "I"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "days": 90
+        },
+        {
+          "levels": [
+            "II",
+            "III"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 20
+        },
+        {
+          "levels": [
+            "II",
+            "III"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 30
+        },
+        {
+          "levels": [
+            "II",
+            "III"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "days": 45
+        },
+        {
+          "levels": [
+            "IV",
+            "V"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 15
+        },
+        {
+          "levels": [
+            "IV",
+            "V"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 20
+        },
+        {
+          "levels": [
+            "IV",
+            "V"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "days": 30
+        },
+        {
+          "levels": [
+            "VI",
+            "VII"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 10
+        },
+        {
+          "levels": [
+            "VI",
+            "VII"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 15
+        },
+        {
+          "levels": [
+            "VI",
+            "VII"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "days": 15
+        }
+      ],
+      "starts": "first_or_sixteenth",
+      "extra_months_included": true,
+      "tfr_base": false,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+            "kind": "associazione",
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          },
+          "page": "64-66",
+          "section": "Artt. 231 (termini di preavviso), 232 (indennità sostitutiva), 233 (TFR), 236 (dimissioni e preavviso)",
+          "quote": "I termini di preavviso, a decorrere dal primo o dal sedicesimo giorno di ciascun mese, sono i seguenti [...] una indennità equivalente all'importo della retribuzione di fatto di cui all'art. 191 corrispondente al periodo di cui all'articolo precedente, comprensiva dei ratei di 13a e 14a mensilità. [...] sono escluse dalla quota annua della retribuzione utile ai fini del calcolo del trattamento di fine rapporto [...] L'indennità sostitutiva del preavviso, di cui agli artt. 183, 232, 235 e 236"
+        },
+        "transformation": "Calendar days by level and service (up to 5 years, 5 to 10, over 10): Art. 231 for dismissal, Art. 236 c. 2 for resignation, both from the 1st or the 16th. The indemnity carries the 13th and 14th ratei (Art. 232) and is out of the TFR base (Art. 233 c. 3).",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T19:30:00Z",
+          "effective_from": "2023-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T19:30:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-01-ai-notice"
+        }
+      }
     }
   },
   "verification": {
@@ -4377,6 +4667,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.time_supplements.week_divisors"
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-notice",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice of Artt. 231-236 (PDF pp. 64-66).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "Artt. 231, 232, 233 c. 3, 236 c. 2 (pp. 64-66): calendar days by level and service for dismissal and resignation, from the 1st or the 16th, indemnity on the retribuzione di fatto with the 13th and 14th ratei, out of the TFR base: work_rules.notice. Found by a delegated search, checked again on the PDF text."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.notice"
         ]
       }
     ],
