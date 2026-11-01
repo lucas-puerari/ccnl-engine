@@ -7,7 +7,9 @@ payments a year.  By hand (art. 42 c. 5-ter D.Lgs. 151/2001):
   76.869534 a day, below the 2026 maximum of 119.14, for 31 days = 2382.96;
   the whole monthly pay 2158.26 is deducted;
 - last pay 4000.00: 142.47 a day, capped at 119.14, 31 days = 3693.34;
-- a year the bundle does not list is paid uncapped: 4416.44.
+- a year the bundle does not list is paid uncapped: 4416.44;
+- a leap year divides by 366 (INPS circ. 64/2001 par. 4): 4000.00 * 13 /
+  366 = 142.076503 a day, for the 29 days of February 2028 = 4120.22.
 """
 
 from __future__ import annotations
@@ -25,6 +27,8 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
 )
+from ccnl_engine.absence.insured.extraordinary.handlers import _indemnity
+from ccnl_engine.absence.insured.loaders import load_insured_absence_rates
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.events import ExtraordinaryLeaveEvent, WorkEvent
 from ccnl_engine.extra_month.qualification.services import non_accruing_days
@@ -34,6 +38,8 @@ from ccnl_engine.inputs import (
     Permanent,
     SeniorityFact,
     SenioritySource,
+    WeeklyHours,
+    WorkPattern,
 )
 from ccnl_engine.pay_item.facade import AbsenceDeduction, MaternityItem
 from tests.integration.ccnl_engine.year.builders import NextYearRepository
@@ -44,8 +50,10 @@ if TYPE_CHECKING:
 _HIRED = date(2025, 1, 1)
 
 
-def _run(*events: WorkEvent, year: int = 2026) -> PeriodResult:
-    """Return March of ``year`` with ``events``.
+def _run(
+    *events: WorkEvent, year: int = 2026, pattern: WorkPattern | None = None
+) -> PeriodResult:
+    """Return March of ``year`` with ``events``, on ``pattern`` when given.
 
     Returns:
         The result of the run.
@@ -68,6 +76,8 @@ def _run(*events: WorkEvent, year: int = 2026) -> PeriodResult:
                 seniority=SeniorityFact.since(_HIRED, SenioritySource.EMPLOYER_RECORDS),
                 pension_fund=NoPensionFund(),
                 tfr_treasury_fund=False,
+                weekly_hours=None if pattern is None else WeeklyHours(Decimal(24)),
+                work_pattern=pattern,
             ),
             employer=EmployerProfile(headcount=Headcount(20)),
             facts=PeriodFacts(events=events),
@@ -102,8 +112,29 @@ def test_a_whole_month_on_the_last_pay() -> None:
     assert {i.item_id.rsplit("_", 1)[-1] for i in result.pay_items} >= {"abs", "inps"}
     (decision,) = (d for d in result.decisions if d.capability == "extraordinary_leave")
     assert (decision.amount, decision.status) == (Decimal("2382.96"), "final")
-    assert "extraordinary_leave_daily_base" in {lim.id for lim in result.limitations}
+    assert "extraordinary_leave_daily_base" not in {
+        lim.id for lim in result.limitations
+    }
     assert "inps_minimum_base_undetermined" not in _codes(result)
+
+
+def test_a_vertical_part_time_records_its_open_divisor() -> None:
+    """Its pay over its paid days, which the request does not state."""
+    days = (Decimal(8), Decimal(8), Decimal(8), *(Decimal(0),) * 4)
+    result = _run(_march(Decimal(1300)), pattern=WorkPattern(weekday_hours=days))
+
+    assert "extraordinary_leave_daily_base" in {lim.id for lim in result.limitations}
+
+
+def test_a_leap_year_divides_by_366() -> None:
+    """February 2028: 29 days of 4000.00 * 13 / 366, no 2028 maximum listed."""
+    rates = load_insured_absence_rates().extraordinary_leave
+
+    amount, unknown = _indemnity(
+        date(2028, 2, 1), date(2028, 2, 29), Decimal(4000) * 13, rates
+    )
+
+    assert (amount, unknown) == (Decimal("4120.22"), {2028})
 
 
 def test_the_daily_maximum_of_the_year_caps_the_indemnity() -> None:

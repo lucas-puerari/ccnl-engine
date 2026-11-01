@@ -5,14 +5,19 @@ an unpaid absence: out of the INPS and TFR bases (art. 42 c. 5-quinquies
 D.Lgs. 151/2001: the leave accrues no TFR; the days are covered by
 figurative contributions).  It pays back the INPS indemnity of each
 calendar day, posted as ``maternity_item``: the last monthly pay of fixed
-and continuous items times the monthly payments of a year over 365, at
-most the daily maximum of the year (c. 5-ter).  Which divisor INPS applies
-to the worker's own pay no source states: the run records the open engine
-limitation ``extraordinary_leave_daily_base``.
+and continuous items times the monthly payments of a year over the days of
+the year of the day, at most the daily maximum of the year (c. 5-ter).
+INPS circ. 64/2001 par. 4: the pay of the month "comprensiva della quota
+parte di tredicesima mensilità [...] va moltiplicata per 12 e divisa per
+365 giorni (366 se le assenze cadono in un anno bisestile)".  A vertical
+part time divides the pay of the month by its paid days, rest days
+included, which the request does not state: such a run records the open
+engine limitation ``extraordinary_leave_daily_base``.
 """
 
 from __future__ import annotations
 
+from calendar import isleap
 from dataclasses import replace
 from datetime import timedelta
 from decimal import Decimal
@@ -47,11 +52,10 @@ EXTRAORDINARY = "extraordinary_leave"
 LAST_PAY_UNKNOWN = "extraordinary_last_pay_unknown"
 #: The bundle lists no daily maximum for the year of a day of leave.
 CEILING_UNKNOWN = "extraordinary_leave_ceiling_unknown"
-#: The daily divisor of the worker's own pay is not settled by a source.
+#: The paid days of a vertical part time, its daily divisor, are not stated.
 EXTRAORDINARY_BASE_LIMITATION = "extraordinary_leave_daily_base"
 _DEDUCTION = "absence_deduction"
 _MONTHS = 12
-_YEAR_DAYS = Decimal(365)
 _DAY = timedelta(days=1)
 
 
@@ -67,17 +71,25 @@ def _issue(code: str, message: str, fact: str | None = None) -> CalculationIssue
 
 
 def _indemnity(
-    first: date, last: date, daily: Decimal, rates: ExtraordinaryLeaveRates
+    first: date, last: date, yearly: Decimal, rates: ExtraordinaryLeaveRates
 ) -> tuple[Decimal, set[int]]:
     """Return the indemnity of the days ``first``-``last`` and the unknown years.
 
+    Args:
+        first: First day of leave of the run.
+        last: Last day of leave of the run.
+        yearly: The last pay times the monthly payments of a year.
+        rates: The statutory maximum of each year.
+
     Returns:
-        The sum of each day's indemnity, at most its year's maximum, rounded
-        to the cent; and the years of the days without a known maximum.
+        The sum of each day's indemnity, ``yearly`` over the days of its
+        year and at most its year's maximum, rounded to the cent; and the
+        years of the days without a known maximum.
     """
     total, unknown = Decimal(0), set()
     day = first
     while day <= last:
+        daily = yearly / (366 if isleap(day.year) else 365)
         ceiling = rates.ceiling(day.year)
         if ceiling is None:
             unknown.add(day.year)
@@ -113,8 +125,8 @@ def _handle_extraordinary_leave(
                 "last_fixed_pay",
             )
         )
-    daily = last_pay * (_MONTHS + terms.pay.extra_months) / _YEAR_DAYS
-    amount, unknown = _indemnity(*span, daily, terms.rates.extraordinary_leave)
+    yearly = last_pay * (_MONTHS + terms.pay.extra_months)
+    amount, unknown = _indemnity(*span, yearly, terms.rates.extraordinary_leave)
     if unknown:
         years = ", ".join(str(y) for y in sorted(unknown))
         issues.append(
@@ -140,5 +152,5 @@ def _handle_extraordinary_leave(
         decision = replace(decision, status=provisional, reason_code=issues[0].code)
     effect.decisions = [decision]
     effect.issues = issues
-    effect.limitations = (EXTRAORDINARY_BASE_LIMITATION,)
+    effect.limitations = (EXTRAORDINARY_BASE_LIMITATION,) if terms.vertical else ()
     return effect
