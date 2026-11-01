@@ -93,32 +93,6 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Fondo EST (Art. 46) supplementary health fund not modelled. Contribution: 15 EUR/month employer + 2 EUR/month employee. Not an INPS substitute. employer_cost_annual understated by 180 EUR/year.",
-        "capability": "contractual_funds",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "fondo_est_health_fund",
-          "remediation": "Add Fondo EST (Art. 46: 15 EUR employer, 2 EUR employee a month) to parameters.health_funds, with its source, so contractual_funds posts its shares."
-        }
-      },
-      {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: Ente Bilaterale di settore (Art. 7, from 01/09/2021: 2 EUR/month employer) not modelled. employer_cost_annual understated by 24 EUR/year.",
-        "capability": "bilateral_funds",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "ente_bilaterale_contribution",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "totals": [
-            "employer_cost"
-          ],
-          "remediation": "Pass the 2 EUR monthly employer contribution as a bilateral fund event."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
         "capability": "seniority",
         "monetary_impact": "unknown",
@@ -292,7 +266,127 @@
         },
         "note": "Quote read by OCR of a scanned PDF."
       }
-    }
+    },
+    "health_funds": [
+      {
+        "code": "fondo_est",
+        "description": "Fondo EST, assistenza sanitaria integrativa, Art. 46",
+        "permanent_only": true,
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2018-01-01",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2018-01-01",
+                "valid_until": null,
+                "value": "2.00"
+              }
+            ]
+          }
+        },
+        "employee_deductible": true,
+        "solidarity_rate": "0.1",
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2018-01-01",
+                "valid_until": null,
+                "value": "16.00"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-autoscuole-2023-02-28",
+              "title": "CCNL Autoscuole, Scuole nautiche e Studi di consulenza automobilistica, firmato il 28 febbraio 2023 (UNASCA, scansione firmata)",
+              "kind": "associazione",
+              "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+              "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+            },
+            "page": "57-58",
+            "section": "Art. 46 - Fondo EST",
+            "quote": "A decorrere dal 1° gennaio 2018 le parti hanno individuato il Fondo EST come fondo di riferimento, integrativo rispetto alle prestazioni garantite dal SSN, al quale sono iscritti tutti i lavoratori assunti a tempo indeterminato. La contribuzione è pari ad € 15,00 mensili a carico dell'azienda ed € 2,00 mensili a carico del lavoratore. L'azienda che omette il versamento del contributo, è tenuta ad erogare al lavoratore un Elemento Distintivo della Retribuzione non assorbibile di importo pari ad € 16,00 lordi per 14 mensilità, che rientra nella retribuzione globale di fatto."
+          },
+          "transformation": "15 EUR a month from the employer and 2 from the worker, for the permanent workers, from 1 January 2018; the worker share leaves the IRPEF base and the employer share owes the 10% INPS solidarity contribution, as for any health fund (TUIR art. 51 c. 2 lett. a; L. 166/1991 art. 9-bis). A firm that does not pay owes the element of 16 EUR on 14 months, in the retribuzione globale di fatto and so in the TFR base. Read by OCR of the signed scan and checked on the image.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-01T15:25:25Z",
+            "verification_status": "unverified"
+          }
+        }
+      },
+      {
+        "code": "ente_bilaterale",
+        "description": "Ente bilaterale di settore, contributo delle aziende",
+        "permanent_only": true,
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2012-01-01",
+                "valid_until": "2021-09-01",
+                "value": "1.00"
+              },
+              {
+                "valid_from": "2021-09-01",
+                "valid_until": null,
+                "value": "2.00"
+              }
+            ]
+          }
+        },
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2017-01-01",
+                "valid_until": null,
+                "value": "3.00"
+              }
+            ]
+          }
+        },
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-autoscuole-2023-02-28",
+              "title": "CCNL Autoscuole, Scuole nautiche e Studi di consulenza automobilistica, firmato il 28 febbraio 2023 (UNASCA, scansione firmata)",
+              "kind": "associazione",
+              "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+              "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+            },
+            "page": "7",
+            "section": "Ente bilaterale, punti 2, 4 e 8",
+            "quote": "Le attività dell'Ente saranno finanziate da un contributo a carico delle aziende, avente decorrenza dal 1° gennaio 2012, pari a 1 euro mensile per 12 mensilità per ciascun dipendente a tempo indeterminato non in prova. [...] l'azienda che ometta il versamento delle suddette quote è tenuta a corrispondere al lavoratore un elemento distinto della retribuzione non assorbibile di importo pari a euro 3 lordi mensili per 12 mensilità direttamente in busta paga. [...] A far data dal 01 settembre 2021 si conviene di adeguare la quota da versare in favore di ciascun dipendente a 2 euro."
+          },
+          "transformation": "1 EUR a month on 12 months from 1 January 2012, 2 EUR from 1 September 2021, from the employer for each permanent worker; a firm that does not pay owes an element of 3 EUR a month on 12 months from 1 January 2017 (punto 4, 'con la medesima decorrenza' of punto 3), out of the TFR base as the clause does not put it there. The probation the clause leaves out is not modelled: the contribution is owed from the first month. Read by OCR of the signed scan and checked on the image.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-01T15:25:25Z",
+            "verification_status": "unverified"
+          }
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -1407,7 +1501,7 @@
     "effective_until": null,
     "source": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
     "verification_status": "unverified",
-    "source_hash": "587971eea01a5ee87f56787f93f495d9941e121ab8268bb38061bb3e6f015184",
+    "source_hash": "567f16dc1a517b984cdcf9f115d4ce4d2de721a44b9b5646bd9b2ac1cff12239",
     "published_at": "2026-09-12",
     "source_type": "contracting_party"
   },
