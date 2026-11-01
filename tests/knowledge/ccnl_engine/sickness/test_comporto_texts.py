@@ -10,6 +10,14 @@
   consecutivi"; Cooperative sociali (p. 104): "12 mesi nell'arco
   dell'ultimo triennio"; 360 days of 30-day months.
 - Laterizi (p. 9): "425 giorni (14 mesi) di calendario su 912 (30 mesi)".
+- Agenzie di viaggio (p. 67) and Industria turistica (p. 130): "centottanta
+  giorni per anno, intendendosi per tale il periodo compreso tra il 1°
+  gennaio e il 31 dicembre"; Fiori recisi (p. 33): "180 giorni in un anno
+  solare".
+- Funivie (pp. 25-26): 180 days, "nei ventiquattro mesi precedenti ogni
+  nuovo ultimo episodio morboso".
+- Alimentari PMI Unionalimentari (art. 36, p. 109): 180 days in the 17
+  months before up to five years of seniority, 365 in the 24 months after.
 - Federcasa (art. 51, p. 47): 12 months, over "un arco temporale pari a tre
   anni" for a non-continuous absence, the hospital stays left out of the
   window only.
@@ -43,7 +51,14 @@ def _sickness(ccnl_id: str) -> SicknessRules:
 
 @pytest.mark.parametrize(
     "ccnl_id",
-    ["ced-assoced", "ortofrutticoli-agrumari", "scuole-private-laiche-aninsei"],
+    [
+        "ced-assoced",
+        "ortofrutticoli-agrumari",
+        "scuole-private-laiche-aninsei",
+        "agenzie-viaggio-fiavet",
+        "industria-turistica-federturismo",
+        "fiori-recisi-ancef",
+    ],
 )
 def test_the_comporto_of_the_calendar_year(ccnl_id: str) -> None:
     """180 days summed over the calendar year, no window."""
@@ -61,6 +76,7 @@ def test_the_comporto_of_the_calendar_year(ccnl_id: str) -> None:
         ("multiservizi-anip", 36, 360),
         ("cooperative-sociali", 36, 360),
         ("laterizi-industria-f021", 30, 425),
+        ("funivie-anef", 24, 180),
         ("istituzioni-servizi-socio-assistenziali-anaste", 36, 180),
         ("uneba-uneba", 36, 365),
         ("dirigenza-funzioni-centrali-aran", 36, 540),
@@ -90,3 +106,12 @@ def test_federcasa_leaves_the_hospital_stays_out_of_its_window() -> None:
     assert rules.max_duration_days == 360
     assert (window.window_months, window.comporto_days) == (36, 360)
     assert window.hospital_excluded
+
+
+def test_alimentari_pmi_widens_the_window_after_five_years() -> None:
+    """180 days in 17 months, 365 in 24 from the 61st month of seniority."""
+    windows = _sickness("alimentari-pmi-unionalimentari").comporto_windows
+
+    assert [
+        (w.seniority_months_from, w.window_months, w.comporto_days) for w in windows
+    ] == [(0, 17, 180), (61, 24, 365)]

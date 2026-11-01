@@ -2039,7 +2039,7 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "832c102daab3ba8932149537f7dac48b630d0d7053182f657bc39d4aa8d8ff21",
+    "source_hash": "9041dccc45a50ac1d4e1330aa49092030f641806e9a4d179d5de399facda9dc3",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -2226,8 +2226,10 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2019-01-01"
-        }
-      }
+        },
+        "transformation": "Comporto of several illnesses (2026-11-01): the comporto of 180 days counts the sick days of every episode of the calendar year. Source: https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2019%2F%2F19056.pdf, p. 67 (sha256 1b62f2f580ad1224285f10d899341f6dcf89b51914dd0b7eac5572dd9b2cca2b): 'centottanta giorni per anno, intendendosi per tale il periodo compreso tra il 1° gennaio e il 31 dicembre. ... i relativi periodi di assenza sono cumulabili'"
+      },
+      "comporto_calendar_year": true
     }
   }
 }
