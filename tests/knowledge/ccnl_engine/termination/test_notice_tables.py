@@ -307,3 +307,22 @@ def test_the_third_batch_of_tables(
 def test_a_notice_from_the_day_the_act_is_received(ccnl_id: str) -> None:
     """OOSS and Operai agricoli count the day of the act."""
     assert _notice(ccnl_id).starts.value == "same_day"
+
+
+def test_the_cinema_operai_levels_and_their_notice() -> None:
+    """Esercizi cinematografici: levels 1 and A are operai (artt. 2-3), 15 days.
+
+    Art. 48: impiegati of 5, 5S, D, C 1 month, 45 days, 2 months by service;
+    quadri 2, 3, 4 months; operai 15 calendar days, from the middle or the
+    end of the month.
+    """
+    ccnl = load_ccnl("esercizi-cinematografici-anec")
+    rules = _notice("esercizi-cinematografici-anec")
+    operaio = rules.band("A", _R, 300, _OPERAIO)
+    impiegato = rules.band("D", _D, 61, _IMPIEGATO)
+
+    assert {lv.code for lv in ccnl.levels if lv.category is _OPERAIO} == {"1", "A"}
+    assert operaio is not None
+    assert impiegato is not None
+    assert (operaio.days, impiegato.months, impiegato.days) == (15, 0, 45)
+    assert rules.starts.value == "first_or_sixteenth"
