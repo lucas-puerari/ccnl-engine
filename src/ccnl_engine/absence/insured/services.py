@@ -47,6 +47,8 @@ class InsuredTerms:
         source: Location of the CCNL rule, if recorded.
         category: Category of the worker, which selects the maternity base.
         monthly_payments: Monthly payments a year of the CCNL, by date.
+        vertical: Whether the employment is a vertical or mixed part time
+            (``Employment.work_pattern``).
     """
 
     employed: tuple[date, date] | None
@@ -61,6 +63,7 @@ class InsuredTerms:
     source: SourceLocation | None = None
     category: WorkerCategory | None = None
     monthly_payments: TimeSeries | None = None
+    vertical: bool = False
 
 
 def insured_terms(ctx: RunContext) -> InsuredTerms:
@@ -105,4 +108,5 @@ def insured_terms(ctx: RunContext) -> InsuredTerms:
         source=record,
         category=sick.category,
         monthly_payments=sick.monthly_payments,
+        vertical=ctx.request.work_pattern is not None,
     )
