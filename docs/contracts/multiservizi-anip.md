@@ -127,11 +127,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Key seniority and sickness by worker category, model the second sickness band, the /22 divisor, the art. 38 and art. 24 premiums, the funds and the apprenticeship durations of the 2012 accord.
 
 !!! warning "multiservizi-anip/health_and_bilateral_funds · bilateral_funds · impact yes · open"
-    HEALTH AND BILATERAL FUNDS: ASIM 4.00 or 6.00 EUR a month (art. 69) and ONBSI 0.50 + 0.50 EUR a month (art. 66 as amended in 2021) are owed for every worker. Not modelled: the net pay and the employer cost are short of them.
+    BILATERAL FUND: ONBSI 0.50 EUR of the employer and 0.50 of the worker a month on 12 months, 0.25 each below 20 hours a week (art. 66 as amended in 2021, CNEL 139292 p. 29), is not modelled: the contractual funds hold no reduced worker share. ASIM (art. 69) is modelled.
 
     **Applies when:** `bilateral_funds` applies.
 
-    **Remediation:** Model the ASIM and ONBSI contributions per worker, then remove this note.
+    **Remediation:** Model the ONBSI shares with the reduced worker share below 20 hours a week, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

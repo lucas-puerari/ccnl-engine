@@ -139,7 +139,7 @@
       },
       {
         "kind": "simplification",
-        "text": "HEALTH AND BILATERAL FUNDS: ASIM 4.00 or 6.00 EUR a month (art. 69) and ONBSI 0.50 + 0.50 EUR a month (art. 66 as amended in 2021) are owed for every worker. Not modelled: the net pay and the employer cost are short of them.",
+        "text": "BILATERAL FUND: ONBSI 0.50 EUR of the employer and 0.50 of the worker a month on 12 months, 0.25 each below 20 hours a week (art. 66 as amended in 2021, CNEL 139292 p. 29), is not modelled: the contractual funds hold no reduced worker share. ASIM (art. 69) is modelled.",
         "capability": "bilateral_funds",
         "monetary_impact": "yes",
         "limitation": {
@@ -147,7 +147,7 @@
           "applies_when": {
             "trigger": "owed"
           },
-          "remediation": "Model the ASIM and ONBSI contributions per worker, then remove this note."
+          "remediation": "Model the ONBSI shares with the reduced worker share below 20 hours a week, then remove this note."
         }
       }
     ]
@@ -706,7 +706,61 @@
           "review_id": "2026-10-13-ai-production"
         }
       }
-    }
+    },
+    "health_funds": [
+      {
+        "code": "asim",
+        "description": "ASIM, assistenza sanitaria integrativa, art. 69",
+        "permanent_only": true,
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2013-07-01",
+                "valid_until": null,
+                "value": "6.00"
+              }
+            ]
+          }
+        },
+        "reduced_employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2013-07-01",
+                "valid_until": null,
+                "value": "4.00"
+              }
+            ]
+          }
+        },
+        "reduced_up_to_weekly_hours": "28",
+        "solidarity_rate": "0.1",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-multiservizi-105782",
+              "title": "CCNL Multiservizi (servizi integrati / multiservizi), testo depositato al CNEL, accordo 105782",
+              "kind": "cnel",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+              "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+            },
+            "page": "84",
+            "section": "Articolo 69 - Assistenza sanitaria integrativa",
+            "quote": "la copertura sanitaria integrativa di tutti i lavoratori a tempo indeterminato in forza a tale data cui si applica il presente c.c.n.l, e che non abbiano già una forma di assistenza sanitaria integrativa [...] Dall’1 luglio 2013 si riconosce un contributo a carico dell’impresa pari a € 4,00 mensili per i lavoratori fino a 28 ore settimanali; Dall’1 luglio 2013 si riconosce un contributo a carico dell’impresa pari a € 6,00 mensili per i lavoratori sopra le 28 ore settimanali."
+          },
+          "transformation": "6 EUR a month of the employer, 4 EUR for a worker of at most 28 hours a week, for the permanent workers the employer enrols (contractual_funds); a health fund, so the employer share owes the 10% INPS solidarity contribution (L. 166/1991 art. 9-bis). The one-off 0.50 EUR of 2012 and a worker share are not in the clause.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-01T15:34:10Z",
+            "effective_from": "2013-07-01",
+            "verification_status": "unverified"
+          }
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -5442,7 +5496,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "1af1b6c0525a7ad8e657e3b2c94d7b358a9abbe360aa817be5905eb3e97f05f3",
+    "source_hash": "025441a3af2cd625174470f997afd34057c8920ad743f20b35f3179a9d5f9673",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

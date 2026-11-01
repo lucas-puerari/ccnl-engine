@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "ente_bilaterale_contribution",
-      "institute": "bilateral_funds",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "SIMPLIFICATION: Ente Bilaterale di settore (Art. 7, from 01/09/2021: 2 EUR/month employer) not modelled. employer_cost_annual understated by 24 EUR/year.",
-      "calculation": "ccnl/autoscuole-unasca:coverage.notes",
-      "state": "absent",
-      "remediation": "Pass the 2 EUR monthly employer contribution as a bilateral fund event.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "autoscuole-unasca/ente_bilaterale_contribution"
-        ]
-      }
-    },
-    {
       "id": "extraordinary_leave_daily_base",
       "institute": "extraordinary_leave",
       "variant": "all",
@@ -79,22 +63,6 @@
       "links": {
         "limitations": [
           "extraordinary_leave_daily_base"
-        ]
-      }
-    },
-    {
-      "id": "fondo_est_health_fund",
-      "institute": "contractual_funds",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: Fondo EST (Art. 46) supplementary health fund not modelled. Contribution: 15 EUR/month employer + 2 EUR/month employee. Not an INPS substitute. employer_cost_annual understated by 180 EUR/year.",
-      "calculation": "ccnl/autoscuole-unasca:coverage.notes",
-      "state": "absent",
-      "remediation": "Add Fondo EST (Art. 46: 15 EUR employer, 2 EUR employee a month) to parameters.health_funds, with its source, so contractual_funds posts its shares.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "autoscuole-unasca/fondo_est_health_fund"
         ]
       }
     },

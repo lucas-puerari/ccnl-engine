@@ -71,10 +71,10 @@
       "institute": "bilateral_funds",
       "variant": "all",
       "discriminant": "applies_when.trigger = owed",
-      "rule": "HEALTH AND BILATERAL FUNDS: ASIM 4.00 or 6.00 EUR a month (art. 69) and ONBSI 0.50 + 0.50 EUR a month (art. 66 as amended in 2021) are owed for every worker. Not modelled: the net pay and the employer cost are short of them.",
+      "rule": "BILATERAL FUND: ONBSI 0.50 EUR of the employer and 0.50 of the worker a month on 12 months, 0.25 each below 20 hours a week (art. 66 as amended in 2021, CNEL 139292 p. 29), is not modelled: the contractual funds hold no reduced worker share. ASIM (art. 69) is modelled.",
       "calculation": "ccnl/multiservizi-anip:coverage.notes",
       "state": "absent",
-      "remediation": "Model the ASIM and ONBSI contributions per worker, then remove this note.",
+      "remediation": "Model the ONBSI shares with the reduced worker share below 20 hours a week, then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [
